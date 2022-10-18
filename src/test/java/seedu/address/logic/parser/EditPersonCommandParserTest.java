@@ -23,18 +23,18 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditContactCommand;
-import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
-public class EditContactCommandParserTest {
+public class EditPersonCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE);
 
-    private EditContactCommandParser parser = new EditContactCommandParser();
+    private EditPersonCommandParser parser = new EditPersonCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -42,7 +42,7 @@ public class EditContactCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditContactCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditPersonCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -89,7 +89,7 @@ public class EditContactCommandParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withEmail(VALID_EMAIL_AMY)
                 .withPhone(VALID_PHONE_BOB).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -102,7 +102,7 @@ public class EditContactCommandParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withEmail(VALID_EMAIL_AMY)
                 .withPhone(VALID_PHONE_BOB).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -113,19 +113,19 @@ public class EditContactCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -139,7 +139,7 @@ public class EditContactCommandParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -150,14 +150,14 @@ public class EditContactCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

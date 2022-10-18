@@ -104,8 +104,8 @@ public class CommandTestUtil {
     public static final String INVALID_TASK_NUMBER_DESC_ZERO =
             " " + PREFIX_TASK_NUMBER + "0";
 
-    public static final EditContactCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditContactCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_A;
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_B;
     public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_ONE;
