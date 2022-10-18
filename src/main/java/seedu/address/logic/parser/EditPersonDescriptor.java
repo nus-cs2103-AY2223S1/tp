@@ -1,16 +1,12 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
@@ -33,7 +29,6 @@ public class EditPersonDescriptor {
     private Monthly monthly;
     private RiskTag riskTag;
     private Set<Tag> tags;
-    private Set<Appointment> appointments;
     public EditPersonDescriptor() {}
 
     /**
@@ -49,14 +44,13 @@ public class EditPersonDescriptor {
         setMonthly(toCopy.monthly);
         setRiskTag(toCopy.riskTag);
         setTags(toCopy.tags);
-        setAppointments(toCopy.appointments);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, tags);
     }
 
     public void setName(Name name) {
@@ -97,18 +91,6 @@ public class EditPersonDescriptor {
 
     public Optional<RiskTag> getRiskTag() {
         return Optional.ofNullable(riskTag);
-    }
-
-    /**
-     * Sets {@code appointments} to this object's {@code appointments}.
-     * A defensive copy of {@code appointments} is used internally.
-     */
-    public void setAppointments(Set<Appointment> appointments) {
-        this.appointments = (appointments != null) ? new HashSet<>(appointments) : null;
-    }
-
-    public Optional<Set<Appointment>> getAppointments() {
-        return Optional.ofNullable(appointments);
     }
 
     public void setIncome(IncomeLevel income) {
@@ -160,60 +142,6 @@ public class EditPersonDescriptor {
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
                 updateMonthly, updatedRiskTag, updatedTags);
     }
-
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with appointments added from {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPersonByAddingAppointments(Person personToEdit,
-                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
-        assert personToEdit != null;
-
-        Set<Appointment> currentAppointments = personToEdit.getAppointments();
-        Set<Appointment> newAppointments = editPersonDescriptor.getAppointments().get();
-        for (Appointment newAppointment:newAppointments) {
-            if (currentAppointments.contains(newAppointment)) {
-                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-            }
-        }
-        editPersonDescriptor.appointments.forEach(currentAppointments::add);
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
-        Monthly monthly = personToEdit.getMonthly();
-        RiskTag risktag = personToEdit.getRiskTag();
-        IncomeLevel income = personToEdit.getIncome();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, risktag, tags, currentAppointments);
-        return newPerson;
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * overwritten with appointments from {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
-                                                                   EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Monthly monthly = personToEdit.getMonthly();
-        RiskTag riskTag = personToEdit.getRiskTag();
-        Set<Tag> tags = personToEdit.getTags();
-        IncomeLevel income = personToEdit.getIncome();
-        Set<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, riskTag, tags, newAppointmentsOnly);
-
-        return newPerson;
-    }
-
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -235,7 +163,6 @@ public class EditPersonDescriptor {
                 && getAddress().equals(e.getAddress())
                 && getRiskTag().equals(e.getRiskTag())
                 && getMonthly().equals(e.getMonthly())
-                && getTags().equals(e.getTags())
-                && getAppointments().equals(e.getAppointments());
+                && getTags().equals(e.getTags());
     }
 }

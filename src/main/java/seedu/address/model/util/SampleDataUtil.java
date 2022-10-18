@@ -4,12 +4,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
@@ -18,6 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -60,17 +58,6 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Appointment> getAppointmentSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new)
-                .map(Appointment::new)
                 .collect(Collectors.toSet());
     }
 }

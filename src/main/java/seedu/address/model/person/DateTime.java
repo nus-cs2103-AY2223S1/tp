@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
  * Represents a date and time with a formatted String value
  * Guarantees: immutable;
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
+    public static final String MESSAGE_CONSTRAINTS = "Invalid date time format";
     private final LocalDateTime localDateTime;
 
     /**
@@ -20,6 +21,13 @@ public class DateTime {
         requireNonNull(localDateTime);
         this.localDateTime = localDateTime;
     }
+    public Date getDate() {
+        return new Date(localDateTime.toLocalDate());
+    }
+
+    public Time getTime() {
+        return new Time(localDateTime.toLocalTime());
+    }
 
     @Override
     public String toString() {
@@ -28,10 +36,14 @@ public class DateTime {
     }
 
     @Override
+    public int compareTo(DateTime other) {
+        return this.localDateTime.compareTo(other.localDateTime);
+    }
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime// instanceof handles nulls
-                && localDateTime.equals(((DateTime) other).localDateTime)); // state check
+                && localDateTime.toString().equals(((DateTime) other).localDateTime.toString())); // state check
     }
 
     @Override
