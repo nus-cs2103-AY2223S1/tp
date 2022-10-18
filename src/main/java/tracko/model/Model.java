@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
 import tracko.model.item.Item;
+import tracko.model.item.ItemName;
 import tracko.model.order.Order;
 
 /**
@@ -98,7 +99,7 @@ public interface Model {
     /**
      * Returns an item from the inventory list with the given item name.
      */
-    Item getItem(String item);
+    Item getItem(String itemName);
 
     /**
      * Deletes the given item.

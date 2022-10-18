@@ -13,6 +13,8 @@ import tracko.model.item.Item;
  */
 public class TypicalItems {
 
+    public static final Item DEFAULT_ITEM = new ItemBuilder().build();
+
     // Following items to be instantiated as a test InventoryList
     public static final Item ITEM_1 = new ItemBuilder().withItemName("Sofa")
             .withQuantity(200).withDescription("Made of leather").build();
@@ -55,7 +57,7 @@ public class TypicalItems {
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(ITEM_1, ITEM_2, ITEM_3, ITEM_4, ITEM_5, ITEM_6, ITEM_7));
+        return new ArrayList<>(Arrays.asList(DEFAULT_ITEM, ITEM_1, ITEM_2, ITEM_3, ITEM_4, ITEM_5, ITEM_6, ITEM_7));
     }
 
     /**

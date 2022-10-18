@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static tracko.testutil.Assert.assertThrows;
+import static tracko.testutil.TypicalOrders.PAIR_1;
+import static tracko.testutil.TypicalOrders.PAIR_2;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +14,12 @@ import tracko.logic.commands.ExitCommand;
 import tracko.logic.commands.HelpCommand;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.parser.exceptions.ParseException;
+import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 import tracko.testutil.OrderBuilder;
 import tracko.testutil.OrderUtil;
+
+import java.util.List;
 
 public class TrackOParserTest {
 
@@ -23,14 +28,9 @@ public class TrackOParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Order baseOrder = new OrderBuilder().withEmptyItemList().build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getBaseAddOrderCommand(baseOrder));
-        assertEquals(new AddOrderCommand(baseOrder), command);
-
-        Order orderWithItems = new OrderBuilder().build();
-        AddOrderCommand commandWithUpdates =
-            (AddOrderCommand) parser.parseAndUpdateCommand(
-                OrderUtil.getItemQuantityPairDetails(orderWithItems), command);
-        assertEquals(new AddOrderCommand(orderWithItems), commandWithUpdates);
+        AddOrderCommand baseCommand = (AddOrderCommand) parser.parseCommand(OrderUtil.getBaseAddOrderCommand(baseOrder));
+        assertEquals(new AddOrderCommand(baseOrder), baseCommand);
+        assertTrue(baseCommand.isAwaitingInput());
     }
 
     // @Test

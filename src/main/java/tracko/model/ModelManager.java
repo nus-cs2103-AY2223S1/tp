@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
 import tracko.model.item.Item;
+import tracko.model.item.ItemName;
 import tracko.model.order.Order;
 
 /**

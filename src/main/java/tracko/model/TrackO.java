@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import tracko.model.item.InventoryList;
 import tracko.model.item.Item;
+import tracko.model.item.ItemName;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
 
@@ -74,6 +75,10 @@ public class TrackO implements ReadOnlyTrackO {
 
     public void setItems(List<Item> items) {
         this.items.setItems(items);
+    }
+
+    public void setItems(InventoryList inventoryList) {
+        this.items.setItems(inventoryList);
     }
 
     /**

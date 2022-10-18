@@ -8,6 +8,8 @@ import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import tracko.logic.commands.order.AddOrderCommand;
@@ -43,12 +45,14 @@ public class OrderUtil {
     /**
      * Returns the part of the command string that adds items to the {@code order}'s details.
      */
-    public static String getItemQuantityPairDetails(Order order) {
-        StringBuilder sb = new StringBuilder();
+    public static List<String> getItemQuantityPairDetails(Order order) {
+        List<String> details = new ArrayList<>();
         for (ItemQuantityPair itemQuantityPair: order.getItemList()) {
-            sb.append(PREFIX_ITEM + itemQuantityPair.getItemName() + " ");
+            StringBuilder sb = new StringBuilder();
+            sb.append(PREFIX_ITEM).append(itemQuantityPair.getItemName()).append(" ");
             sb.append(PREFIX_QUANTITY + itemQuantityPair.getQuantity().toString());
+            details.add(sb.toString());
         }
-        return sb.toString();
+        return details;
     }
 }
