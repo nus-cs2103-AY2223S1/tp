@@ -39,12 +39,11 @@ public class MarkCommand extends SelectAppointmentCommand {
         if (appointmentToMark.isMarked()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
-
+        int index = person.getAppointments().indexOf(appointmentToMark) + 1;
         appointmentToMark.mark();
         String addRecurringSuccessMsg = addRecurringAppointment(model, person, appointmentToMark);
         String markSuccessMsg = String.format(MESSAGE_MARK_PERSON_SUCCESS,
-                indexOfAppointment.getOneBased(),
-                getTargetPerson(model).getName());
+                index, person.getName());
         return new CommandResult(markSuccessMsg + addRecurringSuccessMsg);
     }
 

@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_NON_EXISTENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -18,42 +18,24 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 
 class UnmarkCommandTest {
 
-    private final Model typicalModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     void execute_unmarkMarkedAppointment_success() {
-        Index targetPersonIndex = INDEX_FIRST_PERSON;
-        Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
+        Appointment appointment = new Appointment("Cough", "2010-12-31 23:45", "", false);
+        Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        appointment.setPatient(person);
 
-        AddressBook testAddressBook = new AddressBook();
-        Model testModel = new ModelManager(testAddressBook, new UserPrefs());
-
-        Appointment markedAppointment = new Appointment("Cough", "2010-12-22 12:45", "", true);
-        Person markedPerson = new PersonBuilder().withAppointment(markedAppointment).build();
-        markedAppointment.setPatient(markedPerson);
-
-        testModel.addPerson(markedPerson);
-        testModel.addAppointment(markedAppointment);
-        Person personToUnmarkFor = testModel.getFilteredPersonList().get(targetPersonIndex.getZeroBased());
-
-        Appointment unmarkedAppointment = new Appointment("Cough", "2010-12-22 12:45", "", false);
-        Person unmarkedPerson = new PersonBuilder().withAppointment(unmarkedAppointment).build();
-        unmarkedAppointment.setPatient(unmarkedPerson);
-
-        UnmarkCommand unmarkCommand = new UnmarkCommand(targetAppointmentIndex);
+        UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_APPOINTMENT);
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
-                targetAppointmentIndex.getOneBased(),
-                unmarkedPerson.getName());
+                INDEX_FIRST_APPOINTMENT.getOneBased(), person.getName());
 
-        ModelManager expectedModel = new ModelManager(testModel.getAddressBook(), new UserPrefs());
-        expectedModel.setPerson(personToUnmarkFor, unmarkedPerson);
-        expectedModel.setAppointment(markedAppointment, unmarkedAppointment);
-
-        assertCommandSuccess(unmarkCommand, testModel, expectedMessage, expectedModel);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setAppointment(expectedModel.getFilteredAppointmentList().get(0), appointment);
+        assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -62,7 +44,7 @@ class UnmarkCommandTest {
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(targetAppointmentIndex);
 
-        assertCommandFailure(unmarkCommand, typicalModel, UnmarkCommand.MESSAGE_ALREADY_UNMARKED);
+        assertCommandFailure(unmarkCommand, model, UnmarkCommand.MESSAGE_ALREADY_UNMARKED);
     }
 
     @Test
@@ -71,6 +53,6 @@ class UnmarkCommandTest {
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(targetAppointmentIndex);
 
-        assertCommandFailure(unmarkCommand, typicalModel, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        assertCommandFailure(unmarkCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 }
