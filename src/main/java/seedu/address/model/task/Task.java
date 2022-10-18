@@ -285,7 +285,7 @@ public class Task {
     }
 
     /**
-     * Returns the Boolean representation of isDOne.
+     * Returns the Boolean representation of isDone.
      *
      * @param isDone in String form.
      * @return isDone in Boolean form.
