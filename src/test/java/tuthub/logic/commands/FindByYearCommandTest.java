@@ -74,7 +74,7 @@ public class FindByYearCommandTest {
         FindByYearCommand command = new FindByYearCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON, IDA), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(IDA, HOON), model.getFilteredTutorList());
     }
 
     private Tuthub getTestTaTuthub() {
