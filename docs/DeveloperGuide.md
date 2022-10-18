@@ -156,14 +156,19 @@ This section describes some noteworthy details on how certain features are imple
 
 ###**Cancel feature**: <br>
 The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
-It is implemented similar to other idENTify commands and it extends ```SelectAppointmentCommand```, an abstract class which encapsulates <br>
+It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates <br>
 operations which require selecting appointments from an appointment list. The logical flow of using this command is shown in the 
 activity diagram given below.
 
 ![Activity Diagram](diagrams/CancelActivityDiagram.png)
 
+The `AddressBookParser` will first check for the `cancel` command word. The cancel command
+is facilitated by the `CancelCommandParser` and `CancelCommand` classes. The `CancelCommandParser`
+parses the user input and obtains the index inputted by the user, before creating the cancel command to 
+execute the deletion of the appointment from the current appointment list.
 Given below is an overview of how the cancel command executes the deletion of an appointment to delete the 
-first appointment (index 1) in the appointment list.![Cancel Command](diagrams/CancelSequenceDiagram.png)
+first appointment (index 1) in the appointment list: 
+![Cancel Command](diagrams/CancelSequenceDiagram.png)
 
 
 #### Design considerations:
@@ -179,8 +184,8 @@ first appointment (index 1) in the appointment list.![Cancel Command](diagrams/C
   * Pros: Intuitive if the user just wants to delete a specified patient's appointments.
   * Cons: Appointments will have to be shown under tha patient list which will clutter up the UI.
 
-Our team decided to change the user input format of the cancel command from ```cancel PATIENT_INDEX APPOINTMENT_INDEX```
-to ```cancel APPOINTMENT_INDEX```, so it is faster for
+Our team decided to change the user input format of the cancel command from `cancel PATIENT_INDEX APPOINTMENT_INDEX`
+to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
 _{more aspects and alternatives to be added}_
