@@ -32,4 +32,9 @@ public class StubUiManager implements Ui {
     public void showClients() {
 
     }
+
+    @Override
+    public void showSortedProjects() {
+
+    }
 }

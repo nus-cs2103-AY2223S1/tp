@@ -19,8 +19,8 @@ import seedu.address.logic.commands.project.DeleteProjectCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
-import seedu.address.logic.commands.project.SortProjectCommand;
 import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
+import seedu.address.logic.commands.project.SortProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -186,7 +186,8 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
                     SortProjectCommand.MESSAGE_USAGE));
         }
 
-        return new SortProjectCommand();
+        int ascDesc = ParserUtil.parseDeadlineSort(argMultimap.getValue(PREFIX_DEADLINE).get());
+        return new SortProjectCommand(ascDesc);
     }
 
     private ListProjectCommand parseListProjectCommand(String arguments) {

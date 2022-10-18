@@ -283,5 +283,18 @@ public class ParserUtil {
         return new IssueId(trimmedIdInt);
     }
 
-
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by deadline.
+     * @return Integer of 0 or 1 specifies the chronology of sort
+     */
+    public static Integer parseDeadlineSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Deadline.isValidDeadlineSortKey(trimmedKey)) {
+            throw new ParseException(Deadline.MESSAGE_INVALID_DEADLINE_SORT);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
 }

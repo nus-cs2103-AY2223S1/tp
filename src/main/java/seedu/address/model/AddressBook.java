@@ -273,10 +273,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
-    public void sortProjects() {
-        ObservableList<Project> sorted =
-                getModifiableProjectList().sorted(Comparator.comparing(s -> s.getDeadline().getLocalDate()));
-        setSortedProjects(sorted);
+    /**
+     * Sort projects in chronological order or reverse chronological order based on key value of 0 or 1 respectively.
+     *
+     * @param key zero for chronological order and one for reverse chronological order
+     */
+    public void sortProjectsByDeadline(int key) {
+        ObservableList<Project> sortedProjectsByDeadline;
+        if (key == 0) {
+            //sort ascending deadlines
+            sortedProjectsByDeadline =
+                    getModifiableProjectList().sorted(Comparator.comparing(s -> s.getDeadline().getLocalDate()));
+        } else {
+            //sort descending deadlines
+            sortedProjectsByDeadline = getModifiableProjectList().sorted((s1, s2) ->
+                s2.getDeadline().getLocalDate().compareTo(s1.getDeadline().getLocalDate()));
+        }
+        setSortedProjects(sortedProjectsByDeadline);
     }
 
     //// util methods
@@ -361,6 +374,5 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: Check for appropriate hashcode
         return clients.hashCode();
     }
-
 
 }

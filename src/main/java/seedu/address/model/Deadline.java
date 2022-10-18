@@ -40,6 +40,9 @@ public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should be entered in yyyy-mm-dd date format";
 
+    public static final String MESSAGE_INVALID_DEADLINE_SORT =
+            "Enter either a 0 to sort by ascending order or a 1 to sort by descending order";
+
     /*
      * The date must be entered in yyyy-mm-dd or yyyy-m-d
      */
@@ -67,6 +70,23 @@ public class Deadline {
      */
     public static boolean isValidDeadline(String deadline) {
         return deadline.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Checks if input is a valid deadline sort key.
+     *
+     * 0 for ascending order and 1 for descending order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidDeadlineSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 | number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public String getFormattedDeadline() {

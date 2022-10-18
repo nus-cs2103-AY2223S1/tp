@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -159,7 +158,7 @@ public interface Model {
 
     void updateFilteredSortedProjectList(Predicate<Project> predicate);
 
-    void sortProjectsByDeadline();
+    void sortProjectsByDeadline(int sortByDeadlineKey);
 
     ObservableList<Project> getFilteredSortedProjectList();
     void setDefaultView(DefaultView defaultView);

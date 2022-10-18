@@ -9,6 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
+/**
+ * Sort projects in address book.
+ */
 public class SortProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-s";
@@ -22,10 +25,16 @@ public class SortProjectCommand extends ProjectCommand {
             + COMMAND_WORD + " "
             + PREFIX_DEADLINE;
 
+    private final int sortByDeadlineKey;
+
+    public SortProjectCommand(int key) {
+        this.sortByDeadlineKey = key;
+    }
+
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        model.sortProjectsByDeadline();
+        model.sortProjectsByDeadline(sortByDeadlineKey);
         ui.showSortedProjects();
         model.updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(MESSAGE_SUCCESS);

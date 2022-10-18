@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Comparator;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -336,8 +334,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortProjectsByDeadline() {
-        addressBook.sortProjects();
+    public void sortProjectsByDeadline(int key) {
+        addressBook.sortProjectsByDeadline(key);
         updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
