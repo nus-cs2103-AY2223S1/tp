@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -27,6 +28,13 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
+        taskListView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Task>() {
+
+            @Override
+            public void onChanged(Change<? extends Task> c) {
+                taskListView.refresh();
+            }
+        });
     }
 
     /**
@@ -36,14 +44,14 @@ public class TaskListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Task task, boolean empty) {
             super.updateItem(task, empty);
-
             if (empty || task == null) {
                 setGraphic(null);
                 setText(null);
+            } else if (isFocused()) {
+                setGraphic(new TaskListCard(task, getIndex() + 1, false).getRoot());
             } else {
-                setGraphic(new TaskListCard(task, getIndex() + 1).getRoot());
+                setGraphic(new TaskListCard(task, getIndex() + 1, true).getRoot());
             }
         }
     }
-
 }

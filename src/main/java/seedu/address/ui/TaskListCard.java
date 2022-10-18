@@ -18,6 +18,8 @@ public class TaskListCard extends UiPart<Region> {
     @FXML
     private VBox cardPane;
     @FXML
+    private VBox taskCard;
+    @FXML
     private Label id;
     @FXML
     private Label name;
@@ -27,11 +29,15 @@ public class TaskListCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private Label completion;
+    @FXML
+    private Label showMore;
+
+    private boolean isToggle;
 
     /**
      * Creates a {@code TaskListCard} with the given {@code Task} and index to display.
      */
-    public TaskListCard(Task task, int displayedIndex) {
+    public TaskListCard(Task task, int displayedIndex, boolean isToggle) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ".");
@@ -39,6 +45,9 @@ public class TaskListCard extends UiPart<Region> {
         description.setText(String.valueOf(task.getTaskDescription()));
         deadline.setText(String.format("Due by %s", task.getTaskDeadline()));
         completion.setText("10% completed (3/30 students)"); // Dummy text.
+        this.isToggle = isToggle;
+        showMore.setVisible(false);
+        onCardClicked();
     }
 
     @Override
@@ -57,5 +66,22 @@ public class TaskListCard extends UiPart<Region> {
         TaskListCard card = (TaskListCard) other;
         return id.getText().equals(card.id.getText())
                 && task.equals(card.task);
+    }
+
+    /**
+     * Toggles the task list card by expanding or minimizing.
+     */
+    @FXML
+    public void onCardClicked() {
+        isToggle = !isToggle;
+        if (isToggle) {
+            taskCard.setVisible(true);
+            taskCard.setManaged(true);
+            System.out.println("Toggled");
+        } else {
+            taskCard.setVisible(false);
+            taskCard.setManaged(false);
+            System.out.println("UnToggled");
+        }
     }
 }

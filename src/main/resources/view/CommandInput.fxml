@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="commandInput" maxWidth="Infinity" spacing="10" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="commandInput" maxWidth="Infinity" spacing="10" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <TextField fx:id="commandTextField" maxWidth="Infinity" onAction="#handleCommandEntered" promptText="Enter command here..." HBox.hgrow="ALWAYS" />
    <Button alignment="CENTER" minWidth="100" onAction="#handleCommandEntered" prefHeight="25.0" text="Send" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
 </HBox>
