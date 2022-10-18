@@ -143,7 +143,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         int count = 0;
         for (Issue i: issueList) {
             if (i.getStatus().getStatus() == true) {
-                count +=1;
+                count += 1;
             }
         }
         return count;
@@ -157,7 +157,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         int count = 0;
         for (Issue i: issueList) {
             if (i.getStatus().getStatus() == false) {
-                count +=1;
+                count += 1;
             }
         }
         return count;

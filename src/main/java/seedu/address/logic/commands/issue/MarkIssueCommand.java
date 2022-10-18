@@ -33,6 +33,9 @@ public class MarkIssueCommand extends IssueCommand {
     private final Status newStatus;
     private final IssueId issueId;
 
+    /**
+     * Creates a MarkIssueCommand to mark the specified {@code Issue} as complete
+     */
     public MarkIssueCommand(Status newStatus, IssueId issueId) {
         requireAllNonNull(newStatus, issueId);
         this.newStatus = newStatus;

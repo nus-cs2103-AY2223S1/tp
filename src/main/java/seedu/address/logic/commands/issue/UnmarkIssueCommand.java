@@ -1,5 +1,9 @@
 package seedu.address.logic.commands.issue;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -7,10 +11,6 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Status;
 import seedu.address.ui.Ui;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
 /**
  * Command to mark an issue as incomplete
@@ -31,6 +31,9 @@ public class UnmarkIssueCommand extends IssueCommand {
     private final Status newStatus;
     private final IssueId issueId;
 
+    /**
+     * Creates an UnmarkIssueCommand to mark the specified {@code Issue} as incomplete
+     */
     public UnmarkIssueCommand(Status newStatus, IssueId issueId) {
         requireAllNonNull(newStatus, issueId);
         this.newStatus = newStatus;
