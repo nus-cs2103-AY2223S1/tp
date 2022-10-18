@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Task for a Patient.
- * Guarantees: immutable; is always valid
+ * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}
  */
 public class Task {
     // consideration for v1.3: display status of task, which is to be
