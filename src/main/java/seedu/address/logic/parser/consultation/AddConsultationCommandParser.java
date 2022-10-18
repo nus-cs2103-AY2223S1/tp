@@ -7,10 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
@@ -40,12 +37,12 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
                     AddConsultationCommand.MESSAGE_USAGE));
         }
 
-        ConsultationName name = ParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_NAME).get());
-        ConsultationModule module = ParserUtil.parseConsultationModule(argMultimap.getValue(PREFIX_MODULE).get());
-        ConsultationVenue venue = ParserUtil.parseConsultationVenue(argMultimap.getValue(PREFIX_VENUE).get());
-        ConsultationTimeslot timeslot = ParserUtil.parseConsultationTimeslot(
+        ConsultationName name = ConsultationParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_NAME).get());
+        ConsultationModule module = ConsultationParserUtil.parseConsultationModule(argMultimap.getValue(PREFIX_MODULE).get());
+        ConsultationVenue venue = ConsultationParserUtil.parseConsultationVenue(argMultimap.getValue(PREFIX_VENUE).get());
+        ConsultationTimeslot timeslot = ConsultationParserUtil.parseConsultationTimeslot(
                 argMultimap.getValue(PREFIX_TIMESLOT).get());
-        ConsultationDescription description = ParserUtil.parseConsultationDescription(
+        ConsultationDescription description = ConsultationParserUtil.parseConsultationDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         Consultation consultation = new Consultation(name, module, venue, timeslot, description);

@@ -16,11 +16,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import java.util.Set;
 
 import seedu.address.logic.commands.student.AddCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.tutorial.TutorialParserUtil;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -56,20 +54,20 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        ID id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-        TutorialModule tutorialModule = ParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
-        TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
+        Name name = StudentParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        ID id = StudentParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        Phone phone = StudentParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = StudentParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Telegram telegram = StudentParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        TutorialModule tutorialModule = TutorialParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
+        TutorialName tutorialName = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
 
         //optional fields
-        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse("PENDING..."));
-        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).orElse("0"));
-        Participation participation = ParserUtil.parseParticipation(argMultimap
+        Grade grade = StudentParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse("PENDING..."));
+        Attendance attendance = StudentParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).orElse("0"));
+        Participation participation = StudentParserUtil.parseParticipation(argMultimap
                 .getValue(PREFIX_PARTICIPATION).orElse("0"));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = StudentParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Student student = new Student(name, id, phone, email, telegram,
                 tutorialModule, tutorialName, attendance, participation, grade, tagList);

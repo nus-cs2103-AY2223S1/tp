@@ -6,10 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import seedu.address.logic.commands.reminder.AddReminderCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
@@ -35,9 +32,9 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
-        ReminderName name = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
-        ReminderDeadline deadline = ParserUtil.parseReminderDeadline(argMultimap.getValue(PREFIX_TIMESLOT).get());
-        ReminderDescription description = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
+        ReminderName name = ReminderParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
+        ReminderDeadline deadline = ReminderParserUtil.parseReminderDeadline(argMultimap.getValue(PREFIX_TIMESLOT).get());
+        ReminderDescription description = ReminderParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                 .get());
 
         Reminder reminder = new Reminder(name, deadline, description);
