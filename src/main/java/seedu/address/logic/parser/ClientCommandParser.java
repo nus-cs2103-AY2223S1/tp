@@ -156,10 +156,6 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
             }
 
-            boolean hasNameArgument = arePrefixesPresent(argMultimap, PREFIX_NAME);
-            boolean hasEmailArgument = arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL);
-            boolean hasPhoneArgument = arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE);
-
 
             if(arePrefixesPresent(argMultimap, PREFIX_NAME)) {
                 return new FindClientByNameCommand(new NameContainsKeywordsPredicate(
@@ -171,10 +167,9 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                         argMultimap.getAllValues(PREFIX_CLIENT_EMAIL)));
             }
 
-            //else, it contains phone arguments
+            //implies arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE) is true
             return new FindClientByPhoneCommand(new PhoneContainsKeywordsPredicate(
                     argMultimap.getAllValues(PREFIX_CLIENT_PHONE)));
-
 
         } catch (ParseException pe) {
             throw new ParseException(
