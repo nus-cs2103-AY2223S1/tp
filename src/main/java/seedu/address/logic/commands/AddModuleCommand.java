@@ -11,7 +11,7 @@ import seedu.address.model.module.Module;
  * AddModuleCommand class represents an AddModuleCommand which adds the module.
  */
 public class AddModuleCommand extends Command {
-    public static final String COMMAND_WORD = "modadd";
+    public static final String COMMAND_WORD = "addmod";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds a module to the module list.\n"
             + "parameters: "
             + PREFIX_MOD_CODE + "MODULE_CODE";

@@ -20,6 +20,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -90,6 +93,7 @@ public interface Model {
 
     ObservableList<Module> getFilteredModuleList();
 
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -132,7 +136,7 @@ public interface Model {
     ObservableList<Task> getFilteredTaskList();
 
     boolean hasModule(Module module);
-
+    void updateFilteredModuleList(Predicate<Module>predicate);
     /**
      * Deletes the given task.
      * The task must exist in the address book.
@@ -145,9 +149,12 @@ public interface Model {
      */
     void deleteModule(Module target);
 
+    void replaceModule(Module target, Module editedModule);
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
 }

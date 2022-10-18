@@ -29,6 +29,7 @@ public class TaskListPanel extends UiPart<Region> {
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
+
     static class TaskListViewCell extends ListCell<Task> {
         @Override
         protected void updateItem(Task task, boolean empty) {
@@ -43,3 +44,4 @@ public class TaskListPanel extends UiPart<Region> {
         }
     }
 }
+

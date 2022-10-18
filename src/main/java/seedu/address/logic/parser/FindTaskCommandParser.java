@@ -8,6 +8,8 @@ import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 
+
+
 /**
  * Parses input arguments and creates a new FindTaskCommand object
  */
@@ -23,9 +25,6 @@ public class FindTaskCommandParser implements Parser<FindTasksCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTasksCommand.MESSAGE_USAGE));
         }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(trimmedArgs)));
     }
 }

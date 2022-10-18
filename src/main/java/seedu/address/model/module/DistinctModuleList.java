@@ -63,6 +63,26 @@ public class DistinctModuleList implements Iterable<Module> {
         }
     }
 
+    /**
+     * Replaces the given task {@code target} with {@code editedModule}.
+     * {@code target} must exist in the module list.
+     *
+     * @throws DuplicateModuleException if module identity of {@code editedModule} is the same as another module
+     *     in the list (other than {@code target}).
+     */
+    public void replaceModule(Module target, Module editedModule) throws DuplicateModuleException {
+        requireAllNonNull(target, editedModule);
+
+        int index = moduleList.indexOf(target);
+        if (index == -1) {
+            throw new ModuleNotFoundException();
+        }
+        if (containsModule(editedModule) && !editedModule.isSameModuleCode(target)) {
+            throw new DuplicateModuleException();
+        }
+        moduleList.set(index, editedModule);
+    }
+
     @Override
     public Iterator<Module> iterator() {
         return moduleList.iterator();

@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -27,6 +28,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private CheckBox isComplete;
 
+    @FXML
+    private Button priorityTag;
+
     /**
      * Constructor of the TaskCard. Sets the task and the position.
      *
@@ -40,5 +44,9 @@ public class TaskCard extends UiPart<Region> {
         moduleCode.setText(task.getModule().getModuleCode().moduleCode);
         description.setText(task.getDescription().description);
         isComplete.setSelected(task.isComplete());
+        if (task.getPriorityTag() != null) {
+            priorityTag.setText(task.getPriorityTag().status);
+            priorityTag.setVisible(true);
+        }
     }
 }
