@@ -14,7 +14,7 @@ import java.util.Set;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * A utility class for Resident.
@@ -33,15 +33,15 @@ public class ResidentUtil {
      */
     public static String getResidentDetails(Resident resident) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + resident.getName().fullName).append(" ");
-        sb.append(PREFIX_PHONE + resident.getPhone().value).append(" ");
-        sb.append(PREFIX_EMAIL + resident.getEmail().value).append(" ");
-        sb.append(PREFIX_ROOM + resident.getRoom().room).append(" ");
-        sb.append(PREFIX_GENDER + resident.getGender().gender).append(" ");
-        sb.append(PREFIX_HOUSE + resident.getHouse().house).append(" ");
-        sb.append(PREFIX_MATRIC_NUMBER + resident.getMatricNumber().matricNumber).append(" ");
+        sb.append(PREFIX_NAME + resident.getName().getValue()).append(" ");
+        sb.append(PREFIX_PHONE + resident.getPhone().getValue()).append(" ");
+        sb.append(PREFIX_EMAIL + resident.getEmail().getValue()).append(" ");
+        sb.append(PREFIX_ROOM + resident.getRoom().getValue()).append(" ");
+        sb.append(PREFIX_GENDER + resident.getGender().getValue()).append(" ");
+        sb.append(PREFIX_HOUSE + resident.getHouse().getValue()).append(" ");
+        sb.append(PREFIX_MATRIC_NUMBER + resident.getMatricNumber().getValue()).append(" ");
         resident.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.getValue() + " ")
         );
         return sb.toString();
     }
@@ -51,20 +51,20 @@ public class ResidentUtil {
      */
     public static String getResidentDescriptorDetails(ResidentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getRoom().ifPresent(room -> sb.append(PREFIX_ROOM).append(room.room).append(" "));
-        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender).append(" "));
-        descriptor.getHouse().ifPresent(house -> sb.append(PREFIX_HOUSE).append(house.house).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.getValue()).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.getValue()).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.getValue()).append(" "));
+        descriptor.getRoom().ifPresent(room -> sb.append(PREFIX_ROOM).append(room.getValue()).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.getValue()).append(" "));
+        descriptor.getHouse().ifPresent(house -> sb.append(PREFIX_HOUSE).append(house.getValue()).append(" "));
         descriptor.getMatricNumber().ifPresent(matricNumber ->
-                sb.append(PREFIX_MATRIC_NUMBER).append(matricNumber.matricNumber).append(" "));
+                sb.append(PREFIX_MATRIC_NUMBER).append(matricNumber.getValue()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.getValue()).append(" "));
             }
         }
         return sb.toString();

@@ -1,6 +1,5 @@
 package seedu.rc4hdb.model.resident.fields;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,22 +8,21 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  */
 public class House extends Field {
 
+    public static final String IDENTIFIER = "House";
+
     public static final String MESSAGE_CONSTRAINTS =
             "House should only contain the following characters: 'D', 'U', 'L', 'A' or 'N'";
 
     public static final String VALIDATION_REGEX = "^[DULAN]$";
 
-    public final String house;
-
     /**
      * Constructs a {@code House}.
      *
-     * @param house A valid house.
+     * @param house A valid house string.
      */
     public House(String house) {
-        requireNonNull(house);
+        super(house);
         checkArgument(isValidHouse(house), MESSAGE_CONSTRAINTS);
-        this.house = house;
     }
 
     /**
@@ -34,42 +32,16 @@ public class House extends Field {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns the house string as a full word.
-     * @return the house string as a full word.
-     */
-    public String asFullWord() {
-        switch (house) {
-        case "D":
-            return "Draco";
-        case "U":
-            return "Ursa";
-        case "L":
-            return "Leo";
-        case "A":
-            return "Aquila";
-        case "N":
-            return "Noctua";
-        default:
-            return null;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return house;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof House // instanceof handles nulls
-                && house.equals(((House) other).house)); // state check
+                && value.equals(((House) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return house.hashCode();
+        return value.hashCode();
     }
 
 }

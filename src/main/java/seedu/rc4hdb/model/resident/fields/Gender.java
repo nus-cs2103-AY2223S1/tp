@@ -1,6 +1,5 @@
 package seedu.rc4hdb.model.resident.fields;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,22 +8,20 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  */
 public class Gender extends Field {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Gender should be either 'M' or 'F'";
+    public static final String IDENTIFIER = "Gender";
+
+    public static final String MESSAGE_CONSTRAINTS = "Gender should be either 'M' or 'F'";
 
     public static final String VALIDATION_REGEX = "^[MF]$";
 
-    public final String gender;
-
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Gender}.
      *
-     * @param gender A valid gender.
+     * @param gender A valid gender string.
      */
     public Gender(String gender) {
-        requireNonNull(gender);
+        super(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
-        this.gender = gender;
     }
 
     /**
@@ -34,33 +31,11 @@ public class Gender extends Field {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns gender string as a full word.
-     * @return gender string as a full word.
-     */
-    public String asFullWord() {
-        if (gender == "M") {
-            return "Male";
-        } else {
-            return "Female";
-        }
-    }
-
-    @Override
-    public String toString() {
-        return gender;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Gender // instanceof handles nulls
-                && gender.equals(((Gender) other).gender)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return gender.hashCode();
+                && value.equals(((Gender) other).value)); // state check
     }
 
 }

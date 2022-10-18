@@ -1,4 +1,4 @@
-package seedu.rc4hdb.model.tag;
+package seedu.rc4hdb.model.resident.fields;
 
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 

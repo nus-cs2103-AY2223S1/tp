@@ -12,8 +12,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.resident.fields.Email;
 import seedu.rc4hdb.model.resident.fields.Field;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.Gender;
+import seedu.rc4hdb.model.resident.fields.House;
+import seedu.rc4hdb.model.resident.fields.MatricNumber;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
+import seedu.rc4hdb.model.resident.fields.Room;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Panel containing the list of persons.
@@ -22,15 +29,15 @@ public class ResidentTableView extends UiPart<Region> {
 
     private static final String FXML = "ResidentTableView.fxml";
 
-    private final TableColumn<Resident, Field> emailColumn = new TableColumn<>(ResidentFields.EMAIL);
-    private final TableColumn<Resident, Field> genderColumn = new TableColumn<>(ResidentFields.GENDER);
-    private final TableColumn<Resident, Field> houseColumn = new TableColumn<>(ResidentFields.HOUSE);
-    private final TableColumn<Resident, Field> indexColumn = new TableColumn<>(ResidentFields.INDEX);
-    private final TableColumn<Resident, Field> matricColumn = new TableColumn<>(ResidentFields.MATRIC);
-    private final TableColumn<Resident, Field> nameColumn = new TableColumn<>(ResidentFields.NAME);
-    private final TableColumn<Resident, Field> phoneColumn = new TableColumn<>(ResidentFields.PHONE);
-    private final TableColumn<Resident, Field> roomColumn = new TableColumn<>(ResidentFields.ROOM);
-    private final TableColumn<Resident, Field> tagColumn = new TableColumn<>(ResidentFields.TAG);
+    private final TableColumn<Resident, Field> emailColumn = new TableColumn<>(Email.IDENTIFIER);
+    private final TableColumn<Resident, Field> genderColumn = new TableColumn<>(Gender.IDENTIFIER);
+    private final TableColumn<Resident, Field> houseColumn = new TableColumn<>(House.IDENTIFIER);
+    private final TableColumn<Resident, Field> indexColumn = new TableColumn<>(Field.INDEX_IDENTIFIER);
+    private final TableColumn<Resident, Field> matricColumn = new TableColumn<>(MatricNumber.IDENTIFIER);
+    private final TableColumn<Resident, Field> nameColumn = new TableColumn<>(Name.IDENTIFIER);
+    private final TableColumn<Resident, Field> phoneColumn = new TableColumn<>(Phone.IDENTIFIER);
+    private final TableColumn<Resident, Field> roomColumn = new TableColumn<>(Room.IDENTIFIER);
+    private final TableColumn<Resident, Field> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
 
     @FXML
     private TableView<Resident> residentTableView;
