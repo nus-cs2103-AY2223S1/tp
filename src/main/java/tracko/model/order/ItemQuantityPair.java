@@ -11,7 +11,7 @@ import tracko.model.item.Quantity;
 public class ItemQuantityPair {
 
     private final Item item;
-    private final Quantity quantity;
+    private Quantity quantity;
 
     /**
      *  * Constructs an ItemQuantityPair with the given Item and Quantity.
@@ -43,6 +43,20 @@ public class ItemQuantityPair {
      */
     public Quantity getQuantity() {
         return quantity;
+    }
+
+    /**
+     * Sets the {@code Quantity} of this ItemQuantityPair.
+     */
+    public void setQuantity(Quantity quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * Returns true if the given {@code ItemQuantityPair} has the same item.
+     */
+    public boolean hasSameItem(ItemQuantityPair otherPair) {
+        return item.equals(otherPair.item);
     }
 
     /**

@@ -3,6 +3,7 @@ package tracko.model.order;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -64,7 +65,19 @@ public class Order {
         return isDelivered;
     }
 
+    /**
+     * Adds the given {@code ItemQuantityPair} to the order's item list. If a pair already exists with the same item,
+     * updates the {@code Quantity} instead.
+     * @param itemQuantityPair The given {@code ItemQuantityPair}.
+     */
     public void addToItemList(ItemQuantityPair itemQuantityPair) {
+        for (int i = 0; i < itemList.size(); i++) {
+            ItemQuantityPair currentPair = itemList.get(i);
+            if (currentPair.hasSameItem(itemQuantityPair)) {
+                currentPair.setQuantity(itemQuantityPair.getQuantity());
+                return;
+            }
+        }
         this.itemList.add(itemQuantityPair);
     }
 
