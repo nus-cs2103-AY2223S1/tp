@@ -234,19 +234,50 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### Github Feature
+### Open Github Profile Page Feature
 
 #### Implementation
 
-The Github Feature is facilitated by `GithubCommand`. It extends 'Command' with an `Index` class field that stores the target index. The target index refers to the index of the Address that users want to execute the Github command on. Additonally, it implements the following operations:
+The Open Github Profile Page Feature is facilitated by `GithubCommand`. It extends 'Command' with an `Index` class field that stores the target index. The target index refers to the index of the Address that users want to execute the Github command on. Additonally, it implements the following operations:
 - GithubCommand#execute() - Executes the github command.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the github operation mechanism behaves at each step.
 
-Step 1. The user
+Step 1. The user types `github 1` and presses enter.
 
+Step 2. The `github 1 ` will be parsed by `AddressBook#parseCommand()` which will return a `GithubCommandParser`.
 
+Step 3. The `GithubCommandParser` will parse `1` using `parse()`. This will return a `GithubCommand`
 
+Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** executes() checks if the github username field of target person is empty. If it is empty an exception will be thrown.
+</div>
+
+Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** openGithub() checks if the url built is invalid. If url is invalid an exception would be thrown.
+</div>
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+The following sequence diagram shows how the github feature works.
+
+![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How open github profile page feature executes:**
+
+* **Alternative 1 (current choice):** Opens github profile page through user's default browser.
+    * Pros: Easy to implement.
+    * Cons: Users will be redirected to their default browser.
+
+* **Alternative 2:** Opens github profile page through in-built browser.
+    * Pros: Users will be able to see the github profile page from the app itself
+    * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
 
 
 ### \[Proposed\] Data archiving
