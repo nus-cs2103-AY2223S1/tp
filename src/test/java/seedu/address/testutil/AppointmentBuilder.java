@@ -41,6 +41,7 @@ public class AppointmentBuilder {
         reason = appointmentToCopy.getReason();
         dateTime = appointmentToCopy.getDateTime();
         isMarked = appointmentToCopy.isMarked();
+        timePeriod = appointmentToCopy.getTimePeriod();
         patient = new PersonBuilder(appointmentToCopy.getPatient()).build();
     }
 

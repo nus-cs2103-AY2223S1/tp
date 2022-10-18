@@ -87,18 +87,16 @@ Examples:
 
 Edits an existing patient's appointment in idENTify.
 
-Format: `edit appts PATIENT_INDEX APPOINTMENT_INDEX [r/REASON] [d/DATE]`
+Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIMEPERIOD]`
 
-* `PATIENT_INDEX` refers to the index number of the patient shown in the displayed patient list.
-* `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked for the desired patient.
-* Values of `PATIENT_INDEX` and `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples: 
-* `edit appts 1 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first patient's first appointment to be `Cough` and `2022-12-10 16:30` 
-respectively.
-* `edit appts 1 1 r/Sore Throat` Edits the reason of the first patient's first appointment to be `Sore Throat`. Existing date will not be edited.
+* `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30` 
+respectively. Existing time period will not be edited.
+* `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason and date will not be edited.
 
 ### Find results that satisify an input criteria: `find`
 
@@ -150,23 +148,28 @@ Examples:
 
 ### Add an appointment:  `book`
 
-Books an appointment for the specified patient at INDEX with a given REASON and DATE. 
+Books an appointment for the specified patient at INDEX with a given REASON, DATE and an optional TIME PERIOD. 
 
 Appointments added are sorted according to their date.
 
-Format: `book INDEX r/REASON d/DATE`
+Format: `book INDEX r/REASON d/DATE [pe/TIME PERIOD]`
 
 * The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
 * Dates should be inputted in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
+* Input a time period for the appointment to be recurring, default time period is set to 0Y0M0D otherwise.
+* Input at least a Y, M or D value for the time period. Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
 
 Examples:
 * `book 2 r/Ear Infection d/2022-12-31 18:00`
-* `book 2 r/Ear Infection d/16:30 2022-12-31`
+* `book 2 r/Ear Infection d/16:30 2022-12-31 pe/1M2D`
+* `book 2 r/Ear Infection d/2022-12-31 13:00 pe/1Y`
 
 ### Mark an appointment as completed:  `mark`
 
 Marks a specified appointment `APPOINTMENT_INDEX` for a specified patient at `PATIENT_INDEX` as completed.
+
+If the specified appointment was set to be recurring, automatically books a new appointment that will occur after the time period specified.
 
 Format: `mark PATIENT_INDEX APPOINTMENT_INDEX`
 
@@ -230,10 +233,10 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
-**Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00`
+**Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
-**Edit Appointment** | `edit appts PATIENT_INDEX APPOINTMENT_INDEX [r/REASON] [d/DATE]` <br> e.g., `edit appts 1 1 r/Cough` 
+**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD]` <br> e.g., `edit appts 1 r/Cough` 
 **List** | `list patients` <br> `list appointments`
 **Help** | `help`
 **Exit** | `exit`

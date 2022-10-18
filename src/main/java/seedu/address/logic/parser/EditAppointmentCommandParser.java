@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
@@ -25,12 +24,9 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REASON, PREFIX_DATE,
                 PREFIX_RECURRING_PERIOD);
-        Index patientIndex;
         Index appointmentIndex;
         try {
-            List<Index> patientAndAppointmentIndexes = ParserUtil.parseIndexes(argMultimap.getPreamble(), 2);
-            patientIndex = patientAndAppointmentIndexes.get(0);
-            appointmentIndex = patientAndAppointmentIndexes.get(1);
+            appointmentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE), pe);
@@ -45,7 +41,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditAppointmentCommand(patientIndex, appointmentIndex, editAppointmentDescriptor);
+        return new EditAppointmentCommand(appointmentIndex, editAppointmentDescriptor);
     }
 
     private void addReason(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap) throws ParseException {

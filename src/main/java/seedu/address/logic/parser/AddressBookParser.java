@@ -4,9 +4,11 @@ import static seedu.address.commons.core.Messages.INCOMPLETE_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BookCommand;
 import seedu.address.logic.commands.CancelCommand;
@@ -27,12 +29,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses user input.
  */
 public class AddressBookParser {
-
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)"
             + "(?<descriptor>(?i:\\s+appts|\\s+patients)?)(?<arguments>.*)");
+
+    private final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -50,6 +53,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord").toLowerCase();
         final String descriptor = matcher.group("descriptor").trim().toLowerCase();
         final String arguments = matcher.group("arguments");
+        logger.info(descriptor);
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
