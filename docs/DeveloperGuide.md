@@ -156,6 +156,60 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Person component
+
+#### General design
+Every contact added into Plannit is represented as a `Person` object.
+Every `Person` object has three compulsory attributes:
+- `Name`
+- `Email`
+- `Phone`
+
+The UML class diagram of the `Person`-related parts of the Model component is shown below:
+
+![ModelPersonClassDiagram](images/ModelPersonClassDiagram.png)
+
+With reference to the diagram above, here are the ways in which different classes in the Model component interact with the `Person` class:
+- A `UniquePersonList` object holds all the `Person` objects in Plannit.
+  - This `UniquePersonList` object is stored in the `AddressBook` class.
+- The `ModelManager` class stores a filtered list of `Person` objects, which is the list used to determine which
+`Person` objects to display on the GUI.
+
+#### Delete Person Feature
+One feature related to contacts is the delete person feature, where a contact is deleted from Plannit. This 
+particular feature is highlighted because its implementation involves additional interactions with the `Module` 
+component.
+
+#### Implementation of delete person feature
+The delete person mechanism is facilitated by `DeletePersonCommand` and `DeletePersonCommandParser`.
+`DeletePersonCommandParser` parses the user input in a meaningful way and uses it to create a `DeletePersonCommand`.
+`DeletePersonCommand` then calls the `Model#deletePerson()` operation, which in turn calls
+`AddressBook#removePerson()` to delete a contact in Plannit.
+
+Given below is an example usage scenario and how the delete person mechanism behaves at each step.
+
+Step 1. There currently exists some persons added to a Module.
+
+![DeletePersonStep1ObjectDiagram](images/DeletePersonStep1ObjectDiagram.png)
+
+Step 2. The user executes `delete-person 2` command and this creates a `deletePersonCommand` to delete the 2nd person 
+(that is currently displayed on the GUI) in the address book. Upon execution, `UniqueModuleList#removePersonFromModules
+()` and `UniquePersonList#remove()` are eventually called. `UniqueModuleList#removePersonFromModules()` removes all 
+occurrences of the person in every module. 
+
+![DeletePersonStep2ObjectDiagram](images/DeletePersonStep2ObjectDiagram.png)
+
+Step 3. `UniquePersonList#remove()` removes the person from `UniquePersonList`.
+Afterwards, there would no longer be any references to the deleted `Person` object, and Java will eventually remove it
+from memory.
+
+![DeletePersonStep3ObjectDiagram](images/DeletePersonStep3ObjectDiagram.png)
+
+The following sequence diagram shows how the delete person operation works.
+
+![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
