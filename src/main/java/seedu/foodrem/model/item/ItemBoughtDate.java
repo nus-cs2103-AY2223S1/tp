@@ -13,6 +13,7 @@ import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
  */
 public class ItemBoughtDate {
 
+    // Remember to change relevant messages when changing the regex.
     public static final String BOUGHT_DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter BOUGHT_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(BOUGHT_DATE_PATTERN_REGEX);

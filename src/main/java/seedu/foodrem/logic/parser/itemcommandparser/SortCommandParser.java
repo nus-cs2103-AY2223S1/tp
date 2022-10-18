@@ -11,11 +11,11 @@ import seedu.foodrem.logic.parser.ArgumentTokenizer;
 import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
-import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.itemcomparators.ItemBoughtDateComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemExpiryDateComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemNameComparator;
+import seedu.foodrem.model.item.itemcomparators.ItemPriceComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemQuantityComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemUnitComparator;
 import seedu.foodrem.model.util.ChainComparator;
@@ -41,31 +41,35 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
         List<ItemComparator> comparators = new ArrayList<>();
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                CliSyntax.PREFIX_SORT_BY_NAME,
-                CliSyntax.PREFIX_SORT_BY_QTY,
-                CliSyntax.PREFIX_SORT_BY_BOUGHT_DATE,
-                CliSyntax.PREFIX_SORT_BY_EXPIRY_DATE,
-                CliSyntax.PREFIX_SORT_BY_UNIT);
+                CliSyntax.PREFIX_NAME,
+                CliSyntax.PREFIX_ITEM_QUANTITY,
+                CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
+                CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
+                CliSyntax.PREFIX_ITEM_UNIT,
+                CliSyntax.PREFIX_ITEM_PRICE);
 
-        if (argMultimap.getValue(CliSyntax.PREFIX_SORT_BY_NAME).isPresent()) {
+        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
             comparators.add(new ItemNameComparator());
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_SORT_BY_QTY).isPresent()) {
+        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_QUANTITY).isPresent()) {
             comparators.add(new ItemQuantityComparator());
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_SORT_BY_BOUGHT_DATE).isPresent()) {
+        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_BOUGHT_DATE).isPresent()) {
             comparators.add(new ItemBoughtDateComparator());
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_SORT_BY_EXPIRY_DATE).isPresent()) {
+        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_EXPIRY_DATE).isPresent()) {
             comparators.add(new ItemExpiryDateComparator());
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_SORT_BY_UNIT).isPresent()) {
+        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_UNIT).isPresent()) {
             comparators.add(new ItemUnitComparator());
+        }
+        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_PRICE).isPresent()) {
+            comparators.add(new ItemPriceComparator());
         }
         if (comparators.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));
         }
 
-        return new SortCommand(new ChainComparator<Item>(comparators));
+        return new SortCommand(new ChainComparator<>(comparators));
     }
 }
