@@ -29,25 +29,26 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        String[] queries = nameKeywords[1].trim().split("\\s+");
+        String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
         case "b":
-            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
                     PersonCategory.getFromString("Buyer"));
         case "d":
-            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
                     PersonCategory.getFromString("Deliverer"));
         case "s":
-            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(query)),
                     PersonCategory.getFromString("Supplier"));
         default:
-            return null;
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
