@@ -40,9 +40,7 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        if (email != "") {
-            checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        }
+        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
 
@@ -50,12 +48,16 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) | test == "";
     }
 
     @Override
     public String toString() {
         return value;
+    }
+
+    public boolean isEmpty() {
+        return value == "";
     }
 
     @Override

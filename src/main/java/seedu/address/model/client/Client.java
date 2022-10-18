@@ -132,13 +132,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getProducts().equals(getProducts());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, products);
     }
 
     @Override
@@ -146,11 +147,15 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getPhone());
+
+        if (!getEmail().isEmpty()) {
+            builder.append("; Email: ").append(getEmail());
+        }
+
+        if (!getAddress().isEmpty()) {
+            builder.append("; Address: ").append(getAddress());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
