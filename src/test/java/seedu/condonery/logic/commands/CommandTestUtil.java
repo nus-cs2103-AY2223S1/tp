@@ -17,8 +17,10 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
@@ -125,7 +127,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the {@code Property} at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPropertyAtIndex(Model model, Index targetIndex) {
@@ -133,9 +135,23 @@ public class CommandTestUtil {
 
         Property person = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPropertyList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPropertyList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the {@code Client} at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showClientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
+        final String[] splitName = client.getName().fullName.split("\\s+");
+        model.updateFilteredClientList(new ClientNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredClientList().size());
     }
 
 }

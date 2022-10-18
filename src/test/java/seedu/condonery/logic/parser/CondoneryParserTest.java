@@ -23,8 +23,8 @@ import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 import seedu.condonery.testutil.PropertyBuilder;
 import seedu.condonery.testutil.PropertyUtil;
@@ -74,7 +74,7 @@ public class CondoneryParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
             FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new PropertyNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
