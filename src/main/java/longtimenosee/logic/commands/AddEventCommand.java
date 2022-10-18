@@ -80,7 +80,7 @@ public class AddEventCommand extends Command {
         }
         //TODO: Incorporate into GUI by adding a new field: showEvents?
         //TODO: showEvents could immediately show the next 7 days, up to implementation
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, true);
     }
     @Override
     public boolean equals(Object other) {

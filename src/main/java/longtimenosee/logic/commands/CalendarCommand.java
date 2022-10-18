@@ -23,7 +23,7 @@ public class CalendarCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.calendarView();
-        return new CommandResult(MESSAGE_SUCCESS, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 
     @Override
