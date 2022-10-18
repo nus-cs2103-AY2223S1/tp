@@ -202,6 +202,7 @@ The operation is exposed in the `Command` interface as `Command#ArchivePatientCo
 
 Given below is an example usage scenario and how the archive mechanism behaves at each step.
 
+<<<<<<< HEAD
 Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
 patient list.
 
@@ -211,6 +212,17 @@ patients after the `archive patient` command executes to show on the screen.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
 ("archive Patient")` API
+=======
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial 
+patient list.
+
+
+Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of 
+patients after the `archive patient` command executes to show on the screen.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("archive Patient")` API 
+>>>>>>> origin/branch-dev-guide
 call.
 
 ![Interactions Inside the Logic Component for the `archive patient` Command](images/ArchivePatientSequenceDiagram.png)
@@ -223,7 +235,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How archive patient executes:**
 
+<<<<<<< HEAD
 * **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged
+=======
+* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged 
+>>>>>>> origin/branch-dev-guide
   list on the screen.
 
 ### \[Implemented\] Book feature
@@ -278,12 +294,12 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
 **Aspect: Where to assign Appointment objects:**
 
 * **Alternative 1 (current implementation):** Each person stores his own list of appointments, as well as the `UniqueAppointmentList` class storing the same objects.
-    * Pros: Easier to keep track of which appointments are associated to which person for other appointment related features.
-    * Cons: Must ensure both the person's appointments and `UniqueAppointmentList` appointments are equal, in edit/cancel/delete features.
+  * Pros: Easier to keep track of which appointments are associated to which person for other appointment related features.
+  * Cons: Must ensure both the person's appointments and `UniqueAppointmentList` appointments are equal, in edit/cancel/delete features.
 
 * **Alternative 2:** `Appointment` objects are stored only in the `UniqueAppointmentList` class.
-    * Pros: Easier to maintain as there's only one appointment object.
-    * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
+  * Pros: Easier to maintain as there's only one appointment object.
+  * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
 
 ### Mark/Unmark feature
 
