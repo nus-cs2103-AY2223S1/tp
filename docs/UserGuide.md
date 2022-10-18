@@ -32,7 +32,9 @@ guest management tasks done faster than traditional GUI apps.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com dr/13/09/22 - 15/09/22 ng/3 rc/yes`: Adds a guest named `John Doe` to the guest book.
 
-   * **`edit`** `3` `n/Bob rc/no`: Edits the 3rd guest shown in the current list.
+   * **`edit`** `1` `n/Bob rc/no`: Edits the 3rd guest shown in the current list.
+
+   * **`bill`** `2` `b/+99.99`: Adds 99.99 to the bill of the 2nd guest.
 
    * **`delete`**`3` : Deletes the 3rd guest shown in the current list.
 
@@ -120,6 +122,26 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [dr/DATE_RANGE] [ng/NUMBER_OF_G
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd guest to be `Betsy Crower`.
+
+### Billing a guest : `bill`
+
+Updates the bill of a guest in the guest book.
+
+Format: `bill INDEX b/BILL`
+
+* Updates the bill of the guest at the specified `INDEX`.
+
+* The index refers to the index number shown in the displayed guest list.
+
+* The index **must be a positive integer** 1, 2, 3, …​
+
+* The existing bill value will be increased by the input value.
+
+* The bill value **must be either an integer or a double with up to 2 decimal places**
+
+Examples:
+*  `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
+*  `bill 2 n/-10` Subtracts 10 from the bill of the 2nd guest.
 
 ### Locating guests by name: `find`
 
