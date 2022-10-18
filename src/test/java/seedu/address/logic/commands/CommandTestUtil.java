@@ -24,6 +24,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.RecordContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditRecordDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -41,7 +42,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_RECORD_DATE = "02-03-2024 1230";
+    public static final String VALID_RECORD_DATE_2 = "01-05-2022 1700";
     public static final String VALID_RECORD_DATA = "fever";
+    public static final String VALID_RECORD_DATA_2 = "abdominal pain";
     public static final String VALID_RECORD_MEDICATION = "Paracetamol 250mg";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -70,6 +73,7 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditRecordCommand.EditRecordDescriptor DESC_RECORD;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -78,6 +82,8 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_RECORD = new EditRecordDescriptorBuilder().withDate(VALID_RECORD_DATE)
+                .withData(VALID_RECORD_DATA).build();
     }
 
     /**

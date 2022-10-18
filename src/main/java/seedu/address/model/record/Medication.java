@@ -16,7 +16,7 @@ public class Medication {
      *
      * @param medication Input string.
      */
-    private Medication(String medication) {
+    public Medication(String medication) {
         requireNonNull(medication);
         checkArgument(isValidMedication(medication), MESSAGE_CONSTRAINTS);
         this.medicationName = medication;

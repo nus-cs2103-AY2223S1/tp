@@ -140,6 +140,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setRecord(Record target, Record editedRecord) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasRecord(Record record) {
             throw new AssertionError("This method should not be called.");
         }
