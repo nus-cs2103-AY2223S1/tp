@@ -18,5 +18,5 @@ Student *--> Name
 Student *--> Phone
 Student *--> Email
 Student *--> ClassGroup
-Student *--> Address
+Student *--> StudentId
 @enduml
