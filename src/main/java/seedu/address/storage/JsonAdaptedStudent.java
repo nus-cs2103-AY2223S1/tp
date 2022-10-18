@@ -123,6 +123,11 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
+        if (getUsername() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GithubUsername.class.getSimpleName()));
+        }
+
         final GithubUsername modelUsername;
 
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
@@ -134,10 +139,15 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             modelUsername = new GithubUsername(getUsername(), true);
         }
 
+        if (getYear() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Year.class.getSimpleName()));
+        }
+
         final Year modelYear;
 
         if (getYear().equals(Year.EMPTY_YEAR)) {
-            modelYear = new Year(Year.EMPTY_YEAR);
+            modelYear = new Year(Year.EMPTY_YEAR, false);
         } else {
             if (!Year.isValidYear(getYear())) {
                 throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
