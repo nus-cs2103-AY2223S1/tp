@@ -16,6 +16,6 @@ public class Messages {
     public static final String MESSAGE_NO_MODULE_IN_FILTERED_LIST =
             "Please create or navigate to `%s` to perform the operation!";
     public static final String MESSAGE_NOT_AT_HOMEPAGE =
-            "Hey! You are not at home page!";
+            "Hey! You are not on the home page!";
 
 }

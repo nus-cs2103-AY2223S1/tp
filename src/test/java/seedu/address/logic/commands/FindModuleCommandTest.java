@@ -83,9 +83,9 @@ public class FindModuleCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code testInput} into a {@code ModuleCodeStartsWithKeywordPredicate}.
      */
-    private ModuleCodeStartsWithKeywordPredicate preparePredicate(String userInput) {
-        return new ModuleCodeStartsWithKeywordPredicate(userInput);
+    private ModuleCodeStartsWithKeywordPredicate preparePredicate(String testInput) {
+        return new ModuleCodeStartsWithKeywordPredicate(testInput);
     }
 }

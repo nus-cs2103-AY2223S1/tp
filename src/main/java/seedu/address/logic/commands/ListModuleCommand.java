@@ -20,7 +20,9 @@ public class ListModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.getHomeStatus() != true) {
+
+        boolean applicationIsNotOnHomePage = !model.getHomeStatus();
+        if (applicationIsNotOnHomePage) {
             throw new CommandException(MESSAGE_NOT_AT_HOMEPAGE);
         }
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);

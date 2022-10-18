@@ -78,7 +78,7 @@ the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as
-  `home`, `list-module`, `list-contact`, `goto` and `exit`) will be ignored.<br>
+  `home`, `list-module`, `list-contact` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 
 </div>
@@ -129,17 +129,25 @@ delete-module m/CS2103T
 In the above example, we are deleting module CS2103T from Plannit.
 
 #### 2.1.3. Find module
-You can find module whose module code starts with the specified keyword in Plannit.
+You can find all modules in Plannit whose module code starts with a specific keyword.
 
 Format: `find-module KEYWORD`
-* The KEYWORD is case-insensitive. e.g cs will match with CS
+* The KEYWORD is case-insensitive.
 
-Example:
-
+Examples:
 ```
 find-module cs
 ```
-In the above example, we find every module that starts with CS from Plannit.
+OR
+```
+find-module CS
+```
+In either of the above examples, we find every module that starts with CS from Plannit.
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:** You will
+remain on the home page after executing the `find-module` command. This is different
+from the behavior of [`goto`](#252-navigate-between-modules)
+</div>
 
 #### 2.1.4. List module
 Show a list of all modules in Plannit after finding module.
@@ -319,17 +327,20 @@ In the above example, we are editing the contact with a displayed-index number o
 
 
 #### 2.4.4. Find contact
-You can find contacts whose name starts with the specified keyword in Plannit.
+You can find all contacts in Plannit whose name starts with a specific keyword.
 
 Format: `find-contact KEYWORD`
-* The KEYWORD is case-insensitive. e.g alex will match with Alex
+* The KEYWORD is case-insensitive.
 
-Example:
-
+Examples:
 ```
 find-contact alex
 ```
-In the above example, we find every contact that starts with alex from Plannit. (i.e. Alex Neo, Alex Tan)
+OR
+```
+find-contact Alex
+```
+In either of the above examples, we find every contact with names starting with Alex from Plannit.
 
 #### 2.4.5. List contact
 Show a list of all contacts in Plannit after finding contacts.
@@ -363,6 +374,11 @@ Example:
 goto CS2109S
 ```
 In the above example, we are navigating to the module with module code `CS2109S`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You will
+leave the home page after executing the `goto` command. This is different from the
+behavior of [`find-module`](#213-find-module)
+</div>
 
 <br>
 
