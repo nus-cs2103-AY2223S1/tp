@@ -28,10 +28,11 @@
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            <MenuItem mnemonicParsing="false" styleClass="menu-item"  onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem styleClass="menu-item" fx:id="helpMenuItem" mnemonicParsing="false"
+                      onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
         <!--Search bar-->
@@ -54,9 +55,17 @@
           <!--People left panel-->
         <StackPane minWidth="300" prefWidth="NaN" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <Label styleClass="label-header" text="Students" textAlignment="CENTER" textFill="WHITE" />
+          <Label fx:id="noSelectedText" styleClass="label-subheader"
+                 text="Select a student to read." textAlignment="CENTER" />
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
+          <HBox>
+            <padding>
+              <Insets bottom="5"  />
+            </padding>
+          </HBox>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
         </StackPane>
@@ -66,14 +75,12 @@
 
           <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <Label styleClass="label-header" text="Mods Taken" textAlignment="CENTER" textFill="WHITE" />
-
-                <Label fx:id="noSelectedText" styleClass="label-subheader"
-                       text="Select a student to view their module details." textAlignment="CENTER" />
+                <Label fx:id="modDescription" styleClass="label-subheader"
+                       text="Filter students taken a mod using the find command." textAlignment="CENTER" />
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-
-                        <HBox>
+            <HBox>
           <padding>
                   <Insets bottom="5"  />
                 </padding>
