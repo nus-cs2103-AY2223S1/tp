@@ -4,9 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 
+import java.time.format.DateTimeParseException;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DateTime;
 
 /**
  * Parses input arguments and creates a new EditAppointmentCommand object
@@ -37,9 +40,14 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
 
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT_DATE).isPresent()) {
+            try {
             editAppointmentDescriptor.setDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
+            } catch (DateTimeParseException e) {
+                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            }
         }
+
         if (argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).isPresent()) {
             editAppointmentDescriptor.setLocation(
                     ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get()));
