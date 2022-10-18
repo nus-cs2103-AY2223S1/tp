@@ -237,5 +237,5 @@ _Details coming soon ..._
 | **Clear**  | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
 | **Undo**   | `undo`                                                                                                                                                      |
 | **Sort**   | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
-| **Find**   | `find KEYWORD` <br> e.g., `find John`                                                                                                                       |
+| **Find**   | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                              |
 | **Exit**   | `exit`                                                                                                                                                      |
