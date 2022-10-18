@@ -154,18 +154,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Student Class Group Feature
+The class group feature allows a student to have a class group. The feature consists of the following command
+- ```ClassGroupCommand``` - Can add, delete and modify a student's class group field.
+- ```EditCommand``` - Can modify a student's class group field
+- ```AddCommand``` - Can add a student directly with a class field
+
+The class group commands follow similar paths of execution which defers slightly from Logic sequence diagram.
+This is illustrated in the sequence diagram below, which shows the diagram for ClassGroupCommand.
+
+**Class Group command**
+
+Implementation:
+
+The following is a more detailed explanation on how ```ClassCommand``` works.
+
+1. The ```AddressBookParser``` will select ```ClassGroupCommandParser``` and parse the user input.
+2. Following which, ```ClassGroupCommand#execute(Model model)``` method is called which
+updates the class group field of a student.
+3. If the student already has class field data, the input will overwrite existing data.
+4. If class field input is empty, ```ClassGroupCommand#execute(Model model)``` will delete the class group data.
+
+![Class Group sequence diagram](images/ClassGroupSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Command Syntax**
+- Current implementation: Using the command word ````class````
+- Pros: Simple to understand
+- Cons: Not as fast to type and can be made faster to type if length of command is shorter
+- Alternatives considered: We considered using ```<Index> c/``` format, e.g. ```1 c/CS2032S Lab 32```
+which sets the class group field of the student with index ```1``` to ```CS2030S Lab 32```
+- Pros: Faster for user who can type fast
+- Cons: Does not follow the format as other commands making it confusing for the user.
+
 ### Student Attendance feature ###
-The student attendance feature keeps track of student's attendance. The feature comprises of commands namely,
+The student attendance feature keeps track of student's attendance. The feature consists of commands namely,
 - ```AttendanceAddCommand``` - Adds an attendance list to the student in the class list.
 - ```AttendanceDeleteCommand``` - Removes the attendance list to the student in the class list.
 - ```AttendanceMarkCommand``` - Marks or unmarks student's attendance in his attendance list.
 
-The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram. This is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
+The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram.
+This is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
+
 
 The attendance commands when executed will use methods exposed by the ```Model``` interface and perform the related operations.
 
 **Common steps among the Attendance Commands**
- 
+
 1. The ```AddressBookParser``` will select ```AttendanceCommandParser``` and parse the user input.
 2. The ```AttendanceCommandParser#parse``` will select another AttendanceParser to parse in the arguments.
 3. The arguments are tokenized and the respective refined inputs of each argument is created.
@@ -178,14 +214,14 @@ The following is a more detailed explanation on how ```AttendanceAddCommand``` w
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceAddCommandParser``` to further separate user input.
 2. Following which, ```AttendanceAddCommand#execute(Model model)``` method is called which validates the attendance list.
 3. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
- 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the format of adding attendance contains error(s), GREWZ will display either an unknown command or wrong formatting error message.
- 
+
 4. The method `Model#setStudent(studentToEdit, editedStudent)` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
 **Mark Attendance command**
 Implementation:
- 
+
 The following is a more detailed explanation on how `AttendanceMarkCommand` works.
 
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceMarkCommandParser``` to further separate user input.
@@ -195,7 +231,7 @@ The following is a more detailed explanation on how `AttendanceMarkCommand` work
 
 **Delete Attendance command**
 Implementation:
- 
+
 The following is a more detailed explanation on how `AttendanceDeleteCommand` works.
 
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceDeleteCommandParser``` to further separate user input.
@@ -211,14 +247,15 @@ Figure No. Sequence diagram for AttendanceDeleteCommand
 
 **Aspect: Command Syntax**
 - Current implementation: Using 2 command word syntax \n E.g. ```attendance add``
- - Pros: Increases clarity and flexibility of future commands
- - Cons: Users have to type more 
+- Pros: Increases clarity and flexibility of future commands
+- Cons: Users have to type more
 - Alternatives considered: We considered using only ```attendance```, while using the forward slash ```/``` with specific prefixes for attendance commands, e.g. ```attendance 1 a/10 s/12```, which adds an attendance list of size 12 to the first student.
- - Pros: Users type less
- - Cons: Users might accidentally delete/alter attendance lists and takes a longer time to learn command prefixes.
- 
+- Pros: Users type less
+- Cons: Users might accidentally delete/alter attendance lists and takes a longer time to learn command prefixes.
+
 **Aspect: Size of attendance lists**
 - Current Implementation: Max size of 12
+<<<<<<< HEAD
  - Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
  - Cons: Less flexibility in size of attendance list.
  
@@ -405,7 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Tutor adds the student by entering the command with student details.
-2. GREWZ adds student. 
+2. GREWZ adds student.
 Use case ends.
 
 **Extensions**
@@ -415,7 +452,7 @@ Use case ends.
     * 1a2. User enters command with student details
     * Repeat steps until data is correct
     Use case resumes in step 2
-    
+
 **Use case: UC02 - Delete a Student**
 
 **Use case: UC03 - Edit a Student**
@@ -433,7 +470,7 @@ Use case ends.
     * 1a2. User enters command with student details
     * Repeat steps until data is correct
     Use case resumes in step 2
-    
+
 **Use case: UC05 - Delete attendance of a Student**
 
 **Use case: UC06 - Mark attendance of Student**
