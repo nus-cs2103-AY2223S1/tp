@@ -36,7 +36,7 @@ public class CreateCommand extends UndoableCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_NETWORTH + "$1423 "
-            + PREFIX_FILEPATH + "C:\\Users\\Ryzen\\repos\\CS2103T\\tp\\data\\Test_PDF.pdf "
+            + PREFIX_FILEPATH + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

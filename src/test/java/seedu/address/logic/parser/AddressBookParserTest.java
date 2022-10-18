@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.PersonBuilder.DEFAULT_FILEPATH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -25,6 +27,8 @@ import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.commands.FindPhoneCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OpenPersonFileCommand;
+import seedu.address.logic.commands.SetPersonFileCommand;
 import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.commands.UpdateCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -112,6 +116,22 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_openPersonFile() throws Exception {
+        OpenPersonFileCommand command = (OpenPersonFileCommand) parser.parseCommand(
+                OpenPersonFileCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new OpenPersonFileCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_setPersonFilePath() throws Exception {
+        Person person = new PersonBuilder().withFilePath("src/main/resources/misc/Test_PDF4.pdf").build();
+        SetPersonFileCommand command =
+                (SetPersonFileCommand) parser.parseCommand(SetPersonFileCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_FILEPATH + PersonUtil.getPersonDetails(person));
+        assertEquals(new SetPersonFileCommand(INDEX_FIRST_PERSON, person.getFilePath()), command);
     }
 
     @Test

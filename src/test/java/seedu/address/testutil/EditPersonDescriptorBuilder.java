@@ -39,7 +39,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setNetWorth(person.getNetWorth());
-        descriptor.setFilePath(person.getFilePath());
         descriptor.setTags(person.getTags());
     }
 
@@ -80,14 +79,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withNetWorth(String networth) {
         descriptor.setNetWorth(new NetWorth(networth));
-        return this;
-    }
-
-    /**
-     * Sets the {@code FilePath} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withFilePath(String filePath) {
-        descriptor.setFilePath(new FilePath(filePath));
         return this;
     }
 

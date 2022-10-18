@@ -7,12 +7,16 @@ import seedu.address.commons.util.FileUtil;
 
 /**
  * Represents a Person's pdf file in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidFilePath(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPdfFilePath(String)}
  */
 public class FilePath {
 
+    public static String DEFAULT_FILE_PATH = "src/main/resources/misc/Test_PDF.pdf";
+
     public static final String MESSAGE_CONSTRAINTS =
-            "FilePath should be a valid file path in your directory";
+            "File Path should be a valid absolute file path to a pdf in your directory\n"
+            + "Example: "
+            + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf";
 
     public final String value;
 
@@ -23,8 +27,12 @@ public class FilePath {
      */
     public FilePath(String filePath) {
         requireNonNull(filePath);
-        checkArgument(isValidPdfFilePath(filePath), MESSAGE_CONSTRAINTS);
-        this.value = filePath;
+        if (filePath.equals("")) {
+            this.value = DEFAULT_FILE_PATH;
+        } else {
+            checkArgument(isValidPdfFilePath(filePath), MESSAGE_CONSTRAINTS);
+            this.value = filePath;
+        }
     }
 
     /**

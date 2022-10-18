@@ -35,7 +35,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NETWORTH, PREFIX_FILEPATH, PREFIX_TAG);
+                        PREFIX_NETWORTH, PREFIX_TAG);
 
         Index index;
 
@@ -60,9 +60,6 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
         if (argMultimap.getValue(PREFIX_NETWORTH).isPresent()) {
             editPersonDescriptor.setNetWorth(ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).get()));
-        }
-        if (argMultimap.getValue(PREFIX_FILEPATH).isPresent()) {
-            editPersonDescriptor.setFilePath(ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_NETWORTH).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

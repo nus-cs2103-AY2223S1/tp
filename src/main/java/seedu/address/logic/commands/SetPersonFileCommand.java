@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.FilePath.DEFAULT_FILE_PATH;
 
 import java.util.List;
 
@@ -13,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.FilePath;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -28,10 +27,10 @@ public class SetPersonFileCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_FILEPATH + "[FilePath]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_FILEPATH + "C:\\Users\\Ryzen\\repos\\CS2103T\\tp\\data\\Test_PDF.pdf";
+            + PREFIX_FILEPATH + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf";
 
-    public static final String MESSAGE_ADD_FILEPATH_SUCCESS = "Added file path to Person: %1$s";
-    public static final String MESSAGE_DELETE_FILEPATH_SUCCESS = "Removed file path from Person: %1$s";
+    public static final String MESSAGE_CHANGE_FILEPATH_SUCCESS = "Added file path to Person: %1$s";
+    public static final String MESSAGE_DELETE_FILEPATH_SUCCESS = "File path set to placeholder pdf for Person: %1$s";
 
     private final Index index;
     private final FilePath filePath;
@@ -69,7 +68,7 @@ public class SetPersonFileCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !filePath.value.isEmpty() ? MESSAGE_ADD_FILEPATH_SUCCESS : MESSAGE_DELETE_FILEPATH_SUCCESS;
+        String message = !filePath.value.equals(DEFAULT_FILE_PATH) ? MESSAGE_CHANGE_FILEPATH_SUCCESS : MESSAGE_DELETE_FILEPATH_SUCCESS;
         return String.format(message, personToEdit);
     }
 

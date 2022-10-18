@@ -126,8 +126,8 @@ public class UpdateCommand extends UndoableCommand {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         NetWorth updatedNetWorth = editPersonDescriptor.getNetWorth().orElse(personToEdit.getNetWorth());
-        FilePath updatedFilePath = editPersonDescriptor.getFilePath().orElse(personToEdit.getFilePath());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        FilePath updatedFilePath = personToEdit.getFilePath();
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -162,7 +162,6 @@ public class UpdateCommand extends UndoableCommand {
         private Email email;
         private Address address;
         private NetWorth netWorth;
-        private FilePath filePath;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -177,7 +176,6 @@ public class UpdateCommand extends UndoableCommand {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setNetWorth(toCopy.netWorth);
-            setFilePath(toCopy.filePath);
             setTags(toCopy.tags);
         }
 
@@ -226,14 +224,6 @@ public class UpdateCommand extends UndoableCommand {
 
         public Optional<NetWorth> getNetWorth() {
             return Optional.ofNullable(netWorth);
-        }
-
-        public void setFilePath(FilePath filePath) {
-            this.filePath = filePath;
-        }
-
-        public Optional<FilePath> getFilePath() {
-            return Optional.ofNullable(filePath);
         }
 
         /**
