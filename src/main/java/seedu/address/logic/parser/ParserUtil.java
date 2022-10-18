@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +15,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Record;
+import seedu.address.model.record.Medication;
+import seedu.address.model.record.Record;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -126,24 +127,65 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String recordDate} and {@code String recordData} into a {@code Record}.
+     * Parses a {@code String recordData} into a {@String recordData}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given inputs is invalid.
      */
-    public static Record parseRecord(String recordDate, String recordData) throws ParseException {
-        requireAllNonNull(recordDate, recordData);
-        String trimmedDate = recordDate.trim();
+    public static String parseRecordData(String recordData) throws ParseException {
+        requireNonNull(recordData);
         String trimmedData = recordData.trim();
-
-        if (!Record.isValidDate(trimmedDate)) {
-            throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
-        }
-
         if (!Record.isValidRecordData(trimmedData)) {
             throw new ParseException(Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT);
         }
+        return trimmedData;
+    }
 
-        return new Record(trimmedDate, trimmedData);
+    /**
+     * Parses a {@code String recordDate} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given inputs is invalid.
+     */
+    public static LocalDateTime parseDate(String recordDate) throws ParseException {
+        requireNonNull(recordDate);
+        String trimmedDate = recordDate.trim();
+        if (!Record.isValidDate(trimmedDate)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
+        }
+        return LocalDateTime.parse(trimmedDate, Record.DATE_FORMAT);
+    }
+
+    /**
+     * Parses a {@code String medication} into a {@code Medication}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medication} is invalid.
+     */
+    public static Medication parseMedication(String medication) throws ParseException {
+        requireNonNull(medication);
+        String trimmedMedication = medication.trim();
+        if (!Medication.isValidMedication(trimmedMedication)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return Medication.of(trimmedMedication);
+    }
+
+    /**
+     * Parses {@code Collection<String> medications} into a {@code Set<Medication>}.
+     */
+    public static Set<Medication> parseMedications(Collection<String> medications) throws ParseException {
+        requireNonNull(medications);
+        final Set<Medication> medicationSet = new HashSet<>();
+        for (String medicationName : medications) {
+            medicationSet.add(parseMedication(medicationName));
+        }
+
+        // Default case
+        if (medicationSet.isEmpty()) {
+            medicationSet.add(Medication.of(Medication.MESSAGE_NO_MEDICATION_GIVEN));
+        }
+
+        return medicationSet;
     }
 }

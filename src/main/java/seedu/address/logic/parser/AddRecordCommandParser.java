@@ -2,13 +2,17 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
+import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Record;
+import seedu.address.model.record.Medication;
+import seedu.address.model.record.Record;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -23,17 +27,18 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand> {
      */
     public AddRecordCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_RECORD);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_RECORD, PREFIX_MEDICATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_RECORD)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecordCommand.MESSAGE_USAGE));
         }
 
-        String recordDate = argMultimap.getValue(PREFIX_DATE).get();
-        String recordData = argMultimap.getValue(PREFIX_RECORD).get();
+        LocalDateTime recordDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        String recordData = ParserUtil.parseRecordData(argMultimap.getValue(PREFIX_RECORD).get());
+        Set<Medication> medications = ParserUtil.parseMedications(argMultimap.getAllValues(PREFIX_MEDICATION));
 
-        Record record = ParserUtil.parseRecord(recordDate, recordData);
+        Record record = new Record(recordDate, recordData, medications);
 
         return new AddRecordCommand(record);
     }
