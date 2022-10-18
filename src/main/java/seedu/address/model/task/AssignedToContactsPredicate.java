@@ -26,6 +26,14 @@ public class AssignedToContactsPredicate implements Predicate<Task> {
     public AssignedToContactsPredicate(Collection<Contact> contacts) {
         this.contacts.addAll(contacts);
     }
+
+    /**
+     * Constructs an AssignedToContactsPredicate.
+     * @param contact the contact to search for
+     */
+    public AssignedToContactsPredicate(Contact contact) {
+        this.contacts.add(contact);
+    }
     /**
      * Constructs an AssignedToContactsPredicate.
      * @param model the model to use when looking for contacts
