@@ -54,8 +54,11 @@ public class EditPropertyCommandTest {
         Property editedPerson = personInList.withName(CommandTestUtil.CLIENT_VALID_NAME_BOB)
             .withTags(CommandTestUtil.CLIENT_VALID_TAG_HUSBAND).build();
 
-        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(CommandTestUtil.CLIENT_VALID_NAME_BOB)
-            .withTags(CommandTestUtil.CLIENT_VALID_TAG_HUSBAND).build();
+        EditPropertyDescriptor descriptor =
+                new EditPropertyDescriptorBuilder()
+                        .withName(CommandTestUtil.CLIENT_VALID_NAME_BOB)
+                        .withTags(CommandTestUtil.CLIENT_VALID_TAG_HUSBAND)
+                        .build();
         EditPropertyCommand editCommand = new EditPropertyCommand(indexLastProperty, descriptor);
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
@@ -170,10 +173,12 @@ public class EditPropertyCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditPropertyCommand(INDEX_SECOND, CommandTestUtil.PROPERTY_DESC_SCOTTS)));
+        assertFalse(standardCommand
+                .equals(new EditPropertyCommand(INDEX_SECOND, CommandTestUtil.PROPERTY_DESC_SCOTTS)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditPropertyCommand(INDEX_FIRST, CommandTestUtil.PROPERTY_DESC_WHISTLER)));
+        assertFalse(standardCommand
+                .equals(new EditPropertyCommand(INDEX_FIRST, CommandTestUtil.PROPERTY_DESC_WHISTLER)));
     }
 
 }

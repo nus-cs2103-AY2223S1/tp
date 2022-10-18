@@ -48,11 +48,19 @@ public class TypicalPersons {
         .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(CLIENT_VALID_NAME_AMY).withPhone(CLIENT_VALID_PHONE_AMY)
-        .withEmail(CLIENT_VALID_EMAIL_AMY).withAddress(CLIENT_VALID_ADDRESS_AMY).withTags(CLIENT_VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(CLIENT_VALID_NAME_BOB).withPhone(CLIENT_VALID_PHONE_BOB)
-        .withEmail(CLIENT_VALID_EMAIL_BOB).withAddress(CLIENT_VALID_ADDRESS_BOB).withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND)
-        .build();
+    public static final Person AMY =
+            new PersonBuilder().withName(CLIENT_VALID_NAME_AMY)
+                    .withPhone(CLIENT_VALID_PHONE_AMY)
+                    .withEmail(CLIENT_VALID_EMAIL_AMY)
+                    .withAddress(CLIENT_VALID_ADDRESS_AMY)
+                    .withTags(CLIENT_VALID_TAG_FRIEND).build();
+    public static final Person BOB =
+            new PersonBuilder().withName(CLIENT_VALID_NAME_BOB)
+                    .withPhone(CLIENT_VALID_PHONE_BOB)
+                    .withEmail(CLIENT_VALID_EMAIL_BOB)
+                    .withAddress(CLIENT_VALID_ADDRESS_BOB)
+                    .withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND)
+                    .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

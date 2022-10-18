@@ -9,9 +9,11 @@ import seedu.condonery.logic.commands.client.EditClientCommand.EditClientDescrip
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
-import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
+/**
+ * A utility class to help with building EditClientDescriptor objects.
+ */
 public class EditClientDescriptorBuilder {
     private final EditClientDescriptor descriptor;
 

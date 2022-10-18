@@ -2,7 +2,11 @@ package seedu.condonery.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.logic.commands.CommandTestUtil.*;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_DESC_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_WHISTLER;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,15 +34,24 @@ public class EditPropertyDescriptorTest {
         assertFalse(PROPERTY_DESC_SCOTTS.equals(CLIENT_DESC_BOB));
 
         // different name -> returns false
-        EditPropertyDescriptor editedScottsProperty = new EditPropertyDescriptorBuilder(PROPERTY_DESC_SCOTTS).withName(PROPERTY_VALID_NAME_WHISTLER).build();
+        EditPropertyDescriptor editedScottsProperty =
+                new EditPropertyDescriptorBuilder(PROPERTY_DESC_SCOTTS)
+                        .withName(PROPERTY_VALID_NAME_WHISTLER)
+                        .build();
         assertFalse(PROPERTY_DESC_SCOTTS.equals(editedScottsProperty));
 
         // different address -> returns false
-        editedScottsProperty = new EditPropertyDescriptorBuilder(PROPERTY_DESC_SCOTTS).withAddress(PROPERTY_VALID_ADDRESS_WHISTLER).build();
+        editedScottsProperty =
+                new EditPropertyDescriptorBuilder(PROPERTY_DESC_SCOTTS)
+                        .withAddress(PROPERTY_VALID_ADDRESS_WHISTLER)
+                        .build();
         assertFalse(PROPERTY_DESC_SCOTTS.equals(editedScottsProperty));
 
         // different tags -> returns false
-        editedScottsProperty = new EditPropertyDescriptorBuilder(PROPERTY_DESC_SCOTTS).withTags(PROPERTY_VALID_TAG_WHISTLER).build();
+        editedScottsProperty =
+                new EditPropertyDescriptorBuilder(PROPERTY_DESC_SCOTTS)
+                .withTags(PROPERTY_VALID_TAG_WHISTLER)
+                .build();
         assertFalse(PROPERTY_DESC_SCOTTS.equals(editedScottsProperty));
     }
 }

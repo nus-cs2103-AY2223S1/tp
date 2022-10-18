@@ -21,7 +21,6 @@ import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.testutil.ClientBuilder;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
-import seedu.condonery.testutil.PropertyBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditClientCommand.
@@ -55,8 +54,10 @@ public class EditClientCommandTest {
         Client editedPerson = personInList.withName(CommandTestUtil.CLIENT_VALID_NAME_BOB)
                 .withTags(CommandTestUtil.CLIENT_VALID_TAG_HUSBAND).build();
 
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(CommandTestUtil.CLIENT_VALID_NAME_BOB)
-                .withTags(CommandTestUtil.CLIENT_VALID_TAG_HUSBAND).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
+                .withName(CommandTestUtil.CLIENT_VALID_NAME_BOB)
+                .withTags(CommandTestUtil.CLIENT_VALID_TAG_HUSBAND)
+                .build();
         EditClientCommand editCommand = new EditClientCommand(indexLastClient, descriptor);
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedPerson);
@@ -141,7 +142,7 @@ public class EditClientCommandTest {
         CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = Index.fromZeroBased(model.getFilteredClientList().size());
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getClientDirectory().getClientList().size()+1);
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getClientDirectory().getClientList().size() + 1);
 
         EditClientCommand editCommand = new EditClientCommand(outOfBoundIndex,
                 new EditClientDescriptorBuilder().withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build());
