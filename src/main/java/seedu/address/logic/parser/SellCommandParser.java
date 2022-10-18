@@ -7,6 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SellCommand;
@@ -17,6 +21,7 @@ import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
 import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
+
 
 /**
  * Parses input arguments and creates a new {@code SellCommand} object
@@ -31,6 +36,10 @@ public class SellCommandParser implements Parser<SellCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
                 PREFIX_DATE);
+        Boolean isEmptyDate = argMultimap.getValue(PREFIX_DATE).equals(Optional.empty());
+        if (isEmptyDate) {
+            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE);
+        }
 
         Index index;
         try {
@@ -40,14 +49,24 @@ public class SellCommandParser implements Parser<SellCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_GOODS).isEmpty() || argMultimap.getValue(PREFIX_PRICE).isEmpty()
-                || argMultimap.getValue(PREFIX_QUANTITY).isEmpty() || argMultimap.getValue(PREFIX_DATE).isEmpty()) {
+                || argMultimap.getValue(PREFIX_QUANTITY).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SellCommand.MESSAGE_USAGE));
         }
 
         Goods goods = ParserUtil.parseGoods(argMultimap.getValue(PREFIX_GOODS).orElse(""));
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).orElse(""));
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
+        Date date;
+        if (isEmptyDate) {
+            LocalDate now = LocalDate.now();
+            DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate datetime = LocalDate.parse(now.toString(), oldPattern);
+            String output = datetime.format(newPattern);
+            date = new Date(output);
+        } else {
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
+        }
 
         Transaction transaction = new SellTransaction(goods, price, quantity, date);
 
