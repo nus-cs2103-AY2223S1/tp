@@ -27,7 +27,7 @@ public class TripListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public TripListPanel(ObservableList<Trip> tripList, ObservableTrip selectedTrip ) {
+    public TripListPanel(ObservableList<Trip> tripList, ObservableTrip selectedTrip) {
         super(FXML);
         tripListView.setItems(tripList);
         tripListView.setCellFactory(listView -> new TripListViewCell());

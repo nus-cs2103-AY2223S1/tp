@@ -2,6 +2,9 @@ package seedu.travelr.model.trip;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Represents an observable Trip.
+ */
 public class ObservableTrip {
     private final SimpleStringProperty tripTitle;
     private final SimpleStringProperty tripDescription;

@@ -5,9 +5,6 @@ import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
 
 import seedu.travelr.model.Model;
-import seedu.travelr.model.component.Description;
-import seedu.travelr.model.component.Title;
-import seedu.travelr.model.trip.Trip;
 
 /**
  * Displays all added trips and events in Travelr to the user.
