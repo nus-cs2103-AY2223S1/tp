@@ -236,6 +236,65 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] AddItem Feature
+
+#### Proposed Implementation
+
+This feature allows `SupplyItems` to be added to the `Inventory` for vendors
+
+The proposed addItem mechanism is facilitated by `AddItemCommand` and `AddItemCommandParser` classes
+
+The `AddItemCommandParser` helps to parse the input given by user and ensures the validity of the index.
+Suppliers at target index will be retrieved and their respective information will be added to Inventory
+
+The feature will be implemented with the help of this following operations:
+
+* `AddItemCommand#createSupplyItem(retrievedSupplier, currentStock, minStock)` — Creates a SupplyItem to be added to the Inventory list
+* `Model#getFilteredPersonList()` — Retrieves the supplier of that index from `ObservableList<Person>`
+* `Model#addSupplyItem(supplyItemToBeAdded)` — Adds the supply item to inventory
+
+These operations are exposed in the `Model` interface as `Model#getFilteredPersonList()` and `Model#addSupplyItem(supplyItemToBeAdded)` respectively.
+
+Given below is an example usage scenario and how the addItem mechanism behaves at each step.
+
+Step 1. The user executes the command by inputting `addItem 1 c/5 m/2`
+
+Step 2. This command calls the `AddItemCommandParser` to parse index,currentStock and minStock. Hence it adds the item of the 1st Supplier in the PersonList to Inventory
+, where the item has currentStock of 5 and minStock of 2.
+
+
+
+Step 3. The `AddItemCommand` is executed. Supplier of index 1 is retrieved by calling the `ObservableList#get()` method.
+
+![AddItemState0](images/AddItemState0-Initial_state.png)
+
+Step 4. If index is valid and supplier exists, then a new `supplyItem` which will be added will be created by calling `AddItemCommand#createSupplyItem(supplier, currentStock, minStock)` .
+
+![AddItemState1](images/AddItemState1-Initial_state.png)
+
+Step 5. Then `Model#addSupplyItem(supplyItemToBeAdded)` command will be called to add the supplyItem to `Inventory`.
+
+Step 6. `CommandResult` is then returned to notify user that the `supplyItem` of that supplier has been added to `Inventory`.
+
+The following activity diagram summarizes what happens when a user executes `addItem` command:
+
+<img src="images/AddItemActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: How supplyItem to be added is retrieved:**
+
+* **Alternative 1 (current choice):** Retrieve from `PersonList` with current suppliers
+    * Pros: Easy for user to add supplyItems as it only requires them to view index in list of suppliers
+    * Cons: More prone to bugs as it involves both `PersonList` and `Inventory`
+
+* **Alternative 2:** User inputs all details for `supplyItem`
+    * Pros: Easier to maintain. 
+    * Cons: More tedious for user to input all details.
+
+_{more aspects and alternatives to be added}_
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
