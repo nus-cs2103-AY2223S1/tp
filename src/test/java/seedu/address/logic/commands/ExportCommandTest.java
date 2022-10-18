@@ -2,10 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static seedu.address.commons.core.Messages.MESSAGE_EXPORT_ERROR;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getFilePathInSandboxFolder;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -59,10 +58,7 @@ public class ExportCommandTest {
     public void execute_invalidCsvPath_throwsCommandException() {
         ExportCommand exportCommand = new ExportCommand(invalidCsvPath);
 
-        assertCommandFailure(exportCommand, model,
-                String.format(MESSAGE_EXPORT_ERROR,
-                        "src\\test\\data\\sandbox\\nonexistent\\foobar.csv "
-                                + "(The system cannot find the path specified)"));
+        assertThrows(CommandException.class, () -> exportCommand.execute(model));
     }
 
     @Test
