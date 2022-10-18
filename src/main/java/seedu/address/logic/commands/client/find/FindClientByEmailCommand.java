@@ -11,16 +11,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 
 public class FindClientByEmailCommand extends FindClientCommand {
-
-    public static final String MESSAGE_FIND_CLIENT_USAGE = COMMAND_WORD + ": Finds and filters clients by keyword " +
-            "from the " +
-            "address book. "
-            + "Parameters: "
-            + PREFIX_CLIENT_EMAIL + "EMAIL "
-            + "Example: " + COMMAND_WORD + " "
-            + COMMAND_FLAG + " "
-            + PREFIX_CLIENT_EMAIL + "johnd@example.com ";
-
     private final EmailContainsKeywordsPredicate predicate;
 
     public FindClientByEmailCommand(EmailContainsKeywordsPredicate predicate) {
