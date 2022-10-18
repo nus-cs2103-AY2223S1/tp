@@ -125,7 +125,7 @@ public class ModelManager implements Model {
         List<Internship> internshipList = new ArrayList<>();
         internshipList.add(internship);
 
-        updateFilteredInternshipList(new ExactMatchPredicate(internshipList));
+        updateViewItem(new ExactMatchPredicate(internshipList));
     }
 
     //=========== Filtered Internship List Accessors =============================================================
