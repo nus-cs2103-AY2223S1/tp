@@ -53,9 +53,9 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().toString());
-        phone.setText(person.getPhone().getPhoneRepresentation());
+        phone.setText(person.getPhone().uiRepresentation());
         address.setText(person.getAddress().value);
-        email.setText(person.getEmail().getEmailRepresentation());
+        email.setText(person.getEmail().uiRepresentation());
 
         // TODO: Remove tags once decided on Client implementation
         person.getTags().stream()

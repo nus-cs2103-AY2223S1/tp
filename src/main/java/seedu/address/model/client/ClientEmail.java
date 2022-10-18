@@ -53,6 +53,16 @@ public class ClientEmail {
             super("cs2103@nus.edu");
         }
 
+        @Override
+        public String toString() {
+            return "";
+        }
+
+        @Override
+        public String uiRepresentation() {
+            return "No email set";
+        }
+
     }
 
     /**
@@ -90,7 +100,7 @@ public class ClientEmail {
      * Returns the email of the client.
      * @return String representing email
      */
-    public String getEmailRepresentation() {
+    public String uiRepresentation() {
         return "Email: " + this.email;
     }
 

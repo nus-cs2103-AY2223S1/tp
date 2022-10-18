@@ -84,14 +84,19 @@ class JsonAdaptedIssue {
         //        }
         final Priority modelPriority = Priority.valueOf(priority);
 
-        if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Deadline.class.getSimpleName()));
+        Deadline modelDeadline;
+        if (deadline.isEmpty()) {
+            modelDeadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
+        } else {
+            if (deadline == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Deadline.class.getSimpleName()));
+            }
+            if (!Deadline.isValidDeadline(deadline)) {
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            }
+            modelDeadline = new Deadline(deadline);
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
-        }
-        final Deadline modelDeadline = new Deadline(deadline);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));

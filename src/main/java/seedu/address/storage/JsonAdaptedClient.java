@@ -54,9 +54,6 @@ class JsonAdaptedClient {
         phone = source.getClientPhone().toString();
         email = source.getClientEmail().toString();
         clientId = source.getClientId().toString();
-        //        projects.addAll(source.getProjects().stream()
-        //                .map(JsonAdaptedProject::new)
-        //                .collect(Collectors.toList()));
     }
 
     /**
@@ -66,35 +63,49 @@ class JsonAdaptedClient {
      */
     public Client toModelType() throws IllegalValueException {
         final List<Project> clientProjects = new ArrayList<>();
-        //        for (JsonAdaptedProject project : projects) {
-        //            clientProjects.add(project.toModelType());
-        //        }
+
+        if (name.isEmpty()) {
+            return Client.EmptyClient.EMPTY_CLIENT;
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClientPhone.class.getSimpleName()));
-        }
-        if (!ClientPhone.isValidClientPhone(phone)) {
-            throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
-        }
-        final ClientPhone modelPhone = new ClientPhone(phone);
+        ClientPhone modelPhone;
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClientEmail.class.getSimpleName()));
+        if (phone.isEmpty()) {
+            modelPhone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        } else {
+            if (phone == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        ClientPhone.class.getSimpleName()));
+            }
+            if (!ClientPhone.isValidClientPhone(phone)) {
+                throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
+            }
+            modelPhone = new ClientPhone(phone);
         }
-        if (!ClientEmail.isValidEmail(email)) {
-            throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
+
+        ClientEmail modelEmail;
+
+        if (email.isEmpty()) {
+            modelEmail = ClientEmail.EmptyEmail.EMPTY_EMAIL;
+        } else {
+            if (email == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        ClientEmail.class.getSimpleName()));
+            }
+            if (!ClientEmail.isValidEmail(email)) {
+                throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
+            }
+            modelEmail = new ClientEmail(email);
         }
-        final ClientEmail modelEmail = new ClientEmail(email);
 
         if (clientId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
