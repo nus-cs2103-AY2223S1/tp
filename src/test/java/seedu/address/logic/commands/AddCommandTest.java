@@ -251,6 +251,11 @@ public class AddCommandTest {
         public void deleteTask(Index teamIndex, Index taskIndex) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

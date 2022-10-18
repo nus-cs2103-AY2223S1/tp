@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public class Task {
 
-    private final Name name;
+    private Name name;
     private Optional<LocalDate> deadline;
     private boolean isDone;
 
@@ -44,6 +44,10 @@ public class Task {
 
     public Name getName() {
         return this.name;
+    }
+
+    public void editName(Name newName) {
+        this.name = newName;
     }
 
     public Optional<LocalDate> getDeadline() {
