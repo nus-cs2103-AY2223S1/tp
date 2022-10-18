@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -20,28 +21,34 @@ public class GradeCommand extends Command {
     public static final String COMMAND_WORD = "grade";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the grade of the Student identified "
-            + "by the index number used in the last person listing.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_GRADE
-            + "GRADE ([smaller integer]/[bigger integer up to 99999])\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_GRADE + "1/2.";
+            + ": Edits the grade of the Assignment of a student"
+            + " identified by the index number used in the last person listing.\n"
+            + "Parameters: "
+            + "INDEX OF THE STUDENT (must be a positive integer) "
+            + PREFIX_ASSIGNMENT + "INDEX OF THE ASSIGNMENT (must be a positive integer) "
+            + PREFIX_GRADE + "GRADE ([smaller integer]/[bigger integer up to 99999])\n"
+            + "Example: " + COMMAND_WORD + " "
+            + "1 " + PREFIX_ASSIGNMENT + "1 "
+            + PREFIX_GRADE + "18/20.";
     public static final String MESSAGE_PERSON_NOT_STUDENT = "The person to edit is not a student, there is no "
             + "grade to be edited.";
+    public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
     public static final String MESSAGE_EDIT_GRADE_SUCCESS = "Edited grade to student: %1$s";
 
-    private final Index index;
+    private final Index indexOfStudent;
+    private final Index indexOfAssignment;
     private final String grade;
 
     /**
-     * @param index of the student in the filtered person list to edit the grade
+     * @param indexOfStudent Index of the student in the filtered person list to edit the grade
+     * @param indexOfAssignment Index of the assignment in the student's assignment list
      * @param grade of the student to be updated to
      */
-    public GradeCommand(Index index, String grade) {
-        requireAllNonNull(index, grade);
+    public GradeCommand(Index indexOfStudent, Index indexOfAssignment, String grade) {
+        requireAllNonNull(indexOfStudent, indexOfAssignment, grade);
 
-        this.index = index;
+        this.indexOfStudent = indexOfStudent;
+        this.indexOfAssignment = indexOfAssignment;
         this.grade = grade;
     }
 
@@ -56,16 +63,17 @@ public class GradeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (indexOfStudent.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(indexOfStudent.getZeroBased());
         if (!(personToEdit.getPosition() instanceof Student)) {
             throw new CommandException(MESSAGE_PERSON_NOT_STUDENT);
         }
         Student currPosition = (Student) personToEdit.getPosition();
-        currPosition.setGrade(grade);
+        currPosition.setAssignmentGrade(indexOfAssignment, grade);
+        currPosition.updateOverallGrade();
         Person editedPerson = personToEdit;
 
         model.setPerson(personToEdit, editedPerson);
@@ -96,7 +104,7 @@ public class GradeCommand extends Command {
 
         // state check
         GradeCommand e = (GradeCommand) other;
-        return index.equals(e.index)
+        return indexOfStudent.equals(e.indexOfStudent)
                 && grade.equals(e.grade);
     }
 
