@@ -39,7 +39,7 @@ public class ExamDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String date) {
-        return date.length() >= 10 && doesDateExist(date);
+        return date.length() >= 10 && isExistingDate(date);
     }
 
     /**
@@ -47,7 +47,7 @@ public class ExamDate {
      * @param date A String that represents a date that is in YYYY-MM-DD format.
      * @return true if date exist, otherwise false.
      */
-    public static boolean doesDateExist(String date) {
+    public static boolean isExistingDate(String date) {
         try {
             LocalDate.parse(date).format(DateTimeFormatter.ofPattern("d MMM yyyy"));
             return true;
