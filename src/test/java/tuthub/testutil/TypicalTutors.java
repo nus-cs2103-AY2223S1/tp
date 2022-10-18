@@ -75,6 +75,10 @@ public class TypicalTutors {
             .withEmail("jackson@example.com").withModule("cs2105").withYear("2").withStudentId("A2345678Y")
             .withTeachingNomination("1").withRating("4.6")
             .build();
+    public static final Tutor KEN = new TutorBuilder().withName("Ken Tan").withPhone("99999999")
+            .withEmail("ken@example.com").withModule("cs2105").withYear("3").withStudentId("A2345678X")
+            .withTeachingNomination("2").withRating("4.9")
+            .build();
 
     // Manually added - Tutor's details found in {@code CommandTestUtil}
     public static final Tutor AMY = new TutorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
