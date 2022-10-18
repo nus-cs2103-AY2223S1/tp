@@ -107,7 +107,7 @@ public class JsonAdaptedInternshipTest {
 
     @Test
     public void toModelType_invalidDateTime_throwsIllegalValueException() {
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_ROLE, VALID_PHONE,
+        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_ROLE,
                 VALID_EMAIL, VALID_STAGE, INVALID_DATETIME, VALID_TAGS);
         String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);

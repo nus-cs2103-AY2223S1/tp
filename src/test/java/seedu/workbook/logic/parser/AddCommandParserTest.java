@@ -63,7 +63,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedInternship));
 
         // multiple roles - last role accepted
-        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_AMY + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_AMY + ROLE_DESC_BOB + EMAIL_DESC_BOB
                + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
 
@@ -155,7 +155,7 @@ public class AddCommandParserTest {
                 Stage.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB
+                COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB
                         + INVALID_DATETIME_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 DateTime.MESSAGE_CONSTRAINTS);
 

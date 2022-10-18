@@ -121,7 +121,6 @@ class JsonAdaptedInternship {
         final DateTime modelDateTime = new DateTime(dateTime);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        
         return new Internship(modelCompany, modelRole, modelEmail, modelStage, modelDateTime, modelTags);
     }
 
