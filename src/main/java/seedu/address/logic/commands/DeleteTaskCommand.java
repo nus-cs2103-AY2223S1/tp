@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
@@ -33,10 +33,10 @@ public class DeleteTaskCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE CODE "
-            + PREFIX_TASK_NUMBER + "TASK NUMBER \n"
+            + PREFIX_TASK_NUMBER_TO_DELETE + "TASK NUMBER \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS3230 "
-            + PREFIX_TASK_NUMBER + "1";
+            + PREFIX_TASK_NUMBER_TO_DELETE + "1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS =
             "Deleted task from: %1$s";
@@ -58,7 +58,6 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredModuleList();
         ModuleCode moduleCodeOfTaskToDeleteTaskFrom =
                 deleteTaskFromModuleDescriptor.moduleCodeOfModuleWithTaskToDelete;
         Module moduleToDeleteTaskFrom = null;

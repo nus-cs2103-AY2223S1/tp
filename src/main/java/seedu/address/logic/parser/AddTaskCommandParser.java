@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.logic.commands.AddTaskCommand;
@@ -28,12 +29,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_MODULE_CODE, PREFIX_TASK_DESCRIPTION);
-        Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
-                PREFIX_MODULE_CODE);
-        Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
-        Boolean isTaskDescriptionAbsent = !arePrefixesPresent(argMultimap,
-                PREFIX_TASK_DESCRIPTION);
-        if (isModuleCodeAbsent || isPreamblePresent || isTaskDescriptionAbsent) {
+        if (isAnyArgumentMissing(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTaskCommand.MESSAGE_USAGE));
         }
@@ -51,5 +47,19 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 ParserUtil.parseNewTaskDescription(taskDescriptionOfNewTaskToAdd);
         addTaskToModuleDescriptor.setNewTask(newTaskToAdd);
         return new AddTaskCommand(addTaskToModuleDescriptor);
+    }
+
+    /**
+     * Checks if any arguments are missing.
+     * @param argMultimap {@code ArgumentMultimap} containing the arguments
+     *                    given by the user.
+     */
+    private Boolean isAnyArgumentMissing(ArgumentMultimap argMultimap) {
+        Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
+                PREFIX_MODULE_CODE);
+        Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
+        Boolean isTaskDescriptionAbsent = !arePrefixesPresent(argMultimap,
+                PREFIX_TASK_DESCRIPTION);
+        return isModuleCodeAbsent || isPreamblePresent || isTaskDescriptionAbsent;
     }
 }

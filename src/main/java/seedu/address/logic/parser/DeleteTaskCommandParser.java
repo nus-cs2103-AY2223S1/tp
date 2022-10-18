@@ -1,9 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
@@ -17,9 +18,6 @@ import seedu.address.model.module.ModuleCode;
  * Parses input arguments and creates a new {@code DeleteTaskCommand} object.
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
-    public static final String MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER = "The "
-            + "task number must be a non-zero positive integer!";
-
     /**
      * Parses the given {@code String} of arguments in the context of the
      * {@code DeleteCommand} and returns a {@code DeleteCommand} object for
@@ -30,13 +28,8 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     public DeleteTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                        PREFIX_MODULE_CODE, PREFIX_TASK_NUMBER);
-        Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
-                PREFIX_MODULE_CODE);
-        Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
-        Boolean isTaskNumberAbsent = !arePrefixesPresent(argMultimap,
-                PREFIX_TASK_NUMBER);
-        if (isModuleCodeAbsent || isPreamblePresent || isTaskNumberAbsent) {
+                        PREFIX_MODULE_CODE, PREFIX_TASK_NUMBER_TO_DELETE);
+        if (isAnyArgumentMissing(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteTaskCommand.MESSAGE_USAGE));
         }
@@ -49,13 +42,27 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
                 ParserUtil.parseModuleCode(moduleCodeOfModuleToDeleteTaskFromAsString);
         deleteTaskFromModuleDescriptor.setModuleCodeOfModuleWithTaskToDelete(moduleCodeOfModuleToDeleteTaskFrom);
         String taskNumberGivenByUser =
-                argMultimap.getValue(PREFIX_TASK_NUMBER).get();
+                argMultimap.getValue(PREFIX_TASK_NUMBER_TO_DELETE).get();
         if (!StringUtil.isNonZeroUnsignedInteger(taskNumberGivenByUser)) {
-            throw new ParseException(MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER);
+            throw new ParseException(MESSAGE_INVALID_TASK_NUMBER);
         }
         Index taskIndexToRemove =
                 ParserUtil.parseTaskNumberToDelete(taskNumberGivenByUser);
         deleteTaskFromModuleDescriptor.setIndexOfTaskToDelete(taskIndexToRemove);
         return new DeleteTaskCommand(deleteTaskFromModuleDescriptor);
+    }
+
+    /**
+     * Checks if any arguments are missing.
+     * @param argMultimap {@code ArgumentMultimap} containing the arguments
+     *                    given by the user.
+     */
+    private Boolean isAnyArgumentMissing(ArgumentMultimap argMultimap) {
+        Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
+                PREFIX_MODULE_CODE);
+        Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
+        Boolean isTaskNumberAbsent = !arePrefixesPresent(argMultimap,
+                PREFIX_TASK_NUMBER_TO_DELETE);
+        return isModuleCodeAbsent || isPreamblePresent || isTaskNumberAbsent;
     }
 }
