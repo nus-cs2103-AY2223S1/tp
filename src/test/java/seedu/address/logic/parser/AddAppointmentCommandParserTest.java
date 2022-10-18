@@ -1,114 +1,117 @@
 package seedu.address.logic.parser;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BOTH_FIELD_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_FIELD_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_FIELD_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MONTHLY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.SECOND_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.RISKTAG_DESC_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.person.Appointment;
+import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandParserTest {
     private AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
 
     @Test
     public void parse_allFieldsPresentOneAppointment_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
+        Index targetPersonIndex = INDEX_SECOND_PERSON;
+        String userInput = targetPersonIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
-        AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, descriptor);
+        Appointment appointmentToAdd = new AppointmentBuilder()
+                                    .withDateTime(VALID_DATETIME_21_JAN_2023)
+                                    .withLocation(VALID_LOCATION_NUS).build();
 
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_allFieldsPresentMultipleAppointments_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC + SECOND_APPOINTMENT_DESC;
-
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
-        AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, descriptor);
+        AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetPersonIndex, appointmentToAdd);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
-    public void parse_validAppointmentWithTags_failure() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC + TAG_DESC_FRIEND;
+    public void parse_invalidPreamble_failure() {
+        String expectedFailureMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddAppointmentCommand.MESSAGE_USAGE);
+        // negative index
+        assertParseFailure(parser, "-5" + VALID_DATETIME_21_JAN_2023, expectedFailureMessage);
 
-        try {
-            parser.parse(userInput);
-            fail();
-        } catch (ParseException parseException) {
-            assertEquals("Invalid command format! \naddappt: Schedules an appointment with "
-                    + "a specific client by the index number used in the displayed person listParameters: "
-                    + "Parameters: INDEX (must be a positive integer) [d/DATE AND TIME]...\n"
-                    + "Example: addappt 1 d/21-Jan-2023 12:30 PM " , parseException.getMessage());
-        }
+        // zero index
+        assertParseFailure(parser, "0" + VALID_DATETIME_22_JAN_2023, expectedFailureMessage);
+
+        // invalid arguments being parsed as preamble
+        assertParseFailure(parser, "1 some random string", expectedFailureMessage);
+
+        // invalid prefix being parsed as preamble
+        assertParseFailure(parser, "1 i/ string", expectedFailureMessage);
+    }
+    @Test
+    public void parse_invalidAppointmentField_failure() {
+        String expectedFailureMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddAppointmentCommand.MESSAGE_USAGE);
+        int targetPersonIndex = INDEX_SECOND_PERSON.getOneBased();
+        int targetAppointmentIndex = INDEX_FIRST_APPOINTMENT.getOneBased();
+
+        // add appointment with invalid date
+        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
+                + INVALID_DATE_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
+
+        // add appointment with invalid location
+        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
+                + INVALID_LOCATION_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
+
+        // add appointment with invalid location and invalid date
+        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
+                + INVALID_BOTH_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
+
+        // add appointment with no field
+        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex, expectedFailureMessage);
     }
 
     @Test
-    public void parse_validAppointmentWithPhone_failure() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + FIRST_APPOINTMENT_DESC;
+    public void parse_validAppointmentWithOtherField_failure() {
+        String expectedFailureMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddAppointmentCommand.MESSAGE_USAGE);
+        int targetIndex = INDEX_SECOND_PERSON.getOneBased();
 
-        try {
-            parser.parse(userInput);
-            fail();
-        } catch (ParseException parseException) {
-            assertEquals("Invalid command format! \naddappt: Schedules an appointment with "
-                    + "a specific client by the index number used in the displayed person listParameters: "
-                    + "Parameters: INDEX (must be a positive integer) [d/DATE AND TIME]...\n"
-                    + "Example: addappt 1 d/21-Jan-2023 12:30 PM " , parseException.getMessage());
-        }
-    }
+        // add appointment with name
+        assertParseFailure(parser, targetIndex + NAME_DESC_AMY + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
 
-    @Test
-    public void parse_validAppointmentWithName_failure() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + FIRST_APPOINTMENT_DESC;
+        // add appointment with phone
+        assertParseFailure(parser, targetIndex + PHONE_DESC_AMY + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
 
-        try {
-            parser.parse(userInput);
-            fail();
-        } catch (ParseException parseException) {
-            assertEquals("Invalid command format! \naddappt: Schedules an appointment with "
-                    + "a specific client by the index number used in the displayed person listParameters: "
-                    + "Parameters: INDEX (must be a positive integer) [d/DATE AND TIME]...\n"
-                    + "Example: addappt 1 d/21-Jan-2023 12:30 PM " , parseException.getMessage());
-        }
-    }
+        // add appointment with email
+        assertParseFailure(parser, targetIndex + EMAIL_DESC_AMY + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
 
-    @Test
-    public void parse_validAppointmentWithEmail_failure() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY + FIRST_APPOINTMENT_DESC;
+        // add appointment with address
+        assertParseFailure(parser, targetIndex + ADDRESS_DESC_AMY + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
 
-        try {
-            parser.parse(userInput);
-            fail();
-        } catch (ParseException parseException) {
-            assertEquals("Invalid command format! \naddappt: Schedules an appointment with "
-                    + "a specific client by the index number used in the displayed person listParameters: "
-                    + "Parameters: INDEX (must be a positive integer) [d/DATE AND TIME]...\n"
-                    + "Example: addappt 1 d/21-Jan-2023 12:30 PM " , parseException.getMessage());
-        }
+        // add appointment with normal tag
+        assertParseFailure(parser, targetIndex + TAG_DESC_FRIEND + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
+
+        // add appointment with risk tag
+        assertParseFailure(parser, targetIndex + RISKTAG_DESC_HIGH + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
+
+        // add appointment with monthly
+        assertParseFailure(parser, targetIndex + MONTHLY_DESC_AMY + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
+
+        // add appointment with income
+        assertParseFailure(parser, targetIndex + INCOME_DESC_AMY + FIRST_APPOINTMENT_DESC, expectedFailureMessage);
     }
 }

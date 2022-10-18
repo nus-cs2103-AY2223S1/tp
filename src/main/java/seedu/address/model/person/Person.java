@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.util.MaximumSortedList;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,40 +16,56 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
+    public static final int MAXIMUM_NUM_OF_APPOINTMENTS = 3;
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final IncomeLevel incomeLevel;
+    private final Monthly monthly;
 
     // Data fields
     private final Address address;
+    private final RiskTag riskTag;
+    private final Set<Tag> specialTags = new HashSet<>();
+
     private final Set<Tag> tags = new HashSet<>();
-    private Set<Appointment> appointments = new HashSet<>();
+    private MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel,
+                  Monthly monthly, RiskTag riskTag, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, incomeLevel, monthly, riskTag, tags);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.riskTag = riskTag;
+        this.specialTags.add(riskTag);
+        this.incomeLevel = incomeLevel;
+        this.monthly = monthly;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Appointment> appointments) {
+    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel, Monthly monthly,
+                  RiskTag riskTag, Set<Tag> tags, MaximumSortedList<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.riskTag = riskTag;
+        this.specialTags.add(riskTag);
+        this.monthly = monthly;
         this.tags.addAll(tags);
         this.appointments = appointments;
+        this.incomeLevel = incomeLevel;
     }
 
     public Name getName() {
@@ -65,9 +83,19 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+    public Monthly getMonthly() {
+        return monthly;
+    }
 
-    public Set<Appointment> getAppointments() {
+    public MaximumSortedList<Appointment> getAppointments() {
         return appointments;
+    }
+
+    public IncomeLevel getIncome() {
+        return incomeLevel;
+    }
+    public RiskTag getRiskTag() {
+        return riskTag;
     }
 
     /**
@@ -77,8 +105,11 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    public Set<Tag> getSpecialTags() {
+        return Collections.unmodifiableSet(specialTags);
+    }
 
-    public void setAppointments(Set<Appointment> newAppointments) {
+    public void setAppointments(MaximumSortedList<Appointment> newAppointments) {
         appointments = newAppointments;
     }
 
@@ -135,7 +166,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Appointment> appointments = getAppointments();
+        MaximumSortedList<Appointment> appointments = getAppointments();
         if (!Objects.isNull(appointments) && !appointments.isEmpty()) {
             builder.append("; Appointments: ");
             appointments.forEach(
