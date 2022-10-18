@@ -115,6 +115,11 @@ public class AddressBookTest {
         }
 
         @Override
+        public ObservableList<Project> getModifiableProjectList() {
+            return projects;
+        }
+
+        @Override
         public ObservableList<Issue> getIssueList() {
             return issues;
         }

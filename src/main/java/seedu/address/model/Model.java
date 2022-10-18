@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -153,4 +154,9 @@ public interface Model {
 
     void updateFilteredClientList(Predicate<Client> predicate);
 
+    void updateFilteredSortedProjectList(Predicate<Project> predicate);
+
+    void sortProjectsByDeadline();
+
+    ObservableList<Project> getFilteredSortedProjectList();
 }

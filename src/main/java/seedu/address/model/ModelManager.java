@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -28,6 +30,7 @@ public class ModelManager implements Model {
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Issue> filteredIssues;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Project> filteredSortedProjects;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +46,7 @@ public class ModelManager implements Model {
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
         filteredIssues = new FilteredList<>(this.addressBook.getIssueList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredSortedProjects = new FilteredList<>(this.addressBook.getSortedProjectList());
     }
 
     public ModelManager() {
@@ -264,6 +268,10 @@ public class ModelManager implements Model {
         return filteredClients;
     }
 
+    public ObservableList<Project> getFilteredSortedProjectList() {
+        return filteredSortedProjects;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -274,6 +282,12 @@ public class ModelManager implements Model {
     public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredSortedProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredSortedProjects.setPredicate(predicate);
     }
 
     @Override
@@ -308,6 +322,12 @@ public class ModelManager implements Model {
                 && filteredProjects.equals(other.filteredProjects)
                 && filteredIssues.equals(other.filteredIssues)
                 && filteredClients.equals(other.filteredClients);
+    }
+
+    @Override
+    public void sortProjectsByDeadline() {
+        addressBook.sortProjects();
+        updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
 }

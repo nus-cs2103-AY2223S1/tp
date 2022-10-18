@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -27,20 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueEntityList<Project> projects;
     private final UniqueEntityList<Person> persons;
     private final UniqueEntityList<Issue> issues;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    //    {
-    //        clients = new UniqueEntityList<Client>();
-    //        projects = new UniqueEntityList<Project>();
-    //        persons = new UniqueEntityList<Person>();
-    //        issues = new UniqueEntityList<Issue>();
-    //    }
+    private final UniqueEntityList<Project> sortedProjects;
 
     /**
      * Creates an empty addressbook
@@ -50,6 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects = new UniqueEntityList<Project>();
         persons = new UniqueEntityList<Person>();
         issues = new UniqueEntityList<Issue>();
+        sortedProjects = new UniqueEntityList<Project>();
     }
 
     /**
@@ -94,6 +83,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.clients.setList(clients);
     }
 
+    public void setSortedProjects(List<Project> projects) {
+        this.sortedProjects.setList(projects);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -104,6 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setIssues(newData.getIssueList());
         setProjects(newData.getProjectList());
         setClients(newData.getClientList());
+        setSortedProjects(newData.getProjectList());
     }
 
     //// client-level operations
@@ -271,6 +265,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
+    public void sortProjects() {
+        ObservableList<Project> sorted =
+                getModifiableProjectList().sorted(Comparator.comparing(s -> s.getDeadline().getLocalDate()));
+        setSortedProjects(sorted);
+    }
+
     //// util methods
 
     @Override
@@ -292,6 +292,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Project> getModifiableProjectList() {
+        return projects.asModifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Issue> getIssueList() {
         return issues.asUnmodifiableObservableList();
     }
@@ -299,6 +304,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Project> getSortedProjectList() {
+        return sortedProjects.asUnmodifiableObservableList();
     }
 
     @Override

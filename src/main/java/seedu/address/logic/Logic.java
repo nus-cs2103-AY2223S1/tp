@@ -58,4 +58,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     void setUi(Ui ui);
+
+    ObservableList<Project> getFilteredSortedProjectList();
 }

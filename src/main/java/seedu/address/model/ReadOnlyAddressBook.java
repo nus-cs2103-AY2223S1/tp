@@ -24,6 +24,12 @@ public interface ReadOnlyAddressBook {
     ObservableList<Project> getProjectList();
 
     /**
+     * Returns a modifiable view of the projects list.
+     * This list will not contain any duplicate projects.
+     */
+    ObservableList<Project> getModifiableProjectList();
+
+    /**
      * Returns an unmodifiable view of the issues list.
      * This list will not contain any duplicate issues.
      */

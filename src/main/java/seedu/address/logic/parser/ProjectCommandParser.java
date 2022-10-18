@@ -19,6 +19,7 @@ import seedu.address.logic.commands.project.DeleteProjectCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
+import seedu.address.logic.commands.project.SortProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -50,6 +51,8 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             return parseEditProjectCommand(arguments);
         case DeleteProjectCommand.COMMAND_FLAG:
             return parseDeleteProjectCommand(arguments);
+        case SortProjectCommand.COMMAND_FLAG:
+            return parseSortProjectCommand(arguments);
         case ListProjectCommand.COMMAND_FLAG:
             return parseListProjectCommand(arguments);
         default:
@@ -71,6 +74,10 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
      */
     private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static boolean onlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() == 1;
     }
 
     private AddProjectCommand parseAddProjectCommand(String arguments) throws ParseException {
@@ -163,6 +170,19 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE), pe);
         }
+    }
+
+    private SortProjectCommand parseSortProjectCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
+                    SortProjectCommand.MESSAGE_USAGE));
+        }
+
+        ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get())
+        return new SortProjectCommand();
     }
 
     private ListProjectCommand parseListProjectCommand(String arguments) {

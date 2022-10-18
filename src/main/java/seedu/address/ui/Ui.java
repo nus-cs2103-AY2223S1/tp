@@ -15,4 +15,6 @@ public interface Ui {
     void showIssues();
 
     void showClients();
+
+    void showSortedProjects();
 }
