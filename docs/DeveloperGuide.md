@@ -235,6 +235,26 @@ The following is a more detailed explanation of how the `UploadPictureCommand` w
 4. The file is then uploaded via ```ImageStorage#uploadImage(Student student, File file)``` into the images folder in the current working directory which was created upon intialization of GREWZ.
 5. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
 
+![picture upload activity](images/PictureUploadActivityDiagram.png)
+Figure No. Activity diagram for PictureUploadCommand
+![picture upload sequence](images/PictureUploadSequenceDiagram.png)
+Figure No. Sequence diagram for PictureUploadCommand
+
+
+#### Design considerations:
+
+**Aspect: How to select an image**
+- Current implementation: A file chooser window is opened.
+- Pros: User can navigate visually through the files.
+- Cons: User will need to use a mouse instead of typing only.
+- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture. 
+- Pros: Users only needs to type. 
+- Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out. 
+
+**Aspect: Proccessing of Images**
+- Current Implementation: Handled by functions in the ImageStorage Class.
+- Pros: All operations regarding choosing, uploading and validating the picture is done in the same class.
+- Cons: The ImageStorage Class becomes just a class of static functions which cannot be tested.
 
 ### \[Proposed\] Undo/redo feature
 
