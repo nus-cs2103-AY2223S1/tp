@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -21,14 +22,20 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
 
+    public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given projects.
+     * Constructs a {@code JsonSerializableAddressBook} with the given projects and tasks.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("projects") List<JsonAdaptedProject> projects) {
+    public JsonSerializableAddressBook(@JsonProperty("projects") List<JsonAdaptedProject> projects,
+                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.projects.addAll(projects);
+        this.tasks.addAll(tasks);
     }
 
     /**
@@ -38,6 +45,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +61,14 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }
             addressBook.addProject(project);
+        }
+
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (addressBook.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            addressBook.addTask(task);
         }
         return addressBook;
     }

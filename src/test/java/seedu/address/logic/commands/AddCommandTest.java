@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddCommandTest {
@@ -157,6 +158,46 @@ public class AddCommandTest {
         public void updateFilteredProjectList(Predicate<Project> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTargetTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<Task> getTargetTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
