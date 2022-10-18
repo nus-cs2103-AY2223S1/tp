@@ -16,6 +16,26 @@ title: Developer Guide
 * [Non-Functional Requirement](#non-functional-requirement)
 * [Glossary](#glossary)
 
+-------------------------------------------------------------------------------------------------------------------
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Edit Class Feature
+
+#### Implementation Details
+
+#### Design Considerations:
+##### Aspect: Input format for edit class:
+
+* **Alternative 1**: dt/yyyy-MM-dd 0000-2359
+  * Pros: Easy to implement.
+  * Cons: The tutor has to fully match the date format and order, which is much more cumbersome.
+
+* **Alternative 2**: dt/Day-of-Week 0000-2359
+  * Pros: More convenient and easier for tutor to type.
+  * Cons: Only can set the class to a date at most 1 week away.
+
+  
 --------------------------------------------------------------------------------------------------------------------
 ## Target User Profile
 
