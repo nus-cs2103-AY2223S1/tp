@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -54,15 +55,28 @@ public class TaskCard extends UiPart<Region> {
             deadline.setVisible(false);
             deadline.setManaged(false);
         } else {
-            String text = task.getDeadline().toString();
+            String text = task.getDeadline().formatForUi();
             deadline.setText(text);
         }
 
         isCompleted.setText("");
         isCompleted.setSelected(task.getCompleted());
-        task.getAssignedContacts().stream()
-                .sorted(Comparator.comparing(Contact::getContactName))
-                .forEach(contact -> assignedContacts.getChildren().add(new Label(contact.getContactName())));
+
+        List<String> contactNames =
+                task
+                        .getAssignedContacts()
+                        .stream()
+                        .map(Contact::getContactName)
+                        .sorted()
+                        .collect(Collectors.toList());
+        int numContacts = contactNames.size();
+        for (int i = 0; i < numContacts; i++) {
+            if (i < numContacts - 1) {
+                assignedContacts.getChildren().add(new Label(contactNames.get(i) + ", "));
+            } else {
+                assignedContacts.getChildren().add(new Label(contactNames.get(i)));
+            }
+        }
     }
 
     @Override
