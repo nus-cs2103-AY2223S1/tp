@@ -12,7 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -56,18 +56,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String age} into a {@code Age}.
+     * Parses a {@code String birthdate} into a {@code Birthdate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code age} is invalid.
+     * @throws ParseException if the given {@code birthdate} is invalid.
      */
-    public static Age parseAge(String age) throws ParseException {
-        requireNonNull(age);
-        String trimmedAge = age.trim();
-        if (!Age.isValidAge(trimmedAge)) {
-            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+    public static Birthdate parseBirthdate(String birthdate) throws ParseException {
+        requireNonNull(birthdate);
+        String trimmedBirthdate = birthdate.trim();
+        if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
         }
-        return new Age(trimmedAge);
+        return new Birthdate(trimmedBirthdate);
     }
 
     /**

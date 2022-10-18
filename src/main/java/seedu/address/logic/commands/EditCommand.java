@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,8 +20,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_AGE + "AGE ]"
+            + "[" + PREFIX_BIRTHDATE + "BIRTHDATE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
+        Birthdate updatedBirthdate = editPersonDescriptor.getBirthdate().orElse(personToEdit.getBirthdate());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -85,7 +85,7 @@ public class EditCommand extends Command {
         RecordList updatedRecordList = personToEdit.getRecordList();
         Appointment updatedAppointment = personToEdit.getAppointment();
 
-        return new Person(updatedName, updatedAge, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedBirthdate, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedRecordList, updatedAppointment);
     }
 
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Age age;
+        private Birthdate birthdate;
         private Phone phone;
         private Email email;
         private Address address;
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setAge(toCopy.age);
+            setBirthdate(toCopy.birthdate);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -155,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, age, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, birthdate, phone, email, address, tags);
         }
 
         public Optional<Name> getName() {
@@ -166,12 +166,12 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-        public Optional<Age> getAge() {
-            return Optional.ofNullable(age);
+        public Optional<Birthdate> getBirthdate() {
+            return Optional.ofNullable(birthdate);
         }
 
-        public void setAge(Age age) {
-            this.age = age;
+        public void setBirthdate(Birthdate birthdate) {
+            this.birthdate = birthdate;
         }
 
         public Optional<Phone> getPhone() {
@@ -231,7 +231,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getAge().equals(e.getAge())
+                    && getBirthdate().equals(e.getBirthdate())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
