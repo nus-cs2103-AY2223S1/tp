@@ -28,8 +28,8 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s" +
-            "\nThe following tasks' assigned contacts have been modified:";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s"
+            + "\nThe following tasks' assigned contacts have been modified:";
 
     private final Index targetIndex;
 
@@ -60,7 +60,7 @@ public class DeleteCommand extends Command {
         for (Task task : lastShownTaskList) {
             Set<Contact> newAssignedContactList = new HashSet<>(task.getAssignedContacts());
             newAssignedContactList.remove(contactToDelete);
-            Task newTask = new Task(task.getTitle(), task.getCompleted(), newAssignedContactList);
+            Task newTask = new Task(task.getTitle(), task.getCompleted(), task.getDeadline(), newAssignedContactList);
             model.setTask(task, newTask);
             modifiedTaskList.add(newTask);
         }
