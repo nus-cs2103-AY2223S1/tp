@@ -21,7 +21,7 @@ checkstyle {
 }
 
 run {
-    enableAssertions = true;
+    enableAssertions = true
 }
 
 test {
