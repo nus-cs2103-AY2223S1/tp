@@ -113,6 +113,10 @@ public class ModelManager implements Model {
         return result;
     }
 
+    public void removeSurvey(Person person) {
+
+    }
+
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
