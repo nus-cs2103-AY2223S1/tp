@@ -7,6 +7,8 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A1234569L",
+    "teachingNomination": "1",
+    "rating": "4.5",
     "comment" : "",
     "tagged" : [ "friends" ]
   }, {
@@ -16,6 +18,8 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A0000009Y",
+    "teachingNomination": "1",
+    "rating": "2.5",
     "comment" : "",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -25,6 +29,8 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A9875647U",
+    "teachingNomination": "1",
+    "rating": "4.9",
     "comment" : "",
     "tagged" : [ ]
   }, {
@@ -34,6 +40,8 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A9345647M",
+    "teachingNomination": "1",
+    "rating": "1.5",
     "comment" : "",
     "tagged" : [ "friends" ]
   }, {
@@ -43,6 +51,8 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A8768974P",
+    "teachingNomination": "1",
+    "rating": "3.9",
     "comment" : "",
     "tagged" : [ ]
   }, {
@@ -52,6 +62,8 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A9870921H",
+    "teachingNomination": "1",
+    "rating": "2.7",
     "comment" : "",
     "tagged" : [ ]
   }, {
@@ -61,6 +73,8 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A0673201Y",
+    "teachingNomination": "1",
+    "rating": "4.2",
     "comment" : "",
     "tagged" : [ ]
   } ]

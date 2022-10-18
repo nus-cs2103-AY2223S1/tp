@@ -1,11 +1,14 @@
 package tuthub.ui;
 
+import static tuthub.commons.util.AppUtil.getImage;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -16,6 +19,7 @@ import tuthub.logic.Logic;
 import tuthub.logic.commands.CommandResult;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.logic.parser.exceptions.ParseException;
+import tuthub.model.tutor.Tutor;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -24,6 +28,7 @@ import tuthub.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String TUTHUB_LOGO = "/images/tuthub.png";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -32,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TutorListPanel tutorListPanel;
+    private TutorDetailsPanel tutorDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +48,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private ImageView tuthubLogo;
+
+    @FXML
     private StackPane tutorListPanelPlaceholder;
+
+    @FXML
+    private StackPane tutorDetailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +122,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        tuthubLogo.setImage(getImage(TUTHUB_LOGO));
+
         tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
         tutorListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+
+        tutorDetailsPanelPlaceholder.setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -147,6 +163,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+    * Displays a panel containing tutor details
+    */
+    private void handleView(Tutor tutor) {
+        tutorDetailsPanelPlaceholder.getChildren().clear();
+        tutorDetailsPanelPlaceholder.getChildren().add(new TutorDetailsPanel(tutor).getRoot());
+        tutorDetailsPanelPlaceholder.setVisible(true);
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -177,6 +202,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isView()) {
+                Tutor tutorToView = logic.getTutorToView();
+                assert(tutorToView != null);
+
+                handleView(tutorToView);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -14,7 +14,9 @@ import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
 import tuthub.model.tutor.Phone;
+import tuthub.model.tutor.Rating;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.TeachingNomination;
 import tuthub.model.tutor.Year;
 
 /**
@@ -125,6 +127,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String teachingNomination} into a {@code TeachingNomination}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code TeachingNomination} is invalid.
+     */
+    public static TeachingNomination parseTeachingNomination(String teachingNomination) throws ParseException {
+        requireNonNull(teachingNomination);
+        String trimmedTeachingNomination = teachingNomination.trim();
+        if (!TeachingNomination.isValidTeachingNomination(trimmedTeachingNomination)) {
+            throw new ParseException(TeachingNomination.MESSAGE_CONSTRAINTS);
+        }
+        return new TeachingNomination(trimmedTeachingNomination);
+    }
+
+    /**
+     * Parses a {@code String teachingNomination} into a {@code TeachingNomination}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code TeachingNomination} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 
     /**

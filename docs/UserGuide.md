@@ -25,8 +25,10 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
    Some example commands you can try:
 
    * **`list`** : Lists all tutors.
+   
+   * **`view`**`3` : Displays full details of the 3rd tutor shown in the current list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3 s/A1234567X` : Adds a tutor named `John Doe` to Tuthub.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3 s/A1234567X tn/3 r/5.0` : Adds a tutor named `John Doe` to Tuthub.
 
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
    
@@ -75,21 +77,34 @@ Format: `help`
 
 Adds a tutor to the Tuthub.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3`
-* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com m/CS1101S y/3 p/1234567`
+* `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
+* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
 
 ### Listing all tutors : `list`
 
 Shows a list of all tutors registered in TutHub.
 
 Format: `list`
+
+### Viewing a tutor : `view`
+
+Displays all available information about the tutor's contact details and past performance.
+
+Format: `view INDEX`
+
+* Displays the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 2` displays the full details of the 2nd person in Tuthub.
 
 ### Commenting on a tutor : `comment`
 
@@ -110,7 +125,7 @@ Examples:
 
 Edits an existing tutor in Tuthub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​`
 
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed tutor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -122,6 +137,7 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
+* `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
 
 ### Locating tutor by name: `find`
 
@@ -179,14 +195,6 @@ Exits TutHub app.
 
 Format: `exit`
 
-### Editing the data file
-
-[coming soon]
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -198,14 +206,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                            |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**           | `help`                                                                                                                                                      |
-| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 t/senior` |
-| **Comment**        | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                       |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                          |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Alex`                                                                                                       |
-| **Find by Module** | `findbymodule KEYWORD [MORE_KEYWORDS]` <br> e.g., `findbymodule CS2100`                                                                                     |
-| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
-| **List**           | `list`                                                                                                                                                      |
-| **Exit**           | `exit`                                                                                                                                                      |
+| Action             | Format, Examples                                                                                                                                                                                                                 |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**           | `help`                                                                                                                                                                                                                           |
+| **List**           | `list`                                                                                                                                                                                                                           |
+| **View**           | `view` <br> e.g., `view 1`                                                                                                                                                                                                       |
+| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment**        | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                                                                                            |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                                                          |
+| **Find**           | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Alex`                                                                                                                                                                            |
+| **Find by Module** | `findbymodule KEYWORD [MORE_KEYWORDS]` <br> e.g., `findbymodule CS2100`                                                                                                                                                          |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
+| **Exit**           | `exit`                                                                                                                                                                                                                           |

@@ -4,8 +4,10 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
+import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
 import static tuthub.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
@@ -38,6 +40,8 @@ public class TutorUtil {
         sb.append(PREFIX_MODULE + tutor.getModule().value + " ");
         sb.append(PREFIX_YEAR + tutor.getYear().value + " ");
         sb.append(PREFIX_STUDENTID + tutor.getStudentId().value + " ");
+        sb.append(PREFIX_TEACHINGNOMINATION + tutor.getTeachingNomination().value + " ");
+        sb.append(PREFIX_RATING + tutor.getRating().value + " ");
         tutor.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -56,6 +60,8 @@ public class TutorUtil {
         descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.value).append(" "));
         descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENTID)
                 .append(studentId.value).append(" "));
+        descriptor.getTeachingNomination().ifPresent(teachingNomination -> sb.append(PREFIX_TEACHINGNOMINATION)
+                .append(teachingNomination.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

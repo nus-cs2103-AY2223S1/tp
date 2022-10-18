@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" minWidth="400" prefWidth="400" styleClass="details-base" fitToHeight="true" fitToWidth="true">
+    <ScrollBar style="-fx-background-color: #D7DEDD;"/>
+    <VBox alignment="TOP_LEFT" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="details-pane">
+        <padding>
+            <Insets top="20" right="20" bottom="10" left="20" />
+        </padding>
+        <Label fx:id="name" text="\$first" styleClass="cell_name_label" />
+        <HBox spacing="8">
+            <padding>
+                <Insets left="5"/>
+            </padding>
+            <Label fx:id="module" styleClass="cell_module_label" text="\$module" />
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+            <FlowPane fx:id="tags"/>
+        </HBox>
+        <Label styleClass="cell_header_label" text="PARTICULARS"/>
+        <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
+        <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+
+        <Label styleClass="cell_header_label" text="CONTACT"/>
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+
+        <Label styleClass="cell_header_label" text="REVIEW"/>
+        <Label fx:id="rating" styleClass="cell_small_label" text="\$rating" />
+        <Label fx:id="teachingNomination" styleClass="cell_small_label" text="\$teachingNomination" />
+        <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
+    </VBox>
+</ScrollPane>

@@ -9,6 +9,7 @@ import static tuthub.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static tuthub.logic.commands.CommandTestUtil.VALID_TEACHINGNOMINATION_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
 
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,11 @@ public class EditTutorDescriptorTest {
 
         // different year -> returns false
         editedAmy = new EditTutorDescriptorBuilder(DESC_AMY).withYear(VALID_YEAR_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different teaching nomination -> returns false
+        editedAmy =
+                new EditTutorDescriptorBuilder(DESC_AMY).withTeachingNomination(VALID_TEACHINGNOMINATION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

@@ -30,7 +30,7 @@ public class TutorListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Tutor} using a {@code TutorCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Tutor} using a {@code TutorListCard}.
      */
     class TutorListViewCell extends ListCell<Tutor> {
         @Override
@@ -41,7 +41,7 @@ public class TutorListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TutorCard(tutor, getIndex() + 1).getRoot());
+                setGraphic(new TutorListCard(tutor, getIndex() + 1).getRoot());
             }
         }
     }

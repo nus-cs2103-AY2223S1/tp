@@ -70,6 +70,17 @@ public interface Model {
     void addTutor(Tutor tutor);
 
     /**
+     * Sets the given tutor to view their full details.
+     * {@code tutor} must exist in the tuthub.
+     */
+    void setTutorToView(Tutor tutor);
+
+    /**
+     * Returns the tutor to view their full details.
+     */
+    Tutor getTutorToView();
+
+    /**
      * Replaces the given tutor {@code target} with {@code editedTutor}.
      * {@code target} must exist in the tuthub.
      * The tutor identity of {@code editedTutor} must not be the same as another existing tutor in the tuthub.

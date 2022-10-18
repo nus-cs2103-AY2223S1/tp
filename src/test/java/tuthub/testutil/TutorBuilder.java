@@ -9,7 +9,9 @@ import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
 import tuthub.model.tutor.Phone;
+import tuthub.model.tutor.Rating;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.TeachingNomination;
 import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
 import tuthub.model.util.SampleDataUtil;
@@ -25,6 +27,8 @@ public class TutorBuilder {
     public static final String DEFAULT_MODULE = "cs2103t";
     public static final String DEFAULT_YEAR = "3";
     public static final String DEFAULT_STUDENTID = "A1234567X";
+    public static final String DEFAULT_TEACHINGNOMINATION = "0";
+    public static final String DEFAULT_RATING = "5.0";
     public static final String DEFAULT_COMMENT = "";
 
     private Name name;
@@ -33,6 +37,8 @@ public class TutorBuilder {
     private Module module;
     private Year year;
     private StudentId studentId;
+    private TeachingNomination teachingNomination;
+    private Rating rating;
     private Comment comment;
     private Set<Tag> tags;
 
@@ -46,6 +52,8 @@ public class TutorBuilder {
         module = new Module(DEFAULT_MODULE);
         year = new Year(DEFAULT_YEAR);
         studentId = new StudentId(DEFAULT_STUDENTID);
+        teachingNomination = new TeachingNomination(DEFAULT_TEACHINGNOMINATION);
+        rating = new Rating(DEFAULT_RATING);
         comment = new Comment(DEFAULT_COMMENT);
         tags = new HashSet<>();
     }
@@ -60,6 +68,8 @@ public class TutorBuilder {
         module = tutorToCopy.getModule();
         year = tutorToCopy.getYear();
         studentId = tutorToCopy.getStudentId();
+        teachingNomination = tutorToCopy.getTeachingNomination();
+        rating = tutorToCopy.getRating();
         comment = tutorToCopy.getComment();
         tags = new HashSet<>(tutorToCopy.getTags());
     }
@@ -127,8 +137,24 @@ public class TutorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TeachingNomination} of the {@code Tutor} that we are building.
+     */
+    public TutorBuilder withTeachingNomination(String teachingNomination) {
+        this.teachingNomination = new TeachingNomination(teachingNomination);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code Tutor} that we are building.
+     */
+    public TutorBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
     public Tutor build() {
-        return new Tutor(name, phone, email, module, year, studentId, comment, tags);
+        return new Tutor(name, phone, email, module, year, studentId, comment, teachingNomination, rating, tags);
     }
 
 }
