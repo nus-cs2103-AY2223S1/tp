@@ -11,14 +11,14 @@
     "company" : "Binance",
     "link" : "https://careers.binance.com/positionDetail",
     "description" : "Software Engineering Internship (6 months)",
-    "applicationStatus" : "applied",
+    "applicationStatus" : "interviewed",
     "appliedDate" : "5 Oct 2022",
     "tagged" : [ "Crypto" ]
   }, {
     "company": "Citadel",
     "link": "https://careers.Citadel.com/positionDetail",
     "description": "Software Engineer Intern",
-    "applicationStatus" : "applied",
+    "applicationStatus" : "rejected",
     "appliedDate" : "23 Oct 2022",
     "tagged" : [ "Backend" ]
   }, {
@@ -32,7 +32,7 @@
     "company": "Ebay",
     "link": "https://careers.Ebay.com/positionDetail",
     "description": "Software Engineer Intern 2023",
-    "applicationStatus" : "applied",
+    "applicationStatus" : "rejected",
     "appliedDate": "27 Oct 2022",
     "tagged" : [ "Ecommerce" ]
   }, {
@@ -46,7 +46,7 @@
     "company": "Goldman Sachs",
     "link": "https://careers.GoldmanSachs.com/positionDetail",
     "description": "Software Engineer Program - Summer Analyst",
-    "applicationStatus" : "applied",
+    "applicationStatus" : "accepted",
     "appliedDate": "21 Oct 2022",
     "tagged" : [ "Backend" ]
   } ]

@@ -34,12 +34,12 @@ public class TypicalInternships {
             .withAppliedDate("5 Oct 2022")
             .withDescription("Software Engineering Internship (6 months)")
             .withLink("https://careers.binance.com/positionDetail")
-            .withApplicationStatus(ApplicationStatus.Applied)
+            .withApplicationStatus(ApplicationStatus.Interviewed)
             .withTags("Crypto").build();
     public static final Internship CITADEL = new InternshipBuilder().withCompany("Citadel")
             .withLink("https://careers.Citadel.com/positionDetail")
             .withDescription("Software Engineer Intern").withAppliedDate("23 Oct 2022")
-            .withApplicationStatus(ApplicationStatus.Applied)
+            .withApplicationStatus(ApplicationStatus.Rejected)
             .withTags("Backend").build();
     public static final Internship DELL = new InternshipBuilder().withCompany("Dell")
             .withLink("https://careers.Dell.com/positionDetail")
@@ -48,7 +48,7 @@ public class TypicalInternships {
     public static final Internship EBAY = new InternshipBuilder().withCompany("Ebay")
             .withLink("https://careers.Ebay.com/positionDetail")
             .withDescription("Software Engineer Intern 2023").withAppliedDate("27 Oct 2022")
-            .withApplicationStatus(ApplicationStatus.Applied)
+            .withApplicationStatus(ApplicationStatus.Rejected)
             .withTags("Ecommerce").build();
     public static final Internship FACEBOOK = new InternshipBuilder().withCompany("Facebook")
             .withLink("https://careers.Facebook.com/positionDetail")
@@ -58,7 +58,7 @@ public class TypicalInternships {
     public static final Internship GOLDMAN = new InternshipBuilder().withCompany("Goldman Sachs")
             .withLink("https://careers.GoldmanSachs.com/positionDetail")
             .withDescription("Software Engineer Program - Summer Analyst").withAppliedDate("21 Oct 2022")
-            .withApplicationStatus(ApplicationStatus.Applied)
+            .withApplicationStatus(ApplicationStatus.Accepted)
             .withTags("Backend").build();
 
     // Manually added
