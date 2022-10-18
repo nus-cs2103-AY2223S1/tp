@@ -9,6 +9,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -28,12 +29,12 @@
       </stylesheets>
 
       <VBox>
-            <Pane prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #5BD8FF;">
-              <Label fx:id="appHeader" alignment="CENTER" contentDisplay="CENTER" layoutX="478.0" layoutY="14.0" style="-fx-font-size: 45; -fx-font-weight: 900; -fx-font-family: Roboto;" styleClass="cell_big_label" text="SETA" textAlignment="CENTER">
+            <Pane focusTraversable="true" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #5BD8FF;">
+               <Button layoutX="958.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleExit" style="-fx-font-size: 25; -fx-border-radius: 150; -fx-background-color: #383838#383838; -fx-background-radius: 100;" text="X" />
+              <Label fx:id="appHeader" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="11.0" style="-fx-font-size: 45; -fx-font-weight: 900; -fx-font-family: Roboto;" styleClass="cell_big_label" text="SETA" textAlignment="CENTER">
                   <font>
                      <Font name="Helvetica" size="100.0" />
                   </font></Label>
-               <Button layoutX="969.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-size: 25; -fx-border-radius: 100; -fx-background-color: #383838#383838; -fx-background-radius: 40;" onAction="#handleExit" text="X" />
             </Pane>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <!--<Menu mnemonicParsing="false" text="File">
@@ -61,20 +62,22 @@
           </padding>
         </StackPane>
 
-        <SplitPane dividerPositions="0.5, 0.5" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.33333, 0.66666" VBox.vgrow="ALWAYS">
           <items>
 
-            <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="studentList" minWidth="340" prefHeight="264.0" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <TextField alignment="TOP_CENTER" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Students" />
+              <StackPane fx:id="studentListPanelPlaceholder" prefWidth="318.0" VBox.vgrow="ALWAYS" />
             </VBox>
 
             <VBox fx:id="questionList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
+                <TextField alignment="TOP_CENTER" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Questions" />
               <StackPane fx:id="questionListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
@@ -82,6 +85,7 @@
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
+                <TextField alignment="TOP_CENTER" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Tutorials" />
               <StackPane fx:id="tutorialListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </items>
