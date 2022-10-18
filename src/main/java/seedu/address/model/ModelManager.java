@@ -114,12 +114,26 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    /**
+     * Returns the index of the person with the same phone number.
+     *
+     * @param phone Phone number to search
+     * @return index of the person with the same phone number
+     * @throws PersonNotFoundException if no person with corresponding phone number found
+     */
     @Override
     public int findNum(Phone phone) throws PersonNotFoundException {
         requireNonNull(phone);
         return addressBook.findNum(phone);
     }
 
+    /**
+     * Returns the index of the person with the same email.
+     *
+     * @param email Email to search
+     * @return index of the person with the same email
+     * @throws PersonNotFoundException if no person with corresponding email found
+     */
     @Override
     public int findEmail(Email email) throws PersonNotFoundException {
         requireNonNull(email);
