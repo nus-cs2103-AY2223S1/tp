@@ -14,6 +14,7 @@ import seedu.taassist.model.session.Session;
  */
 class JsonAdaptedSession {
 
+    public static final String MISSING_NAME_MESSAGE_FORMAT = "Session's name field is missing!";
     public static final String MISSING_DATE_MESSAGE_FORMAT = "Session's date field is missing!";
 
     @JsonProperty("name")
@@ -47,6 +48,9 @@ class JsonAdaptedSession {
      * @throws IllegalValueException if there were any data constraints violated in the adapted session.
      */
     public Session toModelType() throws IllegalValueException {
+        if (sessionName == null) {
+            throw new IllegalValueException(MISSING_NAME_MESSAGE_FORMAT);
+        }
         if (!Session.isValidSessionName(sessionName)) {
             throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
         }
