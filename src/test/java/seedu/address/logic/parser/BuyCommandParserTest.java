@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_NEGATIVE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_NUMBERFORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_WITH_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GOODS_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRICE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY;
@@ -70,13 +73,21 @@ public class BuyCommandParserTest {
         // goods and price but no quantity
         assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE + VALID_PRICE_BUY_ORANGE,
                 MESSAGE_INVALID_FORMAT);
-        // only date
-        assertParseFailure(parser, "1" + VALID_DATE_WITH_PREFIX,
-                MESSAGE_INVALID_FORMAT);
+        // invalid date
+        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE_NEGATIVE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE_NUMBERFORMAT, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE_WITH_PREFIX, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + INVALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE
                 + INVALID_DATE, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE + VALID_PRICE
                 + INVALID_DATE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE_NUMBERFORMAT, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
