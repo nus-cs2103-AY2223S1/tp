@@ -6,8 +6,10 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.logic.commands.AddCommand;
 import nus.climods.logic.commands.Command;
 import nus.climods.logic.commands.CommandResult;
+import nus.climods.logic.commands.DeleteCommand;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.CliModsParser;
 import nus.climods.logic.parser.exceptions.ParseException;
@@ -43,8 +45,15 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = CliModsParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        // TODO: Ideally only save after a successful add or delete
-        storage.saveUserModuleList(model.getUserModuleList());
+
+        switch (command.getCommandWord()) {
+        case (AddCommand.COMMAND_WORD):
+
+        case (DeleteCommand.COMMAND_WORD):
+            storage.saveUserModuleList(model.getUserModuleList());
+            break;
+        default:
+        }
         return commandResult;
     }
 

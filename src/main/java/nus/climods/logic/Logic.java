@@ -1,5 +1,7 @@
 package nus.climods.logic;
 
+import java.io.IOException;
+
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.logic.commands.CommandResult;
@@ -8,8 +10,6 @@ import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
-
-import java.io.IOException;
 
 /**
  * API of the Logic component

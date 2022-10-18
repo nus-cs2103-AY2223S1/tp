@@ -67,6 +67,11 @@ public class AddCommand extends Command {
     }
 
     @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddCommand // instanceof handles nulls

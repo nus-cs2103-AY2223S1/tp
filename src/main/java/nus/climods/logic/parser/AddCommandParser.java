@@ -1,11 +1,8 @@
 package nus.climods.logic.parser;
 
 import nus.climods.logic.commands.AddCommand;
-import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
-import nus.climods.model.Model;
-
 
 /**
  * Parses input arguments and creates a new AddCommand object

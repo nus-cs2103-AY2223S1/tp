@@ -1,19 +1,21 @@
 package nus.climods.storage.module;
 
+import static nus.climods.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
 import nus.climods.storage.module.user.JsonUserModuleListStorage;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import java.util.Optional;
-
-import static nus.climods.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
 
 class JsonUserModuleListStorageTest {
 

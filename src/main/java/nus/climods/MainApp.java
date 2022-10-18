@@ -89,13 +89,15 @@ public class MainApp extends Application {
             userModuleListOptional = storage.getUserModuleListStorage().readUserModuleList();
             if (userModuleListOptional.isEmpty()) {
                 logger.info("Data file not found!");
+                initialUserModuleList = new UniqueUserModuleList();
+            } else {
+                initialUserModuleList = userModuleListOptional.get();
             }
-            initialUserModuleList = userModuleListOptional.get();
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format!");
+            initialUserModuleList = new UniqueUserModuleList();
         } catch (NullPointerException e) {
             logger.warning("Data file is empty!");
-        } finally {
             initialUserModuleList = new UniqueUserModuleList();
         }
 

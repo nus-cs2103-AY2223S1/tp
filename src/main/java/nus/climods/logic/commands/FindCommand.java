@@ -41,6 +41,11 @@ public class FindCommand extends Command {
     }
 
     @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this
             || (other instanceof FindCommand

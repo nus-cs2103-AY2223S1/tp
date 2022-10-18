@@ -41,4 +41,9 @@ public class ListCommand extends Command {
         return new CommandResult(String.format(MESSAGE_MODULES_LISTED_OVERVIEW,
                 model.getFilteredModuleList().size()));
     }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
 }
