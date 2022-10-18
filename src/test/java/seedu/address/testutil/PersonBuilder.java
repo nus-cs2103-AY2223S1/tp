@@ -111,8 +111,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Person} object based on the info we have.
+     *
+     * @return A {@code Person}
+     */
     public Person build() {
-        return new Person(name, phone, email, address, listOfAppointments, tags);
+        Person person = new Person(name, phone, email, address, listOfAppointments, tags);
+        for (Appointment appointment : listOfAppointments) {
+            appointment.setPatient(person);
+        }
+        return person;
     }
 
 }

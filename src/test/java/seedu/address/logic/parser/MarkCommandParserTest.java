@@ -35,7 +35,7 @@ class MarkCommandParserTest {
 
     @Test
     public void parse_insufficientArgs_throwsParseException() {
-        assertParseFailure(parser, "", parseExceptionInvalidCommandMessage);
+        assertParseFailure(parser, "2", parseExceptionInvalidCommandMessage);
     }
 
     @Test

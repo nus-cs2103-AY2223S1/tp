@@ -20,8 +20,7 @@ public class BookCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    private final Appointment appointment = new Appointment("Sore Throat",
-            "2022-12-10 16:30", false);
+    private final Appointment appointment = new Appointment("Sore Throat", "2022-12-10 16:30", "2M", false);
 
 
     @Test
@@ -34,6 +33,7 @@ public class BookCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToBookFor, editedPerson);
+        expectedModel.addAppointment(appointment);
 
         assertCommandSuccess(bookCommand, model, expectedMessage, expectedModel);
     }

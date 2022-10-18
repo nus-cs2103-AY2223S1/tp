@@ -101,7 +101,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
+        if (address.isEmpty()) {
+            return new Address("");
+        }
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
@@ -116,7 +118,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        if (email.isEmpty()) {
+            return new Email("");
+        }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -145,12 +149,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
      */
-    public static Appointment parseAppointment(String reason, String dateTime) throws ParseException {
+    public static Appointment parseAppointment(String reason, String dateTime, String period) throws ParseException {
         requireNonNull(dateTime);
         requireNonNull(reason);
         String trimmedReason = reason.trim();
         String trimmedDateTime = dateTime.trim();
-
+        String trimmedPeriod = period.trim();
         if (!Appointment.isValidReason(trimmedReason)) {
             throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
         }
@@ -158,7 +162,11 @@ public class ParserUtil {
         if (!Appointment.isValidDateTime(dateTime)) {
             throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(trimmedReason, trimmedDateTime, false);
+
+        if (!period.isEmpty() && !Appointment.isValidTimePeriod(trimmedPeriod)) {
+            throw new ParseException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
+        }
+        return new Appointment(trimmedReason, trimmedDateTime, trimmedPeriod, false);
     }
 
     /**

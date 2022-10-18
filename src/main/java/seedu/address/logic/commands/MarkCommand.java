@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
 
 /**
  * Marks an appointment for the given patient as complete.
@@ -32,6 +35,7 @@ public class MarkCommand extends SelectAppointmentCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Person person = getTargetPerson(model);
         Appointment appointmentToMark = getTargetAppointment(model);
 
         if (appointmentToMark.isMarked()) {
@@ -39,9 +43,31 @@ public class MarkCommand extends SelectAppointmentCommand {
         }
 
         appointmentToMark.mark();
-        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS,
+        String addRecurringSuccessMsg = addRecurringAppointment(model, person, appointmentToMark);
+        String markSuccessMsg = String.format(MESSAGE_MARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
-                getTargetPerson(model).getName()));
+                getTargetPerson(model).getName());
+        return new CommandResult(markSuccessMsg + addRecurringSuccessMsg);
+    }
+
+    private String addRecurringAppointment(Model model, Person person, Appointment appointment) {
+        if (appointment.getTimePeriod().stream().allMatch(x -> x.equals(0))) {
+            return "";
+        }
+
+        String str = "\nNo recurring appointment has been added due to time clashes";
+        Appointment recurringAppointment = new Appointment(appointment);
+        List<Appointment> appointmentList = person.getAppointments();
+        if (!hasSameAppointment(appointmentList, recurringAppointment)) {
+            appointmentList.add(recurringAppointment);
+            model.addAppointment(recurringAppointment);
+            str = "\nA recurring appointment has been automatically added";
+        }
+        return str;
+    }
+
+    private boolean hasSameAppointment(List<Appointment> appointments, Appointment appointment) {
+        return appointments.stream().anyMatch(x -> x.isSameTime(appointment));
     }
 
     @Override

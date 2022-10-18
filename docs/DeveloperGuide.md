@@ -282,6 +282,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | cancel an appointment for the patient | ensure that the appointment schedule is updated and accurate    |
 | `* * *`  | user                                       | save the data of my contacts when I exit the app  | not lose the contacts when I open the app again     |
 | `* * *`  | user                                       | mark an appointment as done    |  know that the patient has already visited                             |
+| `* *`    | user                                       | edit information about a patient | merge and keep his information up to date                            |
+| `* *`    | clumsy user                                | edit an existing appointment   | fix my error in setting their appointment details                      |
 | `* *`    | clumsy user                         | unmark an appointment as done  | change my appointment state without deleting and adding the appointment again |
 
 *{More to be added}*
@@ -423,6 +425,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of appointments(UC03)<ins>.
 2.  User requests to mark a specified appointment for a specified patient.
 3.  idENTify marks the selected appointment.
+ 
     Use case ends.
 
 **Extensions**
@@ -434,6 +437,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
   Use case resumes at step 3.
+ 
+ **Use Case: UC09 - edit an appointment**
+
+**Guarantees:** The appointment will have its fields edited only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User requests to edit a specified appointment for a specified patient.
+3.  idENTify edits the selected appointment.
+ 
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+  Use case resumes at step 3.
+ 
+ 
+**Use Case: UC10 - edit a patient**
+
+**Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  User requests to edit a specified patient details.
+3.  idENTify edits the selected patient contact.
+ 
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+  Use case resumes at step 3.
+ 
 
 ### Non-Functional Requirements
 
