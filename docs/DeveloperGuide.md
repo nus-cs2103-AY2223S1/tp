@@ -238,7 +238,50 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find Contact
 
+#### Implementation
+
+The Find Contact Feature is facilitated by `FindCommand`. It extends `Command` with a `PersonMatchesPredicate` field (which extends the `Predicate` interface) that is used to filter persons to produce the desirable list of contacts.
+
+Given below is an example usage scenario and how the find command mechanism behaves at each step.
+
+Step 1. The user types `find n/bob` and presses enter.
+
+Step 2. The `find n/bob` will be parsed by `AddressBook#parseCommand()` which will return a `FindCommandParser` which also creates a `PersonMatchesPredicate`.
+
+Step 3. The `FindCommandParser` will parse `n/bob` using `parse()` and then set the `namesList` of the `PersonMatchesPredicate` to a list of strings containing `bob`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesList and tagsList works differently than the other fields.
+</div>
+
+Step 5. `FindCommandParser` then creates a `FindCommand` by passing the `PersonMatchesPredicate` to its constructor.
+
+Step 4. The `FindCommand` will then be executed using `FindCommand#execute()`.
+
+Step 5. The `Model#updateFilteredPersonList(predicate);` method will be called and the list of persons will be filtered according to the `PersonMatchesPredicate`.
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+Step 7. A list of contacts, if any, will be displayed to the user.
+
+The following sequence diagram shows how the find contact feature works.
+
+![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How open github profile page feature executes:**
+
+* **Alternative 1 (current choice):** Opens github profile page through user's default browser.
+    * Pros: Easy to implement.
+    * Cons: Users will be redirected to their default browser.
+
+* **Alternative 2:** Opens github profile page through in-built browser.
+    * Pros: Users will be able to see the github profile page from the app itself
+    * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
