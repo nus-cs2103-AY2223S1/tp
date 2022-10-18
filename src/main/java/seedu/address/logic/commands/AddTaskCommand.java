@@ -17,6 +17,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list.\n"
             + "Parameters: "
+            + "{name}" + " "
             + PREFIX_DEADLINE + "{deadline}" + " "
             + PREFIX_MODULE + "{module}" + "\n"
             + "Example: " + COMMAND_WORD + " "
