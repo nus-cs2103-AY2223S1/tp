@@ -510,6 +510,33 @@ Software System: Travelr
 
   Use case ends.
 
+**Use case: UC07 Delete event**
+
+**Actor: User**
+
+**MSS :**
+1. User request the list of events in bucket list.
+2. Travelr lists events in bucket list. 
+3. User request to delete an event from the bucket list.
+4. Travelr deletes the event.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. Bucket list is empty.  
+  Use case ends.
+  
+* 3a. The requested event doesn't exist
+  
+    * 3a1. Travelr shows an error message.  
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.  
+      Use Case Ends
+
+
 *{More TBA}*
 
 ### Non-Functional Requirements
