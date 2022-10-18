@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 
@@ -18,12 +20,11 @@ import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
-import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
+import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
-import seedu.address.model.issue.UniqueIssueList;
-import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 
 /**
  * Parser to parse any commands related to issues
@@ -53,6 +54,22 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
     private AddIssueCommand parseAddIssueCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_DESCRIPTION, PREFIX_DEADLINE,
@@ -76,16 +93,45 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         Status status = Status.EmptyStatus.EMPTY_STATUS;
-        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
-        IssueId issueId = new IssueId(UniqueIssueList.generateId());
+        ProjectId projectid = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
-        Issue issue = new Issue(description, deadline, priority, status, project, issueId);
+        IssueWithoutModel issueWithoutModel = new IssueWithoutModel(description, deadline, priority, status, projectid);
 
-        return new AddIssueCommand(issue);
+        return new AddIssueCommand(issueWithoutModel);
     }
-    //TODO: implement
-    private EditIssueCommand parseEditIssueCommand(String arguments) {
-        return null;
+
+    private EditIssueCommand parseEditIssueCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_ISSUE_ID, PREFIX_DESCRIPTION,
+                        PREFIX_DEADLINE, PREFIX_PRIORITY);
+        if (!arePrefixesPresent(argMultimap, PREFIX_ISSUE_ID) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditIssueCommand.MESSAGE_USAGE));
+        }
+
+        Description newDescription = null;
+        Deadline newDeadline = null;
+        Priority newPriority = null;
+        IssueId issueId = ParserUtil.parseIssueId(argMultimap.getValue(PREFIX_ISSUE_ID).get());
+
+        if (!anyPrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
+                    EditIssueCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            newDescription = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            newDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            newPriority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        }
+
+        return new EditIssueCommand(newDescription, newDeadline, newPriority, issueId);
     }
 
     private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {
@@ -103,13 +149,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return new ListIssueCommand();
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+
 
 
 }

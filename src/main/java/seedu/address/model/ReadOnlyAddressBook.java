@@ -34,4 +34,44 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate clients.
      */
     ObservableList<Client> getClientList();
+
+    /**
+     * Get a project object via its id
+     * @param id id to retrieve
+     * @return project object
+     */
+    Project getProjectById(int id);
+
+    /**
+     * Get a issue object via its id
+     * @param id id to retrieve
+     * @return issue object
+     */
+    Issue getIssueById(int id);
+
+    /**
+     * Get a client object via its id
+     * @param id id to retrieve
+     * @return client object
+     */
+    Client getClientById(int id);
+
+
+    /**
+     * Generate the next client id
+     * @return id
+     */
+    int generateClientId();
+
+    /**
+     * Generate the next issue id
+     * @return id
+     */
+    int generateIssueId();
+
+    /**
+     * Generate the next project id
+     * @return id
+     */
+    int generateProjectId();
 }

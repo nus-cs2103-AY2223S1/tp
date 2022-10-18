@@ -7,23 +7,26 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Person;
-import seedu.address.model.client.UniqueClientList;
-import seedu.address.model.client.UniquePersonList;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.UniqueIssueList;
+import seedu.address.model.list.UniqueEntityList;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.UniqueProjectList;
+
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
+ *
+ * This is a SINGLETON CLASS.
+ * Static methods are present to retrieve, and create a new instance of the class.
+ * When creating a new instance, the previous instance is destroyed.
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
-    private final UniqueProjectList projects;
-    private final UniqueIssueList issues;
-    private final UniqueClientList clients;
+    private final UniqueEntityList<Client> clients;
+    private final UniqueEntityList<Project> projects;
+    private final UniqueEntityList<Person> persons;
+    private final UniqueEntityList<Issue> issues;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,14 +35,22 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-    {
-        persons = new UniquePersonList();
-        projects = new UniqueProjectList();
-        issues = new UniqueIssueList();
-        clients = new UniqueClientList();
-    }
+    //    {
+    //        clients = new UniqueEntityList<Client>();
+    //        projects = new UniqueEntityList<Project>();
+    //        persons = new UniqueEntityList<Person>();
+    //        issues = new UniqueEntityList<Issue>();
+    //    }
 
-    public AddressBook() {}
+    /**
+     * Creates an empty addressbook
+     */
+    public AddressBook() {
+        clients = new UniqueEntityList<Client>();
+        projects = new UniqueEntityList<Project>();
+        persons = new UniqueEntityList<Person>();
+        issues = new UniqueEntityList<Issue>();
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -56,7 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+        this.persons.setList(persons);
     }
 
     /**
@@ -64,7 +75,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code projects} must not contain duplicate projects.
      */
     public void setProjects(List<Project> projects) {
-        this.projects.setProjects(projects);
+        this.projects.setList(projects);
     }
 
     /**
@@ -72,7 +83,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code issues} must not contain duplicate issues.
      */
     public void setIssues(List<Issue> issues) {
-        this.issues.setIssues(issues);
+        this.issues.setList(issues);
     }
 
     /**
@@ -80,7 +91,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code clients} must not contain duplicate clients.
      */
     public void setClients(List<Client> clients) {
-        this.clients.setClients(clients);
+        this.clients.setList(clients);
     }
 
     /**
@@ -102,7 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return persons.contains(person);
+        return persons.containsByName(person);
     }
 
     /**
@@ -110,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasProject(Project project) {
         requireNonNull(project);
-        return projects.contains(project);
+        return projects.containsByName(project);
     }
 
     /**
@@ -118,7 +129,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasIssue(Issue issue) {
         requireNonNull(issue);
-        return issues.contains(issue);
+        return issues.containsByName(issue);
     }
 
     /**
@@ -126,9 +137,29 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return clients.contains(client);
+        return clients.containsByName(client);
     }
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     */
+    public boolean hasProjectId(int id) {
+        return projects.containsId(id);
+    }
+
+    /**
+     * Returns true if an issue with the same identity as {@code issue} exists in the address book.
+     */
+    public boolean hasIssueId(int id) {
+        return issues.containsId(id);
+    }
+
+    /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     */
+    public boolean hasClientId(int id) {
+        return clients.containsId(id);
+    }
     /**
      * Adds a client to the address book.
      * The client must not already exist in the address book.
@@ -169,7 +200,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        persons.setItem(target, editedPerson);
     }
 
     /**
@@ -181,7 +212,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
 
-        projects.setProject(target, editedProject);
+        projects.setItem(target, editedProject);
     }
 
     /**
@@ -193,7 +224,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setIssue(Issue target, Issue editedIssue) {
         requireNonNull(editedIssue);
 
-        issues.setIssue(target, editedIssue);
+        issues.setItem(target, editedIssue);
     }
 
     /**
@@ -205,7 +236,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
 
-        clients.setClient(target, editedClient);
+        clients.setItem(target, editedClient);
     }
 
     /**
@@ -269,6 +300,37 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
+
+    @Override
+    public Project getProjectById(int id) {
+        return HasIntegerIdentifier.getElementById(projects, id);
+    }
+
+    @Override
+    public Issue getIssueById(int id) {
+        return HasIntegerIdentifier.getElementById(issues, id);
+    }
+
+    @Override
+    public Client getClientById(int id) {
+        return HasIntegerIdentifier.getElementById(clients, id);
+    }
+
+    @Override
+    public int generateClientId() {
+        return HasIntegerIdentifier.generateNextID(clients);
+    }
+
+    @Override
+    public int generateIssueId() {
+        return HasIntegerIdentifier.generateNextID(issues);
+    }
+
+    @Override
+    public int generateProjectId() {
+        return HasIntegerIdentifier.generateNextID(projects);
+    }
+
 
     @Override
     public boolean equals(Object other) {

@@ -22,7 +22,7 @@ import seedu.address.model.project.Project;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Project> filteredProjects;
@@ -91,6 +91,7 @@ public class ModelManager implements Model {
         this.addressBook.resetData(addressBook);
     }
 
+
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
@@ -118,6 +119,36 @@ public class ModelManager implements Model {
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
+    }
+
+    @Override
+    public boolean hasProjectId(int id) {
+        return addressBook.hasProjectId(id);
+    }
+
+    @Override
+    public boolean hasIssueId(int id) {
+        return addressBook.hasIssueId(id);
+    }
+
+    @Override
+    public boolean hasClientId(int id) {
+        return addressBook.hasClientId(id);
+    }
+
+    @Override
+    public Project getProjectById(int id) {
+        return addressBook.getProjectById(id);
+    }
+
+    @Override
+    public Issue getIssueById(int id) {
+        return addressBook.getIssueById(id);
+    }
+
+    @Override
+    public Client getClientById(int id) {
+        return addressBook.getClientById(id);
     }
 
     @Override
@@ -190,6 +221,21 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
 
         addressBook.setClient(target, editedClient);
+    }
+
+    @Override
+    public int generateClientId() {
+        return addressBook.generateClientId();
+    }
+
+    @Override
+    public int generateIssueId() {
+        return addressBook.generateIssueId();
+    }
+
+    @Override
+    public int generateProjectId() {
+        return addressBook.generateProjectId();
     }
 
     //=========== Filtered Person List Accessors =============================================================

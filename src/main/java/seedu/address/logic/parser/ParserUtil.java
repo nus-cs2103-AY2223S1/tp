@@ -17,14 +17,14 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
-import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.issue.Description;
+import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
-import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -36,6 +36,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -69,20 +70,17 @@ public class ParserUtil {
      * @return Client of the client id
      * @throws ParseException if the fiven {@code client} is invalid.
      */
-    public static Client parseClient(String clientId) throws ParseException, NumberFormatException {
+    public static ClientId parseClientId(String clientId) throws ParseException, NumberFormatException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
+        int clientIdInt;
         try {
-            Integer.parseInt(trimmedClientId);
+            clientIdInt = Integer.parseInt(trimmedClientId);
         } catch (NumberFormatException e) {
             throw new ParseException(ClientId.MESSAGE_INVALID);
         }
-        ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
-        Client client = UniqueClientList.getClient(clientIdRes);
-        if (!Client.isValidClient(client)) {
-            throw new ParseException(Client.MESSAGE_INVALID);
-        }
-        return client;
+
+        return new ClientId(clientIdInt);
     }
 
     /**
@@ -234,20 +232,19 @@ public class ParserUtil {
      * Parses a {@code String projectId} into a {@code Project}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @return project id.
      * @throws ParseException if the given {@code projectId} is invalid.
      */
-    public static Project parseProject(String projectId) throws ParseException {
+    public static ProjectId parseProjectId(String projectId) throws ParseException {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();
         int trimmedIdInt = Integer.parseInt(trimmedId);
         if (!ProjectId.isValidProjectId(trimmedId)) {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
-        // TODO: to retrieve project through a project getter (modify based on getter)
-        if (UniqueProjectList.getProject(trimmedIdInt) == null) {
-            throw new ParseException("No project with this project Id");
-        }
-        return UniqueProjectList.getProject(trimmedIdInt);
+
+        // Function throws error when not found.
+        return new ProjectId(trimmedIdInt);
     }
 
     /**
@@ -259,12 +256,32 @@ public class ParserUtil {
     public static Project parseProjectStub(String projectId) throws ParseException {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();
-        int trimmedIdInt = Integer.parseInt(trimmedId);
         if (!ProjectId.isValidProjectId(trimmedId)) {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
+        int trimmedIdInt = Integer.parseInt(trimmedId);
         return new Project(new Name("default"), new Repository("default/default"),
                 new Deadline("2022-03-05"), new Client(new Name("default")),
                 new ArrayList<>(), new ProjectId(trimmedIdInt));
     }
+
+
+    /**
+     * Parses a {@code String issueId} into a {@code IssueId}.
+     *
+     * @param issueId is the id of the issue
+     * @return An issueId object
+     */
+    public static IssueId parseIssueId(String issueId) throws ParseException {
+        requireNonNull(issueId);
+        String trimmedId = issueId.trim();
+        if (!IssueId.isValidIssueId(trimmedId)) {
+            throw new ParseException(IssueId.MESSAGE_CONSTRAINTS);
+        }
+        int trimmedIdInt = Integer.parseInt(trimmedId);
+
+        return new IssueId(trimmedIdInt);
+    }
+
+
 }
