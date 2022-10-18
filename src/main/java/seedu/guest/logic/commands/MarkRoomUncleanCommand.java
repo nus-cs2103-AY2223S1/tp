@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
+import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
@@ -19,27 +20,28 @@ import seedu.guest.model.guest.Phone;
 /**
  * Changes isRoomClean field of all guest in current list to "no".
  */
-public class ResetRoomCleanCommand extends Command {
+public class MarkRoomUncleanCommand extends Command {
 
-    public static final String COMMAND_WORD = "resetRoomClean";
+    public static final String COMMAND_WORD = "markRoomUnclean";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Changes all guest RoomClean status in current list to \"no\".\n"
+            + ": Changes all guest RoomClean statuses to \"no\".\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Reset all guests' Room Clean status in current list to \"no\".";
+    public static final String MESSAGE_SUCCESS = "Mark all guests' Room Clean statuses as \"no\".";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Guest> lastShownList = model.getFilteredGuestList();
+        model.updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
+        List<Guest> completeGuestList = model.getFilteredGuestList();
 
         Guest guestToEdit;
         Guest editedGuest;
 
-        for (int index = 0; index < lastShownList.size(); index++) {
-            guestToEdit = lastShownList.get(index);
-            editedGuest = createGuestWithResetRoomClean(guestToEdit);
+        for (int index = 0; index < completeGuestList.size(); index++) {
+            guestToEdit = completeGuestList.get(index);
+            editedGuest = createGuestWithRoomUnclean(guestToEdit);
             model.setGuest(guestToEdit, editedGuest);
         }
 
@@ -49,7 +51,7 @@ public class ResetRoomCleanCommand extends Command {
     /**
      * Creates and returns a {@code Guest} with the isRoomClean set to no.
      */
-    private static Guest createGuestWithResetRoomClean(Guest guestToEdit) {
+    private static Guest createGuestWithRoomUnclean(Guest guestToEdit) {
         assert guestToEdit != null;
 
         Name updatedName = guestToEdit.getName();

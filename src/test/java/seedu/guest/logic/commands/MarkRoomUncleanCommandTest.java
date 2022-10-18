@@ -2,8 +2,8 @@ package seedu.guest.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.guest.logic.commands.CommandTestUtil.VALID_IS_ROOM_CLEAN_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_IS_ROOM_CLEAN_BOB;
 import static seedu.guest.testutil.TypicalGuests.getTypicalGuestBook;
 
 import org.junit.jupiter.api.Test;
@@ -14,18 +14,15 @@ import seedu.guest.model.UserPrefs;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.testutil.GuestBuilder;
 
-
-
-
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ResetRoomCleanCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for MarkRoomUncleanCommand.
  */
-public class ResetRoomCleanCommandTest {
+public class MarkRoomUncleanCommandTest {
 
     private Model model = new ModelManager(getTypicalGuestBook(), new UserPrefs());
 
     @Test
-    public void execute_resetRoomCleanCommand_success() {
+    public void execute_markRoomUncleanCommand_success() {
         Guest guestInFilteredList0 = model.getFilteredGuestList().get(0);
         Guest guestInFilteredList1 = model.getFilteredGuestList().get(1);
         Guest guestInFilteredList2 = model.getFilteredGuestList().get(2);
@@ -42,9 +39,9 @@ public class ResetRoomCleanCommandTest {
         Guest editedGuest5 = new GuestBuilder(guestInFilteredList5).withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB).build();
         Guest editedGuest6 = new GuestBuilder(guestInFilteredList6).withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB).build();
 
-        ResetRoomCleanCommand resetRoomCleanCommand = new ResetRoomCleanCommand();
+        MarkRoomUncleanCommand markRoomUncleanCommand = new MarkRoomUncleanCommand();
 
-        String expectedMessage = String.format(ResetRoomCleanCommand.MESSAGE_SUCCESS);
+        String expectedMessage = String.format(MarkRoomUncleanCommand.MESSAGE_SUCCESS);
 
         Model expectedModel = new ModelManager(getTypicalGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestInFilteredList0, editedGuest0);
@@ -55,21 +52,21 @@ public class ResetRoomCleanCommandTest {
         expectedModel.setGuest(guestInFilteredList5, editedGuest5);
         expectedModel.setGuest(guestInFilteredList6, editedGuest6);
 
-        assertCommandSuccess(resetRoomCleanCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(markRoomUncleanCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        ResetRoomCleanCommand resetRoomCleanCommand = new ResetRoomCleanCommand();
+        MarkRoomUncleanCommand markRoomUncleanCommand = new MarkRoomUncleanCommand();
 
         // same object -> returns true
-        assertTrue(resetRoomCleanCommand.equals(resetRoomCleanCommand));
+        assertTrue(markRoomUncleanCommand.equals(markRoomUncleanCommand));
 
         // different types -> returns false
-        assertFalse(resetRoomCleanCommand.equals(1));
+        assertFalse(markRoomUncleanCommand.equals(1));
 
         // null -> returns false
-        assertFalse(resetRoomCleanCommand.equals(null));
+        assertFalse(markRoomUncleanCommand.equals(null));
 
     }
 }

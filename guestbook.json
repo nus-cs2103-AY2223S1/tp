@@ -5,7 +5,15 @@
     "email" : "johnd@example.com",
     "dateRange" : "13/09/22 - 15/09/22",
     "numberOfGuests" : "1",
-    "isRoomClean" : "yes",
+    "isRoomClean" : "no",
+    "bill" : "0.00"
+  }, {
+    "name" : "Joe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "dateRange" : "13/09/22 - 15/09/22",
+    "numberOfGuests" : "1",
+    "isRoomClean" : "no",
     "bill" : "0.00"
   } ]
 }

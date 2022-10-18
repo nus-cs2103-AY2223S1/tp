@@ -14,7 +14,7 @@ title: Developer Guide
     * Model component
     * Storage component
     * Common classes
-  * Implementation (kiv)
+  * Implementation
   * Documentation, logging, testing, configuration, dev-ops
   * Appendix: Requirements
     * Product scope
@@ -435,12 +435,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case 6: Reset room clean status of all guests**
+**Use case 6: Mark room clean status to "no" of all guests**
 
 **MSS**
 
-1. User requests to reset all guests' room clean status to "no".
-2. System updates all guests' room clean status to "no".
+1. User requests to mark all guests' room clean statuses to "no".
+2. System updates all guests' room clean statuses to "no".
 
     Use case ends.
 
