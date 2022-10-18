@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ATTENDANCE = "year 2021";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_INDEXED_EDIT = "Science workbook";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -34,6 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_ATTENDANCE = "2021-09-10";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_INDEXED_EDIT = "1 Science workbook";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -163,8 +166,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseIndexedEdit_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexedEdit(INVALID_INDEXED_EDIT));
+    }
+
+    @Test
+    public void parseIndexedEdit_validValueWithoutWhitespace_returnsArray() throws Exception {
+        String[] expectedArray = VALID_INDEXED_EDIT.split(" ", 2);
+        assertArrayEquals(expectedArray, ParserUtil.parseIndexedEdit(VALID_INDEXED_EDIT));
     }
 
     @Test

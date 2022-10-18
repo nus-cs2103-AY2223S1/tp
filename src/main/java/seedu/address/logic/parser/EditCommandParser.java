@@ -58,23 +58,22 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(PREFIX_LESSON_PLAN).get()));
         }
         if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
-            String[] homeworkArgs = ParserUtil.parseHomeworkInfo(argMultimap.getValue(PREFIX_HOMEWORK).get());
+            String[] homeworkArgs = ParserUtil.parseIndexedEdit(argMultimap.getValue(PREFIX_HOMEWORK).get());
             editPersonDescriptor.setHomeworkIndex(ParserUtil.parseIndex(homeworkArgs[0]));
             editPersonDescriptor.setHomework(ParserUtil.parseHomework(homeworkArgs[1]));
         }
         if (argMultimap.getValue(PREFIX_GRADEPROGRESS).isPresent()) {
-            String[] gradeProgressArgs = ParserUtil
-                .parseGradeProgressInfo(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
+            String[] gradeProgressArgs = ParserUtil.parseIndexedEdit(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
             editPersonDescriptor.setGradeProgressIndex(ParserUtil.parseIndex(gradeProgressArgs[0]));
             editPersonDescriptor.setGradeProgress(ParserUtil.parseGradeProgress(gradeProgressArgs[1]));
         }
         if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {
-            String[] attendanceArgs = ParserUtil.parseAttendanceInfo(argMultimap.getValue(PREFIX_ATTENDANCE).get());
+            String[] attendanceArgs = ParserUtil.parseIndexedEdit(argMultimap.getValue(PREFIX_ATTENDANCE).get());
             editPersonDescriptor.setAttendanceIndex(ParserUtil.parseIndex(attendanceArgs[0]));
             editPersonDescriptor.setAttendance(ParserUtil.parseAttendance(attendanceArgs[1]));
         }
         if (argMultimap.getValue(PREFIX_SESSION).isPresent()) {
-            String[] sessionArgs = ParserUtil.parseSessionInfo(argMultimap.getValue(PREFIX_SESSION).get());
+            String[] sessionArgs = ParserUtil.parseIndexedEdit(argMultimap.getValue(PREFIX_SESSION).get());
             editPersonDescriptor.setSessionIndex(ParserUtil.parseIndex(sessionArgs[0]));
             editPersonDescriptor.setSession(ParserUtil.parseSession(sessionArgs[1]));
         }
