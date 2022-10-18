@@ -75,6 +75,24 @@ public class EditLinkCommand extends Command {
 
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditLinkCommand)) {
+            return false;
+        }
+
+        // state check
+        EditLinkCommand e = (EditLinkCommand) other;
+        return index.equals(e.index)
+                && editLinkDescriptor.equals(e.editLinkDescriptor);
+    }
+
     /**
      * Stores the details to edit the link with. Each non-empty field value will replace the
      * corresponding field value of the link.
