@@ -302,7 +302,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Proposed Implementation
 
-The proposed mark and unmark task command mechanism is facilitated by `TaskMarkCommand` and `TaskUnmarkCommand` which extend `Command`, `TaskMarkCommandParser` and `TaskUnmarkCommandParser`. 
+The proposed mark and unmark task command mechanism is facilitated by `TaskMarkCommand` and `TaskUnmarkCommand` which extend `Command`, `TaskMarkCommandParser`, `TaskUnmarkCommandParser` and `EditTaskDescriptor`. 
 
 Additionally, it implements the following operations:
 
@@ -311,7 +311,7 @@ Additionally, it implements the following operations:
 * `UnmarkTaskCommand#execute()` — Executes the chain of instructions to change the status of the task to undone.
 * `UnmarkTaskCommandParser#parse()` — Parses user input and creates a TaskUnmarkCommand object.
 
-The methods will handle cases where the index from the user input is invalid. 
+The methods will handle cases where the index from the user input is out of bounds. 
 
 Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
 
