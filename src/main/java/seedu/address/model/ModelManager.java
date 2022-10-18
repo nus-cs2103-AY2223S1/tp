@@ -104,20 +104,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String deletePersons(Predicate<Person> predicate) {
-        filteredPersons.setPredicate(predicate);
-        int size = filteredPersons.size();
-        String result = filteredPersons.toString();
-        List<Person> list = IntStream.range(0, size).mapToObj(x -> filteredPersons.get(x)).collect(Collectors.toList());
-        addressBook.removePersons(list);
-        return result;
-    }
-
-    public void removeSurvey(Person person) {
-
-    }
-
-    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
