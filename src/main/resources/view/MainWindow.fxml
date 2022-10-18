@@ -87,6 +87,7 @@
               </padding>
               <TextField alignment="TOP_CENTER" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Tutorials" />
               <StackPane fx:id="tutorialListPanelPlaceholder" minWidth="340.0" prefWidth="340.0" VBox.vgrow="ALWAYS" />
+
             </VBox>
           </items>
         </SplitPane>
