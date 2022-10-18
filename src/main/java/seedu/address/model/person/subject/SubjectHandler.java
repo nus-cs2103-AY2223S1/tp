@@ -6,7 +6,6 @@ import java.util.HashMap;
  * Handles a Student's subjects in the application.
  */
 public class SubjectHandler {
-
     private final HashMap<String, Subject> subjectsTaken;
 
     /**
@@ -22,9 +21,7 @@ public class SubjectHandler {
      * @param subject the subject to be added
      */
     public void addSubject(Subject subject) {
-        if (Subject.isValidSubject(subject.getSubjectName())) {
-            subjectsTaken.put(subject.getSubjectName(), subject);
-        }
+        subjectsTaken.put(subject.getSubjectName(), subject);
     }
 
     /**

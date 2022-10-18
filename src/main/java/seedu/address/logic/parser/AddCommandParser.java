@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         //        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
         //        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-        //        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        //        Grades grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // New fields
