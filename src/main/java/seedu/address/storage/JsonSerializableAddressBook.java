@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -22,20 +23,26 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s).";
+    public static final String MESSAGE_DUPLICATE_BILL = "Appointment list contains duplicate bill(s).";
     public static final String MESSAGE_APPOINTING_PATIENT_NOT_EXIST =
             "Appointing patient does not exist in the patients list.";
+    public static final String MESSAGE_APPOINTMENT_NOT_EXIST =
+            "Appointment of a bill does not exist in the appointments list.";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
+    private final List<JsonAdaptedBill> bills = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given patients and appointments.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("patients") List<JsonAdaptedPatient> patients,
-                                       @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
+                                       @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
+                                       @JsonProperty("bills") List<JsonAdaptedBill> bills) {
         this.patients.addAll(patients);
         this.appointments.addAll(appointments);
+        this.bills.addAll(bills);
     }
 
     /**
@@ -47,6 +54,7 @@ class JsonSerializableAddressBook {
         patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
         appointments.addAll(source.getAppointmentList().stream()
                 .map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
+        bills.addAll(source.getBillList().stream().map(JsonAdaptedBill::new).collect(Collectors.toList()));
     }
 
     /**
@@ -73,7 +81,16 @@ class JsonSerializableAddressBook {
             }
             addressBook.addAppointment(appointment);
         }
+        for (JsonAdaptedBill jsonAdaptedBill : bills) {
+            Bill bill = jsonAdaptedBill.toModelType();
+            if (addressBook.hasBill(bill)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_BILL);
+            }
+            if (!addressBook.hasAppointment(bill.getAppointment())) {
+                throw new IllegalValueException(MESSAGE_APPOINTMENT_NOT_EXIST);
+            }
+            addressBook.addBill(bill);
+        }
         return addressBook;
     }
-
 }

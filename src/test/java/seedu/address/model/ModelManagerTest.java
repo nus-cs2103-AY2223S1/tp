@@ -3,8 +3,15 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BILLS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_2;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_3;
+import static seedu.address.testutil.TypicalBills.BILL_1;
+import static seedu.address.testutil.TypicalBills.BILL_2;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BENSON;
 
@@ -15,6 +22,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 import seedu.address.model.patient.Patient;
@@ -101,8 +109,34 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasAppointment_nullAppointment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasAppointment((Appointment) null));
+    }
+
+    @Test
+    public void hasAppointment_appointmentNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
+    public void hasAppointment_appointmentInAddressBook_returnsTrue() {
+        modelManager.addAppointment(APPOINTMENT_1);
+        assertTrue(modelManager.hasAppointment(APPOINTMENT_1));
+    }
+
+    @Test
+    public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(
+                UnsupportedOperationException.class, () -> modelManager.getFilteredAppointmentList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPatient(ALICE).withPatient(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder()
+                .withPatient(ALICE).withPatient(BENSON)
+                .withAppointment(APPOINTMENT_1).withAppointment(APPOINTMENT_2).withAppointment(APPOINTMENT_3)
+                .withBill(BILL_1).withBill(BILL_2)
+                .build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -123,13 +157,20 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicatePatient(Arrays.asList(keywords)));
+        // different filteredPatientList -> returns false
+        String[] patientKeywords = ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredPatientList(
+                new NameContainsKeywordsPredicatePatient(Arrays.asList(patientKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // different filteredAppointmentList -> returns false TODO
+
+        // different filteredBillList -> returns false TODO
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        modelManager.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        modelManager.updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
@@ -28,6 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Appointment> filteredAppointments;
+    private final FilteredList<Bill> filteredBills;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        filteredBills = new FilteredList<>(this.addressBook.getBillList());
     }
 
     public ModelManager() {
@@ -133,6 +136,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAppointment(Appointment target) {
+        deleteRelativeBills(target);
         addressBook.removeAppointment(target);
     }
 
@@ -151,6 +155,54 @@ public class ModelManager implements Model {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Returns true if a bill with the same identity as {@code bill} exists in the address book.
+     * Always returns false since assumption that bills will not be duplicate
+     * @param bill
+     */
+    @Override
+    public boolean hasBill(Bill bill) {
+        requireNonNull(bill);
+        return addressBook.getBillList().stream().anyMatch(b -> b.isSameBill(bill));
+    }
+
+    /**
+     * Deletes the given bill.
+     * The bill must exist in the address book.
+     *
+     * @param target
+     */
+    @Override
+    public void deleteBill(Bill target) {
+        addressBook.removeBill(target);
+    }
+
+    /**
+     * Adds the given bill.
+     * {@code bill} must not already exist in the address book.
+     *
+     * @param bill
+     */
+    @Override
+    public void addBill(Bill bill) {
+        addressBook.addBill(bill);
+    }
+
+    /**
+     * Replaces the given bill {@code target} with {@code editedBill}.
+     * {@code target} must exist in the address book.
+     * The bill identity of {@code editedBill} must not be the same as
+     * another existing bill in the address book.
+     *
+     * @param target
+     * @param editedBill
+     */
+    @Override
+    public void setBill(Bill target, Bill editedBill) {
+        requireAllNonNull(target, editedBill);
+        addressBook.setBill(target, editedBill);
     }
 
     //=========== Filtered Patient List Accessors =============================================================
@@ -187,7 +239,27 @@ public class ModelManager implements Model {
     public void deleteRelativeAppointments(Patient patient) {
         List<Appointment> toDelete = addressBook.getAppointmentList().stream()
                 .filter(a -> a.getName().equals(patient.getName())).collect(Collectors.toList());
-        toDelete.stream().forEach(a -> addressBook.removeAppointment(a));
+        toDelete.stream().forEach(a -> deleteAppointment(a));
+    }
+
+    //=========== Filtered Bill List Accessors =============================================================
+
+    @Override
+    public ObservableList<Bill> getFilteredBillList() {
+        return filteredBills;
+    }
+
+    @Override
+    public void updateFilteredBillList(Predicate<Bill> predicate) {
+        requireNonNull(predicate);
+        filteredBills.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteRelativeBills(Appointment appointment) {
+        List<Bill> toDelete = addressBook.getBillList().stream()
+                .filter(b -> b.getAppointment().equals(appointment)).collect(Collectors.toList());
+        toDelete.stream().forEach(b -> deleteBill(b));
     }
 
     @Override

@@ -50,5 +50,6 @@
     "remark" : "She likes aardvarks.",
     "tagged" : [ ]
   } ],
-  "appointments" : []
+  "appointments" : [],
+  "bills" : []
 }

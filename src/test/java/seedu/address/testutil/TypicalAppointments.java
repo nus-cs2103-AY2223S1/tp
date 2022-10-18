@@ -14,7 +14,7 @@ import static seedu.address.testutil.TypicalPatients.CARL;
 import static seedu.address.testutil.TypicalPatients.DANIEL;
 import static seedu.address.testutil.TypicalPatients.ELLE;
 import static seedu.address.testutil.TypicalPatients.FIONA;
-import static seedu.address.testutil.TypicalPatients.getTypicalPatients;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientsAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,6 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.patient.Patient;
 
 /**
  * A utility class containing a list of {@code Appointment} objects to be used in tests.
@@ -64,10 +63,7 @@ public class TypicalAppointments {
      * Returns an {@code AddressBook} with all the typical patients.
      */
     public static AddressBook getTypicalAppointmentsAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Patient patient : getTypicalPatients()) {
-            ab.addPatient(patient);
-        }
+        AddressBook ab = getTypicalPatientsAddressBook();
 
         for (Appointment appointment : getTypicalAppointments()) {
             ab.addAppointment(appointment);

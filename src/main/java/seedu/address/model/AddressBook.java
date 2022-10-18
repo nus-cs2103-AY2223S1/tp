@@ -8,6 +8,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
+import seedu.address.model.bill.Bill;
+import seedu.address.model.bill.UniqueBillList;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
@@ -20,6 +22,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePatientList patients;
     private final UniqueAppointmentList appointments;
+    private final UniqueBillList bills;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         patients = new UniquePatientList();
         appointments = new UniqueAppointmentList();
+        bills = new UniqueBillList();
     }
 
     public AddressBook() {}
@@ -62,6 +66,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the bill list with {@code bills}.
+     * {@code patients} must not contain duplicate patients.
+     */
+    public void setBills(List<Bill> bills) {
+        this.bills.setBills(bills);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -69,6 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPatients(newData.getPatientList());
         setAppointments(newData.getAppointmentList());
+        setBills(newData.getBillList());
     }
 
     //// patient-level operations
@@ -155,12 +168,51 @@ public class AddressBook implements ReadOnlyAddressBook {
         appointments.remove(key);
     }
 
+    //// bill-level operations
+
+    /**
+     * Returns true if an bill with the same identity as {@code bill} exists in the address book.
+     */
+    public boolean hasBill(Bill bill) {
+        requireNonNull(bill);
+        return bills.contains(bill);
+    }
+
+    /**
+     * Adds an bill to the address book.
+     * The bill must not already exist in the address book.
+     */
+    public void addBill(Bill bill) {
+        bills.add(bill);
+    }
+
+    /**
+     * Replaces the given bill {@code target} in the list with {@code editedBill}.
+     * {@code target} must exist in the address book.
+     * The bill identity of {@code editedBill} must not be the same as
+     * another existing bill in the address book.
+     */
+    public void setBill(Bill target, Bill editedBill) {
+        requireNonNull(editedBill);
+
+        bills.setBill(target, editedBill);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeBill(Bill key) {
+        bills.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         return patients.asUnmodifiableObservableList().size() + " patients;\n"
-                + appointments.asUnmodifiableObservableList().size() + "appointments;";
+                + appointments.asUnmodifiableObservableList().size() + "appointments;\n"
+                + bills.asUnmodifiableObservableList().size() + "bills;";
         // TODO: refine later
     }
 
@@ -172,6 +224,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Appointment> getAppointmentList() {
         return appointments.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Bill> getBillList() {
+        return bills.asUnmodifiableObservableList();
     }
 
     @Override
