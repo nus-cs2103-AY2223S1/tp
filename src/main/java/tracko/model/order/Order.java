@@ -1,12 +1,12 @@
 package tracko.model.order;
 
-import tracko.commons.util.DateTimeUtil;
-
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+
+import tracko.commons.util.DateTimeUtil;
 
 /**
  * Represents an Order in the address book.
