@@ -150,7 +150,6 @@ public class ModelManager implements Model {
         addressBook.removePersonFromTeam(person, team);
     }
 
-
     @Override
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
