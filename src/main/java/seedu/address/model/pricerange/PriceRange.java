@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.DecimalFormat;
 
+import seedu.address.model.property.Price;
+
 /**
  * Represents a Price Range for a property that a buyer can accept.
  * Guarantees: immutable; is valid as declared.
@@ -20,8 +22,8 @@ public class PriceRange {
      */
     public static final String VALIDATION_REGEX = "[0-9]*\\.?[0-9]+\\s?-\\s?[0-9]*\\.?[0-9]+";
 
-    public final double low;
-    public final double high;
+    public final Price low;
+    public final Price high;
 
     /**
      * Constructs a {@code PriceRange}.
@@ -32,8 +34,8 @@ public class PriceRange {
         checkArgument(isValidPriceRange(priceRange), MESSAGE_CONSTRAINTS);
 
         String[] rangeValues = priceRange.split("-");
-        this.low = Double.parseDouble(rangeValues[0].trim());
-        this.high = Double.parseDouble(rangeValues[1].trim());
+        this.low = new Price(rangeValues[0].trim());
+        this.high = new Price(rangeValues[1].trim());
     }
 
     /**
@@ -56,8 +58,7 @@ public class PriceRange {
         double rightValue = Double.parseDouble(rangeValues[1].trim());
         boolean isRightValueValid = rightValue >= 0 && rightValue < Double.POSITIVE_INFINITY;
 
-        return isValid
-                && isLeftValueValid
+        return isLeftValueValid
                 && isRightValueValid
                 && (leftValue - rightValue <= 0);
     }
@@ -65,8 +66,8 @@ public class PriceRange {
     /*
     Checks if a given float value is within the price range.
      */
-    public boolean isWithinPriceRange(float f) {
-        return (f - low >= 0 && high - f >= 0);
+    public boolean isWithinPriceRange(Price p) {
+        return (low.isSmallerThan(p) && high.isGreaterThan(p));
     }
 
     @Override
@@ -76,9 +77,9 @@ public class PriceRange {
         // and causing parsing bugs when being converted back into a float
         DecimalFormat df = new DecimalFormat("#");
         df.setMaximumFractionDigits(0);
-        sb.append(df.format(low));
+        sb.append(df.format(low.getNumericalValue()));
         sb.append(" - ");
-        sb.append(df.format(high));
+        sb.append(df.format(high.getNumericalValue()));
         return sb.toString();
     }
 

@@ -1,5 +1,7 @@
 package seedu.address.model.desiredcharacteristics;
 
+import seedu.address.commons.util.StringUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -43,6 +45,16 @@ public class DesiredCharacteristics {
     public static boolean isValidDesiredCharacteristics(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Helper method which returns true if a given characteristic is contained in the desired
+     * characteristics.
+     */
+    public boolean containsCharacteristic(String characteristic) {
+        return Arrays.stream(characteristics)
+                .anyMatch(c -> StringUtil.containsWordIgnoreCase(c, characteristic));
+    }
+
 
     @Override
     public String toString() {
