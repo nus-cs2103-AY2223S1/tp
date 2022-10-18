@@ -100,6 +100,13 @@ public class EditStuCommand extends Command {
         }
 
         model.setPerson(studentToEdit, editedStudent);
+        if (editedStudent.isTeachingAssistant()) {
+            if (studentToEdit.isTeachingAssistant()) {
+                model.setTutor(studentToEdit, editedStudent);
+            } else {
+                model.addTutor(editedStudent);
+            }
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
