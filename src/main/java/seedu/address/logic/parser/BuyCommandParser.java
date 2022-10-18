@@ -26,6 +26,11 @@ import seedu.address.model.transaction.Transaction;
  * Parses input arguments and creates a new {@code BuyCommand} object
  */
 public class BuyCommandParser implements Parser<BuyCommand> {
+
+    private final DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code BuyCommand}
      * and returns a {@code BuyCommand} object for execution.
@@ -35,8 +40,8 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
                 PREFIX_DATE);
-        boolean isEmptyDate = argMultimap.getValue(PREFIX_DATE).equals(Optional.empty());
-        if (isEmptyDate) {
+        boolean isDateEmpty = argMultimap.getValue(PREFIX_DATE).equals(Optional.empty());
+        if (isDateEmpty) {
             argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE);
         }
 
@@ -59,10 +64,8 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).orElse(""));
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
         Date date;
-        if (isEmptyDate) {
+        if (isDateEmpty) {
             LocalDate now = LocalDate.now();
-            DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate datetime = LocalDate.parse(now.toString(), oldPattern);
             String output = datetime.format(newPattern);
             date = new Date(output);

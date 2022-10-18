@@ -5,17 +5,19 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Class to store the date of transaction.
  */
 public class Date {
+
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format DD/MM/YYYY";
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
     public final String date;
 
-    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     /**
      * Constructs a {@code Date}.
      *
@@ -31,35 +33,28 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-
-        String[] testArr = test.split("/");
-
-        if (testArr.length < 3) {
-            return false;
-        }
-
         try {
-            Integer.parseInt(testArr[0]);
-            Integer.parseInt(testArr[1]);
-            Integer.parseInt(testArr[2]);
-        } catch (NumberFormatException e) {
+            LocalDate.parse(test, dtf);
+            String[] testArr = test.split("/");
+            int day = Integer.parseInt(testArr[0]);
+            int month = Integer.parseInt(testArr[1]);
+            int year = Integer.parseInt(testArr[2]);
+            // Febuary
+            if (month == 2) {
+                if (day == 29) {
+                    return (year % 4) == 0;
+                }
+                return day < 29;
+            }
+            // April, June, September, November
+            if (month == 4 || month == 6 || month == 9 || month == 11) {
+                return day < 31;
+            }
+
+            return true;
+        } catch (DateTimeParseException e) {
             return false;
         }
-
-        if (testArr[0].length() != 2 || testArr[1].length() != 2 || testArr[2].length() != 4) {
-            return false;
-        }
-
-        if (Integer.parseInt(testArr[0]) <= 0 || Integer.parseInt(testArr[1]) <= 0
-                || Integer.parseInt(testArr[2]) <= 0) {
-            return false;
-        }
-
-        if (Integer.parseInt(testArr[0]) > 31 || Integer.parseInt(testArr[1]) > 12) {
-            return false;
-        }
-
-        return true;
     }
 
     @Override
