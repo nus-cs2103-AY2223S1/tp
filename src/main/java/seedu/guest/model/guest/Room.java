@@ -15,6 +15,7 @@ public class Room {
             + "E.g 05-73 or Aloha-5 are accepted.";
 
     // Room contains alphanumeric characters with an optional hyphen only in between, and don't start with a hyphen
+    // It can also accept a hyphen as long as it is in between 2 alphanumeric characters
     private static final String VALIDATION_REGEX = "^[A-Za-z0-9]+(?:-?[A-Za-z0-9]+)+$";
 
     public final String value;
