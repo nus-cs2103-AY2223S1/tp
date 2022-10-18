@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Project in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Project {
+public class Project implements Comparable<Project> {
     //Identity fields
     private final ProjectName projectName;
 
@@ -124,5 +124,13 @@ public class Project {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Compares projects by deadline.
+     */
+    @Override
+    public int compareTo(Project other) {
+        return this.getDeadline().compareTo(other.getDeadline());
     }
 }

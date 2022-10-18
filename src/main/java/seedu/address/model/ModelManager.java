@@ -105,6 +105,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortProjects() {
+        addressBook.sortProjects();
+    }
+
+    @Override
     public void addProject(Project project) {
         addressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);

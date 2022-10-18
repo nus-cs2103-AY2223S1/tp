@@ -80,6 +80,13 @@ public class UniqueProjectList implements Iterable<Project> {
         }
     }
 
+    /**
+     * Sorts the projects according to deadline.
+     */
+    public void sortProjects() {
+        internalList.sort((a, b) -> a.compareTo(b));
+    }
+
     public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

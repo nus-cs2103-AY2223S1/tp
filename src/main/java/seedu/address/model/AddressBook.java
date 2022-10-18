@@ -118,6 +118,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.remove(key);
     }
 
+    /**
+     * Sorts the projects according to deadline.
+     */
+    public void sortProjects() {
+        projects.sortProjects();
+    }
+
     //// task-level operations
 
     /**
