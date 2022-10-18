@@ -1,0 +1,25 @@
+{
+  "_comment": "Waddle save file which contains the same Itinerary values as in TypicalItineraries#getTypicalWaddle()",
+  "itineraries" : [ {
+    "name" : "Spring Trip",
+    "country" : "Australia",
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-15",
+    "people" : "1",
+    "items" : [ ]
+  }, {
+    "name" : "Autumn Hiking",
+    "country" : "Canada",
+    "startDate" : "2022-02-02",
+    "endDate" : "2022-02-23",
+    "people" : "2",
+    "items" : [ ]
+  }, {
+    "name" : "Graduation Trip",
+    "country" : "France",
+    "startDate" : "2022-03-03",
+    "endDate" : "2022-03-07",
+    "people" : "4",
+    "items" : [ ]
+  } ]
+}

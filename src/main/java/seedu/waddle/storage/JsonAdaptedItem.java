@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Item;
+import seedu.waddle.model.item.Priority;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -14,13 +15,16 @@ public class JsonAdaptedItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private final String description;
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
      */
     @JsonCreator
-    public JsonAdaptedItem(@JsonProperty("description") String description) {
+    public JsonAdaptedItem(@JsonProperty("description") String description,
+                           @JsonProperty("priority") String priority) {
         this.description = description;
+        this.priority = priority;
     }
 
     /**
@@ -28,6 +32,7 @@ public class JsonAdaptedItem {
      */
     public JsonAdaptedItem(Item source) {
         description = source.getDescription();
+        priority = source.getPriority().priority;
     }
 
     /**
@@ -46,11 +51,20 @@ public class JsonAdaptedItem {
             throw new IllegalValueException(Item.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
-         */
-
+        */
         final String modelDescription = description;
 
-        return new Item(modelDescription);
+        if (priority == null) {
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
+        }
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        final Priority modelPriority = new Priority(priority);
+
+        return new Item(modelDescription, modelPriority);
     }
 
 }

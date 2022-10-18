@@ -16,6 +16,7 @@ import seedu.waddle.logic.commands.Command;
 import seedu.waddle.logic.commands.DeleteCommand;
 import seedu.waddle.logic.commands.DeleteItemCommand;
 import seedu.waddle.logic.commands.EditCommand;
+import seedu.waddle.logic.commands.EditItemCommand;
 import seedu.waddle.logic.commands.ExitCommand;
 import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.HelpCommand;
@@ -135,6 +136,9 @@ public class WaddleParser {
 
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
+
+        case EditItemCommand.COMMAND_WORD:
+            return new EditItemCommandParser().parse(arguments);
 
         case DeleteItemCommand.COMMAND_WORD:
             return new DeleteItemCommandParser().parse(arguments);

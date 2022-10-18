@@ -1,33 +1,34 @@
 package seedu.waddle.model.item;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents an item in the itinerary.
  */
 public class Item {
     private String description;
-    // private Priority priority;
+    private Priority priority;
     // private Category category;
 
     /**
      * Constructor for an item.
      * @param description description of the item
      */
-    public Item(String description) {
-        requireNonNull(description);
+    public Item(String description, Priority priority) {
+        requireAllNonNull(description, priority);
         this.description = description;
+        this.priority = priority;
     }
 
     public String getDescription() {
         return description;
     }
 
-    /*
-    public String getPriority() {
+    public Priority getPriority() {
         return priority;
     }
 
+    /*
     public String getCategory() {
         return category;
     }
@@ -51,6 +52,7 @@ public class Item {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
                 .append("; Priority: ")
+                .append(getPriority())
                 .append("; Category: ");
         return builder.toString();
     }

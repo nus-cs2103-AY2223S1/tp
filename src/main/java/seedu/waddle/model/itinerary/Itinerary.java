@@ -87,6 +87,10 @@ public class Itinerary {
         return this.uniqueItemList.remove(index);
     }
 
+    public void setItem(Item target, Item editedItem) {
+        uniqueItemList.setItem(target, editedItem);
+    }
+
     public int getItemSize() {
         return this.uniqueItemList.getSize();
     }
