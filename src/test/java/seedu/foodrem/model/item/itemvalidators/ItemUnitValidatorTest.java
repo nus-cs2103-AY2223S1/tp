@@ -21,17 +21,26 @@ public class ItemUnitValidatorTest {
     @Test
     public void test_nameHasValidSymbols() {
         // Invalid names - Spaces
-        assertValidateFailure(() -> ItemUnitValidator.validate("    a"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("    a"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
 
         // Invalid names - Wrong Symbols
-        assertValidateFailure(() -> ItemUnitValidator.validate("\\"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        assertValidateFailure(() -> ItemUnitValidator.validate("\\/"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        assertValidateFailure(() -> ItemUnitValidator.validate("|"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        assertValidateFailure(() -> ItemUnitValidator.validate("á"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        assertValidateFailure(() -> ItemUnitValidator.validate("你"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        assertValidateFailure(() -> ItemUnitValidator.validate("あ"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        assertValidateFailure(() -> ItemUnitValidator.validate("kg|m"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        assertValidateFailure(() -> ItemUnitValidator.validate("kg/m"), MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("\\"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("\\/"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("|"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("á"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("你"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("あ"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("kg|m"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("kg/m"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
         assertValidateFailure(() -> ItemUnitValidator.validate("，"),
                 MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT); // Chinese comma
 
