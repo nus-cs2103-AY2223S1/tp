@@ -1,17 +1,17 @@
 package jarvis.ui;
 
-import jarvis.model.Task;
+import jarvis.model.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays the basic information of a {@code Task}.
+ * An UI component that displays the full information of a {@code Student}.
  */
-public class TaskCard extends UiPart<Region> {
+public class ExpandedStudentCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskCard.fxml";
+    private static final String FXML = "ExpandedStudentCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -21,33 +21,29 @@ public class TaskCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Task task;
+    public final Student student;
 
     @FXML
     private HBox cardPane;
     @FXML
+    private Label studentName;
+    @FXML
     private Label id;
     @FXML
-    private Label done;
+    private Label matricNum;
     @FXML
-    private Label taskDesc;
-    @FXML
-    private Label taskDeadline;
+    private Label mcResult;
 
     /**
-     * Creates a {@code TaskCard} with the given {@code Task} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public ExpandedStudentCard(Student student, int displayedIndex) {
         super(FXML);
-        this.task = task;
+        this.student = student;
         id.setText(displayedIndex + ". ");
-        if (task.isDone()) {
-            done.setText("[X]");
-        } else {
-            done.setText("[ ]");
-        }
-        taskDesc.setText(task.getDesc().taskDesc);
-        taskDeadline.setText(task.getDeadline().toString());
+        studentName.setText(student.getName().fullName);
+        matricNum.setText(student.getMatricNum().value);
+        mcResult.setText(student.getMcStatus().toString());
     }
 
     @Override
@@ -58,13 +54,13 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TaskCard)) {
+        if (!(other instanceof ExpandedStudentCard)) {
             return false;
         }
 
         // state check
-        TaskCard card = (TaskCard) other;
+        ExpandedStudentCard card = (ExpandedStudentCard) other;
         return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+                && student.equals(card.student);
     }
 }

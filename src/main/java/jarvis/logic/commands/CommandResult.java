@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import jarvis.ui.DisplayedList;
+
 /**
  * Represents the result of a command execution.
  */
@@ -14,16 +16,32 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** The list being displayed in the UI */
+    private final DisplayedList displayedList;
+
     /** The application should exit. */
     private final boolean exit;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields,
+     * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.displayedList = DisplayedList.ALL_LIST;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields,
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, DisplayedList displayedList) {
+        this.feedbackToUser = feedbackToUser;
+        this.displayedList = displayedList;
+        this.showHelp = false;
+        this.exit = false;
     }
 
     /**
@@ -38,8 +56,16 @@ public class CommandResult {
         return feedbackToUser;
     }
 
+    public DisplayedList getDisplayedList() {
+        return displayedList;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isList() {
+        return displayedList != DisplayedList.ALL_LIST;
     }
 
     public boolean isExit() {

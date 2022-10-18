@@ -7,11 +7,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays the basic information of a {@code Task}.
+ * An UI component that displays the full information of a {@code Task}.
  */
-public class TaskCard extends UiPart<Region> {
+public class ExpandedTaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskCard.fxml";
+    private static final String FXML = "ExpandedTaskCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -37,7 +37,7 @@ public class TaskCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public ExpandedTaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
@@ -58,12 +58,12 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TaskCard)) {
+        if (!(other instanceof ExpandedTaskCard)) {
             return false;
         }
 
         // state check
-        TaskCard card = (TaskCard) other;
+        ExpandedTaskCard card = (ExpandedTaskCard) other;
         return id.getText().equals(card.id.getText())
                 && task.equals(card.task);
     }

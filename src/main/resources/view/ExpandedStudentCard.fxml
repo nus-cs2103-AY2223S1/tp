@@ -28,6 +28,7 @@
         <Label fx:id="studentName" styleClass="cell_big_label" text="\$studentName" />
       </HBox>
         <Label fx:id="matricNum" text="\$matricNum" />
+        <Label fx:id="mcResult" text="\$mcResult" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
