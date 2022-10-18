@@ -2,6 +2,9 @@ package seedu.address.model.person.subject;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an assessment that is part of a Subject object
+ */
 public class Assessment {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,6 +19,13 @@ public class Assessment {
     private double assessmentScore;
     private double assessmentTotalScore;
 
+    /**
+     * Constructs an {@code Assessment} object.
+     * @param assessmentName the name of the assessment
+     * @param assessmentWeightage the weightage of the assessment
+     * @param assessmentScore the student's score of the assessment
+     * @param assessmentTotalScore the total score of the assessment
+     */
     public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore,
         double assessmentTotalScore) {
         checkArgument(isValidAssessment(assessmentName), MESSAGE_CONSTRAINTS);

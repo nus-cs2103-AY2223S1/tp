@@ -1,7 +1,13 @@
 package seedu.address.model.person.subject;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import seedu.address.commons.util.DateUtil;
 
 /**
  * Represents the attendance of the student
@@ -10,6 +16,9 @@ public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Attendance should only contain a date followed by a \"1\" or a \"0\", and it should not be blank";
+
+    private static final Pattern DATE_FORMAT = Pattern.compile("date/(?<date>.+) "
+                                                               + "attendance/(?<attendance>[1|0])");
 
     private final HashMap<String, Integer> personAttendance;
 
@@ -20,9 +29,21 @@ public class Attendance {
         personAttendance = new HashMap<>();
     }
 
+    /**
+     * Checks if a given String can be parsed into a valid Attendance object.
+     * @param test the String to be checked
+     * @return true if the String can be parsed into a valid Attendance object, otherwise false
+     */
     public static boolean isValidAttendance(String test) {
         // TODO: replace with valid regex check that checks for a date and a "1" or "0"
-        return true;
+        // Input should be in the form date/DATE attendance/[1/0]
+        // e.g. date/13 Jan 2022 attendance/1
+        Matcher matcher = DATE_FORMAT.matcher(test);
+        if (!matcher.matches()) {
+            return false;
+        }
+        String dateGroup = matcher.group("date");
+        return DateUtil.isValidDateString(dateGroup);
     }
 
     /**
@@ -31,6 +52,7 @@ public class Attendance {
      * @param command the command with which to parse attendance
      */
     public void updateAttendance(String command) {
+        checkArgument(isValidAttendance(command), MESSAGE_CONSTRAINTS);
         // e.g. "1/3/2022 1" -> sets attendance to 1 for 1/3/2022
         String[] commandSplit = command.split(" ");
         String date = commandSplit[1];
