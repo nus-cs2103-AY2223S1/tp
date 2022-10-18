@@ -18,6 +18,7 @@ import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.issue.MarkIssueCommand;
+import seedu.address.logic.commands.issue.UnmarkIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
@@ -52,6 +53,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseListIssueCommand(arguments);
         case MarkIssueCommand.COMMAND_FLAG:
             return parseMarkIssueCommand(arguments);
+        case UnmarkIssueCommand.COMMAND_FLAG:
+            return parseUnmarkIssueCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -158,6 +161,16 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkIssueCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
+    private UnmarkIssueCommand parseUnmarkIssueCommand(String arguments) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(arguments);
+            return new UnmarkIssueCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkIssueCommand.MESSAGE_USAGE), pe);
         }
     }
 }

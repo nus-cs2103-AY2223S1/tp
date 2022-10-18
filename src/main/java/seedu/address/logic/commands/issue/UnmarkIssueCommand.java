@@ -1,11 +1,5 @@
 package seedu.address.logic.commands.issue;
 
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
-
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -15,26 +9,30 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.Status;
 import seedu.address.ui.Ui;
 
-/**
- * Command to mark an issue as complete
- */
-public class MarkIssueCommand extends IssueCommand {
+import java.util.List;
 
-    public static final String COMMAND_FLAG = "-m";
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
+
+/**
+ * Command to mark an issue as incomplete
+ */
+public class UnmarkIssueCommand extends IssueCommand {
+    public static final String COMMAND_FLAG = "-u";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Marks the issue identified by the issue id as complete \n"
+            + ": Marks the issue identified by the issue id as incomplete \n"
             + "Parameters: ISSUE_ID (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 
 
-    public static final String MESSAGE_SUCCESS = "Issue marked: %1$s";
+    public static final String MESSAGE_SUCCESS = "Issue unmarked: %1$s";
 
     private final Index targetIndex;
 
-    public MarkIssueCommand(Index targetIndex) {
+    public UnmarkIssueCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -46,7 +44,7 @@ public class MarkIssueCommand extends IssueCommand {
         for (Issue i : lastShownList) {
             if (i.getIssueId().getIdInt() == targetIndex.getOneBased()) {
                 Issue issueToMark = i;
-                i.getStatus().setStatus(true);
+                i.getStatus().setStatus(false);
                 ui.showIssues();
                 model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
                 return new CommandResult(String.format(MESSAGE_SUCCESS, issueToMark));
