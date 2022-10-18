@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -41,13 +41,13 @@ public class EditTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PERSON + "PERSON] "
-            + "[" + PREFIX_STATUS + "STATUS]...\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE (YYYY-MM-DD)] "
+            + "[" + PREFIX_PERSON + "PERSON EMAIL ADDRESS (must be a valid email)] "
+            + "[" + PREFIX_DONE + "DONE (t/f)]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Create Initial UI/UX Design"
+            + PREFIX_NAME + "Create Initial UIUX Design"
             + PREFIX_DEADLINE + "2022-02-02";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
