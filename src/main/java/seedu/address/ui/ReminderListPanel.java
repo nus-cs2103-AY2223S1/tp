@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -25,8 +27,20 @@ public class ReminderListPanel extends UiPart<Region> {
      */
     public ReminderListPanel(ObservableList<Person> personList) {
         super(FXML);
-        reminderListView.setItems(personList);
+        SortedList<Person> sorted = sort(personList);
+        reminderListView.setItems(sorted);
         reminderListView.setCellFactory(listView -> new ReminderListViewCell());
+    }
+
+    /**
+     * Sorts the {@code ObservableList} and returns a {@code SortedList}
+     * @param personList The {@code ObservableList} to be sorted
+     * @return The sorted {@code SortedList}
+     */
+    private SortedList<Person> sort(ObservableList<Person> personList) {
+        SortedList<Person> sorted = new SortedList<>(personList);
+        sorted.setComparator(Comparator.comparing(x -> x.getBirthday().toString()));
+        return sorted;
     }
 
     /**
