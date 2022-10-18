@@ -93,26 +93,16 @@ public class HelpWindow extends UiPart<Stage> {
      * Set theme of help window to the light theme.
      */
     public void setLightTheme() {
-        boolean hasLightTheme = getRoot().getScene().getStylesheets().contains(lightTheme);
-        boolean hasDarkTheme = getRoot().getScene().getStylesheets().contains(darkTheme);
-
-        if (!hasLightTheme && hasDarkTheme) {
-            getRoot().getScene().getStylesheets().remove(darkTheme);
-            getRoot().getScene().getStylesheets().add(lightTheme);
-        }
+        getRoot().getScene().getStylesheets().add(lightTheme);
+        getRoot().getScene().getStylesheets().remove(darkTheme);
     }
 
     /**
      * Set theme of help window to the dark theme.
      */
     public void setDarkTheme() {
-        boolean hasLightTheme = getRoot().getScene().getStylesheets().contains(lightTheme);
-        boolean hasDarkTheme = getRoot().getScene().getStylesheets().contains(darkTheme);
-
-        if (!hasDarkTheme && hasLightTheme) {
-            getRoot().getScene().getStylesheets().remove(lightTheme);
-            getRoot().getScene().getStylesheets().add(darkTheme);
-        }
+        getRoot().getScene().getStylesheets().add(darkTheme);
+        getRoot().getScene().getStylesheets().remove(lightTheme);
     }
 
     /**

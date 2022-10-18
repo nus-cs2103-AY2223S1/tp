@@ -24,6 +24,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LIGHT_THEME_MENUITEM_TEXT = "Light Theme";
+    private static final String DARK_THEME_MENUITEM_TEXT = "Dark Theme";
 
     private final String lightTheme = getClass().getResource("/view/LightTheme.css").toExternalForm();
     private final String darkTheme = getClass().getResource("/view/DarkTheme.css").toExternalForm();
@@ -39,8 +41,13 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private boolean isLightTheme;
+
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private MenuItem lightDarkThemeItem;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -70,6 +77,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        isLightTheme = true;
+        lightDarkThemeItem.setText(DARK_THEME_MENUITEM_TEXT);
     }
 
     public Stage getPrimaryStage() {
@@ -171,34 +181,26 @@ public class MainWindow extends UiPart<Stage> {
      * Changes theme to light theme
      */
     @FXML
-    private void handleLightTheme() {
-        boolean hasLightTheme = primaryStage.getScene().getStylesheets().contains(lightTheme);
-        boolean hasDarkTheme = primaryStage.getScene().getStylesheets().contains(darkTheme);
-
-        if (!hasLightTheme && hasDarkTheme) {
-            primaryStage.getScene().getStylesheets().remove(darkTheme);
-            primaryStage.getScene().getStylesheets().add(lightTheme);
-            primaryStage.getScene().getStylesheets().remove(extensionsDark);
-            primaryStage.getScene().getStylesheets().add(extensionsLight);
-        }
-        helpWindow.setLightTheme();
-    }
-
-    /**
-     * Changes theme to dark theme
-     */
-    @FXML
-    private void handleDarkTheme() {
-        boolean hasLightTheme = primaryStage.getScene().getStylesheets().contains(lightTheme);
-        boolean hasDarkTheme = primaryStage.getScene().getStylesheets().contains(darkTheme);
-
-        if (!hasDarkTheme && hasLightTheme) {
-            primaryStage.getScene().getStylesheets().remove(lightTheme);
+    private void handleLightDarkTheme() {
+        if (isLightTheme) {
+            logger.info("Switching to dark theme...");
+            isLightTheme = false;
+            lightDarkThemeItem.setText(LIGHT_THEME_MENUITEM_TEXT);
             primaryStage.getScene().getStylesheets().add(darkTheme);
-            primaryStage.getScene().getStylesheets().remove(extensionsLight);
             primaryStage.getScene().getStylesheets().add(extensionsDark);
+            primaryStage.getScene().getStylesheets().remove(lightTheme);
+            primaryStage.getScene().getStylesheets().remove(extensionsLight);
+            helpWindow.setDarkTheme();
+        } else {
+            logger.info("Switching to light theme...");
+            isLightTheme = true;
+            lightDarkThemeItem.setText(DARK_THEME_MENUITEM_TEXT);
+            primaryStage.getScene().getStylesheets().add(lightTheme);
+            primaryStage.getScene().getStylesheets().add(extensionsLight);
+            primaryStage.getScene().getStylesheets().remove(darkTheme);
+            primaryStage.getScene().getStylesheets().remove(extensionsDark);
+            helpWindow.setLightTheme();
         }
-        helpWindow.setDarkTheme();
     }
 
     public PersonListPanel getPersonListPanel() {

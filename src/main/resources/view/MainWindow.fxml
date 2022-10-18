@@ -27,9 +27,8 @@
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Theme">
-            <MenuItem fx:id="lightThemeItem" mnemonicParsing="false" onAction="#handleLightTheme" text="Light Theme"/>
-            <MenuItem fx:id="darkThemeItem" mnemonicParsing="false" onAction="#handleDarkTheme" text="Dark Theme"/>
+          <Menu mnemonicParsing="false" text="Appearance">
+            <MenuItem fx:id="lightDarkThemeItem" mnemonicParsing="false" onAction="#handleLightDarkTheme" text="Light/Dark Theme"/>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
