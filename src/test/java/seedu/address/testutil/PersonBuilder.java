@@ -156,6 +156,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withSurveys(Set<Survey> surveys) {
+        this.surveys = surveys;
+        return this;
+    }
+
     /**
      * Builds a new Person with default parameters or given parameters.
      * @return a Person with stated parameters

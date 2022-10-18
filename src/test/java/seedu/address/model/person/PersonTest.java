@@ -40,7 +40,7 @@ public class PersonTest {
         // same name, phone, email and survey -> returns true
         editedAlice = new PersonBuilder().withName(ALICE.getName().fullName)
                 .withEmail(ALICE.getEmail().value).withPhone(ALICE.getPhone().value)
-                .withSurvey(ALICE.getSurvey().survey).build();
+                .withSurveys(ALICE.getSurveys()).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, phone and email, different survey -> returns false

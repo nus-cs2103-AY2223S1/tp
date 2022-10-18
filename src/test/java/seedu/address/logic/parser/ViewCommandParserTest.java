@@ -31,12 +31,12 @@ public class ViewCommandParserTest {
 
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsViewCommand() {
         // no leading and trailing whitespaces
         PersonContainsAttributePredicate testPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        List.of("chinese"), new ArrayList<>(), new ArrayList<>(),
+                        List.of("chinese"), new ArrayList<>(), new HashSet<>(),
                         new HashSet<>());
         ViewCommand expectedViewCommand = new ViewCommand(testPredicate);
 
