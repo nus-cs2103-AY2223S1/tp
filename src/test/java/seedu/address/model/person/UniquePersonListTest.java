@@ -19,7 +19,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
-public class UniquePetListTest {
+public class UniquePersonListTest {
 
     private final UniquePersonList uniquePersonList = new UniquePersonList();
 
