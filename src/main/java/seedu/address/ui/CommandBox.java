@@ -1,10 +1,18 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,9 +31,19 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    // command log navigation
     private final List<String> commandLog;
     private int commandLogPointer;
     private String currentText;
+
+    // suggestions
+
+    // suggestions for address book commands (excludes task related commands)
+    private final SortedSet<String> suggestionsAb;
+    // suggestions for task related commands
+    private final SortedSet<String> suggestionsTasks;
+    // pop up used to select a suggestion
+    private ContextMenu suggestionsPopup;
 
     @FXML
     private TextField commandTextField;
@@ -37,6 +55,10 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         commandLog = new ArrayList<>();
+        suggestionsPopup = new ContextMenu();
+        suggestionsAb = new TreeSet<>(Arrays.asList("add", "delete", "edit", "exit"));
+        suggestionsTasks = new TreeSet<>();
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         addNavigateCommandsEvent();
@@ -108,6 +130,54 @@ public class CommandBox extends UiPart<Region> {
         }
 
         commandTextField.positionCaret(commandTextField.getLength());
+    }
+
+    // suggestions: https://gist.github.com/floralvikings/10290131
+    // TODO: Update JavaDocs code
+    @FXML
+    private void handleTextChanged() {
+        commandTextField.textProperty().addListener((observable, oldText, newText) -> {
+            if (commandTextField.getText().isEmpty()) {
+                suggestionsPopup.hide();
+                return;
+            }
+
+            LinkedList<String> searchResult = new LinkedList<>(
+                suggestionsAb.subSet(commandTextField.getText(), commandTextField.getText() + Character.MAX_VALUE));
+
+            if (suggestionsAb.size() > 0) {
+                populatePopup(searchResult);
+
+                if (!suggestionsPopup.isShowing()) {
+                    suggestionsPopup.show(getRoot(), Side.BOTTOM, 0, 0);
+                } else {
+                    suggestionsPopup.hide();
+                }
+            }
+        });
+
+        commandTextField.focusedProperty().addListener((observableValue, aBoolean, aBoolean2) ->
+            suggestionsPopup.hide());
+    }
+
+    /**
+     * Populate the suggestions popups with the given search results.
+     * @param searchResult set of matching strings
+     */
+    private void populatePopup(List<String> searchResult) {
+        List<CustomMenuItem> menuItems = new LinkedList<>();
+        for (final String result : searchResult) {
+            Label entryLabel = new Label(result);
+            CustomMenuItem item = new CustomMenuItem(entryLabel, true);
+            item.setOnAction(actionEvent -> {
+                commandTextField.setText(result);
+                suggestionsPopup.hide();
+            });
+            menuItems.add(item);
+        }
+        suggestionsPopup.getItems().clear();
+        suggestionsPopup.getItems().addAll(menuItems);
+
     }
 
     /**
