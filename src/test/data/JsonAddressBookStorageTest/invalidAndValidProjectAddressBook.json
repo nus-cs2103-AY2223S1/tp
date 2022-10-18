@@ -7,5 +7,6 @@
     "projectName": "Person With Invalid Budget Field",
     "budget": "9482424",
     "deadline": "invalid date"
-  } ]
+  } ],
+  "tasks": []
 }

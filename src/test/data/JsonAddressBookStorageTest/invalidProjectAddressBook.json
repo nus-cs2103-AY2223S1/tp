@@ -3,5 +3,6 @@
     "projectName": "Person with invalid deadline field",
     "budget": "9482424",
     "deadline": "2022-01"
-  } ]
+  } ],
+  "tasks": []
 }
