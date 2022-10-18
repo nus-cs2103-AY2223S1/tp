@@ -97,9 +97,9 @@ public class TrackOParser {
         //
         // case ListCommand.COMMAND_WORD:
         //     return new ListCommand();
-        //
-        // case HelpCommand.COMMAND_WORD:
-        //     return new HelpCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
