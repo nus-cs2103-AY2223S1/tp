@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
 import nus.climods.ui.common.Pill;
@@ -45,6 +46,8 @@ public class ModuleCard extends UiPart<Region> {
     private Label department;
     @FXML
     private FlowPane moduleInfo;
+    @FXML
+    private Label moduleDescription;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,6 +62,11 @@ public class ModuleCard extends UiPart<Region> {
         moduleInfo.getChildren()
             .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
+        moduleDescription.setText(module.getDescription());
+        moduleDescription.setWrapText(true);
+        moduleDescription.setMinHeight(Region.USE_PREF_SIZE);
+        moduleDescription.setMinWidth(Region.USE_PREF_SIZE);
+
     }
     private Pill createSemesterPill(int semesterNum) {
         String semesterText;
