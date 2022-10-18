@@ -159,7 +159,6 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return new ListIssueCommand();
     }
 
-<<<<<<< HEAD
     private MarkIssueCommand parseMarkIssueCommand(String arguments) throws ParseException {
         try {
             Status newStatus = new Status(true);
@@ -180,9 +179,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkIssueCommand.MESSAGE_USAGE), pe);
         }
-=======
+    }
+
     private IssueCommand parseSetIssueDefaultViewCommand(String arguments) {
         return new SetIssueDefaultViewCommand();
->>>>>>> 3e47cc5f79ceb7a840ca75fd56ca227182434641
+
     }
 }
