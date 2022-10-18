@@ -20,14 +20,18 @@ import tracko.model.order.Phone;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static final Item ITEM_1 = new Item(new ItemName("Chair"), new Description("Carved mahogany wooden chair"),
-        new Quantity(300), new HashSet<>());
-    private static final Item ITEM_2 = new Item(new ItemName("Pillow"), new Description("Ergonomic with recycled polystyrene filling"),
-        new Quantity(300), new HashSet<>());
-    private static final Item ITEM_3 = new Item(new ItemName("Bolster"), new Description("Premium cotton filling"),
-        new Quantity(300), new HashSet<>());
-    private static final Item ITEM_4 = new Item(new ItemName("Mattress"), new Description("King-sized with memory foam"),
-        new Quantity(300), new HashSet<>());
+    private static final Item ITEM_1 = new Item(new ItemName("Chair"),
+        new Description("Carved mahogany wooden chair"),
+          new Quantity(300), new HashSet<>());
+    private static final Item ITEM_2 = new Item(new ItemName("Pillow"),
+        new Description("Ergonomic with recycled polystyrene filling"),
+           new Quantity(300), new HashSet<>());
+    private static final Item ITEM_3 = new Item(new ItemName("Bolster"),
+        new Description("Premium cotton filling"),
+            new Quantity(300), new HashSet<>());
+    private static final Item ITEM_4 = new Item(new ItemName("Mattress"),
+        new Description("King-sized with memory foam"),
+            new Quantity(300), new HashSet<>());
 
     public static Item[] getSampleItems() {
         return new Item[] { ITEM_1, ITEM_2, ITEM_3, ITEM_4 };

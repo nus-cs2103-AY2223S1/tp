@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.testutil.Assert.assertThrows;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
-import tracko.commons.exceptions.IllegalValueException;
+
 import tracko.model.item.Description;
 import tracko.model.item.Item;
 import tracko.model.item.ItemName;
 import tracko.model.item.Quantity;
-
-import java.util.HashSet;
 
 public class ItemQuantityPairTest {
 

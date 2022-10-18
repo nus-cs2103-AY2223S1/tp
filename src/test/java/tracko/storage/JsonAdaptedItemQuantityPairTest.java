@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static tracko.storage.JsonAdaptedItemQuantityPair.MESSAGE_ITEM_NOT_FOUND;
 import static tracko.storage.JsonAdaptedItemQuantityPair.MISSING_FIELD_MESSAGE_FORMAT;
 import static tracko.testutil.Assert.assertThrows;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_2;
 import static tracko.testutil.TypicalItems.INVENTORY_LIST;
+import static tracko.testutil.TypicalOrders.PAIR_2;
 
 import org.junit.jupiter.api.Test;
 

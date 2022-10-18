@@ -11,6 +11,8 @@ import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.testutil.TypicalItems.DEFAULT_ITEM;
 import static tracko.testutil.TypicalItems.INVENTORY_LIST;
 import static tracko.testutil.TypicalItems.ITEM_1;
+import static tracko.testutil.TypicalItems.ITEM_10;
+import static tracko.testutil.TypicalItems.ITEM_11;
 import static tracko.testutil.TypicalItems.ITEM_2;
 import static tracko.testutil.TypicalItems.ITEM_3;
 import static tracko.testutil.TypicalItems.ITEM_4;
@@ -19,8 +21,6 @@ import static tracko.testutil.TypicalItems.ITEM_6;
 import static tracko.testutil.TypicalItems.ITEM_7;
 import static tracko.testutil.TypicalItems.ITEM_8;
 import static tracko.testutil.TypicalItems.ITEM_9;
-import static tracko.testutil.TypicalItems.ITEM_10;
-import static tracko.testutil.TypicalItems.ITEM_11;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,6 @@ import java.util.List;
 
 import tracko.model.TrackO;
 import tracko.model.item.InventoryList;
-import tracko.model.item.Item;
 import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 
@@ -36,7 +35,7 @@ import tracko.model.order.Order;
  * A utility class containing a list of {@code Order} objects to be used in tests.
  */
 public class TypicalOrders {
-    private static final InventoryList LOADED_INVENTORY_LIST = INVENTORY_LIST;
+    public static final InventoryList LOADED_INVENTORY_LIST = INVENTORY_LIST;
 
     public static final ItemQuantityPair DEFAULT_PAIR = new ItemQuantityPairBuilder()
         .withItem(LOADED_INVENTORY_LIST.get(DEFAULT_ITEM.getItemName().toString())).withQuantity(10).build();
@@ -56,7 +55,6 @@ public class TypicalOrders {
         .withItem(LOADED_INVENTORY_LIST.get(ITEM_6.getItemName().toString())).withQuantity(6).build();
     public static final ItemQuantityPair PAIR_7 = new ItemQuantityPairBuilder()
         .withItem(LOADED_INVENTORY_LIST.get(ITEM_7.getItemName().toString())).withQuantity(7).build();
-
 
     public static final ItemQuantityPair PAIR_8 = new ItemQuantityPairBuilder()
         .withItem(ITEM_8).withQuantity(8).build();

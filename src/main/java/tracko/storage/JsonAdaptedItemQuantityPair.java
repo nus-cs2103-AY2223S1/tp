@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.item.InventoryList;
 import tracko.model.item.Item;
-import tracko.model.item.ItemName;
 import tracko.model.item.Quantity;
 import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.ItemQuantityPair;

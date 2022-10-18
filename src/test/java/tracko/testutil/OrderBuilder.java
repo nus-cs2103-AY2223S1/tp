@@ -1,5 +1,7 @@
 package tracko.testutil;
 
+import static tracko.testutil.TypicalItems.ITEM_1;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +13,6 @@ import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Name;
 import tracko.model.order.Order;
 import tracko.model.order.Phone;
-
-import static tracko.testutil.TypicalItems.ITEM_1;
 
 /**
  * A utility class to help with building Order objects.
