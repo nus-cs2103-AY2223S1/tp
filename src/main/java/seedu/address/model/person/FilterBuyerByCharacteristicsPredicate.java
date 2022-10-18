@@ -15,6 +15,10 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
 
     private final String[] givenCharacteristics;
 
+    /**
+     * Standard constructor for the predicate. characteristics must be delimited
+     * by semicolons.
+     */
     public FilterBuyerByCharacteristicsPredicate(String characteristics) {
         requireNonNull(characteristics);
         this.givenCharacteristics = characteristics.split(CHARACTERISTIC_DELIMITER);

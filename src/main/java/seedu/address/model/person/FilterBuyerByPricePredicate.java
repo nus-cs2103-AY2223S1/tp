@@ -11,6 +11,10 @@ public class FilterBuyerByPricePredicate extends AbstractFilterBuyerPredicate {
 
     private final Price price;
 
+    /**
+     * Standard constructor for the predicate. stringPrice will be validated
+     * by Price's constructor.
+     */
     public FilterBuyerByPricePredicate(String stringPrice) {
         requireNonNull(stringPrice);
         this.price = new Price(stringPrice);
