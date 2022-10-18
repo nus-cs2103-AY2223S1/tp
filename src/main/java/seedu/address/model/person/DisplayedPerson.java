@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
