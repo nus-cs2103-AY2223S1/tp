@@ -24,7 +24,7 @@ public class DeleteTaskFromModuleDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code DeleteTaskFromModuleDescriptor} with fields containing
+     * Returns a {@code DeleteTaskFromModuleDescriptor} with fields containing
      * {@code module}'s details.
      */
     public DeleteTaskFromModuleDescriptorBuilder(Module module) {
@@ -34,7 +34,7 @@ public class DeleteTaskFromModuleDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code DeleteTaskFromModuleDescriptor} with fields containing
+     * Returns a {@code DeleteTaskFromModuleDescriptor} with fields containing
      * {@code module}'s details and the specified task number.
      */
     public DeleteTaskFromModuleDescriptorBuilder(Module module,

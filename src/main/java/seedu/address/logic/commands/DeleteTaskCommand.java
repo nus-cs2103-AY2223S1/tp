@@ -89,7 +89,7 @@ public class DeleteTaskCommand extends Command {
      */
     private static Module createModuleWithDeletedTask(
             Module moduleToDeleteTaskFrom,
-            DeleteTaskFromModuleDescriptor deleteTaskToModuleDescriptor) {
+            DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor) {
         assert moduleToDeleteTaskFrom != null;
 
         ModuleCode moduleCode = moduleToDeleteTaskFrom.getModuleCode();
@@ -99,7 +99,7 @@ public class DeleteTaskCommand extends Command {
         TaskList updatedTasks = new TaskList(moduleTasks);
         // Delete new task to the list.
         Index indexOfTaskToDelete =
-                deleteTaskToModuleDescriptor.getTaskIndexToDelete();
+                deleteTaskFromModuleDescriptor.getTaskIndexToDelete();
         updatedTasks.remove(indexOfTaskToDelete);
         List<Task> updatedTasksAsList =
                 updatedTasks.asUnmodifiableObservableList();
