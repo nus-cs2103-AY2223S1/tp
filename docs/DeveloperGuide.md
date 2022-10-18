@@ -256,6 +256,15 @@ Figure No. Sequence diagram for PictureUploadCommand
 - Pros: All operations regarding choosing, uploading and validating the picture is done in the same class.
 - Cons: The ImageStorage Class becomes just a class of static functions which cannot be tested.
 
+**Aspect: Changing an existing Image**
+- Current Implementation: User just uses ```upload-pic``` command for student they want to change the picture of and reselcts the picture.
+- Pros: Single command word to add and edit picture, convenient to use.
+- Cons: Users might accidentally upload the image for the wrong student and there is no way to undo the change.
+- Alternatives considered: We have considered having a separate ```update-pic``` command solely for changing an existing picture of a student.
+- Pros: Clearer instruction and prevents error from user.
+- Cons: User will have to be more familiar with more commands.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
