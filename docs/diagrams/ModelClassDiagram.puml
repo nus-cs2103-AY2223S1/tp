@@ -13,6 +13,7 @@ Class ModelManager
 Class UserPrefs
 Class Student
 Class ModuleClass
+Class UniqueList
 }
 
 Class HiddenOutside #FFFFFF
@@ -26,11 +27,11 @@ Model ..> ReadOnlyTaAssist
 ModelManager .up.|> Model
 ModelManager -left-> "1" TaAssist
 ModelManager -right-> "1" UserPrefs
-ModelManager ---> "0..1 \nfocused" ModuleClass
+ModelManager --> "focused\n0..1" ModuleClass
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-TaAssist *-> "~* all" Student
-TaAssist *--> "~* all" ModuleClass
+TaAssist *--down-> "\tall\nstudents\n\t1" UniqueList
+TaAssist *--down-> "all\t\nmodule\nclasses\n1\t" UniqueList
 
-ModelManager -down->"~* filtered" Student
+ModelManager -->"~* filtered" Student
 @enduml
