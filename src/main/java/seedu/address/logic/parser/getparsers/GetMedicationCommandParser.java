@@ -1,14 +1,17 @@
 package seedu.address.logic.parser.getparsers;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Arrays;
+
 import seedu.address.logic.commands.getcommands.GetMedicationCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.MedicationContainsKeywordsPredicate;
 
-import java.util.Arrays;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+/**
+ * Parses input arguments and creates a new GetMedicationCommand object
+ */
 public class GetMedicationCommandParser implements Parser<GetMedicationCommand> {
 
     @Override
