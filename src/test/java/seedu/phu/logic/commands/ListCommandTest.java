@@ -83,14 +83,6 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotSortedDescending_showsEverything() {
-        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
-        ListCommand newCommand = new ListCommand(ComparableCategory.NULL, true);
-        expectedModel.reverseList();
-        assertCommandSuccess(newCommand, model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
     public void execute_listByCompanyNameAscending_success() {
         InternshipBook expectedInternship = new InternshipBook();
         expectedInternship.addInternship(ALICE);
