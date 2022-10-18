@@ -3,8 +3,30 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+- [Implementation](#implementation)
+    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
+    * [\[Proposed\] Data archiving](#proposed-data-archiving)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a client](#deleting-a-client)
+    * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -599,20 +621,29 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a client
 
-1. Deleting a person while all persons are being shown
+1. Deleting a client while all client are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all client using the `list` command. Multiple client in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+    2. Test case: `delete 1`<br>
+       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
        Timestamp in the status bar is updated.
+   
+    3. Test case: `delete 1,2,5`<br>
+        Expected: Client at index 1,2 and 5 is deleted form the list. Details of the deleted client shown
+        in the status message.
+   
+    4. Test case: `delete 1-3`<br>
+       Expected: Client at index 1,2 and 3 is deleted form the list. Details of the deleted client shown
+       in the status message.
 
-    1. Test case: `delete 0`<br>
+    5. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    6. Other incorrect delete commands to try: `delete`, `delete x`, `delete 2-1`, `...` (where x is larger
+       than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
