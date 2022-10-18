@@ -27,7 +27,7 @@ public class SampleDataUtilTest {
                     new NumberOfGuests("2"), new IsRoomClean("no"), new Bill(), new Request()),
             new Guest(new Name("Kayla Smith"), new Phone("91823471"), new Email("kaylasmith@example.com"),
                     new Room("05-25"), new DateRange("22/01/23 - 25/01/23"),
-                    new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("10"), 
+                    new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("10"),
                     new Request("Could you help me book a room service")),
             new Guest(new Name("Charlie Lim"), new Phone("88237126"),
                     new Email("charlie@example.com"), new Room("05-63"),

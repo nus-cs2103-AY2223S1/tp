@@ -160,7 +160,7 @@ class JsonAdaptedGuest {
         }
         final Request modelRequest = new Request(request);
 
-        return new Guest(modelName, modelPhone, modelEmail, modelRoom, 
+        return new Guest(modelName, modelPhone, modelEmail, modelRoom,
                 modelDateRange, modelNumberOfGuests, modelIsRoomClean,
                 modelBill, modelRequest);
     }
