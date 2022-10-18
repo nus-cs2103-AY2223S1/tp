@@ -83,6 +83,13 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Replaces the given record {@code target} with {@code editedRecord}.
+     * {@code target} must exist in the patient's record list.
+     * The record identity of {@code editedRecord} must not be the same as another existing record in the record list.
+     */
+    void setRecord(Record target, Record editedRecord);
+
+    /**
      * Returns true if a record with the same identity as {@code record} exists in the record list.
      */
     boolean hasRecord(Record record);

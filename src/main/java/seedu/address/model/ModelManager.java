@@ -177,6 +177,13 @@ public class ModelManager implements Model {
         personWithRecords.clearRecords();
     }
 
+    @Override
+    public void setRecord(Record target, Record editedRecord) {
+        requireAllNonNull(target, editedRecord);
+
+        personWithRecords.setRecord(target, editedRecord);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
