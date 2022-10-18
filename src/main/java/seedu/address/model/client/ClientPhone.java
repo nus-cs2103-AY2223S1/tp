@@ -42,6 +42,16 @@ public class ClientPhone {
         public boolean isEmpty() {
             return true;
         }
+
+        @Override
+        public String uiRepresentation() {
+            return "No contact number set";
+        }
+
+        @Override
+        public String toString() {
+            return "";
+        }
     }
 
     /**
@@ -63,7 +73,7 @@ public class ClientPhone {
      * Returns the phone of the client.
      * @return String representing phone
      */
-    public String getPhoneRepresentation() {
+    public String uiRepresentation() {
         return "Contact: " + this.phone;
     }
 

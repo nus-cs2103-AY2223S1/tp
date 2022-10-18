@@ -3,6 +3,7 @@ package seedu.address.model.list;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -151,5 +152,9 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
             }
         }
         throw new NotFoundException();
+    }
+
+    public void sortById() {
+        internalList.sort(Comparator.comparingInt(HasIntegerIdentifier::getID));
     }
 }
