@@ -20,7 +20,7 @@ public class ListTasksCommand extends Command {
 
     public static final String MESSAGE_LIST_TASK_SUCCESS = "Tasks: \n%1$s";
 
-    public String filter;
+    private String filter;
 
     public ListTasksCommand(String filter) {
         this.filter = filter;
