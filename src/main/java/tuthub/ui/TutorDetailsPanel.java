@@ -40,10 +40,11 @@ public class TutorDetailsPanel extends UiPart<Region> {
     @FXML
     private Label teachingNomination;
     @FXML
+    private Label rating;
+    @FXML
     private Label comment;
     @FXML
     private FlowPane tags;
-
 
     /**
      * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
@@ -54,9 +55,10 @@ public class TutorDetailsPanel extends UiPart<Region> {
         studentId.setText(tutor.getStudentId().value);
         name.setText(tutor.getName().fullName);
         module.setText(tutor.getModule().value);
-        year.setText("year " + tutor.getYear().value);
+        year.setText("Year " + tutor.getYear().value);
         phone.setText(tutor.getPhone().value);
         email.setText(tutor.getEmail().value);
+        rating.setText(tutor.getRating().value);
         teachingNomination.setText(tutor.getTeachingNomination().value);
         comment.setText(tutor.getComment().value);
         tutor.getTags().stream()

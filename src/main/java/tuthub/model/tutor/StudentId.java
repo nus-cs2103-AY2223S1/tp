@@ -13,8 +13,8 @@ public class StudentId {
             + "7 numbers, and end with any capital letter";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The first character of studentIds must be A, the next 7 values can be any
+     * integer. Finally, the last value can be any capital letter.
      */
     public static final String VALIDATION_REGEX = "(^A)\\d{7}[A-Z]$";
 

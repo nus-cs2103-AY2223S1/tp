@@ -6,6 +6,7 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
@@ -43,6 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_STUDENTID_BOB = "A9876543Y";
     public static final String VALID_TEACHINGNOMINATION_AMY = "1";
     public static final String VALID_TEACHINGNOMINATION_BOB = "2";
+    public static final String VALID_RATING_AMY = "4.8";
+    public static final String VALID_RATING_BOB = "4.5";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -62,6 +65,10 @@ public class CommandTestUtil {
             " " + PREFIX_TEACHINGNOMINATION + VALID_TEACHINGNOMINATION_AMY;
     public static final String TEACHINGNOMINATION_DESC_BOB =
             " " + PREFIX_TEACHINGNOMINATION + VALID_TEACHINGNOMINATION_BOB;
+    public static final String RATING_DESC_AMY =
+            " " + PREFIX_RATING + VALID_RATING_AMY;
+    public static final String RATING_DESC_BOB =
+            " " + PREFIX_RATING + VALID_RATING_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -73,6 +80,8 @@ public class CommandTestUtil {
     public static final String INVALID_STUDENTID_DESC = " " + PREFIX_STUDENTID + "B1234567X"; // should start with A
     public static final String INVALID_TEACHINGNOMINATION_DESC =
             " " + PREFIX_TEACHINGNOMINATION + "A"; // should be a positive integer including 0
+    public static final String INVALID_RATING_DESC =
+            " " + PREFIX_RATING + "-1"; // should be a positive decimal
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

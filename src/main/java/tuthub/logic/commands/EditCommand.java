@@ -5,6 +5,7 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
@@ -28,6 +29,7 @@ import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
 import tuthub.model.tutor.Phone;
+import tuthub.model.tutor.Rating;
 import tuthub.model.tutor.StudentId;
 import tuthub.model.tutor.TeachingNomination;
 import tuthub.model.tutor.Tutor;
@@ -51,6 +53,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_YEAR + "YEAR] "
             + "[" + PREFIX_STUDENTID + "STUDENT ID] "
             + "[" + PREFIX_TEACHINGNOMINATION + "TEACHING NOMINATIONS] "
+            + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -111,11 +114,14 @@ public class EditCommand extends Command {
         StudentId updatedStudentId = editTutorDescriptor.getStudentId().orElse(tutorToEdit.getStudentId());
         TeachingNomination updatedTeachingNomination =
                 editTutorDescriptor.getTeachingNomination().orElse(tutorToEdit.getTeachingNomination());
+        Rating updatedRating =
+                editTutorDescriptor.getRating().orElse(tutorToEdit.getRating());
         Comment updatedComment = tutorToEdit.getComment();
         Set<Tag> updatedTags = editTutorDescriptor.getTags().orElse(tutorToEdit.getTags());
 
         return new Tutor(updatedName, updatedPhone, updatedEmail,
-                updatedModule, updatedYear, updatedStudentId, updatedComment, updatedTeachingNomination, updatedTags);
+            updatedModule, updatedYear, updatedStudentId, updatedComment, updatedTeachingNomination,
+            updatedRating, updatedTags);
     }
 
     @Override
@@ -148,6 +154,7 @@ public class EditCommand extends Command {
         private Year year;
         private StudentId studentId;
         private TeachingNomination teachingNomination;
+        private Rating rating;
         private Set<Tag> tags;
 
         public EditTutorDescriptor() {}
@@ -164,6 +171,7 @@ public class EditCommand extends Command {
             setYear(toCopy.year);
             setStudentId(toCopy.studentId);
             setTeachingNomination(toCopy.teachingNomination);
+            setRating(toCopy.rating);
             setTags(toCopy.tags);
         }
 
@@ -171,7 +179,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, module, year, studentId, teachingNomination, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, module, year, studentId, teachingNomination,
+                    rating, tags);
         }
 
         public void setName(Name name) {
@@ -228,6 +237,14 @@ public class EditCommand extends Command {
 
         public Optional<TeachingNomination> getTeachingNomination() {
             return Optional.ofNullable(teachingNomination);
+        }
+
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
         }
 
         /**

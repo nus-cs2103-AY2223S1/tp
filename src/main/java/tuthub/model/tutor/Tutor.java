@@ -26,13 +26,15 @@ public class Tutor {
     private final Year year;
     private final Comment comment;
     private final TeachingNomination teachingNomination;
+    private final Rating rating;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Tutor(Name name, Phone phone, Email email, Module module, Year year,
-                  StudentId studentId, Comment comment, TeachingNomination teachingNomination, Set<Tag> tags) {
+                    StudentId studentId, Comment comment, TeachingNomination teachingNomination, Rating rating,
+                    Set<Tag> tags) {
         requireAllNonNull(name, phone, email, module, year, comment, tags);
         this.name = name;
         this.phone = phone;
@@ -42,6 +44,7 @@ public class Tutor {
         this.studentId = studentId;
         this.comment = comment;
         this.teachingNomination = teachingNomination;
+        this.rating = rating;
         this.tags.addAll(tags);
     }
 
@@ -75,6 +78,10 @@ public class Tutor {
 
     public TeachingNomination getTeachingNomination() {
         return teachingNomination;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
     /**
@@ -121,13 +128,14 @@ public class Tutor {
                 && otherTutor.getStudentId().equals(getStudentId())
                 && otherTutor.getComment().equals(getComment())
                 && otherTutor.getTeachingNomination().equals(getTeachingNomination())
+                && otherTutor.getRating().equals(getRating())
                 && otherTutor.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, module, year, comment, teachingNomination, tags);
+        return Objects.hash(name, phone, email, module, year, comment, teachingNomination, rating, tags);
     }
 
     @Override
@@ -146,6 +154,8 @@ public class Tutor {
                 .append(getStudentId())
                 .append(" Teaching nominations: ")
                 .append(getTeachingNomination())
+                .append(" Rating: ")
+                .append(getRating())
                 .append(" Comment: ")
                 .append(getComment())
                 .append(" Tags: ");
