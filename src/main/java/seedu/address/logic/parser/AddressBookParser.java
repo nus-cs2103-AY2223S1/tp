@@ -61,7 +61,7 @@ public class AddressBookParser {
 
         case AddScheduleCommand.COMMAND_WORD:
             return new AddScheduleCommandParser().parse(arguments);
-        //new editstu command
+
         case EditStuCommand.COMMAND_WORD:
             return new EditStuCommandParser().parse(arguments);
 
