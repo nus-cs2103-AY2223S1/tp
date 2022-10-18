@@ -119,9 +119,9 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] 
 * Only patients and appointments that satisifies all criteria will be displayed.
   * A patient must satisify all patient criteria and have at least 1 appointment that satisifies all the appointment criteria to be displayed.
   * An appointment must satisify all appointment criteria and belong to a patient that satisifes all the patient criteria to be displayed.
-* All fields except `[ds/DATE_START]`, `[de/DATE_END]` and `[t/TAG]` supports partial match. 
+* All fields except `[ds/DATE_START]`, `[de/DATE_END]` and `[t/TAG]` supports partial match.
   * e.g When finding names, searching `John Do` will match someone named `John Doe`.
-* For `[t/TAG]` fields, only tags with a full match will be matched 
+* For `[t/TAG]` fields, only tags with a full match will be matched
   * e.g Finding a tag `Cough` will not match a tag labelled `Coughing`.
 * `[ds/DATE_START]` must be a date equal to or before `[ds/DATE_END]`.
 
@@ -148,7 +148,7 @@ Examples:
 
 ### Add an appointment:  `book`
 
-Books an appointment for the specified patient at INDEX with a given REASON, DATE and an optional TIME PERIOD. 
+Books an appointment for the specified patient at INDEX with a given REASON, DATE and an optional TIME PERIOD.
 
 Appointments added are sorted according to their date.
 
@@ -198,7 +198,7 @@ Format: ```cancel APPOINTMENT_INDEX```
 - The index refers to the index number shown in the displayed appointment list.
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: 
+Examples:
 * `cancel 1`
 
 ### Clearing all entries : `clear`
@@ -212,7 +212,7 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
- 
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -240,7 +240,7 @@ Action | Format, Examples
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
-**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD]` <br> e.g., `edit appts 1 r/Cough` 
+**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD]` <br> e.g., `edit appts 1 r/Cough`
 **List** | `list patients` <br> `list appointments`
 **Help** | `help`
 **Exit** | `exit`

@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Steps 1a1-1a2 are repeated until the data entered are correct.
 
   Use case resumes at step 2.
-  
+
 **Use Case: UC02 - Show a list of patients**
 
 **Guarantees**: A list of patients’ contact is shown.
@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 - 2a. The list is empty.
 
- 
+
      Use case ends
 
 **Use Case: UC03 - Show a list of appointments**
@@ -367,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. idENTify deletes the patient.
 
     Use case ends
-    
+
 **Use Case: UC05 - find a patient**
 
 **Guarantees:**  A list of patients that matches the given query if applicable.
@@ -376,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
     Use case ends.
-    
+
 **Extensions**
 
 - 2a. The list is empty.
@@ -396,8 +396,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
     Use case ends.
-    
-**Extensions**  
+
+**Extensions**
 
 * 2a.  idENTify detects an error in the entered data.
   - 2a1. idENTify shows an error message.
@@ -436,7 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of appointments(UC03)<ins>.
 2.  User requests to mark a specified appointment for a specified patient.
 3.  idENTify marks the selected appointment.
- 
+
     Use case ends.
 
 **Extensions**
@@ -448,7 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
   Use case resumes at step 3.
- 
+
  **Use Case: UC09 - edit an appointment**
 
 **Guarantees:** The appointment will have its fields edited only if the data entered are correct.
@@ -457,7 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of appointments(UC03)<ins>.
 2.  User requests to edit a specified appointment for a specified patient.
 3.  idENTify edits the selected appointment.
- 
+
     Use case ends.
 
 **Extensions**
@@ -469,8 +469,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
   Use case resumes at step 3.
- 
- 
+
+
 **Use Case: UC10 - edit a patient**
 
 **Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
@@ -479,7 +479,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of patients(UC02)<ins>.
 2.  User requests to edit a specified patient details.
 3.  idENTify edits the selected patient contact.
- 
+
     Use case ends.
 
 **Extensions**
@@ -491,13 +491,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
   Use case resumes at step 3.
- 
+
 
 ### Non-Functional Requirements
 
 1. Should work on Windows, Linux, OS-X Operating System (OS) as long as it has Java 11.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text should be able to accomplish most of the tasks 
+3. A user with above average typing speed for regular English text should be able to accomplish most of the tasks
    faster using commands than using the mouse.
 4. Should not be used with offensive language.
 5. Expected to adhere to a schedule that delivers a feature set every one month.
@@ -518,12 +518,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Regular English text**: Basic text that is keyed in by a user. Not code or not system admin commands.
 
-* **Operating System (OS)**: The low-level software that supports a computer's basic functions, common ones include 
+* **Operating System (OS)**: The low-level software that supports a computer's basic functions, common ones include
   Windows, macOS, Linux.
 * **Search string**: The text that a user uses to find a specific patient (such as a part of the patient’s name).
-* **Command-Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and 
+* **Command-Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and
   interact with the computer.
-* **Graphical User Interface (GUI)**: A graphics-based operating system interface that uses icons, menus and a mouse 
+* **Graphical User Interface (GUI)**: A graphics-based operating system interface that uses icons, menus and a mouse
   (to click on the icon or pull down the menus) to manage interaction with the system.
 * **Main Success Scenario**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
 * **Actor**: A role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system.
