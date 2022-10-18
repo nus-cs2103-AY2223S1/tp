@@ -1,5 +1,7 @@
 package seedu.phu.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.phu.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.phu.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
@@ -35,7 +37,33 @@ public class ListCommandTest {
         model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
     }
+    @Test
+    public void equals() {
+        ComparableCategory nameCategory = ComparableCategory.NAME;
+        ComparableCategory dateCategory = ComparableCategory.DATE;
+        ListCommand listFirstCommand = new ListCommand(nameCategory, false);
+        ListCommand listSecondCommand = new ListCommand(nameCategory, true);
+        ListCommand listThirdCommand = new ListCommand(dateCategory, false);
+        ListCommand listFirstCommandCopy = new ListCommand(nameCategory, false);
 
+        // same object -> returns true
+        assertTrue(listFirstCommand.equals(listFirstCommand));
+
+        // different types -> returns false
+        assertFalse(listFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(listFirstCommand.equals(null));
+
+        // same categories and keywords -> returns true
+        assertTrue(listFirstCommand.equals(listFirstCommandCopy));
+
+        // different sort order
+        assertFalse(listFirstCommand.equals(listSecondCommand));
+
+        // different category -> returns false
+        assertFalse(listFirstCommand.equals(listThirdCommand));
+    }
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListCommand(), model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);

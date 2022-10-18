@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.phu.commons.core.keyword.Keyword;
 import seedu.phu.commons.core.keyword.KeywordList;
 import seedu.phu.logic.commands.FindCommand;
-import seedu.phu.logic.parser.exceptions.InvalidCategoryException;
 import seedu.phu.model.internship.ContainsKeywordsPredicate;
 import seedu.phu.model.internship.FindableCategory;
 
@@ -54,7 +53,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // Invalid category
-        assertParseFailure(parser, "c/Random 123", InvalidCategoryException.DEFAULT_MESSAGE);
+        assertParseFailure(parser, "c/Random 123", FindableCategoryParser.EXCEPTION_MESSAGE);
 
         // No Keywords Given
         assertParseFailure(parser, "c/n", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
