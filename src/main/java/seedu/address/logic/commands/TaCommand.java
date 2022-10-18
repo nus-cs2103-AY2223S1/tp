@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.StringJoiner;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -48,6 +50,18 @@ public class TaCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This Teaching Assistant already exists in the address book";
 
     public static final String MESSAGE_SUCCESS = "New Teaching Assistant added: %1$s";
+
+    public static final String TA_TEMPLATE = new StringJoiner(" ").add(COMMAND_WORD)
+        .add(PREFIX_NAME.getPrefix())
+        .add(PREFIX_MODULE_CODE.getPrefix())
+        .add(PREFIX_PHONE.getPrefix())
+        .add(PREFIX_EMAIL.getPrefix())
+        .add(PREFIX_GENDER.getPrefix())
+        .add(PREFIX_TAG.getPrefix())
+        .add(PREFIX_LOCATION.getPrefix())
+        .add(PREFIX_GITHUBUSERNAME.getPrefix())
+        .add(PREFIX_RATING.getPrefix())
+        .toString();
 
     private final Person toAdd;
 
