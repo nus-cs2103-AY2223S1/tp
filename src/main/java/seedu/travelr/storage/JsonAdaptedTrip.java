@@ -25,22 +25,24 @@ class JsonAdaptedTrip {
     private final String title;
     private final String description;
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
+    private final boolean done;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("description") String description,
-                           @JsonProperty("events") List<JsonAdaptedEvent> events) {
+                           @JsonProperty("events") List<JsonAdaptedEvent> events, @JsonProperty("done") boolean done) {
         this.title = title;
         this.description = description;
         if (events != null) {
             this.events.addAll(events);
         }
+        this.done = done;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Trip} into this class for Jackson use.
      */
     public JsonAdaptedTrip(Trip source) {
         title = source.getTitle().fullTitle;
@@ -48,6 +50,7 @@ class JsonAdaptedTrip {
         events.addAll(source.getEvents().stream()
                 .map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
+        done = source.isDone();
     }
 
     /**
@@ -80,7 +83,9 @@ class JsonAdaptedTrip {
 
         final Set<Event> modelEvents = new HashSet<>(tripEvents);
 
-        return new Trip(modelTitle, modelDescription, modelEvents);
+        final boolean done = this.done;
+
+        return new Trip(modelTitle, modelDescription, modelEvents, done);
     }
 
 }

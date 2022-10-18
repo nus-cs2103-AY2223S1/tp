@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,6 +60,16 @@ public class UniqueTripList implements Iterable<Trip> {
             }
         }
         return -1;
+    }
+
+    public Set<List> getDoneList() {
+        Set<List> set = new HashSet<>();
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).isDone()) {
+                set.add((List) internalList.get(i));
+            }
+        }
+        return set;
     }
 
     public Trip getTrip(Trip trip) {
