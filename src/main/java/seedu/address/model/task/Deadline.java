@@ -3,8 +3,10 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -41,6 +43,18 @@ public class Deadline {
         return new Deadline(date);
     }
 
+    /**
+     * Creates a Deadline with a given date object.
+     * @param date the date to be converted into a Deadline
+     */
+    public static Deadline of(Date date) {
+        LocalDate localDate =
+                date.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+
+        return new Deadline(localDate);
+    }
     public static Deadline of(LocalDate date) {
         return new Deadline(date);
     }
