@@ -151,6 +151,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Internship> getViewItem() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateViewItem(Predicate<Internship> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortList(ComparableCategory category) {
             throw new AssertionError("This method should not be called.");
         }
