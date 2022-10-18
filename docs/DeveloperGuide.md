@@ -164,7 +164,7 @@ A `Review`,
 
 A `Review` contains the following attributes,
 1. a `Name`, which represent the name of the Stall associated with the Review
-2. a `Date`, which represent the day, month and year as specified in `DD-MM-YYYY` format
+2. a `Date`, which represent the day, month and year as specified in `DD/MM/YYYY` format
 3. a `Content`, which represent the review of the Stall by the user
 4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
 5. can be assigned to a single `Stall`

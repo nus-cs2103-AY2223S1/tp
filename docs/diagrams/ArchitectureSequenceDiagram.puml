@@ -13,7 +13,7 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("sdel 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deleteStall(p)
+logic -[LOGIC_COLOR]> model : deleteStall(stall)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic

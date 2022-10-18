@@ -16,12 +16,12 @@ Class UniqueReviewList
 
 UniqueReviewList --> "~* all" Review
 AddressBook *--> "1" UniqueReviewList
-Review *--> Name
-Review *--> Content
-Review *--> Date
-Review *--> Rating
-Review *--> Tag
+Review *--> "1" Name
+Review *--> "1" Content
+Review *--> "1" Date
+Review *--> "1" Rating
+Review *--> "*" Tag
 
 ModelManager -->"~* filtered" Review
-Review *--> "1" Stall
+Stall "1" --> "~*assigned" Review
 @enduml
