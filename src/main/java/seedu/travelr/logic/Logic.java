@@ -10,12 +10,15 @@ import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
  * API of the Logic component
  */
 public interface Logic {
+    ObservableTrip getSelectedTrip();
+
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.

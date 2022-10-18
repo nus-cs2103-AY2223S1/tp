@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.travelr.commons.core.LogsCenter;
+import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -18,15 +20,18 @@ public class TripListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TripListPanel.class);
 
     @FXML
+    private StackPane selectedTripCardPlaceholder;
+    @FXML
     private ListView<Trip> tripListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public TripListPanel(ObservableList<Trip> tripList) {
+    public TripListPanel(ObservableList<Trip> tripList, ObservableTrip selectedTrip ) {
         super(FXML);
         tripListView.setItems(tripList);
         tripListView.setCellFactory(listView -> new TripListViewCell());
+        selectedTripCardPlaceholder.getChildren().add(new SelectedTripCard(selectedTrip).getRoot());
     }
 
     /**

@@ -20,6 +20,7 @@ public class EventListCommand extends Command {
         requireNonNull(model);
         AllInBucketListPredicate predicate = model.getBucketPredicate();
         model.updateFilteredEventList(predicate);
+        model.resetSelectedTrip();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

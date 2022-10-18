@@ -5,6 +5,9 @@ import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
 
 import seedu.travelr.model.Model;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Displays all added trips and events in Travelr to the user.
@@ -21,6 +24,7 @@ public class ViewAllCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        model.resetSelectedTrip();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -13,6 +13,7 @@ import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
-
+    private ObservableTrip selectedTrip;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> bucketList;
 
@@ -42,7 +43,7 @@ public class ModelManager implements Model {
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
         filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
         bucketList = new FilteredList<>(this.addressBook.getEventList());
-        System.out.println("One retrieval");
+        selectedTrip = new ObservableTrip();
     }
 
     public ModelManager() {
@@ -155,6 +156,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableTrip getSelectedTrip() {
+        return selectedTrip;
+    }
+
+    @Override
+    public void updateSelectedTrip(Trip trip) {
+        selectedTrip.setTrip(trip);
+    }
+
+    @Override
+    public void resetSelectedTrip() {
+        selectedTrip.resetTrip();
+    }
+
+    @Override
     public void setTrip(Trip target, Trip editedTrip) {
         requireAllNonNull(target, editedTrip);
 
@@ -177,7 +193,6 @@ public class ModelManager implements Model {
     public ObservableList<Trip> getFilteredTripList() {
         return filteredTrips;
     }
-
 
     @Override
     public AllInBucketListPredicate getBucketPredicate() {

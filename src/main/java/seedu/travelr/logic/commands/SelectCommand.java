@@ -46,6 +46,7 @@ public class SelectCommand extends Command {
         Itineraries tripItinerary = tripToDisplay.getItinerary();
         predicate.setItinerary(tripItinerary);
         model.updateFilteredEventList(predicate);
+        model.updateSelectedTrip(tripToDisplay);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tripToDisplay.getTitle().toString()));
     }
 
