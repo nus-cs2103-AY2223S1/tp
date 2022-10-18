@@ -14,16 +14,28 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_SELL_PAPAYA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_SELL_PAPAYA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SELL_PAPAYA;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SellCommand;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
+import seedu.address.model.transaction.Price;
+import seedu.address.model.transaction.Quantity;
+import seedu.address.model.transaction.SellTransaction;
+import seedu.address.model.transaction.Transaction;
+
 
 public class SellCommandParserTest {
 
@@ -119,6 +131,23 @@ public class SellCommandParserTest {
                 MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_DATE + VALID_GOODS_BUY_ORANGE + VALID_PRICE,
                 MESSAGE_INVALID_FORMAT);
+
+    }
+
+    @Test
+    public void parse_validField() {
+        Goods goods = new Goods(VALID_GOODS_BUY_ORANGE);
+        Quantity quantity = new Quantity(VALID_QUANTITY_BUY_ORANGE);
+        Price price = new Price(VALID_PRICE_BUY_ORANGE);
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate datetime = LocalDate.parse(now.toString(), oldPattern);
+        String output = datetime.format(newPattern);
+        Date date = new Date(output);
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
+        assertParseSuccess(parser, "1" + VALID_QUANTITY + VALID_GOODS + VALID_PRICE,
+                new SellCommand(Index.fromOneBased(1), transaction));
 
     }
 

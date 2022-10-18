@@ -35,7 +35,7 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
                 PREFIX_DATE);
-        Boolean isEmptyDate = argMultimap.getValue(PREFIX_DATE).equals(Optional.empty());
+        boolean isEmptyDate = argMultimap.getValue(PREFIX_DATE).equals(Optional.empty());
         if (isEmptyDate) {
             argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE);
         }
