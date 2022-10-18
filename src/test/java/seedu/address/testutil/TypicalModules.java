@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_TITLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
 import java.util.ArrayList;
@@ -30,19 +30,19 @@ public class TypicalModules {
                     new Link("qgis.org"), new Link("www.arcgis.com"))))
             .build();
 
-    public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE)
-            .withModuleTitle(VALID_CS_MODULE_TITLE).build();
-    public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA_MODULE_CODE)
-            .withModuleTitle(VALID_MA_MODULE_TITLE).build();
+    public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE)
+            .withModuleTitle(VALID_CS2106_MODULE_TITLE).build();
+    public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA2001_MODULE_CODE)
+            .withModuleTitle(VALID_MA2001_MODULE_TITLE).build();
     public static final Module CS2103T_WITH_TASK_A =
             new ModuleBuilder().withModuleCode("CS2103T").withTasks(VALID_TASKS.subList(0, 1))
                     .withModuleTitle("Software Engineering").build();
     public static final Module CS2106_WITH_TASK_A =
-            new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
-            .withModuleTitle(VALID_CS_MODULE_TITLE).build();
+            new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
+            .withModuleTitle(VALID_CS2106_MODULE_TITLE).build();
     public static final Module MA2001_WITH_TASK_A =
-            new ModuleBuilder().withModuleCode(VALID_MA_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
-                    .withModuleTitle(VALID_MA_MODULE_TITLE).build();
+            new ModuleBuilder().withModuleCode(VALID_MA2001_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
+                    .withModuleTitle(VALID_MA2001_MODULE_TITLE).build();
     private TypicalModules() {} // prevents instantiation
 
     public static List<Module> getTypicalModules() {

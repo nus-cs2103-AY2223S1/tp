@@ -8,6 +8,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_NOT_AT_HOMEPAGE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
+import static seedu.address.testutil.TypicalModules.CS2103T;
+import static seedu.address.testutil.TypicalModules.CS2106;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.ModuleCodeStartsWithKeywordPredicate;
-import seedu.address.testutil.TypicalModules;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindModuleCommand}.
@@ -71,7 +72,7 @@ public class FindModuleCommandTest {
         FindModuleCommand command = new FindModuleCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalModules.CS2103T, TypicalModules.CS2106), model.getFilteredModuleList());
+        assertEquals(Arrays.asList(CS2103T, CS2106), model.getFilteredModuleList());
     }
 
     @Test

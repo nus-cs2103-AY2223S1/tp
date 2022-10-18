@@ -5,10 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_LISTED;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalModules.CS2106;
-import static seedu.address.testutil.TypicalModules.MA2001;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,17 +25,16 @@ import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
  * Contains integration tests (interaction with the Model) for {@code GoToCommand}.
  */
 public class GoToCommandTest {
-    private static final String MODULE_CODE_STR_CS2106 = CS2106.getModuleCodeAsUpperCaseString();
-    private static final String MODULE_CODE_STR_MA2001 = MA2001.getModuleCodeAsUpperCaseString();
+    private static final String MODULE_CODE_MIX_CASE = "cS2106";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
         ModuleCodeMatchesKeywordPredicate firstPredicate =
-                new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106);
+                new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE);
         ModuleCodeMatchesKeywordPredicate secondPredicate =
-                new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_MA2001);
+                new ModuleCodeMatchesKeywordPredicate(VALID_MA2001_MODULE_CODE);
 
         GoToCommand gotoFirstCommand = new GoToCommand(firstPredicate);
         GoToCommand gotoSecondCommand = new GoToCommand(secondPredicate);
@@ -72,7 +72,7 @@ public class GoToCommandTest {
         String expectedMessage = MESSAGE_MODULE_LISTED;
 
         // Matching keyword test
-        ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106);
+        ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE);
         GoToCommand command = new GoToCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
         expectedModel.setHomeStatus(false);
@@ -85,7 +85,8 @@ public class GoToCommandTest {
         String expectedMessage = MESSAGE_MODULE_LISTED;
 
         // Case-insensitive keyword test
-        ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate("cS2106");
+        ModuleCodeMatchesKeywordPredicate predicate =
+                new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_MIX_CASE);
         GoToCommand command = new GoToCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
         expectedModel.setHomeStatus(false);
