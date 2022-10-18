@@ -17,6 +17,7 @@ import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.commands.ClearCommand;
 import jarvis.logic.commands.DeleteStudentCommand;
 import jarvis.logic.commands.EditStudentCommand;
+import jarvis.logic.commands.EditStudentCommand.EditStudentDescriptor;
 import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.FindStudentCommand;
 import jarvis.logic.commands.HelpCommand;
@@ -55,7 +56,7 @@ public class StudentBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new StudentBuilder().build();
-        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditStudentCommand command = (EditStudentCommand) parser.parseCommand(EditStudentCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
         assertEquals(new EditStudentCommand(INDEX_FIRST_PERSON, descriptor), command);

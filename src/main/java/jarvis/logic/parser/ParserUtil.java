@@ -9,6 +9,7 @@ import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.MasteryCheckStatus;
+import jarvis.model.MatricNum;
 import jarvis.model.StudentName;
 import jarvis.model.TaskDeadline;
 import jarvis.model.TaskDesc;
@@ -46,6 +47,21 @@ public class ParserUtil {
             throw new ParseException(StudentName.MESSAGE_CONSTRAINTS);
         }
         return new StudentName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String matricNum} into a {@code MatricNum}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code matricNum} is invalid.
+     */
+    public static MatricNum parseMatricNum(String matricNum) throws ParseException {
+        requireNonNull(matricNum);
+        String trimmedMatricNum = matricNum.trim();
+        if (!MatricNum.isValidMatricNum(trimmedMatricNum)) {
+            throw new ParseException(MatricNum.MESSAGE_CONSTRAINTS);
+        }
+        return new MatricNum(trimmedMatricNum);
     }
 
     /**

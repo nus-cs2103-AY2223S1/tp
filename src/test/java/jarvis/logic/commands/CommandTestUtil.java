@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +16,8 @@ import jarvis.model.Model;
 import jarvis.model.NameContainsKeywordsPredicate;
 import jarvis.model.Student;
 import jarvis.model.StudentBook;
+import jarvis.model.Task;
+import jarvis.model.TaskBook;
 import jarvis.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -24,9 +27,13 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_MATRIC_NUM_AMY = "A0344534D";
+    public static final String VALID_MATRIC_NUM_BOB = "A3533843G";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String MATRIC_NUM_DESC_AMY = " " + PREFIX_MATRIC_NUM + VALID_MATRIC_NUM_AMY;
+    public static final String MATRIC_NUM_DESC_BOB = " " + PREFIX_MATRIC_NUM + VALID_MATRIC_NUM_BOB;
 
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -38,8 +45,10 @@ public class CommandTestUtil {
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withMatricNum(VALID_MATRIC_NUM_AMY).build();
+        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withMatricNum(VALID_MATRIC_NUM_BOB).build();
     }
 
     /**
@@ -72,23 +81,28 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the student book and filtered student list in {@code actualModel} remain unchanged
+     * - the task book and filtered task list in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         StudentBook expectedStudentBook = new StudentBook(actualModel.getStudentBook());
-        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
+        TaskBook expectedTaskBook = new TaskBook(actualModel.getTaskBook());
+        List<Student> expectedFilteredStudentList = new ArrayList<>(actualModel.getFilteredStudentList());
+        List<Task> expectedFilteredTaskList = new ArrayList<>(actualModel.getFilteredTaskList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedStudentBook, actualModel.getStudentBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
+        assertEquals(expectedTaskBook, actualModel.getTaskBook());
+        assertEquals(expectedFilteredStudentList, actualModel.getFilteredStudentList());
+        assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered student list to show only the student at the given {@code targetIndex} in the
+     * {@code model}'s student book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());

@@ -1,7 +1,9 @@
 {
   "students": [ {
-    "name": "Alice Pauline"
+    "name": "Alice Pauline",
+    "matricNum": "A0000000F"
   }, {
-    "name": "Alice Pauline"
+    "name": "Alice Pauline",
+    "matricNum": "A0000000F"
   } ]
 }

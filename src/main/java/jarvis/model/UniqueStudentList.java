@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import jarvis.commons.core.index.Index;
 import jarvis.model.exceptions.DuplicateStudentException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import javafx.collections.FXCollections;
@@ -13,14 +14,14 @@ import javafx.collections.ObservableList;
 
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
- * A student is considered unique by comparing using {@code Student#isSameStudent(Student)}.
- * As such, adding and updating of students uses Person#isSameStudent(Person) for equality so as to ensure that the
- * student being added or updated is unique in terms of identity in the UniquePersonList. However, the removal of a
- * person uses Student#equals(Object) so as to ensure that the person with exactly the same fields will be removed.
+ * A student is considered unique by comparing using {@code Student#equals(Object)}.
+ * As such, adding and updating of students uses Student#equals(Object) for equality to ensure that the
+ * student being added or updated is unique in terms of identity in the UniqueStudentList.The removal of a
+ * student also uses Student#equals(Object).
  *
  * Supports a minimal set of list operations.
  *
- * @see Student#isSameStudent(Student)
+ * @see Student#equals(Object)
  */
 public class UniqueStudentList implements Iterable<Student> {
 
@@ -33,7 +34,7 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameStudent);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -49,6 +50,20 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Returns the index of a student in the list.
+     * @param target Student to find the index of.
+     * @return the {@code Index} of the student.
+     */
+    public Index indexOf(Student target) {
+        requireNonNull(target);
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new StudentNotFoundException();
+        }
+        return Index.fromZeroBased(index);
+    }
+
+    /**
      * Replaces the student {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The student identity of {@code editedPerson} must not be the same as another existing student in the list.
@@ -61,7 +76,7 @@ public class UniqueStudentList implements Iterable<Student> {
             throw new StudentNotFoundException();
         }
 
-        if (!target.isSameStudent(editedStudent) && contains(editedStudent)) {
+        if (!target.equals(editedStudent) && contains(editedStudent)) {
             throw new DuplicateStudentException();
         }
 
@@ -127,7 +142,7 @@ public class UniqueStudentList implements Iterable<Student> {
     private boolean studentsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {
             for (int j = i + 1; j < students.size(); j++) {
-                if (students.get(i).isSameStudent(students.get(j))) {
+                if (students.get(i).equals(students.get(j))) {
                     return false;
                 }
             }

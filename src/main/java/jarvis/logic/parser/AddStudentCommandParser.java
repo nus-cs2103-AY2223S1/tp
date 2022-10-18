@@ -1,6 +1,7 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import java.util.stream.Stream;
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.MasteryCheckStatus;
+import jarvis.model.MatricNum;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
 
@@ -22,15 +24,16 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddStudentCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRIC_NUM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRIC_NUM) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
         StudentName studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        MatricNum matricNum = ParserUtil.parseMatricNum(argMultimap.getValue(PREFIX_MATRIC_NUM).get());
 
-        Student student = new Student(studentName, MasteryCheckStatus.getDefault());
+        Student student = new Student(studentName, matricNum, MasteryCheckStatus.getDefault());
 
         return new AddStudentCommand(student);
     }

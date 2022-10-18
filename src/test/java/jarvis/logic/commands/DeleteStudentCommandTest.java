@@ -2,7 +2,7 @@ package jarvis.logic.commands;
 
 import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jarvis.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static jarvis.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
@@ -49,7 +49,7 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
@@ -65,7 +65,7 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list

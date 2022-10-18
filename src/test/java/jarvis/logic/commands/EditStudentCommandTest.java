@@ -5,7 +5,7 @@ import static jarvis.logic.commands.CommandTestUtil.DESC_BOB;
 import static jarvis.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jarvis.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static jarvis.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
@@ -82,7 +82,7 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
@@ -108,7 +108,7 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
         Student studentInList = model.getStudentBook().getStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -134,7 +134,7 @@ public class EditStudentCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudentBook().getStudentList().size());
