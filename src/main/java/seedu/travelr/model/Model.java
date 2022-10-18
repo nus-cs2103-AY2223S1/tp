@@ -1,6 +1,7 @@
 package seedu.travelr.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -157,4 +158,6 @@ public interface Model {
     ObservableTrip getSelectedTrip();
 
     void resetSelectedTrip();
+
+    void sortTripsByComparator(Comparator<Trip> comp);
 }

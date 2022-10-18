@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -233,6 +234,11 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTrips.equals(other.filteredTrips);
+    }
+
+    @Override
+    public void sortTripsByComparator(Comparator<Trip> comp) {
+        addressBook.sortTrips(comp);
     }
 
 }

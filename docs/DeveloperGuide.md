@@ -234,6 +234,47 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Display trip's events
+
+#### Proposed Implementation
+The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`. 
+It extends the `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
+interally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
+contains all events added to Travelr.
+
+Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
+initial Travelr book state, with no trips and events added.
+
+Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...` 
+to add a new event to Travelr.
+
+Step 3. The user adds the `Event` 'Try Takoyakis' to the `Trip` titled 'Trip to Japan', which results in 'Try Takoyakis'
+being in its `Itinerary`.
+
+Step 4. The user executes the `select 1` command to display the 1st trip's events.
+A new `EventInItineraryPredicate` will be created, with an internal `Itinerary` pointer that points to the `Itinerary`
+of the selected `Trip`. `Model#updateFileredEvents` will then be called with the predicate supplied as an argument,
+which will update the list of displayed events to be those that are part of the selected trip's itinerary.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the selected  fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</div>
+
+The following sequence diagram shows how the select operation works:
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![SelectActivityDiagram](images/SelectActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How select executes:**
+
+{more aspects and alternatives to be added}
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -289,6 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Software System: Travelr
 
 **Use case: UC01 Delete a Trip**
+
 **Actor: User**
 
 **MSS :**
@@ -318,6 +360,7 @@ Software System: Travelr
 Software System: Travelr
 
 **Use case: UC02 Select a Trip**
+
 **Actor: User**
 
 **MSS :**
@@ -343,6 +386,156 @@ Software System: Travelr
     * 3b1. Travelr shows an error message.
 
       Use Case Ends
+
+
+**Use case: UC03 Assign an Event to a Trip**
+
+**Actor: User**
+
+**MSS :**
+1. User request the list of trips and bucketList events
+2. Travelr lists the trips and events.
+3. User requests to move the specified event to the specified trip.
+4. Travelr move the specified event to the trip.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. The list or bucketList is empty.
+
+  Use case ends.
+* 3a. The requested trip doesn't exist
+    * 3a1. Travelr shows an error message.
+
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.
+
+      Use Case Ends
+* 3c. The requested event doesn't exist
+    * 3b1. Travelr shows an error message.
+
+      Use Case Ends
+
+**Use case: UC04 Remove an Event from a Trip**
+
+**Actor: User**
+
+**MSS :**
+1. User request the list of events in a trip.
+2. Travelr lists the events in the trip.
+3. User requests to move the specified event from the specified trip.
+4. Travelr move the specified event from the trip to the bucketList.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. There is no events in the trip.
+
+  Use case ends.
+* 3a. The requested trip doesn't exist
+    * 3a1. Travelr shows an error message.
+
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.
+
+      Use Case Ends
+* 3c. The requested event doesn't exist
+    * 3b1. Travelr shows an error message.
+
+      Use Case Ends
+
+**Use case: UC05 Mark a trip as done**
+
+**Actor: User**
+
+**MSS :**
+1. User request the list of trips.
+2. Travelr lists trips.
+3. User requests mark a trip as done.
+4. Travelr marks the trip as done.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. There is trip list is empty.
+
+  Use case ends.
+* 3a. The requested trip doesn't exist
+    * 3a1. Travelr shows an error message.
+
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.
+
+      Use Case Ends
+* 4a. The trip is already marked as done.
+
+  Use case ends.
+
+**Use case: UC06 Mark a trip as done**
+
+**Actor: User**
+
+**MSS :**
+1. User request the list of trips.
+2. Travelr lists trips.
+3. User requests to mark a trip as not done.
+4. Travelr marks the trip as not done.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. There is trip list is empty.
+
+  Use case ends.
+* 3a. The requested trip doesn't exist
+    * 3a1. Travelr shows an error message.
+
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.
+
+      Use Case Ends
+* 4a. The trip is already marked as not done.
+
+  Use case ends.
+
+**Use case: UC07 Delete event**
+
+**Actor: User**
+
+**MSS :**
+1. User request the list of events in bucket list.
+2. Travelr lists events in bucket list. 
+3. User request to delete an event from the bucket list.
+4. Travelr deletes the event.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. Bucket list is empty.  
+  Use case ends.
+  
+* 3a. The requested event doesn't exist
+  
+    * 3a1. Travelr shows an error message.  
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.  
+      Use Case Ends
+
 
 *{More TBA}*
 

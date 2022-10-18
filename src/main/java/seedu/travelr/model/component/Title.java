@@ -56,4 +56,8 @@ public class Title {
         return fullTitle.hashCode();
     }
 
+    public int compareTo(Title title) {
+        return fullTitle.compareToIgnoreCase(title.fullTitle);
+    }
+
 }

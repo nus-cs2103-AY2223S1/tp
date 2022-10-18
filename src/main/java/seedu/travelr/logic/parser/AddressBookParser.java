@@ -22,6 +22,7 @@ import seedu.travelr.logic.commands.HelpCommand;
 import seedu.travelr.logic.commands.ListCommand;
 import seedu.travelr.logic.commands.MarkTripDoneCommand;
 import seedu.travelr.logic.commands.SelectCommand;
+import seedu.travelr.logic.commands.SortTripsCommand;
 import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
 import seedu.travelr.logic.commands.ViewAllCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
@@ -103,6 +104,9 @@ public class AddressBookParser {
 
         case ViewAllCommand.COMMAND_WORD:
             return new ViewAllCommand();
+
+        case SortTripsCommand.COMMAND_WORD:
+            return new SortTripsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
