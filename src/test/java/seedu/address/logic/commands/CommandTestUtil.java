@@ -95,8 +95,6 @@ public class CommandTestUtil {
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
     }
 
