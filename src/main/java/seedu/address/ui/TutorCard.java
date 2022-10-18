@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Student;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Tutor}.
@@ -32,19 +34,15 @@ public class TutorCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label address;
     @FXML
     private Label email;
     @FXML
     private Label studentID;
     @FXML
-    private Label telegram;
+    private Label contactInfo;
     @FXML
-    private FlowPane tags;
-    @FXML
-    private FlowPane studentModuleInfo;
+    private FlowPane studentInfo;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -54,17 +52,22 @@ public class TutorCard extends UiPart<Region> {
         this.tutor = tutor;
         id.setText(displayedIndex + ". ");
         name.setText(tutor.getName().fullName);
-        phone.setText("Phone: " + tutor.getPhone().value);
         address.setText("Address: " + tutor.getAddress().value);
         email.setText("Email: " + tutor.getEmail().value);
-        tutor.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        contactInfo.setText("Phone: " + tutor.getPhone().value + " Telegram: " + tutor.getTelegramHandle());
         studentID.setText("(" + tutor.getId() + ")");
-        telegram.setText("Telegram: " + tutor.getTelegramHandle());
-        tutor.getStudentModuleInfo().stream()
-                .sorted(Comparator.comparing(moduleCode -> moduleCode.fullCode))
-                .forEach(moduleCode -> studentModuleInfo.getChildren().add(new Label(moduleCode.fullCode)));
+        for (ModuleCode code: tutor.getTeachingAssistantInfo()) {
+            Label temp = new Label(code.fullCode);
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #097969;-fx-padding: 1 3 1 3; " +
+                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            studentInfo.getChildren().add(temp);
+        }
+        for (Tag tag: tutor.getTags()) {
+            Label temp = new Label(tag.tagName);
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #3e7b91;-fx-padding: 1 3 1 3; " +
+                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            studentInfo.getChildren().add(temp);
+        }
     }
 
     @Override

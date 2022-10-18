@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Student;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -33,19 +35,19 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label address;
     @FXML
     private Label email;
     @FXML
     private Label studentID;
     @FXML
-    private Label telegram;
+    private Label contactInfo;
     @FXML
     private FlowPane tags;
     @FXML
     private FlowPane studentModuleInfo;
+    @FXML
+    private FlowPane studentInfo;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -55,17 +57,22 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText("Phone: " + student.getPhone().value);
         address.setText("Address: " + student.getAddress().value);
         email.setText("Email: " + student.getEmail().value);
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         studentID.setText("(" + student.getId() + ")");
-        telegram.setText("Telegram: " + student.getTelegramHandle());
-        student.getStudentModuleInfo().stream()
-                .sorted(Comparator.comparing(moduleCode -> moduleCode.fullCode))
-                .forEach(moduleCode -> studentModuleInfo.getChildren().add(new Label(moduleCode.fullCode)));
+        contactInfo.setText("Phone: " + student.getPhone().value + " Telegram: " + student.getTelegramHandle());
+        for (ModuleCode code: student.getStudentModuleInfo()) {
+            Label temp = new Label(code.fullCode);
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #de3163;-fx-padding: 1 3 1 3; " +
+                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            studentInfo.getChildren().add(temp);
+        }
+        for (Tag tag: student.getTags()) {
+            Label temp = new Label(tag.tagName);
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #3e7b91;-fx-padding: 1 3 1 3; " +
+                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            studentInfo.getChildren().add(temp);
+        }
     }
 
     @Override
