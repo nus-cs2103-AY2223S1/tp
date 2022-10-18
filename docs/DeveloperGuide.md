@@ -313,6 +313,35 @@ Software System: Travelr
     * 3b1. Travelr shows an error message.
 
       Use Case Ends
+      
+
+Software System: Travelr
+
+**Use case: UC02 Add a Trip**
+**Actor: User**
+
+**MSS :**
+1. User request the list of trips
+2. Travelr lists the trips.
+3. User requests to delete a certain trip.
+4. Travelr deletes the specified trip.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. The list is empty.
+
+  Use case ends.
+* 3a. The requested trip doesn't exist
+    * 3a1. Travelr shows an error message.
+
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.
+
+      Use Case Ends
 
 *{More TBA}*
 
