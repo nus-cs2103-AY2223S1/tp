@@ -38,6 +38,10 @@ public class TaskCard extends UiPart<Region> {
     private Label category;
     @FXML
     private Label deadline;
+    @FXML
+    private Label email;
+    @FXML
+    private Label status;
 
     @FXML
     private Label personName;
@@ -48,13 +52,20 @@ public class TaskCard extends UiPart<Region> {
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
-        id.setText(displayedIndex + ". ");
-        taskName.setText(task.getName().toString());
-        description.setText(task.getDescription().toString());
+        id.setText(displayedIndex + ".");
+        taskName.setText("Name: " + task.getName().toString());
+        description.setText("Description: " + task.getDescription().toString());
         priority.setText("Priority: " + task.getPriority().toString());
-        category.setText(task.getCategory().toString());
-        deadline.setText(task.getDeadline().toString());
+        category.setText("Category: " + task.getCategory().toString());
+        deadline.setText("Deadline: " + task.getDeadline().toString());
+        email.setText("Email: " + task.getPersonEmailAddress().toString());
+        status.setText("Status: " + booleanConvertor(task.getStatus()));
         personName.setText(task.getPersonName());
+    }
+
+    public String booleanConvertor(boolean isDone) {
+        return isDone ? "Completed" : "Not Completed";
+
     }
 
     @Override
