@@ -124,11 +124,8 @@
     -fx-background-color: #f7f7f7;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #b3d9ff;
-}
-
 .list-cell:filled:selected #cardPane {
+    -fx-background-color: #b3d9ff;
     -fx-border-color: #0072C6;
     -fx-border-width: 0.1;
 }
