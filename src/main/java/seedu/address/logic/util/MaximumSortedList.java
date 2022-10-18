@@ -102,10 +102,17 @@ public class MaximumSortedList<T extends Comparable<T>> {
      *         contain the specified element.
      */
     public T remove(T t) throws SortedListException {
-        if (!contains(t)) {
+        requireNonNull(t);
+        int indexToRemove = -1;
+        for (int i = 0; i < internalMaximumSortedList.size(); i++) {
+            if (t.equals(internalMaximumSortedList.get(i))) {
+                indexToRemove = i;
+                break;
+            }
+        }
+        if (indexToRemove == -1) {
             throw new SortedListException("Error: The list does not contain the object");
         }
-        int indexToRemove = binarySearch(t);
         return internalMaximumSortedList.remove(indexToRemove);
     }
 
@@ -118,7 +125,17 @@ public class MaximumSortedList<T extends Comparable<T>> {
      */
     public boolean contains(T t) {
         requireNonNull(t);
-        int indexOfElement = binarySearch(t);
+
+        int indexOfElement = -1;
+        for (int i = 0; i < internalMaximumSortedList.size(); i++) {
+            if (t.equals(internalMaximumSortedList.get(i))) {
+                indexOfElement = i;
+                break;
+            }
+        }
+
+//        int indexOfElement = binarySearch(t);
+
         if (indexOfElement == -1) {
             return false;
         } else {
