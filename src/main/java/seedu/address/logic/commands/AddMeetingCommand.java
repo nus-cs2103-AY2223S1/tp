@@ -59,7 +59,8 @@ public class AddMeetingCommand extends Command {
                 oldClient.getPhone(),
                 oldClient.getEmail(),
                 oldClient.getAddress(),
-                oldClient.getTags());
+                oldClient.getTags(),
+                oldClient.getProducts());
         Meeting meetingToAdd = new Meeting(newClient, description, meetingDate, meetingTime);
 
         if (model.hasMeeting(meetingToAdd)) {

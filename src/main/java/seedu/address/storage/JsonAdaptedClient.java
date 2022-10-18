@@ -18,6 +18,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +35,7 @@ class JsonAdaptedClient {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
+    private final List<JsonAdaptedProduct> products = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -42,7 +44,8 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
+                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings,
+                             @JsonProperty("products") List<JsonAdaptedProduct> products) {
         if (meetings != null) {
             this.meetings.addAll(meetings);
         }
@@ -52,6 +55,9 @@ class JsonAdaptedClient {
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (products != null) {
+            this.products.addAll(products);
         }
     }
 
@@ -69,10 +75,13 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        products.addAll(source.getProducts().stream()
+                .map(JsonAdaptedProduct::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts a given {@code Client} and {@Code JsonAdaptedMeeting} into this class for Jackson use.
+     * Converts a given {@code Client} and {@code JsonAdaptedMeeting} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source, JsonAdaptedMeeting adaptedMeeting) {
         meetings.add(adaptedMeeting);
@@ -82,6 +91,9 @@ class JsonAdaptedClient {
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        products.addAll(source.getProducts().stream()
+                .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
     }
 
@@ -94,6 +106,11 @@ class JsonAdaptedClient {
         final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
+        }
+
+        final List<Product> clientProducts = new ArrayList<>();
+        for (JsonAdaptedProduct product : products) {
+            clientProducts.add(product.toModelType());
         }
 
         if (name == null) {
@@ -120,21 +137,19 @@ class JsonAdaptedClient {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
+        final Set<Product> modelProducts = new HashSet<>(clientProducts);
         if (!meetings.isEmpty()) {
-            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProducts);
             final Meeting meeting = meetings.get(0).toModelType(client);
             client.setMeeting(meeting);
             return client;
         } else {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProducts);
         }
     }
 

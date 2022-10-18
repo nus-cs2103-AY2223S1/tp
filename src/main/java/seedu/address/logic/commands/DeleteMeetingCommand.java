@@ -49,7 +49,7 @@ public class DeleteMeetingCommand extends Command {
         Client clientToEdit = meeting.getClient();
         Client editedClient = new Client(
                 clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
-                clientToEdit.getAddress(), clientToEdit.getTags()
+                clientToEdit.getAddress(), clientToEdit.getTags(), clientToEdit.getProducts()
         );
 
         model.deleteMeeting(meeting);

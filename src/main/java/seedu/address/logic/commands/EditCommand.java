@@ -25,6 +25,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.product.Product;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,8 +101,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
+        Set<Product> updatedProducts = editClientDescriptor.getProducts().orElse(clientToEdit.getProducts());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProducts);
     }
 
     @Override
@@ -132,6 +134,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Product> products;
 
         public EditClientDescriptor() {}
 
@@ -145,6 +148,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setProducts(toCopy.products);
         }
 
         /**
@@ -203,6 +207,23 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code products} to this object's {@code products}.
+         * A defensive copy of {@code products} is used internally.
+         */
+        public void setProducts(Set<Product> products) {
+            this.products = (products != null) ? new HashSet<>(products) : null;
+        }
+
+        /**
+         * Returns an unmodifiable product set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code products} is null.
+         */
+        public Optional<Set<Product>> getProducts() {
+            return (products != null) ? Optional.of(Collections.unmodifiableSet(products)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -222,7 +243,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getProducts().equals(e.getProducts());
         }
     }
 }

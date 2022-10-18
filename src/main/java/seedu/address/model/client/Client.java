@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,30 +26,34 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Product> products = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Product> products) {
+        requireAllNonNull(name, phone, tags, products);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.products.addAll(products);
     }
 
     /**
      * Construct a client with meetings
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Meeting meeting, Set<Product> products) {
+        requireAllNonNull(name, phone, tags, meeting, products);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.meeting = meeting;
+        this.products.addAll(products);
     }
 
     public Name getName() {
@@ -85,6 +90,14 @@ public class Client {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable product set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Product> getProducts() {
+        return Collections.unmodifiableSet(products);
     }
 
     /**
@@ -143,6 +156,12 @@ public class Client {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Product> products = getProducts();
+        if (!products.isEmpty()) {
+            builder.append("; Products: ");
+            products.forEach(builder::append);
         }
         return builder.toString();
     }
