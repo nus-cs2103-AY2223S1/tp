@@ -16,7 +16,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/anthonyhoth.md)]
 
 * Role: TBD
-* Responsiblities: In charge of `delete` and `deleteR` commands
+* Responsiblities: In charge of `delete`, `rdelete`, `edit`, `redit` commands
 
 ### Lai Han Wen
 
@@ -27,7 +27,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/hanwenlai.md)]
 
 * Role: TBD
-* Responsiblities: In charge of `list` and `listR` commands
+* Responsiblities: In charge of `list` and `rlist` commands
 
 ### Marcus Lee
 
@@ -37,7 +37,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/marclzh.md)]
 
 * Role: TBD
-* Responsibilities: In charge of `find` and `findR` commands
+* Responsibilities: In charge of `find` and `rfind` commands
 
 ### Eiffel Leo
 
@@ -47,7 +47,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/eiffellkf.md)]
 
 * Role: TBD
-* Responsibilities: In charge of `add` and `addR` command
+* Responsibilities: In charge of `add` and `radd` command
 
 ### Sean Lam
 
@@ -57,4 +57,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/ljxsean.md)]
 
 * Role: TBD
-* Responsiblities: In charge of `clear` and `clearR` commands
+* Responsiblities: In charge of `clear` and `rclear` commands
