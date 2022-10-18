@@ -121,12 +121,20 @@ How the parsing works:
 The `Model` component,
 
 * stores data in TA Assist:
-  * all `Student` objects are contained in a `UniqueStudentList` object.
-  * all `ModuleClass` objects are contained in a `UniqueModuleClassList` object.
+  * all `Student` objects are contained in a `UniqueList` object.
+  * all `ModuleClass` objects are also contained in a `UniqueList` object.
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'focused' `ModuleClass` object.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
+
+The `UniqueList` class is a generic class that stores a collection of unique elements. In TA Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
+
+<img src="images/TaAssistObjectDiagram.png" width="600"/>
+
+Each `Student` object stores all module-class-related data in a `StudentModuleData` object. All `Session` objects corresponding to a `Student` are stored in a `SessionData` object.
+
+<img src="images/StudentAndModuleClassDiagram.png" width="600"/>
 
 ### Storage component
 

@@ -23,8 +23,6 @@ Class Name
 Class Phone
 }
 
-Class HiddenOutside #FFFFFF
-
 Student *--> "1" Name
 Student *--> "0..1" Address
 Student *--> "0..1" Email
@@ -38,7 +36,6 @@ StudentModuleData --> "*" SessionData
 
 Session -right-> "1" Date
 SessionData --> "1" Session
-
 
 
 @enduml
