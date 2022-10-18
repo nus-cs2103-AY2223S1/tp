@@ -1,12 +1,13 @@
 package tuthub.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import tuthub.logic.commands.SortCommand;
-import tuthub.model.tutor.SortByRatingComparator;
-
 import static tuthub.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tuthub.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tuthub.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import tuthub.logic.commands.SortCommand;
+import tuthub.model.tutor.SortByRatingComparator;
 
 public class SortCommandParserTest {
 

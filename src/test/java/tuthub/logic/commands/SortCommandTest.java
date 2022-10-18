@@ -96,7 +96,8 @@ public class SortCommandTest {
                 model.getFilteredTutorList());
 
         // Test for sorting teaching nomination in ascending order
-        String expectedMessage3 = String.format("Sorted based on %1$s, in %2$s order.", "TEACHING NOMINATIONS", "ascending");
+        String expectedMessage3 = String.format("Sorted based on %1$s, in %2$s order.",
+                "TEACHING NOMINATIONS", "ascending");
         SortByTeachingNominationComparator teachingNominationComparatorAsc =
                 new SortByTeachingNominationComparator("a");
         SortCommand command3 = new SortCommand("a", new Prefix("tn/"), teachingNominationComparatorAsc);
@@ -108,7 +109,8 @@ public class SortCommandTest {
                 model.getFilteredTutorList());
 
         // Test for sorting teaching nomination in descending order
-        String expectedMessage4 = String.format("Sorted based on %1$s, in %2$s order.", "TEACHING NOMINATIONS", "descending");
+        String expectedMessage4 = String.format("Sorted based on %1$s, in %2$s order.",
+                "TEACHING NOMINATIONS", "descending");
         SortByTeachingNominationComparator teachingNominationComparatorDesc =
                 new SortByTeachingNominationComparator("d");
         SortCommand command4 = new SortCommand("d", new Prefix("tn/"), teachingNominationComparatorDesc);
