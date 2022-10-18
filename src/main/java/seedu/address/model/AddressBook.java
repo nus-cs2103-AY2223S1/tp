@@ -22,7 +22,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTeamList teams;
-    private final UniqueLinkList links;
     private ObjectProperty<Team> currentTeam = new SimpleObjectProperty<>();
 
     /*
@@ -35,7 +34,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
-        links = new UniqueLinkList();
     }
 
     public AddressBook() {
@@ -136,20 +134,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
     //// link related operations
     public boolean hasLink(Link link) {
-        return links.contains(link);
+        return getTeam().hasLink(link);
     }
 
     public void addLink(Link link) {
-        links.add(link);
+        getTeam().addLink(link);
     }
 
     public void setLink(Link target, Link editedLink) {
         requireNonNull(editedLink);
-        links.setLink(target, editedLink);
+        getTeam().setLink(target, editedLink);
     }
 
     public void deleteLink(Link link) {
-        links.remove(link);
+        getTeam().deleteLink(link);
     }
 
 
@@ -173,7 +171,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public ObservableList<Link> getLinkList() {
-        return links.asUnmodifiableObservableList();
+        return getTeam().getLinkList();
     }
 
     @Override

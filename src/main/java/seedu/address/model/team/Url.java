@@ -21,7 +21,7 @@ public class Url {
     public static final String VALIDATION_REGEX = "^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))" +
             "(%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@&=+$,A-Za-z0-9])+)([).!';/?:,][[:blank:]])?$";
 
-    private final String value;
+    public final String value;
 
     /**
      * Constructs an {@code Url}.
