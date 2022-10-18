@@ -7,7 +7,7 @@ import java.util.Map;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
- * Represents the notes for a lesson in JARVIS
+ * Represents the notes for a lesson in JARVIS.
  */
 public class LessonNotes {
     private final StringBuilder overallNotes = new StringBuilder("Lesson Notes:\n");
