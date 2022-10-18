@@ -12,6 +12,7 @@ import jarvis.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -45,13 +46,20 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane listPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private SplitPane defaultListPanel;
+
+    @FXML
     private StackPane statusbarPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -115,7 +123,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -191,19 +200,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if ((commandResult.isShowStudents() && taskListPanel.isShowing())
-                    || (commandResult.isShowTasks() && !taskListPanel.isShowing())) {
-                listPanelPlaceholder.getChildren().remove(0);
-                taskListPanel.changeShowingStatus();
-                studentListPanel.changeShowingStatus();
-
-                if (commandResult.isShowStudents()) {
-                    listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-                } else {
-                    listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-                }
             }
 
             return commandResult;
