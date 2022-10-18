@@ -12,16 +12,6 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 
 public class FindClientByNameCommand extends FindClientCommand {
 
-    public static final String MESSAGE_FIND_CLIENT_BY_NAME_USAGE = COMMAND_WORD + ": Finds and filters clients by " +
-            "keyword " +
-            "from the " +
-            "address book. "
-            + "Parameters: "
-            + PREFIX_CLIENT_NAME + "NAME "
-            + "Example: " + COMMAND_WORD + " "
-            + COMMAND_FLAG + " "
-            + PREFIX_CLIENT_NAME + "John";
-
     private final NameContainsKeywordsPredicate predicate;
 
     public FindClientByNameCommand(NameContainsKeywordsPredicate predicate) {
