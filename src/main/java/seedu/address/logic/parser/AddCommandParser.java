@@ -12,15 +12,13 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR_LONG;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.MissingArgumentException;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,19 +33,14 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-    private final Options options;
+    private final JCommander parser;
+    private final AddCommandArguments arguments = new AddCommandArguments();
 
     /**
      * Creates an AddCommandParser with default options
      */
     public AddCommandParser() {
-        Options options = new Options();
-        options.addRequiredOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of person");
-        options.addRequiredOption(FLAG_PHONE_STR, FLAG_PHONE_STR_LONG, true, "Phone of person");
-        options.addRequiredOption(FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG, true, "Email of person");
-        options.addRequiredOption(FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG, true, "Address of person");
-        options.addOption(FLAG_TAG_STR, FLAG_TAG_STR_LONG, true, "Tag of person");
-        this.options = options;
+        this.parser = JCommander.newBuilder().addObject(arguments).build();
     }
 
     /**
@@ -58,40 +51,44 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         try {
-            CommandLineParser parser = new DefaultParser();
-            String[] argsArray = ArgumentTokenizer.tokenize(args);
-            CommandLine cmd = parser.parse(options, argsArray);
-
-            if (cmd.getArgs().length > 0) {
+            List<String> argsList = new ArrayList<>(List.of(ArgumentTokenizer.tokenize(args)));
+            if (argsList.size() == 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
             }
 
-            Name name = ParserUtil.parseName(cmd.getOptionValue(FLAG_NAME_STR));
-            Phone phone = ParserUtil.parsePhone(cmd.getOptionValue(FLAG_PHONE_STR));
-            Email email = ParserUtil.parseEmail(cmd.getOptionValue(FLAG_EMAIL_STR));
-            Address address = ParserUtil.parseAddress(cmd.getOptionValue(FLAG_ADDRESS_STR));
-            Set<Tag> tagList = cmd.hasOption(FLAG_TAG_STR)
-                    ? ParserUtil.parseTags(Arrays.asList(cmd.getOptionValues(FLAG_TAG_STR)))
-                    : Set.of();
+            parser.parse(argsList.toArray(String[]::new));
+
+            Name name = ParserUtil.parseName(arguments.name);
+            Phone phone = ParserUtil.parsePhone(arguments.phone);
+            Email email = ParserUtil.parseEmail(arguments.email);
+            Address address = ParserUtil.parseAddress(arguments.address);
+            Set<Tag> tagList = arguments.tags != null
+                ? ParserUtil.parseTags(arguments.tags)
+                : Set.of();
 
             Person person = new Person(name, phone, email, address, tagList);
             return new AddCommand(person);
-        } catch (MissingArgumentException e) {
-            Option opt = e.getOption();
-            switch (opt.getOpt()) {
-            case FLAG_NAME_STR:
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-            case FLAG_PHONE_STR:
-                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-            case FLAG_EMAIL_STR:
-                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-            case FLAG_ADDRESS_STR:
-                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-            default:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-            }
-        } catch (org.apache.commons.cli.ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        } catch (ParameterException e) {
+            System.out.println(e.getMessage());
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), e);
         }
+    }
+
+    private static class AddCommandArguments {
+        @Parameter(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, description = "Name of person")
+        private String name;
+
+        @Parameter(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, required = true, description = "Phone of person")
+        private String phone;
+
+        @Parameter(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, description = "Email of person")
+        private String email;
+
+        @Parameter(names = {FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG}, required = true, description = "Address of "
+            + "person")
+        private String address;
+
+        @Parameter(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = "Tags of person")
+        private List<String> tags;
     }
 }

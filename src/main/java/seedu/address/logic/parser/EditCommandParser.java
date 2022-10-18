@@ -30,19 +30,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
-    private final JCommander jCommander;
+    private final JCommander parser;
     private final EditCommandArguments arguments = new EditCommandArguments();
 
     /**
      * Creates an EditCommandParser with default arguments
      */
     public EditCommandParser() {
-        this.jCommander = JCommander.newBuilder().addObject(arguments).build();
+        this.parser = JCommander.newBuilder().addObject(arguments).build();
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * EditCommand
+     * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      *
      * @throws ParseException if the user input does not conform to the expected
@@ -50,11 +49,15 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         try {
-            List<String> argsArray = new ArrayList<>(List.of(ArgumentTokenizer.tokenize(args)));
-            if (!argsArray.get(0).equals(FLAG_INDEX_STR)) {
-                argsArray.add(0, FLAG_INDEX_STR);
+            List<String> argsList = new ArrayList<>(List.of(ArgumentTokenizer.tokenize(args)));
+            if (argsList.size() == 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
-            jCommander.parse(argsArray.toArray(String[]::new));
+
+            if (!argsList.get(0).equals(FLAG_INDEX_STR)) {
+                argsList.add(0, FLAG_INDEX_STR);
+            }
+            parser.parse(argsList.toArray(String[]::new));
             EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
             Index index;
@@ -89,10 +92,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
             return new EditCommand(index, editPersonDescriptor);
         } catch (ParameterException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), e);
         }
     }
 
+    /**
+     * Command arguments for the EditCommand
+     */
     private static class EditCommandArguments {
         @Parameter(names = {FLAG_INDEX_STR, FLAG_INDEX_STR_LONG}, required = true, description = "Index of person")
         private Integer index;
