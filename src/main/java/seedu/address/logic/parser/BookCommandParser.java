@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 
 import java.util.stream.Stream;
 
@@ -19,7 +20,8 @@ public class BookCommandParser implements Parser<BookCommand> {
     @Override
     public BookCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REASON, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REASON, PREFIX_DATE,
+                PREFIX_RECURRING_PERIOD);
         Index index;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REASON, PREFIX_DATE)
@@ -34,7 +36,7 @@ public class BookCommandParser implements Parser<BookCommand> {
         }
 
         Appointment appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_REASON).get(),
-                argMultimap.getValue(PREFIX_DATE).get());
+                argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_RECURRING_PERIOD).orElse(""));
         return new BookCommand(index, appointment);
     }
 

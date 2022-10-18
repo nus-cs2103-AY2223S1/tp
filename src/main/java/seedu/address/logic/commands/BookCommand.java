@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -25,9 +26,11 @@ public class BookCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + PREFIX_REASON + "REASON "
             + PREFIX_DATE + "DATE "
+            + PREFIX_RECURRING_PERIOD + "PERIOD "
             + "Example: " + COMMAND_WORD + " 3 "
-            + PREFIX_REASON + "sore throat "
-            + PREFIX_DATE + "2022-10-12 16:30";
+            + PREFIX_REASON + "Sore Throat "
+            + PREFIX_DATE + "2022-10-12 16:30"
+            + PREFIX_RECURRING_PERIOD + "1Y2M3D";
 
     public static final String MESSAGE_BOOK_APPOINTMENT_SUCCESS = "Booked Appointment for Person: %1$s";
 

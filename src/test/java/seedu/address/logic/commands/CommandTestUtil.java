@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -19,8 +20,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -28,6 +29,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String EMPTY_STRING = "";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -38,11 +40,16 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_COUGH = "cough";
+    public static final String VALID_TAG_SINUS = "sinus";
 
     public static final String VALID_REASON_AMY = "Sore Throat";
     public static final String VALID_DATE_AMY = "2019-12-10 16:30";
     public static final String VALID_REASON_BOB = "Ear Infection";
     public static final String VALID_DATE_BOB = "2019-12-20 16:30";
+    public static final String VALID_TIME_PERIOD_AMY = "1Y";
+    public static final String VALID_TIME_PERIOD_BOB = "";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,10 +61,14 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_COUGH = " " + PREFIX_TAG + VALID_TAG_COUGH;
+    public static final String TAG_DESC_SINUS = " " + PREFIX_TAG + VALID_TAG_SINUS;
     public static final String REASON_DESC_AMY = " " + PREFIX_REASON + VALID_REASON_AMY;
     public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String REASON_DESC_BOB = " " + PREFIX_REASON + VALID_REASON_BOB;
     public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
+    public static final String TIME_PERIOD_DESC_AMY = " " + PREFIX_RECURRING_PERIOD + VALID_TIME_PERIOD_AMY;
+    public static final String TIME_PERIOD_DESC_BOB = " " + PREFIX_RECURRING_PERIOD + VALID_TIME_PERIOD_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -66,6 +77,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_REASON_DESC = " " + PREFIX_REASON + "";
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2022-15-12 16:30";
+    public static final String INVALID_TIME_PERIOD_DESC = " " + PREFIX_RECURRING_PERIOD + "0C";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

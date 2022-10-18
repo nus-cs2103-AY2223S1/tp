@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
@@ -27,6 +28,7 @@ public class EditAppointmentDescriptorBuilder {
         descriptor = new EditAppointmentDescriptor();
         descriptor.setReason(appointment.getReason());
         descriptor.setDateTime(appointment.getDateTime());
+        descriptor.setTimePeriod(appointment.getTimePeriod());
     }
 
     /**
@@ -42,6 +44,14 @@ public class EditAppointmentDescriptorBuilder {
      */
     public EditAppointmentDescriptorBuilder withDateTime(LocalDateTime dateTime) {
         descriptor.setDateTime(dateTime);
+        return this;
+    }
+
+    /**
+     * Sets the timePeriod of the {@code EditAppointmentDescriptor} that we are building.
+     */
+    public EditAppointmentDescriptorBuilder withTimePeriod(List<Integer> timePeriod) {
+        descriptor.setTimePeriod(timePeriod);
         return this;
     }
 

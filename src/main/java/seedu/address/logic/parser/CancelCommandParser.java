@@ -24,13 +24,12 @@ public class CancelCommandParser implements Parser<CancelCommand> {
         requireNonNull(userInput);
         String trimmedIndices = userInput.trim();
         String[] patientAndApptIndex = trimmedIndices.split(" ");
-        if (patientAndApptIndex.length != 2) {
+        if (patientAndApptIndex.length != 1) {
             throw new ParseException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
-        Index patientIndex = ParserUtil.parseIndex(patientAndApptIndex[0]);
-        Index apptIndex = ParserUtil.parseIndex(patientAndApptIndex[1]);
+        Index apptIndex = ParserUtil.parseIndex(patientAndApptIndex[0]);
 
-        return new CancelCommand(patientIndex, apptIndex);
+        return new CancelCommand(apptIndex);
     }
 }
 

@@ -13,6 +13,7 @@ public class JsonAdaptedAppointment {
 
     private final String reason;
     private final String dateTime;
+    private final String period;
     private final boolean isMarked;
 
     /**
@@ -21,9 +22,11 @@ public class JsonAdaptedAppointment {
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("reason") String reason,
                                   @JsonProperty("dateTime") String dateTime,
+                                  @JsonProperty("period") String period,
                                   @JsonProperty("isMarked") boolean isMarked) {
         this.reason = reason;
         this.dateTime = dateTime;
+        this.period = period;
         this.isMarked = isMarked;
     }
 
@@ -33,6 +36,7 @@ public class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment source) {
         this.reason = source.getReason();
         this.dateTime = source.getDateTime().format(Appointment.STORAGE_FORMATTER);
+        this.period = source.getFormattedPeriod();
         this.isMarked = source.isMarked();
     }
 
@@ -49,6 +53,11 @@ public class JsonAdaptedAppointment {
         if (!Appointment.isValidDateTime(dateTime)) {
             throw new IllegalValueException(Appointment.DATE_MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(reason, dateTime, isMarked);
+
+        if (!Appointment.isValidTimePeriod(period)) {
+            throw new IllegalValueException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
+        }
+
+        return new Appointment(reason, dateTime, period, isMarked);
     }
 }

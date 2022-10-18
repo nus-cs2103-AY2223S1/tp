@@ -76,11 +76,6 @@ public class Person {
         return appointments;
     }
 
-
-    public void cancelAppointment(int apptIndex) {
-        appointments.remove(apptIndex);
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -102,12 +97,23 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
-    public String getAppointmentsString() {
-        StringBuilder str = new StringBuilder("Appointments:\n");
-        for (int i = 0; i < appointments.size(); i++) {
-            str.append(i + 1).append(": ").append(appointments.get(i)).append("\n");
+    private String getAppointmentsString() {
+        String str = "Currently has %s booked ";
+        str = String.format(str, appointments.size());
+        str += appointments.size() == 1 ? "appointment" : "appointments";
+        return str;
+    }
+
+    public String getParticulars() {
+        String str = phone.value;
+        if (!address.value.isEmpty()) {
+            str += "\n" + address.value;
         }
-        return str.toString();
+        if (!email.value.isEmpty()) {
+            str += "\n" + email.value;
+        }
+        str += "\n" + getAppointmentsString();
+        return str;
     }
 
     public Observable getApptsProperty() {
