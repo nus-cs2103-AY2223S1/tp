@@ -18,6 +18,7 @@ import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
+import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByDescriptionCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByPriorityCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
@@ -57,12 +58,16 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseDeleteIssueCommand(arguments);
         case ListIssueCommand.COMMAND_FLAG:
             return parseListIssueCommand(arguments);
+        case SetIssueDefaultViewCommand.COMMAND_FLAG:
+            return parseSetIssueDefaultViewCommand(arguments);
         case FindIssueCommand.COMMAND_FLAG:
             return parseFindIssueCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
+
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -197,4 +202,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return new ListIssueCommand();
     }
 
+    private IssueCommand parseSetIssueDefaultViewCommand(String arguments) {
+        return new SetIssueDefaultViewCommand();
+    }
 }

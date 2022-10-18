@@ -19,6 +19,7 @@ import seedu.address.logic.commands.project.DeleteProjectCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
+import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
 import seedu.address.logic.commands.project.find.FindProjectByNameCommand;
 import seedu.address.logic.commands.project.find.FindProjectByRepositoryCommand;
 import seedu.address.logic.commands.project.find.FindProjectCommand;
@@ -57,6 +58,8 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             return parseDeleteProjectCommand(arguments);
         case ListProjectCommand.COMMAND_FLAG:
             return parseListProjectCommand(arguments);
+        case SetProjectDefaultViewCommand.COMMAND_FLAG:
+            return parseSetProjectDefaultViewCommand(arguments);
         case FindProjectCommand.COMMAND_FLAG:
             return parseFindProjectCommand(arguments);
 
@@ -64,6 +67,8 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
+
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -209,5 +214,9 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
     private ListProjectCommand parseListProjectCommand(String arguments) {
         return new ListProjectCommand();
+    }
+
+    private ProjectCommand parseSetProjectDefaultViewCommand(String arguments) {
+        return new SetProjectDefaultViewCommand();
     }
 }
