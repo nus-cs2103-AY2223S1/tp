@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditByNameCommand object
  */
-public class EditPersonParser implements Parser<EditPersonCommand> {
+public class EditPersonCommandParser implements Parser<EditPersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
