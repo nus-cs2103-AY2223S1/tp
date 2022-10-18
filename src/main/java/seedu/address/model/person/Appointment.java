@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.util.Objects;
 
@@ -16,35 +16,29 @@ public class Appointment implements Comparable<Appointment> {
     public static final String MESSAGE_CONSTRAINTS = "Appointments can only take in a date and "
             + "time in the format, d-MMM-yyyy hh:mm a, and it should not be blank";
     public static final MaximumSortedList<Appointment> EMPTY_APPOINTMENTS =
-            new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+            new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
 
     private final DateTime dateTime;
+    private final Location location;
 
     /**
      * Constructs an {@code Appointment}.
      *
      * @param dateTime A valid appointment.
      */
-    public Appointment(DateTime dateTime) {
+    public Appointment(DateTime dateTime, Location location) {
         requireNonNull(dateTime);
+        requireNonNull(location);
         this.dateTime = dateTime;
-    }
-
-
-    /**
-     * Checks whether the input DateTime has the correct format
-     *
-     * @param dateTime the DateTime representing the DateTime to be
-     *        contained within this Appointment.
-     * @return boolean value describing whether the input DateTime has
-     *         the correct format.
-     */
-    public static boolean isValidAppointment(DateTime dateTime) {
-        return DateTimeParser.isValidDateTime(dateTime.toString());
+        this.location = location;
     }
 
     public DateTime getDateTime() {
         return dateTime;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public Date getDate() {
@@ -72,6 +66,24 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     @Override
+    public String toString() {
+        return dateTime.toString() + ", " + location.toString();
+    }
+
+    /**
+     * Checks whether the input DateTime has the correct format
+     *
+     * @param dateTime the DateTime representing the DateTime to be
+     *        contained within this Appointment.
+     * @return boolean value describing whether the input DateTime has
+     *         the correct format.
+     */
+    public static boolean isValidAppointment(DateTime dateTime, Location location) {
+        return DateTimeParser.isValidDateTime(dateTime.toString())
+                && Location.isValidLocation(location.toString());
+    }
+
+    @Override
     public int compareTo(Appointment other) {
         return this.dateTime.compareTo(other.dateTime);
     }
@@ -80,16 +92,12 @@ public class Appointment implements Comparable<Appointment> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Appointment// instanceof handles nulls
-                && dateTime.equals(((Appointment) other).dateTime)); // state check
-    }
-
-    @Override
-    public String toString() {
-        return dateTime.toString();
+                && dateTime.equals(((Appointment) other).dateTime)
+                && location.equals(((Appointment) other).location)); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateTime);
+        return Objects.hash(dateTime, location);
     }
 }

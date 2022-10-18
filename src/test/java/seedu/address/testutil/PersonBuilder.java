@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -52,7 +52,7 @@ public class PersonBuilder {
         income = new IncomeLevel(DEFAULT_INCOME);
         monthly = new Monthly(DEFAULT_MONTHLY);
         tags = new HashSet<>();
-        appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
     }
 
     /**
@@ -66,6 +66,7 @@ public class PersonBuilder {
         income = personToCopy.getIncome();
         monthly = personToCopy.getMonthly();
         riskTag = personToCopy.getRiskTag();
+        income = personToCopy.getIncome();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new MaximumSortedList<>(personToCopy.getAppointments());
     }
@@ -136,8 +137,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAppointments(String ... appointments) {
-        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
+    public PersonBuilder withAppointment(Appointment appointmentToBeAdded) {
+        this.appointments.add(appointmentToBeAdded);
         return this;
     }
 
@@ -146,13 +147,7 @@ public class PersonBuilder {
      * By default, the set of appointments field is created but is empty
      */
     public Person build() {
-        return new Person(name, phone, email, address, income, monthly, riskTag, tags);
-    }
-
-
-    public Person buildWithAppointments() {
         return new Person(name, phone, email, address, income, monthly, riskTag, tags, appointments);
     }
-
 
 }

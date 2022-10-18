@@ -8,6 +8,7 @@ import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 
 /**
@@ -29,11 +30,14 @@ public class CalendarMonthBuilder {
         Name firstName = new Name(DEFAULT_FIRST_NAME);
         Name secondName = new Name(DEFAULT_SECOND_NAME);
         Appointment firstAppointment = new Appointment(new DateTime(
-                DateTimeParser.parseLocalDateTimeFromString(DEFAULT_FIRST_DATE)));
+                DateTimeParser.parseLocalDateTimeFromString(DEFAULT_FIRST_DATE)),
+                new Location("NUS TechnoEdge"));
         Appointment secondAppointment = new Appointment(new DateTime(
-                DateTimeParser.parseLocalDateTimeFromString(DEFAULT_SECOND_DATE)));
+                DateTimeParser.parseLocalDateTimeFromString(DEFAULT_SECOND_DATE)),
+                new Location("NUS TechnoEdge"));
         Appointment thirdAppointment = new Appointment(new DateTime(
-                DateTimeParser.parseLocalDateTimeFromString(DEFAULT_THIRD_DATE)));
+                DateTimeParser.parseLocalDateTimeFromString(DEFAULT_THIRD_DATE)),
+                new Location("NUS TechnoEdge"));
 
         CalendarEvent firstEvent = new CalendarEvent(firstName, firstAppointment);
         CalendarEvent secondEvent = new CalendarEvent(secondName, firstAppointment);

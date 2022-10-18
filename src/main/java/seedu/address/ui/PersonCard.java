@@ -74,11 +74,8 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
         int listSize = appointmentList.size();
         for (int i = 0; i < listSize; i++) {
-            if (i == listSize - 1) {
-                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()));
-            } else {
-                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString() + COMMA));
-            }
+            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
+                    + "                                                                                 "));
         }
     }
 
