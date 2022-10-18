@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Name;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.model.pet.exceptions.PetNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -60,7 +59,7 @@ public class UniquePetListTest {
     }
 
     @Test
-    public void add_duplicatePet_throwsDuplicatePersonException() {
+    public void add_duplicatePet_throwsDuplicatePetException() {
         uniquePetList.add(TypicalPets.DOJA);
         assertThrows(DuplicatePetException.class, () -> uniquePetList.add(TypicalPets.DOJA));
     }
@@ -121,11 +120,11 @@ public class UniquePetListTest {
 
     @Test
     public void remove_petDoesNotExist_throwsPetNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePetList.remove(TypicalPets.DOJA));
+        assertThrows(PetNotFoundException.class, () -> uniquePetList.remove(TypicalPets.DOJA));
     }
 
     @Test
-    public void remove_existingPet_removesPerson() {
+    public void remove_existingPet_removesPet() {
         uniquePetList.add(TypicalPets.DOJA);
         uniquePetList.remove(TypicalPets.DOJA);
         UniquePetList expectedUniquePetList = new UniquePetList();
@@ -133,7 +132,7 @@ public class UniquePetListTest {
     }
 
     @Test
-    public void setPet_nullUniquePersonList_throwsNullPointerException() {
+    public void setPet_nullUniquePetList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePetList.setPets((UniquePetList) null));
     }
 
