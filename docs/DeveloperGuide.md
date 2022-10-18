@@ -243,7 +243,7 @@ The caveat to this is that in the implementation of `Resident` fields, we have t
 
 The original UI represented a `Person` field as a nested FXML `Label` within a `PersonCard`, which was used to populate the `ListView` panel. Calling `setVisible` on a `Label` resulted in blank gaps in the panel because the `Label` was ultimately still intact, just *invisible*. Hence, there was a need to find another method to hide and collapse rows/columns.
 
-**Gaps in `ListView` panel:**
+**Gaps in** `ListView` **panel:**
 
 ![ListViewMissingField](images/ListViewMissingField.png)
 
@@ -253,9 +253,9 @@ To achieve this, we modified our UI to use a `TableView`, where using `setVisibl
 
 **Challenges faced with linking components:**
 
-![MainWindowRelationships](images/MainWindowRelationships.png)
-
 The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
+
+![MainWindowRelationships](images/MainWindowRelationships.png)
 
 The final design involved using a `ListChangeListener` to cascade the updates from one list to the other. Since `LogicManager` held a reference to a `ModelManager`, and `MainWindow` held a reference to both a `LogicManager` and the `ResidentTableView` class, I used a listener in `MainWindow` to track changes in the `Model` field list and updated the `ResidentTableView` field list accordingly. Finally, one more listener was used within `ResidentTableView` to update the column visibilities whenever the field list changed.
 
