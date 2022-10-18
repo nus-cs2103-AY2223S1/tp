@@ -25,19 +25,19 @@ Class Phone
 
 Class HiddenOutside #FFFFFF
 
-Student --> "1" Name
-Student --> "0..1" Address
-Student --> "0..1" Email
-Student --> "0..1" Phone
+Student *--> "1" Name
+Student *--> "0..1" Address
+Student *--> "0..1" Email
+Student *--> "0..1" Phone
 
-ModuleClass *--> "*" Session
+ModuleClass "1" *--> "*" Session
 
-StudentModuleData --> "1" ModuleClass
-Student *-up-> "*" StudentModuleData
+StudentModuleData "*" --> "1" ModuleClass
+Student "1" *-up-> "*" StudentModuleData
 StudentModuleData --> "*" SessionData
 
 Session -right-> "1" Date
-SessionData *--> "1" Session
+SessionData --> "1" Session
 
 
 
