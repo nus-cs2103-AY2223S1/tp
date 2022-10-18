@@ -40,6 +40,16 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
     ReadOnlyModuleList getModuleList();
 
+    /**
+     * Returns true if a module with the same module code is in the full module list
+     */
+    boolean hasListModule(String moduleCode);
+
+    /**
+     * Returns Optional Module corresponding to the supplied module code
+     */
+    Optional<Module> getListModule(String moduleCode);
+
     /* USER MODULE */
 
     /**

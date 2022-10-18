@@ -120,6 +120,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasListModule(String moduleCode) {
+        return getListModule(moduleCode).isPresent();
+    }
+
+    @Override
+    public Optional<Module> getListModule(String moduleCode) {
+        return getModuleList().getListModule(moduleCode);
+    }
+
+    @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredModuleList;
 
