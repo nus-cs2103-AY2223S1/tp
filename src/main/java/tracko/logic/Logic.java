@@ -35,6 +35,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of orders */
     ObservableList<Order> getFilteredOrderList();
 
+    /** Returns an unmodifiable view of the sorted list of orders */
+    ObservableList<Order> getSortedOrderList();
+
     /** Returns an unmodifiable view of the list of items */
     ObservableList<Item> getFilteredItemList();
 
