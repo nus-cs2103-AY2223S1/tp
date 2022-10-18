@@ -1,9 +1,9 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.time.LocalDate;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
@@ -15,10 +15,6 @@ import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskCategoryType;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
-
-
-
-
 
 /**
  * Jackson-friendly version of {@link Task}.
