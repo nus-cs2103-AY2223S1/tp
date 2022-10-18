@@ -95,6 +95,9 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Appends new meeting to the {@code meetings} of the {@code Client} that we are building.
+     */
     public ClientBuilder withMeeting(Meeting meeting) {
         this.meetings.add(meeting);
         return this;

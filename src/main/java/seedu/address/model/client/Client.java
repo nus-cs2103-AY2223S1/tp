@@ -2,7 +2,12 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
@@ -76,7 +81,7 @@ public class Client {
 
     /**
      * Adds a meeting to the client's meeting list.
-     * @param meeting
+     * @param meeting the meeting to be added
      */
     public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
@@ -84,7 +89,7 @@ public class Client {
 
     /**
      * Removes a meeting from client's meeting list.
-     * @param meeting
+     * @param meeting the meeting to be removed
      */
     public void removeMeeting(Meeting meeting) {
         meetings.remove(meeting);
