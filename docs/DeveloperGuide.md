@@ -155,6 +155,55 @@ Classes used by multiple components are in the `taskbookbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Command History Navigation
+
+#### Proposed Implementation
+
+The proposed command history navigation mechanism is facilitated by `CommandHistoryManager`. It implements `CommandHistory`, stored internally as a `commandsHistoryList` and `commandsHistoryPointer`. Additionally, it implements the following operations:
+
+* `CommandHistory#getPreviousCommmand()` — Retrieves the previous command from its history.
+* `CommandHistory#getNextCommmand()` — Retrieves the next command from its history.
+* `CommandHistory#addCommand(String command)` — Adds a new command into its history.
+
+The methods will handle cases where the command history is empty, full and when there are no more previous or next commands to navigate to.
+
+`CommandBox` will store an instance of a `CommandHistoryManager`.
+
+* Set the `setOnKeyPressed` for the `commandTextField` to detect key presses "UP" and "DOWN" arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
+* Call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` when handling user input to save the user's input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
+
+Given below is an example usage scenario and how the command history mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. `CommandHistoryManager` will be initialized in `CommandBox`. The internal `commandsHistoryList` will be empty and the `commandsHistoryPointer` will point to the `0`th element.
+
+Step 2. The user executes a few commands. It does not matter if these commands are invalid. Each of these inputs will fire `CommandHistory#addCommand` once with their respective command texts.
+
+Step 3. The user decides to navigate to a previous command by clicking the "UP" arrow key. `CommandHistory#getPreviousCommmand()` will be called.
+
+Step 4. The user decides to navigate to a next command by clicking the "DOWN" arrow key. `CommandHistory#getNextCommmand()` will be called.
+
+#### Design considerations:
+
+**Aspect: Saving invalid commands:**
+
+* **Alternative 1 (current choice):** Invalid commands are saved in the command history.
+    * Pros: Allows the user to navigate to an invalid command and modify it, before re-executing it.
+    * Cons: May clutter the command history.
+
+* **Alternative 2:** Invalid commands are not saved in the command history, only valid commands are saved.
+    * Pros: Will use less memory.
+    * Cons: Does not allow the user to modify an incorrect command.
+
+**Aspect: Saving empty commands:**
+
+* **Current choice:** Empty commands are not saved in the command history.
+    * Rationale: Does not clutter the command history.
+
+**Aspect: How many commands to be supported:**
+
+* **Current choice:** 1000 commands.
+    * Rationale: To keep memory usage low, minimise the number of commands saved in the history. 1000 commands is a reasonably large enough number of commands to store and is sufficient for even advanced users.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -233,12 +282,15 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+**Aspect: How many undo operations to be supported:**
 
-### \[Proposed\] Data archiving
+* **Current choice:** 15 commands.
+  * Rationale: With the current choice of execution, would have to store `x` copies of the task book for `x` operations supported. Thus, the number of operations is kept low to ensure that memory usage remains low.
 
-_{Explain here how the data archiving feature will be implemented}_
+**Aspect: How many redo operations to be supported:**
 
+* **Current choice:** 15 commands.
+    * Rationale: Since the current choice of undo operations to be supported is 15, the number of redo operations supported is also 15.
 
 --------------------------------------------------------------------------------------------------------------------
 
