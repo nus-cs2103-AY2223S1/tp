@@ -21,7 +21,7 @@ public class SampleDataUtil {
         return new Guest[]{
             new Guest(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Room("05-73"), new DateRange("13/09/22 - 15/09/22"), new NumberOfGuests("1"),
-                    new IsRoomClean("yes"), new Bill()new Request()),
+                    new IsRoomClean("yes"), new Bill(), new Request()),
             new Guest(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Room("06-84"), new DateRange("01/01/23 - 07/01/23"), new NumberOfGuests("4"),
                     new IsRoomClean("no"), new Bill("10"), new Request("hi")),

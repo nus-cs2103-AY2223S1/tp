@@ -109,7 +109,7 @@ public class EditCommand extends Command {
 
         Bill updatedBill = guestToEdit.getBill();
         Request updatedRequest = guestToEdit.getRequest();
-        return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange,
+        return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
                 updatedNumberOfGuests, updatedIsRoomClean, updatedBill, updatedRequest);
     }
 

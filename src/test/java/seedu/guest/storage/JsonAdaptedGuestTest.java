@@ -191,7 +191,7 @@ public class JsonAdaptedGuestTest {
 
     @Test
     public void toModelType_nullRequest_throwsIllegalValueException() {
-        JsonAdaptedGuest guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOM
+        JsonAdaptedGuest guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ROOM,
                 VALID_DATE_RANGE, VALID_NUMBER_OF_GUESTS, VALID_IS_ROOM_CLEAN, VALID_BILL, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Request.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
