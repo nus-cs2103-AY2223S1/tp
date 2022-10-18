@@ -39,6 +39,10 @@ task coverage(type: JacocoReport) {
         xml.required = true
     }
 }
+run {
+    enableAssertions = true
+}
+
 
 dependencies {
     String jUnitVersion = '5.4.0'
