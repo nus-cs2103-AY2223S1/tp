@@ -179,14 +179,11 @@ The above methods are also exposed to the `Model` interface.
 
 The `Logic` component calls these methods in `Model` to execute commands that require access to the state of the focus mode.
 
-For example, the following sequence diagram shows how the `focus` command activates focus mode:
+For example, the following sequence diagram shows how the `focus` command activates focus mode with the `CS1101S` module class:
 
 <img src="images/FocusCommandSequenceDiagram.png" width="550" />
 
-The call to `ModelManager#hasModuleClass` is necessary to ensure that the `ModuleClass` to focus exists before passing it as an
-argument to `ModelManager#enterFocusMode`.
-
-On the other hand, the `unfocus` command deactivates focus mode.
+On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
 
 --------------------------------------------------------------------------------------------------------------------
 
