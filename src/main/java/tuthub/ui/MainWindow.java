@@ -163,14 +163,14 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-     /**
-     * Displays a panel containing tutor details
-     */
-     private void handleView(Tutor tutor) {
+    /**
+    * Displays a panel containing tutor details
+    */
+    private void handleView(Tutor tutor) {
         tutorDetailsPanelPlaceholder.getChildren().clear();
         tutorDetailsPanelPlaceholder.getChildren().add(new TutorDetailsPanel(tutor).getRoot());
         tutorDetailsPanelPlaceholder.setVisible(true);
-     }
+    }
 
     void show() {
         primaryStage.show();
