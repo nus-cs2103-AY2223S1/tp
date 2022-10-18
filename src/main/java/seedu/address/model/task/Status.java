@@ -15,7 +15,7 @@ public class Status {
     private static final String completedString = "true";
     private static final String incompleteString = "false";
 
-    private boolean isComplete;
+    private final boolean isComplete;
 
     /**
      * Constructs a new Status with a boolean parameter. Every field must be present and not null.
@@ -68,8 +68,7 @@ public class Status {
 
     @Override
     public int hashCode() {
-        Boolean b = isComplete;
-        return b.hashCode();
+        return Boolean.hashCode(this.isComplete);
     }
 
 }
