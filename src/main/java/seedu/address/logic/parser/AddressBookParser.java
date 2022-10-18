@@ -15,6 +15,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTeamCommand;
 import seedu.address.logic.commands.DisplayUserCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditTeamCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -54,6 +55,9 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+
+        case EditTeamCommand.COMMAND_WORD:
+            return new EditTeamCommandParser().parse(arguments);
 
         case UnAssignMemberCommand.COMMAND_WORD:
             return new UnAssignMemberParser().parse(arguments);

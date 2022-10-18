@@ -146,6 +146,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         team.removeMember(person);
     }
 
+    public void setTeamName(Index targetIndex, seedu.address.model.team.Name newTeamName) {
+        requireNonNull(newTeamName);
+        teams.setTeamName(targetIndex.getZeroBased(), newTeamName);
+    }
+
     //// task-level operations
 
     public void addTask(Index index, Task task) {

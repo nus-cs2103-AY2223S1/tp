@@ -18,7 +18,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class Team {
 
     // Identity fields
-    private final Name name;
+    private Name name;
     private UniquePersonList members = new UniquePersonList();
     private UniqueTaskList tasks = new UniqueTaskList();
 
@@ -46,6 +46,10 @@ public class Team {
 
     public Name getName() {
         return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
     }
 
     public UniqueTaskList getTasks() {
