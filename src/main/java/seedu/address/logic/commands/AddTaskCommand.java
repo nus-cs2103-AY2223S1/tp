@@ -1,14 +1,17 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.task.Task;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
-public class AddTaskCommand extends Command{
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.task.Task;
+
+/**
+ * Adds a task to the task list in HR Pro Max++.
+ */
+public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addtask";
 

@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represent a task mark in HR PRO Max++.
+ */
 public class TaskMark {
     public static final String MESSAGE_CONSTRAINTS =
             "Task can only be marked as true for completed or false for not completed";
@@ -14,6 +17,11 @@ public class TaskMark {
 
     public final String taskMark;
 
+    /**
+     * Constructs a {@code Mark}.
+     *
+     * @param taskMark A valid description.
+     */
     public TaskMark(String taskMark) {
         requireNonNull(taskMark);
         checkArgument(isValidTaskMark(taskMark), MESSAGE_CONSTRAINTS);

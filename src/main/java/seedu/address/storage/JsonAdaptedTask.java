@@ -64,7 +64,7 @@ public class JsonAdaptedTask {
         }
         final TaskDescription modelTaskDescription = new TaskDescription(taskDescription);
 
-        if(taskMark == null) {
+        if (taskMark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskMark.class.getSimpleName()));
         }
