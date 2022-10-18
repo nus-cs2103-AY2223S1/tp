@@ -5,8 +5,8 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.student.Student;
 
 /**
@@ -27,7 +27,7 @@ public class StudentListCard extends UiPart<Region> {
     public final Student student;
 
     @FXML
-    private HBox cardPane;
+    private VBox cardPane;
     @FXML
     private Label name;
     @FXML
@@ -37,7 +37,7 @@ public class StudentListCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane tags; // Contains Label objects.
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -45,11 +45,12 @@ public class StudentListCard extends UiPart<Region> {
     public StudentListCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
-        id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        email.setText(student.getEmail().value);
-        student.getTags().stream()
+        id.setText(displayedIndex + ".");
+        name.setText(this.student.getName().fullName);
+        phone.setText(this.student.getPhone().value);
+        email.setText(this.student.getEmail().value);
+
+        this.student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
