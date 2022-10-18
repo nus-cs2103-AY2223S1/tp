@@ -16,7 +16,7 @@ public abstract class FindIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-f";
     public static final String MESSAGE_SUCCESS = "Filtered list of issues shown.";
-    private static final String MESSAGE_ISSUE_NOT_FOUND = "Ab issue matching requirements not found.";
+    private static final String MESSAGE_ISSUE_NOT_FOUND = "An issue matching requirements not found.";
 
     public static final String MESSAGE_FIND_ISSUE_USAGE = COMMAND_WORD + ": Finds and filters issues by keyword " +
             "from the " +
