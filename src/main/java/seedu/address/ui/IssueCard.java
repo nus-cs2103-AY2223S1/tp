@@ -35,6 +35,8 @@ public class IssueCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private Label project;
+    @FXML
+    private Label status;
 
     /**
      * Creates a {@code IssueCard} with the given {@code Issue} and index to display.
@@ -46,6 +48,7 @@ public class IssueCard extends UiPart<Region> {
         deadline.setText(issue.getDeadline().uiRepresentation());
         priority.setText(issue.getPriority().uiRepresentation());
         project.setText("Project: " + issue.getProject().toString());
+        status.setText(issue.getStatus().uiRepresentation());
     }
 
     @Override

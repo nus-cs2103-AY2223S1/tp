@@ -28,7 +28,9 @@ public class EditProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-e";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a project in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+            + ": Edits a project in the address book. "
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_NAME + "NAME "

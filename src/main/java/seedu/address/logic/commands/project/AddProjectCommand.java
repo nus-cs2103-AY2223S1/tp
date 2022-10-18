@@ -22,7 +22,9 @@ public class AddProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-a";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+            + ": Adds a project to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_ID + "CLIENT_ID "
