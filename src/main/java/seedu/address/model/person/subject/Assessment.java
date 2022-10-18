@@ -7,20 +7,26 @@ public class Assessment {
     public static final String MESSAGE_CONSTRAINTS =
         "Assessment name should only contain letters and numbers, and it should not be blank";
 
+    // Checks for alphanumeric characters and includes spaces after the first word.
+    // Also accepts dots and underscores.
+    public static final String VALIDATION_REGEX = "([\\w.]+\\s*)+";
+
     private String assessmentName;
     private double assessmentWeightage;
     private double assessmentScore;
+    private double assessmentTotalScore;
 
-    public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore) {
+    public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore,
+        double assessmentTotalScore) {
         checkArgument(isValidAssessment(assessmentName), MESSAGE_CONSTRAINTS);
         this.assessmentName = assessmentName;
         this.assessmentWeightage = assessmentWeightage;
         this.assessmentScore = assessmentScore;
+        this.assessmentTotalScore = assessmentTotalScore;
     }
 
     public static boolean isValidAssessment(String test) {
-        // TODO: replace with valid regex check that checks for alphanumeric characters
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
     public String getAssessmentName() {
@@ -33,6 +39,10 @@ public class Assessment {
 
     public double getAssessmentScore() {
         return assessmentScore;
+    }
+
+    public double getAssessmentTotalScore() {
+        return assessmentTotalScore;
     }
 
     public double[] getScoreArray() {
@@ -51,8 +61,13 @@ public class Assessment {
         this.assessmentScore = assessmentScore;
     }
 
+    public void setAssessmentTotalScore(double assessmentTotalScore) {
+        this.assessmentTotalScore = assessmentTotalScore;
+    }
+
     @Override
     public String toString() {
-        return assessmentName + " " + assessmentWeightage + " " + assessmentScore;
+        return "ASSESSMENT NAME: " + assessmentName + "\nWEIGHTAGE: " + assessmentWeightage
+            + "\nSTUDENT SCORE: " + assessmentScore + "\nTOTAL SCORE: " + assessmentTotalScore;
     }
 }
