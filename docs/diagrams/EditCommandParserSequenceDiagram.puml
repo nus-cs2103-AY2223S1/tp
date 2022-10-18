@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+title User executes edit supplier command
+
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":EditCommandParser" as editParser MODEL_COLOR
+Participant ":ArgumentTokenizer" as tokenizer UTIL_COLOR
+Participant ":EditPersonDescriptor" as descriptor STORAGE_COLOR
+Participant ":EditCommand" as editCommand LOGIC_COLOR
+
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("edit 2\nn/NewName")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> editParser : parse(old, new)
+activate editParser MODEL_COLOR
+
+editParser -[MODEL_COLOR]> tokenizer : tokenize(args)
+activate tokenizer UTIL_COLOR
+
+tokenizer -[UTIL_COLOR]-> editParser : argMultimap
+deactivate tokenizer UTIL_COLOR
+
+create descriptor
+editParser -[MODEL_COLOR]> descriptor : EditPersonDescriptor()
+activate descriptor STORAGE_COLOR
+descriptor -[STORAGE_COLOR]-> editParser : editPersonDescriptor
+deactivate descriptor STORAGE_COLOR
+
+editParser -[MODEL_COLOR]> descriptor : setName(NewName)
+activate descriptor STORAGE_COLOR
+descriptor -[STORAGE_COLOR]-> editParser
+deactivate descriptor STORAGE_COLOR
+
+create editCommand
+editParser -[MODEL_COLOR]> editCommand : EditCommand(index, editPersonDescriptor)
+activate editCommand LOGIC_COLOR
+editCommand -[LOGIC_COLOR]-> editParser
+deactivate editCommand LOGIC_COLOR
+
+editParser -[MODEL_COLOR]-> logic
+deactivate editParser
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+@enduml

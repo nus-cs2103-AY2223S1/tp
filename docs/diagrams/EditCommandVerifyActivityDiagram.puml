@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/activity-diagram-legacy
+title Validity check process for edited supplier details
+(*) --> "EditCommand is executed"
+--> Person List is retrieved
+--> Check validity of specified index
+if "" then
+    -left->[index smaller than\nsize of Person List] "Retrieve Person at specified index"
+    -down->"Create new Person with edited fields"
+    -down->"Check for uniqueness in Person List"
+    if "" then
+        -left->[An existing Person has same \n name/phone as edited Person] "Throw CommandException"
+    else
+        -right>[else]"Replace retrieved Person with edited Person"
+        --> (*)
+    endif
+else
+    -down>[else]"Throw CommandException"
+endif
+
+--> (*)
+
+@enduml
