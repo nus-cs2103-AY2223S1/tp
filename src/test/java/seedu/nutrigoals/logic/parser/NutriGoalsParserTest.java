@@ -22,6 +22,7 @@ import seedu.nutrigoals.logic.commands.ExitCommand;
 import seedu.nutrigoals.logic.commands.FindCommand;
 import seedu.nutrigoals.logic.commands.HelpCommand;
 import seedu.nutrigoals.logic.commands.ListCommand;
+import seedu.nutrigoals.logic.commands.ProfileCommand;
 import seedu.nutrigoals.logic.commands.ReviewCommand;
 import seedu.nutrigoals.logic.commands.SetupCommand;
 import seedu.nutrigoals.logic.commands.SuggestCommand;
@@ -125,5 +126,10 @@ public class NutriGoalsParserTest {
     public void parseCommand_suggest() throws Exception {
         assertTrue(parser.parseCommand(SuggestCommand.COMMAND_WORD) instanceof SuggestCommand);
         assertThrows(ParseException.class, () -> parser.parseCommand(SuggestCommand.COMMAND_WORD + "blah"));
+    }
+
+    @Test
+    public void parseCommand_profile() throws Exception {
+        assertTrue(parser.parseCommand(ProfileCommand.COMMAND_WORD) instanceof ProfileCommand);
     }
 }

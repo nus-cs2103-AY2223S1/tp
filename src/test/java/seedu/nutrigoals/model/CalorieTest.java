@@ -32,6 +32,7 @@ class CalorieTest {
         assertEquals(new Calorie("1000"), new Calorie("1000"));
         assertEquals(new Calorie("100"), new Calorie("100"));
         assertNotEquals(new Calorie("100"), new Calorie("10"));
-        assertNotEquals(new Tag("breakfast"), new Calorie());
+        assertFalse(new Calorie().equals(new Tag("breakfast")));
+        assertFalse(new Calorie().equals(null));
     }
 }

@@ -33,7 +33,7 @@ public class SetupCommand extends Command {
             + PREFIX_IDEAL_WEIGHT + "65 "
             + PREFIX_AGE + "20";
 
-    public static final String MESSAGE_SUCCESS = "Successfully set up user profile";
+    public static final String MESSAGE_SUCCESS = "Successfully set up user profile\n %s";
 
     private final User user;
 

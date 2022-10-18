@@ -39,7 +39,6 @@ public class EditCommand extends Command {
             + PREFIX_NAME + "Bread "
             + PREFIX_CALORIE + "150";
 
-    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the nutrition tracker.";
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
@@ -69,10 +68,6 @@ public class EditCommand extends Command {
 
         Food foodToEdit = lastShownList.get(index.getZeroBased());
         Food editedFood = createEditedFood(foodToEdit, editFoodDescriptor);
-
-        if (!foodToEdit.isSameFood(editedFood) && model.hasFood(editedFood)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FOOD);
-        }
 
         model.setFood(foodToEdit, editedFood);
         model.updateFilteredFoodList(model.getDatePredicate());

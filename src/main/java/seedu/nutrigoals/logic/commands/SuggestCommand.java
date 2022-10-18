@@ -12,10 +12,15 @@ public class SuggestCommand extends Command {
     public static final String COMMAND_WORD = "suggest";
     public static final String MESSAGE_SUGGEST_DETAILS = "Your suggested daily calorie intake to achieve "
             + "your ideal weight is: %1$s";
+    public static final String MESSAGE_NO_PROFILE_CREATED = "Please set up your profile before proceeding!";
 
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (!model.isUserCreated()) {
+            throw new CommandException(MESSAGE_NO_PROFILE_CREATED);
+        }
+
         Calorie suggestedCalorieIntake = model.calculateSuggestedCalorie();
         return new CommandResult(String.format(MESSAGE_SUGGEST_DETAILS, suggestedCalorieIntake));
     }

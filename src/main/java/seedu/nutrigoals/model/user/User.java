@@ -5,7 +5,7 @@ import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.nutrigoals.model.Calorie;
 
 /**
- * Represents a user object
+ * Represents the user of NutriGoals
  */
 public class User {
 
@@ -23,7 +23,7 @@ public class User {
     private final Weight idealWeight;
     private final Gender gender;
     private final Age age;
-
+    private final Bmi bmi;
 
     /**
      * Initialises a user object with given parameters
@@ -41,6 +41,7 @@ public class User {
         this.idealWeight = idealWeight;
         this.gender = gender;
         this.age = age;
+        bmi = new Bmi(height, weight);
     }
 
     /**
@@ -52,6 +53,7 @@ public class User {
         this.idealWeight = new Weight();
         this.gender = new Gender();
         this.age = new Age();
+        bmi = new Bmi(height, weight);
     }
 
     public Weight getWeight() {
@@ -85,6 +87,14 @@ public class User {
         return new Calorie(calorie);
     }
 
+    public Bmi getBmi() {
+        return bmi;
+    }
+
+    public boolean isUserCreated() {
+        return !height.isZero() && !weight.isZero();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -97,7 +107,7 @@ public class User {
         User u = (User) other;
         return (this.weight.equals(u.weight) && this.height.equals(u.height)
                 && this.idealWeight.equals(u.idealWeight) && this.gender.equals(u.gender))
-                && this.age.equals(u.age);
+                && this.age.equals(u.age) && this.bmi.equals(u.bmi);
     }
 
     private double calculateBmr() {
@@ -114,5 +124,21 @@ public class User {
                     + (FEMALE_HEIGHT_COEFFICIENT * h)
                     - (FEMALE_AGE_COEFFICIENT * a);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("\n");
+        stringBuilder.append("Gender: ")
+                .append(getGender())
+                .append("\nCurrent Height: ")
+                .append(getHeight())
+                .append("\nCurrent Weight: ")
+                .append(getWeight())
+                .append("\nIdeal Weight: ")
+                .append(getIdealWeight())
+                .append("\nBMI: ")
+                .append(getBmi());
+        return stringBuilder.toString();
     }
 }
