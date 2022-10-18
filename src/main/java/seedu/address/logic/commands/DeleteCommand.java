@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_MULTIPLE_DELETE_USAGE = COMMAND_WORD
             + ": Deletes the multiple client identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer) separated by commas\n"
+            + "Parameters: INDEX (must be a positive integer) separated by commas and cannot have repeated indexes\n"
             + "Example: " + COMMAND_WORD + " 1, 2, 4";
 
     public static final String MESSAGE_RANGE_DELETE_USAGE = COMMAND_WORD
@@ -118,7 +118,11 @@ public class DeleteCommand extends Command {
             }
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             model.deletePerson(personToDelete);
-            output = output + String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete) + "\n";
+            if (i != indexList.size() - 1) {
+                output = output + String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete) + "\n";
+            } else {
+                output = output + String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+            }
         }
         return new CommandResult(output);
     }

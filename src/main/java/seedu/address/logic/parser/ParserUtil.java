@@ -30,7 +30,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    public static final String MESSAGE_INVALID_REPEATED_INDEX = "Index cannot be repeated";
     public static final String MESSAGE_INVALID_RANGE_INDEX =
             "Range index should be in the form of startIndex - endIndex, where startIndex < endIndex";
 
@@ -68,7 +68,25 @@ public class ParserUtil {
             indexList.add(Index.fromOneBased(Integer.parseInt(trimmedIndex)));
         }
         Collections.sort(indexList);
+        if (hasRepeatedIndex(indexList)) {
+            throw new ParseException(MESSAGE_INVALID_REPEATED_INDEX);
+        }
+
         return indexList;
+    }
+
+    /**
+     * Checks if list contains repeated indexes in a descending list.
+     * @param index of client to be deleted.
+     * @return true if there is not duplicated index, false otherwise.
+     */
+    public static boolean hasRepeatedIndex(List<Index> index) {
+        for (int i = 1; i < index.size(); i++) {
+            if (index.get(i - 1).equals(index.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
