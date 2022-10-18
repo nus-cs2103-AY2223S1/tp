@@ -238,6 +238,64 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Implemented\] Book feature
+
+#### Implementation
+
+The `AddressBookParser` class checks for the `book` command word to begin. The book mechanism is facilitated by the `BookCommandParser` and `BookCommand` classes. The `BookCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and 3 string values. The 3 string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted the 3 prefixes supported by this feature.
+
+The 3 prefixes are:
+* `r/` for reason
+* `d/` for dateTime
+* `pe/` for recurring time period (optional)
+
+After retrieving the string values, the `BookCommandParser` uses the `ParserUtil` class to convert these values and create an `Appointment` object. A `BookCommand` object will be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds
+the `Appointment` object to the person's list of appointments.
+
+The newly added `Appointment` object will also be saved in the JSON file through the usage of a Jackson-friendly class `JsonAdaptedAppointment`.
+
+Given below are some example usage scenarios and how the book feature behaves in each scenario.
+
+Scenario 1: User inputs an empty reason in the `r/` prefix.
+
+The `ParserUtil` class will detect that the given reason is empty and throws a `CommandException`, which will feedback to the user that he has given an invalid reason.
+
+Scenario 2: User inputs an invalid dateTime in the `d/` prefix, such as `2022-15-10 14:00`.
+
+The `ParserUtil` class will detect that the given dateTime is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid dateTime.
+
+Scenario 3: User inputs an invalid recurring time period in the `pe/` prefix, such as `1S`.
+
+The `ParserUtil` class will detect that the given time period is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid time period.
+
+Scenario 4: User tries to book an appointment with the same time as other appointments of the same person.
+
+<img src="images/BookCommandObjectDiagram.png" width="450" />
+
+This object diagram illustrates the above scenario. As the specified person has already booked an appointmnet in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
+
+The following sequence diagram helps to provide a clearer picture to how the book operation works:
+
+![BookSequenceDiagram](images/BookSequenceDiagram.png)
+
+The following Class diagram shows how serializing `Appointment` objects into JSON format is done.
+
+<img src="images/BookCommandStorageClassDiagram.png" width="450" />
+
+`Appointment` objects are mapped to `JsonAdaptedAppointment` objects, so that they contain only relevant fields to store and works easier with Jackson.
+These objects are stored in a list field of the `JsonAdaptedPerson` and are stored together in a single JSON file, for easier retrival and assignment when starting up the application.
+
+#### Design Considerations:
+
+**Aspect: Where to assign Appointment objects:**
+
+* **Alternative 1 (current implementation):** Each person stores his own list of appointments, as well as the `UniqueAppointmentList` class storing the same objects.
+  * Pros: Easier to keep track of which appointments are associated to which person for other appointment related features.
+  * Cons: Must ensure both the person's appointments and `UniqueAppointmentList` appointments are equal, in edit/cancel/delete features.
+
+* **Alternative 2:** `Appointment` objects are stored only in the `UniqueAppointmentList` class.
+  * Pros: Easier to maintain as there's only one appointment object.
+  * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -292,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Add a Patient** 
+**Use Case: UC01 - Add a Patient**
 
 **Guarantees**: A patient contact is added into idENTify.
 
@@ -303,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
     Use case ends
-    
+
 
 **Extensions**
 

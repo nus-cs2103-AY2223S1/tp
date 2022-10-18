@@ -32,8 +32,8 @@
     }, {
         "reason" : "Sore Throat",
         "dateTime" : "2019-12-10 16:30",
-        "period" : "0Y0M0D",
-        "isMarked" : true
+        "period" : "1Y0M0D",
+        "isMarked" : false
     } ],
     "tagged" : [ ]
   }, {
