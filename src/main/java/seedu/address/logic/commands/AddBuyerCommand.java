@@ -12,7 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
-import seedu.address.model.pet.Pet;
 
 /**
  * Adds a buyer to the address book.
@@ -63,20 +62,13 @@ public class AddBuyerCommand extends AddPersonCommand {
         model.addBuyer(toAdd);
 
         int numOrdersAdded = 0;
-        int numPetsAdded = 0;
         for (Order order : toAdd.getOrders()) {
             model.addOrder(order);
             numOrdersAdded++;
-            Pet pet = order.getPet();
-            if (pet != null) {
-                model.addPet(pet);
-                numPetsAdded++;
-            }
         }
 
-        return new CommandResult("\n"
+        return new CommandResult("\n" //TODO To keep a single MESSAGE_SUCCESS
                 + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n"
-                + numPetsAdded + (numPetsAdded == 1 ? " pet" : " pets") + " added\n\n"
                 + String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 
 /**
  * Adds a supplier to the address book.
@@ -36,27 +36,25 @@ public class AddSupplierCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
     public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book";
 
-    private final Person toAdd;
+    private final Supplier toAdd;
 
     /**
      * Creates an AddSupplierCommand to add the specified {@code Supplier}.
      */
-    public AddSupplierCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddSupplierCommand(Supplier supplier) {
+        requireNonNull(supplier);
+        toAdd = supplier;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //TODO
-        //        if (model.hasPerson(toAdd)) {
-        //            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        //        }
-        //TODO
-        //        model.addPerson(toAdd);
-        //        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        return null;
+        if (model.hasSupplier(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
+        }
+
+        model.addSupplier(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

@@ -23,17 +23,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
- * Parses input arguments and creates a new AddPersonCommand object
+ * Parses input arguments and creates a new AddSupplierCommand object
  */
 public class AddSupplierCommandParser extends AddPersonCommandParser implements Parser<AddSupplierCommand> {
 
     public AddSupplierCommandParser() {
-
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
-     * and returns an AddPersonCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddSupplierCommand
+     * and returns an AddSupplierCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddSupplierCommand parse(String args) throws ParseException {
@@ -44,7 +43,7 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
-              TODO Replace the MESSAGE_USAGE
+            //TODO Replace the MESSAGE_USAGE
         }
 
         PersonCategory personCategory =
