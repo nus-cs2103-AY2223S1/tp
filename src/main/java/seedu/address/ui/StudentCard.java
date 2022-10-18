@@ -9,7 +9,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-
 import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Student;
 
@@ -70,7 +69,8 @@ public class StudentCard extends UiPart<Region> {
         helpTag.setText(HelpTag.HELP);
 
         //to be transferred to DarkTheme.css if possible
-        helpTag.setBackground(new Background(new BackgroundFill(Color.rgb(241, 65, 65), new CornerRadii(2), Insets.EMPTY)));
+        helpTag.setBackground(new Background(
+                new BackgroundFill(Color.rgb(241, 65, 65), new CornerRadii(2), Insets.EMPTY)));
         helpTag.setPadding(new Insets(1, 5, 1, 5));
     }
 
