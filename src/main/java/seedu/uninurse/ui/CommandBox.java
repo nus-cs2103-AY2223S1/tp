@@ -1,8 +1,12 @@
 package seedu.uninurse.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
@@ -17,7 +21,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-
+    private final CommandHistoryList history;
     @FXML
     private TextField commandTextField;
 
@@ -27,6 +31,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.history = new CommandHistoryList();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
@@ -44,8 +49,32 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            history.add(commandText);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Handles the Up and Down button pressed event.
+     */
+    @FXML
+    private void handleOnKeyPressed(KeyEvent keyEvent) {
+        System.out.println(keyEvent.getCode());
+        switch (keyEvent.getCode()) {
+        case UP:
+            if (history.handleUpKey()) {
+                commandTextField.setText(history.get());
+            }
+            break;
+        case DOWN:
+            if (history.handleDownKey()) {
+                commandTextField.setText(history.get());
+            }
+            break;
+        default:
+            // Default onKeyPress event
+            break;
         }
     }
 
@@ -80,6 +109,68 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.uninurse.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    /**
+     * The command history list.
+     */
+    private static final class CommandHistoryList {
+        private final int sizeLimit = 100;
+        private final List<String> history;
+        private int currentPointer;
+
+        /**
+         * Creates a {@code CommandHistoryList}.
+         */
+        public CommandHistoryList() {
+            history = new ArrayList<String>();
+            history.add("");
+            currentPointer = 0;
+        }
+
+        /**
+         * Adds a successful command to the history list, if the last command is a different one.
+         */
+        public void add(String command) {
+            if (history.size() < 2 || !history.get(history.size() - 2).equals(command)) {
+                // Update history only if the new command is different from the last one
+                history.set(history.size() - 1, command);
+                while (history.size() > sizeLimit) {
+                    history.remove(0);
+                }
+                history.add("");
+            }
+            currentPointer = history.size() - 1;
+        }
+
+        /**
+         * Handles the Up Key Button Pressed event.
+         */
+        public boolean handleUpKey() {
+            if (currentPointer == 0) {
+                return false;
+            }
+            currentPointer -= 1;
+            return true;
+        }
+
+        /**
+         * Handles the Down Key Button Pressed event.
+         */
+        public boolean handleDownKey() {
+            if (currentPointer + 1 == history.size()) {
+                return false;
+            }
+            currentPointer += 1;
+            return true;
+        }
+
+        /**
+         * Returns the command currently pointed to in the history list.
+         */
+        public String get() {
+            return history.get(currentPointer);
+        }
     }
 
 }
