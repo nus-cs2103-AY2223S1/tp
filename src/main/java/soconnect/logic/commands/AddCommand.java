@@ -34,8 +34,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the SoConnect";
-    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag does not exist, consider creating the tag first";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the SoConnect.";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag does not exist, consider creating the tag first.";
 
     private final Person toAdd;
 

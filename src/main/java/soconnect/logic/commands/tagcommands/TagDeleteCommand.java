@@ -25,7 +25,7 @@ public class TagDeleteCommand extends TagCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
-    public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist in SoConnect";
+    public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist in SoConnect.";
 
     private final Tag tag;
 

@@ -88,7 +88,7 @@ public class TagAddCommand extends TagCommand {
      * Recreates the same person with updated tags.
      */
     private static Person createEditedPerson(Person personToEdit, Tag tag) {
-        requireNonNull(personToEdit);
+        requireAllNonNull(personToEdit, tag);
 
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();

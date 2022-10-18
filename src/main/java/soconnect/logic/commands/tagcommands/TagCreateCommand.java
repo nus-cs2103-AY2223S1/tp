@@ -24,7 +24,7 @@ public class TagCreateCommand extends TagCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in SoConnect";
+    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in SoConnect.";
 
     private final Tag tag;
 
