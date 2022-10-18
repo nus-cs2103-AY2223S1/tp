@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,12 +17,14 @@ import javafx.stage.Stage;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.student.Student;
 
-import static java.util.Objects.requireNonNull;
+
 
 /**
  * Encapsulate the Image Storage of application.
  */
 public class ImageStorage {
+    public static final String IMAGE_CONSTRAINTS = "Picture should be in .jpg format.";
+
     private static final byte[] imageBytes = Base64.getDecoder().decode(
             "/9j/4AAQSkZJRgABAQAAAQABAAD//gAtQ29udmVydGVkIGZyb20"
             + "gIFdlYlAgdG8gSlBHIHVzaW5nIGV6Z2lmLmNvbf/bAEMABQMEBAQDBQQEBAUFBQYHDAgHBwcHDwsLCQwRDxISEQ8RERMWHBcTFBoVER"
@@ -73,7 +77,6 @@ public class ImageStorage {
 
     private static final Image defaultImage = new Image(new ByteArrayInputStream(imageBytes));
     private static Stage primaryStage;
-    public static final String IMAGE_CONSTRAINTS = "Picture should be in .jpg format.";
 
     private static String getImagePath(Student student) {
         return Paths.get(
