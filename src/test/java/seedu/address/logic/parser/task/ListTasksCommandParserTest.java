@@ -21,12 +21,12 @@ public class ListTasksCommandParserTest {
     @Test
     public void parse_validArgs_returnsAssignTaskCommand() {
         assertParseSuccess(parser, "  ", new ListTasksCommand(Optional.empty(), new HashSet<>()));
-        assertParseSuccess(parser, " n/hi", new ListTasksCommand(Optional.of("hi"), new HashSet<>()));
+        assertParseSuccess(parser, " ti/hi", new ListTasksCommand(Optional.of("hi"), new HashSet<>()));
 
         assertParseSuccess(parser, " c/1", new ListTasksCommand(Optional.empty(),
                 new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON))));
 
-        assertParseSuccess(parser, " n/hi c/1 c/2", new ListTasksCommand(Optional.of("hi"),
+        assertParseSuccess(parser, " ti/hi c/1 c/2", new ListTasksCommand(Optional.of("hi"),
                 new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))));
     }
 
