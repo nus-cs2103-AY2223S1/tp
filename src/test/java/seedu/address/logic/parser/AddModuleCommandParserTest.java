@@ -8,9 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_TITLE_DESC_CS2
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TITLE_DESC_MA2001;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_TITLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalModules.CS2106;
@@ -28,7 +28,7 @@ public class AddModuleCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Module expectedModule = new ModuleBuilder(MA2001).withModuleTitle(VALID_MA_MODULE_TITLE).build();
+        Module expectedModule = new ModuleBuilder(MA2001).withModuleTitle(VALID_MA2001_MODULE_TITLE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser,
@@ -62,10 +62,10 @@ public class AddModuleCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE);
 
         // missing module code prefix
-        assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
+        assertParseFailure(parser, VALID_CS2106_MODULE_CODE, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_CS_MODULE_CODE + VALID_CS_MODULE_TITLE, expectedMessage);
+        assertParseFailure(parser, VALID_CS2106_MODULE_CODE + VALID_CS2106_MODULE_TITLE, expectedMessage);
     }
 
     @Test
