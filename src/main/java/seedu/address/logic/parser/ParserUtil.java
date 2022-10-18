@@ -21,6 +21,7 @@ import seedu.address.model.person.Platform;
 import seedu.address.model.person.PlatformConverter;
 import seedu.address.model.person.Social;
 import seedu.address.model.person.TimeZone;
+import seedu.address.model.person.GameType;
 
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
