@@ -8,19 +8,18 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import io.swagger.annotations.Api;
-import nus.climods.model.module.exceptions.DetailedModuleRetrievalException;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ModulesApi;
 import org.openapitools.client.model.Lesson;
 import org.openapitools.client.model.ModuleInformationSemesterDataInner;
+
+import nus.climods.model.module.exceptions.DetailedModuleRetrievalException;
 
 /**
  * A wrapper class for <code>ModuleInformation</code>
  */
 public class Module {
 
-    private static final ModulesApi modulesApi = new ModulesApi();
     private static String currentAcademicYear;
     private final org.openapitools.client.model.ModuleInformation apiModuleInfo;
 
@@ -32,6 +31,7 @@ public class Module {
     private boolean isActive = false;
 
     private List<String> uniqueLessonTypes = List.of();
+
     public Module(org.openapitools.client.model.ModuleInformation apiModuleInfo) {
         this.apiModuleInfo = apiModuleInfo;
     }
@@ -39,6 +39,7 @@ public class Module {
     public static void setCurrentAcademicYear(String currAcademicYear) {
         currentAcademicYear = currAcademicYear;
     }
+
     /**
      * Returns the number of modular credits.
      * <p>
@@ -91,24 +92,26 @@ public class Module {
     public List<Integer> getSemesters() {
         List<ModuleInformationSemesterDataInner> apiSemesterData = apiModuleInfo.getSemesterData();
         return apiSemesterData.stream().map(ModuleInformationSemesterDataInner::getSemester).filter(Objects::nonNull)
-                .map(BigDecimal::intValue).collect(Collectors.toList());
+            .map(BigDecimal::intValue).collect(Collectors.toList());
     }
 
     /**
      * Retrieves detailed module only if not already retrieved (lazily)
+     *
      * @throws ApiException if error occured during API request
      */
     private void getDetailedModule() throws DetailedModuleRetrievalException {
         // TODO: replace with reading of stored detailed module JSON file
         try {
             if (detailedModule.isEmpty()) {
-                org.openapitools.client.model.Module module = modulesApi.acadYearModulesModuleCodeJsonGet(currentAcademicYear, this.getCode());
+                org.openapitools.client.model.Module module =
+                    ModulesApi.getInstance().acadYearModulesModuleCodeJsonGet(currentAcademicYear, this.getCode());
                 detailedModule = Optional.of(module);
             }
         } catch (ApiException apiException) {
             throw new DetailedModuleRetrievalException(
-                    String.format("Problem retrieving detailed module information for %s", this.getCode()),
-                    apiException);
+                String.format("Problem retrieving detailed module information for %s", this.getCode()),
+                apiException);
         }
     }
 
@@ -118,11 +121,12 @@ public class Module {
      */
     private void retrieveUniqueLessonTypes() {
         uniqueLessonTypes = detailedModule.stream()
-                .flatMap(mod -> mod.getSemesterData().stream().findAny().stream())
-                .flatMap(semData -> semData.getTimetable().stream().map(Lesson::getLessonType))
-                .distinct()
-                .collect(Collectors.toList());
+            .flatMap(mod -> mod.getSemesterData().stream().findAny().stream())
+            .flatMap(semData -> semData.getTimetable().stream().map(Lesson::getLessonType))
+            .distinct()
+            .collect(Collectors.toList());
     }
+
     public List<String> getUniqueLessonTypes() {
         return uniqueLessonTypes;
     }
