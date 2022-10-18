@@ -141,7 +141,7 @@ public class SoConnect implements ReadOnlySoConnect {
      */
     public boolean areTagsAvailable(Person person) {
         List<Tag> personTags = new ArrayList<>(person.getTags());
-        return tags.containsALL(personTags);
+        return tags.containsAll(personTags);
     }
 
     /**

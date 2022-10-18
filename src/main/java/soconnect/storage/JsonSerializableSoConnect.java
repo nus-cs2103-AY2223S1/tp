@@ -86,7 +86,7 @@ class JsonSerializableSoConnect {
      * @param tagList The tagList for tag comparison.
      * @throws IllegalValueException If there were any data constraints violated.
      */
-    public static void matchTags(SoConnect soConnect,  Person person, List<Tag> tagList) throws IllegalValueException {
+    public static void matchTags(SoConnect soConnect, Person person, List<Tag> tagList) throws IllegalValueException {
         List<Tag> personTags = new ArrayList<>(person.getTags());
         for (int i = 0; i < personTags.size(); i++) {
             if (!soConnect.hasTag(personTags.get(i))) {

@@ -61,7 +61,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * @param list The tag list from the contact.
      * @return True if the tagList has all the tags from the contact. False if otherwise.
      */
-    public boolean containsALL(List<Tag> list) {
+    public boolean containsAll(List<Tag> list) {
         return tagArrayList.containsAll(list);
     }
 
