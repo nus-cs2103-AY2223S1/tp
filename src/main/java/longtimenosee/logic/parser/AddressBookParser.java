@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import longtimenosee.logic.commands.AddCommand;
-import longtimenosee.logic.commands.AddPolicyCommand;
 import longtimenosee.logic.commands.ClearCommand;
 import longtimenosee.logic.commands.Command;
 import longtimenosee.logic.commands.DeleteCommand;
@@ -18,7 +17,10 @@ import longtimenosee.logic.commands.HelpCommand;
 import longtimenosee.logic.commands.ListCommand;
 import longtimenosee.logic.commands.PersonCommand;
 import longtimenosee.logic.commands.PinCommand;
+import longtimenosee.logic.commands.PolicyAddCommand;
 import longtimenosee.logic.commands.PolicyCommand;
+import longtimenosee.logic.commands.PolicyDeleteCommand;
+import longtimenosee.logic.commands.PolicyListCommand;
 import longtimenosee.logic.commands.SortCommand;
 import longtimenosee.logic.commands.ViewPinCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
@@ -79,11 +81,18 @@ public class AddressBookParser {
 
         case PinCommand.COMMAND_WORD:
             return new PinCommandParser().parse(arguments);
+
         case SortCommand.COMMAND_WORD:
             return new SortCommand(arguments.trim());
 
-        case AddPolicyCommand.COMMAND_WORD:
-            return new AddPolicyCommandParser().parse(arguments);
+        case PolicyAddCommand.COMMAND_WORD:
+            return new PolicyAddCommandParser().parse(arguments);
+
+        case PolicyDeleteCommand.COMMAND_WORD:
+            return new PolicyDeleteCommandParser().parse(arguments);
+
+        case PolicyListCommand.COMMAND_WORD:
+            return new PolicyListCommand();
 
         case PolicyCommand.COMMAND_WORD:
             return new PolicyCommand();
