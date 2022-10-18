@@ -55,8 +55,8 @@ public class AddStuCommandTest {
 
     @Test
     public void equals() {
-        Student alice = (Student) new StudentBuilder().withName("Alice").build();
-        Student bob = (Student) new StudentBuilder().withName("Bob").build();
+        Student alice = new StudentBuilder().withName("Alice").build();
+        Student bob = new StudentBuilder().withName("Bob").build();
         AddStuCommand addAliceCommand = new AddStuCommand(alice);
         AddStuCommand addBobCommand = new AddStuCommand(bob);
 
