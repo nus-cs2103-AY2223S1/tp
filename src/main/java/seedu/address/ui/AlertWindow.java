@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
 /**
@@ -14,10 +16,15 @@ public class AlertWindow {
      * @param  message prompted to user
      */
     public boolean display(String message) {
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.CLOSE, ButtonType.APPLY);
+        ButtonType closeButtonType = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType actionButtonType = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, message, closeButtonType, actionButtonType);
+        // Add CSS ID
+        Node closeButton = confirmationAlert.getDialogPane().lookupButton(closeButtonType);
+        closeButton.setId("closeBtn");
         confirmationAlert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
         confirmationAlert.showAndWait()
-                .filter(response -> response == ButtonType.APPLY)
+                .filter(response -> response.getButtonData() == ButtonBar.ButtonData.YES)
                 .ifPresent(response ->
                         setIsConfirmed());
         return isConfirmed;
