@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import seedu.address.model.task.exceptions.DatePastException;
 
@@ -12,6 +13,8 @@ import seedu.address.model.task.exceptions.DatePastException;
  * Represents the deadline of a task
  */
 public class TaskDeadline {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Date should be in YYYY-MM-DD format";
     private final LocalDate deadline;
 
     /**
@@ -69,4 +72,19 @@ public class TaskDeadline {
                 && ((TaskDeadline) other).deadline.equals(this.deadline));
     }
 
+    /**
+     * Returns true if deadline is valid.
+     *
+     * @param test String to test.
+     * @return Whether the String is a valid deadline.
+     */
+    public static boolean isValidTaskDeadline(String test) {
+        Boolean errorHappened = false;
+        try {
+            LocalDate value = LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            errorHappened = true;
+        }
+        return !errorHappened;
+    }
 }
