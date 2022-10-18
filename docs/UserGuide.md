@@ -3,9 +3,7 @@ layout: page
 title: User Guide
 ---
 
-DevEnable is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while 
-still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your contact 
-management tasks done faster than traditional GUI apps.
+DevEnable is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -20,10 +18,9 @@ management tasks done faster than traditional GUI apps.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your DevEnable.
 
-4. Double-click the file to start the app. 
+4. Double-click the file to start the app.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
-open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all projects.
@@ -54,15 +51,12 @@ open the help window.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/client`, `t/client t/deadline` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, 
-  `client -t PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [p/CLIENT_CONTACT_NUMBER]` are both acceptable.
+  e.g. if the command specifies `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, `client -t PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [p/CLIENT_CONTACT_NUMBER]` are both acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
-  of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) 
-  will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -134,10 +128,8 @@ Format: `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_
 
 Examples:
 *  `client -t 1 n/Amy` Tags the project with `PROJECT_ID` 1 with a client with `CLIENT_NAME` Amy.
-*  `client -t 2 n/Bob p/91234567` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Bob and 
-   `CLIENT_CONTACT_NUMBER` 91234567.
-*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 3 with a client with `CLIENT_NAME` 
-    Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -t 2 n/Bob p/91234567` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Bob and `CLIENT_CONTACT_NUMBER` 91234567.
+*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 3 with a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
 *  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com
 
 ### Editing a client : `client -e`
@@ -152,10 +144,8 @@ Format: `client -e i/PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIEN
 
 Examples:
 *  `client -e 1 n/Amy` Edits the client tagged to project with `PROJECT_ID` 1 with new `CLIENT_NAME` Amy.
-*  `client -e 2 n/Bob p/91234567` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Amy 
-   and `CLIENT_CONTACT_NUMBER` 91234567.
-*  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new 
-   `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -e 2 n/Bob p/91234567` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Amy and `CLIENT_CONTACT_NUMBER` 91234567.
+*  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
 *  `client -e 2 n/Dave p/91111111 e/dave@gmail.com` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com.
 
 ### Deleting a client : `client -d`
@@ -213,17 +203,14 @@ Format: `clear`
 
 ### Saving the data
 
-DevEnable data are saved in the hard disk automatically after any command that changes the data. There is no need to 
-save manually.
+DevEnable data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-DevEnable data are saved as a txt file `[JAR file location]/data/devenable.txt`. Advanced users are welcome to 
-update data directly by editing that data file.
+DevEnable data are saved as a txt file `[JAR file location]/data/devenable.txt`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, DevEnable will discard all data and start with an empty data 
-file at the next run.
+If your changes to the data file makes its format invalid, DevEnable will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -235,8 +222,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
-the data of your previous DevEnable home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DevEnable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
