@@ -33,8 +33,7 @@ public class StringUtil {
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
@@ -55,12 +54,52 @@ public class StringUtil {
     public static boolean containsKeywordsIgnoreCase(String sentence, String keywords) {
         requireAllNonNull(sentence, keywords);
 
-        List<String> preppedKeywords = Arrays.asList(keywords.toUpperCase().trim().split("\\s+"));
+        String preppedWord = keywords.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().split("\\s+"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
 
         List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("\\s+"));
 
         return wordsInPreppedSentence.containsAll(preppedKeywords);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains some of the {@code keywords}.
+     *   Ignores case and order, but full keywords match is not required.
+     *   In the event of not match, decrease the keywords size by one-fourth.
+     *
+     *   Matching algorithm:
+     *   1. Matches all occurrences of characters in {@code keywords} to {@code sentence}.
+     *      Returns true if full match is found, despite incorrect ordering
+     *      or unequal number of duplicate characters {@code keywords}.
+     *   2. If (1) returns false, decrease the number of characters in {@code keywords} needed to be matched by 25%.
+     *   3. Repeat from (1) with new {@code keywords} generated from (2).
+     *
+     *   <br>examples:<pre>
+     *       containsWordIgnoreCase("ABc def", "abc") == true
+     *       containsWordIgnoreCase("ABc def", "abc DEF") == true
+     *       containsWordIgnoreCase("ABc def", "AB") == true //not a full word match
+     *       </pre>
+     *
+     * @param sentence Cannot be null.
+     * @param keywords Cannot be null, cannot be empty, can be multiple words.
+     */
+    public static boolean containsSomeKeywordsIgnoreCase(String sentence, String keywords) {
+        requireAllNonNull(sentence, keywords);
+
+        String preppedWord = keywords.trim();
+        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().split("(?!^\\s+)"));
+        checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
+
+        List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("(?!^\\s+)"));
+
+        if (wordsInPreppedSentence.containsAll(preppedKeywords)) {
+            return true;
+        }
+        double reductionMultiplier = 0.75;
+        int reducedKeywordsLength = (int) (preppedKeywords.size() * reductionMultiplier);
+        return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, reducedKeywordsLength));
     }
 
     /**
@@ -70,7 +109,7 @@ public class StringUtil {
         requireNonNull(t);
         StringWriter sw = new StringWriter();
         t.printStackTrace(new PrintWriter(sw));
-        return t.getMessage() + "\n" + sw.toString();
+        return t.getMessage() + "\n" + sw;
     }
 
     /**

@@ -1,22 +1,21 @@
-package soconnect.model.person;
+package soconnect.model.person.search;
 
-import static soconnect.logic.parser.CliSyntax.INDICATOR_ADDRESS;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_EMAIL;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_NAME;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_PHONE;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
+import static soconnect.model.person.search.SearchPrefix.SearchPrefixCommand;
+import static soconnect.model.person.search.SearchPrefix.convertPrefixToEnumType;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import soconnect.commons.util.StringUtil;
+import soconnect.logic.parser.ArgumentMultimap;
+import soconnect.logic.parser.Prefix;
+import soconnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s information matches the keyword given.
  */
 public class ContactContainsAnyKeywordsPredicate implements Predicate<Person> {
-    private final List<List<String>> searchedKeywords;
-    private final List<String> prefixes;
+    private final ArgumentMultimap argMultimap;
     private boolean isNameContained = false;
     private boolean isAddressContained = false;
     private boolean isEmailContained = false;
@@ -24,37 +23,38 @@ public class ContactContainsAnyKeywordsPredicate implements Predicate<Person> {
     private boolean isTagContained = false;
 
     /**
-     * Constructs the ContactContainsAnyKeywordsPredicate object.
+     * Constructs the {@code ContactContainsAnyKeywordsPredicate} object.
      */
-    public ContactContainsAnyKeywordsPredicate(List<String> prefixes, List<List<String>> searchedKeywords) {
-        this.searchedKeywords = searchedKeywords;
-        this.prefixes = prefixes;
+    public ContactContainsAnyKeywordsPredicate(ArgumentMultimap argMultimap) {
+        this.argMultimap = argMultimap;
     }
 
     @Override
     public boolean test(Person person) {
-        for (int i = 0; i < prefixes.size(); i++) {
-            String prefix = prefixes.get(i);
-            List<String> keywords = searchedKeywords.get(i);
-            switch (prefix) {
-            case INDICATOR_NAME:
+        for (Prefix prefix : argMultimap.getAllPrefixes()) {
+            SearchPrefixCommand prefixCommand = convertPrefixToEnumType(prefix);
+            List<String> keywords = argMultimap.getAllValues(prefix);
+            switch (prefixCommand) {
+            case NAME:
                 isNameContained = keywords.stream()
                         .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getName().fullName, keyword));
                 break;
-            case INDICATOR_ADDRESS:
+            case ADDRESS:
                 isAddressContained = keywords.stream()
                         .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getAddress().value, keyword));
                 break;
-            case INDICATOR_EMAIL:
+            case EMAIL:
                 isEmailContained = keywords.stream()
                         .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getEmail().value, keyword));
                 break;
-            case INDICATOR_PHONE:
+            case PHONE:
                 isPhoneContained = keywords.stream()
                         .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getPhone().value, keyword));
                 break;
-            case INDICATOR_TAG:
-                isTagContained = true; // Implementation postponed, waiting for tag feature
+            case TAG:
+                isTagContained = keywords.stream()
+                        .anyMatch(keyword -> person.getTags().stream()
+                                .anyMatch(tag -> StringUtil.containsKeywordsIgnoreCase(tag.tagName, keyword)));
                 break;
             default:
                 break;
@@ -68,7 +68,7 @@ public class ContactContainsAnyKeywordsPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof ContactContainsAnyKeywordsPredicate // instanceof handles nulls
                 // state check
-                && searchedKeywords.equals(((ContactContainsAnyKeywordsPredicate) other).searchedKeywords));
+                && argMultimap.equals(((ContactContainsAnyKeywordsPredicate) other).argMultimap));
     }
 
 }

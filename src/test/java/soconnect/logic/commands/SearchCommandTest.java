@@ -4,20 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static soconnect.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static soconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_NAME;
+import static soconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static soconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static soconnect.testutil.Assert.assertThrows;
 import static soconnect.testutil.TypicalPersons.getTypicalSoConnect;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import soconnect.logic.parser.ArgumentMultimap;
+import soconnect.logic.parser.ArgumentTokenizer;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
-import soconnect.model.person.ContactContainsAnyKeywordsPredicate;
+import soconnect.model.person.search.ContactContainsAllKeywordsPredicate;
+import soconnect.model.person.search.ContactContainsAnyKeywordsPredicate;
+import soconnect.model.person.search.ContactMightBeRelevantPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -25,29 +32,34 @@ import soconnect.model.person.ContactContainsAnyKeywordsPredicate;
 public class SearchCommandTest {
     private final Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
+    private final ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize("n/name p/phone e/email",
+                    PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
     @Test
     public void constructor_nullSearch_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SearchCommand(null));
+        assertThrows(NullPointerException.class, () -> new SearchCommand(null, null));
     }
 
     @Test
     public void equals() {
-        ContactContainsAnyKeywordsPredicate firstPredicate = preparePredicate(INDICATOR_NAME, "first");
-        ContactContainsAnyKeywordsPredicate secondPredicate = preparePredicate(INDICATOR_NAME, "second");
+        ContactContainsAnyKeywordsPredicate firstPredicate = new ContactContainsAnyKeywordsPredicate(argMultimap);
+        ContactContainsAllKeywordsPredicate secondPredicate = new ContactContainsAllKeywordsPredicate(argMultimap);
+        ContactMightBeRelevantPredicate thirdPredicate =
+                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
 
-        SearchCommand searchFirstCommand = new SearchCommand(firstPredicate);
-        SearchCommand searchSecondCommand = new SearchCommand(secondPredicate);
+        SearchCommand searchFirstCommand = new SearchCommand(firstPredicate, thirdPredicate);
+        SearchCommand searchSecondCommand = new SearchCommand(secondPredicate, thirdPredicate);
 
         // same object -> returns true
         assertEquals(searchFirstCommand, searchFirstCommand);
         assertEquals(searchSecondCommand, searchSecondCommand);
 
         // same values -> returns true
-        SearchCommand searchFirstCommandCopy = new SearchCommand(firstPredicate);
+        SearchCommand searchFirstCommandCopy = new SearchCommand(firstPredicate, thirdPredicate);
         assertEquals(searchFirstCommand, searchFirstCommandCopy);
 
-        SearchCommand searchSecondCommandCopy = new SearchCommand(secondPredicate);
+        SearchCommand searchSecondCommandCopy = new SearchCommand(secondPredicate, thirdPredicate);
         assertEquals(searchSecondCommand, searchSecondCommandCopy);
 
         // different types -> returns false
@@ -63,31 +75,29 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void execute_zeroPrefixAndZeroKeywords_noPersonFound() {
+    public void execute_zeroPrefixIrrelevantKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        ContactContainsAnyKeywordsPredicate predicate = preparePredicate(" ", " ");
-        SearchCommand command = new SearchCommand(predicate);
+        ArgumentMultimap zeroPrefixAndKeywords = ArgumentTokenizer.tokenize("!!!");
+        ContactContainsAnyKeywordsPredicate predicate = new ContactContainsAnyKeywordsPredicate(zeroPrefixAndKeywords);
+        ContactMightBeRelevantPredicate alternativePredicate =
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords.getAllValues());
+        SearchCommand command = new SearchCommand(predicate, alternativePredicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
-    public void execute_zeroPrefixAndMultipleKeywords_noPersonFound() {
+    public void execute_zeroPrefixRelevantKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        ContactContainsAnyKeywordsPredicate predicate = preparePredicate(" ",
-                "123, Jurong West Ave 6, #08-111");
-        SearchCommand command = new SearchCommand(predicate);
+        ArgumentMultimap zeroPrefixAndKeywords = ArgumentTokenizer.tokenize("abcdefg");
+        ContactContainsAnyKeywordsPredicate predicate = new ContactContainsAnyKeywordsPredicate(zeroPrefixAndKeywords);
+        ContactMightBeRelevantPredicate alternativePredicate =
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords.getAllValues());
+        SearchCommand command = new SearchCommand(predicate, alternativePredicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code ContactContainsAnyKeywordsPredicate}.
-     */
-    private ContactContainsAnyKeywordsPredicate preparePredicate(String prefix, String searchInput) {
-        return new ContactContainsAnyKeywordsPredicate(Collections.singletonList(prefix),
-                List.of(Collections.singletonList(searchInput)));
-    }
 }
