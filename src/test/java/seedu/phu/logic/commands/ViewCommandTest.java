@@ -1,14 +1,14 @@
 package seedu.phu.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.phu.logic.commands.CommandTestUtil.showInternshipAtIndex;
-import static seedu.phu.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
-import static seedu.phu.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.phu.testutil.TypicalIndexes.INDEXES_FIRST_INTERNSHIP;
 import static seedu.phu.testutil.TypicalIndexes.INDEXES_SECOND_INTERNSHIP;
+import static seedu.phu.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
+import static seedu.phu.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class ViewCommandTest {
     @Test
     public void equals() throws ParseException {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        List<Internship> forPredicate= new ArrayList<>();
+        List<Internship> forPredicate = new ArrayList<>();
         forPredicate.add(firstInternship);
 
         ViewCommand firstViewCommand = new ViewCommand(INDEXES_FIRST_INTERNSHIP);
@@ -53,7 +53,7 @@ public class ViewCommandTest {
         assertTrue(firstViewCommand.equals(firstViewCommand));
 
         // same categories and keywords -> returns true
-        ViewCommand firstViewCommandCopy= new ViewCommand(INDEXES_FIRST_INTERNSHIP);
+        ViewCommand firstViewCommandCopy = new ViewCommand(INDEXES_FIRST_INTERNSHIP);
         assertTrue(firstViewCommand.equals(firstViewCommandCopy));
 
         // different target index -> returns false
@@ -62,7 +62,7 @@ public class ViewCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        List<Internship> forPredicate= new ArrayList<>();
+        List<Internship> forPredicate = new ArrayList<>();
         forPredicate.add(firstInternship);
         model.updateViewItem(new ExactMatchPredicate(forPredicate));
 
@@ -93,7 +93,7 @@ public class ViewCommandTest {
         showInternshipAtIndex(expectedModel, INDEX_FIRST_INTERNSHIP);
 
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        List<Internship> forPredicate= new ArrayList<>();
+        List<Internship> forPredicate = new ArrayList<>();
         forPredicate.add(firstInternship);
         model.updateViewItem(new ExactMatchPredicate(forPredicate));
 
