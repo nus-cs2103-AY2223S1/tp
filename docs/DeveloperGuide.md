@@ -426,26 +426,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list tasks.
-2.  Arrow shows a list of tasks.
-3.  User requests to mark a specific task in the tasks list as complete or incomplete.
-4.  Arrow marks the task as specified.
+1.  User requests to mark a task to be complete.
+2.  Arrow shows the task to be complete.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The task list is empty.
+* 1a. The given task index is invalid.
+
+    * 1a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+* 2a. The tasks list is empty.
 
   Use case ends.
 
-* 3a. The given task index is invalid.
-
-    * 3a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-      
 **Use case: UC08 - Delete a task**
+
 
 **MSS**
 
