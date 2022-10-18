@@ -4,12 +4,9 @@ import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.nutrigoals.logic.commands.FindCommand;
-import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -23,12 +20,11 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        FindCommand expectedFindCommand = new FindCommand("rice");
+        assertParseSuccess(parser, "rice", expectedFindCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        // whitespaces
+        assertParseSuccess(parser, " \n rice \t", expectedFindCommand);
     }
 
 }

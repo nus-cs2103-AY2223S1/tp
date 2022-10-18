@@ -7,6 +7,7 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -167,15 +168,15 @@ public class SetupCommandTest {
             throw new AssertionError("This method should not be called");
         }
 
-        /**
-         * @return
-         */
         @Override
         public boolean isUserCreated() {
             throw new AssertionError("This method should not be called.");
         }
 
-
+        @Override
+        public Map<String, Calorie> getFoodCaloriesList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 

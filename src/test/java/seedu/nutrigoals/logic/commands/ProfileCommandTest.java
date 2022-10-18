@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -159,6 +160,11 @@ public class ProfileCommandTest {
 
         @Override
         public boolean isUserCreated() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Map<String, Calorie> getFoodCaloriesList() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -10,6 +10,8 @@ import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,6 +70,11 @@ public class NutriGoalsTest {
         assertThrows(UnsupportedOperationException.class, () -> nutriGoals.getFoodList().remove(0));
     }
 
+    @Test
+    public void getFoodCaloriesList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> nutriGoals.getFoodCaloriesList().clear());
+    }
+
     /**
      * A stub ReadOnlyNutriGoals whose foods list can violate interface constraints.
      */
@@ -92,6 +99,11 @@ public class NutriGoalsTest {
         @Override
         public User getUser() {
             return user;
+        }
+
+        @Override
+        public Map<String, Calorie> getFoodCaloriesList() {
+            return new HashMap<>();
         }
     }
 

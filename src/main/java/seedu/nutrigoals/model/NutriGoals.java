@@ -3,9 +3,11 @@ package seedu.nutrigoals.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.meal.FoodCaloriesList;
 import seedu.nutrigoals.model.meal.UniqueFoodList;
 import seedu.nutrigoals.model.user.User;
 
@@ -15,6 +17,7 @@ import seedu.nutrigoals.model.user.User;
 public class NutriGoals implements ReadOnlyNutriGoals {
 
     private final UniqueFoodList foods;
+    private final FoodCaloriesList foodCaloriesList;
     private User user = new User();
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
@@ -26,6 +29,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
      *   among constructors.
     */ {
         foods = new UniqueFoodList();
+        foodCaloriesList = new FoodCaloriesList();
     }
 
     public NutriGoals() {
@@ -56,6 +60,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         setCalorieTarget(newData.getCalorieTarget());
         setFoods(newData.getFoodList());
         setUser(newData.getUser());
+        setFoodCaloriesList(newData.getFoodCaloriesList());
     }
 
     //// food-level operations
@@ -103,8 +108,14 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         this.user = user;
     }
 
-    public User getUser() {
-        return user;
+    public void setFoodCaloriesList(Map<String, Calorie> foodCaloriesList) {
+        requireNonNull(foodCaloriesList);
+        this.foodCaloriesList.setFoodCalorieMapping(foodCaloriesList);
+    }
+
+    @Override
+    public ObservableList<Food> getFoodList() {
+        return foods.asUnmodifiableObservableList();
     }
 
     /**
@@ -113,6 +124,16 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     @Override
     public Calorie getCalorieTarget() {
         return this.calorieTarget;
+    }
+
+    @Override
+    public User getUser() {
+        return user;
+    }
+
+    @Override
+    public Map<String, Calorie> getFoodCaloriesList() {
+        return foodCaloriesList.asUnmodifiableMap();
     }
 
     //// util methods
@@ -124,18 +145,13 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     }
 
     @Override
-    public ObservableList<Food> getFoodList() {
-        return foods.asUnmodifiableObservableList();
-    }
-
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof NutriGoals // instanceof handles nulls
             && foods.equals(((NutriGoals) other).foods)
             && this.calorieTarget.equals(((NutriGoals) other).calorieTarget)
-            && this.user.equals(((NutriGoals) other).user));
+            && this.user.equals(((NutriGoals) other).user)
+            && this.foodCaloriesList.equals(((NutriGoals) other).foodCaloriesList));
     }
 
     @Override

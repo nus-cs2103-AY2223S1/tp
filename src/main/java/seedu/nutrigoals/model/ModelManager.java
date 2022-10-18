@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -192,6 +193,11 @@ public class ModelManager implements Model {
     @Override
     public boolean isUserCreated() {
         return getUserDetails().isUserCreated();
+    }
+
+    @Override
+    public Map<String, Calorie> getFoodCaloriesList() {
+        return nutriGoals.getFoodCaloriesList();
     }
 
     @Override
