@@ -1,6 +1,6 @@
 @startuml
 skinparam object {
-  backgroundColor #9D0012
+  backgroundColor #F97181
 }
 
 object "__:Person__" as Person {
