@@ -1,7 +1,9 @@
 package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateUtil.getLocalDateString;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,21 +20,21 @@ public class Task {
     private final String title;
 
     // Data fields
-    private final String deadline;
+    private final LocalDate deadline;
     private final boolean status;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs a class with the default of status being false.
      */
-    public Task(String title, String deadline, Set<Tag>tags) {
+    public Task(String title, LocalDate deadline, Set<Tag>tags) {
         this(title, deadline, false, tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Task(String title, String deadline, boolean status, Set<Tag> tags) {
+    public Task(String title, LocalDate deadline, boolean status, Set<Tag> tags) {
         requireAllNonNull(title, deadline, status, tags);
         this.title = title;
         this.deadline = deadline;
@@ -44,7 +46,7 @@ public class Task {
         return title;
     }
 
-    public String getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
@@ -76,7 +78,7 @@ public class Task {
         builder.append("Title: ")
                 .append(getTitle())
                 .append("; Deadline: ")
-                .append(getDeadline())
+                .append(getLocalDateString(getDeadline()))
                 .append(", Status: ")
                 .append(getParsedStatus());
 

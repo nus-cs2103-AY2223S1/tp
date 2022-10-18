@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +61,7 @@ public class MarkTaskCommand extends Command {
         assert taskToMark != null;
 
         String updatedTitle = markTaskDescriptor.getTitle().orElse(taskToMark.getTitle());
-        String updatedDeadline = markTaskDescriptor.getDeadline().orElse(taskToMark.getDeadline());
+        LocalDate updatedDeadline = markTaskDescriptor.getDeadline().orElse(taskToMark.getDeadline());
         boolean updatedStatus = markTaskDescriptor.getStatus().orElse(taskToMark.getStatus());
         Set<Tag> updatedTags = markTaskDescriptor.getTags().orElse(taskToMark.getTags());
 
@@ -73,7 +74,7 @@ public class MarkTaskCommand extends Command {
      */
     public static class MarkTaskDescriptor {
         private String title;
-        private String deadline;
+        private LocalDate deadline;
         private boolean status;
         private Set<Tag> tags;
 
@@ -105,11 +106,11 @@ public class MarkTaskCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setDeadline(String deadline) {
+        public void setDeadline(LocalDate deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<String> getDeadline() {
+        public Optional<LocalDate> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 

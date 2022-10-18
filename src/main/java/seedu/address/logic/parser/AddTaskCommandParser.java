@@ -1,10 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.DateUtil.getLocalDate;
+import static seedu.address.commons.util.DateUtil.isGenericLocalDateString;
+import static seedu.address.commons.util.DateUtil.isLocalDateString;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -33,7 +37,16 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
-        String deadline = argMultimap.getValue(PREFIX_DEADLINE).get();
+
+        if (!isGenericLocalDateString(argMultimap.getValue(PREFIX_DEADLINE).get())) {
+            throw new ParseException("Date provided is invalid. Try again with yyyy-mm-dd !");
+        }
+
+        if (!isLocalDateString(argMultimap.getValue(PREFIX_DEADLINE).get())) {
+            throw new ParseException("Date provided is in the correct format, but has invalid values !");
+        }
+
+        LocalDate deadline = getLocalDate(argMultimap.getValue(PREFIX_DEADLINE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Task newTask = new Task(description, deadline, tagList);

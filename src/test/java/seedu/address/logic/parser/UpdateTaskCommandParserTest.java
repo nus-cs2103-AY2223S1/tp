@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.DateUtil.getLocalDate;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FOOD;
@@ -67,7 +68,7 @@ public class UpdateTaskCommandParserTest {
                 + TAG_DESC_FOOD;
 
         UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
-                .withDeadline(VALID_DEADLINE2).withTags(VALID_TAG_FOOD, VALID_TAG_URGENT).build();
+                .withDeadline(getLocalDate(VALID_DEADLINE2)).withTags(VALID_TAG_FOOD, VALID_TAG_URGENT).build();
         UpdateTaskCommand expectedCommand = new UpdateTaskCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -78,7 +79,7 @@ public class UpdateTaskCommandParserTest {
         Index targetIndex = Index.fromOneBased(1);
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC + TITLE_DESC_OIL;
 
-        UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withDeadline(VALID_DEADLINE)
+        UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withDeadline(getLocalDate(VALID_DEADLINE))
                 .withTitle(VALID_TITLE_OIL).build();
         UpdateTaskCommand expectedCommand = new UpdateTaskCommand(targetIndex, descriptor);
 
@@ -96,7 +97,7 @@ public class UpdateTaskCommandParserTest {
 
         // deadline
         userInput = targetIndex.getOneBased() + DEADLINE_DESC;
-        descriptor = new UpdateTaskDescriptorBuilder().withDeadline(VALID_DEADLINE).build();
+        descriptor = new UpdateTaskDescriptorBuilder().withDeadline(getLocalDate(VALID_DEADLINE)).build();
         expectedCommand = new UpdateTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -114,7 +115,7 @@ public class UpdateTaskCommandParserTest {
                 + DEADLINE_DESC_2 + TAG_DESC_FOOD + TAG_DESC_URGENT + TAG_DESC_URGENT + TITLE_DESC_OIL;
 
         UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
-                .withDeadline(VALID_DEADLINE2).withTags(VALID_TAG_FOOD, VALID_TAG_URGENT).build();
+                .withDeadline(getLocalDate(VALID_DEADLINE2)).withTags(VALID_TAG_FOOD, VALID_TAG_URGENT).build();
         UpdateTaskCommand expectedCommand = new UpdateTaskCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

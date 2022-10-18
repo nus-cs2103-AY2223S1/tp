@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalSupplyItems.getTypicalInventory;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
@@ -21,8 +19,8 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
 public class MarkTaskCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalTaskList(), getTypicalInventory());
+    private Model model = new ModelManager(new AddressBook(), new UserPrefs(),
+            getTypicalTaskList(), new Inventory());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

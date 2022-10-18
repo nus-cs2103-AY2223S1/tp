@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.DateUtil.getLocalDate;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
@@ -57,11 +58,11 @@ public class UpdateTaskCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task updatedTask = taskInList.withTitle(VALID_TITLE_OIL).withDeadline(VALID_DEADLINE)
+        Task updatedTask = taskInList.withTitle(VALID_TITLE_OIL).withDeadline(getLocalDate(VALID_DEADLINE))
                 .withTags(VALID_TAG_FOOD).build();
 
         UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
-                .withDeadline(VALID_DEADLINE).withTags(VALID_TAG_FOOD).build();
+                .withDeadline(getLocalDate(VALID_DEADLINE)).withTags(VALID_TAG_FOOD).build();
         UpdateTaskCommand updateTaskCommand = new UpdateTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(UpdateTaskCommand.MESSAGE_UPDATE_TASK_SUCCESS, updatedTask);
@@ -154,9 +155,9 @@ public class UpdateTaskCommandTest {
     @Test
     public void equals() {
         UpdateTaskDescriptor descOil = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
-                .withDeadline(VALID_DEADLINE).withTags(VALID_TAG_URGENT).build();
+                .withDeadline(getLocalDate(VALID_DEADLINE)).withTags(VALID_TAG_URGENT).build();
         UpdateTaskDescriptor descChicken = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_CHICKEN)
-                .withDeadline(VALID_DEADLINE).withTags(VALID_TAG_FOOD).build();
+                .withDeadline(getLocalDate(VALID_DEADLINE)).withTags(VALID_TAG_FOOD).build();
 
         final UpdateTaskCommand standardCommand = new UpdateTaskCommand(indexFirstTask, descOil);
 

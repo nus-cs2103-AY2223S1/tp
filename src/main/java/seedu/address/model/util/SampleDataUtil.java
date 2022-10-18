@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import static seedu.address.commons.util.DateUtil.getLocalDate;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,11 +51,11 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task("Stock up on Gas", "2022-10-05",
+            new Task("Stock up on Gas", getLocalDate("2022-10-05"),
                     true, getTagSet("Fuel")),
-            new Task("Stock up on Peanuts", "2022-10-05",
+            new Task("Stock up on Peanuts", getLocalDate("2022-10-05"),
                     false, getTagSet("Food")),
-            new Task("Stock up on Cooking Oil", "2022-10-05",
+            new Task("Stock up on Cooking Oil", getLocalDate("2022-10-05"),
                     false, getTagSet("Fuel")),
         };
     }

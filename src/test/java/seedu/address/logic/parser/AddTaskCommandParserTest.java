@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.DateUtil.getLocalDate;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
@@ -27,7 +28,7 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder().withTags(VALID_TAG_FOOD).withDeadline(VALID_DEADLINE)
+        Task expectedTask = new TaskBuilder().withTags(VALID_TAG_FOOD).withDeadline(getLocalDate(VALID_DEADLINE))
                 .withStatus(VALID_STATUS_FALSE).withTitle(VALID_TITLE_CHICKEN).build();
 
         // whitespace only preamble
@@ -44,7 +45,8 @@ public class AddTaskCommandParserTest {
 
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder().withTags(VALID_TAG_FOOD, VALID_TAG_URGENT)
-                .withDeadline(VALID_DEADLINE).withStatus(VALID_STATUS_FALSE).withTitle(VALID_TITLE_CHICKEN).build();
+                .withDeadline(getLocalDate(VALID_DEADLINE)).withStatus(VALID_STATUS_FALSE)
+                .withTitle(VALID_TITLE_CHICKEN).build();
 
         assertParseSuccess(parser, TITLE_DESC_OIL + TITLE_DESC_CHICKEN + DEADLINE_DESC
                 + TAG_DESC_FOOD + TAG_DESC_URGENT, new AddTaskCommand(expectedTaskMultipleTags));
