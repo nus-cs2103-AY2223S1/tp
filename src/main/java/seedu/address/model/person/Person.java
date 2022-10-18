@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.scene.control.Label;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.tag.Tag;
 
@@ -70,6 +71,10 @@ public class Person {
     }
 
     public HashMap<String, ArrayList<Assignment>> getAssignments() {
+        //Sort based on task workload and deadline
+        this.assignments.forEach((key, value) -> {
+            Collections.sort(value);
+        });
         return this.assignments;
     }
 

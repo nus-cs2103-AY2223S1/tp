@@ -1,8 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -24,9 +23,10 @@ public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a group"
-            + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
-            + "Example: " + COMMAND_WORD + " alice g/Group Alpha task/Coursework 0";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a " +
+            "group.\nWorkload specified must be low, medium or high.\n"
+            + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK " + PREFIX_WORKLOAD + "WORKLOAD\n"
+            + "Example: " + COMMAND_WORD + " alice g/Group Alpha task/Coursework 0 w/High";
 
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";

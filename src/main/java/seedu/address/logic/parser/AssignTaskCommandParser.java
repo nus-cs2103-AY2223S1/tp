@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_WORKLOAD;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
@@ -25,7 +25,7 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
     public AssignTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASK);
+                ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASK, PREFIX_WORKLOAD);
 
         Name inputName;
         GroupName inputGroup;
@@ -44,7 +44,17 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
 
             inputName = ParserUtil.parseName(name);
             inputGroup = ParserUtil.parseGroupName(group);
-            inputTask = ParserUtil.parseAssignment(task);
+            if (arePrefixesPresent(argMultimap, PREFIX_WORKLOAD)) {
+                String workload = argMultimap.getValue(PREFIX_WORKLOAD).get();
+                //Check if specified workload is valid
+                try {
+                    inputTask = ParserUtil.parseAssignmentWithWorkload(task, workload.toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    throw new ParseException(MESSAGE_INVALID_WORKLOAD);
+                }
+            } else {
+                inputTask = ParserUtil.parseAssignment(task);
+            }
         } catch (ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }

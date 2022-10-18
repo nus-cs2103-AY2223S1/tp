@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Workload;
 import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -136,6 +137,21 @@ public class ParserUtil {
             throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
         }
         return new Assignment(trimmedAssignment);
+    }
+
+    /**
+     * Parses a {@code String assignment} and {@code String workload} into a {@code Assignment}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Assignment parseAssignmentWithWorkload(String assignment, String workload)
+            throws ParseException {
+        requireNonNull(assignment);
+        String trimmedAssignment = assignment.trim();
+        if (!Assignment.isValidAssignment(trimmedAssignment)) {
+            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        }
+        Workload wl = Workload.valueOf(workload);
+        return new Assignment(trimmedAssignment, wl);
     }
 
     /**
