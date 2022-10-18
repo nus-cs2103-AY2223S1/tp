@@ -8,10 +8,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+
 import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Student;
-
-import javafx.scene.paint.Color;
 
 /**
  * A UI component that displays information of a {@code Student}.

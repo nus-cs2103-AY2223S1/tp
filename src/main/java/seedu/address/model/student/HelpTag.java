@@ -5,7 +5,6 @@ package seedu.address.model.student;
  */
 public class HelpTag {
 
-//    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public static final String HELP = "Help";
 
     public final boolean toHelp;
@@ -31,6 +30,10 @@ public class HelpTag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return "[help]";
+        if (toHelp) {
+            return "[help]";
+        } else {
+            return "[help not needed]";
+        }
     }
 }

@@ -23,7 +23,8 @@ public class Student {
      * Name, Telegram and Email field must not be null.
      */
 
-    public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance, HelpTag helpTag) {
+    public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance,
+                   HelpTag helpTag) {
 
         requireAllNonNull(name, telegram, email);
         this.name = name;
@@ -54,7 +55,9 @@ public class Student {
         return response;
     }
 
-    public HelpTag getHelpTag() { return helpTag; }
+    public HelpTag getHelpTag() {
+        return helpTag;
+    }
 
     public boolean needsHelp() {
         return helpTag.getBool();
@@ -112,7 +115,9 @@ public class Student {
                 .append("; Response: ")
                 .append(getResponse())
                 .append("; Attendance: ")
-                .append(getAttendance());
+                .append(getAttendance())
+                .append("; Help Tag: ")
+                .append(getHelpTag());
 
         return builder.toString();
     }
