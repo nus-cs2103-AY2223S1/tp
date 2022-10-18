@@ -33,9 +33,9 @@ public class TodoCard extends UiPart<Region> {
         super(FXML);
         this.todo = todo;
         id.setText(displayedIndex + ". ");
-        description.setText(todo.getDescription());
+        description.setText(todo.getDescription().value);
         datetime.setText(todo.getDatetime());
-        priority.getChildren().add(new Label(todo.getPriority()));
+        priority.getChildren().add(new Label(todo.getPriority().priority));
     }
 
     @Override

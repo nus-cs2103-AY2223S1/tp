@@ -3,16 +3,21 @@ package soconnect.model.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
+import soconnect.model.tag.Tag;
 import soconnect.model.todo.exceptions.DuplicateTodoException;
 import soconnect.model.todo.exceptions.TodoNotFoundException;
 
 /**
- * A list of todos that enforces uniqueness between its elements and does not allow nulls.
+ * A list of {@code Todo}s that enforces uniqueness between its elements and does not allow nulls.
  * Supports a minimal set of list operations.
  */
 public class UniqueTodoList implements Iterable<Todo> {
@@ -22,7 +27,7 @@ public class UniqueTodoList implements Iterable<Todo> {
         FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent todo as the given argument.
+     * Returns true if the list contains an equivalent {@code Todo} as the given argument.
      */
     public boolean contains(Todo toCheck) {
         requireNonNull(toCheck);
@@ -30,8 +35,8 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Adds a todo to the list.
-     * The todo must not already exist in the list.
+     * Adds a {@code Todo} to the list.
+     * The {@code Todo} must not already exist in the list.
      */
     public void add(Todo toAdd) {
         requireNonNull(toAdd);
@@ -39,12 +44,13 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new DuplicateTodoException();
         }
         internalList.add(toAdd);
+        sort();
     }
 
     /**
-     * Replaces the todo {@code target} in the list with {@code editedTodo}.
+     * Replaces a {@code Todo} in the list with {@code editedTodo}.
      * {@code target} must exist in the list.
-     * The new todo must not be the same as an existing todo in the list.
+     * The {@code editedTodo} must not be the same as an existing {@code Todo} in the list.
      */
     public void setTodo(Todo target, Todo editedTodo) {
         requireAllNonNull(target, editedTodo);
@@ -59,11 +65,12 @@ public class UniqueTodoList implements Iterable<Todo> {
         }
 
         internalList.set(index, editedTodo);
+        sort();
     }
 
     /**
-     * Removes the equivalent todo from the list.
-     * The todo must exist in the list.
+     * Removes the equivalent {@code Todo} from the list.
+     * The {@code Todo} must exist in the list.
      */
     public void remove(Todo toRemove) {
         requireNonNull(toRemove);
@@ -75,11 +82,12 @@ public class UniqueTodoList implements Iterable<Todo> {
     public void setTodos(UniqueTodoList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
      * Replaces the contents of this list with {@code todos}.
-     * {@code todos} must not contain duplicate todos.
+     * {@code todos} must not contain duplicate {@code Todo}s.
      */
     public void setTodos(List<Todo> todos) {
         requireAllNonNull(todos);
@@ -88,6 +96,57 @@ public class UniqueTodoList implements Iterable<Todo> {
         }
 
         internalList.setAll(todos);
+        sort();
+    }
+
+    /**
+     * Updates {@code oldTag} in every {@code Todo} that contains it.
+     *
+     * @param oldTag The old {@code Tag} to be changed.
+     * @param newTag The new {@code Tag}.
+     */
+    public void changeRelevantTodoTag(Tag oldTag, Tag newTag) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Todo oldTodo = internalList.get(i);
+            List<Tag> todoTags = new ArrayList<>(oldTodo.getTags());
+            if (todoTags.contains(oldTag)) {
+                int index = todoTags.indexOf(oldTag);
+                todoTags.set(index, newTag);
+                Set<Tag> newTags = new HashSet<>(todoTags);
+                Todo newTodo = new Todo(oldTodo.getDescription(),
+                    oldTodo.getPriority(),
+                    newTags);
+                internalList.set(i, newTodo);
+            }
+        }
+    }
+
+    /**
+     * Removes {@code tag} from every {@code Todo} that contains it.
+     *
+     * @param tag The {@code Tag} to be removed.
+     */
+    public void removeRelevantTodoTag(Tag tag) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Todo oldTodo = internalList.get(i);
+            List<Tag> todoTags = new ArrayList<>(oldTodo.getTags());
+            if (todoTags.contains(tag)) {
+                todoTags.remove(tag);
+                Set<Tag> updatedTags = new HashSet<>(todoTags);
+                Todo updatedTodo = new Todo(oldTodo.getDescription(),
+                    oldTodo.getPriority(),
+                    updatedTags);
+                internalList.set(i, updatedTodo);
+            }
+        }
+    }
+
+    /**
+     * Sort the {@code TodoList} in order of decreasing {@code Priority}.
+     */
+    private void sort() {
+        SortedList<Todo> sorted = internalList.sorted((curr, next) -> curr.getPriority().compareTo(next.getPriority()));
+        internalList.setAll(sorted);
     }
 
     /**
@@ -115,7 +174,7 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Returns true if {@code todos} contains only unique todos.
+     * Returns true if {@code todos} contains only unique {@code Todo}s.
      */
     private boolean todosAreUnique(List<Todo> todos) {
         for (int i = 0; i < todos.size() - 1; i++) {

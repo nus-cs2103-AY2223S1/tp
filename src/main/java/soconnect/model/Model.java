@@ -95,12 +95,20 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Returns true if all the tags in the contact exist in the Tag list
+     * Returns true if all the tags in the contact exist in the Tag list.
      *
-     * @param person The person to be added
-     * @return True if all the tags exists in the tagList. False if otherwise
+     * @param person The person to be added.
+     * @return True if all the tags exist in the tagList. False if otherwise.
      */
     boolean areTagsAvailable(Person person);
+
+    /**
+     * Returns true if all the tags in the todo exist in the Tag list.
+     *
+     * @param todo The todo to be added.
+     * @return True if all the tags exists in the tagList. False if otherwise.
+     */
+    boolean areTagsAvailable(Todo todo);
 
     /**
      * Deletes the given person.
@@ -164,36 +172,36 @@ public interface Model {
     TreeSet<String> getUniqueNames();
 
     /**
-     * Returns the TodoList.
+     * Returns the {@code TodoList}.
      */
     ReadOnlyTodoList getTodoList();
 
     /**
-     * Replaces TodoList data with the data in {@code todoList}.
+     * Replaces {@code TodoList} data with the data in {@code todoList}.
      */
     void setTodoList(ReadOnlyTodoList todoList);
 
     /**
-     * Returns true if a Todo identical to {@code todo} exists in the TodoList.
+     * Returns true if a {@code Todo} identical to {@code todo} exists in the {@code TodoList}.
      */
     boolean hasTodo(Todo todo);
 
     /**
-     * Deletes the given Todo.
-     * The Todo must exist in the TodoList.
+     * Deletes the given {@code Todo}.
+     * The {@code Todo} must exist in the {@code TodoList}.
      */
     void deleteTodo(Todo target);
 
     /**
-     * Adds the given Todo.
-     * {@code todo} must not already exist in the TodoList.
+     * Adds the given {@code Todo}.
+     * {@code todo} must not already exist in the {@code TodoList}.
      */
     void addTodo(Todo todo);
 
     /**
-     * Replaces the given Todo {@code target} with {@code editedTodo}.
-     * {@code target} must exist in the TodoList.
-     * {@code editedTodo} must not be the same as another existing Todo in the TodoList.
+     * Replaces the given {@code Todo} with {@code editedTodo}.
+     * {@code target} must exist in the {@code TodoList}.
+     * {@code editedTodo} must not be the same as another existing {@code Todo} in the {@code TodoList}.
      */
     void setTodo(Todo target, Todo editedTodo);
 
@@ -215,12 +223,12 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns an unmodifiable view of the filtered todo list.
+     * Returns an unmodifiable view of the filtered {@code TodoList}.
      */
     ObservableList<Todo> getFilteredTodoList();
 
     /**
-     * Updates the filter of the filtered todo list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered {@code TodoList} to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */

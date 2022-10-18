@@ -116,8 +116,7 @@ public class UniquePersonList implements Iterable<Person> {
         for (int i = 0; i < internalList.size(); i++) {
             Person oldPerson = internalList.get(i);
             List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
-            if (!personTags.contains(oldTag)) {
-            } else {
+            if (personTags.contains(oldTag)) {
                 int index = personTags.indexOf(oldTag);
                 personTags.set(index, newTag);
                 Set<Tag> newTags = new HashSet<>(personTags);
@@ -140,9 +139,7 @@ public class UniquePersonList implements Iterable<Person> {
         for (int i = 0; i < internalList.size(); i++) {
             Person oldPerson = internalList.get(i);
             List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
-            if (!personTags.contains(tag)) {
-                break;
-            } else {
+            if (personTags.contains(tag)) {
                 personTags.remove(tag);
                 Set<Tag> updatedTags = new HashSet<>(personTags);
                 Person updatedPerson = new Person(oldPerson.getName(),
@@ -154,7 +151,6 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
     }
-
 
     /**
      * Sorts the list by name, alphabetically.
