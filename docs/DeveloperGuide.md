@@ -300,6 +300,51 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Current choice:** 15 commands.
     * Rationale: Since the current choice of undo operations to be supported is 15, the number of redo operations supported is also 15.
 
+### \[Proposed\] Mark/Unmark Task Command
+
+#### Proposed Implementation
+
+The proposed mark and unmark task command mechanism is facilitated by `TaskMarkCommand` and `TaskUnmarkCommand` which extend `Command`, `TaskMarkCommandParser`, `TaskUnmarkCommandParser` and `EditTaskDescriptor`. 
+
+Additionally, it implements the following operations:
+
+* `MarkTaskCommand#execute()` — Executes the chain of instructions to change the status of the task to done.
+* `MarkTaskCommandParser#parse()` — Parses user input and creates a TaskMarkCommand object.
+* `UnmarkTaskCommand#execute()` — Executes the chain of instructions to change the status of the task to undone.
+* `UnmarkTaskCommandParser#parse()` — Parses user input and creates a TaskUnmarkCommand object.
+
+The methods will handle cases where the index from the user input is out of bounds. 
+
+Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
+
+Given below is an example usage scenario for how the task mark command mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2: The user adds a task.
+
+Step 3. The user executes the task mark command on the first task.
+
+The steps can be applied to task unmark command in the same way.
+
+The following sequence diagram shows how the task mark command works:
+
+![TaskMarkCommandSequenceDiagram](images/TaskMarkCommandSequenceDiagram.png)
+
+The task unmark command follows a similar sequence diagram.
+
+#### Design considerations:
+
+**Aspect: Mutability of boolean isDone field:**
+
+* **Alternative 1 (current choice):** Immutable isDone field in Task object.
+    * Pros: Reuse the same component from task edit command, reducing chance of breaking.
+    * Cons: Extra overhead as a new task is created when the user marks it as done.
+
+* **Alternative 2:** Mutable isDone field in the Task object.
+    * Pros: Less overhead as it will only involve changing the isDone field in the object.
+    * Cons: Mutable field may result in regression with other components such as Storage and UI.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
