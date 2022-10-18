@@ -7,6 +7,7 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":CancelCommandParser" as CancelCommandParser LOGIC_COLOR
 participant "d:CancelCommand" as CancelCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":SelectAppointmentCommand" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -48,7 +49,12 @@ deactivate AddressBookParser
 LogicManager -> CancelCommand : execute()
 activate CancelCommand
 
-CancelCommand -> Model : CancelAppointment(1)
+CancelCommand -> SelectAppointmentCommand : getTargetAppointment(model)
+activate SelectAppointmentCommand
+SelectAppointmentCommand --> CancelCommand : toBeCancelledAppt
+deactivate SelectAppointmentCommand
+
+CancelCommand -> Model : CancelAppointment(toBeCancelledAppt)
 activate Model
 
 Model --> CancelCommand

@@ -1,0 +1,12 @@
+@startuml
+start
+:User inputs cancel command;
+if () then ([validInput])
+:AddressBookParser;
+:CancelCommandParser;
+:CancelCommand;
+:Remove Appointment;
+stop
+else ([else])
+stop
+@enduml
