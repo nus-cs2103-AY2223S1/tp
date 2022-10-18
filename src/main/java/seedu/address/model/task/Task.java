@@ -291,11 +291,7 @@ public class Task {
      * @return isDone in Boolean form.
      */
     public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
-        if (isDone == IS_DONE_TRUE_STRING) {
-            return true;
-        } else {
-            return false;
-        }
+        return isDone == IS_DONE_TRUE_STRING;
     }
 
     /**
