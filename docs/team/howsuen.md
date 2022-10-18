@@ -11,6 +11,13 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
+* **New Feature**: Added functionality to add remarks to students.
+  * What it does: Allows users to add comments and notes on their students in addition to their related information.
+  * Justification: This feature is significant in improving users' experience with the product because it acts as a centralised
+  hub for users to easily write notes about their students to remind them of their individual circumstances.
+  * Highlights: Initial implementation requires users to type prefix `r/` to indicate the start of the remark comment. 
+  * Credits: This feature was adapted from **[Tutorial 2 - Adding a new Command](https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html)** for **AB3**.
+
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=howsuen&breakdown=true)
 
 * **Project management**:
@@ -18,13 +25,12 @@ Given below are my contributions to the project.
   * Added user stories
 
 * **Enhancements to existing features**:
-  * Refactored code to improve maintainability and readability [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/80) [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
-  * Fixed ordering and naming of imports to pass checkstyle
+  * Refactored code to improve maintainability and readability, and fixed ordering and naming of imports to pass checkstyle [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/80), [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
   * Added and updated `edit` command for FRIDAY to edit a student's details, including name, Telegram Handle, Mastery 
-  Check assessment, Consultation date, and tags [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/89)
-  * Added tests for `edit` command
+  Check assessment, consultation date, and tags. Additionally, added and updated tests for `edit` command. [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/89)
+  * Updated and adapted `remark` command for FRIDAY to add remark comments for each student. [\#2](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/2)
   * Updated GUI's logo and title [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
-  * Designed and implemented new GUI for FRIDAY, including adding new colours and adjusting layout
+  * Designed and implemented new GUI for FRIDAY, including adding new colours and adjusting layout.
 
 * **Documentation**:
   * User Guide:
@@ -36,7 +42,4 @@ Given below are my contributions to the project.
     * Designed and added UI Mockup for FRIDAY
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):
-
-* **Tools**:
-  * Updated site-wide settings (Jekyll) for the project [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
+  * PRs reviewed (with non-trivial review comments): [\#97](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/97)

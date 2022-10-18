@@ -97,8 +97,20 @@ Edits a student's details in FRIDAY.
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student can be seen from the student list.
-The name, Telegram handle, consultation, mastery check, and tag are optional, but there should be at least one parameter.
+The index of the student can be seen from the student list.<br>
+The name, Telegram handle, consultation, mastery check, and tag(s) are optional, but there should be at least one parameter.<br>
+A student can have any number of tags (including 0).
+</div>
+
+### Editing a student: `remark`
+
+Adds a remark for a specified student.
+
+Format: `remark INDEX [r/REMARK]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student can be seen from the student list.<br>
+The remark is optional. Not including the remark (i.e. `remark INDEX`) will remove any existing remark from the student.<br>
 </div>
 
 ### Viewing all students: `list`
@@ -131,7 +143,8 @@ Format: `help`
 |----------------------------------|--------------------------------------------------------------------------------------------|
 | **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
 | **Delete a student**             | `delete i/INDEX`                                                                           |
-| **Edit a student's details**     | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`     |
+| **Edit a student's details**     | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`  |
+| **Add remarks for a student**    | `remark INDEX [r/REMARK]`                                                                  |
 | **View all students**            | `list`                                                                                     |
 | **Find a student's details**     | `find s/STUDENT_NAME`                                                                      |
 | **Get a link to the User Guide** | `guide`                                                                                    |
