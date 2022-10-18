@@ -5,23 +5,18 @@ import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
  * Represents a task deadline added by the professor to a student's project.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeadlineName(String)}
+ * Guarantees: immutable
  */
 public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline names should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    /*
-     * The first character of the address must not be a whitespace, or non-alphanumeric char
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
-    public final String fullDeadlineName;
+    public final DeadlineName fullDeadlineName;
     public final LocalDateTime fullDeadlineDateTime;
 
     /**
@@ -29,25 +24,16 @@ public class Deadline implements Comparable<Deadline> {
      * @param deadlineName A valid deadline name.
      * @param deadlineDateTime A valid deadline date.
      */
-    public Deadline(String deadlineName, LocalDateTime deadlineDateTime) {
+    public Deadline(DeadlineName deadlineName, LocalDateTime deadlineDateTime) {
         requireNonNull(deadlineName);
-        checkArgument(isValidDeadlineName(deadlineName), MESSAGE_CONSTRAINTS);
         fullDeadlineName = deadlineName;
         fullDeadlineDateTime = deadlineDateTime;
     }
-
-    /**
-     * Returns true if a given string is a valid deadline name.
-     */
-    public static boolean isValidDeadlineName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     /**
      * Returns the deadline task name.
      * @return The deadline name.
      */
-    public String getDeadlineName() {
+    public DeadlineName getDeadlineName() {
         return fullDeadlineName;
     }
 
@@ -75,10 +61,9 @@ public class Deadline implements Comparable<Deadline> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Task Name: ")
-                .append(getDeadlineName())
+        builder.append(getDeadlineName())
                 .append("; Deadline: ")
-                .append(getDeadlineDateTime());
+                .append(getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
         return builder.toString();
     }
 

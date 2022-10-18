@@ -31,7 +31,7 @@ import static jeryl.fyp.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
@@ -40,8 +40,8 @@ import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.testutil.StudentBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddStudentCommandParserTest {
+    private AddStudentCommandParser parser = new AddStudentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,29 +49,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + STUDENT_NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
-                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + STUDENT_NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
-                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple student IDs - last student ID accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + STUDENT_ID_DESC_AMY + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
-                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple project names - last project name accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + PROJECT_NAME_DESC_AMY
-                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + PROJECT_NAME_DESC_BOB + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + PROJECT_NAME_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudentMultipleTags));
     }
 
     @Test
@@ -79,12 +79,12 @@ public class AddCommandParserTest {
         // zero tags
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + STUDENT_ID_DESC_AMY + EMAIL_DESC_AMY
-                + PROJECT_NAME_DESC_AMY, new AddCommand(expectedStudent));
+                + PROJECT_NAME_DESC_AMY, new AddStudentCommand(expectedStudent));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_STUDENT_NAME_BOB + STUDENT_ID_DESC_BOB
@@ -136,6 +136,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + STUDENT_NAME_DESC_BOB + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
                         + PROJECT_NAME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
     }
 }

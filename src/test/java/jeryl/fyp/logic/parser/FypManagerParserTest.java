@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.logic.commands.ClearCommand;
 import jeryl.fyp.logic.commands.DeleteCommand;
 import jeryl.fyp.logic.commands.EditCommand;
@@ -41,8 +41,8 @@ public class FypManagerParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
-        assertEquals(new AddCommand(student), command);
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
+        assertEquals(new AddStudentCommand(student), command);
     }
 
     @Test

@@ -6,7 +6,8 @@ import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.AddDeadlineCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.logic.commands.ClearCommand;
 import jeryl.fyp.logic.commands.Command;
 import jeryl.fyp.logic.commands.DeleteCommand;
@@ -45,8 +46,11 @@ public class FypManagerParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
+
+        case AddDeadlineCommand.COMMAND_WORD:
+            return new AddDeadlineCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

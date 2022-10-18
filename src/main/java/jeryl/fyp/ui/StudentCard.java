@@ -42,6 +42,8 @@ public class StudentCard extends UiPart<Region> {
     private Label projectStatus;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane deadlineList;
 
 
     /**
@@ -59,6 +61,9 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        student.getDeadlineList().asUnmodifiableObservableList().stream()
+                .sorted(Comparator.comparing(ddl -> ddl.fullDeadlineDateTime))
+                .forEach(ddl -> deadlineList.getChildren().add(new Label("" + ddl)));
     }
 
     @Override

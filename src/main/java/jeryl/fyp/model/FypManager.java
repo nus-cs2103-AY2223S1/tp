@@ -1,11 +1,13 @@
 package jeryl.fyp.model;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.index.Index;
+import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.UniqueStudentList;
@@ -109,6 +111,40 @@ public class FypManager implements ReadOnlyFypManager {
         requireNonNull(studentId);
 
         return students.getIndexByStudentId(studentId);
+    }
+
+    //// deadline-level operations
+    /**
+     * Returns true if a deadline with the same identity as {@code deadline} exists in the {@code student}.
+     */
+    public boolean hasDeadline(Student student, Deadline deadline) {
+        requireAllNonNull(student, deadline);
+        return student.getDeadlineList().contains(deadline);
+    }
+    /**
+     * Removes {@code deadline} from this specified {@code student}.
+     * {@code deadline} must exist in the specified {@code student}.
+     */
+    public void removeDeadline(Student student, Deadline deadline) {
+        student.getDeadlineList().remove(deadline);
+    }
+
+    /**
+     * Adds a deadline to this specified {@code student}.
+     * The deadline must not already exist in this specified {@code student}.
+     */
+    public void addDeadline(Student student, Deadline deadline) {
+        student.getDeadlineList().add(deadline);
+    }
+    /**
+     * Replaces the given deadline {@code target} in the list with {@code editedDeadline}.
+     * {@code target} must exist in the {@code student}.
+     * The deadline identity of {@code editedDeadline} must not be the same as another existing deadline
+     * in the {@code student}.
+     */
+    public void setDeadline(Student student, Deadline target, Deadline editedDeadline) {
+        requireAllNonNull(student, target, editedDeadline);
+        student.getDeadlineList().setDeadline(target, editedDeadline);
     }
 
     //// util methods

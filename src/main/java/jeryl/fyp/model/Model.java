@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.index.Index;
+import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
@@ -15,6 +16,7 @@ import jeryl.fyp.model.student.StudentId;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+    Predicate<Deadline> PREDICATE_SHOW_ALL_DEADLINES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -78,6 +80,31 @@ public interface Model {
      * in the FYP manager.
      */
     void setStudent(Student target, Student editedStudent);
+
+    /**
+     * Returns true if a deadline with the same identity as {@code deadline} exists in the student's DeadlineList.
+     */
+    boolean hasDeadline(Student student, Deadline deadline);
+
+    /**
+     * Deletes the given deadline for the given student.
+     * The deadline must exist in the DeadlineList of the given student.
+     */
+    void deleteDeadline(Student student, Deadline deadline);
+
+    /**
+     * Adds the given deadline to the DeadlineList of the given student.
+     * {@code deadline} must not already exist in the DeadlineList of the given student.
+     */
+    void addDeadline(Student student, Deadline deadline);
+
+    /**
+     * Replaces the given deadline {@code target} with {@code editedDeadline}.
+     * {@code target} must not already exist in the DeadlineList of the given student.
+     * The deadline identity of {@code editedDeadline} must not be the same as another existing deadline
+     * for the given student {@code student}.
+     */
+    void setDeadline(Student student, Deadline target, Deadline editedDeadline);
 
     /**
      * Gets the unique student with the specified StudentId

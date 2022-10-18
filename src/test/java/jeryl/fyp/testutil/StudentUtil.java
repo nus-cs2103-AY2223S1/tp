@@ -8,7 +8,7 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.logic.commands.DeleteCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Student;
@@ -23,7 +23,7 @@ public class StudentUtil {
      * Returns an add command string for adding the {@code student}.
      */
     public static String getAddCommand(Student student) {
-        return AddCommand.COMMAND_WORD + " " + getStudentDetails(student);
+        return AddStudentCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
     /**

@@ -5,6 +5,7 @@ import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -163,5 +164,6 @@ public class DeadlineList implements Iterable<Deadline> {
         }
         return new Index(index);
     }
+
 }
 
