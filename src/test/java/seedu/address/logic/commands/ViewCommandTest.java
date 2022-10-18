@@ -26,16 +26,15 @@ public class ViewCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Project projectToView = model.getFilteredProjectList().get
-                (INDEX_FIRST_PROJECT.getZeroBased());
+        Project projectToView = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PROJECT);
-        
+
         String expectedMessage = String.format(ViewCommand
                 .MESSAGE_SUCCESS, projectToView);
-        
+
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setTargetProject(projectToView);
-        
+
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -75,7 +74,7 @@ public class ViewCommandTest {
 
         assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
-    
+
     @Test
     public void equals() {
         ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_PROJECT);
