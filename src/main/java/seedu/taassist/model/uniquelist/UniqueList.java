@@ -5,7 +5,6 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,15 +32,6 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSame);
     }
-
-    /**
-     * Returns true if the list contains an element that matches the given {@code predicate}.
-     */
-    public boolean containsMatch(Predicate<T> predicate) {
-        requireNonNull(predicate);
-        return internalList.stream().anyMatch(predicate);
-    }
-
 
     /**
      * Adds an element to the list.
