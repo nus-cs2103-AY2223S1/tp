@@ -27,7 +27,7 @@ Arrow will help software project managers keep track of their members’ tasks a
    * **`list`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-   
+
    * **`task add`** `Task 1` : Adds a task titled `Task 1` to the Task Panel.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
