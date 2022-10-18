@@ -105,7 +105,7 @@ public class Customer {
     }
 
     public int getCommissionsCount() {
-        return commissions.size();
+        return commissions.getSize();
     }
 
     /**

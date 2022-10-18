@@ -145,11 +145,6 @@ public class UniqueCommissionList implements Iterable<Commission> {
         return internalList.iterator();
     }
 
-    /** Returns size of the commission list. */
-    public int size() {
-        return internalList.size();
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
