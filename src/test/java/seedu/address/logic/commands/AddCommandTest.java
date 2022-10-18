@@ -204,15 +204,15 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-//        @Override
-//        public void updateExpensePieChart() {
-//            throw new AssertionError("This method should not be called.");
-//        }
-//
-//        @Override
-//        public void updateIncomePieChart() {
-//            throw new AssertionError("This method should not be called.");
-//        }
+        // @Override
+        // public void updateExpensePieChart() {
+        //     throw new AssertionError("This method should not be called.");
+        // }
+
+        // @Override
+        // public void updateIncomePieChart() {
+        //     throw new AssertionError("This method should not be called.");
+        // }
     }
 
     /**

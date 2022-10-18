@@ -11,8 +11,8 @@ import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.EntryType;
-import seedu.address.model.entry.Month;
 import seedu.address.model.entry.GraphType;
+import seedu.address.model.entry.Month;
 import seedu.address.model.tag.Tag;
 
 /**

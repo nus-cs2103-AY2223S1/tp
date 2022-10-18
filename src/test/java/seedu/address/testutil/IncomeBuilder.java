@@ -34,7 +34,7 @@ public class IncomeBuilder {
         this.description = new Description(DEFAULT_DESC);
         this.amount = new Amount(DEFAULT_AMT);
         this.date = new Date(DEFAULT_DATE);
-        this.tag =  new Tag(new EntryType(EntryType.ENTRY_TYPE_INCOME), VALID_TAG_MEAL);
+        this.tag = new Tag(new EntryType(EntryType.ENTRY_TYPE_INCOME), VALID_TAG_MEAL);
     }
 
     /**
