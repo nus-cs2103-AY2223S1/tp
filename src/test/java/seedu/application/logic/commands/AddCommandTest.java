@@ -141,6 +141,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
         public void deleteApplication(Application target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -156,7 +162,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Application> getApplicationListWithInterview() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredApplicationList(Predicate<Application> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateApplicationListWithInterview() {
             throw new AssertionError("This method should not be called.");
         }
     }
