@@ -204,7 +204,7 @@ The following sequence diagram shows how a sort by description alphabetical comm
   * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedList` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
 
 ### \[Proposed\] Command History Navigation
-=======
+
 ### Command History Navigation
 
 #### Implementation
