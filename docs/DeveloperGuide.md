@@ -157,20 +157,20 @@ This section describes some noteworthy details on how certain features are imple
 ### \[Proposed\] List patients/appointments feature
 
 #### Proposed Implementation
-The proposed list patients/appointments mechanism is facilitated by the `UniquePersonList` and `UniqueAppointmentList` 
+The proposed list patients/appointments mechanism is facilitated by the `UniquePersonList` and `UniqueAppointmentList`
 respectively. They extend `Iterable` and store lists of `Person` and `Appointment`.
 
 An example usage scenario of list patients/appointments is given below:
 
 
 **Steps:**
-1. After launching the application, user executes the command `find alex` to search for entries in both 
+1. After launching the application, user executes the command `find alex` to search for entries in both
 `UniquePersonList` and `UniqueAppointmentList` that contains "alex". This causes entries in the list which
-does not contain "alex" to be hidden from the GUI. This will set the premise of using `list patients` and 
+does not contain "alex" to be hidden from the GUI. This will set the premise of using `list patients` and
 `list appts`.
 
 2. When user wants to view the full list of patients again, he/she can enter the command `list patients`. Note that
-this command only interacts with the `UniquePersonList` and not the `UniqueAppointmentList`, thus it will not modify 
+this command only interacts with the `UniquePersonList` and not the `UniqueAppointmentList`, thus it will not modify
 the displayed list of appointments in any way.
 
 3. When user wants to view the full list of appointments again, he/she can enter the command `list appts`. Note that
@@ -179,7 +179,7 @@ the displayed list of appointments in any way.
 
 <img src="images/ListActivityDiagram.png" width="500" />
 
-To help you understand what is going on behind the scenes, here is a sequence diagram that demonstrates how 
+To help you understand what is going on behind the scenes, here is a sequence diagram that demonstrates how
 `list patients` work:
 
 <img src="images/ListPatientsSequenceDiagram.png" width="500" />
@@ -194,7 +194,7 @@ process as well.
   * Cons: `ListCommand#execute()` will have more lines of code.
 * **Alternative 2:** `list` as a command word with arguments `patients` or `appts` following it.
   * Pros: Seems more aligned with other commands that require more than 1 word of input
-  * Cons: Require an additional `ListCommandParser` to work; more lines of code required. 
+  * Cons: Require an additional `ListCommandParser` to work; more lines of code required.
 
 We ultimately went with Alternative 1 since we do not expect `list` to take in many different arguments.
 
@@ -243,15 +243,15 @@ The operation is exposed in the `Command` interface as `Command#ArchivePatientCo
 
 Given below is an example usage scenario and how the archive mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial 
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
 patient list.
 
 
-Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of 
+Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of
 patients after the `archive patient` command executes to show on the screen.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
-("archive Patient")` API 
+("archive Patient")` API
 call.
 
 ![Interactions Inside the Logic Component for the `archive patient` Command](images/ArchivePatientSequenceDiagram.png)
@@ -264,7 +264,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How archive patient executes:**
 
-* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged 
+* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged
   list on the screen.
 
 ### \[Implemented\] Book feature
