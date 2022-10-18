@@ -47,4 +47,15 @@ class BuyTransactionTest {
         assertEquals(transaction, new BuyTransaction(goods, price, quantity, date));
         assertFalse(transaction.equals(new Object()));
     }
+
+    @Test
+    public void testDateEquals() {
+        Goods goods = new Goods("Apple");
+        Price price = new Price("0.8");
+        Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
+
+        Transaction transaction = new BuyTransaction(goods, price, quantity, date);
+        assertEquals(transaction.getDate(), new BuyTransaction(goods, price, quantity, date).getDate());
+    }
 }

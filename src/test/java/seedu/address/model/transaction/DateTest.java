@@ -20,6 +20,10 @@ class DateTest {
 
         String invalidName2 = "00/00/0000";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidName2));
+
+        String invalidName3 = "01/-1/2222";
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidName3));
+
     }
 
     @Test
