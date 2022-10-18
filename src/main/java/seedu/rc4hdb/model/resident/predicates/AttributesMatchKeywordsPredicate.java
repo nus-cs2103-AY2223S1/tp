@@ -13,6 +13,11 @@ public class AttributesMatchKeywordsPredicate implements Predicate<Resident> {
     private final ResidentDescriptor descriptor;
     private final FilterSpecifier specifier;
 
+    /**
+     * Constructor to create predicate object for filter
+     * @param keywords the description to filter the residents with
+     * @param specifier the type of filtering specified
+     */
     public AttributesMatchKeywordsPredicate(ResidentDescriptor keywords, FilterSpecifier specifier) {
         this.descriptor = keywords;
         this.specifier = specifier;
@@ -31,6 +36,11 @@ public class AttributesMatchKeywordsPredicate implements Predicate<Resident> {
 
     }
 
+    /**
+     * Filters residents if any description matches
+     * @param resident the resident to verify if they match the filter description
+     * @return if the resident matches the description requirements
+     */
     public boolean filterAny(Resident resident) {
         return descriptor.getName().map(name -> name.equals(resident.getName())).orElse(false)
                 || descriptor.getPhone().map(phone -> phone.equals(resident.getPhone())).orElse(false)
@@ -42,6 +52,11 @@ public class AttributesMatchKeywordsPredicate implements Predicate<Resident> {
                 || descriptor.getTags().map(tags -> tags.equals(resident.getTags())).orElse(false);
     }
 
+    /**
+     * Filters residents if all descriptions match
+     * @param resident the resident to verify if they match the filter description
+     * @return if the resident matches the description requirements
+     */
     public boolean filterAll(Resident resident) {
         return descriptor.getName().map(name -> name.equals(resident.getName())).orElse(true)
                 && descriptor.getPhone().map(phone -> phone.equals(resident.getPhone())).orElse(true)

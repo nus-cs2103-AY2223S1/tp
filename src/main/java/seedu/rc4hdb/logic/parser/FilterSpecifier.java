@@ -1,24 +1,21 @@
 package seedu.rc4hdb.logic.parser;
 
-import seedu.rc4hdb.commons.core.Messages;
-import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-
+/**
+ *  Wrapper for the specifier entered for the filter command
+ */
 public class FilterSpecifier {
     private final String specifier;
 
+    /**
+     * Constructor to create a new specifier object
+     * @param specifier string parsed from the filter command entered by the user
+     */
     public FilterSpecifier(String specifier) {
-            this.specifier = specifier;
+        this.specifier = specifier;
     }
 
     public String getSpecifier() {
         return specifier;
     }
 
-    public boolean isAll(){
-        return specifier == "all";
-    }
-
-    public boolean isAny() {
-        return specifier == "any";
-    }
 }

@@ -98,8 +98,8 @@ public class ResidentBookParserTest {
 
     @Test
     public void parseCommand_filterAll() throws Exception {
-        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD +
-                VALID_ALL_SPECIFIER_DESC + NAME_DESC_AMY) instanceof FilterCommand);
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + VALID_ALL_SPECIFIER_DESC
+                + NAME_DESC_AMY) instanceof FilterCommand);
         Resident resident = new ResidentBuilder().build();
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder(resident).build();
         FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
@@ -109,8 +109,8 @@ public class ResidentBookParserTest {
 
     @Test
     public void parseCommand_filterAny() throws Exception {
-        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD +
-                VALID_ANY_SPECIFIER_DESC + NAME_DESC_AMY) instanceof FilterCommand);
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + VALID_ANY_SPECIFIER_DESC
+                + NAME_DESC_AMY) instanceof FilterCommand);
         Resident resident = new ResidentBuilder().build();
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder(resident).build();
         FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
