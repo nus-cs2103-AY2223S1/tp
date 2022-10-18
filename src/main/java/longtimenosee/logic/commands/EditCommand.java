@@ -27,6 +27,7 @@ import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.Phone;
 import longtimenosee.model.person.RiskAppetite;
+import longtimenosee.model.policy.AssignedPolicy;
 import longtimenosee.model.tag.Tag;
 
 /**
@@ -104,9 +105,11 @@ public class EditCommand extends Command {
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Income updatedIncome = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         RiskAppetite updatedRA = editPersonDescriptor.getRA().orElse(personToEdit.getRiskAppetite());
+        Set<AssignedPolicy> updatedAssignedPolicy = personToEdit.getAssignedPolicies();
+        boolean updatedPin = personToEdit.getPin();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                updatedBirthday, updatedIncome, updatedRA);
+                updatedBirthday, updatedIncome, updatedRA, updatedAssignedPolicy, updatedPin);
     }
 
     @Override
@@ -140,6 +143,7 @@ public class EditCommand extends Command {
         private Birthday birthday;
         private Income income;
         private RiskAppetite riskAppetite;
+        private Set<AssignedPolicy> policies;
 
 
         public EditPersonDescriptor() {}
@@ -214,6 +218,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code assignedPolicies} to this object's {@code policies}.
+         * A defensive copy of {@code policies} is used internally.
+         */
+        public void setAssignedPolicies(Set<AssignedPolicy> assignedPolicies) {
+            this.policies = (assignedPolicies != null) ? new HashSet<>(assignedPolicies) : null;
+        }
+
+        /**
+         * Returns an unmodifiable policy set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code policies} is null.
+         */
+        public Optional<Set<AssignedPolicy>> getAssignedPolicies() {
+            return (policies != null) ? Optional.of(Collections.unmodifiableSet(policies)) : Optional.empty();
         }
 
         public void setRiskAppetite(RiskAppetite ra) {
