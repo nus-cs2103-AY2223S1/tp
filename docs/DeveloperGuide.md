@@ -155,7 +155,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+{% include_relative _dg/Implementation.md %}
+
+<!-- Everyone adds at least 5 comment lines into this document for Week 10 DG Update for bot to detect. Will be deleted later-->
+Eugene:
+Line 1
+Line 2
+Line 3
+Line 4
+Line 5
+
+
+
 
 ### \[Proposed\] Undo/redo feature
 
