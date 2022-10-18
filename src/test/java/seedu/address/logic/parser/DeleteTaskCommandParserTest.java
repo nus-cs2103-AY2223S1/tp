@@ -16,7 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_C;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.DeleteTaskCommandParser.MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER;
@@ -63,7 +63,7 @@ public class DeleteTaskCommandParserTest {
                 DeleteTaskCommand.MESSAGE_USAGE);
 
         // missing module code prefix
-        assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
+        assertParseFailure(parser, VALID_CS2106_MODULE_CODE, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, MODULE_TASK_DESC_C, expectedMessage);
