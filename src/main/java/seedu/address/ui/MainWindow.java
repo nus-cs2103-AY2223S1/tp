@@ -18,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.exceptions.DatePastException;
 
 
 /**
@@ -79,7 +80,8 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        //setAccelerators();
+        // Prevent tab from closing
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         helpWindow = new HelpWindow();
     }
@@ -206,7 +208,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | DatePastException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
