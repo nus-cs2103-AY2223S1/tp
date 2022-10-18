@@ -4,12 +4,10 @@ import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
 import nus.climods.ui.common.Pill;
@@ -53,12 +51,10 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleDescription;
 
-    private ListView<Module> listView;
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ModuleCard(Module module, ListView<Module> lv) {
+    public ModuleCard(Module module) {
         super(FXML);
         this.module = module;
 
@@ -69,20 +65,10 @@ public class ModuleCard extends UiPart<Region> {
             .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
 
-        moduleDescription.setText(module.getDescription());
-        moduleDescription.setWrapText(true);
-        moduleDescription.minWidthProperty().bind(lv.minWidthProperty());
-        expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
-
+        moduleDescription.setText(module.getDescription().replace("\n", " "));
         expandedModuleInfo.setVisible(true);
-
-
-//        expandedModuleInfo.prefWidthProperty().bind(lv.prefWidthProperty());
-//        expandedModuleInfo.maxWidthProperty().bind(lv.maxWidthProperty());
-//        expandedModuleInfo.minWidthProperty().bind(lv.minWidthProperty());
-
-
     }
+
     private Pill createSemesterPill(int semesterNum) {
         String semesterText;
         switch (semesterNum) {
