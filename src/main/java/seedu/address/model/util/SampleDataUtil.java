@@ -36,7 +36,7 @@ public class SampleDataUtil {
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Income("$440"),
                     new MeetingDate("13 Dec 2022"), getTagSet("family"),
-                    new Risk(""), getPlanSet("")),
+                    new Risk("high"), getPlanSet("Singapore Medishield")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Income("$12000"), new MeetingDate("15 Nov 2022"),
                 getTagSet("classmates"), new Risk("medium"), getPlanSet("DBS investment plan")),
