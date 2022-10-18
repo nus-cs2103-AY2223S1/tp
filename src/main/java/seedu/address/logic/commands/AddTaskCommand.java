@@ -138,16 +138,15 @@ public class AddTaskCommand extends Command {
         }
 
         /**
-         * Sets {@code indexOfTaskToDelete} to this object's {@code
-         * indexOfTaskToDelete}.
-         * A defensive copy of {@code indexOfTaskToDelete} is used internally.
+         * Sets {@code moduleCode} to the given {@code ModuleCode}.
+         * A defensive copy of {@code moduleCode} is used internally.
          */
         public void setModuleCodeOfModuleToAddTaskTo(ModuleCode moduleCodeOfModuleToAddTaskTo) {
             this.moduleCode = moduleCodeOfModuleToAddTaskTo;
         }
 
         /**
-         * Sets {@code newTask} to this object's {@code newTask}.
+         * Sets {@code newTask} to the given {@code Task}.
          * A defensive copy of {@code newTask} is used internally.
          */
         public void setNewTask(Task newTask) {

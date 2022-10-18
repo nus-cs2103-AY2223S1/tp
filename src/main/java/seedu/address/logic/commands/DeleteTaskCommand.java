@@ -141,8 +141,8 @@ public class DeleteTaskCommand extends Command {
         }
 
         /**
-         * Sets {@code moduleCodeOfModuleWithTaskToDelete} to the given object's
-         * {@code moduleCodeOfModuleWithTaskToDelete}.
+         * Sets {@code moduleCodeOfModuleWithTaskToDelete} to the given
+         * {@code ModuleCode}.
          * A defensive copy of {@code moduleCodeOfModuleWithTaskToDelete} is
          * used internally.
          */
@@ -151,8 +151,7 @@ public class DeleteTaskCommand extends Command {
         }
 
         /**
-         * Sets {@code indexOfTaskToDelete} to the given object's {@code
-         * indexOfTaskToDelete}.
+         * Sets {@code indexOfTaskToDelete} to the given {@code Index}.
          * A defensive copy of {@code indexOfTaskToDelete} is used internally.
          */
         public void setIndexOfTaskToDelete(Index indexOfTaskToDelete) {
