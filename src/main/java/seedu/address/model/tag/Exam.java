@@ -8,6 +8,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class Exam {
 
+    public static final String MESSAGE_CONSTRAINTS = "Exam should be in the format <NAME> <SCORE>";
     public static final String MESSAGE_NAME_CONSTRAINTS = "Exam name should be CA1, CA2, SA1 or SA2.";
     public static final String MESSAGE_SCORE_CONSTRAINTS = "Exam score should be a number between 0 to 100.";
     public static final String VALIDATION_REGEX = "[0-9]+";
@@ -27,6 +28,11 @@ public class Exam {
         checkArgument(isValidScore(score), MESSAGE_SCORE_CONSTRAINTS);
         this.name = name.toUpperCase();
         this.score = Integer.parseInt(score);
+    }
+
+    public static boolean isValidFormat(String test) {
+        String[] args = test.split("\\s+");
+        return args.length == 2;
     }
 
     /**

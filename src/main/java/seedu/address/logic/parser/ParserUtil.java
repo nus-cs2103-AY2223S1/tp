@@ -15,6 +15,7 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.tag.Exam;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -133,21 +134,30 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Exam parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Exam.isValidFormat(trimmedTag)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        String[] args = trimmedTag.split("\\s+");
+        String name = args[0];
+        String score = args[1];
+        if (!Exam.isValidName(name)) {
+            throw new ParseException(Exam.MESSAGE_NAME_CONSTRAINTS);
+        }
+        if (!Exam.isValidScore(score)) {
+            throw new ParseException(Exam.MESSAGE_SCORE_CONSTRAINTS);
+        }
+        return new Exam(name, score);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Exam> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<Exam> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
