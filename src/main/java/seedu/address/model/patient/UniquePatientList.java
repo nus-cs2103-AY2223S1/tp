@@ -71,7 +71,9 @@ public class UniquePatientList implements Iterable<Patient> {
             throw new PatientNotFoundException();
         }
 
-        if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
+        boolean notSamePatient = !target.isSamePatient(editedPatient);
+        boolean hasNewPatient = contains(editedPatient);
+        if (notSamePatient && hasNewPatient) {
             throw new DuplicatePatientException();
         }
 
