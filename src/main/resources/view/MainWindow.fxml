@@ -76,7 +76,7 @@
           <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <Label styleClass="label-header" text="Mods Taken" textAlignment="CENTER" textFill="WHITE" />
                 <Label fx:id="modDescription" styleClass="label-subheader"
-                       text="Filter students taken a mod using the find command." textAlignment="CENTER" />
+                       text="Find students taking a mod with the find command." textAlignment="CENTER" />
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
