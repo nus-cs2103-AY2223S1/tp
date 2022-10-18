@@ -52,15 +52,15 @@ public class TutorDetailsPanel extends UiPart<Region> {
     public TutorDetailsPanel(Tutor tutor) {
         super(FXML);
         this.tutor = tutor;
-        studentId.setText(tutor.getStudentId().value);
+        studentId.setText("Student ID: " + tutor.getStudentId().value);
         name.setText(tutor.getName().fullName);
         module.setText(tutor.getModule().value);
         year.setText("Year " + tutor.getYear().value);
-        phone.setText(tutor.getPhone().value);
-        email.setText(tutor.getEmail().value);
-        rating.setText(tutor.getRating().value);
-        teachingNomination.setText(tutor.getTeachingNomination().value);
-        comment.setText(tutor.getComment().value);
+        phone.setText("Phone: " + tutor.getPhone().value);
+        email.setText("Email: " + tutor.getEmail().value);
+        rating.setText("Student Feedback Points: " + tutor.getRating().value);
+        teachingNomination.setText("Teaching Nominations: " + tutor.getTeachingNomination().value);
+        comment.setText("Additional Feedback:\n" + tutor.getComment().value);
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
