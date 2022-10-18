@@ -34,4 +34,6 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate tuition classes.
      */
     ObservableList<TuitionClass> getTuitionClassList();
+
+
 }

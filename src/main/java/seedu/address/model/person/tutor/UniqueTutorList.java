@@ -3,11 +3,14 @@ package seedu.address.model.person.tutor;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.exceptions.DuplicateTutorException;
 import seedu.address.model.person.tutor.exceptions.TutorNotFoundException;
 
@@ -87,6 +90,23 @@ public class UniqueTutorList implements Iterable<Tutor> {
         }
 
         this.internalList.setAll(tutors);
+    }
+
+    /**
+     * Sorts the list accordingly.
+     * @param sortBy The method to sort the list by.
+     */
+    public void sort(SortCommand.SortBy sortBy) {
+        switch (sortBy) {
+        case ALPHA:
+            internalList.sort(Comparator.comparing(person -> person.getName().fullName));
+            break;
+        case REVERSE:
+            FXCollections.reverse(internalList);
+            break;
+        default:
+            internalList.sort(Comparator.comparing(Tutor::getUniqueId));
+        }
     }
 
     /**
