@@ -24,7 +24,9 @@ import seedu.address.model.Model;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
+    private static final String SELECTED_LABEL_STYLE_CLASS = "active-label";
 
+    private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -63,10 +65,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Pane tuitionClassLabelPanel;
-
-    private String selectedLabelStyle;
-
-    private String unselectedLabelStyle;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -148,23 +146,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Gets the selectedlabelStyle and unselectedLabelStyle
-     * from studentLabelPanel and tutorLabelPanel accordingly,
-     * assuming that the .fxml file sets them to selected and
-     * unselected style correctly.
-     */
-    public void initializeStyleClass() {
-        // Get the value of the style of a selected label
-        // from studentLabelPanel since it is set to the
-        // selected color by default.
-        // Refer to studentLabelPanel and tutorLabelPanel
-        // for more details about the difference of their
-        // style.
-        selectedLabelStyle = studentLabelPanel.getStyleClass().get(0);
-        unselectedLabelStyle = tutorLabelPanel.getStyleClass().get(0);
-    }
-
-    /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
@@ -207,19 +188,17 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Updates the displayed list.
      */
-    @FXML
     private void handleList() {
         Model.ListType type = logic.getCurrentListType();
-        entityListPanelPlaceholder.getChildren().clear();
         switch (type) {
         case STUDENT_LIST:
-            entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            switchToStudentList();
             break;
         case TUTOR_LIST:
-            entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            switchToTutorList();
             break;
         case TUITIONCLASS_LIST:
-            entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+            switchToTuitionClassList();
             break;
         case PERSON_LIST:
             entityListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -227,8 +206,33 @@ public class MainWindow extends UiPart<Stage> {
         default:
             break;
         }
+    }
 
-        setLabelStyle(type);
+    @FXML
+    private void switchToStudentList() {
+        logic.updateCurrentListType(Model.ListType.STUDENT_LIST);
+        entityListPanelPlaceholder.getChildren().clear();
+        entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        setLabelStyle(Model.ListType.STUDENT_LIST);
+    }
+
+    @FXML
+    private void switchToTutorList() {
+        logic.updateCurrentListType(Model.ListType.TUTOR_LIST);
+        entityListPanelPlaceholder.getChildren().clear();
+        entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+
+        setLabelStyle(Model.ListType.TUTOR_LIST);
+    }
+
+    @FXML
+    private void switchToTuitionClassList() {
+        logic.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        entityListPanelPlaceholder.getChildren().clear();
+        entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+
+        setLabelStyle(Model.ListType.TUITIONCLASS_LIST);
     }
 
     private void setLabelStyle(Model.ListType type) {
@@ -237,19 +241,19 @@ public class MainWindow extends UiPart<Stage> {
         tuitionClassLabelPanel.getStyleClass().clear();
         switch (type) {
         case STUDENT_LIST:
-            tutorLabelPanel.getStyleClass().add(unselectedLabelStyle);
-            tuitionClassLabelPanel.getStyleClass().add(unselectedLabelStyle);
-            studentLabelPanel.getStyleClass().add(selectedLabelStyle);
+            tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
+            tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
+            studentLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
             break;
         case TUTOR_LIST:
-            studentLabelPanel.getStyleClass().add(unselectedLabelStyle);
-            tuitionClassLabelPanel.getStyleClass().add(unselectedLabelStyle);
-            tutorLabelPanel.getStyleClass().add(selectedLabelStyle);
+            studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
+            tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
+            tutorLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
             break;
         case TUITIONCLASS_LIST:
-            studentLabelPanel.getStyleClass().add(unselectedLabelStyle);
-            tutorLabelPanel.getStyleClass().add(unselectedLabelStyle);
-            tuitionClassLabelPanel.getStyleClass().add(selectedLabelStyle);
+            studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
+            tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
+            tuitionClassLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
             break;
         default:
             break;

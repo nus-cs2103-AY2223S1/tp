@@ -19,6 +19,7 @@ import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -35,16 +36,19 @@ class JsonAdaptedStudent {
     private final String level;
     private final String nextOfKin;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTuitionClass> tuitionClasses = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("school") String school, @JsonProperty("level") String level,
-                             @JsonProperty("nextOfKin") String nextOfKin,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("school") String school, @JsonProperty("level") String level,
+                              @JsonProperty("nextOfKin") String nextOfKin,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,6 +58,9 @@ class JsonAdaptedStudent {
         this.nextOfKin = nextOfKin;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (tuitionClasses != null) {
+            this.tuitionClasses.addAll(tuitionClasses);
         }
     }
 
@@ -70,6 +77,9 @@ class JsonAdaptedStudent {
         nextOfKin = source.getNextOfKin().nextOfKin;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        tuitionClasses.addAll(source.getTuitionClasses().stream()
+                .map(JsonAdaptedTuitionClass::new)
                 .collect(Collectors.toList()));
     }
 
@@ -143,7 +153,12 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final List<TuitionClass> modelTuitionClasses = new ArrayList<>();
+        for (JsonAdaptedTuitionClass tuitionClass: tuitionClasses) {
+            modelTuitionClasses.add(tuitionClass.toModelType());
+        }
+
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelSchool, modelLevel, modelNextOfKin);
+                modelSchool, modelLevel, modelNextOfKin, modelTuitionClasses);
     }
 }

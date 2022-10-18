@@ -2,6 +2,8 @@ package seedu.address.model.person.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Represents a Student in the address book.
@@ -21,6 +24,7 @@ public class Student extends Person {
     private final School school;
     private final Level level;
     private final NextOfKin nextOfKin;
+    private final List<TuitionClass> tuitionClasses = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -34,6 +38,22 @@ public class Student extends Person {
         this.nextOfKin = nextOfKin;
     }
 
+
+    /**
+     * Every field must be present and not null.
+     * Should not be used in AddCommand as tuition classes
+     * are not added in AddCommand.
+     */
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, School school, Level level,
+                   NextOfKin nextOfKin, List<TuitionClass> tuitionClasses) {
+        super(name, phone, email, address, tags);
+        requireAllNonNull(school, level, nextOfKin);
+        this.school = school;
+        this.level = level;
+        this.nextOfKin = nextOfKin;
+        this.tuitionClasses.addAll(tuitionClasses);
+    }
+
     public School getSchool() {
         return school;
     }
@@ -44,6 +64,10 @@ public class Student extends Person {
 
     public NextOfKin getNextOfKin() {
         return nextOfKin;
+    }
+
+    public List<TuitionClass> getTuitionClasses() {
+        return tuitionClasses;
     }
 
     /**
@@ -68,14 +92,15 @@ public class Student extends Person {
                 && otherStudent.getTags().equals(getTags())
                 && otherStudent.getSchool().equals(getSchool())
                 && otherStudent.getLevel().equals(getLevel())
-                && otherStudent.getNextOfKin().equals(getNextOfKin());
+                && otherStudent.getNextOfKin().equals(getNextOfKin())
+                && otherStudent.getTuitionClasses().equals(getTuitionClasses());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getTags(),
-                school, level, nextOfKin);
+                school, level, nextOfKin, tuitionClasses);
     }
 
     @Override
@@ -89,6 +114,12 @@ public class Student extends Person {
                 .append(getLevel())
                 .append("; Next of kin: ")
                 .append(getNextOfKin());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }
