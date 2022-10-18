@@ -173,8 +173,8 @@ public class UniqueCompanyListTest {
         companies.add(ALICE);
         companies.add(BOB);
 
-        PersonName aliceName = ALICE.getName();
-        PersonName bobName = BOB.getName();
+        CompanyName aliceName = ALICE.getName();
+        CompanyName bobName = BOB.getName();
         assertEquals(companies.toString(), "Companies: " + aliceName + ", " + bobName);
     }
 }

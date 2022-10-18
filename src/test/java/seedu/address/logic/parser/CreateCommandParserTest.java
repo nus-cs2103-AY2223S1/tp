@@ -4,9 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
@@ -40,38 +39,25 @@ class CreateCommandParserTest {
 
     @Test
     public void parse_invalidCompanyFields_failure() {
-        // name but no phone and email
+        // name but no address
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
-        // only phone
-        assertParseFailure(parser, "1 p/912988", CreateCommand.MESSAGE_COMPANY_INVALID);
-        // only email
-        assertParseFailure(parser, "1 e/james@gmail.com", CreateCommand.MESSAGE_COMPANY_INVALID);
-        // name and phone but no email
-        assertParseFailure(parser, "1 n/james p/99191919", CreateCommand.MESSAGE_COMPANY_INVALID);
-        // name and email but no phone
-        assertParseFailure(parser, "1 n/james e/james@gmail.com", CreateCommand.MESSAGE_COMPANY_INVALID);
-        // phone and email but no name
-        assertParseFailure(parser, "1 p/91298129 e/james@gmail.com", CreateCommand.MESSAGE_COMPANY_INVALID);
+        // address but no name
+        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
+        // only address
+        assertParseFailure(parser, "1 a/Bedok Mall", CreateCommand.MESSAGE_COMPANY_INVALID);
+        // only name
+        assertParseFailure(parser, "1 n/Alex", CreateCommand.MESSAGE_COMPANY_INVALID);
         // invalid tag
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
     }
 
     @Test
     public void parse_invalidFormat_failure() {
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_ADDRESS_AMY, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, INVALID_ADDRESS_DESC, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_EMAIL_AMY,
+        assertParseFailure(parser, VALID_NAME_AMY + VALID_ADDRESS_AMY,
                 MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, VALID_NAME_AMY + VALID_EMAIL_AMY,
-                MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_PHONE_AMY, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, VALID_NAME_AMY + VALID_PHONE_AMY, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_PHONE_AMY + VALID_EMAIL_AMY,
-                MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, VALID_NAME_AMY + VALID_PHONE_AMY + VALID_EMAIL_AMY,
-                MESSAGE_INVALID_FORMAT);
-
     }
 }
