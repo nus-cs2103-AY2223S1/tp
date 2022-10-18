@@ -152,4 +152,8 @@ public class Trip {
         return builder.toString();
     }
 
+    public int compareTitle(Trip trip) {
+        return title.compareTo(trip.title);
+    }
+
 }

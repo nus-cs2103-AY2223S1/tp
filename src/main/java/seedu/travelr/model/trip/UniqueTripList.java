@@ -3,6 +3,7 @@ package seedu.travelr.model.trip;
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -160,5 +161,9 @@ public class UniqueTripList implements Iterable<Trip> {
             }
         }
         return true;
+    }
+
+    public void sort(Comparator<Trip> comp) {
+        internalList.sort(comp);
     }
 }

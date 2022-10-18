@@ -2,6 +2,7 @@ package seedu.travelr.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -183,6 +184,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeEvent(Event key) {
         bucketList.remove(key);
         allEventsList.remove(key);
+    }
+
+    public void sortTrips(Comparator<Trip> comp) {
+        trips.sort(comp);
     }
 
     //// util methods
