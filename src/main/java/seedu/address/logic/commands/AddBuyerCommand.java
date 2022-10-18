@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
@@ -59,13 +61,20 @@ public class AddBuyerCommand extends AddPersonCommand {
             throw new CommandException(MESSAGE_DUPLICATE_BUYER);
         }
 
-        model.addBuyer(toAdd);
+        List<Order> orders = toAdd.getOrders();
+        int numOrdersAdded = orders.size();
 
-        int numOrdersAdded = 0;
-        for (Order order : toAdd.getOrders()) {
-            model.addOrder(order);
-            numOrdersAdded++;
+        for (Order order : orders) {
+            if (model.hasOrder(order)) {
+                throw new CommandException(AddOrderCommand.MESSAGE_DUPLICATE_ORDER);
+            }
         }
+
+        for (Order order : orders) {
+            model.addOrder(order);
+        }
+
+        model.addBuyer(toAdd);
 
         return new CommandResult("\n" //TODO To keep a single MESSAGE_SUCCESS
                 + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n"

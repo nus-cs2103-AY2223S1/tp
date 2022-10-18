@@ -8,9 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
 
 /**
  * Adds a supplier to the address book.
@@ -52,15 +55,29 @@ public class AddSupplierCommand extends AddPersonCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         if (model.hasSupplier(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
+        List<Pet> pets = toAdd.getPetsOnSale();
+        int numPetsAdded = pets.size();
+
+        for (Pet pet : pets) {
+            if (model.hasPet(pet)) {
+                throw new CommandException(AddPetCommand.MESSAGE_DUPLICATE_PET);
+            }
+        }
+
+        for (Pet pet : pets) {
+            model.addPet(pet);
+        }
+
         model.addSupplier(toAdd);
 
-
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult("\n" //TODO To keep a single MESSAGE_SUCCESS
+                + numPetsAdded + (numPetsAdded == 1 ? " pet" : " pets") + " added\n"
+                + String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

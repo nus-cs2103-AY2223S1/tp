@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_OWNER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
@@ -29,6 +30,7 @@ public class AddPetCommand {
             + PREFIX_PET_SPECIES + "SPECIES "
             + PREFIX_PET_VACCINATION_STATUS + "VACCINATION_STATUS "
             + PREFIX_PET_WEIGHT + "WEIGHT "
+            + PREFIX_PET_PRICE + "PRICE"
             + "[" + PREFIX_PET_CERTIFICATE + "CERTIFICATE]...\n"
             + "[" + PREFIX_PET_TAG + "TAG]...\n"
 
@@ -42,8 +44,12 @@ public class AddPetCommand {
             + PREFIX_PET_SPECIES + "chihuahua "
             + PREFIX_PET_VACCINATION_STATUS + "true "
             + PREFIX_PET_WEIGHT + "15.3 "
+            + PREFIX_PET_PRICE + "20"
             + PREFIX_PET_CERTIFICATE + "Good-Dog Cert. "
             + PREFIX_PET_CERTIFICATE + "Royal Blood Cert. "
             + PREFIX_PET_TAG + "naughty "
             + PREFIX_PET_TAG + "sold\n";
+
+    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the buyer list";
+
 }
