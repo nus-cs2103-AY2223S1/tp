@@ -29,6 +29,10 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
+    /**
+     * get the current {@PersonListView} of employee list
+     * @return a {@code PersonListView} that represents the current employee list
+     */
     public ListView<Person> getPersonListView() {
         return personListView;
     }
