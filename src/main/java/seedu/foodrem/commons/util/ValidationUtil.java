@@ -1,11 +1,9 @@
 package seedu.foodrem.commons.util;
 
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
-
 
 /**
  * Helper functions for handling validation.
@@ -30,6 +28,7 @@ public class ValidationUtil {
      * Returns true if a string can be parsed into a date with the provided format, false otherwise.
      *
      * @param dateString a string to be parsed.
+     * @param dateRegex  the format the of the date to be parsed.
      */
     public static boolean isParsableDateString(String dateString, String dateRegex) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dateRegex);

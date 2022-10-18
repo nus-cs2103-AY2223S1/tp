@@ -29,7 +29,6 @@ public class Item {
 
     private final Set<Tag> tagSet;
 
-
     /**
      * Constructs an item.
      *
@@ -38,6 +37,7 @@ public class Item {
      * @param unit       Unit of the item.
      * @param boughtDate Date when the item was purchased.
      * @param expiryDate Date when the item will expire.
+     * @param price      Price of one unit of the item.
      */
     public Item(ItemName name,
                 ItemQuantity quantity,
@@ -63,14 +63,16 @@ public class Item {
      * @param unit       Unit of the item.
      * @param boughtDate Date when the item was purchased.
      * @param expiryDate Date when the item will expire.
-     * @param price  Price of the item bought.
+     * @param price      Price of one unit of the item.
      * @param tagSet     The set of tags in item.
      */
     public Item(ItemName name,
                 ItemQuantity quantity,
                 ItemUnit unit,
                 ItemBoughtDate boughtDate,
-                ItemExpiryDate expiryDate, ItemPrice price, Set<Tag> tagSet) {
+                ItemExpiryDate expiryDate,
+                ItemPrice price,
+                Set<Tag> tagSet) {
         requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price, tagSet);
         this.name = name;
         this.quantity = quantity;
