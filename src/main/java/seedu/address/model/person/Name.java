@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -38,22 +38,21 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
-    public String toString() {
-        return fullName;
+    public int hashCode() {
+        return fullName.hashCode();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+               || (other instanceof Name // instanceof handles nulls
+                   && fullName.equals(((Name) other).fullName)); // state check
     }
 
     @Override
-    public int hashCode() {
-        return fullName.hashCode();
+    public String toString() {
+        return fullName;
     }
 
 }

@@ -18,14 +18,6 @@ public class AppParameters {
 
     private Path configPath;
 
-    public Path getConfigPath() {
-        return configPath;
-    }
-
-    public void setConfigPath(Path configPath) {
-        this.configPath = configPath;
-    }
-
     /**
      * Parses the application command-line parameters.
      */
@@ -43,6 +35,19 @@ public class AppParameters {
         return appParameters;
     }
 
+    public Path getConfigPath() {
+        return configPath;
+    }
+
+    public void setConfigPath(Path configPath) {
+        this.configPath = configPath;
+    }
+
+    @Override
+    public int hashCode() {
+        return configPath.hashCode();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -55,10 +60,5 @@ public class AppParameters {
 
         AppParameters otherAppParameters = (AppParameters) other;
         return Objects.equals(getConfigPath(), otherAppParameters.getConfigPath());
-    }
-
-    @Override
-    public int hashCode() {
-        return configPath.hashCode();
     }
 }

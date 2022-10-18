@@ -17,4 +17,13 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    /**
+     * For debugging purposes only.
+     *
+     * @return the command string representation.
+     */
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
 }

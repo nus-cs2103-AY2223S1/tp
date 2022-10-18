@@ -5,14 +5,13 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 /**
  * Represents the attendance of the student
  */
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Attendance should only contain numbers and slashes, and it should not be blank";
+        "Attendance should only contain numbers and slashes, and it should not be blank";
 
     private HashMap<String, Integer> personAttendance;
 
@@ -25,6 +24,10 @@ public class Attendance {
         requireNonNull(command);
         personAttendance = new HashMap<>();
         attendanceCommand = command;
+    }
+
+    public static boolean isValidAttendance(String test) {
+        return true;
     }
 
     /**
@@ -43,18 +46,14 @@ public class Attendance {
     }
 
     @Override
-    public String toString() {
-        int[] attendanceArray = totalAttendance(personAttendance);
-        return String.format("Attendance: %d/%d", attendanceArray[0], attendanceArray[1]);
-    }
-
-    public static boolean isValidAttendance(String test) {
-        return true;
+    public int hashCode() {
+        return personAttendance.hashCode();
     }
 
     @Override
-    public int hashCode() {
-        return personAttendance.hashCode();
+    public String toString() {
+        int[] attendanceArray = totalAttendance(personAttendance);
+        return String.format("Attendance: %d/%d", attendanceArray[0], attendanceArray[1]);
     }
 
 }

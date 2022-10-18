@@ -40,7 +40,7 @@ public class EditPersonDescriptorBuilder {
 
         // New fields
         descriptor.setStudentClass(person.getStudentClass());
-        descriptor.setPersonality(person.getPersonality());
+        descriptor.setRemarks(person.getRemarks());
         descriptor.setSubjectHandler(person.getSubjectHandler());
     }
 

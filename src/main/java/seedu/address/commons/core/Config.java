@@ -33,6 +33,11 @@ public class Config {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(logLevel, userPrefsFilePath);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -44,12 +49,7 @@ public class Config {
         Config o = (Config) other;
 
         return Objects.equals(logLevel, o.logLevel)
-                && Objects.equals(userPrefsFilePath, o.userPrefsFilePath);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(logLevel, userPrefsFilePath);
+               && Objects.equals(userPrefsFilePath, o.userPrefsFilePath);
     }
 
     @Override

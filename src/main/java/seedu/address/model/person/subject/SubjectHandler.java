@@ -18,6 +18,7 @@ public class SubjectHandler {
 
     /**
      * Adds a subject to the list of subjects taken by the student
+     *
      * @param subject the subject to be added
      */
     public void addSubject(Subject subject) {
@@ -28,15 +29,11 @@ public class SubjectHandler {
 
     /**
      * Gets a subject from the list of subjects taken by the student
+     *
      * @param subjectName the name of the subject to be retrieved
      */
     public Subject getSubject(String subjectName) {
         return subjectsTaken.get(subjectName);
-    }
-
-    @Override
-    public String toString() {
-        return subjectsTaken.toString();
     }
 
     @Override
@@ -45,5 +42,10 @@ public class SubjectHandler {
             return subjectsTaken.equals(((SubjectHandler) obj).subjectsTaken);
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return subjectsTaken.toString();
     }
 }
