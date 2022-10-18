@@ -41,7 +41,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT_DATE).isPresent()) {
             try {
-            editAppointmentDescriptor.setDateTime(
+                editAppointmentDescriptor.setDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
             } catch (DateTimeParseException e) {
                 throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
