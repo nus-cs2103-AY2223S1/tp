@@ -7,9 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -68,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane transactionListPanelPlaceholder;
 
     @FXML
-    private StackPane MenuPlaceholder;
+    private StackPane menuPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -98,6 +96,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -149,8 +148,8 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         netTransactionBox = new NetTransactionBox(logic.calculateTotalTransaction());
-        MenuPlaceholder.setAlignment(Pos.TOP_RIGHT);
-        MenuPlaceholder.getChildren().add(netTransactionBox.getRoot());
+        menuPlaceholder.setAlignment(Pos.TOP_RIGHT);
+        menuPlaceholder.getChildren().add(netTransactionBox.getRoot());
     }
 
     /**
