@@ -10,6 +10,8 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_INCOME = "$5230";
     public static final String DEFAULT_MEETINGDATE = "20 Nov 2022";
+    public static final String DEFAULT_RISK = "high";
 
     private Name name;
     private Phone phone;
@@ -32,6 +35,8 @@ public class PersonBuilder {
     private Income income;
     private MeetingDate meetingDate;
     private Set<Tag> tags;
+    private Risk risk;
+    private Set<Plan> plans;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +49,8 @@ public class PersonBuilder {
         income = new Income(DEFAULT_INCOME);
         meetingDate = new MeetingDate(DEFAULT_MEETINGDATE);
         tags = new HashSet<>();
+        risk = new Risk(DEFAULT_RISK);
+        plans = new HashSet<>();
     }
 
     /**
@@ -57,6 +64,8 @@ public class PersonBuilder {
         income = personToCopy.getIncome();
         meetingDate = personToCopy.getMeetingDate();
         tags = new HashSet<>(personToCopy.getTags());
+        risk = personToCopy.getRisk();
+        plans = new HashSet<>(personToCopy.getPlans());
     }
 
     /**
@@ -115,8 +124,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Risk} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRisk(String risk) {
+        this.risk = new Risk(risk);
+        return this;
+    }
+
+    /**
+     * Parses the {@code plans} into a {@code Set<Plan>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPlans(String ... plans) {
+        this.plans = SampleDataUtil.getPlanSet(plans);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, income, meetingDate, tags);
+        return new Person(name, phone, email, address, income, meetingDate, tags, risk, plans);
     }
 
 }

@@ -7,7 +7,9 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "income" : "$5000",
     "meetingDate" : "23 Nov 2022",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "risk":  "high",
+    "planned": [ "prudential income" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -15,7 +17,9 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "income" : "$300",
     "meetingDate" : "10 Dec 2022",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "risk":  "high",
+    "planned": [ "prudential income" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -23,7 +27,9 @@
     "address" : "wall street",
     "income" : "$840",
     "meetingDate" : null,
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "risk":  "low",
+    "planned": [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -31,7 +37,9 @@
     "address" : "10th street",
     "income" : "$7000",
     "meetingDate" : "28 Nov 2022",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "risk":  "high",
+    "planned": [ "NTUC income" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -39,7 +47,9 @@
     "address" : "michegan ave",
     "income" : "$2500",
     "meetingDate" : "16 Nov 2022",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "risk":  "medium",
+    "planned": [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -47,7 +57,9 @@
     "address" : "little tokyo",
     "income" : "$90",
     "meetingDate" : "12 Sep 2022",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "risk":  null,
+    "planned": [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -55,6 +67,8 @@
     "address" : "4th street",
     "income" : "$3000",
     "meetingDate" : null,
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "risk":  null,
+    "planned": [ ]
   } ]
 }

@@ -158,17 +158,15 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String plan} into an {@code Plan}.
-     * Leading and trailing whitespaces will be trimmed.
      * Plan can be null.
      * @throws ParseException if the given {@code plan} is invalid.
      */
     public static Plan parsePlan(String plan) throws ParseException {
         requireNonNull(plan);
-        String trimmedPlan = plan.trim();
-        if (!Plan.isValidPlan(trimmedPlan)) {
+        if (!Plan.isValidPlan(plan)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Plan(trimmedPlan);
+        return new Plan(plan);
     }
 
     /**

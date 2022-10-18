@@ -30,8 +30,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MEETING_DATE = "@2 Jan 2022";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_RISK = " ";
-    private static final String INVALID_PLAN = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -150,21 +148,6 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
-    @Test
-    public void toModelType_invalidRisk_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_INCOME, VALID_MEETING_DATE, VALID_TAGS, INVALID_RISK, VALID_PLAN);
-        String expectedMessage = Risk.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
 
-    @Test
-    public void toModelType_invalidPlan_throwsIllegalValueException() {
-        List<JsonAdaptedPlan> invalidPlans = new ArrayList<>(VALID_PLAN);
-        invalidPlans.add(new JsonAdaptedPlan(INVALID_PLAN));
-        JsonAdaptedPerson person = new JsonAdaptedPerson(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_INCOME, VALID_MEETING_DATE, VALID_TAGS, VALID_RISK, invalidPlans);
-        assertThrows(IllegalValueException.class, person::toModelType);;
-    }
 
 }

@@ -45,7 +45,7 @@ public class CsvAdaptedPerson {
     @CsvBindByName(column = "risk", required = true)
     private final String risk;
     @CsvBindAndSplitByName(column = "plans", required = true,
-            elementType = Plan.class, splitOn = ",", converter = StringToTag.class)
+            elementType = Plan.class, splitOn = ",", converter = StringToPlan.class)
     private final List<Plan> planned = new ArrayList<>();
 
     /**

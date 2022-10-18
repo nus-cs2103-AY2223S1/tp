@@ -8,7 +8,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Plan {
     public static final String MESSAGE_CONSTRAINTS = "Plan names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String value;
 
