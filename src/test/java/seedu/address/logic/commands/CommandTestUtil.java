@@ -30,6 +30,11 @@ import seedu.address.testutil.EditProjectDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_TASKDESCRIPTION_ALPHA = "Todo 2103 homework";
+    public static final String VALID_TASKDESCRIPTION_BRAVO = "Submit 2100 assignment";
+    public static final String VALID_TASKDEADLINE_ALPHA = "2022-01-01";
+    public static final String VALID_TASKDEADLINE_BRAVO = "2023-02-21";
+
     public static final String VALID_STAFFNAME_ANDY = "Andy Lee";
     public static final String VALID_STAFFNAME_JAY = "Jayden Yap";
     public static final String VALID_STAFFCONTACT_ANDY = "11111111";

@@ -18,6 +18,9 @@ import seedu.address.model.staff.StaffInsurance;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -50,10 +53,21 @@ public class SampleDataUtil {
         return projectList;
     }
 
+    public static Task[] getSampleTasks() {
+        return new Task[] {new Task(new TaskDeadline("2022-06-01"), new TaskDescription("Finish 2103")),
+            new Task(new TaskDeadline("2022-07-02"), new TaskDescription("Submit homework")),
+            new Task(new TaskDeadline("2022-08-30"), new TaskDescription("Prepare for 2103 exam"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Project sampleProject : getSampleProjects()) {
             sampleAb.addProject(sampleProject);
+        }
+
+        for (Task sampleTask : getSampleTasks()) {
+            sampleAb.addTask(sampleTask);
         }
         return sampleAb;
     }
