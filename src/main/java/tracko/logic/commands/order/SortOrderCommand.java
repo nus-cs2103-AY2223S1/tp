@@ -18,7 +18,7 @@ public class SortOrderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all orders based on the time and date "
             + "displays them as a list with index numbers.\n"
-            + "Parameters: new/old \n"
+            + "Parameters: 'new' or 'old' \n"
             + "Example: " + COMMAND_WORD + " new";
 
     private final OrderDateTimeComparator comparator;
