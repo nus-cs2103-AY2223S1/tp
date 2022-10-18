@@ -36,6 +36,23 @@ public class Order {
         this.isDelivered = isDelivered;
     }
 
+    /**
+     * Every field must be present and not null.
+     * To be used for reading order data from Storage
+     */
+    public Order(Name name, Phone phone, Email email, Address address, LocalDateTime timeCreated,
+                 List<ItemQuantityPair> itemList, boolean isPaid, boolean isDelivered) {
+        requireAllNonNull(name, phone, email, address, timeCreated, itemList);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.timeCreated = timeCreated;
+        this.itemList = itemList;
+        this.isPaid = isPaid;
+        this.isDelivered = isDelivered;
+    }
+
     public Name getName() {
         return name;
     }
@@ -104,6 +121,7 @@ public class Order {
             && otherOrder.getPhone().equals(getPhone())
             && otherOrder.getEmail().equals(getEmail())
             && otherOrder.getAddress().equals(getAddress())
+            && otherOrder.getTimeCreated().equals(getTimeCreated())
             && otherOrder.getItemList().equals(getItemList())
             && otherOrder.getPaidStatus() == getPaidStatus()
             && otherOrder.getDeliveryStatus() == getDeliveryStatus();
@@ -116,6 +134,7 @@ public class Order {
         sb.append("Phone: " + getPhone().value + "\n");
         sb.append("Email: " + getEmail().value + "\n");
         sb.append("Address: " + getAddress().value + "\n");
+        sb.append("Time Created: " + getTimeCreated() + "\n");
         sb.append("Item List: \n");
         for (ItemQuantityPair itemQuantityPair : getItemList()) {
             sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
