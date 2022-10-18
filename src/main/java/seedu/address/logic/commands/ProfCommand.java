@@ -58,6 +58,7 @@ public class ProfCommand extends Command {
         .add(PREFIX_GENDER.getPrefix())
         .add(PREFIX_TAG.getPrefix())
         .add(PREFIX_LOCATION.getPrefix())
+        .add(PREFIX_GITHUBUSERNAME.getPrefix())
         .add(PREFIX_RATING.getPrefix())
         .toString();
 
