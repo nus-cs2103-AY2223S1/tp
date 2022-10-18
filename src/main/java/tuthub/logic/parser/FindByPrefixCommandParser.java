@@ -14,10 +14,12 @@ import java.util.Arrays;
 
 import tuthub.logic.commands.FindByModuleCommand;
 import tuthub.logic.commands.FindByNameCommand;
+import tuthub.logic.commands.FindByPhoneCommand;
 import tuthub.logic.commands.FindByPrefixCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tutor.ModuleContainsKeywordPredicate;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
+import tuthub.model.tutor.PhoneContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindByPrefixCommand object.
@@ -49,6 +51,17 @@ public class FindByPrefixCommandParser implements Parser<FindByPrefixCommand> {
             String[] nameKeywords = trimmedKeywords.split("\\s+");
 
             return new FindByNameCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else if (argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            String keywords = argumentMultimap.getValue(PREFIX_PHONE).get();
+            String trimmedKeywords = keywords.trim();
+            if (trimmedKeywords.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByPhoneCommand.MESSAGE_USAGE));
+            }
+
+            String[] moduleKeywords = trimmedKeywords.split("\\s+");
+
+            return new FindByPhoneCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         } else if (argumentMultimap.getValue(PREFIX_MODULE).isPresent()) {
             String keywords = argumentMultimap.getValue(PREFIX_MODULE).get();
             String trimmedKeywords = keywords.trim();
