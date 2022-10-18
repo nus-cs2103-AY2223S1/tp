@@ -80,7 +80,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public double calculateNetTransaction() {
+    public double calculateTotalTransaction() {
         ObservableList<Client> filteredClientList = this.getFilteredClientList();
         double netTransacted = 0.0;
         for (Client client : filteredClientList) {

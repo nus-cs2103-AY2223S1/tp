@@ -52,5 +52,5 @@ public interface Logic {
     /**
      * Returns the net amount transacted by all clients in the current list
      */
-    double calculateNetTransaction();
+    double calculateTotalTransaction();
 }

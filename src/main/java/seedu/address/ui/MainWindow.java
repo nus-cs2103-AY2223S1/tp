@@ -148,7 +148,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        netTransactionBox = new NetTransactionBox(logic.calculateNetTransaction());
+        netTransactionBox = new NetTransactionBox(logic.calculateTotalTransaction());
         MenuPlaceholder.setAlignment(Pos.TOP_RIGHT);
         MenuPlaceholder.getChildren().add(netTransactionBox.getRoot());
     }
@@ -209,7 +209,7 @@ public class MainWindow extends UiPart<Stage> {
         Client client = clientList.get(0);
         ObservableList<Company> companies = client.getCompanies().asUnmodifiableObservableList();
         ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
-        double updatedNetTransaction = logic.calculateNetTransaction();
+        double updatedNetTransaction = logic.calculateTotalTransaction();
         companyListPanel.setCompanyList(companies);
         transactionListPanel.setTransactionList(transactions);
         netTransactionBox.setNetTransaction(updatedNetTransaction);

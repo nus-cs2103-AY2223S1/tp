@@ -20,7 +20,7 @@ public class NetTransactionBox extends UiPart<Region> {
 
     public NetTransactionBox(double amount) {
         super(FXML);
-        netTransaction.setText("Net amount: " + amount+"");
+        netTransaction.setText("Net amount: $" + Double.toString(amount));
     }
 
     public void setNetTransaction(double netTransactionAmount) {
