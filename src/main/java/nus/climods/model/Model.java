@@ -8,6 +8,8 @@ import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
+import nus.climods.model.module.exceptions.DetailedModuleRetrievalException;
+import org.openapitools.client.ApiException;
 
 
 /**
@@ -53,7 +55,7 @@ public interface Model {
     /**
      * Sets active module (currently for view) in full module list to the module specified by moduleCode
      */
-    void setActiveModule(String moduleCode);
+    void setActiveModule(String moduleCode) throws DetailedModuleRetrievalException;
 
     /**
      * Resets active module to be inactive
