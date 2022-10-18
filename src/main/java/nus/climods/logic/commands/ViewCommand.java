@@ -25,7 +25,11 @@ public class ViewCommand extends Command {
         if (!model.hasListModule(moduleCode)) {
             throw new CommandException(String.format(MESSAGE_MODULE_NOT_FOUND, moduleCode));
         }
-        model.setFilteredModuleList(new ViewModulePredicate(moduleCode));
+        model.setActiveModule(moduleCode);
+
+//        model.getListModule(moduleCode).getLessonTypes().. //check aga
+
+//        model.setFilteredModuleList(new ViewModulePredicate(moduleCode));
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode));
     }
 }

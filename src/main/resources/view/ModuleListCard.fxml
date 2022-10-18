@@ -35,6 +35,10 @@
                maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
                text="\$moduleCode" fx:id="moduleDescription"/>
 
+        <Label style="-fx-font-size: 20;" maxHeight="1.7976931348623157E308"
+               maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+               text="\$moduleCode" fx:id="prereqs"/>
+
 
         <padding>
           <Insets>
