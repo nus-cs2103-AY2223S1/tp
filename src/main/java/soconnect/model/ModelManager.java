@@ -142,6 +142,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean areTagsAvailable(Person person) {
+        requireNonNull(person);
+
+        return soConnect.areTagsAvailable(person);
+    }
+
+    @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
         return soConnect.hasTag(tag);
@@ -155,6 +162,15 @@ public class ModelManager implements Model {
     @Override
     public void editTag(Tag oldTag, Tag newTag) {
         soConnect.editTag(oldTag, newTag);
+    }
+
+    @Override
+    public Tag getTagFromList(Tag tag) {
+        return soConnect.getTagFromList(tag);
+    }
+    @Override
+    public void deleteTag(Tag tag) {
+        soConnect.deleteTag(tag);
     }
 
     @Override

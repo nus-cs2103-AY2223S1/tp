@@ -1,4 +1,4 @@
-package soconnect.logic.parser;
+package soconnect.logic.parser.tagcommandparsers;
 
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -7,10 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import soconnect.logic.commands.Command;
-import soconnect.logic.commands.HelpCommand;
-import soconnect.logic.commands.TagAddCommand;
-import soconnect.logic.commands.TagCreateCommand;
-import soconnect.logic.commands.TagEditCommand;
+import soconnect.logic.commands.tagcommands.TagAddCommand;
+import soconnect.logic.commands.tagcommands.TagCreateCommand;
+import soconnect.logic.commands.tagcommands.TagDeleteCommand;
+import soconnect.logic.commands.tagcommands.TagEditCommand;
+import soconnect.logic.commands.tagcommands.TagRemoveCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
@@ -22,6 +23,7 @@ public class TagCommandParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final String MESSAGE_INCOMPLETE = "Please use the help command if you are unsure.";
 
     /**
      * Parses user input into command for execution.
@@ -33,7 +35,7 @@ public class TagCommandParser {
     public Command parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INCOMPLETE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -48,6 +50,12 @@ public class TagCommandParser {
 
         case TagAddCommand.COMMAND_WORD:
             return new TagAddCommandParser().parse(arguments);
+
+        case TagRemoveCommand.COMMAND_WORD:
+            return new TagRemoveCommandParser().parse(arguments);
+
+        case TagDeleteCommand.COMMAND_WORD:
+            return new TagDeleteCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

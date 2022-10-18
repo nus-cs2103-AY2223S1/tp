@@ -140,6 +140,11 @@ class SortCommandTest {
         }
 
         @Override
+        public boolean areTagsAvailable(Person person) {
+            return false;
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -162,6 +167,16 @@ class SortCommandTest {
         @Override
         public void editTag(Tag oldTag, Tag newTag) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag tag) {
+
+        }
+
+        @Override
+        public Tag getTagFromList(Tag tag) {
+            return null;
         }
 
         @Override

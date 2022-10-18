@@ -132,6 +132,31 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Removes the tag in every contact.
+     *
+     * @param tag The tag to be removed.
+     */
+    public void removeRelevantPersonTag(Tag tag) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Person oldPerson = internalList.get(i);
+            List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
+            if (!personTags.contains(tag)) {
+                break;
+            } else {
+                personTags.remove(tag);
+                Set<Tag> updatedTags = new HashSet<>(personTags);
+                Person updatedPerson = new Person(oldPerson.getName(),
+                        oldPerson.getPhone(),
+                        oldPerson.getEmail(),
+                        oldPerson.getAddress(),
+                        updatedTags);
+                internalList.set(i, updatedPerson);
+            }
+        }
+    }
+
+
+    /**
      * Sorts the list by name, alphabetically.
      * Sorts the SoConnect by name in alphabetical order.
      *
@@ -196,7 +221,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts the SoConnect by a tag.
      * Contacts with the tag appear before those without the tag.
      *
-     * @param tag       The tag to sort with
+     * @param tag       The tag to sort with.
      * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByTag(Tag tag, Boolean isReverse) {
