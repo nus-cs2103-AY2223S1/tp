@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -20,7 +20,7 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Exam;
 
 /**
  * Parses input arguments and creates a new AddStudCommand object
@@ -35,7 +35,7 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
     public AddStudCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_NAME, PREFIX_ID, PREFIX_CLASS,
-                        PREFIX_PARENT_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_PARENT_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EXAM);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_NAME, PREFIX_ID, PREFIX_CLASS, PREFIX_PARENT_NAME,
                 PREFIX_PHONE, PREFIX_ADDRESS)
@@ -49,7 +49,7 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
         Name parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Exam> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_EXAM));
 
         Student person = new Student(studentName, id, className, parentName, phone, address, tagList);
 

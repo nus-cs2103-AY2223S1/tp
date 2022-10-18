@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,7 +28,7 @@ public class AddStudCommand extends Command {
             + PREFIX_PARENT_NAME + "PARENT NAME "
             + PREFIX_PHONE + "PHONE NUMBER "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_EXAM + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_NAME + "John Doe "
             + PREFIX_ID + "928C "
@@ -36,7 +36,7 @@ public class AddStudCommand extends Command {
             + PREFIX_PARENT_NAME + "Bob Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "Allergy";
+            + PREFIX_EXAM + "Allergy";
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the record";
 

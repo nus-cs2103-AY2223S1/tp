@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Exam;
 
 /**
  * Represents a Student in the record.
@@ -28,13 +28,13 @@ public class Student {
     private final Class className;
 
     // Additional fields - may not be implemented
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Exam> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Student(Name studentName, Id id, Class className, Name parentName, Phone phone,
-                   Address address, Set<Tag> tags) {
+                   Address address, Set<Exam> tags) {
         requireAllNonNull(studentName, id, className, parentName, phone, address, tags);
         this.studentName = studentName;
         this.id = id;
@@ -73,7 +73,7 @@ public class Student {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<Exam> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -136,7 +136,7 @@ public class Student {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
+        Set<Exam> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
