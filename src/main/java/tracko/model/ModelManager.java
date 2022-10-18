@@ -139,7 +139,6 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedOrderList(Comparator<Order> comparator) {
         requireNonNull(comparator);
-        SortedList<Order> sortedList = new SortedList<>(filteredOrders);
         sortedOrders.setComparator(comparator);
     }
 
