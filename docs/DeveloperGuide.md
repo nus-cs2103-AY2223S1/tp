@@ -238,6 +238,30 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Task List
+
+#### Implementation
+`Task List` is implemented in a way that is similar to
+`Staff List` and `Project List`. The `Task ` class is first created, alongside the supporting field
+classes `TaskDeadline` and `TaskDescription`. With these classes, the `Task` class can hold information
+regarding the description and deadline of a task.
+
+* `UniqueTaskList`: A list of tasks which are unique and can be displayed to the `UI`.
+* `Task`: The task to be done.
+* `TaskDeadline`: The deadline of the task.
+* `TaskDescription`: The description of the task.
+
+![img.png](images/TaskListUML.png)
+
+#### Design considerations
+
+* A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done 
+are well-defined.
+* By making sure all added tasks are checked using `Task.isSameTask`, we can be sure that 
+there are no duplicates in the task list.
+* When storing the task list, we ensured that both `Project List` and `Task List` are stored together
+in one file so that the file can be read easily.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
