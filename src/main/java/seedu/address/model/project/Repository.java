@@ -26,6 +26,11 @@ public class Repository {
         public boolean isEmpty() {
             return true;
         }
+
+        @Override
+        public String toString() {
+            return "";
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =

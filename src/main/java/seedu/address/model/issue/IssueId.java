@@ -37,6 +37,11 @@ public class IssueId {
         public boolean isEmpty() {
             return true;
         }
+
+        @Override
+        public String toString() {
+            return "";
+        }
     }
 
     public int getIdInt() {

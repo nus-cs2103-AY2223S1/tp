@@ -129,7 +129,6 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         ClientId newClientId = null;
         Repository newRepository = null;
         Deadline newDeadline = null;
-
         ProjectId newProjectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_ID, PREFIX_REPOSITORY, PREFIX_DEADLINE)) {

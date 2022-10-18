@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
@@ -38,33 +37,36 @@ public class AddClientCommand extends ClientCommand {
             + PREFIX_PROJECT_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
-    private static final String MESSAGE_EXISTING_CLIENT = "This project already has a client";
+    private static final String MESSAGE_CLIENT_ALREADY_PRESENT = "This project already has a client";
+    private static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the address book";
 
     private final ClientWithoutModel toAddClientWithoutModel;
-    private final ProjectId toModifyProjectId;
+    private final ProjectId projectId;
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
      * @param clientWithoutModel
      */
-    public AddClientCommand(ClientWithoutModel clientWithoutModel, ProjectId projectID) {
-        requireAllNonNull(clientWithoutModel);
-
+    public AddClientCommand(ClientWithoutModel clientWithoutModel, ProjectId pid) {
+        requireNonNull(clientWithoutModel);
         toAddClientWithoutModel = clientWithoutModel;
-        toModifyProjectId = projectID;
+        projectId = pid;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
 
+        if (!model.hasProjectId(projectId.getIdInt())) {
+            throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
+        }
+
         Client toAddClient = toAddClientWithoutModel.apply(model);
 
-        Project toModifyProject = model.getProjectById(toModifyProjectId.getIdInt());
+        Project toModifyProject = model.getProjectById(projectId.getIdInt());
 
         if (!toModifyProject.getClient().isEmpty()) {
-            throw new CommandException(MESSAGE_EXISTING_CLIENT);
+            throw new CommandException(MESSAGE_CLIENT_ALREADY_PRESENT);
         }
 
         toModifyProject.setClient(toAddClient);

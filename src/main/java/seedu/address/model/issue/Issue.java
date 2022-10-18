@@ -64,6 +64,11 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
             return true;
         }
 
+        @Override
+        public String toString() {
+            return "";
+        }
+
     }
 
     public IssueId getIssueId() {
