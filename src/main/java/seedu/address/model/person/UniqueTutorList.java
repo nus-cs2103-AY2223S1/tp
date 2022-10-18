@@ -135,7 +135,7 @@ public class UniqueTutorList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code students} contains only unique students.
      */
     private boolean tutorsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {

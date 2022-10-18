@@ -20,7 +20,7 @@ public class TutorListPanel extends UiPart<Region> {
     private ListView<Student> tutorListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code TutorListPanel} with the given {@code ObservableList}.
      */
     public TutorListPanel(ObservableList<Student> tutorList) {
         super(FXML);
@@ -29,7 +29,7 @@ public class TutorListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code TutorCard}.
      */
     class TutorListViewCell extends ListCell<Student> {
         @Override
