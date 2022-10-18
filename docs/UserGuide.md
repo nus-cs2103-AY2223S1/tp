@@ -169,13 +169,9 @@ Examples:
 
 Marks a specified appointment in the appointment list as complete.
 
-<<<<<<< HEAD
 If the specified appointment was set to be recurring, automatically books a new appointment that will occur after the time period specified.
 
-Format: `mark PATIENT_INDEX APPOINTMENT_INDEX`
-=======
 Format: `mark APPOINTMENT_INDEX`
->>>>>>> origin/branch-UG-changeMarkUnmarkCancel
 
 * `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked, as shown in the appointment list.
 * Value of `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -195,6 +191,16 @@ Format: `unmark APPOINTMENT_INDEX`
 Examples:
 * `unmark 1`
 
+### Cancel an appointment: `cancel`
+Cancels a specified appointment in the appointment list. <br>
+Format: ```cancel APPOINTMENT_INDEX```
+- Deletes the appointment with `APPOINTMENT_INDEX` in the appointment list.
+- The index refers to the index number shown in the displayed appointment list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples: 
+* `cancel 1`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from idENTify.
@@ -206,13 +212,7 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
-
-### Cancel
-Cancels a specified appointment in the appointment list. <br>
-Format: ```cancel APPOINTMENT_INDEX```
-- Deletes the appointment with `APPOINTMENT_INDEX` in the appointment list.
-- The index refers to the index number shown in the displayed appointment list.
-- The index must be a positive integer 1, 2, 3, …​
+ 
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
