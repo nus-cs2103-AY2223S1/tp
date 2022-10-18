@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
@@ -42,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CompanyListPanel companyListPanel;
     private TransactionListPanel transactionListPanel;
+    private NetTransactionBox netTransactionBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -65,7 +68,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane transactionListPanelPlaceholder;
 
     @FXML
-    private TextField netTransaction;
+    private StackPane MenuPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -145,8 +148,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        NetTransactionBox transactionBox = new NetTransactionBox(0.0);
-        netTransaction.setText("0.0");
+        netTransactionBox = new NetTransactionBox(logic.calculateNetTransaction());
+        MenuPlaceholder.setAlignment(Pos.TOP_RIGHT);
+        MenuPlaceholder.getChildren().add(netTransactionBox.getRoot());
     }
 
     /**
@@ -202,12 +206,13 @@ public class MainWindow extends UiPart<Stage> {
             transactionListPanel.setTransactionList(FXCollections.observableArrayList());
             return;
         }
-
         Client client = clientList.get(0);
         ObservableList<Company> companies = client.getCompanies().asUnmodifiableObservableList();
         ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
+        double updatedNetTransaction = logic.calculateNetTransaction();
         companyListPanel.setCompanyList(companies);
         transactionListPanel.setTransactionList(transactions);
+        netTransactionBox.setNetTransaction(updatedNetTransaction);
     }
 
     /**

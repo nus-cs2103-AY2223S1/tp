@@ -78,4 +78,14 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public double calculateNetTransaction() {
+        ObservableList<Client> filteredClientList = this.getFilteredClientList();
+        double netTransacted = 0.0;
+        for (Client client : filteredClientList) {
+            netTransacted += client.getTotalTransacted();
+        }
+        return netTransacted;
+    }
 }
