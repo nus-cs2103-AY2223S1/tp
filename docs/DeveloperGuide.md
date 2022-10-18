@@ -120,12 +120,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Stall` objects (which are contained in a `UniqueStallList` object).
+* stores the currently 'selected' `Stall` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Stall>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Stall` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Stall` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -179,6 +179,39 @@ A `Review` contains the following attributes,
 - Alternative 1: Allow certain components within `Review`, like `Date` and `Content`to be mutable
     * Pros: Less overhead as fewer objects are created
     * Cons: Prone to error as a Component might not be correctly changed
+
+### Review Adding feature
+
+#### What is Review Adding feature about?
+
+The Add Review mechanism is facilitated by `AddressBook`. This feature enhances `AddressBook` by allowing to store not only `Stall`, but also `Review`. This is stored internally as a `UniqueStallList` and `UniqueReviewList`. `Review` requires a `Stall` as `Review` is stored in `Stall`. Additionally, the feature implements the following operations:
+
+* `AddressBook#addReview(Review)` —  Adds the `Review` to `UniqueReviewList`
+
+For the command, the feature extends `command`, and is implemented as such:
+* `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
+
+#### Implementation Flow of Review Adding feature
+
+Given below is an example usage scenario and how the Review adding mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicken rice was fresh. r/4` command to create a new `Review` for `Stall` with index 1.
+![AddTodo1](images/AddReview.png)
+
+#### UML Diagram for Adding Review
+
+The following activity diagram summarizes what happens when a user executes a new `radd` command:
+
+<img src="images/AddReviewActivityDiagram.png" width="250" />
+
+#### Design considerations:
+- The Review adding commands are straight-to-the-point and efficient for users to add Review for Stall in FoodWhere.
+- The prefixes allow users to understand what the different types of data fields Review need in order to be created.
+
 
 ### \[Proposed\] Undo/redo feature
 

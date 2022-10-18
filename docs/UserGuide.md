@@ -87,9 +87,9 @@ Examples:
 
 Adds a review.
 
-Format: `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]…`
+Format: `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
 Examples:
-* `radd s/3 d/2022-09-20 c/The food was good, the chicken rice was fresh.`
+* `radd s/3 d/2022-09-20 c/The food was good, the chicken rice was fresh. r/4`
 
 ### Listing all stalls: `slist`
 Shows a list of all stalls in the application.
