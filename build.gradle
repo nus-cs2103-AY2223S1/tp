@@ -25,10 +25,6 @@ test {
     finalizedBy jacocoTestReport
 }
 
-run {
-    enableAssertions = true;
-}
-
 task coverage(type: JacocoReport) {
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
     classDirectories.from files(sourceSets.main.output)
