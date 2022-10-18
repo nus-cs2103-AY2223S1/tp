@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Tutor> getFilteredTutorList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' tuthub file path.
      */
     Path getTuthubFilePath();
 
