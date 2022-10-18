@@ -12,7 +12,7 @@ import tuthub.model.tutor.Tutor;
 /**
  * An UI component that displays information of a {@code Tutor}.
  */
-public class TutorCard extends UiPart<Region> {
+public class TutorListCard extends UiPart<Region> {
 
     private static final String FXML = "TutorListCard.fxml";
 
@@ -25,23 +25,17 @@ public class TutorCard extends UiPart<Region> {
      */
 
     public final Tutor tutor;
+    private final String studentId;
+    private final int displayedIndex;
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label name;
     @FXML
+    private Label id;
+    @FXML
     private Label module;
-    @FXML
-    private Label year;
-    @FXML
-    private Label studentId;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label email;
-    @FXML
-    private Label comment;
     @FXML
     private FlowPane tags;
 
@@ -49,16 +43,15 @@ public class TutorCard extends UiPart<Region> {
     /**
      * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
      */
-    public TutorCard(Tutor tutor, int displayedIndex) {
+    public TutorListCard(Tutor tutor, int displayedIndex) {
         super(FXML);
         this.tutor = tutor;
-        studentId.setText(tutor.getStudentId().value);
+        this.displayedIndex = displayedIndex - 1;
+        this.studentId = tutor.getStudentId().value;
+
+        id.setText(displayedIndex + ". ");
         name.setText(tutor.getName().fullName);
         module.setText(tutor.getModule().value);
-        year.setText("year " + tutor.getYear().value);
-        phone.setText(tutor.getPhone().value);
-        email.setText(tutor.getEmail().value);
-        comment.setText(tutor.getComment().value);
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -72,13 +65,13 @@ public class TutorCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TutorCard)) {
+        if (!(other instanceof TutorListCard)) {
             return false;
         }
 
         // state check
-        TutorCard card = (TutorCard) other;
-        return studentId.getText().equals(card.studentId.getText())
+        TutorListCard card = (TutorListCard) other;
+        return studentId.equals(card.studentId)
                 && tutor.equals(card.tutor);
     }
 }

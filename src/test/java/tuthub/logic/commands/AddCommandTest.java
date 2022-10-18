@@ -134,6 +134,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTutorToView(Tutor tutor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Tutor getTutorToView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setTutor(Tutor target, Tutor editedTutor) {
             throw new AssertionError("This method should not be called.");
         }
