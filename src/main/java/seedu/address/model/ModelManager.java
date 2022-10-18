@@ -23,6 +23,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private boolean fullView;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        fullView = false;
     }
 
     public ModelManager() {
@@ -109,6 +112,22 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setFullView() {
+        fullView = true;
+    }
+
+    @Override
+    public void setListView() {
+        fullView = false;
+        addressBook.setAllToListView();
+    }
+
+    @Override
+    public boolean isFullView() {
+        return fullView;
     }
 
     //=========== Filtered Person List Accessors =============================================================

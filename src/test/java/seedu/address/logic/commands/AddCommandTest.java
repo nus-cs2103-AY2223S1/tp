@@ -139,6 +139,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setFullView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setListView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isFullView() {
+            return false;
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }

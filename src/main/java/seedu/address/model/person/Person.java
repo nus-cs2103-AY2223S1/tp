@@ -67,6 +67,7 @@ public class Person {
     public AttendanceList getAttendanceList() {
         return attendanceList;
     }
+
     public SessionList getSessionList() {
         return sessionList;
     }
@@ -80,24 +81,24 @@ public class Person {
     }
 
     /**
-     * Toggle fullView to true to allow for toString to be
-     * called when setting PersonListCard.
-     * This is called when ViewCommand is the command input by user.
+     * Sets the person's details to be listed in full.
      */
     public void setFullView() {
         fullView = true;
     }
 
     /**
-     * checks fullView, then sets fullView to false if fullView is true.
-     * @return a boolean to signify whether the Person object should be displayed in fullView.
+     * Sets the person's details to be truncated in list mode.
+     */
+    public void setListView() {
+        fullView = false;
+    }
+
+    /**
+     * Returns whether the person's details are fully listed.
      */
     public boolean isFullView() {
-        if (fullView) {
-            fullView = false;
-            return true;
-        }
-        return false;
+        return fullView;
     }
 
     /**
