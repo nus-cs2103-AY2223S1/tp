@@ -5,10 +5,10 @@ import static java.util.Optional.ofNullable;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -26,7 +26,6 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
-
 
 
 /**
@@ -208,6 +207,7 @@ public class EditTaskCommand extends Command {
         public void setDeadline(TaskDeadline deadline) {
             this.deadline = deadline;
         }
+
         public void setPersonEmailAddress(Email personEmailAddress) {
             this.personEmailAddress = personEmailAddress;
         }
