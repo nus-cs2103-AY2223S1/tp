@@ -32,7 +32,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book!";
-    public static final String MESSAGE_NOT_IN_LIST_MODE = "You need to be in list mode to add a person.";
+    public static final String MESSAGE_NOT_LIST_MODE = "You need to be in list mode to add a person.";
 
     private final Person toAdd;
 
@@ -48,7 +48,7 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.isFullView()) {
-            throw new CommandException(MESSAGE_NOT_IN_LIST_MODE);
+            throw new CommandException(MESSAGE_NOT_LIST_MODE);
         }
 
         if (model.hasPerson(toAdd)) {
