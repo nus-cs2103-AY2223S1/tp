@@ -187,6 +187,7 @@ public class ModelManager implements Model {
         addressBook.setTuitionClass(target, editedTuitionClass);
     }
 
+    @Override
     public void sortList(ListType type, SortBy method) {
         switch (type) {
         case STUDENT_LIST:

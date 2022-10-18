@@ -10,7 +10,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.exceptions.DuplicateTutorException;
 import seedu.address.model.person.tutor.exceptions.TutorNotFoundException;
 

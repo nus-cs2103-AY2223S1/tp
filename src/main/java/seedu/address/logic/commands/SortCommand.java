@@ -10,6 +10,9 @@ import seedu.address.model.Model.ListType;
  */
 public class SortCommand extends Command {
 
+    /**
+     * Enum for the different methods available for sorting a list.
+     */
     public enum SortBy { DEFAULT, ALPHA, REVERSE }
 
     public static final String COMMAND_WORD = "sort";
@@ -25,6 +28,9 @@ public class SortCommand extends Command {
     private SortBy method;
     private String successMsg;
 
+    /**
+     * Returns a {@code Entity} from {@code String entity}.
+     */
     public SortCommand(SortBy method) {
         this.method = method;
         switch (method) {
