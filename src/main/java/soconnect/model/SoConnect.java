@@ -141,12 +141,7 @@ public class SoConnect implements ReadOnlySoConnect {
      */
     public boolean areTagsAvailable(Person person) {
         List<Tag> personTags = new ArrayList<>(person.getTags());
-        for (int i = 0; i < personTags.size(); i++) {
-            if (!tags.hasTag(personTags.get(i))) {
-                return false;
-            }
-        }
-        return true;
+        return tags.containsALL(personTags);
     }
 
     /**
@@ -215,7 +210,7 @@ public class SoConnect implements ReadOnlySoConnect {
      * @param tag The tag top be deleted.
      */
     public void deleteTag(Tag tag) {
-        tags.deleteTags(tag);
+        tags.deleteTag(tag);
         persons.removeRelevantPersonTag(tag);
     }
 

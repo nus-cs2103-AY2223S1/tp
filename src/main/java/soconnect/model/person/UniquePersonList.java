@@ -141,6 +141,7 @@ public class UniquePersonList implements Iterable<Person> {
             Person oldPerson = internalList.get(i);
             List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
             if (!personTags.contains(tag)) {
+                break;
             } else {
                 personTags.remove(tag);
                 Set<Tag> updatedTags = new HashSet<>(personTags);

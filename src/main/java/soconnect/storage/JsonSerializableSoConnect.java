@@ -72,26 +72,37 @@ class JsonSerializableSoConnect {
             if (soConnect.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-
-            List<Tag> personTags = new ArrayList<>(person.getTags());
-            for (int i = 0; i < personTags.size(); i++) {
-                if (!soConnect.hasTag(personTags.get(i))) {
-                    throw new IllegalValueException(MESSAGE_TAG_NOT_FOUND);
-                } else {
-                    int index = tempTagList.indexOf(personTags.get(i));
-                    personTags.set(i, tempTagList.get(index));
-                }
-            }
-            Set<Tag> updatedTags = new HashSet<>(personTags);
-            Person newPerson = new Person(person.getName(),
-                    person.getPhone(),
-                    person.getEmail(),
-                    person.getAddress(),
-                    updatedTags);
-            soConnect.addPerson(newPerson);
+            JsonSerializableSoConnect.matchTags(soConnect, person, tempTagList);
         }
 
         return soConnect;
+    }
+
+    /**
+     * Adds person if the person's tags matches with the tags in the tagList.
+     *
+     * @param soConnect The platform where the person is added.
+     * @param person The person to be added.
+     * @param tagList The tagList for tag comparison.
+     * @throws IllegalValueException If there were any data constraints violated.
+     */
+    public static void matchTags(SoConnect soConnect,  Person person, List<Tag> tagList) throws IllegalValueException {
+        List<Tag> personTags = new ArrayList<>(person.getTags());
+        for (int i = 0; i < personTags.size(); i++) {
+            if (!soConnect.hasTag(personTags.get(i))) {
+                throw new IllegalValueException(MESSAGE_TAG_NOT_FOUND);
+            } else {
+                int index = tagList.indexOf(personTags.get(i));
+                personTags.set(i, tagList.get(index));
+            }
+        }
+        Set<Tag> updatedTags = new HashSet<>(personTags);
+        Person newPerson = new Person(person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags);
+        soConnect.addPerson(newPerson);
     }
 
 }
