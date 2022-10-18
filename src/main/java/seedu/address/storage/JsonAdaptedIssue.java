@@ -11,7 +11,9 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
+import seedu.address.model.list.NotFoundException;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 import seedu.address.model.tag.exceptions.IllegalValueException;
 
 /**
@@ -26,7 +28,6 @@ class JsonAdaptedIssue {
     private final String deadline;
     private final String status;
     private final String issueId;
-
     private final String project;
 
     /**
@@ -79,19 +80,23 @@ class JsonAdaptedIssue {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Priority.class.getSimpleName()));
         }
-        //        if (!Priority.isValidPriority(priority)) {
-        //            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
-        //        }
+
+        if (!Priority.isValidPriorityString(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
         final Priority modelPriority = Priority.valueOf(priority);
 
         Deadline modelDeadline;
+
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
+        }
+
         if (deadline.isEmpty()) {
             modelDeadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
         } else {
-            if (deadline == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Deadline.class.getSimpleName()));
-            }
             if (!Deadline.isValidDeadline(deadline)) {
                 throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
             }
@@ -106,14 +111,17 @@ class JsonAdaptedIssue {
         }
         final Status modelStatus = new Status(Boolean.valueOf(status));
 
-        //        if (project == null) {
-        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-        //            Project.class.getSimpleName()));
-        //        }
-        //
-        final Project modelProject = HasIntegerIdentifier.getElementById(
-                addressBook.getProjectList(), Integer.parseInt(project));
-
+        if (project == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            Project.class.getSimpleName()));
+        }
+        final Project modelProject;
+        try {
+            modelProject = HasIntegerIdentifier.getElementById(
+                    addressBook.getProjectList(), Integer.parseInt(project));
+        } catch (NotFoundException e) {
+            throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
+        }
 
         if (issueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IssueId.class.getSimpleName()));
@@ -122,6 +130,8 @@ class JsonAdaptedIssue {
             throw new IllegalValueException(IssueId.MESSAGE_CONSTRAINTS);
         }
         final IssueId modelIssueId = new IssueId(Integer.parseInt(issueId));
+
+        assert modelIssueId.getIdInt() >= 0 : "Issue ID should be positive";
 
         return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus, modelProject, modelIssueId);
     }

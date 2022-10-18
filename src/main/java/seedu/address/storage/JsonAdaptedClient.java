@@ -64,12 +64,12 @@ class JsonAdaptedClient {
     public Client toModelType() throws IllegalValueException {
         final List<Project> clientProjects = new ArrayList<>();
 
-        if (name.isEmpty()) {
-            return Client.EmptyClient.EMPTY_CLIENT;
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+
+        if (name.isEmpty()) {
+            return Client.EmptyClient.EMPTY_CLIENT;
         }
 
         if (!Name.isValidName(name)) {
@@ -79,13 +79,14 @@ class JsonAdaptedClient {
 
         ClientPhone modelPhone;
 
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientPhone.class.getSimpleName()));
+        }
+
         if (phone.isEmpty()) {
             modelPhone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
         } else {
-            if (phone == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        ClientPhone.class.getSimpleName()));
-            }
             if (!ClientPhone.isValidClientPhone(phone)) {
                 throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
             }
@@ -94,13 +95,14 @@ class JsonAdaptedClient {
 
         ClientEmail modelEmail;
 
+        if (email == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientEmail.class.getSimpleName()));
+        }
+
         if (email.isEmpty()) {
             modelEmail = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         } else {
-            if (email == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        ClientEmail.class.getSimpleName()));
-            }
             if (!ClientEmail.isValidEmail(email)) {
                 throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
             }
@@ -111,14 +113,14 @@ class JsonAdaptedClient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClientId.class.getSimpleName()));
         }
+
         if (!ClientId.isValidClientId(clientId)) {
             throw new IllegalValueException(ClientId.MESSAGE_CONSTRAINTS);
         }
 
         final ClientId modelClientId = new ClientId(Integer.parseInt(clientId));
-        if (modelClientId.getIdInt() == -1) {
-            return Client.EmptyClient.EMPTY_CLIENT;
-        }
+
+        assert modelClientId.getIdInt() >= 0 : "Client ID should be positive";
 
         return new Client(modelName, modelPhone, modelEmail, clientProjects, modelClientId);
     }
