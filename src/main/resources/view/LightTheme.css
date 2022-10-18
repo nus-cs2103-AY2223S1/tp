@@ -153,6 +153,7 @@
 
 .status-bar {
     -fx-background-color: derive(#F7ECDE, 20%);
+    -fx-border-color: derive(#E9DAC1, 10%);
 }
 
 .result-display {
