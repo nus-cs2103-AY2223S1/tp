@@ -35,7 +35,8 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-            @JsonProperty("modules") List<JsonAdaptedModule> modules, @JsonProperty("exams") List<JsonAdaptedExam> exams) {
+            @JsonProperty("modules") List<JsonAdaptedModule> modules,
+                                       @JsonProperty("exams") List<JsonAdaptedExam> exams) {
         this.tasks.addAll(tasks);
         this.modules.addAll(modules);
         this.exams.addAll(exams);
@@ -79,7 +80,7 @@ class JsonSerializableAddressBook {
             if (!addressBook.hasModule(exam.getModule())) {
                 throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
             }
-           addressBook.addExam(exam);
+            addressBook.addExam(exam);
         }
         return addressBook;
     }

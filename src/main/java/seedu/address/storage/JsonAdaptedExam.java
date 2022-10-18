@@ -38,7 +38,7 @@ public class JsonAdaptedExam {
     /**
      * Converts an existing exam into {@code JsonAdaptedExam} object
      *
-   //  * @param exam The exam object being converted.
+     * @param exam The exam object being converted.
      */
     public JsonAdaptedExam(Exam exam) {
         description = exam.getDescription().description;
@@ -56,11 +56,11 @@ public class JsonAdaptedExam {
         if (description == null) {
             throw new IllegalValueException(MISSING_EXAM_DESCRIPTION);
         }
-        if(moduleCode == null ){
+        if (moduleCode == null) {
             throw new IllegalValueException(MISSING_MODULE_CODE);
         }
-        if(date == null) {
-           throw new IllegalValueException(MISSING_EXAM_DATE);
+        if (date == null) {
+            throw new IllegalValueException(MISSING_EXAM_DATE);
         }
         if (!ExamDescription.isValidDescription(description)) {
             throw new IllegalValueException(ExamDescription.DESCRIPTION_CONSTRAINTS);

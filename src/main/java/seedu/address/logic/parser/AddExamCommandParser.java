@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.stream.Stream;
 
@@ -32,7 +34,8 @@ public class AddExamCommandParser implements Parser<AddExamCommand> {
         }
 
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-        ExamDescription description = ParserUtil.parseExamDescription(argMultimap.getValue(PREFIX_EXAM_DESCRIPTION).get());
+        ExamDescription description = ParserUtil.parseExamDescription(
+                argMultimap.getValue(PREFIX_EXAM_DESCRIPTION).get());
         ExamDate examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
         Exam exam = new Exam(module, description, examDate);
 

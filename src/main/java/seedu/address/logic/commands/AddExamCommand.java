@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.*;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EXAM;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;

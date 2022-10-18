@@ -6,7 +6,6 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-import java.util.List;
 
 /**
  * Unmodifiable view of an address book

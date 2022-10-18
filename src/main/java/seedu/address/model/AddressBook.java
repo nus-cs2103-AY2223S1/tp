@@ -6,7 +6,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.exam.*;
+import seedu.address.model.exam.DistinctExamList;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
@@ -185,7 +186,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList().size() + " persons"
                 + "\n" + modules.getUnmodifiableModuleList().size() + " modules"
                 + "\n" + tasks.getUnmodifiableTaskList().size() + "tasks"
-        + "\n" + exams.getUnmodifiableExamList().size() + "exams";
+                + "\n" + exams.getUnmodifiableExamList().size() + "exams";
         // TODO: refine later
     }
 
