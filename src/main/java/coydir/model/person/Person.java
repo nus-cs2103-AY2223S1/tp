@@ -25,12 +25,15 @@ public class Person {
     private final Position position;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Leave> leaves = new HashSet<>();
+    private final int totalNumberOfLeaves;
+    private int leavesLeft;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Position position,
-            Address address, Set<Tag> tags) {
+            Address address, Set<Tag> tags, int numberOfLeaves) {
         requireAllNonNull(name, employeeId, position);
         this.name = name;
         this.employeeId = employeeId;
@@ -39,6 +42,8 @@ public class Person {
         this.position = position;
         this.address = address;
         this.tags.addAll(tags);
+        this.totalNumberOfLeaves = numberOfLeaves;
+        this.leavesLeft = numberOfLeaves;
     }
 
     public Name getName() {
@@ -73,6 +78,17 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public int getTotalNumberOfLeaves() {
+        return this.totalNumberOfLeaves;
+    }
+
+    public int getLeavesLeft() {
+        return this.leavesLeft;
+    }
+
+    public void setLeavesLeft(int leavesLeft){
+        this.leavesLeft = leavesLeft;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -107,13 +123,15 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getPosition().equals(getPosition())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getTotalNumberOfLeaves() == getTotalNumberOfLeaves()
+                && otherPerson.getLeavesLeft() == getLeavesLeft();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, employeeId, phone, email, position, address, tags);
+        return Objects.hash(name, employeeId, phone, email, position, address, tags, totalNumberOfLeaves);
     }
 
     @Override
@@ -129,7 +147,11 @@ public class Person {
                 .append("; Position: ")
                 .append(getPosition())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Total Leaves: ")
+                .append(getTotalNumberOfLeaves())
+                .append("; Number of Leaves Left: ")
+                .append(getTotalNumberOfLeaves());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
