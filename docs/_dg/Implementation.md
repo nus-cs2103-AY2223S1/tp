@@ -13,6 +13,6 @@ The `tag` feature tags an item with with the provided tag name in FoodRem. If bo
 6. If Step 5 completes without any exceptions, a new copy of the item is created and the tag would be added to that item. This new copy of item would replace the original item in the database.
 
 #### Why it is implemented this way
-When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included. 
+When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included.
 
 ![TagSequenceDiagram](../images/TagSequenceDiagram.png)
