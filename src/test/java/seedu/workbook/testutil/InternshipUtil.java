@@ -4,7 +4,6 @@ package seedu.workbook.testutil;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,7 +34,6 @@ public class InternshipUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_COMPANY + internship.getCompany().name + " ");
         sb.append(PREFIX_ROLE + internship.getRole().value + " ");
-        sb.append(PREFIX_PHONE + internship.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + internship.getEmail().value + " ");
         sb.append(PREFIX_STAGE + internship.getStage().value + " ");
         sb.append(PREFIX_DATETIME + internship.getDateTime().value + " ");
@@ -52,7 +50,6 @@ public class InternshipUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.name).append(" "));
         descriptor.getRole().ifPresent(role -> sb.append(PREFIX_ROLE).append(role.value).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStage().ifPresent(stage -> sb.append(PREFIX_STAGE).append(stage.value).append(" "));
         descriptor.getDate().ifPresent(dateTime -> sb.append(PREFIX_DATETIME).append(dateTime.value).append(" "));

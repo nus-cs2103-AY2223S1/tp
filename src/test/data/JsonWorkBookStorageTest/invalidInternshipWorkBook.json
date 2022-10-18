@@ -2,7 +2,6 @@
   "internships": [ {
     "company": "Internship with invalid company field: Ha!ns Mu@ster",
     "role": "Software Engineer",
-    "phone": "9482424",
     "email": "hans@example.com",
     "stage": "Technical Interview"
   } ]

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,8 +31,6 @@ public class CommandTestUtil {
     public static final String VALID_COMPANY_BOB = "Bob Choo";
     public static final String VALID_ROLE_AMY = "Software Engineer";
     public static final String VALID_ROLE_BOB = "Software Engineer";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_STAGE_AMY = "Technical Interview";
@@ -47,8 +44,6 @@ public class CommandTestUtil {
     public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
     public static final String ROLE_DESC_AMY = " " + PREFIX_ROLE + VALID_ROLE_AMY;
     public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String STAGE_DESC_AMY = " " + PREFIX_STAGE + VALID_STAGE_AMY;
@@ -61,7 +56,6 @@ public class CommandTestUtil {
     // CHECKSTYLE.OFF: LineLength
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "James&"; // '&' not allowed in company name
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "James&"; // '&' not allowed in roles
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_STAGE_DESC = " " + PREFIX_STAGE + "H&Interview"; // '&' not allowed in stage
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "12-20-2020 12:00"; // MMM instead of MM
@@ -78,13 +72,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditInternshipDescriptorBuilder()
             .withCompany(VALID_COMPANY_AMY)
             .withRole(VALID_ROLE_AMY)
-            .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditInternshipDescriptorBuilder()
             .withCompany(VALID_COMPANY_BOB)
             .withRole(VALID_ROLE_BOB)
-            .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }

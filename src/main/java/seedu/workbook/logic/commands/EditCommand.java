@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -25,7 +24,6 @@ import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
@@ -43,13 +41,11 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_ROLE + "ROLE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STAGE + "STAGE] "
             + "[" + PREFIX_DATETIME + "DATE AND TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
@@ -103,13 +99,12 @@ public class EditCommand extends Command {
 
         Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
         Role updatedRole = editInternshipDescriptor.getRole().orElse(internshipToEdit.getRole());
-        Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Stage updatedStage = editInternshipDescriptor.getStage().orElse(internshipToEdit.getStage());
         DateTime updatedDateTime = editInternshipDescriptor.getDate().orElse(internshipToEdit.getDateTime());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedRole, updatedPhone,
+        return new Internship(updatedCompany, updatedRole,
                 updatedEmail, updatedStage, updatedDateTime, updatedTags);
     }
 
@@ -138,7 +133,6 @@ public class EditCommand extends Command {
     public static class EditInternshipDescriptor {
         private Company company;
         private Role role;
-        private Phone phone;
         private Email email;
         private Stage stage;
         private DateTime dateTime;
@@ -154,7 +148,6 @@ public class EditCommand extends Command {
         public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
             setCompany(toCopy.company);
             setRole(toCopy.role);
-            setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setStage(toCopy.stage);
             setDate(toCopy.dateTime);
@@ -165,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, role, phone, email, stage, dateTime, tags);
+            return CollectionUtil.isAnyNonNull(company, role, email, stage, dateTime, tags);
         }
 
         public void setCompany(Company company) {
@@ -182,14 +175,6 @@ public class EditCommand extends Command {
 
         public Optional<Role> getRole() {
             return Optional.ofNullable(role);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
@@ -249,7 +234,6 @@ public class EditCommand extends Command {
 
             return getCompany().equals(e.getCompany())
                     && getRole().equals(e.getRole())
-                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getStage().equals(e.getStage())
                     && getDate().equals(e.getDate())

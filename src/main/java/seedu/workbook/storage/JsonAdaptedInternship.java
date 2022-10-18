@@ -14,7 +14,6 @@ import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
@@ -28,7 +27,6 @@ class JsonAdaptedInternship {
 
     private final String company;
     private final String role;
-    private final String phone;
     private final String email;
     private final String stage;
     private final String dateTime;
@@ -39,14 +37,12 @@ class JsonAdaptedInternship {
      */
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("company") String company, @JsonProperty("role") String role,
-            @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("stage") String stage,
             @JsonProperty("dateTime") String dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.role = role;
-        this.phone = phone;
         this.email = email;
         this.stage = stage;
         this.dateTime = dateTime;
@@ -61,7 +57,6 @@ class JsonAdaptedInternship {
     public JsonAdaptedInternship(Internship source) {
         company = source.getCompany().name;
         role = source.getRole().value;
-        phone = source.getPhone().value;
         email = source.getEmail().value;
         stage = source.getStage().value;
         dateTime = source.getDateTime().value;
@@ -99,13 +94,6 @@ class JsonAdaptedInternship {
         }
         final Role modelRole = new Role(role);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -133,7 +121,7 @@ class JsonAdaptedInternship {
         final DateTime modelDateTime = new DateTime(dateTime);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelStage, modelDateTime, modelTags);
+        return new Internship(modelCompany, modelRole, modelEmail, modelStage, modelDateTime, modelTags);
     }
 
 }

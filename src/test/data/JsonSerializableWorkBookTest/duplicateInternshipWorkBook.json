@@ -2,7 +2,6 @@
   "internships": [ {
     "company": "Alice Pauline",
     "role": "Software Engineer",
-    "phone": "94351253",
     "email": "alice@example.com",
     "stage": "HR interview",
     "dateTime": "12-Oct-2022 12:00",
@@ -10,7 +9,6 @@
   }, {
     "company": "Alice Pauline",
     "role": "Software Engineer",
-    "phone": "94351253",
     "email": "pauline@example.com",
     "stage": "Rejected",
     "dateTime": "12-Oct-2022 12:00"

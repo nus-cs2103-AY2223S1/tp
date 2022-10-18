@@ -7,7 +7,6 @@ import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
@@ -20,7 +19,6 @@ public class InternshipBuilder {
 
     public static final String DEFAULT_COMPANY = "Meta";
     public static final String DEFAULT_ROLE = "God Developer";
-    public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STAGE = "HR Interview";
     public static final String DEFAULT_DATETIME = "";
@@ -28,7 +26,6 @@ public class InternshipBuilder {
 
     private Company company;
     private Role role;
-    private Phone phone;
     private Email email;
     private Stage stage;
     private DateTime dateTime;
@@ -40,7 +37,6 @@ public class InternshipBuilder {
     public InternshipBuilder() {
         company = new Company(DEFAULT_COMPANY);
         role = new Role(DEFAULT_ROLE);
-        phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         stage = new Stage(DEFAULT_STAGE);
         dateTime = new DateTime(DEFAULT_DATETIME);
@@ -53,7 +49,6 @@ public class InternshipBuilder {
     public InternshipBuilder(Internship internshipToCopy) {
         company = internshipToCopy.getCompany();
         role = internshipToCopy.getRole();
-        phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
         stage = internshipToCopy.getStage();
         dateTime = internshipToCopy.getDateTime();
@@ -86,14 +81,6 @@ public class InternshipBuilder {
 
 
     /**
-     * Sets the {@code Phone} of the {@code Internship} that we are building.
-     */
-    public InternshipBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
      * Sets the {@code Email} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withEmail(String email) {
@@ -118,7 +105,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, role, phone, email, stage, dateTime, tags);
+        return new Internship(company, role, email, stage, dateTime, tags);
     }
 
 }
