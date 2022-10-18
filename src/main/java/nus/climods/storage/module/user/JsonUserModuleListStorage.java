@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.commons.exceptions.DataConversionException;
@@ -13,7 +15,6 @@ import nus.climods.commons.exceptions.IllegalValueException;
 import nus.climods.commons.util.FileUtil;
 import nus.climods.commons.util.JsonUtil;
 import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.model.Model;
 import nus.climods.model.module.UniqueUserModuleList;
 
 /**
@@ -25,16 +26,12 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
 
     private final Path filePath;
 
-    private final Model model;
-
     /**
      * Creates JsonUserModuleListStorage with
      * @param filePath of the stored json
-     * @param model of all modules
      */
-    public JsonUserModuleListStorage(Path filePath, Model model) {
+    public JsonUserModuleListStorage(Path filePath) {
         this.filePath = filePath;
-        this.model = model;
     }
 
     public Path getUserModuleListFilePath() {
@@ -84,7 +81,11 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableUserModuleList(userModuleList, model), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableUserModuleList(convertToList(userModuleList)), filePath);
     }
 
+    private List<JsonAdaptedUserModule> convertToList(UniqueUserModuleList modules) {
+        return modules.asUnmodifiableObservableList().stream().map(JsonAdaptedUserModule::new)
+                .collect(Collectors.toList());
+    }
 }

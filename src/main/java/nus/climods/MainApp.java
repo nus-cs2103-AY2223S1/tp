@@ -29,7 +29,6 @@ import nus.climods.storage.UserPrefsStorage;
 import nus.climods.storage.module.JsonModuleListStorage;
 import nus.climods.storage.module.ModuleListStorage;
 import nus.climods.storage.module.user.JsonUserModuleListStorage;
-import nus.climods.storage.module.user.UserModuleListStorage;
 import nus.climods.ui.Ui;
 import nus.climods.ui.UiManager;
 
@@ -59,8 +58,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
-        UserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs
-                .getUserModuleListFilePath(), model);
+        JsonUserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs
+                .getUserModuleListFilePath());
         // TODO: Update path to Module Model's path
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(moduleListStorage, userModuleListStorage, userPrefsStorage);
@@ -77,12 +76,25 @@ public class MainApp extends Application {
      * data from the sample address book will be used instead if {@code storage}'s address book is not found, or an
      * empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs)
+            throws IOException, DataConversionException {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialModuleList;
-        // TODO: load from storage
-        UniqueUserModuleList initialUserModuleList = new UniqueUserModuleList();
+        Optional<UniqueUserModuleList> userModuleListOptional;
+        UniqueUserModuleList initialUserModuleList;
         String academicYear = userPrefs.getAcademicYear();
+
+        try {
+            userModuleListOptional = storage.getUserModuleListStorage().readUserModuleList();
+            if (userModuleListOptional.isEmpty()) {
+                logger.info("Data file not found!");
+            }
+            initialUserModuleList = userModuleListOptional.get();
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format!");
+            initialUserModuleList = new UniqueUserModuleList();
+        }
+
         try {
             moduleListOptional = storage.readModuleList(academicYear);
             if (moduleListOptional.isEmpty()) {

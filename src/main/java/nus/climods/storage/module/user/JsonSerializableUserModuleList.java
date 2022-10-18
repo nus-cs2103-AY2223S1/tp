@@ -1,7 +1,6 @@
 package nus.climods.storage.module.user;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nus.climods.commons.exceptions.IllegalValueException;
 import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.model.Model;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
 
@@ -21,16 +19,12 @@ class JsonSerializableUserModuleList {
     public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate module(s).";
 
     private final List<JsonAdaptedUserModule> modules;
-    private final Model model;
     /**
      * Constructs a {@code JsonSerializableUserModuleList} with the given modules and model
      */
     @JsonCreator
-    public JsonSerializableUserModuleList(@JsonProperty("userModules") UniqueUserModuleList modules,
-                                          Model model) {
-        this.modules = modules.asUnmodifiableObservableList().stream().map(userModule ->
-                new JsonAdaptedUserModule(userModule)).collect(Collectors.toList());
-        this.model = model;
+    public JsonSerializableUserModuleList(@JsonProperty("userModules") List<JsonAdaptedUserModule> modules) {
+        this.modules = modules;
     }
     /**
      * Converts this user module list into the model's {@code UniqueUserModuleList} object.
@@ -40,7 +34,7 @@ class JsonSerializableUserModuleList {
     public UniqueUserModuleList toModelType() throws IllegalValueException, CommandException {
         UniqueUserModuleList userModuleList = new UniqueUserModuleList();
         for (JsonAdaptedUserModule jsonAdaptedModule : modules) {
-            UserModule module = jsonAdaptedModule.toModelType(model);
+            UserModule module = jsonAdaptedModule.toModelType();
             if (userModuleList.contains(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }

@@ -37,6 +37,10 @@ public class StorageManager implements Storage {
         this.userModuleListStorage = userModuleListStorage;
     }
 
+    public UserModuleListStorage getUserModuleListStorage() {
+        return userModuleListStorage;
+    }
+
     // ================ UserPrefs methods ==============================
 
     @Override

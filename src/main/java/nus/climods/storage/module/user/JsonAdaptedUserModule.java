@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import io.swagger.annotations.ApiModelProperty;
 import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
 
 /**
@@ -45,10 +44,9 @@ class JsonAdaptedUserModule {
 
     /**
      * Converts this Jackson-friendly adapted module object into the model's {@code UserModule} object.
-     * @param model Current list of modules
      */
-    public UserModule toModelType(Model model) throws CommandException {
-        return new UserModule(moduleCode, model, lecture, tutorial, selectedSemesters);
+    public UserModule toModelType() throws CommandException {
+        return new UserModule(moduleCode, lecture, tutorial, selectedSemesters);
     }
 
     /**
@@ -57,7 +55,6 @@ class JsonAdaptedUserModule {
      * @return moduleCode
      **/
     @javax.annotation.Nonnull
-    @ApiModelProperty(example = "EL1101E", required = true, value = "")
     @JsonProperty(JSON_PROPERTY_MODULE_CODE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -113,7 +110,6 @@ class JsonAdaptedUserModule {
         return Objects.equals(this.moduleCode, userModule.moduleCode)
                 && Objects.equals(this.lecture, userModule.lecture)
                 && Objects.equals(this.selectedSemesters, userModule.selectedSemesters)
-                && Objects.equals(this.lecture, userModule.lecture)
                 && Objects.equals(this.tutorial, userModule.tutorial);
     }
 
