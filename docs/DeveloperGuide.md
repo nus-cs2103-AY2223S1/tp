@@ -418,6 +418,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit remarks for a student**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to edit remarks for a specific student in the list
+4. FRIDAY edits details for the student
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given remark is empty.
+
+    * 3b1. FRIDAY removes remarks for the specified student.
+
+      Use case ends.
+
 **Use case: Delete details of a student**
 
 **MSS**
@@ -462,7 +491,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY. 
+* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants). 
+There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
+Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

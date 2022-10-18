@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the feature `edit`
+    * Added documentation for the `edit` and `remark` features
     * Reformatted Command Summary
   * Developer Guide:
     * Added Non-functional requirements
