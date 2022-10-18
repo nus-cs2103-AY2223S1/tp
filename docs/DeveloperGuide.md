@@ -159,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed command history navigation mechanism is facilitated by `CommandHistoryManager`. It implements `CommandHistory`, stored internally as a `commandsHistoryList` and `commandsHistoryPointer`. Additionally, it implements the following operations:
+The proposed command history navigation mechanism is facilitated by `CommandHistoryManager`. It implements `CommandHistory`, stored internally as a `commandsList` and `pointer`. Additionally, it implements the following operations:
 
 * `CommandHistory#getPreviousCommmand()` — Retrieves the previous command from its history.
 * `CommandHistory#getNextCommmand()` — Retrieves the next command from its history.
@@ -167,9 +167,11 @@ The proposed command history navigation mechanism is facilitated by `CommandHist
 
 The methods will handle cases where the command history is empty, full and when there are no more previous or next commands to navigate to.
 
-`StorageManager` will store an instance of a `CommandHistoryManager`.
+`CommandHistoryManager` can be instantiated with an optional capacity, the default is as explained in the design considerations below. When the size of the command history exceeds double the allocated capacity, the older half of the history is pruned.
 
-* Set the `setOnKeyPressed` for the `commandTextField` to detect key presses "UP" and "DOWN" arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
+`LogicManager` will store an instance of a `CommandHistoryManager`.
+
+* Set the `setOnKeyPressed` for the `commandTextField` to detect key presses `UP` and `DOWN` arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
 * Call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` when handling user input to save the user's input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
 
 Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
@@ -180,9 +182,9 @@ Step 1. The user launches the application for the first time. `CommandHistoryMan
 
 Step 2. The user executes a few commands. It does not matter if these commands are invalid. Each of these inputs will fire `CommandHistory#addCommand` once with their respective command texts.
 
-Step 3. The user decides to navigate to a previous command by clicking the "UP" arrow key. `CommandHistory#getPreviousCommmand()` will be called.
+Step 3. The user decides to navigate to a previous command by clicking the `UP` arrow key. `CommandHistory#getPreviousCommmand()` will be called.
 
-Step 4. The user decides to navigate to a next command by clicking the "DOWN" arrow key. `CommandHistory#getNextCommmand()` will be called.
+Step 4. The user decides to navigate to a next command by clicking the `DOWN` arrow key. `CommandHistory#getNextCommmand()` will be called.
 
 The following sequence diagram shows how the next command history navigation works, if there is a next command to navigate to:
 
@@ -521,3 +523,11 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### UI for Command History Navigation
+
+1. Execute a few commands, preferably distinct ones. They need not be valid commands. Take note of the order of execution.
+
+   * A quick way to test is to execute `1`, `12`, `123`, etc...
+
+1. Ensure that the input field is selected and in focus. Press `UP` and `DOWN` arrow keys and ensure that the command history displayed is per the order of execution.
