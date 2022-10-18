@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Role;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.person.github.User;
