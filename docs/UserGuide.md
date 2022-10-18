@@ -92,6 +92,22 @@ Examples:
 * `findo keychain` returns `banana keychain` and `keychain`
 * `findo apple keychain` returns `apple painting`, `banana keychain`<br>
 
+### Sorting orders by time created: `sorto`
+
+Sort the displayed list of orders by the time at which they were created.
+
+Format: `sorto new` or `sorto old`
+
+* The keyword `new` and `old` are case-insensitive.
+* `sorto new` sorts the order list such that newest orders are at the top
+* `sorto old` sorts the order list such that oldest orders are at the top
+
+Exampels:
+* `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
+* `findo Chair` followed by `sorto new` sorts all orders found using `findo Chair` such that newest orders are at the 
+top
+
+
 ### Deleting an order: `deleteo`
 
 Deletes an order from the list of tracked orders.
@@ -105,6 +121,7 @@ Format: `deleteo INDEX`
 Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
 * `findo Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo` command.
+* `sorto new` followed by `deleteo 1` deletes the most recently created order
 
 ### Adding an inventory item: `addi`
 
@@ -188,6 +205,7 @@ Format: `exit`
 | **Add An Order**             | `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT` <br> e.g., `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567` |
 | **List All Orders**          | `listo`                                                                                                                                                                                                                   |
 | **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
+| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                |
 | **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
 | **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture`                                                                                                        |
 | **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
