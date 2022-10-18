@@ -24,14 +24,18 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_PRIORITY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
 
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-
+        Priority priority;
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        } else {
+            priority = ParserUtil.parsePriority("1");
+        }
 
         Item item = new Item(description, priority);
 

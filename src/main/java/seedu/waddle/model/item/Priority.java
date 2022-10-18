@@ -6,13 +6,13 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
 public class Priority {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Priority should only contain numbers";
+            "Priority should only contain a number between 1 and 5";
 
     /*
      * The first character of the country must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String VALIDATION_REGEX = "[1-5]";
 
     public final String priority;
 
