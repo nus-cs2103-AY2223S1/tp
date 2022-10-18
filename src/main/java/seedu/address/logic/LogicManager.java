@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -16,6 +17,8 @@ import seedu.address.logic.parser.PennyWiseParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPennyWise;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
 import seedu.address.storage.Storage;
 
@@ -83,6 +86,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<PieChart.Data> getExpensePieChartData() {
         return model.getExpensePieChartData();
+    }
+
+    @Override
+    public XYChart.Series<String, Number> getExpenseLineChartData() {
+        return model.getExpenseLineChartData();
     }
 
     @Override

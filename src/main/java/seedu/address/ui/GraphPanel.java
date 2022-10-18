@@ -52,7 +52,7 @@ public class GraphPanel extends UiPart<Region> {
 
     }
 
-    public GraphPanel(EntryType entryType, XYChart.Series<Date, Amount> lineGraphData) {
+    public GraphPanel(EntryType entryType, XYChart.Series<String, Number> lineGraphData) {
         super(FXML);
 
         this.lineChart = new EntryLineChart(lineGraphData);

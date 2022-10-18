@@ -29,7 +29,7 @@ public class EntryLineChart extends UiPart<Region> {
     @FXML
     private LineChart<String, Number> lineChart;
 
-    public EntryLineChart(XYChart.Series<Date, Amount> lineChartData) {
+    public EntryLineChart(XYChart.Series<String, Number> lineChartData) {
         super(FXML);
 
         yAxis.setLabel("Amount");
@@ -41,6 +41,6 @@ public class EntryLineChart extends UiPart<Region> {
         series.getData().add(new XYChart.Data<String, Number>("05-10-2022", 120.00));
         series.getData().add(new XYChart.Data<String, Number>("06-10-2022", 90.00));
         lineChart.getData().clear();
-        lineChart.getData().add(series);
+        lineChart.getData().add(lineChartData);
     }
 }

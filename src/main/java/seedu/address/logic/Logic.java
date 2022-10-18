@@ -4,11 +4,14 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPennyWise;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
 
 /**
@@ -52,6 +55,10 @@ public interface Logic {
      */
     ObservableList<PieChart.Data> getExpensePieChartData();
 
+    /**
+     * Returns an unmodifiable list of line chart data for expenditure
+     */
+    XYChart.Series<String, Number> getExpenseLineChartData();
 
     /**
      * Returns the user prefs' penny wise file path.

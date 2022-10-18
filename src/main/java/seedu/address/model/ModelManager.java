@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,9 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Expenditure;
 
 /**
  * Represents the in-memory model of the PennyWise application data.
@@ -267,6 +272,27 @@ public class ModelManager implements Model {
             new PieChart.Data("Others", expensePieChartArr[5]));
 
         return expensePieChartData;
+    }
+
+    @Override
+    public XYChart.Series<String, Number> getExpenseLineChartData() {
+        HashMap<Date, Number> dateToExpenditureMap = new HashMap<>();
+        ObservableList<XYChart.Data<String, Number>> expenseSeries= FXCollections.observableArrayList();
+
+        filteredExpenditure.stream()
+                .filter(entry -> isInMonth(entry.getDate()))
+                .forEach(entry -> dateToExpenditureMap.put(entry.getDate(),
+                        entry.getAmount().getValue()
+                                + dateToExpenditureMap.getOrDefault(entry.getDate(), 0.00).doubleValue()));
+
+        for (HashMap.Entry<Date, Number> entry : dateToExpenditureMap.entrySet()) {
+            expenseSeries.add(new XYChart.Data<>(entry.getKey().toString(), entry.getValue()));
+        }
+        return new XYChart.Series<>(expenseSeries);
+    }
+
+    private boolean isInMonth(Date date){
+        return true;
     }
 
     @Override
