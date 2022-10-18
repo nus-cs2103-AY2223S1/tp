@@ -5,42 +5,38 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.condonery.logic.commands.property.EditPropertyCommand;
-import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.condonery.logic.commands.client.EditClientCommand.EditClientDescriptor;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
-/**
- * A utility class to help with building EditPersonDescriptor objects.
- */
-public class EditPropertyDescriptorBuilder {
+public class EditClientDescriptorBuilder {
+    private final EditClientDescriptor descriptor;
 
-    private final EditPropertyDescriptor descriptor;
-
-    public EditPropertyDescriptorBuilder() {
-        descriptor = new EditPropertyDescriptor();
+    public EditClientDescriptorBuilder() {
+        descriptor = new EditClientDescriptor();
     }
 
-    public EditPropertyDescriptorBuilder(EditPropertyDescriptor descriptor) {
-        this.descriptor = new EditPropertyDescriptor(descriptor);
+    public EditClientDescriptorBuilder(EditClientDescriptor descriptor) {
+        this.descriptor = new EditClientDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPropertyDescriptorBuilder(Property property) {
-        descriptor = new EditPropertyDescriptor();
-        descriptor.setName(property.getName());
-        descriptor.setAddress(property.getAddress());
-        descriptor.setTags(property.getTags());
+    public EditClientDescriptorBuilder(Client client) {
+        descriptor = new EditClientDescriptor();
+        descriptor.setName(client.getName());
+        descriptor.setAddress(client.getAddress());
+        descriptor.setTags(client.getTags());
     }
 
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPropertyDescriptorBuilder withName(String name) {
+    public EditClientDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -48,7 +44,7 @@ public class EditPropertyDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPropertyDescriptorBuilder withAddress(String address) {
+    public EditClientDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
         return this;
     }
@@ -57,7 +53,7 @@ public class EditPropertyDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPropertyDescriptorBuilder withTags(String... tags) {
+    public EditClientDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
@@ -70,7 +66,8 @@ public class EditPropertyDescriptorBuilder {
         return Objects.hash(descriptor);
     }
 
-    public EditPropertyDescriptor build() {
+    public EditClientDescriptor build() {
         return descriptor;
     }
+
 }
