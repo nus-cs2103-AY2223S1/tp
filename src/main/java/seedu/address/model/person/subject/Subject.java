@@ -21,9 +21,9 @@ public class Subject {
 
     public final String subjectName;
 
-    private Attendance attendance;
+    private final Attendance attendance;
 
-    private Grade grades;
+    private final Grade grades;
 
     /**
      * Constructs a {@code Subject}.
@@ -48,6 +48,14 @@ public class Subject {
 
     public String getSubjectName() {
         return subjectName;
+    }
+
+    /**
+     * Gets the attendance for the specified day
+     * @param updatedAssessment the Assessment object to add to the Grade object
+     */
+    public void updateGradeAssessment(Assessment updatedAssessment) {
+        grades.updateAssessment(updatedAssessment);
     }
 
     /**

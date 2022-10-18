@@ -1,7 +1,5 @@
 package seedu.address.model.person.subject;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
@@ -26,6 +24,17 @@ public class Grade {
 
     public static boolean isValidGrade(String test) {
         return true;
+    }
+
+    public void updateAssessment(Assessment updatedAssessment) {
+        if (marks.containsKey(updatedAssessment.getAssessmentName())) {
+            double[] updatedMarks = new double[2];
+            updatedMarks[0] = updatedAssessment.getAssessmentScore();
+            updatedMarks[1] = updatedAssessment.getAssessmentWeightage();
+            marks.put(updatedAssessment.getAssessmentName(), updatedMarks);
+        } else {
+            marks.put(updatedAssessment.getAssessmentName(), updatedAssessment.getScoreArray());
+        }
     }
 
     public double getCurrentPercentageObtained(HashMap<String, double[]> subjectMarks) {
