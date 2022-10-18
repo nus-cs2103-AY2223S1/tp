@@ -7,15 +7,15 @@ import seedu.address.model.Model;
 import seedu.address.model.person.ModContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book who has taken or is taking a module that contains
- * any of the argument keywords.
+ * Finds and lists those in address book who have taken or are taking module(s) that contain(s)
+ * the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class ModFindCommand extends ModCommand {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_SUCCESS = "Successfully found those who take this mod!";
-    public static final String MESSAGE_USAGE = ModCommand.COMMAND_WORD + " " + COMMAND_WORD + ": Finds all persons "
-            + "whose names contain any of "
+    public static final String MESSAGE_USAGE = ModCommand.COMMAND_WORD + " " + COMMAND_WORD + ": Finds those "
+            + "who had taken or are now taking the specified module(s)"
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
