@@ -258,7 +258,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the stall being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-* **Alternative 3 (current choice): Saves the entire address book, but ensuring that Stall and Review are both immutable.
+* **Alternative 3 (current choice):** Saves the entire address book, but ensuring that Stall and Review are both immutable.
   * Pros: Easy to implement, performance issues for memory are not too bad.
   * Cons: This needs Stall and Review to be guaranteed immutable, alongside all their parts. Good test cases are a must.
 _{more aspects and alternatives to be added}_
