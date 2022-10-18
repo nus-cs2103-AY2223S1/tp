@@ -12,11 +12,13 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Arrays;
 
+import tuthub.logic.commands.FindByEmailCommand;
 import tuthub.logic.commands.FindByModuleCommand;
 import tuthub.logic.commands.FindByNameCommand;
 import tuthub.logic.commands.FindByPhoneCommand;
 import tuthub.logic.commands.FindByPrefixCommand;
 import tuthub.logic.parser.exceptions.ParseException;
+import tuthub.model.tutor.EmailContainsKeywordsPredicate;
 import tuthub.model.tutor.ModuleContainsKeywordPredicate;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.PhoneContainsKeywordsPredicate;
@@ -62,6 +64,17 @@ public class FindByPrefixCommandParser implements Parser<FindByPrefixCommand> {
             String[] moduleKeywords = trimmedKeywords.split("\\s+");
 
             return new FindByPhoneCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
+        } else if (argumentMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            String keywords = argumentMultimap.getValue(PREFIX_EMAIL).get();
+            String trimmedKeywords = keywords.trim();
+            if (trimmedKeywords.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByEmailCommand.MESSAGE_USAGE));
+            }
+
+            String[] moduleKeywords = trimmedKeywords.split("\\s+");
+
+            return new FindByEmailCommand(new EmailContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         } else if (argumentMultimap.getValue(PREFIX_MODULE).isPresent()) {
             String keywords = argumentMultimap.getValue(PREFIX_MODULE).get();
             String trimmedKeywords = keywords.trim();
