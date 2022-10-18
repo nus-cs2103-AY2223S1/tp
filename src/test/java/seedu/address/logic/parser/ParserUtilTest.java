@@ -200,13 +200,13 @@ public class ParserUtilTest {
 
     @Test
     public void parsePath_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePath("10 a"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseImportPath("10 a"));
     }
 
     @Test
     public void parsePath_notReadable_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_PATH, ()
-                -> ParserUtil.parsePath("foobar.json"));
+                -> ParserUtil.parseImportPath("foobar.json"));
     }
 
     @Test
@@ -215,10 +215,10 @@ public class ParserUtilTest {
         File dummyFile = new File(dummyPath.toUri());
         dummyFile.createNewFile();
         // No whitespaces
-        assertEquals(dummyPath, ParserUtil.parsePath(dummyPath.toString()));
+        assertEquals(dummyPath, ParserUtil.parseImportPath(dummyPath.toString()));
 
         // Leading and trailing whitespaces
-        assertEquals(dummyPath, ParserUtil.parsePath("  " + dummyPath.toString() + "  "));
+        assertEquals(dummyPath, ParserUtil.parseImportPath("  " + dummyPath.toString() + "  "));
         dummyFile.delete();
     }
 }

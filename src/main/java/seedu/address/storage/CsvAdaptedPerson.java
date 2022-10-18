@@ -38,7 +38,7 @@ public class CsvAdaptedPerson {
     @CsvBindByName(column = "meeting date", required = true)
     private final String meetingDate;
     @CsvBindAndSplitByName(column = "tags", required = true,
-            elementType = Tag.class, splitOn = ",", converter = StringToTag.class)
+            elementType = Tag.class, splitOn = ",", converter = StringToTag.class, writeDelimiter = ",")
     private final List<Tag> tagged = new ArrayList<>();
 
     /**
