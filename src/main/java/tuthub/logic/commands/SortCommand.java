@@ -11,6 +11,9 @@ import tuthub.logic.parser.Prefix;
 import tuthub.model.Model;
 import tuthub.model.tutor.Tutor;
 
+/**
+ * Sorts the tutor list and lists the tutors in ascending or descending order based on quantitative measures.
+ */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
