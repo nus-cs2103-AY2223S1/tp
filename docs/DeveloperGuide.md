@@ -195,6 +195,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 The `addtag` feature is implemented by the `AddTagCommand` class whoch extends the more general `Command` class. Internally, the updating of tags by `AddTagCommand` is implemented using the `EditCommand`. This is summarized by the following sequence diagram.
+
 ![AddTag Sequence Diagram](images/AddTagSequenceDiagram.png)
 
 This approach is chosen so as to reduce duplication by abstracting away the direct modification of the `Student` class. This also has the added benefit that any future optimization for the  `EditCommand` can be shared with the `AddTagCommand`.
@@ -217,7 +218,20 @@ Step 3. The  concatenated tag set will then be wrapped in the `EditStudentDescri
 Step 4. This edit command is executed immediately to update the set of tags for the student before the `AddTagCommand#execute()` returns.
 
 The following diagram summarizes what happens when the user executes the `AddTagCommand`.
+
 ![AddTagCommand#executeSinge() Activity Diagram](images/AddTagActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How addtag executes:**
+
+* **Alternative 1 (current choice):** Update the students' tags set using `EditCommand`.
+    * Pros: Easy to implement. Shares optimization with `EditCommand`.
+    * Cons: Increasing coupling of the code.
+
+* **Alternative 2:** Interact with the model directly to modify the tag set for the student.
+    * Pros: Remove dependency on other commands which reduces coupling.
+    * Cons: Possible duplication of the code. Changes in `setTags` of the `Student` needs to be updated in both places.
 
 ### \[Proposed\] Undo/redo feature
 
