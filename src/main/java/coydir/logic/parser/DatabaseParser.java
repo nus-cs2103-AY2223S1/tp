@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import coydir.logic.commands.AddCommand;
+import coydir.logic.commands.BatchAddCommand;
 import coydir.logic.commands.ClearCommand;
 import coydir.logic.commands.Command;
 import coydir.logic.commands.DeleteCommand;
@@ -68,6 +69,9 @@ public class DatabaseParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case BatchAddCommand.COMMAND_WORD:
+            return new BatchAddCommandParser().parse(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
