@@ -29,11 +29,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                         PREFIX_MODULE_CODE, PREFIX_TASK_NUMBER_TO_DELETE);
-        if (isAnyArgumentMissing(argMultimap)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteTaskCommand.MESSAGE_USAGE));
-        }
-
+        checkIfAllArgumentsArePresent(argMultimap);
         DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor =
                 new DeleteTaskFromModuleDescriptor();
         String moduleCodeOfModuleToDeleteTaskFromAsString =
@@ -53,16 +49,19 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     }
 
     /**
-     * Checks if any arguments are missing.
+     * Checks that all arguments are present.
      * @param argMultimap {@code ArgumentMultimap} containing the arguments
      *                    given by the user.
      */
-    private Boolean isAnyArgumentMissing(ArgumentMultimap argMultimap) {
+    private void checkIfAllArgumentsArePresent(ArgumentMultimap argMultimap) throws ParseException {
         Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
                 PREFIX_MODULE_CODE);
         Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
         Boolean isTaskNumberAbsent = !arePrefixesPresent(argMultimap,
                 PREFIX_TASK_NUMBER_TO_DELETE);
-        return isModuleCodeAbsent || isPreamblePresent || isTaskNumberAbsent;
+        if (isModuleCodeAbsent || isPreamblePresent || isTaskNumberAbsent) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteTaskCommand.MESSAGE_USAGE));
+        }
     }
 }
