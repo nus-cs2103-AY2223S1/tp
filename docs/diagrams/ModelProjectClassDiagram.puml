@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Project <<Rectangle>>{
+Class Project
+Class ProjectName
+Class Budget
+Class Deadline
+Class Staff
+Class Tag
+
+Class StaffName
+Class StaffContact
+Class StaffDepartment
+Class StaffInsurance
+Class StaffTitle
+}
+
+Class UniqueProjectList
+Class ModelManager
+
+UniqueProjectList --> "~* all" Project
+Project *--> ProjectName
+Project *--> Budget
+Project *--> Deadline
+Project *---> "*" Tag
+Project *---> "*" Staff
+
+Staff *--> StaffName
+Staff *--> StaffContact
+Staff *--> StaffDepartment
+Staff *--> StaffInsurance
+Staff *--> StaffTitle
+Staff *--> "*" Tag
+
+ProjectName -[hidden]right-> Budget
+Budget -[hidden]right-> Deadline
+Deadline -[hidden]right-> Staff
+
+ModelManager -left->"~* filtered" Project
+ModelManager -->"0..1 target" Project
+
+@enduml
