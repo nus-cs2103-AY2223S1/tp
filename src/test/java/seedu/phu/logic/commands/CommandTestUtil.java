@@ -112,6 +112,14 @@ public class CommandTestUtil {
             expectedCommandHistory.setLastCommandAsModify();
         }
 
+        if (command instanceof UndoCommand) {
+            expectedCommandHistory.getPreviousModifyCommand();
+        }
+
+        if (command instanceof RedoCommand) {
+            expectedCommandHistory.getNextModifyCommand();
+        }
+
         try {
             CommandResult result = command.execute(actualModel, actualCommandHistory);
             assertEquals(expectedCommandResult, result);
@@ -171,4 +179,47 @@ public class CommandTestUtil {
 
         // assertEquals(1, model.getFilteredInternshipList().size());
     }
+
+    /**
+     * Update {@code model}'s so that it only shows the first internship.
+     */
+    public static void findFirstInternship(Model model) {
+        Internship firstInternship = model.getFilteredInternshipList().get(0);
+        model.updateFilteredInternshipList(x -> x.isSameInternship(firstInternship));
+    }
+
+    /**
+     * Deletes the first internship in {@code model}'s filtered list from {@code model}'s address book.
+     */
+    public static void deleteFirstInternship(Model model) {
+        Internship firstInternship = model.getFilteredInternshipList().get(0);
+        model.deleteInternship(firstInternship);
+        model.commitInternshipBookChange();
+    }
+
+    /**
+     * Deletes the first internship in {@code model}'s filtered list from {@code model}'s address book.
+     */
+    public static void deleteFirstInternship(Model model, CommandHistory commandHistory) {
+        deleteFirstInternship(model);
+        commandHistory.addCommand("delete 1");
+        commandHistory.setLastCommandAsModify();
+    }
+
+    /**
+     * Undo previous commands in {@code model}.
+     */
+    public static void undoPreviousCommand(Model model) {
+        model.undoInternshipBook();
+    }
+
+    /**
+     * Undo previous commands in {@code model}.
+     */
+    public static void undoPreviousCommand(Model model, CommandHistory commandHistory) {
+        undoPreviousCommand(model);
+        commandHistory.addCommand("undo");
+        commandHistory.getPreviousModifyCommand();
+    }
+
 }
