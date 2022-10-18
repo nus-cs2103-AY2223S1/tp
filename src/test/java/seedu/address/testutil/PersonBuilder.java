@@ -156,6 +156,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Set<Survey>} of the {@code Person} that we are building.
+     */
     public PersonBuilder withSurveys(Set<Survey> surveys) {
         this.surveys = surveys;
         return this;
