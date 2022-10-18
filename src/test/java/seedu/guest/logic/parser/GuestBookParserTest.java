@@ -21,7 +21,7 @@ import seedu.guest.logic.commands.ExitCommand;
 import seedu.guest.logic.commands.FindCommand;
 import seedu.guest.logic.commands.HelpCommand;
 import seedu.guest.logic.commands.ListCommand;
-import seedu.guest.logic.commands.MarkRoomUncleanCommand;
+import seedu.guest.logic.commands.MarkRoomsUncleanCommand;
 import seedu.guest.logic.parser.exceptions.ParseException;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.NameContainsKeywordsPredicate;
@@ -90,9 +90,9 @@ public class GuestBookParserTest {
 
     @Test
     public void parseCommand_resetRoomClean() throws Exception {
-        assertTrue(parser.parseCommand(MarkRoomUncleanCommand.COMMAND_WORD) instanceof MarkRoomUncleanCommand);
-        assertTrue(parser.parseCommand(MarkRoomUncleanCommand.COMMAND_WORD + " 3")
-                instanceof MarkRoomUncleanCommand);
+        assertTrue(parser.parseCommand(MarkRoomsUncleanCommand.COMMAND_WORD) instanceof MarkRoomsUncleanCommand);
+        assertTrue(parser.parseCommand(MarkRoomsUncleanCommand.COMMAND_WORD + " 3")
+                instanceof MarkRoomsUncleanCommand);
     }
 
     @Test

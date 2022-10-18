@@ -15,14 +15,14 @@ import seedu.guest.model.guest.Guest;
 import seedu.guest.testutil.GuestBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for MarkRoomUncleanCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for MarkRoomsUncleanCommand.
  */
-public class MarkRoomUncleanCommandTest {
+public class MarkRoomsUncleanCommandTest {
 
     private Model model = new ModelManager(getTypicalGuestBook(), new UserPrefs());
 
     @Test
-    public void execute_markRoomUncleanCommand_success() {
+    public void execute_markRoomsUncleanCommand_success() {
         Guest guestInFilteredList0 = model.getFilteredGuestList().get(0);
         Guest guestInFilteredList1 = model.getFilteredGuestList().get(1);
         Guest guestInFilteredList2 = model.getFilteredGuestList().get(2);
@@ -39,9 +39,9 @@ public class MarkRoomUncleanCommandTest {
         Guest editedGuest5 = new GuestBuilder(guestInFilteredList5).withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB).build();
         Guest editedGuest6 = new GuestBuilder(guestInFilteredList6).withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB).build();
 
-        MarkRoomUncleanCommand markRoomUncleanCommand = new MarkRoomUncleanCommand();
+        MarkRoomsUncleanCommand markRoomsUncleanCommand = new MarkRoomsUncleanCommand();
 
-        String expectedMessage = String.format(MarkRoomUncleanCommand.MESSAGE_SUCCESS);
+        String expectedMessage = String.format(MarkRoomsUncleanCommand.MESSAGE_SUCCESS);
 
         Model expectedModel = new ModelManager(getTypicalGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestInFilteredList0, editedGuest0);
@@ -52,21 +52,21 @@ public class MarkRoomUncleanCommandTest {
         expectedModel.setGuest(guestInFilteredList5, editedGuest5);
         expectedModel.setGuest(guestInFilteredList6, editedGuest6);
 
-        assertCommandSuccess(markRoomUncleanCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(markRoomsUncleanCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        MarkRoomUncleanCommand markRoomUncleanCommand = new MarkRoomUncleanCommand();
+        MarkRoomsUncleanCommand markRoomsUncleanCommand = new MarkRoomsUncleanCommand();
 
         // same object -> returns true
-        assertTrue(markRoomUncleanCommand.equals(markRoomUncleanCommand));
+        assertTrue(markRoomsUncleanCommand.equals(markRoomsUncleanCommand));
 
         // different types -> returns false
-        assertFalse(markRoomUncleanCommand.equals(1));
+        assertFalse(markRoomsUncleanCommand.equals(1));
 
         // null -> returns false
-        assertFalse(markRoomUncleanCommand.equals(null));
+        assertFalse(markRoomsUncleanCommand.equals(null));
 
     }
 }

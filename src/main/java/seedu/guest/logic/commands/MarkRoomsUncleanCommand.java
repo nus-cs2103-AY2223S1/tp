@@ -18,17 +18,17 @@ import seedu.guest.model.guest.Phone;
 
 
 /**
- * Changes isRoomClean field of all guest in current list to "no".
+ * Changes isRoomClean field of all guest in guest book to "no".
  */
-public class MarkRoomUncleanCommand extends Command {
+public class MarkRoomsUncleanCommand extends Command {
 
-    public static final String COMMAND_WORD = "markRoomUnclean";
+    public static final String COMMAND_WORD = "markRoomsUnclean";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Changes all guest RoomClean statuses to \"no\".\n"
+            + ": Changes all guests' isRoomClean statuses to \"no\".\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Mark all guests' Room Clean statuses as \"no\".";
+    public static final String MESSAGE_SUCCESS = "Mark all guests' isRoomClean statuses as \"no\".";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -49,7 +49,7 @@ public class MarkRoomUncleanCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Guest} with the isRoomClean set to no.
+     * Creates and returns a {@code Guest} with the isRoomClean set to "no".
      */
     private static Guest createGuestWithRoomUnclean(Guest guestToEdit) {
         assert guestToEdit != null;
