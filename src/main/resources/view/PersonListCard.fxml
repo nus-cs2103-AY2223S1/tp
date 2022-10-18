@@ -100,7 +100,6 @@
           </HBox>
         </children>
       </HBox>
-
     </VBox>
   </GridPane>
 </HBox>
