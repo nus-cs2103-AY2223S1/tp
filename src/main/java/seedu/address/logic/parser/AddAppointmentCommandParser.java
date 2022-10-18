@@ -52,7 +52,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             appointmentLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get());
             appointment = ParserUtil.parseAppointment(appointmentDateTime.toString(), appointmentLocation.toString());
         } catch (DateTimeParseException e) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAppointmentCommand.MESSAGE_USAGE));
         }
 
         return new AddAppointmentCommand(personIndex, appointment);

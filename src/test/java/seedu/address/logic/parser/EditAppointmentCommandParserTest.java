@@ -15,14 +15,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
-import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Location;
 
 public class EditAppointmentCommandParserTest {
@@ -69,41 +67,32 @@ public class EditAppointmentCommandParserTest {
 
     @Test
     public void parse_validAppointmentWithOtherField_failure() {
-        int targetPersonIndex = INDEX_SECOND_PERSON.getOneBased();
-        int targetAppointmentIndex = INDEX_SECOND_APPOINTMENT.getOneBased();
+        int targetIndex = INDEX_SECOND_PERSON.getOneBased();
         // edit appointment with tag
-        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
-                + TAG_DESC_FRIEND + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, targetIndex + TAG_DESC_FRIEND + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
 
         // edit appointment with phone
-        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
-                + PHONE_DESC_AMY + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, targetIndex + PHONE_DESC_AMY + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
 
         // edit appointment with email
-        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
-                + EMAIL_DESC_AMY + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, targetIndex + EMAIL_DESC_AMY + FIRST_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidAppointmentField_failure() {
         int targetIndex = INDEX_SECOND_PERSON.getOneBased();
-        int targetAppointmentIndex = INDEX_SECOND_APPOINTMENT.getOneBased();
 
         // edit appointment with invalid date
-        assertParseFailure(parser, targetIndex + "." + targetAppointmentIndex
-                + INVALID_DATE_FIELD_APPOINTMENT_DESC, DateTime.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, targetIndex + INVALID_DATE_FIELD_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
 
         // edit appointment with invalid location
-        assertParseFailure(parser, targetIndex + "." + targetAppointmentIndex
-                + INVALID_LOCATION_FIELD_APPOINTMENT_DESC, Location.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, targetIndex + INVALID_LOCATION_FIELD_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
 
         // edit appointment with invalid date and location
-        assertParseFailure(parser, targetIndex + "." + targetAppointmentIndex
-                + INVALID_BOTH_FIELD_APPOINTMENT_DESC, DateTime.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, targetIndex + INVALID_BOTH_FIELD_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
 
         // edit appointment with no field
-        assertParseFailure(parser, targetIndex + "." + targetAppointmentIndex
-                + "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, targetIndex + "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
