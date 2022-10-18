@@ -47,8 +47,8 @@ public class ClientCard extends UiPart<Region> {
         this.client = client;
         // id.setText(displayedIndex + ". ");
         name.setText(client.getClientName().toString() + " " + client.getClientId().uiRepresentation());
-        phone.setText(client.getClientPhone().getPhoneRepresentation());
-        email.setText(client.getClientEmail().getEmailRepresentation());
+        phone.setText(client.getClientPhone().uiRepresentation());
+        email.setText(client.getClientEmail().uiRepresentation());
         client.getProjects().stream()
                 .sorted(Comparator.comparing(project -> project.getProjectName().toString()))
                 .forEach(project -> projects.getChildren().add(new Label(project.getProjectName().toString())));
