@@ -11,22 +11,36 @@ public enum Priority {
     public static final String MESSAGE_CONSTRAINTS = "Priority should be an integer 0, 1 or 2";
 
     /**
-     * Checks if the priority string is valid.
-     * @param priority
-     * @return Boolean denoting whether the priority string is valid.
+     * Checks if the priority integer string is valid.
+     * @param priorityValue
+     * @return Boolean denoting whether the priority integer string is valid.
      */
-    public static boolean isValidPriority(String priority) {
+    public static boolean isValidPriority(String priorityValue) {
 
         ArrayList<Integer> priorities = new ArrayList<Integer>();
         priorities.add(0);
         priorities.add(1);
         priorities.add(2);
         for (Integer i: priorities) {
-            if (Integer.valueOf(i).equals(Integer.valueOf(priority))) {
+            if (Integer.valueOf(i).equals(Integer.valueOf(priorityValue))) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Checks if priority string is valid.
+     * @param priority
+     * @return Boolean denoting whether the priority integer string is valid.
+     */
+    public static boolean isValidPriorityString(String priority) {
+        try {
+            Priority tempPriority = valueOf(priority);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public String uiRepresentation() {

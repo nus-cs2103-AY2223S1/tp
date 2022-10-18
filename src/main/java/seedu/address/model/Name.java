@@ -39,7 +39,7 @@ public class Name {
     public static class EmptyName extends Name {
         public static final Name EMPTY_NAME = new EmptyName();
         public EmptyName() {
-            super("abcdefg");
+            super("empty");
         }
 
         /**
@@ -49,6 +49,11 @@ public class Name {
         @Override
         public boolean isEmpty() {
             return true;
+        }
+
+        @Override
+        public String toString() {
+            return "";
         }
     }
 

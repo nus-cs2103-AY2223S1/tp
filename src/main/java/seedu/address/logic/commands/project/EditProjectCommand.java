@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.project;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
@@ -14,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientId;
+import seedu.address.model.list.NotFoundException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -42,6 +44,7 @@ public class EditProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_SUCCESS = "Project %1$s has been edited";
+    public static final String MESSAGE_INVALID_CLIENT = "Client does not exist.";
 
     private final ProjectId projectToEditId;
     private final Name newName;
@@ -69,14 +72,19 @@ public class EditProjectCommand extends ProjectCommand {
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
 
         Project toEditProject = model.getProjectById(projectToEditId.getIdInt());
-        Client newClient = model.getClientById(newClientId.getIdInt());
 
         if (newName != null) {
             toEditProject.setName(newName);
         }
 
-        if (newClient != null) {
-            toEditProject.setClient(newClient);
+        if (newClientId != null) {
+            try {
+                Client newClient = model.getClientById(newClientId.getIdInt());
+                toEditProject.setClient(newClient);
+            } catch (NotFoundException e) {
+                throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditProjectCommand.MESSAGE_INVALID_CLIENT));
+            }
         }
 
         if (newRepository != null) {
