@@ -4,6 +4,9 @@ import java.time.DayOfWeek;
 
 import seedu.rc4hdb.model.resident.Resident;
 
+/**
+ * Represents a recurrent booking for a venue.
+ */
 public class RecurrentBooking extends Booking {
 
     /**
@@ -37,9 +40,14 @@ public class RecurrentBooking extends Booking {
         if (!booking.dayOfWeek.equals(this.dayOfWeek)) {
             return false;
         }
-        return booking.startTime.isAfter(this.startTime)
+        boolean isOverlappingOrSubset = this.startTime.isAfter(booking.startTime)
+                && this.startTime.isBefore(booking.endTime)
+                || this.endTime.isAfter(booking.startTime)
+                && this.endTime.isBefore(booking.endTime);
+        boolean isOverlappingOrSuperset =  booking.startTime.isAfter(this.startTime)
                 && booking.startTime.isBefore(this.endTime)
                 || booking.endTime.isAfter(this.startTime)
                 && booking.endTime.isBefore(this.endTime);
+        return isOverlappingOrSubset || isOverlappingOrSuperset;
     }
 }

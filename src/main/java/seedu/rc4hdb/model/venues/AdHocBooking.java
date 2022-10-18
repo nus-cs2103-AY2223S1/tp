@@ -47,9 +47,16 @@ public class AdHocBooking extends Booking {
         }
         if (booking instanceof AdHocBooking) {
             AdHocBooking otherBooking = (AdHocBooking) booking;
+            boolean isOverlappingOrSubset = this.startTime.isAfter(otherBooking.startTime)
+                    && this.startTime.isBefore(otherBooking.endTime)
+                    || this.endTime.isAfter(otherBooking.startTime)
+                    && this.endTime.isBefore(otherBooking.endTime);
+            boolean isOverlappingOrSuperset = otherBooking.startTime.isAfter(this.startTime)
+                    && otherBooking.startTime.isBefore(this.endTime)
+                    || otherBooking.endTime.isAfter(this.startTime)
+                    && otherBooking.endTime.isBefore(this.endTime);
             return otherBooking.date.equals(this.date)
-                    && (otherBooking.startTime.isAfter(this.startTime) && otherBooking.startTime.isBefore(this.endTime)
-                    || otherBooking.endTime.isAfter(this.startTime) && otherBooking.endTime.isBefore(this.endTime));
+                    && (isOverlappingOrSubset || isOverlappingOrSuperset);
         }
         return false;
     }
