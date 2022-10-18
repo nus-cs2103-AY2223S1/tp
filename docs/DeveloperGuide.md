@@ -167,10 +167,12 @@ The proposed command history navigation mechanism is facilitated by `CommandHist
 
 The methods will handle cases where the command history is empty, full and when there are no more previous or next commands to navigate to.
 
-`CommandBox` will store an instance of a `CommandHistoryManager`.
+`StorageManager` will store an instance of a `CommandHistoryManager`.
 
 * Set the `setOnKeyPressed` for the `commandTextField` to detect key presses "UP" and "DOWN" arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
 * Call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` when handling user input to save the user's input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
+
+Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
 
 Given below is an example usage scenario and how the command history mechanism behaves at each step.
 
@@ -181,6 +183,10 @@ Step 2. The user executes a few commands. It does not matter if these commands a
 Step 3. The user decides to navigate to a previous command by clicking the "UP" arrow key. `CommandHistory#getPreviousCommmand()` will be called.
 
 Step 4. The user decides to navigate to a next command by clicking the "DOWN" arrow key. `CommandHistory#getNextCommmand()` will be called.
+
+The following sequence diagram shows how the next command history navigation works, if there is a next command to navigate to:
+
+![NextCommandHistorySequenceDiagram](images/NextCommandHistorySequenceDiagram.png)
 
 #### Design considerations:
 
