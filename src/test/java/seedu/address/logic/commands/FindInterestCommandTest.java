@@ -22,7 +22,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonContainsInterestPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindTagCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindInterestCommandTest}.
  */
 public class FindInterestCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -51,7 +51,7 @@ public class FindInterestCommandTest {
         // null -> returns false
         assertFalse(findInterestFirstCommand.equals(null));
 
-        // different tag -> returns false
+        // different interest -> returns false
         assertFalse(findInterestFirstCommand.equals(findInterestSecondCommand));
     }
 

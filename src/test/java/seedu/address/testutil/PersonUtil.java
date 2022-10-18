@@ -59,11 +59,11 @@ public class PersonUtil {
         descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.handle).append(" "));
         descriptor.getGitHub().ifPresent(github -> sb.append(PREFIX_GITHUB).append(github.username).append(" "));
         if (descriptor.getInterests().isPresent()) {
-            Set<Interest> tags = descriptor.getInterests().get();
-            if (tags.isEmpty()) {
+            Set<Interest> interests = descriptor.getInterests().get();
+            if (interests.isEmpty()) {
                 sb.append(PREFIX_INTEREST);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_INTEREST).append(s.interestName).append(" "));
+                interests.forEach(s -> sb.append(PREFIX_INTEREST).append(s.interestName).append(" "));
             }
         }
         if (descriptor.getMods().isPresent()) {
