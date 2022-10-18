@@ -8,6 +8,7 @@ import java.util.Set;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 import hobbylist.model.util.SampleDataUtil;
@@ -24,6 +25,7 @@ public class ActivityBuilder {
     private Description description;
     private Set<Tag> tags;
     private List<Date> dateList;
+    private Status status;
 
     /**
      * Creates a {@code ActivityBuilder} with the default details.
@@ -73,7 +75,7 @@ public class ActivityBuilder {
      */
     public Activity build() {
 
-        return new Activity(name, description, tags, dateList);
+        return new Activity(name, description, tags, dateList, status);
     }
 
 }

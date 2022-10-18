@@ -11,6 +11,7 @@ import hobbylist.model.ReadOnlyHobbyList;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
@@ -18,31 +19,35 @@ import hobbylist.model.tag.Tag;
  * Contains utility methods for populating {@code HobbyList} with sample data.
  */
 public class SampleDataUtil {
+
+    public static final Status NO_STATUS = new Status();
+
     public static Activity[] getSampleActivities() {
+
         List<Date> s = new ArrayList<>();
         return new Activity[] {
-            new Activity(new Name("And Then There Were None"),
+                new Activity(new Name("And Then There Were None"),
                 new Description("Mystery novel by Agatha Christie"),
-                getTagSet("book"), s),
+                getTagSet("book"), s, new Status("ongoing")),
             new Activity(new Name("Battlefield 4"),
                 new Description("First person shooter by EA"),
-                getTagSet("video_game"), s),
+                getTagSet("video_game"), s, new Status("upcoming")),
             new Activity(new Name("Charlotte"),
                 new Description("Comedy drama anime"),
                 getTagSet("anime", "tv_series"),
-                    s),
+                    s, new Status("completed")),
             new Activity(new Name("Despicable Me 3"),
                 new Description("Comedy film directed by Pierre Coffin and Kyle Balda"),
                 getTagSet("movie"),
-                    s),
+                    s, NO_STATUS),
             new Activity(new Name("42km run"),
                 new Description("Exercise on 1 Jan 1970"),
                 getTagSet("exercise"),
-                    s),
+                    s, NO_STATUS),
             new Activity(new Name("Sleep for 48 hours"),
                 new Description("Sleep from 1 Oct 2022 to 3 Oct 2022"),
                 getTagSet("sleep"),
-                    s)
+                    s, NO_STATUS)
         };
     }
 

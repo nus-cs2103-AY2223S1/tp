@@ -25,29 +25,32 @@ public class Activity {
     private final Set<Tag> tags = new HashSet<>();
     private final List<Date> listDate = new ArrayList<>();
     private int rating = 0;
+    private final Status status;
 
     /**
-     * Constructor without rating. Every field excpet rating must be present and not null.
+     * Constructor without rating. Every field except rating must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate) {
+    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, Status status) {
         CollectionUtil.requireAllNonNull(name, description, tags, listDate);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
         this.listDate.addAll(listDate);
+        this.status = status;
     }
 
 
     /**
      * Constructor with rating. Every field must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, int rating) {
+    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, int rating, Status status) {
         CollectionUtil.requireAllNonNull(name, description, tags, listDate, rating);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
         this.listDate.addAll(listDate);
         this.rating = rating;
+        this.status = status;
     }
 
     public Name getName() {
@@ -68,10 +71,18 @@ public class Activity {
     public List<Date> getDate() {
         return this.listDate;
     }
+
     public int getRating() {
         return this.rating;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public boolean hasStatus() {
+        return status.hasStatus();
+    }
 
     /**
      * Returns true if both activities have the same name.
@@ -134,6 +145,8 @@ public class Activity {
             builder.append("; Rating: ")
                     .append(rating);
         }
+        builder.append("; Status: ")
+                .append(getStatus());
         return builder.toString();
     }
 

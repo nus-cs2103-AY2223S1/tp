@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import hobbylist.commons.core.index.Index;
@@ -14,6 +15,7 @@ import hobbylist.commons.util.StringUtil;
 import hobbylist.logic.parser.exceptions.ParseException;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
@@ -104,6 +106,22 @@ public class ParserUtil {
             }
         }
         return s;
+    }
+
+    // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String completionStatus = status.trim().toUpperCase();
+        if (completionStatus.equals(Status.STATUS_UPCOMING)) {
+            return new Status(Status.STATUS_UPCOMING);
+        }
+        if (completionStatus.equals(Status.STATUS_ONGOING)) {
+            return new Status(Status.STATUS_ONGOING);
+        }
+        if (completionStatus.equals(Status.STATUS_COMPLETED)) {
+            return new Status(Status.STATUS_COMPLETED);
+        }
+        throw new ParseException(Status.MESSAGE_CONSTRAINT);
     }
 
     /**

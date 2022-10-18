@@ -72,7 +72,7 @@ public class RateCommand extends Command {
                                                  int rating) {
         assert activityToRate != null;
         return new Activity(activityToRate.getName(), activityToRate.getDescription(),
-                activityToRate.getTags(), activityToRate.getDate(), rating);
+                activityToRate.getTags(), activityToRate.getDate(), rating, activityToRate.getStatus());
     }
 
     @Override
