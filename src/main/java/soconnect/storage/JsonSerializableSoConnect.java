@@ -1,7 +1,9 @@
 package soconnect.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,6 +24,7 @@ class JsonSerializableSoConnect {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_TAG = "Tags list contains duplicate tag(s).";
+    public static final String MESSAGE_TAG_NOT_FOUND = "Person contains tags not found in the Tags list.";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -53,21 +56,53 @@ class JsonSerializableSoConnect {
      */
     public SoConnect toModelType() throws IllegalValueException {
         SoConnect soConnect = new SoConnect();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (soConnect.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            soConnect.addPerson(person);
-        }
+        List<Tag> tempTagList = new ArrayList<>();
+
         for (JsonAdaptedTag jsonAdaptedTag : tags) {
             Tag tag = jsonAdaptedTag.toModelType();
             if (soConnect.hasTag(tag)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
             }
             soConnect.addTag(tag);
+            tempTagList.add(tag);
         }
+
+        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            Person person = jsonAdaptedPerson.toModelType();
+            if (soConnect.hasPerson(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            JsonSerializableSoConnect.matchTags(soConnect, person, tempTagList);
+        }
+
         return soConnect;
+    }
+
+    /**
+     * Adds person if the person's tags matches with the tags in the tagList.
+     *
+     * @param soConnect The platform where the person is added.
+     * @param person The person to be added.
+     * @param tagList The tagList for tag comparison.
+     * @throws IllegalValueException If there were any data constraints violated.
+     */
+    public static void matchTags(SoConnect soConnect, Person person, List<Tag> tagList) throws IllegalValueException {
+        List<Tag> personTags = new ArrayList<>(person.getTags());
+        for (int i = 0; i < personTags.size(); i++) {
+            if (!soConnect.hasTag(personTags.get(i))) {
+                throw new IllegalValueException(MESSAGE_TAG_NOT_FOUND);
+            } else {
+                int index = tagList.indexOf(personTags.get(i));
+                personTags.set(i, tagList.get(index));
+            }
+        }
+        Set<Tag> updatedTags = new HashSet<>(personTags);
+        Person newPerson = new Person(person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags);
+        soConnect.addPerson(newPerson);
     }
 
 }

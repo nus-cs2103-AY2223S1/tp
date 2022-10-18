@@ -142,12 +142,7 @@ public class SoConnect implements ReadOnlySoConnect {
      */
     public boolean areTagsAvailable(Person person) {
         List<Tag> personTags = new ArrayList<>(person.getTags());
-        for (int i = 0; i < personTags.size(); i++) {
-            if (!tags.hasTag(personTags.get(i))) {
-                return false;
-            }
-        }
-        return true;
+        return tags.containsAll(personTags);
     }
 
     /**
@@ -158,12 +153,7 @@ public class SoConnect implements ReadOnlySoConnect {
      */
     public boolean areTagsAvailable(Todo todo) {
         List<Tag> todoTags = new ArrayList<>(todo.getTags());
-        for (Tag todoTag : todoTags) {
-            if (!tags.hasTag(todoTag)) {
-                return false;
-            }
-        }
-        return true;
+        return tags.containsAll(todoTags);
     }
 
     /**
@@ -209,7 +199,7 @@ public class SoConnect implements ReadOnlySoConnect {
     /**
      * Adds the tag to the tagList.
      *
-     * @param tag The tag to be added
+     * @param tag The tag to be added.
      */
     public void addTag(Tag tag) {
         tags.addTagToList(tag);
@@ -227,6 +217,19 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Deletes the tag from the tagList.
+     *
+     * @param tag The tag top be deleted.
+     */
+    public void deleteTag(Tag tag) {
+        tags.deleteTag(tag);
+        persons.removeRelevantPersonTag(tag);
+    }
+
+    /**
+>>>>>>> master
      * Gets the tag from the tagList.
      *
      * @param tag The reference tag.

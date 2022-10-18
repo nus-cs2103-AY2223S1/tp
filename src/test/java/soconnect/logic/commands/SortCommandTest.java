@@ -175,6 +175,11 @@ class SortCommandTest {
         }
 
         @Override
+        public void deleteTag(Tag tag) {
+
+        }
+
+        @Override
         public Tag getTagFromList(Tag tag) {
             return null;
         }
@@ -241,6 +246,11 @@ class SortCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Boolean isFilteredPersonListEmpty() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -211,6 +211,11 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns true if the filtered person list is empty.
+     */
+    Boolean isFilteredPersonListEmpty();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -247,16 +252,23 @@ public interface Model {
     /**
      * Changes the oldTag to the newTag.
      *
-     * @param oldTag The tag to be changed
-     * @param newTag The tag to be changed into
+     * @param oldTag The tag to be changed.
+     * @param newTag The tag to be changed into.
      */
     void editTag(Tag oldTag, Tag newTag);
+
+    /**
+     * Deletes the tag from the tagList.
+     *
+     * @param tag The tag to be deleted.
+     */
+    void deleteTag(Tag tag);
 
     /**
      * Returns the right tag from the Tag list.
      *
      * @param tag The reference tag.
-     * @return The tag that has the same name as the reference tag.
+     * @return the tag that has the same name as the reference tag.
      */
     Tag getTagFromList(Tag tag);
 

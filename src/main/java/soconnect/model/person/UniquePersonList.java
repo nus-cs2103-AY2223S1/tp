@@ -116,8 +116,7 @@ public class UniquePersonList implements Iterable<Person> {
         for (int i = 0; i < internalList.size(); i++) {
             Person oldPerson = internalList.get(i);
             List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
-            if (!personTags.contains(oldTag)) {
-            } else {
+            if (personTags.contains(oldTag)) {
                 int index = personTags.indexOf(oldTag);
                 personTags.set(index, newTag);
                 Set<Tag> newTags = new HashSet<>(personTags);
@@ -140,15 +139,14 @@ public class UniquePersonList implements Iterable<Person> {
         for (int i = 0; i < internalList.size(); i++) {
             Person oldPerson = internalList.get(i);
             List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
-            if (!personTags.contains(tag)) {
-            } else {
+            if (personTags.contains(tag)) {
                 personTags.remove(tag);
                 Set<Tag> updatedTags = new HashSet<>(personTags);
                 Person updatedPerson = new Person(oldPerson.getName(),
-                    oldPerson.getPhone(),
-                    oldPerson.getEmail(),
-                    oldPerson.getAddress(),
-                    updatedTags);
+                        oldPerson.getPhone(),
+                        oldPerson.getEmail(),
+                        oldPerson.getAddress(),
+                        updatedTags);
                 internalList.set(i, updatedPerson);
             }
         }
@@ -219,7 +217,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts the SoConnect by a tag.
      * Contacts with the tag appear before those without the tag.
      *
-     * @param tag       The tag to sort with
+     * @param tag       The tag to sort with.
      * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByTag(Tag tag, Boolean isReverse) {

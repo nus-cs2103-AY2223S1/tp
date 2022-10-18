@@ -178,6 +178,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTag(Tag tag) {
+        soConnect.deleteTag(tag);
+        todoList.deleteTag(tag);
+    }
+
+    @Override
     public void sortByName(Boolean isReverse) {
         soConnect.sortByName(isReverse);
     }
@@ -252,6 +258,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public Boolean isFilteredPersonListEmpty() {
+        return filteredPersons.size() == 0;
     }
 
     @Override
