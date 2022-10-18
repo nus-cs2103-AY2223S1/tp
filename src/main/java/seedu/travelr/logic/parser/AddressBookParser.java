@@ -20,7 +20,9 @@ import seedu.travelr.logic.commands.ExitCommand;
 import seedu.travelr.logic.commands.FindCommand;
 import seedu.travelr.logic.commands.HelpCommand;
 import seedu.travelr.logic.commands.ListCommand;
+import seedu.travelr.logic.commands.MarkTripDoneCommand;
 import seedu.travelr.logic.commands.SelectCommand;
+import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
 import seedu.travelr.logic.commands.ViewAllCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 
@@ -50,6 +52,12 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case UnmarkDoneTripCommand.COMMAND_WORD:
+            return new UnmarkDoneTripCommandParser().parse(arguments);
+
+        case MarkTripDoneCommand.COMMAND_WORD:
+            return new MarkTripDoneCommandParser().parse(arguments);
 
         case DeleteEventFromTripCommand.COMMAND_WORD:
             return new DeleteEventFromTripCommandParser().parse(arguments);
