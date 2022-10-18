@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Arrays;
 
 import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
@@ -14,6 +16,7 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
     private final String[] givenCharacteristics;
 
     public FilterBuyerByCharacteristicsPredicate(String characteristics) {
+        requireNonNull(characteristics);
         this.givenCharacteristics = characteristics.split(CHARACTERISTIC_DELIMITER);
     }
 

@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.property.Price;
 
 /**
@@ -10,6 +12,7 @@ public class FilterBuyerByPricePredicate extends AbstractFilterBuyerPredicate {
     private final Price price;
 
     public FilterBuyerByPricePredicate(String stringPrice) {
+        requireNonNull(stringPrice);
         this.price = new Price(stringPrice);
     }
 

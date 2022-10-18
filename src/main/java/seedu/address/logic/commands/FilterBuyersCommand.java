@@ -10,8 +10,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.AbstractFilterBuyerPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Filters and lists all buyers in the buyer list that either have a price range that accepts the given price,
+ * characteristics that match the given characteristics list, or have the given tag.
+ * Keyword matching is case-insensitive.
  */
 public class FilterBuyersCommand extends Command {
 
