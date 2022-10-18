@@ -6,7 +6,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's email in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email extends Field {
+public class Email extends ResidentField {
 
     public static final String IDENTIFIER = "Email";
 

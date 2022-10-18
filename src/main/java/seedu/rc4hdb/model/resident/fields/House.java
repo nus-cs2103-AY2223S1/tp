@@ -6,7 +6,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's house in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidHouse(String)}
  */
-public class House extends Field {
+public class House extends ResidentField {
 
     public static final String IDENTIFIER = "House";
 
@@ -37,11 +37,6 @@ public class House extends Field {
         return other == this // short circuit if same object
                 || (other instanceof House // instanceof handles nulls
                 && value.equals(((House) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
     }
 
 }

@@ -6,7 +6,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's Room in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoom(String)}
  */
-public class Room extends Field {
+public class Room extends ResidentField {
 
     public static final String IDENTIFIER = "Room";
 

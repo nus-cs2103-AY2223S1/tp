@@ -1,13 +1,13 @@
 package seedu.rc4hdb.model.resident.fields;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.List;
+
+import seedu.rc4hdb.model.Field;
 
 /**
  * Represents the fields for a residents.
  */
-public abstract class Field {
+public abstract class ResidentField extends Field {
 
     public static final String INDEX_IDENTIFIER = "Index";
 
@@ -17,21 +17,8 @@ public abstract class Field {
             Phone.IDENTIFIER, Room.IDENTIFIER, Tag.IDENTIFIER
     );
 
-    public final String value;
-
-    protected Field(String value) {
-        requireNonNull(value);
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return this.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+    protected ResidentField(String value) {
+        super(value);
     }
 
 }

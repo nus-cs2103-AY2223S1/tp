@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
-import seedu.rc4hdb.model.resident.fields.Field;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 public class ListCommandParserTest {
     private ListCommandParser parser = new ListCommandParser();
     private List<String> emptyList = new ArrayList<>();
-    private List<String> listOfAllFields = Field.FIELDS.stream()
+    private List<String> listOfAllFields = ResidentField.FIELDS.stream()
             .map(String::toLowerCase).collect(Collectors.toList());
 
     @Test

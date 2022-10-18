@@ -6,7 +6,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's name in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name extends Field {
+public class Name extends ResidentField {
 
     public static final String IDENTIFIER = "Name";
 

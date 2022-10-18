@@ -6,7 +6,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag extends Field {
+public class Tag extends ResidentField {
 
     public static final String IDENTIFIER = "Tags";
 

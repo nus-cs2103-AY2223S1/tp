@@ -6,7 +6,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's phone number in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone extends Field {
+public class Phone extends ResidentField {
 
     public static final String IDENTIFIER = "Phone";
 

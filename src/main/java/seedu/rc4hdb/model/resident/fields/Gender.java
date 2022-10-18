@@ -6,7 +6,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's gender in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
-public class Gender extends Field {
+public class Gender extends ResidentField {
 
     public static final String IDENTIFIER = "Gender";
 
