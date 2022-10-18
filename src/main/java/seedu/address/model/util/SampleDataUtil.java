@@ -6,6 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.ConsultationDescription;
+import seedu.address.model.consultation.ConsultationModule;
+import seedu.address.model.consultation.ConsultationName;
+import seedu.address.model.consultation.ConsultationTimeslot;
+import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
@@ -103,6 +109,20 @@ public class SampleDataUtil {
         };
     }
 
+    public static Consultation[] getSampleConsultations() {
+        return new Consultation[] {
+            new Consultation(new ConsultationName("Anna"), new ConsultationModule("CS2103T"),
+                        new ConsultationVenue("COM1-0203"), new ConsultationTimeslot("16:00-18:00"),
+                        new ConsultationDescription("Review past year paper")),
+            new Consultation(new ConsultationName("Tom"), new ConsultationModule("CS2103T"),
+                        new ConsultationVenue("COM1-0201"), new ConsultationTimeslot("15:00-17:00"),
+                        new ConsultationDescription("Review IP code quality")),
+            new Consultation(new ConsultationName("John"), new ConsultationModule("CS2103T"),
+                        new ConsultationVenue("COM1-0202"), new ConsultationTimeslot("10:00-11:00"),
+                        new ConsultationDescription("Clear doubts about lecture")),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Student sampleStudent : getSamplePersons()) {
@@ -111,6 +131,11 @@ public class SampleDataUtil {
         for (Tutorial sampleTutorial: getSampleTutorials()) {
             sampleAb.addTutorial(sampleTutorial);
         }
+
+        for (Consultation sampleConsultation: getSampleConsultations()) {
+            sampleAb.addConsultation(sampleConsultation);
+        }
+
         return sampleAb;
     }
 

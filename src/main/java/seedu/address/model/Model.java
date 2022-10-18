@@ -158,6 +158,15 @@ public interface Model {
      */
     boolean hasConsultationClashingWith(Consultation consultation);
 
+    /**
+     * Deletes the given consultation.
+     * The person must exist in the ModQuik.
+     */
+    void deleteConsultation(Consultation target);
+
+    /**
+     * Adds the given consultation.
+     */
     void addConsultation(Consultation consultation);
 
     /** Returns an unmodifiable view of the filtered consultation list */

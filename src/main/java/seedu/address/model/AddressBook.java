@@ -218,8 +218,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a Consultation to the ModQuik.
      * The consultation must not already exist in the ModQuik.
      */
-    public void addConsulation(Consultation consultation) {
+    public void addConsultation(Consultation consultation) {
         consultations.add(consultation);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeConsultation(Consultation key) {
+        consultations.remove(key);
     }
 
     //// util methods

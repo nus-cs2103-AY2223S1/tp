@@ -12,6 +12,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
+    public static final String MESSAGE_INVALID_CONSULTATION_DISPLAYED_INDEX =
+            "The consultation index provided is invalid";
 
     /* Success messages */
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";

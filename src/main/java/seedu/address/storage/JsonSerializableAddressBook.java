@@ -96,7 +96,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasConsultation(consultation)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
             }
-            addressBook.addConsulation(consultation);
+            addressBook.addConsultation(consultation);
         }
 
         return addressBook;
