@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Property;
 
 
@@ -45,6 +46,10 @@ public class PropertyCard extends UiPart<Region> {
     @FXML
     private Label seller;
 
+    // TODO: set the following label as optional
+    @FXML
+    private Label characteristics;
+
     /**
      * Creates a {@code PropertyCard} with the given {@code Property} and index to display.
      */
@@ -60,6 +65,9 @@ public class PropertyCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         seller.setText(property.getSeller());
+        characteristics.setText("Characteristics: " + property
+                .getCharacteristics().map(Characteristics::toString)
+                .orElse("Characteristics: Not Specified"));
     }
 
     @Override

@@ -15,7 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -164,13 +164,13 @@ public class ParserUtil {
     /**
      * Parses {@code String characteristics} into a {@code Characteristics}.
      */
-    public static DesiredCharacteristics parseCharacteristics(String characteristics) throws ParseException {
+    public static Characteristics parseCharacteristics(String characteristics) throws ParseException {
         requireNonNull(characteristics);
         String trimmedCharacteristics = characteristics.trim();
-        if (!DesiredCharacteristics.isValidDesiredCharacteristics(trimmedCharacteristics)) {
-            throw new ParseException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
+        if (!Characteristics.isValidCharacteristics(trimmedCharacteristics)) {
+            throw new ParseException(Characteristics.MESSAGE_CONSTRAINTS);
         }
-        return new DesiredCharacteristics(trimmedCharacteristics);
+        return new Characteristics(trimmedCharacteristics);
     }
 
     /**

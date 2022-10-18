@@ -21,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
@@ -101,9 +102,12 @@ public class EditPropertyCommand extends Command {
         Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
         Set<Tag> updatedTags = descriptor.getTags().orElse(propertyToEdit.getTags());
         String updatedSeller = descriptor.getSeller().orElse(propertyToEdit.getSeller());
+        Characteristics updatedCharacteristics = descriptor
+                .getCharacteristics()
+                .orElse(propertyToEdit.getCharacteristics().orElse(null));
 
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
-                updatedTags, updatedSeller);
+                updatedTags, updatedSeller, updatedCharacteristics);
     }
 
     @Override
@@ -135,6 +139,7 @@ public class EditPropertyCommand extends Command {
         private Description description;
         private Set<Tag> tags;
         private String seller;
+        private Characteristics characteristics;
 
         public EditPropertyDescriptor() {}
 
@@ -149,6 +154,7 @@ public class EditPropertyCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setSeller(toCopy.seller);
+            setCharacteristics(toCopy.characteristics);
         }
 
         /**
@@ -215,6 +221,14 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(seller);
         }
 
+        public void setCharacteristics(Characteristics characteristics) {
+            this.characteristics = characteristics;
+        }
+
+        public Optional<Characteristics> getCharacteristics() {
+            return Optional.ofNullable(characteristics);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -235,7 +249,8 @@ public class EditPropertyCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getSeller().equals(e.getSeller());
+                    && getSeller().equals(e.getSeller())
+                    && getCharacteristics().equals(e.getCharacteristics());
         }
     }
 }

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -29,7 +29,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private PriceRange priceRange;
-    private DesiredCharacteristics desiredCharacteristics;
+    private Characteristics characteristics;
     private Set<Tag> tags;
 
     /**
@@ -41,7 +41,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         priceRange = null;
-        desiredCharacteristics = null;
+        characteristics = null;
         tags = new HashSet<>();
     }
 
@@ -54,7 +54,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         priceRange = personToCopy.getPriceRange().orElse(null);
-        desiredCharacteristics = personToCopy.getDesiredCharacteristics().orElse(null);
+        characteristics = personToCopy.getDesiredCharacteristics().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -118,7 +118,7 @@ public class PersonBuilder {
      * Sets the {@code DesiredCharacteristics} of the {@code Person} that we are building.
      */
     public PersonBuilder withDesiredCharacteristics(String desiredCharacteristics) {
-        this.desiredCharacteristics = new DesiredCharacteristics(desiredCharacteristics);
+        this.characteristics = new Characteristics(desiredCharacteristics);
         return this;
     }
 
@@ -126,12 +126,12 @@ public class PersonBuilder {
      * Removes the {@code DesiredCharacteristics} of the {@code Person} that we are building.
      */
     public PersonBuilder withNoDesiredCharacteristics() {
-        this.desiredCharacteristics = null;
+        this.characteristics = null;
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, priceRange, desiredCharacteristics, tags);
+        return new Person(name, phone, email, address, priceRange, characteristics, tags);
     }
 
 }
