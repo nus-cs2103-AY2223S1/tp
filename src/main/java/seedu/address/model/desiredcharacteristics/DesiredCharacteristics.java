@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 
+import seedu.address.commons.util.StringUtil;
+
 /**
  * Represents the desired characteristics of a property that will interest a particular buyer.
  * Individual characteristics are separated by semicolons.
@@ -43,6 +45,16 @@ public class DesiredCharacteristics {
     public static boolean isValidDesiredCharacteristics(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Helper method which returns true if a given characteristic is contained in the desired
+     * characteristics.
+     */
+    public boolean containsCharacteristic(String characteristic) {
+        return Arrays.stream(characteristics)
+                .anyMatch(c -> StringUtil.containsWordIgnoreCase(c, characteristic));
+    }
+
 
     @Override
     public String toString() {
