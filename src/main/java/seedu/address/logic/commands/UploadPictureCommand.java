@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.storage.ImageStorage.IMAGE_CONSTRAINTS;
 
 import java.io.File;
 import java.util.List;
@@ -9,7 +10,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Picture;
 import seedu.address.model.student.Student;
 import seedu.address.storage.ImageStorage;
 
@@ -50,8 +50,8 @@ public class UploadPictureCommand extends Command {
         if (studentPicture == null) {
             throw new CommandException("No image selected!");
         }
-        if (!Picture.isJpgFile(studentPicture)) {
-            throw new CommandException(Picture.PICTURE_CONSTRAINTS);
+        if (!ImageStorage.isJpgFile(studentPicture)) {
+            throw new CommandException(IMAGE_CONSTRAINTS);
         }
         ImageStorage.uploadImage(studentToEdit, studentPicture);
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);

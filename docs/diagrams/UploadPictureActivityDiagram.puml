@@ -2,36 +2,20 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:ClickServlet.handleRequest();
-:new page;
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
-    endif
-
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
+:User executes upload picture command;
+:parse the input Index;
+if () then ([index is valid])
+  :Open file chooser;
+   :User Selects Image;
+  if () then([Image is valid])
+    :Upload Image;
+  else ([Image is invalid])
+    :Show incorrect file type error;
 endif
 
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
+else ([index is invalid])
+    :Show parse error message;
 endif
-
 stop
 
 @enduml

@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.student.Student;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Encapsulate the Image Storage of application.
  */
@@ -71,12 +73,40 @@ public class ImageStorage {
 
     private static final Image defaultImage = new Image(new ByteArrayInputStream(imageBytes));
     private static Stage primaryStage;
+    public static final String IMAGE_CONSTRAINTS = "Picture should be in .jpg format.";
 
     private static String getImagePath(Student student) {
         return Paths.get(
                 System.getProperty("user.dir"),
                 "images", student.getStudentId().toString() + ".jpg"
         ).toString();
+    }
+
+    /**
+     * Returns whether the given file is a .jpg file.
+     * @param file
+     * @return Whether the {@code file} is a .jpg file.
+     * @throws CommandException If file cannot be found or unable to read the file.
+     */
+    public static boolean isJpgFile(File file) throws CommandException {
+        int[] jpgByteArray = new int[] {255, 216, 255, 224};
+        requireNonNull(file);
+        try {
+            FileInputStream inputFile = new FileInputStream(file);
+            int checkByte;
+            for (int counter = 0; counter < 4; counter++) {
+                checkByte = inputFile.read();
+                if (jpgByteArray[counter] != checkByte) {
+                    return false;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new CommandException("File not found!");
+        } catch (IOException e) {
+            throw new CommandException("Unable to read file");
+        }
+        return true;
+
     }
 
     private static File getImageFile(Student student) {
