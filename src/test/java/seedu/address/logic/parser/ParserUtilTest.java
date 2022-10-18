@@ -14,6 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -117,6 +119,47 @@ public class ParserUtilTest {
         String homeworkWithWhitespace = WHITESPACE + VALID_HOMEWORK + WHITESPACE;
         Homework expectedHomework = new Homework(VALID_HOMEWORK);
         assertEquals(expectedHomework, ParserUtil.parseHomework(homeworkWithWhitespace));
+    }
+
+    @Test
+    public void parseGradeProgress_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGradeProgress((String) null));
+    }
+
+    @Test
+    public void parseGradeProgress_validValueWithoutWhitespace_returnsGradeProgress() throws Exception {
+        GradeProgress expectedGradeProgress = new GradeProgress(VALID_GRADE_PROGRESS);
+        assertEquals(expectedGradeProgress, ParserUtil.parseGradeProgress(VALID_GRADE_PROGRESS));
+    }
+
+    @Test
+    public void parseGradeProgress_validValueWithWhitespace_returnsTrimmedGradeProgress() throws Exception {
+        String gradeProgressWithWhitespace = WHITESPACE + VALID_GRADE_PROGRESS + WHITESPACE;
+        GradeProgress expectedGradeProgress = new GradeProgress(VALID_GRADE_PROGRESS);
+        assertEquals(expectedGradeProgress, ParserUtil.parseGradeProgress(gradeProgressWithWhitespace));
+    }
+
+    @Test
+    public void parseAttendance_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendance((String) null));
+    }
+
+    @Test
+    public void parseAttendance_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendance(INVALID_ATTENDANCE));
+    }
+
+    @Test
+    public void parseAttendance_validValueWithoutWhitespace_returnsAttendance() throws Exception {
+        Attendance expectedAttendance = new Attendance(VALID_ATTENDANCE);
+        assertEquals(expectedAttendance, ParserUtil.parseAttendance(VALID_ATTENDANCE));
+    }
+
+    @Test
+    public void parseAttendance_validValueWithWhitespace_returnsTrimmedAttendance() throws Exception {
+        String attendanceWithWhitespace = WHITESPACE + VALID_ATTENDANCE + WHITESPACE;
+        Attendance expectedAttendance = new Attendance(VALID_ATTENDANCE);
+        assertEquals(expectedAttendance, ParserUtil.parseAttendance(attendanceWithWhitespace));
     }
 
     @Test

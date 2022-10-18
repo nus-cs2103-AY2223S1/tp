@@ -145,7 +145,7 @@ public class ParserUtil {
     public static Attendance parseAttendance(String attendance) throws ParseException {
         requireNonNull(attendance);
         String trimmedAttendance = attendance.trim();
-        if (!Attendance.isValidAttendance(attendance)) {
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
         return new Attendance(trimmedAttendance);
