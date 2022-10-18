@@ -35,11 +35,13 @@ public class GuestCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label numberOfGuests;
-    @FXML
     private Label email;
     @FXML
+    private Label room;
+    @FXML
     private Label dateRange;
+    @FXML
+    private Label numberOfGuests;
     @FXML
     private Label isRoomClean;
     @FXML
@@ -54,12 +56,21 @@ public class GuestCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(guest.getName().fullName);
         name.setWrapText(true);
+
         phone.setText(guest.getPhone().value);
         phone.setWrapText(true);
+
         email.setText(guest.getEmail().value);
         email.setWrapText(true);
+
+        room.setText(guest.getRoom().value);
+        room.setWrapText(true);
+
         dateRange.setText(guest.getDateRange().value);
+        dateRange.setWrapText(true);
+
         numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
+
         isRoomClean.setText("Room Cleaned: ");
 
         // Set graphic based on status of isRoomClean

@@ -2,12 +2,14 @@ package seedu.guest.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_BILL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.guest.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -32,12 +34,17 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_ROOM_AMY = "05-73";
+    public static final String VALID_ROOM_BOB = "07-77";
     public static final String VALID_DATE_RANGE_AMY = "13/09/22 - 15/09/22";
     public static final String VALID_DATE_RANGE_BOB = "29/05/23 - 03/06/23";
     public static final String VALID_NUMBER_OF_GUESTS_AMY = "1";
     public static final String VALID_NUMBER_OF_GUESTS_BOB = "2";
     public static final String VALID_IS_ROOM_CLEAN_AMY = "yes";
     public static final String VALID_IS_ROOM_CLEAN_BOB = "no";
+    public static final String VALID_BILL_POSITIVE = "1";
+    public static final String VALID_BILL_ZERO = "0";
+    public static final String VALID_BILL_NEGATIVE = "-1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,22 +52,29 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String ROOM_DESC_AMY = " " + PREFIX_ROOM + VALID_ROOM_AMY;
+    public static final String ROOM_DESC_BOB = " " + PREFIX_ROOM + VALID_ROOM_BOB;
     public static final String DATE_RANGE_DESC_AMY = " " + PREFIX_DATE_RANGE + VALID_DATE_RANGE_AMY;
     public static final String DATE_RANGE_DESC_BOB = " " + PREFIX_DATE_RANGE + VALID_DATE_RANGE_BOB;
     public static final String NUMBER_OF_GUESTS_DESC_AMY = " " + PREFIX_NUMBER_OF_GUESTS + VALID_NUMBER_OF_GUESTS_AMY;
     public static final String NUMBER_OF_GUESTS_DESC_BOB = " " + PREFIX_NUMBER_OF_GUESTS + VALID_NUMBER_OF_GUESTS_BOB;
     public static final String IS_ROOM_CLEAN_DESC_AMY = " " + PREFIX_IS_ROOM_CLEAN + VALID_IS_ROOM_CLEAN_AMY;
     public static final String IS_ROOM_CLEAN_DESC_BOB = " " + PREFIX_IS_ROOM_CLEAN + VALID_IS_ROOM_CLEAN_BOB;
+    public static final String BILL_DESC_POSITIVE = " " + PREFIX_BILL + VALID_BILL_POSITIVE;
+    public static final String BILL_DESC_ZERO = " " + PREFIX_BILL + VALID_BILL_ZERO;
+    public static final String BILL_DESC_NEGATIVE = " " + PREFIX_BILL + VALID_BILL_NEGATIVE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_ROOM_DESC = " " + PREFIX_ROOM + "06-23!"; // '!' not allowed in room numbers
     public static final String INVALID_DATE_RANGE_DESC = " " + PREFIX_DATE_RANGE
             + "13/09/22 - 13/09/22"; // end date is not later than start date
     public static final String INVALID_NUMBER_OF_GUESTS_DESC = " "
             + PREFIX_NUMBER_OF_GUESTS + "-1"; // '-1' not allowed as numbers of guests
     public static final String INVALID_IS_ROOM_CLEAN_DESC = " "
             + PREFIX_IS_ROOM_CLEAN + "true"; // 'true' not allowed as is room clean
+    public static final String INVALID_BILL_DESC = " " + PREFIX_BILL + "1?0"; // '?' not allowed in bills
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -70,10 +84,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditGuestDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withDateRange(VALID_DATE_RANGE_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withRoom(VALID_ROOM_AMY)
+                .withDateRange(VALID_DATE_RANGE_AMY)
                 .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_AMY).withIsRoomClean(VALID_IS_ROOM_CLEAN_AMY).build();
         DESC_BOB = new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withDateRange(VALID_DATE_RANGE_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withRoom(VALID_ROOM_BOB)
+                .withDateRange(VALID_DATE_RANGE_BOB)
                 .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB).build();
     }
 

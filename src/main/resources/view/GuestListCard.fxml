@@ -36,8 +36,8 @@
 
           <HBox fx:id="phoneBox" alignment="CENTER_LEFT">
             <ImageView
-                    fitHeight="12.0"
-                    fitWidth="12.0"
+                    fitHeight="14.0"
+                    fitWidth="14.0"
                     smooth="false"
                     HBox.hgrow="NEVER"
                     translateY="-1" >
@@ -51,8 +51,8 @@
 
           <HBox fx:id="emailBox" alignment="CENTER_LEFT">
             <ImageView
-                    fitHeight="12.0"
-                    fitWidth="12.0"
+                    fitHeight="14.0"
+                    fitWidth="14.0"
                     smooth="false"
                     HBox.hgrow="NEVER"
                     translateY="-1" >
@@ -72,10 +72,25 @@
           <VBox id="roomDetails" minWidth="240" HBox.hgrow="NEVER">
             <Label fx:id="roomDetails" text="Room Details" />
 
+            <HBox fx:id="roomBox" alignment="CENTER_LEFT">
+              <ImageView
+                      fitHeight="14.0"
+                      fitWidth="14.0"
+                      smooth="false"
+                      HBox.hgrow="NEVER"
+                      translateY="-1" >
+                <image>
+                  <Image url="@/images/room.png" />
+                </image>
+              </ImageView>
+              <Region minWidth="5" HBox.hgrow="NEVER" />
+              <Label fx:id="room" styleClass="cell_small_label" text="\$room" />
+            </HBox>
+
             <HBox fx:id="dateRangeBox" alignment="CENTER_LEFT">
               <ImageView
-                      fitHeight="12.0"
-                      fitWidth="12.0"
+                      fitHeight="14.0"
+                      fitWidth="14.0"
                       smooth="false"
                       HBox.hgrow="NEVER"
                       translateY="-1" >
@@ -89,8 +104,8 @@
 
             <HBox fx:id="numberOfGuestsBox" alignment="CENTER_LEFT">
               <ImageView
-                      fitHeight="12.0"
-                      fitWidth="12.0"
+                      fitHeight="14.0"
+                      fitWidth="14.0"
                       smooth="false"
                       HBox.hgrow="NEVER"
                       translateY="-1" >
@@ -113,8 +128,8 @@
 
             <HBox fx:id="isRoomCleanBox" alignment="CENTER_LEFT">
               <ImageView
-                      fitHeight="12.0"
-                      fitWidth="12.0"
+                      fitHeight="14.0"
+                      fitWidth="14.0"
                       smooth="false"
                       HBox.hgrow="NEVER"
                       translateY="-1" >
@@ -128,8 +143,8 @@
 
             <HBox fx:id="billBox" alignment="CENTER_LEFT">
               <ImageView
-                      fitHeight="12.0"
-                      fitWidth="12.0"
+                      fitHeight="14.0"
+                      fitWidth="14.0"
                       smooth="false"
                       HBox.hgrow="NEVER"
                       translateY="-1" >

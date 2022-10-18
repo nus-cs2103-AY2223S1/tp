@@ -1,0 +1,18 @@
+@startuml
+skinparam activity {
+    ArrowColor #A80036
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+}
+start
+:User executes add command;
+if () then ([Request provided])
+    :Create guest with Request provided;
+else ([else])
+    :Create guest with no Request;
+endif
+:Add guest to model;
+stop
+
+@enduml
