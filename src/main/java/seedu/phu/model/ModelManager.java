@@ -17,6 +17,8 @@ import seedu.phu.commons.core.LogsCenter;
 import seedu.phu.model.internship.ComparableCategory;
 import seedu.phu.model.internship.ExactMatchPredicate;
 import seedu.phu.model.internship.Internship;
+import seedu.phu.model.internship.NameContainsKeywordsPredicate;
+import seedu.phu.model.internship.UniqueInternshipList;
 
 /**
  * Represents the in-memory model of the internship book data.
@@ -27,6 +29,7 @@ public class ModelManager implements Model {
     private final InternshipBook internshipBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
+    private final FilteredList<Internship> viewItem;
 
     /**
      * Initializes a ModelManager with the given internshipBook and userPrefs.
@@ -39,6 +42,8 @@ public class ModelManager implements Model {
         this.internshipBook = new InternshipBook(internshipBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredInternships = new FilteredList<>(this.internshipBook.getInternshipList());
+        viewItem = new FilteredList<>(this.internshipBook.getInternshipList());
+        updateViewItem(new NameContainsKeywordsPredicate(new ArrayList<>()));
     }
 
     public ModelManager() {
@@ -139,6 +144,18 @@ public class ModelManager implements Model {
     public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
         filteredInternships.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Internship> getViewItem() {
+        return viewItem;
+    }
+
+    @Override
+    public void updateViewItem(Predicate<Internship> predicate) {
+        requireNonNull(predicate);
+        System.out.println(predicate + "As");
+        viewItem.setPredicate(predicate);
     }
 
     @Override

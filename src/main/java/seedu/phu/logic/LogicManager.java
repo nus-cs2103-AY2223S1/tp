@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Internship> getViewItem() {
+        return model.getViewItem();
+    }
+
+    @Override
     public Path getInternshipBookFilePath() {
         return model.getInternshipBookFilePath();
     }

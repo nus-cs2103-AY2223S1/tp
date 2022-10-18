@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private InternshipListPanel internshipListPanel;
+    private ViewCommandPanel viewCommandPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane viewCommandPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -113,6 +117,9 @@ public class MainWindow extends UiPart<Stage> {
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
+        viewCommandPanel = new ViewCommandPanel(logic.getViewItem());
+        viewCommandPanelPlaceholder.getChildren().add(viewCommandPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -163,6 +170,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleView() {
+        System.out.println("ASDASASD");
+    }
+
     public InternshipListPanel getInternshipListPanel() {
         return internshipListPanel;
     }
@@ -176,10 +188,14 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isView()) {
+                handleView();
             }
 
             if (commandResult.isExit()) {

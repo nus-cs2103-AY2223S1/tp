@@ -53,8 +53,9 @@ public class ViewCommand extends Command {
             internshipList.add(internship);
         }
 
-        model.updateFilteredInternshipList(new ExactMatchPredicate(internshipList));
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.updateViewItem(new ExactMatchPredicate(internshipList));
+//        model.updateFilteredInternshipList(new ExactMatchPredicate(internshipList));
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 
     @Override
