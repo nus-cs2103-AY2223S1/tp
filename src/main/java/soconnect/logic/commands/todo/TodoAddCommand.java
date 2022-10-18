@@ -6,9 +6,9 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import soconnect.logic.commands.CommandResult;
-import soconnect.logic.commands.TagCommand;
-import soconnect.logic.commands.TagCreateCommand;
 import soconnect.logic.commands.exceptions.CommandException;
+import soconnect.logic.commands.tagcommands.TagCommand;
+import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.todo.Todo;
 

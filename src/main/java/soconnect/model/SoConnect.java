@@ -217,11 +217,9 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-<<<<<<< HEAD
-=======
      * Deletes the tag from the tagList.
      *
-     * @param tag The tag top be deleted.
+     * @param tag The tag to be deleted.
      */
     public void deleteTag(Tag tag) {
         tags.deleteTag(tag);
@@ -229,7 +227,6 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
->>>>>>> master
      * Gets the tag from the tagList.
      *
      * @param tag The reference tag.

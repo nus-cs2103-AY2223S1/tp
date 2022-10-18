@@ -16,12 +16,12 @@ import soconnect.logic.commands.ListCommand;
 import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.commands.SortCommand;
 import soconnect.logic.commands.customise.CustomiseCommand;
+import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.commands.todo.TodoCommand;
 import soconnect.logic.parser.customise.CustomiseCommandParser;
 import soconnect.logic.parser.exceptions.ParseException;
-import soconnect.logic.parser.todo.TodoParser;
-import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.parser.tagcommandparsers.TagCommandParser;
+import soconnect.logic.parser.todo.TodoParser;
 
 /**
  * Parses user input.

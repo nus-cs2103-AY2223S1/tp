@@ -2,8 +2,8 @@ package soconnect.logic.parser.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
 import static soconnect.logic.parser.ArgumentTokenizer.PrefixArgument;
+import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_ALL;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_PRIORITY;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
@@ -15,7 +15,6 @@ import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 import java.util.List;
 
 import soconnect.logic.commands.todo.TodoShowCommand;
-import soconnect.logic.parser.ArgumentTokenizer;
 import soconnect.logic.parser.Parser;
 import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.Prefix;
