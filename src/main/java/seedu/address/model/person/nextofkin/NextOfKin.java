@@ -12,6 +12,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a NextOfKin of a student.
+ */
 public class NextOfKin extends Person {
 
     private final Relationship relationship;

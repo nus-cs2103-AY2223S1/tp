@@ -4,16 +4,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RELATIONSHIP_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RELATIONSHIP_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 
 import java.util.ArrayList;
@@ -22,8 +18,10 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.nextofkin.NextOfKin;
-import seedu.address.model.person.student.Student;
 
+/**
+ * A utility class containing a list of {@code NextOfKin} objects to be used in tests.
+ */
 public class TypicalNextOfKins {
 
     public static final NextOfKin NEXTOFKIN1 = new NextOfKinBuilder().withName("Alice Pauline")
@@ -42,20 +40,30 @@ public class TypicalNextOfKins {
             .withRelationship("Mother")
             .build();
 
-    public static final NextOfKin AMY_NEXTOFKIN = new NextOfKinBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withRelationship(VALID_RELATIONSHIP_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+    public static final NextOfKin AMY_NEXTOFKIN = new NextOfKinBuilder().withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withEmail(VALID_EMAIL_AMY)
+            .withAddress(VALID_ADDRESS_AMY)
+            .withRelationship(VALID_RELATIONSHIP_AMY)
+            .withTags(VALID_TAG_FRIEND)
+            .build();
 
-    public static final NextOfKin BOB_NEXTOFKIN = new NextOfKinBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRelationship(VALID_RELATIONSHIP_BOB)
-            .withTags(VALID_TAG_FRIEND).build();
+    public static final NextOfKin BOB_NEXTOFKIN = new NextOfKinBuilder()
+            .withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withRelationship(VALID_RELATIONSHIP_BOB)
+            .withTags(VALID_TAG_FRIEND)
+            .build();
 
     private TypicalNextOfKins() {} // prevents instantiation
 
     public static AddressBook getTypicalStudentsAddressBook() {
         AddressBook ab = new AddressBook();
 
-        List<NextOfKin> nextOfKinList = new ArrayList<>(Arrays.asList(TypicalNextOfKins.NEXTOFKIN1, TypicalNextOfKins.NEXTOFKIN2));
+        List<NextOfKin> nextOfKinList = new ArrayList<>(Arrays.asList(TypicalNextOfKins.NEXTOFKIN1,
+                TypicalNextOfKins.NEXTOFKIN2));
         for (NextOfKin nok : nextOfKinList) {
             ab.addPerson(nok);
         }

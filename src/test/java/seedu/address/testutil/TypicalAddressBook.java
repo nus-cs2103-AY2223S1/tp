@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -32,18 +31,11 @@ public class TypicalAddressBook {
             ab.addPerson(s);
         }
 
-        List<NextOfKin> nextOfKinList = new ArrayList<>(Arrays.asList(TypicalNextOfKins.NEXTOFKIN1,
-                TypicalNextOfKins.NEXTOFKIN2));
-        for (NextOfKin nok : nextOfKinList) {
-            ab.addPerson(nok);
-        }
-
         List<TuitionClass> tuitionClassList = new ArrayList<>(Arrays.asList(TypicalTuitionClasses.TUITIONCLASS1,
                 TypicalTuitionClasses.TUITIONCLASS2));
         for (TuitionClass tc : tuitionClassList) {
             ab.addTuitionClass(tc);
         }
         return ab;
-
     }
 }

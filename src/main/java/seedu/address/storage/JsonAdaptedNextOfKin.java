@@ -14,8 +14,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.nextofkin.Relationship;
 import seedu.address.model.person.nextofkin.NextOfKin;
+import seedu.address.model.person.nextofkin.Relationship;
 import seedu.address.model.tag.Tag;
 
 
