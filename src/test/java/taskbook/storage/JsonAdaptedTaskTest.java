@@ -31,7 +31,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.BENSON);
-        JsonAdaptedTask task = new JsonAdaptedTask(TypicalTaskBook.SLEEPING);
+        JsonAdaptedTask task = new JsonAdaptedTodo(TypicalTaskBook.SLEEPING);
         Assertions.assertEquals(TypicalTaskBook.SLEEPING, task.toModelType());
     }
 
