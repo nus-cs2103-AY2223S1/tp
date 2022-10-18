@@ -1,10 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.List;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -17,6 +22,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
+        args = args.trim();
+        if (args.length() > 2) {
+            try {
+                List<Index> indices = ParserUtil.parseIndexes(args, 2);
+                return new DeleteCommand(indices.get(0), indices.get(1));
+            } catch (ParseException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            }
+
+        }
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
