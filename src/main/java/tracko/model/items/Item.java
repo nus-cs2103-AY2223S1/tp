@@ -99,11 +99,11 @@ public class Item {
                 .append("Description: ")
                 .append(getDescription() + "\n")
                 .append("Quantity: ")
-                .append(getQuantity());
+                .append(getQuantity() + "\n");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

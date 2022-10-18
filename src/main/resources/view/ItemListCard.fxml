@@ -21,13 +21,12 @@
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <VBox style="-fx-padding: 0 20 0 10;" prefWidth="85" minWidth="85" maxWidth="85" alignment="CENTER">
-                        <Label fx:id="id" styleClass="cell_big_label_item">
+                        <Label fx:id="id" styleClass="item_id">
                             <minWidth>
                                 <!-- Ensures that the label text is never truncated -->
                                 <Region fx:constant="USE_PREF_SIZE" />
                             </minWidth>
                         </Label>
-                <FlowPane fx:id="tags" />
                 </VBox>
                 <HBox style="-fx-background-color: #FFEDEC">
                     <padding>
@@ -35,7 +34,7 @@
                     </padding>
                 </HBox>
                 <VBox style="-fx-padding: 0 20 0 20;" spacing="2">
-                    <VBox>
+                    <VBox spacing="2">
                         <Label fx:id="itemName" text="\$first" styleClass="cell_big_label_item" />
                         <HBox fx:id="quantityRow" alignment="CENTER" styleClass="quantity-row" spacing="10.0">
                             <Region styleClass="quantity-icon" id="quantityIcon"/>
@@ -45,6 +44,7 @@
                     <VBox id="descriptionBox">
                         <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
                     </VBox>
+                    <FlowPane fx:id="tags"/>
                 </VBox>
             </HBox>
         </VBox>

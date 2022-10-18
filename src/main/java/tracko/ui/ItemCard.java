@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
 import tracko.model.items.Item;
+import tracko.model.tag.Tag;
 
 /**
  * A UI component that displays information of an {@code Item}.
@@ -50,7 +51,7 @@ public class ItemCard extends UiPart<Region> {
     public ItemCard(Item item, int displayedIndex) {
         super(FXML);
         this.item = item;
-        id.setText(displayedIndex + ". ");
+        id.setText(Integer.toString(displayedIndex));
         itemName.setText(item.getItemName().itemName);
         itemName.setWrapText(true);
         itemName.setPadding(new Insets(0, 10, 0, 0));
@@ -70,7 +71,7 @@ public class ItemCard extends UiPart<Region> {
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        tags.setPadding(new Insets(0, 10, 0, 0));
+        tags.setPadding(new Insets(0, 10, 5, 0));
     }
 
     @Override
