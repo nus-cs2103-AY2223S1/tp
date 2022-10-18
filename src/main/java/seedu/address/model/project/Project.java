@@ -76,6 +76,11 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
             return true;
         }
 
+        @Override
+        public String toString() {
+            return "";
+        }
+
     }
 
     public ProjectId getProjectId() {

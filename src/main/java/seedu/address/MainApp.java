@@ -82,6 +82,8 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
+            } else {
+                logger.info("AddressBook successfully loaded from storage");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
@@ -147,6 +149,9 @@ public class MainApp extends Application {
         UserPrefs initializedPrefs;
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
+            if (prefsOptional.isPresent()) {
+                logger.info("Successfully loaded UserPrefs with values " + prefsOptional.get().toString());
+            }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "

@@ -80,29 +80,40 @@ class JsonAdaptedProject {
         }
         final Name modelName = new Name(name);
 
+        Repository modelRepository;
         if (repository == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Repository.class.getSimpleName()));
         }
-        if (!Repository.isValidRepository(repository)) {
-            throw new IllegalValueException(Repository.MESSAGE_CONSTRAINTS);
+        if (repository.isEmpty()) {
+            modelRepository = Repository.EmptyRepository.EMPTY_REPOSITORY;
+        } else {
+            if (!Repository.isValidRepository(repository)) {
+                throw new IllegalValueException(Repository.MESSAGE_CONSTRAINTS);
+            }
+            modelRepository = new Repository(repository);
         }
-        final Repository modelRepository = new Repository(repository);
 
+        Deadline modelDeadline;
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Deadline.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (deadline.isEmpty()) {
+            modelDeadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
+        } else {
+            if (!Deadline.isValidDeadline(deadline)) {
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            }
+            modelDeadline = new Deadline(deadline);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
 
         if (client == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName()));
         }
 
         final Client modelClient = client.toModelType();
+
         final List<Issue> modelIssues = new ArrayList<>();
 
         if (projectId == null) {
@@ -113,6 +124,8 @@ class JsonAdaptedProject {
             throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
         }
         final ProjectId modelProjectId = new ProjectId(Integer.parseInt(projectId));
+
+        assert modelProjectId.getIdInt() >= 0 : "Project ID should be positive";
 
         return new Project(modelName, modelRepository, modelDeadline, modelClient, modelIssues, modelProjectId);
     }

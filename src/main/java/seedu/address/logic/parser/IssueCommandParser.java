@@ -97,7 +97,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
         IssueWithoutModel issueWithoutModel = new IssueWithoutModel(description, deadline, priority, status, projectid);
 
-        return new AddIssueCommand(issueWithoutModel);
+        return new AddIssueCommand(issueWithoutModel, projectid);
     }
 
     private EditIssueCommand parseEditIssueCommand(String arguments) throws ParseException {
@@ -112,7 +112,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         Description newDescription = null;
         Deadline newDeadline = null;
         Priority newPriority = null;
-        IssueId issueId = ParserUtil.parseIssueId(argMultimap.getValue(PREFIX_ISSUE_ID).get());
+        IssueId newIssueId = ParserUtil.parseIssueId(argMultimap.getValue(PREFIX_ISSUE_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
@@ -131,7 +131,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             newPriority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
 
-        return new EditIssueCommand(newDescription, newDeadline, newPriority, issueId);
+        return new EditIssueCommand(newDescription, newDeadline, newPriority, newIssueId);
     }
 
     private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {
@@ -144,12 +144,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
     }
 
-    //TODO: implement
     private ListIssueCommand parseListIssueCommand(String arguments) {
         return new ListIssueCommand();
     }
-
-
-
 
 }
