@@ -89,7 +89,7 @@ Examples:
 
 ### Adding a module: `madd`
 
-Adds a module to the address book.
+Adds a module to the ProfNUS.
 
 Format: `madd n/MODULE NAME c/MODULE CODE d/MODULE DESCRIPTION [t/TAG]…​ `
 
@@ -179,7 +179,7 @@ Examples:
 
 ### Deleting a module: `mdel`
 
-Deletes a module stored in the address book.
+Deletes a module stored in the ProfNUS.
 
 Format: `mdel c/MODULE CODE`
 
@@ -212,24 +212,24 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 </div>
 ### Add a teaching schedule `sadd`
 
-Adds a schedule of a module in the adressbook. 
+Adds a schedule of a module in the ProfNUS. 
 
 **Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cv/VENUE `
 
 - Adds a schedule with the module it belongs to, the weekday, the time period, the type of the class, and the venue.
-- `MODULE_CODE` needs to abide by the [Module Code Format of NUS ](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf) 
+- `MODULE_CODE` needs to abide by the [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf) 
 - The `WEEKDAY` should be one of `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`.
 - The `PERIOD` includes the start time and the end time which are both in the format of the *modern 24-hour clock*.
 - The `CLASS_TYPE` should be one of `lec`, `tut`, `lab`, and `rec`, which represent lecture, tutorial, laborartory, and reflection respectively.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, address book will consider the command to be invalid.
+Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
 </div>
-
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the schedule to be added conflicts with any existing schedule, the address book will not perform any operation.
+If the schedule to be added conflicts with any existing schedule, the ProfNUS will not perform any operation.
 </div>
+
 
 **Example**: `sadd m/CS2103T w/Wednesday ct/11:00-12:00 cc/tut cv/Zoom`
 
@@ -239,7 +239,7 @@ If the schedule to be added conflicts with any existing schedule, the address bo
 
 ### Edit a schedule `sedit`
 
-Edits a schedule in the adressbook. 
+Edits a schedule in the ProfNUS. 
 
 **Format**: `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cv/VENUE] `
 
@@ -255,7 +255,7 @@ Edits a schedule in the adressbook.
 
 ### Delete a schedule `sdelete`
 
-Deletes a schedule from the address book.
+Deletes a schedule from the ProfNUS.
 
 **Format**: `sdelete INDEX`
 
