@@ -19,7 +19,7 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
@@ -75,6 +75,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
+    /**
+     * Checks the given {@code String} of arguments.
+     * @throws ParseException if the user input is empty
+     */
     public static void checkEmptyField(String args) throws ParseException {
         if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
