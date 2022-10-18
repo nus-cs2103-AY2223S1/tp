@@ -20,7 +20,7 @@ Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start 
+## Quick start
 1. Ensure you have Java `11` or above installed in your Computer.
 
 
@@ -29,7 +29,7 @@ Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for
 
 1. Copy the file to the folder you want to use as the _home folder_ for your LTNS.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> 
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -127,7 +127,7 @@ Examples:
 
 ### Search for contacts: `find`
 
-Search for contacts based on certain metrics 
+Search for contacts based on certain metrics\
 
 Format: `find (n/NAME)/(p/PHONE)/(e/EMAIL)/(a/ADDRESS)/(t/TAG)…​ `
 
@@ -200,28 +200,28 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Sorting all Clients : `sort`
 
-Sorts clients in the address book based on a specified metric. 
+Sorts clients in the address book based on a specified metric.
 
-Format: `sort KEYWORD [MORE_KEYWORDS]` 
+Format: `sort KEYWORD [MORE_KEYWORDS]`
 
-* Sorts the list of clients based on specified keyword 
+* Sorts the list of clients based on specified keyword
 * Keyword must be from client details
 * (v1.2) current supported sort metrics include `name, phone number, address`
 
-Examples: 
-* `sort name` will display your address book in alphabetical order based on their name 
+Examples:
+* `sort name` will display your address book in alphabetical order based on their name
 * `sort phone` will display your addresss book in numerical order based on their phone numbers
 
 
 ### Pin a user by name: `pin`
-* Format: `pin [CLIENT_NAME]` 
+* Format: `pin [CLIENT_NAME]`
 * Description:
-* Example Usage: 
+* Example Usage:
 
 
 ### Search for Contacts based on user's metrics: `find`
-* Format: `find [*KEYWORDS]` 
-* Description: 
+* Format: `find [*KEYWORDS]`
+* Description:
 * Example Usage: `find n/Jim a/53`
 
 ### View all policies: `policies` [Coming soon]
@@ -249,7 +249,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL]...` <br> e.g: ` find n/Jim p/98765432` 
+**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL]...` <br> e.g: ` find n/Jim p/98765432`
 **Sort** | `sort [COMPARABLE_METRIC]` <br> `e.g: sort AGE`
 **Pin** | `pin [n/Name]` <br> e.g: `pin n/Jim`
 **policies** | `policies`

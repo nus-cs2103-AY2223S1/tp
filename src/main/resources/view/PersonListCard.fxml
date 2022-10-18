@@ -32,6 +32,9 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
+      <Label fx:id="income" styleClass="cell_small_label" text="\$income" />
+      <Label fx:id="riskAppetite" styleClass="cell_small_label" text="\$riskAppetite" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
