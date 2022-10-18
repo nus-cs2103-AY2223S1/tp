@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
  */
 public class StudentCard extends UiPart<Region> {
 
-    private static final String FXML = "StudentListCard.fxml";
+    private static final String FXML = "StudentCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -30,6 +30,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label matricNum;
+    @FXML
     private Label mcResult;
 
     /**
@@ -40,6 +42,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         studentName.setText(student.getName().fullName);
+        matricNum.setText(student.getMatricNum().value);
         mcResult.setText(student.getMcStatus().toString());
     }
 

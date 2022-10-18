@@ -28,11 +28,11 @@ public class Consult extends Lesson {
             return false;
         }
 
-        Consult otherMasteryCheck = (Consult) other;
-        return otherMasteryCheck.getDesc().equals(getDesc())
-                && otherMasteryCheck.startTime().equals(startTime())
-                && otherMasteryCheck.endTime().equals(endTime())
-                && otherMasteryCheck.getAttendance().equals(getAttendance());
+        Consult otherConsult = (Consult) other;
+        return otherConsult.getDesc().equals(getDesc())
+                && otherConsult.startTime().equals(startTime())
+                && otherConsult.endTime().equals(endTime())
+                && otherConsult.getAttendance().equals(getAttendance());
     }
 
     @Override

@@ -17,8 +17,7 @@ public class AddStudentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to JARVIS.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_MATRIC_NUM + "MATRIC_NUM\n"
+            + PREFIX_NAME + "NAME " + PREFIX_MATRIC_NUM + "MATRIC_NUM\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_MATRIC_NUM + "A0123459G";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";

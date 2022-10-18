@@ -99,7 +99,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered student list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s student book.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
