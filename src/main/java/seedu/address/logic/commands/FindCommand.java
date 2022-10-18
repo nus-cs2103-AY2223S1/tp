@@ -14,19 +14,19 @@ import seedu.address.model.student.Student;
  * Finds and lists all students in the Student Record whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class ViewCommand extends Command {
+public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = "view";
+    public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds students based on the specified search"
-            + " keywords (case-insensitive) and displays them as a list with index numbers and all fields. Search"
+            + " keywords (case-insensitive) and displays them as a list. Search"
             + " for a student using parts of their name or their ID.\n"
             + "Parameters: " + PREFIX_STUDENT_NAME + "NAME TO SEARCH or " + PREFIX_ID + "ID TO SEARCH\n"
             + "Example: " + COMMAND_WORD + " nm/alice";
 
     private final Predicate<Student> predicate;
 
-    public ViewCommand(Predicate<Student> predicate) {
+    public FindCommand(Predicate<Student> predicate) {
         this.predicate = predicate;
     }
 
@@ -42,7 +42,7 @@ public class ViewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && predicate.equals(((ViewCommand) other).predicate)); // state check
+                || (other instanceof FindCommand // instanceof handles nulls
+                && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }
