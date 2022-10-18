@@ -12,9 +12,9 @@ public class ReminderCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
-    @Test
-    public void execute_reminder_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_REMINDER_MESSAGE, true);
-        assertCommandSuccess(new ReminderCommand(), model, expectedCommandResult, expectedModel);
-    }
+//    @Test
+//    public void execute_reminder_success() {
+//        CommandResult expectedCommandResult = new CommandResult(SHOWING_REMINDER_MESSAGE, true);
+//        assertCommandSuccess(new ReminderCommand(), model, expectedCommandResult, expectedModel);
+//    }
 }

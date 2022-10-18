@@ -14,6 +14,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -132,5 +133,11 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Reminder parseReminders(String reminder) throws ParseException {
+        requireNonNull(reminder);
+        String trimmedReminder = reminder.trim();
+        return new Reminder(trimmedReminder);
     }
 }
