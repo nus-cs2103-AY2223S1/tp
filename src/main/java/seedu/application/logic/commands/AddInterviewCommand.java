@@ -15,6 +15,7 @@ import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.exceptions.InvalidInterviewException;
 
 /**
  * Adds an application to CinternS.
@@ -37,14 +38,20 @@ public class AddInterviewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New interview added to application: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview has clashed with another interview "
-            + "exists in CinternS";
+            + "exists in CinternS. Please ensure the interview you add is at least 1 hour before or after another"
+            + "interview.";
+    public static final String MESSAGE_INVALID_INTERVIEW = "This interview date is before the application's "
+            + "applied date.";
 
 
     private final Interview toAdd;
     private final Index index;
 
     /**
-     * Creates an AddCommand to add the specified {@code Application}
+     * Creates an AddInterviewCommand to add the specified {@code Application}
+     *
+     * @param index of the specified Application.
+     * @param interview to be added to the Application.
      */
     public AddInterviewCommand(Index index, Interview interview) {
         requireNonNull(index);
@@ -57,11 +64,6 @@ public class AddInterviewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasSameInterviewTime(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
-        }
-
         List<Application> lastShownList = model.getFilteredApplicationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -69,9 +71,21 @@ public class AddInterviewCommand extends Command {
         }
 
         Application applicationToEdit = lastShownList.get(index.getZeroBased());
-        Application editedApplication = new Application(applicationToEdit, toAdd);
+        if (applicationToEdit.getInterview().isEmpty() && model.hasSameInterviewTime(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
+        } else if (applicationToEdit.getInterview().isPresent()
+                && model.hasSameInterviewTimeExcludeSelf(toAdd, applicationToEdit)) {
+            throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
+        }
+        Application editedApplication;
+        try {
+            editedApplication = new Application(applicationToEdit, toAdd);
+        } catch (InvalidInterviewException e) {
+            throw new CommandException(MESSAGE_INVALID_INTERVIEW);
+        }
 
         model.setApplication(applicationToEdit, editedApplication);
+        model.updateApplicationListWithInterview();
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplication));
     }
