@@ -193,7 +193,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            if (commandText.startsWith("delete user") || commandText.startsWith("user")) {
+            if (commandText.startsWith("delete user") || commandText.startsWith("edit user") || commandText.startsWith("user")) {
                 userProfile.update(logic.getUser());
             }
 

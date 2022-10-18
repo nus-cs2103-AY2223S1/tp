@@ -74,6 +74,11 @@ public interface Model {
     void deleteUser();
 
     /**
+     * Replaces the current user with {@code editedUser}.
+     */
+    void setUser(User editedUser);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
