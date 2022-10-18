@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Telegram {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Telegram handle should start with a '@' and only contain alphanumeric characters or underscore afterwards, "
+            "Telegram handle should start with '@' and only contain alphanumeric characters or underscore afterwards, "
                     + "it should not be blank or have spaces.";
 
     /*
