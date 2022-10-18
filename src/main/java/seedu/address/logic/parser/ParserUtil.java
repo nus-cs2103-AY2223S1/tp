@@ -17,6 +17,7 @@ import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Mod;
+import seedu.address.model.person.Mod.ModCategory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
@@ -162,5 +163,37 @@ public class ParserUtil {
             modSet.add(parseMod(modName));
         }
         return modSet;
+    }
+
+    /**
+     * Parses {@code String modName} into a {@code ModCategory}
+     *
+     * @param modName The module name.
+     * @return The category that the module name fall under.
+     */
+    public static ModCategory parseModsToCategory(String modName) {
+        assert modName != null;
+
+        String modPrefix = modName.split("[0-9]")[0].substring(0, 2);
+        switch (modPrefix) {
+        case "CS":
+        case "IS":
+        case "CP":
+            return ModCategory.COMP;
+        case "MA":
+        case "ST":
+            return ModCategory.MATH;
+        case "LS":
+        case "CM":
+        case "PC":
+            return ModCategory.SCI;
+        case "ES":
+            return ModCategory.COMMS;
+        case "GE":
+        case "UT":
+            return ModCategory.GE;
+        default:
+            return ModCategory.UE;
+        }
     }
 }
