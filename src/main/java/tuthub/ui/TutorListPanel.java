@@ -16,6 +16,7 @@ import tuthub.model.tutor.Tutor;
 public class TutorListPanel extends UiPart<Region> {
     private static final String FXML = "TutorListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TutorListPanel.class);
+    private final CommandExecutor commandExecutor;
 
     @FXML
     private ListView<Tutor> tutorListView;
@@ -23,8 +24,9 @@ public class TutorListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TutorListPanel} with the given {@code ObservableList}.
      */
-    public TutorListPanel(ObservableList<Tutor> tutorList) {
+    public TutorListPanel(CommandExecutor commandExecutor, ObservableList<Tutor> tutorList) {
         super(FXML);
+        this.commandExecutor = commandExecutor;
         tutorListView.setItems(tutorList);
         tutorListView.setCellFactory(listView -> new TutorListViewCell());
     }
@@ -41,7 +43,7 @@ public class TutorListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TutorListCard(tutor, getIndex() + 1).getRoot());
+                setGraphic(new TutorListCard(commandExecutor, tutor, getIndex() + 1).getRoot());
             }
         }
     }

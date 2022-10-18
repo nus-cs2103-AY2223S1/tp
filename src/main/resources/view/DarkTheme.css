@@ -145,7 +145,6 @@
 .cell_header_label {
     -fx-font-family: "Georgia";
     -fx-text-fill: #C9998B;
-    -fx-font-weight: "bold";
     -fx-font-size: 20px;
     -fx-padding: 15 0 3 5;
 }
@@ -185,13 +184,13 @@
 }
 
 .details-pane {
-     -fx-background-color: #D7DEDD;
+     -fx-background-color: #d7dedd;
 }
 
 .details-base {
-     -fx-background-color: #D7DEDD;
+     -fx-background-color: #d7dedd;
      -fx-background-radius: 8;
-     -fx-border-color: #D7DEDD;
+     -fx-border-color: #d7dedd;
      -fx-border-radius: 8;
 }
 

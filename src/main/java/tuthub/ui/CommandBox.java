@@ -4,7 +4,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import tuthub.logic.commands.CommandResult;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.logic.parser.exceptions.ParseException;
 
@@ -69,17 +68,6 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
-    /**
-     * Represents a function that can execute commands.
-     */
-    @FunctionalInterface
-    public interface CommandExecutor {
-        /**
-         * Executes the command and returns the result.
-         *
-         * @see tuthub.logic.Logic#execute(String)
-         */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
-    }
+
 
 }

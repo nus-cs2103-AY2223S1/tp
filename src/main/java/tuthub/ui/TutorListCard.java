@@ -1,12 +1,16 @@
 package tuthub.ui;
 
 import java.util.Comparator;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import tuthub.commons.core.LogsCenter;
+import tuthub.logic.commands.exceptions.CommandException;
+import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tutor.Tutor;
 
 /**
@@ -27,6 +31,8 @@ public class TutorListCard extends UiPart<Region> {
     public final Tutor tutor;
     private final String studentId;
     private final int displayedIndex;
+    private final CommandExecutor commandExecutor;
+    private final Logger logger = LogsCenter.getLogger(TutorListCard.class);
 
     @FXML
     private HBox cardPane;
@@ -43,8 +49,9 @@ public class TutorListCard extends UiPart<Region> {
     /**
      * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
      */
-    public TutorListCard(Tutor tutor, int displayedIndex) {
+    public TutorListCard(CommandExecutor commandExecutor, Tutor tutor, int displayedIndex) {
         super(FXML);
+        this.commandExecutor = commandExecutor;
         this.tutor = tutor;
         this.displayedIndex = displayedIndex - 1;
         this.studentId = tutor.getStudentId().value;
@@ -55,6 +62,20 @@ public class TutorListCard extends UiPart<Region> {
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Handles the tutor list card pressed event.
+     */
+    @FXML
+    private void handleClick() {
+        int indexToView = displayedIndex + 1;
+        String commandText = "view " + indexToView;
+        try {
+            commandExecutor.execute(commandText);
+        } catch (ParseException | CommandException e) {
+            logger.info("This block should not be executed");
+        }
     }
 
     @Override

@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.TextFlow?>
 
-<ScrollPane HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" minWidth="400" prefWidth="400" styleClass="details-base" fitToHeight="true" fitToWidth="true">
-    <ScrollBar style="-fx-background-color: #D7DEDD;"/>
-    <VBox alignment="TOP_LEFT" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="details-pane">
+<ScrollPane fitToHeight="true" fitToWidth="true" minWidth="400" prefWidth="400" styleClass="details-base" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <ScrollBar style="-fx-background-color: #D7DEDD;" />
+    <VBox alignment="TOP_LEFT" minWidth="400" prefWidth="400" styleClass="details-pane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <padding>
-            <Insets top="20" right="20" bottom="10" left="20" />
+            <Insets bottom="10" left="20" right="20" top="20" />
         </padding>
-        <Label fx:id="name" text="\$first" styleClass="cell_name_label" />
+        <Label fx:id="name" styleClass="cell_name_label" text="\$first" />
         <HBox spacing="8">
             <padding>
-                <Insets left="5"/>
+                <Insets left="5" />
             </padding>
             <Label fx:id="module" styleClass="cell_module_label" text="\$module" />
+            <FlowPane fx:id="tags" />
             <minWidth>
                 <!-- Ensures that the label text is never truncated -->
                 <Region fx:constant="USE_PREF_SIZE" />
             </minWidth>
-            <FlowPane fx:id="tags"/>
         </HBox>
-        <Label styleClass="cell_header_label" text="PARTICULARS"/>
+        <Label styleClass="cell_header_label" text="PARTICULARS" />
         <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
         <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
 
-        <Label styleClass="cell_header_label" text="CONTACT"/>
+        <Label styleClass="cell_header_label" text="CONTACT" />
         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
 
-        <Label styleClass="cell_header_label" text="REVIEW"/>
+        <Label styleClass="cell_header_label" text="REVIEW" />
         <Label fx:id="rating" styleClass="cell_small_label" text="\$rating" />
         <Label fx:id="teachingNomination" styleClass="cell_small_label" text="\$teachingNomination" />
-        <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
+        <Label fx:id="feedback" styleClass="cell_small_label" text="Additional feedback:" />
+        <children>
+            <TextFlow fx:id="comment" styleClass="cell_small_label"/>
+        </children>
     </VBox>
 </ScrollPane>

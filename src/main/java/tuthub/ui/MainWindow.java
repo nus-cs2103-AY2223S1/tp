@@ -122,9 +122,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        CommandExecutor commandExecutor = this::executeCommand;
         tuthubLogo.setImage(getImage(TUTHUB_LOGO));
 
-        tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+        tutorListPanel = new TutorListPanel(commandExecutor, logic.getFilteredTutorList());
         tutorListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
         tutorDetailsPanelPlaceholder.setVisible(false);
@@ -135,7 +136,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTuthubFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(commandExecutor);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
