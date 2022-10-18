@@ -12,7 +12,6 @@ import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
 import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.Guest;
-import seedu.guest.model.guest.Request;
 
 /**
  * Updates the bill of an existing guest in the guest book.
