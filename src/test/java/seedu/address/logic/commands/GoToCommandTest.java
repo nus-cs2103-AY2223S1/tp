@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_LISTED;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -66,8 +66,8 @@ public class GoToCommandTest {
     public void execute_nonMatchingKeywords_noModuleFound() {
         String expectedMessage = MESSAGE_NO_SUCH_MODULE;
         ModuleCodeMatchesKeywordPredicate predicate =
-                new ModuleCodeMatchesKeywordPredicate(VALID_CS_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK);
-        ModuleCode moduleCode = new ModuleCode(VALID_CS_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK);
+                new ModuleCodeMatchesKeywordPredicate(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK);
+        ModuleCode moduleCode = new ModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK);
         GoToCommand command = new GoToCommand(predicate, moduleCode);
 
         assertThrows(CommandException.class,
