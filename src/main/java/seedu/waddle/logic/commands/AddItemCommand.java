@@ -2,6 +2,7 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
@@ -19,9 +20,11 @@ public class AddItemCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to an itinerary. "
             + "Parameters: "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESCRIPTION + "Visit Taj Mahal ";
+            + PREFIX_DESCRIPTION + "Visit Taj Mahal "
+            + PREFIX_PRIORITY + "3";
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists";

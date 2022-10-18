@@ -2,12 +2,14 @@ package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.stream.Stream;
 
 import seedu.waddle.logic.commands.AddItemCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Item;
+import seedu.waddle.model.item.Priority;
 
 /**
  * Parses input arguments and creates a new AddItemCommand object
@@ -20,7 +22,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
      */
     public AddItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -28,8 +30,14 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         }
 
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Priority priority;
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        } else {
+            priority = ParserUtil.parsePriority("1");
+        }
 
-        Item item = new Item(description);
+        Item item = new Item(description, priority);
 
         return new AddItemCommand(item);
     }

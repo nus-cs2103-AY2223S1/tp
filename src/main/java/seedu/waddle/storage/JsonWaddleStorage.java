@@ -69,12 +69,12 @@ public class JsonWaddleStorage implements WaddleStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveWaddle(ReadOnlyWaddle addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveWaddle(ReadOnlyWaddle waddle, Path filePath) throws IOException {
+        requireNonNull(waddle);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableWaddle(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableWaddle(waddle), filePath);
     }
 
 }

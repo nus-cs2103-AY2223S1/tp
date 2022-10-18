@@ -12,6 +12,7 @@ import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.item.Item;
+import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -57,8 +58,9 @@ public class EditItemCommand extends Command {
         assert itemToEdit != null;
 
         String updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
+        Priority updatedPriority = editItemDescriptor.getPriority().orElse(itemToEdit.getPriority());
 
-        return new Item(updatedDescription);
+        return new Item(updatedDescription, updatedPriority);
     }
 
     @Override
@@ -106,6 +108,7 @@ public class EditItemCommand extends Command {
      */
     public static class EditItemDescriptor {
         private String description;
+        private Priority priority;
 
         public EditItemDescriptor() {
         }
@@ -116,13 +119,14 @@ public class EditItemCommand extends Command {
          */
         public EditItemDescriptor(EditItemDescriptor toCopy) {
             setDescription(toCopy.description);
+            setPriority(toCopy.priority);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description);
+            return CollectionUtil.isAnyNonNull(description, priority);
         }
 
         public Optional<String> getDescription() {
@@ -131,6 +135,14 @@ public class EditItemCommand extends Command {
 
         public void setDescription(String description) {
             this.description = description;
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
+        public void setPriority(Priority priority) {
+            this.priority = priority;
         }
 
         @Override
