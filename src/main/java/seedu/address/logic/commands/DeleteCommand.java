@@ -32,6 +32,11 @@ public class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Overloaded constructor to allow deletion of patients in a range.
+     * @param startIndex Patient index to start deletion.
+     * @param endIndex Index of last patient to be deleted.
+     */
     public DeleteCommand(Index startIndex, Index endIndex) {
         this.targetIndex = startIndex;
         this.endIndex = endIndex;
@@ -57,7 +62,7 @@ public class DeleteCommand extends Command {
         }
         int start = targetIndex.getZeroBased();
         int end = endIndex.getZeroBased();
-        List<Person> personsToDelete = new ArrayList<>(lastShownList.subList(start, end+1));
+        List<Person> personsToDelete = new ArrayList<>(lastShownList.subList(start, end + 1));
         for (Person personToDelete: personsToDelete) {
             model.deletePerson(personToDelete);
             model.deleteAppointments(personToDelete.getAppointments());
