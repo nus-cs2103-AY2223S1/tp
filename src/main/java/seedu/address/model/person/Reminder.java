@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Represents a Reminder in the address book.
  */
