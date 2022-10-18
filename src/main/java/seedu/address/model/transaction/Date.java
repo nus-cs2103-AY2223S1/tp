@@ -34,14 +34,15 @@ public class Date {
 
         String[] testArr = test.split("/");
 
+        if (testArr.length < 3) {
+            return false;
+        }
+
         try {
             Integer.parseInt(testArr[0]);
             Integer.parseInt(testArr[1]);
             Integer.parseInt(testArr[2]);
         } catch (NumberFormatException e) {
-            return false;
-        }
-        if (testArr.length < 3) {
             return false;
         }
 
