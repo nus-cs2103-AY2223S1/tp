@@ -19,8 +19,9 @@ public class SortOrderCommandParser implements Parser<SortOrderCommand> {
      */
     public SortOrderCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty() ||
-                (!trimmedArgs.equalsIgnoreCase("new") && !trimmedArgs.equalsIgnoreCase("old"))) {
+        if (trimmedArgs.isEmpty()
+                || (!trimmedArgs.equalsIgnoreCase("new")
+                    && !trimmedArgs.equalsIgnoreCase("old"))) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortOrderCommand.MESSAGE_USAGE));
         }
