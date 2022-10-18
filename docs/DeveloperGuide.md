@@ -155,11 +155,11 @@ Classes used by multiple components are in the `taskbookbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Command History Navigation
+### Command History Navigation
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed command history navigation mechanism is facilitated by `CommandHistoryManager`. It implements `CommandHistory`, stored internally as a `commandsList` and `pointer`. Additionally, it implements the following operations:
+The command history navigation mechanism is facilitated by `CommandHistoryManager`. It implements `CommandHistory`, stored internally as a `commandsList` and `pointer`. Additionally, it implements the following operations:
 
 * `CommandHistory#getPreviousCommmand()` — Retrieves the previous command from its history.
 * `CommandHistory#getNextCommmand()` — Retrieves the next command from its history.
@@ -194,7 +194,7 @@ The following sequence diagram shows how the next command history navigation wor
 
 **Aspect: Saving invalid commands:**
 
-* **Alternative 1 (current choice):** Invalid commands are saved in the command history.
+* **Alternative 1 (chosen choice):** Invalid commands are saved in the command history.
     * Pros: Allows the user to navigate to an invalid command and modify it, before re-executing it.
     * Cons: May clutter the command history.
 
