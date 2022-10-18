@@ -159,6 +159,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTeamName(Index targetIndex, seedu.address.model.team.Name newTeamName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPersonToTeam(Person person, Team team) {
             throw new AssertionError("This method should not be called.");
         }

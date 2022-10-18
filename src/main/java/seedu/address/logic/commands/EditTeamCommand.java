@@ -57,5 +57,4 @@ public class EditTeamCommand extends Command {
                 || (other instanceof EditTeamCommand // instanceof handles nulls
                 && targetIndex.equals(((EditTeamCommand) other).targetIndex)); // state check
     }
-
 }
