@@ -13,10 +13,17 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Deadline;
 
+import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
+
+import java.util.Date;
+import java.util.List;
+
 /**
  * Parses input arguments and creates a new DeadlineTaskCommand object
  */
 public class DeadlineTaskCommandParser implements Parser<DeadlineTaskCommand> {
+
+    public static final String MESSAGE_DATE_PARSE_FAILURE = "Could not parse the date provided.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeadlineTaskCommand
@@ -31,6 +38,7 @@ public class DeadlineTaskCommandParser implements Parser<DeadlineTaskCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineTaskCommand.MESSAGE_USAGE),
@@ -45,10 +53,14 @@ public class DeadlineTaskCommandParser implements Parser<DeadlineTaskCommand> {
                                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineTaskCommand.MESSAGE_USAGE))
                         );
 
-        if (deadlineArg.trim().equals("?")) {
+        List<Date> parseResult = new PrettyTimeParser().parse(deadlineArg);
+
+        if (!parseResult.isEmpty()) {
+            return new DeadlineTaskCommand(index, Deadline.of(parseResult.get(0)));
+        } else if (deadlineArg.trim().equals("?")) {
             return new DeadlineTaskCommand(index, Deadline.UNSPECIFIED);
-        } else {
-            return new DeadlineTaskCommand(index, Deadline.of(deadlineArg));
+        } else  {
+            throw new ParseException(MESSAGE_DATE_PARSE_FAILURE);
         }
     }
 }
