@@ -33,10 +33,12 @@ import seedu.address.logic.parser.task.UnmarkTaskCommandParser;
  */
 public class TaskPanelParser implements Parser<TaskCommand> {
 
+    private static final String pattern = "(" + TaskCommand.COMMAND_WORD + "|" + TaskCommand.COMMAND_WORD_ALIAS + ")";
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("task\\s(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+        Pattern.compile(pattern + "\\s(?<commandWord>\\S+)(?<arguments>.*)");
 
     @Override
     public TaskCommand parse(String userInput) throws ParseException {
