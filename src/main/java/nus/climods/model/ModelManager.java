@@ -68,7 +68,6 @@ public class ModelManager implements Model {
     @Override
     public void addUserModule(UserModule module) {
         uniqueUserModuleList.add(module);
-
     }
 
     @Override
@@ -122,8 +121,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredModuleList;
-
-
     }
 
     public void setFilteredModuleList(Predicate<Module> predicate) {

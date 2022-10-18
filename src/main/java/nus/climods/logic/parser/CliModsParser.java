@@ -6,13 +6,7 @@ import static nus.climods.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nus.climods.logic.commands.AddCommand;
-import nus.climods.logic.commands.Command;
-import nus.climods.logic.commands.DeleteCommand;
-import nus.climods.logic.commands.ExitCommand;
-import nus.climods.logic.commands.FindCommand;
-import nus.climods.logic.commands.HelpCommand;
-import nus.climods.logic.commands.ListCommand;
+import nus.climods.logic.commands.*;
 import nus.climods.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,6 +48,8 @@ public class CliModsParser {
             return new FindCommandParser().parse(arguments);
         case (HelpCommand.COMMAND_WORD):
             return new HelpCommandParser().parse(arguments);
+        case (PickCommand.COMMAND_WORD):
+            return new PickCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
