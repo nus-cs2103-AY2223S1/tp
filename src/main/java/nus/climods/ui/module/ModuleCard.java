@@ -21,11 +21,11 @@ public class ModuleCard extends UiPart<Region> {
 
     private static final String MODULE_CREDITS_BG_COLOR = "#61AFEF";
     private static final String MODULE_CREDITS_TEXT_COLOR = "#FFFFFF";
-    private static final int MODULE_CREDITS_FONT_SIZE = 13;
+    private static final int MODULE_CREDITS_FONT_SIZE = 11;
 
     private static final String SEMESTER_BG_COLOR = "#C678DD";
     private static final String SEMESTER_TEXT_COLOR = "#000000";
-    private static final int SEMESTER_FONT_SIZE = 13;
+    private static final int SEMESTER_FONT_SIZE = 11;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI

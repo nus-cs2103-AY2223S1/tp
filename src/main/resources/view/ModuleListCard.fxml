@@ -13,20 +13,17 @@
   <GridPane HBox.hgrow="ALWAYS">
     <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="moduleCode" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 24;" text="\$moduleCode" />
+        <Label fx:id="moduleCode" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 20;" text="\$moduleCode" />
         <FlowPane fx:id="moduleInfo" alignment="CENTER_LEFT" hgap="5" />
       </HBox>
       <Label fx:id="title" style="-fx-font-size: 15;" text="\$title" />
       <Label fx:id="department" style="-fx-font-size: 15;" text="\$department" />
       <!--  Expanded module info  -->
       <VBox fx:id="expandedModuleInfo">
-        <Label fx:id="moduleDescription" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-               style="-fx-font-size: 15;" text="\$moduleDescription" wrapText="true" />
+        <Label fx:id="moduleDescription" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 15;" text="\$moduleDescription" wrapText="true" />
 
         <VBox>
-          <Label style="-fx-font-size: 15;" maxHeight="1.7976931348623157E308"
-                 maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                 text="\$moduleCode" fx:id="prereqs"/>
+          <Label fx:id="prereqs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 15;" text="\$prereqs" />
           <padding>
             <Insets>
               <top>8.0</top>
@@ -36,9 +33,7 @@
 
         </VBox>
 
-        <Label style="-fx-font-size: 15;" maxHeight="1.7976931348623157E308"
-               maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-               text="\$moduleCode" fx:id="lessonTypes"/>
+        <Label fx:id="lessonTypes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 15;" text="\$lessonTypes" />
 
 
         <padding>
@@ -52,7 +47,7 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
+        <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
       </padding>
     </VBox>
     <columnConstraints>
