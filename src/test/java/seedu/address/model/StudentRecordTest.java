@@ -37,7 +37,7 @@ public class StudentRecordTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyStudentRecord_replacesData() {
         StudentRecord newData = getTypicalStudentRecord();
         studentRecord.resetData(newData);
         assertEquals(newData, studentRecord);
@@ -60,18 +60,18 @@ public class StudentRecordTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInStudentRecord_returnsFalse() {
         assertFalse(studentRecord.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInStudentRecord_returnsTrue() {
         studentRecord.addStudent(ALICE);
         assertTrue(studentRecord.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInStudentRecord_returnsTrue() {
         studentRecord.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -84,7 +84,7 @@ public class StudentRecordTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyStudentrecord whose persons list can violate interface constraints.
      */
     private static class StudentRecordStub implements ReadOnlyStudentRecord {
         private final ObservableList<Student> persons = FXCollections.observableArrayList();

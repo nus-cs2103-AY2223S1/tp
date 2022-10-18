@@ -15,18 +15,18 @@ import seedu.address.testutil.TypicalStudents;
 
 public class JsonSerializableStudentRecordTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableStudentRecordTest");
+    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentRecord.json");
+    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidStudentRecord.json");
+    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentRecord.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableStudentRecord dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableStudentRecord.class).get();
-        StudentRecord addressBookFromFile = dataFromFile.toModelType();
-        StudentRecord typicalPersonsAddressBook = TypicalStudents.getTypicalStudentRecord();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        StudentRecord studentRecordFromFile = dataFromFile.toModelType();
+        StudentRecord typicalStudentRecord = TypicalStudents.getTypicalStudentRecord();
+        assertEquals(studentRecordFromFile, typicalStudentRecord);
     }
 
     @Test

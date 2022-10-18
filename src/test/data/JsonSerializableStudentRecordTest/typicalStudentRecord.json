@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Class-ify save file which contains the same Student values as in TypicalPersons#getTypicalAddressBook()",
   "students" : [ {
     "studentName" : "Alice Pauline",
     "id": "123A",

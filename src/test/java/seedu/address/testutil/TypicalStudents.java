@@ -119,7 +119,7 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns a {@code StudentRecord} with all the typical persons.
      */
     public static StudentRecord getTypicalStudentRecord() {
         StudentRecord sr = new StudentRecord();
