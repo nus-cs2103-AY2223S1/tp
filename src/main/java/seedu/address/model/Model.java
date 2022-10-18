@@ -123,7 +123,7 @@ public interface Model {
 
     public Team getTeamUsingIndex(Index teamIndex);
 
-    public List<Team> hasMember(Person p);
+    public List<Team> teamsWithMember(Person p);
 
     void addTask(Index index, Task task);
 
