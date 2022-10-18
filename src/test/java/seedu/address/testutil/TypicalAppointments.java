@@ -24,6 +24,8 @@ public class TypicalAppointments {
         APPOINTMENT_BENSON.setPatient(BENSON);
         APPOINTMENT_CARL.setPatient(CARL);
         SECOND_APPOINTMENT_CARL.setPatient(CARL);
-        return new ArrayList<>(Arrays.asList(APPOINTMENT_CARL, APPOINTMENT_BENSON, SECOND_APPOINTMENT_CARL));
+        return new ArrayList<>(Arrays.asList(new AppointmentBuilder(APPOINTMENT_CARL).build(),
+                new AppointmentBuilder(APPOINTMENT_BENSON).build(),
+                new AppointmentBuilder(SECOND_APPOINTMENT_CARL).build()));
     }
 }
