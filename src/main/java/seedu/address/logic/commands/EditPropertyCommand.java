@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -39,16 +40,18 @@ public class EditPropertyCommand extends Command {
             + "by the index number used in the displayed property list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRICE + "PRICE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_DESCRIPTION + "DESC] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_PRICE + " PRICE] "
+            + "[" + PREFIX_ADDRESS + " ADDRESS] "
+            + "[" + PREFIX_DESCRIPTION + " DESC] "
+            + "[" + PREFIX_TAG + " TAG]..."
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "4 Room Heng Mui Keng Condo"
-            + PREFIX_PRICE + "$500,000"
-            + PREFIX_ADDRESS + "Heng Mui Keng Terrace 22"
-            + PREFIX_DESCRIPTION + "4 Room Condo with 2 bathrooms";
+            + PREFIX_NAME + " 4 Room Heng Mui Keng Condo "
+            + PREFIX_PRICE + " 500000 "
+            + PREFIX_ADDRESS + " Heng Mui Keng Terrace 22 "
+            + PREFIX_DESCRIPTION + " 4 Room Condo with 2 bathrooms "
+            + PREFIX_CHARACTERISTICS + " 5-Room; Near School";;
 
     public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

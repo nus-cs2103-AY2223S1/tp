@@ -67,7 +67,7 @@ public class PersonCard extends UiPart<Region> {
                 .map(PriceRange::toString).orElse("Not Specified"));
         desiredCharacteristics.setText("Desired Characteristics: " + person
                 .getDesiredCharacteristics().map(Characteristics::toString)
-                .orElse("Desired Characteristics: Not Specified"));
+                .orElse("Not Specified"));
     }
 
     @Override

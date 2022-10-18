@@ -67,7 +67,7 @@ public class PropertyCard extends UiPart<Region> {
         seller.setText(property.getSeller());
         characteristics.setText("Characteristics: " + property
                 .getCharacteristics().map(Characteristics::toString)
-                .orElse("Characteristics: Not Specified"));
+                .orElse("Not Specified"));
     }
 
     @Override

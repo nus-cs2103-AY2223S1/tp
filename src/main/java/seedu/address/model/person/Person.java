@@ -137,7 +137,7 @@ public class Person {
                 .append("; Desired Characteristics: ")
                 .append(getDesiredCharacteristics()
                         .map(Characteristics::toString)
-                        .orElse("Desired Characteristics: Not Specified"));
+                        .orElse("Not Specified"));
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append(" Tags: ");

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -27,7 +28,8 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
     public EditPropertyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer
-                .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_TAG);
+                .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_TAG, 
+                        PREFIX_CHARACTERISTICS);
 
         Index index;
 
@@ -53,6 +55,10 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
+            editPropertyDescriptor.setCharacteristics(ParserUtil
+                    .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
+        }
 
         if (!editPropertyDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);

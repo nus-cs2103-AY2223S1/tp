@@ -27,13 +27,16 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
             + PREFIX_SELLER + " SELLER "
-            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
+            + "[" + PREFIX_TAG + " TAG]..."
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Clementi Ave 2 Second Floor Flat "
             + PREFIX_PRICE + " 500000 "
             + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
             + PREFIX_DESCRIPTION + " ready to be bought "
             + PREFIX_SELLER + " John "
+            + PREFIX_TAG + " condo "
+            + PREFIX_TAG + " lowfloor "
             + PREFIX_CHARACTERISTICS + " 5-Room; Near School";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";

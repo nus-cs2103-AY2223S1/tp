@@ -139,7 +139,7 @@ public class Property {
                 .append("; Characteristics: ")
                 .append(getCharacteristics()
                         .map(Characteristics::toString)
-                        .orElse("Characteristics: Not Specified"));
+                        .orElse("Not Specified"));
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
