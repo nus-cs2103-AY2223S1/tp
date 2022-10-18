@@ -40,7 +40,7 @@ public class UniqueApplicationList implements Iterable<Application> {
     }
 
     /**
-     * Returns true if the list contains an equivalent interview in the {@code toCheck}as the given argument.
+     * Returns true if the list contains an equivalent interview in the {@code toCheck} as the given argument.
      */
     public boolean hasSameInterviewTimeAs(Application toCheck) {
         requireNonNull(toCheck);
@@ -59,7 +59,7 @@ public class UniqueApplicationList implements Iterable<Application> {
     }
 
     /**
-     * Returns true if the list contains an equivalent interview as the given argument.
+     * Returns true if the list contains an equivalent {@code interview} as the given argument.
      */
     public boolean hasSameInterviewTimeAs(Interview toCheck) {
         requireNonNull(toCheck);
@@ -68,6 +68,27 @@ public class UniqueApplicationList implements Iterable<Application> {
                 continue;
             }
             if (internalList.get(i).getInterview().get().isOnSameTime(toCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent interview in the {@code interview} as the given argument.
+     * It excludes the check of the {@code application} itself in order to allow the modification of
+     * {@code application}.
+     */
+    public boolean hasSameInterviewTimeAsExcludeSelf(Interview interview, Application application) {
+        requireAllNonNull(interview, application);
+        if (application.getInterview().isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < internalList.size() - 1; i++) {
+            if (internalList.get(i).getInterview().isEmpty() || internalList.get(i).isSameApplication(application)) {
+                continue;
+            }
+            if (internalList.get(i).getInterview().get().isOnSameTime(interview)) {
                 return true;
             }
         }
@@ -121,6 +142,11 @@ public class UniqueApplicationList implements Iterable<Application> {
         }
     }
 
+    /**
+     * Replaces the entire list by another UniqueApplicationList.
+     *
+     * @param replacement to replace the original list.
+     */
     public void setApplications(UniqueApplicationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

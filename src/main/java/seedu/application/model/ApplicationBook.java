@@ -1,6 +1,7 @@
 package seedu.application.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -68,8 +69,8 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
-     * Returns true if an application with the same interview date and time as {@code application} exists
-     * in the application book.
+     * Returns true if {@code application} has an interview date and time clashes with another application exists in the
+     * application book.
      */
     public boolean hasSameInterviewTime(Application application) {
         requireNonNull(application);
@@ -77,12 +78,21 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
-     * Returns true if an application with the same interview date and time as {@code application} exists
-     * in the application book.
+     * Returns true if {@code interview} has an interview date and time clashes with another application exists in the
+     * application book.
      */
     public boolean hasSameInterviewTime(Interview interview) {
         requireNonNull(interview);
         return applications.hasSameInterviewTimeAs(interview);
+    }
+
+    /**
+     * Returns true if {@code interview} has an interview date and time clashes with another application exists in the
+     * application book, excluding the {@code application}. This enables the edit of the interview.
+     */
+    public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
+        requireAllNonNull(interview, application);
+        return applications.hasSameInterviewTimeAsExcludeSelf(interview, application);
     }
 
     /**
