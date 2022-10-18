@@ -13,12 +13,14 @@ import seedu.address.logic.commands.getcommands.GetInpatientCommand;
 import seedu.address.logic.commands.getcommands.GetNameCommand;
 import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
 import seedu.address.logic.commands.getcommands.GetOutpatientCommand;
+import seedu.address.logic.commands.getcommands.GetPastAppointmentCommand;
 import seedu.address.logic.commands.getcommands.GetWardNumberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.getparsers.GetFloorNumberCommandParser;
 import seedu.address.logic.parser.getparsers.GetHospitalWingCommandParser;
 import seedu.address.logic.parser.getparsers.GetNameCommandParser;
 import seedu.address.logic.parser.getparsers.GetNextOfKinCommandParser;
+import seedu.address.logic.parser.getparsers.GetPastAppointmentCommandParser;
 import seedu.address.logic.parser.getparsers.GetWardNumberCommandParser;
 
 /**
@@ -58,6 +60,9 @@ public class GetCommandParser implements Parser<GetCommand> {
 
             case GetNextOfKinCommand.NEXT_OF_KIN_PREFIX:
                 return new GetNextOfKinCommandParser().parse(arguments);
+
+            case GetPastAppointmentCommand.PAST_APPOINTMENT_PREFIX:
+                return new GetPastAppointmentCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(String.format(MESSAGE_INVALID_GET_PREFIX,
