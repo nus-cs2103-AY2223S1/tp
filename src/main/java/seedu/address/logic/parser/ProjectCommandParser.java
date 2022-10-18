@@ -3,9 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
@@ -17,9 +14,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.issue.find.FindIssueByDescriptionCommand;
-import seedu.address.logic.commands.issue.find.FindIssueByPriorityCommand;
-import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
 import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.logic.commands.project.DeleteProjectCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
@@ -33,9 +27,6 @@ import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.predicates.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.issue.predicates.PriorityMatchesKeywordsPredicate;
-import seedu.address.model.issue.predicates.StatusMatchesKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.model.project.Repository;
@@ -196,7 +187,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             }
 
 
-            if(arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
                 return new FindProjectByNameCommand(new NameContainsKeywordsPredicate(
                         argMultimap.getAllValues(PREFIX_NAME)));
             }

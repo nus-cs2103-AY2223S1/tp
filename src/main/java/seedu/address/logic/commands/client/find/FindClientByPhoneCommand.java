@@ -1,14 +1,17 @@
 package seedu.address.logic.commands.client.find;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 
+/**
+ * Represents a class to find and filter client list by phone.
+ */
 public class FindClientByPhoneCommand extends FindClientCommand {
 
     private final PhoneContainsKeywordsPredicate predicate;

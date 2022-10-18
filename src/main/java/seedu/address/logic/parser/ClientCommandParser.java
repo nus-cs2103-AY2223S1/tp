@@ -2,15 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -157,12 +154,12 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             }
 
 
-            if(arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
                 return new FindClientByNameCommand(new NameContainsKeywordsPredicate(
                         argMultimap.getAllValues(PREFIX_NAME)));
             }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+            if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
                 return new FindClientByEmailCommand(new EmailContainsKeywordsPredicate(
                         argMultimap.getAllValues(PREFIX_CLIENT_EMAIL)));
             }

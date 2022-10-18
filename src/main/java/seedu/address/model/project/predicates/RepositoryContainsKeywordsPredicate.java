@@ -1,10 +1,10 @@
 package seedu.address.model.project.predicates;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.project.Project;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.project.Project;
 
 /**
  * Tests that a {@code Project}'s {@code Repository} matches any of the keywords given.

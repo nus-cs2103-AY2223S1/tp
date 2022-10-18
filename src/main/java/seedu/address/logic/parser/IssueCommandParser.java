@@ -3,9 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
@@ -16,10 +13,6 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
-import seedu.address.logic.commands.client.find.FindClientByNameCommand;
-import seedu.address.logic.commands.client.find.FindClientByPhoneCommand;
-import seedu.address.logic.commands.client.find.FindClientCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
@@ -31,9 +24,6 @@ import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
 import seedu.address.logic.commands.issue.find.FindIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
-import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
-import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.IssueWithoutModel;
@@ -67,8 +57,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseDeleteIssueCommand(arguments);
         case ListIssueCommand.COMMAND_FLAG:
             return parseListIssueCommand(arguments);
-            case FindIssueCommand.COMMAND_FLAG:
-                return parseFindIssueCommand(arguments);
+        case FindIssueCommand.COMMAND_FLAG:
+            return parseFindIssueCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -168,12 +158,12 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             }
 
 
-            if(arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
                 return new FindIssueByDescriptionCommand(new DescriptionContainsKeywordsPredicate(
                         argMultimap.getAllValues(PREFIX_DESCRIPTION)));
             }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
+            if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
                 return new FindIssueByStatusCommand(new StatusMatchesKeywordsPredicate(
                         argMultimap.getAllValues(PREFIX_STATUS)));
             }

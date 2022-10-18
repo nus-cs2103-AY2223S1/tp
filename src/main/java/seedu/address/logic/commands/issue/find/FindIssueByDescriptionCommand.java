@@ -1,17 +1,16 @@
 package seedu.address.logic.commands.issue.find;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
-import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.model.Model;
-import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
-import seedu.address.model.issue.Description;
 import seedu.address.model.issue.predicates.DescriptionContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Represents a class to find and filter issue list by description.
+ */
 public class FindIssueByDescriptionCommand extends FindIssueCommand {
     private final DescriptionContainsKeywordsPredicate predicate;
 

@@ -1,15 +1,16 @@
 package seedu.address.logic.commands.project.find;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.project.Repository;
-import seedu.address.model.project.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.project.predicates.RepositoryContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Represents a class to find and filter project list by repository.
+ */
 public class FindProjectByRepositoryCommand extends FindProjectCommand {
     private final RepositoryContainsKeywordsPredicate predicate;
 
