@@ -25,6 +25,8 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
    Some example commands you can try:
 
    * **`list`** : Lists all tutors.
+   
+   * **`view`**`3` : Displays full details of the 3rd tutor shown in the current list.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3 s/A1234567X tn/3 r/5.0` : Adds a tutor named `John Doe` to Tuthub.
 
@@ -90,6 +92,19 @@ Examples:
 Shows a list of all tutors registered in TutHub.
 
 Format: `list`
+
+### Viewing a tutor : `view`
+
+Displays all available information about the tutor's contact details and past performance.
+
+Format: `view INDEX`
+
+* Displays the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 2` displays the full details of the 2nd person in Tuthub.
 
 ### Commenting on a tutor : `comment`
 
@@ -180,14 +195,6 @@ Exits TutHub app.
 
 Format: `exit`
 
-### Editing the data file
-
-[coming soon]
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -202,11 +209,12 @@ _Details coming soon ..._
 | Action             | Format, Examples                                                                                                                                                                                                                 |
 |--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**           | `help`                                                                                                                                                                                                                           |
+| **List**           | `list`                                                                                                                                                                                                                           |
+| **View**           | `view` <br> e.g., `view 1`                                                                                                                                                                                                       |
 | **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
 | **Comment**        | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                                                                                            |
 | **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                                                          |
 | **Find**           | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Alex`                                                                                                                                                                            |
 | **Find by Module** | `findbymodule KEYWORD [MORE_KEYWORDS]` <br> e.g., `findbymodule CS2100`                                                                                                                                                          |
 | **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
-| **List**           | `list`                                                                                                                                                                                                                           |
 | **Exit**           | `exit`                                                                                                                                                                                                                           |
