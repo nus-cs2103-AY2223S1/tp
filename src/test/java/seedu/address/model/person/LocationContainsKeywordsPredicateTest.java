@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
@@ -10,8 +13,8 @@ import seedu.address.testutil.PersonBuilder;
 public class LocationContainsKeywordsPredicateTest {
     @Test
     public void equals() {
-        String firstKeyword = "first";
-        String secondKeyword = "second";
+        List<String> firstKeyword = Arrays.asList("first");
+        List<String> secondKeyword = Arrays.asList("second");
 
         LocationContainsKeywordsPredicate firstPredicate = new LocationContainsKeywordsPredicate(firstKeyword);
         LocationContainsKeywordsPredicate secondPredicate = new LocationContainsKeywordsPredicate(secondKeyword);
@@ -31,12 +34,12 @@ public class LocationContainsKeywordsPredicateTest {
     @Test
     public void test_locationContainsKeywords_returnsTrue() {
         // One keyword
-        LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate("Singapore");
+        LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Singapore"));
         Person alice = new PersonBuilder().withName("Alice Bob").withLocation("Singapore").buildBuyer();
         assertTrue(predicate.test(alice));
 
         // Mixed-case keywords
-        predicate = new LocationContainsKeywordsPredicate("sinGApORe");
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("sinGApORe"));
         Person bob = new PersonBuilder().withName("Bob Bob").withLocation("Singapore").buildBuyer();
         assertTrue(predicate.test(bob));
     }
@@ -44,12 +47,12 @@ public class LocationContainsKeywordsPredicateTest {
     @Test
     public void test_locationDoesNotContainKeywords_returnsFalse() {
         // One keyword
-        LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate("London");
+        LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Arrays.asList("London"));
         Person alice = new PersonBuilder().withName("Alice Bob").withLocation("Singapore").buildBuyer();
         assertFalse(predicate.test(alice));
 
         // Mixed-case keywords
-        predicate = new LocationContainsKeywordsPredicate("lOnDOn");
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("lOnDOn"));
         Person bob = new PersonBuilder().withName("Bob Bob").withLocation("Singapore").buildBuyer();
         assertFalse(predicate.test(bob));
     }

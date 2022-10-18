@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterLocCommand;
@@ -21,9 +23,9 @@ public class FilterLocCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindPetCommand() {
         FilterLocCommand expectedFindCommand =
-                new FilterLocCommand(new LocationContainsKeywordsPredicate<>("Singapore"),
-                        new LocationContainsKeywordsPredicate<>("Singapore"),
-                        new LocationContainsKeywordsPredicate<>("Singapore"));
+                new FilterLocCommand(new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")),
+                        new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")),
+                        new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")));
         assertParseSuccess(parser, "Singapore", expectedFindCommand);
         assertParseSuccess(parser, "\n Singapore \n \t  \t", expectedFindCommand);
     }
