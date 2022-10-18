@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    // filteredList<Note> for find notes in future
+    private final FilteredList<Note> filteredNotes;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredNotes = new FilteredList<>(this.addressBook.getNoteBook());
     }
 
     public ModelManager() {
@@ -170,6 +171,23 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    //=========== Filtered Note List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Note} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return filteredNotes;
+    }
+
+    @Override
+    public void updateFilteredNoteList(Predicate<Note> predicate) {
+        requireNonNull(predicate);
+        filteredNotes.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
