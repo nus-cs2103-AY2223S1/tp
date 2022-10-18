@@ -43,6 +43,12 @@ public class DeadlineTaskCommandParserTest {
                 "1 by/ ?",
                 new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.UNSPECIFIED)
         );
+
+        assertParseFailure(
+                parser,
+                "1 by/ blahblah",
+                DeadlineTaskCommandParser.MESSAGE_DATE_PARSE_FAILURE
+        );
     }
 
     @Test
