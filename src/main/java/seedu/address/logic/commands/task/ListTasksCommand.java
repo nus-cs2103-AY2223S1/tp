@@ -2,6 +2,7 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -29,10 +30,11 @@ public class ListTasksCommand extends TaskCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD_FULL
             + ": Lists all tasks that satisfy the specified requirements.\n"
             + "Parameters: "
+            + "[" + PREFIX_TITLE + "KEYWORD]"
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX]...\n"
             + "Example: " + COMMAND_WORD_FULL + " "
-            + PREFIX_CONTACT + "2 "
-            + PREFIX_CONTACT + "3 ";
+            + PREFIX_TITLE + "fix "
+            + PREFIX_CONTACT + "1 ";
 
     public static final String MESSAGE_SUCCESS = "Found %1$s tasks %2$s %3$s";
 
