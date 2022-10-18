@@ -183,6 +183,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses teaching assistant info.
+     *
+     * @param info
+     * @return String
+     * @throws ParseException If null.
+     */
+    public static Set<ModuleCode> parseTeachingAssistantInfo(Collection<String> info) throws ParseException {
+        requireNonNull(info);
+        final Set<ModuleCode> moduleSet = new HashSet<>();
+        for (String moduleCode: info) {
+            moduleSet.add(parseModuleCode(moduleCode));
+        }
+        return moduleSet;
+    }
+
+    /**
      * Parses module name.
      *
      * @param moduleName

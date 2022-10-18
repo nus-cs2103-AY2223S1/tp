@@ -32,7 +32,7 @@ public class AddStuCommand extends Command {
             + PREFIX_ID + "ID "
             + PREFIX_HANDLE + "HANDLE "
             + "[" + PREFIX_MODULE_CODE + "MODULE]..."
-            + "[" + PREFIX_STUDENT_TA + "TA]... \n"
+            + "[" + PREFIX_STUDENT_TA + "TA]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -66,6 +66,15 @@ public class AddStuCommand extends Command {
         }
 
         model.addPerson(toAdd);
+
+        if (toAdd instanceof Student && (toAdd.isTeachingAssistant())) {
+            if (model.hasTutor(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+            } else {
+                model.addTutor(toAdd);
+            }
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false,
                 true, false, false);

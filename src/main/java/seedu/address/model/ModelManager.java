@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
+    private final FilteredList<Student> filteredTutors;
     private FilteredList<Schedule> filteredSchedule;
 
     /**
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTutors = new FilteredList<>(this.addressBook.getTutorList());
         filteredModules = new FilteredList<>(this.addressBook.getModuleList());
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
     }
@@ -99,6 +102,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTutor(Student tutor) {
+        requireNonNull(tutor);
+        return addressBook.hasTutor(tutor);
+    }
+
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return addressBook.hasModule(module);
@@ -113,6 +122,11 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteTutor(Student target) {
+        addressBook.removeTutor(target);
     }
 
     @Override
@@ -138,9 +152,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addTutor(Student tutor) {
+        addressBook.addTutor(tutor);
+        updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
+    }
+
+    @Override
     public void addSchedule(Schedule schedule) {
         addressBook.addSchedule(schedule);
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
@@ -148,19 +167,32 @@ public class ModelManager implements Model {
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         requireAllNonNull(target, editedSchedule);
         addressBook.setSchedule(target, editedSchedule);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
+    }
+
+    @Override
+    public void deleteSchedule(Schedule target) {
+        requireNonNull(target);
+        addressBook.removeSchedule(target);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setTutor(Student target, Student editedTutor) {
+        requireAllNonNull(target, editedTutor);
+
+        addressBook.setTutor(target, editedTutor);
     }
 
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-
         addressBook.setModule(target, editedModule);
     }
 
@@ -185,11 +217,27 @@ public class ModelManager implements Model {
 
     //=========== Filtered Student List Accessors =============================================================
 
-
     @Override
     public void updateFilteredStudentList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Tutor List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Student> getFilteredTutorList() {
+        return filteredTutors;
+    }
+
+    @Override
+    public void updateFilteredTutorList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredTutors.setPredicate(predicate);
     }
 
 
@@ -220,6 +268,7 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Schedule> getAllScheduleList() {
         return new FilteredList<>(this.addressBook.getScheduleList());
+
     }
 
 
@@ -227,7 +276,7 @@ public class ModelManager implements Model {
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
         requireNonNull(predicate);
-        filteredSchedule.setPredicate(predicate);
+        filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
     }
 
     @Override

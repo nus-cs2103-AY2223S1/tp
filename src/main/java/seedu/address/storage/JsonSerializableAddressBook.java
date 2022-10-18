@@ -66,6 +66,18 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            Person person = jsonAdaptedPerson.toModelType();
+            if (person instanceof Student) {
+                Student student = (Student) person;
+                if (student.isTeachingAssistant()) {
+                    if (addressBook.hasTutor(student)) {
+                        throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                    }
+                    addressBook.addTutor(student);
+                }
+            }
+        }
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
             if (addressBook.hasModule(module)) {
