@@ -139,7 +139,7 @@ Adds a patient to the patient list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE TIME]… [t/TAG]…`
 
-* Date and time should be in the format like 16-10-2022 10:30
+* Date and time should be in the format like 16-10-2022 1030
 * If not date and time is provided, then a default date and time of 24 hours from creation will be set
 
 Examples:
