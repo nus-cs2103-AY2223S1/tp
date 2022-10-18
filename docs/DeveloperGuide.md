@@ -187,6 +187,31 @@ The diagram below should sufficiently explain the main cases for the command.
 #### Sequence Diagram for Filter Meetings between Dates
 ![FilterMeetingsSequenceDiagram](images/FilterMeetingsSequenceDiagram.png)
 
+### [Implemented] Edit Meeting Details
+#### Implementation
+
+The filter meetings between dates command consists of these various classes:
+- `EditMeetingCommand` which extends `Command`
+- `EditMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
+
+
+As with all other commands in Yellow Pages, edit meeting has a `Parser` subclass that goes through the
+`AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
+
+`EditMeetingCommand` follows closely the implementation of the `EditCommand` where an `EditMeetingDescriptor` is created
+where only the edit fields are filled in. Next, a new `Meeting` object is created where the contents in the non-null 
+fields of the `EditMeetingDescriptor` are copied over, otherwise the contents of the field in the original `Meeting` 
+object would be copied over. Lastly, this new `Meeting` object would replace the targeted Meeting, resulting in the 
+relevant fields being updated.
+
+Command: `editmeeting meeting index [d/description] [dd/DateAndTime] [l/location]`, DateAndTime must follow the
+dd-MM-yyyy HHmm format. Do note that index starts from 1 starting from the first meeting listed. 
+
+Primarily there are 3 cases for this command,
+- all 3 fields are to be updated - e.g. `editmeeting 1 d/cs2104 dd/23-04-2022 l/nus 2334`
+- only 2 fields are to be updated - e.g. `editmeeting 1 d/cs2105 l/ntu`
+- only 1 field is to be updated - e.g. `editmeeting 1 d/cs2106`
+
 
 
 ### \[Proposed\] Undo/redo feature
