@@ -4,9 +4,15 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import io.swagger.annotations.Api;
+import nus.climods.model.module.exceptions.DetailedModuleRetrievalException;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.api.ModulesApi;
+import org.openapitools.client.model.Lesson;
 import org.openapitools.client.model.ModuleInformationSemesterDataInner;
 
 /**
@@ -14,25 +20,25 @@ import org.openapitools.client.model.ModuleInformationSemesterDataInner;
  */
 public class Module {
 
+    private static final ModulesApi modulesApi = new ModulesApi();
+    private static String currentAcademicYear;
     private final org.openapitools.client.model.ModuleInformation apiModuleInfo;
 
-    //private final org.openapitools.client.model.Module detailedModule;
+    /**
+     * Contains detailed module information from API. Only initialised when needed
+     */
+    private Optional<org.openapitools.client.model.Module> detailedModule = Optional.empty();
 
     private boolean isActive = false;
+
+    private List<String> uniqueLessonTypes = List.of();
     public Module(org.openapitools.client.model.ModuleInformation apiModuleInfo) {
         this.apiModuleInfo = apiModuleInfo;
     }
 
-//    private getDetailedModule() {
-//        // check its null: call the api, set reference
-//        // if not null do nothing
-//    }
-//
-//    private getPrereqs
-//    public List<String> getLessonTypes() {
-//        detailedModule.getSemesterData().stream().
-//    }
-
+    public static void setCurrentAcademicYear(String currAcademicYear) {
+        currentAcademicYear = currAcademicYear;
+    }
     /**
      * Returns the number of modular credits.
      * <p>
@@ -88,8 +94,37 @@ public class Module {
                 .map(BigDecimal::intValue).collect(Collectors.toList());
     }
 
-    public List<String> getUniqueLessonTypes(BigDecimal semester) {
-        return List.of();
+    /**
+     * Retrieves detailed module only if not already retrieved (lazily)
+     * @throws ApiException if error occured during API request
+     */
+    private void getDetailedModule() throws DetailedModuleRetrievalException {
+        // TODO: replace with reading of stored detailed module JSON file
+        try {
+            if (detailedModule.isEmpty()) {
+                org.openapitools.client.model.Module module = modulesApi.acadYearModulesModuleCodeJsonGet(currentAcademicYear, this.getCode());
+                detailedModule = Optional.of(module);
+            }
+        } catch (ApiException apiException) {
+            throw new DetailedModuleRetrievalException(
+                    String.format("Problem retrieving detailed module information for %s", this.getCode()),
+                    apiException);
+        }
+    }
+
+    /**
+     * Retrieve unique lesson types for a module. Should be called only after getDetailedModule() has been called.
+     * Otherwise, uniqueLessonTypes will remain an empty list
+     */
+    private void retrieveUniqueLessonTypes() {
+        uniqueLessonTypes = detailedModule.stream()
+                .flatMap(mod -> mod.getSemesterData().stream().findAny().stream())
+                .flatMap(semData -> semData.getTimetable().stream().map(Lesson::getLessonType))
+                .distinct()
+                .collect(Collectors.toList());
+    }
+    public List<String> getUniqueLessonTypes() {
+        return uniqueLessonTypes;
     }
 
     /**
@@ -111,8 +146,16 @@ public class Module {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void makeActive() throws DetailedModuleRetrievalException {
+        getDetailedModule();
+        retrieveUniqueLessonTypes();
+
+        this.isActive = true;
     }
+
+    public void makeinActive() {
+        this.isActive = false;
+    }
+
 }
 
