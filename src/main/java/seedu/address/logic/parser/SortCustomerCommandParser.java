@@ -5,11 +5,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_UNIQUE_COMPARATOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_ACTIVE_COMMISSION_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_COMMISSION_COUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_LAST_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_REVENUE;
 import static seedu.address.logic.parser.ParserUtil.areAnyPrefixesPresent;
 import static seedu.address.logic.parser.ParserUtil.countPrefixesPresent;
 import static seedu.address.logic.parser.ParserUtil.parseSortDirection;
+import static seedu.address.model.Model.CUSTOMER_LAST_DATE_COMPARATOR;
 import static seedu.address.model.Model.CUSTOMER_NAME_COMPARATOR;
 import static seedu.address.model.Model.CUSTOMER_NUM_ACTIVE_COMMISSIONS_COMPARATOR;
 import static seedu.address.model.Model.CUSTOMER_NUM_COMMISSIONS_COMPARATOR;
@@ -42,6 +44,8 @@ public class SortCustomerCommandParser implements Parser<SortCustomerCommand> {
                 new Pair<>("active commissions count", CUSTOMER_NUM_ACTIVE_COMMISSIONS_COMPARATOR));
         PREFIX_DESCRIPTION_MAP.put(PREFIX_SORT_CUSTOMER_REVENUE,
                 new Pair<>("revenue", CUSTOMER_REVENUE_COMPARATOR));
+        PREFIX_DESCRIPTION_MAP.put(PREFIX_SORT_CUSTOMER_LAST_DATE,
+                new Pair<>("latest commission date", CUSTOMER_LAST_DATE_COMPARATOR));
     }
 
     /**

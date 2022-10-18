@@ -48,6 +48,12 @@ public interface Model {
      */
     Comparator<Customer> CUSTOMER_REVENUE_COMPARATOR = Comparator.comparing(Customer::getRevenue);
 
+    /**
+     * {@code Comparator} that sorts by the customer's latest commission
+     */
+    Comparator<Customer> CUSTOMER_LAST_DATE_COMPARATOR = Comparator.comparing(Customer::getLastDate);
+
+
 
     /**
      * Returns the user prefs.
