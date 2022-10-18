@@ -210,6 +210,72 @@ The user flow is illustrated in the *Activity Diagram* as shown below.
   * Advantages: Easier to maintain for the developer. Acts like a switch and when a `Task` is already completed, marking it again will do nothing (Saves more computational power).
   * Disadvantages: Harder for future extension in the event that we need to do much more than just toggling the status of a `Task`.
 
+### Edit Supplier feature
+
+#### Implementation
+
+The functionality to edit a supplier's details is contained within the `EditCommand` class, which extends the abstract `Command` class by operating on a given `Model` in the following summarised way:
+
+A `Person` in the given `Model` is selected using an index number, following which a new `Person` object with user-specified details is created.
+Finally, the old `Person` is replaced with the new `Person` after validity checks have succeeded.
+
+To achieve the aforementioned, the `EditCommand` class encapsulates the nested class `EditPersonDescriptor`, which serves to hold the user's input details that will subsequently be used to update the chosen `Person`.
+`EditPersonDescriptor` implements:
+
+- `isAnyFieldEdited()` — Checks if any of the fields to be updated is non-empty.
+- Getters and setters to access and modify the corresponding fields of the given `EditPersonDescriptor` object.
+
+![EditCommandObjectDiagram](images/EditCommandObjectDiagram.png)
+
+The respective `Parser` subclass, in this case `EditCommandParser`, is called by a chain of method calls starting when the program is launched.
+
+#### Rationale for implementation
+
+As per the initial implementation of AB3, two `Person` objects cannot have the same name. For our real life scenario, it is irregular for two suppliers to have different names but the same phone number.
+As a result, `Person#isSamePerson(Person otherPerson)` has been modified to check for either the same `name` OR the same `phone`.
+
+The mechanism of `EditCommand` meant that when an edit command is executed, the `editedPerson` with newly edited attributes would be compared in equality to the initial `personToEdit` it was supposed to edit, or effectively "replace".
+
+This led to some bugs, for instance in the scenario that the `editedPerson` differed from the initial `personToEdit` by only either `name` OR `phone`, these two `Person` objects would be compared and fail the original implementation of `Person#isSamePerson(Person otherPerson)` because
+of the other similar field (`phone` or `name` respectively), every time.
+
+This called for a new method, `Model#hasPersonExcluding(Person person, Person excludedPerson)`, which effectively ignores the initial `personToEdit` when comparing all existing `Person` objects for equal `name` or `phone` attributes.
+
+#### Execution of the edit command
+
+The arguments provided to this function call, which specify the details to edit the target `Person` with, are each prefixed by various prefixes (such as `n/` for `Name`, `i/` for `Item`)
+to allow the `ArgumentTokenizer` and `ArgumentMultimap` to recognise and split the provided arguments into the correct categories for easier parsing and updating.
+
+Given below is an example usage scenario and how the edit supplier command behaves at each step.
+
+Step 1. The user launches the application. The `ReadOnlyAddressBook` that holds supplier data in the application is initialised with supplier data stored on the `AddressBookStorage` saved on disk, otherwise it is populated with sample supplier data from `SampleDataUtil`.
+
+<img src="images/PersonStorageDataExistsState.png" width="500" />
+<img src="images/PersonStorageDataNotExistState.png" width="500" />
+
+Step 2. The user executes `edit 2 n/New Supplier Name p/61234567 i/Cookies` to edit the 2nd person in the supplier list to have the new name of "New Supplier Name", the new phone number of "61234567" and the new item supplied of "Cookies".
+Then, multiple processes occur to parse, validate and execute the command.
+- `EditCommandParser` parses this command in multiple steps. First, `ArgumentTokenizer#tokenize()` creates an `ArgumentMultimap` from the given arguments and respective prefixes. This allows the `Index` of the chosen supplier, and the input details for each field to be extracted.
+  If the provided `Index` is invalid, a `ParseException` is thrown. Otherwise, for each existing valid prefix in the `ArgumentMultimap`, an `EditPersonDescriptor` is built with the input values corresponding to the prefixes.
+  The existing prefixes are `n/`, `p/` and `i/`, and values are "New Supplier Name", "61234567" and "Cookies" respectively. A new `EditCommand` is constructed with the given `Index` and `EditPersonDescriptor`.
+  ![EditCommandParserSequenceDiagram](images/EditCommandParserSequenceDiagram.png)
+- At this point, there are multiple checks for validity of the `Index` and `EditPersonDescriptor` arguments. Notably, the edited `Person`, who is to replace the old `Person`, has to be unique from the other existing `Person`s within the address book.
+  `Model#hasPersonExcluding(Person person, Person excludedPerson)` facilitates this by first excluding the `Person` to be edited from the duplicate checks, then calling `Person#isSamePerson(Person otherPerson)` to compare the edited `Person` with all other `Person`s.
+  Again, this checks if the two `Person` objects have the same `Name` or `Phone` attributes.
+  ![EditCommandVerifyActivityDiagram](images/EditCommandVerifyActivityDiagram.png)
+
+- If all checks pass, `Model#setPerson(Person target, Person editedPerson)` is called to replace the old `Person` with the edited `Person` within the `ObservableList<Person>`, which is encapsulated within the `UniquePersonList` class and serves to ensure uniqueness of all of its `Person` contents.
+
+The following activity diagram summarises what happens when a user executes an edit supplier command.
+![EditCommandSummaryActivityDiagram](images/EditCommandSummaryActivityDiagram.png)
+
+#### Proposed enhancements/changes
+
+Subsequently, the `SupplyItem` class which encapsulates an item in a vendor's inventory will be implemented. Each instance of this class contains a reference to a `Person` (i.e. each item in the inventory is supplied by one supplier).
+As a result, editing a supplier's details necessitate a corresponding update to the `SupplyItem` object that has a reference to the edited `Person`.
+
+<img src="images/SupplierAndSupplyItemClassDiagram.png" width="500" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Supplier data does not exist in storage
+
+package "Json supplier data" <<rectangle>> {
+    class State1 as "__jsonAddressBook:Optional<JsonSerializableAddressBook>__" #magenta
+    class State2 as "__:SampleDataUtil__" #yellow
+}
+
+State1 -[hidden]right-> State1
+State2 -[hidden]right-> State2
+
+class Pointer as "Loaded into Person list" #FFFFFF
+
+Pointer -up-> State2
+@end
