@@ -3,14 +3,18 @@ package tuthub.logic.commands;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.logic.parser.Prefix;
 import tuthub.model.Model;
+import tuthub.model.Tuthub;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.Tutor;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
+import static tuthub.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
 public class SortCommand extends Command {
 
@@ -26,7 +30,7 @@ public class SortCommand extends Command {
 
     public static final Integer NEGATIVE_MULTIPLIER = -1;
 
-    public static final String MESSAGE_SORT_TUTOR_SUCCESS = "Sorted based on %1$s, in %1$s order.";
+    public static final String MESSAGE_SORT_TUTOR_SUCCESS = "Sorted based on %1$s, in %2$s order.";
     public static final String MESSAGE_UNKNOWN_ORDER = "Order %1$s is not valid for this command. "
             + "Valid orders are a or d.";
 
@@ -50,25 +54,41 @@ public class SortCommand extends Command {
         this.comparator = comparator;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        String orderWord = order.equals(ASCENDING_SHORT)
+    public String getOrderWord(String order) {
+        return order.equals(ASCENDING_SHORT)
             ? ASCENDING_WORD
             : order.equals(DESCENDING_SHORT)
                 ? DESCENDING_WORD
                 : null;
+    }
+
+    public String getCategoryWord(Prefix prefix) {
+        return prefix.equals(PREFIX_RATING)
+            ? RATING_WORD
+            : TEACHING_NOMINATION_WORD;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        String orderWord = getOrderWord(order);
 
         if (orderWord == null) {
             throw new CommandException(String.format(MESSAGE_UNKNOWN_ORDER, order));
         }
 
-        String categoryWord = prefix.equals(PREFIX_RATING)
-            ? RATING_WORD
-            : TEACHING_NOMINATION_WORD;
+        String categoryWord = getCategoryWord(prefix);
 
-        model.updateSortedTutorList(comparator);
+        List<Tutor> tutorsList = model.getTuthub().getTutorList();
+        List<Tutor> sortedTutors = new ArrayList<>();
+        sortedTutors.addAll(tutorsList);
+        sortedTutors.sort(comparator);
+
+        Tuthub sortedTuthub = new Tuthub();
+        sortedTuthub.setTutors(sortedTutors);
+        model.setTuthub(sortedTuthub);
+        model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
 
         return new CommandResult(String.format(MESSAGE_SORT_TUTOR_SUCCESS, categoryWord, orderWord));
     }

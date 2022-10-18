@@ -2,6 +2,7 @@ package tuthub.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -97,12 +98,4 @@ public interface Model {
      */
     void updateFilteredTutorList(Predicate<Tutor> predicate);
 
-    /** Returns an unmodifiable view of the sorted tutor list */
-    ObservableList<Tutor> getSortedTutorList();
-
-    /**
-     * Updates the filter of the filtered tutor list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateSortedTutorList(Comparator<Tutor> comparator);
 }

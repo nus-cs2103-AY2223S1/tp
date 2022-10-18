@@ -5,6 +5,7 @@ import static tuthub.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,8 +24,7 @@ public class ModelManager implements Model {
 
     private final Tuthub tuthub;
     private final UserPrefs userPrefs;
-    private FilteredList<Tutor> filteredTutors;
-    private SortedList<Tutor> sortedTutors;
+    private final FilteredList<Tutor> filteredTutors;
     private Tutor tutorToView;
 
     /**
@@ -38,7 +38,6 @@ public class ModelManager implements Model {
         this.tuthub = new Tuthub(tuthub);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTutors = new FilteredList<>(this.tuthub.getTutorList());
-        sortedTutors = new SortedList<>(this.tuthub.getTutorList());
     }
 
     public ModelManager() {
@@ -142,23 +141,6 @@ public class ModelManager implements Model {
     public void updateFilteredTutorList(Predicate<Tutor> predicate) {
         requireNonNull(predicate);
         filteredTutors.setPredicate(predicate);
-        sortedTutors = new SortedList<>(filteredTutors);
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Tutor} backed by the internal list of
-     * {@code versionedTuthub}
-     */
-    @Override
-    public ObservableList<Tutor> getSortedTutorList() {
-        return sortedTutors;
-    }
-
-    @Override
-    public void updateSortedTutorList(Comparator<Tutor> comparator) {
-        requireNonNull(comparator);
-        sortedTutors.setComparator(comparator);
-        filteredTutors = new FilteredList<>(sortedTutors);
     }
 
     @Override
