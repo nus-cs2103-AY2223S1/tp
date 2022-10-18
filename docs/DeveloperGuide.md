@@ -246,7 +246,6 @@ Given below is an example usage scenario and how the archive mechanism behaves a
 Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
 patient list.
 
-
 Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of
 patients after the `archive patient` command executes to show on the screen.
 
@@ -326,6 +325,67 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
 * **Alternative 2:** `Appointment` objects are stored only in the `UniqueAppointmentList` class.
   * Pros: Easier to maintain as there's only one appointment object.
   * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
+
+### Mark/Unmark feature
+
+The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
+
+Given below is an example usage scenario, where the user enters `mark 1` as the input,
+and how the mark mechanism behaves at each step.
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+The `unmark` command functions similiarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
+classes in place of `MarkCommandParser` and `MarkCommand` respectively. 
+It also lacks the logic to add recurring appointments.
+
+#### Design considerations:
+
+**Aspect: How mark & unmark executes:**
+* **Alternative 1 (current choice):** `MarkCommand` and `UnmarkCommand` takes in an `Index` denoting the appointment to 
+* mark/unmark.
+    * Pros: Easy to implement.
+    * Cons: Will have to compute the actual appointment to mark `MarkCommand`/`UnmarkCommand` itself.
+
+* **Alternative 2:** `MarkCommand` and `UnmarkCommand` takes in the `Appointment` to be marked as a parameter in its
+* constructor directly
+    * Pros: Cohesiveness is increased, as it only needs to concern itself with marking/unmarking the appointment.
+    * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment 
+  recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
+    
+### Find `execute()` implementation
+
+![MarkSequenceDiagram](images/FindClassDiagram.png)
+
+The `find` command,
+* Takes in 2 predicates `CombinedPersonPredicate` and `CombinedAppointmentPredicate`.
+* `CombinedPersonPredicate` stores all person related search strings and tests for all patients that satisfies all
+the search terms.
+* `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that 
+satisfies all the search terms.
+* These 2 predicates are then used together to create a single predicate that displays all the relevant patient
+and appointments.
+
+#### Design considerations:
+
+**Aspect: How to pass in search terms to `FindCommand`:**
+* **Alternative 1:** Store all search terms in `FindCommand` and use `Predicate#and` to combine the
+the search predicates.
+    * Pros: Easy and quick to implement. No extra classes needed.
+    * Cons: There is no way to override the `Predicate#equals()`. Testability of `FindCommand` would be low.
+* **Alternative 2:** Create 1 class for each search term
+(E.g `NameContainsSequencePredicate`, `AppointmentContainsReasonPredicate` etc.). Create a `CombinedPersonPredicate`
+and a `CombinedAppointmentPredicate` that takes in all these 'lesser' predicates and combine them to form the actual
+predicate to filter the list with.
+    * Pros: Testability of `FindCommand` would be very high.
+    * Cons: Large amount of classes needed. There would also be the issue of excessive duplication of code.
+It would also be time-consuming to add in potential new predicates in the future as much more test cases would be needed
+to test each individual class.
+* **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`, 
+and store the relevant search terms into each predicate. Combine those search terms in the predicate class itself.
+    * Pros: Testability of `FindCommand` would be high. Extending the method features in the future would also be
+more efficient than alternative 2.
+    * Cons: Slightly less testable than alternative 2. However, the increased efficiency is worth the tradeoff.
 
 --------------------------------------------------------------------------------------------------------------------
 
