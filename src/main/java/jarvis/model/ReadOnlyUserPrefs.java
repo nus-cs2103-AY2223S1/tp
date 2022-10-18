@@ -13,4 +13,8 @@ public interface ReadOnlyUserPrefs {
 
     Path getStudentBookFilePath();
 
+    Path getTaskBookFilePath();
+
+    Path getLessonBookFilePath();
+
 }

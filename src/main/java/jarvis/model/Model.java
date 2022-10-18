@@ -13,6 +13,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Lesson> PREDICATE_SHOW_ALL_LESSONS = unused -> true;
 
     //=========== UserPrefs ==================================================================================
 
@@ -56,6 +57,16 @@ public interface Model {
      */
     void setTaskBookFilePath(Path taskBookFilePath);
 
+    /**
+     * Returns the user prefs' lesson book file path.
+     */
+    Path getLessonBookFilePath();
+
+    /**
+     * Sets the user prefs' lesson book file path.
+     */
+    void setLessonBookFilePath(Path lessonBookFilePath);
+
     //=========== StudentBook ================================================================================
 
     /**
@@ -84,8 +95,8 @@ public interface Model {
     void addStudent(Student student);
 
     /**
-     * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the student book.
+     * Replaces the given student {@code targetStuent} with {@code editedStudent}.
+     * {@code targetStudent} must exist in the student book.
      * The identity of {@code editedStudent} must not be the same as another existing student in the student book.
      */
     void setStudent(Student target, Student editedStudent);
@@ -118,7 +129,7 @@ public interface Model {
      * Deletes the given task.
      * The task must exist in the task book.
      */
-    void deleteTask(Task target);
+    void deleteTask(Task targetTask);
 
     /**
      * Adds the given task.
@@ -127,11 +138,11 @@ public interface Model {
     void addTask(Task task);
 
     /**
-     * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in the task book.
+     * Replaces the given task {@code targetTask} with {@code editedTask}.
+     * {@code targetTask} must exist in the task book.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
-    void setTask(Task target, Task editedTask);
+    void setTask(Task targetTask, Task editedTask);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
@@ -141,4 +152,47 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    //=========== LessonBook ================================================================================
+
+    /**
+     * Replaces lesson book data with the data in {@code lessonBook}.
+     */
+    void setLessonBook(ReadOnlyLessonBook lessonBook);
+
+    /** Returns the LessonBook */
+    ReadOnlyLessonBook getLessonBook();
+
+    /**
+     * Returns true if a lesson with the same identity as {@code lesson} exists in the lesson book.
+     */
+    boolean hasLesson(Lesson lesson);
+
+    /**
+     * Deletes the given lesson.
+     * The lesson must exist in the lesson book.
+     */
+    void deleteLesson(Lesson targetLesson);
+
+    /**
+     * Adds the given lesson.
+     * {@code lesson} must not already exist in the lesson book.
+     */
+    void addLesson(Lesson lesson);
+
+    /**
+     * Replaces the given lesson {@code targetLesson} with {@code editedLesson}.
+     * {@code targetLesson} must exist in the lesson book.
+     * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the lesson book.
+     */
+    void setLesson(Lesson targetLesson, Lesson editedLesson);
+
+    /** Returns an unmodifiable view of the filtered lesson list */
+    ObservableList<Lesson> getFilteredLessonList();
+
+    /**
+     * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLessonList(Predicate<Lesson> predicate);
 }
