@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.AddBillCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -56,6 +57,8 @@ public class AddressBookParser {
             return new AddPatientCommandParser().parse(arguments);
         } else if (AddAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new AddAppointmentCommandParser().parse(arguments);
+        } else if (AddBillCommand.COMMAND_WORD.matches(commandWord)) {
+            return new AddBillCommandParser().parse(arguments);
         } else if (EditAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditAppointmentCommandParser().parse(arguments);
         } else if (EditPatientCommand.COMMAND_WORD.matches(commandWord)) {
