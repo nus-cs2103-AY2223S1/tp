@@ -16,6 +16,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -70,25 +71,23 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_mark() throws ParseException {
         MarkCommand command = (MarkCommand) parser.parseCommand(
-                MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                        + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
-        assertEquals(new MarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+                MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_APPOINTMENT.getOneBased());
+        assertEquals(new MarkCommand(INDEX_FIRST_APPOINTMENT), command);
     }
 
     @Test
     public void parseCommand_unmark() throws ParseException {
         UnmarkCommand command = (UnmarkCommand) parser.parseCommand(
-                UnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                        + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
-        assertEquals(new UnmarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+                UnmarkCommand.COMMAND_WORD + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+        assertEquals(new UnmarkCommand(INDEX_SECOND_APPOINTMENT), command);
     }
 
     @Test
     public void parseCommand_cancel() throws Exception {
         CancelCommand command = (CancelCommand) parser.parseCommand(CancelCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+                + " " + INDEX_THIRD_APPOINTMENT.getOneBased());
 
-        assertEquals(new CancelCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+        assertEquals(new CancelCommand(INDEX_THIRD_APPOINTMENT), command);
     }
 
     @Test

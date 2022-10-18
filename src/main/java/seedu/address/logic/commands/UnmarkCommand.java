@@ -4,6 +4,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
 
 /**
  * Unmarks an appointment for the given patient as incomplete.
@@ -11,37 +12,36 @@ import seedu.address.model.person.Appointment;
 public class UnmarkCommand extends SelectAppointmentCommand {
     public static final String COMMAND_WORD = "unmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks the appointment of the person identified "
-            + "by the index numbers used in the displayed person and their corresponding appointment list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX_OF_PERSON (must be a positive integer) "
-            + "INDEX_OF_APPOINTMENT (must be a positive integer)";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Unmarks an appointment in the appointment list as uncompleted\n"
+                    + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and a positive integer)\n"
+                    + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Unmarked appointment %1$s for Person: %2$s";
+    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Unmarked appointment %1$s for: %2$s";
     public static final String MESSAGE_ALREADY_UNMARKED = "This appointment is already unmarked.";
 
     /**
-     * Creates an unmark command containing the index of a person and the index of an appointment.
+     * Creates an unmark command containing the index of an appointment.
      *
-     * @param indexOfPerson Index of the person in the filtered person list to unmark.
-     * @param indexOfAppointment Index of the appointment of the specified person to unmark.
+     * @param indexOfAppointment Index of the appointment in the appointmentlist to unmark.
      */
-    public UnmarkCommand(Index indexOfPerson, Index indexOfAppointment) {
-        super(indexOfPerson, indexOfAppointment);
+    public UnmarkCommand(Index indexOfAppointment) {
+        super(indexOfAppointment);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Person person = getTargetPerson(model);
         Appointment appointmentToUnmark = getTargetAppointment(model);
 
         if (!appointmentToUnmark.isMarked()) {
             throw new CommandException(MESSAGE_ALREADY_UNMARKED);
         }
 
+        int index = person.getAppointments().indexOf(appointmentToUnmark) + 1;
         appointmentToUnmark.unmark();
         return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS,
-                indexOfAppointment.getOneBased(),
-                getTargetPerson(model).getName()));
+                index, person.getName()));
     }
 
     @Override
@@ -55,6 +55,6 @@ public class UnmarkCommand extends SelectAppointmentCommand {
         }
 
         UnmarkCommand otherCommand = (UnmarkCommand) other;
-        return hasSameIndexOfPerson(otherCommand) && hasSameIndexOfAppointment(otherCommand);
+        return hasSameIndexOfAppointment(otherCommand);
     }
 }
