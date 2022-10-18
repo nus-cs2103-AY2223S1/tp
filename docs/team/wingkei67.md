@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Zhao Yao's Project Portfolio Page 
+title: Zhao Yao's Project Portfolio Page
 ---
 
 ### Project: AddressBook Level 3
@@ -9,7 +9,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
 * **Code contributed**: [RepoSense link](https://github.com/AY2223S1-CS2103T-T17-4/tp)
 * **Project management**:
 * **Contributions to the README**:
