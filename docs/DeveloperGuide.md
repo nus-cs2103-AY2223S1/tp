@@ -257,6 +257,26 @@ Step 3. The application displays the list of patients with the name "John" on th
 
 The find feature is now seperated for the patients, appointments and bills sections.
 
+Design considerations:
+1. Length of command word
+2. Whether to use a prefix for the search term
+3. Number of keywords used for the search term
+
+Alternatives:
+
+1. Use a shorter command word (e.g. find instead of findpatient)
+    - Pros: Easy to type
+    - Cons: May be confused with the find command for appointments and bills
+    - Cons: May be confused with the find command for patients
+2. Use a prefix for the search term (e.g. find n/John)
+    - Pros: Easy to type
+    - Pros: Easy to remember
+    - Cons: May be confused with the find command for appointments and bills
+3. Combine find feature for patients, appointments and bills into one command
+    - Pros: Easy to type
+    - Pros: Easy to remember
+    - Cons: May be confusing to the user
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
