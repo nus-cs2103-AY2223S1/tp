@@ -17,7 +17,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 
 public class JsonAdaptedStudentTest {
@@ -36,7 +35,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_ADDRESS = STUDENT1.getAddress().toString();
     private static final String VALID_LEVEL = STUDENT1.getLevel().name();
     private static final String VALID_SCHOOL = STUDENT1.getSchool().toString();
-    private static final String VALID_NEXTOFKIN = STUDENT1.getNextOfKin().toString();
+    private static final JsonAdaptedNextOfKin VALID_NEXTOFKIN = new JsonAdaptedNextOfKin(STUDENT1.getNextOfKin());
     private static final List<JsonAdaptedTag> VALID_TAGS = STUDENT1.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -150,23 +149,6 @@ public class JsonAdaptedStudentTest {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_SCHOOL, null, VALID_NEXTOFKIN, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Level.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidNoK_throwsIllegalValueException() {
-        JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_SCHOOL, VALID_LEVEL,
-                        INVALID_NEXTOFKIN, VALID_TAGS, VALID_TUITIONCLASSES);
-        String expectedMessage = NextOfKin.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullNoK_throwsIllegalValueException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_SCHOOL, VALID_LEVEL, null, VALID_TAGS, VALID_TUITIONCLASSES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NextOfKin.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 

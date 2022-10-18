@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.level.Level;
-import seedu.address.model.person.student.NextOfKin;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -17,7 +17,6 @@ public class StudentBuilder extends PersonBuilder {
 
     public static final String DEFAULT_SCHOOL = "Bukit Panjang Primary School";
     public static final String DEFAULT_LEVEL = "PRIMARY1";
-    public static final String DEFAULT_NEXTOFKIN = "John Tay";
 
     private School school;
     private Level level;
@@ -32,7 +31,6 @@ public class StudentBuilder extends PersonBuilder {
         super();
         school = new School(DEFAULT_SCHOOL);
         level = Level.createLevel(DEFAULT_LEVEL);
-        nextOfKin = new NextOfKin(DEFAULT_NEXTOFKIN);
     }
 
     /**
@@ -105,8 +103,8 @@ public class StudentBuilder extends PersonBuilder {
     /**
      * Sets the {@code NextOfKin} of the {@code Student} that we are building.
      */
-    public StudentBuilder withNextOfKin(String nextOfKin) {
-        this.nextOfKin = new NextOfKin(nextOfKin);
+    public StudentBuilder withNextOfKin(NextOfKin nextOfKin) {
+        this.nextOfKin = nextOfKin;
         return this;
     }
 
@@ -121,7 +119,7 @@ public class StudentBuilder extends PersonBuilder {
     /**
      * Sets the {@code TuitionClass} of the {@code Student} that we are building.
      */
-    public StudentBuilder withTuitionClasses(List<TuitionClass>tuitionClasses) {
+    public StudentBuilder withTuitionClasses(List<TuitionClass> tuitionClasses) {
         this.tuitionClasses = tuitionClasses;
         return this;
     }

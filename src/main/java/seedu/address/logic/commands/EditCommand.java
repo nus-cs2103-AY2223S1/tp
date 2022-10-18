@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTITUTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXTOFKIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -35,7 +34,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Institution;
@@ -101,7 +100,6 @@ public class EditCommand extends Command {
                     + "[" + PREFIX_ADDRESS + "ADDRESS] "
                     + "[" + PREFIX_SCHOOL + "SCHOOL] "
                     + "[" + PREFIX_LEVEL + "LEVEL] "
-                    + "[" + PREFIX_NEXTOFKIN + "NEXTOFKIN] "
                     + "[" + PREFIX_TAG + "TAG]...\n"
                     + "Example: " + COMMAND_WORD + " 1 "
                     + PREFIX_PHONE + "91234567 "
@@ -211,7 +209,7 @@ public class EditCommand extends Command {
 
             School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
             Level updatedLevel = editStudentDescriptor.getLevel().orElse(studentToEdit.getLevel());
-            NextOfKin updatedNextOfKin = editStudentDescriptor.getNextOfKin().orElse(studentToEdit.getNextOfKin());
+            NextOfKin updatedNextOfKin = studentToEdit.getNextOfKin();
             List<TuitionClass> tuitionClasses = studentToEdit.getTuitionClasses();
             return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSchool,
                     updatedLevel, updatedNextOfKin, tuitionClasses);

@@ -13,6 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.TuitionClass;
 
@@ -32,7 +33,7 @@ public class Student extends Person {
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, School school, Level level,
                    NextOfKin nextOfKin) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(school, level, nextOfKin);
+        requireAllNonNull(school, level);
         this.school = school;
         this.level = level;
         this.nextOfKin = nextOfKin;
@@ -47,7 +48,7 @@ public class Student extends Person {
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, School school, Level level,
                    NextOfKin nextOfKin, List<TuitionClass> tuitionClasses) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(school, level, nextOfKin);
+        requireAllNonNull(school, level);
         this.school = school;
         this.level = level;
         this.nextOfKin = nextOfKin;
@@ -92,7 +93,6 @@ public class Student extends Person {
                 && otherStudent.getTags().equals(getTags())
                 && otherStudent.getSchool().equals(getSchool())
                 && otherStudent.getLevel().equals(getLevel())
-                && otherStudent.getNextOfKin().equals(getNextOfKin())
                 && otherStudent.getTuitionClasses().equals(getTuitionClasses());
     }
 
@@ -111,9 +111,7 @@ public class Student extends Person {
                 .append("; School: ")
                 .append(getSchool())
                 .append("; Level: ")
-                .append(getLevel())
-                .append("; Next of kin: ")
-                .append(getNextOfKin());
+                .append(getLevel());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
