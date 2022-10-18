@@ -70,7 +70,7 @@ public class StudentCard extends UiPart<Region> {
 
         //to be transferred to DarkTheme.css if possible
         helpTag.setBackground(new Background(
-                new BackgroundFill(Color.rgb(241, 65, 65), new CornerRadii(2), Insets.EMPTY)));
+                new BackgroundFill(Color.rgb(241, 88, 88), new CornerRadii(2), Insets.EMPTY)));
         helpTag.setPadding(new Insets(1, 5, 1, 5));
     }
 
