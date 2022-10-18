@@ -10,7 +10,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SwapTaskNumbersCommand;
-import seedu.address.logic.commands.SwapTaskNumbersCommand.SwapTaskNumberFromModuleDescriptor;
+import seedu.address.logic.commands.SwapTaskNumbersCommand.SwapTaskNumbersDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 
@@ -20,7 +20,7 @@ import seedu.address.model.module.ModuleCode;
 public class SwapTaskNumbersCommandParser implements Parser<SwapTaskNumbersCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * {@code SwapTaskNumber} command and returns a {@code SwapTaskNumber}
+     * {@code SwapTaskNumbersCommand} and returns a {@code SwapTaskNumbersCommand}
      * object for execution.
      * @throws ParseException if the user input does not conform with the
      *                        expected format.
@@ -34,7 +34,7 @@ public class SwapTaskNumbersCommandParser implements Parser<SwapTaskNumbersComma
         List<Index> taskIndexesToSwap = ParserUtil.parseTaskNumbersToSwap(
                 argMultimap.getValue(PREFIX_TASK_NUMBERS_TO_SWAP).get());
 
-        SwapTaskNumbersCommand.SwapTaskNumbersDescriptor swapTaskNumbersDescriptor =
+        SwapTaskNumbersDescriptor swapTaskNumbersDescriptor =
                 new SwapTaskNumbersCommand.SwapTaskNumbersDescriptor();
         String moduleCodeOfModuleToSwapTasksAsString =
                 argMultimap.getValue(PREFIX_MODULE_CODE).get();
