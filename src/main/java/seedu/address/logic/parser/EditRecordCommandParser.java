@@ -70,9 +70,9 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
         if (medications.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet =
+        Collection<String> medicationSet =
                 medications.size() == 1 && medications.contains("") ? Collections.emptySet() : medications;
-        return Optional.of(ParserUtil.parseMedications(tagSet));
+        return Optional.of(ParserUtil.parseMedications(medicationSet));
     }
 
 }

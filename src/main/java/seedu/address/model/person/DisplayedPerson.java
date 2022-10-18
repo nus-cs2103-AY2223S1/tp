@@ -12,8 +12,6 @@ import seedu.address.model.record.Record;
  * Represents person whose records are being displayed.
  */
 public class DisplayedPerson {
-    private final ObservableList<Record> recordList = FXCollections.observableArrayList();
-
     /** Person to be displayed */
     private Person person;
 

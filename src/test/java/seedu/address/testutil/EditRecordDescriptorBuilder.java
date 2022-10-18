@@ -57,7 +57,7 @@ public class EditRecordDescriptorBuilder {
      * that we are building.
      */
     public EditRecordDescriptorBuilder withMedications(String... medications) {
-        Set<Medication> medicationSet = Stream.of(medications).map(Medication::new).collect(Collectors.toSet());
+        Set<Medication> medicationSet = Stream.of(medications).map(Medication::of).collect(Collectors.toSet());
         descriptor.setMedications(medicationSet);
         return this;
     }
