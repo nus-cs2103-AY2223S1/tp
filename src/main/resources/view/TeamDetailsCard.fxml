@@ -4,9 +4,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextArea?>
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox spacing="0" alignment="TOP_LEFT">
-        <Label styleClass="label-bright" text="Currently Selected Team: " StackPane.alignment="TOP_LEFT" />
-        <Label fx:id="teamNameDisplay" styleClass="label-bright" text="\$teamNameDisplay" StackPane.alignment="TOP_LEFT" />
-    </HBox>
+    <VBox>
+        <HBox spacing="0" alignment="TOP_LEFT">
+            <Label styleClass="label-bright-padding" text="Selected Team: " StackPane.alignment="TOP_LEFT"/>
+        </HBox>
+        <HBox spacing="0" alignment="TOP_LEFT">
+            <Label fx:id="teamNameDisplay" styleClass="label-bright-padding" text="\$teamNameDisplay"
+                   StackPane.alignment="TOP_LEFT"/>
+        </HBox>
+    </VBox>
 </StackPane>

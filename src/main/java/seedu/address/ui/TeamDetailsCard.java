@@ -25,5 +25,6 @@ public class TeamDetailsCard extends UiPart<Region> {
     public TeamDetailsCard(Team team) {
         super(FXML);
         teamNameDisplay.setText(team.getTeamName());
+        teamNameDisplay.setWrapText(true);
     }
 }
