@@ -3,8 +3,6 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.EditModuleCommand;
-import seedu.address.model.task.Task;
-
 
 /**
  * Module class represents a Module being taken.
@@ -35,7 +33,7 @@ public class Module {
      *         else return false
      */
     public boolean isSameModule(Module otherModule) {
-       return this.equals(otherModule);
+        return this.equals(otherModule);
     }
 
     /**
