@@ -106,6 +106,15 @@ Format: `cleardebts <person index>`
 Example:
 * `cleardebts 3`
 
+### Deleting debts: `deletedebts`
+
+Deletes the debts specified by their index numbers from a person listed in PayMeLah.
+
+Format: `deletedebts <person index> debt/1 3 4`
+
+Example:
+* `deletedebts 2 debt/2 3`
+
 ### Getting the statement
 
 Retrieves a statement of the total sum of debts you are owed.
