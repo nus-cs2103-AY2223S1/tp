@@ -22,6 +22,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
 
 /**
  * Edits the details of an existing application in the application book.
@@ -81,6 +82,11 @@ public class EditCommand extends Command {
         }
 
         model.setApplication(applicationToEdit, editedApplication);
+        Optional<Interview> interview = applicationToEdit.getInterview();
+        if (interview.isPresent()) {
+            Application editedApplicationWithInterview = new Application(editedApplication, interview.get());
+            model.setApplication(editedApplication, editedApplicationWithInterview);
+        }
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
