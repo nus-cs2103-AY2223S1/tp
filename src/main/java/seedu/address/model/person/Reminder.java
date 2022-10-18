@@ -9,12 +9,23 @@ public class Reminder {
     public final String task;
     public final String date;
 
+    /**
+     * Constructs an {@code Reminder}.
+     *
+     * @param reminder A valid reminder.
+     * @param date A valid date to associated to the reminder.
+     */
     public Reminder(String reminder, String date) {
         requireNonNull(reminder, date);
         this.task = reminder;
         this.date = date;
     }
 
+    /**
+     * Constructs an {@code Reminder}.
+     *
+     * @param reminder A valid reminder.
+     */
     public Reminder(String reminder) {
         requireNonNull(reminder);
         this.task = reminder;

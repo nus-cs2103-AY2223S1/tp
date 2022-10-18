@@ -32,6 +32,10 @@ public class ReminderCommand extends Command {
     private final Index index;
     private final Reminder reminder;
 
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param reminder to associate with the person
+     */
     public ReminderCommand(Index index, Reminder reminder) {
         requireAllNonNull(index, reminder);
         this.index = index;

@@ -135,6 +135,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String reminder} into an {@code Reminder}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
     public static Reminder parseReminders(String reminder) throws ParseException {
         requireNonNull(reminder);
         String trimmedReminder = reminder.trim();
