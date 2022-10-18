@@ -43,11 +43,7 @@ public class CancelCommand extends SelectAppointmentCommand {
         Person patientToCancelAppt = getTargetPerson(model);
         Appointment toBeCancelledAppt = getTargetAppointment(model);
 
-        Person patientAfterAppointmentCancelled = EditPatientCommand.createEditedPerson(
-                patientToCancelAppt, new EditPatientCommand.EditPersonDescriptor());
-        patientAfterAppointmentCancelled.cancelAppointment(toBeCancelledAppt);
-
-        model.setPerson(patientToCancelAppt, patientAfterAppointmentCancelled);
+        patientToCancelAppt.cancelAppointment(toBeCancelledAppt);
         model.deleteAppointment(toBeCancelledAppt);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

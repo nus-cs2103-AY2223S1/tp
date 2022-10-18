@@ -28,6 +28,7 @@ import seedu.address.testutil.PersonBuilder;
 public class CancelCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
     @Test
     public void execute_validIndexCancel_success() {
         Person personWithAppt = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
