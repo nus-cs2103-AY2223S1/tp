@@ -169,7 +169,7 @@ How the parsing works:
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
 
 
 The `Model` component,
@@ -349,6 +349,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * should only be used to access and store sensitive information
 * targeted at FAs and does not include features that involve communication with their clients
 * manage contacts faster than a typical mouse/GUI driven app
+* FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients' details as well as portfolio in one glance
+
 
 ### User stories
 
@@ -356,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …                                     | I can …                                                                          | So that …                                                                           |
 |----------|--------------------------------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| `* * *`  | relatively new user                        | add a new contact                                                                | I wont forget my new client's details                                               |
+| `* * *`  | relatively new user                        | add a new client                                                                 | I wont forget my new client's details                                               |
 | `* * *`  | relatively new user                        | delete meeting dates for a contact                                               | I can maintain an updated list of my clients’ details                               |
 | `* * *`  | relatively new user                        | click a button                                                                   | I can exit the program easily                                                       |
 | `* * *`  | relatively new user                        | save my clients' data                                                            | the data will not be lost after I close the application                             |
@@ -652,6 +654,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: Importing an invalid JSON file
+       Expected: list of clients will be empty and nothing is shown
+   
+    2. Test case: Importing an invalid CSV file
+       Expected: list of clients will be empty and nothing is shown
+   
+    3. Test case: Editing the JSON file when the application is not launched with invalid datas
+       Expected: list of clients will be empty and nothing is shown
+   
+    4. Test case: Missing JSON file
+       Expected: Creates a new addressbook.json file when there is a new command entered
+   
+    5. {explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
