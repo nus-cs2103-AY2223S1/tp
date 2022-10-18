@@ -1,7 +1,9 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -11,6 +13,7 @@ import seedu.address.model.record.Record;
  * Represents person whose records are being displayed.
  */
 public class DisplayedPerson {
+    private final ObservableList<Record> recordList = FXCollections.observableArrayList();
 
     /** Person to be displayed */
     private Person person;
@@ -72,6 +75,13 @@ public class DisplayedPerson {
      */
     public void clearRecords() {
         person.clearRecords();
+    }
+
+    /**
+     * Sets the target record to the new edited record.
+     */
+    public void setRecord(Record target, Record editedRecord) {
+        person.setRecord(target, editedRecord);
     }
 
     /**
