@@ -55,7 +55,7 @@ public class UnassignCommandTest {
         try {
             UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, TUITIONCLASS1.getName());
             CommandResult commandResult = unassignCommand.execute(model);
-            assertEquals(commandResult, String.format(UnassignCommand.MESSAGE_UNASSIGNED_TUTOR_SUCCESS,TUTOR3));
+            assertEquals(commandResult, String.format(UnassignCommand.MESSAGE_UNASSIGNED_TUTOR_SUCCESS, TUTOR3));
             assertEquals(expectedTuitionClasses, TUTOR3.getTuitionClasses());
         } catch (CommandException e) {
             return;
