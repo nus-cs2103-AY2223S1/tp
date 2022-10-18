@@ -76,7 +76,12 @@ public class AssignTaskCommand extends TaskCommand {
             assignedContacts.add(contactToAssign);
         }
 
-        Task editedTask = new Task(taskToAssignTo.getTitle(), taskToAssignTo.getCompleted(), assignedContacts);
+        Task editedTask = new Task(
+                taskToAssignTo.getTitle(),
+                taskToAssignTo.getCompleted(),
+                taskToAssignTo.getDeadline(),
+                assignedContacts
+        );
 
         model.setTask(taskToAssignTo, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

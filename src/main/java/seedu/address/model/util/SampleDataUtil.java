@@ -55,8 +55,8 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Add task functionality."), false, getContactSet("Alex Yeoh")),
-            new Task(new Title("Add task storage"), false, getContactSet("Bernice Yu"))
+            new Task(new Title("Add task functionality."), false, null, getContactSet("Alex Yeoh")),
+            new Task(new Title("Add task storage"), false, null, getContactSet("Bernice Yu"))
         };
     }
 
