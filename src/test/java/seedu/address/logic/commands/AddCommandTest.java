@@ -234,7 +234,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<Team> hasMember(Person p) {
+        public List<Team> teamsWithMember(Person p) {
             throw new AssertionError("This method should not be called.");
         }
 

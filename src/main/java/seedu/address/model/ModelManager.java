@@ -331,7 +331,7 @@ public class ModelManager implements Model {
      * @return List of teams.
      */
     @Override
-    public List<Team> hasMember(Person p) {
+    public List<Team> teamsWithMember(Person p) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(p);
         List<Team> teamsWithMember = new ArrayList<>();
