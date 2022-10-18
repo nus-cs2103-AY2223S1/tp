@@ -30,8 +30,8 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task "
             + "to the module identified by the module code.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CODE + "MODULE CODE "
-            + PREFIX_TASK_DESCRIPTION + "TASK DESCRIPTION \n"
+            + PREFIX_MODULE_CODE + "MODULE_CODE "
+            + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS3230 "
             + PREFIX_TASK_DESCRIPTION + "Complete programming assignment";
