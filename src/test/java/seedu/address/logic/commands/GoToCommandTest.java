@@ -40,7 +40,7 @@ public class GoToCommandTest {
         ModuleCodeMatchesKeywordPredicate secondPredicate =
                 new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_MA2001);
         ModuleCode firstModuleCode = new ModuleCode(MODULE_CODE_STR_CS2106);
-        ModuleCode secondModuleCode = new ModuleCode(MODULE_CODE_STR_CS2106);
+        ModuleCode secondModuleCode = new ModuleCode(MODULE_CODE_STR_MA2001);
 
         GoToCommand gotoFirstCommand = new GoToCommand(firstPredicate, firstModuleCode);
         GoToCommand gotoSecondCommand = new GoToCommand(secondPredicate, secondModuleCode);
@@ -60,6 +60,12 @@ public class GoToCommandTest {
 
         // different module -> returns false
         assertFalse(gotoFirstCommand.equals(gotoSecondCommand));
+
+        // different predicate -> returns false
+        assertFalse(gotoFirstCommand.equals(new GoToCommand(secondPredicate, firstModuleCode)));
+
+        // different moduleCode -> returns false
+        assertFalse(gotoFirstCommand.equals(new GoToCommand(firstPredicate, secondModuleCode)));
     }
 
     @Test
@@ -70,9 +76,7 @@ public class GoToCommandTest {
         ModuleCode moduleCode = new ModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK);
         GoToCommand command = new GoToCommand(predicate, moduleCode);
 
-        assertThrows(CommandException.class,
-                expectedMessage, ()
-                        -> command.execute(model));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(model));
     }
 
     @Test
