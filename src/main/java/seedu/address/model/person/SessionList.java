@@ -32,6 +32,7 @@ public class SessionList {
      */
     public void addSession(Session session) {
         sessionList.add(session);
+        sessionList.sort(Session::compareTo);
     }
 
     /**
@@ -53,6 +54,7 @@ public class SessionList {
             throw new IllegalArgumentException(MESSAGE_INVALID_SESSION_INDEX);
         }
         sessionList.set(indexToEdit, session);
+        sessionList.sort(Session::compareTo);
     }
 
     /**
@@ -70,16 +72,22 @@ public class SessionList {
     }
 
     /**
-     * Returns a description of the next session in the session list.
+     * Returns a description of the session list. If session list size is greater than two,
+     * only the first two are shown.
      */
     public String shortDescription() {
         if (sessionList.isEmpty()) {
             return toString();
         }
-        sessionList.sort(Session::compareTo);
-        String shortDesc = "NEXT UP: "
-                + sessionList.get(0).toString() + ".";
-        return shortDesc;
+        if (sessionList.size() <= 2) {
+            return toString();
+        }
+        StringBuilder description = new StringBuilder();
+        for (int i = 0; i < 2; i++) {
+            description.append(i + 1).append(". ").append(sessionList.get(i)).append("\n");
+        }
+        description.append("...\n");
+        return description.toString();
     }
 
     /**
