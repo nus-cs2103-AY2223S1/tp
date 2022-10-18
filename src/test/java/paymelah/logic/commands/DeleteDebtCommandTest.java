@@ -35,7 +35,7 @@ import paymelah.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code ClearDebtsCommand}.
+ * {@code DeleteDebtCommand}.
  */
 public class DeleteDebtCommandTest {
 
