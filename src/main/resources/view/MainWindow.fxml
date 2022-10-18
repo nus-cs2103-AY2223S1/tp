@@ -59,7 +59,7 @@
                             </VBox>
                         </Tab>
 
-                        <Tab text="tasks" fx:id="tab2">
+                        <Tab text="Tasks" fx:id="tab2">
                             <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                                 <padding>
                                     <Insets top="10" right="10" bottom="10" left="10" />
