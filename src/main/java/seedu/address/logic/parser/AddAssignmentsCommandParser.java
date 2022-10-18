@@ -8,12 +8,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.position.Student;
 
 /**
- * Parses input arguments and creates a new AvailabilityCommand object
+ * Parses input arguments and creates a new AddAssignmentsCommand object
  */
 public class AddAssignmentsCommandParser implements Parser<AddAssignmentsCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code AvailabilityCommand}
-     * and returns a {@code AvailabilityCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AddAssignmentsCommand}
+     * and returns a {@code AddAssignmentsCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

@@ -154,7 +154,7 @@ public class Student extends Position {
     }
 
     /**
-     * method used to isolate the grade and attendance values in its details
+     * Isolates the grade, attendance, and assignments values in the details
      * @param details A valid detail.
      * @return a String[] with its first element being the grade and the 2nd element the attendance
      */

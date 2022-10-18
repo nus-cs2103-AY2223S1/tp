@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.position.Student;
 
 /**
- * Changes the grade of an existing student in the address book.
+ * Adds assignments to all existing students in the address book.
  */
 public class AddAssignmentsCommand extends Command {
     public static final String COMMAND_WORD = "assignments";
@@ -69,7 +69,8 @@ public class AddAssignmentsCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the availability is edited for
+     * Generates a command execution success message based on whether the assignments are added to all existing
+     * students in the address book
      * {@code personToEdit}.
      */
     private String generateSuccessMessage() {
@@ -85,7 +86,7 @@ public class AddAssignmentsCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AvailabilityCommand)) {
+        if (!(other instanceof AddAssignmentsCommand)) {
             return false;
         }
 
