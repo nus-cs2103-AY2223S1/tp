@@ -90,6 +90,8 @@ public interface Model {
 
     public void addTeam(Team team);
 
+    public void setTeamName(Index targetIndex, Name newTeamName);
+
     public void addPersonToTeam(Person person, Team team);
 
     public void removePersonFromTeam(Person person, Team team);

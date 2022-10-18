@@ -131,6 +131,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTeamName(Index targetIndex, Name newTeamName) {
+        requireAllNonNull(targetIndex, newTeamName);
+        addressBook.setTeamName(targetIndex, newTeamName);
+        updateFilteredTeamList(unused -> false);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
+    }
+
+    @Override
     public void deleteTeam(Team team) {
         addressBook.removeTeam(team);
     }

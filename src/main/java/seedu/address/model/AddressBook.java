@@ -10,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -138,6 +139,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void removePersonFromTeam(Person person, Team team) {
         team.removeMember(person);
+    }
+
+    public void setTeamName(Index targetIndex, Name newTeamName) {
+        requireNonNull(newTeamName);
+        teams.setTeamName(targetIndex.getZeroBased(), newTeamName);
     }
 
     //// task-level operations

@@ -60,6 +60,10 @@ public class UniqueTeamList implements Iterable<Team> {
         return internalList.get(index);
     }
 
+    public void setTeamName(int targetIndex, Name newTeamName) {
+        internalList.get(targetIndex).setName(newTeamName);
+    }
+
     public Team getTeam(Name teamName) {
         requireNonNull(teamName);
         for (int i = 0; i < internalList.size(); i++) {
