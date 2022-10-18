@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `sdel 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StallListPanel`, `ReviewListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Stall` object residing in the `Model`.
 
 ### Logic component
 
@@ -152,6 +152,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### **Review Components**
+* Added Classes into the model Component to encapsulate a Review
+
+#### **Implementation**
+<img src="images/ModelReviewClassDiagram.png" width="450" />
+
+A `Review`,
+- is stored in `uniqueReviewList` of the Model
+
+A `Review` contains the following attributes,
+1. a `Name`, which represent the name of the Stall associated with the Review
+2. a `Date`, which represent the day, month and year as specified in `DD/MM/YYYY` format
+3. a `Content`, which represent the review of the Stall by the user
+4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
+5. can be assigned to a single `Stall`
+6. can be assigned multiple `Tags`
+
+#### Design considerations:
+
+#### Aspect: How the components within Review are added or changed
+- **Current Choice**: Attributes within `Review` are immutable, meaning that if there is an attribute that has to be edited, a new `Review` object has to be created.
+    * Pros: Concept of Immutability is met, making the code less prone to bugs as all components of a `Review` object are fixed
+    * Cons: Less flexible, more steps needed in editing `Review` objects
+- Alternative 1: Allow certain components within `Review`, like `Date` and `Content`to be mutable
+    * Pros: Less overhead as fewer objects are created
+    * Cons: Prone to error as a Component might not be correctly changed
 
 ### \[Proposed\] Undo/redo feature
 
