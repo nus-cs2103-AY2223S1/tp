@@ -7,8 +7,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entry.Entry;
@@ -23,6 +25,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Entry> filteredExpenditure;
     private final FilteredList<Entry> filteredIncome;
+
+
+
 
     /**
      * Initializes a ModelManager with the given pennyWise and userPrefs.
@@ -133,7 +138,6 @@ public class ModelManager implements Model {
     @Override
     public void setIncome(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
-
         pennyWise.setIncome(target, editedEntry);
     }
 
@@ -155,7 +159,6 @@ public class ModelManager implements Model {
 
     /**
      * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
-     *
      */
     public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
@@ -164,7 +167,6 @@ public class ModelManager implements Model {
 
     /**
      * Updates the filter of the filtered expenditure list to filter by the given {@code predicate}.
-     *
      */
     public void updateFilteredExpenditureList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
@@ -173,11 +175,99 @@ public class ModelManager implements Model {
 
     /**
      * Updates the filter of the filtered income list to filter by the given {@code predicate}.
-     *
      */
     public void updateFilteredIncomeList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredIncome.setPredicate(predicate);
+    }
+
+
+    /**
+     * Gets pie chart data of income entries
+     *
+     * @return ObservableList of income pie chart data
+     */
+    public ObservableList<PieChart.Data> getIncomePieChartData() {
+
+        int[] incomePieChartArr = new int[6];
+
+        for (Entry e : filteredIncome) {
+            String tagName = e.getTag().getTagName();
+            switch (tagName) {
+            case "Salary":
+                incomePieChartArr[0] += e.getAmount().getValue();
+                break;
+            case "Allowance":
+                incomePieChartArr[1] += e.getAmount().getValue();
+                break;
+            case "Profit":
+                incomePieChartArr[2] += e.getAmount().getValue();
+                break;
+            case "Investment":
+                incomePieChartArr[3] += e.getAmount().getValue();
+                break;
+            case "Gifts":
+                incomePieChartArr[4] += e.getAmount().getValue();
+                break;
+            case "Others":
+                incomePieChartArr[5] += e.getAmount().getValue();
+                break;
+            default:
+                break;
+            }
+        }
+
+        ObservableList<PieChart.Data> incomePieChartData = FXCollections.observableArrayList(
+            new PieChart.Data("Salary", incomePieChartArr[0]), new PieChart.Data("Allowance", incomePieChartArr[1]),
+            new PieChart.Data("Profit", incomePieChartArr[2]), new PieChart.Data("Investment", incomePieChartArr[3]),
+            new PieChart.Data("Gifts", incomePieChartArr[4]), new PieChart.Data("Others", incomePieChartArr[5]));
+
+
+        return incomePieChartData;
+    }
+
+
+    /**
+     * Gets pie chart data of expense entries
+     *
+     * @return ObservableList of expense pie chart data
+     */
+    public ObservableList<PieChart.Data> getExpensePieChartData() {
+        int[] expensePieChartArr = new int[6];
+
+        for (Entry e : filteredExpenditure) {
+            String tagName = e.getTag().getTagName();
+            switch (tagName) {
+            case "Food":
+                expensePieChartArr[0] += e.getAmount().getValue();
+                break;
+            case "Groceries":
+                expensePieChartArr[1] += e.getAmount().getValue();
+                break;
+            case "Entertainment":
+                expensePieChartArr[2] += e.getAmount().getValue();
+                break;
+            case "Education":
+                expensePieChartArr[3] += e.getAmount().getValue();
+                break;
+            case "Housing":
+                expensePieChartArr[4] += e.getAmount().getValue();
+                break;
+            case "Others":
+                expensePieChartArr[5] += e.getAmount().getValue();
+                break;
+            default:
+                break;
+            }
+        }
+
+        ObservableList<PieChart.Data> expensePieChartData = FXCollections.observableArrayList(
+            new PieChart.Data("Food", expensePieChartArr[0]), new PieChart.Data("Groceries", expensePieChartArr[1]),
+            new PieChart.Data("Entertainment", expensePieChartArr[2]),
+            new PieChart.Data("Education", expensePieChartArr[3]), new PieChart.Data("Housing", expensePieChartArr[4]),
+            new PieChart.Data("Others", expensePieChartArr[5]));
+
+        return expensePieChartData;
     }
 
     @Override
@@ -194,9 +284,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return pennyWise.equals(other.pennyWise)
-                && userPrefs.equals(other.userPrefs)
-                && filteredExpenditure.equals(other.filteredExpenditure);
+        return pennyWise.equals(other.pennyWise) && userPrefs.equals(other.userPrefs) && filteredExpenditure.equals(
+            other.filteredExpenditure);
     }
 
 }

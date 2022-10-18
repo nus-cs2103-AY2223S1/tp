@@ -17,7 +17,6 @@ public class EntryType {
             + ENTRY_TYPE_INCOME
             + "' for income";
     public static final String VALIDATION_REGEX = "^\\s*([ei])\\s*$";
-
     /**
      * Types that can be used
      */

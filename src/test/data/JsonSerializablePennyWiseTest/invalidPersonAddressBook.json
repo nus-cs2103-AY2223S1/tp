@@ -3,12 +3,12 @@
     "description" : "",
     "amount" : "20",
     "date" : "20-01-2022",
-    "tagged" : [ "Lunch" ]
+    "tagged" : "Food"
   }, {
     "description" : "Dinner",
     "amount" : "30",
     "date" : "20-02-2022",
-    "tagged" : [ "Dinner" ]
+    "tagged" : "Food"
   }],
   "incomes": []
 }
