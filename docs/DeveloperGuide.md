@@ -240,7 +240,7 @@ _{more aspects and alternatives to be added}_
 
 The archive mechanism implements the following operations:
 
-* `idENTify#archive()` — Archive patients accroding to their tags.
+* `idENTify#archive()` — Archive patients according to their tags.
 
 The operation is exposed in the `Command` interface as `Command#ArchivePatientCommand()`.
 
@@ -256,7 +256,7 @@ Step 2. The user executes `archive patient` command to archive patients by their
 patients after the `archive patient` command executes to show on the screen.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
-("archive Patient")` API 
+("archive patient")` API 
 call.
 
 ![Interactions Inside the Logic Component for the `archive patient` Command](images/ArchivePatientSequenceDiagram.png)
@@ -271,6 +271,44 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged 
   list on the screen.
+
+### \[In progress\] Appointments archiving
+
+#### In progress
+
+The archive mechanism implements the following operations:
+
+* `idENTify#archive()` — Archive appointments according to their tags or dates.
+
+The operation is exposed in the `Command` interface as `Command#ArchiveAppointmentCommand()`.
+
+
+
+Given below is an example usage scenario and how the archive mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
+appointment list.
+
+
+Step 2. The user executes `archive appts /t` command to archive patients by their tags, causing the modified list of
+appointments after the `archive appts /t` command executes to show on the screen.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("archive appts")` API
+call.
+
+![Interactions Inside the Logic Component for the `archive appts` Command](images/ArchiveAppointmentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/ArchiveAppointmentCommand.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How archive appointment executes:**
+
+* **Current choice:** Create multiple appointment lists according to tags or dates and merge all the lists to show the 
+  merged list on the screen.
 
 _{more aspects and alternatives to be added}_
 
