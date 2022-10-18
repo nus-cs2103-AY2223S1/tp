@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 
 /**
  * An UI component that displays information of a {@code Reminder}.
@@ -14,9 +14,9 @@ public class ReminderCard extends UiPart<Region> {
     public final TempReminder reminder;
 
     @FXML
-    private Text description;
+    private Label description;
     @FXML
-    private Text dateText;
+    private Label dateText;
 
     /**
      * Creates a {@code ReminderCard} with the given {@code Reminder} to display.

@@ -6,10 +6,11 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -21,7 +22,7 @@ public class WelcomePanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
-    private Text welcomeMessage;
+    private Label welcomeMessage;
     @FXML
     private ListView<TempReminder> reminderView;
 
@@ -33,7 +34,8 @@ public class WelcomePanel extends UiPart<Region> {
         ObservableList<TempReminder> remindersPlaceholder = FXCollections.observableArrayList(
             new TempReminder("Reminder 1", LocalDateTime.now()),
             new TempReminder("Reminder 2", LocalDateTime.now().plusDays(1)),
-            new TempReminder("Reminder 3", LocalDateTime.now().plusDays(4)),
+            new TempReminder("Reminder 3 which is a very long reminder just to test"
+                    + " whether the text UI component will warp.", LocalDateTime.now().plusDays(4)),
             new TempReminder("Reminder 4", LocalDateTime.now().plusDays(3)),
             new TempReminder("Reminder 5", LocalDateTime.now().plusDays(2))
         );
@@ -70,6 +72,19 @@ class TempReminder {
  * Custom {@code ListCell} that displays the graphics of a {@code Reminder} using a {@code ReminderCard}.
  */
 class TempReminderListViewCell extends ListCell<TempReminder> {
+    private static final String PLACEHOLDER_TEXT = "PLACEHOLDER REMINDER";
+    private final StackPane pane;
+
+    // code adapted from https://ciruman.wordpress.com/2015/04/08/javafx-listview-without-horizontal-scroll/
+    public TempReminderListViewCell() {
+        pane = new StackPane();
+        pane.setMinWidth(0);
+        pane.setPrefWidth(1);
+        pane.setMinHeight(0);
+        pane.getChildren().add(new ReminderCard(
+                new TempReminder(PLACEHOLDER_TEXT, LocalDateTime.now())).getRoot());
+    }
+
     @Override
     protected void updateItem(TempReminder reminder, boolean empty) {
         super.updateItem(reminder, empty);
@@ -78,7 +93,9 @@ class TempReminderListViewCell extends ListCell<TempReminder> {
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new ReminderCard(reminder).getRoot());
+            pane.getChildren().clear();
+            pane.getChildren().add(new ReminderCard(reminder).getRoot());
+            setGraphic(pane);
         }
     }
 }

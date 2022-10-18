@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
 
-<!-- <CardPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"> -->
-   <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-      <children>
-         <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-         <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      </children>
-   </VBox>
-<!-- </CardPane> -->
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="reminder-card  ">
+   <children>
+      <Label styleClass="reminder-description" fx:id="description" text="Text" wrapText="true" />
+      <Label styleClass="reminder-with" fx:id="with" text="with Lorem Ipsum" wrapText="true" />
+      <Label styleClass="reminder-date" fx:id="dateText" text="Text" wrapText="true" />
+   </children>
+</VBox>

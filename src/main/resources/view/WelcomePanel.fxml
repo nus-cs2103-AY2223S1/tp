@@ -2,13 +2,13 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
 
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="welcome-panel" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="340" prefWidth="340" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fx:id="welcomeMessage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="launch-message" text="launch-message placeholder (this should not show up!)" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="reminder-header" text="Upcoming Reminders" />
-      <ListView fx:id="reminderView" />
+      <Label fx:id="welcomeMessage" styleClass="welcome-message" text="welcome-message placeholder (this should not show up!)" wrapText="true"/>
+      <Label styleClass="reminders-header" text="Upcoming Reminders" />
+      <ListView styleClass="reminder-view" fx:id="reminderView" VBox.vgrow="ALWAYS" prefHeight="1" minHeight="-Infinity" />
    </children>
 </VBox>
