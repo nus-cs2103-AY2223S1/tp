@@ -25,7 +25,7 @@ public class FilePathUtilTest {
     @Test
     public void checkPdfFilePathTest() {
         //valid path
-        assertTrue(FileUtil.checkPdfFilePath("src/main/resources/misc/Test_PDF.pdf"));
+        assertTrue(FileUtil.checkPdfFilePath("src/test/data/TestPDFs/Test_PDF.pdf"));
 
         //invalid path
         assertFalse(FileUtil.checkPdfFilePath("a\0"));

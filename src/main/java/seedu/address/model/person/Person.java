@@ -60,6 +60,23 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Constructor with no remark, for CreateCommand only.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  NetWorth netWorth, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.remark = new Remark("");
+        this.netWorth = netWorth;
+        this.filePath = new FilePath("");
+        this.tags.addAll(tags);
+    }
+
+
     public Name getName() {
         return name;
     }
@@ -108,6 +125,13 @@ public class Person {
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
                 && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+    }
+
+    /**
+     * Returns true if file path of person has been initialized
+     */
+    public boolean hasFilePath() {
+        return !filePath.isEmpty();
     }
 
     /**

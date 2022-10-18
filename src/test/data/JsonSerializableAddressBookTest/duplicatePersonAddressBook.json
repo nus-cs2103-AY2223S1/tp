@@ -6,7 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "netWorth" : "$54400",
-    "filePath" : "src/main/resources/misc/Test_PDF.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -15,6 +15,6 @@
     "address": "4th street",
     "remark" : "",
     "netWorth" : "$54400",
-    "filePath" : "src/main/resources/misc/Test_PDF.pdf"
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf"
   } ]
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.commons.util.FileUtil;
+import seedu.address.logic.commands.SetPersonFileCommand;
 
 /**
  * Represents a Person's pdf file in the address book.
@@ -11,7 +12,10 @@ import seedu.address.commons.util.FileUtil;
  */
 public class FilePath {
 
-    public static final String DEFAULT_FILE_PATH = "src/main/resources/misc/Test_PDF.pdf";
+    public static final String EMPTY_FILEPATH = "";
+
+    public static final String MESSAGE_EMPTY_FILEPATH = "File Path has not been initiated\n"
+            + "Set a file path for the client by using the command " + SetPersonFileCommand.COMMAND_WORD;
 
     public static final String MESSAGE_CONSTRAINTS =
             "File Path should be a valid absolute file path to a pdf in your directory\n"
@@ -28,20 +32,45 @@ public class FilePath {
     public FilePath(String filePath) {
         requireNonNull(filePath);
         if (filePath.equals("")) {
-            this.value = DEFAULT_FILE_PATH;
+            this.value = EMPTY_FILEPATH;
         } else {
             checkArgument(isValidPdfFilePath(filePath), MESSAGE_CONSTRAINTS);
             this.value = filePath;
         }
+
+    }
+
+    /**
+     * Constructs an empty {@code FilePath}.
+     */
+    public FilePath() {
+        this.value = EMPTY_FILEPATH;
+    }
+
+    /**
+     * Returns true if a given string is a valid PDF file or is empty.
+     */
+    public static boolean isValidFilePath(String test) {
+        return isEmptyPdfFilePath(test) || isValidPdfFilePath(test);
     }
 
     /**
      * Returns true if a given string is a valid PDF file Path.
      */
     public static boolean isValidPdfFilePath(String test) {
-        return FileUtil.isValidPath(test) && test.contains(".pdf") && FileUtil.checkPdfFilePath(test);
+        return test.contains(".pdf") && FileUtil.checkPdfFilePath(test);
     }
 
+    /**
+     * Returns true if the given file path is empty
+     */
+    public static boolean isEmptyPdfFilePath(String test) {
+        return test.equals(EMPTY_FILEPATH);
+    }
+
+    public boolean isEmpty() {
+        return value.isEmpty();
+    }
 
     @Override
     public String toString() {

@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "";
     public static final String DEFAULT_NETWORTH = "$2000";
-    public static final String DEFAULT_FILEPATH = "src/main/resources/misc/Test_PDF.pdf";
+    public static final String DEFAULT_FILEPATH = "src/test/data/TestPDFs/Test_PDF.pdf";
 
     private Name name;
     private Phone phone;
@@ -132,7 +132,7 @@ public class PersonBuilder {
         return new Person(name, phone, email, address, remark, netWorth, filePath, tags);
     }
 
-    public Person buildNoRemark() {
-        return new Person(name, phone, email, address, netWorth, filePath, tags);
+    public Person buildNoRemarkAndFilePath() {
+        return new Person(name, phone, email, address, netWorth, tags);
     }
 }

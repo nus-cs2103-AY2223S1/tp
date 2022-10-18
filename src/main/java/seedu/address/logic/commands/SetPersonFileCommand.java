@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.person.FilePath.DEFAULT_FILE_PATH;
+import static seedu.address.model.person.FilePath.EMPTY_FILEPATH;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class SetPersonFileCommand extends Command {
     public static final String COMMAND_WORD = "filepath";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the file path of the person identified "
-            + "by the index number used in the last person listing. "
+            + "by the index number used in the last person listing.\n"
             + "Existing file path will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_FILEPATH + "[FilePath]\n"
@@ -69,7 +69,7 @@ public class SetPersonFileCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !filePath.value.equals(DEFAULT_FILE_PATH) ? MESSAGE_CHANGE_FILEPATH_SUCCESS
+        String message = !filePath.value.equals(EMPTY_FILEPATH) ? MESSAGE_CHANGE_FILEPATH_SUCCESS
                 : MESSAGE_DELETE_FILEPATH_SUCCESS;
         return String.format(message, personToEdit);
     }

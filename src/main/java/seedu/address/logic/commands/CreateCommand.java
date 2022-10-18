@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -28,7 +27,6 @@ public class CreateCommand extends UndoableCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_FILEPATH + "FILEPATH "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -36,7 +34,6 @@ public class CreateCommand extends UndoableCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_NETWORTH + "$1423 "
-            + PREFIX_FILEPATH + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

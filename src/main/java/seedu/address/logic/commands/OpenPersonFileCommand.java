@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.FilePath;
 import seedu.address.model.person.Person;
 
 /**
@@ -42,6 +43,11 @@ public class OpenPersonFileCommand extends Command {
         }
 
         Person personToOpenFile = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!personToOpenFile.hasFilePath()) {
+            throw new CommandException(FilePath.MESSAGE_EMPTY_FILEPATH);
+        }
+
         try {
             FileUtil.openPdfFile(personToOpenFile.getFilePath().toString());
         } catch (IOException e) {

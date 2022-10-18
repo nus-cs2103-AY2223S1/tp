@@ -45,7 +45,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().buildNoRemark();
+        Person person = new PersonBuilder().buildNoRemarkAndFilePath();
         CreateCommand command = (CreateCommand) parser.parseCommand(PersonUtil.getCreateCommand(person));
         assertEquals(new CreateCommand(person), command);
     }
@@ -126,7 +126,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_setPersonFilePath() throws Exception {
-        Person person = new PersonBuilder().withFilePath("src/main/resources/misc/Test_PDF4.pdf").build();
+        Person person = new PersonBuilder().withFilePath("src/test/data/TestPDFs/Test_PDF4.pdf").build();
         SetPersonFileCommand command =
                 (SetPersonFileCommand) parser.parseCommand(SetPersonFileCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_FILEPATH + PersonUtil.getPersonDetails(person));

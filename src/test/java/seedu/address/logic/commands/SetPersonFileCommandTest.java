@@ -24,7 +24,7 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 class SetPersonFileCommandTest {
-    private static final String FILEPATH_STUB = "src/main/resources/misc/Test_PDF2.pdf";
+    private static final String FILEPATH_STUB = "src/test/data/TestPDFs/Test_PDF2.pdf";
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -121,7 +121,7 @@ class SetPersonFileCommandTest {
         // different index -> returns false
         assertFalse(standardCommand.equals(new SetPersonFileCommand(INDEX_SECOND_PERSON,
                 new FilePath(VALID_FILEPATH_AMY))));
-        // different remark -> returns false
+        // different filepath -> returns false
         assertFalse(standardCommand.equals(new SetPersonFileCommand(INDEX_FIRST_PERSON,
                 new FilePath(VALID_FILEPATH_BOB))));
     }

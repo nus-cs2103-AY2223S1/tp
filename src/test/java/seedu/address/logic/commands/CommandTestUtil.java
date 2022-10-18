@@ -40,8 +40,10 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_NETWORTH_AMY = "$1350";
     public static final String VALID_NETWORTH_BOB = "$53000";
-    public static final String VALID_FILEPATH_AMY = "src/main/resources/misc/Test_PDF.pdf";
-    public static final String VALID_FILEPATH_BOB = "src/main/resources/misc/Test_PDF2.pdf";
+    public static final String VALID_FILEPATH_AMY = "src/test/data/TestPDFs/Test_PDF.pdf";
+    public static final String VALID_FILEPATH_BOB = "src/test/data/TestPDFs/Test_PDF2.pdf";
+
+    public static final String EMPTY_FILEPATH = "";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -65,8 +67,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_NETWORTH_DESC = " " + PREFIX_NETWORTH + "1222"; // missing '$' symbol
-    public static final String INVALID_FILEPATH_DESC = " " + PREFIX_FILEPATH
-            + "src/main/resources/misc/Test_PDF2"; // missing '.pdf' label
+    public static final String INVALID_FILEPATH_DESC = " " + PREFIX_FILEPATH + "misc/Test_PDF2"; // missing '.pdf' label
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

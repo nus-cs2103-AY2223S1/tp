@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "netWorth" : "$54400",
-    "filePath" : "src/main/resources/misc/Test_PDF.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -16,7 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "He can't take beer!",
     "netWorth" : "$1350",
-    "filePath" : "src/main/resources/misc/Test_PDF2.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF2.pdf",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -25,7 +25,7 @@
     "address" : "wall street",
     "remark" : "",
     "netWorth" : "$444444400",
-    "filePath" : "src/main/resources/misc/Test_PDF3.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF3.pdf",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -34,7 +34,7 @@
     "address" : "10th street",
     "remark" : "",
     "netWorth" : "$7777",
-    "filePath" : "src/main/resources/misc/Test_PDF4.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF4.pdf",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +43,7 @@
     "address" : "michegan ave",
     "remark" : "",
     "netWorth" : "$888888",
-    "filePath" : "src/main/resources/misc/Test_PDF5.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF5.pdf",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +52,7 @@
     "address" : "little tokyo",
     "remark" : "",
     "netWorth" : "$11222333",
-    "filePath" : "src/main/resources/misc/Test_PDF6.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF6.pdf",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -61,7 +61,7 @@
     "address" : "4th street",
     "remark" : "",
     "netWorth" : "$1000",
-    "filePath" : "src/main/resources/misc/Test_PDF7.pdf",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF7.pdf",
     "tagged" : [ ]
   } ]
 }
