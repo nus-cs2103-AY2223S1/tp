@@ -7,6 +7,7 @@ import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
@@ -24,6 +25,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ROOM + "ROOM "
             + PREFIX_DATE_RANGE + "DATE_RANGE "
             + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS "
             + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN "
@@ -31,6 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ROOM + "05-73 "
             + PREFIX_DATE_RANGE + "13/09/22 - 15/09/22 "
             + PREFIX_NUMBER_OF_GUESTS + "1 "
             + PREFIX_IS_ROOM_CLEAN + "yes";
