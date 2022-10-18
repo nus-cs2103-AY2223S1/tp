@@ -411,7 +411,7 @@ Step 2. The user wants to have email right below each name instead. The user exe
 4. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
 5. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
 6. `Logic` executes the `CustomiseOrderCommand`.
-7. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to set the new ordering into `preferences.json`.
+7. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
 
 The following sequence diagram illustrates points 1-4 in step 2:
 
