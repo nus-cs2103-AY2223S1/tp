@@ -5,6 +5,7 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
@@ -30,6 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_YEAR + "YEAR "
             + PREFIX_STUDENTID + "STUDENT ID "
             + PREFIX_TEACHINGNOMINATION + "TEACHING NOMINATIONS "
+            + PREFIX_RATING + "RATING "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -39,6 +41,7 @@ public class AddCommand extends Command {
             + PREFIX_YEAR + "3 "
             + PREFIX_STUDENTID + "A0123456X "
             + PREFIX_TEACHINGNOMINATION + "1 "
+            + PREFIX_RATING + "5.0 "
             + PREFIX_TAG + "senior ";
 
     public static final String MESSAGE_SUCCESS = "New tutor added: %1$s";
