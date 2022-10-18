@@ -29,9 +29,9 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_NEXT_OF_KIN + "NEXT OF KIN "
             + PREFIX_PATIENT_TYPE + "PATIENT TYPE "
-            + PREFIX_HOSPITAL_WING + "[HOSPITAL WING] "
-            + PREFIX_FLOOR_NUMBER + "[FLOOR NUMBER] "
-            + PREFIX_WARD_NUMBER + "[WARD NUMBER] "
+            + "[" + PREFIX_HOSPITAL_WING + "HOSPITAL WING] "
+            + "[" + PREFIX_FLOOR_NUMBER + "FLOOR NUMBER] "
+            + "[" + PREFIX_WARD_NUMBER + "WARD NUMBER] "
             + "[" + PREFIX_MEDICATION + "MEDICATION]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             + PREFIX_PATIENT_TYPE + "inpatient "
             + PREFIX_HOSPITAL_WING + "south "
             + PREFIX_FLOOR_NUMBER + "3 "
-            + PREFIX_WARD_NUMBER + "69 "
+            + PREFIX_WARD_NUMBER + "D690 "
             + PREFIX_MEDICATION + "panadol "
             + PREFIX_MEDICATION + "ibuprofen ";
 
