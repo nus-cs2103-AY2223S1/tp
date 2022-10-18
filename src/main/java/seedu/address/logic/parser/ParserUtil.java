@@ -16,6 +16,7 @@ import seedu.address.model.client.Name;
 import seedu.address.model.company.CompanyAddress;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
@@ -202,4 +203,19 @@ public class ParserUtil {
         return new Quantity(quantity);
     }
 
+
+    /**
+     * Parses a {@code String date} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(date);
+    }
 }

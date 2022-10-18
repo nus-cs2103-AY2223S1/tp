@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -36,7 +37,8 @@ public class TransactionUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUANTITY + transaction.getQuantity().quantity + " ");
         sb.append(PREFIX_GOODS + transaction.getGoods().goodsName + " ");
-        sb.append(PREFIX_PRICE + transaction.getPrice().price);
+        sb.append(PREFIX_PRICE + transaction.getPrice().price + " ");
+        sb.append(PREFIX_DATE + transaction.getDate().date);
         return sb.toString();
     }
 
