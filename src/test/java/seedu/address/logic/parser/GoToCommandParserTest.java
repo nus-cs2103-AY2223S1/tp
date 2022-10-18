@@ -57,7 +57,7 @@ public class GoToCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsGoToCommand() {
         GoToCommand expectedGoToCommand =
                 new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106),
                         new ModuleCode(MODULE_CODE_STR_CS2106));
