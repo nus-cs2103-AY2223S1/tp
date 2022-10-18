@@ -73,6 +73,7 @@ public class DeleteCommand extends Command {
                 && x.getSurveys().contains(survey.orElse(x.getSurveys().iterator().next()));
 
         String str = model.deletePersons(predicate);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, str));
     }
 
