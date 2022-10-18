@@ -302,9 +302,42 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Enhanced\] ***Add*** Feature
 
-_{Explain here how the data archiving feature will be implemented}_
+This feature was enhanced to help add student's profile with ease. 
+The feature uses the command : 
+* `add` n/NAME, i/STUDENTID, [p/PHONE], [e/EMAIL], [c/CLASSGROUP], [t/TAGS]
+
+
+#### Enhanced Feature
+* ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional)
+* ***Only*** Name and Student ID are a must
+* Facilitates adding student's profiles **more flexibly**
+
+The improved feature allow User to not fill in certain optional fields if they do not have the information to do so.
+
+### The `add` Command
+
+Implementation:
+
+The following is a more detailed explanation on how the new `add` works.
+
+1. The `AddressBookParser` will select `AddCommandParser` and parse the user input.
+2. `AddCommandParser` checks for optional fields that are not filled in will be automatically set to 'NA' in the Addressbook.
+3. Following which, `AddCommand#execute(Model model)` method is called which adds the students into the Addressbook.
+4. If the student's data is already there, the input will throw an error saying "This student already exists."
+
+![AddCommand Sequence Diagram](images/AddCommandSequenceDiagram.png)
+Figure No. Sequence Diagram for Improved AddCommand Feature
+![AddCommand Activity Diagram](images/AddCommandActivityDiagram.png)
+Figure No. Activity Diagram for Improved AddCommand Feature
+
+#### Design considerations 
+
+**Aspect: Wrapping 'NA' into Type X**
+* Current implementation : Making 'NA' into a new X type when Information for X is not available where X can be Email, Phone or Class Group Type.
+* Pros: Simple to Store and Understand, works as intended even if users decide to input 'NA' into these optional fields
+* Cons: Not exactly logically correct as NA is not of Type X.
 
 
 --------------------------------------------------------------------------------------------------------------------
