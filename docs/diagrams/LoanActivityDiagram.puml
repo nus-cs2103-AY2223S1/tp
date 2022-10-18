@@ -1,0 +1,16 @@
+@startuml
+start
+:User enters a LoanCommand;
+:LoanCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([loan command is valid])
+    :Create new loan command which is executed by LogicManager;
+    :UI updates that book is loaned by loanee;
+    :UI adds the book to the books that are loaned by loanee;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml
