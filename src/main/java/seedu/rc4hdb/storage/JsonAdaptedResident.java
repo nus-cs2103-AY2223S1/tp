@@ -61,13 +61,13 @@ public class JsonAdaptedResident {
      * Converts a given {@code Resident} into this class for Jackson use.
      */
     public JsonAdaptedResident(Resident source) {
-        name = source.getName().getValue();
-        phone = source.getPhone().getValue();
-        email = source.getEmail().getValue();
-        room = source.getRoom().getValue();
-        gender = source.getGender().getValue();
-        house = source.getHouse().getValue();
-        matricNumber = source.getMatricNumber().getValue();
+        name = source.getName().value;
+        phone = source.getPhone().value;
+        email = source.getEmail().value;
+        room = source.getRoom().value;
+        gender = source.getGender().value;
+        house = source.getHouse().value;
+        matricNumber = source.getMatricNumber().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

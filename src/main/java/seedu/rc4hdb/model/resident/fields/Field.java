@@ -17,15 +17,11 @@ public abstract class Field {
             Phone.IDENTIFIER, Room.IDENTIFIER, Tag.IDENTIFIER
     );
 
-    protected final String value;
+    public final String value;
 
     protected Field(String value) {
         requireNonNull(value);
         this.value = value;
-    }
-
-    public String getValue() {
-        return this.value;
     }
 
     @Override
