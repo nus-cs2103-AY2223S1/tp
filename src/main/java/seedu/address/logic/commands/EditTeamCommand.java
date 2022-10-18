@@ -29,6 +29,11 @@ public class EditTeamCommand extends Command {
     private final Index targetIndex;
     private final Name newTeamName;
 
+    /**
+     * Edit team command constructor
+     * @param targetIndex of the team in the filtered person list to edit
+     * @param newTeamName details to edit the team with
+     */
     public EditTeamCommand(Index targetIndex, Name newTeamName) {
         requireNonNull(targetIndex);
         requireNonNull(newTeamName);
