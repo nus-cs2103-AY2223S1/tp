@@ -9,7 +9,7 @@
     "birthdate" : "1998-12-28",
     "race" : "White American",
     "religion" : "Christian",
-    "survey" : [ "Environment Survey" ],
+    "surveys" : [ "Environment Survey" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -20,7 +20,7 @@
     "birthdate" : "1981-1-23",
     "race" : "African American",
     "religion" : "Christian",
-    "survey" : [ "Shopping Survey" ],
+    "surveys" : [ "Shopping Survey" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -31,7 +31,7 @@
     "birthdate" : "1991-1-15",
     "race" : "White American",
     "religion" : "Buddhist",
-    "survey" : [ "Touring Survey" ],
+    "surveys" : [ "Touring Survey" ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -42,7 +42,7 @@
     "birthdate" : "2001-11-23",
     "race" : "Hispanic",
     "religion" : "Christian",
-    "survey" : [ "Shopping Survey" ],
+    "surveys" : [ "Shopping Survey" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -53,7 +53,7 @@
     "birthdate" : "1993-11-1",
     "race" : "White American",
     "religion" : "Free Thinker",
-    "survey" : [ "Touring Survey" ],
+    "surveys" : [ "Touring Survey" ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -64,7 +64,7 @@
     "birthdate" : "1991-8-13",
     "race" : "White American",
     "religion" : "Christian",
-    "survey" : [ "Food Survey" ],
+    "surveys" : [ "Food Survey" ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -75,7 +75,7 @@
     "birthdate" : "1991-12-28",
     "race" : "White American",
     "religion" : "Christian",
-    "survey" : [ "Environment Survey" ],
+    "surveys" : [ "Environment Survey" ],
     "tagged" : [ ]
   } ]
 }

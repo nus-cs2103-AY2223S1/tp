@@ -39,7 +39,7 @@ class JsonAdaptedPerson {
     private final String birthdate;
     private final String race;
     private final String religion;
-    private final List<JsonAdaptedSurvey> survey = new ArrayList<>();
+    private final List<JsonAdaptedSurvey> surveys = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("gender") String gender, @JsonProperty("birthdate") String birthdate,
             @JsonProperty("race") String race, @JsonProperty("religion") String religion,
-            @JsonProperty("survey") List<JsonAdaptedSurvey> survey,
+            @JsonProperty("surveys") List<JsonAdaptedSurvey> surveys,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -60,8 +60,8 @@ class JsonAdaptedPerson {
         this.birthdate = birthdate;
         this.race = race;
         this.religion = religion;
-        if (survey != null) {
-            this.survey.addAll(survey);
+        if (surveys != null) {
+            this.surveys.addAll(surveys);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -69,7 +69,7 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code PJsonAdaptedTagerson} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
@@ -80,7 +80,7 @@ class JsonAdaptedPerson {
         birthdate = source.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
         race = source.getRace().race;
         religion = source.getReligion().religion;
-        survey.addAll(source.getSurveys().stream()
+        surveys.addAll(source.getSurveys().stream()
                 .map(JsonAdaptedSurvey::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
@@ -97,7 +97,7 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         final List<Survey> personSurveys = new ArrayList<>();
 
-        for (JsonAdaptedSurvey survey : survey) {
+        for (JsonAdaptedSurvey survey : surveys) {
             personSurveys.add(survey.toModelType());
         }
 
