@@ -56,8 +56,12 @@ public class TaskCard extends UiPart<Region> {
         category.setText("Category: " + task.getCategory().toString());
         deadline.setText("Deadline: " + task.getDeadline().toString());
         email.setText("Email: " + task.getPersonEmailAddress().toString());
-        status.setText("Status: " + String.valueOf(task.getStatus()));
+        status.setText("Status: " + booleanConvertor(task.getStatus()));
 
+    }
+
+    public String booleanConvertor(boolean isDone) {
+        return isDone ? "Completed" : "Not Completed";
     }
 
     @Override
