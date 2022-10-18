@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
  */
 public class AddMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "add_member";
+    public static final String COMMAND_WORD = "add member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a person identified using it's displayed index to the current team.\n"
