@@ -5,8 +5,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.STUDENT3;
-import static seedu.address.testutil.TypicalTuitionClasses.*;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS3;
 import static seedu.address.testutil.TypicalTutors.TUTOR3;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,15 +23,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tuitionclass.TuitionClass;
 
-import java.util.List;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for UnassignCommand.
  */
 public class UnassignCommandTest {
 
     @Test
-    public void executeForStudent_validIndexAndTuitionClass_Success() {
+    public void executeForStudent_validIndexAndTuitionClass_success() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
         model.addPerson(STUDENT3);
         model.addTuitionClass(TUITIONCLASS2);
@@ -39,12 +41,12 @@ public class UnassignCommandTest {
             assertEquals(commandResult, String.format(UnassignCommand.MESSAGE_UNASSIGNED_STUDENT_SUCCESS, STUDENT3));
             assertEquals(expectedTuitionClasses, STUDENT3.getTuitionClasses());
         } catch (CommandException e) {
-
+            return;
         }
     }
 
     @Test
-    public void executeForTutor_validIndexAndTuitionClass_Success() {
+    public void executeForTutor_validIndexAndTuitionClass_success() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
         model.addPerson(TUTOR3);
         model.addTuitionClass(TUITIONCLASS1);
@@ -56,7 +58,7 @@ public class UnassignCommandTest {
             assertEquals(commandResult, String.format(UnassignCommand.MESSAGE_UNASSIGNED_TUTOR_SUCCESS,TUTOR3));
             assertEquals(expectedTuitionClasses, TUTOR3.getTuitionClasses());
         } catch (CommandException e) {
-
+            return;
         }
     }
 

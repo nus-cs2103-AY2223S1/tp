@@ -18,7 +18,7 @@ import seedu.address.logic.commands.UnassignCommand;
  * therefore should be covered by the ParserUtilTest.
  */
 public class UnassignCommandParserTest {
-    private UnassignCommandParser parser =  new UnassignCommandParser();
+    private UnassignCommandParser parser = new UnassignCommandParser();
 
     @Test
     public void parse_validArgs_returnsAssignCommand() {
