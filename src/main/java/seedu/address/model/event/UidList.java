@@ -58,12 +58,12 @@ public class UidList implements Iterable<Uid> {
     /**
      * Returns the internal list as an observableList object
      */
-    public ObservableList<seedu.address.model.person.Uid> asUnmodifiableObservableList() {
+    public ObservableList<Uid> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<seedu.address.model.person.Uid> iterator() {
+    public Iterator<Uid> iterator() {
         return internalList.iterator();
     }
 

@@ -161,7 +161,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * Updates an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
 
@@ -170,12 +170,20 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
+    /**
+     * Updates an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
+
+    /**
+     * Updates the reference between Event and the persons it is tagged with.
+     * This method is used after editPerson, deletePerson and tagEvent commands to provide timely GUI update.
+     */
     @Override
     public void updateEventPersonReference() {
         this.updateFilteredEventList(x -> x.getUids().setPersonNames(this));
