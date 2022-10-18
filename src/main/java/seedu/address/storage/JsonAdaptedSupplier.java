@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -16,7 +17,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,7 +32,7 @@ class JsonAdaptedSupplier {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedPet> petsOnSale = new ArrayList<>();
+    private final List<String> ids = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedSupplier} with the given Supplier details.
@@ -42,7 +42,7 @@ class JsonAdaptedSupplier {
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("petsOnSale") List<JsonAdaptedPet> petsOnSale) {
+                               @JsonProperty("ids") List<String> ids) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
@@ -51,8 +51,8 @@ class JsonAdaptedSupplier {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (petsOnSale != null) {
-            this.petsOnSale.addAll(petsOnSale);
+        if (ids != null) {
+            this.ids.addAll(ids);
         }
     }
 
@@ -68,8 +68,8 @@ class JsonAdaptedSupplier {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        petsOnSale.addAll(source.getPetIds().stream()
-                .map(JsonAdaptedPet::new)
+        ids.addAll(source.getPetIds().stream()
+                .map(UniqueId::getId)
                 .collect(Collectors.toList()));
     }
 
@@ -84,9 +84,9 @@ class JsonAdaptedSupplier {
             personTags.add(tag.toModelType());
         }
 
-        final ArrayList<Pet> modelPets = new ArrayList<>();
-        for (JsonAdaptedPet pet : petsOnSale) {
-            modelPets.add(pet.toModelType());
+        final ArrayList<UniqueId> modelIds = new ArrayList<>();
+        for (String id : ids) {
+            modelIds.add(new UniqueId(id));
         }
 
         if (personCategory == null) {
@@ -131,6 +131,6 @@ class JsonAdaptedSupplier {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPets);
+        return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelIds);
     }
 }

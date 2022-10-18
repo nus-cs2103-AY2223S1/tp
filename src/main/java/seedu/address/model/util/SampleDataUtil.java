@@ -64,7 +64,7 @@ public class SampleDataUtil {
             getTagSet("colleagues"), new ArrayList<>());
 
     //Suppliers
-    public static final Supplier SHIN_CHAN = new Supplier(PersonCategory.SUPPLIER, new Name("Shin-chan"),
+    public static final Supplier SHIN_CHAN = new Supplier(PersonCategory.SUPPLIER, new Name("ShinChan"),
             new Phone("09594177555"), new Email("Shin-chan@crayon.com"),
             new Address("The Nohara family household, Kasukabe"),
             getTagSet("friends"), new ArrayList<>());
@@ -76,7 +76,7 @@ public class SampleDataUtil {
             new Phone("93210283"), new Email("charlotte@example.com"),
             new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
             getTagSet("neighbours"), new ArrayList<>());
-    public static final Supplier LI =  new Supplier(PersonCategory.SUPPLIER, new Name("David Li"),
+    public static final Supplier LI = new Supplier(PersonCategory.SUPPLIER, new Name("David Li"),
             new Phone("91031282"), new Email("lidavid@example.com"),
             new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
             getTagSet("family"), new ArrayList<>());
@@ -115,61 +115,61 @@ public class SampleDataUtil {
             getTagSet("colleagues"), new ArrayList<>());
 
     //Orders
-    public static final Order o1 = getOrder(ALEX, 10.0, 15.0,
+    public static final Order O1 = getOrder(ALEX, 10.0, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("1", "2", "3"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order o2 =  getOrder(BERNICE, 10.2, 15.0,
+    public static final Order O2 = getOrder(BERNICE, 10.2, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("1", "2", "3"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order o3 = getOrder(CHARLOTTE, 10.3, 15.0,
+    public static final Order O3 = getOrder(CHARLOTTE, 10.3, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("1", "2", "3"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order o4 = getOrder(DAVID, 10.1, 15.0,
+    public static final Order O4 = getOrder(DAVID, 10.1, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("1", "2", "3"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order o5 =  getOrder(IRFAN, 11110.0, 15.0,
+    public static final Order O5 = getOrder(IRFAN, 11110.0, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("i need it now"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order o6 =  getOrder(ROY, 11110.0, 15.0,
+    public static final Order O6 = getOrder(ROY, 11110.0, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("i need it now"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
 
     //Pets
     private static final DateOfBirth standard = getStandard();
-    public static final Pet p1 = new Pet(new Name("TShiro"), SHIN_CHAN, new Color("white"),
+    public static final Pet P1 = new Pet(new Name("Shiro"), SHIN_CHAN, new Color("white"),
             new ColorPattern("white"),
             standard, new Species("dog"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(9999.99), getTagSet("dog"),
             new HashSet<>());
-    public static final Pet p2 = new Pet(new Name("Ashy"), YU, new Color("white"),
+    public static final Pet P2 = new Pet(new Name("Ashy"), YU, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(8888.88), getTagSet("cat"),
             new HashSet<>());
-    public static final Pet p3 = new Pet(new Name("Plum"), OLIVE, new Color("white"),
+    public static final Pet P3 = new Pet(new Name("Plum"), OLIVE, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), getTagSet("cat"), new HashSet<>());
-    public static final Pet p4 = new Pet(new Name("Plum"), LI, new Color("white"),
+    public static final Pet P4 = new Pet(new Name("Plum"), LI, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), getTagSet("cat"), new HashSet<>());
-    public static final Pet p5 = new Pet(new Name("Plum"), OLIVE, new Color("white"),
+    public static final Pet P5 = new Pet(new Name("I am a dog"), OLIVE, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), getTagSet("cat"), new HashSet<>());
-    public static final Pet p6 = new Pet(new Name("Plum"), OLIVE, new Color("white"),
+    public static final Pet P6 = new Pet(new Name("I am a cat"), OLIVE, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
@@ -177,57 +177,23 @@ public class SampleDataUtil {
 
 
     public static Buyer[] getSampleBuyers() {
-        return new Buyer[] {
-                ALEX,
-                BERNICE,
-                CHARLOTTE,
-                DAVID,
-                IRFAN,
-                ROY};
+        return new Buyer[] {ALEX, BERNICE, CHARLOTTE, DAVID, IRFAN, ROY};
     }
 
     public static Supplier[] getSampleSuppliers() {
-        return new Supplier[]{
-                SHIN_CHAN,
-                YU,
-                OLIVE,
-                LI,
-                IBRAHIM,
-                BALA
-        };
+        return new Supplier[]{SHIN_CHAN, YU, OLIVE, LI, IBRAHIM, BALA};
     }
 
     public static Deliverer[] getSampleDeliverers() {
-        return new Deliverer[] {
-                A,
-                B,
-                C,
-                D,
-                E,
-                F
-        };
+        return new Deliverer[] {A, B, C, D, E, F};
     }
 
     public static Order[] getSampleOrders() {
-        return new Order[] {
-                o1,
-                o2,
-                o3,
-                o4,
-                o5,
-                o6
-        };
+        return new Order[] {O1, O2, O3, O4, O5, O6};
     }
 
     public static Pet[] getSamplePets() {
-        return new Pet[] {
-                p1,
-                p2,
-                p3,
-                p4,
-                p5,
-                p6
-        };
+        return new Pet[] {P1, P2, P3, P4, P5, P6};
     }
 
     private static DateOfBirth getStandard() {
@@ -242,7 +208,9 @@ public class SampleDataUtil {
         AddressBook sampleAb = new AddressBook();
 
         Buyer[] buyers = getSampleBuyers();
+        Supplier[] suppliers = getSampleSuppliers();
         Order[] orders = getSampleOrders();
+        Pet[] pets = getSamplePets();
 
         for (int i = 0; i < buyers.length; i++) {
             List<UniqueId> tmp = new ArrayList<>();
@@ -250,22 +218,26 @@ public class SampleDataUtil {
             buyers[i].addOrder(tmp);
         }
 
+        for (int i = 0; i < suppliers.length; i++) {
+            List<UniqueId> tmp = new ArrayList<>();
+            tmp.add(pets[i].getId());
+            suppliers[i].addPets(tmp);
+        }
+
         for (Buyer sampleBuyer :buyers) {
             sampleAb.addBuyer(sampleBuyer);
         }
-        for (Supplier sampleSupplier : getSampleSuppliers()) {
+        for (Supplier sampleSupplier : suppliers) {
             sampleAb.addSupplier(sampleSupplier);
         }
         for (Deliverer sampleDeliverer : getSampleDeliverers()) {
             sampleAb.addDeliverer(sampleDeliverer);
         }
         for (Order sampleOrder : orders) {
-            System.out.println("order " + sampleOrder);
             sampleAb.addOrder(sampleOrder);
         }
 
         for (Pet samplePet : getSamplePets()) {
-            System.out.println("pet " + samplePet);
             sampleAb.addPet(samplePet);
         }
 

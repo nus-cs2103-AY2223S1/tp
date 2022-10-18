@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
-import seedu.address.model.pet.Pet;
 
 /**
  * A list of orders that enforces uniqueness between its elements and does not allow nulls.

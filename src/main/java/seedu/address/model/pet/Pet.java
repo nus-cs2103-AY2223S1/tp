@@ -13,7 +13,6 @@ import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
@@ -280,7 +279,11 @@ public class Pet {
         }
 
         return otherPet != null
-                && otherPet.getName().equals(getName());
+                && otherPet.getName().equals(getName())
+                && otherPet.getSupplier().equals(getSupplier())
+                && otherPet.getCertificates().equals(getCertificates())
+                && otherPet.getColor().equals(getColor())
+                && otherPet.getDateOfBirth().equals(getDateOfBirth());
     }
 
     public Name getName() {

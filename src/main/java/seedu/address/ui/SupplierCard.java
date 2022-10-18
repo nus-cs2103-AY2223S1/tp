@@ -23,10 +23,10 @@ public class SupplierCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    private final Logic logic;
     public final Supplier supplier;
+    private final Logic logic;
     private final int displayedIndex;
+
 
     @FXML
     private Label address;

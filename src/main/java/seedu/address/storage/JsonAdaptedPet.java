@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
-import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Color;
@@ -120,7 +119,8 @@ public class JsonAdaptedPet {
         final Name modelName = new Name(name);
 
         if (supplier == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Supplier.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Supplier.class.getSimpleName()));
         }
         final Supplier modelSupplier = supplier.toModelType();
 

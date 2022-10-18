@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Email;
@@ -32,8 +32,7 @@ class JsonAdaptedDeliverer {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    //TODO JsonAdaptedOrder
-    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
+    private final List<String> ids = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedDeliverer } with the given Deliverer  details.
@@ -43,7 +42,7 @@ class JsonAdaptedDeliverer {
                                 @JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
+                                @JsonProperty("ids") List<String> ids) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
@@ -52,8 +51,8 @@ class JsonAdaptedDeliverer {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (orders != null) {
-            this.orders.addAll(orders);
+        if (ids != null) {
+            this.ids.addAll(ids);
         }
     }
 
@@ -69,8 +68,8 @@ class JsonAdaptedDeliverer {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        orders.addAll(source.getOrders().stream()
-                .map(JsonAdaptedOrder::new)
+        ids.addAll(source.getOrders().stream()
+                .map(UniqueId::getId)
                 .collect(Collectors.toList()));
     }
 
@@ -85,9 +84,9 @@ class JsonAdaptedDeliverer {
             personTags.add(tag.toModelType());
         }
 
-        final ArrayList<Order> modelOrders = new ArrayList<>();
-        for (JsonAdaptedOrder order : orders) {
-            modelOrders.add(order.toModelType());
+        final ArrayList<UniqueId> modelIds = new ArrayList<>();
+        for (String id : ids) {
+            modelIds.add(new UniqueId(id));
         }
 
         if (personCategory == null) {
@@ -133,6 +132,6 @@ class JsonAdaptedDeliverer {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Deliverer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress,
-                modelTags, modelOrders);
+                modelTags, modelIds);
     }
 }

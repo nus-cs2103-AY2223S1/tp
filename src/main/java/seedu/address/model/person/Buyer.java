@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;

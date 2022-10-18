@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
@@ -32,7 +32,7 @@ class JsonAdaptedBuyer {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
+    private final List<String> ids = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
@@ -42,7 +42,7 @@ class JsonAdaptedBuyer {
                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                             @JsonProperty("address") String address,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
+                            @JsonProperty("ids") List<String> ids) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
@@ -51,8 +51,8 @@ class JsonAdaptedBuyer {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (orders != null) {
-            this.orders.addAll(orders);
+        if (ids != null) {
+            this.ids.addAll(ids);
         }
     }
 
@@ -68,8 +68,8 @@ class JsonAdaptedBuyer {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        orders.addAll(source.getOrderIds().stream()
-                .map(JsonAdaptedOrder::new)
+        ids.addAll(source.getOrderIds().stream()
+                .map(UniqueId::getId)
                 .collect(Collectors.toList()));
     }
 
@@ -84,9 +84,9 @@ class JsonAdaptedBuyer {
             personTags.add(tag.toModelType());
         }
 
-        final ArrayList<Order> modelOrders = new ArrayList<>();
-        for (JsonAdaptedOrder order : orders) {
-            modelOrders.add(order.toModelType());
+        final ArrayList<UniqueId> modelIds = new ArrayList<>();
+        for (String id : ids) {
+            modelIds.add(new UniqueId(id));
         }
 
         if (personCategory == null) {
@@ -131,6 +131,6 @@ class JsonAdaptedBuyer {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Buyer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelOrders);
+        return new Buyer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelIds);
     }
 }

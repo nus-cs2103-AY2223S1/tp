@@ -98,12 +98,12 @@ public class PetCard extends UiPart<Region> {
      */
     public void fillPetCard(boolean shouldDisplaySupplierName) {
         if (shouldDisplaySupplierName) {
-            supplierName.setText("from " + pet.getOwner().getName().fullName);
+            supplierName.setText("from " + pet.getSupplier().getName().fullName);
         }
         id.setText("#" + displayedIndex);
         species.setText(pet.getSpecies().getValue());
         petName.setText(pet.getName().fullName);
-        age.setText(pet.getAge().toString());
+        age.setText("Age: " + String.valueOf(pet.getAge()));
         dateOfBirth.setText(pet.getDateOfBirth().toString());
         color.setText(pet.getColor().toString());
         colorPattern.setText(pet.getColorPattern().toString());

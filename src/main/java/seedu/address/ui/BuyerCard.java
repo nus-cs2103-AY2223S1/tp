@@ -76,10 +76,6 @@ public class BuyerCard extends UiPart<Region> {
         orderListView.setItems(logic.getOrderAsObservableListFromBuyer(buyer));
         orderListView.setCellFactory(listView -> new BuyerOrdersListViewCell());
 
-//        buyer.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-//        orders.setText(buyer.getOrderIds().toString());
     }
 
     /**
