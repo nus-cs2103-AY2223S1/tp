@@ -172,14 +172,6 @@ public class MainWindow extends UiPart<Stage> {
         tutorDetailsPanelPlaceholder.setVisible(true);
      }
 
-     /**
-     * Hides the panel containing tutor details
-     */
-     private void handleNoView() {
-        tutorDetailsPanelPlaceholder.getChildren().clear();
-        tutorDetailsPanelPlaceholder.setVisible(false);
-     }
-
     void show() {
         primaryStage.show();
     }
@@ -216,8 +208,6 @@ public class MainWindow extends UiPart<Stage> {
                 assert(tutorToView != null);
 
                 handleView(tutorToView);
-            } else {
-                handleNoView();
             }
 
             if (commandResult.isShowHelp()) {
