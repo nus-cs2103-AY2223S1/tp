@@ -82,7 +82,7 @@ public class PersonCard extends UiPart<Region> {
 
         status.setText(person.getStatus().status);
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
-        rating.setText(person.getRating().toString().length() > 0 ? person.getRating().toString() : "");
+        rating.setText(person.getRating().toString().length() > 0 ? "Rating: " + person.getRating().toString() : "");
     }
 
     @Override
