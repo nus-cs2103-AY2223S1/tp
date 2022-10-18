@@ -17,7 +17,7 @@ public class SpeciesTest {
     public void getSpecies() {
         Species species = new Species("fish");
         String expected = "fish";
-        assertEquals(species.getSpecies(), expected);
+        assertEquals(species.getValue(), expected);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class SpeciesTest {
     @Test
     public void toStringTest() {
         Species species = new Species("hedgehog");
-        String expected = "hedgehog";
+        String expected = "Species: hedgehog";
         assertEquals(species.toString(), expected);
     }
 

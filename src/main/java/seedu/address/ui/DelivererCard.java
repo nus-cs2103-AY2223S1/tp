@@ -1,12 +1,11 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Deliverer;
 
 /**
@@ -24,24 +23,29 @@ public class DelivererCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Deliverer deliverer;
+    private final Deliverer deliverer;
+    private final int displayedIndex;
 
     @FXML
-    private HBox cardPane;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
-    @FXML
-    private Label phone;
-    @FXML
     private Label address;
+
     @FXML
     private Label email;
+
     @FXML
-    private FlowPane tags;
+    private Label id;
+
     @FXML
-    private Label orders;
+    private Label locatedCountry;
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private ListView<Order> orderListView;
+
+    @FXML
+    private Label phone;
 
     /**
      * Creates a {@code DelivererCode} with the given {@code Deliverer} and index to display.
@@ -49,14 +53,42 @@ public class DelivererCard extends UiPart<Region> {
     public DelivererCard(Deliverer deliverer, int displayedIndex) {
         super(FXML);
         this.deliverer = deliverer;
+        this.displayedIndex = displayedIndex;
+        fillDeliverCard();
+    }
+
+    /**
+     * Fills the relevant fields of the deliverer card.
+     */
+    public void fillDeliverCard() {
+        // Set the contact details
         id.setText(displayedIndex + ". ");
         name.setText(deliverer.getName().fullName);
         phone.setText(deliverer.getPhone().value);
+        locatedCountry.setText(deliverer.getLocation().location);
         address.setText(deliverer.getAddress().value);
         email.setText(deliverer.getEmail().value);
-        deliverer.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        // Set the buyer's orders in the list view
+        orderListView.setItems(deliverer.getOrdersAsObservableList());
+        orderListView.setCellFactory(listView -> new DelivererOrdersListViewCell());
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code BriefOrderCard}.
+     */
+    private static class DelivererOrdersListViewCell extends ListCell<Order> {
+        @Override
+        protected void updateItem(Order order, boolean empty) {
+            super.updateItem(order, empty);
+
+            if (empty || order == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new DelivererOrderCard(order, getIndex() + 1).getRoot());
+            }
+        }
     }
 
     @Override

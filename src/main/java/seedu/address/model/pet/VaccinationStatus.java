@@ -37,7 +37,7 @@ public class VaccinationStatus {
     }
     @Override
     public String toString() {
-        return isVaccinated ? "Vaccinated" : "Not Vaccinated";
+        return "Vaccination status: " + (isVaccinated ? "Vaccinated" : "Not Vaccinated");
     }
 
     @Override

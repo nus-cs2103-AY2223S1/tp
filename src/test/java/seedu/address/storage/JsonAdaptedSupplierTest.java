@@ -34,7 +34,7 @@ public class JsonAdaptedSupplierTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedPet> VALID_PETS = BENSON.getPetsOnSale().stream()
+    private static final List<JsonAdaptedPet> VALID_PETS = BENSON.getPetIds().stream()
             .map(JsonAdaptedPet::new)
             .collect(Collectors.toList());;
 

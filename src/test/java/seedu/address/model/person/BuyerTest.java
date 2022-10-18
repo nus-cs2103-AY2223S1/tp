@@ -45,8 +45,8 @@ public class BuyerTest {
                         new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
                 new Price(100));
         buyer.addOrder(order);
-        assertTrue(buyer.getOrders().size() == 1);
-        assertEquals(buyer.getOrders(), Arrays.asList(order));
+        assertTrue(buyer.getOrderIds().size() == 1);
+        assertEquals(buyer.getOrderIds(), Arrays.asList(order));
     }
 
     @Test

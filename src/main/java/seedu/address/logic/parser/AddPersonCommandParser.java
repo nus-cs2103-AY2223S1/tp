@@ -62,9 +62,9 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
             //        case DELIVERER:
             //        AddDelivererCommandParser addDelivererCommandParser = new AddDelivererCommandParser();
             //            return addDelivererCommandParser.parse(args);
-            //        case SUPPLIER:
-            //        AddSupplierCommandParser addSupplierCommandParser = new AddSupplierCommandParser();
-            //            return addSupplierCommandParser.parse(args);
+        case SUPPLIER:
+            AddSupplierCommandParser addSupplierCommandParser = new AddSupplierCommandParser();
+            return addSupplierCommandParser.parse(args);
         default:
             throw new ParseException(PersonCategory.MESSAGE_CONSTRAINTS);
         }

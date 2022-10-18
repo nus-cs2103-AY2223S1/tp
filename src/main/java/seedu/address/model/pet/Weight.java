@@ -33,7 +33,7 @@ public class Weight {
 
     @Override
     public String toString() {
-        return value + " " + UNIT;
+        return "Weight: " + value + " " + UNIT;
     }
 
     public double getValue() {

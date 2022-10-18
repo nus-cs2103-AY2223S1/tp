@@ -8,7 +8,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.UniqueId;
+import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -18,6 +21,9 @@ import seedu.address.model.tag.Tag;
  */
 public class Pet {
 
+    private static final UniqueIdGenerator PET_ID_GENERATOR = new UniqueIdGenerator();
+
+    private final UniqueId id;
     private final Name name;
     private final Person owner;
     private final Color color;
@@ -27,6 +33,7 @@ public class Pet {
     private final Weight weight;
     private final Height height;
     private final VaccinationStatus vaccinationStatus;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<PetCertificate> certificates = new HashSet<>();
 
@@ -42,6 +49,7 @@ public class Pet {
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
      * @param vaccinationStatus Its vaccination status (vaccinated or not).
+     * @param price Its price for sale.
      * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
@@ -54,9 +62,11 @@ public class Pet {
                Weight weight,
                Height height,
                VaccinationStatus vaccinationStatus,
+               Price price,
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
         requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
+        this.id = PET_ID_GENERATOR.next();
         this.name = name;
         this.owner = owner;
         this.color = color;
@@ -66,6 +76,7 @@ public class Pet {
         this.weight = weight;
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
+        this.price = price;
         this.tags.addAll(tags);
         this.certificates.addAll(certificates);
     }
@@ -80,6 +91,7 @@ public class Pet {
      * @param species Its species, for example, chihuahua.
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
+     * @param price Its price for sale.
      * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
@@ -90,6 +102,7 @@ public class Pet {
                Species species,
                Weight weight,
                Height height,
+               Price price,
                Set<Tag> tags,
                Set<PetCertificate> certificates) throws IllegalValueException {
         this(name,
@@ -101,6 +114,7 @@ public class Pet {
                 weight,
                 height,
                 VaccinationStatus.defaultStatus(),
+                price,
                 tags,
                 certificates);
     }
@@ -115,6 +129,7 @@ public class Pet {
      * @param species Its species, for example, chihuahua.
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
+     * @param price Its price for sale.
      */
     public Pet(Name name,
                Color color,
@@ -122,7 +137,8 @@ public class Pet {
                DateOfBirth dateOfBirth,
                Species species,
                Weight weight,
-               Height height) {
+               Height height,
+               Price price) {
         this(name,
                 null,
                 color,
@@ -132,6 +148,7 @@ public class Pet {
                 weight,
                 height,
                 VaccinationStatus.defaultStatus(),
+                price,
                 null,
                 null);
     }
@@ -153,14 +170,16 @@ public class Pet {
                String dateOfBirthString,
                Species species,
                Weight weight,
-               Height height) throws IllegalValueException {
+               Height height,
+               Price price) throws IllegalValueException {
         this(name,
                 color,
                 colorPattern,
                 DateOfBirth.parseString(dateOfBirthString),
                 species,
                 weight,
-                height);
+                height,
+                price);
     }
 
     /**
@@ -187,21 +206,21 @@ public class Pet {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Species: ")
-                .append(getSpecies())
-                .append("; Date Of Birth: ")
-                .append(getDateOfBirth().toString())
-                .append("; Weight: ")
-                .append(getWeight())
-                .append("; Height: ")
-                .append(getHeight())
-                .append("; Color: ")
-                .append(getColor())
-                .append("; Color pattern: ")
-                .append(getColorPattern())
+        builder.append(getName().toString())
                 .append("; ")
-                .append(getVaccinationStatus());
+                .append(getSpecies().toString())
+                .append("; ")
+                .append(getDateOfBirth().toString())
+                .append("; ")
+                .append(getWeight().toString())
+                .append("; ")
+                .append(getHeight().toString())
+                .append("; ")
+                .append(getColor().toString())
+                .append("; ")
+                .append(getColorPattern().toString())
+                .append("; ")
+                .append(getVaccinationStatus().toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -233,19 +252,7 @@ public class Pet {
             return false;
         }
 
-        Pet otherPet = (Pet) other;
-        return otherPet.getName().equals(getName())
-                && otherPet.getColor().equals(getColor())
-                && otherPet.getColorPattern().equals(getColorPattern())
-                && otherPet.getDateOfBirth().equals(getDateOfBirth())
-                && otherPet.getHeight().equals(getHeight())
-                && otherPet.getWeight().equals(getWeight())
-                && otherPet.getSpecies().equals(getSpecies())
-                && otherPet.getVaccinationStatus().equals(getVaccinationStatus())
-                && otherPet.getCertificates().equals(getCertificates())
-                && ((otherPet.getOwner() == null && getOwner() == null)
-                || (otherPet.getOwner() != null && otherPet.getHeight().equals(getHeight())))
-                && otherPet.getTags().equals(getTags());
+        return id.equals(((Pet) other).id);
     }
 
     /**
@@ -305,6 +312,14 @@ public class Pet {
 
     public Weight getWeight() {
         return weight;
+    }
+
+    public UniqueId getId() {
+        return id;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     public VaccinationStatus getVaccinationStatus() {
