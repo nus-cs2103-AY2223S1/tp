@@ -5,7 +5,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2106;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -28,7 +28,7 @@ public class DeleteModuleCommandParserTest {
     @Test
     public void parse_validArgs_returnsDeleteModuleCommand() {
         assertParseSuccess(parser, MODULE_CODE_DESC_CS2106,
-                new DeleteModuleCommand(new ModuleCode(VALID_CS_MODULE_CODE)));
+                new DeleteModuleCommand(new ModuleCode(VALID_CS2106_MODULE_CODE)));
     }
 
     @Test

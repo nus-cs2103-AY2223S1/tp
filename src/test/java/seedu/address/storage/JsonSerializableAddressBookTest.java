@@ -22,7 +22,8 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_MODULES_FILE = TEST_DATA_FOLDER.resolve("typicalModulesAddressBook.json");
     private static final Path INVALID_MODULE_FILE = TEST_DATA_FOLDER.resolve("invalidModuleAddressBook.json");
     private static final Path DUPLICATE_MODULE_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleAddressBook.json");
-
+    private static final Path DUPLICATE_IGNORE_CASE_MODULE_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateIgnoreCaseModuleAddressBook.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -67,6 +68,14 @@ public class JsonSerializableAddressBookTest {
     @Test
     public void toModelType_duplicateModules_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MODULE_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_MODULE,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateIgnoreCaseModules_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_IGNORE_CASE_MODULE_FILE,
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_MODULE,
                 dataFromFile::toModelType);
