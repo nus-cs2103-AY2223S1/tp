@@ -425,7 +425,7 @@ Use case ends.
 
 **Main Success Scenario (MSS)**
 1. User requests to search for a task.
-2. Plannit displays to the user the list of tasks matching the user's search 
+2. Plannit displays to the user the list of tasks matching the user's search
    request.
 
 **Extensions**
@@ -486,19 +486,19 @@ Use case ends.
 
 **Extensions**
 * 3a. The contact is duplicate, i.e. name already exists.
-    * 3a1. Plannit displays an error message notifying the user that a 
+    * 3a1. Plannit displays an error message notifying the user that a
       duplicate contact exists.
 
   Use case ends.
 
 * 3b. The email address is invalid.
-    * 3b1. Plannit displays an error message notifying the user that the 
+    * 3b1. Plannit displays an error message notifying the user that the
       email address is invalid.
 
   Use case ends.
 
 * 3c. The phone number is invalid.
-    * 3c1. Plannit displays an error message notifying the user that the phone 
+    * 3c1. Plannit displays an error message notifying the user that the phone
       number is invalid.
 
   Use case ends.
@@ -508,7 +508,7 @@ Use case ends.
 1. User chooses to delete a contact.
 2. Plannit requests for the name of the contact.
 3. User enters the contact's name.
-4. Plannit searches for the contact and notifies user that the contact has been 
+4. Plannit searches for the contact and notifies user that the contact has been
    deleted.
 
 Use case ends.
