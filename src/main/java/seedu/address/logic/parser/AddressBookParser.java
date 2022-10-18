@@ -118,8 +118,8 @@ public class AddressBookParser {
         case AddLinkCommand.COMMAND_WORD:
             return new AddLinkCommandParser().parse(arguments);
 
-//        case EditLinkCommand.COMMAND_WORD:
-//            return new EditLinkCommandParser().parse(arguments);
+        case EditLinkCommand.COMMAND_WORD:
+            return new EditLinkCommandParser().parse(arguments);
 
         case DeleteLinkCommand.COMMAND_WORD:
             return new DeleteLinkCommandParser().parse(arguments);

@@ -3,6 +3,7 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 
 import java.net.URL;
+import java.util.Objects;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -23,14 +24,14 @@ public class Link {
      */
     private Name displayedName;
 
-    private URL url;
+    private Url url;
 
     /**
      * Constructs a {@code Link}
      * @param displayedName A valid name to display.
      * @param url A valid URL object.
      */
-    public Link(Name displayedName, URL url) {
+    public Link(Name displayedName, Url url) {
         requireNonNull(displayedName);
         requireNonNull(url);
         this.displayedName = displayedName;
@@ -39,6 +40,10 @@ public class Link {
 
     public Name getDisplayedName() {
         return this.displayedName;
+    }
+
+    public Url getUrl() {
+        return this.url;
     }
 
     /**
@@ -65,6 +70,22 @@ public class Link {
                 || (other instanceof Link // instanceof handles nulls
                 && displayedName.equals(((Link) other).displayedName))
                 && url.equals(((Link) other).url);
+    }
+
+    @Override
+    public int hashCode() {
+        //use this method for custom field hashing instead of implementing on your own
+        return Objects.hash(displayedName, url);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDisplayedName())
+                .append("; URL: ")
+                .append(getUrl());
+
+        return builder.toString();
     }
 
 }

@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.TeamMetaData;
+import seedu.address.model.team.UniqueLinkList;
 import seedu.address.model.team.UniqueTeamList;
 
 /**
@@ -22,8 +22,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTeamList teams;
-
-    private final TeamMetaData teamData;
+    private final UniqueLinkList links;
     private ObjectProperty<Team> currentTeam = new SimpleObjectProperty<>();
 
     /*
@@ -36,7 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
-        teamData = new TeamMetaData();
+        links = new UniqueLinkList();
     }
 
     public AddressBook() {
@@ -137,15 +136,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
     //// link related operations
     public boolean hasLink(Link link) {
-        return teamData.hasLink(link);
+        return links.contains(link);
     }
 
     public void addLink(Link link) {
-        teamData.addLink(link);
+        links.add(link);
+    }
+
+    public void setLink(Link target, Link editedLink) {
+        requireNonNull(editedLink);
+        links.setLink(target, editedLink);
     }
 
     public void deleteLink(Link link) {
-        teamData.deleteLink(link);
+        links.remove(link);
     }
 
 
@@ -169,7 +173,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public ObservableList<Link> getLinkList() {
-        return teamData.getLinkListAsUnmodifiedObservableList();
+        return links.asUnmodifiableObservableList();
     }
 
     @Override

@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
 
-import java.net.URL;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -15,11 +13,11 @@ import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Url;
 
 /**
  * Parses input arguments and creates a new AddLinkCommandParser object.
@@ -52,11 +50,11 @@ public class AddLinkCommandParser implements Parser<AddLinkCommand> {
             CommandLine cmd = parser.parse(options, argsArray);
 
             if (cmd.getArgs().length > 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE));
             }
 
             Name name = ParserUtil.parseName(cmd.getOptionValue(FLAG_NAME_STR));
-            URL url = ParserUtil.parseUrl(cmd.getOptionValue(FLAG_URL_STR));
+            Url url = ParserUtil.parseUrl(cmd.getOptionValue(FLAG_URL_STR));
 
             Link link = new Link(name, url);
 

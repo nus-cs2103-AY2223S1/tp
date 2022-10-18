@@ -18,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Url;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -127,19 +128,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String url} into a {@code URL}
+     * Parses {@code String url} into a {@code Url}
      */
-
-    public static URL parseUrl(String url)  throws ParseException {
+    public static Url parseUrl(String url)  throws ParseException {
         requireNonNull(url);
         String trimmedUrl = url.trim();
-        URL urlObject;
-        try {
-            urlObject = new URL(trimmedUrl);
-            urlObject.toURI();
-        } catch (MalformedURLException | URISyntaxException e) {
-            throw new ParseException(Link.URL_CONSTRAINTS);
+
+        String trimmedUrlWithHttps = Url.isValidUrl(trimmedUrl)? trimmedUrl: "https://" + trimmedUrl;
+
+        if (!Url.isValidUrl(trimmedUrlWithHttps)) {
+            throw new ParseException(Url.MESSAGE_CONSTRAINTS);
         }
-        return urlObject;
+        return new Url(trimmedUrlWithHttps);
     }
+
 }

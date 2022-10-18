@@ -159,6 +159,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setLink(Link target, Link editedLink) {
+        addressBook.setLink(target, editedLink);
+    }
+
+    @Override
     public void deleteLink(Link link) {
         addressBook.deleteLink(link);
     }
@@ -166,6 +171,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Link> getFilteredLinkList() {
         return filteredLinks;
+    }
+
+    @Override
+    public void updateFilteredLinkList(Predicate<Link> predicate) {
+        requireNonNull(predicate);
+        filteredLinks.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

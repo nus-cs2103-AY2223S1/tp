@@ -1,12 +1,15 @@
 package seedu.address.model.team;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.team.exceptions.DuplicateLinkException;
 import seedu.address.model.team.exceptions.LinkNotFoundException;
 
@@ -48,6 +51,25 @@ public class UniqueLinkList implements Iterable<Link> {
         if (!internalLinks.remove(linkToRemove)) {
             throw new LinkNotFoundException();
         }
+    }
+    /**
+     * Replaces the link {@code target} in the list with {@code editedLink}.
+     * {@code target} must exist in the list.
+     * The link identity of {@code editedLink} must not be the same as another existing link in the list.
+     */
+    public void setLink(Link target, Link editedLink) {
+        requireAllNonNull(target, editedLink);
+
+        int index = internalLinks.indexOf(target);
+        if (index == -1) {
+            throw new LinkNotFoundException();
+        }
+
+        if (!target.isSameLink(editedLink) && contains(editedLink)) {
+            throw new DuplicateLinkException();
+        }
+
+        internalLinks.set(index, editedLink);
     }
 
     /**
