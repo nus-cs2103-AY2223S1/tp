@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final Tuthub tuthub;
     private final UserPrefs userPrefs;
     private final FilteredList<Tutor> filteredTutors;
+    private final SortedList<Tutor> sortedFilteredTutors;
     private Tutor tutorToView;
 
     /**
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.tuthub = new Tuthub(tuthub);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTutors = new FilteredList<>(this.tuthub.getTutorList());
+        sortedFilteredTutors = new SortedList<>(filteredTutors);
     }
 
     public ModelManager() {
@@ -134,13 +136,19 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Tutor> getFilteredTutorList() {
-        return filteredTutors;
+        return sortedFilteredTutors;
     }
 
     @Override
     public void updateFilteredTutorList(Predicate<Tutor> predicate) {
         requireNonNull(predicate);
         filteredTutors.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedTutorList(Comparator<Tutor> comparator) {
+        requireNonNull(comparator);
+        sortedFilteredTutors.setComparator(comparator);
     }
 
     @Override

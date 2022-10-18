@@ -3,18 +3,13 @@ package tuthub.logic.commands;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.logic.parser.Prefix;
 import tuthub.model.Model;
-import tuthub.model.Tuthub;
-import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.Tutor;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
-import static tuthub.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
 public class SortCommand extends Command {
 
@@ -80,15 +75,7 @@ public class SortCommand extends Command {
 
         String categoryWord = getCategoryWord(prefix);
 
-        List<Tutor> tutorsList = model.getTuthub().getTutorList();
-        List<Tutor> sortedTutors = new ArrayList<>();
-        sortedTutors.addAll(tutorsList);
-        sortedTutors.sort(comparator);
-
-        Tuthub sortedTuthub = new Tuthub();
-        sortedTuthub.setTutors(sortedTutors);
-        model.setTuthub(sortedTuthub);
-        model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
+        model.updateSortedTutorList(comparator);
 
         return new CommandResult(String.format(MESSAGE_SORT_TUTOR_SUCCESS, categoryWord, orderWord));
     }
