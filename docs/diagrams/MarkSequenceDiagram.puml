@@ -33,10 +33,10 @@ create MarkCommand
 MarkCommandParser -> MarkCommand
 activate MarkCommand
 
-MarkCommand --> MarkCommandParser : mc
+MarkCommand --> MarkCommandParser
 deactivate MarkCommand
 
-MarkCommandParser --> AddressBookParser : mc
+MarkCommandParser --> AddressBookParser
 deactivate MarkCommandParser
 
 AddressBookParser --> LogicManager : mc
@@ -71,11 +71,16 @@ create CommandResult
 MarkCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> MarkCommand : result
+CommandResult --> MarkCommand
 deactivate CommandResult
+CommandResult -[hidden]-> MarkCommand
+destroy CommandResult
+
 
 MarkCommand --> LogicManager : result
 deactivate MarkCommand
+MarkCommand -[hidden]-> LogicManager : result
+destroy MarkCommand
 
 [<--LogicManager
 deactivate LogicManager

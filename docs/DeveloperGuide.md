@@ -238,6 +238,52 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Mark/Unmark feature
+
+The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
+
+Given below is an example usage scenario, where the user enters `mark 1` as the input,
+and how the mark mechanism behaves at each step.
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+Step 1. The user executes `mark 1`, to mark the first appointment in the appointment list. 
+It is first sent to the `Logic Manager` which logs the input, and calls `AddressBookParser#parseCommand("mark 1")`.
+
+Step 2. The `AddressbookParser` identifies the input as a `mark` command, and passes it into `MarkCommandParser`
+to parse the input into a `MarkCommand`.
+
+Step 3. The `MarkCommandParser` parses the input into a `MarkCommand` storing the index of the appointment to mark.
+This `MarkCommand` is returned to the `Logic Manager`.
+
+Step 4. `Logic Manager` calls `MarkCommand#execute` and passes in the current model.
+
+Step 5. Using the current model, the appointment to mark is identified and marked.
+
+Step 6. If the appointment is a recurring appointment, a new appointment that occurs after the recurring time period
+as indicated in the appointment will be created and stored in the model. If the appointment is non-recurring, this
+step is skipped.
+
+Step 7. `MarkCommand` creates a `CommandResult` object detailing the changes it has made. It is passed back to
+`LogicManager`, which saves the changes done.
+
+The `unmark` command functions similiarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
+classes in place of `MarkCommandParser` and `MarkCommand` respectively. 
+It also lacks the logic to add recurring appointments.
+
+#### Design considerations:
+
+**Aspect: How mark & unmark executes:**
+* **Alternative 1 (current choice):** `MarkCommand` and `UnmarkCommand` takes in an `Index` denoting the appointment to 
+* mark/unmark.
+    * Pros: Easy to implement.
+    * Cons: Will have to compute the actual appointment to mark `MarkCommand`/`UnmarkCommand` itself.
+
+* **Alternative 2:** `MarkCommand` and `UnmarkCommand` takes in the `Appointment` to be marked as a parameter in its
+* constructor directly
+    * Pros: Cohesiveness is increased, as it only needs to concern itself with marking/unmarking the appointment.
+    * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment 
+  recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
 
 --------------------------------------------------------------------------------------------------------------------
 
