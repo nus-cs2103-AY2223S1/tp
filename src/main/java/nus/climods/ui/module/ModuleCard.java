@@ -55,6 +55,9 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label prereqs;
 
+    @FXML
+    private Label lessonTypes;
+
     private ListView<Module> listView;
 
     /**
@@ -87,6 +90,10 @@ public class ModuleCard extends UiPart<Region> {
 
     private void showDetailedModuleInformation() {
         prereqs.setText("Prerequisites: ");
+        String typesText = "No lesson types found";
+        typesText = module.getUniqueLessonTypes().size() > 0 ? "Types: " + String.join(",",
+            module.getUniqueLessonTypes()) : typesText;
+        lessonTypes.setText(typesText);
         expandedModuleInfo.setVisible(true);
         moduleDescription.setText(module.getDescription());
         moduleDescription.setWrapText(true);
