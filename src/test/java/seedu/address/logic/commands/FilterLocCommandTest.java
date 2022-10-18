@@ -3,13 +3,17 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,20 +37,20 @@ public class FilterLocCommandTest {
     @Test
     public void equals() {
         FilterLocCommand firstCommand = new FilterLocCommand(
-                new LocationContainsKeywordsPredicate<>("first"),
-                new LocationContainsKeywordsPredicate<>("first"),
-                new LocationContainsKeywordsPredicate<>("first"));
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("first")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("first")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("first")));
         FilterLocCommand secondCommand = new FilterLocCommand(
-                new LocationContainsKeywordsPredicate<>("second"),
-                new LocationContainsKeywordsPredicate<>("second"),
-                new LocationContainsKeywordsPredicate<>("second"));
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("second")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("second")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("second")));
 
         assertTrue(firstCommand.equals(firstCommand));
 
         FilterLocCommand firstCommandCopy = new FilterLocCommand(
-                new LocationContainsKeywordsPredicate<>("first"),
-                new LocationContainsKeywordsPredicate<>("first"),
-                new LocationContainsKeywordsPredicate<>("first"));
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("first")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("first")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("first")));
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         assertFalse(firstCommand.equals(1));
@@ -61,8 +65,8 @@ public class FilterLocCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         LocationContainsKeywordsPredicate<Buyer> predicate = preparePredicateBuyer("    ");
         FilterLocCommand command = new FilterLocCommand(predicate,
-                new LocationContainsKeywordsPredicate<>(" "),
-                new LocationContainsKeywordsPredicate<>(" "));
+                new LocationContainsKeywordsPredicate<>(Arrays.asList(" ")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList(" ")));
         bExpectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
         assertEquals(Collections.emptyList(), bModel.getFilteredBuyerList());
@@ -73,8 +77,8 @@ public class FilterLocCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         LocationContainsKeywordsPredicate<Buyer> predicate = preparePredicateBuyer("Singapore");
         FilterLocCommand command = new FilterLocCommand(predicate,
-                new LocationContainsKeywordsPredicate<>("Singapore"),
-                new LocationContainsKeywordsPredicate<>("Singapore"));
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")));
         bExpectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
         assertEquals(TypicalBuyers.getTypicalBuyers(), bModel.getFilteredBuyerList());
@@ -84,11 +88,11 @@ public class FilterLocCommandTest {
     public void execute_multipleKeywords_multipleDeliverersFound() {
         //String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         LocationContainsKeywordsPredicate<Deliverer> predicate = preparePredicateDeliverer("Singapore");
-        FilterLocCommand command = new FilterLocCommand(new LocationContainsKeywordsPredicate<>("Singapore"),
-                predicate, new LocationContainsKeywordsPredicate<>("Singapore"));
+        FilterLocCommand command = new FilterLocCommand(new LocationContainsKeywordsPredicate<>(
+                Arrays.asList("Singapore")),
+                predicate, new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")));
         dExpectedModel.updateFilteredDelivererList(predicate);
         command.execute(dModel);
-        //assertCommandSuccess(command, dModel, expectedMessage, dExpectedModel);
         assertEquals(TypicalDeliverers.getTypicalDeliverers(), dModel.getFilteredDelivererList());
     }
 
@@ -96,11 +100,11 @@ public class FilterLocCommandTest {
     public void execute_multipleKeywords_multipleSuppliersFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         LocationContainsKeywordsPredicate<Supplier> predicate = preparePredicateSupplier("Singapore");
-        FilterLocCommand command = new FilterLocCommand(new LocationContainsKeywordsPredicate<>("Singapore"),
-                new LocationContainsKeywordsPredicate<>("Singapore"), predicate);
+        FilterLocCommand command = new FilterLocCommand(new LocationContainsKeywordsPredicate<>(
+                Arrays.asList("Singapore")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")), predicate);
         sExpectedModel.updateFilteredSupplierList(predicate);
         command.execute(sModel);
-        //assertCommandSuccess(command, sModel, expectedMessage, sExpectedModel);
         assertEquals(TypicalSuppliers.getTypicalSuppliers(), sModel.getFilteredSupplierList());
     }
 
@@ -108,20 +112,32 @@ public class FilterLocCommandTest {
      * Parses {@code userInput} into a {@code LocationContainsKeywordsPredicate}.
      */
     private LocationContainsKeywordsPredicate<Buyer> preparePredicateBuyer(String userInput) {
-        return new LocationContainsKeywordsPredicate<>(userInput.trim());
+        String trimmedArgs = userInput.trim();
+        if (trimmedArgs.isEmpty()) {
+            return new LocationContainsKeywordsPredicate<>(new ArrayList<>());
+        }
+        return new LocationContainsKeywordsPredicate<>(Arrays.asList(trimmedArgs.split("\\s+")));
     }
 
     /**
      * Parses {@code userInput} into a {@code LocationContainsKeywordsPredicate}.
      */
     private LocationContainsKeywordsPredicate<Deliverer> preparePredicateDeliverer(String userInput) {
-        return new LocationContainsKeywordsPredicate<>(userInput.trim());
+        String trimmedArgs = userInput.trim();
+        if (trimmedArgs.isEmpty()) {
+            return new LocationContainsKeywordsPredicate<>(new ArrayList<>());
+        }
+        return new LocationContainsKeywordsPredicate<>(Arrays.asList(trimmedArgs.split("\\s+")));
     }
 
     /**
      * Parses {@code userInput} into a {@code LocationContainsKeywordsPredicate}.
      */
     private LocationContainsKeywordsPredicate<Supplier> preparePredicateSupplier(String userInput) {
-        return new LocationContainsKeywordsPredicate<>(userInput.trim());
+        String trimmedArgs = userInput.trim();
+        if (trimmedArgs.isEmpty()) {
+            return new LocationContainsKeywordsPredicate<>(new ArrayList<>());
+        }
+        return new LocationContainsKeywordsPredicate<>(Arrays.asList(trimmedArgs.split("\\s+")));
     }
 }

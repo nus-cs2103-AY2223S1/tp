@@ -26,6 +26,8 @@ public class FilterLocCommandParser implements Parser<FilterLocCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
+        System.out.println(nameKeywords.length);
+
         return new FilterLocCommand(new LocationContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)),
                 new LocationContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)),
                 new LocationContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)));

@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FilterLocCommand;
 import seedu.address.model.person.LocationContainsKeywordsPredicate;
 
+import java.util.Arrays;
+
 public class FilterLocCommandParserTest {
     private FilterLocCommandParser parser = new FilterLocCommandParser();
 
@@ -21,9 +23,9 @@ public class FilterLocCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindPetCommand() {
         FilterLocCommand expectedFindCommand =
-                new FilterLocCommand(new LocationContainsKeywordsPredicate<>("Singapore"),
-                        new LocationContainsKeywordsPredicate<>("Singapore"),
-                        new LocationContainsKeywordsPredicate<>("Singapore"));
+                new FilterLocCommand(new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")),
+                        new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")),
+                        new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")));
         assertParseSuccess(parser, "Singapore", expectedFindCommand);
         assertParseSuccess(parser, "\n Singapore \n \t  \t", expectedFindCommand);
     }

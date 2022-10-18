@@ -99,15 +99,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filterLoc() throws Exception {
-        FilterLocCommand command = new FilterLocCommand(new LocationContainsKeywordsPredicate<>("Singapore"),
-                new LocationContainsKeywordsPredicate<>("Singapore"),
-                new LocationContainsKeywordsPredicate<>("Singapore"));
+        FilterLocCommand command = new FilterLocCommand(new LocationContainsKeywordsPredicate<>(
+                Arrays.asList("Singapore")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")));
         assertEquals(parser.parseCommand(FilterLocCommand.COMMAND_WORD + " Singapore"), command);
     }
 
     @Test
     public void parseCommand_findBuyer() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("foo");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " b/ " + keywords.stream().collect(Collectors.joining(" ")));
         FindCommand otherCommand = new FindCommand(new NameContainsKeywordsPredicate<>(keywords),
@@ -119,7 +120,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findDeliverer() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("foo");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " d/ " + keywords.stream().collect(Collectors.joining(" ")));
         FindCommand otherCommand = new FindCommand(new NameContainsKeywordsPredicate<>(keywords),
@@ -131,7 +132,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findSupplier() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("foo");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " s/ " + keywords.stream().collect(Collectors.joining(" ")));
         FindCommand otherCommand = new FindCommand(new NameContainsKeywordsPredicate<>(keywords),
