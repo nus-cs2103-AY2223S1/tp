@@ -50,7 +50,11 @@ public class UnmarkTaskCommand extends TaskCommand {
         }
 
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
-        Task editedTask = new Task(taskToUnmark.getTitle(), false, taskToUnmark.getAssignedContacts());
+        Task editedTask =
+                new Task(taskToUnmark.getTitle(),
+                        false,
+                        taskToUnmark.getDeadline(),
+                        taskToUnmark.getAssignedContacts());
 
         model.setTask(taskToUnmark, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

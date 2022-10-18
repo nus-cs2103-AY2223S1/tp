@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Arrow shows an error message.
 
   Use case resumes at step 1.
-  
+
 **Use case: UC02 - List all persons**
 
 **MSS**
@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
    Use case ends.
-   
+
 **Use case: UC03 - Delete a person**
 
 **MSS**
@@ -360,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Arrow shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: UC04 - Edit a person**
 
 **MSS**
@@ -383,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Arrow shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. There is no new information provided.
 
     * 3b1. Arrow shows an error message.
@@ -406,7 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Arrow shows an error message.
 
   Use case resumes at step 1.
-  
+
 **Use case: UC06 - List tasks**
 
 **MSS**
@@ -417,11 +417,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
- 
+
 * 1a. The task list is empty.
 
   Use case ends.
-  
+
 **Use case: UC07 - Mark a task as complete**
 
 **MSS**
@@ -456,11 +456,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-      
+
 * 1a. The tasks list is empty.
 
   Use case ends.
-      
+
 * 3a. The given task index is invalid.
 
     * 3a1. Arrow shows an error message.
@@ -481,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
    Use case ends.
-   
+
 **Use case: UC10 - Assign persons to a task**
 
 **MSS**
@@ -496,15 +496,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-      
+
 * 1a. The persons list is empty.
 
   Use case ends.
-  
+
 * 3a. The tasks list is empty.
 
   Use case ends.
-      
+
 * 5a. The given task and/or person index is invalid.
 
     * 5a1. Arrow shows an error message.

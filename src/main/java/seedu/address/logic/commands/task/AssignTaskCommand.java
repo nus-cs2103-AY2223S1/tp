@@ -1,6 +1,6 @@
 package seedu.address.logic.commands.task;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -71,11 +71,7 @@ public class AssignTaskCommand extends TaskCommand {
      */
     public AssignTaskCommand(Index taskIndex, Set<Index> personAddIndexes, Set<String> personAddNames,
                              Set<Index> personDeleteIndexes, Set<String> personDeleteNames) {
-        requireNonNull(taskIndex);
-        requireNonNull(personAddIndexes);
-        requireNonNull(personAddNames);
-        requireNonNull(personDeleteIndexes);
-        requireNonNull(personDeleteNames);
+        requireAllNonNull(taskIndex, personAddIndexes, personAddNames, personDeleteIndexes, personDeleteNames);
 
         this.taskIndex = taskIndex;
         this.personAddIndexes.addAll(personAddIndexes);
@@ -112,7 +108,12 @@ public class AssignTaskCommand extends TaskCommand {
             contactSetToModify.remove(contactToAdd);
         }
 
-        Task editedTask = new Task(taskToModify.getTitle(), taskToModify.getCompleted(), contactSetToModify);
+        Task editedTask = new Task(
+                taskToModify.getTitle(),
+                taskToModify.getCompleted(),
+                taskToModify.getDeadline(),
+                contactSetToModify
+        );
 
         model.setTask(taskToModify, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
@@ -142,7 +143,7 @@ public class AssignTaskCommand extends TaskCommand {
     private Set<Contact> personNamesToContacts(Set<String> personNames, List<Person> personList) {
         Set<Contact> assignedContacts = new HashSet<>();
         for (String personName : personNames) {
-            String matchingPersonsName = Contact.isInPersonsList(personList, personName);
+            String matchingPersonsName = Contact.corrNameInPersonsList(personList, personName);
             if (matchingPersonsName == "") {
                 invalidNames.add(personName);
                 continue;
@@ -163,7 +164,7 @@ public class AssignTaskCommand extends TaskCommand {
     private String buildErrorMessage() {
         String errorMessage = "";
         for (Index invalidIndex : invalidIndexes) {
-            String currMessage = String.format(Messages.MESSAGE_INVALID_TASK_INDEX_CUSTOM,
+            String currMessage = String.format(Messages.MESSAGE_INVALID_PERSON_INDEX_CUSTOM,
                     invalidIndex.getOneBased());
             errorMessage += currMessage;
             errorMessage += "\n";

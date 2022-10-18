@@ -17,26 +17,29 @@ public class Task {
     private final Title title;
     private final boolean isCompleted; // defaults to false if not specified
 
+
     // data fields
+    private final Deadline deadline; // optional
     private final Set<Contact> assignedContacts = new HashSet<>();
 
     /**
-     * Creates a new {@code Task} with no assigned contacts.
+     * Creates a new {@code Task} with no assigned contacts and an unspecified deadline.
      *
      * @param title Title of task
      */
     public Task(Title title) {
-        this(title, false, new HashSet<Contact>());
+        this(title, false, Deadline.UNSPECIFIED, new HashSet<Contact>());
     }
 
     /**
-     * Every field must be present and not null.
+     * Every field except the task's deadline must be present and not null.
      */
-    public Task(Title title, boolean isCompleted, Set<Contact> assignedContacts) {
+    public Task(Title title, boolean isCompleted, Deadline deadline, Set<Contact> assignedContacts) {
         requireAllNonNull(title, isCompleted, assignedContacts);
 
         this.title = title;
         this.isCompleted = isCompleted;
+        this.deadline = deadline;
         this.assignedContacts.addAll(assignedContacts);
     }
 
@@ -49,6 +52,14 @@ public class Task {
      */
     public boolean getCompleted() {
         return isCompleted;
+    }
+
+
+    /**
+     * Returns the deadline set for the task.
+     */
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     /**
@@ -88,6 +99,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getCompleted() == getCompleted()
+                && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getAssignedContacts().equals(getAssignedContacts());
 
     }
@@ -95,7 +107,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, isCompleted, assignedContacts);
+        return Objects.hash(title, isCompleted, deadline, assignedContacts);
     }
 
     @Override
@@ -109,6 +121,11 @@ public class Task {
         if (!contacts.isEmpty()) {
             builder.append("; Contacts: ");
             contacts.forEach(builder::append);
+        }
+
+        if (!deadline.isUnspecified()) {
+            builder.append("; Deadline: ");
+            builder.append(deadline.toString());
         }
 
         return builder.toString();

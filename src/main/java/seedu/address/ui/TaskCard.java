@@ -37,6 +37,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private CheckBox isCompleted;
     @FXML
+    private Label deadline;
+    @FXML
     private FlowPane assignedContacts;
 
     /**
@@ -47,6 +49,15 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().toString());
+
+        if (task.getDeadline().isUnspecified()) {
+            deadline.setVisible(false);
+            deadline.setManaged(false);
+        } else {
+            String text = task.getDeadline().toString();
+            deadline.setText(text);
+        }
+
         isCompleted.setText("");
         isCompleted.setSelected(task.getCompleted());
         task.getAssignedContacts().stream()
