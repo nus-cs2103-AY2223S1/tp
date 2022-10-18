@@ -154,6 +154,56 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort Feature 
+
+#### Implementation 
+
+The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list. 
+
+The method `FXCollections.sort()` is called by UniquePersonList, which takes in a comparator as an argument and sorts the client list based on the comparator supplied.
+Each attribute of a client which is considered a valid sorting metric has its own comparator within its class.
+
+This operation is exposed in the `Model` interface as `Model#sort()`.
+
+Given below is an example usage scenario and how the `Sort` mechanism behaves at each step. 
+
+Step 1.  The user executes `list` to view his current client list. 
+
+Step 2. The user executes `sort income` to view his client list by ascending income levels. This will pass the income comparator to `Model#sort()`. The list will be sorted and changes can be viewed immediately.
+
+
+The following sequence diagram shows how the sort operation works: 
+
+insert sequence diagram here 
+
+The following activity diagram summarizes what happens when a user issues a `sort` command:
+
+insert activity diagram here 
+
+#### Design Considerations 
+
+**Aspect: How to manage saving changes to `Storage`**
+
+As any commands called which modifies the `AddressBook` will save these changes to storage, a major design consideration was whether to save these post-sort changes to the storage
+
+* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view 
+  * Pros: Easy to implement, less memory required to keep separate original list 
+  * Cons: Client list remains in a particular order after `sort` command is called until `sort default` is issued
+
+* **Alternative 2:** keep original list and sorted list as 2 separate lists 
+  * Pros: User need not call further command to view original list
+  * Cons: More memory to store 2nd list, more difficult to implement 
+
+**Aspect: How to sort list given different metrics** 
+
+* **Alternative 1 (current choice):** each sortable class has its own comparator and will be passed as an argument after `sort` command is parsed
+  * Pros: Better abstraction and Better OOP 
+  * Cons: Comparators must be written for every class  
+
+* **Alternative 2:** `Model` decides how to sort the client list based on sort metric called 
+  * Pros: Easier to implement 
+  * Cons: less abstraction; information about client attributes will have to be unnecessarily exposed to `Model` class 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
