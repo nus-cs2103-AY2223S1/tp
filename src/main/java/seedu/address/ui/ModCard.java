@@ -29,6 +29,10 @@ public class ModCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label modName;
+    @FXML
+    private Label modCategory;
+    @FXML
+    private Label completedStatus;
 
     /**
      * Creates a {@code ModCode} with the given {@code Mod} and index to display.
@@ -38,6 +42,31 @@ public class ModCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         modName.setText(module.getModName());
+
+        Mod.ModCategory modCat = module.getModCategory();
+        modCategory.setText(modCat.toString());
+
+        // set color of category tag
+        if (modCat.equals(Mod.ModCategory.COMP)) {
+            modCategory.setStyle("-fx-background-color: #bd4d5a;");
+        } else if (modCat.equals(Mod.ModCategory.MATH)) {
+            modCategory.setStyle("-fx-background-color: #cca60e;");
+        } else if (modCat.equals(Mod.ModCategory.SCI)) {
+            modCategory.setStyle("-fx-background-color: #68ab85;");
+        } else if (modCat.equals(Mod.ModCategory.COMMS)) {
+            modCategory.setStyle("-fx-background-color: #9f68ab;");
+        } else if (modCat.equals(Mod.ModCategory.GE)) {
+            modCategory.setStyle("-fx-background-color: #9373c7;");
+        } else if (modCat.equals(Mod.ModCategory.UE)) {
+            modCategory.setStyle("-fx-background-color: #5077ba;");
+        }
+
+        boolean isCompleted = module.getModStatus();
+        if (isCompleted) {
+            completedStatus.setStyle("-fx-background-color: #418a43;");
+        } else {
+            completedStatus.setStyle("-fx-background-color: #919191;");
+        }
     }
 
     @Override
