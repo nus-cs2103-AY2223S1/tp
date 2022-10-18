@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Student> filteredTutors;
-    private final FilteredList<Schedule> filteredSchedule;
+    private FilteredList<Schedule> filteredSchedule;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -160,7 +160,6 @@ public class ModelManager implements Model {
     @Override
     public void addSchedule(Schedule schedule) {
         addressBook.addSchedule(schedule);
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
@@ -168,12 +167,19 @@ public class ModelManager implements Model {
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         requireAllNonNull(target, editedSchedule);
         addressBook.setSchedule(target, editedSchedule);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
+    }
+
+    @Override
+    public void deleteSchedule(Schedule target) {
+        requireNonNull(target);
+        addressBook.removeSchedule(target);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -187,7 +193,6 @@ public class ModelManager implements Model {
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-
         addressBook.setModule(target, editedModule);
     }
 
@@ -257,14 +262,14 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        return new FilteredList<>(this.addressBook.getScheduleList());
+        return filteredSchedule;
     }
 
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
-        filteredSchedule.setPredicate(predicate);
+        filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
     }
 
     @Override

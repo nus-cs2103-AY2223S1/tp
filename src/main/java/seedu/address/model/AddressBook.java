@@ -170,7 +170,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds a new schedule to a module
-     * @param s
+     * @param s new schedule
      */
     public void addSchedule(Schedule s) {
         Module targetModule = getModuleByModuleCode(s.getModule());
@@ -179,7 +179,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given schedule {@code target} in the list with {@code editedSchedule}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ProfNUS.
      */
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         target.setModule(editedSchedule.getModule());
@@ -192,18 +192,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ProfNUS.
      * The person identity of {@code editedPerson} must not be the same as another existing person in ProfNUS.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
     /**
      * Replaces the given tutor {@code target} in the list with {@code editedTutor}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ProfNUS.
      * The person identity of {@code editedTutor} must not be the same as another existing tutor in ProfNUS.
      */
     public void setTutor(Student target, Student editedTutor) {
@@ -214,18 +213,26 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ProfNUS.
      * The module identity of {@code editedModule} must not be the same as another existing module in ProfNUS.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
-
         modules.setModule(target, editedModule);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in ProfNUS.
+     */
+    public void removeSchedule(Schedule key) {
+        Module module = getModuleByModuleCode(key.getModule());
+        module.deleteSchedule(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in ProfNUS.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -233,7 +240,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in ProfNUS.
      */
     public void removeTutor(Student key) {
         tutors.remove(key);
@@ -241,7 +248,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in ProfNUS.
      */
     public void removeModule(Module key) {
         modules.remove(key);
@@ -272,7 +279,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Schedule> getScheduleList() {
-
         ObservableList<Schedule> l = modules.getUnmodifiableObservableScheduleList();
         int i = 0;
         for (Schedule s : l) {
