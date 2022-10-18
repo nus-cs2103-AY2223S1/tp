@@ -76,11 +76,6 @@ public class Person {
         return appointments;
     }
 
-
-    public void cancelAppointment(Appointment appointment) {
-        appointments.remove(appointment);
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

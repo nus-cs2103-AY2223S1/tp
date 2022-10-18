@@ -10,6 +10,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
+import java.util.List;
+
 
 /**
  * A class that encapsulates the functionality of cancelling a patient's appointment.
@@ -20,7 +22,7 @@ public class CancelCommand extends SelectAppointmentCommand {
             + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment for: ";
+    public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment %1$s for: ";
 
 
     /**
@@ -43,13 +45,19 @@ public class CancelCommand extends SelectAppointmentCommand {
         Person patientToCancelAppt = getTargetPerson(model);
         Appointment toBeCancelledAppt = getTargetAppointment(model);
 
-        patientToCancelAppt.cancelAppointment(toBeCancelledAppt);
+        int index = patientToCancelAppt.getAppointments().indexOf(toBeCancelledAppt) + 1;
+        cancelAppointment(patientToCancelAppt.getAppointments(), toBeCancelledAppt);
         model.deleteAppointment(toBeCancelledAppt);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
-        return new CommandResult(MESSAGE_CANCEL_APPOINTMENT_SUCCESS + patientToCancelAppt.getName());
+        return new CommandResult(String.format(MESSAGE_CANCEL_APPOINTMENT_SUCCESS, index)
+                + patientToCancelAppt.getName());
+    }
+
+    private void cancelAppointment(List<Appointment> appointmentList, Appointment appointment) {
+        appointmentList.remove(appointment);
     }
 
     @Override

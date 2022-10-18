@@ -4,7 +4,11 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_NON_EXISTENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +18,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -30,27 +33,20 @@ public class CancelCommandTest {
 
     @Test
     public void execute_validIndexCancel_success() {
-        Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
+        Person person = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personWithNoBooking = new PersonBuilder(person).withAppointmentList(new ArrayList<>()).build();
 
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        CancelCommand cancelCommand = new CancelCommand(INDEX_SECOND_APPOINTMENT);
+        String expectedCancelMessage = String.format(CancelCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
+                INDEX_FIRST_APPOINTMENT.getOneBased())
+                + personWithNoBooking.getName();
 
-        Appointment unmarkedAppointment =
-                new Appointment("Cough", "2010-01-01 00:00", "", false);
-        Person personWithAppointment = new PersonBuilder().withAppointment(unmarkedAppointment).build();
-        unmarkedAppointment.setPatient(personWithAppointment);
+        ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        model.setPerson(person, personWithNoBooking);
+        expectedModel.setPerson(person, personWithNoBooking);
+        expectedModel.deleteAppointment(expectedModel.getFilteredAppointmentList().get(1));
 
-        testModel.addPerson(personWithAppointment);
-        testModel.addAppointment(unmarkedAppointment);
-
-        CancelCommand cancelCommand = new CancelCommand(targetAppointmentIndex);
-        String expectedCancelMessage =
-                CancelCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS + personWithAppointment.getName();
-
-        ModelManager expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        Person expectedPerson = new PersonBuilder().build();
-        expectedModel.addPerson(expectedPerson);
-
-        assertCommandSuccess(cancelCommand, testModel, expectedCancelMessage, expectedModel);
+        assertCommandSuccess(cancelCommand, model, expectedCancelMessage, expectedModel);
     }
 
     @Test
