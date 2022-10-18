@@ -5,8 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -27,6 +31,9 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_RANGE_INDEX =
+            "Range index should be in the form of startIndex - endIndex, where startIndex < endIndex";
+
     public static final String MESSAGE_INVALID_PATH = "Path is invalid.";
 
     /**
@@ -41,6 +48,58 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a List of {@code oneBasedIndex} into a List of {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseMultipleIndex(String multipleIndex) throws ParseException {
+        List<Index> indexList = new ArrayList<>();
+        List<String> indexStringList = Arrays.asList(multipleIndex.split(","));
+
+        for (int i = 0; i < indexStringList.size(); i++) {
+            String trimmedIndex = indexStringList.get(i).trim();
+            if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indexList.add(Index.fromOneBased(Integer.parseInt(trimmedIndex)));
+        }
+        Collections.sort(indexList);
+        return indexList;
+    }
+
+    /**
+     * Parses a List of {@code oneBasedIndex} into a List of {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseRangeIndex(String multipleIndex) throws ParseException {
+        List<Index> indexList = new ArrayList<>();
+        List<String> indexStringList = Arrays.asList(multipleIndex.split("-"));
+
+        int startIndex = Integer.parseInt(indexStringList.get(0).trim());
+        int endIndex = Integer.parseInt(indexStringList.get(1).trim());
+
+        if (indexStringList.size() > 2 || startIndex > endIndex) {
+            throw new ParseException(MESSAGE_INVALID_RANGE_INDEX);
+        }
+
+        for (int i = 0; i < indexStringList.size(); i++) {
+            String trimmedIndex = indexStringList.get(i).trim();
+            if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+        }
+
+        for (int i = startIndex; i <= endIndex; i++) {
+            indexList.add(Index.fromOneBased(i));
+        }
+        Collections.sort(indexList);
+        return indexList;
     }
 
     /**
