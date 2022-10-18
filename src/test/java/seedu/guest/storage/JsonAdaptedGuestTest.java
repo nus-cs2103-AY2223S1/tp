@@ -100,7 +100,8 @@ public class JsonAdaptedGuestTest {
     public void toModelType_invalidRoom_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        INVALID_ROOM, VALID_DATE_RANGE, VALID_NUMBER_OF_GUESTS, VALID_IS_ROOM_CLEAN, VALID_BILL, VALID_REQUEST);
+                        INVALID_ROOM, VALID_DATE_RANGE, VALID_NUMBER_OF_GUESTS,
+                        VALID_IS_ROOM_CLEAN, VALID_BILL, VALID_REQUEST);
         String expectedMessage = Room.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
@@ -116,7 +117,8 @@ public class JsonAdaptedGuestTest {
     @Test
     public void toModelType_invalidDateRange_throwsIllegalValueException() {
         JsonAdaptedGuest guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ROOM, INVALID_DATE_RANGE, VALID_NUMBER_OF_GUESTS, VALID_IS_ROOM_CLEAN, VALID_BILL, VALID_REQUEST);
+                VALID_ROOM, INVALID_DATE_RANGE, VALID_NUMBER_OF_GUESTS, VALID_IS_ROOM_CLEAN,
+                VALID_BILL, VALID_REQUEST);
         String expectedMessage = DateRange.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
