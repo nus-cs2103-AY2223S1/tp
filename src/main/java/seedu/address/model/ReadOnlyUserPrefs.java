@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -13,4 +14,5 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    void setDefaultView(DefaultView defaultView);
 }
