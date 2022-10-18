@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import paymelah.AppParameters;
 import paymelah.commons.core.LogsCenter;
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.SplitDebtCommand;
