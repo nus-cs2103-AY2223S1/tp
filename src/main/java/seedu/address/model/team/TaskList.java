@@ -80,12 +80,41 @@ public class TaskList implements Iterable<Task> {
         internalList.setAll(replacement);
     }
 
-
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public String getCompletedTasksString() {
+        if (internalList.isEmpty()) {
+            return ""; //return NO_TASKS;
+        }
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for (Task task : internalList) {
+            if (task.isComplete()) {
+                sb.append(String.format("\t%d. %s\n", i, task));
+            }
+            i++;
+        }
+        return sb.toString();
+    }
+
+    public String getIncompleteTasksString() {
+        if (internalList.isEmpty()) {
+            return ""; //return NO_TASKS;
+        }
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for (Task task : internalList) {
+            if (!task.isComplete()) {
+                sb.append(String.format("\t%d. %s\n", i, task));
+            }
+            i++;
+        }
+        return sb.toString();
     }
 
     @Override

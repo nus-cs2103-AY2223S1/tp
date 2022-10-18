@@ -159,6 +159,14 @@ public class Team {
         return taskList.toString();
     }
 
+    public String getCompletedTasksAsString() {
+        return taskList.getCompletedTasksString();
+    }
+
+    public String getIncompleteTasksAsString() {
+        return taskList.getIncompleteTasksString();
+    }
+
     /**
      * Format state as text for viewing.
      */

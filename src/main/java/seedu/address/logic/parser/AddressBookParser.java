@@ -100,7 +100,7 @@ public class AddressBookParser {
             return new DeleteTeamCommandParser().parse(arguments);
 
         case ListTasksCommand.COMMAND_WORD:
-            return new ListTasksCommand();
+            return new ListTasksCommandParser().parse(arguments);
 
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);

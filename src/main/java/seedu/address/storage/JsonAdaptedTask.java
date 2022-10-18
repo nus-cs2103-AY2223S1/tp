@@ -17,7 +17,7 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
-    public JsonAdaptedTask(String taskName) {
+    public JsonAdaptedTask(String taskName, String[] assignees) {
         this.taskName = taskName;
     }
 

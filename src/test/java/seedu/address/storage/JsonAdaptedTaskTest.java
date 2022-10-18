@@ -19,7 +19,7 @@ class JsonAdaptedTaskTest {
 
     @Test
     void toModelType_invalidTask_throwsException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(" ");
+        JsonAdaptedTask task = new JsonAdaptedTask(" ", new String[]{});
         assertThrows(IllegalValueException.class, () -> task.toModelType());
     }
 }
