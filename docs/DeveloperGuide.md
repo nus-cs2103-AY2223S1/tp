@@ -317,14 +317,15 @@ Software System: Travelr
 
 Software System: Travelr
 
-**Use case: UC02 Add a Trip**
+**Use case: UC02 Select a Trip**
 **Actor: User**
 
 **MSS :**
 1. User request the list of trips
 2. Travelr lists the trips.
-3. User requests to delete a certain trip.
-4. Travelr deletes the specified trip.
+3. User requests to select a certain trip.
+4. Travelr selects the specified trip.
+5. Travelr lists the events contained in the trip.
 
    Use case ends
 
