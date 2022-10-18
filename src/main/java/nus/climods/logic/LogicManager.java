@@ -1,5 +1,6 @@
 package nus.climods.logic;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -36,13 +37,14 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
         logger.info("[User Command] " + commandText);
 
         CommandResult commandResult;
         Command command = CliModsParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
+        // TODO: Ideally only save after a successful add or delete
+        storage.saveUserModuleList(model.getUserModuleList());
         return commandResult;
     }
 

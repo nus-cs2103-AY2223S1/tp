@@ -6,6 +6,7 @@ import java.util.Optional;
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
+import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.storage.module.ModuleListStorage;
 import nus.climods.storage.module.user.UserModuleListStorage;
 
@@ -21,4 +22,6 @@ public interface Storage extends UserPrefsStorage, ModuleListStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     UserModuleListStorage getUserModuleListStorage();
+
+    void saveUserModuleList(UniqueUserModuleList uniqueUserModuleList) throws IOException;
 }

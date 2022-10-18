@@ -1,5 +1,6 @@
 package nus.climods.ui;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -215,6 +216,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

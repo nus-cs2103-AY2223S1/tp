@@ -1,20 +1,15 @@
 package nus.climods.storage.module;
 
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.model.module.ReadOnlyModuleSummaryList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
-import nus.climods.storage.module.summary.JsonModuleSummaryListStorage;
 import nus.climods.storage.module.user.JsonUserModuleListStorage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.openapitools.client.api.ModulesApi;
-import org.openapitools.client.model.ModuleCondensed;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Optional;
 
 import static nus.climods.testutil.Assert.assertThrows;

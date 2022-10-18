@@ -9,6 +9,8 @@ import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 
+import java.io.IOException;
+
 /**
  * API of the Logic component
  */
@@ -22,7 +24,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException   If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
     ReadOnlyModuleList getModuleList();
     ObservableList<UserModule> getFilteredUserModuleList();
     ObservableList<Module> getFilteredModuleList();

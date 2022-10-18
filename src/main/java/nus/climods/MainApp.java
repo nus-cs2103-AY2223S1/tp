@@ -59,7 +59,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
         JsonUserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs
-                .getUserModuleListFilePath());
+                    .getUserModuleListFilePath());
+
         // TODO: Update path to Module Model's path
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(moduleListStorage, userModuleListStorage, userPrefsStorage);
@@ -77,7 +78,7 @@ public class MainApp extends Application {
      * empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs)
-            throws IOException, DataConversionException {
+            throws IOException {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialModuleList;
         Optional<UniqueUserModuleList> userModuleListOptional;
@@ -92,6 +93,9 @@ public class MainApp extends Application {
             initialUserModuleList = userModuleListOptional.get();
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format!");
+        } catch (NullPointerException e) {
+            logger.warning("Data file is empty!");
+        } finally {
             initialUserModuleList = new UniqueUserModuleList();
         }
 
@@ -105,8 +109,6 @@ public class MainApp extends Application {
             logger.warning("Data file not in the correct format!");
             initialModuleList = new ModuleList(academicYear);
         }
-
-
 
         return new ModelManager(initialModuleList, initialUserModuleList, userPrefs);
     }

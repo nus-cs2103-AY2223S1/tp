@@ -120,6 +120,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public UniqueUserModuleList getUserModuleList() {
+        return uniqueUserModuleList;
+    }
+
+
+    @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredModuleList;
 

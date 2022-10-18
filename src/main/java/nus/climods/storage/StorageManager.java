@@ -12,6 +12,7 @@ import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.storage.module.ModuleListStorage;
 import nus.climods.storage.module.user.UserModuleListStorage;
 
@@ -82,5 +83,10 @@ public class StorageManager implements Storage {
     @Override
     public void saveModuleList(List<Module> modules, Path filePath) throws IOException {
 
+    }
+
+    @Override
+    public void saveUserModuleList(UniqueUserModuleList uniqueUserModuleList) throws IOException {
+        userModuleListStorage.saveUserModuleList(uniqueUserModuleList);
     }
 }

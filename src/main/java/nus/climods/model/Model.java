@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
 
 
@@ -74,6 +75,8 @@ public interface Model {
      */
     void updateFilteredUserModuleList(Predicate<UserModule> predicate);
     void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser);
+
+    UniqueUserModuleList getUserModuleList();
 
     ObservableList<Module> getFilteredModuleList();
 

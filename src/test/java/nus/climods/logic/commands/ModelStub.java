@@ -9,6 +9,7 @@ import nus.climods.model.Model;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
 
 
@@ -80,6 +81,11 @@ class ModelStub implements Model {
     @Override
     public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
 
+    }
+
+    @Override
+    public UniqueUserModuleList getUserModuleList() {
+        return null;
     }
 
     @Override
