@@ -16,7 +16,7 @@ import tuthub.model.tutor.Tutor;
 /**
  * An Immutable Tuthub that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "tuthub")
 class JsonSerializableTuthub {
 
     public static final String MESSAGE_DUPLICATE_TUTOR = "Tutors list contains duplicate tutor(s).";
@@ -41,20 +41,20 @@ class JsonSerializableTuthub {
     }
 
     /**
-     * Converts this address book into the model's {@code Tuthub} object.
+     * Converts this tuthub into the model's {@code Tuthub} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Tuthub toModelType() throws IllegalValueException {
-        Tuthub addressBook = new Tuthub();
+        Tuthub tuthub = new Tuthub();
         for (JsonAdaptedTutor jsonAdaptedTutor : tutors) {
             Tutor tutor = jsonAdaptedTutor.toModelType();
-            if (addressBook.hasTutor(tutor)) {
+            if (tuthub.hasTutor(tutor)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TUTOR);
             }
-            addressBook.addTutor(tutor);
+            tuthub.addTutor(tutor);
         }
-        return addressBook;
+        return tuthub;
     }
 
 }

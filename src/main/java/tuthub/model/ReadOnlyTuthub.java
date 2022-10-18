@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import tuthub.model.tutor.Tutor;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view oftuthub
  */
 public interface ReadOnlyTuthub {
 

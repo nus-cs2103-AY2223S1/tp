@@ -33,7 +33,7 @@ public class StudentIdTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidStudentId() {
         // null student id
         assertThrows(NullPointerException.class, () -> StudentId.isValidId(null));
 
