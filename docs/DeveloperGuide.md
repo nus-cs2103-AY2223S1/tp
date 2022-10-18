@@ -238,6 +238,16 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Unique ID Mechanism
+Initially, `Buyer` has reference to `Order` and `Order` also has reference to `Buyer`. The same applied to the cross-reference between `Supplier` and `Pet`. This kind of bidirectional navigation makes it difficult to implement some JSON-related classes and methods, since the JSON-adapted date models will infinitely recursively write the references into the `.json` file.
+
+Our solution to this problem is to give each `Order` and `Pet` a unique ID that does not change throughout the life cycle of the object.
+
+We considered using a unique `int` or `long` data type to represent the id, but either `int` or `long` is possible to have overflow (though very unlikely), resulting in duplicate IDs. Therefore, we thought of another approach, which is strings.
+
+We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least significant digit shifts from `'z'` to `'a'`, we do a carry to the more significant digit. Repeat this step until there is no more carry or the most significant digit has a carry. In the latter case, we append another `'a'` as the most significant digit.
+
+For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
 
 --------------------------------------------------------------------------------------------------------------------
 
