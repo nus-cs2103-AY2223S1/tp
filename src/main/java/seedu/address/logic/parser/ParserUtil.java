@@ -5,14 +5,13 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DayTimeInWeek;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GameType;
 import seedu.address.model.person.Keyword;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
@@ -21,8 +20,6 @@ import seedu.address.model.person.Platform;
 import seedu.address.model.person.PlatformConverter;
 import seedu.address.model.person.Social;
 import seedu.address.model.person.TimeZone;
-import seedu.address.model.person.GameType;
-
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -295,6 +292,13 @@ public class ParserUtil {
         return new TimeZone(trimmedOffset);
     }
 
+    /**
+     * Parses a {@code String game type} into a {@code GameType object}.
+     * @param gameType the preferred game type
+     * @return the parsed game type
+     * @throws ParseException if the given {@code gameType} is invalid.
+     */
+
     public static GameType parseGameType(String gameType) throws ParseException {
         requireNonNull(gameType);
         String trimmedGameType = gameType.trim();
@@ -303,6 +307,14 @@ public class ParserUtil {
         }
         return new GameType(trimmedGameType);
     }
+
+    /**
+     * Parses {@code Collection<String> game types} into a {@code Set<GameType>}.
+     *
+     * @param gameTypes Collection of game types to be parsed.
+     * @return Set of game types.
+     * @throws ParseException if any of the game types are invalid.
+     */
 
     public static Set<GameType> parseGameType(Collection<String> gameTypes) throws ParseException {
         requireNonNull(gameTypes);
