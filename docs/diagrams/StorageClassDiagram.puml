@@ -30,6 +30,14 @@ Class JsonAdaptedTask
 Class JsonAdaptedTaskTag
 }
 
+package "Inventory Storage" #F4F6F6 {
+Class "<<interface>>\nInventoryStorage" as InventoryStorage
+Class JsonInventoryStorage
+Class JsonSerializableInventory
+Class JsonAdaptedSupplyItem
+Class JsonAdaptedSupplyItemTag
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
@@ -37,19 +45,25 @@ StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
 StorageManager -up-> "1" TaskStorage
+StorageManager -up-> "1" InventoryStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
 Storage -left-|> TaskStorage
+Storage -left-|> InventoryStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonTaskStorage .up.|> TaskStorage
+JsonInventoryStorage .up.|> InventoryStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonTaskStorage ..> JsonSerializableTaskList
+JsonInventoryStorage ..> JsonSerializableInventory
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonSerializableTaskList --> "*" JsonAdaptedTask
+JsonSerializableInventory --> "*" JsonAdaptedSupplyItem
 JsonAdaptedPerson --> "*" JsonAdaptedPersonTag
 JsonAdaptedTask --> "*" JsonAdaptedTaskTag
+JsonAdaptedSupplyItem --> "*" JsonAdaptedSupplyItemTag
 
 @enduml

@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `InventoryPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -123,6 +123,7 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the task list data i.e., all `Task` objects (which are contained in a `ObservableList` object) that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the inventory data i.e., all `SupplyItem` objects (which are contained in a `ObservableList` object) that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other four components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -141,10 +142,10 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save address book data, task list data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save address book data, task list data, inventory data, and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `AddressBookStorage`, `TaskListStorage`, `InventoryStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-* `JsonAdaptedTaskTag` and `JsonAdaptedPersonTag` are actually the non-ambiguious direct representation of `JsonAdaptedTag`.
+* `JsonAdaptedTaskTag`, `JsonAdaptedSupplyItemTag` and `JsonAdaptedPersonTag` are actually the non-ambiguous direct representation of `JsonAdaptedTag`.
 
 ### Common classes
 
@@ -155,6 +156,59 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[Developed\] Mark/un-mark feature
+
+**Implementation**
+
+**NOTE**: `markTask` and `unmarkTask` has it's implementation done in a similar fashion and hence the below guide will be for
+`markTask` only.
+
+This feature allows tasks to be marked as completed or not completed, using the `mark` or `unmark` command. This is facilitated
+via the `MarkTaskCommand` and `MarkTaskCommandParser` classes.
+
+The `MarkTaskCommandParser` parses the input given by the user and ensures the validity of the index. Tasks at the target index
+will then be marked as completed with the help of the following methods:
+
+* `Model#getFilteredTaskList()` Retrieves the `Task` indicated by its index from `ObservableList<Task>`.
+* `Model#setTask(markedTask, targetIndex)` which sets the `status` class variable of the `markedTask` to `true`.
+* `MarkTaskCommand#createMarkedTask(taskToMark, configureMarkedTask)` will create a marked task based on the configuration of `configureMarkedTask`.
+
+Given below is an example of how `MarkTaskCommand` is being executed.
+
+**Steps**
+
+Step 1. The user enters the `markTask 1` command.
+
+Step 2. The `MarkTaskCommandParser` parses the index and ensures that the index given is valid. In this process, a `MarkTaskCommand` object with the argument containing the target index is created.
+
+Step 3. The `MarkTaskCommand` is executed. Task of index 1 is retrieved by calling the `ObservableList#get()` method.
+
+![MarkTaskState0](images/MarkTaskState0.png)
+
+Step 4. If the task exists at index 1, then the marked `Task` will be created by calling
+`MarkTaskCommand#createMarkedTask(taskToMark, configureMarkedTask)`. Then, `Model#setTask(taskToMark, targetIndex)` will be called which sets the `Task` at index 1 to be a marked `Task`.
+
+![MarkTaskState1](images/MarkTaskState1.png)
+
+Step 5. `CommandResult` is then returned, notifying the user that the `Task` has been marked as completed successfully.
+
+**Activity Diagram**
+
+The user flow is illustrated in the *Activity Diagram* as shown below.
+
+![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
+
+**Design Considerations**
+
+**Aspect: Utilising toggling instead of setting `true`:**
+
+* **Choice 1 (Chosen Method): Sets status of a `Task` as `true`**
+  * Advantages: Gives the developer more control to handle the `Task`, more towards extensibility for future iterations where we might need to have extra parameters to be updated when a `Task` is completed.
+  * Disadvantages: More tedious to maintain due to more code being involved.
+* **Choice 2: Toggles the current status of `Task` to `true` if the `Task` is not completed otherwise does nothing to the `Task`**
+  * Advantages: Easier to maintain for the developer. Acts like a switch and when a `Task` is already completed, marking it again will do nothing (Saves more computational power).
+  * Disadvantages: Harder for future extension in the event that we need to do much more than just toggling the status of a `Task`.
 
 ### \[Proposed\] Undo/redo feature
 
