@@ -11,10 +11,10 @@ import static tuthub.testutil.TypicalTutors.JACKSON;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
 import tuthub.model.Tuthub;
