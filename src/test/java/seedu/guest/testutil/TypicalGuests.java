@@ -33,7 +33,7 @@ public class TypicalGuests {
     public static final Guest BENSON = new GuestBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withDateRange("30/09/22 - 02/10/22").withNumberOfGuests("2")
-            .withPhone("98765432").withIsRoomClean("yes").withBill("10")
+            .withPhone("98765432").withIsRoomClean("yes").withBill("1")
             .withRequest("I want to clean my room for one more time")
             .build();
     public static final Guest CARL = new GuestBuilder().withName("Carl Kurz").withPhone("95352563")

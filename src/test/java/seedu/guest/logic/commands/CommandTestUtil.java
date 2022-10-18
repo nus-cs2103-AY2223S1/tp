@@ -2,6 +2,7 @@ package seedu.guest.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_BILL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
@@ -38,6 +39,9 @@ public class CommandTestUtil {
     public static final String VALID_NUMBER_OF_GUESTS_BOB = "2";
     public static final String VALID_IS_ROOM_CLEAN_AMY = "yes";
     public static final String VALID_IS_ROOM_CLEAN_BOB = "no";
+    public static final String VALID_BILL_POSITIVE = "1";
+    public static final String VALID_BILL_ZERO = "0";
+    public static final String VALID_BILL_NEGATIVE = "-1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -51,6 +55,9 @@ public class CommandTestUtil {
     public static final String NUMBER_OF_GUESTS_DESC_BOB = " " + PREFIX_NUMBER_OF_GUESTS + VALID_NUMBER_OF_GUESTS_BOB;
     public static final String IS_ROOM_CLEAN_DESC_AMY = " " + PREFIX_IS_ROOM_CLEAN + VALID_IS_ROOM_CLEAN_AMY;
     public static final String IS_ROOM_CLEAN_DESC_BOB = " " + PREFIX_IS_ROOM_CLEAN + VALID_IS_ROOM_CLEAN_BOB;
+    public static final String BILL_DESC_POSITIVE = " " + PREFIX_BILL + VALID_BILL_POSITIVE;
+    public static final String BILL_DESC_ZERO = " " + PREFIX_BILL + VALID_BILL_ZERO;
+    public static final String BILL_DESC_NEGATIVE = " " + PREFIX_BILL + VALID_BILL_NEGATIVE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -61,6 +68,7 @@ public class CommandTestUtil {
             + PREFIX_NUMBER_OF_GUESTS + "-1"; // '-1' not allowed as numbers of guests
     public static final String INVALID_IS_ROOM_CLEAN_DESC = " "
             + PREFIX_IS_ROOM_CLEAN + "true"; // 'true' not allowed as is room clean
+    public static final String INVALID_BILL_DESC = " " + PREFIX_BILL + "1?0"; // '?' not allowed in bills
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
