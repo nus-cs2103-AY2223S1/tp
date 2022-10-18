@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.parser.ParserUtil;
+
 /**
  * Represents a mod in Mass Linkers.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModName(String)}
@@ -10,7 +12,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Mod {
     public static final String MESSAGE_CONSTRAINTS = "Mod names should be numbers prefixed with letters.";
     /** Categories for mods */
-    public enum ModCategory { COMP, MATH, SCI, COMMS, GE, UE };
+    public enum ModCategory {
+        COMP("Computer Science"), MATH("Mathematics"), SCI("Sciences"), COMMS("Communication"),
+        GE("General Education"), UE("Unrestricted Elective");
+        private String value;
+
+        ModCategory(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.getValue();
+        }
+    }
+
     public static final String VALIDATION_REGEX = "[A-Z]+\\d+[A-Z]?";
     private final String modName;
     private boolean hasTaken;
@@ -26,7 +46,7 @@ public class Mod {
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
         this.modName = modName.toUpperCase();
         this.hasTaken = false;
-        this.modCategory = getModCategory(modName);
+        this.modCategory = ParserUtil.parseModsToCategory(modName);
     }
 
     /**
@@ -40,7 +60,7 @@ public class Mod {
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
         this.modName = modName.toUpperCase();
         this.hasTaken = hasTaken;
-        this.modCategory = getModCategory(modName);
+        this.modCategory = ParserUtil.parseModsToCategory(modName);
     }
 
     /**
@@ -102,38 +122,6 @@ public class Mod {
      */
     public ModCategory getModCategory() {
         return this.modCategory;
-    }
-
-    /**
-     * Gets mod category from the given mod name.
-     *
-     * @param modName The mod name.
-     * @return The mod category.
-     */
-    private ModCategory getModCategory(String modName) {
-        assert modName != null;
-
-        String modPrefix = modName.split("[0-9]")[0].substring(0, 2);
-        switch (modPrefix) {
-        case "CS":
-        case "IS":
-        case "CP":
-            return ModCategory.COMP;
-        case "MA":
-        case "ST":
-            return ModCategory.MATH;
-        case "LS":
-        case "CM":
-        case "PC":
-            return ModCategory.SCI;
-        case "ES":
-            return ModCategory.COMMS;
-        case "GE":
-        case "UT":
-            return ModCategory.GE;
-        default:
-            return ModCategory.UE;
-        }
     }
 
     @Override

@@ -33,11 +33,19 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private HBox phoneContainer;
+    @FXML
     private Label phone;
+    @FXML
+    private HBox emailContainer;
     @FXML
     private Label email;
     @FXML
+    private HBox telegramContainer;
+    @FXML
     private Label telegram;
+    @FXML
+    private HBox githubContainer;
     @FXML
     private Label github;
     @FXML
@@ -51,21 +59,21 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        telegram.setText("Telegram: " + person.getTelegram().handle);
+        telegram.setText(person.getTelegram().handle);
         if (person.getPhone() != null) {
-            phone.setText("HP: " + person.getPhone().value);
+            phone.setText(person.getPhone().value);
         } else {
-            phone.setManaged(false);
+            phoneContainer.getChildren().clear();
         }
         if (person.getEmail() != null) {
-            email.setText("Email: " + person.getEmail().value);
+            email.setText(person.getEmail().value);
         } else {
-            email.setManaged(false);
+            emailContainer.getChildren().clear();
         }
         if (person.getGitHub() != null) {
-            github.setText("GitHub: " + person.getGitHub().username);
+            github.setText(person.getGitHub().username);
         } else {
-            github.setManaged(false);
+            githubContainer.getChildren().clear();
         }
 
         person.getInterests()
