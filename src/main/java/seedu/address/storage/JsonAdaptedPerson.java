@@ -39,7 +39,7 @@ class JsonAdaptedPerson {
     private final String birthdate;
     private final String race;
     private final String religion;
-    private final String survey;
+    private final List<JsonAdaptedSurvey> surveys = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -50,7 +50,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("gender") String gender, @JsonProperty("birthdate") String birthdate,
             @JsonProperty("race") String race, @JsonProperty("religion") String religion,
-            @JsonProperty("survey") String survey, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("surveys") List<JsonAdaptedSurvey> surveys,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,7 +60,9 @@ class JsonAdaptedPerson {
         this.birthdate = birthdate;
         this.race = race;
         this.religion = religion;
-        this.survey = survey;
+        if (surveys != null) {
+            this.surveys.addAll(surveys);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -77,7 +80,9 @@ class JsonAdaptedPerson {
         birthdate = source.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
         race = source.getRace().race;
         religion = source.getReligion().religion;
-        survey = source.getSurvey().survey;
+        surveys.addAll(source.getSurveys().stream()
+                .map(JsonAdaptedSurvey::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -90,6 +95,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Survey> personSurveys = new ArrayList<>();
+
+        for (JsonAdaptedSurvey survey : surveys) {
+            personSurveys.add(survey.toModelType());
+        }
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
@@ -160,15 +171,10 @@ class JsonAdaptedPerson {
         }
         final Religion modelReligion = new Religion(religion);
 
-        if (survey == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Survey.class.getSimpleName()));
-        }
-        if (!Survey.isValidSurvey(survey)) {
-            throw new IllegalValueException(Survey.MESSAGE_CONSTRAINTS);
-        }
-        final Survey modelSurvey = new Survey(survey);
+        final Set<Survey> modelSurvey = new HashSet<>(personSurveys);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
                 modelGender, modelBirthdate, modelRace,
                 modelReligion, modelSurvey, modelTags);

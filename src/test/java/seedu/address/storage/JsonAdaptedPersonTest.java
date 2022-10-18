@@ -34,7 +34,9 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_BIRTHDATE = BENSON.getBirthdate().toString();
     private static final String VALID_RACE = BENSON.getRace().toString();
     private static final String VALID_RELIGION = BENSON.getReligion().toString();
-    private static final String VALID_SURVEY = BENSON.getSurvey().toString();
+    private static final List<JsonAdaptedSurvey> VALID_SURVEY = BENSON.getSurveys().stream()
+            .map(JsonAdaptedSurvey::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
