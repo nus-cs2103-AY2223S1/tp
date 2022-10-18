@@ -202,28 +202,14 @@ The operation is exposed in the `Command` interface as `Command#ArchivePatientCo
 
 Given below is an example usage scenario and how the archive mechanism behaves at each step.
 
-<<<<<<< HEAD
-Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
-patient list.
-
-
-Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of
-patients after the `archive patient` command executes to show on the screen.
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
-("archive Patient")` API
-=======
 Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial 
 patient list.
-
 
 Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of 
 patients after the `archive patient` command executes to show on the screen.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
-("archive Patient")` API 
->>>>>>> origin/branch-dev-guide
-call.
+("archive Patient")` API call.
 
 ![Interactions Inside the Logic Component for the `archive patient` Command](images/ArchivePatientSequenceDiagram.png)
 
@@ -235,12 +221,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How archive patient executes:**
 
-<<<<<<< HEAD
-* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged
-=======
-* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged 
->>>>>>> origin/branch-dev-guide
-  list on the screen.
+* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged list on the screen.
 
 ### \[Implemented\] Book feature
 
