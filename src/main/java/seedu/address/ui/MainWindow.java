@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.ListStudentCommand.COMMAND_LIST_STUDENT_STRING;
+import static seedu.address.logic.commands.ListTuitionClassCommand.COMMAND_LIST_CLASS_STRING;
+import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_STRING;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -18,6 +22,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -192,13 +198,16 @@ public class MainWindow extends UiPart<Stage> {
         Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
-            switchToStudentList();
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
-            switchToTutorList();
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
         case TUITIONCLASS_LIST:
-            switchToTuitionClassList();
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;
         case PERSON_LIST:
             entityListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -206,39 +215,50 @@ public class MainWindow extends UiPart<Stage> {
         default:
             break;
         }
+        setLabelStyle();
     }
 
     @FXML
-    private void switchToStudentList() {
-        logic.updateCurrentListType(Model.ListType.STUDENT_LIST);
-        entityListPanelPlaceholder.getChildren().clear();
-        entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    private void switchToStudentList() throws CommandException, ParseException {
+        try {
+            executeCommand(COMMAND_LIST_STUDENT_STRING);
 
-        setLabelStyle(Model.ListType.STUDENT_LIST);
+        } catch (CommandException e) {
+            throw e;
+        } catch (ParseException e) {
+            throw e;
+        }
     }
 
     @FXML
-    private void switchToTutorList() {
-        logic.updateCurrentListType(Model.ListType.TUTOR_LIST);
-        entityListPanelPlaceholder.getChildren().clear();
-        entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+    private void switchToTutorList() throws CommandException, ParseException {
+        try {
+            executeCommand(COMMAND_LIST_TUTOR_STRING);
 
-        setLabelStyle(Model.ListType.TUTOR_LIST);
+        } catch (CommandException e) {
+            throw e;
+        } catch (ParseException e) {
+            throw e;
+        }
     }
 
     @FXML
-    private void switchToTuitionClassList() {
-        logic.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        entityListPanelPlaceholder.getChildren().clear();
-        entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+    private void switchToTuitionClassList() throws CommandException, ParseException {
+        try {
+            executeCommand(COMMAND_LIST_CLASS_STRING);
 
-        setLabelStyle(Model.ListType.TUITIONCLASS_LIST);
+        } catch (CommandException e) {
+            throw e;
+        } catch (ParseException e) {
+            throw e;
+        }
     }
 
-    private void setLabelStyle(Model.ListType type) {
+    private void setLabelStyle() {
         studentLabelPanel.getStyleClass().clear();
         tutorLabelPanel.getStyleClass().clear();
         tuitionClassLabelPanel.getStyleClass().clear();
+        Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
             tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);

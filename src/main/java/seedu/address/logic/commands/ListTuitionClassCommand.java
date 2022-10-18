@@ -12,6 +12,11 @@ public class ListTuitionClassCommand extends Command {
 
     public static final String COMMAND_WORD = "list_c";
 
+    // the full string that calls list class which is used by UI
+    // please update after changing list_c to list class/list c
+    // by replacing the below list_c with either list class or list c
+    public static final String COMMAND_LIST_CLASS_STRING = "list_c";
+
     public static final String MESSAGE_SUCCESS = "Listed all tuition classes";
 
 
