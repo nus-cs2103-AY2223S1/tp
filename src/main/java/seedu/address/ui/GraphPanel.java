@@ -14,9 +14,9 @@ import seedu.address.model.entry.EntryType;
 /**
  * Panel containing the pie chart diagram.
  */
-public class PieChartPanel extends UiPart<Region> {
-    private static final String FXML = "PieChartPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(seedu.address.ui.PieChartPanel.class);
+public class GraphPanel extends UiPart<Region> {
+    private static final String FXML = "GraphPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(seedu.address.ui.GraphPanel.class);
     private EntryPieChart pieChart;
 
     @FXML
@@ -27,9 +27,9 @@ public class PieChartPanel extends UiPart<Region> {
 
     /**
      * TODO: Edit image to pie chart
-     * Creates a {@code PieChartPanel} with a default pie chart image
+     * Creates a {@code GraphPanel} with a default pie chart image
      */
-    public PieChartPanel(EntryType entryType, ObservableList<PieChart.Data> pieChartData) {
+    public GraphPanel(EntryType entryType, ObservableList<PieChart.Data> pieChartData) {
         super(FXML);
 
         this.pieChart = new EntryPieChart(pieChartData);

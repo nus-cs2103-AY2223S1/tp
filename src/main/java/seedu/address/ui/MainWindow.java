@@ -53,7 +53,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusBarPlaceholder;
 
     @FXML
-    private StackPane pieChartPanelPlaceholder;
+    private StackPane graphPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -132,9 +132,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        PieChartPanel pieChartPanel = new PieChartPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
+        GraphPanel graphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
                                                         logic.getExpensePieChartData());
-        pieChartPanelPlaceholder.getChildren().add(pieChartPanel.getRoot());
+        graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
     }
 
     /**
@@ -190,19 +190,19 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the graph
      */
     public void updateGraph(EntryType entryType, GraphType graphType) {
-        pieChartPanelPlaceholder.getChildren().clear();
+        graphPanelPlaceholder.getChildren().clear();
         switch (graphType.getGraphType()) {
         case CATEGORY:
             switch (entryType.getEntryType()) {
             case EXPENDITURE:
-                PieChartPanel expensePieChartPanel = new PieChartPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
+                GraphPanel expenseGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
                                                                        logic.getExpensePieChartData());
-                pieChartPanelPlaceholder.getChildren().add(expensePieChartPanel.getRoot());
+                graphPanelPlaceholder.getChildren().add(expenseGraphPanel.getRoot());
                 break;
             case INCOME:
-                PieChartPanel incomePieChartPanel = new PieChartPanel(new EntryType(EntryType.ENTRY_TYPE_INCOME),
+                GraphPanel incomeGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_INCOME),
                                                                       logic.getIncomePieChartData());
-                pieChartPanelPlaceholder.getChildren().add(incomePieChartPanel.getRoot());
+                graphPanelPlaceholder.getChildren().add(incomeGraphPanel.getRoot());
                 break;
             default:
                 break;
