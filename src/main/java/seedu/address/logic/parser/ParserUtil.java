@@ -138,7 +138,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateAndTimem} and a {@code String Location} into an {@code Appointment}.
+     * Parses a {@code String dateAndTime} and a {@code String Location} into an {@code Appointment}.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static Appointment parseAppointment(String dateAndTime, String location) throws ParseException {

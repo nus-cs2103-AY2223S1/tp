@@ -60,10 +60,8 @@ public class DeleteAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
-        Appointment appointmentToDelete;
         Appointment deletedAppointment;
         try {
-            appointmentToDelete = appointmentSet.get(appointmentIndex.getZeroBased());
             deletedAppointment = appointmentSet.remove(appointmentIndex.getZeroBased());
         } catch (SortedListException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);

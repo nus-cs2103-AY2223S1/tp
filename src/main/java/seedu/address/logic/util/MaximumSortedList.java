@@ -133,9 +133,6 @@ public class MaximumSortedList<T extends Comparable<T>> {
                 break;
             }
         }
-
-//        int indexOfElement = binarySearch(t);
-
         if (indexOfElement == -1) {
             return false;
         } else {
