@@ -39,9 +39,6 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
         deleteTaskFromModuleDescriptor.setModuleCodeOfModuleWithTaskToDelete(moduleCodeOfModuleToDeleteTaskFrom);
         String taskNumberGivenByUser =
                 argMultimap.getValue(PREFIX_TASK_NUMBER_TO_DELETE).get();
-        if (!StringUtil.isNonZeroUnsignedInteger(taskNumberGivenByUser)) {
-            throw new ParseException(MESSAGE_INVALID_TASK_NUMBER);
-        }
         Index taskIndexToRemove =
                 ParserUtil.parseTaskNumberToDelete(taskNumberGivenByUser);
         deleteTaskFromModuleDescriptor.setIndexOfTaskToDelete(taskIndexToRemove);
