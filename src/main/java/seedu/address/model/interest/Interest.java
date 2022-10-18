@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents an Interest in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidInterest(String)}
  */
 public class Interest {
@@ -17,7 +17,7 @@ public class Interest {
     /**
      * Constructs a {@code Interest}.
      *
-     * @param interestName A valid tag name.
+     * @param interestName A valid interest name.
      */
     public Interest(String interestName) {
         requireNonNull(interestName);
@@ -26,7 +26,7 @@ public class Interest {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid interest name.
      */
     public static boolean isValidInterest(String test) {
         return test.matches(VALIDATION_REGEX);
