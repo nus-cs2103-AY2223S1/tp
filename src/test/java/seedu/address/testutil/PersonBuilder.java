@@ -55,6 +55,7 @@ public class PersonBuilder {
         race = new Race(DEFAULT_RACE);
         religion = new Religion(DEFAULT_RELIGION);
         surveys = new HashSet<>();
+        surveys.add(new Survey(DEFAULT_SURVEY));
         tags = new HashSet<>();
     }
 
