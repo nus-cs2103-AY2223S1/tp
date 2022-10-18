@@ -16,7 +16,6 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Exam;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -159,7 +158,9 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Exam> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            Exam temp = parseTag(tagName);
+            tagSet.remove(temp); // Removes duplicate exam and overrides it with the latest one.
+            tagSet.add(temp);
         }
         return tagSet;
     }
