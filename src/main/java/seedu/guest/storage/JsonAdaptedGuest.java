@@ -12,6 +12,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Room;
 
 /**
  * Jackson-friendly version of {@link Guest}.
@@ -23,6 +24,7 @@ class JsonAdaptedGuest {
     private final String name;
     private final String phone;
     private final String email;
+    private final String room;
     private final String dateRange;
     private final String numberOfGuests;
     private final String isRoomClean;
@@ -33,12 +35,14 @@ class JsonAdaptedGuest {
      */
     @JsonCreator
     public JsonAdaptedGuest(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("dateRange") String dateRange,
+            @JsonProperty("email") String email, @JsonProperty("room") String room,
+            @JsonProperty("dateRange") String dateRange,
             @JsonProperty("numberOfGuests") String numberOfGuests,
             @JsonProperty("isRoomClean") String isRoomClean, @JsonProperty("bill") String bill) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.room = room;
         this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
         this.isRoomClean = isRoomClean;
@@ -52,6 +56,7 @@ class JsonAdaptedGuest {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        room = source.getRoom().value;
         dateRange = source.getDateRange().value;
         numberOfGuests = source.getNumberOfGuests().value;
         isRoomClean = source.getIsRoomClean().value;
@@ -90,6 +95,15 @@ class JsonAdaptedGuest {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
+
+        // Room
+        if (room == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Room.class.getSimpleName()));
+        }
+        if (!Room.isValidRoom(room)) {
+            throw new IllegalValueException(Room.MESSAGE_CONSTRAINTS);
+        }
+        final Room modelRoom = new Room(room);
 
         // Date Range
         if (dateRange == null) {
@@ -131,7 +145,7 @@ class JsonAdaptedGuest {
         }
         final Bill modelBill = new Bill(bill);
 
-        return new Guest(modelName, modelPhone, modelEmail, modelDateRange, modelNumberOfGuests, modelIsRoomClean,
-                modelBill);
+        return new Guest(modelName, modelPhone, modelEmail, modelRoom,
+                modelDateRange, modelNumberOfGuests, modelIsRoomClean, modelBill);
     }
 }
