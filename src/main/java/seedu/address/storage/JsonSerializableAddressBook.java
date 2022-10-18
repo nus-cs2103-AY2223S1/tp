@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -27,15 +28,17 @@ class JsonSerializableAddressBook {
             + "present in the module list";
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedExam> exams = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-            @JsonProperty("modules") List<JsonAdaptedModule> modules) {
+            @JsonProperty("modules") List<JsonAdaptedModule> modules, @JsonProperty("exams") List<JsonAdaptedExam> exams) {
         this.tasks.addAll(tasks);
         this.modules.addAll(modules);
+        this.exams.addAll(exams);
     }
 
     /**
@@ -46,6 +49,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        exams.addAll(source.getExamList().stream().map(JsonAdaptedExam::new).collect(Collectors.toList()));
     }
 
     /**
@@ -55,6 +59,7 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
         for (JsonAdaptedModule jsonAdaptedModule: modules) {
             Module module = jsonAdaptedModule.toModelType();
             if (addressBook.hasModule(module)) {
@@ -69,7 +74,13 @@ class JsonSerializableAddressBook {
             }
             addressBook.addTask(task);
         }
-
+        for (JsonAdaptedExam jsonAdaptedExam: exams) {
+            Exam exam = jsonAdaptedExam.toModelType();
+            if (!addressBook.hasModule(exam.getModule())) {
+                throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
+            }
+           addressBook.addExam(exam);
+        }
         return addressBook;
     }
 
