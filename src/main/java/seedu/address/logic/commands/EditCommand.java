@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -28,6 +30,8 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +52,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INCOME + "INCOME] "
             + "[" + PREFIX_MEETING_DATE + "MEETINGDATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_RISK + "RISK] "
+            + "[" + PREFIX_PLAN + "PLAN] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -106,9 +112,11 @@ public class EditCommand extends Command {
         Income updatedIncome = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         MeetingDate updatedMeetingDate = editPersonDescriptor.getMeetingDate().orElse(personToEdit.getMeetingDate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Risk risk = editPersonDescriptor.getRisk().orElse(personToEdit.getRisk());
+        Set<Plan> plans = editPersonDescriptor.getPlans().orElse(personToEdit.getPlans());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
-                updatedMeetingDate, updatedTags);
+                updatedMeetingDate, updatedTags, risk, plans);
     }
 
     @Override
@@ -141,6 +149,8 @@ public class EditCommand extends Command {
         private Income income;
         private MeetingDate meetingDate;
         private Set<Tag> tags;
+        private Risk risk;
+        private Set<Plan> plans;
 
         public EditPersonDescriptor() {}
 
@@ -156,13 +166,15 @@ public class EditCommand extends Command {
             setIncome(toCopy.income);
             setMeetingDate(toCopy.meetingDate);
             setTags(toCopy.tags);
+            setRisk(toCopy.risk);
+            setPlans(toCopy.plans);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags, risk, plans);
         }
 
         public void setName(Name name) {
@@ -213,6 +225,22 @@ public class EditCommand extends Command {
             return (meetingDate != null) ? Optional.ofNullable(meetingDate) : Optional.empty();
         }
 
+        public void setRisk(Risk risk) {
+            this.risk = (risk != null) ? risk : null;
+        }
+
+        public Optional<Risk> getRisk() {
+            return (risk != null) ? Optional.ofNullable(risk) : Optional.empty();
+        }
+
+        public void setPlans(Set<Plan> plans) {
+            this.plans = (plans != null) ? new HashSet<>(plans) : null;
+        }
+
+        public Optional<Set<Plan>> getPlans() {
+            return (plans != null) ? Optional.of(Collections.unmodifiableSet(plans)) : Optional.empty();
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -251,7 +279,9 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getIncome().equals(e.getIncome())
                     && getMeetingDate().equals(e.getMeetingDate())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getRisk().equals(e.getRisk())
+                    && getPlans().equals(e.getPlans());
         }
     }
 }
