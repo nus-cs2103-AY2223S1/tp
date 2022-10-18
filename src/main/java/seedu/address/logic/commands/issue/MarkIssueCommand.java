@@ -2,16 +2,14 @@ package seedu.address.logic.commands.issue;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Status;
 import seedu.address.ui.Ui;
 
@@ -32,30 +30,22 @@ public class MarkIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_SUCCESS = "Issue marked: %1$s";
 
-    private final Index targetIndex;
+    private final Status newStatus;
+    private final IssueId issueId;
 
-    public MarkIssueCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public MarkIssueCommand(Status newStatus, IssueId issueId) {
+        requireAllNonNull(newStatus, issueId);
+        this.newStatus = newStatus;
+        this.issueId = issueId;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        List<Issue> lastShownList = model.getFilteredIssueList();
-
-        for (Issue i : lastShownList) {
-            if (i.getIssueId().getIdInt() == targetIndex.getOneBased()) {
-                Issue issueToMark = i;
-                i.getStatus().setStatus(true);
-                ui.showIssues();
-                model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
-                return new CommandResult(String.format(MESSAGE_SUCCESS, issueToMark));
-            }
-        }
-
         ui.showIssues();
+        Issue toMarkIssue = model.getIssueById(issueId.getIdInt());
+        toMarkIssue.setStatus(newStatus);
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
-
-        throw new CommandException(Messages.MESSAGE_ISSUE_NOT_FOUND);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toMarkIssue));
     }
 }

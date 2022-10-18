@@ -156,8 +156,9 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
     private MarkIssueCommand parseMarkIssueCommand(String arguments) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(arguments);
-            return new MarkIssueCommand(index);
+            Status newStatus = new Status(true);
+            IssueId newIssueId = ParserUtil.parseIssueId(arguments);
+            return new MarkIssueCommand(newStatus, newIssueId);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkIssueCommand.MESSAGE_USAGE), pe);
@@ -166,8 +167,9 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
     private UnmarkIssueCommand parseUnmarkIssueCommand(String arguments) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(arguments);
-            return new UnmarkIssueCommand(index);
+            Status newStatus = new Status(false);
+            IssueId newIssueId = ParserUtil.parseIssueId(arguments);
+            return new UnmarkIssueCommand(newStatus, newIssueId);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkIssueCommand.MESSAGE_USAGE), pe);
