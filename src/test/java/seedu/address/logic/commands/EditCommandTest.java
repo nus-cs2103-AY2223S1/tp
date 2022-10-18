@@ -169,6 +169,13 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_notInViewMode_failure() {
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NOT_VIEW_MODE);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
 

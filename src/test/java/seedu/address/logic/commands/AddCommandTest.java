@@ -51,6 +51,15 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_notListMode_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubInFullView();
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_NOT_LIST_MODE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
@@ -75,7 +84,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that has all methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -150,7 +159,7 @@ public class AddCommandTest {
 
         @Override
         public boolean isFullView() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -180,6 +189,11 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
+        @Override
+        public boolean isFullView() {
+            return false;
+        }
     }
 
     /**
@@ -203,6 +217,21 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public boolean isFullView() {
+            return false;
+        }
+    }
+
+    /**
+     * A Model stub that is always in full view mode.
+     */
+    private class ModelStubInFullView extends ModelStub {
+        @Override
+        public boolean isFullView() {
+            return true;
         }
     }
 
