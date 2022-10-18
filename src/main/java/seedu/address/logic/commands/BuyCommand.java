@@ -26,7 +26,8 @@ public class BuyCommand extends Command {
             + "Index (must be a positive integer) "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_GOODS + "GOODS "
-            + PREFIX_PRICE + "PRICE\n"
+            + PREFIX_PRICE + "PRICE "
+            + "[" + PREFIX_DATE + "DATE]...\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_QUANTITY + "1000 "
             + PREFIX_GOODS + "Apples "
@@ -37,7 +38,7 @@ public class BuyCommand extends Command {
             + "on %5$s";
     public static final String MESSAGE_TRANSACTION_INVALID = "Transaction cannot be created. "
             + "Enter a valid transaction:\n"
-            + "index "
+            + "INDEX "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_GOODS + "GOODS "
             + PREFIX_PRICE + "PRICE "

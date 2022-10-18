@@ -22,9 +22,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BUY_OR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SELL_PAPAYA;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.transaction.Date.DEFAULT_PATTERN;
+import static seedu.address.model.transaction.Date.NEW_PATTERN;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -141,10 +142,8 @@ public class BuyCommandParserTest {
         Quantity quantity = new Quantity(VALID_QUANTITY_BUY_ORANGE);
         Price price = new Price(VALID_PRICE_BUY_ORANGE);
         LocalDate now = LocalDate.now();
-        DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate datetime = LocalDate.parse(now.toString(), oldPattern);
-        String output = datetime.format(newPattern);
+        LocalDate datetime = LocalDate.parse(now.toString(), DEFAULT_PATTERN);
+        String output = datetime.format(NEW_PATTERN);
         Date date = new Date(output);
         Transaction transaction = new BuyTransaction(goods, price, quantity, date);
         assertParseSuccess(parser, "1" + VALID_QUANTITY + VALID_GOODS + VALID_PRICE,

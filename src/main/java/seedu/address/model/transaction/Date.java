@@ -12,6 +12,10 @@ import java.time.format.DateTimeParseException;
  */
 public class Date {
 
+    public static final DateTimeFormatter DEFAULT_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter NEW_PATTERN = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format DD/MM/YYYY";
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");

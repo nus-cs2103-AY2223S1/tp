@@ -6,9 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static seedu.address.model.transaction.Date.DEFAULT_PATTERN;
+import static seedu.address.model.transaction.Date.NEW_PATTERN;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
@@ -27,9 +28,6 @@ import seedu.address.model.transaction.Transaction;
  */
 public class BuyCommandParser implements Parser<BuyCommand> {
 
-    private final DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code BuyCommand}
@@ -41,9 +39,6 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
                 PREFIX_DATE);
         boolean isDateEmpty = argMultimap.getValue(PREFIX_DATE).equals(Optional.empty());
-        if (isDateEmpty) {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE);
-        }
 
         Index index;
         try {
@@ -66,8 +61,8 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         Date date;
         if (isDateEmpty) {
             LocalDate now = LocalDate.now();
-            LocalDate datetime = LocalDate.parse(now.toString(), oldPattern);
-            String output = datetime.format(newPattern);
+            LocalDate datetime = LocalDate.parse(now.toString(), DEFAULT_PATTERN);
+            String output = datetime.format(NEW_PATTERN);
             date = new Date(output);
         } else {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
