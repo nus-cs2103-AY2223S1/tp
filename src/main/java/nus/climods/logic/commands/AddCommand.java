@@ -7,23 +7,13 @@ import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
 
 /**
- * Adds a person to the address book.
+ * Adds a module into the UserModule List
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " <Module Code> : Adds a module to module record. ";
-    /*
-        + "Parameters: "
-        + CliSyntax.PREFIX_CODE + "CODE "
-        + CliSyntax.PREFIX_TUTORIAL + "TUTORIAL "
-        + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
-        + "Example: " + COMMAND_WORD + " "
-        + CliSyntax.PREFIX_CODE + "CS2103 "
-        + CliSyntax.PREFIX_TUTORIAL + "Monday 2pm "
-        + CliSyntax.PREFIX_TAG + "4 MC";
-     */
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in your list of modules";
