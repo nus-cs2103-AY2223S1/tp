@@ -44,13 +44,29 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    /** Returns the AddressBook */
+    ReadOnlyAddressBook getAddressBook();
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns all address book's paths*/
+    Path[] getAllAddressBookFilePath();
+
+    /**
+     * Replaces all address book data with the data in {@code addressBook}.
+     */
+    void setAllAddressBookFilePath(Path[] updatedPaths);
+
+    /** Returns the next AddressBook */
+    Path getNextAddressBookPath();
+
+    /**
+     * Creates a new Address Book
+     */
+    boolean addAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

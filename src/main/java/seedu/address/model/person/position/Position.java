@@ -55,6 +55,8 @@ public abstract class Position {
         }
     }
 
+    public abstract String toShow();
+
     public abstract String toString();
 
     public abstract boolean equals(Object other);

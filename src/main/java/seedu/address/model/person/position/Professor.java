@@ -49,6 +49,10 @@ public class Professor extends Position {
         return false;
     }
 
+    @Override
+    public String toShow() {
+        return "Roles: " + roles;
+    }
 
     @Override
     public String toString() {

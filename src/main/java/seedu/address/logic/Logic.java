@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -47,4 +48,19 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set the user prefs' Stored address book array setting.
+     */
+    void setAllAddressBookFilePath(Path[] updatedPaths);
+
+    /**
+     * Add and create a new address book
+     */
+    boolean addAddressBook() throws IOException;
+
+    /**
+     * Swaps between the address book
+     */
+    void swapAddressBook();
 }

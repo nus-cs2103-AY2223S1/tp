@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.core.GuiSettings;
@@ -13,13 +15,19 @@ import seedu.address.commons.core.GuiSettings;
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
+    private static final int MAX_ADDRESS_BOOK_LIMIT = 5;
+    private static final String DEFAULT_ADDRESS_BOOK_NAME = "addressbook";
     private GuiSettings guiSettings = new GuiSettings();
+    private int addressBookIndex = 0;
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private ArrayList<Path> allAddressBookFilePath = new ArrayList<Path>();
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+        allAddressBookFilePath.add(addressBookFilePath);
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -36,6 +44,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setAllAddressBookFilePath(newUserPrefs.getAllAddressBookFilePath());
+        setStoredIndex(newUserPrefs.getStoredIndex() % newUserPrefs.getAllAddressBookFilePath().length);
     }
 
     public GuiSettings getGuiSettings() {
@@ -54,6 +64,56 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    public Path[] getAllAddressBookFilePath() {
+        return allAddressBookFilePath.toArray(new Path[allAddressBookFilePath.size()]);
+    }
+
+    public void setAllAddressBookFilePath(Path[] allAddressBookFilePath) {
+        requireNonNull(allAddressBookFilePath);
+        this.allAddressBookFilePath = new ArrayList<>(List.of(allAddressBookFilePath));
+    }
+
+    /**
+     * Adds a brand new Address Book to the data directory
+     *
+     * @return boolean value indicating {@code true} = Success or {@code false} = Limit reached
+     */
+    public boolean addAddressBook() {
+        if (allAddressBookFilePath.size() == MAX_ADDRESS_BOOK_LIMIT) {
+            return false;
+        } else {
+            String newBookName;
+            if (allAddressBookFilePath.size() != 0) {
+                newBookName = DEFAULT_ADDRESS_BOOK_NAME + allAddressBookFilePath.size() + ".json";
+            } else {
+                newBookName = DEFAULT_ADDRESS_BOOK_NAME + ".json";
+            }
+            Path newBook = Paths.get("data" , newBookName);
+            allAddressBookFilePath.add(newBook);
+            return true;
+        }
+    }
+
+    public Path getNextAddressBookPath() {
+        incrementIndex();
+        Path nextAddressBook = allAddressBookFilePath.get(addressBookIndex);
+        setAddressBookFilePath(nextAddressBook);
+        return nextAddressBook;
+    }
+
+    public int getStoredIndex() {
+        return addressBookIndex;
+    }
+
+    public void setStoredIndex(int index) {
+        addressBookIndex = index;
+    }
+
+    private void incrementIndex() {
+        addressBookIndex += 1;
+        addressBookIndex = addressBookIndex % allAddressBookFilePath.size();
     }
 
     @Override

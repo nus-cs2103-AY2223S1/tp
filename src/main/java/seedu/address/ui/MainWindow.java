@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+    private InfoDisplay infoDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane infoDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -119,6 +125,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        infoDisplay = new InfoDisplay();
+        infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
     }
 
     /**
@@ -147,6 +156,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Creates a new address book
+     */
+    @FXML
+    private void handleNewBook() {
+        try {
+            if (!logic.addAddressBook()) {
+                resultDisplay.setFeedbackToUser("Maximum amount of address book created");
+            }
+        } catch (IOException e) {
+            resultDisplay.setFeedbackToUser("Sorry! Error creating File");
+        }
+    }
+
+    /**
+     * Swaps between the Books
+     */
+    @FXML
+    private void handleSwap() throws CommandException {
+        logic.swapAddressBook();
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -171,9 +202,24 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            infoDisplay.clearInfo();
+
+            if (commandResult.hasPersonToShow()) {
+                Person personToShow = commandResult.getPersonToShow();
+                assert personToShow != null;
+                infoDisplay.setInfo(personToShow);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isNewBook()) {
+                handleNewBook();
+            }
+
+            if (commandResult.isSwap()) {
+                handleSwap();
             }
 
             if (commandResult.isExit()) {
