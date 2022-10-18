@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'dukeTheMarket.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
