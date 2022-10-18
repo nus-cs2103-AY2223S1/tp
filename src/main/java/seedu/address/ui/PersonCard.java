@@ -59,11 +59,15 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, boolean isExpanded) {
         super(FXML);
         this.person = person;
-        isExpanded = false;
-        hideLabels();
+        this.isExpanded = isExpanded;
+        if (this.isExpanded) {
+            showLabels();
+        } else {
+            hideLabels();
+        }
 
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);

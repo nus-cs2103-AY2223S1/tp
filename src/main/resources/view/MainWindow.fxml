@@ -29,6 +29,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Appearance">
             <MenuItem fx:id="lightDarkThemeItem" mnemonicParsing="false" onAction="#handleLightDarkTheme" text="Light/Dark Theme"/>
+            <MenuItem fx:id="compactExpandItem" mnemonicParsing="false" onAction="#handleCompactExpand" text="Compacted/Expanded Cards"/>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />

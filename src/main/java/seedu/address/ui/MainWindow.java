@@ -24,6 +24,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String COMPACT_MENUITEM_TEXT = "Compacted Cards";
+    private static final String EXPAND_MENUITEM_TEXT = "Expanded Cards";
     private static final String LIGHT_THEME_MENUITEM_TEXT = "Light Theme";
     private static final String DARK_THEME_MENUITEM_TEXT = "Dark Theme";
 
@@ -41,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private boolean isExpanded;
     private boolean isLightTheme;
 
     @FXML
@@ -48,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem lightDarkThemeItem;
+
+    @FXML
+    private MenuItem compactExpandItem;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -78,6 +84,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
+        isExpanded = false;
+        compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
         isLightTheme = true;
         lightDarkThemeItem.setText(DARK_THEME_MENUITEM_TEXT);
     }
@@ -124,7 +132,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), isExpanded);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -201,6 +209,22 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.getScene().getStylesheets().remove(extensionsDark);
             helpWindow.setLightTheme();
         }
+    }
+
+    @FXML
+    private void handleCompactExpand() {
+        if (isExpanded) {
+            logger.info("Switching to compacted cards...");
+            isExpanded = false;
+            compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
+        } else {
+            logger.info("Switching to expanded cards...");
+            isExpanded = true;
+            compactExpandItem.setText(COMPACT_MENUITEM_TEXT);
+        }
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), isExpanded);
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     public PersonListPanel getPersonListPanel() {
