@@ -66,7 +66,7 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
@@ -77,7 +77,7 @@ public class PersonUtil {
         if (descriptor.getPlans().isPresent()) {
             Set<Plan> plans = descriptor.getPlans().get();
             if (plans.isEmpty()) {
-                sb.append(PREFIX_PLAN);
+                sb.append(PREFIX_PLAN).append(" ");
             } else {
                 plans.forEach(s -> sb.append(PREFIX_PLAN).append(s.value).append(" "));
             }
