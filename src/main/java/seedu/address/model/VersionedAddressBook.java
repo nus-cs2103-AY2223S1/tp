@@ -39,6 +39,8 @@ public class VersionedAddressBook extends AddressBook {
      * Restores address book to a previous state.
      */
     public void undo() {
+        assert canUndo() : "should be undoable";
+
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
     }
