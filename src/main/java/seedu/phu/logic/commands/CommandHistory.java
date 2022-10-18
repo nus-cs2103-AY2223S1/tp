@@ -94,6 +94,18 @@ public class CommandHistory {
         }
     }
 
+    protected List<String> getHistory() {
+        return history;
+    }
+
+    protected List<Integer> getModifyCommandIndexes() {
+        return modifyCommandIndexes;
+    }
+
+    protected int getCurrentStatePointer() {
+        return currentStatePointer;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
