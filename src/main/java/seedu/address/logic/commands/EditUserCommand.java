@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.CurrentModule;
@@ -11,10 +15,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.user.EmptyUser;
 import seedu.address.model.person.user.ExistingUser;
-
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Edits the details of the user in the address book.
