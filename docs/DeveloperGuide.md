@@ -188,8 +188,43 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
-_{more aspects and alternatives to be added}_
+### \[In progress\] Patients archiving
 
+#### In progress
+
+The archive mechanism implements the following operations:
+
+* `idENTify#archive()` — Archive patients accroding to their tags.
+
+The operation is exposed in the `Command` interface as `Command#ArchivePatientCommand()`.
+
+
+
+Given below is an example usage scenario and how the archive mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial 
+patient list.
+
+
+Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of 
+patients after the `archive patient` command executes to show on the screen.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("archive Patient")` API 
+call.
+
+![Interactions Inside the Logic Component for the `archive patient` Command](images/ArchivePatientSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/ArchivePatientCommand.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How archive patient executes:**
+
+* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged 
+  list on the screen.
 
 ### \[Implemented\] Book feature
 
