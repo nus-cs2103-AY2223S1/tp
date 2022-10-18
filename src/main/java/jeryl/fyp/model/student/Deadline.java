@@ -61,7 +61,7 @@ public class Deadline implements Comparable<Deadline> {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDeadlineName())
                 .append(", deadline: ")
-                .append(getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
+                .append(getDeadlineDateTime().format(DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")));
         return builder.toString();
     }
 

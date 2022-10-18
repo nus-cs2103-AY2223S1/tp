@@ -1,8 +1,11 @@
 package jeryl.fyp.testutil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -28,6 +31,7 @@ public class StudentBuilder {
     private Email email;
     private ProjectName projectName;
     private ProjectStatus projectStatus;
+    private DeadlineList deadlineList;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +43,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
         projectStatus = new ProjectStatus(DEFAULT_PROJECT_STATUS);
+        deadlineList = new DeadlineList();
         tags = new HashSet<>();
     }
 
@@ -52,6 +57,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         projectName = studentToCopy.getProjectName();
         projectStatus = studentToCopy.getProjectStatus();
+        deadlineList = studentToCopy.getDeadlineList();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -70,6 +76,18 @@ public class StudentBuilder {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
+
+    /**
+     * Parses the {@code deadlines} into a {@code Set<Deadline>} and set it to the {@code Student} that we are building.
+     */
+    public StudentBuilder withDeadlines(String[] deadlines) {
+        Arrays.stream(deadlines)
+                .map(ddl -> SampleDataUtil.getDeadline(ddl.split(", deadline: ")[0],
+                                ddl.split(", deadline: ")[1])).collect(Collectors.toList())
+                .forEach(ddl -> this.deadlineList.add(ddl));
+        return this;
+    }
+
 
     /**
      * Sets the {@code StudentId} of the {@code Student} that we are building.

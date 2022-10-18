@@ -41,6 +41,21 @@ public class Student {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null. This is for restoration.
+     */
+    public Student(StudentName studentName, StudentId studentId, Email email, ProjectName projectName,
+                   ProjectStatus projectStatus, DeadlineList deadlineList, Set<Tag> tags) {
+        requireAllNonNull(studentName, studentId, email, projectName, projectStatus, tags);
+        this.studentName = studentName;
+        this.studentId = studentId;
+        this.email = email;
+        this.projectName = projectName;
+        this.projectStatus = projectStatus;
+        this.deadlineList = deadlineList;
+        this.tags.addAll(tags);
+    }
+
     public StudentName getStudentName() {
         return studentName;
     }

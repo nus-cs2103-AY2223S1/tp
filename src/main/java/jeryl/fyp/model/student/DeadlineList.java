@@ -168,7 +168,7 @@ public class DeadlineList implements Iterable<Deadline> {
     public Deadline getDeadlineByRank(Integer rank) {
         requireAllNonNull(rank);
         if (rank > internalList.size()) {
-            throw new IndexOutOfBoundsException();
+            throw new DeadlineNotFoundException("Deadline specified not exist!");
         }
         return internalList.get(rank);
     }

@@ -21,11 +21,13 @@ import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
+import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.StudentBuilder;
 
-public class AddCommandTest {
+
+public class AddStudentCommandTest {
 
     @Test
     public void constructor_nullStudent_throwsNullPointerException() {
@@ -138,6 +140,26 @@ public class AddCommandTest {
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDeadline(Student student, Deadline deadline) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteDeadline(Student student, Deadline deadline) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDeadline(Student student, Deadline deadline) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDeadline(Student student, Deadline target, Deadline editedDeadline) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -46,7 +46,7 @@ public class DeleteDeadlineCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Student student = model.getStudentByStudentId(studentId);
-        if (!model.hasStudent(student)) {
+        if (student == null) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
         Deadline deadlineToDelete = student.getDeadlineList().getDeadlineByRank(Index.fromOneBased(rank)
