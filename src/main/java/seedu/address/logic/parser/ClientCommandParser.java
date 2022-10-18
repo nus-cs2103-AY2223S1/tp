@@ -11,7 +11,12 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.client.*;
+import seedu.address.logic.commands.client.AddClientCommand;
+import seedu.address.logic.commands.client.ClientCommand;
+import seedu.address.logic.commands.client.DeleteClientCommand;
+import seedu.address.logic.commands.client.EditClientCommand;
+import seedu.address.logic.commands.client.ListClientCommand;
+import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;

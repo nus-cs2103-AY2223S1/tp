@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.DefaultView;
-
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.address.commons.core.DefaultView;
 
 /**
  * Represents the result of a command execution.

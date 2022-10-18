@@ -6,6 +6,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
+/**
+ * Encapsulates a command to set the default view to project.
+ */
 public class SetProjectDefaultViewCommand extends ProjectCommand {
     public static final String COMMAND_FLAG = "-v";
 

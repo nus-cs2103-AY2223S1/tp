@@ -12,7 +12,12 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.issue.*;
+import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.DeleteIssueCommand;
+import seedu.address.logic.commands.issue.EditIssueCommand;
+import seedu.address.logic.commands.issue.IssueCommand;
+import seedu.address.logic.commands.issue.ListIssueCommand;
+import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
