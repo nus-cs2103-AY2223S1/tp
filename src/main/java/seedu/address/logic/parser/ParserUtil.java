@@ -202,7 +202,8 @@ public class ParserUtil {
         }
         return new Quantity(quantity);
     }
-    
+
+
     /**
      * Parses a {@code String date} into an {@code Date}.
      * Leading and trailing whitespaces will be trimmed.

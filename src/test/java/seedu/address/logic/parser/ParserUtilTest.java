@@ -251,7 +251,8 @@ public class ParserUtilTest {
     public void parseDate_invalidDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
     }
-    
+
+
     @Test
     public void parseCompanyAddress_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCompanyAddress((String) null));
