@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -69,15 +69,15 @@ public class DeleteModuleCommandTest {
     @Test
     public void equals() {
         DeleteModuleCommand deleteCsCommand =
-                new DeleteModuleCommand(new ModuleCode(VALID_CS_MODULE_CODE));
+                new DeleteModuleCommand(new ModuleCode(VALID_CS2106_MODULE_CODE));
         DeleteModuleCommand deleteMaCommand =
-                new DeleteModuleCommand(new ModuleCode(VALID_MA_MODULE_CODE));
+                new DeleteModuleCommand(new ModuleCode(VALID_MA2001_MODULE_CODE));
 
         // same object -> returns true
         assertTrue(deleteCsCommand.equals(deleteCsCommand));
 
         // same values -> returns true
-        DeleteModuleCommand deleteFirstCommandCopy = new DeleteModuleCommand(new ModuleCode(VALID_CS_MODULE_CODE));
+        DeleteModuleCommand deleteFirstCommandCopy = new DeleteModuleCommand(new ModuleCode(VALID_CS2106_MODULE_CODE));
         assertTrue(deleteCsCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

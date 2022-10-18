@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class AddModuleCommandTest {
     @Test
     public void execute_duplicateModuleIgnoreCase_throwsCommandException() {
         Module validModule =
-                new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE.toLowerCase()).build();
+                new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE.toLowerCase()).build();
         AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
