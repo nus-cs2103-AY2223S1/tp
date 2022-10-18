@@ -87,6 +87,7 @@ public class ImageStorage {
 
     /**
      * Returns whether the given file is a .jpg file.
+     *
      * @param file
      * @return Whether the {@code file} is a .jpg file.
      * @throws CommandException If file cannot be found or unable to read the file.
@@ -118,6 +119,7 @@ public class ImageStorage {
 
     /**
      * Returns the Image of a Student if the image file exists, otherwise return default image.
+     *
      * @param student
      * @return The Image of the student.
      */
@@ -143,8 +145,9 @@ public class ImageStorage {
 
     /**
      * Upload the Image given in {@code File} and associate it with the {@code Student} it belongs to.
-     * @param student
-     * @param file
+     *
+     * @param student The student whose picture is being uploaded.
+     * @param file The picture file to upload.
      * @throws CommandException If the file cannot be read.
      */
 
@@ -178,7 +181,8 @@ public class ImageStorage {
 
     /**
      * Delete the Image file for given {@code Student}.
-     * @param student
+     *
+     * @param student The student whose picture we are removing.
      */
 
     public static void remove(Student student) {
@@ -190,8 +194,9 @@ public class ImageStorage {
 
     /**
      * Rename the Image file for given {@code Student}.
-     * @param target
-     * @param editedStudent
+     *
+     * @param target The student whose file we are changing.
+     * @param editedStudent The updated student.
      */
     public static void renamePictureFile(Student target, Student editedStudent) {
         File imageFile = getImageFile(target);
@@ -202,6 +207,7 @@ public class ImageStorage {
 
     /**
      * Sets reference to primary stage
+     *
      * @param stage
      */
     public static void setStage(Stage stage) {

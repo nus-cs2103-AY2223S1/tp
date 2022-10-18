@@ -255,7 +255,6 @@ Figure No. Sequence diagram for AttendanceDeleteCommand
 
 **Aspect: Size of attendance lists**
 - Current Implementation: Max size of 12
-<<<<<<< HEAD
 - Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
 - Cons: Less flexibility in size of attendance list.
 ### Upload Student Picture Feature

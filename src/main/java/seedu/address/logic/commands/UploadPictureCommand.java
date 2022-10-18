@@ -29,6 +29,7 @@ public class UploadPictureCommand extends Command {
 
     /**
      * Creates a new UploadPictureCommand Object.
+     *
      * @param index
      */
     public UploadPictureCommand(Index index) {
