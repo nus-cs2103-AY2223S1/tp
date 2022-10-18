@@ -1,4 +1,4 @@
-package tracko.model.items;
+package tracko.model.item;
 
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -11,13 +11,13 @@ import tracko.model.tag.Tag;
 
 /**
  * Represents an item in the inventory list.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated.
  */
 public class Item {
-    public final ItemName itemName;
-    public final Description description;
-    public final Quantity quantity;
-    public final Set<Tag> tags = new HashSet<>();
+    private ItemName itemName;
+    private Description description;
+    private Quantity quantity;
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs an {@code item}.
@@ -49,6 +49,23 @@ public class Item {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Updates the invoked {@code Item} reference with the given {@code Item}'s data.
+     */
+    public void updateData(Item toCopy) {
+        this.itemName = toCopy.itemName;
+        this.description = toCopy.description;
+        this.quantity = toCopy.quantity;
+        this.tags = toCopy.tags;
+    }
+
+    /**
+     * Returns true if given item name is the same name.
+     */
+    public boolean nameMatches(String itemName) {
+        return itemName.equals(this.itemName.toString());
     }
 
     /**

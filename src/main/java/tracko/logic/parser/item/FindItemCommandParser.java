@@ -7,7 +7,7 @@ import java.util.Arrays;
 import tracko.logic.commands.item.FindItemCommand;
 import tracko.logic.parser.Parser;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.items.ItemContainsKeywordsPredicate;
+import tracko.model.item.ItemContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a FindItemCommand object.
