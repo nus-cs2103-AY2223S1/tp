@@ -232,7 +232,22 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Export
+### \[Proposed\] Edit an item
+Items stored in an ItemContainer object can either be stored under the unscheduled or scheduled list.
+
+Since scheduled items maintain a reference to the day that it is under, the edit behaviour for unscheduled and scheduled items differ.
+
+* **Unscheduled Items**
+  * Update the specified fields and re-sort the list.
+* **Scheduled Items**
+  * If a time related field is edited i.e. day
+or start time, check for time conflicts.
+  * If no conflicts are detected, update the fields.
+    * If time is edited, update the fields and re-sort the list.
+    * If day is edited, place the item in the corresponding Day object and re-sort the list.
+  * If conflicts are detected, throw an exception for the time conflict.
+
+### \[Proposed\] Export
 
 The Export feature is facilitated by accessing the list of items stored in a "Day" object, which is part of a list of "Day" in a "Itinerary" Object.
 
