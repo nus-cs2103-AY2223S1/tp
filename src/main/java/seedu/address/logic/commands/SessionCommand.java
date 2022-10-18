@@ -28,7 +28,7 @@ public class SessionCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_SESSION + "SESSION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_SESSION + "08:30-09:30";
+            + PREFIX_SESSION + "Mon 08:30";
 
     public static final String MESSAGE_ADD_SESSION_SUCCESS = "Added session to Person: %1$s";
     public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Removed session from Person: %1$s";
@@ -59,8 +59,7 @@ public class SessionCommand extends Command {
         sessionList.addSession(session);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
-                personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
-                sessionList,
+                personToEdit.getHomeworkList(), personToEdit.getAttendanceList(), sessionList,
                 personToEdit.getGradeProgressList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);

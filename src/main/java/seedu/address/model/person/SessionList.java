@@ -54,6 +54,21 @@ public class SessionList {
         }
         sessionList.set(indexToEdit, session);
     }
+
+    /**
+     * Gets a list of the days from the session list.
+     *
+     * @return List of strings with the days.
+     */
+    public List<String> getDays() {
+        List<String> days = new ArrayList<>();
+
+        for (int i = 0; i < sessionList.size(); i++) {
+            days.add(sessionList.get(i).day);
+        }
+        return days;
+    }
+
     /**
      * Returns a description of the next session in the session list.
      */

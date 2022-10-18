@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  * Adds a lesson plan to an existing person in the address book.
  */
 public class LessonPlanCommand extends Command {
-    public static final String COMMAND_WORD = "lessonplan";
+    public static final String COMMAND_WORD = "lesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a lesson plan to the person identified "
