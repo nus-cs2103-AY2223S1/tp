@@ -2,10 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -46,16 +42,11 @@ public class GithubCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personOfInterest = lastShownList.get(targetIndex.getZeroBased());
-        GithubUsername username = personOfInterest.getUsername();
-        if (username.value.equals(GithubUsername.DEFAULT_USERNAME)) {
+        GithubUsername emptyUsername = new GithubUsername("", false);
+        if (personOfInterest.getUsername().equals(emptyUsername)) {
             throw new CommandException(MESSAGE_NO_GITHUB_ERROR);
         }
-        try {
-            URI uri = new URI("https://github.com/" + username);
-            Desktop.getDesktop().browse(uri);
-        } catch (URISyntaxException | IOException e) {
-            throw new CommandException("There is something wrong with URL syntax");
-        }
+        model.openGithub(personOfInterest);
         return new CommandResult(MESSAGE_GITHUB_PERSON_SUCCESS);
     }
 
