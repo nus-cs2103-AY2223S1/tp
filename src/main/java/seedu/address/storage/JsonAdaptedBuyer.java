@@ -68,7 +68,7 @@ class JsonAdaptedBuyer {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        orders.addAll(source.getOrders().stream()
+        orders.addAll(source.getOrderIds().stream()
                 .map(JsonAdaptedOrder::new)
                 .collect(Collectors.toList()));
     }

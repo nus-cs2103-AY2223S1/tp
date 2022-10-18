@@ -33,7 +33,7 @@ public class SupplierTest {
     public void addPet_success() {
         Supplier supplier = new PersonBuilder().buildSupplier();
         supplier.addPet(TypicalPets.PLUM);
-        assertEquals(supplier.getPetsOnSale(), new ArrayList<>(Arrays.asList(TypicalPets.PLUM)));
+        assertEquals(supplier.getPetIds(), new ArrayList<>(Arrays.asList(TypicalPets.PLUM)));
     }
 
     @Test

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.pet.Pet;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Supplier extends Person {
 
-    private final List<Pet> petsOnSale = new ArrayList<>();
+    private final List<UniqueId> pets = new ArrayList<>();
 
     /**
      * Constructs a supplier object.
@@ -25,7 +25,7 @@ public class Supplier extends Person {
      * @param email The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
      * @param tags The tags of this person.
-     * @param petsOnSale The pets supplied by this supplier.
+     * @param pets The pets supplied by this supplier.
      */
     public Supplier(PersonCategory personCategory,
                     Name name,
@@ -33,10 +33,10 @@ public class Supplier extends Person {
                     Email email,
                     Address address,
                     Set<Tag> tags,
-                    Collection<? extends Pet> petsOnSale) {
+                    Collection<? extends UniqueId> pets) {
         super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
-        if (petsOnSale != null) {
-            this.petsOnSale.addAll(petsOnSale);
+        if (pets != null) {
+            this.pets.addAll(pets);
         }
     }
 
@@ -49,22 +49,22 @@ public class Supplier extends Person {
      * @param email The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
      * @param tags The tags of this person.
-     * @param petsOnSale The pets supplied by this supplier.
+     * @param pets The pets supplied by this supplier.
      */
     public Supplier(Name name,
                     Phone phone,
                     Email email,
                     Address address,
                     Set<Tag> tags,
-                    Collection<Pet> petsOnSale) {
+                    Collection<UniqueId> pets) {
         super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
-        if (petsOnSale != null) {
-            this.petsOnSale.addAll(petsOnSale);
+        if (pets != null) {
+            this.pets.addAll(pets);
         }
     }
 
-    public List<Pet> getPetsOnSale() {
-        return petsOnSale;
+    public List<UniqueId> getPetIds() {
+        return pets;
     }
 
     /**
@@ -72,9 +72,9 @@ public class Supplier extends Person {
      *
      * @param pets New pets to be added
      */
-    public void addPets(Collection<Pet> pets) {
+    public void addPets(Collection<UniqueId> pets) {
         if (pets != null) {
-            petsOnSale.addAll(pets);
+            this.pets.addAll(pets);
         }
     }
 
@@ -88,7 +88,7 @@ public class Supplier extends Person {
             return true;
         } else if (other instanceof Supplier) {
             Supplier otherSupplier = (Supplier) other;
-            return super.equals(otherSupplier) && petsOnSale.equals(otherSupplier.getPetsOnSale());
+            return super.equals(otherSupplier) && pets.equals(otherSupplier.getPetIds());
         } else {
             return false;
         }
@@ -102,25 +102,26 @@ public class Supplier extends Person {
                 getEmail(),
                 getAddress(),
                 getTags(),
-                petsOnSale);
+                pets);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        int i = 1;
-        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
-                .append("Summary of pets on sale").append(System.lineSeparator());
+        // TODO Change the string representation
+        //        StringBuilder builder = new StringBuilder();
+        //        int i = 1;
+        //        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
+        //                .append("Summary of pets on sale").append(System.lineSeparator());
+        //
+        //        if (petsOnSale != null) {
+        //            for (Pet pet : petsOnSale) {
+        //                builder.append("======== Pet ").append(i).append(" ========").append(System.lineSeparator())
+        //                        .append(pet.toString()).append(System.lineSeparator());
+        //                i++;
+        //            }
+        //        }
 
-        if (petsOnSale != null) {
-            for (Pet pet : petsOnSale) {
-                builder.append("======== Pet ").append(i).append(" ========").append(System.lineSeparator())
-                        .append(pet.toString()).append(System.lineSeparator());
-                i++;
-            }
-        }
-
-        return builder.toString();
+        return super.toString();
     }
 
 }

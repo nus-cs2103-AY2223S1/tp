@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.UniqueId;
+import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
@@ -18,6 +20,9 @@ import seedu.address.model.tag.Tag;
  */
 public class Pet {
 
+    private static final UniqueIdGenerator PET_ID_GENERATOR = new UniqueIdGenerator();
+
+    private final UniqueId id;
     private final Name name;
     private final Person owner;
     private final Color color;
@@ -60,6 +65,7 @@ public class Pet {
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
         requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
+        this.id = PET_ID_GENERATOR.next();
         this.name = name;
         this.owner = owner;
         this.color = color;
@@ -224,19 +230,7 @@ public class Pet {
             return false;
         }
 
-        Pet otherPet = (Pet) other;
-        return otherPet.getName().equals(getName())
-                && otherPet.getColor().equals(getColor())
-                && otherPet.getColorPattern().equals(getColorPattern())
-                && otherPet.getDateOfBirth().equals(getDateOfBirth())
-                && otherPet.getHeight().equals(getHeight())
-                && otherPet.getWeight().equals(getWeight())
-                && otherPet.getSpecies().equals(getSpecies())
-                && otherPet.getVaccinationStatus().equals(getVaccinationStatus())
-                && otherPet.getCertificates().equals(getCertificates())
-                && ((otherPet.getOwner() == null && getOwner() == null)
-                || (otherPet.getOwner() != null && otherPet.getHeight().equals(getHeight())))
-                && otherPet.getTags().equals(getTags());
+        return id.equals(((Pet) other).id);
     }
 
     /**
@@ -296,6 +290,10 @@ public class Pet {
 
     public Weight getWeight() {
         return weight;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     public VaccinationStatus getVaccinationStatus() {

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
@@ -14,18 +15,18 @@ import seedu.address.model.tag.Tag;
  */
 public class Buyer extends Person {
 
-    private final List<Order> orders = new ArrayList<>();
+    private final List<UniqueId> orders = new ArrayList<>();
 
     /**
      * Constructs a Buyer object.
      *
      * @param personCategory By default, it should be PersonCategory.Buyer
-     * @param name The name of this person.
-     * @param phone The phone number in string.
-     * @param email The email, which will be checked against regex.
-     * @param address The address of this person, which will be checked against the regex.
-     * @param tags The tags of this person.
-     * @param orders The orders that this buyer requests.
+     * @param name           The name of this person.
+     * @param phone          The phone number in string.
+     * @param email          The email, which will be checked against regex.
+     * @param address        The address of this person, which will be checked against the regex.
+     * @param tags           The tags of this person.
+     * @param orders         The orders that this buyer requests.
      */
     public Buyer(PersonCategory personCategory,
                  Name name,
@@ -33,7 +34,7 @@ public class Buyer extends Person {
                  Email email,
                  Address address,
                  Set<Tag> tags,
-                 Collection<? extends Order> orders) {
+                 Collection<? extends UniqueId> orders) {
         super(PersonCategory.BUYER, name, phone, email, address, tags);
         if (orders != null) {
             this.orders.addAll(orders);
@@ -44,30 +45,30 @@ public class Buyer extends Person {
      * Constructs a Buyer object.
      * By default, it should be PersonCategory.Buyer
      *
-     * @param name The name of this person.
-     * @param phone The phone number in string.
-     * @param email The email, which will be checked against regex.
+     * @param name    The name of this person.
+     * @param phone   The phone number in string.
+     * @param email   The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
-     * @param tags The tags of this person.
-     * @param orders The orders that this buyer requests.
+     * @param tags    The tags of this person.
+     * @param orders  The orders that this buyer requests.
      */
     public Buyer(Name name,
                  Phone phone,
                  Email email,
                  Address address,
                  Set<Tag> tags,
-                 Collection<? extends Order> orders) {
+                 Collection<? extends UniqueId> orders) {
         super(PersonCategory.BUYER, name, phone, email, address, tags);
         if (orders != null) {
             this.orders.addAll(orders);
         }
     }
 
-    public List<Order> getOrders() {
+    public List<UniqueId> getOrderIds() {
         return orders;
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(UniqueId order) {
         orders.add(order);
     }
 
@@ -76,7 +77,7 @@ public class Buyer extends Person {
      *
      * @param orders The collection of orders to be added.
      */
-    public void addOrder(Collection<Order> orders) {
+    public void addOrder(Collection<UniqueId> orders) {
         if (orders != null) {
             this.orders.addAll(orders);
         }
@@ -92,7 +93,7 @@ public class Buyer extends Person {
             return true;
         } else if (other instanceof Buyer) {
             Buyer otherBuyer = (Buyer) other;
-            return super.equals(otherBuyer) && orders.equals(otherBuyer.getOrders());
+            return super.equals(otherBuyer) && orders.equals(otherBuyer.getOrderIds());
         } else {
             return false;
         }
@@ -105,20 +106,19 @@ public class Buyer extends Person {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        int i = 1;
-        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
-                .append("Order summary").append(System.lineSeparator());
-
-        if (orders != null) {
-            for (Order order : orders) {
-                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-                        .append(order.toString()).append(System.lineSeparator());
-                i++;
-            }
-        }
-
-        return builder.toString();
+        //TODO change the string representation
+        //        StringBuilder builder = new StringBuilder();
+        //        int i = 1;
+        //        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
+        //                .append("Order summary").append(System.lineSeparator());
+        //        if (orders != null) {
+        //            for (Order order : orders) {
+        //                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
+        //                        .append(order.toString()).append(System.lineSeparator());
+        //                i++;
+        //            }
+        //        }
+        //        return builder.toString();
+        return super.toString();
     }
-
 }

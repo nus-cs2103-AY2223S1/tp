@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import seedu.address.commons.core.index.UniqueId;
+import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.model.person.Buyer;
 
 /**
@@ -12,7 +14,10 @@ import seedu.address.model.person.Buyer;
  */
 public class Order {
 
-    private Buyer buyer;
+    private static final UniqueIdGenerator ORDER_ID_GENERATOR = new UniqueIdGenerator();
+
+    private final UniqueId id;
+    private final Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
     private final AdditionalRequests additionalRequests;
@@ -39,6 +44,7 @@ public class Order {
                  Price settledPrice,
                  OrderStatus status) {
         requireAllNonNull(status);
+        this.id = ORDER_ID_GENERATOR.next();
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -65,6 +71,7 @@ public class Order {
                  AdditionalRequests additionalRequests,
                  LocalDate byDate,
                  Price settledPrice) {
+        this.id = ORDER_ID_GENERATOR.next();
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -72,15 +79,6 @@ public class Order {
         this.byDate = byDate;
         this.settledPrice = settledPrice;
         status = OrderStatus.PENDING;
-    }
-
-    /**
-     * Sets the buyer of this order.
-     *
-     * @param buyer The buyer to be set.
-     */
-    public void setBuyer(Buyer buyer) {
-        this.buyer = buyer;
     }
 
     /**
@@ -162,13 +160,7 @@ public class Order {
             return true;
         } else if (other instanceof Order) {
             Order otherOrder = (Order) other;
-            return buyer.equals(otherOrder.getBuyer())
-                    && requestedPriceRange.equals(otherOrder.getRequestedPriceRange())
-                    && request.equals(otherOrder.getRequest())
-                    && additionalRequests.equals(otherOrder.getAdditionalRequests())
-                    && byDate.equals(otherOrder.getByDate())
-                    && settledPrice.equals(otherOrder.getSettledPrice())
-                    && status.equals(otherOrder.getOrderStatus());
+            return id.equals(otherOrder.id);
         } else {
             return false;
         }

@@ -60,7 +60,7 @@ public class AddSupplierCommand extends AddPersonCommand {
             throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
-        List<Pet> pets = toAdd.getPetsOnSale();
+        List<Pet> pets = toAdd.getPetIds();
         int numPetsAdded = pets.size();
 
         for (Pet pet : pets) {

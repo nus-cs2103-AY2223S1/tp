@@ -22,7 +22,7 @@ public class UniqueIdGenerator {
     /**
      * Returns the current id and increments.
      *
-     * @return A unqiue ID.
+     * @return A unique ID.
      */
     public UniqueId next() {
         StringBuilder sb = new StringBuilder();

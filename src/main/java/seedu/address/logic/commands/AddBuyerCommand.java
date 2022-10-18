@@ -61,7 +61,7 @@ public class AddBuyerCommand extends AddPersonCommand {
             throw new CommandException(MESSAGE_DUPLICATE_BUYER);
         }
 
-        List<Order> orders = toAdd.getOrders();
+        List<Order> orders = toAdd.getOrderIds();
         int numOrdersAdded = orders.size();
 
         for (Order order : orders) {
