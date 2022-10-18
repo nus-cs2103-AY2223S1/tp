@@ -39,6 +39,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label deadline;
 
+    @FXML
+    private Label personName;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -51,6 +54,7 @@ public class TaskCard extends UiPart<Region> {
         priority.setText("Priority: " + task.getPriority().toString());
         category.setText(task.getCategory().toString());
         deadline.setText(task.getDeadline().toString());
+        personName.setText(task.getPersonName());
     }
 
     @Override

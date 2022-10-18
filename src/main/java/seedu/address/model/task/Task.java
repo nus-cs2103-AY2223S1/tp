@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
-
+import seedu.address.model.person.Name;
 /**
  * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated.
@@ -27,6 +27,7 @@ public class Task {
     private Priority priority;
     private TaskDeadline deadline;
     private Email personEmailAddress;
+    private Name personName;
     private boolean isDone;
 
     /**
@@ -49,6 +50,7 @@ public class Task {
         this.priority = priority;
         this.deadline = deadline;
         this.personEmailAddress = personEmailAddress;
+        this.personName = null;
         isDone = status;
     }
 
@@ -181,18 +183,16 @@ public class Task {
     /**
      * Returns the name of the person assigned to this task
      *
-     * @param persons List of persons associated with the address book
      * @return the name of the person assigned to this task
      */
-    public String getPersonName(List<Person> persons) {
-        String name = NO_PERSON_ASSIGNED;
-        for (Person person: persons) {
-            if (person.getEmail().equals(personEmailAddress)) {
-                name = person.getName().toString();
-            }
-        }
-        return name;
+    public String getPersonName() {
+        return this.personName.toString();
     }
+
+    public void addPersonName(Name personName) {
+        this.personName = personName;
+    }
+
     public boolean getStatus() {
         return isDone;
     }
