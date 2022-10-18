@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Mod;
@@ -14,7 +15,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -41,8 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setTelegram(person.getTelegram());
         descriptor.setGitHub(person.getGitHub());
-        descriptor.setTags(person.getTags());
-        descriptor.setMods(person.getMods());
+        descriptor.setInterests(person.getInterests());
     }
 
     /**
@@ -86,12 +85,12 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code interests} into a {@code Set<Interest>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withInterests(String... interests) {
+        Set<Interest> interestSet = Stream.of(interests).map(Interest::new).collect(Collectors.toSet());
+        descriptor.setInterests(interestSet);
         return this;
     }
 
@@ -102,7 +101,6 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withMods(String... mods) {
         ObservableList<Mod> modSet = Stream.of(mods).map(Mod::new).collect(
             Collectors.toCollection(FXCollections::observableArrayList));
-        descriptor.setMods(modSet);
         return this;
     }
 

@@ -22,7 +22,7 @@ public class ModContainsKeywordsPredicate implements Predicate<Person> {
         for (int i = 0; i < mods.size(); i++) {
             Mod mod = mods.get(i);
             if (keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(mod.modName, keyword))) {
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(mod.getModName(), keyword))) {
                 return true;
             }
         }

@@ -39,10 +39,10 @@ public class ModListPanel extends UiPart<Region> {
      */
     class ModListViewCell extends ListCell<Mod> {
         @Override
-        protected void updateItem(Mod module, boolean empty) {
-            super.updateItem(module, empty);
+        protected void updateItem(Mod module, boolean isEmpty) {
+            super.updateItem(module, isEmpty);
 
-            if (empty || module == null) {
+            if (isEmpty || module == null) {
                 setGraphic(null);
                 setText(null);
             } else {
@@ -55,6 +55,6 @@ public class ModListPanel extends UiPart<Region> {
      * Clears the mod panel.
      */
     public void clearModPanel() {
-        setPersonModList(null);
+        modListView.setItems(null);
     }
 }

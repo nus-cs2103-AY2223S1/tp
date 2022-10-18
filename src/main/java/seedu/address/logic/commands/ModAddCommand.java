@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.ui.MainWindow;
 
 /**
- * Appends new mods to the person.
+ * Appends new mods to the batchmate.
  */
 public class ModAddCommand extends ModCommand {
     public static final String COMMAND_WORD = "add";
@@ -24,9 +24,9 @@ public class ModAddCommand extends ModCommand {
     private final ObservableList<Mod> mods;
 
     /**
-     * Constructs a command that adds a set of mods to the person
+     * Constructs a command that adds a set of mods to the batchmate
      * with the target index.
-     * @param index The index of the person to add to.
+     * @param index The index of the batchmate to add to.
      * @param mods The set of mods to add to.
      */
     public ModAddCommand(Index index, ObservableList<Mod> mods) {
@@ -55,7 +55,7 @@ public class ModAddCommand extends ModCommand {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         personToEdit.addMods(mods);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit), false, false, false);
     }
 
     @Override

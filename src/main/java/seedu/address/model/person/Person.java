@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.interest.Interest;
 
 /**
  * Represents a Person in the address book.
@@ -26,7 +26,7 @@ public class Person {
 
     // Data fields
     private final Telegram handle;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Interest> interests = new HashSet<>();
     private final ObservableList<Mod> mods =
             FXCollections.observableArrayList();
 
@@ -34,13 +34,13 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Telegram handle,
-          GitHub gitHub, Set<Tag> tags, ObservableList<Mod> mods) {
+                  GitHub gitHub, Set<Interest> interests, ObservableList<Mod> mods) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.handle = handle;
-        this.tags.addAll(tags);
+        this.interests.addAll(interests);
         this.gitHub = gitHub;
         this.mods.addAll(mods);
     }
@@ -69,8 +69,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Interest> getInterests() {
+        return Collections.unmodifiableSet(interests);
     }
 
     /**
@@ -82,7 +82,7 @@ public class Person {
     }
 
     /**
-     * Appends a set of mods to the current mods linked to this person.
+     * Appends a set of mods to the current mods linked to this batchmate.
      *
      * @param mods The set of mods to add in.
      */
@@ -96,21 +96,63 @@ public class Person {
     }
 
     /**
-     * Checks if the all mods provided can be found and deleted in the set of mods linked to this person.
+     * Checks if the all mods provided can be found and edited in the set of mods linked to this batchmate.
      *
-     * @param mods The set of mods to be deleted.
+     * @param mods The set of mods to be edited.
      */
-    public boolean canDeleteMods(ObservableList<Mod> mods) {
+    public boolean canEditMods(ObservableList<Mod> mods) {
         return this.mods.containsAll(mods);
     }
 
     /**
-     * Removes all mods in {@code mods} from the current set of mods linked to this person.
+     * Removes all mods in {@code mods} from the current set of mods linked to this batchmate.
      *
      * @param mods The set of mods to be deleted.
      */
     public void deleteMods(ObservableList<Mod> mods) {
         this.mods.removeAll(mods);
+    }
+
+    /**
+     * Marks all mods in {@code mods} in the current set of mods linked to this batchmate as taken.
+     *
+     * @param mods The set of mods to be marked.
+     */
+    public void markMods(ObservableList<Mod> mods) {
+        for (int i = 0; i < mods.size(); i++) {
+            for (int j = 0; j < this.mods.size(); j++) {
+
+                Mod currentMod = this.mods.get(j);
+                String currentModName = currentMod.getModName();
+                String targetModName = mods.get(i).getModName();
+
+                if (currentModName.equals(targetModName)) {
+                    currentMod.markMod();
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Unmarks all mods in {@code mods} in the current set of mods linked to this batchmate as not taken.
+     *
+     * @param mods The set of mods to be unmarked.
+     */
+    public void unmarkMods(ObservableList<Mod> mods) {
+        for (int i = 0; i < mods.size(); i++) {
+            for (int j = 0; j < this.mods.size(); j++) {
+
+                Mod currentMod = this.mods.get(j);
+                String currentModName = currentMod.getModName();
+                String targetModName = mods.get(i).getModName();
+
+                if (currentModName.equals(targetModName)) {
+                    currentMod.unmarkMod();
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -145,14 +187,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getInterests().equals(getInterests())
                 && otherPerson.getMods().equals(getMods());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, handle, gitHub, tags, mods);
+        return Objects.hash(name, phone, email, handle, gitHub, interests, mods);
     }
 
     @Override
@@ -168,10 +210,10 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Interest> interestSet = getInterests();
+        if (!interestSet.isEmpty()) {
+            builder.append("; Interests: ");
+            interestSet.forEach(builder::append);
         }
         if (!mods.isEmpty()) {
             builder.append("; Mods: ");

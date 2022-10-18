@@ -37,7 +37,7 @@ public class ModCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
-        modName.setText(module.modName);
+        modName.setText(module.getModName());
     }
 
     @Override

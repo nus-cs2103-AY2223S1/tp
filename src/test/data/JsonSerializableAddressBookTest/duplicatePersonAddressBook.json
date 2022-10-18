@@ -5,8 +5,11 @@
     "email": "alice@example.com",
     "handle": "alice",
     "username": "alifur",
-    "mods" : [ "CS2100" ],
-    "tagged": [ "friends" ]
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
+    "tagged": [ "tennis" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",

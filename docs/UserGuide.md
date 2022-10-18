@@ -35,14 +35,14 @@ Mass Linkers is a powerful Desktop application tool that provides a centralised 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME t/TELEGRAM [tag/TAG]` can be used as `n/John Doe t/johnxyz tag/friend` or as `n/John Doe t/johnxyz`.
+  e.g `n/NAME t/TELEGRAM [i/INTEREST]` can be used as `n/John Doe t/johnxyz i/baking` or as `n/John Doe t/johnxyz`.
 
 * Items with `...` after them can be used multiple times.<br>
-  e.g. `[tag/TAG]...` can be used as `tag/friend`, `tag/friend tag/family` etc.<br>
+  e.g. `[i/INTEREST]...` can be used as `i/baking`, `i/baking i/tennis` etc.<br>
   e.g. `[MORE_MODULES]...` can be used as `cs2100`, `cs2103t cs2101 cs2105` etc.
 
 * Parameters can be in any order.<br>
-  e.g. If the command specifies `n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]`, then `[tag/TAG] [e/EMAIL] [p/PHONE] n/NAME [g/GITHUB] t/TELEGRAM` is also acceptable.
+  e.g. If the command specifies `n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]`, then `[i/INTEREST] [e/EMAIL] [p/PHONE] n/NAME [g/GITHUB] t/TELEGRAM` is also acceptable.
 
 </div>
 
@@ -69,13 +69,13 @@ Format: `help`
 
 Adds a batchmate to the application.
 
-Format: `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]... [m/MODULE]...`
+Format: `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`
 
 * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Others`.
 
 Examples:
 * `add n/John Doe t/johnxyz`
-* `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com tag/friends tag/owesMoney`
+* `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com i/baking i/tennis`
 * `add n/John Doe t/johnxyz m/cs2103t m/cs2101`
 
 ### Listing all batchmates: `list`
@@ -88,17 +88,17 @@ Format: `list`
 
 Edits the information of a specified batchmate.
 
-Format: `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]...`
+Format: `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`
 
 * Edits the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the batchmate will be removed i.e adding of tags is not cumulative.
-* You can remove all the batchmate’s tags by typing `tag/` without specifying any tags after it.
+* When editing interests, the existing interests of the batchmate will be removed i.e adding of interests is not cumulative.
+* You can remove all the batchmate’s interests by typing `i/` without specifying any interests after it.
 
 Examples:
 *  `edit 1 g/john_doe p/91234567 e/johndoe@example.com` Edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `john_doe`, `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Bob Tan t/` Edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing tags.
+*  `edit 2 n/Bob Tan i/` Edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing interests.
 
 ### Finding a batchmate: `find`
 
@@ -122,18 +122,18 @@ Examples:
 * When you want to search using `PHONE`:
   * `find 999` returns the batchmates with the phone number `69998888`, `89991234` or `99912345`.
 
-### Finding batchmates by tags: `findTag`
+### Finding batchmates by interests: `findInt`
 
-Finds batchmates whose tags match __all__ the specified tags.
+Finds batchmates whose interests contain __all__ the specified interests.
 
-Format: `findTag TAG [MORE_TAGS]...`
+Format: `findInt INTEREST [MORE_INTERESTS]...`
 
-* The search is case-insensitive. e.g `friend` will match `Friend`.
-* Only full words will be matched e.g. `friend` will not match `friends`.
+* The search is case-insensitive. e.g. `tennis` will match `Tennis`.
+* Only exact words will be matched. e.g. `tenni` will not match `tennis`.
 
 Examples:
-* `findTag friend` returns all batchmates tagged with `friend`.
-* `findTag friend classmate` returns all batchmates tagged with both `friend` and `classmate`.
+* `findInt baking` returns all batchmates whose interests contain `baking`.
+* `findInt baking tennis` returns all batchmates whose interests contain both `baking` and `tennis`.
 
 ### Deleting a batchmate: `delete`
 
@@ -156,8 +156,8 @@ Format: `mod add INDEX MODULE [MORE_MODULES]...`
 * Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod add 1 cs2103t` adds the module `cs2103t` to the 1st batchmate in the currently displayed list.
-* `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` to the 3rd batchmate in the currently displayed list.
+* `mod add 1 cs2103t` adds the module `CS2103T` to the 1st batchmate in the currently displayed list.
+* `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
 
 ### Deleting module from a batchmate: `mod delete`
 
@@ -168,32 +168,32 @@ Format: `mod delete INDEX MODULE [MORE_MODULES]...`
 * Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod delete 1 cs2103t` deletes the module `cs2103t` from the 1st batchmate in the currently displayed list.
-* `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` from the 3rd batchmate in the currently displayed list.
+* `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
+* `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
 ### Marking module as taken: `mod mark`
 
-Marks module(s) of a batchmate as `taken`, which means the batchmate has taken or is currently taking the module(s).
+Marks module(s) of a batchmate as `taken`, which means the batchmate has taken the module(s) before.
 
 Format: `mod mark INDEX MODULE [MORE_MODULES]...`
 
 * Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod mark 1 cs2103t` marks the module `cs2103t` of the 1st batchmate in the currently displayed list as `taken`.
-* `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` of the 3rd batchmate in the currently displayed list as `taken`.
+* `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
+* `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
 ### Unmarking module as not taken: `mod unmark`
 
-Unmarks module(s) of a batchmate as not taken, which means the batchmate has not taken and is not currently taking the module(s).
+Unmarks module(s) of a batchmate as not taken, which means the batchmate is currently taking the module(s).
 
 Format: `mod unmark INDEX MODULE [MORE_MODULES]...`
 
 * Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod unmark 1 cs2103t` unmarks the module `cs2103t` of the 1st batchmate in the currently displayed list as `not taken`.
-* `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` of the 3rd batchmate in the currently displayed list as `not taken`.
+* `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
+* `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `not taken`.
 
 ### Find modules: `mod find`
 
@@ -201,13 +201,13 @@ Finds batchmates with modules matching all the specified modules.
 
 Format: `mod find MODULE [MORE_MODULES]...`
 
-* The search is case-insensitive. e.g `cs2100` will match `CS2100`. 
-* Partial words will be matched e.g. `cs21` will match `cs2100` and `CS2101`.
+* The search is case-insensitive. e.g `cs2100` will match `CS2100`.
+* Partial words will be matched e.g. `cs21` will match `CS2100` and `CS2101`.
 
 Examples:
-* `mod find cs21` returns batchmates who have taken `cs2100`, `cs2101` or `cs2103t`. 
-* `mod find cs21 cs2030s` returns batchmates who have taken `cs2100` and `cs2030`, or `cs2103t` and `cs2030`, or `cs2103t` and `cs2030s`.
-* `mod find cs2101 cs2103t` returns batchmates who have taken `cs2101` and `cs2103t`.
+* `mod find cs21` returns batchmates who have taken `CS2100`, `CS2101` or `CS2103T`.
+* `mod find cs21 cs2030s` returns batchmates who have taken `CS2100` and `CS2030`, or `CS2103T` and `CS2030`, or `CS2103T` and `CS2030S`.
+* `mod find cs2101 cs2103t` returns batchmates who have taken `CS2101` and `CS2103T`.
 
 ### Exiting the program : `exit`
 
@@ -218,6 +218,22 @@ Format: `exit`
 ### Saving the data
 
 Data in Mass Linkers is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
+
+### Module Categorisation
+
+Modules are automatically categorised upon their creation.
+
+Below is the categorisation.
+
+| Category                  | Module Prefix      | Colour      |
+|---------------------------|--------------------|-------------|
+| Computing Modules         | CS, IS, CP         | To be added |
+| Math Modules              | ST, MA             | To be added |
+| Science Modules           | LS, CM, PC         | To be added |
+| General Education Modules | GE, UT             | To be added |
+| Unrestricted Electives    | All other prefixes | To be added |
+
+Module prefix refers to the first two characters of every module name.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -230,18 +246,18 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                  |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**          | `help`                                                                                                                                                                                                            |
-| **Add**           | `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]... [m/MODULE]...` <br> Example: `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com tag/friends tag/owesMoney m/cs2103t m/cs2101` |
-| **List**          | `list`                                                                                                                                                                                                            |
-| **Edit**          | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]...`<br> Example: `edit 1 g/john_doe p/91234567 e/johndoe@example.com`                                                                  |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]...` <br> Example: `find Alex david`                                                                                                                                                 |
-| **Find by tag**   | `findTag TAG [MORE_TAGS]...` <br> Example: `findTag friend classmate`                                                                                                                                             |
-| **Delete**        | `delete INDEX` <br> Example: `delete 2`                                                                                                                                                                           |
-| **Add module**    | `mod add INDEX MODULE [MORE_MODULES]...` <br> Example: `mod add 3 cs2100 cs2103t cs2101 cs2105`                                                                                                                   |
-| **Delete module** | `mod delete INDEX MODULE [MORE_MODULES]...` <br> Example: `mod delete 3 cs2100 cs2103t cs2101 cs2105`                                                                                                             |
-| **Mark module**   | `mod mark INDEX MODULE [MORE_MODULES]...` <br> Example: `mod mark 3 cs2100 cs2103t cs2101 cs2105`                                                                                                                 |
-| **Unmark module** | `mod unmark INDEX MODULE [MORE_MODULES]...` <br> Example: `mod unmark 3 cs2100 cs2103t cs2101 cs2105`                                                                                                             |
-| **Find module**   | `mod find MODULE [MORE_MODULES]...` <br> Example: `mod find cs2101 cs2103t`                                                                                                                                       |
-| **Exit**          | `exit`                                                                                                                                                                                                            |
+| Action                | Format, Examples                                                                                                                                                                                             |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                       |
+| **Add**               | `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...` <br> Example: `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com i/baking i/tennis m/cs2103t m/cs2101` |
+| **List**              | `list`                                                                                                                                                                                                       |
+| **Edit**              | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`<br> Example: `edit 1 g/john_doe p/91234567 e/johndoe@example.com`                                                          |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]...` <br> Example: `find Alex david`                                                                                                                                            |
+| **Find by interests** | `findInt INTEREST [MORE_INTEREST]...` <br> Example: `findInt baking tennis`                                                                                                                                  |
+| **Delete**            | `delete INDEX` <br> Example: `delete 2`                                                                                                                                                                      |
+| **Add module**        | `mod add INDEX MODULE [MORE_MODULES]...` <br> Example: `mod add 3 cs2100 cs2103t cs2101 cs2105`                                                                                                              |
+| **Delete module**     | `mod delete INDEX MODULE [MORE_MODULES]...` <br> Example: `mod delete 3 cs2100 cs2103t cs2101 cs2105`                                                                                                        |
+| **Mark module**       | `mod mark INDEX MODULE [MORE_MODULES]...` <br> Example: `mod mark 3 cs2100 cs2103t cs2101 cs2105`                                                                                                            |
+| **Unmark module**     | `mod unmark INDEX MODULE [MORE_MODULES]...` <br> Example: `mod unmark 3 cs2100 cs2103t cs2101 cs2105`                                                                                                        |
+| **Find module**       | `mod find MODULE [MORE_MODULES]...` <br> Example: `mod find cs2101 cs2103t`                                                                                                                                  |
+| **Exit**              | `exit`                                                                                                                                                                                                       |
