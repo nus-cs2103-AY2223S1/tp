@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Supplier extends Person {
 
-    private final ArrayList<Pet> petsOnSale;
+    private final List<Pet> petsOnSale;
 
     /**
      * Constructs a supplier object.
@@ -31,7 +32,7 @@ public class Supplier extends Person {
                     Email email,
                     Address address,
                     Set<Tag> tags,
-                    ArrayList<Pet> petsOnSale) {
+                    List<Pet> petsOnSale) {
         super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
         this.petsOnSale = petsOnSale;
     }

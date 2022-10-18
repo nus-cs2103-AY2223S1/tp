@@ -41,11 +41,19 @@ public class AddBuyerCommandParser extends AddPersonCommandParser implements Par
     public AddBuyerCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ORDER);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_PERSON_CATEGORY,
+                        PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_EMAIL,
+                        PREFIX_ADDRESS,
+                        PREFIX_TAG,
+                        PREFIX_ORDER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_PERSON_CATEGORY,
+                PREFIX_NAME, PREFIX_ADDRESS,
+                PREFIX_PHONE,
+                PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBuyerCommand.MESSAGE_USAGE));
         }
