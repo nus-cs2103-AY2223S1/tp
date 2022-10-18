@@ -94,7 +94,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getRestPersons() {
-
         return new ArrayList<>(Arrays.asList(HOON, IDA));
     }
 }

@@ -13,7 +13,6 @@ import coydir.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
-
 /**
  * Represents the in-memory model of the database data.
  */
@@ -104,7 +103,6 @@ public class ModelManager implements Model {
         database.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
-
 
     @Override
     public void setPerson(Person target, Person editedPerson) {

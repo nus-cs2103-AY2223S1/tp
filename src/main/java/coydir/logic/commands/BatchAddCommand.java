@@ -1,6 +1,7 @@
 package coydir.logic.commands;
 
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
+import static coydir.logic.parser.CliSyntax.PREFIX_LIST;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ import coydir.logic.parser.AddCommandParser;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.Database;
 import coydir.model.Model;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 
 /**
@@ -28,8 +30,6 @@ public class BatchAddCommand extends Command {
             + "Parameters: filename (must be in the data folder of the repository and CSV format)\n"
             + "Example: " + COMMAND_WORD + " coydir.csv";
     public static final String MESSAGE_SUCCESS = "Batch Add Success. %d employees were added";
-
-    private static final String[] PREFIX_LIST = { "n/", "p/", "e/", "j/", "a/", "t/"};
     private final String filename;
     private Path filePath;
 
@@ -71,10 +71,9 @@ public class BatchAddCommand extends Command {
                 addCommandList.add(new AddCommandParser().parse(arg));
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             throw new CommandException("File Not Found");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new CommandException(e.getMessage());
         } catch (ParseException e) {
             throw new CommandException(e.getMessage());
         }
@@ -83,15 +82,16 @@ public class BatchAddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        int currEmployeeID = EmployeeId.getCount();
         List<AddCommand> addCommandList = this.getInfo();
+        if (addCommandList.isEmpty()) {
+            throw new CommandException(String.format("%s does not have any data", this.filename));
+        }
         List<Person> copyOfPersonList = new ArrayList<>();
         for (Person p : model.getDatabase().getPersonList()) {
             copyOfPersonList.add(p);
         }
 
-        if (addCommandList.isEmpty()) {
-            throw new CommandException(String.format("%s does not have any data", this.filename));
-        }
         try {
             for (AddCommand item : addCommandList) {
                 item.execute(model);
@@ -100,6 +100,7 @@ public class BatchAddCommand extends Command {
             Database ab = new Database();
             ab.setPersons(copyOfPersonList);
             model.setDatabase(ab);
+            EmployeeId.setCount(currEmployeeID);
             throw new CommandException("One person in the list is found to be a duplicate. Call aborted");
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, addCommandList.size()));
