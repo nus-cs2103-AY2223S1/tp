@@ -19,4 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEDICAL_TEST = new Prefix("t/");
     public static final Prefix PREFIX_DOCTOR = new Prefix("d/");
     public static final Prefix PREFIX_SLOT = new Prefix("s/");
+
+    public static final Prefix PREFIX_AMOUNT = new Prefix("a/");
+    public static final Prefix PREFIX_BILL_DATE = new Prefix("d/");
 }

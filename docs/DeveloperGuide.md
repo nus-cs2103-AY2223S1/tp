@@ -238,6 +238,44 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find Feature
+
+#### Current Implementation
+
+The find mechanism makes use of a predicate to filter the list of patients through `updateFilteredPatientList` method in the `ModelManager` class.
+The `FindCommandParser` gets the user input to set it as the predicate. The user can find all fields of patients, appointments and bills.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+of the application as indexed lists.
+
+Step 2. The user executes `find n/John` command to find all patients with the name "John". 
+The `find` command calls `Model#updateFilteredPatientList(predicate)` to update the list of patients in the application.
+
+Step 3. The application displays the list of patients with the name "John" on the patient list panel. 
+
+The find feature is now seperated for the patients, appointments and bills sections.
+
+Design considerations:
+1. Length of command word
+2. Whether to use a prefix for the search term
+3. Number of keywords used for the search term
+
+Alternatives:
+
+1. Use a shorter command word (e.g. find instead of findpatient)
+    - Pros: Easy to type
+    - Cons: May be confused with the find command for appointments and bills
+    - Cons: May be confused with the find command for patients
+2. Use a prefix for the search term (e.g. find n/John)
+    - Pros: Easy to type
+    - Pros: Easy to remember
+    - Cons: May be confused with the find command for appointments and bills
+3. Combine find feature for patients, appointments and bills into one command
+    - Pros: Easy to type
+    - Pros: Easy to remember
+    - Cons: May be confusing to the user
 
 --------------------------------------------------------------------------------------------------------------------
 
