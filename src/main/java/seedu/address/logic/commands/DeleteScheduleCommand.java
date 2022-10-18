@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.schedule.Schedule;
 
 /**
- * Deletes a schedule identified using it's displayed index from the address book.
+ * Deletes a schedule identified using it's displayed index from the ProfNUS.
  */
 public class DeleteScheduleCommand extends Command {
     public static final String COMMAND_WORD = "sdelete";

@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TutorListPanel tutorListPanel;
     private ModuleListPanel moduleListPanel;
     private ModuleInfoPanel moduleInfoPanel;
     private ScheduleListPanel scheduleListPanel;
@@ -52,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane tutorListPanelPlaceholder;
 
     @FXML
     private StackPane moduleListPanelPlaceholder;
@@ -201,6 +205,8 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabModule() {
         moduleInfoPanel = new ModuleInfoPanel(logic.getFilteredPersonList());
         moduleInfoPanelPlaceholder.getChildren().add(moduleInfoPanel.getRoot());
+        tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+        tutorListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULE);
     }
     /**
