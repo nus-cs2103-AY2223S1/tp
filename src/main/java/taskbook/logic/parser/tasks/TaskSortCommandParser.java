@@ -63,9 +63,9 @@ public class TaskSortCommandParser implements Parser<TaskSortCommand> {
         SortTypes sortTypes = SortTypes.parse(argMultimap.getValue(CliSyntax.PREFIX_SORT_TYPE).orElse("INVALID"));
         switch (sortTypes) {
         case DESC_ALPHABETICAL:
-            return new TaskSortAddedChronologicalCommand();
-        case DESC_CHRONOLOGICAL_ADDED:
             return new TaskSortDescriptionAlphabeticalCommand();
+        case DESC_CHRONOLOGICAL_ADDED:
+            return new TaskSortAddedChronologicalCommand();
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     TaskTodoCommand.MESSAGE_USAGE));
