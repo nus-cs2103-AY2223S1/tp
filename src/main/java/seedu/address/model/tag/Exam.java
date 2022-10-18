@@ -13,8 +13,8 @@ public class Exam {
     public static final String MESSAGE_SCORE_CONSTRAINTS = "Exam score should be a number between 0 to 100.";
     public static final String VALIDATION_REGEX = "[0-9]+";
 
-    public final String name;
-    public final int score;
+    private final String name;
+    private final int score;
 
     /**
      * Constructs a {@code Exam}.
