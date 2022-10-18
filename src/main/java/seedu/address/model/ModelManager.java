@@ -225,7 +225,9 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredProjects.equals(other.filteredProjects)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && targetProject.equals(other.targetProject)
+                && targetTask.equals(other.targetTask);
     }
 
 }
