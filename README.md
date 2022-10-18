@@ -103,6 +103,15 @@ Format: `delc {contact_index}`
 Example:
 * `delc 2` deletes the contact at index 2 in the contact list.
 
+### Editing a contact : `editc`
+
+Edits the specified contact from the contact list.
+
+Format: `editc {contact_index} {field prefix + field description}`
+
+Examples:
+* `editc 2 n/ John Wong` edits the name of the contact at index 2 in the contact list to `John Wong`.
+
 ### Finding contacts: `findc`
 
 Find persons in your contacts via keywords, or via module.

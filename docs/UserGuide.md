@@ -28,7 +28,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
    * **`listc`** : Lists all contacts.
 
-   * **`add`**`add Finish homework /by 2022-12-12 /mod CS2040S` : Adds a task named `Finish homework` to the Task Manager.
+   * **`add`**`add Finish homework by/2022-12-12 15:04 mod/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
    
    * **`delete`**`1` : Deletes the 1st task shown in the current list.
 
@@ -46,17 +46,17 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `{curly braces}` are the parameters to be supplied by the user.<br>
+  e.g. in `addc n/{name}`, `{name}` is a parameter which can be used as `addc n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/{name} [t/{tag}]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/{tag}]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/{name} p/{phone_number}`, `p/{phone_number} n/{name}` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -80,11 +80,11 @@ Format: `help`
 Adds a task to the task manager.
 
 Format:
-`add {task_name} /by {deadline} /mod {module_code}`
+`add {task_name} by/{deadline} mod/{module_code}`
 
 Examples:
-* `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
-* `add finish SEP application /by 2359 today`
+* `add finish problem set 5 by/2022-01-02 15:04 mod/CS2040S`
+* `add finish SEP application by/2022-12-25 23:59 mod/SEP`
 
 #### Deleting a task: `del`
 
@@ -142,19 +142,19 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...`
+Format: `addc {name} /email {email} /hp {phone_number} /mods {module1} {module2}...`
 
 Examples:
 * `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
 * `addc Betsy Crowe /email betsycrowe@gmail.com /hp 89985432`
 
-### Listing all persons : `listc`
+#### Listing all contact : `listc`
 
 Shows a list of all persons in the address book.
 
 Format: `listc`
 
-#### Deleting a person : `delc`
+#### Deleting a contact : `delc`
 
 Deletes the specified contact from the contact list.
 
@@ -167,7 +167,20 @@ Format: `delc {contact_index}`
 Examples:
 * `delc 2` deletes the contact at index 2 in the contact list.
 
-#### Searching for persons: `findc`
+#### Editing a contact : `editc`
+
+Edits the specified contact from the contact list.
+
+Format: `editc {contact_index} {field prefix + field description}`
+
+* Edits the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `editc 2 n/ John Wong` edits the name of the contact at index 2 in the contact list to `John Wong`.
+
+#### Searching for contacts: `findc`
 
 Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
 
@@ -178,7 +191,7 @@ Examples:
 * `findc n/ John` returns `john`, `John Doe`
 * `findc m/ CS1231S` returns `Alex Yeoh`, `David Li`
 
-#### Clearing all entries : `clear`
+#### Clearing all contacts : `clear`
 
 Clears all entries from the address book.
 
@@ -221,16 +234,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add task** | `add {taskname} /by {deadline} /mod {module_code}` <br> e.g. `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+**Add task** | `add {task_name} by/{deadline} mod/{module_code}` <br> e.g. `add finish problem set 5 by/Week 6 Sunday mod/CS2040S`
 **Delete task** | `del {task_index}` <br> e.g. `delete 5`
 **Mark task** | `mark {task_index}` <br> e.g. `mark 3`
 **Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
 **Find tasks** | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`
 **List tasks** | `list` / `list time`
-**Add contact** | `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
+**Add contact** | `addc {name} /email {email} /hp {phone_number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
 **Clear contacts** | `clear`
 **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
-**Edit contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit contact** | `edit INDEX [n/name}] [p/{phone_number}] [e/{email}] [a/{address}] [t/{tag}]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find contacts** | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`
 **List contacts** | `listc`
 **Help** | `help`
