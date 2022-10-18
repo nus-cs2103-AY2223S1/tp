@@ -50,7 +50,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("gender") String gender, @JsonProperty("birthdate") String birthdate,
             @JsonProperty("race") String race, @JsonProperty("religion") String religion,
-            @JsonProperty("survey") List<JsonAdaptedSurvey> survey, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("survey") List<JsonAdaptedSurvey> survey,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
