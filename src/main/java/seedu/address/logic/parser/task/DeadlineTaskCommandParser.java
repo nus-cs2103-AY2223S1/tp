@@ -4,6 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 
+import java.util.Date;
+import java.util.List;
+
+import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.task.DeadlineTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -13,10 +18,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Deadline;
 
-import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Parses input arguments and creates a new DeadlineTaskCommand object
@@ -59,7 +60,7 @@ public class DeadlineTaskCommandParser implements Parser<DeadlineTaskCommand> {
             return new DeadlineTaskCommand(index, Deadline.of(parseResult.get(0)));
         } else if (deadlineArg.trim().equals("?")) {
             return new DeadlineTaskCommand(index, Deadline.UNSPECIFIED);
-        } else  {
+        } else {
             throw new ParseException(MESSAGE_DATE_PARSE_FAILURE);
         }
     }

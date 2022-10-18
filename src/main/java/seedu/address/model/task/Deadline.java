@@ -43,7 +43,11 @@ public class Deadline {
         return new Deadline(date);
     }
 
-    public static Deadline of(Date date)  {
+    /**
+     * Creates a Deadline with a given date object.
+     * @param date the date to be converted into a Deadline
+     */
+    public static Deadline of(Date date) {
         LocalDate localDate =
                 date.toInstant()
                     .atZone(ZoneId.systemDefault())
