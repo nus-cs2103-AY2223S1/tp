@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:JsonAdaptedMod calls the constructor of Mod;
+:Mod checks if the arguments provided is valid;
+:Mod calls ParserUtil#parseModsToCategory(String modName);
+:ParserUtil#parseModsToCategory takes the first 2 characters from modName;
+
+if () then (["CS", "CP", "IS"])
+  :Return COMP category;
+elseif () then (["MA", "ST"])
+  :Return MATH category;
+elseif () then (["LS", "CM", "PC"])
+  :Return SCI category;
+elseif () then (["GE", "UT"])
+  :Return GE category;
+elseif () then (["ES"])
+  :Return COMMS category;
+else ()
+  :Return UE category;
+endif
+
+:Mod receives the category from ParserUtil;
+:Mod constructor assigns the category to this instance of Mod;
+:Mod constructor returns the instance to JsonAdaptedMod;
+stop
+
+@enduml
