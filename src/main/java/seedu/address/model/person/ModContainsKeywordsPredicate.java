@@ -20,7 +20,7 @@ public class ModContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         ObservableList<Mod> mods = person.getMods();
         return keywords.stream().count() != 0
-        && keywords.stream().allMatch(keyword -> mods.stream()
+            && keywords.stream().allMatch(keyword -> mods.stream()
                 .anyMatch(mod -> StringUtil.containsWordIgnoreCase(mod.getModName(), keyword)));
     }
 
