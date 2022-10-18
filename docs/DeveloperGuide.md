@@ -247,6 +247,19 @@ or start time, check for time conflicts.
     * If day is edited, place the item in the corresponding Day object and re-sort the list.
   * If conflicts are detected, throw an exception for the time conflict.
 
+### \[Proposed\] Edit an itinerary
+
+An itinerary's details (description, start date, duration, and budget) can be edited by changing the fields of an Itinerary object.
+
+Given below are some example usage scenarios and how the editing mechanism is carried out.
+
+* Editing an itinerary's description, budget, and start date
+    * Update the specified fields in the Itinerary object.
+* Editing an itinerary's duration
+    * If the duration is extended, add more Day objects to the Itinerary's list and update the duration field.
+    * If the duration is reduced, remove the extra Day objects from the Itinerary's list starting from the back (i.e., the last Day is removed first).
+        Update the duration field. The Items that were scheduled during the corresponding Days would become unscheduled.
+
 ### \[Proposed\] Export
 
 The Export feature is facilitated by accessing the list of items stored in a "Day" object, which is part of a list of "Day" in a "Itinerary" Object.
