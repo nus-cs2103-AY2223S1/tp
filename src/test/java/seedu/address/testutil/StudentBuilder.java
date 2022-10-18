@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.student.Attendance;
+import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
@@ -17,6 +18,7 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_RESPONSE = "1";
     public static final String DEFAULT_ATTENDANCE = "1";
+    public static final boolean DEFAULT_HELP_TAG = false;
 
 
     private StuName name;
@@ -24,6 +26,7 @@ public class StudentBuilder {
     private Telegram telegram;
     private Response response;
     private Attendance attendance;
+    private HelpTag helpTag;
 
 
     /**
@@ -35,6 +38,7 @@ public class StudentBuilder {
         telegram = new Telegram(DEFAULT_TELEGRAM);
         response = new Response(DEFAULT_RESPONSE);
         attendance = new Attendance(DEFAULT_ATTENDANCE);
+        helpTag = new HelpTag(DEFAULT_HELP_TAG);
     }
 
     /**
@@ -46,6 +50,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         response = studentToCopy.getResponse();
         attendance = studentToCopy.getAttendance();
+        helpTag = studentToCopy.getHelpTag();
     }
 
     /**
@@ -88,9 +93,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Help Tag} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withHelpTag(boolean bool) {
+        this.helpTag = new HelpTag(bool);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, telegram, email, response, attendance);
+        return new Student(name, telegram, email, response, attendance, helpTag);
     }
 
 }
-
