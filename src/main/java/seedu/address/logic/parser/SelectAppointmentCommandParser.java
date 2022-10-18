@@ -15,19 +15,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public abstract class SelectAppointmentCommandParser<T extends SelectAppointmentCommand> implements Parser<T> {
 
     /**
-     * Gets the index of the person with the appointment and the index of the appointment itself.
+     * Gets the Index of the appointment itself.
      *
      * @param args The string to be parsed.
-     * @return A list of 2 indexes, denoting the index of the person with the appointment and the index of the
-     *     appointment itself respectively.
-     * @throws ParseException If there is not exactly 2 indexes found or if there is any invalid indexes.
+     * @return Index of the appointment itself.
+     * @throws ParseException If there is not exactly 1 index found or if there is any invalid indexes.
      */
-    protected List<Index> getPersonAndAppointmentIndexes(String args) throws ParseException {
+    protected Index getAppointmentIndex(String args) throws ParseException {
         requireNonNull(args);
         List<Index> indexList;
-        int expectedIndexCount = 2;
+        int expectedIndexCount = 1;
 
         indexList = ParserUtil.parseIndexes(args, expectedIndexCount);
-        return indexList;
+        return indexList.get(0);
     }
 }
