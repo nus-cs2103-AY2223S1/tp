@@ -234,6 +234,52 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Fast Template Feature
+
+#### Implementation
+
+The Fast Template Feature is facilitated by `TemplateCommand`. It extends 'Command' with a String`personChosen` class field that stores the chosen Person. The chosen Person refers to the Person that the User wants the template of, i.e. `prof / ta / student`. Additonally, it implements the following operations:
+- TemplateCommand#execute() - Executes the template command, whose command word is `tt`.
+
+Given below is an example usage scenario and how the template operation mechanism behaves at each step.
+
+Step 1. The user types `tt prof` and presses enter.
+
+Step 2. The `github 1 ` will be parsed by `AddressBook#parseCommand()` which will return a `GithubCommandParser`.
+
+Step 3. The `GithubCommandParser` will parse `1` using `parse()`. This will return a `GithubCommand`
+
+Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** executes() checks if the github username field of target person is empty. If it is empty an exception will be thrown.
+</div>
+
+Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** openGithub() checks if the url built is invalid. If url is invalid an exception would be thrown.
+</div>
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+The following sequence diagram shows how the github feature works.
+
+![ttCommandSequenceDiagram](images/ttCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How the template is provided to User:**
+
+* **Current Implementation:** Pastes the template directly into the CLI where the User types commands
+    * Pros: More intuitive
+    * Cons: More complicated to implement, need to click or press tab + left arrow to get to CLI.
+
+* **Alternative:** Copies the template into the User's clipboard
+    * Pros: Easier to implement, can access CLI directly after pasting 
+    * Cons: Less intuitive, less technically competent users may not understand what a clipboard is.
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
