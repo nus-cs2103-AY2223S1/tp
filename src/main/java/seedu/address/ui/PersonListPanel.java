@@ -36,7 +36,7 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private void displayInfo() throws CommandException, ParseException {
         int x = personListView.getSelectionModel().getSelectedIndex() + 1;
-        mw.executeCommand("show " + x);
+        mw.handlePersonListPanelEdits("show " + x);
     }
 
     /**
