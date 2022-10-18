@@ -193,8 +193,8 @@ module code provided is checked. This involves a check of whether the input is a
 
 Step 4: After successful checks, the module `CS2105` will be added into Plannit. 
 
-Step 5: The `Storage` component will now save the newly-updated list of modules to a JSON file. The 
-`saveAddressBook()` method of `StorageManager` is called.
+Step 5: The `saveAddressBook()` method of `StorageManager` is called to save the newly-updated list
+of modules to a JSON file. 
 
 Step 6: `JsonAddressBookStorage` is called, which serializes/converts the new list of modules 
 into JSON format, so that it can be saved into a file. The file will be read whenever Plannit 
@@ -203,7 +203,8 @@ starts up so that it can load saved module and person data.
 Step 7: Plannit Graphical User Interface (GUI) displays message that the addition of module has 
 been successful. 
 
-The following activity diagram summarizes what happens when 
+The following activity diagram summarizes what happens when the user requests to add module to 
+Plannit via `add-module` command.
 
 ![AddModuleActivityDiagram](images/AddModuleActivityDiagram.png)
 
