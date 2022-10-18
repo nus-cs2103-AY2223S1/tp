@@ -36,7 +36,7 @@ public class DeadlineTaskCommand extends TaskCommand {
             + "1 "
             + PREFIX_DEADLINE + " ?\n";
 
-    public static final String MESSAGE_SUCCESS = "Deadline was set to the task: %1$s";
+    public static final String MESSAGE_SUCCESS = "Deadline of %1$s was set to the task: %2$s";
 
     private final Index targetIndex;
     private final Deadline newDeadline;
@@ -73,7 +73,7 @@ public class DeadlineTaskCommand extends TaskCommand {
         model.setTask(taskToUpdate, updatedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedTask.getDeadline(), updatedTask.getTitle()));
     }
 
     @Override
