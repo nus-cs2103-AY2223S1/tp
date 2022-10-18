@@ -205,6 +205,11 @@ public class ParserUtil {
         if (isFirstTaskNumberInvalid || isSecondTaskNumberInvalid) {
             throw new ParseException(MESSAGE_INVALID_TASK_NUMBER);
         }
+        Boolean areTaskNumbersSame =
+                firstTaskNumberAsString.equals(secondTaskNumberAsString);
+        if (areTaskNumbersSame) {
+            throw new ParseException(MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+        }
         return Arrays.asList(
                 Index.fromOneBased(Integer.parseInt(firstTaskNumberAsString)),
                 Index.fromOneBased(Integer.parseInt(secondTaskNumberAsString)));
