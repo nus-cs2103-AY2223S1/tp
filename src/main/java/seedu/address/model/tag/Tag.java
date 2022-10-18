@@ -20,14 +20,14 @@ public class Tag {
     public static final String EXPENDITURE_CONSTRAINTS = "Expenditure tags must only be one of the following: \n"
             + "Food, Groceries, Entertainment, Transport, Education, Housing, Others";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final List INCOME_TAGS = Arrays.asList(
+    public static final List<String> INCOME_TAGS = Arrays.asList(
             "Salary",
             "Allowance",
             "Profit",
             "Investment",
             "Gifts",
             "Others");
-    public static final List EXPENDITURE_TAGS = Arrays.asList(
+    public static final List<String> EXPENDITURE_TAGS = Arrays.asList(
             "Food",
             "Groceries",
             "Entertainment",

@@ -8,7 +8,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PennyWise" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+         xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png"/>
     </icons>
@@ -39,7 +39,7 @@
                         <StackPane fx:id="entryPanePlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
 
                     </VBox>
-                    <StackPane fx:id="pieChartPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS"
+                    <StackPane fx:id="graphPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS"
                                HBox.hgrow="ALWAYS"/>
                 </HBox>
                 <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
