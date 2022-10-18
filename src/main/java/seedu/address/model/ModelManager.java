@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the client book data.
@@ -136,6 +137,24 @@ public class ModelManager implements Model {
     public void addMeeting(Meeting meeting) {
         requireNonNull(meeting);
         myInsuRec.addMeeting(meeting);
+    }
+
+    @Override
+    public void addProduct(Tag product) {
+        requireNonNull(product);
+        myInsuRec.addProduct(product);
+    }
+
+    @Override
+    public void removeProduct(Tag product) {
+        requireNonNull(product);
+        myInsuRec.removeProduct(product);
+    }
+
+    @Override
+    public boolean hasProduct(Tag product) {
+        requireNonNull(product);
+        return myInsuRec.hasProduct(product);
     }
 
     //=========== Filtered Client List Accessors =============================================================

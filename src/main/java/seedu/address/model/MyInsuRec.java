@@ -9,6 +9,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.NoConflictMeetingList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueProductList;
 
 /**
  * Wraps all data at the client-book level
@@ -18,6 +20,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
 
     private final UniqueClientList clients;
     private final NoConflictMeetingList meetings;
+    private final UniqueProductList products;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     {
         clients = new UniqueClientList();
         meetings = new NoConflictMeetingList();
+        products = new UniqueProductList();
     }
 
     public MyInsuRec() {}
@@ -60,6 +64,14 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     }
 
     /**
+     * Replaces the contents of the product list with {@code products}.
+     * {@code products} must not contain duplicate products.
+     */
+    public void setProducts(List<Tag> products) {
+        this.products.setProducts(products);
+    }
+
+    /**
      * Resets the existing data of this {@code MyInsuRec} with {@code newData}.
      */
     public void resetData(ReadOnlyMyInsuRec newData) {
@@ -67,6 +79,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
 
         setClients(newData.getClientList());
         setMeetings(newData.getMeetingList());
+        setProducts(newData.getProductList());
     }
 
     //// client-level operations
@@ -106,7 +119,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         clients.remove(key);
     }
 
-    //// client-level operations
+    //// meeting-level operations
 
     /**
      * Adds a meeting to the meeting list.
@@ -131,6 +144,31 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     public boolean hasMeeting(Meeting meeting) {
         return meetings.contains(meeting);
     }
+
+    //// product-level operations
+    /**
+     * Adds a product to the product list.
+     * There must not be any naming conflicts with any other product on the list.
+     */
+    public void addProduct(Tag product) {
+        products.add(product);
+    }
+
+    /**
+     * Removes product.
+     * The meeting must exist in the product list in MyInsuRec.
+     */
+    public void removeProduct(Tag product) {
+        products.remove(product);
+    }
+
+    /**
+     * Returns true if a product with the same identity as {@code product} exists in the products book.
+     */
+    public boolean hasProduct(Tag product) {
+        return products.contains(product);
+    }
+
     //// util methods
 
     @Override
@@ -147,6 +185,11 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     @Override
     public ObservableList<Meeting> getMeetingList() {
         return meetings.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Tag> getProductList() {
+        return products.asUnmodifiableObservableList();
     }
 
     @Override

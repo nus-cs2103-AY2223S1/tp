@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -79,10 +80,27 @@ public interface Model {
     boolean hasMeeting(Meeting meeting);
 
     /**
-     * Adds the given client.
+     * Adds the given meeting.
      * {@code meeting} must not already exist in the MyInsuRec.
      */
     void addMeeting(Meeting meeting);
+
+    /**
+     * Adds the given product.
+     * {@code product} must not already exist in the MyInsuRec.
+     */
+    void addProduct(Tag product);
+
+    /**
+     * Removes product.
+     * The meeting must exist in the product list in MyInsuRec.
+     */
+    void removeProduct(Tag product);
+
+    /**
+     * Returns true if a product with the same name as {@code product} exists in the MyInsuRec.
+     */
+    boolean hasProduct(Tag product);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
