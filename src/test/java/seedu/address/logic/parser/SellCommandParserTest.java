@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_NEGATIVE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_NUMBERFORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_WITH_PREFIX;
@@ -98,6 +99,8 @@ public class SellCommandParserTest {
                 + INVALID_DATE, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE + VALID_PRICE
                 + INVALID_DATE_NUMBERFORMAT, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE_EMPTY, MESSAGE_INVALID_FORMAT);
     }
 
     @Test

@@ -82,6 +82,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE = "00/09/20000";
     public static final String INVALID_DATE_NUMBERFORMAT = "1/0f/20000";
     public static final String INVALID_DATE_NEGATIVE = "-1/09/2000";
+    public static final String INVALID_DATE_EMPTY = " ";
     public static final String INVALID_DATE_LENGTH = "01/09";
     public static final String INVALID_DATE_SIZE = "21/13/2000";
     public static final String INVALID_DATE_WITH_PREFIX = " " + PREFIX_DATE + "00/09/20000";
