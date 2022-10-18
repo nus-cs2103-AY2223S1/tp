@@ -24,6 +24,20 @@ public class DeadlineTaskCommandParserTest {
                 new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.of(date))
         );
 
+        LocalDate today = LocalDate.now();
+        assertParseSuccess(
+                parser,
+                "1 by/ today",
+                new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.of(today))
+        );
+
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        assertParseSuccess(
+                parser,
+                "1 by/ tomorrow",
+                new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.of(tomorrow))
+        );
+
         assertParseSuccess(
                 parser,
                 "1 by/ ?",
