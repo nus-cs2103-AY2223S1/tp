@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
@@ -77,11 +77,11 @@ public class CommandTestUtil {
     public static final String MODULE_TASK_DESC_B = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_B;
     public static final String MODULE_TASK_DESC_C = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_C;
     public static final String MODULE_TASKLIST_DESC_NUMBER_ONE =
-            " " + PREFIX_TASK_NUMBER + "1";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "1";
     public static final String MODULE_TASKLIST_DESC_NUMBER_TWO =
-            " " + PREFIX_TASK_NUMBER + "2";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "2";
     public static final String MODULE_TASKLIST_DESC_NUMBER_THREE =
-            " " + PREFIX_TASK_NUMBER + "3";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "3";
 
 
     public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
@@ -98,11 +98,11 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
     public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
-            " " + PREFIX_TASK_NUMBER + "-99$9";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "-99$9";
     public static final String INVALID_TASK_NUMBER_DESC_NEGATIVE =
-            " " + PREFIX_TASK_NUMBER + "-999";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "-999";
     public static final String INVALID_TASK_NUMBER_DESC_ZERO =
-            " " + PREFIX_TASK_NUMBER + "0";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "0";
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
