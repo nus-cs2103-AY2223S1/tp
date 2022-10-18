@@ -50,6 +50,16 @@ public class TypicalStudents {
             .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
             .build();
 
+    public static final Student STUDENT3 = new StudentBuilder().withName("John Appleseed")
+            .withAddress("118, Changi Road, #03-45")
+            .withEmail("johnapple@example.com").withPhone("91235252")
+            .withTags("applefanboy")
+            .withSchool("Apple Primary School")
+            .withLevel("PRIMARY6")
+            .withNextOfKin("Mary Appleseed")
+            .withTuitionClasses(TUITIONCLASS2)
+            .build();
+
     public static final Student AMY_STUDENT = new StudentBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)

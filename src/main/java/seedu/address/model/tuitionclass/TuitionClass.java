@@ -88,6 +88,13 @@ public class TuitionClass {
     }
 
     /**
+     * Returns true if the tuition class has the same name as the specified name.
+     */
+    public boolean hasSameTuitionName(Name name) {
+        return getName().equals(name);
+    }
+
+    /**
      * Returns true if both tuition classes have the same data fields.
      * This defines a stronger notion of equality between two tuition classes.
      */

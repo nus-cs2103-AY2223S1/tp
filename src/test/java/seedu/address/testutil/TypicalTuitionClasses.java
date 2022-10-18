@@ -37,6 +37,15 @@ public class TypicalTuitionClasses {
                     .withTags("easy")
                     .build();
 
+    public static final TuitionClass TUITIONCLASS3 =
+            new TuitionClassBuilder().withName("S3PHYSICS")
+                    .withSubject("PHYSICS")
+                    .withLevel("SECONDARY3")
+                    .withDay("TUESDAY")
+                    .withTime("19:00", "21:00")
+                    .withTags("tough")
+                    .build();
+
     public static final TuitionClass CHEMISTRY_CLASS =
             new TuitionClassBuilder().withName(VALID_NAME_CLASS1)
                     .withSubject(VALID_SUBJECT_CLASS1)

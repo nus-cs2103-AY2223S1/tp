@@ -14,6 +14,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.exceptions.DuplicateTuitionClassException;
+import seedu.address.model.tuitionclass.exceptions.TuitionClassNotAssignedException;
 
 /**
  * Represents a Tutor in the address book.
@@ -73,6 +75,26 @@ public class Tutor extends Person {
 
     public void minusId() {
         id--;
+    }
+
+    /**
+     * Add {@code tuitionClass} to the list of classes that tutor is currently teaching.
+     */
+    public void assignClassToTutor(TuitionClass tuitionClass) {
+        if (tuitionClasses.stream().anyMatch(tuitionClass::isSameTuitionClass)) {
+            throw new DuplicateTuitionClassException();
+        }
+        tuitionClasses.add(tuitionClass);
+    }
+
+    /**
+     * Remove {@code tuitionClass} from the list of classes that tutor is currently teaching.
+     */
+    public void unassignClassFromTutor(TuitionClass tuitionClass) {
+        if (tuitionClasses.stream().noneMatch(tuitionClass::isSameTuitionClass)) {
+            throw new TuitionClassNotAssignedException();
+        }
+        tuitionClasses.remove(tuitionClass);
     }
 
     /**

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.SortCommand.SortBy;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -97,7 +98,6 @@ public interface Model {
      */
     void deleteTuitionClass(TuitionClass target);
 
-
     /**
      * Returns true if a class with the same name as {@code tuitionClass} exists in the database.
      */
@@ -110,6 +110,13 @@ public interface Model {
     void addTuitionClass(TuitionClass tuitionClass);
 
     /**
+     * Returns the tuition class from the tuition class list if the tuition class name
+     * matches the specified {@code name}.
+     * @return the tuition class that has the same name as the specified {@code name}.
+     */
+    TuitionClass getTuitionClass(Name name);
+
+    /**
      * Replaces the given class {@code target} with {@code editedClass}.
      * {@code target} must exist in the database.
      * The name of {@code editedClass} must not be the same as another existing class in the database.
@@ -120,6 +127,7 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
 
     /**
      * Deletes the given person.
