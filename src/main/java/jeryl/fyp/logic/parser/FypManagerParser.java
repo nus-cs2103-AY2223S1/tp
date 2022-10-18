@@ -10,7 +10,8 @@ import jeryl.fyp.logic.commands.AddDeadlineCommand;
 import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.logic.commands.ClearCommand;
 import jeryl.fyp.logic.commands.Command;
-import jeryl.fyp.logic.commands.DeleteCommand;
+import jeryl.fyp.logic.commands.DeleteDeadlineCommand;
+import jeryl.fyp.logic.commands.DeleteStudentCommand;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.ExitCommand;
 import jeryl.fyp.logic.commands.FindCommand;
@@ -55,8 +56,11 @@ public class FypManagerParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteStudentCommand.COMMAND_WORD:
+            return new DeleteStudentCommandParser().parse(arguments);
+
+        case DeleteDeadlineCommand.COMMAND_WORD:
+            return new DeleteDeadlineCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

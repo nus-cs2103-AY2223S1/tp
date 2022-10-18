@@ -1,6 +1,7 @@
 package jeryl.fyp.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_DEADLINE_RANK;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -214,6 +215,23 @@ public class ParserUtil {
                 }
             }
             throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+        }
+    }
+
+    /**
+     * Parses a {@code String rank} into a {@code Integer rank}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rank} is invalid.
+     */
+    public static Integer parseRank(String rank) throws ParseException {
+        requireNonNull(rank);
+        String trimmedRank = rank.trim();
+        //
+        try {
+            return Integer.valueOf(trimmedRank);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DEADLINE_RANK);
         }
     }
 }

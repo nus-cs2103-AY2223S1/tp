@@ -33,9 +33,9 @@ public class MarkCommandTest {
     public void execute_validStudentId_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         StudentId validStudentId = studentToDelete.getStudentId();
-        DeleteCommand deleteCommand = new DeleteCommand(validStudentId);
+        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(validStudentId);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -47,7 +47,7 @@ public class MarkCommandTest {
     public void execute_nonexistentStudentId_throwsCommandException() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         StudentId nonexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
-        DeleteCommand deleteCommand = new DeleteCommand(nonexistentStudentId);
+        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(nonexistentStudentId);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);

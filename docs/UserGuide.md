@@ -90,12 +90,17 @@ Examples:
 
 ### Removing students FYP: `delete`
 
-Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
+There are 2 types of Delete Commands.
+1. `delete-s`: Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
 * Student dropped the FYP
 * Student finished the FYP
 
-Format: `delete id/STUDENT_ID`
+    Format: `delete-s id/STUDENT_ID`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
+2. `delete-d`: Removes a deadline assigned to a student specified by ID.
+   
+    Format: `delete-d id/STUDENT_ID num/DEADLINE_RANK`
+
 
 Example:
 * `delete id/A0123456G`

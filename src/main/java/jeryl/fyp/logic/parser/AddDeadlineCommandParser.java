@@ -3,20 +3,16 @@ package jeryl.fyp.logic.parser;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_DATETIME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.AddDeadlineCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.student.*;
-import jeryl.fyp.model.tag.Tag;
+import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.DeadlineName;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Parses input arguments and creates a new AddStudentCommand object

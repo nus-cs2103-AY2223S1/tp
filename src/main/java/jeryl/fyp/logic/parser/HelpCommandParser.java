@@ -1,7 +1,7 @@
 package jeryl.fyp.logic.parser;
 
 import jeryl.fyp.logic.commands.AddStudentCommand;
-import jeryl.fyp.logic.commands.DeleteCommand;
+import jeryl.fyp.logic.commands.DeleteStudentCommand;
 import jeryl.fyp.logic.commands.FindCommand;
 import jeryl.fyp.logic.commands.HelpAddCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
@@ -31,7 +31,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         case AddStudentCommand.COMMAND_WORD:
             return new HelpAddCommand();
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteStudentCommand.COMMAND_WORD:
             return new HelpDeleteCommand();
 
         case FindCommand.COMMAND_WORD:

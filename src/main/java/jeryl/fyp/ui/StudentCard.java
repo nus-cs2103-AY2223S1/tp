@@ -1,6 +1,7 @@
 package jeryl.fyp.ui;
 
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -61,9 +62,11 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        AtomicInteger index = new AtomicInteger();
         student.getDeadlineList().asUnmodifiableObservableList().stream()
                 .sorted(Comparator.comparing(ddl -> ddl.fullDeadlineDateTime))
-                .forEach(ddl -> deadlineList.getChildren().add(new Label("" + ddl)));
+                .forEach(ddl -> deadlineList.getChildren().add(new Label(
+                        String.valueOf(index.incrementAndGet()) + ". " + ddl)));
     }
 
     @Override

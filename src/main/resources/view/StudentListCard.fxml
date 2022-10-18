@@ -57,7 +57,7 @@
                   </Label>
                </children>
             </HBox>
-            <FlowPane fx:id="deadlineList" prefHeight="96.0" prefWidth="160.0" VBox.vgrow="NEVER"/>
+             <FlowPane fx:id="deadlineList" />
          </children>
       </VBox>
       <rowConstraints>

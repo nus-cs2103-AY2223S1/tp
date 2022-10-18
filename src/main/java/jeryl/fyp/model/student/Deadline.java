@@ -1,8 +1,6 @@
 package jeryl.fyp.model.student;
 
-
 import static java.util.Objects.requireNonNull;
-import static jeryl.fyp.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -62,7 +60,7 @@ public class Deadline implements Comparable<Deadline> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDeadlineName())
-                .append("; Deadline: ")
+                .append(", deadline: ")
                 .append(getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")));
         return builder.toString();
     }
