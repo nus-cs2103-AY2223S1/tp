@@ -28,8 +28,7 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task "
-            + "to the module identified by the module code. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "to the module identified by the module code.\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE CODE "
             + PREFIX_TASK_DESCRIPTION + "TASK DESCRIPTION \n"

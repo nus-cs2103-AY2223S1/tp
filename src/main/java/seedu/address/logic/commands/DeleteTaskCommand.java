@@ -30,8 +30,7 @@ public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delete-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task "
-            + "belonging to the module identified by the module code. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "belonging to the module identified by the module code.\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE CODE "
             + PREFIX_TASK_NUMBER_TO_DELETE + "TASK NUMBER \n"
