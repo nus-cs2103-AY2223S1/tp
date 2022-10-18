@@ -16,6 +16,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.task.Task;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 /**
  * Adds a task to the address book.
  */
@@ -40,6 +42,8 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
+
+    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
     private final Task toAdd;
     private final Email personEmailAddress;
 
@@ -61,7 +65,13 @@ public class AddTaskCommand extends Command {
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
+        Name name = NO_PERSON_ASSIGNED;
+        for (Person person: model.getFilteredPersonList()) {
+            if (person.getEmail().equals(personEmailAddress)) {
+                name = person.getName();
+            }
+        }
+        toAdd.addPersonName(name);
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

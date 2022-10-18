@@ -43,6 +43,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label status;
 
+    @FXML
+    private Label personName;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -57,7 +60,7 @@ public class TaskCard extends UiPart<Region> {
         deadline.setText("Deadline: " + task.getDeadline().toString());
         email.setText("Email: " + task.getPersonEmailAddress().toString());
         status.setText("Status: " + booleanConvertor(task.getStatus()));
-
+        personName.setText("Assignee: " + task.getPersonName());
     }
 
     public String booleanConvertor(boolean isDone) {
