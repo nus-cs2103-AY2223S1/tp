@@ -1,9 +1,10 @@
 package seedu.application.model.application.interview;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.application.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class InterviewTimeTest {
 
@@ -55,7 +56,7 @@ public class InterviewTimeTest {
 
     }
     @Test
-    public void InterviewTime() {
+    public void interviewTime() {
         assertEquals(new InterviewTime("2359").toString(), "23:59:00");
         assertEquals(new InterviewTime("0900").toString(), "09:00:00");
     }

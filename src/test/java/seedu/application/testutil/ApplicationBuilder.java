@@ -1,11 +1,14 @@
 package seedu.application.testutil;
 
+import java.util.Optional;
+
 import seedu.application.model.application.Application;
 import seedu.application.model.application.Company;
 import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
 
 /**
  * A utility class to help with building Application objects.
@@ -23,6 +26,7 @@ public class ApplicationBuilder {
     private Date date;
     private Email email;
     private Position position;
+    private Optional<Interview> interview;
 
     /**
      * Creates an {@code ApplicationBuilder} with the default details.
@@ -33,6 +37,7 @@ public class ApplicationBuilder {
         date = new Date(DEFAULT_DATE);
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
+        interview = Optional.empty();
     }
 
     /**
@@ -44,6 +49,11 @@ public class ApplicationBuilder {
         date = applicationToCopy.getDate();
         email = applicationToCopy.getEmail();
         position = applicationToCopy.getPosition();
+        if (applicationToCopy.getInterview().isPresent()) {
+            interview = applicationToCopy.getInterview();
+        } else {
+            interview = Optional.empty();
+        }
     }
 
     /**
@@ -83,6 +93,14 @@ public class ApplicationBuilder {
      */
     public ApplicationBuilder withPosition(String position) {
         this.position = new Position(position);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Interview} of the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withInterview(Interview interview) {
+        this.interview = Optional.of(interview);
         return this;
     }
 

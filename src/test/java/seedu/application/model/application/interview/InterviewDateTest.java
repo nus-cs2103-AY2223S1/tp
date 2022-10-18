@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.application.model.application.interview.InterviewDate;
 
 public class InterviewDateTest {
 
@@ -54,7 +53,7 @@ public class InterviewDateTest {
 
     }
     @Test
-    public void InterviewDate() {
+    public void interviewDate() {
         assertEquals(new InterviewDate("2022-11-12").toString(), "Nov 12 2022");
         assertEquals(new InterviewDate("2020-02-29").toString(), "Feb 29 2020");
     }
