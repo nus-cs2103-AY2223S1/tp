@@ -30,6 +30,11 @@ public class SelectedTripCard extends UiPart<Region> {
     @FXML
     private Label description;
 
+    /**
+     * Creates a selectedTrip to display
+     *
+     * @param selectedTrip SelectedTrip to display.
+     */
     public SelectedTripCard(ObservableTrip selectedTrip) {
         super(FXML);
         title.textProperty().addListener((ob, o, n) -> setSelectedTripLabel(title.getText()));

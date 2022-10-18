@@ -9,6 +9,9 @@ public class ObservableTrip {
     private final SimpleStringProperty tripTitle;
     private final SimpleStringProperty tripDescription;
 
+    /**
+     * Every field must be present and not null.
+     */
     public ObservableTrip() {
         tripTitle = new SimpleStringProperty();
         tripDescription = new SimpleStringProperty();
@@ -19,6 +22,9 @@ public class ObservableTrip {
         tripDescription.set(trip.getDescription().value);
     }
 
+    /**
+     * Resets the observable trip.
+     */
     public void resetTrip() {
         tripTitle.set(null);
         tripDescription.set(null);
