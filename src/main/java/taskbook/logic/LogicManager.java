@@ -28,6 +28,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TaskBookParser taskBookParser;
+    private final CommandHistory commandHistory;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,11 +37,14 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         taskBookParser = new TaskBookParser();
+        commandHistory = new CommandHistoryManager();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        commandHistory.addCommand(commandText);
 
         CommandResult commandResult;
         Command command = taskBookParser.parseCommand(commandText);
@@ -88,5 +92,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public String getPreviousCommand() {
+        return commandHistory.getPreviousCommand();
+    }
+
+    @Override
+    public String getNextCommand() {
+        return commandHistory.getNextCommand();
     }
 }
