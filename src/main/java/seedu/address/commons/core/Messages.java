@@ -7,7 +7,6 @@ import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListModuleCommand;
 /**
  * Container for user visible messages.
  */
@@ -25,7 +24,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_DELETE_COMMAND = MESSAGE_UNKNOWN_COMMAND
         + String.format("\nTry using %s and %s!", DeleteModuleCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD);
     public static final String MESSAGE_INVALID_LIST_COMMAND = MESSAGE_UNKNOWN_COMMAND
-        + String.format("\nTry using %s and %s!", ListModuleCommand.COMMAND_WORD, ListCommand.COMMAND_WORD);
+        + String.format("\nTry using %s and %s!", ListCommand.COMMAND_WORD);
     public static final String MESSAGE_INVALID_EDIT_COMMAND = MESSAGE_UNKNOWN_COMMAND
         + String.format("\nTry using %s and %s!", EditModuleCommand.COMMAND_WORD, EditCommand.COMMAND_WORD);
 
