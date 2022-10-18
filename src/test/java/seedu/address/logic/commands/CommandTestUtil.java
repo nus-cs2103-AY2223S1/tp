@@ -58,6 +58,8 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_BOB = "@bobhatescode";
     public static final String VALID_INFO_AMY = "CS1101S";
     public static final String VALID_INFO_BOB = "CS2030S";
+    public static final String VALID_TEACHING_INFO_AMY = "CS1231S";
+    public static final String VALID_TEACHING_INFO_BOB = "CS1231S";
     public static final String VALID_STUDENT_ID = "A0123123X";
     public static final String VALID_STUDENT_TELEGRAM = "@amyb123";
     public static final String VALID_STUDENT_INFO = "CS1101S";

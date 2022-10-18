@@ -66,6 +66,15 @@ public class AddStuCommand extends Command {
         }
 
         model.addPerson(toAdd);
+
+        if (toAdd instanceof Student && (toAdd.isTeachingAssistant())) {
+            if (model.hasTutor(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+            } else {
+                model.addTutor(toAdd);
+            }
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false,
                 true, false, false);
