@@ -99,6 +99,11 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             return true;
         }
 
+        @Override
+        public String toString() {
+            return "";
+        }
+
     }
 
 
