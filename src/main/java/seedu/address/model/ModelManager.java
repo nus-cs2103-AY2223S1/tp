@@ -150,10 +150,19 @@ public class ModelManager implements Model {
         addressBook.removePersonFromTeam(person, team);
     }
 
+
     @Override
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
+    }
+
+    @Override
+    public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName) {
+        requireAllNonNull(teamIndex, taskIndex, newName);
+        addressBook.editTask(teamIndex, taskIndex, newName);
+        updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 

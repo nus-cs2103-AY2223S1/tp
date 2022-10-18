@@ -109,6 +109,14 @@ public class UniqueTeamList implements Iterable<Team> {
     }
 
     /**
+     * Edits the {@code Task} into the {@code Team} at the specified index.
+     *
+     */
+    public void editTask(int teamIndex, int taskIndex, seedu.address.model.task.Name newName) {
+        internalList.get(teamIndex).editTask(taskIndex, newName);
+    }
+
+    /**
      * Marks the {@code Task} from the {@code Team} at the specified index as done.
      *
      */

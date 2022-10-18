@@ -132,4 +132,6 @@ public interface Model {
 
     void deleteTask(Index teamIndex, Index taskIndex);
 
+    void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName);
+
 }
