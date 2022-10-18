@@ -17,11 +17,13 @@ import tuthub.logic.commands.FindByModuleCommand;
 import tuthub.logic.commands.FindByNameCommand;
 import tuthub.logic.commands.FindByPhoneCommand;
 import tuthub.logic.commands.FindByPrefixCommand;
+import tuthub.logic.commands.FindByYearCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tutor.EmailContainsKeywordsPredicate;
 import tuthub.model.tutor.ModuleContainsKeywordPredicate;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.PhoneContainsKeywordsPredicate;
+import tuthub.model.tutor.YearContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindByPrefixCommand object.
@@ -86,6 +88,17 @@ public class FindByPrefixCommandParser implements Parser<FindByPrefixCommand> {
             String[] moduleKeywords = trimmedKeywords.split("\\s+");
 
             return new FindByModuleCommand(new ModuleContainsKeywordPredicate(Arrays.asList(moduleKeywords)));
+        } else if (argumentMultimap.getValue(PREFIX_YEAR).isPresent()) {
+            String keywords = argumentMultimap.getValue(PREFIX_YEAR).get();
+            String trimmedKeywords = keywords.trim();
+            if (trimmedKeywords.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByYearCommand.MESSAGE_USAGE));
+            }
+
+            String[] moduleKeywords = trimmedKeywords.split("\\s+");
+
+            return new FindByYearCommand(new YearContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByPrefixCommand.MESSAGE_USAGE));
         }

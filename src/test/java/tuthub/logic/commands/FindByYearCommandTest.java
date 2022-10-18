@@ -11,57 +11,57 @@ import static tuthub.testutil.TypicalTutors.JACKSON;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
 import tuthub.model.Tuthub;
 import tuthub.model.UserPrefs;
-import tuthub.model.tutor.ModuleContainsKeywordPredicate;
 import tuthub.model.tutor.Tutor;
+import tuthub.model.tutor.YearContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the model) for {@code FindByModuleCommand}.
+ * Contains integration tests (interaction with the model) for {@code FindByYearCommand}
  */
-public class FindByModuleCommandTest {
+public class FindByYearCommandTest {
     private List<Tutor> testTaList = Arrays.asList(IDA, HOON, JACKSON);
     private Model model = new ModelManager(getTestTaTuthub(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTestTaTuthub(), new UserPrefs());
 
     @Test
     public void equals() {
-        ModuleContainsKeywordPredicate firstPredicate =
-                new ModuleContainsKeywordPredicate(Collections.singletonList("first"));
-        ModuleContainsKeywordPredicate secondPredicate =
-                new ModuleContainsKeywordPredicate(Collections.singletonList("second"));
+        YearContainsKeywordsPredicate firstPredicate =
+                new YearContainsKeywordsPredicate(Collections.singletonList("first"));
+        YearContainsKeywordsPredicate secondPredicate =
+                new YearContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindByModuleCommand findByModuleFirstCommand = new FindByModuleCommand(firstPredicate);
-        FindByModuleCommand findByModuleSecondCommand = new FindByModuleCommand(secondPredicate);
+        FindByYearCommand findFirstCommand = new FindByYearCommand(firstPredicate);
+        FindByYearCommand findSecondCommand = new FindByYearCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findByModuleFirstCommand.equals(findByModuleFirstCommand));
+        assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindByModuleCommand findByModuleFirstCommandCopy = new FindByModuleCommand(firstPredicate);
-        assertTrue(findByModuleFirstCommand.equals(findByModuleFirstCommandCopy));
+        FindByYearCommand findFirstCommandCopy = new FindByYearCommand(firstPredicate);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findByModuleFirstCommand.equals(1));
+        assertFalse(findFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findByModuleFirstCommand.equals(null));
+        assertFalse(findFirstCommand.equals(null));
 
         // different tutor -> returns false
-        assertFalse(findByModuleFirstCommand.equals(findByModuleSecondCommand));
+        assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noTutorFound() {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 0);
-        ModuleContainsKeywordPredicate predicate = preparePredicate(" ");
-        FindByModuleCommand command = new FindByModuleCommand(predicate);
+        YearContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindByYearCommand command = new FindByYearCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTutorList());
@@ -70,11 +70,11 @@ public class FindByModuleCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTutorsFound() {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
-        ModuleContainsKeywordPredicate predicate = preparePredicate("cs2105 cs2103t");
-        FindByModuleCommand command = new FindByModuleCommand(predicate);
+        YearContainsKeywordsPredicate predicate = preparePredicate("3 4");
+        FindByYearCommand command = new FindByYearCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON, JACKSON), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(HOON, IDA), model.getFilteredTutorList());
     }
 
     private Tuthub getTestTaTuthub() {
@@ -86,9 +86,9 @@ public class FindByModuleCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code ModuleContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a  {@code YearContainsKeywordsPredicate}
      */
-    private ModuleContainsKeywordPredicate preparePredicate(String userInput) {
-        return new ModuleContainsKeywordPredicate(Arrays.asList(userInput.split("\\s+")));
+    private YearContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new YearContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
