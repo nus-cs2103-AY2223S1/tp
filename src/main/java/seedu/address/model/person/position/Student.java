@@ -77,6 +77,11 @@ public class Student extends Position {
         return totalWeightage == 100;
     }
 
+    /**
+     * Returns true if the given index of assignment to be edited is valid.
+     * @param indexOfAssignment Index of the assignment to be edited
+     * @return whether the given index is valid
+     */
     public boolean isValidAssignmentIndex(Index indexOfAssignment) {
         return indexOfAssignment.getZeroBased() >= 0
                 && indexOfAssignment.getZeroBased() < assignmentsList.size();
