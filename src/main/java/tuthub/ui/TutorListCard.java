@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import tuthub.logic.commands.ViewCommand;
-import tuthub.logic.Logic;
 import tuthub.model.tutor.Tutor;
 
 /**
@@ -57,10 +55,6 @@ public class TutorListCard extends UiPart<Region> {
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    public void handleClick() {
-
     }
 
     @Override
