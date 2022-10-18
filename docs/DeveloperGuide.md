@@ -46,6 +46,7 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
+* [**`Stage`**](#stageManager-component): Keeps track of the App's current stage.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
@@ -56,7 +57,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
+Each of the five main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
@@ -73,7 +74,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItineraryListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItineraryListPanel`, `ItemListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W11-4/tp/blob/master/src/main/java/seedu/waddle/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W11-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -231,7 +232,22 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Export
+### \[Proposed\] Edit an item
+Items stored in an ItemContainer object can either be stored under the unscheduled or scheduled list.
+
+Since scheduled items maintain a reference to the day that it is under, the edit behaviour for unscheduled and scheduled items differ.
+
+* **Unscheduled Items**
+  * Update the specified fields and re-sort the list.
+* **Scheduled Items**
+  * If a time related field is edited i.e. day
+or start time, check for time conflicts.
+  * If no conflicts are detected, update the fields.
+    * If time is edited, update the fields and re-sort the list.
+    * If day is edited, place the item in the corresponding Day object and re-sort the list.
+  * If conflicts are detected, throw an exception for the time conflict.
+
+### \[Proposed\] Export
 
 The Export feature is facilitated by accessing the list of items stored in a "Day" object, which is part of a list of "Day" in a "Itinerary" Object.
 
