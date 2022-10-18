@@ -24,7 +24,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
-import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.PersonBuilder;
 
@@ -218,6 +217,13 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
+        @Override
+        public ObservableList<Consultation> getFilteredConsultationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
         @Override
         public ObservableList<Tutorial> getFilteredTutorialList() {
             throw new AssertionError("This method should not be called.");
@@ -225,31 +231,6 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasTeachingAssistant(TeachingAssistant ta) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Consultation> getFilteredConsultationList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addTeachingAssistant(TeachingAssistant ta) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
