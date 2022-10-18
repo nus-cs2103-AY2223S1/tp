@@ -55,10 +55,12 @@ public class AddStudentCommandTest {
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
+        Student alice = new StudentBuilder().withName("Alice").withMatricNum("A9383493F").build();
+        Student bob = new StudentBuilder().withName("Bob").withMatricNum("A0123456Z").build();
+        Student bobby = new StudentBuilder().withName("Bobby").withMatricNum("A0123456Z").build();
         AddStudentCommand addAliceCommand = new AddStudentCommand(alice);
         AddStudentCommand addBobCommand = new AddStudentCommand(bob);
+        AddStudentCommand addBobbyCommand = new AddStudentCommand(bobby);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
@@ -73,8 +75,11 @@ public class AddStudentCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
+
+        // student with different name but same matric num -> returns true
+        assertTrue(addBobCommand.equals(addBobbyCommand));
     }
 
     /**

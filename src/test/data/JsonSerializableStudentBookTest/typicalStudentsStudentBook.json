@@ -1,18 +1,25 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "students" : [ {
-    "name" : "Alice Pauline"
+  "_comment": "StudentBook save file which contains the same Student values as in TypicalStudents#getTypicalStudentBook()",
+  "students": [ {
+    "name": "Alice Pauline",
+    "matricNum": "A0000000F"
   }, {
-    "name" : "Benson Meier"
+    "name": "Benson Meier",
+    "matricNum": "A0345385G"
   }, {
-    "name" : "Carl Kurz"
+    "name": "Carl Kurz",
+    "matricNum": "A0532453D"
   }, {
-    "name" : "Daniel Meier"
+    "name": "Daniel Meier",
+    "matricNum": "A9353548C"
   }, {
-    "name" : "Elle Meyer"
+    "name": "Elle Meyer",
+    "matricNum": "A0573537F"
   }, {
-    "name" : "Fiona Kunz"
+    "name": "Fiona Kunz",
+    "matricNum": "A0385938L"
   }, {
-    "name" : "George Best"
+    "name": "George Best",
+    "matricNum": "A0395839D"
   } ]
 }

@@ -1,5 +1,6 @@
 package jarvis.testutil;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 
 import jarvis.logic.commands.AddStudentCommand;
@@ -24,6 +25,7 @@ public class StudentUtil {
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
+        sb.append(PREFIX_MATRIC_NUM + student.getMatricNum().value + " ");
         return sb.toString();
     }
 
@@ -33,6 +35,8 @@ public class StudentUtil {
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getMatricNum().ifPresent(
+                matricNum -> sb.append(PREFIX_MATRIC_NUM).append(matricNum.value).append(" "));
         return sb.toString();
     }
 }

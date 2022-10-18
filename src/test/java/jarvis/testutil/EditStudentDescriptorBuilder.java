@@ -1,7 +1,7 @@
 package jarvis.testutil;
 
-import jarvis.logic.commands.EditStudentCommand;
 import jarvis.logic.commands.EditStudentCommand.EditStudentDescriptor;
+import jarvis.model.MatricNum;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
 
@@ -17,7 +17,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {
-        this.descriptor = new EditStudentCommand.EditStudentDescriptor(descriptor);
+        this.descriptor = new EditStudentDescriptor(descriptor);
     }
 
     /**
@@ -26,6 +26,7 @@ public class EditStudentDescriptorBuilder {
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
+        descriptor.setMatricNum(student.getMatricNum());
     }
 
     /**
@@ -33,6 +34,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withName(String name) {
         descriptor.setName(new StudentName(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code MatricNum} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withMatricNum(String matricNum) {
+        descriptor.setMatricNum(new MatricNum(matricNum));
         return this;
     }
 

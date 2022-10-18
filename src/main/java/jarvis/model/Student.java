@@ -46,7 +46,6 @@ public class Student {
 
     /**
      * Returns true if both students have the same matriculation number.
-     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -64,15 +63,12 @@ public class Student {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return matricNum.hashCode();
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-        return builder.toString();
+        return getName().toString();
     }
 
 }

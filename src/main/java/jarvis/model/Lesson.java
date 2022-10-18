@@ -14,6 +14,7 @@ import jarvis.commons.exceptions.IllegalValueException;
 public abstract class Lesson {
 
     // Identity fields
+    private final LessonDesc lessonDesc;
     private final TimePeriod timePeriod;
 
     // Data fields
@@ -24,8 +25,9 @@ public abstract class Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Lesson(TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes) {
-        requireAllNonNull(timePeriod, attendance, notes);
+    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes) {
+        requireAllNonNull(lessonDesc, timePeriod, attendance, notes);
+        this.lessonDesc = lessonDesc;
         this.timePeriod = timePeriod;
         this.attendance = attendance;
         this.notes = notes;
@@ -37,6 +39,10 @@ public abstract class Lesson {
 
     public LocalDateTime endTime() {
         return timePeriod.getEnd();
+    }
+
+    public boolean hasTimingConflict(Lesson other) {
+        return timePeriod.hasOverlap(other.timePeriod);
     }
 
     public boolean isPresent(Student student) {
@@ -57,6 +63,9 @@ public abstract class Lesson {
 
     public boolean isCompleted() {
         return isCompleted;
+    }
+    public LessonDesc getDesc() {
+        return lessonDesc;
     }
 
     public TimePeriod getTimePeriod() {
@@ -83,18 +92,19 @@ public abstract class Lesson {
         }
 
         Lesson otherLesson = (Lesson) other;
-        return otherLesson.getTimePeriod().equals(getTimePeriod())
+        return otherLesson.getDesc().equals(getDesc())
+                && otherLesson.getTimePeriod().equals(getTimePeriod())
                 && otherLesson.getAttendance().equals(getAttendance());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timePeriod, attendance);
+        return Objects.hash(lessonDesc, timePeriod);
     }
 
     @Override
     public String toString() {
-        return "Lesson at " + timePeriod;
+        return "Lesson at " + timePeriod + ": " + getDesc();
     }
 
 }

@@ -1,5 +1,6 @@
 package jarvis.model;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -11,7 +12,7 @@ public class TimePeriod {
     private final LocalDateTime end;
 
     public TimePeriod(LocalDateTime start, LocalDateTime end) {
-        assert start.compareTo(end) < 0: "Starting time of lesson must be before ending time of lesson";
+        assert start.isBefore(end) : "Start time must be before end time";
         this.start = start;
         this.end = end;
     }
@@ -22,6 +23,10 @@ public class TimePeriod {
 
     public LocalDateTime getEnd() {
         return end;
+    }
+
+    public boolean hasOverlap(TimePeriod other) {
+        return end.isAfter(other.start) && start.isBefore(other.end);
     }
 
     @Override

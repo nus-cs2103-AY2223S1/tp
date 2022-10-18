@@ -14,32 +14,6 @@ import jarvis.testutil.StudentBuilder;
 public class StudentTest {
 
     @Test
-    public void isSamePerson() {
-        // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
-
-        // null -> returns false
-        assertFalse(ALICE.equals(null));
-
-        // same name -> returns true
-        Student editedAlice = new StudentBuilder(ALICE).build();
-        assertTrue(ALICE.equals(editedAlice));
-
-        // different name -> returns false
-        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // name differs in case -> returns false
-        Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.equals(editedBob));
-
-        // name has trailing spaces -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.equals(editedBob));
-    }
-
-    @Test
     public void equals() {
         // same values -> returns true
         Student aliceCopy = new StudentBuilder(ALICE).build();
@@ -57,8 +31,8 @@ public class StudentTest {
         // different person -> returns false
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
+        // different name but same matric num -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertTrue(ALICE.equals(editedAlice));
     }
 }

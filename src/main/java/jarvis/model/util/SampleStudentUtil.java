@@ -1,6 +1,7 @@
 package jarvis.model.util;
 
 import jarvis.model.MasteryCheckStatus;
+import jarvis.model.MatricNum;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Student;
 import jarvis.model.StudentBook;
@@ -12,12 +13,12 @@ import jarvis.model.StudentName;
 public class SampleStudentUtil {
     public static Student[] getSamplePersons() {
         return new Student[] {
-            new Student(new StudentName("Alex Yeoh"), MasteryCheckStatus.getDefault()),
-            new Student(new StudentName("Bernice Yu"), MasteryCheckStatus.getDefault()),
-            new Student(new StudentName("Charlotte Oliveiro"), MasteryCheckStatus.getDefault()),
-            new Student(new StudentName("David Li"), MasteryCheckStatus.getDefault()),
-            new Student(new StudentName("Irfan Ibrahim"), MasteryCheckStatus.getDefault()),
-            new Student(new StudentName("Roy Balakrishnan"), MasteryCheckStatus.getDefault())
+            new Student(new StudentName("Alex Yeoh"), new MatricNum("A0123456A"), MasteryCheckStatus.getDefault()),
+            new Student(new StudentName("Bernice Yu"), new MatricNum("A0000000D"), MasteryCheckStatus.getDefault()),
+            new Student(new StudentName("Charlotte Oliveiro"), new MatricNum("A4325833C"), MasteryCheckStatus.getDefault()),
+            new Student(new StudentName("David Li"), new MatricNum("A8353285P"), MasteryCheckStatus.getDefault()),
+            new Student(new StudentName("Irfan Ibrahim"), new MatricNum("A2833958J"), MasteryCheckStatus.getDefault()),
+            new Student(new StudentName("Roy Balakrishnan"), new MatricNum("A0033458L"), MasteryCheckStatus.getDefault())
         };
     }
 

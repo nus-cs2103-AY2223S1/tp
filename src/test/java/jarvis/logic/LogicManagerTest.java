@@ -2,6 +2,7 @@ package jarvis.logic;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static jarvis.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static jarvis.logic.commands.CommandTestUtil.MATRIC_NUM_DESC_AMY;
 import static jarvis.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalStudents.AMY;
@@ -81,7 +82,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY;
+        String addCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + MATRIC_NUM_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);
