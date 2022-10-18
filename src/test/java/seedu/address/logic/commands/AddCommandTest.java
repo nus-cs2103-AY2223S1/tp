@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.testutil.ExpenditureBuilder;
+
 
 public class AddCommandTest {
 
@@ -54,9 +56,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validExpenditure, validEntryType);
         ModelStub modelStub = new ModelStubWithExpenditure(validExpenditure);
 
-        assertThrows(
-                CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -180,6 +180,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<PieChart.Data> getIncomePieChartData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<PieChart.Data> getExpensePieChartData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredEntryList(Predicate<Entry> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -191,6 +201,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredIncomeList(Predicate<Entry> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateExpensePieChart() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateIncomePieChart() {
             throw new AssertionError("This method should not be called.");
         }
     }

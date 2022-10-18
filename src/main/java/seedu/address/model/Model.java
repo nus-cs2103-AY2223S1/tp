@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entry.Entry;
 
@@ -115,6 +116,12 @@ public interface Model {
      */
     ObservableList<Entry> getFilteredIncomeList();
 
+    /** Returns an unmodifiable list of pie chart data for income */
+    ObservableList<PieChart.Data> getIncomePieChartData();
+
+    /** Returns an unmodifiable list of pie chart data for expenditure */
+    ObservableList<PieChart.Data> getExpensePieChartData();
+
     // todo remove updateFilteredEntryList after 'find' command has been implemented
     /**
      * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
@@ -136,4 +143,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIncomeList(Predicate<Entry> predicate);
+
+    /**
+     * Updates expense pie chart
+     */
+    void updateExpensePieChart();
+
+    /**
+     * Updates income pie chart
+     */
+    void updateIncomePieChart();
 }

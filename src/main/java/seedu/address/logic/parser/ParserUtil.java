@@ -2,9 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -14,6 +11,7 @@ import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.GraphType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,6 +66,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String graphType} into a {@code GraphType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code graphType} is invalid.
+     */
+    public static GraphType parseGraphType(String graphType) throws ParseException {
+        requireNonNull(graphType);
+        String trimmedGraphType = graphType.trim();
+        if (!GraphType.isValidGraphType(trimmedGraphType)) {
+            throw new ParseException(GraphType.MESSAGE_CONSTRAINTS);
+        }
+        return new GraphType(trimmedGraphType);
+    }
+
+    /**
      * Parses a {@code String amount} into a {@code Amount}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -103,26 +116,33 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Tag parseTag(EntryType type, String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Tag.isValidTagName(type, trimmedTag)) {
+            switch (type.getEntryType()) {
+            case INCOME:
+                throw new ParseException(Tag.INCOME_CONSTRAINTS);
+            case EXPENDITURE:
+                throw new ParseException(Tag.EXPENDITURE_CONSTRAINTS);
+            default:
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
         }
-        return new Tag(trimmedTag);
+        return new Tag(type, trimmedTag);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
+    ///**
+    // * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+    // */
+    //public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    //    requireNonNull(tags);
+    //    final Set<Tag> tagSet = new HashSet<>();
+    //    for (String tagName : tags) {
+    //        tagSet.add(parseTag(tagName));
+    //    }
+    //    return tagSet;
+    //}
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

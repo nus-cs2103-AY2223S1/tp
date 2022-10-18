@@ -53,7 +53,7 @@ public class EditEntryDescriptorTest {
         assertFalse(LUNCH.equals(editedLunch));
 
         // different tags -> returns false
-        editedLunch = new EditEntryDescriptorBuilder(LUNCH).withTags(VALID_TAG_MEAL).build();
+        editedLunch = new EditEntryDescriptorBuilder(LUNCH).withTag(VALID_TAG_MEAL).build();
         assertFalse(LUNCH.equals(editedLunch));
     }
 }
