@@ -41,7 +41,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.student.AddCommand;
-import seedu.address.logic.parser.student.AddCommandParser;
+import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.ID;
 import seedu.address.model.student.Name;
@@ -51,8 +51,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddStudentCommandParserTest {
+    private AddStudentCommandParser parser = new AddStudentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

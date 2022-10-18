@@ -31,21 +31,21 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.student.EditCommand;
 import seedu.address.logic.commands.student.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.parser.student.EditCommandParser;
+import seedu.address.logic.parser.student.EditStudentCommandParser;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditStudentCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private EditStudentCommandParser parser = new EditStudentCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
