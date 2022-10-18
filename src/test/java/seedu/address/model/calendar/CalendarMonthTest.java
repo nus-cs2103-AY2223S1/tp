@@ -1,5 +1,6 @@
 package seedu.address.model.calendar;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -55,6 +56,14 @@ public class CalendarMonthTest {
     }
 
     @Test
+    public void method_getCalendarEvenInDayOfMonth_success() {
+        CalendarMonth calendarMonth = new CalendarMonthBuilder().build();
+        CalendarEvent firstEvent = new CalendarEvent(AMY, firstAppointment);
+        ObservableList<CalendarEvent> calendarEvents = FXCollections.observableArrayList(firstEvent);
+        assertEquals(calendarEvents, calendarMonth.getCalendarEventInDayOfMonth(1, 4, 2023));
+    }
+
+    @Test
     public void constructor_nameNull_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CalendarMonth(null));
     }
@@ -63,11 +72,10 @@ public class CalendarMonthTest {
     @Test
     public void equals() {
         CalendarEvent firstEvent = new CalendarEvent(AMY, firstAppointment);
-        CalendarEvent secondEvent = new CalendarEvent(BOB, firstAppointment);
-        CalendarEvent thirdEvent = new CalendarEvent(AMY, secondAppointment);
-        CalendarEvent fourthEvent = new CalendarEvent(AMY, thirdAppointment);
+        CalendarEvent secondEvent = new CalendarEvent(AMY, secondAppointment);
+        CalendarEvent thirdEvent = new CalendarEvent(AMY, thirdAppointment);
         ObservableList<CalendarEvent> firstEventList = FXCollections.observableArrayList(firstEvent, secondEvent,
-                thirdEvent, fourthEvent);
+                thirdEvent);
         ObservableList<CalendarEvent> secondEventList = FXCollections.observableArrayList(firstEvent, secondEvent);
         CalendarMonth firstCalendarMonth = new CalendarMonth(firstEventList);
         CalendarMonth secondCalendarMonth = new CalendarMonth(secondEventList);

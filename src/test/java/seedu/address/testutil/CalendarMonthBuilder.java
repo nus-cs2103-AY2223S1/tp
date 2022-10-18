@@ -40,10 +40,10 @@ public class CalendarMonthBuilder {
                 new Location("NUS TechnoEdge"));
 
         CalendarEvent firstEvent = new CalendarEvent(firstName, firstAppointment);
-        CalendarEvent secondEvent = new CalendarEvent(secondName, firstAppointment);
-        CalendarEvent thirdEvent = new CalendarEvent(firstName, secondAppointment);
-        CalendarEvent fourthEvent = new CalendarEvent(firstName, thirdAppointment);
-        this.eventList = FXCollections.observableArrayList(firstEvent, secondEvent, thirdEvent, fourthEvent);
+        CalendarEvent secondEvent = new CalendarEvent(firstName, secondAppointment);
+        CalendarEvent thirdEvent = new CalendarEvent(firstName, thirdAppointment);
+
+        this.eventList = FXCollections.observableArrayList(firstEvent, secondEvent, thirdEvent);
 
     }
 
