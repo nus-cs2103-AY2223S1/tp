@@ -13,5 +13,6 @@
     "remark" : "",
     "address": "4th street"
   } ],
-  "tags" : [ "friends", "owesMoney" ]
+  "tags" : [ "friends", "owesMoney" ],
+  "messages" : []
 }
