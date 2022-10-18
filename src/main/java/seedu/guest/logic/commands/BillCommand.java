@@ -12,6 +12,7 @@ import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
 import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.Request;
 
 /**
  * Updates the bill of an existing guest in the guest book.
@@ -66,7 +67,7 @@ public class BillCommand extends Command {
         Guest editedGuest = new Guest(
                 guestToEdit.getName(), guestToEdit.getPhone(), guestToEdit.getEmail(),
                 guestToEdit.getDateRange(), guestToEdit.getNumberOfGuests(), guestToEdit.getIsRoomClean(),
-                editedBill
+                editedBill, guestToEdit.getRequest()
         );
 
         model.setGuest(guestToEdit, editedGuest);
