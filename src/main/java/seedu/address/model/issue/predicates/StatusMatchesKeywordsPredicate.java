@@ -1,11 +1,14 @@
 package seedu.address.model.issue.predicates;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.issue.Issue;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.issue.Issue;
+
+/**
+ * Tests that a {@code Issue}'s {@code Status} matches any of the keywords given.
+ */
 public class StatusMatchesKeywordsPredicate implements Predicate<Issue> {
     private final List<String> keywords;
 

@@ -1,11 +1,15 @@
 package seedu.address.model.client.predicates;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.client.Client;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.client.Client;
+
+
+/**
+ * Tests that a {@code Client}'s {@code ClientPhone} matches any of the keywords given.
+ */
 public class PhoneContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
 
