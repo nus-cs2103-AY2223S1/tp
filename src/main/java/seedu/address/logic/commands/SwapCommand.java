@@ -13,7 +13,7 @@ public class SwapCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SWAP_ACKNOWLEDGEMENT, false, false, true, false);
+        return new CommandResult(MESSAGE_SWAP_ACKNOWLEDGEMENT, null, false, false, true, false);
     }
 
 }

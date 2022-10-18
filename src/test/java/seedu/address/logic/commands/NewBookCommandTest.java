@@ -14,7 +14,7 @@ public class NewBookCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_NEW_BOOK_ACKNOWLEDGEMENT,
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_NEW_BOOK_ACKNOWLEDGEMENT, null,
                 false, true, false, false);
         assertCommandSuccess(new NewBookCommand(), model, expectedCommandResult, expectedModel);
     }
