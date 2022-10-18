@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in MyInsuRec.
+ * Represents a Product in MyInsuRec.
  */
 public class Product {
     public static final String MESSAGE_CONSTRAINTS = "Product names should be alphanumeric";
