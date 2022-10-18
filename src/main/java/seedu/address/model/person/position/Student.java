@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Assignment;
 
 /**
@@ -15,22 +17,13 @@ public class Student extends Position {
     public static final String ATTENDANCE_CONSTRAINTS =
             "Attendance should be in the format [number]/[number], where the first number is greater "
                     + "or equal to the second number (max 999).";
-
     public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
-
-    public static final String GRADE_CONSTRAINTS =
-            "Grade should be in the format [number]/[number], where the first number is greater "
-                    + "or equal to the second number (max 99999).";
-
+    public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
     public static final String ASSIGNMENT_CONSTRAINTS =
             "Incorrect Assignments";
 
-    public static final String GRADE_VALIDATION_REGEX = "\\d{1,5}" + "/" + "\\d{1,5}";
-
     private String attendance;
-
-    private String grade;
-
+    private String overallGrade;
     private ArrayList<Assignment> assignmentsList;
 
     /**
@@ -39,9 +32,34 @@ public class Student extends Position {
     public Student() {
         super("Student");
         this.attendance = "0/0";
-        this.grade = "0/0";
+        this.overallGrade = "0/0";
         this.assignmentsList = new ArrayList<>();
 
+    }
+
+    /**
+     * Creates a student with the given details.
+     * @param attendance of the student
+     * @param overallGrade of the student
+     * @param assignmentsList Assignments that have been assigned to the student
+     */
+    public Student(String attendance, String overallGrade, ArrayList<Assignment> assignmentsList) {
+        super("Student");
+        this.attendance = attendance;
+        this.overallGrade = overallGrade;
+        this.assignmentsList = assignmentsList;
+    }
+
+    public String getAttendance() {
+        return attendance;
+    }
+
+    public String getOverallGrade() {
+        return overallGrade;
+    }
+
+    public ArrayList<Assignment> getAssignmentsList() {
+        return assignmentsList;
     }
 
     public void setAttendance(String attendance) {
@@ -84,17 +102,53 @@ public class Student extends Position {
         return totalWeightage == 100;
     }
 
-    public void setGrade(String grade) {
-        requireNonNull(grade);
-        this.grade = grade;
+    /**
+     * Returns true if the given index of assignment to be edited is valid.
+     * @param indexOfAssignment Index of the assignment to be edited
+     * @return whether the given index is valid
+     */
+    public boolean isValidAssignmentIndex(Index indexOfAssignment) {
+        return indexOfAssignment.getZeroBased() >= 0
+                && indexOfAssignment.getZeroBased() < assignmentsList.size();
     }
+
+    public void setOverallGrade(String overallGrade) {
+        this.overallGrade = overallGrade;
+    }
+
+    /**
+     * Updates the overall grade of the student when the grade of
+     * one of their assignments in changed.
+     */
+
+    public String updateOverallGrade(Index indexOfAssignment, String grade) throws CommandException {
+        this.setAssignmentGrade(indexOfAssignment, grade);
+        int totalWeightage = 0;
+        float totalGrade = 0;
+        for (Assignment assignment: assignmentsList) {
+            if (assignment.getIsGradeUpdated()) {
+                totalWeightage += assignment.getWeightage();
+                totalGrade += assignment.getGradePercentage() * assignment.getWeightage();
+            }
+        }
+        return String.format("%.2f/%d", totalGrade, totalWeightage);
+    }
+
+    private void setAssignmentGrade(Index indexOfAssignment, String grade) throws CommandException {
+        if (!isValidAssignmentIndex(indexOfAssignment)) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_INVALID);
+        }
+        Assignment assignmentToEdit = assignmentsList.get(indexOfAssignment.getZeroBased());
+        assignmentToEdit.setGrade(grade);
+    }
+
     @Override
     public void setDetails(String details) {
         String[] gradeAndAttendance = isolateDetails(details);
-        String grade = gradeAndAttendance[0];
+        String overallGrade = gradeAndAttendance[0];
         String attendance = gradeAndAttendance[1];
         String assignments = gradeAndAttendance[2];
-        setGrade(grade);
+        setOverallGrade(overallGrade);
         setAttendance(attendance);
         setPreviousAssignments(assignments);
     }
@@ -115,20 +169,7 @@ public class Student extends Position {
         return gradeAttendanceAssignments;
     }
 
-    /**
-     * Returns true if a given string is a valid grade.
-     */
-    public static boolean isValidGrade(String test) {
-        if (!test.matches(GRADE_VALIDATION_REGEX)) {
-            return false;
-        } else {
-            String[] split = test.split("/");
-            return Integer.parseInt(split[0]) <= Integer.parseInt(split[1]);
-        }
-    }
-
-
-    public void setAssignments(String assignments) {
+    public ArrayList<Assignment> setAssignments(String assignments) {
         String[] splitStr = assignments.split(", ");
         int len = splitStr.length;
         if (assignmentsList.size() > 0) {
@@ -141,10 +182,10 @@ public class Student extends Position {
             Assignment a = new Assignment(name, weightage);
             addAssignments(a);
         }
+        return assignmentsList;
     }
 
     public void setPreviousAssignments(String assignments) {
-
 
         String trimmedAssignments = trimAssignments(assignments);
 
@@ -166,6 +207,7 @@ public class Student extends Position {
             addAssignments(a);
         }
     }
+
     /**
      * Returns true if a given string is a valid grade.
      */
@@ -185,12 +227,12 @@ public class Student extends Position {
     @Override
     public String toShow() {
         return "Attendance: " + attendance + "\n"
-                + "Grade: " + grade;
+                + "Grade: " + overallGrade;
     }
 
     @Override
     public String toString() {
-        return "Student: attendance - " + attendance + ", grade - " + grade
+        return "Student: attendance - " + attendance + ", grade - " + overallGrade
                 + "\nAssignments: " + assignmentsList.toString();
     }
 
@@ -206,7 +248,7 @@ public class Student extends Position {
 
     @Override
     public String getDetails() {
-        return "attendance - " + attendance + ", grade - " + grade + " Assignments: " + assignmentsList;
+        return "attendance - " + attendance + ", grade - " + overallGrade + " Assignments: " + assignmentsList;
 
     }
 

@@ -29,8 +29,17 @@ public class Professor extends Position {
     public Professor() {
         super("Professor");
         roles = "Unassigned";
-
     }
+
+    /**
+     * Creates a professor with the given details.
+     * @param roles of the professor
+     */
+    public Professor(String roles) {
+        super("Professor");
+        this.roles = roles;
+    }
+
     @Override
     public void setDetails(String roles) {
         requireNonNull(roles);

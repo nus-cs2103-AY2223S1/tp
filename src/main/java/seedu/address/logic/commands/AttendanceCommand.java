@@ -65,8 +65,16 @@ public class AttendanceCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_STUDENT);
         }
         Student currPosition = (Student) personToEdit.getPosition();
-        currPosition.setAttendance(attendance);
-        Person editedPerson = personToEdit;
+        Student editedPosition = new Student(attendance,
+                currPosition.getOverallGrade(),
+                currPosition.getAssignmentsList());
+        Person editedPerson = new Person(personToEdit.getName(),
+                personToEdit.getPhone(),
+                personToEdit.getEmail(),
+                editedPosition,
+                personToEdit.getAddress(),
+                personToEdit.getRemark(),
+                personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

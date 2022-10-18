@@ -18,8 +18,7 @@ public class AddAssignmentsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": adds assignments. Format: [name] w/[weightage]";
-
-    public static final String MESSAGE_ADD_ASSIGNMENTS_SUCCESS = "Added Assignments to all students";
+    public static final String MESSAGE_ADD_ASSIGNMENTS_SUCCESS = "Added Assignments to all students.";
 
     private final String assignments;
 
@@ -49,8 +48,16 @@ public class AddAssignmentsCommand extends Command {
             Person personToEdit = lastShownList.get(i);
             if ((personToEdit.getPosition() instanceof Student)) {
                 Student currPosition = (Student) personToEdit.getPosition();
-                currPosition.setAssignments(assignments);
-                Person editedPerson = personToEdit;
+                Student editedPosition = new Student(currPosition.getAttendance(),
+                        currPosition.getOverallGrade(),
+                        currPosition.setAssignments(assignments));
+                Person editedPerson = new Person(personToEdit.getName(),
+                        personToEdit.getPhone(),
+                        personToEdit.getEmail(),
+                        editedPosition,
+                        personToEdit.getAddress(),
+                        personToEdit.getRemark(),
+                        personToEdit.getTags());
 
                 model.setPerson(personToEdit, editedPerson);
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

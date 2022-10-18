@@ -65,9 +65,14 @@ public class RolesCommand extends Command {
         if (!(personToEdit.getPosition() instanceof Professor)) {
             throw new CommandException(MESSAGE_PERSON_NOT_PROFESSOR);
         }
-        Professor currPosition = (Professor) personToEdit.getPosition();
-        currPosition.setDetails(roles);
-        Person editedPerson = personToEdit;
+        Professor editedPosition = new Professor(roles);
+        Person editedPerson = new Person(personToEdit.getName(),
+                personToEdit.getPhone(),
+                personToEdit.getEmail(),
+                editedPosition,
+                personToEdit.getAddress(),
+                personToEdit.getRemark(),
+                personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

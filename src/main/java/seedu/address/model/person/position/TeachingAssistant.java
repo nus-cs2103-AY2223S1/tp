@@ -22,11 +22,20 @@ public class TeachingAssistant extends Position {
     private String availability;
 
     /**
-     * Creates a teaching assistant and initialises their availability to unavailable.
+     * Creates a teaching assistant and initialises their availability to available.
      */
     public TeachingAssistant() {
         super("TA");
-        availability = "unavailable";
+        availability = "available";
+    }
+
+    /**
+     * Creates a teaching assistant with the given details.
+     * @param availability of the teaching assistant
+     */
+    public TeachingAssistant(String availability) {
+        super("TA");
+        this.availability = availability;
     }
 
     @Override
