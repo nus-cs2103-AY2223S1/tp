@@ -4,13 +4,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.logic.commands.student.EditCommand.EditPersonDescriptor;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Grade;
+import seedu.address.model.student.ID;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Participation;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -30,13 +35,19 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(student.getName());
+        descriptor.setPhone(student.getPhone());
+        descriptor.setEmail(student.getEmail());
+        descriptor.setId(student.getId());
+        descriptor.setTutorialModule(student.getTutorialModule());
+        descriptor.setTutorialName(student.getTutorialName());
+        descriptor.setTelegram(student.getTelegram());
+        descriptor.setAttendance(student.getAttendance());
+        descriptor.setParticipation(student.getParticipation());
+        descriptor.setGrade(student.getGrade());
+        descriptor.setTags(student.getTags());
     }
 
     /**
@@ -64,10 +75,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code ID} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withId(String id) {
+        descriptor.setId(new ID(id));
         return this;
     }
 
@@ -83,5 +94,45 @@ public class EditPersonDescriptorBuilder {
 
     public EditPersonDescriptor build() {
         return descriptor;
+    }
+
+    /**
+     * Sets the {@code TutorialModule} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withModule(String module) {
+        descriptor.setTutorialModule(new TutorialModule(module));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TutorialName} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTutorial(String tutorial) {
+        descriptor.setTutorialName(new TutorialName(tutorial));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Attendance} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAttendance(String attendance) {
+        descriptor.setAttendance(new Attendance(attendance));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Participation} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withParticipation(String participation) {
+        descriptor.setParticipation(new Participation(participation));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Grade} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGrade(String grade) {
+        descriptor.setGrade(new Grade(grade));
+        return this;
     }
 }

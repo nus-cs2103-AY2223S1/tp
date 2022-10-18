@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.consultation.exceptions.ConsultationNotFoundException;
 import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
 
 /**
@@ -66,6 +67,17 @@ public class UniqueConsultationList implements Iterable<Consultation> {
         }
 
         internalList.setAll(consultations);
+    }
+
+    /**
+     * Removes the equivalent consultation from the list.
+     * The consultation must exist in the list.
+     */
+    public void remove(Consultation toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new ConsultationNotFoundException();
+        }
     }
 
     /**
