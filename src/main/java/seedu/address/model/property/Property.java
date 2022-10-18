@@ -108,7 +108,7 @@ public class Property {
             return false;
         }
 
-        // TODO : Should this be checking for equal tags as well? 
+        // TODO : Should this be checking for equal tags as well?
         Property otherProperty = (Property) other;
         return otherProperty.getName().equals(getName())
                 && otherProperty.getPrice().equals(getPrice())

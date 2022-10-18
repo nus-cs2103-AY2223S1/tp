@@ -28,7 +28,7 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
     public EditPropertyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer
-                .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_TAG, 
+                .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_TAG,
                         PREFIX_CHARACTERISTICS);
 
         Index index;

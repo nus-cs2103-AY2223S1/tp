@@ -5,8 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Represents the characteristics of a property.
  * Individual characteristics are separated by semicolons.
