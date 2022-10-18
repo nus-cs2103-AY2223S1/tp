@@ -32,7 +32,7 @@ public class UniqueBillList implements Iterable<Bill> {
      */
     public boolean contains(Bill toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(bill -> bill.isSameBill(toCheck));
     }
 
     /**
@@ -60,7 +60,9 @@ public class UniqueBillList implements Iterable<Bill> {
             throw new BillNotFoundException();
         }
 
-        if (!target.equals(editedBill) && contains(editedBill)) {
+        boolean notSameBill = !target.isSameBill(editedBill);
+        boolean hasNewBill = contains(editedBill);
+        if (notSameBill && hasNewBill) {
             throw new DuplicateBillException();
         }
 
