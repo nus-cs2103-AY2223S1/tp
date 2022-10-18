@@ -71,9 +71,16 @@ public class GradeCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_STUDENT);
         }
         Student currPosition = (Student) personToEdit.getPosition();
-        currPosition.setAssignmentGrade(indexOfAssignment, grade);
-        currPosition.updateOverallGrade();
-        Person editedPerson = personToEdit;
+        Student editedPosition = new Student(currPosition.getAttendance(),
+                currPosition.updateOverallGrade(indexOfAssignment, grade),
+                currPosition.getAssignmentsList());
+        Person editedPerson = new Person(personToEdit.getName(),
+                personToEdit.getPhone(),
+                personToEdit.getEmail(),
+                editedPosition,
+                personToEdit.getAddress(),
+                personToEdit.getRemark(),
+                personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

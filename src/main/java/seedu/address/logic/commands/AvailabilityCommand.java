@@ -64,9 +64,14 @@ public class AvailabilityCommand extends Command {
         if (!(personToEdit.getPosition() instanceof TeachingAssistant)) {
             throw new CommandException(MESSAGE_PERSON_NOT_TA);
         }
-        TeachingAssistant currPosition = (TeachingAssistant) personToEdit.getPosition();
-        currPosition.setDetails(availability);
-        Person editedPerson = personToEdit;
+        TeachingAssistant editedPosition = new TeachingAssistant(availability);
+        Person editedPerson = new Person(personToEdit.getName(),
+                personToEdit.getPhone(),
+                personToEdit.getEmail(),
+                editedPosition,
+                personToEdit.getAddress(),
+                personToEdit.getRemark(),
+                personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

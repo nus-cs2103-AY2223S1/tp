@@ -37,6 +37,31 @@ public class Student extends Position {
 
     }
 
+    /**
+     * Creates a student with the given details.
+     * @param attendance of the student
+     * @param overallGrade of the student
+     * @param assignmentsList Assignments that have been assigned to the student
+     */
+    public Student(String attendance, String overallGrade, ArrayList<Assignment> assignmentsList) {
+        super("Student");
+        this.attendance = attendance;
+        this.overallGrade = overallGrade;
+        this.assignmentsList = assignmentsList;
+    }
+
+    public String getAttendance() {
+        return attendance;
+    }
+
+    public String getOverallGrade() {
+        return overallGrade;
+    }
+
+    public ArrayList<Assignment> getAssignmentsList() {
+        return assignmentsList;
+    }
+
     public void setAttendance(String attendance) {
         requireNonNull(attendance);
         this.attendance = attendance;
@@ -95,7 +120,9 @@ public class Student extends Position {
      * Updates the overall grade of the student when the grade of
      * one of their assignments in changed.
      */
-    public void updateOverallGrade() {
+
+    public String updateOverallGrade(Index indexOfAssignment, String grade) throws CommandException {
+        this.setAssignmentGrade(indexOfAssignment, grade);
         int totalWeightage = 0;
         float totalGrade = 0;
         for (Assignment assignment: assignmentsList) {
@@ -104,10 +131,10 @@ public class Student extends Position {
                 totalGrade += assignment.getGradePercentage() * assignment.getWeightage();
             }
         }
-        overallGrade = String.format("%.2f/%d", totalGrade, totalWeightage);
+        return String.format("%.2f/%d", totalGrade, totalWeightage);
     }
 
-    public void setAssignmentGrade(Index indexOfAssignment, String grade) throws CommandException {
+    private void setAssignmentGrade(Index indexOfAssignment, String grade) throws CommandException {
         if (!isValidAssignmentIndex(indexOfAssignment)) {
             throw new CommandException(MESSAGE_ASSIGNMENT_INVALID);
         }
@@ -142,7 +169,7 @@ public class Student extends Position {
         return gradeAttendanceAssignments;
     }
 
-    public void setAssignments(String assignments) {
+    public ArrayList<Assignment> setAssignments(String assignments) {
         String[] splitStr = assignments.split(", ");
         int len = splitStr.length;
         if (assignmentsList.size() > 0) {
@@ -155,6 +182,7 @@ public class Student extends Position {
             Assignment a = new Assignment(name, weightage);
             addAssignments(a);
         }
+        return assignmentsList;
     }
 
     public void setPreviousAssignments(String assignments) {
