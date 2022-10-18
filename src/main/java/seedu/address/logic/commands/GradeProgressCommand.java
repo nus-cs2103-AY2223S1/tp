@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
  */
 public class GradeProgressCommand extends Command {
 
-    public static final String COMMAND_WORD = "gradeProgress";
+    public static final String COMMAND_WORD = "grade";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds grade progress to the person identified "

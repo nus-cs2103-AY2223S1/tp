@@ -22,7 +22,6 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
       <VBox>
         <MenuBar fx:id="menuBar" style="-fx-background-color: derive(#010101, 20%);" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">

@@ -24,9 +24,9 @@ public class ResultDisplay extends UiPart<Region> {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
         resultDisplay.setStyle(
-                "-fx-font-family: \"Segoe UI Light\"; "
-                        + "-fx-font-size: 11pt; "
-                        + "-fx-text-fill: black;"
+                "-fx-font-family: \"Figtree\"; "
+                        + "-fx-font-size: 12pt; "
+                        + "-fx-text-fill: #D4D4D4;"
         );
     }
 
