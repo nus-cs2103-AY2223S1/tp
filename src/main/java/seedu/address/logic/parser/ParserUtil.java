@@ -130,7 +130,7 @@ public class ParserUtil {
     public static Session parseSession(String session) throws ParseException {
         requireNonNull(session);
         String trimmedSession = session.trim();
-        if (!Session.isValidSession(session)) {
+        if (!Session.isValidSession(trimmedSession)) {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new Session(trimmedSession);
