@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 /**
  * Represents the grades of a student stored by subject
@@ -12,18 +13,15 @@ public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Grades should only contain an alphabet, and it should not be blank";
+    private static final String EXCEPTION_NO_GRADE_FOUND = "No grade found for assessment %s";
 
     private HashMap<String, double[]> marks;
-
-    private String todoCommand;
 
     /**
      * Constructs a {@code Grade}.
      */
-    public Grade(String command) {
-        requireNonNull(command);
+    public Grade() {
         marks = new HashMap<>();
-        todoCommand = command;
     }
 
     public static boolean isValidGrade(String test) {
@@ -41,6 +39,14 @@ public class Grade {
             totalWeightage += totalMarksArray.get(i)[1];
         }
         return (totalMarks / totalWeightage);
+    }
+
+    public double getGradeForAssessment(String assessment) {
+        if (marks.containsKey(assessment)) {
+            return marks.get(assessment)[0];
+        } else {
+            throw new NoSuchElementException(String.format(EXCEPTION_NO_GRADE_FOUND, assessment));
+        }
     }
 
     @Override
