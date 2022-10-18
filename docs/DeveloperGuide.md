@@ -297,6 +297,17 @@ PDF is then exported.
 
 PDF will be stored under "./exports".
 
+### \[Proposed\] Unplan scheduled item
+
+The scheduled item will be taken off the list of items in their respective Day object.
+
+ItemContainer class will receive the removed item.
+
+ItemContainer will unschedule the item and return it to the unscheduled wish list of items in ItemContainer.
+
+The cost assigned to the item will be refunded back to the selected Itinerary's budget.
+
+Day field contained in the unplanned item will be set to null.
 
 --------------------------------------------------------------------------------------------------------------------
 
