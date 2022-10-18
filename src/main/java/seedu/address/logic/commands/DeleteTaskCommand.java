@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_TASK_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
@@ -40,8 +41,6 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS =
             "Deleted task from: %1$s";
-    public static final String MESSAGE_TASK_NUMBER_DOES_NOT_EXIST =
-            "Task number given does not exist.";
 
     private final DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor;
 
@@ -72,7 +71,7 @@ public class DeleteTaskCommand extends Command {
                 .getTaskIndexToDelete().getZeroBased();
         int numberOfTasksInTaskList = moduleToDeleteTaskFrom.getTasks().size();
         if (indexOfTaskToDelete >= numberOfTasksInTaskList) {
-            throw new CommandException(MESSAGE_TASK_NUMBER_DOES_NOT_EXIST);
+            throw new CommandException(MESSAGE_NO_SUCH_TASK_NUMBER);
         }
         Module moduleWithTaskDeleted = createModuleWithDeletedTask(
                 moduleToDeleteTaskFrom, deleteTaskFromModuleDescriptor);
