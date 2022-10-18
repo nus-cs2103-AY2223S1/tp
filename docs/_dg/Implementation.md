@@ -38,7 +38,7 @@ Currently, sorting is performed ascendingly. A future implementation will allow 
 3. If the displayed item list is empty, then an empty list is displayed.
 4. If the item list is not empty, the items are sorted according to the specified criteria. Sorting is performed in order of the criteria specified.
 
-![TagSequenceDiagram](images/SortItemSequenceDiagram.png)
+![TagSequenceDiagram](images/SortItemsSequenceDiagram.png)
 
 #### Why is it implemented this way
 There is a `SortedList` obtained from an immutable item
