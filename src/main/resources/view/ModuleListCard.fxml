@@ -25,23 +25,29 @@
         <Insets bottom="5" left="15" right="5" top="5"/>
       </padding>
 
-      <Label style="-fx-font-size: 20;" maxHeight="1.7976931348623157E308"
-             maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-             text="\$moduleCode" fx:id="moduleDescription"/>
-
-<!--      <Text style="-fx-font-size: 20;"-->
-<!--            text="\$moduleCode" fx:id="moduleDescription"/>-->
-
-<!--      <HBox alignment="CENTER_LEFT" spacing="5">-->
-<!--        -->
-<!--      </HBox>-->
       <padding>
         <Insets bottom="5" left="15" right="5" top="5"/>
       </padding>
+
+      <!--  Expanded module info  -->
+      <VBox fx:id="expandedModuleInfo">
+        <Label style="-fx-font-size: 20;" maxHeight="1.7976931348623157E308"
+               maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+               text="\$moduleCode" fx:id="moduleDescription"/>
+
+
+        <padding>
+          <Insets>
+            <top>10</top>
+            <bottom>10</bottom>
+          </Insets>
+        </padding>
+      </VBox>
+
     </VBox>
 
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="100"/>
     </columnConstraints>
     <rowConstraints>
       <RowConstraints/>

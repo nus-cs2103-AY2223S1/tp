@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
@@ -48,6 +49,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private FlowPane moduleInfo;
     @FXML
+    private VBox expandedModuleInfo;
+    @FXML
     private Label moduleDescription;
 
     private ListView<Module> listView;
@@ -69,6 +72,15 @@ public class ModuleCard extends UiPart<Region> {
         moduleDescription.setText(module.getDescription());
         moduleDescription.setWrapText(true);
         moduleDescription.minWidthProperty().bind(lv.minWidthProperty());
+        expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
+
+        expandedModuleInfo.setVisible(true);
+
+
+//        expandedModuleInfo.prefWidthProperty().bind(lv.prefWidthProperty());
+//        expandedModuleInfo.maxWidthProperty().bind(lv.maxWidthProperty());
+//        expandedModuleInfo.minWidthProperty().bind(lv.minWidthProperty());
+
 
     }
     private Pill createSemesterPill(int semesterNum) {
