@@ -1,11 +1,11 @@
 package seedu.address.model.desiredcharacteristics;
 
-import seedu.address.commons.util.StringUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Represents the desired characteristics of a property that will interest a particular buyer.
