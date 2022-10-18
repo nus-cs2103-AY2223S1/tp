@@ -1,19 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.person.Person;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Links a Person and an Internship.
@@ -140,7 +140,8 @@ public class UnlinkCommand extends Command {
         model.setInternship(internshipToUnlink, unlinkedInternship);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, unlinkedPerson.getName(), unlinkedInternship.getCompanyName()));
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, unlinkedPerson.getName(), unlinkedInternship.getCompanyName()));
     }
 
     @Override

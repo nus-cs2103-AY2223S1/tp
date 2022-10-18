@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UnlinkCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.UnlinkCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteInternshipCommandParser object
@@ -27,7 +28,7 @@ public class UnlinkCommandParser implements Parser<UnlinkCommand> {
                         PREFIX_PERSON,
                         PREFIX_INTERNSHIP);
 
-        if (!(arePrefixesPresent(argMultimap, PREFIX_PERSON)||arePrefixesPresent(argMultimap, PREFIX_INTERNSHIP))
+        if (!(arePrefixesPresent(argMultimap, PREFIX_PERSON) || arePrefixesPresent(argMultimap, PREFIX_INTERNSHIP))
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnlinkCommand.MESSAGE_USAGE));
         }
