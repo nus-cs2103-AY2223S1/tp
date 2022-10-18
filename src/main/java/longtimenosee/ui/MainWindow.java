@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private PolicyListPanel policyListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -134,11 +135,15 @@ public class MainWindow extends UiPart<Stage> {
     void updateInnerContent(String tab) {
         policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
         personListPanelPlaceholder.getChildren().removeAll();
 
         switch (tab) {
         case "policy":
             personListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+            break;
+        case "event":
+            personListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
             break;
         default:
             //Default case is to display clients
@@ -216,6 +221,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowPolicy()) {
                 updateInnerContent("policy");
+            }
+
+            if (commandResult.isShowEvent()) {
+                updateInnerContent("event");
             }
 
             return commandResult;
