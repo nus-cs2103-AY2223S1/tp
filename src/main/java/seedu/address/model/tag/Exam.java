@@ -74,7 +74,7 @@ public class Exam {
      */
     @Override
     public String toString() {
-        return String.format("%s: $d", this.name, this.score);
+        return String.format("%s: %d", this.name, this.score);
     }
 
 }

@@ -156,7 +156,7 @@ public class ParserUtil {
      */
     public static Set<Exam> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Exam> tagSet = new HashSet<>();
+        Set<Exam> tagSet = new HashSet<>();
         for (String tagName : tags) {
             Exam temp = parseTag(tagName);
             tagSet.remove(temp); // Removes duplicate exam and overrides it with the latest one.
@@ -164,4 +164,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
 }
