@@ -45,10 +45,6 @@ public class JsonSerializableTaskList {
         TaskList taskList = new TaskList();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
-            /*
-            if (taskList.hasTask(task)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
-            } */
             taskList.addTask(task);
         }
         return taskList;

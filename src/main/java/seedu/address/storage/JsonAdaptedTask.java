@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
+
+import static seedu.address.commons.util.DateUtil.isLocalDateString;
 
 /**
  * Jackson-friendly version of {@link Task}
@@ -71,6 +74,10 @@ public class JsonAdaptedTask {
 
         if (deadline == null) {
             throw new IllegalValueException("Deadline is missing !");
+        }
+
+        if (!isLocalDateString(deadline)) {
+            throw new IllegalValueException("Deadline is not given in the correct format !");
         }
 
         final String modelDeadline = this.deadline;
