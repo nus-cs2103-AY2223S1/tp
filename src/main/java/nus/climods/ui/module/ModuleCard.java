@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -49,10 +50,12 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleDescription;
 
+    private ListView<Module> listView;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ModuleCard(Module module) {
+    public ModuleCard(Module module, ListView<Module> lv) {
         super(FXML);
         this.module = module;
 
@@ -62,10 +65,10 @@ public class ModuleCard extends UiPart<Region> {
         moduleInfo.getChildren()
             .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
+
         moduleDescription.setText(module.getDescription());
         moduleDescription.setWrapText(true);
-        moduleDescription.setMinHeight(Region.USE_PREF_SIZE);
-        moduleDescription.setMinWidth(Region.USE_PREF_SIZE);
+        moduleDescription.minWidthProperty().bind(lv.minWidthProperty());
 
     }
     private Pill createSemesterPill(int semesterNum) {
