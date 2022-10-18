@@ -19,14 +19,12 @@ public class TypicalTasks {
                     .withTitle("Add tasks to list")
                     .withContacts("Alice Pauline")
                     .build();
-                    
     public static final Task TASK_TWO =
             new TaskBuilder()
                     .withTitle("Assign contacts to task")
                     .withDeadline(Deadline.of(LocalDate.of(2022, 9, 19)))
                     .withContacts("George Best")
                     .build();
-                    
     public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();
     public static final Task TASK_FOUR = new TaskBuilder().withTitle("Set tags for a task").build();
 
