@@ -13,6 +13,10 @@ public class MatricNum {
 
     public final String value;
 
+    /**
+     * Creates a MatricNum.
+     * @param matricNum String representing a valid matriculation number.
+     */
     public MatricNum(String matricNum) {
         requireNonNull(matricNum);
         checkArgument(isValidMatricNum(matricNum), MESSAGE_CONSTRAINTS);

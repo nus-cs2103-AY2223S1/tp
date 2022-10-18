@@ -1,16 +1,23 @@
 package jarvis.model;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * Represents a time period in JARVIS.
+ */
 public class TimePeriod {
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
     private final LocalDateTime start;
     private final LocalDateTime end;
 
+    /**
+     * Start time must be before end time.
+     * @param start Starting time.
+     * @param end Ending time.
+     */
     public TimePeriod(LocalDateTime start, LocalDateTime end) {
         assert start.isBefore(end) : "Start time must be before end time";
         this.start = start;

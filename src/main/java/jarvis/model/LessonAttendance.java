@@ -2,12 +2,21 @@ package jarvis.model;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
-import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.model.exceptions.StudentNotFoundException;
 
+/**
+ * Represents the attendance for a lesson in JARVIS.
+ */
 public class LessonAttendance {
     private final HashMap<Student, Boolean> attendance;
 
+    /**
+     * Creates the attendance list for a lesson.
+     * @param students Students who are involved in the lesson.
+     */
     public LessonAttendance(Collection<Student> students) {
         attendance = new HashMap<>();
         for (Student stu : students) {
@@ -15,21 +24,64 @@ public class LessonAttendance {
         }
     }
 
-    public void markAsPresent(Student student) throws IllegalValueException {
+    /**
+     * Marks a student as present for that lesson.
+     * @param student Student to mark as present.
+     */
+    public void markAsPresent(Student student) {
         if (!attendance.containsKey(student)) {
-            throw new IllegalValueException("Student " + student + " is not part of the lesson");
+            throw new StudentNotFoundException();
         }
         attendance.put(student, true);
     }
 
-    public void markAsAbsent(Student student) throws IllegalValueException {
+    /**
+     * Marks a student as absent for that lesson.
+     * @param student Student to mark as absent.
+     */
+    public void markAsAbsent(Student student) {
         if (!attendance.containsKey(student)) {
-            throw new IllegalValueException("Student " + student + " is not part of the lesson");
+            throw new StudentNotFoundException();
         }
         attendance.put(student, false);
     }
 
     public boolean isPresent(Student student) {
         return attendance.getOrDefault(student, false);
+    }
+
+    public Set<Student> getAllStudents() {
+        return attendance.keySet();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Attendance:\n");
+        for (Map.Entry<Student, Boolean> entry : attendance.entrySet()) {
+            sb.append(entry.getKey());
+            sb.append(": ");
+            sb.append(entry.getValue() ? "PRESENT" : "ABSENT");
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof LessonAttendance)) {
+            return false;
+        }
+
+        LessonAttendance otherLessonAttendance = (LessonAttendance) other;
+        return otherLessonAttendance.attendance.equals(attendance);
+    }
+
+    @Override
+    public int hashCode() {
+        return attendance.hashCode();
     }
 }

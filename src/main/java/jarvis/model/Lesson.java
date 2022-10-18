@@ -3,9 +3,7 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
-
-import jarvis.commons.exceptions.IllegalValueException;
+import java.util.Set;
 
 /**
  * Represents a Lesson in JARVIS.
@@ -45,20 +43,28 @@ public abstract class Lesson {
         return timePeriod.hasOverlap(other.timePeriod);
     }
 
+    public Set<Student> getStudents() {
+        return attendance.getAllStudents();
+    }
+
     public boolean isPresent(Student student) {
         return attendance.isPresent(student);
     }
 
-    public void markAsPresent(Student student) throws IllegalValueException {
+    public void markAsPresent(Student student) {
         attendance.markAsPresent(student);
     }
 
-    public void markAsAbsent(Student student) throws IllegalValueException {
+    public void markAsAbsent(Student student) {
         attendance.markAsAbsent(student);
     }
 
     public void markAsCompleted() {
         isCompleted = true;
+    }
+
+    public void markAsNotCompleted() {
+        isCompleted = false;
     }
 
     public boolean isCompleted() {
@@ -75,36 +81,4 @@ public abstract class Lesson {
     public LessonAttendance getAttendance() {
         return attendance;
     }
-
-    /**
-     * Returns true if both lessons occur at the same time and are attended
-     * by the same students.
-     * This defines a stronger notion of equality between two lessons.
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Lesson)) {
-            return false;
-        }
-
-        Lesson otherLesson = (Lesson) other;
-        return otherLesson.getDesc().equals(getDesc())
-                && otherLesson.getTimePeriod().equals(getTimePeriod())
-                && otherLesson.getAttendance().equals(getAttendance());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lessonDesc, timePeriod);
-    }
-
-    @Override
-    public String toString() {
-        return "Lesson at " + timePeriod + ": " + getDesc();
-    }
-
 }
