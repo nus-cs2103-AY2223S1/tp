@@ -396,14 +396,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 This feature is mainly implemented by the `CustomiseOrderCommand` and `PersonCard` classes. The following methods are the main ones:
 
-* `CustomiseOrderCommand#execute()` - saves the new attribute order in the `preferences.json` file by using `Model#setGuiSettings()`.
+* `CustomiseOrderCommand#execute()` - saves the new attribute order in the `preferences.json` file by calling `Model#setGuiSettings()`.
 * `PersonCard#setAttributes()` - reads the order from the `preferences.json` file and builds the `PersonCard` in the order specified.
 
 Given below is an example usage scenario and how this feature behaves at each part of the mechanism.
 
 Step 1. The user launches the application. Under each contacts' name, the current order the user sees is: Tags, phone number, email and address (This is also the default order)
 
-Step 2. The user wants to have email right below each name instead. The user executes `customise order e/` to make the emails appear right below the name.
+Step 2. The user wants to have each email right below each name instead. The user executes `customise order e/` to make the emails appear right below the name.
 
 1. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`
 2. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
@@ -413,7 +413,7 @@ Step 2. The user wants to have email right below each name instead. The user exe
 6. `Logic` executes the `CustomiseOrderCommand`.
 7. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
 
-The following sequence diagram illustrates points 1-4 in step 2:
+The following sequence diagram illustrates points 1-7 in Step 2:
 
 ![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
 
@@ -423,14 +423,16 @@ The following sequence diagram illustrates points 1-4 in step 2:
 
 Step 3. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
 
+Step 4. The user closes the application.
 
+Step 5. The user relaunches the application and the attributes are still in the same order that the user set previously.
 
 #### Design consideration
-* **Alternative 1 (current choice):** Sets the order in 4 placeholder JavaFX `FlowPane`.
+* **Alternative 1 (current choice):** Sets the order by using 4 placeholder JavaFX `FlowPane`.
   * Pros: Easy to implement.
   * Cons: Hard to maintain if different styling required for different attributes.
 
-* **Alternative 2:** Have 24 different FXML files and choose the one with the required order.
+* **Alternative 2:** Have 24 different FXML files and use the one that is in the required order.
   * Pros: Easy to implement.
   * Cons: Harder to maintain and make changes.
   
