@@ -39,6 +39,10 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label paidStatus;
+    @FXML
+    private Label deliveryStatus;
+    @FXML
     private VBox items;
 
     /**
@@ -67,6 +71,22 @@ public class OrderCard extends UiPart<Region> {
         email.setText(order.getEmail().value);
         email.setWrapText(true);
         email.setPadding(new Insets(0, 10, 0, 0));
+
+        if (order.getPaidStatus()) {
+            paidStatus.setText("Paid");
+            paidStatus.setStyle("-fx-background-color: #D9DCFF; -fx-text-fill: #707BE3");
+        } else {
+            paidStatus.setText("Unpaid");
+            paidStatus.setStyle("-fx-background-color: #FF6C64; -fx-text-fill: #FFEDEC");
+        }
+
+        if (order.getDeliveryStatus()) {
+            deliveryStatus.setText("Delivered");
+            deliveryStatus.setStyle("-fx-background-color: #D9DCFF; -fx-text-fill: #707BE3");
+        } else {
+            deliveryStatus.setText("Undelivered");
+            deliveryStatus.setStyle("-fx-background-color: #FF6C64; -fx-text-fill: #FFEDEC");
+        }
 
         items.setPadding(new Insets(15, 10, 15, 10));
         items.setStyle("-fx-background-insets: 10, 10, 0, 0;");

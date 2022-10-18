@@ -4,8 +4,9 @@ import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import tracko.logic.commands.item.AddItemCommand;
@@ -19,6 +20,7 @@ import tracko.model.item.Description;
 import tracko.model.item.Item;
 import tracko.model.item.ItemName;
 import tracko.model.item.Quantity;
+import tracko.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new/update AddItemCommand Object.
@@ -32,7 +34,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
     public AddItemCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -42,8 +44,9 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         ItemName itemName = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_ITEM).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Item item = new Item(itemName, description, quantity, new HashSet<>());
+        Item item = new Item(itemName, description, quantity, tagList);
 
         return new AddItemCommand(item);
     }

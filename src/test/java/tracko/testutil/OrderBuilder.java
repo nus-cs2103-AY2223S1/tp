@@ -25,12 +25,16 @@ public class OrderBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Item DEFAULT_ITEM = ITEM_1;
     public static final Integer DEFAULT_QUANTITY = 2;
+    public static final boolean DEFAULT_PAID_STATUS = false;
+    public static final boolean DEFAULT_DELIVERY_STATUS = false;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private List<ItemQuantityPair> itemList;
+    private boolean isPaid;
+    private boolean isDelivered;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -42,6 +46,8 @@ public class OrderBuilder {
         address = new Address(DEFAULT_ADDRESS);
         itemList = new ArrayList<>();
         itemList.add(new ItemQuantityPair(DEFAULT_ITEM, new Quantity(DEFAULT_QUANTITY)));
+        isPaid = DEFAULT_PAID_STATUS;
+        isDelivered = DEFAULT_DELIVERY_STATUS;
     }
 
     /**
@@ -53,6 +59,8 @@ public class OrderBuilder {
         email = orderToCopy.getEmail();
         address = orderToCopy.getAddress();
         itemList = orderToCopy.getItemList();
+        isPaid = orderToCopy.getPaidStatus();
+        isDelivered = orderToCopy.getDeliveryStatus();
     }
 
     /**
@@ -112,7 +120,7 @@ public class OrderBuilder {
     }
 
     public Order build() {
-        return new Order(name, phone, email, address, itemList);
+        return new Order(name, phone, email, address, itemList, isPaid, isDelivered);
     }
 
 }

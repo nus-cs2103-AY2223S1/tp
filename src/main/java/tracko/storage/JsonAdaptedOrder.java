@@ -28,6 +28,8 @@ public class JsonAdaptedOrder {
     private final String email;
     private final String address;
     private final List<JsonAdaptedItemQuantityPair> itemList = new ArrayList<>();
+    private final boolean isPaid;
+    private final boolean isDelivered;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
@@ -35,7 +37,8 @@ public class JsonAdaptedOrder {
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                            @JsonProperty("itemList") List<JsonAdaptedItemQuantityPair> itemList) {
+                            @JsonProperty("itemList") List<JsonAdaptedItemQuantityPair> itemList,
+                            @JsonProperty("isPaid") boolean isPaid, @JsonProperty("isDelivered") boolean isDelivered) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,6 +46,8 @@ public class JsonAdaptedOrder {
         if (itemList != null) {
             this.itemList.addAll(itemList);
         }
+        this.isPaid = isPaid;
+        this.isDelivered = isDelivered;
     }
 
     /**
@@ -55,6 +60,8 @@ public class JsonAdaptedOrder {
         address = source.getAddress().value;
         source.getItemList().stream()
             .forEach(item -> itemList.add(new JsonAdaptedItemQuantityPair(item)));
+        this.isPaid = source.getPaidStatus();
+        this.isDelivered = source.getDeliveryStatus();
     }
 
     /**
@@ -105,6 +112,6 @@ public class JsonAdaptedOrder {
             itemQuantityPairs.add(pair.toModelType(inventoryList));
         }
 
-        return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs);
+        return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs, isPaid, isDelivered);
     }
 }
