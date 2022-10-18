@@ -66,7 +66,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    // Grade examples
+    // Grades examples
     public static final String GRADE_DESC_40 = " " + PREFIX_GRADE + VALID_GRADE_40;
     public static final String GRADE_DESC_60 = " " + PREFIX_GRADE + VALID_GRADE_60;
 

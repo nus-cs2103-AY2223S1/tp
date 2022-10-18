@@ -3,8 +3,6 @@ package seedu.address.model.person.subject;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.HashMap;
-
 /**
  * Represents a subject taken by the student
  */
@@ -23,7 +21,7 @@ public class Subject {
 
     private final Attendance attendance;
 
-    private final Grade grades;
+    private final Grades grades;
 
     /**
      * Constructs a {@code Subject}.
@@ -36,7 +34,7 @@ public class Subject {
 
         this.subjectName = subjectName;
         this.attendance = new Attendance();
-        this.grades = new Grade();
+        this.grades = new Grades();
     }
 
     /**
@@ -52,7 +50,7 @@ public class Subject {
 
     /**
      * Gets the attendance for the specified day
-     * @param updatedAssessment the Assessment object to add to the Grade object
+     * @param updatedAssessment the Assessment object to add to the Grades object
      */
     public void updateGradeAssessment(Assessment updatedAssessment) {
         grades.updateAssessment(updatedAssessment);
@@ -73,6 +71,10 @@ public class Subject {
      */
     public Attendance getAttendance() {
         return attendance;
+    }
+
+    public void updateAttendance(String updatedAttendance) {
+        attendance.updateAttendance(updatedAttendance);
     }
 
     @Override

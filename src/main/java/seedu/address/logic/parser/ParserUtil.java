@@ -15,8 +15,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
-import seedu.address.model.person.subject.Attendance;
-import seedu.address.model.person.subject.Grade;
 import seedu.address.model.person.subject.Subject;
 import seedu.address.model.tag.Tag;
 

@@ -1,15 +1,26 @@
 package seedu.address.model.person.subject;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 public class Assessment {
+
+    public static final String MESSAGE_CONSTRAINTS =
+        "Assessment name should only contain letters and numbers, and it should not be blank";
 
     private String assessmentName;
     private double assessmentWeightage;
     private double assessmentScore;
 
     public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore) {
+        checkArgument(isValidAssessment(assessmentName), MESSAGE_CONSTRAINTS);
         this.assessmentName = assessmentName;
         this.assessmentWeightage = assessmentWeightage;
         this.assessmentScore = assessmentScore;
+    }
+
+    public static boolean isValidAssessment(String test) {
+        // TODO: replace with valid regex check that checks for alphanumeric characters
+        return true;
     }
 
     public String getAssessmentName() {

@@ -21,7 +21,7 @@ public class GradeCommand extends Command {
         + "Parameters: SUBJECT (must not be blank) ASSESSMENT (must not be blank) MODE (must be 1 or 2). "
         + "1 for modifying ALL students' grades,\n"
         + "2 for modifying a single student's grade.";
-    public static final String MESSAGE_SUCCESS = "Grade for Subject %s, Assessment %s has been updated!";
+    public static final String MESSAGE_SUCCESS = "Grades for Subject %s, Assessment %s has been updated!";
 
     private final Subject subject;
     private final String assessment;
