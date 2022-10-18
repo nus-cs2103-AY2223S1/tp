@@ -159,7 +159,7 @@ public class AssignTaskCommand extends TaskCommand {
     private String buildErrorMessage() {
         String errorMessage = "";
         for (Index invalidIndex : invalidIndexes) {
-            String currMessage = String.format(Messages.MESSAGE_INVALID_TASK_INDEX_CUSTOM,
+            String currMessage = String.format(Messages.MESSAGE_INVALID_PERSON_INDEX_CUSTOM,
                     invalidIndex.getOneBased());
             errorMessage += currMessage;
             errorMessage += "\n";
