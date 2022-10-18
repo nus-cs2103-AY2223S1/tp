@@ -122,6 +122,10 @@ public class Activity {
             builder.append("; Date: ")
                     .append(this.listDate.get(0).toString());
         }
+
+        builder.append("; Status: ")
+                    .append(getStatus());
+
         return builder.toString();
     }
 
