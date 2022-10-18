@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -97,7 +97,7 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final MaximumSortedList<Appointment> modelAppointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        final MaximumSortedList<Appointment> modelAppointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
 
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             modelAppointments.add(jsonAdaptedAppointment.toModelType());
@@ -135,10 +135,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (income == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    IncomeLevel.class.getSimpleName()));
+        }
         if (!IncomeLevel.isValidIncome(income)) {
             throw new IllegalValueException(IncomeLevel.MESSAGE_CONSTRAINTS);
         }
         final IncomeLevel modelIncome = new IncomeLevel(income);
+
 
         if (!Monthly.isValidMonthly(monthly)) {
             throw new IllegalValueException(Monthly.MESSAGE_CONSTRAINTS);
@@ -152,10 +157,10 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(RiskTag.MESSAGE_CONSTRAINTS);
         }
         final RiskTag modelRiskTag = new RiskTag(riskTag);
-        final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome,
-                modelMonthly, modelRiskTag, modelTags);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        Person newPerson = new Person(modelName, modelPhone, modelEmail,
+                modelAddress, modelIncome, modelMonthly, modelRiskTag, modelTags);
         newPerson.setAppointments(modelAppointments);
 
         return newPerson;

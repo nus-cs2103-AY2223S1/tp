@@ -27,12 +27,13 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
+
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withIncome("$1000").withMonthly("$200")
             .withRiskTag("HIGH").withTags("friends").build();
 
-    public static final Person MUSAB = new PersonBuilder().withName("Musab")
+    public static final Person MUSAB_WITH_NO_APPT = new PersonBuilder().withName("Musab")
             .withAddress("301 Upper Thomson Rd, Singapore 574408")
             .withEmail("musab@gmail.com").withPhone("92345678").withMonthly("$100")
             .withTags("gay")
@@ -40,9 +41,12 @@ public class TypicalPersons {
 
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withIncome("$1000").withMonthly("$100")
-            .withRiskTag("HIGH").withTags("owesMoney", "friends")
-            .withAppointments("21-Jan-2023 09:00 AM", "21-Jan-2023 11:30 AM")
+            .withEmail("johnd@example.com")
+            .withPhone("98765432")
+            .withIncome("$1000")
+            .withMonthly("$100")
+            .withRiskTag("HIGH")
+            .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withIncome("$1000").withMonthly("$200")
