@@ -36,7 +36,7 @@ public class AddBuyerCommand extends AddPersonCommand {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
             + PREFIX_ORDER + "(...Order1 fields)"
-            + PREFIX_ORDER + "(...Order1 fields)";
+            + PREFIX_ORDER + "(...Order2 fields)";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
     public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in the buyer list";

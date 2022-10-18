@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -13,7 +14,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Supplier extends Person {
 
-    private final List<Pet> petsOnSale;
+    private final List<Pet> petsOnSale = new ArrayList<>();
 
     /**
      * Constructs a supplier object.
@@ -32,9 +33,11 @@ public class Supplier extends Person {
                     Email email,
                     Address address,
                     Set<Tag> tags,
-                    List<Pet> petsOnSale) {
+                    Collection<? extends Pet> petsOnSale) {
         super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
-        this.petsOnSale = petsOnSale;
+        if (petsOnSale != null) {
+            this.petsOnSale.addAll(petsOnSale);
+        }
     }
 
     /**
@@ -53,20 +56,29 @@ public class Supplier extends Person {
                     Email email,
                     Address address,
                     Set<Tag> tags,
-                    ArrayList<Pet> petsOnSale) {
+                    Collection<Pet> petsOnSale) {
         super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
-        this.petsOnSale = petsOnSale;
+        if (petsOnSale != null) {
+            this.petsOnSale.addAll(petsOnSale);
+        }
     }
 
-    public ArrayList<Pet> getPetsOnSale() {
+    public List<Pet> getPetsOnSale() {
         return petsOnSale;
     }
 
-    public void addPet(Pet pet) {
-        petsOnSale.add(pet);
+    /**
+     * Adds all pets in a collection to the list.
+     *
+     * @param pets New pets to be added
+     */
+    public void addPets(Collection<Pet> pets) {
+        if (pets != null) {
+            petsOnSale.addAll(pets);
+        }
     }
 
-    public void deletePet() {
+    public void deletePet(int index) {
         // TODO: implement this method
     }
 

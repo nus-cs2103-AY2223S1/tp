@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class Buyer extends Person {
                  Email email,
                  Address address,
                  Set<Tag> tags,
-                 List<Order> orders) {
+                 Collection<? extends Order> orders) {
         super(PersonCategory.BUYER, name, phone, email, address, tags);
         if (orders != null) {
             this.orders.addAll(orders);
@@ -55,7 +56,7 @@ public class Buyer extends Person {
                  Email email,
                  Address address,
                  Set<Tag> tags,
-                 List<Order> orders) {
+                 Collection<? extends Order> orders) {
         super(PersonCategory.BUYER, name, phone, email, address, tags);
         if (orders != null) {
             this.orders.addAll(orders);
@@ -71,11 +72,11 @@ public class Buyer extends Person {
     }
 
     /**
-     * Adds all orders in a List.
+     * Adds all orders in a Collection.
      *
-     * @param orders The list of orders to be added.
+     * @param orders The collection of orders to be added.
      */
-    public void addOrder(List<Order> orders) {
+    public void addOrder(Collection<Order> orders) {
         if (orders != null) {
             this.orders.addAll(orders);
         }

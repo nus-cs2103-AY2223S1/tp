@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
@@ -22,7 +22,7 @@ public class AddOrderCommand {
             + PREFIX_ORDER_PRICE + "PRICE "
             + PREFIX_ORDER_PRICE_RANGE + "PRICE_RANGE "
             + PREFIX_ORDER_DATE + "DATE "
-            + PREFIX_ORDER_PET + "PET "
+            + PREFIX_PET + "PET "
             + "[" + PREFIX_ORDER_ADDITIONAL_REQUESTS + "ADDITIONAL_REQUEST]...\n"
 
             + "Example: " + COMMAND_WORD + " "
@@ -31,7 +31,8 @@ public class AddOrderCommand {
             + PREFIX_ORDER_PRICE + "6.8 "
             + PREFIX_ORDER_PRICE_RANGE + "5.4,8.0 "
             + PREFIX_ORDER_DATE + "2022-09-30 "
-            + PREFIX_ORDER_PET + "(...Pet fields) "
             + PREFIX_ORDER_ADDITIONAL_REQUESTS + "Free delivery "
             + PREFIX_ORDER_ADDITIONAL_REQUESTS + "Vaccination certified";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
+
 }

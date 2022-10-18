@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -26,6 +27,7 @@ public class Pet {
     private final Weight weight;
     private final Height height;
     private final VaccinationStatus vaccinationStatus;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<PetCertificate> certificates = new HashSet<>();
 
@@ -41,6 +43,7 @@ public class Pet {
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
      * @param vaccinationStatus Its vaccination status (vaccinated or not).
+     * @param price Its price for sale.
      * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
@@ -53,6 +56,7 @@ public class Pet {
                Weight weight,
                Height height,
                VaccinationStatus vaccinationStatus,
+               Price price,
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
         requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
@@ -65,6 +69,7 @@ public class Pet {
         this.weight = weight;
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
+        this.price = price;
         this.tags.addAll(tags);
         this.certificates.addAll(certificates);
     }
@@ -79,6 +84,7 @@ public class Pet {
      * @param species Its species, for example, chihuahua.
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
+     * @param price Its price for sale.
      * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
@@ -89,6 +95,7 @@ public class Pet {
                Species species,
                Weight weight,
                Height height,
+               Price price,
                Set<Tag> tags,
                Set<PetCertificate> certificates) throws IllegalValueException {
         this(name,
@@ -100,6 +107,7 @@ public class Pet {
                 weight,
                 height,
                 VaccinationStatus.defaultStatus(),
+                price,
                 tags,
                 certificates);
     }
@@ -114,6 +122,7 @@ public class Pet {
      * @param species Its species, for example, chihuahua.
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
+     * @param price Its price for sale.
      */
     public Pet(Name name,
                Color color,
@@ -121,7 +130,8 @@ public class Pet {
                DateOfBirth dateOfBirth,
                Species species,
                Weight weight,
-               Height height) {
+               Height height,
+               Price price) {
         this(name,
                 null,
                 color,
@@ -131,6 +141,7 @@ public class Pet {
                 weight,
                 height,
                 VaccinationStatus.defaultStatus(),
+                price,
                 null,
                 null);
     }
@@ -152,14 +163,16 @@ public class Pet {
                String dateOfBirthString,
                Species species,
                Weight weight,
-               Height height) throws IllegalValueException {
+               Height height,
+               Price price) throws IllegalValueException {
         this(name,
                 color,
                 colorPattern,
                 DateOfBirth.parseString(dateOfBirthString),
                 species,
                 weight,
-                height);
+                height,
+                price);
     }
 
     @Override

@@ -1,38 +1,35 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddBuyerCommand;
-import seedu.address.logic.commands.AddPersonCommand;
-import seedu.address.logic.commands.AddSupplierCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonCategory;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Supplier;
-import seedu.address.model.pet.Pet;
-import seedu.address.model.tag.Tag;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddSupplierCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonCategory;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddSupplierCommand object
  */
-public class AddSupplierCommandParser extends AddPersonCommandParser implements Parser<AddSupplierCommand> {
+public class AddSupplierCommandParser extends AddPersonCommandParser implements Parser<AddPersonCommand> {
 
     public AddSupplierCommandParser() {
     }
@@ -51,7 +48,7 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
                         PREFIX_TAG,
-                        PREFIX_ORDER);
+                        PREFIX_PET);
 
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_PERSON_CATEGORY,
@@ -59,7 +56,7 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
                 PREFIX_PHONE,
                 PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBuyerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
@@ -70,9 +67,9 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
         Supplier supplier = new Supplier(PersonCategory.BUYER, name, phone, email, address, tagList, null);
 
         List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_ORDER), supplier);
-        supplier.addOrder(pets);
+        supplier.addPets(pets);
 
-        return new AddSupplierCommand(person);
+        return new AddSupplierCommand(supplier);
     }
 
     /**
