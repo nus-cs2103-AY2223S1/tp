@@ -20,7 +20,7 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
     private final List<String> birthdateList;
     private final List<String> raceList;
     private final List<String> religionList;
-    private final List<String> surveyList;
+    private final Set<Survey> surveysList;
     private final Set<Tag> tagsList;
 
     /**
@@ -28,7 +28,7 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
      */
     public PersonContainsAttributePredicate(List<String> nameList, List<String> phoneList, List<String> emailList,
                                         List<String> addressList, List<String> genderList, List<String> birthdateList,
-                                        List<String> raceList, List<String> religionList, List<String> surveyList,
+                                        List<String> raceList, List<String> religionList, Set<Survey> surveysList,
                                         Set<Tag> tagsList) {
 
         this.nameList = nameList;
@@ -39,7 +39,7 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
         this.birthdateList = birthdateList;
         this.raceList = raceList;
         this.religionList = religionList;
-        this.surveyList = surveyList;
+        this.surveysList = surveysList;
         this.tagsList = tagsList;
     }
 
@@ -62,8 +62,8 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
                 .anyMatch(doesKeywordMatchWith(person.getRace().race));
         boolean containsReligion = religionList.isEmpty() || religionList.stream()
                 .anyMatch(doesKeywordMatchWith(person.getReligion().religion));
-        boolean containsSurvey = surveyList.isEmpty() || surveyList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getSurvey().survey));
+
+        boolean containsSurvey = surveysList.isEmpty() || person.getSurveys().containsAll(surveysList);
         boolean containsTags = tagsList.isEmpty() || person.getTags().containsAll(tagsList);
 
         return (containsName && containsPhone && containsEmail && containsAddress && containsGender
@@ -87,7 +87,7 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
                 && birthdateList.equals(((PersonContainsAttributePredicate) other).birthdateList)
                 && raceList.equals(((PersonContainsAttributePredicate) other).raceList)
                 && religionList.equals(((PersonContainsAttributePredicate) other).religionList)
-                && surveyList.equals(((PersonContainsAttributePredicate) other).surveyList)
+                && surveysList.equals(((PersonContainsAttributePredicate) other).surveysList)
                 && tagsList.equals(((PersonContainsAttributePredicate) other).tagsList)); //state check
     }
 

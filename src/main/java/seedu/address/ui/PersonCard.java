@@ -50,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label religion;
     @FXML
-    private Label survey;
+    private FlowPane surveys;
     @FXML
     private FlowPane tags;
 
@@ -69,7 +69,11 @@ public class PersonCard extends UiPart<Region> {
         birthdate.setText(person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
         race.setText(person.getRace().race);
         religion.setText(person.getReligion().religion);
-        survey.setText(person.getSurvey().survey);
+
+        person.getSurveys().stream()
+                .sorted(Comparator.comparing(survey -> survey.survey))
+                .forEach(survey -> surveys.getChildren().add(new Label(survey.survey)));
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

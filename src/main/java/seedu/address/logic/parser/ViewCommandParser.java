@@ -22,6 +22,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonContainsAttributePredicate;
+import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,8 +58,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         List<String> birthdateList = getKeywordsAsList(argMultimap.getValue(PREFIX_BIRTHDATE));
         List<String> raceList = getKeywordsAsList(argMultimap.getValue(PREFIX_RACE));
         List<String> religionList = getKeywordsAsList(argMultimap.getValue(PREFIX_RELIGION));
-        List<String> surveyList = getKeywordsAsList(argMultimap.getValue(PREFIX_SURVEY));
 
+        Set<Survey> surveyList = ParserUtil.parseSurveys(argMultimap.getAllValues(PREFIX_SURVEY));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         PersonContainsAttributePredicate predicate = new PersonContainsAttributePredicate(nameList, phoneList,

@@ -39,7 +39,7 @@ public class PersonBuilder {
     private Birthdate birthdate;
     private Race race;
     private Religion religion;
-    private Survey survey;
+    private Set<Survey> surveys;
     private Set<Tag> tags;
 
     /**
@@ -54,7 +54,7 @@ public class PersonBuilder {
         birthdate = new Birthdate(DEFAULT_BIRTHDATE);
         race = new Race(DEFAULT_RACE);
         religion = new Religion(DEFAULT_RELIGION);
-        survey = new Survey(DEFAULT_SURVEY);
+        surveys = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -70,7 +70,7 @@ public class PersonBuilder {
         birthdate = personToCopy.getBirthdate();
         race = personToCopy.getRace();
         religion = personToCopy.getReligion();
-        survey = personToCopy.getSurvey();
+        surveys = new HashSet<>(personToCopy.getSurveys());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -150,7 +150,9 @@ public class PersonBuilder {
      * Sets the {@code Survey} of the {@code Person} that we are building.
      */
     public PersonBuilder withSurvey(String survey) {
-        this.survey = new Survey(survey);
+        Set<Survey> surveyToAdd = new HashSet<>();
+        surveyToAdd.add(new Survey(survey));
+        this.surveys = surveyToAdd;
         return this;
     }
 
@@ -160,7 +162,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, address, gender,
-                birthdate, race, religion, survey, tags);
+                birthdate, race, religion, surveys, tags);
     }
 
 }

@@ -26,7 +26,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Survey survey;
+    private final Set<Survey> surveys = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -34,10 +34,10 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Gender gender, Birthdate birthdate, Race race,
-                  Religion religion, Survey survey, Set<Tag> tags) {
+                  Religion religion, Set<Survey> surveys, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address,
                 gender, birthdate, race,
-                religion, survey, tags);
+                religion, surveys, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,7 +46,7 @@ public class Person {
         this.birthdate = birthdate;
         this.race = race;
         this.religion = religion;
-        this.survey = survey;
+        this.surveys.addAll(surveys);
         this.tags.addAll(tags);
     }
 
@@ -82,8 +82,12 @@ public class Person {
         return religion;
     }
 
-    public Survey getSurvey() {
-        return survey;
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Survey> getSurveys() {
+        return Collections.unmodifiableSet(surveys);
     }
 
     /**
@@ -111,7 +115,7 @@ public class Person {
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getSurvey().equals(getSurvey());
+                && otherPerson.getSurveys().equals(getSurveys());
     }
 
     /**
@@ -137,7 +141,7 @@ public class Person {
                 && otherPerson.getBirthdate().equals(getBirthdate())
                 && otherPerson.getRace().equals(getRace())
                 && otherPerson.getReligion().equals(getReligion())
-                && otherPerson.getSurvey().equals(getSurvey())
+                && otherPerson.getSurveys().equals(getSurveys())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -145,7 +149,7 @@ public class Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, gender,
-                birthdate, race, religion, survey, tags);
+                birthdate, race, religion, surveys, tags);
     }
 
     @Override
@@ -165,10 +169,13 @@ public class Person {
                 .append("; Race: ")
                 .append(getRace())
                 .append("; Religion: ")
-                .append(getReligion())
-                .append("; Survey: ")
-                .append(getSurvey());
+                .append(getReligion());
 
+        Set<Survey> surveys = getSurveys();
+        if (!surveys.isEmpty()) {
+            builder.append("; Surveys: ");
+            surveys.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
