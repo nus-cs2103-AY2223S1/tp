@@ -51,18 +51,19 @@ ModelManager --> "1" TaskList
 ModelManager --> "1" UserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList --> "          ~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" Module
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered     " Person
 
 TaskList *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
@@ -75,6 +76,6 @@ TaskName -[hidden]right-> Module
 Module -[hidden]right-> Deadline
 Deadline -[hidden]right-> Status
 
-ModelManager -->"~* filtered" Task
+ModelManager -->"~* filtered  " Task
 
 @enduml
