@@ -15,12 +15,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+
 /**
  * Adds a task to the address book.
  */
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addTask";
+    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. \n"
             + "Parameters: "
@@ -40,7 +44,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
-    private final Task toAdd;
+    private final Task taskToAdd;
     private final Email personEmailAddress;
 
     /**
@@ -48,7 +52,7 @@ public class AddTaskCommand extends Command {
      */
     public AddTaskCommand(Task task, Email personEmailAddress) {
         requireNonNull(task);
-        toAdd = task;
+        taskToAdd = task;
         this.personEmailAddress = personEmailAddress;
     }
 
@@ -56,20 +60,26 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        toAdd.setPersonEmailAddress(personEmailAddress);
+        taskToAdd.setPersonEmailAddress(personEmailAddress);
 
-        if (model.hasTask(toAdd)) {
+        if (model.hasTask(taskToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
-        model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        Name name = NO_PERSON_ASSIGNED;
+        for (Person person: model.getFilteredPersonList()) {
+            if (person.getEmail().equals(personEmailAddress)) {
+                name = person.getName();
+            }
+        }
+        taskToAdd.addPersonName(name);
+        model.addTask(taskToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && toAdd.equals(((AddTaskCommand) other).toAdd));
+                && taskToAdd.equals(((AddTaskCommand) other).taskToAdd));
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 
@@ -24,9 +25,9 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Task> personList) {
+    public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
-        taskListView.setItems(personList);
+        taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
