@@ -20,12 +20,14 @@ import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ATTENDANCE = "year 2021";
+    private static final String INVALID_SESSION = "Tues 09:30";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_INDEXED_EDIT = "Science workbook";
 
@@ -34,6 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_HOMEWORK = "English compo";
     private static final String VALID_GRADE_PROGRESS = "B+";
     private static final String VALID_ATTENDANCE = "2021-09-10";
+    private static final String VALID_SESSION = "Tue 09:30";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_INDEXED_EDIT = "1 Science workbook";
@@ -163,6 +166,29 @@ public class ParserUtilTest {
         String attendanceWithWhitespace = WHITESPACE + VALID_ATTENDANCE + WHITESPACE;
         Attendance expectedAttendance = new Attendance(VALID_ATTENDANCE);
         assertEquals(expectedAttendance, ParserUtil.parseAttendance(attendanceWithWhitespace));
+    }
+
+    @Test
+    public void parseSession_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSession((String) null));
+    }
+
+    @Test
+    public void parseSession_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSession(INVALID_SESSION));
+    }
+
+    @Test
+    public void parseSession_validValueWithoutWhitespace_returnsSession() throws Exception {
+        Session expectedSession = new Session(VALID_SESSION);
+        assertEquals(expectedSession, ParserUtil.parseSession(VALID_SESSION));
+    }
+
+    @Test
+    public void parseSession_validValueWithWhitespace_returnsTrimmedAttendance() throws Exception {
+        String sessionWithWhitespace = WHITESPACE + VALID_SESSION + WHITESPACE;
+        Session expectedSession = new Session(VALID_SESSION);
+        assertEquals(expectedSession, ParserUtil.parseSession(sessionWithWhitespace));
     }
 
     @Test
