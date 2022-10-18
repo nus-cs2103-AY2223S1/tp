@@ -26,7 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_INCOME = "$5230";
     public static final String DEFAULT_MEETINGDATE = "20 Nov 2022";
-    public static final String DEFAULT_RISK = "high";
+    public static final String DEFAULT_RISK = "";
 
     private Name name;
     private Phone phone;

@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.MEETING_DATE_DESC_AMY
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RISK_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PLANS_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
