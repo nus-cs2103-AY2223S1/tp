@@ -59,6 +59,9 @@ public class Status {
         return false;
     }
 
+    /**
+     * Returns the ui representation of the status
+     */
     public String uiRepresentation() {
         if (this.completed == true) {
             return "Status: Completed";

@@ -151,7 +151,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return new ListIssueCommand();
     }
 
-    private MarkIssueCommand parseMarkIssueCommand(String arguments) throws ParseException{
+    private MarkIssueCommand parseMarkIssueCommand(String arguments) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(arguments);
             return new MarkIssueCommand(index);

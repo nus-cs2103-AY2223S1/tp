@@ -1,5 +1,11 @@
 package seedu.address.logic.commands.issue;
 
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -8,11 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.Status;
 import seedu.address.ui.Ui;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
 /**
  * Command to mark an issue as complete or incomplete
@@ -23,8 +24,8 @@ public class MarkIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Marks the issue identified by the issue id " +
-            "as complete if it is currently incomplete, or incomplete if it is currently completed"
+            + ": Marks the issue identified by the issue id "
+            + "as complete if it is currently incomplete, or incomplete if it is currently completed"
             + "Parameters: ISSUE_ID (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
@@ -45,7 +46,7 @@ public class MarkIssueCommand extends IssueCommand {
 
         for (Issue i : lastShownList) {
             if (i.getIssueId().getIdInt() == targetIndex.getOneBased()) {
-                Issue issueToMark= i;
+                Issue issueToMark = i;
                 if (i.getStatus().equals(new Status(false))) {
                     i.getStatus().setStatus(true);
                 } else {
