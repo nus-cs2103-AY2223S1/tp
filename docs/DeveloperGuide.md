@@ -157,11 +157,11 @@ This section describes some noteworthy details on how certain features are imple
 ### Student Class Group Feature
 The class group feature allows a student to have a class group. The feature consists of the following command
 - ```ClassGroupCommand``` - Can add, delete and modify a student's class group field.
+- ```EditCommand``` - Can modify a student's class group field
+- ```AddCommand``` - Can add a student directly with a class field
 
 The class group commands follow similar paths of execution which defers slightly from Logic sequence diagram.
 This is illustrated in the sequence diagram below, which shows the diagram for ClassGroupCommand.
-
-![Class Group sequence diagram](images/ClassGroupSequenceDiagram.png)
 
 **Class Group command**
 
@@ -175,7 +175,18 @@ updates the class group field of a student.
 3. If the student already has class field data, the input will overwrite existing data.
 4. If class field input is empty, ```ClassGroupCommand#execute(Model model)``` will delete the class group data.
 
+![Class Group sequence diagram](images/ClassGroupSequenceDiagram.png)
 
+#### Design considerations:
+
+**Aspect: Command Syntax**
+- Current implementation: Using the command word ````class````
+- Pros: Simple to understand
+- Cons: Not as fast to type and can be made faster to type if length of command is shorter
+- Alternatives considered: We considered using ```<Index> c/``` format, e.g. ```1 c/CS2032S Lab 32```
+which sets the class group field of the student with index ```1``` to ```CS2030S Lab 32```
+- Pros: Faster for user who can type fast
+- Cons: Does not follow the format as other commands making it confusing for the user.
 
 ### Student Attendance feature ###
 The student attendance feature keeps track of student's attendance. The feature consists of commands namely,
