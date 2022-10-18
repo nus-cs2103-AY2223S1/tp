@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#handleMouseClicked">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -26,6 +26,7 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="survey" styleClass="cell_small_label" text="\$survey" />
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
@@ -35,7 +36,6 @@
       <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" />
       <Label fx:id="race" styleClass="cell_small_label" text="\$race" />
       <Label fx:id="religion" styleClass="cell_small_label" text="\$religion" />
-      <Label fx:id="survey" styleClass="cell_small_label" text="\$survey" />
     </VBox>
   </GridPane>
 </HBox>

@@ -35,13 +35,16 @@ public class PersonListPanel extends UiPart<Region> {
     class PersonListViewCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person person, boolean empty) {
+            Person oldPerson = getItem();
             super.updateItem(person, empty);
 
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                if (!person.equals(oldPerson)) {
+                    setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                }
             }
         }
     }
