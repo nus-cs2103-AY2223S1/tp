@@ -69,7 +69,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             Person person = new Person(name, phone, email, address, tagList);
             return new AddCommand(person);
         } catch (ParameterException e) {
-            System.out.println(e.getMessage());
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), e);
         }
     }
