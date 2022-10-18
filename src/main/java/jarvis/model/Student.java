@@ -2,8 +2,6 @@ package jarvis.model;
 
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Objects;
-
 /**
  * Represents a Student in the student book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -47,20 +45,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name.
-     * This defines a weaker notion of equality between two students.
-     */
-    public boolean isSameStudent(Student otherStudent) {
-        if (otherStudent == this) {
-            return true;
-        }
-
-        return otherStudent != null
-                && otherStudent.getName().equals(getName());
-    }
-
-    /**
-     * Returns true if both students have the same identity fields.
+     * Returns true if both students have the same matriculation number.
      * This defines a stronger notion of equality between two students.
      */
     @Override
@@ -74,14 +59,13 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName())
-                && otherStudent.getMatricNum().equals(getMatricNum());
+        return otherStudent.getMatricNum().equals(getMatricNum());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(matricNum);
+        return matricNum.hashCode();
     }
 
     @Override

@@ -1,11 +1,13 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.EditStudentCommand;
+import jarvis.logic.commands.EditStudentCommand.EditStudentDescriptor;
 import jarvis.logic.parser.exceptions.ParseException;
 
 /**
@@ -21,7 +23,7 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
     public EditStudentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRIC_NUM);
 
         Index index;
 
@@ -32,9 +34,13 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
                     pe);
         }
 
-        EditStudentCommand.EditStudentDescriptor editStudentDescriptor = new EditStudentCommand.EditStudentDescriptor();
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MATRIC_NUM).isPresent()) {
+            editStudentDescriptor.setMatricNum(
+                    ParserUtil.parseMatricNum(argMultimap.getValue(PREFIX_MATRIC_NUM).get()));
         }
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {

@@ -7,6 +7,7 @@ public class CliSyntax {
 
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("s/");
+    public static final Prefix PREFIX_MATRIC_NUM = new Prefix("m/");
     public static final Prefix PREFIX_TASK_DESC = new Prefix("t/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_MC_NUM = new Prefix("num/");

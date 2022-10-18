@@ -51,20 +51,20 @@ public abstract class Lesson {
         attendance.markAsAbsent(student);
     }
 
-    public TimePeriod getTimePeriod() {
-        return timePeriod;
-    }
-
-    public LessonAttendance getAttendance() {
-        return attendance;
-    }
-
     public void markAsCompleted() {
         isCompleted = true;
     }
 
     public boolean isCompleted() {
         return isCompleted;
+    }
+
+    public TimePeriod getTimePeriod() {
+        return timePeriod;
+    }
+
+    public LessonAttendance getAttendance() {
+        return attendance;
     }
 
     /**

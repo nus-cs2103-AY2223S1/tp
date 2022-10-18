@@ -6,32 +6,30 @@ import java.util.HashMap;
 import jarvis.commons.exceptions.IllegalValueException;
 
 public class LessonAttendance {
-    private final HashMap<MatricNum, Boolean> attendance;
+    private final HashMap<Student, Boolean> attendance;
 
-    public LessonAttendance(Collection<MatricNum> students) {
+    public LessonAttendance(Collection<Student> students) {
         attendance = new HashMap<>();
-        for (MatricNum matricNum : students) {
-            attendance.put(matricNum, false);
+        for (Student stu : students) {
+            attendance.put(stu, false);
         }
     }
 
     public void markAsPresent(Student student) throws IllegalValueException {
-        MatricNum matricNum = student.getMatricNum();
-        if (!attendance.containsKey(matricNum)) {
+        if (!attendance.containsKey(student)) {
             throw new IllegalValueException("Student " + student + " is not part of the lesson");
         }
-        attendance.put(matricNum, true);
+        attendance.put(student, true);
     }
 
     public void markAsAbsent(Student student) throws IllegalValueException {
-        MatricNum matricNum = student.getMatricNum();
-        if (!attendance.containsKey(matricNum)) {
+        if (!attendance.containsKey(student)) {
             throw new IllegalValueException("Student " + student + " is not part of the lesson");
         }
-        attendance.put(matricNum, false);
+        attendance.put(student, false);
     }
 
     public boolean isPresent(Student student) {
-        return attendance.getOrDefault(student.getMatricNum(), false);
+        return attendance.getOrDefault(student, false);
     }
 }

@@ -16,27 +16,27 @@ public class StudentTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSameStudent(ALICE));
+        assertTrue(ALICE.equals(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameStudent(null));
+        assertFalse(ALICE.equals(null));
 
         // same name -> returns true
         Student editedAlice = new StudentBuilder(ALICE).build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertTrue(ALICE.equals(editedAlice));
 
         // different name -> returns false
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.equals(editedAlice));
 
         // name differs in case -> returns false
         Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertFalse(BOB.equals(editedBob));
 
         // name has trailing spaces -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertFalse(BOB.equals(editedBob));
     }
 
     @Test

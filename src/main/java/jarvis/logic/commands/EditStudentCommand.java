@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
@@ -12,6 +13,7 @@ import jarvis.commons.core.index.Index;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.MasteryCheckStatus;
+import jarvis.model.MatricNum;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
@@ -27,7 +29,7 @@ public class EditStudentCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME]\n"
+            + "[" + PREFIX_NAME + "NAME] [" + PREFIX_MATRIC_NUM + "MATRIC_NUM]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Do";
 
@@ -62,7 +64,7 @@ public class EditStudentCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        if (!studentToEdit.equals(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
@@ -80,8 +82,9 @@ public class EditStudentCommand extends Command {
         assert studentToEdit != null;
 
         StudentName updatedStudentName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        MatricNum updatedMatricNum = editStudentDescriptor.getMatricNum().orElse(studentToEdit.getMatricNum());
         MasteryCheckStatus mcStatus = studentToEdit.getMcStatus();
-        return new Student(updatedStudentName, mcStatus);
+        return new Student(updatedStudentName, updatedMatricNum, mcStatus);
     }
 
     @Override
@@ -108,6 +111,7 @@ public class EditStudentCommand extends Command {
      */
     public static class EditStudentDescriptor {
         private StudentName studentName;
+        private MatricNum matricNum;
 
         public EditStudentDescriptor() {}
 
@@ -117,21 +121,30 @@ public class EditStudentCommand extends Command {
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.studentName);
+            setMatricNum(toCopy.matricNum);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentName);
+            return CollectionUtil.isAnyNonNull(studentName, matricNum);
         }
 
         public void setName(StudentName studentName) {
             this.studentName = studentName;
         }
 
+        public void setMatricNum(MatricNum matricNum) {
+            this.matricNum = matricNum;
+        }
+
         public Optional<StudentName> getName() {
             return Optional.ofNullable(studentName);
+        }
+
+        public Optional<MatricNum> getMatricNum() {
+            return Optional.ofNullable(matricNum);
         }
 
         @Override
@@ -149,7 +162,8 @@ public class EditStudentCommand extends Command {
             // state check
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
-            return getName().equals(e.getName());
+            return getName().equals(e.getName())
+                    && getMatricNum().equals(e.getMatricNum());
         }
     }
 }
