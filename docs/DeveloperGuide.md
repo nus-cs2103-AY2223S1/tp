@@ -181,7 +181,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation:
 
-* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room Number`, `Date Range` and `Number of Guests`) and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields from their respective prefixes.
+* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number of Guests`) and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields from their respective prefixes.
 
 The following activity diagrams summarizes what happens when a user enters an `add` command.
 
@@ -207,8 +207,8 @@ incredibly unlikely, we decided to proceed with Alternative 1.
 be able to enter their room. Hence, we chose to remove `isRoomClean` as it makes the `add` command unnecessarily longer.
 
 **Aspect: Excluding `Bill` in the `add` command**
-* As adding the guest will be done during check in, the guest should not have incurred any bill costs yet. Hence,
-we chose to remove `Bill` as it makes the `add` command unnecessarily longer.
+* As adding the guest will be done during check in, the guest should not have incurred any bill costs yet. Hence, we set
+the initial bill to be 0 and chose to remove `Bill` as it makes the `add` command unnecessarily longer.
 
 **Aspect: Making `Request` in the `add` command**
 * As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
@@ -217,7 +217,7 @@ we chose to make `Request` optional and default it as blank should it not be pro
 ### Edit feature
 
 #### Implementation:
-* The `edit` command takes in an INDEX indicating the index of the guests to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room Number`, `Date Range`, `Number of Guests`, `Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
+* The `edit` command takes in an INDEX indicating the index of the guests to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
 The following activity diagrams summarizes what happens when a user enters an `edit` command.
 
