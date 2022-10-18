@@ -22,7 +22,7 @@ public class AddTaskCommand extends AddGenericCommand {
             + ": Adds a task to the person identified "
             + "by the index number used in the last patient listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TASK_DESCRIPTION + " [TASK_DESCRIPTION]\n"
+            + PREFIX_TASK_DESCRIPTION + "[TASK_DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_TASK_DESCRIPTION + "Change dressing on left arm";
 
