@@ -180,5 +180,13 @@ public interface Model {
      */
     List<Event> calendarView();
 
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
+    /**
+     * Returns true if a policy with the same identity as {@code Policy} exists in the address book.
+     */
 
 }

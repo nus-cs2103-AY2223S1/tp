@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
+import longtimenosee.model.event.predicate.WithinNextSevenDays;
 
 /**
  * Displays the user's upcoming events in the next 7 days
@@ -22,7 +23,8 @@ public class CalendarCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.calendarView();
+        model.calendarView(); //TODO: This doesn't actually change the list I think?
+        model.updateFilteredEventList(new WithinNextSevenDays()); //Change: Added new predicate
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 

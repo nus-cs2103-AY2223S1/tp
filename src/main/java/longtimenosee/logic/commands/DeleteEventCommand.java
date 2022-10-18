@@ -1,6 +1,7 @@
 package longtimenosee.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static longtimenosee.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class DeleteEventCommand extends Command {
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEvent(eventToDelete);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete), false, false, true);
         // need to change UI to be able to display for event
     }

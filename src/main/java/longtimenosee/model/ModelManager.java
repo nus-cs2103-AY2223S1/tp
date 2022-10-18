@@ -211,7 +211,7 @@ public class ModelManager implements Model {
         addressBook.addEvent(e);
     }
 
-    private void updateFilteredEventList(Predicate<Event> predicate) {
+    public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
