@@ -86,8 +86,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_INTEREST_DESC, Interest.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS); //invalid address
+        assertParseFailure(parser, "1" + INVALID_INTEREST_DESC, Interest.MESSAGE_CONSTRAINTS); //invalid interest
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -96,8 +96,8 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-        // parsing it together with a valid tag results in error
+        // while parsing {@code PREFIX_INTEREST} alone will reset the interests of the {@code Person} being edited,
+        // parsing it together with a valid interest results in error
         assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX + INTEREST_EMPTY,
                 Interest.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_EMPTY + INTEREST_DESC_NETFLIX,
@@ -163,7 +163,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // interests
         userInput = targetIndex.getOneBased() + INTEREST_DESC_TENNIS;
         descriptor = new EditPersonDescriptorBuilder().withInterests(VALID_INTEREST_TENNIS).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
