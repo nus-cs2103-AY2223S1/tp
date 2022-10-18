@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import seedu.rc4hdb.model.venues.Venue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -158,6 +159,16 @@ public class AddCommandTest {
 
         @Override
         public void setObservableFields(List<String> observableFields) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Venue> getObservableVenues() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setObservableVenues(List<Venue> modifiableVenues) {
             throw new AssertionError("This method should not be called.");
         }
     }
