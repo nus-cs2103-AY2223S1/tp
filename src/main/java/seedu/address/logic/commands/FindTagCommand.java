@@ -9,9 +9,9 @@ import seedu.address.model.patient.TagContainsKeywordPredicate;
 /**
  * Filters all patients in address book who have tag(s) containing the argument keyword.
  */
-public class FilterTagCommand extends Command {
+public class FindTagCommand extends Command {
 
-    public static final CommandWord COMMAND_WORD = new CommandWord("filtertag", "ft");
+    public static final CommandWord COMMAND_WORD = new CommandWord("findtag", "ft");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all patients who have tag(s) "
             + "containing the keyword and displays them as a list with index numbers.\n"
@@ -20,7 +20,7 @@ public class FilterTagCommand extends Command {
 
     public final TagContainsKeywordPredicate predicate;
 
-    public FilterTagCommand(TagContainsKeywordPredicate predicate) {
+    public FindTagCommand(TagContainsKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -35,8 +35,8 @@ public class FilterTagCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterTagCommand // instanceof handles nulls
-                && predicate.equals(((FilterTagCommand) other).predicate)); // state check
+                || (other instanceof FindTagCommand // instanceof handles nulls
+                && predicate.equals(((FindTagCommand) other).predicate)); // state check
     }
 
 
