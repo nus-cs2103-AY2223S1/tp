@@ -20,6 +20,7 @@ public class Trip {
     // Identity fields
     private final Title title;
     private final Description description;
+    private boolean done;
 
     // Data fields
     private final Itineraries events = new Itineraries();
@@ -32,10 +33,34 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
+        this.done = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Trip(Title title, Description description, Set<Event> events, boolean markedAsDone) {
+        requireAllNonNull(title, description, events);
+        this.title = title;
+        this.description = description;
+        this.events.setInternalList(events);
+        this.done = markedAsDone;
     }
 
     public void addEvent(Event event) {
         events.add(event);
+    }
+
+    public void markDone() {
+        this.done = true;
+    }
+
+    public void markNotDone() {
+        this.done = false;
+    }
+
+    public boolean isDone() {
+        return done;
     }
 
     public Event getEvent(Event event) {
