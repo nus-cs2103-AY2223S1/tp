@@ -23,9 +23,13 @@ public interface Logic {
      * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
     ReadOnlyModuleList getModuleList();
+
     ObservableList<UserModule> getFilteredUserModuleList();
+
     ObservableList<Module> getFilteredModuleList();
+
     /**
      * Returns the user prefs' GUI settings.
      */
