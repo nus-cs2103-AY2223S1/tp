@@ -55,8 +55,8 @@ public class AddStuCommandTest {
 
     @Test
     public void equals() {
-        Student alice = (Student) new StudentBuilder().withName("Alice").build();
-        Student bob = (Student) new StudentBuilder().withName("Bob").build();
+        Student alice = new StudentBuilder().withName("Alice").build();
+        Student bob = new StudentBuilder().withName("Bob").build();
         AddStuCommand addAliceCommand = new AddStuCommand(alice);
         AddStuCommand addBobCommand = new AddStuCommand(bob);
 
@@ -181,7 +181,32 @@ public class AddStuCommandTest {
         }
 
         @Override
+        public boolean hasTutor(Student tutor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTutor(Student target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutor(Student tutor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTutor(Student target, Student editedTutor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredTutorList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -202,6 +227,11 @@ public class AddStuCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTutorList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

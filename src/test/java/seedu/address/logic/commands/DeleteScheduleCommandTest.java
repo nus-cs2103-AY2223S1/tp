@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCHEDULE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SCHEDULE;
 import static seedu.address.testutil.TypicalSchedules.getTypicalAddressBookWithSchedules;
 
 import java.util.List;
@@ -29,13 +32,14 @@ public class DeleteScheduleCommandTest {
         assertThrows(CommandException.class, () -> deleteScheduleCommand.execute(model));
     }
 
-    /*
     @Test
     public void execute_validIndex1_success() {
         Schedule scheduleToDelete = model.getFilteredScheduleList().get(INDEX_FIRST_SCHEDULE.getZeroBased());
         DeleteScheduleCommand deleteScheduleCommand = new DeleteScheduleCommand(INDEX_FIRST_SCHEDULE);
 
-        String expectedMessage = String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete);
+        CommandResult expectedMessage = new CommandResult(
+                String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete), false, false,
+                false, false, false, true);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteSchedule(scheduleToDelete);
@@ -48,12 +52,13 @@ public class DeleteScheduleCommandTest {
         Schedule scheduleToDelete = model.getFilteredScheduleList().get(INDEX_SECOND_SCHEDULE.getZeroBased());
         DeleteScheduleCommand deleteScheduleCommand = new DeleteScheduleCommand(INDEX_SECOND_SCHEDULE);
 
-        String expectedMessage = String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete);
+        CommandResult expectedMessage = new CommandResult(
+                String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete), false, false,
+                false, false, false, true);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteSchedule(scheduleToDelete);
 
         assertCommandSuccess(deleteScheduleCommand, model, expectedMessage, expectedModel);
     }
-    */
 }
