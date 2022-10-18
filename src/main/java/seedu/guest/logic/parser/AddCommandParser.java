@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.guest.logic.commands.AddCommand;
 import seedu.guest.logic.parser.exceptions.ParseException;
+import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
@@ -52,8 +53,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .parseNumberOfGuests(argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).get());
         IsRoomClean isRoomClean = ParserUtil
                 .parseIsRoomClean(argMultimap.getValue(PREFIX_IS_ROOM_CLEAN).get());
-
-        Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean);
+        Bill bill = new Bill();
+        Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill);
         return new AddCommand(guest);
     }
 

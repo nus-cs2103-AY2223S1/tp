@@ -18,6 +18,7 @@ import seedu.guest.commons.core.index.Index;
 import seedu.guest.commons.util.CollectionUtil;
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
+import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
@@ -104,8 +105,10 @@ public class EditCommand extends Command {
         NumberOfGuests updatedNumberOfGuests = editGuestDescriptor.getNumberOfGuests()
                 .orElse(guestToEdit.getNumberOfGuests());
         IsRoomClean updatedIsRoomClean = editGuestDescriptor.getIsRoomClean().orElse(guestToEdit.getIsRoomClean());
+
+        Bill updatedBill = guestToEdit.getBill();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
-                updatedNumberOfGuests, updatedIsRoomClean);
+                updatedNumberOfGuests, updatedIsRoomClean, updatedBill);
     }
 
     @Override

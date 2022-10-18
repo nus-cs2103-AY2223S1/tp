@@ -30,7 +30,7 @@ public class NumberOfGuests {
      * Returns true if a given string is a valid number of guests.
      */
     public static boolean isValidNumberOfGuests(String test) {
-        return test.matches(VALIDATION_REGEX) && Integer.valueOf(test) >= 1 && Integer.valueOf(test) <= 4;
+        return test.matches(VALIDATION_REGEX) && Integer.parseInt(test) >= 1 && Integer.parseInt(test) <= 4;
     }
 
     @Override
