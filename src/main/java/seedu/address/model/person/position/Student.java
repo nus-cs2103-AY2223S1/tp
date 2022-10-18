@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Assignment;
 
 /**
@@ -16,16 +17,13 @@ public class Student extends Position {
     public static final String ATTENDANCE_CONSTRAINTS =
             "Attendance should be in the format [number]/[number], where the first number is greater "
                     + "or equal to the second number (max 999).";
-
     public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
-
+    public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
     public static final String ASSIGNMENT_CONSTRAINTS =
             "Incorrect Assignments";
 
     private String attendance;
-
     private String overallGrade;
-
     private ArrayList<Assignment> assignmentsList;
 
     /**
@@ -79,6 +77,11 @@ public class Student extends Position {
         return totalWeightage == 100;
     }
 
+    public boolean isValidAssignmentIndex(Index indexOfAssignment) {
+        return indexOfAssignment.getZeroBased() >= 0
+                && indexOfAssignment.getZeroBased() < assignmentsList.size();
+    }
+
     public void setOverallGrade(String overallGrade) {
         this.overallGrade = overallGrade;
     }
@@ -99,7 +102,10 @@ public class Student extends Position {
         overallGrade = String.format("%.2f/%d", totalGrade, totalWeightage);
     }
 
-    public void setAssignmentGrade(Index indexOfAssignment, String grade) {
+    public void setAssignmentGrade(Index indexOfAssignment, String grade) throws CommandException {
+        if (!isValidAssignmentIndex(indexOfAssignment)) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_INVALID);
+        }
         Assignment assignmentToEdit = assignmentsList.get(indexOfAssignment.getZeroBased());
         assignmentToEdit.setGrade(grade);
     }

@@ -32,7 +32,6 @@ public class GradeCommand extends Command {
             + PREFIX_GRADE + "18/20.";
     public static final String MESSAGE_PERSON_NOT_STUDENT = "The person to edit is not a student, there is no "
             + "grade to be edited.";
-    public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
     public static final String MESSAGE_EDIT_GRADE_SUCCESS = "Edited grade to student: %1$s";
 
     private final Index indexOfStudent;
