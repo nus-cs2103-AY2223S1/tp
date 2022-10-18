@@ -48,7 +48,7 @@
               </HBox>
             </right>
         </BorderPane>
-            <GridPane styleClass="pane-grid" VBox.vgrow="ALWAYS">
+            <GridPane fx:id="mainPane" styleClass="pane-grid" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />

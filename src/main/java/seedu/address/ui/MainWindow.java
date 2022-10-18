@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private TargetPersonPanel targetPersonPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WelcomePanel welcomePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -53,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private GridPane mainPane;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -66,6 +71,8 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setHelpShortcut();
+        welcomePanel = new WelcomePanel();
+        mainPane.addColumn(1, welcomePanel.getRoot());
 
         helpWindow = new HelpWindow();
     }
@@ -156,6 +163,41 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void displayMessage(String message) {
         resultDisplay.setFeedbackToUser(message);
+    }
+
+    /**
+     * Sets the welcome message within welcomePanel.
+     * @param message
+     */
+    public void setWelcomeMessage(String message) {
+        assert message != null : "Message cannot be null";
+        assert welcomePanel != null : "Welcome panel is not initialized yet.";
+        welcomePanel.setWelcomeMessage(message);
+    }
+
+    /**
+     * Sets the secondary pane to specified pane.
+     * @param secondaryPaneState
+     */
+    public void setSecondaryPaneState(SecondaryPaneState secondaryPaneState) {
+        resetSecondaryPane();
+        switch(secondaryPaneState) {
+        case WELCOME:
+            mainPane.add(new WelcomePanel().getRoot(), 1, 1);
+            break;
+        case HELP:
+        case TARGET_PERSON:
+        case MESSAGE_TEMPLATES:
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Removes the secondary pane from UI.
+     */
+    private void resetSecondaryPane() {
+        mainPane.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1);
     }
 
     /**

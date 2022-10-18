@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="welcomeMessage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="launch-message" text="launch-message placeholder (this should not show up!)" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="reminder-header" text="Upcoming Reminders" />
+      <ListView fx:id="reminderView" />
+   </children>
+</VBox>
