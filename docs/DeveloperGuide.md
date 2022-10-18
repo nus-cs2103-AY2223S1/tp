@@ -268,19 +268,18 @@ Step 7. A list of contacts, if any, will be displayed to the user.
 
 The following sequence diagram shows how the find contact feature works.
 
-![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
 #### Design considerations:
 
 **Aspect: How open github profile page feature executes:**
 
-* **Alternative 1 (current choice):** Opens github profile page through user's default browser.
-    * Pros: Easy to implement.
-    * Cons: Users will be redirected to their default browser.
+* **Alternative 1 (current choice):** Use a class that implements the `Predicate` interface to filter contacts.
+    * Pros: Easily extendable for future enhancements of find command.
+    * Pros: Less of the codebase needs to be changed.
 
-* **Alternative 2:** Opens github profile page through in-built browser.
-    * Pros: Users will be able to see the github profile page from the app itself
-    * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
+* **Alternative 2:** Create a generic contact class through the fields provided and match with other contacts to filter.
+    * Cons: Difficult to implement / bad runtime and memory usage when multiple values are provided for a single field. e.g. `find n/bob anne` will mean 2 contacts are created with names `bob` and `anne` respectively. Current contacts will then need to be compared with both of these.
     
 --------------------------------------------------------------------------------------------------------------------
 
