@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.guest.commons.util.AppUtil.checkArgument;
 
 /**
- * The class Requests.
+ * The class Request.
  */
 public class Request {
     public static final String MESSAGE_CONSTRAINTS = "The request should not be null";
@@ -18,8 +18,8 @@ public class Request {
     }
 
     /**
-     * The constructor with specific request.
-     * @param str the specific request
+     * The constructor with specific Request object.
+     * @param str the specific Request
      */
     public Request(String str) {
         requireNonNull(str);
@@ -28,16 +28,16 @@ public class Request {
     }
 
     /**
-     * To check whether the request is valid.
-     * @param str
+     * To check whether the Request is valid.
+     * @param inputRequest
      * @return boolean
      */
-    public static boolean isValidRequest(String str) {
-        return (!str.equals(""));
+    public static boolean isValidRequest(String inputRequest) {
+        return (!inputRequest.equals(""));
     }
 
     /**
-     * return the String representation of request.
+     * return the String representation of Request.
      * @return
      */
     @Override
@@ -46,8 +46,8 @@ public class Request {
     }
 
     /**
-     * to check whether this request is the same as another.
-     * @param other other object, might be requeest
+     * to check whether this Request is the same as another.
+     * @param other other object, might be Request
      * @return boolean
      */
     @Override

@@ -1,5 +1,6 @@
 package seedu.guest.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.guest.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -25,7 +26,7 @@ public class JsonSerializableGuestBookTest {
                 JsonSerializableGuestBook.class).get();
         GuestBook guestBookFromFile = dataFromFile.toModelType();
         GuestBook typicalPersonsGuestBook = TypicalGuests.getTypicalGuestBook();
-        assert(guestBookFromFile.toString().equals(typicalPersonsGuestBook.toString()));
+        assertEquals(guestBookFromFile, typicalPersonsGuestBook);
     }
 
     @Test

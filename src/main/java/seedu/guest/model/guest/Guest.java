@@ -26,8 +26,8 @@ public class Guest {
      * Every field must be present and not null.
      */
     public Guest(Name name, Phone phone, Email email, DateRange dateRange,
-                 NumberOfGuests numberOfGuests, IsRoomClean isRoomClean, Bill bill, Request requests) {
-        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, requests);
+                 NumberOfGuests numberOfGuests, IsRoomClean isRoomClean, Bill bill, Request request) {
+        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -35,7 +35,7 @@ public class Guest {
         this.numberOfGuests = numberOfGuests;
         this.isRoomClean = isRoomClean;
         this.bill = bill;
-        this.request = requests;
+        this.request = request;
     }
 
     public Name getName() {

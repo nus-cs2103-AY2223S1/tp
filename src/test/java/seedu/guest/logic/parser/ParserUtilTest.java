@@ -34,7 +34,7 @@ public class ParserUtilTest {
     private static final String VALID_NUMBER_OF_GUESTS = "4";
     private static final String VALID_IS_ROOM_CLEAN = "yes";
     private static final String VALID_BILL = "10.00";
-    private static final String VALID_REQUEST = "I wanna book for room service";
+    private static final String VALID_REQUEST = "I want to book for room service";
 
     private static final String WHITESPACE = " \t\r\n";
 

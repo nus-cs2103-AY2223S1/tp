@@ -26,19 +26,24 @@ public class SampleDataUtilTest {
                     new NumberOfGuests("2"), new IsRoomClean("no"), new Bill(), new Request()),
             new Guest(new Name("Kayla Smith"), new Phone("91823471"), new Email("kaylasmith@example.com"),
                     new DateRange("22/01/23 - 25/01/23"),
-                    new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("10"), new Request("hi")),
+                    new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("10"),
+                    new Request("Could you help me book a room service")),
             new Guest(new Name("Charlie Lim"), new Phone("88237126"),
                     new Email("charlie@example.com"), new DateRange("21/02/22 - 22/03/22"),
-                    new NumberOfGuests("2"), new IsRoomClean("yes"), new Bill("19.99"), new Request("hi")),
+                    new NumberOfGuests("2"), new IsRoomClean("yes"), new Bill("19.99"),
+                    new Request("Help me to kill insects")),
             new Guest(new Name("Ryan Wong"), new Phone("82831111"), new Email("wongryan@example.com"),
                     new DateRange("28/04/23 - 29/04/23"),
-                    new NumberOfGuests("2"), new IsRoomClean("no"), new Bill("50"), new Request("hi")),
+                    new NumberOfGuests("2"), new IsRoomClean("no"), new Bill("50"),
+                    new Request("I want to check out right now because there are ghosts in my room.")),
             new Guest(new Name("Ibrahim Irfan"), new Phone("84912293"), new Email("irfan@example.com"),
                     new DateRange("23/05/23 - 03/06/23"),
-                    new NumberOfGuests("1"), new IsRoomClean("yes"), new Bill("999.99"), new Request("hi")),
+                    new NumberOfGuests("1"), new IsRoomClean("yes"), new Bill("999.99"),
+                    new Request("I want to decorate my room, could you help me?")),
             new Guest(new Name("Dave Balakrishnan"), new Phone("92821374"), new Email("daveb@example.com"),
                     new DateRange("30/12/22 - 02/01/23"),
-                    new NumberOfGuests("3"), new IsRoomClean("yes"), new Bill("1000.01"), new Request("hi"))
+                    new NumberOfGuests("3"), new IsRoomClean("yes"), new Bill("1000.01"),
+                    new Request("Hello, the light is broken."))
             };
 
         assertNotEquals(SampleDataUtil.getSampleGuests(), testGuests);
@@ -58,19 +63,24 @@ public class SampleDataUtilTest {
                 new NumberOfGuests("2"), new IsRoomClean("no"), new Bill(), new Request()));
         exceptedGb.addGuest(new Guest(new Name("Kayla Smith"), new Phone("91823471"),
                 new Email("kaylasmith@example.com"), new DateRange("22/01/23 - 25/01/23"),
-                new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("10"), new Request("hi")));
+                new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("10"),
+                new Request("I want to add breakfast service")));
         exceptedGb.addGuest(new Guest(new Name("Charlie Lim"), new Phone("88237126"),
                 new Email("charlie@example.com"), new DateRange("21/02/22 - 22/03/22"),
-                new NumberOfGuests("2"), new IsRoomClean("yes"), new Bill("19.99"), new Request("hi")));
+                new NumberOfGuests("2"), new IsRoomClean("yes"), new Bill("19.99"),
+                new Request("I want to have dinner in my room")));
         exceptedGb.addGuest(new Guest(new Name("Ryan Wong"), new Phone("82831111"),
                 new Email("wongryan@example.com"), new DateRange("28/04/23 - 29/04/23"),
-                new NumberOfGuests("2"), new IsRoomClean("no"), new Bill("50"), new Request("hi")));
+                new NumberOfGuests("2"), new IsRoomClean("no"), new Bill("50"),
+                new Request("My bed is not comfortable")));
         exceptedGb.addGuest(new Guest(new Name("Ibrahim Irfan"), new Phone("84912293"),
                 new Email("irfan@example.com"), new DateRange("23/05/23 - 03/06/23"),
-                new NumberOfGuests("1"), new IsRoomClean("yes"), new Bill("999.99"), new Request("hi")));
+                new NumberOfGuests("1"), new IsRoomClean("yes"), new Bill("999.99"),
+                new Request("Could you help me to do the team project?")));
         exceptedGb.addGuest(new Guest(new Name("Dave Balakrishnan"), new Phone("92821374"),
                 new Email("daveb@example.com"), new DateRange("30/12/22 - 02/01/23"),
-                new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("1000.01"), new Request("hi")));
+                new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("1000.01"),
+                new Request("Could your officer help me complete the assignments, it is too hard.")));
 
         // different values -> return false
         assertNotEquals(SampleDataUtil.getSampleGuestBook(), exceptedGb);

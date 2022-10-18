@@ -27,20 +27,24 @@ public class TypicalGuests {
     public static final Guest ALICE = new GuestBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withDateRange("13/09/22 - 15/09/22").withNumberOfGuests("1")
-            .withPhone("94351253").withIsRoomClean("yes").withBill("0").withRequest("Nothing")
+            .withPhone("94351253").withIsRoomClean("yes").withBill("0")
+            .withRequest("I want to apply for late check out")
             .build();
     public static final Guest BENSON = new GuestBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withDateRange("30/09/22 - 02/10/22").withNumberOfGuests("2")
-            .withPhone("98765432").withIsRoomClean("yes").withBill("10").withRequest("clean my room")
+            .withPhone("98765432").withIsRoomClean("yes").withBill("10")
+            .withRequest("I want to clean my room for one more time")
             .build();
     public static final Guest CARL = new GuestBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withDateRange("30/12/22 - 02/01/23")
-            .withNumberOfGuests("3").withIsRoomClean("no").withBill("19.99").withRequest("Room service")
+            .withNumberOfGuests("3").withIsRoomClean("no").withBill("19.99")
+            .withRequest("There are too many insects in my room")
             .build();
     public static final Guest DANIEL = new GuestBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withDateRange("29/05/23 - 03/06/23")
-            .withNumberOfGuests("4").withIsRoomClean("yes").withBill("50").withRequest("Room service")
+            .withNumberOfGuests("4").withIsRoomClean("yes").withBill("50")
+            .withRequest("Nothing")
             .build();
     public static final Guest ELLE = new GuestBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withDateRange("08/04/23 - 22/04/23")
@@ -48,11 +52,13 @@ public class TypicalGuests {
             .build();
     public static final Guest FIONA = new GuestBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withDateRange("21/10/22 - 22/10/22")
-            .withNumberOfGuests("2").withIsRoomClean("no").withBill("999.99").withRequest("Room service")
+            .withNumberOfGuests("2").withIsRoomClean("no").withBill("999.99")
+            .withRequest("The neighbour is too noisy, could you help me shoot him or her?")
             .build();
     public static final Guest GEORGE = new GuestBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withDateRange("01/01/23 - 07/01/23")
-            .withNumberOfGuests("3").withIsRoomClean("yes").withBill("1000.01").withRequest("Room service")
+            .withNumberOfGuests("3").withIsRoomClean("yes").withBill("1000.01")
+            .withRequest("Help me to fix Wi-Fi!")
             .build();
 
     // Manually added
