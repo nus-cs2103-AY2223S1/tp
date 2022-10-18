@@ -60,6 +60,10 @@ public class Module {
         return apiModuleInfo.getDepartment();
     }
 
+    public String getDescription() {
+        return apiModuleInfo.getDescription();
+    }
+
     /**
      * Returns the semesters that this module is offered.
      *
