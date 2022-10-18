@@ -41,6 +41,12 @@ public class CalendarEventTest {
     }
 
     @Test
+    public void method_getYear_success() {
+        Assertions.assertEquals(2023, firstEvent.getYear());
+        Assertions.assertNotEquals(2022, firstEvent.getYear());
+    }
+
+    @Test
     public void method_getTimeFormat_success() {
         Assertions.assertEquals("01:00 PM", firstEvent.getTimeFormat());
         Assertions.assertNotEquals("01:00 AM", firstEvent.getTimeFormat());

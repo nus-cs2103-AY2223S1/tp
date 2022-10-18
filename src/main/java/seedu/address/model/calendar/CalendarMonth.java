@@ -37,7 +37,7 @@ public class CalendarMonth {
     }
 
 
-    public ObservableList<CalendarEvent> getCalendarEventInDayOfMonth(int day, int month, int year) {
+    public ObservableList<CalendarEvent> getCalendarEventInDayOfMonth(Integer day, Integer month, Integer year) {
         requireAllNonNull(day, month, year);
         List<CalendarEvent> calendarEventInDayOfMonth = new ArrayList<>();
         Predicate<CalendarEvent> filter = (e) -> e.getDay() == day && e.getMonth() == month && e.getYear() == year;

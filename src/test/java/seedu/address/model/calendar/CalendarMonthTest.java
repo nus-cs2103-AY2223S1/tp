@@ -30,6 +30,29 @@ public class CalendarMonthTest {
             new Location("NUS TechnoEdge"));
 
 
+    @Test
+    public void method_getCalendarEventDayNull_throwsNullPointerException() {
+        CalendarMonth calendarMonth = new CalendarMonthBuilder().build();
+        assertThrows(NullPointerException.class, () -> calendarMonth.getCalendarEventInDayOfMonth(null, 3, 2023));
+    }
+
+    @Test
+    public void method_getCalendarEventMonthNull_throwsNullPointerException() {
+        CalendarMonth calendarMonth = new CalendarMonthBuilder().build();
+        assertThrows(NullPointerException.class, () -> calendarMonth.getCalendarEventInDayOfMonth(1, null, 2023));
+    }
+
+    @Test
+    public void method_getCalendarEventYearNull_throwsNullPointerException() {
+        CalendarMonth calendarMonth = new CalendarMonthBuilder().build();
+        assertThrows(NullPointerException.class, () -> calendarMonth.getCalendarEventInDayOfMonth(1, 3, null));
+    }
+
+    @Test
+    public void method_getCalendarEventAllArgumentsNull_throwsNullPointerException() {
+        CalendarMonth calendarMonth = new CalendarMonthBuilder().build();
+        assertThrows(NullPointerException.class, () -> calendarMonth.getCalendarEventInDayOfMonth(null, null, null));
+    }
 
     @Test
     public void constructor_nameNull_throwsNullPointerException() {
@@ -48,9 +71,10 @@ public class CalendarMonthTest {
         ObservableList<CalendarEvent> secondEventList = FXCollections.observableArrayList(firstEvent, secondEvent);
         CalendarMonth firstCalendarMonth = new CalendarMonth(firstEventList);
         CalendarMonth secondCalendarMonth = new CalendarMonth(secondEventList);
+        CalendarMonth calendarMonthCopy = new CalendarMonthBuilder().build();
 
         // same values -> returns true
-        CalendarMonth calendarMonthCopy = new CalendarMonthBuilder().build();
+        assertTrue(firstCalendarMonth.equals(firstCalendarMonth));
 
         // same object -> returns true
         assertTrue(firstCalendarMonth.equals(calendarMonthCopy));
