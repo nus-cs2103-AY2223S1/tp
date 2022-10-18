@@ -29,6 +29,7 @@ public class ReviewListPanel extends UiPart<Region> {
      */
     public ReviewListPanel(ObservableList<Review> reviewList) {
         super(FXML);
+        logger.info("Populating reviews from storage...");
         reviewListView.setItems(reviewList);
         reviewListView.setCellFactory(listView -> new ReviewListViewCell());
     }

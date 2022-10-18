@@ -2,6 +2,9 @@ package foodwhere.ui;
 
 import static foodwhere.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.logging.Logger;
+
+import foodwhere.commons.core.LogsCenter;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import javafx.event.ActionEvent;
@@ -13,6 +16,8 @@ import javafx.scene.input.ClipboardContent;
  * MenuItem that is used to copy content to clipboard.
  */
 public class CopyMenuItem<T> extends MenuItem {
+
+    private static final Logger logger = LogsCenter.getLogger(CopyMenuItem.class);
 
     /**
      * Enum to decide what content is copied.
@@ -27,7 +32,7 @@ public class CopyMenuItem<T> extends MenuItem {
          * @param action Type of content to return.
          * @return String content to be copied to clipboard.
          */
-        public String describeStall(Stall stallItem, Action action) {
+        public String describeStall(Stall stallItem, Action action, String tag) {
             switch(action) {
             case FIELDS_ADDRESS:
                 return stallItem.getAddress().toString();
@@ -42,7 +47,7 @@ public class CopyMenuItem<T> extends MenuItem {
             case FIELDS_RATING:
                 // fallthrough
             default:
-                CopyMenuItem.throwRunTimeError();
+                CopyMenuItem.throwRunTimeError(action, tag, stallItem.getClass().getName());
                 break;
             }
 
@@ -57,7 +62,7 @@ public class CopyMenuItem<T> extends MenuItem {
          * @param action Type of content to return.
          * @return String content to be copied to clipboard.
          */
-        public String describeReview(Review reviewItem, Action action) {
+        public String describeReview(Review reviewItem, Action action, String tag) {
             switch(action) {
             case FIELDS_CONTENT:
                 return reviewItem.getContent().toString();
@@ -72,7 +77,7 @@ public class CopyMenuItem<T> extends MenuItem {
             case FIELDS_ADDRESS:
                 // fallthrough
             default:
-                CopyMenuItem.throwRunTimeError();
+                CopyMenuItem.throwRunTimeError(action, tag, reviewItem.getClass().getName());
                 break;
             }
 
@@ -84,6 +89,7 @@ public class CopyMenuItem<T> extends MenuItem {
     private final T item;
     private final Clipboard clipboard;
     private final Action action;
+    private final String tag;
 
     /**
      * Every field must be present and not null.
@@ -94,11 +100,16 @@ public class CopyMenuItem<T> extends MenuItem {
         this.item = item;
         this.clipboard = clipboard;
         this.action = action;
+        this.tag = tag;
         this.setOnAction();
     }
 
-    private static void throwRunTimeError() {
-        throw new RuntimeException("Invalid type!");
+    private static void throwRunTimeError(Action action, String tag, String className) {
+        String errorFormat = "Invalid type of object passed in. The Action passed in is %s, the Tag is %s "
+                + "and the Type of object is %s";
+        String errorMessage = String.format(errorFormat, action, tag, className);
+        logger.info(errorMessage);
+        throw new RuntimeException(errorMessage);
     }
 
     /**
@@ -109,11 +120,11 @@ public class CopyMenuItem<T> extends MenuItem {
 
         String result = "";
         if (this.item instanceof Stall) {
-            result = this.action.describeStall((Stall) this.item, this.action);
+            result = this.action.describeStall((Stall) this.item, this.action, this.tag);
         } else if (this.item instanceof Review) {
-            result = this.action.describeReview((Review) this.item, this.action);
+            result = this.action.describeReview((Review) this.item, this.action, this.tag);
         } else {
-            CopyMenuItem.throwRunTimeError();
+            CopyMenuItem.throwRunTimeError(this.action, this.tag, this.item.getClass().getName());
         }
 
         if (result != null && !result.isEmpty()) {
