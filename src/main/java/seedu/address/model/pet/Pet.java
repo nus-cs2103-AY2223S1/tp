@@ -292,6 +292,10 @@ public class Pet {
         return weight;
     }
 
+    public UniqueId getId() {
+        return id;
+    }
+
     public Price getPrice() {
         return price;
     }

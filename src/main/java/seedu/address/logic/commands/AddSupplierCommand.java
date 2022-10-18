@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -43,13 +44,17 @@ public class AddSupplierCommand extends AddPersonCommand {
     public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book";
 
     private final Supplier toAdd;
+    private final List<Pet> pets = new ArrayList<>();
 
     /**
      * Creates an AddSupplierCommand to add the specified {@code Supplier}.
      */
-    public AddSupplierCommand(Supplier supplier) {
+    public AddSupplierCommand(Supplier supplier, List<Pet> pets) {
         requireNonNull(supplier);
         toAdd = supplier;
+        if (pets != null) {
+            this.pets.addAll(pets);
+        }
     }
 
     @Override
@@ -60,7 +65,7 @@ public class AddSupplierCommand extends AddPersonCommand {
             throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
-        List<Pet> pets = toAdd.getPetIds();
+        List<Pet> pets = this.pets;
         int numPetsAdded = pets.size();
 
         for (Pet pet : pets) {

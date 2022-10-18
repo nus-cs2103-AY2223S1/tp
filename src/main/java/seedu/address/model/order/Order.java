@@ -144,6 +144,10 @@ public class Order {
         return status;
     }
 
+    public UniqueId getId() {
+        return id;
+    }
+
     /**
      * Update the price range changed during negotiation.
      *

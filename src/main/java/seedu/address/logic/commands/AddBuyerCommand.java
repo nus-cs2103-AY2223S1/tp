@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -44,13 +45,17 @@ public class AddBuyerCommand extends AddPersonCommand {
     public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in the buyer list";
 
     private final Buyer toAdd;
+    private final List<Order> orders = new ArrayList<>();
 
     /**
      * Creates an AddBuyerCommand to add the specified {@code Buyer}.
      */
-    public AddBuyerCommand(Buyer buyer) {
+    public AddBuyerCommand(Buyer buyer, List<Order> orders) {
         requireNonNull(buyer);
         toAdd = buyer;
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
     }
 
     @Override
@@ -61,7 +66,7 @@ public class AddBuyerCommand extends AddPersonCommand {
             throw new CommandException(MESSAGE_DUPLICATE_BUYER);
         }
 
-        List<Order> orders = toAdd.getOrderIds();
+        List<Order> orders = this.orders;
         int numOrdersAdded = orders.size();
 
         for (Order order : orders) {
