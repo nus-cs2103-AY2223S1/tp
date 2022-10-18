@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GameType;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -37,6 +38,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedMinecraftServer> servers = new ArrayList<>();
     private final String timeZone;
+    private final List<JsonAdaptedGameType> gameTypes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -48,7 +50,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("socials") List<JsonAdaptedSocial> socials,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("servers") List<JsonAdaptedMinecraftServer> servers,
-                             @JsonProperty("timeZone") String timeZone) {
+                             @JsonProperty("timeZone") String timeZone,
+                             @JsonProperty("gameTypes") List<JsonAdaptedGameType> gameTypes) {
         this.name = name;
         this.minecraftName = minecraftName;
         this.phone = phone;
@@ -64,6 +67,10 @@ class JsonAdaptedPerson {
             this.servers.addAll(servers);
         }
         this.timeZone = timeZone;
+
+        if (gameTypes != null) {
+            this.gameTypes.addAll(gameTypes);
+        }
     }
 
     /**
@@ -86,11 +93,10 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedMinecraftServer::new)
                 .collect(Collectors.toList()));
         timeZone = source.getTimeZone().toString();
+        gameTypes.addAll(source.getGameType().stream()
+                .map(JsonAdaptedGameType::new)
+                .collect(Collectors.toList()));
 
-    }
-    // delete later
-    public String getName() {
-        return this.name;
     }
 
     /**
@@ -113,6 +119,11 @@ class JsonAdaptedPerson {
         final List<Server> servers = new ArrayList<>();
         for (JsonAdaptedMinecraftServer server : this.servers) {
             servers.add(server.toModelType());
+        }
+
+        final List<GameType> gameTypes = new ArrayList<>();
+        for (JsonAdaptedGameType gameType : this.gameTypes) {
+            gameTypes.add(gameType.toModelType());
         }
 
         if (name == null) {
@@ -162,6 +173,8 @@ class JsonAdaptedPerson {
 
         final Set<Server> modelServers = new HashSet<>(servers);
 
+        final Set<GameType> modelGameTypes = new HashSet<>(gameTypes);
+
         if (timeZone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimeZone.class.getSimpleName()));
@@ -172,7 +185,7 @@ class JsonAdaptedPerson {
         final TimeZone modelTimeZone = new TimeZone(timeZone);
 
         return new Person(modelName, modelMinecraftName, modelPhone, modelEmail,
-                modelAddress, modelSocials, modelTags, modelServers, modelTimeZone);
+                modelAddress, modelSocials, modelTags, modelServers, modelTimeZone, modelGameTypes);
 
     }
 

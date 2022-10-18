@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DayTimeInWeek;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GameType;
 import seedu.address.model.person.Keyword;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
@@ -290,5 +291,38 @@ public class ParserUtil {
             throw new ParseException(TimeZone.getMessageConstraints());
         }
         return new TimeZone(trimmedOffset);
+    }
+
+    /**
+     * Parses a {@code String game type} into a {@code GameType object}.
+     * @param gameType the preferred game type
+     * @return the parsed game type
+     * @throws ParseException if the given {@code gameType} is invalid.
+     */
+
+    public static GameType parseGameType(String gameType) throws ParseException {
+        requireNonNull(gameType);
+        String trimmedGameType = gameType.trim();
+        if (!GameType.isValidGameType(trimmedGameType)) {
+            throw new ParseException(GameType.getMessageConstraints());
+        }
+        return new GameType(trimmedGameType);
+    }
+
+    /**
+     * Parses {@code Collection<String> game types} into a {@code Set<GameType>}.
+     *
+     * @param gameTypes Collection of game types to be parsed.
+     * @return Set of game types.
+     * @throws ParseException if any of the game types are invalid.
+     */
+
+    public static Set<GameType> parseGameType(Collection<String> gameTypes) throws ParseException {
+        requireNonNull(gameTypes);
+        final Set<GameType> gameTypeSet = new HashSet<>();
+        for (String gameType : gameTypes) {
+            gameTypeSet.add(parseGameType(gameType));
+        }
+        return gameTypeSet;
     }
 }

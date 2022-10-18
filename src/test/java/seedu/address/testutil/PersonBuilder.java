@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GameType;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -38,6 +39,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Set<Server> servers;
     private TimeZone timeZone;
+    private Set<GameType> gameTypes;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -52,6 +54,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         servers = new HashSet<>();
         timeZone = new TimeZone(DEFAULT_TIMEZONE);
+        gameTypes = new HashSet<>();
     }
 
     /**
@@ -67,6 +70,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         servers = new HashSet<>(personToCopy.getServers());
         timeZone = personToCopy.getTimeZone();
+        gameTypes = new HashSet<>(personToCopy.getGameType());
     }
 
     /**
@@ -147,8 +151,19 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code gameTypes} of the {@code Person} that we are building.
+     */
+
+    public PersonBuilder withGameType(String ... gameType) {
+        this.gameTypes = new HashSet<>(Arrays.asList(gameType).stream()
+                .map(GameType::new)
+                .collect(Collectors.toList()));
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
+        return new Person(name, minecraftName, phone, email, address, socials, tags, servers, timeZone, gameTypes);
     }
 
 }

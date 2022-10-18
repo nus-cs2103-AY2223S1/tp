@@ -28,6 +28,7 @@ public class Person {
     private final Set<Social> socials;
     private final TimeZone timeZone;
     private final Set<Server> servers;
+    private final Set<GameType> gameTypes;
     private final Set<Tag> tags;
 
     /**
@@ -36,7 +37,7 @@ public class Person {
 
 
     public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address,
-                  Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
+                  Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone, Set<GameType> gameTypes) {
         requireAllNonNull(name, minecraftName);
 
         this.name = name;
@@ -48,6 +49,7 @@ public class Person {
         this.tags = tags == null ? new HashSet<>() : tags;
         this.servers = servers == null ? new HashSet<>() : servers;
         this.timeZone = timeZone == null ? new TimeZone("") : timeZone;
+        this.gameTypes = gameTypes == null ? new HashSet<>() : gameTypes;
     }
 
     public Name getName() {
@@ -88,6 +90,10 @@ public class Person {
 
     public TimeZone getTimeZone() {
         return timeZone;
+    }
+
+    public Set<GameType> getGameType() {
+        return Collections.unmodifiableSet(gameTypes);
     }
 
     public Set<ITimesAvailable> getTimesAvailable() {
@@ -160,9 +166,11 @@ public class Person {
         builder.append("Address: ").append(getFieldOrElse(getAddress().toString())).append("\n");
         builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString())).append("\n");
         builder.append("Servers: ").append(getFieldOrElse(getServers())).append("\n");
+        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString()));
+        builder.append("Preferred Game Types: ").append(getFieldOrElse(getGameType().toString()));
         builder.append("Socials: ").append(getFieldOrElse(getSocials()));
-        return builder.toString();
 
+        return builder.toString();
     }
 
     /**
