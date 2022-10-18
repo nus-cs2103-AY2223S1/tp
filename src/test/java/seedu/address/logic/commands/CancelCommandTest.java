@@ -42,8 +42,6 @@ public class CancelCommandTest {
                 + personWithNoBooking.getName();
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        model.setPerson(person, personWithNoBooking);
-        expectedModel.setPerson(person, personWithNoBooking);
         expectedModel.deleteAppointment(expectedModel.getFilteredAppointmentList().get(1));
 
         assertCommandSuccess(cancelCommand, model, expectedCancelMessage, expectedModel);
