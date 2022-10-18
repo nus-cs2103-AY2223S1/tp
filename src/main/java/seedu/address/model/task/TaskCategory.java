@@ -91,7 +91,7 @@ public class TaskCategory {
      */
     public static boolean isValidTaskCategoryLevel(String test) {
         Integer value = Integer.parseInt(test);
-        return value >= TASK_CATEGORY_LEVEL_LOWER_BOUND && value <= TASK_CATEGORY_LEVEL_UPPER_BOUND ;
+        return value >= TASK_CATEGORY_LEVEL_LOWER_BOUND && value <= TASK_CATEGORY_LEVEL_UPPER_BOUND;
     }
 
     /**
