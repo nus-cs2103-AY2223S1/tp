@@ -234,6 +234,47 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Display trip's events
+
+#### Proposed Implementation
+The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`. 
+It extends the `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
+interally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
+contains all events added to Travelr.
+
+Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
+initial Travelr book state, with no trips and events added.
+
+Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...` 
+to add a new event to Travelr.
+
+Step 3. The user adds the `Event` 'Try Takoyakis' to the `Trip` titled 'Trip to Japan', which results in 'Try Takoyakis'
+being in its `Itinerary`.
+
+Step 4. The user executes the `select 1` command to display the 1st trip's events.
+A new `EventInItineraryPredicate` will be created, with an internal `Itinerary` pointer that points to the `Itinerary`
+of the selected `Trip`. `Model#updateFileredEvents` will then be called with the predicate supplied as an argument,
+which will update the list of displayed events to be those that are part of the selected trip's itinerary.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the selected  fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</div>
+
+The following sequence diagram shows how the select operation works:
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![SelectActivityDiagram](images/SelectActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How select executes:**
+
+{more aspects and alternatives to be added}
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
