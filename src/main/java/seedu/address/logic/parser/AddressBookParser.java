@@ -26,9 +26,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UnknownPreambleException;
 import seedu.address.logic.parser.reminder.AddReminderCommandParser;
 import seedu.address.logic.parser.reminder.DeleteReminderCommandParser;
-import seedu.address.logic.parser.student.AddCommandParser;
-import seedu.address.logic.parser.student.DeleteCommandParser;
-import seedu.address.logic.parser.student.EditCommandParser;
+import seedu.address.logic.parser.student.AddStudentCommandParser;
+import seedu.address.logic.parser.student.DeleteStudentCommandParser;
+import seedu.address.logic.parser.student.EditStudentCommandParser;
 import seedu.address.logic.parser.tutorial.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorial.DeleteTutorialCommandParser;
 
@@ -62,13 +62,13 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWords) {
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddStudentCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditStudentCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteStudentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

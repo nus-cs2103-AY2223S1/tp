@@ -22,12 +22,12 @@ import seedu.address.logic.parser.tutorial.TutorialParserUtil;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.ID;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Telegram;
+import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -55,10 +55,10 @@ public class AddStudentCommandParser implements Parser<AddCommand> {
         }
 
         Name name = StudentParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        ID id = StudentParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        StudentId id = StudentParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Phone phone = StudentParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = StudentParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Telegram telegram = StudentParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        TelegramHandle telegramHandle = StudentParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
         TutorialModule tutorialModule = TutorialParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
         TutorialName tutorialName = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
 
@@ -69,7 +69,7 @@ public class AddStudentCommandParser implements Parser<AddCommand> {
                 .getValue(PREFIX_PARTICIPATION).orElse("0"));
         Set<Tag> tagList = StudentParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, id, phone, email, telegram,
+        Student student = new Student(name, id, phone, email, telegramHandle,
                 tutorialModule, tutorialName, attendance, participation, grade, tagList);
 
         return new AddCommand(student);

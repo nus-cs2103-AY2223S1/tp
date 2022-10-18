@@ -103,13 +103,13 @@ public class StudentParserUtil {
      *
      * @throws ParseException if the given {@code id} is invalid.
      */
-    public static ID parseId(String id) throws ParseException {
+    public static StudentId parseId(String id) throws ParseException {
         Objects.requireNonNull(id);
         String trimmedId = id.trim();
-        if (!ID.isValidId(trimmedId)) {
-            throw new ParseException(ID.MESSAGE_CONSTRAINTS);
+        if (!StudentId.isValidId(trimmedId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new ID(trimmedId);
+        return new StudentId(trimmedId);
     }
 
     /**
@@ -118,13 +118,13 @@ public class StudentParserUtil {
      *
      * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Telegram parseTelegram(String telegram) throws ParseException {
+    public static TelegramHandle parseTelegram(String telegram) throws ParseException {
         Objects.requireNonNull(telegram);
         String trimmedTelegram = telegram.trim();
-        if (!Telegram.isValidTelegram(trimmedTelegram)) {
-            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        if (!TelegramHandle.isValidTelegram(trimmedTelegram)) {
+            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
-        return new Telegram(trimmedTelegram);
+        return new TelegramHandle(trimmedTelegram);
     }
 
     /**

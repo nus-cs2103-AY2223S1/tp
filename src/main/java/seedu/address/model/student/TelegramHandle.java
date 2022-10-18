@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Student's telegram handle in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
  */
-public class Telegram {
+public class TelegramHandle {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Telegram handles should only contain alphanumeric characters and underscores, and it should not be blank";
@@ -21,7 +21,7 @@ public class Telegram {
      *
      * @param telegram A valid name.
      */
-    public Telegram(String telegram) {
+    public TelegramHandle(String telegram) {
         requireNonNull(telegram);
         checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
         this.telegram = telegram;
@@ -43,8 +43,8 @@ public class Telegram {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Telegram // instanceof handles nulls
-                && telegram.equals(((Telegram) other).telegram)); // state check
+                || (other instanceof TelegramHandle // instanceof handles nulls
+                && telegram.equals(((TelegramHandle) other).telegram)); // state check
     }
 
     @Override
