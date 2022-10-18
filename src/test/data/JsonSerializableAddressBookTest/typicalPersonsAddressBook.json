@@ -52,8 +52,8 @@
   } ],
   "events" : [ {
     "eventTitle" : "Dinosaur Sale",
-    "date" : "2022-01-04",
-    "time" : "12:00",
+    "startDate" : "01/04/2022",
+    "startTime" : "12/00/PM",
     "purpose" : "Selling all dinosaurs at 15% discount"
   } ]
 }
