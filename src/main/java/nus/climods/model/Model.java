@@ -50,6 +50,16 @@ public interface Model {
      */
     Optional<Module> getListModule(String moduleCode);
 
+    /**
+     * Sets active module (currently for view) in full module list to the module specified by moduleCode
+     */
+    void setActiveModule(String moduleCode);
+
+    /**
+     * Resets active module to be inactive
+     */
+    void resetActiveModule();
+
     /* USER MODULE */
 
     /**
