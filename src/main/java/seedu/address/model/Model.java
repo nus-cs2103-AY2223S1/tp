@@ -90,6 +90,8 @@ public interface Model {
 
     public void addTeam(Team team);
 
+    public void setTeamName(Index targetIndex, Name newTeamName);
+
     public void addPersonToTeam(Person person, Team team);
 
     public void removePersonFromTeam(Person person, Team team);
@@ -132,5 +134,7 @@ public interface Model {
     void unmarkTask(Index teamIndex, Index taskIndex);
 
     void deleteTask(Index teamIndex, Index taskIndex);
+
+    void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName);
 
 }

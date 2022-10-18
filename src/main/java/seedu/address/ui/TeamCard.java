@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
@@ -12,10 +13,9 @@ import seedu.address.model.team.Team;
  */
 public class TeamCard extends UiPart<Region> {
     private static final String FXML = "TeamListCard.fxml";
-
     public final Team team;
-
     private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
 
     @FXML
     private Label name;
@@ -32,6 +32,13 @@ public class TeamCard extends UiPart<Region> {
     @FXML
     private Label id;
 
+    @FXML
+    private ProgressBar taskProgressBar;
+
+    @FXML
+    private Label taskFraction;
+
+
     /**
      * Creates a {@code TeamCode} with the given {@code Team} and index to display.
      */
@@ -44,8 +51,15 @@ public class TeamCard extends UiPart<Region> {
         personListPanel = new PersonListPanel(team.getMemberList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        taskListPanel = new TaskListPanel(team.getTasksList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        //todo popoulate teamlistpanelplaceholder
+        int numberOfCompletedTasks = team.getNoOfCompletedTasK();
+        int totalNumberOfTasks = team.getTasks().getSize();
+        double progressFraction = (numberOfCompletedTasks * 1.0) / (totalNumberOfTasks * 1.0);
+        taskProgressBar.setProgress(progressFraction);
+
+        taskFraction.setText(numberOfCompletedTasks + "/" + totalNumberOfTasks);
 
 
         this.team = team;

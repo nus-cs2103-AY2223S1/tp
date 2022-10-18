@@ -47,7 +47,6 @@ public class UnAssignMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-
         Team team = model.getTeamUsingIndex(teamIndex);
         Person person = model.getPersonUsingIndex(personIndex);
 
