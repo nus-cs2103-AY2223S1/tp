@@ -239,15 +239,33 @@ The caveat to this is that in the implementation of `Resident` fields, we have t
 
 ### Show/hide feature for resident fields
 
-**Challenges faced and solutions implemented:**
+**Challenges faced with UI:**
 
 The original UI represented a `Person` field as a nested FXML `Label` within a `PersonCard`, which was used to populate the `ListView` panel. Calling `setVisible` on a `Label` resulted in blank gaps in the panel because the `Label` was ultimately still intact, just *invisible*. Hence, there was a need to find another method to hide and collapse rows/columns.
 
+**Gaps in `ListView` panel:**
+
+![ListViewMissingField](images/ListViewMissingField.png)
+
 To achieve this, we modified our UI to use a `TableView`, where using `setVisible` on a `TableColumn` allowed us to remove the specified columns as intended. One possible reason as to why this works is that `TableColumn` does not extend from `Node`, unlike `Label`. As suggested in this [thread](https://stackoverflow.com/questions/28558165/javafx-setvisible-hides-the-element-but-doesnt-rearrange-adjacent-nodes), `setVisible` in `TableColumn` probably has a different implementation from that in `Node`.
+
+<br>
+
+**Challenges faced with linking components:**
+
+![MainWindowRelationships](images/MainWindowRelationships.png)
 
 The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
 
 The final design involved using a `ListChangeListener` to cascade the updates from one list to the other. Since `LogicManager` held a reference to a `ModelManager`, and `MainWindow` held a reference to both a `LogicManager` and the `ResidentTableView` class, I used a listener in `MainWindow` to track changes in the `Model` field list and updated the `ResidentTableView` field list accordingly. Finally, one more listener was used within `ResidentTableView` to update the column visibilities whenever the field list changed.
+
+<br>
+
+**Further improvements:**
+
+Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
+
+<br>
 
 ### \[Proposed\] Undo/redo feature
 
