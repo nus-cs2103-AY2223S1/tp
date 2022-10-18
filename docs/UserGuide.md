@@ -76,13 +76,13 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
 </div>
 
 
-### Adding an employee: `add` 
+### Adding an employee: `add`
 
 Adds an employee to Coydir.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="span" class="alert alert-primary">:bulb:
 An employee can have any number of tags (including 0)
 </div>
 
