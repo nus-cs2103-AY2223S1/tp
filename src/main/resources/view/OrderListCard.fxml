@@ -27,12 +27,12 @@
             </minWidth>
           </Label>
         </VBox>
-        <HBox style="-fx-background-color: #D9DCFF">
+        <HBox style="-fx-background-color: #FFEDEC">
           <padding>
             <Insets left="1"/>
           </padding>
         </HBox>
-        <VBox style="-fx-padding:  0 20 0 20;" spacing="2">
+        <VBox style="-fx-padding: 0 20 0 20;" spacing="2">
           <VBox fx:id="items" spacing="2"/>
           <HBox>
             <Label fx:id="paidStatus" styleClass="status-labels"/>
