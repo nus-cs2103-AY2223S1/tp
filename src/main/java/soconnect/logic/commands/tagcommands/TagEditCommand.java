@@ -29,7 +29,7 @@ public class TagEditCommand extends TagCommand {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tag has changed from %1$s to %2$s";
     public static final String MESSAGE_NOT_EDITED = "Wrong format is used.";
     public static final String MESSAGE_DUPLICATE_TAG = "%1$s tag already exists.";
-    public static final String MESSAGE_TAG_NOT_FOUND = "%1$s tag does not exist";
+    public static final String MESSAGE_TAG_NOT_FOUND = "%1$s tag does not exist.";
 
     private final Tag oldTag;
     private final Tag newTag;
