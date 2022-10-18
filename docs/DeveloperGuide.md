@@ -247,26 +247,6 @@ and how the mark mechanism behaves at each step.
 
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
 
-Step 1. The user executes `mark 1`, to mark the first appointment in the appointment list. 
-It is first sent to the `Logic Manager` which logs the input, and calls `AddressBookParser#parseCommand("mark 1")`.
-
-Step 2. The `AddressbookParser` identifies the input as a `mark` command, and passes it into `MarkCommandParser`
-to parse the input into a `MarkCommand`.
-
-Step 3. The `MarkCommandParser` parses the input into a `MarkCommand` storing the index of the appointment to mark.
-This `MarkCommand` is returned to the `Logic Manager`.
-
-Step 4. `Logic Manager` calls `MarkCommand#execute` and passes in the current model.
-
-Step 5. Using the current model, the appointment to mark is identified and marked.
-
-Step 6. If the appointment is a recurring appointment, a new appointment that occurs after the recurring time period
-as indicated in the appointment will be created and stored in the model. If the appointment is non-recurring, this
-step is skipped.
-
-Step 7. `MarkCommand` creates a `CommandResult` object detailing the changes it has made. It is passed back to
-`LogicManager`, which saves the changes done.
-
 The `unmark` command functions similiarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
 classes in place of `MarkCommandParser` and `MarkCommand` respectively. 
 It also lacks the logic to add recurring appointments.
@@ -284,6 +264,40 @@ It also lacks the logic to add recurring appointments.
     * Pros: Cohesiveness is increased, as it only needs to concern itself with marking/unmarking the appointment.
     * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment 
   recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
+    
+### Find `execute()` implementation
+
+![MarkSequenceDiagram](images/FindClassDiagram.png)
+
+The `find` command,
+* Takes in 2 predicates `CombinedPersonPredicate` and `CombinedAppointmentPredicate`.
+* `CombinedPersonPredicate` stores all person related search strings and tests for all patients that satisfies all
+the search terms.
+* `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that 
+satisfies all the search terms.
+* These 2 predicates are then used together to create a single predicate that displays all the relevant patient
+and appointments.
+
+#### Design considerations:
+
+**Aspect: How to pass in search terms to `FindCommand`:**
+* **Alternative 1:** Store all search terms in `FindCommand` and use `Predicate#and` to combine the
+the search predicates.
+    * Pros: Easy and quick to implement. No extra classes needed.
+    * Cons: There is no way to override the `Predicate#equals()`. Testability of `FindCommand` would be low.
+* **Alternative 2:** Create 1 class for each search term
+(E.g `NameContainsSequencePredicate`, `AppointmentContainsReasonPredicate` etc.). Create a `CombinedPersonPredicate`
+and a `CombinedAppointmentPredicate` that takes in all these 'lesser' predicates and combine them to form the actual
+predicate to filter the list with.
+    * Pros: Testability of `FindCommand` would be very high.
+    * Cons: Large amount of classes needed. There would also be the issue of excessive duplication of code.
+It would also be time-consuming to add in potential new predicates in the future as much more test cases would be needed
+to test each individual class.
+* **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`, 
+and store the relevant search terms into each predicate. Combine those search terms in the predicate class itself.
+    * Pros: Testability of `FindCommand` would be high. Extending the method features in the future would also be
+more efficient than alternative 2.
+    * Cons: Slightly less testable than alternative 2. However, the increased efficiency is worth the tradeoff.
 
 --------------------------------------------------------------------------------------------------------------------
 
