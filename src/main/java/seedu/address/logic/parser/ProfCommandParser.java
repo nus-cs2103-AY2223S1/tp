@@ -61,10 +61,14 @@ public class ProfCommandParser implements Parser<ProfCommand> {
         GithubUsername username = ParserUtil.parseGitHubUsername(argMultimap
                 .getValue(PREFIX_GITHUBUSERNAME)
                 .orElse(GithubUsername.DEFAULT_USERNAME), argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent());
-        Rating rating = Rating.getRatingFromMultimap(argMultimap);
+
         Specialisation field = ParserUtil.parseSpecialisation(argMultimap
                 .getValue(PREFIX_SPECIALISATION)
                 .orElse(Specialisation.EMPTY_SPECIALISATION), argMultimap.getValue(PREFIX_SPECIALISATION).isPresent());
+        
+        Rating rating = ParserUtil.parseRating(argMultimap
+                .getValue(PREFIX_RATING)
+                .orElse(Rating.EMPTY_RATING), argMultimap.getValue(PREFIX_RATING).isPresent());
 
         Person person = new Professor(name, moduleCode, phone, email, gender, tagList, location, username, rating,
                 field);
@@ -79,4 +83,5 @@ public class ProfCommandParser implements Parser<ProfCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }
