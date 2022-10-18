@@ -7,16 +7,21 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import io.swagger.annotations.Api;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.module.CodeContainsKeywordsPredicate;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
+import nus.climods.model.module.exceptions.DetailedModuleRetrievalException;
+import nus.climods.model.module.predicate.ViewModulePredicate;
+import org.openapitools.client.ApiException;
 
 /**
  * Represents the in-memory model of module list data.
@@ -29,6 +34,7 @@ public class ModelManager implements Model {
     private final FilteredList<UserModule> filteredUserModules;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModuleList;
+    private Optional<Module> activeModule = Optional.empty();
 
     /**
      * Initializes a ModelManager with the given moduleList and userPrefs.
@@ -127,6 +133,27 @@ public class ModelManager implements Model {
     @Override
     public Optional<Module> getListModule(String moduleCode) {
         return getModuleList().getListModule(moduleCode);
+    }
+
+    @Override
+    public void setActiveModule(String moduleCode) throws DetailedModuleRetrievalException {
+        Optional<Module> optionalModule = getListModule(moduleCode);
+
+        // Didn't use ifPresent here in order to handle ApiException in outer method
+        if (optionalModule.isEmpty()) {
+            return;
+        }
+
+        Module mod = optionalModule.get();
+        mod.makeActive();
+        activeModule = Optional.of(mod);
+
+        setFilteredModuleList(new ViewModulePredicate(moduleCode));
+    }
+
+    @Override
+    public void resetActiveModule() {
+        activeModule.ifPresent(Module::makeinActive);
     }
 
     @Override

@@ -39,6 +39,9 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("[User Command] " + commandText);
 
+        // reset active module before each command
+        model.resetActiveModule();
+
         CommandResult commandResult;
         Command command = CliModsParser.parseCommand(commandText);
         commandResult = command.execute(model);

@@ -20,7 +20,27 @@
       <Label fx:id="department" style="-fx-font-size: 15;" text="\$department" />
       <!--  Expanded module info  -->
       <VBox fx:id="expandedModuleInfo">
-        <Label fx:id="moduleDescription" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 15;" text="\$moduleDescription" wrapText="true" />
+        <Label fx:id="moduleDescription" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+               style="-fx-font-size: 15;" text="\$moduleDescription" wrapText="true" />
+
+        <VBox>
+          <Label style="-fx-font-size: 15;" maxHeight="1.7976931348623157E308"
+                 maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                 text="\$moduleCode" fx:id="prereqs"/>
+          <padding>
+            <Insets>
+              <top>8.0</top>
+              <bottom>5.0</bottom>
+            </Insets>
+          </padding>
+
+        </VBox>
+
+        <Label style="-fx-font-size: 15;" maxHeight="1.7976931348623157E308"
+               maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+               text="\$moduleCode" fx:id="lessonTypes"/>
+
+
         <padding>
           <Insets right="10.0">
             <top>10.0</top>
