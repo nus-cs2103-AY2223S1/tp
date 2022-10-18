@@ -144,11 +144,9 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         return new ListClientCommand();
     }
 
-
     private ClientCommand parseSetClientDefaultViewCommand(String arguments) {
         return new SetClientDefaultViewCommand();
     }
-    
     private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
         try {
 
