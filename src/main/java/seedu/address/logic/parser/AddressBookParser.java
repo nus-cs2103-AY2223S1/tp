@@ -13,7 +13,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
-import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterNameCommand;
 import seedu.address.logic.commands.FilterTagCommand;
@@ -58,7 +58,7 @@ public class AddressBookParser {
             return new AddAppointmentCommandParser().parse(arguments);
         } else if (EditAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditAppointmentCommandParser().parse(arguments);
-        } else if (EditPersonCommand.COMMAND_WORD.matches(commandWord)) {
+        } else if (EditPatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditPatientCommandParser().parse(arguments);
         } else if (DeleteAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeleteAppointmentCommandParser().parse(arguments);

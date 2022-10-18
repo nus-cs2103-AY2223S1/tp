@@ -21,7 +21,7 @@ public class AppointmentListPanel extends UiPart<Region> {
     private ListView<Appointment> appointmentListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
     public AppointmentListPanel(ObservableList<Appointment> appointments) {
         super(FXML);
@@ -30,7 +30,7 @@ public class AppointmentListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PatientCard}.
      */
     class AppointmentListViewCell extends ListCell<Appointment> {
         @Override

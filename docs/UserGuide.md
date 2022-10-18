@@ -44,7 +44,7 @@ Appointment Date: 5/10/22
 
 Edit a patient’s information, such as age, contact number, appointment date and doctor’s notes.
 
-Format: `edit Person Title: content`
+Format: `edit Patient Title: content`
 
 * If there is no such patient or task to edit, it will show an error.
 * Existing values will be updated to the input values.

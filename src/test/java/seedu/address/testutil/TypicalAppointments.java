@@ -8,12 +8,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SLOT_7;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SLOT_8;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.BENSON;
+import static seedu.address.testutil.TypicalPatients.CARL;
+import static seedu.address.testutil.TypicalPatients.DANIEL;
+import static seedu.address.testutil.TypicalPatients.ELLE;
+import static seedu.address.testutil.TypicalPatients.FIONA;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientsAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,10 +60,11 @@ public class TypicalAppointments {
     private TypicalAppointments() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical patients.
      */
     public static AddressBook getTypicalAppointmentsAddressBook() {
-        AddressBook ab = new AddressBook();
+        AddressBook ab = getTypicalPatientsAddressBook();
+
         for (Appointment appointment : getTypicalAppointments()) {
             ab.addAppointment(appointment);
         }
@@ -71,6 +73,6 @@ public class TypicalAppointments {
 
     public static List<Appointment> getTypicalAppointments() {
         return new ArrayList<>(Arrays.asList(APPOINTMENT_1, APPOINTMENT_2, APPOINTMENT_3,
-                APPOINTMENT_4, APPOINTMENT_5, APPOINTMENT_6, APPOINTMENT_7, APPOINTMENT_8));
+                APPOINTMENT_4, APPOINTMENT_5, APPOINTMENT_6));
     }
 }

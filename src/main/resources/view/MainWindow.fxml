@@ -39,14 +39,23 @@
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+
               </VBox>
+                 <VBox fx:id="subLists" styleClass="appointment-list" HBox.hgrow="SOMETIMES">
                  <VBox fx:id="appointmentList" styleClass="appointment-list" HBox.hgrow="SOMETIMES">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
+                 <VBox fx:id="billList" styleClass="appointment-list" HBox.hgrow="SOMETIMES">
+                   <padding>
+                     <Insets bottom="10" left="10" right="10" top="10" />
+                   </padding>
+                   <StackPane fx:id="billListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                 </VBox>
+                 </VBox>
                </children>
             </HBox>
 

@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.Patient;
+import seedu.address.model.patient.Patient;
 
 /**
  * A utility class for test cases.
@@ -34,33 +34,33 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the patient in the {@code model}'s patient list.
      */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredPatientList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the patient in the {@code model}'s patient list.
      */
     public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredPatientList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the patient in the {@code model}'s patient list at {@code index}.
      */
-    public static Patient getPerson(Model model, Index index) {
+    public static Patient getPatient(Model model, Index index) {
         return model.getFilteredPatientList().get(index.getZeroBased());
     }
 
     /**
-     * Returns a typical address book having typical persons and typical appointments
+     * Returns a typical address book having typical patients and typical appointments
      * @return The typical address book.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook addressBook = new AddressBook();
-        TypicalPersons.getTypicalPersons().stream().forEach(p -> addressBook.addPerson(p));
+        TypicalPatients.getTypicalPatients().stream().forEach(p -> addressBook.addPatient(p));
         TypicalAppointments.getTypicalAppointments().stream().forEach(a -> addressBook.addAppointment(a));
         return addressBook;
     }
