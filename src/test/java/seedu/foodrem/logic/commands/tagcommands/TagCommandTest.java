@@ -1,21 +1,16 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItemsWithoutTags;
-import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.foodrem.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
 import org.junit.jupiter.api.Test;
-
 
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
