@@ -238,7 +238,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Implemented\] Book feature 
+### \[Implemented\] Book feature
 
 #### Implementation
 
@@ -249,8 +249,8 @@ The 3 prefixes are:
 * `d/` for dateTime
 * `pe/` for recurring time period (optional)
 
-After retrieving the string values, the `BookCommandParser` uses the `ParserUtil` class to convert these values and create an `Appointment` object. A `BookCommand` object will be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds 
-the `Appointment` object to the person's list of appointments. 
+After retrieving the string values, the `BookCommandParser` uses the `ParserUtil` class to convert these values and create an `Appointment` object. A `BookCommand` object will be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds
+the `Appointment` object to the person's list of appointments.
 
 The newly added `Appointment` object will also be saved in the JSON file through the usage of a Jackson-friendly class `JsonAdaptedAppointment`.
 
@@ -272,7 +272,7 @@ Scenario 4: User tries to book an appointment with the same time as other appoin
 
 <img src="images/BookCommandObjectDiagram.png" width="450" />
 
-This diagram illustrates the above scenario. As the specified person has already booked an appointmnet in `Dec 10 2022 12:00`, the newly created `Appointment` object 
+This diagram illustrates the above scenario. As the specified person has already booked an appointmnet in `Dec 10 2022 12:00`, the newly created `Appointment` object
 will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
 
 The following sequence diagram helps to provide a clearer picture to how the book operation works:
@@ -286,9 +286,9 @@ The following Class diagram shows how serializing `Appointment` objects into JSO
 `Appointment` objects are mapped to `JsonAdaptedAppointment` objects, so that they contain only relevant fields to store and works easier with Jackson.
 These objects are stored in a list field of the `JsonAdaptedPerson` and are stored together in a single JSON file, for easier retrival and assignment when starting up the application.
 
-#### Design Considerations: 
+#### Design Considerations:
 
-**Aspect: Where to assign Appointment objects:** 
+**Aspect: Where to assign Appointment objects:**
 
 * **Alternative 1 (current implementation):** Each person stores his own list of appointments, as well as the `UniqueAppointmentList` class storing the same objects.
   * Pros: Easier to keep track of which appointments are associated to which person for other appointment related features.
@@ -351,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Add a Patient** 
+**Use Case: UC01 - Add a Patient**
 
 **Guarantees**: A patient contact is added into idENTify.
 
@@ -362,7 +362,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
     Use case ends
-    
+
 
 **Extensions**
 
