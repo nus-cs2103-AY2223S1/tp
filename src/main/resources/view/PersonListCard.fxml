@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,26 +15,69 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-      <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
-      </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+    <SplitPane dividerPositions="0.25, 0.70">
+      <items>
+        <Label fx:id="id" styleClass="cell_bigger_label" textAlignment="RIGHT">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
+          <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+          </padding>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-      </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <!--placeholder -->
-      <!-- <Label fx:id="insurance" styleClass="cell_small_label" text="\$insurance" /> -->
-      <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
-    </VBox>
+        <VBox alignment="CENTER_LEFT" minHeight="105">
+          <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+          </padding>
+          <HBox alignment="CENTER_LEFT" spacing="5">
+            <Label fx:id="name" styleClass="cell_big_label" text="\$first">
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </Label>
+            <opaqueInsets>
+              <Insets />
+            </opaqueInsets>
+          </HBox>
+          <FlowPane fx:id="tags">
+            <padding>
+              <Insets bottom="5.0" />
+            </padding>
+          </FlowPane>
+
+          <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+          <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+          <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+          <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
+        </VBox>
+        <VBox alignment="CENTER_LEFT" minHeight="105">
+          <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+          </padding>
+          <children>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+              <opaqueInsets>
+                <Insets />
+              </opaqueInsets>
+              <children>
+                <Label fx:id="insurance" styleClass="cell_small_label" text="\$insurance">
+                  <HBox.margin>
+                    <Insets />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <FlowPane fx:id="tags1">
+              <padding>
+                <Insets bottom="5.0" />
+              </padding>
+            </FlowPane>
+          </children>
+        </VBox>
+      </items>
+    </SplitPane>
+
+
   </GridPane>
 </HBox>
