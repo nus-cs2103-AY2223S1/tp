@@ -34,6 +34,9 @@ public class LinkCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Person %1$s linked to Internship %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book";
+    // person before internship
+    public static final String MESSAGE_LINKED_PERSON = "Person %1$s is already linked to Internship %2$s";
+    public static final String MESSAGE_LINKED_INTERNSHIP = "Internship %2$s is already linked to Person %1$s";
 
 
     private final Index personIndex;
@@ -78,6 +81,19 @@ public class LinkCommand extends Command {
         Person personToLink = lastShownPersonList.get(personIndex.getZeroBased());
         Internship internshipToLink = lastShownInternshipList.get(internshipIndex.getZeroBased());
 
+        // Throws an exception when specified person or internship is already linked
+        if (personToLink.getInternshipId() != null) {
+            throw new CommandException(String.format(
+                    MESSAGE_LINKED_PERSON,
+                    personToLink.getName(),
+                    model.findInternshipById(personToLink.getInternshipId()).getCompanyName()));
+        } else if (internshipToLink.getContactPersonId() != null) {
+            throw new CommandException(String.format(
+                    MESSAGE_LINKED_INTERNSHIP,
+                    model.findPersonById(internshipToLink.getContactPersonId()).getName(),
+                    internshipToLink.getCompanyName()));
+        }
+
         Person linkedPerson = new Person(
                 personToLink.getPersonId(),
                 personToLink.getName(),
@@ -108,7 +124,8 @@ public class LinkCommand extends Command {
         model.setInternship(internshipToLink, linkedInternship);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, linkedPerson, linkedInternship));
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, linkedPerson.getName(), linkedInternship.getCompanyName()));
     }
 
     @Override
