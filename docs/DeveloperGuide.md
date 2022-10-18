@@ -185,14 +185,14 @@ user input `String`.
 method.
 
 **Step 4**: The command word, `goto`, is extracted from the user input and
-a new `GoToComamandParser` is instantiated to parse the arguments.
+a new `GoToCommandParser` is instantiated to parse the arguments.
 
 **Step 5**: The `GoToCommandParser::parse` method is then called to
 parse the arguments. After validating the arguments provided by the user, a
 new `ModuleCodeMatchesKeywordPredicate` is instantiated with the provided module code.
 
 **Step 6**: The `ModuleCodeMatchesKeywordPredicate` object is then used to instantiate
-an `GoToCommand` object that is returned to the `LogicManager`.
+a `GoToCommand` object that is returned to the `LogicManager`.
 
 **Step 7**: The `GoToCommand::execute` method is then called by the
 `LogicManager`.
@@ -237,7 +237,7 @@ The following activity diagram summarizes what happens when a user executes a `G
     * Pros: Allows for quicker input as compared to typing out the entire module code
     * Cons: Require user to navigate back to home page before going to another module which might be unintuitive for users.
 
-##### Reasons behind current choice:
+##### Rationale behind current choice:
 * Alternative 1 was chosen as it provides a more intuitive way for prospective users.
 
 * The following commands`list-module`, `find-module` are implemented to allow users to filter
