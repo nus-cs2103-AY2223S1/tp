@@ -92,11 +92,10 @@ public class EditCommandTest {
 
         Entry entryInFilteredList = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
         Entry editedEntry = new ExpenditureBuilder(entryInFilteredList)
-                .withDescription(VALID_DESC_TUITION).withTags(VALID_TAG_PERSONAL).build();
-
+                .withDescription(VALID_DESC_TUITION).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
-                        .withDescription(VALID_DESC_TUITION).withTags(VALID_TAG_PERSONAL).build());
+                        .withDescription(VALID_DESC_TUITION).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 

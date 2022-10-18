@@ -1,10 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAL;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
@@ -12,7 +7,6 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Expenditure objects.
@@ -22,7 +16,10 @@ public class ExpenditureBuilder {
     public static final String DEFAULT_DESC = "Food";
     public static final String DEFAULT_AMT = "5.30";
     public static final String DEFAULT_DATE = "22-09-2022";
+    public static final String DEFAULT_TAG = "Food";
+    public static final String DEFAULT_TYPE = "e";
 
+    private EntryType type;
     private Description description;
     private Amount amount;
     private Date date;
@@ -36,8 +33,7 @@ public class ExpenditureBuilder {
         this.description = new Description(DEFAULT_DESC);
         this.amount = new Amount(DEFAULT_AMT);
         this.date = new Date(DEFAULT_DATE);
-        this.tags = new HashSet<>();
-        this.tags.add(new seedu.address.model.tag.Tag(VALID_TAG_MEAL));
+        this.tag = new Tag(this.type, DEFAULT_TAG);
     }
 
     /**
