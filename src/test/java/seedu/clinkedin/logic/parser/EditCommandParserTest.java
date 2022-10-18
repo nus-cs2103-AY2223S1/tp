@@ -177,6 +177,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // rating
+        userInput = targetIndex.getOneBased() + RATING_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withRating(VALID_RATING_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // to be added.
         // tags
         //        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
