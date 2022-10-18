@@ -1,6 +1,5 @@
 package seedu.address.model.tuitionclass;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -75,37 +74,6 @@ public class TuitionClass {
 
         return otherClass != null
                 && otherClass.getName().equals(getName());
-    }
-
-
-    /**
-     * Returns true if the class list contains an equivalent student as the given argument.
-     */
-    public boolean containsStudentInClass(Student toCheck) {
-        requireNonNull(toCheck);
-        return students.stream().anyMatch(toCheck::isSamePerson);
-    }
-
-    /**
-     * Adds a student to the class list.
-     */
-    public void addStudentToClass(Student student) {
-        students.add(student);
-    }
-
-    /**
-     * Returns true if the class list contains an equivalent tutor as the given argument.
-     */
-    public boolean containsTutorInClass(Tutor toCheck) {
-        requireNonNull(toCheck);
-        return tutors.stream().anyMatch(toCheck::isSamePerson);
-    }
-
-    /**
-     * Adds a tutor to the class list.
-     */
-    public void addTutorToClass(Tutor tutor) {
-        tutors.add(tutor);
     }
 
     /**
