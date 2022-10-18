@@ -66,7 +66,8 @@ public class EditStudentCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setEmail(StudentParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            editPersonDescriptor.setTelegram(StudentParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
+            editPersonDescriptor.setTelegram(StudentParserUtil.parseTelegram(
+                    argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             editPersonDescriptor.setTutorialModule(TutorialParserUtil

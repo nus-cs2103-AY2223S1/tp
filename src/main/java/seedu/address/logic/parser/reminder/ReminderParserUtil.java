@@ -1,11 +1,11 @@
 package seedu.address.logic.parser.reminder;
 
+import java.util.Objects;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
-
-import java.util.Objects;
 
 public class ReminderParserUtil {
     /**

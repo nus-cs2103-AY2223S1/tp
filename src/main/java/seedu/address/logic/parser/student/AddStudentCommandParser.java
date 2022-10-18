@@ -22,11 +22,11 @@ import seedu.address.logic.parser.tutorial.TutorialParserUtil;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.StudentId;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
@@ -59,7 +59,8 @@ public class AddStudentCommandParser implements Parser<AddCommand> {
         Phone phone = StudentParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = StudentParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         TelegramHandle telegramHandle = StudentParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-        TutorialModule tutorialModule = TutorialParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
+        TutorialModule tutorialModule = TutorialParserUtil.parseTutorialModule(
+                argMultimap.getValue(PREFIX_MODULE).get());
         TutorialName tutorialName = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
 
         //optional fields

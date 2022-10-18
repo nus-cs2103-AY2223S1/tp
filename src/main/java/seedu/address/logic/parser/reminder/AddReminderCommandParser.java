@@ -33,9 +33,10 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         }
 
         ReminderName name = ReminderParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
-        ReminderDeadline deadline = ReminderParserUtil.parseReminderDeadline(argMultimap.getValue(PREFIX_TIMESLOT).get());
-        ReminderDescription description = ReminderParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
-                .get());
+        ReminderDeadline deadline = ReminderParserUtil.parseReminderDeadline(
+                argMultimap.getValue(PREFIX_TIMESLOT).get());
+        ReminderDescription description = ReminderParserUtil.parseReminderDescription(
+                argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         Reminder reminder = new Reminder(name, deadline, description);
 

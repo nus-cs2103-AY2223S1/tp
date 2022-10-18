@@ -102,7 +102,8 @@ class JsonAdaptedStudent {
         final Name modelName = new Name(name);
 
         if (id == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
         if (!StudentId.isValidId(id)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);

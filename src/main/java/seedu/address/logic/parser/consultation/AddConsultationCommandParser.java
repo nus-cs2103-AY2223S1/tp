@@ -38,8 +38,10 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
         }
 
         ConsultationName name = ConsultationParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_NAME).get());
-        ConsultationModule module = ConsultationParserUtil.parseConsultationModule(argMultimap.getValue(PREFIX_MODULE).get());
-        ConsultationVenue venue = ConsultationParserUtil.parseConsultationVenue(argMultimap.getValue(PREFIX_VENUE).get());
+        ConsultationModule module = ConsultationParserUtil.parseConsultationModule(
+                argMultimap.getValue(PREFIX_MODULE).get());
+        ConsultationVenue venue = ConsultationParserUtil.parseConsultationVenue(
+                argMultimap.getValue(PREFIX_VENUE).get());
         ConsultationTimeslot timeslot = ConsultationParserUtil.parseConsultationTimeslot(
                 argMultimap.getValue(PREFIX_TIMESLOT).get());
         ConsultationDescription description = ConsultationParserUtil.parseConsultationDescription(

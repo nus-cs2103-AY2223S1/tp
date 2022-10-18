@@ -1,9 +1,10 @@
 package seedu.address.logic.parser.tutorial;
 
+import java.util.Objects;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.*;
 
-import java.util.Objects;
 
 public class TutorialParserUtil {
     /**

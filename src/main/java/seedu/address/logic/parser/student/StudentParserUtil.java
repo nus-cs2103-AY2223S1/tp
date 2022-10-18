@@ -1,13 +1,14 @@
 package seedu.address.logic.parser.student;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.*;
-import seedu.address.model.tag.Tag;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.*;
+import seedu.address.model.tag.Tag;
+
 
 public class StudentParserUtil {
     /**
