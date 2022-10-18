@@ -74,9 +74,12 @@ public class Professor extends Person {
         }
 
         builder.append("; Location: ")
-                .append(getLocation())
-                .append("; Rating: ")
-                .append(getRating());
+                .append(getLocation());
+
+        if (!getRating().value.equals(Rating.EMPTY_RATING)) {
+            builder.append("; Rating: ")
+                    .append(getRating());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

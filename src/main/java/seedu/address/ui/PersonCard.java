@@ -80,13 +80,13 @@ public class PersonCard extends UiPart<Region> {
             Professor professor = (Professor) person;
             moduleCodes.getChildren().add(new Label(((Professor) person).getModuleCode().value));
             title.setText("Professor");
-            fillStars(professor.getRating());
+            RenderRating(professor.getRating());
         }
         if (person instanceof TeachingAssistant) {
             TeachingAssistant ta = (TeachingAssistant) person;
             moduleCodes.getChildren().add(new Label(((TeachingAssistant) person).getModuleCode().value));
             title.setText("Teaching\nAssistant");
-            fillStars(ta.getRating());
+            RenderRating(ta.getRating());
         }
         if (person instanceof Student) {
             Student student = (Student) person;
@@ -115,6 +115,14 @@ public class PersonCard extends UiPart<Region> {
         } else {
             return new Image(this.getClass().getResourceAsStream("/images/femaleicon.png"),
                     24, 24, true, true);
+        }
+    }
+
+    private void RenderRating(Rating rating) {
+        if (rating.value.equals(rating.EMPTY_RATING)) {
+            stars.getChildren().clear();
+        } else {
+            fillStars(rating);
         }
     }
 

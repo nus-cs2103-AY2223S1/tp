@@ -113,6 +113,7 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
         }
 
         final Location modelLocation = new Location(getLocation());
+
         final GithubUsername modelUsername;
 
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
@@ -123,14 +124,22 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
             }
             modelUsername = new GithubUsername(getUsername(), true);
         }
+
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
         }
-        if (!Rating.isValidRating(getRating())) {
-            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+
+        final Rating modelRating;
+
+        if (getRating().equals(Rating.EMPTY_RATING)) {
+            modelRating = new Rating(getRating(), false);
+        } else {
+            if (!Rating.isValidRating(getRating())) {
+                throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+            }
+            modelRating = new Rating(getRating(), true);
         }
-        final Rating modelRating = new Rating(getRating());
 
         return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
             modelTags, modelLocation, modelUsername, modelRating);
