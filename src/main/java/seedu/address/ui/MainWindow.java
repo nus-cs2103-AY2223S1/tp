@@ -232,6 +232,37 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Handles the behaviour of window to display for list command.
+     */
+    public void handleList(String list) {
+        list = list.trim().toUpperCase();
+        switch(list) {
+        case "BUYER":
+            showBuyer();
+            break;
+        case "SUPPLIER":
+            showSupplier();
+            break;
+        case "DELIVERER":
+            showDeliverer();
+            break;
+        case "ORDER":
+            showOrder();
+            break;
+        case "PET":
+            showPet();
+            break;
+        case "ALL":
+            showAll();
+            break;
+        case "EMPTY":
+            //Fall through
+        default:
+            //Do nothing
+        }
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -248,6 +279,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isList()) {
+                handleList(commandResult.getListType());
             }
 
             return commandResult;

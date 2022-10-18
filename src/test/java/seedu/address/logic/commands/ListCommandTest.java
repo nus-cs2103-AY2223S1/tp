@@ -28,12 +28,27 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(ListCommand.MESSAGE_SUCCESS_EMPTY, false,
+                false, true, ListCommand.LIST_EMPTY);
+        assertCommandSuccess(new ListCommand(ListCommand.LIST_EMPTY), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
+        CommandResult expectedCommandResult = new CommandResult(ListCommand.MESSAGE_SUCCESS_EMPTY, false,
+                false, true, ListCommand.LIST_EMPTY);
         showBuyerAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(ListCommand.LIST_EMPTY), model, expectedCommandResult,
+                expectedModel);
+    }
+
+    @Test
+    public void execute_listBuyer_success() {
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(ListCommand.MESSAGE_SUCCESS, ListCommand.LIST_BUYER),
+                false,
+                false, true, ListCommand.LIST_BUYER);
+        assertCommandSuccess(new ListCommand(ListCommand.LIST_BUYER), model, expectedCommandResult,
+                expectedModel);
     }
 }
