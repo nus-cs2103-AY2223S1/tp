@@ -45,7 +45,7 @@ public class CompanyCard extends UiPart<Region> {
         this.company = company;
         id.setText(displayedIndex + ". ");
         name.setText(company.getName().toString());
-        address.setText(company.getAddress().toString());
+        address.setText("Address: " + company.getAddress().toString());
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
