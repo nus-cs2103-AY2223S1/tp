@@ -41,10 +41,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private StudentListPanel studentListPanel;
     private TutorListPanel tutorListPanel;
     private TuitionClassListPanel tuitionClassListPanel;
+    private StudentDescription studentDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -56,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane entityListPanelPlaceholder;
+
+    @FXML
+    private Pane entityDescriptionPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -133,7 +136,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
         tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
@@ -149,6 +151,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        studentDescription = new StudentDescription(logic.getFilteredStudentList().get(0), 1);
+        entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
     }
 
     /**
@@ -208,9 +213,6 @@ public class MainWindow extends UiPart<Stage> {
         case TUITIONCLASS_LIST:
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
-            break;
-        case PERSON_LIST:
-            entityListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             break;
         default:
             break;
@@ -278,10 +280,6 @@ public class MainWindow extends UiPart<Stage> {
         default:
             break;
         }
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

@@ -7,15 +7,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.student.Student;
 
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class StudentCard extends UiPart<Region> {
+public class StudentDescription extends UiPart<Region> {
 
-    private static final String FXML = "StudentCard.fxml";
+    private static final String FXML = "StudentDescription.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,24 +47,36 @@ public class StudentCard extends UiPart<Region> {
     protected Label school;
     @FXML
     protected FlowPane tags;
+    @FXML
+    protected VBox belongedClassList;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public StudentDescription(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText("Phone: " + student.getPhone().value);
-        address.setText("Address: " + student.getAddress().value);
-        email.setText("Email: " + student.getEmail().value);
-        level.setText("Level: " + student.getLevel().level);
-        nextOfKin.setText("Next of Kin: " + student.getNextOfKin().nextOfKin);
-        school.setText("School: " + student.getSchool().school);
+        phone.setText("Phone:  " + student.getPhone().value);
+        address.setText("Address:  " + student.getAddress().value);
+        email.setText("Email:  " + student.getEmail().value);
+        level.setText("Level:  " + student.getLevel().level);
+        nextOfKin.setText("Next of Kin:  " + student.getNextOfKin().nextOfKin);
+        school.setText("School:  " + student.getSchool().school);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        BelongedClass belongedClass = new BelongedClass("CS3103T");
+        belongedClassList.getChildren().add(belongedClass.getRoot());
+        BelongedClass belongedClass2 = new BelongedClass("CS3103T");
+        belongedClassList.getChildren().add(belongedClass2.getRoot());
+
+        student.getTuitionClasses().stream()
+                .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
+                .forEach(tuitionClass -> belongedClassList.getChildren().add(new BelongedClass(tuitionClass.getName().name).getRoot()));
+
     }
 
     @Override
@@ -74,12 +87,12 @@ public class StudentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentCard)) {
+        if (!(other instanceof StudentDescription)) {
             return false;
         }
 
         // state check
-        StudentCard card = (StudentCard) other;
+        StudentDescription card = (StudentDescription) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }

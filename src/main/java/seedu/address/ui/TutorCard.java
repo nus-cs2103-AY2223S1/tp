@@ -1,13 +1,18 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import seedu.address.model.person.tutor.Tutor;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class TutorCard extends PersonCard {
+public class TutorCard extends UiPart<Region> {
 
     private static final String FXML = "TutorCard.fxml";
 
@@ -21,18 +26,40 @@ public class TutorCard extends PersonCard {
 
     public final Tutor tutor;
     @FXML
+    protected HBox cardPane;
+    @FXML
+    protected Label name;
+    @FXML
+    protected Label id;
+    @FXML
+    protected Label phone;
+    @FXML
+    protected Label address;
+    @FXML
+    protected Label email;
+    @FXML
     protected Label institution;
     @FXML
     protected Label qualification;
+    @FXML
+    protected FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public TutorCard(Tutor tutor, int displayedIndex) {
-        super(tutor, displayedIndex, FXML);
+        super(FXML);
         this.tutor = tutor;
+        id.setText(displayedIndex + ". ");
+        name.setText(tutor.getName().fullName);
+        phone.setText("Phone: " + tutor.getPhone().value);
+        address.setText("Address: " + tutor.getAddress().value);
+        email.setText("Email: " + tutor.getEmail().value);
         institution.setText("Institution: " + tutor.getInstitution().institution);
         qualification.setText("Qualification: " + tutor.getQualification().qualification);
+        tutor.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
