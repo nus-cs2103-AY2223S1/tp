@@ -3,6 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.InvalidPathException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,6 +32,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_FILE_PATH = "File path is invalid.";
     public static final String CAP_PARSING_REGEX = "^[0-9]\\.?\\d{0,2}\\/[0-9]\\.?\\d{0,2}$";
 
     /**
@@ -42,6 +46,22 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code filePath} into a {@code File} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified file path is invalid.
+     */
+    public static Path parseFilePath(String filePath) throws ParseException {
+        String trimmedPath = filePath.trim();
+        Path path;
+        try {
+            path = Paths.get(trimmedPath);
+        } catch (InvalidPathException e) {
+            throw new ParseException(MESSAGE_INVALID_FILE_PATH);
+        }
+        return path;
     }
 
     /**
