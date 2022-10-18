@@ -16,6 +16,7 @@ Class UniquePersonList
 Class Person
 Class Address
 Class Email
+Class ClassGroup
 Class Name
 Class Phone
 Class Tag
@@ -39,6 +40,7 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
+Person *--> ClassGroup
 Person *--> Address
 Person *--> "*" Tag
 
