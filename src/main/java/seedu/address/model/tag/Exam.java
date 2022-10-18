@@ -1,10 +1,7 @@
 package seedu.address.model.tag;
 
-import java.util.Objects;
-import java.util.OptionalInt;
-
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents an Exam that a student has.
@@ -12,57 +9,58 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Exam {
 
     public static final String MESSAGE_NAME_CONSTRAINTS = "Exam name should be CA1, CA2, SA1 or SA2.";
-    public static final String MESSAGE_SCORE_CONSTRAINTS = "Exam score should be between 0 to 100.";
+    public static final String MESSAGE_SCORE_CONSTRAINTS = "Exam score should be a number between 0 to 100.";
+    public static final String VALIDATION_REGEX = "[0-9]+";
 
-    public final ExamType examName;
-    public OptionalInt score = OptionalInt.empty();
+    public final String name;
+    public final int score;
 
     /**
      * Constructs a {@code Exam}.
      *
-     * @param examName A valid exam name.
+     * @param name Name of exam.
+     * @param score Score of exam.
      */
-    public Exam(String examName) {
-        requireNonNull(examName);
-        checkArgument(isValidExamName(examName), MESSAGE_NAME_CONSTRAINTS);
-        this.examName = ExamType.EXAM_TYPE_MAP.get(examName);
+    public Exam(String name, String score) {
+        requireAllNonNull(name, score);
+        checkArgument(isValidName(name.toUpperCase()), MESSAGE_NAME_CONSTRAINTS);
+        checkArgument(isValidScore(score), MESSAGE_SCORE_CONSTRAINTS);
+        this.name = name.toUpperCase();
+        this.score = Integer.parseInt(score);
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid exam name.
      */
-    public static boolean isValidExamName(String test) {
-        return ExamType.EXAM_TYPE_MAP.containsKey(test.toUpperCase());
+    public static boolean isValidName(String test) {
+        return test.equals("CA1") || test.equals("CA2")
+                || test.equals("SA1") || test.equals("SA2");
     }
 
     /**
-     * Returns the score of the exam, else -1 if score is not present.
+     * Returns true if a given string is a valid exam score.
+     */
+    public static boolean isValidScore(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the score of the exam.
      */
     public int getScore() {
-        return this.score.orElse(-1);
-    }
-
-    /**
-     * Updates the score pf the exam.
-     * @param score Score of the exam.
-     */
-    public void updateScore(int score) {
-        requireNonNull(score);
-        checkArgument(score <= 100 && score >= 0, MESSAGE_SCORE_CONSTRAINTS);
-        this.score = OptionalInt.of(score);
+        return this.score;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Exam // instanceof handles nulls
-                && this.examName.equals(((Exam) other).examName)
-                && this.score.equals(((Exam) other).score)); // state check
+                && this.name.equals(((Exam) other).name)); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.examName, this.score);
+        return this.name.hashCode();
     }
 
     /**
@@ -70,7 +68,7 @@ public class Exam {
      */
     @Override
     public String toString() {
-        return String.format("%s: $d", this.examName, this.score.orElse(-1));
+        return String.format("%s: $d", this.name, this.score);
     }
 
 }
