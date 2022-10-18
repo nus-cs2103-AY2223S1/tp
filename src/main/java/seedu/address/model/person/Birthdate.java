@@ -39,7 +39,7 @@ public class Birthdate {
     public static boolean isValidBirthdate(String testDate) {
         try {
             LocalDate.parse(testDate, DATE_FORMAT);
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return false;
         }
         return true;
