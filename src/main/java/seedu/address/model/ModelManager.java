@@ -90,6 +90,8 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //========== Profiles ====================================================================================
+
     @Override
     public boolean hasProfile(Profile profile) {
         requireNonNull(profile);
@@ -112,6 +114,8 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProfile);
         addressBook.setProfile(target, editedProfile);
     }
+
+    //========== Events ======================================================================================
 
     @Override
     public boolean hasEvent(Event event) {
@@ -152,6 +156,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredProfiles.setPredicate(predicate);
     }
+
+    //=========== Filtered Event List Accessors =============================================================
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
