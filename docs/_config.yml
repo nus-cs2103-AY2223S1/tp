@@ -7,8 +7,6 @@ header_pages:
   - AboutUs.md
 
 markdown: kramdown
-kramdown:
-  input: GFM
 
 repository: "AY2223S1-CS2103T-W09-4/tp"
 github_icon: "images/github-icon.png"

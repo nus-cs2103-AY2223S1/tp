@@ -278,18 +278,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | potential user                             | see the app populated with sample data | see how the app would look like after frequent usage           |
-| `* * *`  | new user                                   | purge all current data         |  restart with a new set of data for                                    |
-| `* * *`  | new user									| be able to view all the basic commands of the app| I can pick them up quickly to start using the app	  |
-| `* * *`  | user                                   	| assign homework to my students | keep track of the work I assigned to them                              |
-| `* * *`  | user                                       | mark my students attendance 	 | keep track of my students' attendance								  |
-| `* * *`  | user                                       | modify my students' grade progress | keep track on how well my students' are doing		              |
-| `* * *`  | user with many students to manage		    | add my students' lesson plans  | I can organise my lesson plans for each of my students                 |
-| `* * *`  | user with many students to manage			| view a list of all my students and their work-related info | I can see my students' workload at a glance|
-| `* * *`  | long-term user with many students			| update my students data easily | I can keep updated information relevant to their work and contact 	  |
-| `* * *`  | long-term user								| view grade and assignment progress of my individual students | keep track of my students progress  	  |
+| Priority | As a …​                                  | I want to …​                                                 | So that I can…​                                                     |
+|----------|------------------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | potential user                           | see the app populated with sample data                       | see how the app would look like after frequent usage                |
+| `* * *`  | new user                                 | purge all current data                                       | restart with a new set of data for                                  |
+| `* * *`  | new user									                        | be able to view all the basic commands of the app            | I can pick them up quickly to start using the app	                  |
+| `* * *`  | user                                   	 | assign homework to my students                               | keep track of the work I assigned to them                           |
+| `* * *`  | user                                     | mark my students attendance 	                                | keep track of my students' attendance								                       |
+| `* * *`  | user                                     | modify my students' grade progress                           | keep track on how well my students' are doing		                     |
+| `* * *`  | user with many students to manage		      | add my students' lesson plans                                | I can organise my lesson plans for each of my students              |
+| `* * *`  | user with many students to manage			     | view a list of all my students and their work-related info   | I can see my students' workload at a glance                         |
+| `* * *`  | long-term user with many students			     | update my students data easily                               | I can keep updated information relevant to their work and contact 	 |
+| `* * *`  | long-term user								                   | view grade and assignment progress of my individual students | keep track of my students progress  	                               |
 *{More to be added}*
 
 ### Use cases
