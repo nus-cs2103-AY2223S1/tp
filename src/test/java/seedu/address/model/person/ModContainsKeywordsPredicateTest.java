@@ -49,21 +49,21 @@ public class ModContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new PersonBuilder().withName("Wang Heng Huat Fei").withMods("MA1521", "MA2001",
                 "GEA1000").build()));
 
-        // Only one matching keyword
-        predicate = new ModContainsKeywordsPredicate(Arrays.asList("ma1521", "cs3230"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Chan Huat Heng").withMods("MA1521")
-                .build()));
-
-        // Subset of all mods
-        predicate = new ModContainsKeywordsPredicate(Arrays.asList("ma1521", "cs2030s"));
+        // Satisfies all keywords
+        predicate = new ModContainsKeywordsPredicate(Arrays.asList("ma1521", "cs2030s", "cs2100"));
         assertTrue(predicate.test(new PersonBuilder().withName("Wee Ming Qing").withMods("CS1231S", "CS2100",
                 "MA1521", "CS2030S", "GEN2001").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
+        // Only one matching keyword
+        ModContainsKeywordsPredicate predicate = new ModContainsKeywordsPredicate(Arrays.asList("ma1521", "cs3230"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Chan Huat Heng").withMods("MA1521")
+                .build()));
+
         // Zero keywords
-        ModContainsKeywordsPredicate predicate = new ModContainsKeywordsPredicate(Collections.emptyList());
+        predicate = new ModContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Wee Ming Qing").withMods("CS1231S", "CS2100",
                 "MA1521", "CS2030S", "GEN2001").build()));
 
@@ -78,10 +78,10 @@ public class ModContainsKeywordsPredicateTest {
                 .withEmail("jonooi@hotmail.com").withTelegram("jonasg")
                 .withGitHub("handsomelad").withMods("CS2030S").build()));
 
-        // Array containing no matching keyword
+        // Person with no module
         predicate = new ModContainsKeywordsPredicate(Arrays.asList("is1103"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withEmail("alice@email.com").withTelegram("lalaland")
                 .withGitHub("AliceInTheWonderLand").build()));
     }
 }

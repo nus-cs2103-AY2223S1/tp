@@ -19,14 +19,9 @@ public class ModContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         ObservableList<Mod> mods = person.getMods();
-        for (int i = 0; i < mods.size(); i++) {
-            Mod mod = mods.get(i);
-            if (keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(mod.getModName(), keyword))) {
-                return true;
-            }
-        }
-        return false;
+        return keywords.stream().count() != 0
+        && keywords.stream().allMatch(keyword -> mods.stream()
+                .anyMatch(mod -> StringUtil.containsWordIgnoreCase(mod.getModName(), keyword)));
     }
 
     @Override
