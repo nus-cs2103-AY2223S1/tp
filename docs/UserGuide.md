@@ -210,6 +210,61 @@ ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. A
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
 </div>
+### Add a teaching schedule `sadd`
+
+Adds a schedule of a module in the adressbook. 
+
+**Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cv/VENUE `
+
+- Adds a schedule with the module it belongs to, the weekday, the time period, the type of the class, and the venue.
+- `MODULE_CODE` needs to abide by the [Module Code Format of NUS ](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf) 
+- The `WEEKDAY` should be one of `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`.
+- The `PERIOD` includes the start time and the end time which are both in the format of the *modern 24-hour clock*.
+- The `CLASS_TYPE` should be one of `lec`, `tut`, `lab`, and `rec`, which represent lecture, tutorial, laborartory, and reflection respectively.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, address book will consider the command to be invalid.
+</div>
+
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If the schedule to be added conflicts with any existing schedule, the address book will not perform any operation.
+</div>
+
+**Example**: `sadd m/CS2103T w/Wednesday ct/11:00-12:00 cc/tut cv/Zoom`
+
+<img src="./images/userguide/sadd.png" alt="Screenshot 2022-10-16 at 2.30.31 PM" style="zoom: 50%;" width=1200px/>
+
+
+
+### Edit a schedule `sedit`
+
+Edits a schedule in the adressbook. 
+
+**Format**: `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cv/VENUE] `
+
+- The `INDEX` needs to be a positive integer and refers to the index number shown in the displayed schedule list.
+- At least one of the optional fields must be provided.
+- All optional fileds must abide by the requirements given in the feature ***Add a schedule `sadd`***, if any.
+
+**Example**: `sedit 3 w/Wednesday ct/09:00-10:00 cv/COM2-0218`
+
+<img src="./images/userguide/sedit.png" alt="sedit" style="zoom:67%;" width=1000px/>
+
+
+
+### Delete a schedule `sdelete`
+
+Deletes a schedule from the address book.
+
+**Format**: `sdelete INDEX`
+
+- The `INDEX` needs to be a positive integer and refers to the index number shown in the displayed schedule list.
+
+**Example**: `sdelete 2`
+
+<img src="images/userguide/sdelete.png" alt="sdelete" style="zoom:67%;" width=1000px/>
+
 ### View your teaching schedule: `view schedule`
 
 **Syntax**: `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`
@@ -292,5 +347,4 @@ _Details coming soon ..._
 | find a person              | `find KEYWORD [MORE_KEYWORD]`                                        | `find Adam Do`                                                                                                                                                              |
 | help                       | `help`                                                               | `help`                                                                                                                                                                      | 
 | exit                       | `exit`                                                               | `exit`                                                                                                                                                                      | 
-
 
