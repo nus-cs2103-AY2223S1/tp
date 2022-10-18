@@ -123,7 +123,6 @@ public class Order {
             && otherOrder.getPhone().equals(getPhone())
             && otherOrder.getEmail().equals(getEmail())
             && otherOrder.getAddress().equals(getAddress())
-            && otherOrder.getTimeCreated().equals(getTimeCreated())
             && otherOrder.getItemList().equals(getItemList())
             && otherOrder.getPaidStatus() == getPaidStatus()
             && otherOrder.getDeliveryStatus() == getDeliveryStatus();
