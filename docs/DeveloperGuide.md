@@ -233,6 +233,7 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Edit an item
+
 Items stored in an ItemContainer object can either be stored under the unscheduled or scheduled list.
 
 Since scheduled items maintain a reference to the day that it is under, the edit behaviour for unscheduled and scheduled items differ.
@@ -246,6 +247,30 @@ or start time, check for time conflicts.
     * If time is edited, update the fields and re-sort the list.
     * If day is edited, place the item in the corresponding Day object and re-sort the list.
   * If conflicts are detected, throw an exception for the time conflict.
+
+### \[Proposed\] Plan an item
+
+When an item from the unscheduled list is moved to the scheduled list, the following checks are made:
+
+* Check if the item has a duration
+  * Duration is optional at initialisation but compulsory when scheduling
+  * Proceed if the item has a duration
+  * If no duration has been specified yet, prompt the user to specify a duration before planning the item
+* Check for time conflict
+  * Proceed if no conflicts are detected
+  * If conflicts are detected, throw an exception for the time conflict
+* Check for time overflow
+  * Proceed if the item ends before midnight
+  * If the item runs past 2359 into the next day, automatically cut the item at 2359, and create another item with the remaining duration starting at 0000 on the next day
+
+If the item passes all checks, the item is moved and the following are updated:
+* The respective lists
+  * Item is removed from the unscheduled list and added to the scheduled list
+  * Scheduled list is re-sorted
+* The Day field of the Item object
+* The respective Day item
+* Itinerary's Budget
+  * The cost of the item is deducted automatically from the itinerary's budget
 
 ### \[Proposed\] Edit an itinerary
 
