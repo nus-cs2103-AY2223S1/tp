@@ -10,7 +10,6 @@ import static seedu.address.model.transaction.Date.DEFAULT_PATTERN;
 import static seedu.address.model.transaction.Date.NEW_PATTERN;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -38,7 +37,7 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
                 PREFIX_DATE);
-        boolean isDateEmpty = argMultimap.getValue(PREFIX_DATE).equals(Optional.empty());
+        boolean isDateEmpty = argMultimap.getValue(PREFIX_DATE).isEmpty();
 
         Index index;
         try {
