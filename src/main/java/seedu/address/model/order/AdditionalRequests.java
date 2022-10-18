@@ -5,13 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Represents the additional requests of an order.
  */
 public class AdditionalRequests {
 
-    private final ArrayList<String> additionalRequests = new ArrayList<>();
+    private final List<String> additionalRequests = new ArrayList<>();
 
     /**
      * Constructs the AdditionalRequests object with an array.
@@ -27,7 +28,7 @@ public class AdditionalRequests {
         additionalRequests.addAll(descriptions);
     }
 
-    public ArrayList<String> getAdditionalRequests() {
+    public List<String> getAdditionalRequests() {
         return additionalRequests;
     }
 

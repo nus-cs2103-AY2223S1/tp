@@ -8,11 +8,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
-import seedu.address.model.pet.Pet;
 
 /**
  * Adds a buyer to the address book.
@@ -37,19 +39,23 @@ public class AddBuyerCommand extends AddPersonCommand {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
             + PREFIX_ORDER + "(...Order1 fields)"
-            + PREFIX_ORDER + "(...Order1 fields)";
+            + PREFIX_ORDER + "(...Order2 fields)";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
     public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in the buyer list";
 
     private final Buyer toAdd;
+    private final List<Order> orders = new ArrayList<>();
 
     /**
      * Creates an AddBuyerCommand to add the specified {@code Buyer}.
      */
-    public AddBuyerCommand(Buyer buyer) {
+    public AddBuyerCommand(Buyer buyer, List<Order> orders) {
         requireNonNull(buyer);
         toAdd = buyer;
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
     }
 
     @Override
@@ -60,23 +66,23 @@ public class AddBuyerCommand extends AddPersonCommand {
             throw new CommandException(MESSAGE_DUPLICATE_BUYER);
         }
 
-        model.addBuyer(toAdd);
+        List<Order> orders = this.orders;
+        int numOrdersAdded = orders.size();
 
-        int numOrdersAdded = 0;
-        int numPetsAdded = 0;
-        for (Order order : toAdd.getOrders()) {
-            model.addOrder(order);
-            numOrdersAdded++;
-            Pet pet = order.getPet();
-            if (pet != null) {
-                model.addPet(pet);
-                numPetsAdded++;
+        for (Order order : orders) {
+            if (model.hasOrder(order)) {
+                throw new CommandException(AddOrderCommand.MESSAGE_DUPLICATE_ORDER);
             }
         }
 
-        return new CommandResult("\n"
+        for (Order order : orders) {
+            model.addOrder(order);
+        }
+
+        model.addBuyer(toAdd);
+
+        return new CommandResult("\n" //TODO To keep a single MESSAGE_SUCCESS
                 + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n"
-                + numPetsAdded + (numPetsAdded == 1 ? " pet" : " pets") + " added\n\n"
                 + String.format(MESSAGE_SUCCESS, toAdd));
     }
 

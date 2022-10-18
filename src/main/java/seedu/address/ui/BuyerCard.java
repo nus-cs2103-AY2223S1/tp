@@ -76,7 +76,7 @@ public class BuyerCard extends UiPart<Region> {
         /*buyer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        orders.setText(buyer.getOrders().toString());*/
+        orders.setText(buyer.getOrderIds().toString());
     }
 
     /**

@@ -5,16 +5,19 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import seedu.address.commons.core.index.UniqueId;
+import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.model.person.Buyer;
-import seedu.address.model.pet.Pet;
 
 /**
  * Abstracts an order.
  */
 public class Order {
 
-    private Pet pet;
-    private Buyer buyer;
+    private static final UniqueIdGenerator ORDER_ID_GENERATOR = new UniqueIdGenerator();
+
+    private final UniqueId id;
+    private final Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
     private final AdditionalRequests additionalRequests;
@@ -25,7 +28,6 @@ public class Order {
     /**
      * Constructs an order object.
      *
-     * @param pet The pet assigned to this order, optional.
      * @param buyer The buyer who initiates the request.
      * @param requestedPriceRange The acceptable price range during negotiation.
      * @param request The description of the request, that is, what kind of pet the buyer wants.
@@ -34,35 +36,15 @@ public class Order {
      * @param settledPrice The settled final price.
      * @param status Whether this order is under negotiation, or finished, or is being delivered, etc.
      */
-    public Order(Pet pet, Buyer buyer, PriceRange requestedPriceRange,
-                 Request request, AdditionalRequests additionalRequests,
-                 LocalDate byDate, Price settledPrice, OrderStatus status) {
+    public Order(Buyer buyer,
+                 PriceRange requestedPriceRange,
+                 Request request,
+                 AdditionalRequests additionalRequests,
+                 LocalDate byDate,
+                 Price settledPrice,
+                 OrderStatus status) {
         requireAllNonNull(status);
-        this.pet = pet;
-        this.buyer = buyer;
-        this.requestedPriceRange = requestedPriceRange;
-        this.request = request;
-        this.additionalRequests = additionalRequests;
-        this.byDate = byDate;
-        this.settledPrice = settledPrice;
-        this.status = status;
-    }
-
-    /**
-     * Constructs an order object.
-     *
-     * @param buyer The buyer who initiates the request.
-     * @param requestedPriceRange The acceptable price range during negotiation.
-     * @param request The description of the request, that is, what kind of pet the buyer wants.
-     * @param additionalRequests Some other requests in string.
-     * @param byDate The date before which the order should be dealt.
-     * @param settledPrice The settled final price.
-     * @param status Whether this order is under negotiation, or finished, or is being delivered, etc.
-     */
-    public Order(Buyer buyer, PriceRange requestedPriceRange,
-                 Request request, AdditionalRequests additionalRequests,
-                 LocalDate byDate, Price settledPrice, OrderStatus status) {
-        requireAllNonNull(status);
+        this.id = ORDER_ID_GENERATOR.next();
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -83,9 +65,13 @@ public class Order {
      * @param byDate The date before which the order should be dealt.
      * @param settledPrice The settled final price.
      */
-    public Order(Buyer buyer, PriceRange requestedPriceRange,
-                 Request request, AdditionalRequests additionalRequests,
-                 LocalDate byDate, Price settledPrice) {
+    public Order(Buyer buyer,
+                 PriceRange requestedPriceRange,
+                 Request request,
+                 AdditionalRequests additionalRequests,
+                 LocalDate byDate,
+                 Price settledPrice) {
+        this.id = ORDER_ID_GENERATOR.next();
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -93,15 +79,6 @@ public class Order {
         this.byDate = byDate;
         this.settledPrice = settledPrice;
         status = OrderStatus.PENDING;
-    }
-
-    /**
-     * Sets the buyer of this order.
-     *
-     * @param buyer The buyer to be set.
-     */
-    public void setBuyer(Buyer buyer) {
-        this.buyer = buyer;
     }
 
     /**
@@ -167,13 +144,8 @@ public class Order {
         return status;
     }
 
-    /**
-     * Gets the pet of the order.
-     *
-     * @return The pet.
-     */
-    public Pet getPet() {
-        return pet;
+    public UniqueId getId() {
+        return id;
     }
 
     /**
@@ -192,13 +164,7 @@ public class Order {
             return true;
         } else if (other instanceof Order) {
             Order otherOrder = (Order) other;
-            return buyer.equals(otherOrder.getBuyer())
-                    && requestedPriceRange.equals(otherOrder.getRequestedPriceRange())
-                    && request.equals(otherOrder.getRequest())
-                    && additionalRequests.equals(otherOrder.getAdditionalRequests())
-                    && byDate.equals(otherOrder.getByDate())
-                    && settledPrice.equals(otherOrder.getSettledPrice())
-                    && status.equals(otherOrder.getOrderStatus());
+            return id.equals(otherOrder.id);
         } else {
             return false;
         }

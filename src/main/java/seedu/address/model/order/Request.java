@@ -1,6 +1,9 @@
 package seedu.address.model.order;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COLOR_PATTERN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
@@ -19,10 +22,10 @@ public class Request {
 
     public static final String MESSAGE_USAGE = "The usage of a request is as follows: \n"
             + "add-r"
-            + PREFIX_PET_SPECIES + "SPECIES "
+            + PREFIX_ORDER_SPECIES + "SPECIES "
             + PREFIX_ORDER_AGE + "AGE "
-            + PREFIX_PET_COLOR + "COLOR "
-            + PREFIX_PET_COLOR_PATTERN + "COLOR_PATTERN \n"
+            + PREFIX_ORDER_COLOR + "COLOR "
+            + PREFIX_ORDER_COLOR_PATTERN + "COLOR_PATTERN \n"
             + Age.MESSAGE_USAGE;
 
     private final Age requestedAge;
