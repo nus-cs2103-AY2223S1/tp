@@ -3,9 +3,9 @@ layout: page
 title: Peter Fung's Project Portfolio Page
 ---
 
-### Project: IBook
+### Project: FABook
 
-IBook is for mid-tier insurance agents who have to manage many current and potential clients. They often have trouble scheduling client meet-ups for both time and location as they have difficulty keeping track of clients’ information (name, address, portfolio).
+FABook is for mid-tier financial advisors who have to manage many current and potential clients. They often have trouble scheduling client meet-ups for both time and location as they have difficulty keeping track of clients’ information (name, address, portfolio).
 They want a product to store all this information in one place.
 
 Given below are my contributions to the project.
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Contact Finding by Address
-      * Finds and lists out all people in IBook that address contains any of the keywords input by user
+      * Finds and lists out all people in FABook that address contains any of the keywords input by user
 
 * **Documentation**:
     * Issue Tracker
