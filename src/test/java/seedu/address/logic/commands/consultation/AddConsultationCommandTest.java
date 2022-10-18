@@ -231,6 +231,11 @@ public class AddConsultationCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void deleteConsultation(Consultation target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         /**
          * Adds the given teaching assistant.
          * {@code ta} must not already exist in the ModQuik.

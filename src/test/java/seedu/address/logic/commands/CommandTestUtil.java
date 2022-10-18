@@ -52,7 +52,6 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-
     public static final String VALID_NAME_TUT1 = "F01";
     public static final String VALID_NAME_TUT2 = "F02";
     public static final String VALID_MODULE_TUT1 = "CS2103T";
@@ -61,6 +60,17 @@ public class CommandTestUtil {
     public static final String VALID_VENUE_TUT2 = "I3";
     public static final String VALID_TIMESLOT_TUT1 = "10:00-12:00";
     public static final String VALID_TIMESLOT_TUT2 = "14:00-15:00";
+
+    public static final String VALID_NAME_CONSULT1 = "John";
+    public static final String VALID_NAME_CONSULT2 = "Anna";
+    public static final String VALID_MODULE_CONSULT1 = "CS2103T";
+    public static final String VALID_MODULE_CONSULT2 = "CS2101";
+    public static final String VALID_VENUE_CONSULT1 = "COM2-0105";
+    public static final String VALID_VENUE_CONSULT2 = "LT27";
+    public static final String VALID_TIMESLOT_CONSULT1 = "14:00-16:00";
+    public static final String VALID_TIMESLOT_CONSULT2 = "17:00-18:00";
+    public static final String VALID_DESCRIPTION_CONSULT1 = "Review past year paper";
+    public static final String VALID_DESCRIPTION_CONSULT2 = "Consult about product demo and pitch";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

@@ -16,7 +16,7 @@ import seedu.address.model.consultation.Consultation;
  * Adds a consultation to the ModQuik.
  */
 public class AddConsultationCommand extends Command {
-    public static final String COMMAND_WORD = "add consult";
+    public static final String COMMAND_WORD = "add consultation";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to the ModQuik. "
             + "Parameters: "
