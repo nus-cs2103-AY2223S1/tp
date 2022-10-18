@@ -28,13 +28,12 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_PRICE + "$1.10 "
+            + PREFIX_NAME + "ABC Pte Ltd"
+            + PREFIX_PHONE + "67089005 "
+            + PREFIX_PRICE + "$1.00 "
             + PREFIX_ITEM + "Ginger "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_ADDRESS + "Blk 30 Geylang Street 29,#06-40 "
+            + PREFIX_TAG + "Supplier ";
 
     public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This supplier already exists in the address book";
