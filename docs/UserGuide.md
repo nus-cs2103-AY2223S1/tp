@@ -146,13 +146,32 @@ Format: `task delete TASK_INDEX`
 Examples:
 * `task list` followed by `task delete 1` delete the 1st task from task list.
 
+### Setting deadlines to a task: `task do ... by/`
+
+You can use the `task do ... by/` command to set (or remove) a deadline for some task.
+
+Format: `task do TASK_INDEX [by/DATE]...`
+- The `task do` command sets the deadline specified by `DATE` to the task at the specified `TASK_INDEX` from the task list.
+- You can use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
+- If the application is unable to determine a date from your input, an error message will be displayed and you will be prompted to try a different input.
+- To **remove** the deadline from a task, you can use the special character `?`.
+
+Examples:
+* `task do 1 by/tomorrow` sets the deadline for the 1st task in the list to tomorrow.
+* `task do 1 by/?` **removes** the deadline from the 1st task in the list.
 
 ### Listing all tasks : `task list`
 
-Shows a list of all tasks stored in the application.
+You can use the `task list` command to focus only on tasks that match your specified filter requirements.
 
-Format: `task list`
+Format: `task list [ti/KEYWORD] [c/PERSON_INDEX]...`
+- The `task list` command accepts **optional** parameters that can filter tasks by their title or assigned contacts.
+- If you do not specify any filters (i.e. `task list`), the command returns **all** tasks. You may find this useful to reset the task list after performing some filtering.
 
+Examples:
+* `task list ti/fix` filters the task list to only display tasks that contain the keyword `fix`.
+* `task list c/1 c/2` filters the task list to only display tasks that are assigned to **both** the 1st and 2nd persons from the address book.
+* `task list ti/fix c/1 c/2` filters the task list to only display tasks that contain the keyword `fix` **and** that are assigned to **both** the 1st and 2nd persons from the address book.
 
 ### Assigning contacts to a task: `task assign`
 
