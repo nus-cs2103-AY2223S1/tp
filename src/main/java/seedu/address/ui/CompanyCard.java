@@ -33,9 +33,7 @@ public class CompanyCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label email;
-    @FXML
-    private Label phone;
+    private Label address;
     @FXML
     private FlowPane tags;
 
@@ -47,8 +45,7 @@ public class CompanyCard extends UiPart<Region> {
         this.company = company;
         id.setText(displayedIndex + ". ");
         name.setText(company.getName().toString());
-        email.setText(company.getEmail().toString());
-        phone.setText(company.getPhone().toString());
+        address.setText("Address: " + company.getAddress().toString());
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
