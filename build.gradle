@@ -6,6 +6,10 @@ plugins {
     id 'jacoco'
 }
 
+run {
+    enableAssertions = true
+}
+
 mainClassName = 'foodwhere.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
