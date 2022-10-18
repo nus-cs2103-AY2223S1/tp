@@ -11,7 +11,7 @@ import seedu.phu.commons.core.LogsCenter;
 import seedu.phu.model.internship.Internship;
 
 /**
- * Panel containing the list of internships.
+ * Panel containing an internship with additional details.
  */
 public class ViewCommandPanel extends UiPart<Region> {
     private static final String FXML = "ViewCommandPanel.fxml";

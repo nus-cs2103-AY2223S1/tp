@@ -18,7 +18,6 @@ import seedu.phu.model.internship.ComparableCategory;
 import seedu.phu.model.internship.ExactMatchPredicate;
 import seedu.phu.model.internship.Internship;
 import seedu.phu.model.internship.NameContainsKeywordsPredicate;
-import seedu.phu.model.internship.UniqueInternshipList;
 
 /**
  * Represents the in-memory model of the internship book data.
@@ -154,7 +153,6 @@ public class ModelManager implements Model {
     @Override
     public void updateViewItem(Predicate<Internship> predicate) {
         requireNonNull(predicate);
-        System.out.println(predicate + "As");
         viewItem.setPredicate(predicate);
     }
 

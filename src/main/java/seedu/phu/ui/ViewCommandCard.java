@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.phu.model.internship.Internship;
 
 /**
- * A UI component that displays information of a {@code Internship}.
+ * A UI component that displays additional information of a specific {@code Internship}.
  */
 public class ViewCommandCard extends UiPart<Region> {
 

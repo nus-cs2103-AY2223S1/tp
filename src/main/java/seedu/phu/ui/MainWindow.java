@@ -169,12 +169,6 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
-
-    @FXML
-    private void handleView() {
-        System.out.println("ASDASASD");
-    }
-
     public InternshipListPanel getInternshipListPanel() {
         return internshipListPanel;
     }
@@ -192,10 +186,6 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isView()) {
-                handleView();
             }
 
             if (commandResult.isExit()) {

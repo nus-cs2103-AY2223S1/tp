@@ -17,9 +17,6 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Display in view panel */
-    private boolean view = false;
-
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -27,13 +24,6 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-    }
-
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean view) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.view = view;
     }
 
     /**
@@ -50,10 +40,6 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
-    }
-
-    public boolean isView() {
-        return view;
     }
 
     public boolean isExit() {
