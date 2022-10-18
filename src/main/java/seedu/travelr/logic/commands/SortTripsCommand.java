@@ -1,13 +1,16 @@
 package seedu.travelr.logic.commands;
 
-import seedu.travelr.model.Model;
-import seedu.travelr.model.trip.Trip;
-
-import java.util.Comparator;
-
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_SORTBY;
 
+import java.util.Comparator;
+
+import seedu.travelr.model.Model;
+import seedu.travelr.model.trip.Trip;
+
+/**
+ * Sorts the trips within Travelr.
+ */
 public class SortTripsCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
