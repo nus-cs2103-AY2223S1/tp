@@ -1,5 +1,7 @@
 package tracko.model.order;
 
+import tracko.commons.util.DateTimeUtil;
+
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
@@ -134,7 +136,7 @@ public class Order {
         sb.append("Phone: " + getPhone().value + "\n");
         sb.append("Email: " + getEmail().value + "\n");
         sb.append("Address: " + getAddress().value + "\n");
-        sb.append("Time Created: " + getTimeCreated() + "\n");
+        sb.append("Time Created: " + getTimeCreated().format(DateTimeUtil.getFormat()) + "\n");
         sb.append("Item List: \n");
         for (ItemQuantityPair itemQuantityPair : getItemList()) {
             sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
