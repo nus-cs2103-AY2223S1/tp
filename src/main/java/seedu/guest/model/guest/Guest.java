@@ -16,6 +16,7 @@ public class Guest {
     private final Email email;
 
     // Data fields
+    private final Room room;
     private final DateRange dateRange;
     private final NumberOfGuests numberOfGuests;
     private final IsRoomClean isRoomClean;
@@ -25,12 +26,13 @@ public class Guest {
     /**
      * Every field must be present and not null.
      */
-    public Guest(Name name, Phone phone, Email email, DateRange dateRange,
+    public Guest(Name name, Phone phone, Email email, Room room, DateRange dateRange,
                  NumberOfGuests numberOfGuests, IsRoomClean isRoomClean, Bill bill, Request request) {
-        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
+        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.room = room;
         this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
         this.isRoomClean = isRoomClean;
@@ -48,6 +50,10 @@ public class Guest {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
     public DateRange getDateRange() {
@@ -102,6 +108,7 @@ public class Guest {
         return otherGuest.getName().equals(getName())
                 && otherGuest.getPhone().equals(getPhone())
                 && otherGuest.getEmail().equals(getEmail())
+                && otherGuest.getRoom().equals(getRoom())
                 && otherGuest.getDateRange().equals(getDateRange())
                 && otherGuest.getNumberOfGuests().equals(getNumberOfGuests())
                 && otherGuest.getIsRoomClean().equals(getIsRoomClean())
@@ -123,6 +130,8 @@ public class Guest {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Room: ")
+                .append(getRoom())
                 .append("; Date Range: ")
                 .append(getDateRange())
                 .append("; No. of Guests: ")

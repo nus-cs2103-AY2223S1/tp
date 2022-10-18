@@ -8,6 +8,7 @@ import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_REQUEST;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import java.util.stream.Stream;
 
@@ -22,6 +23,7 @@ import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.guest.Request;
+import seedu.guest.model.guest.Room;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -35,10 +37,10 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DATE_RANGE,
-                        PREFIX_NUMBER_OF_GUESTS, PREFIX_IS_ROOM_CLEAN, PREFIX_REQUEST);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ROOM, PREFIX_DATE_RANGE, PREFIX_NUMBER_OF_GUESTS, PREFIX_IS_ROOM_CLEAN, PREFIX_REQUEST);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOM,
                 PREFIX_DATE_RANGE, PREFIX_NUMBER_OF_GUESTS, PREFIX_IS_ROOM_CLEAN)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -49,17 +51,19 @@ public class AddCommandParser implements Parser<AddCommand> {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
             DateRange dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_DATE_RANGE).get());
             NumberOfGuests numberOfGuests = ParserUtil
                     .parseNumberOfGuests(argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).get());
             IsRoomClean isRoomClean = ParserUtil
                     .parseIsRoomClean(argMultimap.getValue(PREFIX_IS_ROOM_CLEAN).get());
             Bill bill = new Bill();
-            Guest guest = new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
+            Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
             return new AddCommand(guest);
         } else {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             DateRange dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_DATE_RANGE).get());
             NumberOfGuests numberOfGuests = ParserUtil
@@ -68,7 +72,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     .parseIsRoomClean(argMultimap.getValue(PREFIX_IS_ROOM_CLEAN).get());
             Bill bill = new Bill();
             Request request = new Request();
-            Guest guest = new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
+            Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
             return new AddCommand(guest);
         }
     }

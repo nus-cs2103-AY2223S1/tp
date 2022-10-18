@@ -13,6 +13,7 @@ import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.guest.Request;
+import seedu.guest.model.guest.Room;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -77,6 +78,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String room} into an {@code Room}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code room} is invalid.
+     */
+    public static Room parseRoom(String room) throws ParseException {
+        requireNonNull(room);
+        String trimmedRoom = room.trim();
+        if (!Room.isValidRoom(trimmedRoom)) {
+            throw new ParseException(Room.MESSAGE_CONSTRAINTS);
+        }
+        return new Room(trimmedRoom);
     }
 
     /**
