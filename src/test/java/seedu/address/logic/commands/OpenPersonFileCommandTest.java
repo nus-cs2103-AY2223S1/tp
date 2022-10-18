@@ -25,45 +25,11 @@ class OpenPersonFileCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personFileToOpen = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        OpenPersonFileCommand openPersonFileCommand = new OpenPersonFileCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(
-                OpenPersonFileCommand.MESSAGE_OPEN_PERSON_FILE_SUCCESS, personFileToOpen);
-        CommandResult expectedResult = new CommandResult(expectedMessage);
-
-        try {
-            assertEquals(openPersonFileCommand.execute(model), expectedResult);
-        } catch (CommandException e) {
-            fail();
-        }
-    }
-
-    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         OpenPersonFileCommand openPersonFileCommand = new OpenPersonFileCommand(outOfBoundIndex);
 
         assertCommandFailure(openPersonFileCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personFileToOpen = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        OpenPersonFileCommand openPersonFileCommand = new OpenPersonFileCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(
-                OpenPersonFileCommand.MESSAGE_OPEN_PERSON_FILE_SUCCESS, personFileToOpen);
-        CommandResult commandResult = new CommandResult(expectedMessage);
-
-        try {
-            assertEquals(openPersonFileCommand.execute(model), commandResult);
-        } catch (CommandException e) {
-            fail();
-        }
     }
 
     @Test
