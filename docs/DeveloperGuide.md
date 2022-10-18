@@ -155,54 +155,6 @@ Classes used by multiple components are in the `taskbookbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sorting Task List
-
-#### Sorting Implementation
-
-This section details how the sorting of the tasks is implemented.
-
-The sorting of task list is facilitated by `ModelManager`. It implements `Model`, and contains a `filteredTasks` list which is the task list of TaskBook in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. A second field, `sortedList`, then stores `filteredList` wrapped in a `SortedList` from `javafx.collections.transformation`. Operations done on `filteredList` will be reflected in `sortedList` as the latter is the former with a `SortedList` wrapper.
-
-`SortedList` has the method `SortedList#setComparator(Comparator<? super E> comparator)` that will take in a comparator to sort the task list with. We thus implement the method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` to allow for setting of a comparator in `sortedList`.
-
-When the comparator is null, `sortedList` will be of the same order as `filteredList`. The default list order is chronological, by date and time the tasks were added.
-
-The `Ui` displays the `sortedList` version of the task list by default on the right side panel.
-
-#### Sorting Execution
-
-When the command `task sort s/SORT_TYPE` is entered, the `Ui` sends the command to `Logic`. `Logic` then identifies the correct type `TaskSortCommand` that was entered, and creates an instance of it. Each `TaskSortCommand` contains a `comparator` to set in `sortedList` in the `Model`. `Logic` finally executes the command, which then correctly sets the comparator in `sortedList` in `Model`.
-
-#### Example Usage
-
-Given below is an example usage scenario and how the sorting mechanism behaves at each step.
-
-Step 1: The user launches the application, which already contains a task list from previous usage. `sortedList` will be initialized in `ModelManager`. The initial `comparator` in `sortedList` will be null, so the tasks are sorted by the date and time they were added.
-
-Step 2: The user executes `task sort s/a` command to sort the tasks descriptions in alphabetical order. The `TaskSortCommandParser` uses `s/a` to determine that the command is a `TaskSortDescriptionAlphabeticalCommand`. This command calls `Model#updateSortedTaskList(Comparator<Task> comparator)`, which sets the comparator in `sortedList` to one that compares the strings of tasks, and the `Ui` displays the new ordering of the tasks given by `sortedList`, where tasks are alphabetically ordered by their descriptions.
-
-Step 3: The user executes `task sort s/ca` command to sort the tasks by when they were added in Task Book. The `TaskSortCommandParser` uses `s/ca` to determine that the command is a `TaskSortAddedChronologicalCommand`. This command calls `Model#resetSortedTaskList()`, which sets the comparator in `sortedList` to null, and the `Ui` displays the new ordering of the tasks given by `sortedList`, which will be the same ordering as the one that would be given by `filteredList`.
-
-The following sequence diagram shows how a sort by description alphabetical command is executed:
-
-![SortDescriptionAlphabeticalSequenceDiagram.png](images/SortDescriptionAlphabeticalSequenceDiagram.png)
-
-#### Design considerations:
-
-#### Aspect: Sorting command structure:
-
-* **Alternative 1 (current choice):** Have an abstract sort command from which all other sort commands must inherit from. 
-  * Pros: Follows Open-Closed Principle
-  * Cons: More code required
-* **Alternative 2:** Have only 1 sort command that has multiple methods, and the parser will choose which to execute.
-  * Pros: Less code required
-  * Cons: Violates Open-Closed Principle
-
-#### Aspect: Sorted List structure:
-
-* **Current choice:** Wrap the task list with a `FilteredList`, and the `FilteredList` with a `SortedList`.
-  * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedList` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
-
 ### \[Proposed\] Command History Navigation
 
 ### Command History Navigation
@@ -261,6 +213,54 @@ The following sequence diagram shows how the next command history navigation wor
 
 * **Current choice:** 1000 commands.
     * Rationale: To keep memory usage low, minimise the number of commands saved in the history. 1000 commands is a reasonably large enough number of commands to store and is sufficient for even advanced users.
+
+### Sorting Task List
+
+#### Sorting Implementation
+
+This section details how the sorting of the tasks is implemented.
+
+The sorting of task list is facilitated by `ModelManager`. It implements `Model`, and contains a `filteredTasks` list which is the task list of TaskBook in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. A second field, `sortedList`, then stores `filteredList` wrapped in a `SortedList` from `javafx.collections.transformation`. Operations done on `filteredList` will be reflected in `sortedList` as the latter is the former with a `SortedList` wrapper.
+
+`SortedList` has the method `SortedList#setComparator(Comparator<? super E> comparator)` that will take in a comparator to sort the task list with. We thus implement the method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` to allow for setting of a comparator in `sortedList`.
+
+When the comparator is null, `sortedList` will be of the same order as `filteredList`. The default list order is chronological, by date and time the tasks were added.
+
+The `Ui` displays the `sortedList` version of the task list by default on the right side panel.
+
+#### Sorting Execution
+
+When the command `task sort s/SORT_TYPE` is entered, the `Ui` sends the command to `Logic`. `Logic` then identifies the correct type `TaskSortCommand` that was entered, and creates an instance of it. Each `TaskSortCommand` contains a `comparator` to set in `sortedList` in the `Model`. `Logic` finally executes the command, which then correctly sets the comparator in `sortedList` in `Model`.
+
+#### Example Usage
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1: The user launches the application, which already contains a task list from previous usage. `sortedList` will be initialized in `ModelManager`. The initial `comparator` in `sortedList` will be null, so the tasks are sorted by the date and time they were added.
+
+Step 2: The user executes `task sort s/a` command to sort the tasks descriptions in alphabetical order. The `TaskSortCommandParser` uses `s/a` to determine that the command is a `TaskSortDescriptionAlphabeticalCommand`. This command calls `Model#updateSortedTaskList(Comparator<Task> comparator)`, which sets the comparator in `sortedList` to one that compares the strings of tasks, and the `Ui` displays the new ordering of the tasks given by `sortedList`, where tasks are alphabetically ordered by their descriptions.
+
+Step 3: The user executes `task sort s/ca` command to sort the tasks by when they were added in Task Book. The `TaskSortCommandParser` uses `s/ca` to determine that the command is a `TaskSortAddedChronologicalCommand`. This command calls `Model#resetSortedTaskList()`, which sets the comparator in `sortedList` to null, and the `Ui` displays the new ordering of the tasks given by `sortedList`, which will be the same ordering as the one that would be given by `filteredList`.
+
+The following sequence diagram shows how a sort by description alphabetical command is executed:
+
+![SortDescriptionAlphabeticalSequenceDiagram.png](images/SortDescriptionAlphabeticalSequenceDiagram.png)
+
+#### Design considerations:
+
+#### Aspect: Sorting command structure:
+
+* **Alternative 1 (current choice):** Have an abstract sort command from which all other sort commands must inherit from.
+    * Pros: Follows Open-Closed Principle
+    * Cons: More code required
+* **Alternative 2:** Have only 1 sort command that has multiple methods, and the parser will choose which to execute.
+    * Pros: Less code required
+    * Cons: Violates Open-Closed Principle
+
+#### Aspect: Sorted List structure:
+
+* **Current choice:** Wrap the task list with a `FilteredList`, and the `FilteredList` with a `SortedList`.
+    * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedList` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
 
 ### \[Proposed\] Undo/redo feature
 
