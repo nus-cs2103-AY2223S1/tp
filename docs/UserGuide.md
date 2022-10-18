@@ -176,7 +176,7 @@ Deletes all clients from the FinBook.
 
 Format: `delete all`
 
-* Deletes all clients shown.
+* Deletes all clients in FinBook.
 
 Examples:
 
