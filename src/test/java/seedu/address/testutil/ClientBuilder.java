@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
@@ -8,6 +10,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +29,7 @@ public class ClientBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private List<Meeting> meetings;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -36,6 +40,7 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        meetings = new ArrayList<>();
     }
 
     /**
@@ -47,6 +52,7 @@ public class ClientBuilder {
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
+        meetings = new ArrayList<>(clientToCopy.getMeetings());
     }
 
     /**
@@ -89,8 +95,13 @@ public class ClientBuilder {
         return this;
     }
 
+    public ClientBuilder withMeeting(Meeting meeting) {
+        this.meetings.add(meeting);
+        return this;
+    }
+
     public Client build() {
-        return new Client(name, phone, email, address, tags);
+        return new Client(name, phone, email, address, tags, meetings);
     }
 
 }

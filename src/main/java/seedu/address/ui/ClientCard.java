@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -65,7 +66,7 @@ public class ClientCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (client.hasMeeting()) {
-            ObservableList<Meeting> clientMeetings = client.getMeetings();
+            List<Meeting> clientMeetings = client.getMeetings();
             numMeetings.setText(Integer.toString(clientMeetings.size()));
             for (Meeting meeting : clientMeetings) {
                 String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),

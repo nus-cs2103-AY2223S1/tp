@@ -2,14 +2,9 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.NoConflictMeetingList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,7 +21,7 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final NoConflictMeetingList meetings;
+    private final List<Meeting> meetings;
 
 
     /**
@@ -39,13 +34,13 @@ public class Client {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.meetings = new NoConflictMeetingList();
+        this.meetings = new ArrayList<>();
     }
 
     /**
      * Construct a client with meetings
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, NoConflictMeetingList meetings) {
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Meeting> meetings) {
         requireAllNonNull(name, phone, email, address, tags, meetings);
         this.name = name;
         this.phone = phone;
@@ -75,8 +70,8 @@ public class Client {
         return !meetings.isEmpty();
     }
 
-    public ObservableList<Meeting> getMeetings() {
-        return meetings.asUnmodifiableObservableList();
+    public List<Meeting> getMeetings() {
+        return Collections.unmodifiableList(meetings);
     }
 
     /**

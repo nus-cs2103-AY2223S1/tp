@@ -17,7 +17,6 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -72,7 +71,7 @@ class JsonAdaptedClient {
     }
 
     /**
-     * Converts a given {@code Client} and {@Code JsonAdaptedMeeting} into this class for Jackson use.
+     * Converts a given {@code Client} and {@code JsonAdaptedMeeting} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source, JsonAdaptedMeeting adaptedMeeting) {
         meetings.add(adaptedMeeting);
@@ -135,8 +134,7 @@ class JsonAdaptedClient {
             return client;
         }
         for (JsonAdaptedMeeting meeting : meetings) {
-            final Meeting meetingToAdd = meeting.toModelType(client);
-            client.addMeeting(meetingToAdd);
+            client.addMeeting(meeting.toModelType(client));
         }
         return client;
     }

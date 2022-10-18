@@ -64,5 +64,4 @@ public class AddMeetingCommand extends Command {
         model.addMeeting(meetingToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd), CommandSpecific.MEETING);
     }
-
 }

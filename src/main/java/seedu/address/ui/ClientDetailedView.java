@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -42,7 +43,7 @@ public class ClientDetailedView extends UiPart<Region> {
         clientName.setText(client.getName().toString());
         phoneNumber.setText(client.getPhone().toString());
         email.setText(client.getEmail().toString());
-        ObservableList<Meeting> clientMeetings = client.getMeetings();
+        List<Meeting> clientMeetings = client.getMeetings();
         for (Meeting meeting : clientMeetings) {
             meetings.getChildren().add(new MeetingCondensedView(meeting).getRoot());
         }
