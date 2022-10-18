@@ -51,7 +51,7 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTelegram(VALID_TELEGRAM_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
+        // different interests -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withInterests(VALID_INTEREST_NETFLIX).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }

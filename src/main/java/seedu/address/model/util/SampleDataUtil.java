@@ -53,7 +53,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns an interest set containing the list of strings given.
      */
     public static Set<Interest> getInterestsSet(String... strings) {
         return Arrays.stream(strings)

@@ -84,7 +84,7 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
+        // different interests -> returns false
         editedAlice = new PersonBuilder(ALICE).withInterests(VALID_INTEREST_NETFLIX).build();
         assertFalse(ALICE.equals(editedAlice));
     }

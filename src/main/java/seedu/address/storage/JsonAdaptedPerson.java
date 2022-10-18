@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String handle;
     private final String username;
-    private final List<JsonAdaptedInterest> tagged = new ArrayList<>();
+    private final List<JsonAdaptedInterest> interests = new ArrayList<>();
     private final List<JsonAdaptedMod> mods = new ArrayList<>();
 
     /**
@@ -43,15 +43,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("handle") String handle,
                              @JsonProperty("username") String username,
-                             @JsonProperty("tagged") List<JsonAdaptedInterest> tagged,
+                             @JsonProperty("interests") List<JsonAdaptedInterest> interests,
                              @JsonProperty("mods") List<JsonAdaptedMod> mods) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.handle = handle;
         this.username = username;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (interests != null) {
+            this.interests.addAll(interests);
         }
         if (mods != null) {
             this.mods.addAll(mods);
@@ -79,7 +79,7 @@ class JsonAdaptedPerson {
             username = source.getGitHub().username;
         }
         handle = source.getTelegram().handle;
-        tagged.addAll(source.getInterests().stream()
+        interests.addAll(source.getInterests().stream()
                 .map(JsonAdaptedInterest::new)
                 .collect(Collectors.toList()));
         mods.addAll(source.getMods().stream()
@@ -95,7 +95,7 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Interest> interests = new ArrayList<>();
         final List<Mod> personMods = new ArrayList<>();
-        for (JsonAdaptedInterest interest : tagged) {
+        for (JsonAdaptedInterest interest : this.interests) {
             interests.add(interest.toModelType());
         }
         for (JsonAdaptedMod mod : mods) {
