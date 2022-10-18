@@ -31,7 +31,7 @@ public class BillCommand extends Command {
             + COMMAND_WORD + " 2 b/-10\n";
 
     public static final String MESSAGE_SUCCESS = "Updated bill of Guest: %1$s";
-    public static final String MESSAGE_NEGATIVE_BILL = "Updated bill cannot be negative";
+    public static final String MESSAGE_NEGATIVE_BILL = "Total bill cannot be negative";
 
     private final Index index;
     private final Bill bill;

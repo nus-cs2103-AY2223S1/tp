@@ -35,7 +35,7 @@ public class BillCommandTest {
     @Test
     public void execute_addBillUnfilteredList_success() {
         Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 0
-        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(VALID_BILL_POSITIVE));
+        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(VALID_BILL_POSITIVE)); // bill + 1 = 1
 
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
@@ -51,7 +51,7 @@ public class BillCommandTest {
     @Test
     public void execute_subtractBillUnfilteredList_success() {
         Guest guestToBill = model.getFilteredGuestList().get(INDEX_SECOND_GUEST.getZeroBased()); // bill = 1
-        BillCommand billCommand = new BillCommand(INDEX_SECOND_GUEST, new Bill(VALID_BILL_NEGATIVE));
+        BillCommand billCommand = new BillCommand(INDEX_SECOND_GUEST, new Bill(VALID_BILL_NEGATIVE)); // bill - 1 = 0
 
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_ZERO).build();
@@ -67,7 +67,7 @@ public class BillCommandTest {
     @Test
     public void execute_unchangedBillUnfilteredList_success() {
         Guest guestToBill = model.getFilteredGuestList().get(INDEX_SECOND_GUEST.getZeroBased()); // bill = 1
-        BillCommand billCommand = new BillCommand(INDEX_SECOND_GUEST, new Bill());
+        BillCommand billCommand = new BillCommand(INDEX_SECOND_GUEST, new Bill()); // bill + 0 = 1
 
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
@@ -84,8 +84,8 @@ public class BillCommandTest {
     public void execute_addBillFilteredList_success() {
         showGuestAtIndex(model, INDEX_FIRST_GUEST);
 
-        Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 1
-        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(VALID_BILL_POSITIVE));
+        Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 0
+        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(VALID_BILL_POSITIVE)); // bill + 1 = 1
 
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
@@ -103,7 +103,7 @@ public class BillCommandTest {
         showGuestAtIndex(model, INDEX_SECOND_GUEST);
 
         Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 1
-        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(VALID_BILL_NEGATIVE));
+        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(VALID_BILL_NEGATIVE)); // bill - 1 = 0
 
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_ZERO).build();
@@ -121,7 +121,7 @@ public class BillCommandTest {
         showGuestAtIndex(model, INDEX_SECOND_GUEST);
 
         Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 1
-        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill());
+        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill()); // bill + 0 = 1
 
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
@@ -132,6 +132,24 @@ public class BillCommandTest {
         expectedModel.setGuest(guestToBill, billedGuest);
 
         assertCommandSuccess(billCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_negativeBillUnfilteredList_failure() {
+        Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 0
+        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill(VALID_BILL_NEGATIVE)); // bill - 1 = -1
+
+        assertCommandFailure(billCommand, model, BillCommand.MESSAGE_NEGATIVE_BILL);
+    }
+
+    @Test
+    public void execute_negativeBillFilteredList_success() {
+        showGuestAtIndex(model, INDEX_SECOND_GUEST);
+
+        Guest guestToBill = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased()); // bill = 1
+        BillCommand billCommand = new BillCommand(INDEX_FIRST_GUEST, new Bill("-1.01")); // bill - 1.01 = -0.01
+
+        assertCommandFailure(billCommand, model, BillCommand.MESSAGE_NEGATIVE_BILL);
     }
 
     @Test

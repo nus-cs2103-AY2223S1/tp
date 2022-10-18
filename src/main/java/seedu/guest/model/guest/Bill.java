@@ -9,12 +9,11 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  */
 public class Bill {
     public static final String MESSAGE_CONSTRAINTS =
-            "Bills should only contain numerical digits, one decimal point, and one hyphen or plus sign.\n"
-                    + "If a decimal point is used, there must be 2 digits after it (e.g., 9.99).\n"
-                    + "A leading hyphen can be used to denote a negative value.\n"
-                    + "A leading plus sign can be used to denote a positive value.\n"
+            "Bills should only contain numerical digits, one decimal point (.), and one leading plus (+) or minus (-) "
+                    + "sign.\n"
+                    + "If a decimal point is used, there can be up to 2 digits after it (e.g., 2.5, 9.99).\n"
                     + "If no sign is used, the value is assumed to be positive.";
-    public static final String VALIDATION_REGEX = "^[-+]?\\d+(.\\d{2})?$";
+    public static final String VALIDATION_REGEX = "^[-+]?(\\d+(\\.\\d{0,2})?|\\d*\\.\\d{1,2})$";
     public final String value;
 
     /**

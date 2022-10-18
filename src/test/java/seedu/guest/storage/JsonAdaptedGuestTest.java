@@ -23,7 +23,7 @@ public class JsonAdaptedGuestTest {
     private static final String INVALID_DATE_RANGE = "13/09/22 - 13/09/22";
     private static final String INVALID_NUMBER_OF_GUESTS = "-1";
     private static final String INVALID_IS_ROOM_CLEAN = "possibly";
-    private static final String INVALID_BILL = "1.0";
+    private static final String INVALID_BILL = "1.000";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();

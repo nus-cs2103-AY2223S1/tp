@@ -137,7 +137,7 @@ Format: `bill INDEX b/BILL`
 
 * The existing bill value will be increased by the input value.
 
-* The bill value **must be either an integer or a double with 2 decimal places**
+* The bill value **must be either an integer or a double with up to 2 decimal places**
 
 Examples:
 *  `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
