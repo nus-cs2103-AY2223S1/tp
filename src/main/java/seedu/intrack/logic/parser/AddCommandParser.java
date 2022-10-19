@@ -48,17 +48,17 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
+        Status status = new Status("Progress"); // add command will add an in-progress status by default
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Status status = new Status("PROGRESS");
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         List<Task> taskList = new ArrayList<>();
         taskList.add(new Task());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Remark remark = new Remark("");
+        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
 
-        Internship internship = new Internship(name, position, phone, email, status, address, taskList,
-                tagList, remark);
+        Internship internship = new Internship(name, position, status, phone, email, address, taskList, tagList,
+                remark);
 
         return new AddCommand(internship);
     }

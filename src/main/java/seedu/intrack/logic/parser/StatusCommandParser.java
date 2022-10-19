@@ -37,11 +37,11 @@ public class StatusCommandParser implements Parser<StatusCommand> {
 
         switch (splitCommand[2].toUpperCase()) {
         case "O":
-            return new StatusCommand(index, new Status("OFFERED"));
+            return new StatusCommand(index, new Status("Offered"));
         case "P":
-            return new StatusCommand(index, new Status("PROGRESS"));
+            return new StatusCommand(index, new Status("Progress"));
         case "R":
-            return new StatusCommand(index, new Status("REJECTED"));
+            return new StatusCommand(index, new Status("Rejected"));
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StatusCommand.STATUS_COMMAND_CONSTRAINTS));

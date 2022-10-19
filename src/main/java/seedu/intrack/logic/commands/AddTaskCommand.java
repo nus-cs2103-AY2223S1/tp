@@ -23,12 +23,12 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the task of the internship identified by "
             + "the index number used in the displayed list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + " ADDTASK\n"
-            + "Example: " + COMMAND_WORD + " 1 Technical Interview /at 04-11-2022(17:00)";
+            + " DESCRIPTION /at TIME\n"
+            + "Example: " + COMMAND_WORD + " 1 Technical Interview /at 04-11-2022 17:00";
 
     public static final String TASK_COMMAND_CONSTRAINTS = "TASK must be in the format: \n"
             + COMMAND_WORD + " INDEX DESCRIPTION /at TIME\n"
-            + "TIME must be in the format dd-MM-yyyy(HH:mm)";
+            + "TIME must be in the format dd-MM-yyyy HH:mm";
 
     public static final String MESSAGE_UPDATE_TASK_SUCCESS = "Updated task of internship: %1$s";
 
@@ -60,10 +60,9 @@ public class AddTaskCommand extends Command {
         List<Task> editedTasks = new ArrayList<>(copyTasks);
         editedTasks.add(task);
 
-        Internship editedInternship = new Internship(internshipToEdit.getName(),
-                internshipToEdit.getPosition(), internshipToEdit.getPhone(),
-                internshipToEdit.getEmail(), internshipToEdit.getStatus(), internshipToEdit.getAddress(),
-                editedTasks, internshipToEdit.getTags(), internshipToEdit.getRemark());
+        Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
+                internshipToEdit.getStatus(), internshipToEdit.getPhone(), internshipToEdit.getEmail(),
+                internshipToEdit.getAddress(), editedTasks, internshipToEdit.getTags(), internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);

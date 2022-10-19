@@ -30,17 +30,7 @@ public class Status {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
 
-        switch (status.toUpperCase()) {
-        case "OFFERED":
-            this.value = "Offered";
-            break;
-        case "REJECTED":
-            this.value = "Rejected";
-            break;
-        case "PROGRESS":
-        default:
-            this.value = "Progress";
-        }
+        this.value = status;
     }
 
     /**
@@ -48,9 +38,9 @@ public class Status {
      */
     public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX)
-                && (Objects.equals(test.toUpperCase(), "OFFERED")
-                || Objects.equals(test.toUpperCase(), "PROGRESS")
-                || Objects.equals(test.toUpperCase(), "REJECTED"));
+                && ((Objects.equals(test, "Offered")
+                || Objects.equals(test, "Progress")
+                || Objects.equals(test, "Rejected")));
     }
 
     @Override

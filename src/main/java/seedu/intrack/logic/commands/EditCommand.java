@@ -104,16 +104,16 @@ public class EditCommand extends Command {
 
         Name updatedName = editInternshipDescriptor.getName().orElse(internshipToEdit.getName());
         Position updatedPosition = editInternshipDescriptor.getPosition().orElse(internshipToEdit.getPosition());
+        Status updatedStatus = internshipToEdit.getStatus(); // edit command does not allow editing status
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
-        Status updatedStatus = internshipToEdit.getStatus();
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         List<Task> updatedTasks = internshipToEdit.getTasks();
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
-        Remark updatedRemark = internshipToEdit.getRemark();
+        Remark updatedRemark = internshipToEdit.getRemark(); // edit command does not allow editing remarks
 
-        return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedStatus,
-                updatedAddress, updatedTasks, updatedTags, updatedRemark);
+        return new Internship(updatedName, updatedPosition, updatedStatus, updatedPhone, updatedEmail, updatedAddress,
+                updatedTasks, updatedTags, updatedRemark);
     }
 
     @Override
