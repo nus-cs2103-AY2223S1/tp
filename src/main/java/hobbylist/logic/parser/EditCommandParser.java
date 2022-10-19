@@ -30,7 +30,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME,
-                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_DATE);
+                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_STATUS);
 
         Index index;
 
@@ -51,6 +51,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editActivityDescriptor::setTags);
         parseDateForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_DATE)).ifPresent(editActivityDescriptor::setDate);
+        if (argMultimap.getValue(CliSyntax.PREFIX_STATUS).isPresent()) {
+            editActivityDescriptor
+                    .setStatus(ParserUtil.parseStatus(argMultimap.getValue(CliSyntax.PREFIX_STATUS)
+                            .get()));
+        }
         if (!editActivityDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
