@@ -96,7 +96,7 @@ class JsonAdaptedReview {
                     Rating.class.getSimpleName()));
         }
         if (!Rating.isValidRating(rating)) {
-            throw new IllegalValueException(Content.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
         }
         final Rating modelRating = new Rating(rating);
 

@@ -55,6 +55,9 @@ class JsonAdaptedStall {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        reviews.addAll(source.getReviews().stream()
+                .map(JsonAdaptedReview::new)
+                .collect(Collectors.toList()));
     }
 
     /**
