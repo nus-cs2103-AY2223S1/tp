@@ -16,6 +16,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 
+/**
+ * Edits the details of an existing event in the application.
+ */
 public class EditEventCommand extends Command {
 
     public static final String COMMAND_WORD = "editEvent";
@@ -42,6 +45,11 @@ public class EditEventCommand extends Command {
 
     private final EditEventDescriptor editEventDescriptor;
 
+    /**
+     * Constructor of the EditEventCommand class
+     * @param index of the event to be edited in the filtered event list
+     * @param editEventDescriptor details to edit the event with
+     */
     public EditEventCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
         requireNonNull(editEventDescriptor);
@@ -73,6 +81,10 @@ public class EditEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
+    /**
+     * Creates and returns a {@code Event} with the details of {@code eventToEdit} that is edited
+     * with details of {@code editEventDescriptor}
+     */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
 
@@ -98,6 +110,10 @@ public class EditEventCommand extends Command {
                 && editEventDescriptor.equals(((EditEventCommand) other).editEventDescriptor);
     }
 
+    /**
+     * Static class that stores the details to edit the event with.
+     * Each field that is non-null will replace the corresponding field value of the event.
+     */
     public static class EditEventDescriptor {
         private String eventTitle;
         private String date;
@@ -106,14 +122,19 @@ public class EditEventCommand extends Command {
 
         public EditEventDescriptor() {}
 
+        /**
+         * Constructor to create a {@code EditEventDescriptor} object
+         */
         public EditEventDescriptor(EditEventDescriptor copy) {
             setEventTitle(copy.eventTitle);
             setDate(copy.date);
             setTime(copy.time);
             setPurpose(copy.purpose);
-
-
         }
+
+        /**
+         * Returns true if at least one field is non-null.
+         */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(eventTitle, date, time, purpose);
         }

@@ -4,25 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.EditEventCommand.EditEventDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditEventCommand object
  */
 public class EditEventCommandParser implements Parser<EditEventCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditEventCommand
+     * and returns an EditEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditEventCommand parse(String args) throws ParseException {
@@ -53,7 +47,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditEventCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditEventCommand(index, editEventDescriptor);
