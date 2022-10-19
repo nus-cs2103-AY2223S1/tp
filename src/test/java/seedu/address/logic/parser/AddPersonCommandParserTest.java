@@ -91,6 +91,11 @@ public class AddPersonCommandParserTest {
         Person expectedPersonEmailAndPhone = new PersonBuilder(AMY).withEmail(null).withPhone(null).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + COMPANY_DESC_AMY,
                 new AddPersonCommand(expectedPersonEmailAndPhone));
+
+        // zero company
+        Person expectedPersonCompany = new PersonBuilder(AMY).withCompany(null).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
+                new AddPersonCommand(expectedPersonCompany));
     }
 
     @Test
