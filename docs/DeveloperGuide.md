@@ -244,7 +244,46 @@ _{more aspects and alternatives to be added}_
 
 #### Proposed Implementation
 
+The proposed implementation for Remark is similar to that of other details of Person.
+Firstly we include a Remark class under `seedu/address/Person/Model`.
+This class will contain all details about a remark, namely its Regex requirements and
+the string which is the remark itself.
+
+Note that a Remark field is optional when adding a Person entry into the AddressBook.
+Hence, the default value for a Remark is an empty String.
+
+There are only 2 commands which can modify the Remark for a Person. These are the 
+`add` command and the `edit` command.
+
+1. `add` Command (upon instantiating)
+   1. If the remark field is specified when instantiating a Person, for example:
+      `add n=JohnDoe p=98765432 e=JohnDoe@gmail.com a=Clementi r=REMARK`, their remark
+      will be REMARK. 
+   2. If not specified, it will be an empty String.
+2. `edit` Command (after instantiating)
+   1. If the remark field is specified when editing a Person, for example: 
+      `edit 1 r=ChangeRemark`, their remark will be changed to ChangeRemark.
+   2. If not specified, it will remain unchanged.
+
 #### Design considerations:
+
+**Aspect: How remark can be modified:**
+
+* **Alternative 1 (current choice):** Only at `add` and `edit` command.
+    * Pros: 
+      * Reduces cluttering of commands.
+      * More intuitive design as it agrees with the definition of `add` and `edit`.
+    * Cons: 
+      * Extra typing (`r=NewRemark`) to modify the Remark field.
+
+* **Alternative 2:** Create a `remark` command just to modify remarks.
+    * Pros: 
+      * Slightly less typing when editing Remark.
+    * Cons: 
+      * Remark is just like any other field, just like name and address.
+        Hence, it is by no mean special and does not deserve its own command.
+      * `edit` command no longer agrees with its definition to edit entries.
+
 
 ### \[Proposed\] Tag command
 
@@ -315,6 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user     | get things done fast with minimal typing                | save time                                                              |
 | `* *`    | user     | remember details that clients tell me about their lives | use them to form an emotional connection with clients                  |
 | `* *`    | user     | keep track of my client's phone number and address      | contact them easily                                                    |
+| `* *`    | user     | leave remarks of my clients                             | remember important details unique to each client                       |
 | `*`      | user     | sort clients by name                                    | locate a client easily                                                 |
 
 

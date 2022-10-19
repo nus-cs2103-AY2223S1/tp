@@ -24,12 +24,12 @@ import seedu.address.model.tag.Tag;
 public class RemoveTagCommandTest {
 
     @Test
-    public void contructor_nullIndex_throwsNullPointerException() {
+    public void constructor_nullIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new RemoveTagCommand(null, new HashSet<>()));
     }
 
     @Test
-    public void contructor_nullSet_throwsNullPointerException() {
+    public void constructor_nullSet_throwsNullPointerException() {
         assertThrows(NullPointerException.class, ()
                 -> new RemoveTagCommand(Index.fromZeroBased(0), null));
     }
