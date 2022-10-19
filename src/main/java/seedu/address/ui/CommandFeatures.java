@@ -56,7 +56,6 @@ public class CommandFeatures {
                 "%s\nFormat : %s\nExample : %s"),
                 description, format, example));
     }
-    
     public static ObservableList<CommandFeatures> getCommandFeaturesList() {
         return FXCollections.observableArrayList(
                 ADDPERSON_COMMAND_FEATURES,
