@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import longtimenosee.model.policy.AssignedPolicy;
 import longtimenosee.model.tag.Tag;
 
 /**
@@ -37,7 +38,7 @@ public class Person {
     // indicate pinned client
     private Boolean pin = false;
 
-    //private ArrayList<Policy> policies;
+    private Set<AssignedPolicy> assignedPolicies = new HashSet<>();
     private Birthday birthday;
     //private ArrayList<Event> events; // TODO: EventList class
     //private PersonNotes notes; //TODO: Just a string
@@ -79,6 +80,26 @@ public class Person {
         this.pin = pin;
     }
 
+    /**
+     * Constructor for person with assigned policies.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Birthday birthday, Income income, RiskAppetite ra,
+                  Set<AssignedPolicy> policies, boolean pin) {
+        requireAllNonNull(name, phone, email, address, tags, birthday, income, ra);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.timeStamp = LocalDateTime.now();
+        this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.income = income;
+        this.ra = ra;
+        this.pin = pin;
+        this.assignedPolicies = policies;
+    }
+
     public Name getName() {
         return name;
     }
@@ -100,6 +121,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable policy set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<AssignedPolicy> getAssignedPolicies() {
+        return Collections.unmodifiableSet(assignedPolicies);
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -113,6 +142,10 @@ public class Person {
 
     public boolean getPin() {
         return this.pin;
+    }
+
+    public boolean addPolicy(AssignedPolicy assignedPolicy) {
+        return assignedPolicies.add(assignedPolicy);
     }
 
     public Birthday getBirthday() {
