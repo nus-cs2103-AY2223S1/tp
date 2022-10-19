@@ -89,12 +89,16 @@ done faster and more securely than traditional GUI apps.
 
 Adds a client to the FinBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES
+t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS​`
+​`
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient
+  r/high pl/Prudential Health`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022 r/low
+  pl/NTUC Income Plan`
 
 ---
 
@@ -110,7 +114,8 @@ Format: `list`
 
 Edits an existing client in the FinBook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
+[t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -233,8 +238,11 @@ Imports data from a `JSON` or `CSV` file
         * `income`
         * `meeting date`
         * `tags`
-    * The data in each corresponding column must be valid
-        * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
+        * `risk`
+        * `plans`
+
+        * The data in each corresponding column must be valid
+          * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
 
 Format: `import PATH`
 
@@ -259,11 +267,11 @@ the data of your previous FinBook home folder. Alternatively, you may use the `i
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                             |
-|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022` |
-| **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                    |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                  |
-| **List**             | `list`                                                                                                                                                                                                       |
-| **Exit application** | `exit`                                                                                                                                                                                                       |
-| **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                 |
+| Action               | Format, Examples                                                                                                                                                                                                                                                                          |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient r/high pl/Prudential Health` |
+| **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                 |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com                                                                                                                               |
+| **List**             | `list`                                                                                                                                                                                                                                                                                    |
+| **Exit application** | `exit`                                                                                                                                                                                                                                                                                    |
+| **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
