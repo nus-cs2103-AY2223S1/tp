@@ -1,5 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
@@ -7,10 +11,9 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 
-import java.util.function.Predicate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+/**
+ * Parses input arguments and creates a new FindCommand object.
+ */
 public class FindSupplierCommandParser implements Parser<FindCommand> {
     public static final String PARSE_WORD = "find-s";
     /**

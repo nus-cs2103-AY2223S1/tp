@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
+/**
+ * Tests that a {@code Person}'s {@code Phone} matches any of the keywords given.
+ */
 public class PhoneContainsKeywordsPredicate<T extends Person> implements Predicate<T> {
     private final List<String> keywords;
 

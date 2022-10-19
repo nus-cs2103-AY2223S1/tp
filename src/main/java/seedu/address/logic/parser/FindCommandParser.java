@@ -8,8 +8,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Supplier;
 import seedu.address.model.person.PersonCategory;
+import seedu.address.model.person.Supplier;
 
 /**
  * Parses input arguments and creates a new FindCommand object.
