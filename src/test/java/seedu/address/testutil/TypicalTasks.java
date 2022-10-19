@@ -18,21 +18,14 @@ public class TypicalTasks {
 
 
     public static final Task TASK_A = new Task(VALID_TASK_A);
-
     public static final Task TASK_B = new Task(VALID_TASK_B);
-
     public static final Task TASK_C = new Task(VALID_TASK_C);
 
     private TypicalTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code TaskList} with all the typical tasks.
+     * Returns a {@code List} with all the typical tasks.
      */
-    public static TaskList getTypicalTaskList() {
-        List<Task> tasks = new ArrayList<>(getTypicalTasks());
-        return new TaskList(tasks);
-    }
-
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C));
     }
