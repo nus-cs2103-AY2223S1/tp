@@ -71,7 +71,7 @@ public class AddTaskCommand extends Command {
                 name = person.getName();
             }
         }
-        toAdd.addPersonName(name);
+        toAdd.setPersonName(name);
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

@@ -184,19 +184,21 @@ public class Task {
 
     /**
      * Returns the name of the person assigned to this task
-     *
-     * @param persons List of persons associated with the address book
      * @return the name of the person assigned to this task
      */
-    public String getPersonName() {
-        return this.personName.toString();
+    public Name getPersonName() {
+        return this.personName;
     }
 
-    public void addPersonName(Name personName) {
+    public void setPersonName(Name personName) {
         this.personName = personName;
     }
     public boolean getStatus() {
         return isDone;
+    }
+
+    public void updateName(String name) {
+        this.personName = new Name(name);
     }
 
     /**
@@ -295,6 +297,25 @@ public class Task {
     public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
         return isDone == IS_DONE_TRUE_STRING;
     }
+
+    /**
+     * Returns a new copy of the Task
+     *
+     * @return a copy of the task.
+     */
+    public Task copy() {
+        TaskName copyName= new TaskName(this.name.toString());
+        TaskCategory copyCat= new TaskCategory(this.category.getLevel(),this.category.getTaskCategoryType());
+        Description copyDescription = new Description(this.description.toString());
+        Priority copyPrioirty = new Priority(this.getPriority().getPriority());
+        TaskDeadline copyDeadline  = new TaskDeadline(this.deadline.getDeadline());
+        Email copyEmail = new Email(this.personEmailAddress.toString());
+        Boolean copyIsDone = this.isDone;
+        Task copy = new Task(copyName,copyDescription,copyPrioirty,copyCat,copyDeadline,copyEmail,copyIsDone);
+        return copy;
+
+    }
+
 
     /**
      * Returns true if test String is a valid isDone.

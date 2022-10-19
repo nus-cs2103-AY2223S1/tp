@@ -60,7 +60,7 @@ public class TaskCard extends UiPart<Region> {
         deadline.setText("Deadline: " + task.getDeadline().toString());
         email.setText("Email: " + task.getPersonEmailAddress().toString());
         status.setText("Status: " + booleanConvertor(task.getStatus()));
-        personName.setText("Assignee: " + task.getPersonName());
+        personName.setText("Assignee: " + task.getPersonName() );
     }
 
     public String booleanConvertor(boolean isDone) {
