@@ -20,8 +20,6 @@ import seedu.address.model.task.Task;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-
     public static final String MESSAGE_MODULE_NOT_PRESENT = "This module does not exist";
     public static final String MESSAGE_DUPLICATE_MODULE = "There are duplicate module(s) "
             + "present in the module list";
@@ -29,7 +27,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given tasks and modules.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
