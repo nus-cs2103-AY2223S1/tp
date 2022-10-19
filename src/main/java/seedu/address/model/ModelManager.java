@@ -214,7 +214,6 @@ public class ModelManager implements Model {
         addressBook.replaceModule(target, editedModule);
     }
 
-    
     //================================Task Commands=====================================
     @Override
     public ObservableList<Task> getFilteredTaskList() {
