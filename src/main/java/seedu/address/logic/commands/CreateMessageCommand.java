@@ -40,7 +40,7 @@ public class CreateMessageCommand extends MessageCommandGroup {
             return new CommandResult(String.format(MESSAGE_DUPLICATE_MESSAGE, toCreate));
         }
 
-        model.addMessage(toCreate);
+        model.createMessage(toCreate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }
 

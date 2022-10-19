@@ -98,7 +98,7 @@ public interface Model {
     /**
      * Adds the message to the address book.
      */
-    void addMessage(Message message);
+    void createMessage(Message message);
 
     /**
      * Deletes the message from the address book.
