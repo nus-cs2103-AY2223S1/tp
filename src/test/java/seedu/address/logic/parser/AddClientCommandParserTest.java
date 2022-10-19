@@ -38,7 +38,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(
                 new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
-                new ClientEmail(VALID_EMAIL_AMY), new ArrayList());
+                new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
         //compulsory and optional fields
         assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
