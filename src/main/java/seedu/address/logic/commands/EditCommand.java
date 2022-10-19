@@ -25,6 +25,7 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.ParentName;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -100,7 +101,7 @@ public class EditCommand extends Command {
         Name updatedStudentName = editStudentDescriptor.getStudentName().orElse(studentToEdit.getStudentName());
         Id updatedId = editStudentDescriptor.getId().orElse(studentToEdit.getId());
         Class updatedClassName = editStudentDescriptor.getClassName().orElse(studentToEdit.getClassName());
-        Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
+        ParentName updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
@@ -135,7 +136,7 @@ public class EditCommand extends Command {
         private Name studentName;
         private Id id;
         private Class className;
-        private Name parentName;
+        private ParentName parentName;
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
@@ -187,11 +188,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(className);
         }
 
-        public void setParentName(Name parentName) {
+        public void setParentName(ParentName parentName) {
             this.parentName = parentName;
         }
 
-        public Optional<Name> getParentName() {
+        public Optional<ParentName> getParentName() {
             return Optional.ofNullable(parentName);
         }
 

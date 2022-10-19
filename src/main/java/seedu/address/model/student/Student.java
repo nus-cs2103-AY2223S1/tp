@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -19,13 +20,13 @@ public class Student {
     private final Name studentName;
     private final Id id;
 
-    // Parent fields
-    private final Name parentName;
-    private final Phone phone;
-    private final Email email;
-
     // Class
     private final Class className;
+
+    // Parent fields
+    private final ParentName parentName;
+    private final Phone phone;
+    private final Email email;
 
     // Additional fields - may not be implemented
     private final Set<Tag> tags = new HashSet<>();
@@ -33,9 +34,9 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name studentName, Id id, Class className, Name parentName, Phone phone,
+    public Student(Name studentName, Id id, Class className, ParentName parentName, Phone phone,
                    Email email, Set<Tag> tags) {
-        requireAllNonNull(studentName, id, className, parentName, phone, email, tags);
+        requireAllNonNull(studentName, id, className, phone, email, tags);
         this.studentName = studentName;
         this.id = id;
         this.className = className;
@@ -57,7 +58,7 @@ public class Student {
         return className;
     }
 
-    public Name getParentName() {
+    public ParentName getParentName() {
         return parentName;
     }
 
