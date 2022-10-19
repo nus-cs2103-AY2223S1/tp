@@ -22,23 +22,23 @@ public class FeedbackTest {
 
     @Test
     public void equals() {
-        String feedback1String = "feedback 1";
-        Feedback feedback1 = new Feedback(feedback1String);
-        Feedback feedback2 = new Feedback("feedback 2");
+        String someFeedbackString = "feedback 1";
+        Feedback someFeedback = new Feedback(someFeedbackString);
+        Feedback otherFeedback = new Feedback("feedback 2");
 
         // same object -> returns true
-        assertTrue(feedback1.equals(feedback1));
+        assertTrue(someFeedback.equals(someFeedback));
 
         // different type -> returns false
-        assertFalse(feedback1.equals(1));
+        assertFalse(someFeedback.equals(1));
 
         // null -> returns false
-        assertFalse(feedback1.equals(null));
+        assertFalse(someFeedback.equals(null));
 
         // same values (copy) -> returns true
-        assertTrue(feedback1.equals(new Feedback(feedback1String)));
+        assertTrue(someFeedback.equals(new Feedback(someFeedbackString)));
 
         // different feedback -> returns false
-        assertFalse(feedback1.equals(feedback2));
+        assertFalse(someFeedback.equals(otherFeedback));
     }
 }
