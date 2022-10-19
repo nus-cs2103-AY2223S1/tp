@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
@@ -9,6 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.TaskCommand;
+import seedu.address.logic.commands.task.MarkTaskCommand;
+import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
 
@@ -45,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex, Consumer<? super TaskCommand> commandConsumer) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
@@ -61,6 +66,13 @@ public class TaskCard extends UiPart<Region> {
 
         isCompleted.setText("");
         isCompleted.setSelected(task.getCompleted());
+        isCompleted.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (oldValue) {
+                commandConsumer.accept(new UnmarkTaskCommand(Index.fromOneBased(displayedIndex)));
+            } else {
+                commandConsumer.accept(new MarkTaskCommand(Index.fromOneBased(displayedIndex)));
+            }
+        });
 
         List<String> contactNames =
                 task
