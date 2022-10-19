@@ -17,7 +17,7 @@
          <content>
             <AnchorPane>
                <children>
-                  <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="calendarDisplay" style="-fx-background-color: black" alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <columnConstraints>
                           <ColumnConstraints hgrow="ALWAYS" />
                           <ColumnConstraints hgrow="ALWAYS" />
