@@ -142,11 +142,11 @@ public class SetCommand extends Command {
          */
         public SetPersonDescriptor() {}
 
-        public void updateName(Name name) {
+        public void setName(Name name) {
             this.name = name;
         }
 
-        public void updateAddress(Address address) {
+        public void setAddress(Address address) {
             this.address = address;
         }
 
@@ -155,16 +155,16 @@ public class SetCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public void updateTags(Set<Tag> tags) {
+        public void setTags(Set<Tag> tags) {
             // Set tags to a defensive copy of the given set of Tags
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        public void updateRole(Role role) {
+        public void setRole(Role role) {
             this.role = role;
         }
 
-        public void updateTimezone(Timezone timezone) {
+        public void setTimezone(Timezone timezone) {
             this.timezone = timezone;
         }
 
@@ -178,7 +178,7 @@ public class SetCommand extends Command {
          * @param typeToSet The type of Contact to be updated
          * @param contactToSet The Contact to be updated
          */
-        public void updateContacts(ContactType typeToSet, Contact contactToSet) {
+        public void setContacts(ContactType typeToSet, Contact contactToSet) {
             contacts.put(typeToSet, contactToSet);
         }
 

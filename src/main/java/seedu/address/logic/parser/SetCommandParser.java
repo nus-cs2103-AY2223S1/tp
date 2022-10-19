@@ -51,42 +51,42 @@ public class SetCommandParser implements Parser<SetCommand> {
 
         SetPersonDescriptor setPersonDescriptor = new SetPersonDescriptor();
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            setPersonDescriptor.updateContacts(ContactType.EMAIL,
+            setPersonDescriptor.setContacts(ContactType.EMAIL,
                                                 ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            setPersonDescriptor.updateContacts(ContactType.PHONE,
+            setPersonDescriptor.setContacts(ContactType.PHONE,
                     ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_SLACK).isPresent()) {
-            setPersonDescriptor.updateContacts(ContactType.SLACK,
+            setPersonDescriptor.setContacts(ContactType.SLACK,
                     ParserUtil.parseSlack(argMultimap.getValue(PREFIX_SLACK).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            setPersonDescriptor.updateContacts(ContactType.TELEGRAM,
+            setPersonDescriptor.setContacts(ContactType.TELEGRAM,
                     ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            setPersonDescriptor.updateName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            setPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            setPersonDescriptor.updateAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            setPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
 
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
-            setPersonDescriptor.updateRole(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
+            setPersonDescriptor.setRole(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TIMEZONE).isPresent()) {
-            setPersonDescriptor.updateTimezone(ParserUtil.parseTimezone(argMultimap.getValue(PREFIX_TIMEZONE).get()));
+            setPersonDescriptor.setTimezone(ParserUtil.parseTimezone(argMultimap.getValue(PREFIX_TIMEZONE).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(setPersonDescriptor::updateTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(setPersonDescriptor::setTags);
         return new SetCommand(setPersonDescriptor);
     }
 
