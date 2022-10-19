@@ -11,15 +11,14 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.position.Student;
 
 /**
- * Changes the grade of an existing student in the address book.
+ * Adds assignments to all existing students in the address book.
  */
 public class AddAssignmentsCommand extends Command {
     public static final String COMMAND_WORD = "assignments";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": adds assignments. Format: [name] w/[weightage]";
-
-    public static final String MESSAGE_ADD_ASSIGNMENTS_SUCCESS = "Added Assignments to all students";
+    public static final String MESSAGE_ADD_ASSIGNMENTS_SUCCESS = "Added Assignments to all students.";
 
     private final String assignments;
 
@@ -49,8 +48,16 @@ public class AddAssignmentsCommand extends Command {
             Person personToEdit = lastShownList.get(i);
             if ((personToEdit.getPosition() instanceof Student)) {
                 Student currPosition = (Student) personToEdit.getPosition();
-                currPosition.setAssignments(assignments);
-                Person editedPerson = personToEdit;
+                Student editedPosition = new Student(currPosition.getAttendance(),
+                        currPosition.getOverallGrade(),
+                        currPosition.setAssignments(assignments));
+                Person editedPerson = new Person(personToEdit.getName(),
+                        personToEdit.getPhone(),
+                        personToEdit.getEmail(),
+                        editedPosition,
+                        personToEdit.getAddress(),
+                        personToEdit.getRemark(),
+                        personToEdit.getTags());
 
                 model.setPerson(personToEdit, editedPerson);
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -62,7 +69,8 @@ public class AddAssignmentsCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the availability is edited for
+     * Generates a command execution success message based on whether the assignments are added to all existing
+     * students in the address book
      * {@code personToEdit}.
      */
     private String generateSuccessMessage() {
@@ -78,7 +86,7 @@ public class AddAssignmentsCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AvailabilityCommand)) {
+        if (!(other instanceof AddAssignmentsCommand)) {
             return false;
         }
 

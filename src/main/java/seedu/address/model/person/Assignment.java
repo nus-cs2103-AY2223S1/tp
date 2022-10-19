@@ -21,8 +21,9 @@ public class Assignment {
             "Weightage should be in terms of percentages, i.e. 0 - 100";
 
     private final String name;
-    private final String grade;
+    private String grade;
     private final String weightage;
+    private boolean isGradeUpdated;
 
     /**
      * Constructs an {@code Assignment}.
@@ -38,6 +39,7 @@ public class Assignment {
         this.name = name;
         this.grade = "0/0";
         this.weightage = weightage;
+        this.isGradeUpdated = false;
     }
 
     /**
@@ -56,12 +58,18 @@ public class Assignment {
         this.name = name;
         this.grade = grade;
         this.weightage = weightage;
+        this.isGradeUpdated = false;
     }
     /**
      * Returns if a given string is a valid grade.
      */
     public static boolean isValidGrade(String test) {
-        return test.matches(GRADE_VALIDATION_REGEX);
+        if (!test.matches(GRADE_VALIDATION_REGEX)) {
+            return false;
+        } else {
+            String[] split = test.split("/");
+            return Integer.parseInt(split[0]) <= Integer.parseInt(split[1]);
+        }
     }
 
     /**
@@ -69,6 +77,26 @@ public class Assignment {
      */
     public static boolean isValidWeightage(String test) {
         return test.matches(WEIGHTAGE_VALIDATION_REGEX);
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+        this.isGradeUpdated = true;
+    }
+
+    public int getWeightage() {
+        return Integer.parseInt(weightage);
+    }
+
+    public float getGradePercentage() {
+        float gradeAchieved = (float) Integer.parseInt(grade.split("/")[0]);
+        float fullMark = (float) Integer.parseInt(grade.split("/")[1]);
+        float gradePercentage = gradeAchieved / fullMark;
+        return gradePercentage;
+    }
+
+    public boolean getIsGradeUpdated() {
+        return isGradeUpdated;
     }
 
     @Override
