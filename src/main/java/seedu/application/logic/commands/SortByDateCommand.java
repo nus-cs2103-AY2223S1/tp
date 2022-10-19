@@ -8,6 +8,7 @@ import seedu.application.model.Model;
  */
 public class SortByDateCommand extends SortCommand {
 
+    public static final String ORDER_KEYWORD = "date";
     public static final String MESSAGE_SUCCESS = "Sorted application list in%1$s chronological order";
 
     public SortByDateCommand(boolean shouldReverse) {

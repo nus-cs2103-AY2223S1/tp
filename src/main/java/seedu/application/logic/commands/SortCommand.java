@@ -9,15 +9,12 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_REVERSE;
 public abstract class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String ORDER_COMPANY_WORD = "company";
-    public static final String ORDER_POSITION_WORD = "position";
-    public static final String ORDER_DATE_WORD = "date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the application list "
             + "in a specified order (either by company, position, or date) "
             + "and optionally in reverse.\n"
             + "Parameters: [" + PREFIX_ORDER + "ORDER] [" + PREFIX_REVERSE + "]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + ORDER_DATE_WORD + " " + PREFIX_REVERSE;
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "date " + PREFIX_REVERSE;
 
     private final boolean shouldReverse;
 

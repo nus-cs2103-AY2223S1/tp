@@ -8,6 +8,7 @@ import seedu.application.model.Model;
  */
 public class SortByPositionCommand extends SortCommand {
 
+    public static final String ORDER_KEYWORD = "position";
     public static final String MESSAGE_SUCCESS = "Sorted application list in%1$s order of position";
 
     public SortByPositionCommand(boolean shouldReverse) {
