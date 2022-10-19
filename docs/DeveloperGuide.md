@@ -246,11 +246,63 @@ _{more aspects and alternatives to be added}_
 
 #### Design considerations:
 
-### \[Proposed\] Tag command
+### Message command
 
-#### Proposed Implementation
+#### Implementation
+
+The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file. 
+
+The following commands are provided:
+
+`create`  — Create a message template
+
+`delete`  — Delete the specified message template
+
+`generate`  — Using the specified message template and client, generate a message for client. 
+
+Creation and deletion are exposed in the `Model` interface as `Model#addMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
+
+The following class diagram shows how messages are implemented:
+
+![UndoRedoState4](images/MessageClassDiagram.png)
+
+**Given below is an example usage scenario of message generation**
+
+Step 1. The user creates a message template. A new `Message` object is created in `CreateMessageParser`. Then, `CreateMessageCommand#execute()` calls `ModelManager#createMessage()`, which calls `AddressBook#createMessage()`, which adds the message into `AddressBook#messages`
+
+```
+message create Hello {name}, long time no see! Are you free tomorrow? I'd like to share something exciting with you!
+```
+
+Step 2: The user generates a message template for Bob (id=4 in the list), an early-stage client. In `GenerateMessageCommand#execute()`, {name} is replaced with the target person's `fullName`.
+
+```
+message generate 4 1
+```
+
+*Hello Bob, long time no see! Are you free tomorrow? I'd like to share something exciting with you!*
+
+Step 3: The user realises his first attempt at a pitch isn't working well, so they delete the message from the address book. `DeleteMessageCommand#execute()` calls `ModelManager#deleteMessage()`, which calls `AddressBook#deleteMessage()`, which deletes the message from `AddressBook#messages`
+
+```
+message delete 1
+```
 
 #### Design considerations:
+
+- **Aspect: Allow edting**
+  
+  - Alternative 1 (current choice): Don't allow editing
+    
+    - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
+    
+    - Cons: Less convenient when user actually wants to edit message templates
+  
+  - Alternative 2: Allow editing
+    
+    - Pros: (Slightly) more convenient
+    
+    - Cons: More complicated command set
 
 ### \[Proposed\] Filter command
 
