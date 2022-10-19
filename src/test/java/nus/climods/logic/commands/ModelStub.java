@@ -1,6 +1,6 @@
 package nus.climods.logic.commands;
 
-import java.util.Optional;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -54,7 +54,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean filteredListhasUserModule(UserModule module) {
+    public boolean filteredListHasUserModule(UserModule module) {
         return hasModule;
     }
 
@@ -78,17 +78,17 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
-
-    }
-
-    @Override
     public ObservableList<Module> getFilteredModuleList() {
         return null;
     }
 
     @Override
     public void setFilteredModuleList(Predicate<Module> predicate) {
+
+    }
+
+    @Override
+    public void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator) {
 
     }
 }
