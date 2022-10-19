@@ -8,7 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.AMY;
+import static seedu.address.testutil.TypicalClients.BENSON;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -27,6 +29,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
 import seedu.address.storage.JsonJeeqTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -91,6 +94,14 @@ public class LogicManagerTest {
     @Test
     public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredClientList().remove(0));
+    }
+    @Test
+    private void testCalculate_totalTransactions() {
+        UniqueClientList clientList = new UniqueClientList();
+        clientList.add(ALICE);
+        clientList.add(BENSON);
+        assertEquals(logic.calculateTotalTransaction(clientList.asUnmodifiableObservableList()),
+                clientList.calculateTotalTransaction());
     }
 
     /**
@@ -159,4 +170,5 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
+
 }
