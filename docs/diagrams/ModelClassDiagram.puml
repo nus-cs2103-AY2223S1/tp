@@ -14,12 +14,24 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class "Name" as PersonName
+Class "Name" as UserName
+Class "Tag" as PersonTag
+Class "Tag" as UserTag
+Class "Email" as PersonEmail
+Class "Email" as UserEmail
+Class "Phone" as PersonPhone
+Class "Phone" as UserPhone
+Class "Address" as PersonAddress
+Class "Address" as UserAddress
+Class "CurrentModule" as PersonCurrentModule
+Class "CurrentModule" as UserCurrentModule
+Class "PreviousModule" as PersonPreviousModule
+Class "PreviousModule" as UserPreviousModule
+Class "PlannedModule" as PersonPlannedModule
+Class "PlannedModule" as UserPlannedModule
 
+Class User
 }
 
 Class HiddenOutside #FFFFFF
@@ -35,16 +47,33 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" User
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> PersonName
+Person *--> PersonPhone
+Person *--> PersonEmail
+Person *--> PersonAddress
+Person *--> "*" PersonTag
+Person *--> "*" PersonCurrentModule
+Person *--> "*" PersonPlannedModule
+Person *--> "*" PersonPreviousModule
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+PersonName -[hidden]right-> PersonPhone
+PersonPhone -[hidden]right-> PersonAddress
+PersonAddress -[hidden]right-> PersonEmail
+
+User *--> UserName
+User *--> UserPhone
+User *--> UserEmail
+User *--> UserAddress
+User *--> "*" UserTag
+User *--> "*" UserCurrentModule
+User *--> "*" UserPlannedModule
+User *--> "*" UserPreviousModule
+
+UserName -[hidden]right-> UserPhone
+UserPhone -[hidden]right-> UserAddress
+UserAddress -[hidden]right-> UserEmail
 
 ModelManager -->"~* filtered" Person
 @enduml

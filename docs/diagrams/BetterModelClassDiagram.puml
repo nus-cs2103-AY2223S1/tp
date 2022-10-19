@@ -4,18 +4,59 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+Class "Name" as PersonName
+Class "Name" as UserName
+Class "Tag" as PersonTag
+Class "Tag" as UserTag
+Class "Email" as PersonEmail
+Class "Email" as UserEmail
+Class "Phone" as PersonPhone
+Class "Phone" as UserPhone
+Class "Address" as PersonAddress
+Class "Address" as UserAddress
+Class "CurrentModule" as PersonCurrentModule
+Class "CurrentModule" as UserCurrentModule
+Class "PreviousModule" as PersonPreviousModule
+Class "PreviousModule" as UserPreviousModule
+Class "PlannedModule" as PersonPlannedModule
+Class "PlannedModule" as UserPlannedModule
 
-UniqueTagList *-right-> "*" Tag
-UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
+AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" UniqueTagList
+AddressBook *--> "1" UniqueCurrentModuleList
+AddressBook *--> "1" UniquePreviousModuleList
+AddressBook *--> "1" UniquePlannedModuleList
+AddressBook *--> "1" User
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+
+UniqueTagList *--> "*" Tag
+UniquePersonList --> Person
+
+UniqueCurrentModuleList *--> "*" PersonCurrentModule
+UniquePreviousModuleList *--> "*" PersonPreviousModule
+UniquePlannedModuleList *--> "*" PersonPlannedModule
+UniqueCurrentModuleList *--> "*" UserCurrentModule
+UniquePreviousModuleList *--> "*" UserPreviousModule
+UniquePlannedModuleList *--> "*" UserPlannedModule
+
+Person --> "*" PersonTag
+Person --> "*" PersonCurrentModule
+Person --> "*" PersonPlannedModule
+Person --> "*" PersonPreviousModule
+
+Person *--> PersonName
+Person *--> PersonPhone
+Person *--> PersonEmail
+Person *--> PersonAddress
+
+User --> "*" UserTag
+User --> "*" UserCurrentModule
+User --> "*" UserPlannedModule
+User --> "*" UserPreviousModule
+
+User *--> UserName
+User *--> UserPhone
+User *--> UserEmail
+User *--> UserAddress
 @enduml
