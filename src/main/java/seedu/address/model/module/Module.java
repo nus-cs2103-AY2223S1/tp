@@ -7,7 +7,7 @@ import seedu.address.logic.commands.EditModuleCommand;
 /**
  * Module class represents a Module being taken.
  */
-public class Module {
+public class Module implements Comparable<Module> {
     private final ModuleCode moduleCode;
 
     /**
@@ -66,4 +66,8 @@ public class Module {
         return getModuleCode().toString();
     }
 
+    @Override
+    public int compareTo(Module mod) {
+        return this.getModuleCode().moduleCode.compareTo(mod.getModuleCode().moduleCode);
+    }
 }

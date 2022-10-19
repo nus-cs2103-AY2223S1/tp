@@ -157,4 +157,6 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
+    void sortTaskList(String criteria);
+
 }

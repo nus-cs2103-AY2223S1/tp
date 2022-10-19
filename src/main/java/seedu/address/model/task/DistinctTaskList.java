@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,6 +21,8 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
  */
 public class DistinctTaskList implements Iterable<Task> {
 
+    public static final String CRITERIA_CONSTRAINTS =
+            "The sorting criteria should be either priority, deadline, module or description";
     public final ObservableList<Task> taskList = FXCollections.observableArrayList();
     public final ObservableList<Task> unmodifiableTaskList = FXCollections
             .unmodifiableObservableList(taskList);
@@ -104,6 +107,47 @@ public class DistinctTaskList implements Iterable<Task> {
         if (!taskList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    /**
+     * Sorts the tasks stored in the task list.
+     *
+     * @param criteria The criteria used for sorting.
+     */
+    public void sortTasks(String criteria) {
+        //@@author dlimyy-reused
+        //Reused from https://stackoverflow.com/questions/51186174/
+        //with slight modifications
+        if (criteria.equals("priority")) {
+            FXCollections.sort(taskList, Comparator.comparing(Task::getPriorityTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+        }
+        if (criteria.equals("deadline")) {
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDeadlineTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+        }
+        if (criteria.equals("module")) {
+            FXCollections.sort(taskList, Comparator.comparing(Task::getModule,
+                    Comparator.naturalOrder()));
+        }
+        if (criteria.equals("description")) {
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDescription,
+                    Comparator.naturalOrder()));
+        }
+        //@@author
+    }
+
+    /**
+     * Checks whether the criteria given by the user is valid.
+     *
+     * @param criteria The criteria that is being checked for validity.
+     * @return true if the criteria is valid; else return false.
+     */
+    public static boolean isValidCriteria(String criteria) {
+        return criteria.equalsIgnoreCase("priority")
+                || criteria.equalsIgnoreCase("deadline")
+                || criteria.equalsIgnoreCase("module")
+                || criteria.equalsIgnoreCase("description");
     }
 
     @Override

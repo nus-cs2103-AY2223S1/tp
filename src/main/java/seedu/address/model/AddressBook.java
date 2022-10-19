@@ -222,6 +222,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.replaceModule(target, editedModule);
     }
 
+    /**
+     * Sorts the task list in the address book.
+     *
+     * @param criteria The criteria used for sorting the task list.
+     */
+    public void sortTaskList(String criteria) {
+        requireNonNull(criteria);
+        tasks.sortTasks(criteria);
+    }
+
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.getUnmodifiableTaskList();

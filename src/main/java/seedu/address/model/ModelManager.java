@@ -227,4 +227,10 @@ public class ModelManager implements Model {
         taskFilteredList.setPredicate(predicate);
     }
 
+    @Override
+    public void sortTaskList(String criteria) {
+        requireNonNull(criteria);
+        addressBook.sortTaskList(criteria);
+    }
+
 }
