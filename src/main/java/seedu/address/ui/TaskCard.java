@@ -31,6 +31,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Button priorityTag;
 
+    @FXML
+    private Button deadlineTag;
+
     /**
      * Constructor of the TaskCard. Sets the task and the position.
      *
@@ -47,6 +50,10 @@ public class TaskCard extends UiPart<Region> {
         if (task.getPriorityTag() != null) {
             priorityTag.setText(task.getPriorityTag().status);
             priorityTag.setVisible(true);
+        }
+        if (task.getDeadlineTag() != null) {
+            deadlineTag.setText(task.getDeadlineTag().toString());
+            deadlineTag.setVisible(true);
         }
     }
 }

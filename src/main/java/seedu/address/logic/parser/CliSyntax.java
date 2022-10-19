@@ -19,4 +19,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_EXAM_DESCRIPTION = new Prefix("ex/");
     public static final Prefix PREFIX_EXAM_DATE = new Prefix("ed/");
 
+    public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
+
 }

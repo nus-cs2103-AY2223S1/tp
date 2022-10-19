@@ -6,7 +6,9 @@ import java.util.Objects;
 
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.module.Module;
+import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
+import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
 import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
 
 /**
@@ -17,6 +19,7 @@ public class Task {
     private final Module module;
     private final TaskDescription description;
     private final PriorityTag priorityTag;
+    private final DeadlineTag deadlineTag;
     private final TaskStatus status;
 
     /**
@@ -31,6 +34,7 @@ public class Task {
         this.description = description;
         this.status = TaskStatus.INCOMPLETE;
         priorityTag = null;
+        deadlineTag = null;
     }
 
     /**
@@ -45,6 +49,7 @@ public class Task {
         this.description = description;
         this.status = status;
         priorityTag = null;
+        deadlineTag = null;
     }
 
     /**
@@ -56,11 +61,13 @@ public class Task {
      * @param status The completion status of the task.
      * @param priorityTag The tag marking the priority status of the task.
      */
-    public Task(Module module, TaskDescription description, TaskStatus status, PriorityTag priorityTag) {
+    public Task(Module module, TaskDescription description, TaskStatus status, PriorityTag priorityTag,
+            DeadlineTag deadlineTag) {
         this.module = module;
         this.description = description;
         this.status = status;
         this.priorityTag = priorityTag;
+        this.deadlineTag = deadlineTag;
     }
 
     public TaskDescription getDescription() {
@@ -94,7 +101,7 @@ public class Task {
      * and returns the task.
      */
     public Task mark() {
-        return new Task(module, description, TaskStatus.COMPLETE, priorityTag);
+        return new Task(module, description, TaskStatus.COMPLETE, priorityTag, deadlineTag);
     }
 
     public Task setPriorityTag(PriorityTag tag) {
@@ -102,7 +109,7 @@ public class Task {
         if (priorityTag != null) {
             throw new PriorityTagAlreadyExistsException();
         }
-        return new Task(module, description, status, tag);
+        return new Task(module, description, status, tag, deadlineTag);
     }
 
     public boolean hasPriorityTag() {
@@ -113,12 +120,28 @@ public class Task {
         return priorityTag;
     }
 
+    public boolean hasDeadlineTag() {
+        return deadlineTag != null;
+    }
+
+    public DeadlineTag getDeadlineTag() {
+        return deadlineTag;
+    }
+
+    public Task setDeadlineTag(DeadlineTag tag) {
+        requireNonNull(tag);
+        if (deadlineTag != null) {
+            throw new DeadlineTagAlreadyExistsException();
+        }
+        return new Task(module, description, status, priorityTag, tag);
+    }
+
     /**
      * Unmarks (labels as incomplete) the task
      * and returns the task.
      */
     public Task unmark() {
-        return new Task(module, description, TaskStatus.INCOMPLETE);
+        return new Task(module, description, TaskStatus.INCOMPLETE, priorityTag, deadlineTag);
     }
 
     /**
@@ -130,7 +153,7 @@ public class Task {
 
         Module updatedModule = editTaskDescriptor.getModule().orElse(module);
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
-        return new Task(updatedModule, updatedDescription, status);
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
     }
 
     @Override

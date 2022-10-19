@@ -14,7 +14,14 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_RIGHT" spacing="10">
-                <Button fx:id="priorityTag" focusTraversable="false" mouseTransparent="true" style="-fx-background-color: #D0F4FF; -fx-border-color: black; -fx-border-radius: 5; -fx-text-fill: black; -fx-background-radius: 5;" textFill="black" visible="false" />
+                <Button fx:id="priorityTag" focusTraversable="false" mouseTransparent="true"
+                        style="-fx-background-color: #D0F4FF; -fx-border-color: black;
+                        -fx-border-radius: 5; -fx-text-fill: black; -fx-background-radius: 5;"
+                        textFill="black" visible="false" />
+                <Button fx:id="deadlineTag" focusTraversable="false" mouseTransparent="true"
+                        style="-fx-background-color: #D0F4FF; -fx-border-color: black;
+                        -fx-border-radius: 5; -fx-text-fill: black; -fx-background-radius: 5;"
+                        textFill="black" visible="false" />
                 <padding>
                     <Insets top="5" left="5" right="15" />
                 </padding>
