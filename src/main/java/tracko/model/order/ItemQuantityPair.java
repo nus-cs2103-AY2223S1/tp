@@ -35,7 +35,7 @@ public class ItemQuantityPair {
      * Returns the item name of the referenced {@code Item} object of this ItemQuantityPair.
      */
     public String getItemName() {
-        return getItem().getItemName().toString();
+        return item.getItemName().toString();
     }
 
     /**
@@ -63,12 +63,12 @@ public class ItemQuantityPair {
      * Returns the quantity value of the referenced {@code Quantity} object of this ItemQuantityPair.
      */
     public Integer getQuantityValue() {
-        return getQuantity().getQuantity();
+        return quantity.getQuantity();
     }
 
     @Override
     public String toString() {
-        return this.getQuantity() + " * " + this.getItemName();
+        return quantity + " * " + this.getItemName();
     }
 
     @Override
