@@ -219,6 +219,37 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+### \[Proposed\] Timetable feature
+
+#### Proposed Implementation
+
+The proposed timetable feature is an extension of `CurrentModule` with additional class variables `lecture`,`tutorial` and `link`.
+
+This allows the user to conveniently view his/her upcoming classes as well as collate the links related to the module, such as Zoom lectures,
+project Google doc, or module websites such as Coursemology, Canvas and Luminus.
+
+Additionally, the following classes and methods are implemented to support adding, deleting and editing the aforementioned class variables:
+
+Create a parent class `Lesson` and classes `Lab`, `Lecture` and `Tutorial` extends from it.
+* `addTutorial(int from, String to, String day)` — Adds the tutorial time to the address book.
+* `deleteTutorial()` — Deletes the tutorial time to the address book.
+* `editTutorial(int from, int to, String day)` — Edits the tutorial time in the address book.
+* `addLecture(int from, int to, String day)` — Adds the lecture time to the address book.
+* `deleteLecture()` — Deletes the tutorial time in the address book.
+* `editLecture(int from, int to, String day)` — Edits the lecture time in the address book.
+* `addLab(int from, int to, String day)` — Adds the lab time to the address book.
+* `deleteLab()` — Deletes the lab time from the address book.
+* `editLab(int index, int from, int to, String day)` — Edits the lab time in the address book.
+* `addLink(int from, int to, String day)` — Adds the link to the address book.
+* `deleteLink()` — Deletes the link from the address book.
+* `editLink(int index, int from, int to, String day)` — Edits the link in the address book.
+
+In class ``
+
+Given below is an example sequence diagram to illustrate how the timetable mechanism behaves after the user attempts to add a tutorial.
+
+![Timetable](images/Timetable.png)
+
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -231,6 +262,17 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+**Aspect: How to implement the timetable feature:**
+
+* **Alternative 1 (current choice):** Displaying in the main window.
+    * Pros: User does not have to run a command to see his/her timetable.
+    * Cons: User may have to scroll if there is insufficient space to see the full timetable.
+
+* **Alternative 2:** User runs a command to display the full timetable.
+    * Pros: User will have a larger space to see the timetable.
+    * Cons: We must ensure the implementation of all commands are correct and the UI updates correctly.
+
 
 _{more aspects and alternatives to be added}_
 
@@ -267,18 +309,20 @@ We help NUS CS Students to have a collection of fellow NUS CS Students to find p
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                                        |
-|--------| ------------------------------------------ |--------------------------------------------------| ---------------------------------------------------------------------- |
-| `* * *` | new user                                   | see usage instructions                           | refer to instructions when I forget how to use the App                 |
-| `* * *` | user                                       | save a new contact                               | contact them if i wish to collaborate with them                                                                       |
-| `* * *` | user                                       | delete a person                                  | remove entries that I no longer need                                   |
-| `* * *` | user                                       | list out all my friend's contact/ info           | look through all my contacts at once |
-| `* * *` | user                                       | keep track of the modules I have taken           | plan my modules easily                |
-| `* * *` | user                                       | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                |
-| `* * *` | user                                       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                |
-| `* * *` | user                                       | see what modules my friends are planning to take | plan my modules together with them                |
-| `* *`  | user                                       | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date                |
-| `*`    | user                                       | view my own exam schedule                        | be clear on which exams are coming up                |
+| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                                                         |
+|--------| ------------------------------------------ |--------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *` | new user                                   | see usage instructions                           | refer to instructions when I forget how to use the App                                  |
+| `* * *` | user                                       | save a new contact                               | contact them if i wish to collaborate with them                                         |
+| `* * *` | user                                       | delete a person                                  | remove entries that I no longer need                                                    |
+| `* * *` | user                                       | list out all my friend's contact/ info           | look through all my contacts at once                                                    |
+| `* * *` | user                                       | keep track of the modules I have taken           | plan my modules easily                                                                  |
+| `* * *` | user                                       | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
+| `* * *` | user                                       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
+| `* * *` | user                                       | see what modules my friends are planning to take | plan my modules together with them                                                      |
+| `* *`  | user                                       | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date |
+| `*`    | user                                       | view my own exam schedule                        | be clear on which exams are coming up  <br/>                                            |
+| `*`    | user                                       | view my timetable                                | be clear on what classes are coming up                                                  |
+
 
 *{More to be added}*
 
