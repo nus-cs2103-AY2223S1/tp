@@ -27,7 +27,7 @@ public class SampleDataUtil {
             new Internship(new Name("Microsoft"), new Position("Frontend Developer"),
                 new Phone("22222222"), new Email("hr@microsoft.com"),
                 new Status("Progress"), new Address("Microsoft Campus"),
-                getTaskList("HR Interview /at 10-10-2023(12:00)"), getTagSet("Urgent")),
+                getTaskList("HR Interview /at 10-10-2023(12:00)"), getTagSet("Urgent"), new Remark("")),
             new Internship(new Name("Apple"), new Position("Software Engineer"),
                 new Phone("11111111"), new Email("hr@apple.com"),
                 new Status("Offered"), new Address("Apple Park"),
