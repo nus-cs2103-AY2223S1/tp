@@ -3,7 +3,6 @@ package seedu.address.ui;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -30,8 +29,7 @@ public class CalendarPopup extends Tooltip {
     private final Point2D ownerCoordinates;
 
     /**
-     * Creates a {@code CalendarPopup} with the given {@code Name}, {@code String}
-     * {@code Location} and {@code Node}.
+     * Creates a {@code CalendarPopup} with the given Appointment details.
      */
     public CalendarPopup(Name name, String time, Location location, String date, Node owner) {
 
@@ -52,14 +50,14 @@ public class CalendarPopup extends Tooltip {
         FlowPane timePane = new FlowPane();
         day.setAlignment(Pos.CENTER);
         timePane.setAlignment(Pos.CENTER);
-        ImageView date_icon = new ImageView(DATE_IMAGE);
-        ImageView time_icon = new ImageView(TIME_IMAGE);
+        ImageView dateIcon = new ImageView(DATE_IMAGE);
+        ImageView timeIcon = new ImageView(TIME_IMAGE);
         Label dayLabel = new Label(date);
         dayLabel.setStyle("-fx-text-fill: black;");
         Label timeLabel = new Label(time);
         timeLabel.setStyle("-fx-text-fill: black;");
-        day.getChildren().addAll(date_icon, dayLabel);
-        timePane.getChildren().addAll(time_icon, timeLabel);
+        day.getChildren().addAll(dateIcon, dayLabel);
+        timePane.getChildren().addAll(timeIcon, timeLabel);
         Label s = new Label(location.toString());
         f.setStyle("-fx-text-fill: black;");
         s.setStyle("-fx-text-fill: black;");

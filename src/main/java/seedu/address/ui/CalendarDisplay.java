@@ -115,6 +115,9 @@ public class CalendarDisplay extends UiPart<Region> {
         return header;
     }
 
+    /**
+     * Displays the CalendarEvents in the previous month.
+     */
     public void previous() {
         calendarDisplay.getChildren().clear();
         currentMonth = getPreviousMonth(currentMonth);
@@ -122,6 +125,9 @@ public class CalendarDisplay extends UiPart<Region> {
         drawBody();
     }
 
+    /**
+     * Displays the CalendarEvents in the next month.
+     */
     public void next() {
         calendarDisplay.getChildren().clear();
         currentMonth = getNextMonth(currentMonth);

@@ -12,10 +12,16 @@ import javafx.stage.Stage;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 
+/**
+ * The button that represents an {@code Appointment} in the Calendar.
+ */
 public class CalendarButton extends Button {
     private Stage primaryStage;
     private CalendarPopup calendarPopup;
 
+    /**
+     * Creates a {@code CalendarButton} with the given Appointment details.
+     */
     public CalendarButton(Name name, String time, Location location, String date, Stage primaryStage) {
         super(time + " " + name);
         this.setStyle("-fx-font-size: 8pt; -fx-border-color: grey; -fx-border-radius: 5;"
