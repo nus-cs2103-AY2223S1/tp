@@ -7,8 +7,10 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
+import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
 
 /**
  * Parses input arguments and creates a new EventCommand object
@@ -49,7 +51,7 @@ public class EventCommandParser implements Parser<EventCommand> {
         case ViewEventsCommand.COMMAND_OPTION:
             return new ViewEventsCommandParser().parse(args);
         default:
-            throw new ParseException(EventCommand.OPTION_UNKNOWN);
+            throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
     }
 }
