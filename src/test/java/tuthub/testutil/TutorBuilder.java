@@ -24,7 +24,7 @@ public class TutorBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_MODULE = "cs2103t";
+    public static final Set<Module> DEFAULT_MODULE = SampleDataUtil.getModuleSet("cs2103");
     public static final String DEFAULT_YEAR = "3";
     public static final String DEFAULT_STUDENTID = "A1234567X";
     public static final String DEFAULT_TEACHINGNOMINATION = "0";
@@ -34,7 +34,7 @@ public class TutorBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Module module;
+    private Set<Module> modules;
     private Year year;
     private StudentId studentId;
     private TeachingNomination teachingNomination;
@@ -49,7 +49,7 @@ public class TutorBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        module = new Module(DEFAULT_MODULE);
+        modules = new HashSet<>(DEFAULT_MODULE);
         year = new Year(DEFAULT_YEAR);
         studentId = new StudentId(DEFAULT_STUDENTID);
         teachingNomination = new TeachingNomination(DEFAULT_TEACHINGNOMINATION);
@@ -65,7 +65,7 @@ public class TutorBuilder {
         name = tutorToCopy.getName();
         phone = tutorToCopy.getPhone();
         email = tutorToCopy.getEmail();
-        module = tutorToCopy.getModule();
+        modules = new HashSet<>(tutorToCopy.getModules());
         year = tutorToCopy.getYear();
         studentId = tutorToCopy.getStudentId();
         teachingNomination = tutorToCopy.getTeachingNomination();
@@ -116,8 +116,8 @@ public class TutorBuilder {
     /**
      * Sets the {@code Module} of the {@code Tutor} that we are building.
      */
-    public TutorBuilder withModule(String module) {
-        this.module = new Module(module);
+    public TutorBuilder withModule(String... module) {
+        this.modules = SampleDataUtil.getModuleSet(module);
         return this;
     }
 
@@ -154,7 +154,7 @@ public class TutorBuilder {
     }
 
     public Tutor build() {
-        return new Tutor(name, phone, email, module, year, studentId, comment, teachingNomination, rating, tags);
+        return new Tutor(name, phone, email, modules, year, studentId, comment, teachingNomination, rating, tags);
     }
 
 }

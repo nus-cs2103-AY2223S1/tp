@@ -39,7 +39,7 @@ public class EditTutorDescriptorBuilder {
         descriptor.setName(tutor.getName());
         descriptor.setPhone(tutor.getPhone());
         descriptor.setEmail(tutor.getEmail());
-        descriptor.setModule(tutor.getModule());
+        descriptor.setModules(tutor.getModules());
         descriptor.setYear(tutor.getYear());
         descriptor.setStudentId(tutor.getStudentId());
         descriptor.setTeachingNomination(tutor.getTeachingNomination());
@@ -74,8 +74,9 @@ public class EditTutorDescriptorBuilder {
     /**
      * Sets the {@code Module} of the {@code EditTutorDescriptor} that we are building.
      */
-    public EditTutorDescriptorBuilder withModule(String module) {
-        descriptor.setModule(new Module(module));
+    public EditTutorDescriptorBuilder withModule(String... modules) {
+        Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
+        descriptor.setModules(moduleSet);
         return this;
     }
 

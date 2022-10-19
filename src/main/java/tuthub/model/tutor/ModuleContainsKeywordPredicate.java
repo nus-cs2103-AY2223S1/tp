@@ -1,6 +1,7 @@
 package tuthub.model.tutor;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import tuthub.commons.util.StringUtil;
@@ -17,8 +18,14 @@ public class ModuleContainsKeywordPredicate implements Predicate<Tutor> {
 
     @Override
     public boolean test(Tutor tutor) {
-        return keywords.stream()
-                .anyMatch((keyword -> StringUtil.containsWordIgnoreCase(tutor.getModule().value, keyword)));
+        Set<Module> moduleSet = tutor.getModules();
+        for (Module module : moduleSet) {
+            if (keywords.stream()
+                .anyMatch((keyword -> StringUtil.containsWordIgnoreCase(module.value, keyword)))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

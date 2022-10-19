@@ -35,7 +35,7 @@ public class TutorListCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label module;
+    private FlowPane modules;
     @FXML
     private FlowPane tags;
 
@@ -51,7 +51,9 @@ public class TutorListCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(tutor.getName().fullName);
-        module.setText(tutor.getModule().value);
+        tutor.getModules().stream()
+            .sorted(Comparator.comparing(module -> module.value))
+            .forEach(module -> modules.getChildren().add(new Label(module.value)));
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

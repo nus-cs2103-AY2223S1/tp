@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_MODULE + "MODULE]... "
             + "[" + PREFIX_YEAR + "YEAR] "
             + "[" + PREFIX_STUDENTID + "STUDENT ID] "
             + "[" + PREFIX_TEACHINGNOMINATION + "TEACHING NOMINATIONS] "
@@ -109,7 +109,7 @@ public class EditCommand extends Command {
         Name updatedName = editTutorDescriptor.getName().orElse(tutorToEdit.getName());
         Phone updatedPhone = editTutorDescriptor.getPhone().orElse(tutorToEdit.getPhone());
         Email updatedEmail = editTutorDescriptor.getEmail().orElse(tutorToEdit.getEmail());
-        Module updatedModule = editTutorDescriptor.getModule().orElse(tutorToEdit.getModule());
+        Set<Module> updatedModules = editTutorDescriptor.getModules().orElse(tutorToEdit.getModules());
         Year updatedYear = editTutorDescriptor.getYear().orElse(tutorToEdit.getYear());
         StudentId updatedStudentId = editTutorDescriptor.getStudentId().orElse(tutorToEdit.getStudentId());
         TeachingNomination updatedTeachingNomination =
@@ -120,7 +120,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editTutorDescriptor.getTags().orElse(tutorToEdit.getTags());
 
         return new Tutor(updatedName, updatedPhone, updatedEmail,
-            updatedModule, updatedYear, updatedStudentId, updatedComment, updatedTeachingNomination,
+            updatedModules, updatedYear, updatedStudentId, updatedComment, updatedTeachingNomination,
             updatedRating, updatedTags);
     }
 
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Module module;
+        private Set<Module> modules;
         private Year year;
         private StudentId studentId;
         private TeachingNomination teachingNomination;
@@ -161,13 +161,13 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tags} and {@code modules} is used internally.
          */
         public EditTutorDescriptor(EditTutorDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setModule(toCopy.module);
+            setModules(toCopy.modules);
             setYear(toCopy.year);
             setStudentId(toCopy.studentId);
             setTeachingNomination(toCopy.teachingNomination);
@@ -179,7 +179,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, module, year, studentId, teachingNomination,
+            return CollectionUtil.isAnyNonNull(name, phone, email, modules, year, studentId, teachingNomination,
                     rating, tags);
         }
 
@@ -207,12 +207,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setModule(Module module) {
-            this.module = module;
+        /**
+         * Sets {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void setModules(Set<Module> modules) {
+            this.modules = modules == null ? null : new HashSet<>(modules);
         }
 
-        public Optional<Module> getModule() {
-            return Optional.ofNullable(module);
+        /**
+         * Returns an unmodifiable module set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         */
+        public Optional<Set<Module>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
         }
 
         public void setYear(Year year) {
@@ -282,7 +290,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getModule().equals(e.getModule())
+                    && getModules().equals(e.getModules())
                     && getYear().equals(e.getYear())
                     && getStudentId().equals(e.getStudentId())
                     && getTeachingNomination().equals(e.getTeachingNomination())
