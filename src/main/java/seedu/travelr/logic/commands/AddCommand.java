@@ -20,7 +20,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESC + "DESCRIPTION "
-            + PREFIX_LOCATION + "Location "
+            + PREFIX_LOCATION + "Location \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Honeymoon "
             + PREFIX_DESC + "Going on a honeymoon with my prof "

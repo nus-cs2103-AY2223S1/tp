@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.travelr.commons.exceptions.IllegalValueException;
 import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
@@ -26,19 +27,23 @@ class JsonAdaptedTrip {
     private final String description;
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
     private final boolean done;
+    private final String location;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("description") String description,
-                           @JsonProperty("events") List<JsonAdaptedEvent> events, @JsonProperty("done") boolean done) {
+                           @JsonProperty("done") boolean done,
+                           @JsonProperty("location") String location,
+                           @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.title = title;
         this.description = description;
+        this.done = done;
+        this.location = location;
         if (events != null) {
             this.events.addAll(events);
         }
-        this.done = done;
     }
 
     /**
@@ -47,10 +52,11 @@ class JsonAdaptedTrip {
     public JsonAdaptedTrip(Trip source) {
         title = source.getTitle().fullTitle;
         description = source.getDescription().value;
+        done = source.isDone();
+        location = source.getLocation().locationName;
         events.addAll(source.getEvents().stream()
                 .map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
-        done = source.isDone();
     }
 
     /**
@@ -70,7 +76,6 @@ class JsonAdaptedTrip {
         if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
-        final Title modelTitle = new Title(title);
 
         if (description == null) {
             throw new IllegalValueException(
@@ -79,13 +84,27 @@ class JsonAdaptedTrip {
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
+
+        if (location == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+        }
+
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        }
+
+        final Title modelTitle = new Title(title);
+
         final Description modelDescription = new Description(description);
 
         final Set<Event> modelEvents = new HashSet<>(tripEvents);
 
         final boolean done = this.done;
 
-        return new Trip(modelTitle, modelDescription, modelEvents, done);
+        final Location location = new Location(this.location);
+
+        return new Trip(modelTitle, modelDescription, modelEvents, done, location);
     }
 
 }
