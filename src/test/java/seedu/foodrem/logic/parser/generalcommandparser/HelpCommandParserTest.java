@@ -1,14 +1,14 @@
 package seedu.foodrem.logic.parser.generalcommandparser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.foodrem.enums.CommandType.parseWord;
+import static seedu.foodrem.commons.enums.CommandType.parseWord;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getCommandHelpMessage;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getGeneralHelpMessage;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;

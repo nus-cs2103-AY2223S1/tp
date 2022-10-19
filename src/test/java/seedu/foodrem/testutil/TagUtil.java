@@ -2,7 +2,7 @@ package seedu.foodrem.testutil;
 
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.model.tag.Tag;
 
 /**
