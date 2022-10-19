@@ -40,25 +40,29 @@ public class StallListPanel extends UiPart<Region> {
      */
     @FXML
     public void handleMouseClicked() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ContextMenu contextMenu = new ContextMenu();
-        final ObservableList<MenuItem> contextMenuItems = contextMenu.getItems();
         final Stall selectedStall = stallListView.getSelectionModel().getSelectedItem();
 
-        CopyMenuItem<Stall> copyStallName = new CopyMenuItem<>("Copy Name",
-                selectedStall, clipboard, CopyMenuItem.Action.FIELDS_NAME);
-        CopyMenuItem<Stall> copyStallAddress = new CopyMenuItem<>("Copy Address",
-                selectedStall, clipboard, CopyMenuItem.Action.FIELDS_ADDRESS);
+        if (selectedStall != null) {
+            final Clipboard clipboard = Clipboard.getSystemClipboard();
+            final ContextMenu contextMenu = new ContextMenu();
+            final ObservableList<MenuItem> contextMenuItems = contextMenu.getItems();
 
-        contextMenuItems.addAll(copyStallName, copyStallAddress);
 
-        if (!selectedStall.getTags().isEmpty()) {
-            CopyMenuItem<Stall> copyStallTag = new CopyMenuItem<>("Copy Tag",
-                    selectedStall, clipboard, CopyMenuItem.Action.FIELDS_TAG);
-            contextMenuItems.add(copyStallTag);
+            CopyMenuItem<Stall> copyStallName = new CopyMenuItem<>("Copy Name",
+                    selectedStall, clipboard, CopyMenuItem.Action.FIELDS_NAME);
+            CopyMenuItem<Stall> copyStallAddress = new CopyMenuItem<>("Copy Address",
+                    selectedStall, clipboard, CopyMenuItem.Action.FIELDS_ADDRESS);
+
+            contextMenuItems.addAll(copyStallName, copyStallAddress);
+
+            if (!selectedStall.getTags().isEmpty()) {
+                CopyMenuItem<Stall> copyStallTag = new CopyMenuItem<>("Copy Tag",
+                        selectedStall, clipboard, CopyMenuItem.Action.FIELDS_TAG);
+                contextMenuItems.add(copyStallTag);
+            }
+
+            stallListView.setContextMenu(contextMenu);
         }
-
-        stallListView.setContextMenu(contextMenu);
     }
 
     /**
