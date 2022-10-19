@@ -13,6 +13,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.exam.ExamDate;
+import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -219,4 +221,35 @@ public class ParserUtil {
         }
         return TaskStatus.of(trimmedStatus);
     }
+
+    /**
+     * Parses a {@code String description} into a {@code ExamDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static ExamDescription parseExamDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!ExamDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(ExamDescription.DESCRIPTION_CONSTRAINTS);
+        }
+        return new ExamDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String examDate} into a {@code ExamDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code examDate} is invalid.
+     */
+    public static ExamDate parseExamDate(String examDate) throws ParseException {
+        requireNonNull(examDate);
+        String trimmedDate = examDate.trim();
+        if (!ExamDate.isValidDate(trimmedDate)) {
+            throw new ParseException(ExamDate.DATE_CONSTRAINTS);
+        }
+        return new ExamDate(trimmedDate);
+    }
+
 }

@@ -6,6 +6,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.exam.DistinctExamList;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
@@ -24,6 +27,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final DistinctModuleList modules;
     private final DistinctTaskList tasks;
+    private final DistinctExamList exams;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -36,6 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         modules = new DistinctModuleList();
         tasks = new DistinctTaskList();
+        exams = new DistinctExamList();
     }
 
     public AddressBook() {}
@@ -61,15 +67,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
     }
+
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setTasks(newData.getTaskList());
         setModules(newData.getModuleList());
+        setExams(newData.getExamList());
     }
+
 
     //// person-level operations
 
@@ -175,7 +184,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons"
-                + "\n" + modules.getUnmodifiableModuleList().size() + " modules";
+                + "\n" + modules.getUnmodifiableModuleList().size() + " modules"
+                + "\n" + tasks.getUnmodifiableTaskList().size() + "tasks"
+                + "\n" + exams.getUnmodifiableExamList().size() + "exams";
         // TODO: refine later
     }
 
@@ -226,6 +237,65 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Task> getTaskList() {
         return tasks.getUnmodifiableTaskList();
     }
+
+    /**
+     * Returns true if an exam with the same module and exam description and exam date
+     * as {@code exam} exists in the exam list.
+     */
+    public boolean hasExam(Exam exam) {
+        requireNonNull(exam);
+        return exams.contains(exam);
+    }
+
+    public boolean hasExamWithModule(Module module) {
+        return exams.containsModule(module);
+    }
+
+    /**
+     * Adds an exam to the exam list.
+     * The exam must not already exist in the exam list.
+     */
+    public void addExam(Exam exam) {
+        exams.addExam(exam);
+    }
+
+
+    /**
+     * Replaces the given exam {@code target} with {@code editedExam}.
+     * {@code target} must exist in the exam list.
+     *
+     * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
+     *     in the list (other than {@code target}).
+     */
+    public void replaceExam(Exam target, Exam editedExam) throws DuplicateExamException {
+        requireAllNonNull(target, editedExam);
+
+        exams.replaceExam(target, editedExam);
+    }
+
+    public void setExam(Exam target, Exam editedExam) {
+        requireAllNonNull(target, editedExam);
+
+        exams.setExam(target, editedExam);
+    }
+    public void setExams(List<Exam> exams) {
+        this.exams.setExams(exams);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeExam(Exam key) {
+        exams.remove(key);
+    }
+
+    //// util methods
+    @Override
+    public ObservableList<Exam> getExamList() {
+        return exams.getUnmodifiableExamList();
+    }
+
 
     @Override
     public boolean equals(Object other) {
