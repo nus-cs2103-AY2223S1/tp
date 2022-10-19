@@ -160,22 +160,22 @@ This section describes some noteworthy details on how certain features are imple
 
 The review mechanism is facilitated by `ReviewCommand`, which extends `Command`. It overrides the following operation:
 
-* `ReviewCommand#execute()` – Calculates the total calories, the calorie target and the deficient or excess amount of calories for the day.
+* `ReviewCommand#execute()`: Calculates the total calories, the calorie target and the deficient or excess amount of calories for the day.
 
 Given below is an example usage scenario and how the review mechanism behaves at each step.
 
 Step 1. The user launches the application on 19 October 2022. Suppose the user has set a calorie target of 2000 kcal and the foods added for the day are:
 
-* bubble tea: 232 kcal
-* chicken rice: 702 kcal
-* wanton noodles: 409 kcal
+1. bubble tea: 232 kcal
+2. chicken rice: 702 kcal
+3. wanton noodles: 409 kcal
 
 Step 2. The user executes `review` command, which calls `ReviewCommand#execute()`. This first creates a `IsFoodAddedOnThisDatePredicate` with 19 October 2022 as the date. 
-`Model#updateFilteredFoodList` is then called with this predicate, causing `filteredFoods` in `ModelManager` to be filtered for foods that were added on 19 October 2022.
+`Model#updateFilteredFoodList()` is then called with this predicate, causing the food list to be filtered for foods that were added on 19 October 2022.
 
-Step 3. The following methods of `Model` are called:
+Step 3. `ReviewCommand#execute()` calls the following methods from `Model`:
 
-* `Model#getTotalCalorie()` calculates the total calories of all foods in `filteredFoods`
+* `Model#getTotalCalorie()` calculates the total calories of all foods in the food list
 * `Model#getCalorieDifference()` calculates the difference in total calories with respect to the calorie target
 * `Model#getCalorieTarget()` returns the calorie target
 
@@ -185,7 +185,7 @@ Step 4. `ReviewCommand#execute()` returns a `CommandResult` with the following i
 * calorie target: 2000 kcal
 * deficient amount of calories: 657 kcal
 
-The following sequence diagram shows how the review operation works:
+The following sequence diagram illustrates how the review operation works:
 
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
 
