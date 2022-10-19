@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNullElse;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.Task;
 
@@ -18,25 +21,30 @@ import seedu.address.model.task.Task;
 public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "addtag";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": tags a task in the task list.\n"
-            + "parameters: INDEX " + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS";
+            + "parameters: INDEX " + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS "
+            + PREFIX_DEADLINE + "DEADLINE";
 
-    public static final String TAG_ADDED_SUCCESS = "The tag has been added successfully";
+    public static final String TAG_ADDED_SUCCESS = "The tag(s) has/have been added successfully";
 
     public static final String PRIORITY_TAG_ALREADY_EXIST = "The priority tag already exists";
+    public static final String DEADLINE_TAG_ALREADY_EXIST = "The deadline tag already exists";
 
     private final PriorityTag priorityTag;
+    private final DeadlineTag deadlineTag;
     private final Index index;
 
     /**
-     * Constructor of the AddTagCommand. Sets the Priority tag and
+     * Constructor of the AddTagCommand. Sets the Priority tag, Deadline tag and
      * the index to add the tag.
      *
      * @param priorityTag The priority tag to be added.
+     * @param deadlineTag The deadline tag to be added.
      * @param index The index of the tag.
      */
-    public AddTagCommand(PriorityTag priorityTag, Index index) {
+    public AddTagCommand(PriorityTag priorityTag, DeadlineTag deadlineTag, Index index) {
         requireNonNull(index);
         this.priorityTag = priorityTag;
+        this.deadlineTag = deadlineTag;
         this.index = index;
     }
 
@@ -56,7 +64,14 @@ public class AddTagCommand extends Command {
             }
             taggedTask = currentTask.setPriorityTag(priorityTag);
         }
-        model.setTask(currentTask, taggedTask);
+
+        if (deadlineTag != null) {
+            if (currentTask.hasDeadlineTag()) {
+                throw new CommandException(DEADLINE_TAG_ALREADY_EXIST);
+            }
+            taggedTask = requireNonNullElse(taggedTask, currentTask).setDeadlineTag(deadlineTag);
+        }
+        model.replaceTask(currentTask, taggedTask, true);
         return new CommandResult(TAG_ADDED_SUCCESS);
     }
 }

@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,16 +13,17 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
+import seedu.address.model.exam.ExamDate;
+import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskModule;
 import seedu.address.model.task.TaskStatus;
 
 /**
@@ -161,18 +166,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String module} into a {@code Module}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses the deadline into a DeadlineTag.
      *
-     * @throws ParseException if the given {@code module} is invalid.
+     * @param deadline The deadline which is added to the DeadlineTag.
+     * @return The deadlineTag containing the deadline status.
+     * @throws ParseException if the deadline is in an invalid format.
      */
-    public static Module parseModule(String module) throws ParseException {
-        requireNonNull(module);
-        String trimmedModule = module.trim();
-        if (!TaskModule.isValidModule(trimmedModule)) {
-            throw new ParseException(TaskModule.MESSAGE_CONSTRAINTS);
+    public static DeadlineTag parseDeadlineTag(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        final LocalDate date;
+        //@@author dlimyy-reused
+        //Reused from https://stackoverflow.com/questions/32823368/
+        //with minor modifications.
+        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
+        //@@author
+        try {
+            date = LocalDate.parse(deadline, dtf);
+        } catch (DateTimeParseException dtp) {
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
         }
-        return new Module(new ModuleCode(trimmedModule));
+        if (!DeadlineTag.isValidDeadline(date)) {
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+        }
+        return new DeadlineTag(date);
     }
 
     /**
@@ -204,4 +221,35 @@ public class ParserUtil {
         }
         return TaskStatus.of(trimmedStatus);
     }
+
+    /**
+     * Parses a {@code String description} into a {@code ExamDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static ExamDescription parseExamDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!ExamDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(ExamDescription.DESCRIPTION_CONSTRAINTS);
+        }
+        return new ExamDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String examDate} into a {@code ExamDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code examDate} is invalid.
+     */
+    public static ExamDate parseExamDate(String examDate) throws ParseException {
+        requireNonNull(examDate);
+        String trimmedDate = examDate.trim();
+        if (!ExamDate.isValidDate(trimmedDate)) {
+            throw new ParseException(ExamDate.DATE_CONSTRAINTS);
+        }
+        return new ExamDate(trimmedDate);
+    }
+
 }

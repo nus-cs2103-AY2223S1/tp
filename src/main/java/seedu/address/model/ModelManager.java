@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -31,6 +32,9 @@ public class ModelManager implements Model {
 
     private final FilteredList<Task> taskFilteredList;
 
+    private final FilteredList<Exam> examFilteredList;
+
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -44,6 +48,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         moduleFilteredList = new FilteredList<>(this.addressBook.getModuleList());
         taskFilteredList = new FilteredList<>(this.addressBook.getTaskList());
+        examFilteredList = new FilteredList<>(this.addressBook.getExamList());
     }
 
     public ModelManager() {
@@ -143,22 +148,54 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
+    public void replaceTask(Task target, Task editedTask, boolean isSameTask) {
+        requireAllNonNull(target, editedTask, isSameTask);
 
-        addressBook.setTask(target, editedTask);
-    }
-
-    @Override
-    public void replaceTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        addressBook.replaceTask(target, editedTask);
+        addressBook.replaceTask(target, editedTask, isSameTask);
     }
 
     @Override
     public void deleteTask(Task target) {
         addressBook.removeTask(target);
+    }
+
+    //========== Exam List ==================================================================================
+    @Override
+    public boolean hasExam(Exam exam) {
+        requireNonNull(exam);
+        return addressBook.hasExam(exam);
+    }
+
+    @Override
+    public boolean hasExamWithModule(Module module) {
+        requireNonNull(module);
+        return addressBook.hasExamWithModule(module);
+    }
+
+
+    @Override
+    public void addExam(Exam exam) {
+        addressBook.addExam(exam);
+        updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
+    }
+
+    @Override
+    public void setExam(Exam target, Exam editedExam) {
+        requireAllNonNull(target, editedExam);
+
+        addressBook.setExam(target, editedExam);
+    }
+
+    @Override
+    public void replaceExam(Exam target, Exam editedExam) {
+        requireAllNonNull(target, editedExam);
+
+        addressBook.replaceExam(target, editedExam);
+    }
+
+    @Override
+    public void deleteExam(Exam target) {
+        addressBook.removeExam(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -226,5 +263,19 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         taskFilteredList.setPredicate(predicate);
     }
+
+
+    //================================Exam Commands=====================================
+    @Override
+    public ObservableList<Exam> getFilteredExamList() {
+        return examFilteredList;
+    }
+
+    @Override
+    public void updateFilteredExamList(Predicate<Exam> predicate) {
+        requireNonNull(predicate);
+        examFilteredList.setPredicate(predicate);
+    }
+
 
 }
