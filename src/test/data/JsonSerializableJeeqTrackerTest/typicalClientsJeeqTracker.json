@@ -6,7 +6,8 @@
     "phone": "87654321",
     "email": "amybee@gmail.com",
     "tagged" : [ "friends" ],
-    "companies": [ ]
+    "companies": [ ],
+    "transactions": [ ]
   }, {
     "name" : "Benson Meier",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -17,6 +18,17 @@
       "name" : "Benson Meier",
       "address" : "Bedok Mall",
       "tagged" : [ "owesMoney", "friends" ]
+    } ],
+    "transactions" : [ {
+      "goods" : "Books",
+      "price" : "12.30",
+      "quantity" : "10",
+      "type" : "BUY"
+    }, {
+      "goods" : "Toys",
+      "price" : "150",
+      "quantity" : "2",
+      "type" : "SELL"
     } ]
   }, {
     "name" : "Carl Kurz",
@@ -24,34 +36,39 @@
     "phone": "9818112",
     "email": "carl@gmail.com",
     "tagged" : [ ],
-    "companies": [ ]
+    "companies": [ ],
+    "transactions": [ ]
   }, {
     "name" : "Daniel Meier",
     "address" : "10th street",
     "phone": "12121212",
     "email": "dan@gmail.com",
     "tagged" : [ "friends" ],
-    "companies": [ ]
+    "companies": [ ],
+    "transactions": [ ]
   }, {
     "name" : "Elle Meyer",
     "address" : "michegan ave",
     "phone": "9228282",
     "email": "eellee@gmail.com",
     "tagged" : [ ],
-    "companies": [ ]
+    "companies": [ ],
+    "transactions": [ ]
   }, {
     "name" : "Fiona Kunz",
     "address" : "little tokyo",
     "phone": "12121212",
     "email": "fiona@gmail.com",
     "tagged" : [ ],
-    "companies": [ ]
+    "companies": [ ],
+    "transactions": [ ]
   }, {
     "name" : "George Best",
     "address" : "4th street",
     "phone": "9778282",
     "email": "george@gmail.com",
     "tagged" : [ ],
-    "companies": [ ]
+    "companies": [ ],
+    "transactions": [ ]
   } ]
 }

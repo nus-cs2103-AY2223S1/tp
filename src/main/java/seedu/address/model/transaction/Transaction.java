@@ -29,6 +29,7 @@ public abstract class Transaction {
     public Goods getGoods() {
         return goods;
     }
+
     public Price getPrice() {
         return price;
     }

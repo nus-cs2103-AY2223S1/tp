@@ -36,7 +36,7 @@ public class Quantity {
     }
 
     public double value() {
-        return Double.parseDouble(quantity);
+        return Integer.parseInt(quantity);
     }
 
     @Override
