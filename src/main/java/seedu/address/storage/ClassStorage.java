@@ -35,6 +35,19 @@ public class ClassStorage {
     }
 
     /**
+     * Updates the person in the List of Person in the HashMap classes.
+     *
+     * @param personToEdit Person object without the edited fields.
+     * @param editedPerson Person object with the edited fields.
+     */
+    public static void updatePerson(Person personToEdit, Person editedPerson) {
+        if (!personToEdit.hasEmptyClass()) {
+            classes.get(personToEdit.getAClass().date).remove(personToEdit);
+            classes.get(personToEdit.getAClass().date).add(editedPerson);
+        }
+    }
+
+    /**
      * Initialises HashMap classes field.
      *
      * @return HashMap object.
