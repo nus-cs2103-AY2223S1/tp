@@ -3,7 +3,6 @@ package seedu.address.logic.commands.event;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.profile.AddProfileCommand;
 
 /**
  * Represents a Event command with hidden internal logic and the ability to be executed.

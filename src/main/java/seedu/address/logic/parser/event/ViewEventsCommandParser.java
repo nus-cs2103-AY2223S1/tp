@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import seedu.address.logic.commands.event.ViewEventsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ViewEventsCommand object
+ */
 public class ViewEventsCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewEventsCommand
