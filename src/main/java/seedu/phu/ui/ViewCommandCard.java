@@ -61,10 +61,10 @@ public class ViewCommandCard extends UiPart<Region> {
         super(FXML);
         this.internship = internship;
         name.setText(internship.getName().fullName);
-        phone.setText("phone: " + internship.getPhone().value);
-        email.setText("email: " + internship.getEmail().value);
-        position.setText("position: " + internship.getPosition().positionName);
-        date.setText("date: " + internship.getDate().toDisplayFormat());
+        phone.setText("Phone: " + internship.getPhone().value);
+        email.setText("Email: " + internship.getEmail().value);
+        position.setText("Position: " + internship.getPosition().positionName);
+        date.setText("Date: " + internship.getDate().toDisplayFormat());
         website.setText(internship.getWebsite().value);
 
         String stateStyleClass = "application_process-" + internship.getApplicationProcess().toString();
@@ -74,7 +74,7 @@ public class ViewCommandCard extends UiPart<Region> {
         // adds newline to remark
         StringBuilder sb = new StringBuilder();
         sb.append('\n');
-        sb.append("remark: ");
+        sb.append("Remark: ");
         sb.append(internship.getRemark().value);
         remark.setText(sb.toString());
 
