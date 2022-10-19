@@ -127,6 +127,19 @@ public class ModelManager implements Model {
         addressBook.deleteEvent(event);
     }
 
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        addressBook.setEvent(target, editedEvent);
+    }
+
     //=========== Filtered Event List Accessor =================
     /**
      * Returns an unmodifiable view of the list of Events backed by the internal list present in the AddressBook
