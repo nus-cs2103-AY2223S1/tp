@@ -13,5 +13,8 @@
     "address": "4th street",
     "remark": "free on monday"
   } ],
-  "tasks" : [ ]
+  "tasks" : [ ],
+  "taskList" : {
+    "isSortedByDeadline" : false
+  }
 }

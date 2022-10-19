@@ -25,15 +25,18 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final JsonAdaptedTaskList taskList = new JsonAdaptedTaskList();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons and tasks.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                       @JsonProperty("taskList") JsonAdaptedTaskList taskList) {
         this.persons.addAll(persons);
         this.tasks.addAll(tasks);
+        this.taskList.setIsSortedByDeadline(taskList.isSortedByDeadline());
     }
 
     /**
@@ -44,6 +47,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        taskList.setIsSortedByDeadline(source.isSortByDeadline());
     }
 
     /**
@@ -66,6 +70,10 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
             addressBook.addTask(task);
+        }
+        
+        if (taskList.isSortedByDeadline()) {
+            addressBook.sortByDeadline();
         }
         return addressBook;
     }
