@@ -1,5 +1,6 @@
 package longtimenosee.model.event;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
@@ -10,6 +11,13 @@ import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
  */
 
 public class Event {
+
+    public static final Comparator<Event> EVENT_COMPARATOR = new Comparator<Event>() {
+        @Override
+        public int compare(Event e1, Event e2) {
+            return e1.getDate().getDate().compareTo(e2.getDate().getDate());
+        }
+    };
     private final Description description;
     private final PersonName personName; //There can only be one!
     private final Date date;

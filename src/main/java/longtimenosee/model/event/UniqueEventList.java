@@ -2,6 +2,7 @@ package longtimenosee.model.event;
 
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
+import static longtimenosee.model.event.Event.EVENT_COMPARATOR;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import javafx.collections.ObservableList;
 import longtimenosee.model.event.exceptions.DuplicateEventException;
 import longtimenosee.model.event.exceptions.EventNotFoundException;
 import longtimenosee.model.event.exceptions.OverlapEventException;
+
+
 
 
 /**
@@ -27,6 +30,7 @@ import longtimenosee.model.event.exceptions.OverlapEventException;
  * @see Event#isSameEvent(Event)
  */
 public class UniqueEventList implements Iterable<Event> {
+
 
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
 
@@ -54,6 +58,8 @@ public class UniqueEventList implements Iterable<Event> {
             throw new OverlapEventException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList, EVENT_COMPARATOR);
+
     }
 
     /**
