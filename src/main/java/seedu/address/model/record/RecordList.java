@@ -1,9 +1,12 @@
 package seedu.address.model.record;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.DuplicateRecordException;
+import seedu.address.model.person.exceptions.RecordNotFoundException;
 
 /**
  * Represents a record list in the address book.
@@ -61,6 +64,21 @@ public class RecordList {
      */
     public void clearRecords() {
         this.recordList.clear();
+    }
+
+    public void set(Record target, Record editedRecord) {
+        requireAllNonNull(target, editedRecord);
+
+        int index = recordList.indexOf(target);
+        if (index == -1) {
+            throw new RecordNotFoundException();
+        }
+
+        if (!target.isSameRecord(editedRecord) && this.contains(editedRecord)) {
+            throw new DuplicateRecordException();
+        }
+
+        recordList.set(index, editedRecord);
     }
 
     @Override

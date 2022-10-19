@@ -123,6 +123,13 @@ public class Person {
     }
 
     /**
+     * Sets a record in the record list to the new edited record.
+     */
+    public void setRecord(Record target, Record editedRecord) {
+        records.set(target, editedRecord);
+    }
+
+    /**
      * Replaces the contents of the record list with {@code records}.
      * {@code records} must not contain duplicate persons.
      */
@@ -194,5 +201,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

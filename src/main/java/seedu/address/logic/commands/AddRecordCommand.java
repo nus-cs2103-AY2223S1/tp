@@ -15,7 +15,7 @@ import seedu.address.model.record.Record;
  */
 public class AddRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "addR";
+    public static final String COMMAND_WORD = "radd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new record to the list of records.\n"
             + "Parameters: "
@@ -29,7 +29,7 @@ public class AddRecordCommand extends Command {
             + PREFIX_MEDICATION + "Phenylephrine oral 10mg";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the record list";
+    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the record list.";
 
     private final Record toAdd;
 
