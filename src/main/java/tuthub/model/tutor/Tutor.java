@@ -157,11 +157,8 @@ public class Tutor {
                 .append(" Rating: ")
                 .append(getRating())
                 .append(" Comment: ")
-                .append(getComment())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getComment());
 
-        Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
