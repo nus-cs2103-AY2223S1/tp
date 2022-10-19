@@ -132,6 +132,30 @@
     -fx-text-fill: #010504;
 }
 
+.application_process-APPLY {
+    -fx-text-fill: #7ED957 !important;
+}
+
+.application_process-ASSESSMENT {
+    -fx-text-fill: #004AAD !important;
+}
+
+.application_process-INTERVIEW {
+    -fx-text-fill: #FF66C4 !important;
+}
+
+.application_process-OFFER {
+    -fx-text-fill: #FF914D !important;
+}
+
+.application_process-ACCEPTED {
+    -fx-text-fill: #008037 !important;
+}
+
+.application_process-REJECTED {
+    -fx-text-fill: #FF1616 !important;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

@@ -10,11 +10,11 @@ import javafx.scene.layout.Region;
 import seedu.phu.model.internship.Internship;
 
 /**
- * An UI component that displays information of a {@code Internship}.
+ * A UI component that displays additional information of a specific {@code Internship}.
  */
-public class InternshipCard extends UiPart<Region> {
+public class ViewCommandCard extends UiPart<Region> {
 
-    private static final String FXML = "InternshipListCard.fxml";
+    private static final String FXML = "ViewCommandCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,49 +33,39 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    /*
     private Label phone;
     @FXML
     private Label remark;
     @FXML
     private Label email;
     @FXML
-     */
     private Label position;
     @FXML
     private Label applicationProcess;
     @FXML
     private Label date;
-    /*
     @FXML
     private Label website;
-     */
     @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
      */
-    public InternshipCard(Internship internship, int displayedIndex) {
+    public ViewCommandCard(Internship internship, int displayedIndex) {
         super(FXML);
         this.internship = internship;
-        id.setText(displayedIndex + ". ");
         name.setText(internship.getName().fullName);
-        /*
-        phone.setText("phone: " + internship.getPhone().value);
-        remark.setText("remark: " + internship.getRemark().value);
-        email.setText("email: " + internship.getEmail().value);
-         */
+        phone.setText(internship.getPhone().value);
+        remark.setText(internship.getRemark().value);
+        email.setText(internship.getEmail().value);
         position.setText(internship.getPosition().positionName);
 
         String stateStyleClass = "application_process-" + internship.getApplicationProcess().toString();
         applicationProcess.getStyleClass().add(stateStyleClass);
         applicationProcess.setText(internship.getApplicationProcess().toString());
-
         date.setText(internship.getDate().toDisplayFormat());
-        /*
-        website.setText("website: " + internship.getWebsite().value);
-         */
+        website.setText(internship.getWebsite().value);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -94,7 +84,7 @@ public class InternshipCard extends UiPart<Region> {
         }
 
         // state check
-        InternshipCard card = (InternshipCard) other;
+        ViewCommandCard card = (ViewCommandCard) other;
         return id.getText().equals(card.id.getText())
                 && internship.equals(card.internship);
     }
