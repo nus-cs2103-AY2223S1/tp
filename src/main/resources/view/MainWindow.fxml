@@ -92,7 +92,7 @@
             <content>
               <HBox VBox.vgrow="ALWAYS">
                 <children>
-                <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="355" prefWidth="365" HBox.hgrow="ALWAYS">
+                <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
@@ -101,7 +101,7 @@
                   </TextFlow>
                   <StackPane fx:id="moduleInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
-                <VBox fx:id="tutorInfo" styleClass="pane-with-border" minWidth="355" prefWidth="365" HBox.hgrow="ALWAYS">
+                <VBox fx:id="tutorInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
