@@ -1,7 +1,14 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.student.Student;
@@ -10,11 +17,6 @@ import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
 import seedu.address.testutil.TutorBuilder;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class SortCommandTest {
 
@@ -51,7 +53,7 @@ public class SortCommandTest {
         }
         studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.REVERSE);
         Collections.reverse(studentList);
-        assertEquals(studentList,studentModel.getFilteredStudentList());
+        assertEquals(studentList, studentModel.getFilteredStudentList());
     }
 
     @Test
@@ -106,7 +108,7 @@ public class SortCommandTest {
         }
         tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.REVERSE);
         Collections.reverse(tutorList);
-        assertEquals(tutorList,tutorModel.getFilteredTutorList());
+        assertEquals(tutorList, tutorModel.getFilteredTutorList());
     }
 
     @Test
