@@ -22,7 +22,7 @@ import friday.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class FridayParser {
 
     /**
      * Used for initial separation of command word and args.

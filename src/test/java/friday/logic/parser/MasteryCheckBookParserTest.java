@@ -36,7 +36,7 @@ import friday.testutil.PersonUtil;
 
 public class MasteryCheckBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FridayParser parser = new FridayParser();
 
     /*
     @Test
