@@ -33,8 +33,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
 
         String preamble = argMultimap.getPreamble();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_LESSON, PREFIX_MOD, PREFIX_DAY, PREFIX_START, PREFIX_END)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_LESSON, PREFIX_MOD, PREFIX_DAY, PREFIX_START, PREFIX_END)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonCommand.MESSAGE_USAGE));
         }
 
