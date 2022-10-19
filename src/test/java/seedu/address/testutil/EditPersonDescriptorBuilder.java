@@ -8,11 +8,11 @@ import seedu.address.logic.commands.student.EditCommand.EditPersonDescriptor;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.ID;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -78,7 +78,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code ID} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withId(String id) {
-        descriptor.setId(new ID(id));
+        descriptor.setId(new StudentId(id));
         return this;
     }
 

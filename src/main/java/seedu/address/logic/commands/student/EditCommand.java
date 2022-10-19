@@ -26,12 +26,12 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.ID;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Telegram;
+import seedu.address.model.student.StudentId;
+import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -106,10 +106,10 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        ID updatedId = editPersonDescriptor.getId().orElse(studentToEdit.getId());
+        StudentId updatedId = editPersonDescriptor.getId().orElse(studentToEdit.getId());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
         TutorialModule updatedTutorialModule = editPersonDescriptor.getTutorialModule()
                 .orElse(studentToEdit.getTutorialModule());
         TutorialName updatedTutorialName = editPersonDescriptor.getTutorialName()
@@ -123,7 +123,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedId, updatedPhone,
-                updatedEmail, updatedTelegram, updatedTutorialModule,
+                updatedEmail, updatedTelegramHandle, updatedTutorialModule,
                 updatedTutorialName, updatedAttendance, updatedParticipation,
                 updatedGrade, updatedTags);
     }
@@ -152,10 +152,10 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private ID id;
+        private StudentId id;
         private Phone phone;
         private Email email;
-        private Telegram telegram;
+        private TelegramHandle telegramHandle;
         private TutorialModule tutorialModule;
         private TutorialName tutorialName;
         private Attendance attendance;
@@ -174,7 +174,7 @@ public class EditCommand extends Command {
             setId(toCopy.id);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setTelegram(toCopy.telegram);
+            setTelegram(toCopy.telegramHandle);
             setTutorialModule(toCopy.tutorialModule);
             setTutorialName(toCopy.tutorialName);
             setAttendance(toCopy.attendance);
@@ -188,7 +188,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, id, phone, email,
-                    telegram, tutorialModule, tutorialName, attendance, participation, grade, tags);
+                    telegramHandle, tutorialModule, tutorialName, attendance, participation, grade, tags);
         }
 
         public void setName(Name name) {
@@ -199,11 +199,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setId(ID id) {
+        public void setId(StudentId id) {
             this.id = id;
         }
 
-        public Optional<ID> getId() {
+        public Optional<StudentId> getId() {
             return Optional.ofNullable(id);
         }
 
@@ -223,12 +223,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setTelegram(Telegram telegram) {
-            this.telegram = telegram;
+        public void setTelegram(TelegramHandle telegramHandle) {
+            this.telegramHandle = telegramHandle;
         }
 
-        public Optional<Telegram> getTelegram() {
-            return Optional.ofNullable(telegram);
+        public Optional<TelegramHandle> getTelegram() {
+            return Optional.ofNullable(telegramHandle);
         }
 
         public void setTutorialModule(TutorialModule tutorialModule) {
