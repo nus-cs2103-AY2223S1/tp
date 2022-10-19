@@ -16,25 +16,26 @@ import seedu.uninurse.model.task.TaskList;
  */
 public class Patient extends Person {
     // Data fields
-    private final TaskList tasks;
     private final ConditionList conditions;
+    private final TaskList tasks;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, TaskList tasks, Set<Tag> tags, ConditionList conditions) {
+    public Patient(Name name, Phone phone, Email email, Address address, ConditionList conditions, TaskList tasks,
+                   Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(name, phone, email, address, tasks, tags, conditions);
-        this.tasks = tasks;
+        requireAllNonNull(name, phone, email, address, conditions, tasks, tags);
         this.conditions = conditions;
-    }
-
-    public TaskList getTasks() {
-        return tasks;
+        this.tasks = tasks;
     }
 
     public ConditionList getConditions() {
         return conditions;
+    }
+
+    public TaskList getTasks() {
+        return tasks;
     }
 
     /**
@@ -69,15 +70,15 @@ public class Patient extends Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getConditions().equals(getConditions())
                 && otherPerson.getTasks().equals(getTasks())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getConditions().equals(getConditions());
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(super.hashCode(), tasks, conditions);
+        return Objects.hash(super.hashCode(), conditions, tasks);
     }
 
     @Override
@@ -90,6 +91,12 @@ public class Patient extends Person {
                 .append(getEmail())
                 .append("\nAddress: ")
                 .append(getAddress());
+
+        ConditionList conditions = getConditions();
+        if (!conditions.isEmpty()) {
+            builder.append("\nConditions:\n")
+                    .append(conditions);
+        }
 
         TaskList tasks = getTasks();
         if (!tasks.isEmpty()) {
