@@ -19,12 +19,46 @@ title: Developer Guide
 -------------------------------------------------------------------------------------------------------------------
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
+The features covered in this guide are:
+
+* [Edit Class Feature](#edit-class-feature)
 
 ### Edit Class Feature
 
+This feature allows the teacher to create a class at a specified date and time.
+
 #### Implementation Details
 
+The edit class mechanism is facilitated by ClassStorage. It stores the date of the classes as well as the students who attend them.
+
+Additionally, it implements the following operations:
+
+ClassStorage#saveClass() — Saves the new class into its storage.
+ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
+ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
+
+The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not positive integer, 
+a `ParseException` will be thrown.
+If the index is valid, `ParserUtil` will then check that both the date and time are valid before creating an `EditCommand`.
+
+During the execution of `EditCommand`, if the given index is not within the range of the list, a `CommandException` will be thrown.
+Otherwise, the model will then obtain the student using getFilteredPersonList.
+
+Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new clas
+and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class 
+will be removed in order to free up the time slot. If there is no timing conflict, `ClassStorage` will proceed to 
+save both the new class and student.
+
+The following sequence diagram shows how the edit class operation works:
+
+![EditClassSequenceDiagram](images/EditClassSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a teacher executes an edit class command:
+
+
+
 #### Design Considerations:
+
 ##### Aspect: Input format for edit class:
 
 * **Alternative 1**: dt/yyyy-MM-dd 0000-2359
