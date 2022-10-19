@@ -125,7 +125,6 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
-        gradeChart = new GradeChart();
 
         reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
@@ -160,6 +159,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the pie chart.
      */
     public void handleShowChart() {
+        gradeChart = new GradeChart(logic.getStudentGradeChartData());
         modelListPanelPlaceholder.getChildren().clear();
         modelListPanelPlaceholder.getChildren().add(gradeChart.getRoot());
         listHeader.setText("Grade chart");

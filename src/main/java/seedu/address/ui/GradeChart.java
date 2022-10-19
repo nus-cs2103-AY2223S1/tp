@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
@@ -18,17 +17,9 @@ public class GradeChart extends UiPart<Region> {
     /**
      * Creates a {@code PieChart}.
      */
-//    public GradeChart(ObservableList<PieChart.Data> pieChartData) {
-     public GradeChart() {
+    public GradeChart(ObservableList<PieChart.Data> pieChartData) {
         super(FXML);
-        ObservableList<PieChart.Data> chartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("Grapefruit", 12),
-                        new PieChart.Data("Oranges", 24),
-                        new PieChart.Data("Plums", 9),
-                        new PieChart.Data("Pears", 21),
-                        new PieChart.Data("Apples", 29));
-        pieChart.setData(chartData);
+        pieChart.setData(pieChartData);
         pieChart.setTitle("Grade chart");
     }
 }

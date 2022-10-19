@@ -4,15 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.Grade;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 
@@ -129,6 +133,43 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Student> getFilteredPersonList() {
         return filteredStudents;
+    }
+
+    @Override
+    public ObservableList<PieChart.Data> getStudentGradeChartData() {
+        int[] gradeArr = new int[5];
+
+        for (Student student : filteredStudents) {
+            String grade = student.getGrade().value;
+            switch (grade) {
+                case "A":
+                    gradeArr[0]++;
+                    break;
+                case "B":
+                    gradeArr[1]++;
+                    break;
+                case "C":
+                    gradeArr[2]++;
+                    break;
+                case "D":
+                    gradeArr[3]++;
+                    break;
+                case "F":
+                    gradeArr[4]++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        ObservableList<PieChart.Data> gradeChartData = FXCollections.observableArrayList(
+                new PieChart.Data("A", gradeArr[0]),
+                new PieChart.Data("B", gradeArr[1]),
+                new PieChart.Data("C", gradeArr[2]),
+                new PieChart.Data("D", gradeArr[3]),
+                new PieChart.Data("F", gradeArr[4]));
+
+        return gradeChartData;
     }
 
     @Override
