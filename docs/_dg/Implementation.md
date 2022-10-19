@@ -57,6 +57,6 @@ The `help` feature provides a user with instructions of how to use certain comma
 #### Why it is implemented this way
 When the `HelpCommand` is executed we want users to receive help immediately instead of searching for it the user guide.
 
-![HelpSequenceDiagram](../images/HelpSequenceDiagram.png)
+![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
 Only methods relevant to showing the HelpWindow was shown. Other methods such as `setFeedbackToUser` and `isShowHelp` is not shown.
