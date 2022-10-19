@@ -98,7 +98,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        if (phone.isBlank()) {
+        if (phone == null || phone.isBlank()) {
             return new Phone(null);
         }
         String trimmedPhone = phone.trim();
@@ -116,7 +116,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        if (email.isBlank()) {
+        if (email == null || email.isBlank()) {
             return new Email(null);
         }
         String trimmedEmail = email.trim();
@@ -133,7 +133,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
-        if (tag.isBlank()) {
+        if (tag == null || tag.isBlank()) {
             return null;
         }
         String trimmedTag = tag.trim();
@@ -149,7 +149,7 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            if (!tagName.isBlank()) {
+            if (tagName != null && !tagName.isBlank()) {
                 tagSet.add(parseTag(tagName));
             }
         }
@@ -226,7 +226,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code interviewDate} is invalid.
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
-        if (interviewDate.isBlank()) {
+        if (interviewDate == null || interviewDate.isBlank()) {
             return new InterviewDate(null);
         }
         String trimmedInterviewDate = interviewDate.trim();

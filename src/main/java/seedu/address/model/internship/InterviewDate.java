@@ -42,7 +42,7 @@ public class InterviewDate {
     @Override
     public String toString() {
         if (datetime == null) {
-            return null;
+            return "No interviews scheduled";
         }
         return datetime.format(formatter);
     }

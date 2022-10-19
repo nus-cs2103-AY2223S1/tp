@@ -62,6 +62,9 @@ public class Internship {
     }
 
     public InterviewDate getInterviewDate() {
+        if (interviewDate == null) {
+            return new InterviewDate(null);
+        }
         return interviewDate;
     }
 
@@ -112,11 +115,9 @@ public class Internship {
                 .append("; Role: ")
                 .append(getInternshipRole())
                 .append("; Status: ")
-                .append(getInternshipStatus());
-        if (getInterviewDate().toString() != null) {
-            builder.append("; InterviewDate: ")
-                    .append(getInterviewDate());
-        }
+                .append(getInternshipStatus())
+                .append("; InterviewDate: ")
+                .append(getInterviewDate());
 
         return builder.toString();
     }

@@ -55,6 +55,9 @@ public class Email {
 
     @Override
     public String toString() {
+        if (value == null) {
+            return "No email";
+        }
         return value;
     }
 

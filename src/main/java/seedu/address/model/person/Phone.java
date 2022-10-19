@@ -35,14 +35,22 @@ public class Phone {
 
     @Override
     public String toString() {
+        if (value == null) {
+            return "No phone number";
+        }
         return value;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+        if (other == this) {
+            // short circuit if same object
+            return true;
+        } else if (other instanceof Phone) {
+            // instanceof handles nulls
+            return value == ((Phone) other).value || value.equals(((Phone) other).value); // state check
+        }
+        return false; // this is not null while other is null
     }
 
     @Override

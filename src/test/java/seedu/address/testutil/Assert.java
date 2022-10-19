@@ -20,6 +20,17 @@ public class Assert {
     }
 
     /**
+     * Asserts that the {@code executable} does not throw any exceptions.
+     * This is a wrapper method that invokes {@link Assertions#assertDoesNotThrow(Executable)}, to maintain consistency
+     * with our custom {@link #assertThrows(Class, String, Executable)} method.
+     * To standardize API calls in this project, users should use this method instead of
+     * {@link Assertions#assertDoesNotThrow(Executable)}.
+     */
+    public static void assertDoesNotThrow(Executable executable) {
+        Assertions.assertDoesNotThrow(executable);
+    }
+
+    /**
      * Asserts that the {@code executable} throws the {@code expectedType} Exception with the {@code expectedMessage}.
      * If there's no need for the verification of the exception's error message, call
      * {@link #assertThrows(Class, Executable)} instead.

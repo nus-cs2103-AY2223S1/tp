@@ -19,8 +19,8 @@ public class PersonBuilder {
 
     public static final Integer DEFAULT_PERSON_ID = 0;
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_PHONE = "11111111";
+    public static final String DEFAULT_EMAIL = "amy@example.com";
 
     private PersonId personId;
     private Name name;
@@ -90,8 +90,8 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        if (phone == null) {
-            this.phone = null;
+        if (phone == null || phone.isBlank()) {
+            this.phone = new Phone(null);
         } else {
             this.phone = new Phone(phone);
         }
@@ -102,8 +102,8 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        if (email == null) {
-            this.email = null;
+        if (email == null || email.isBlank()) {
+            this.email = new Email(null);
         } else {
             this.email = new Email(email);
         }
