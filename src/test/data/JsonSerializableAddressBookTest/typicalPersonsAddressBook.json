@@ -9,6 +9,9 @@
     "mods" : [ {
       "modName" : "CS2100",
       "hasTaken" : false
+    }, {
+      "modName" : "CS1231S",
+      "hasTaken" : true
     } ],
     "interests" : [ "tennis" ]
   }, {
@@ -20,7 +23,10 @@
     "mods" : [ {
       "modName" : "CS2100",
       "hasTaken" : false
-    } ],
+    }, {
+      "modName" : "CS1231S",
+      "hasTaken" : false
+    }  ],
     "interests" : [ "netflix", "tennis" ]
   }, {
     "name" : "Carl Kurz",
@@ -52,6 +58,9 @@
     "username" : "goldl8ol",
     "mods" : [ {
       "modName" : "CS2100",
+      "hasTaken" : false
+    }, {
+      "modName" : "CS1231S",
       "hasTaken" : false
     } ],
     "interests" : [ ]

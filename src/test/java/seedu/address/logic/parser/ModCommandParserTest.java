@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
 import seedu.address.logic.commands.ModDeleteCommand;
+import seedu.address.logic.commands.ModFindCommand;
 import seedu.address.logic.commands.ModMarkCommand;
 import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.model.person.Mod;
@@ -191,6 +192,15 @@ public class ModCommandParserTest {
         ModDeleteCommand expectedCommand = new ModDeleteCommand(targetIndex, mods);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    /**
+     * Tests the behaviour of mod find when no module is entered.
+     */
+    @Test
+    public void parse_findEmptyString_throwsParseException() {
+        assertParseFailure(parser, ModFindCommand.COMMAND_WORD + " " + "     ", String.format(
+                ModCommand.MESSAGE_MODS_EMPTY));
     }
 
     /**
