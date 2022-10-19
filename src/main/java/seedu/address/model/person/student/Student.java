@@ -24,10 +24,12 @@ import seedu.address.model.tuitionclass.exceptions.TuitionClassNotAssignedExcept
  */
 public class Student extends Person {
 
+    private static int id = 0;
     private final School school;
     private final Level level;
     private final NextOfKin nextOfKin;
     private final List<TuitionClass> tuitionClasses = new ArrayList<>();
+    private final String uniqueId;
 
     /**
      * Every field must be present and not null.
@@ -36,9 +38,11 @@ public class Student extends Person {
                    NextOfKin nextOfKin) {
         super(name, phone, email, address, tags);
         requireAllNonNull(school, level);
+        id++;
         this.school = school;
         this.level = level;
         this.nextOfKin = nextOfKin;
+        this.uniqueId = id + "student";
     }
 
 
@@ -51,10 +55,12 @@ public class Student extends Person {
                    NextOfKin nextOfKin, List<TuitionClass> tuitionClasses) {
         super(name, phone, email, address, tags);
         requireAllNonNull(school, level);
+        id++;
         this.school = school;
         this.level = level;
         this.nextOfKin = nextOfKin;
         this.tuitionClasses.addAll(tuitionClasses);
+        this.uniqueId = id + "student";
     }
 
     public School getSchool() {
@@ -71,6 +77,14 @@ public class Student extends Person {
 
     public List<TuitionClass> getTuitionClasses() {
         return tuitionClasses;
+    }
+
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public void minusId() {
+        id--;
     }
 
     /**

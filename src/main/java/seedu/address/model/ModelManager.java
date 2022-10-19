@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.SortCommand.SortBy;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
@@ -189,6 +190,22 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTuitionClass);
 
         addressBook.setTuitionClass(target, editedTuitionClass);
+    }
+
+    @Override
+    public void sortList(ListType type, SortBy method) {
+        switch (type) {
+        case STUDENT_LIST:
+            addressBook.sortStudentList(method);
+            break;
+        case TUTOR_LIST:
+            addressBook.sortTutorList(method);
+            break;
+        case TUITIONCLASS_LIST:
+            addressBook.sortTuitionClassList(method);
+            break;
+        default:
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
