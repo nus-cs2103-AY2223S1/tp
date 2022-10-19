@@ -22,7 +22,7 @@ public class SampleDataUtil {
             new Trip(new Title("Grad Trip"), new Description("Grad Trip with friends!"),
                 getEventSet("friends")),
             new Trip(new Title("Honeymoon"), new Description("Lorem ipsum dolor sit amet."),
-                getEventSet("colleagues", "friends")),
+                getEventSet("girlfriend")),
             new Trip(new Title("Business Trip"), new Description("Consectetur adipiscing elit."),
                 getEventSet("neighbours")),
             new Trip(new Title("Solo Trip"), new Description("Sed do eiusmod tempor."),
