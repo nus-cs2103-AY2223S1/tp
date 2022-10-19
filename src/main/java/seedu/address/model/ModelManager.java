@@ -262,14 +262,23 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
+
         return filteredSchedule;
+    }
+
+    @Override
+    public ObservableList<Schedule> getAllScheduleList() {
+        return new FilteredList<>(this.addressBook.getScheduleList());
+
     }
 
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+        // filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
         requireNonNull(predicate);
-        filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
+        filteredSchedule.setPredicate(predicate);
+        // filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
     }
 
     @Override

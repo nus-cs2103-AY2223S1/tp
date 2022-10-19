@@ -254,6 +254,29 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> modules} into a {@code Set<String>}.
+     */
+    public static Set<String> parseModules(Collection<String> modules) throws ParseException {
+        requireNonNull(modules);
+        final Set<String> modulesSet = new HashSet<>();
+        for (String moduleName : modules) {
+            modulesSet.add(parseModule(moduleName));
+        }
+        return modulesSet;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
      * Parses weekday
      * @param weekday user's input of weekday
      * @return Weekdays
@@ -280,6 +303,21 @@ public class ParserUtil {
             throw new ParseException(Schedule.MESSAGE_WEEKDAYS_CONSTRAINT);
         }
     }
+
+    /**
+     * Parses {@code Collection<String> weekdays} into a {@code Set<String>}.
+     */
+    public static Set<String> parseWeekdays(Collection<String> weekdays) throws ParseException {
+        requireNonNull(weekdays);
+        final Set<String> weekdaysSet = new HashSet<>();
+        for (String weekdays1 : weekdays) {
+            weekdaysSet.add(parseWeekday(weekdays1).name());
+        }
+        return weekdaysSet;
+    }
+
+
+
 
     /**
      * Parses class start time
