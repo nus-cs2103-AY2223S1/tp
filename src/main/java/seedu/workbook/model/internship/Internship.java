@@ -117,14 +117,17 @@ public class Internship {
         builder.append(getCompany())
                 .append("; Role: ")
                 .append(getRole())
-                .append("; Email: ")
-                .append(getEmail())
                 .append("; Stage: ")
                 .append(getStage());
 
         if (!getDateTime().value.isEmpty()) {
             builder.append("; Date: ")
                     .append(getDateTime());
+        }
+
+        if (!getEmail().value.isEmpty()) {
+            builder.append("; Email: ")
+                    .append(getEmail());
         }
 
         Set<Tag> tags = getTags();
