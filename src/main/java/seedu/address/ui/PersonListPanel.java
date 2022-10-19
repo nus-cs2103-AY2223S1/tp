@@ -31,6 +31,11 @@ public class PersonListPanel extends UiPart<Region> {
         this.modListPanel = personModList;
     }
 
+    public void setPersonPanel(ObservableList<Person> personList) {
+        personListView.setItems(personList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
     /**
      * Displays ListView item clicked on the ListView on the {@code testPanel}
      */

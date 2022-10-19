@@ -54,7 +54,7 @@ public class AddInterestCommand extends Command {
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         personToEdit.addInterests(interests);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit), false, false, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit), false, false, false, true);
     }
 
     @Override
