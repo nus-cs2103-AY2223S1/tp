@@ -11,6 +11,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+
 //import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,6 +19,7 @@ import java.util.function.Predicate;
 //import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
 //import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -82,7 +84,7 @@ public class AddBuyerCommandTest {
 //        // null -> returns false
 //        assertFalse(addAliceCommand.equals(null));
 //
-//        // different buyer -> returns false
+    // different buyer -> returns false
 //        assertFalse(addAliceCommand.equals(addBobCommand));
 //    }
 

@@ -29,6 +29,7 @@ import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
  */
+
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
@@ -49,7 +50,7 @@ public class BuyerTest {
 //        buyer.addOrder(order);
 //        assertTrue(buyer.getOrderIds().size() == 1);
 //        assertEquals(buyer.getOrderIds(), Arrays.asList(order));
-//    }
+    //    }
 
     @Test
     public void isSameBuyer() {
@@ -131,7 +132,7 @@ public class BuyerTest {
 //                new Price(100));
 //        buyer1.addOrder(order1);
 //        buyer2.addOrder(order2);
-//        assertNotEquals(order1, order2);
+    //        assertNotEquals(order1, order2);
 //    }
 
     @Test
@@ -151,6 +152,6 @@ public class BuyerTest {
 //                new Price(100));
 //        buyer1.addOrder(order);
 //        buyer2.addOrder(order);
-//        assertEquals(buyer1.toString(), buyer2.toString());
+    //        assertEquals(buyer1.toString(), buyer2.toString());
 //    }
 }
