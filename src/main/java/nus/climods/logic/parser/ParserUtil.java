@@ -92,7 +92,8 @@ public class ParserUtil {
     /**
      * Parse semester details according to user input
      * @param input Input string from user containing semester details
-     * @return
+     * @return Optional of String representing semester number. Returns empty Optional if user input is not a valid
+     *      semester.
      */
     public static Optional<String> parseSemesterType(String input) {
         List<String> acceptedSemesterType = Arrays.asList("S1", "S2", "ST1", "ST2");

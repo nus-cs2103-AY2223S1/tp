@@ -42,7 +42,8 @@ public class UserModule {
     /**
      * Creates a UserModule with Semester details
      * @param moduleCode String for the module code
-     * @throws ParseException if module code is not a valid module in current NUS curriculum
+     * @throws CommandException if module code is not a valid module in current NUS curriculum or module is not
+     *      offered in specified semester.
      */
     public UserModule(String moduleCode, String semester, Model model) throws CommandException {
         Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
