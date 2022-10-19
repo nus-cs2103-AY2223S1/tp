@@ -24,7 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_DOB = "1/1/2000";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    public static final String DEFAULT_GENDER = "NA";
+    public static final String DEFAULT_GENDER = "Male";
 
     private Name name;
     private Phone phone;

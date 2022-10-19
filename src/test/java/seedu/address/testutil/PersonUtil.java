@@ -40,6 +40,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        sb.append(PREFIX_GENDER + person.getGender().value.toString() + " ");
         return sb.toString();
     }
 
