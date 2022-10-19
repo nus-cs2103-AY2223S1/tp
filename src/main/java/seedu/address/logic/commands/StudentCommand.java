@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.StringJoiner;
 
@@ -24,26 +25,28 @@ public class StudentCommand extends Command {
     public static final String COMMAND_WORD = "student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
-        + "Parameters: "
-        + PREFIX_NAME + "NAME "
-        + "[" + PREFIX_MODULE_CODE + "MODULE_CODE]... "
-        + PREFIX_PHONE + "PHONE "
-        + PREFIX_EMAIL + "EMAIL "
-        + PREFIX_GENDER + "GENDER "
-        + "[" + PREFIX_TAG + "TAG]... "
-        + PREFIX_LOCATION + "LOCATION\n"
-        + "Example: " + COMMAND_WORD + " "
-        + PREFIX_NAME + "John Doe "
-        + PREFIX_MODULE_CODE + "CS4226 "
-        + PREFIX_MODULE_CODE + "CS5242 "
-        + PREFIX_MODULE_CODE + "CS1101S  "
-        + PREFIX_PHONE + "98765432 "
-        + PREFIX_EMAIL + "JohnD@example.com "
-        + PREFIX_GENDER + "M "
-        + PREFIX_TAG + "friends "
-        + PREFIX_TAG + "owesMoney "
-        + PREFIX_LOCATION + "UTown Residences "
-        + PREFIX_GITHUBUSERNAME + "johnnyd";
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + "[" + PREFIX_YEAR + "YEAR]... "
+            + "[" + PREFIX_MODULE_CODE + "MODULE_CODE]... "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_GENDER + "GENDER "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + PREFIX_LOCATION + "LOCATION\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_YEAR + "1 "
+            + PREFIX_MODULE_CODE + "CS4226 "
+            + PREFIX_MODULE_CODE + "CS5242 "
+            + PREFIX_MODULE_CODE + "CS1101S "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "JohnD@example.com "
+            + PREFIX_GENDER + "M "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_LOCATION + "UTown Residences "
+            + PREFIX_GITHUBUSERNAME + "johnnyd";
 
     public static final String MESSAGE_SUCCESS = "New Student added: %1$s";
 

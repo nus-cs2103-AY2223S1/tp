@@ -70,3 +70,8 @@ shadowJar {
 }
 
 defaultTasks 'clean', 'test'
+
+run{
+    standardInput = System.in
+    enableAssertions = true
+}
