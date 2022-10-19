@@ -5,12 +5,12 @@ import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.InvalidPathException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.job.Id;
@@ -55,13 +55,10 @@ public class ParserUtil {
      */
     public static Path parseFilePath(String filePath) throws ParseException {
         String trimmedPath = filePath.trim();
-        Path path;
-        try {
-            path = Paths.get(trimmedPath);
-        } catch (InvalidPathException e) {
+        if (!FileUtil.isValidPath(trimmedPath)) {
             throw new ParseException(MESSAGE_INVALID_FILE_PATH);
         }
-        return path;
+        return Paths.get(trimmedPath);
     }
 
     /**

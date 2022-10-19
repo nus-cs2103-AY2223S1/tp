@@ -101,6 +101,21 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Appends the contents of {@code persons} to this list
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void appendList(List<Person> persons) {
+        requireAllNonNull(persons);
+        if (!personsAreUnique(persons)) {
+            throw new DuplicatePersonException();
+        }
+
+        for (Person person : persons) {
+            internalList.add(person);
+        }
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {

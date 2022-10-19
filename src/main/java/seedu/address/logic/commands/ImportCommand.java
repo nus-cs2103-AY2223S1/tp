@@ -3,9 +3,15 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.storage.JsonAddressBookStorage;
 
 /**
  * Adds one or more persons to the address book from an external json source.
@@ -20,35 +26,76 @@ public class ImportCommand extends Command {
             + "Example: " + COMMAND_WORD + " nus_students.json";
 
     public static final String MESSAGE_SUCCESS = "New persons added";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_PATH_DOES_NOT_EXIST = "The specified path does not exist";
+    public static final String MESSAGE_PATH_IS_DIRECTORY = "The specified path must be a file, not a directory";
+    public static final String MESSAGE_FILE_UNREADABLE =
+            "The specified file cannot be accessed due to insufficient privileges";
 
-    private final Path fileName;
+    private final Path filePath;
 
     /**
      * @param filePath to import from.
      */
     public ImportCommand(Path filePath) {
         requireNonNull(filePath);
-        fileName = filePath;
+        this.filePath = filePath;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        //if (model.hasPerson(toAdd)) {
-        //    throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        //}
-
-        //model.addPerson(toAdd);
+        //checkValidFilePath(filePath);
+        AddressBook toAppend = createAppendableAddressBook(filePath);
+        model.appendAddressBook(toAppend);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
+    }
+
+    /**
+     * Checks if the provided filePath is a valid and readable.
+     *
+     * @param filePath to check.
+     * @throws CommandException if the file path is invalid or unreadable.
+     */
+    private void checkValidFilePath(Path filePath) throws CommandException {
+        if (FileUtil.isFileExists(filePath)) {
+            throw new CommandException(MESSAGE_PATH_DOES_NOT_EXIST);
+        }
+        if (FileUtil.isDirectory(filePath)) {
+            throw new CommandException(MESSAGE_PATH_IS_DIRECTORY);
+        }
+        if (!FileUtil.isReadable(filePath)) {
+            throw new CommandException(MESSAGE_FILE_UNREADABLE);
+        }
+    }
+
+    /**
+     * Converts the json file from the specified file path into an appendable {@code AddressBook}.
+     *
+     * @throws CommandException if the data is not of the expected format.
+     */
+    private AddressBook createAppendableAddressBook(Path filePath) throws CommandException {
+        JsonAddressBookStorage appendableJsonStorage = new JsonAddressBookStorage(filePath);
+        Optional<ReadOnlyAddressBook> importedJsonNewPersons;
+        try {
+            importedJsonNewPersons = appendableJsonStorage.readAddressBook();
+        } catch (DataConversionException ive) {
+            //createTemplate(String.format(NOT_JSON_FORMAT_WITH_EXAMPLE, filePath.getFileName()));
+            throw new CommandException("1");
+        }
+
+        if (!importedJsonNewPersons.isPresent()) {
+            throw new CommandException("2");
+        }
+
+        AddressBook appendableAddressBook = new AddressBook(importedJsonNewPersons.get());
+        return appendableAddressBook;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ImportCommand // instanceof handles nulls
-                && fileName.equals(((ImportCommand) other).fileName));
+                && filePath.equals(((ImportCommand) other).filePath));
     }
 }
 

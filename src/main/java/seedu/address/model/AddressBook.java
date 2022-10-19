@@ -93,6 +93,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Appends {@code other} to this {@code AddressBook}.
+     */
+    public void appendAddressBook(AddressBook other) {
+        persons.appendList(other.getPersonList());
+    }
+
     //// util methods
 
     @Override

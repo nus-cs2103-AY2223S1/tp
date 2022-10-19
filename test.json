@@ -1,0 +1,29 @@
+{
+  "persons" : [ {
+    "name" : "Summer Boy",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "gender" : "Male",
+    "graduationDate" : "05-2022",
+    "cap" : "3.50/4.00",
+    "university" : "National University of Singapore",
+    "major" : "Computer Science",
+    "id" : "169277",
+    "title" : "IT Software Engineer (6 months internship)",
+    "tagged" : [ "offered" ]
+  }, {
+    "name" : "Birdman",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "gender" : "Female",
+    "graduationDate" : "05-2024",
+    "cap" : "5.00/5.00",
+    "university" : "Nanyang Technological University",
+    "major" : "Computer Engineering",
+    "id" : "169277",
+    "title" : "IT Software Engineer (6 months internship)",
+    "tagged" : [ ]
+  } ]
+}
