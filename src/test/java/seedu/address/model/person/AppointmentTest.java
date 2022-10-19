@@ -137,6 +137,13 @@ public class AppointmentTest {
     }
 
     @Test
+    public void getYear_sameYear_success() {
+        Appointment appointment = new Appointment(new ValidDateTimeStub(), new ValidLocationStub());
+        Assertions.assertEquals(2023, appointment.getYear());
+        Assertions.assertNotEquals(2022, appointment.getYear());
+    }
+
+    @Test
     public void getTime_sameTime_success() {
         ValidTimeStub timeStub = new ValidTimeStub();
         Appointment appointment = new Appointment(new ValidDateTimeStub(), new ValidLocationStub());
