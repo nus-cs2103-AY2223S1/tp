@@ -14,7 +14,7 @@ import seedu.condonery.logic.parser.exceptions.ParseException;
 public class DeletePropertyCommandParser implements Parser<DeletePropertyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
+     * Parses the given {@code String} of arguments in the context of the DeletePropertyCommand
      * and returns a Command object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

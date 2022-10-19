@@ -2,31 +2,43 @@ package seedu.condonery.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalClients {
 
-    public static final Client ALICE = new ClientBuilder().withName("Pinnacle@Duxton")
+    public static final Client ALICE_CLIENT = new ClientBuilder().withName("Alice")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withTags("friends").build();
-    public static final Client BOB = new ClientBuilder().withName("Oasis")
+
+    public static final Client BOB_CLIENT = new ClientBuilder().withName("Bob")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withTags("owesMoney", "friends").build();
-    public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withAddress("wall street").build();
-    public static final Client DANIEL = new ClientBuilder()
+
+    public static final Client CARL_CLIENT = new ClientBuilder().withName("Carl Kurz")
+            .withAddress("wall street").build();
+    public static final Client DANIEL_CLIENT = new ClientBuilder()
             .withName("Daniel Meier").withAddress("10th street").withTags("friends").build();
-    public static final Client ELLE = new ClientBuilder().withName("Elle Meyer")
+    public static final Client ELLE_CLIENT = new ClientBuilder().withName("Elle Meyer")
             .withAddress("michegan ave").build();
-    public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz")
+    public static final Client FIONA_CLIENT = new ClientBuilder().withName("Fiona Kunz")
             .withAddress("little tokyo").build();
-    public static final Client GEORGE = new ClientBuilder().withName("George Best")
+    public static final Client GEORGE_CLIENT = new ClientBuilder().withName("George Best")
             .withAddress("4th street").build();
+    public static final Set<Tag> TYPICAL_CLIENT_TAG = new HashSet<Tag>() { {
+            add(new Tag("tag1"));
+            add(new Tag("tag2"));
+            add(new Tag("tag3"));
+        }};
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -45,6 +57,7 @@ public class TypicalClients {
     }
 
     public static List<Client> getTypicalClients() {
-        return new ArrayList<>(Arrays.asList(ALICE, BOB, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE_CLIENT, BOB_CLIENT, CARL_CLIENT, DANIEL_CLIENT,
+                ELLE_CLIENT, FIONA_CLIENT, GEORGE_CLIENT));
     }
 }

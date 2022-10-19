@@ -26,9 +26,8 @@ import static seedu.condonery.testutil.TypicalIndexes.INDEX_THIRD_PROPERTY;
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.commons.core.index.Index;
-import seedu.condonery.logic.commands.EditCommand;
-import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
-import seedu.condonery.logic.parser.EditCommandParser;
+import seedu.condonery.logic.commands.property.EditPropertyCommand;
+import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.tag.Tag;
@@ -39,9 +38,9 @@ public class EditPropertyCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPropertyCommand.MESSAGE_USAGE);
 
-    private final EditCommandParser parser = new EditCommandParser();
+    private final EditPropertyCommandParser parser = new EditPropertyCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -49,7 +48,7 @@ public class EditPropertyCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditPropertyCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -96,7 +95,7 @@ public class EditPropertyCommandParserTest {
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_AMY)
             .withAddress(VALID_ADDRESS_AMY)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -107,7 +106,7 @@ public class EditPropertyCommandParserTest {
         String userInput = targetIndex.getOneBased() + NAME_DESC_BOB;
 
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -118,19 +117,19 @@ public class EditPropertyCommandParserTest {
         Index targetIndex = INDEX_THIRD_PROPERTY;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
         descriptor = new EditPropertyDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditPropertyDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -144,7 +143,7 @@ public class EditPropertyCommandParserTest {
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder()
             .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
             .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -155,24 +154,23 @@ public class EditPropertyCommandParserTest {
         Index targetIndex = INDEX_FIRST_PROPERTY;
         String userInput = targetIndex.getOneBased() + INVALID_NAME_DESC + NAME_DESC_BOB;
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_NAME_DESC + ADDRESS_DESC_BOB + NAME_DESC_BOB;
         descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BOB)
             .withAddress(VALID_ADDRESS_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PROPERTY;
+        Index targetIndex = INDEX_FIRST_PROPERTY;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

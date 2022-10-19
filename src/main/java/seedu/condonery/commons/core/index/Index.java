@@ -1,5 +1,7 @@
 package seedu.condonery.commons.core.index;
 
+import java.util.Objects;
+
 /**
  * Represents a zero-based or one-based index.
  *
@@ -47,8 +49,35 @@ public class Index {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Index // instanceof handles nulls
-                && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
+        boolean result = false;
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Index)) {
+            return false;
+        }
+
+        Index e = (Index) other;
+
+        if (getZeroBased() == e.getZeroBased()) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(zeroBasedIndex);
+    }
+
+    @Override
+    public String toString() {
+        return "Index{"
+                + "zeroBasedIndex=" + zeroBasedIndex
+                + '}';
     }
 }
