@@ -26,13 +26,13 @@ public class Date {
     /**
      * Constructs a {@code Date}.
      *
-     * @param dateTime A valid goods name.
+     * @param date A valid date.
      */
-    public Date(String dateTime) {
-        requireNonNull(dateTime);
-        checkArgument(isValidDate(dateTime), MESSAGE_CONSTRAINTS);
-        this.unformattedDate = dateTime;
-        this.date = LocalDate.parse(dateTime, dtf).toString();
+    public Date(String date) {
+        requireNonNull(date);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        this.unformattedDate = date;
+        this.date = LocalDate.parse(date, dtf).toString();
     }
 
     /**
