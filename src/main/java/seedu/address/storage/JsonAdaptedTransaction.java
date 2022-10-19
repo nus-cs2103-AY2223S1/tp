@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.transaction.BuyTransaction;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
@@ -22,6 +23,7 @@ public class JsonAdaptedTransaction {
     private final String goods;
     private final String price;
     private final String quantity;
+    private final String date;
 
     private final TransactionType type;
 
@@ -31,11 +33,13 @@ public class JsonAdaptedTransaction {
     @JsonCreator
     public JsonAdaptedTransaction(@JsonProperty("goods") String goods, @JsonProperty("price") String price,
                                   @JsonProperty("quantity") String quantity,
-                                  @JsonProperty("type") TransactionType type) {
+                                  @JsonProperty("type") TransactionType type,
+                                  @JsonProperty("date") String date) {
         this.goods = goods;
         this.price = price;
         this.quantity = quantity;
         this.type = type;
+        this.date = date;
     }
 
     /**
@@ -45,6 +49,7 @@ public class JsonAdaptedTransaction {
         goods = transaction.getGoods().goodsName;
         price = transaction.getPrice().price;
         quantity = transaction.getQuantity().quantity;
+        date = transaction.getDate().getUnformattedDate();
 
         type = transaction instanceof BuyTransaction
                 ? TransactionType.BUY
@@ -82,8 +87,17 @@ public class JsonAdaptedTransaction {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Date.class.getSimpleName()));
+        }
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
+        final Date modelDate = new Date(date);
+
         return type == TransactionType.BUY
-                ? new BuyTransaction(modelGoods, modelPrice, modelQuantity)
-                : new SellTransaction(modelGoods, modelPrice, modelQuantity);
+                ? new BuyTransaction(modelGoods, modelPrice, modelQuantity, modelDate)
+                : new SellTransaction(modelGoods, modelPrice, modelQuantity, modelDate);
     }
 }
