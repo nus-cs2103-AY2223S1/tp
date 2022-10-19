@@ -20,7 +20,8 @@ import seedu.intrack.logic.commands.DeleteCommand;
 import seedu.intrack.logic.commands.EditCommand;
 import seedu.intrack.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.intrack.logic.commands.ExitCommand;
-import seedu.intrack.logic.commands.FindCommand;
+import seedu.intrack.logic.commands.FindNCommand;
+import seedu.intrack.logic.commands.FindPCommand;
 import seedu.intrack.logic.commands.HelpCommand;
 import seedu.intrack.logic.commands.ListCommand;
 import seedu.intrack.logic.commands.RemarkCommand;
@@ -28,6 +29,7 @@ import seedu.intrack.logic.commands.StatusCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
+import seedu.intrack.model.internship.PositionContainsKeywordsPredicate;
 import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.testutil.EditInternshipDescriptorBuilder;
@@ -75,11 +77,19 @@ public class InTrackParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findn() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindNCommand command = (FindNCommand) parser.parseCommand(
+                FindNCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindNCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findp() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindPCommand command = (FindPCommand) parser.parseCommand(
+                FindPCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPCommand(new PositionContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
