@@ -5,11 +5,11 @@ import java.util.Set;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.person.Priority;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,7 +28,7 @@ public class PropertyBuilder {
     private Price price;
     private Address address;
     private Description description;
-    private Set<Tag> tags;
+    private Set<Priority> priorities;
     private String seller;
     private Characteristics characteristics;
 
@@ -40,7 +40,7 @@ public class PropertyBuilder {
         price = new Price(DEFAULT_PRICE);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        priorities = new HashSet<>();
         seller = DEFAULT_SELLER;
         characteristics = null;
     }
@@ -53,7 +53,7 @@ public class PropertyBuilder {
         price = propertyToCopy.getPrice();
         description = propertyToCopy.getDescription();
         address = propertyToCopy.getAddress();
-        tags = new HashSet<>(propertyToCopy.getTags());
+        priorities = new HashSet<>(propertyToCopy.getTags());
         seller = propertyToCopy.getSeller();
         characteristics = propertyToCopy.getCharacteristics().orElse(null);
     }
@@ -70,7 +70,7 @@ public class PropertyBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Property} that we are building.
      */
     public PropertyBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.priorities = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -123,6 +123,6 @@ public class PropertyBuilder {
     }
 
     public Property build() {
-        return new Property(name, price, address, description, tags, seller, characteristics);
+        return new Property(name, price, address, description, priorities, seller, characteristics);
     }
 }

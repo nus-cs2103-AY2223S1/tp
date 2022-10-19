@@ -11,7 +11,7 @@ import java.util.Set;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 /**
  * Represents a Property in the address book.
@@ -27,7 +27,7 @@ public class Property {
     // Data fields
     private final Address address;
     private final Description description;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Priority> priorities = new HashSet<>();
     private final Optional<Characteristics> characteristics;
 
     // private final Seller seller;
@@ -37,13 +37,13 @@ public class Property {
      * Every field must be present and not null.
      */
     public Property(PropertyName propertyName, Price price, Address address, Description description,
-                    Set<Tag> tags, String seller, Characteristics characteristics) {
-        requireAllNonNull(propertyName, price, address, description, tags, seller);
+                    Set<Priority> priorities, String seller, Characteristics characteristics) {
+        requireAllNonNull(propertyName, price, address, description, priorities, seller);
         this.propertyName = propertyName;
         this.price = price;
         this.address = address;
         this.description = description;
-        this.tags.addAll(tags);
+        this.priorities.addAll(priorities);
         this.seller = seller;
         this.characteristics = Optional.ofNullable(characteristics);
     }
@@ -68,8 +68,8 @@ public class Property {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Priority> getTags() {
+        return Collections.unmodifiableSet(priorities);
     }
 
     public String getSeller() {
@@ -121,7 +121,7 @@ public class Property {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(propertyName, price, address, description, tags, seller);
+        return Objects.hash(propertyName, price, address, description, priorities, seller);
     }
 
     @Override
@@ -137,10 +137,10 @@ public class Property {
                 .append("; Seller: ")
                 .append(getSeller());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
+        Set<Priority> priorities = getTags();
+        if (!priorities.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            priorities.forEach(builder::append);
         }
         builder.append("; Characteristics: ")
                 .append(getCharacteristics()

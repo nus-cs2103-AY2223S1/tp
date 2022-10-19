@@ -61,8 +61,8 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.specifiedPriority))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.specifiedPriority.toString())));
         priceRange.setText("Budget: " + person.getPriceRange()
                 .map(PriceRange::toString).orElse("Not Specified"));
         desiredCharacteristics.setText("Desired Characteristics: " + person

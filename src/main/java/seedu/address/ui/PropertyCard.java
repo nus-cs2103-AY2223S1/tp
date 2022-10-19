@@ -62,8 +62,8 @@ public class PropertyCard extends UiPart<Region> {
         address.setText(property.getAddress().value);
         description.setText(property.getDescription().value);
         property.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.specifiedPriority))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.specifiedPriority.toString())));
         seller.setText(property.getSeller());
         characteristics.setText("Characteristics: " + property
                 .getCharacteristics().map(Characteristics::toString)

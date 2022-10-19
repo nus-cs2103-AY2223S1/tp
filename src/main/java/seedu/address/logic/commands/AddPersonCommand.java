@@ -36,8 +36,7 @@ public class AddPersonCommand extends Command {
             + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
             + PREFIX_PRICE_RANGE + " 200000 - 250000 "
             + PREFIX_CHARACTERISTICS + " 5-ROOM; SOUTH-FACING; BISHAN "
-            + PREFIX_TAG + " friends "
-            + PREFIX_TAG + " owesMoney";
+            + PREFIX_TAG + " high ";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This buyer already exists in the address book";

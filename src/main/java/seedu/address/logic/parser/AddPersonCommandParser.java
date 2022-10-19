@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddPersonCommand;
@@ -20,7 +21,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 
 
@@ -60,9 +61,15 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }
 
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Priority> priorityList =  new HashSet<>();
+        String defaultPriority = "normal";
+        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
+            priorityList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        } else {
+            priorityList.add(new Priority(defaultPriority));
+        }
 
-        Person person = new Person(name, phone, email, address, priceRange, characteristics, tagList);
+        Person person = new Person(name, phone, email, address, priceRange, characteristics, priorityList);
 
         return new AddPersonCommand(person);
     }

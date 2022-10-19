@@ -19,7 +19,7 @@ import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 /**
  * Parses input arguments and creates a new AddPropertyCommand object
@@ -46,7 +46,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Priority> priorityList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String seller = ParserUtil.parseSellerName(argMultimap.getValue(PREFIX_SELLER).get());
 
         Characteristics characteristics = null;
@@ -54,7 +54,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }
 
-        Property property = new Property(propertyName, price, address, description, tagList, seller, characteristics);
+        Property property = new Property(propertyName, price, address, description, priorityList, seller, characteristics);
 
         return new AddPropertyCommand(property);
     }

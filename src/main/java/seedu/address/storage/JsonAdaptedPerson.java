@@ -17,7 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 
 /**
@@ -79,9 +79,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Priority> personPriorities = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            personPriorities.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -137,8 +137,8 @@ class JsonAdaptedPerson {
                 ? null
                 : new Characteristics(desiredCharacteristics);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Priority> modelPriorities = new HashSet<>(personPriorities);
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelPriceRange, modelCharacteristics, modelTags);
+                modelPriceRange, modelCharacteristics, modelPriorities);
     }
 }

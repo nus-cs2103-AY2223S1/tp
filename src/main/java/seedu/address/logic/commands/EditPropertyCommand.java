@@ -23,11 +23,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.person.Priority;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing property in the address book.
@@ -103,14 +103,14 @@ public class EditPropertyCommand extends Command {
         Price updatedPrice = descriptor.getPrice().orElse(propertyToEdit.getPrice());
         Address updatedAddress = descriptor.getAddress().orElse(propertyToEdit.getAddress());
         Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
-        Set<Tag> updatedTags = descriptor.getTags().orElse(propertyToEdit.getTags());
+        Set<Priority> updatedPriorities = descriptor.getTags().orElse(propertyToEdit.getTags());
         String updatedSeller = descriptor.getSeller().orElse(propertyToEdit.getSeller());
         Characteristics updatedCharacteristics = descriptor
                 .getCharacteristics()
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
 
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
-                updatedTags, updatedSeller, updatedCharacteristics);
+                updatedPriorities, updatedSeller, updatedCharacteristics);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class EditPropertyCommand extends Command {
         private Price price;
         private Address address;
         private Description description;
-        private Set<Tag> tags;
+        private Set<Priority> priorities;
         private String seller;
         private Characteristics characteristics;
 
@@ -155,7 +155,7 @@ public class EditPropertyCommand extends Command {
             setPrice(toCopy.price);
             setDescription(toCopy.description);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setTags(toCopy.priorities);
             setSeller(toCopy.seller);
             setCharacteristics(toCopy.characteristics);
         }
@@ -164,7 +164,7 @@ public class EditPropertyCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, price, address, description, tags);
+            return CollectionUtil.isAnyNonNull(name, price, address, description, priorities);
         }
 
         public void setName(PropertyName propertyName) {
@@ -203,8 +203,8 @@ public class EditPropertyCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Set<Priority> priorities) {
+            this.priorities = (priorities != null) ? new HashSet<>(priorities) : null;
         }
 
         /**
@@ -212,8 +212,8 @@ public class EditPropertyCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Priority>> getTags() {
+            return (priorities != null) ? Optional.of(Collections.unmodifiableSet(priorities)) : Optional.empty();
         }
 
         public void setSeller(String seller) {

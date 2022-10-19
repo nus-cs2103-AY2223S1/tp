@@ -15,11 +15,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.person.Priority;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code PersonBook} with sample data.
@@ -92,9 +92,9 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Priority> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Priority::new)
                 .collect(Collectors.toSet());
     }
 

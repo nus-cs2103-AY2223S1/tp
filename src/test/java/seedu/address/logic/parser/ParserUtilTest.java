@@ -20,7 +20,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -156,25 +156,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePriority(null));
     }
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriority(INVALID_TAG));
     }
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+        Priority expectedPriority = new Priority(VALID_TAG_1);
+        assertEquals(expectedPriority, ParserUtil.parsePriority(VALID_TAG_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+        Priority expectedPriority = new Priority(VALID_TAG_1);
+        assertEquals(expectedPriority, ParserUtil.parsePriority(tagWithWhitespace));
     }
 
     @Test
@@ -194,11 +194,11 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1),
-                new Tag(VALID_TAG_2)));
+        Set<Priority> actualPrioritySet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Priority> expectedPrioritySet = new HashSet<Priority>(Arrays.asList(new Priority(VALID_TAG_1),
+                new Priority(VALID_TAG_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedPrioritySet, actualPrioritySet);
     }
 
     @Test

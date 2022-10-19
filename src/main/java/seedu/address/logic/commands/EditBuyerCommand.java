@@ -28,7 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -109,10 +109,10 @@ public class EditBuyerCommand extends Command {
         Characteristics updatedCharacteristics = editPersonDescriptor
                 .getDesiredCharacteristics()
                 .orElse(personToEdit.getDesiredCharacteristics().orElse(null));
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Priority> updatedPriorities = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedPriceRange, updatedCharacteristics, updatedTags);
+                updatedPriceRange, updatedCharacteristics, updatedPriorities);
 
         return newPerson;
     }
@@ -146,7 +146,7 @@ public class EditBuyerCommand extends Command {
         private Address address;
         private PriceRange priceRange;
         private Characteristics characteristics;
-        private Set<Tag> tags;
+        private Set<Priority> priorities;
 
         public EditPersonDescriptor() {}
 
@@ -161,14 +161,14 @@ public class EditBuyerCommand extends Command {
             setAddress(toCopy.address);
             setPriceRange(toCopy.priceRange);
             setDesiredCharacteristics(toCopy.characteristics);
-            setTags(toCopy.tags);
+            setTags(toCopy.priorities);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, priceRange, characteristics, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, priceRange, characteristics, priorities);
         }
 
         public void setName(Name name) {
@@ -223,8 +223,8 @@ public class EditBuyerCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Set<Priority> priorities) {
+            this.priorities = (priorities != null) ? new HashSet<>(priorities) : null;
         }
 
         /**
@@ -232,8 +232,8 @@ public class EditBuyerCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Priority>> getTags() {
+            return (priorities != null) ? Optional.of(Collections.unmodifiableSet(priorities)) : Optional.empty();
         }
 
         @Override

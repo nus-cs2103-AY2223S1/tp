@@ -10,7 +10,7 @@ import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 /**
  * A utility class to help with building EditPropertyDescriptor objects.
@@ -76,8 +76,8 @@ public class EditPropertyDescriptorBuilder {
      * that we are building.
      */
     public EditPropertyDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        Set<Priority> prioritySet = Stream.of(tags).map(Priority::new).collect(Collectors.toSet());
+        descriptor.setTags(prioritySet);
         return this;
     }
 

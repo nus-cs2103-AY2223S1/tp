@@ -13,7 +13,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 /**
  * A utility class for Person.
@@ -62,11 +62,11 @@ public class PersonUtil {
         descriptor.getDesiredCharacteristics().ifPresent(desiredCharacteristics -> sb.append(PREFIX_CHARACTERISTICS)
                 .append(desiredCharacteristics).append(" "));
         if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
+            Set<Priority> priorities = descriptor.getTags().get();
+            if (priorities.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                priorities.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
         return sb.toString();

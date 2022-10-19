@@ -11,7 +11,6 @@ import java.util.Set;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.tag.Tag;
 
 
 /**
@@ -30,21 +29,21 @@ public class Person {
     private final Address address;
     private final Optional<PriceRange> priceRange;
     private final Optional<Characteristics> desiredCharacteristics;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Priority> priorities = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  PriceRange priceRange, Characteristics characteristics, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+                  PriceRange priceRange, Characteristics characteristics, Set<Priority> priorities) {
+        requireAllNonNull(name, phone, email, address, priorities);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.priceRange = Optional.ofNullable(priceRange);
         this.desiredCharacteristics = Optional.ofNullable(characteristics);
-        this.tags.addAll(tags);
+        this.priorities.addAll(priorities);
     }
 
     public Name getName() {
@@ -75,8 +74,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Priority> getTags() {
+        return Collections.unmodifiableSet(priorities);
     }
 
     /**
@@ -119,7 +118,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, priorities);
     }
 
     @Override
@@ -138,10 +137,10 @@ public class Person {
                 .append(getDesiredCharacteristics()
                         .map(Characteristics::toString)
                         .orElse("Not Specified"));
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
+        Set<Priority> priorities = getTags();
+        if (!priorities.isEmpty()) {
             builder.append(" Tags: ");
-            tags.forEach(builder::append);
+            priorities.forEach(builder::append);
         }
         return builder.toString();
     }

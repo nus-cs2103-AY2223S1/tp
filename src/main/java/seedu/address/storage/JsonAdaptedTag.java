@@ -4,33 +4,33 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Priority;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Priority}.
  */
 class JsonAdaptedTag {
 
-    private final String tagName;
+    private final String specifiedPriority;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
     public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+        this.specifiedPriority = tagName;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+    public JsonAdaptedTag(Priority source) {
+        specifiedPriority = source.specifiedPriority.toString();
     }
 
     @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getPriority() {
+        return specifiedPriority;
     }
 
     /**
@@ -38,11 +38,11 @@ class JsonAdaptedTag {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+    public Priority toModelType() throws IllegalValueException {
+        if (!Priority.isValidPriority(specifiedPriority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        return new Priority(specifiedPriority);
     }
 
 }
