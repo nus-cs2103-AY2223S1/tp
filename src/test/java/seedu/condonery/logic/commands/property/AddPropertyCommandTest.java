@@ -1,4 +1,4 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
+import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
-import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.ReadOnlyClientDirectory;
