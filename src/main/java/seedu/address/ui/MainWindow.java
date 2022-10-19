@@ -45,6 +45,8 @@ public class MainWindow extends UiPart<Stage> {
     private TutorListPanel tutorListPanel;
     private TuitionClassListPanel tuitionClassListPanel;
     private StudentDescription studentDescription;
+    private TutorDescription tutorDescription;
+    private TuitionClassDescription tuitionClassDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -153,7 +155,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         studentDescription = new StudentDescription(logic.getFilteredStudentList().get(0), 1);
-        entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+        tutorDescription = new TutorDescription(logic.getFilteredTutorList().get(0), 1);
+        tuitionClassDescription = new TuitionClassDescription(logic.getFilteredTuitionClassList(), 1);
+        //entityDescriptionPlaceholder.getChildren().add(tuitionClassDescription.getRoot());
     }
 
     /**

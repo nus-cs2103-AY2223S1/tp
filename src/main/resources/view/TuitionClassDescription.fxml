@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="entityDescription" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
@@ -32,20 +31,14 @@
       <FlowPane fx:id="tags" />
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label styleClass="prefix-label" text="Phone:" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+               <Label styleClass="prefix-label" text="Day:" />
+            <Label fx:id="day" styleClass="cell_small_label" text="\\$day" />
             </children>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label styleClass="prefix-label" text="Address:" />
-               <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            </children>
-         </HBox>
-         <HBox alignment="CENTER_LEFT" spacing="5">
-            <children>
-               <Label styleClass="prefix-label" text="Email:" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+               <Label styleClass="prefix-label" text="Time:" />
+               <Label fx:id="time" styleClass="cell_small_label" text="\\$time" />
             </children>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
@@ -56,20 +49,10 @@
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label styleClass="prefix-label" text="School:" />
-            <Label fx:id="school" styleClass="cell_small_label" text="\$school" />
+               <Label styleClass="prefix-label" text="Subject:" />
+            <Label fx:id="subject" styleClass="cell_small_label" text="\\$subject" />
             </children>
          </HBox>
-         <Label styleClass="prefix-label" text="Class:" />
-         <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
-            <children>
-               <VBox fx:id="belongedClassList" alignment="TOP_CENTER" spacing="5.0">
-                  <StackPane.margin>
-                     <Insets bottom="5.0" top="5.0" />
-                  </StackPane.margin>
-               </VBox>
-            </children>
-         </StackPane>
     </VBox>
       <rowConstraints>
          <RowConstraints />

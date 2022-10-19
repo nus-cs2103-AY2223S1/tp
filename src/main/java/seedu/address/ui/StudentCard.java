@@ -41,11 +41,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     protected Label level;
     @FXML
-    protected Label nextOfKin;
-    @FXML
     protected Label school;
     @FXML
     protected FlowPane tags;
+    @FXML
+    protected FlowPane classes;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -59,11 +59,14 @@ public class StudentCard extends UiPart<Region> {
         address.setText("Address: " + student.getAddress().value);
         email.setText("Email: " + student.getEmail().value);
         level.setText("Level: " + student.getLevel().level);
-        nextOfKin.setText("Next of Kin: " + student.getNextOfKin().nextOfKin);
+        //nextOfKin.setText("Next of Kin: " + student.getNextOfKin().nextOfKin);
         school.setText("School: " + student.getSchool().school);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        student.getTuitionClasses().stream()
+                .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
+                .forEach(tuitionClass -> classes.getChildren().add(new Label(tuitionClass.getName().name)));
     }
 
     @Override

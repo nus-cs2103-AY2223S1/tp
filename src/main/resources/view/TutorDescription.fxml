@@ -50,14 +50,14 @@
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label styleClass="prefix-label" text="Level:" />
-            <Label fx:id="level" styleClass="cell_small_label" text="\$level" />
+               <Label styleClass="prefix-label" text="Institution:" />
+            <Label fx:id="institution" styleClass="cell_small_label" text="\\$institution" />
             </children>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label styleClass="prefix-label" text="School:" />
-            <Label fx:id="school" styleClass="cell_small_label" text="\$school" />
+               <Label styleClass="prefix-label" text="Qualification:" />
+            <Label fx:id="qualification" styleClass="cell_small_label" text="\\$qualidication" />
             </children>
          </HBox>
          <Label styleClass="prefix-label" text="Class:" />

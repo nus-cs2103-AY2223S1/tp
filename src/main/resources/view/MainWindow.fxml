@@ -22,7 +22,7 @@
     <scene>
         <Scene>
 
-            <VBox prefHeight="403.0" prefWidth="586.0" styleClass="background">
+            <VBox minWidth="-Infinity" prefHeight="403.0" prefWidth="800.0" styleClass="background">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -84,7 +84,7 @@
                         </HBox>
                     </children>
                 </StackPane>
-            <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="100.0" prefWidth="340.0" styleClass="background" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="100.0" prefWidth="800.0" styleClass="background" VBox.vgrow="ALWAYS">
                <children>
       
                             <VBox fx:id="personList" minWidth="-Infinity" prefWidth="400.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
@@ -96,7 +96,7 @@
                         <Insets bottom="10.0" left="10.0" />
                      </HBox.margin>
                       </VBox>
-                  <StackPane fx:id="entityDescriptionPlaceholder" prefHeight="150.0" prefWidth="200.0" styleClass="pane-with-border">
+                  <StackPane fx:id="entityDescriptionPlaceholder" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="211.0" prefWidth="203.0" styleClass="label-bright" text="No entity displayed" textAlignment="CENTER" textFill="WHITE" />
                      </children>

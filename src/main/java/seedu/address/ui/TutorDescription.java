@@ -8,15 +8,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
 
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Tutor}.
  */
-public class StudentDescription extends UiPart<Region> {
+public class TutorDescription extends UiPart<Region> {
 
-    private static final String FXML = "StudentDescription.fxml";
+    private static final String FXML = "TutorDescription.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,7 +26,7 @@ public class StudentDescription extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Student student;
+    public final Tutor tutor;
     @FXML
     protected HBox cardPane;
     @FXML
@@ -40,34 +40,34 @@ public class StudentDescription extends UiPart<Region> {
     @FXML
     protected Label email;
     @FXML
-    protected Label level;
+    protected Label institution;
     @FXML
-    protected Label school;
+    protected Label qualification;
     @FXML
     protected FlowPane tags;
     @FXML
     protected VBox belongedClassList;
 
     /**
-     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
+     * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
      */
-    public StudentDescription(Student student, int displayedIndex) {
+    public TutorDescription(Tutor tutor, int displayedIndex) {
         super(FXML);
-        this.student = student;
+        this.tutor = tutor;
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
-        level.setText(student.getLevel().level);
-        school.setText(student.getSchool().school);
-        student.getTags().stream()
+        name.setText(tutor.getName().fullName);
+        phone.setText(tutor.getPhone().value);
+        address.setText(tutor.getAddress().value);
+        email.setText(tutor.getEmail().value);
+        institution.setText(tutor.getInstitution().institution);
+        qualification.setText(tutor.getQualification().qualification);
+        tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        student.getTuitionClasses().stream()
+        tutor.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
-                .forEach(tuitionClass -> belongedClassList.getChildren().add(new BelongedClass(tuitionClass.getName().name).getRoot()));
-
+                .forEach(tuitionClass -> belongedClassList.getChildren().add(
+                        new BelongedClass(tuitionClass.getName().name).getRoot()));
     }
 
     @Override
@@ -78,13 +78,13 @@ public class StudentDescription extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentDescription)) {
+        if (!(other instanceof TutorDescription)) {
             return false;
         }
 
         // state check
-        StudentDescription card = (StudentDescription) other;
+        TutorDescription card = (TutorDescription) other;
         return id.getText().equals(card.id.getText())
-                && student.equals(card.student);
+                && tutor.equals(card.tutor);
     }
 }
