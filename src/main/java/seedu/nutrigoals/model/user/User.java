@@ -138,7 +138,9 @@ public class User {
                 .append("\nIdeal Weight: ")
                 .append(getIdealWeight())
                 .append("\nBMI: ")
-                .append(getBmi());
+                .append(getBmi())
+                .append("\nAge: ")
+                .append(getAge());
         return stringBuilder.toString();
     }
 }
