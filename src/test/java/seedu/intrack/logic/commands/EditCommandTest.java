@@ -33,7 +33,7 @@ import seedu.intrack.testutil.InternshipBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
-    // todo fix test
+
     /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -50,6 +50,7 @@ public class EditCommandTest {
     }
 
      */
+
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {

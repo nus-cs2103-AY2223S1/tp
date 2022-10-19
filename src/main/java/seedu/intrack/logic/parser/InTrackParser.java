@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.intrack.logic.commands.AddCommand;
+import seedu.intrack.logic.commands.AddTaskCommand;
 import seedu.intrack.logic.commands.ClearCommand;
 import seedu.intrack.logic.commands.Command;
 import seedu.intrack.logic.commands.DeleteCommand;
@@ -18,7 +19,6 @@ import seedu.intrack.logic.commands.ListCommand;
 import seedu.intrack.logic.commands.RemarkCommand;
 import seedu.intrack.logic.commands.StatsCommand;
 import seedu.intrack.logic.commands.StatusCommand;
-import seedu.intrack.logic.commands.TaskCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,8 +75,8 @@ public class InTrackParser {
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);
 
-        case TaskCommand.COMMAND_WORD:
-            return new TaskCommandParser().parse(arguments);
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();

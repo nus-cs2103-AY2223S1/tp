@@ -33,39 +33,39 @@ public class TypicalInternships {
             .withPosition("Software Engineer")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withStatus("Progress")
-            .withTasks("Application submitted /at 19-10-2022(11:38)")
+            .withTasks("Application submitted /at 19-10-2022 11:38")
             .withTags("friends").build();
     public static final Internship BENSON = new InternshipBuilder().withName("Benson Meier")
             .withPosition("Data Analyst")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withStatus("Offered")
-            .withTasks("Application submitted /at 20-10-2022(12:00)")
+            .withTasks("Application submitted /at 20-10-2022 12:00")
             .withTags("owesMoney", "friends").build();
     public static final Internship CARL = new InternshipBuilder().withName("Carl Kurz").withPhone("95352563")
             .withPosition("Frontend Engineer").withEmail("heinz@example.com").withAddress("wall street")
             .withStatus("Offered")
-            .withTasks("Application submitted /at 19-10-2022(11:38)")
+            .withTasks("Application submitted /at 19-10-2022 11:38")
             .build();
     public static final Internship DANIEL = new InternshipBuilder().withName("Daniel Meier").withPhone("87652533")
             .withPosition("Backend Engineer").withEmail("cornelia@example.com").withStatus("Offered")
             .withAddress("10th street")
-            .withTasks("Application submitted /at 19-10-2022(11:38)", "HR Interview /at 30-10-2022(09:00)")
+            .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .withTags("friends")
             .build();
     public static final Internship ELLE = new InternshipBuilder().withName("Elle Meyer").withPhone("9482224")
             .withPosition("Full Stack Engineer").withEmail("werner@example.com").withAddress("michegan ave")
             .withStatus("Offered")
-            .withTasks("Application submitted /at 25-10-2022(08:30)", "Technical Interview /at 30-10-2022(09:00)")
+            .withTasks("Application submitted /at 25-10-2022 08:30", "Technical Interview /at 30-10-2022 09:00")
             .build();
     public static final Internship FIONA = new InternshipBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withPosition("Cyber Security Analyst").withEmail("lydia@example.com").withAddress("little tokyo")
             .withStatus("Offered")
-            .withTasks("Application submitted /at 19-10-2022(11:38)", "HR Interview /at 30-10-2022(09:00)")
+            .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .build();
     public static final Internship GEORGE = new InternshipBuilder().withName("George Best").withPhone("9482442")
             .withPosition("Algorithm Engineer").withEmail("anna@example.com").withAddress("4th street")
             .withStatus("Offered")
-            .withTasks("Application submitted /at 19-10-2022(11:38)", "HR Interview /at 30-10-2022(09:00)")
+            .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .build();
 
     // Manually added

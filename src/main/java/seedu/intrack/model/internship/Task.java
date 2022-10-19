@@ -16,7 +16,7 @@ import java.util.Objects;
 public class Task {
 
     public static final String MESSAGE_CONSTRAINTS = "Task names can take any values, and it should not be blank";
-    public static final String TIME_CONSTRAINTS = "Time must be in the format dd-MM-yyyy(HH:mm)";
+    public static final String TIME_CONSTRAINTS = "Time must be in the format dd-MM-yyyy HH:mm";
 
     /*
      * The first character of the task must not be a whitespace,
@@ -24,7 +24,7 @@ public class Task {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy(HH:mm)");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public final String taskName;
     public final LocalDateTime taskTime;

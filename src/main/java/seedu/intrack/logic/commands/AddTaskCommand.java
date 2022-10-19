@@ -16,14 +16,14 @@ import seedu.intrack.model.internship.Task;
 /**
  * Updates the current task of an Internship.
  */
-public class TaskCommand extends Command {
+public class AddTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "task";
+    public static final String COMMAND_WORD = "addtask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the task of the internship identified by "
             + "the index number used in the displayed list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + " TASK\n"
+            + " ADDTASK\n"
             + "Example: " + COMMAND_WORD + " 1 Technical Interview /at 04-11-2022(17:00)";
 
     public static final String TASK_COMMAND_CONSTRAINTS = "TASK must be in the format: \n"
@@ -40,7 +40,7 @@ public class TaskCommand extends Command {
      * @param index of the internship in the internship list to update the task of
      * @param task of the internship application
      */
-    public TaskCommand(Index index, Task task) {
+    public AddTaskCommand(Index index, Task task) {
         requireAllNonNull(index, task);
 
         this.index = index;
@@ -77,11 +77,11 @@ public class TaskCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof TaskCommand)) {
+        if (!(other instanceof AddTaskCommand)) {
             return false;
         }
 
-        TaskCommand e = (TaskCommand) other;
+        AddTaskCommand e = (AddTaskCommand) other;
 
         return index.equals(e.index)
                 && task.equals(e.task);

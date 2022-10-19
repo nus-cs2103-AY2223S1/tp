@@ -10,7 +10,7 @@
 
     "taskFilled" : [ {
       "taskName" : "Application submitted",
-      "taskTime" : "19-10-2022(11:38)"
+      "taskTime" : "19-10-2022 11:38"
     } ],
     "tagged" : [ "friends" ],
     "remark" : ""
@@ -23,7 +23,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
-      "taskTime" : "20-10-2022(12:00)"
+      "taskTime" : "20-10-2022 12:00"
     } ],
     "tagged" : [ "owesMoney", "friends" ],
     "remark" : ""
@@ -36,7 +36,7 @@
     "address" : "wall street",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
-      "taskTime" : "19-10-2022(11:38)"
+      "taskTime" : "19-10-2022 11:38"
     } ],
     "tagged" : [ ],
     "remark" : ""
@@ -49,10 +49,10 @@
     "address" : "10th street",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
-      "taskTime" : "19-10-2022(11:38)"
+      "taskTime" : "19-10-2022 11:38"
     }, {
       "taskName" : "HR Interview",
-      "taskTime" : "30-10-2022(09:00)"
+      "taskTime" : "30-10-2022 09:00"
     } ],
     "tagged" : [ "friends" ],
     "remark" : ""
@@ -65,10 +65,10 @@
     "address" : "michegan ave",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
-      "taskTime" : "25-10-2022(08:30)"
+      "taskTime" : "25-10-2022 08:30"
     }, {
       "taskName" : "Technical Interview",
-      "taskTime" : "30-10-2022(09:00)"
+      "taskTime" : "30-10-2022 09:00"
     } ],
     "tagged" : [ ],
     "remark" : ""
@@ -81,10 +81,10 @@
     "address" : "little tokyo",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
-      "taskTime" : "19-10-2022(11:38)"
+      "taskTime" : "19-10-2022 11:38"
     }, {
       "taskName" : "HR Interview",
-      "taskTime" : "30-10-2022(09:00)"
+      "taskTime" : "30-10-2022 09:00"
     } ],
     "tagged" : [ ],
     "remark" : ""
@@ -97,10 +97,10 @@
     "address" : "4th street",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
-      "taskTime" : "19-10-2022(11:38)"
+      "taskTime" : "19-10-2022 11:38"
     }, {
       "taskName" : "HR Interview",
-      "taskTime" : "30-10-2022(09:00)"
+      "taskTime" : "30-10-2022 09:00"
     } ],
     "tagged" : [ ],
     "remark" : ""
