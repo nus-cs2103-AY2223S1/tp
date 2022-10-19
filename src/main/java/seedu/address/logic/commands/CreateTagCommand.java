@@ -21,10 +21,10 @@ public class CreateTagCommand extends TagCommandGroup {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates tags with the names given. "
             + "Parameters: "
             + "[TAG1] [TAG2] ... \n"
-            + "Example: " + COMMAND_WORD + COMMAND_SPECIFIER + " tag1 tag2 tag3";
+            + "Example: " + COMMAND_WORD + " tag1 tag2 tag3";
 
     public static final String MESSAGE_SUCCESS = "New tags created: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAGS = "Tag(s) %1$s already exist in Rapporrbook!";
+    public static final String MESSAGE_DUPLICATE_TAGS = "Tag(s) %1$s already exist in Rapportbook!";
 
     private final Set<Tag> tagsToAdd;
 
@@ -43,7 +43,7 @@ public class CreateTagCommand extends TagCommandGroup {
         List<Tag> duplicateTags = new ArrayList<>();
         List<Tag> nonDuplicateTags = new ArrayList<>();
 
-        for (Tag tag: tagsToAdd) {
+        for (Tag tag : tagsToAdd) {
             if (model.hasTag(tag)) {
                 duplicateTags.add(tag);
             } else {

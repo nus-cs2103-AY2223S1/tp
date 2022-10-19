@@ -23,7 +23,7 @@ public class DeleteTagCommand extends TagCommandGroup {
             + "Example: " + COMMAND_WORD + " tag1 tag2 tag3";
 
     public static final String MESSAGE_SUCCESS = "Tags deleted: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAGS = "Tag(s) %1$s does not exist in Rapportbook!";
+    public static final String MESSAGE_TAGS_DONT_EXIST = "Tag(s) %1$s does not exist in Rapportbook!";
 
     private final Set<Tag> tagsToDelete;
 
@@ -46,7 +46,7 @@ public class DeleteTagCommand extends TagCommandGroup {
 
         String undeletedMessage = undeletedTags.isEmpty()
                 ? ""
-                : String.format(MESSAGE_DUPLICATE_TAGS, Tag.toString(undeletedTags)) + "\n";
+                : String.format(MESSAGE_TAGS_DONT_EXIST, Tag.toString(undeletedTags)) + "\n";
         String successMessage = deletedTags.isEmpty()
                 ? ""
                 : String.format(MESSAGE_SUCCESS, Tag.toString(deletedTags));

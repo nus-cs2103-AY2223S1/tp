@@ -40,16 +40,14 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
 
         String[] argArray = trimmedArgs.split("\\s+");
         String commandSpecifier = argArray[0];
+        String[] argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
 
         switch (commandSpecifier) {
         case CreateTagCommand.COMMAND_SPECIFIER:
-            String[] argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new CreateTagCommand(parseArgs(argsToPass));
         case DeleteTagCommand.COMMAND_SPECIFIER:
-            argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new DeleteTagCommand(parseArgs(argsToPass));
         case RemoveTagCommand.COMMAND_SPECIFIER:
-            argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new RemoveTagCommandParser().parse(String.join(" ", argsToPass));
         default:
             return new TagCommandParser().parse(trimmedArgs);
@@ -62,7 +60,7 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
      *
      * @throws ParseException if the user input does not conform to the specified format
      */
-    public Set<Tag> parseArgs(String[] args) throws ParseException {
+    private Set<Tag> parseArgs(String[] args) throws ParseException {
         String trimmedArgs = String.join(" ", args).trim();
         String[] tagNames = trimmedArgs.split("\\s+");
 
