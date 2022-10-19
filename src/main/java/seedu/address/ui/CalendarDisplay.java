@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 
+import static javafx.scene.paint.Color.WHITE;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -69,6 +71,7 @@ public class CalendarDisplay extends UiPart<Region> {
         // Draw days of the week
         for (int day = 1; day <= 7; day++) {
             Text tDayName = new Text(" " + getDayName(day));
+            tDayName.setFill(WHITE);
             calendarDisplay.add(tDayName, day - 1, 0);
         }
 
@@ -108,7 +111,7 @@ public class CalendarDisplay extends UiPart<Region> {
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
         Text header = new Text(monthString + ", " + yearString);
         header.setStyle("-fx-font-size: 15pt; -fx-text-fill: white; -fx-background-color: #fff");
-        header.setFill(Color.WHITE);
+        header.setFill(WHITE);
         return header;
     }
 
