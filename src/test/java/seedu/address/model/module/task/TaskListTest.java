@@ -108,5 +108,6 @@ public class TaskListTest {
         taskList.swapTasks(indexZero, indexOne);
         TaskList expectedTaskList =
                 new TaskList(Arrays.asList(TASK_B, TASK_A, TASK_C));
-        assertEquals(expectedTaskList, taskList);    }
+        assertEquals(expectedTaskList, taskList);
+    }
 }
