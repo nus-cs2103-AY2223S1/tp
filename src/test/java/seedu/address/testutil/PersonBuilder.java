@@ -7,6 +7,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
@@ -19,9 +20,11 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ROLE = "Software Engineer";
 
     private Name name;
     private Address address;
+    private Role role;
     private Set<Tag> tags;
     private HashMap<ContactType, Contact> contacts;
 
@@ -31,6 +34,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
+        role = new Role(DEFAULT_ROLE);
         tags = new HashSet<>();
         contacts = new HashMap<>();
     }
@@ -42,6 +46,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        role = personToCopy.getRole();
     }
 
     /**
@@ -77,13 +82,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Role} of the {@code Person} that we are building
+     */
+    public PersonBuilder withRole(String role) {
+        this.role = new Role(role);
+        return this;
+    }
+
+    /**
      * Build the Person Model
      *
      * @return a Person
      */
     public Person build() {
         // Todo: add contact to person builder
-        return new Person(name, address, tags, new HashMap<>());
+        return new Person(name, address, tags, new HashMap<>(), role);
     }
 
 }
