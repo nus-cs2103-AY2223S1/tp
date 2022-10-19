@@ -111,6 +111,7 @@ public class ConditionList implements GenericList<Condition> {
             } else {
                 builder.append("\n")
                         .append(index + 1)
+                        .append(". ")
                         .append(c);
             }
         });
