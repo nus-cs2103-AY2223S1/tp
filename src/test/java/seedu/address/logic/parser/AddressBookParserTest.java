@@ -106,6 +106,19 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_find() throws Exception {
+        String input = " n/foo";
+        Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(input);
+        Predicate<Deliverer> delivererPredicate = PredicateParser.parseDeliverer(input);
+        Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(input);
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + input);
+        FindCommand otherCommand = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
+                TypicalPersonCategories.PERSON_CATEGORY_BUYER);
+        assertEquals(otherCommand, command);
+    }
+
+    @Test
     public void parseCommand_findBuyer() throws Exception {
         String input = " n/foo";
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(input);
