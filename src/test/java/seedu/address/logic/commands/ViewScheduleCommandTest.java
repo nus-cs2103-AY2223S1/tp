@@ -41,6 +41,7 @@ public class ViewScheduleCommandTest {
         ViewModuleScheduleCommand viewFirstCommandCopy = new ViewModuleScheduleCommand(firstPredicate);
         ViewModuleScheduleCommand viewSecondCommand = new ViewModuleScheduleCommand(secondPredicate);
 
+
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
 

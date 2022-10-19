@@ -35,10 +35,10 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
           <Menu mnemonicParsing="false" text="Module">
-            <MenuItem fx:id="tabModule" mnemonicParsing="false" onAction="#handleShowTabModules" text="Module" />
+            <MenuItem fx:id="tabModule" mnemonicParsing="false" onAction="#handleShowTabAllModules" text="Module" />
           </Menu>
           <Menu mnemonicParsing="false" text="Students">
-            <MenuItem fx:id="tabStudents" mnemonicParsing="false" onAction="#handleShowTabStudents" text="Students" />
+            <MenuItem fx:id="tabStudents" mnemonicParsing="false" onAction="#handleShowTabAllStudents" text="Students" />
           </Menu>
           <Menu mnemonicParsing="false" text="Schedules">
             <MenuItem fx:id="tabSchedule" mnemonicParsing="false" onAction="#handleShowTabAllSchedule"

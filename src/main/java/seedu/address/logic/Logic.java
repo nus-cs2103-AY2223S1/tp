@@ -36,11 +36,18 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the whole list of persons */
+    ObservableList<Person> getAllPersonList();
+
     /** Returns an unmodifiable view of the filtered list of tutors */
     ObservableList<Student> getFilteredTutorList();
 
     /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
+
+    /** Returns an unmodifiable view of the whole list of modules */
+    ObservableList<Module> getAllModuleList();
+
 
     /** Returns an unmodifiable view of the filtered list of module schedules */
     ObservableList<Schedule> getFilteredScheduleList();
@@ -62,4 +69,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+
 }

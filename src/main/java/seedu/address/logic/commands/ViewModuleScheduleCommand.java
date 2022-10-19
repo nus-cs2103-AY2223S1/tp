@@ -35,6 +35,7 @@ public class ViewModuleScheduleCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+
         requireNonNull(model);
         if (this.predicate == null) {
             model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);

@@ -210,6 +210,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getAllPersonList() {
+        return new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -250,6 +255,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredModules;
+    }
+
+    @Override
+    public ObservableList<Module> getAllModuleList() {
+        return new FilteredList<>(this.addressBook.getModuleList());
     }
 
     @Override

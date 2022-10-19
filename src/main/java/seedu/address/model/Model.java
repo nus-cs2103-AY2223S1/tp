@@ -168,11 +168,19 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the whole person list */
+
+    ObservableList<Person> getAllPersonList();
+
     /** Returns an unmodifiable view of the filtered tutor list */
     ObservableList<Student> getFilteredTutorList();
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
+
+    /** Returns an unmodifiable view of the whole module list */
+
+    ObservableList<Module> getAllModuleList();
 
     /** Returns an unmodifiable view of the filtered module schedule list */
     ObservableList<Schedule> getFilteredScheduleList();
@@ -209,4 +217,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredScheduleList(Predicate<Schedule> predicate);
+
+
+
 }
