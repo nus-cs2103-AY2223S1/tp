@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
@@ -42,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label title;
+    @FXML
+    private HBox stars;
     @FXML
     private Label number;
     @FXML
@@ -83,15 +86,17 @@ public class PersonCard extends UiPart<Region> {
             Professor prof = (Professor) person;
             moduleCodes.getChildren().add(new Label(prof.getModuleCode().value));
             title.setText("Professor");
+            renderRating(prof.getRating());
             year.setManaged(false);
             setSpecialisation(prof);
         }
         if (person instanceof TeachingAssistant) {
+            TeachingAssistant ta = (TeachingAssistant) person;
             moduleCodes.getChildren().add(new Label(((TeachingAssistant) person).getModuleCode().value));
             title.setText("Teaching\nAssistant");
+            renderRating(ta.getRating());
             year.setManaged(false);
             specialisation.setManaged(false);
-
         }
         if (person instanceof Student) {
             Student student = (Student) person;
@@ -137,9 +142,35 @@ public class PersonCard extends UiPart<Region> {
     private Image getGenderImage(Person person) {
         String gender = person.getGender().value;
         if (gender.equals("M")) {
-            return new Image(this.getClass().getResourceAsStream("/images/maleicon.png"));
+            return new Image(this.getClass().getResourceAsStream("/images/maleicon.png"),
+                    24, 24, true, true);
         } else {
-            return new Image(this.getClass().getResourceAsStream("/images/femaleicon.png"));
+            return new Image(this.getClass().getResourceAsStream("/images/femaleicon.png"),
+                    24, 24, true, true);
+        }
+    }
+
+    private void renderRating(Rating rating) {
+        if (rating.value.equals(rating.EMPTY_RATING)) {
+            stars.getChildren().clear();
+        } else {
+            fillStars(rating);
+        }
+    }
+
+    private void fillStars(Rating rating) {
+        int numberOfStars = Integer.valueOf(rating.value);
+        for (int i = 0; i < numberOfStars; i++) {
+            ImageView filledStarImage = new ImageView(
+                    new Image(this.getClass().getResourceAsStream("/images/FilledStar.png"),
+                            20, 20, true, true));
+            stars.getChildren().add(filledStarImage);
+        }
+        for (int j = 0; j < 5 - numberOfStars; j++) {
+            ImageView emptyStarImage = new ImageView(
+                    new Image(this.getClass().getResourceAsStream("/images/emptystar.png"),
+                            20, 20 , true, true));
+            stars.getChildren().add(emptyStarImage);
         }
     }
 

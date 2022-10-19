@@ -86,9 +86,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             String ratingInput = argMultimap.getValue(PREFIX_RATING).orElse(Rating.EMPTY_RATING);
             if (ratingInput.equals(Rating.EMPTY_RATING)) {
-                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(ratingInput, false));
+                editPersonDescriptor.setRating(ParserUtil.parseRating(ratingInput, false));
             } else {
-                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(ratingInput, true));
+                editPersonDescriptor.setRating(ParserUtil.parseRating(ratingInput, true));
             }
         }
 

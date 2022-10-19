@@ -138,10 +138,17 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
         }
-        if (!Rating.isValidRating(getRating())) {
-            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+
+        final Rating modelRating;
+
+        if (getRating().equals(Rating.EMPTY_RATING)) {
+            modelRating = new Rating(getRating(), false);
+        } else {
+            if (!Rating.isValidRating(getRating())) {
+                throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+            }
+            modelRating = new Rating(getRating(), true);
         }
-        final Rating modelRating = new Rating(getRating());
 
         final Specialisation modelSpecialisation;
 
