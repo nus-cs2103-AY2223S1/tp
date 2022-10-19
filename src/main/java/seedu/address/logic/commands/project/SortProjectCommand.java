@@ -35,12 +35,18 @@ public class SortProjectCommand extends ProjectCommand {
             + COMMAND_WORD + " "
             + PREFIX_DEADLINE + "0";
 
-    private final int sortKey;
-    private final Prefix sortPrefix;
+    private final Prefix sortKey;
+    private final int sortOrder;
 
-    public SortProjectCommand(Prefix prefix, int key) {
-        this.sortPrefix = prefix;
+    /**
+     * Specifies a sorting project command which has a key and an order to sort by.
+     *
+     * @param order is the element to sort by
+     * @param key is the variant of the element to sort by
+     */
+    public SortProjectCommand(Prefix key, int order) {
         this.sortKey = key;
+        this.sortOrder = order;
     }
 
     @Override
@@ -48,18 +54,18 @@ public class SortProjectCommand extends ProjectCommand {
         requireNonNull(model);
         String sortPrefixString = "";
 
-        if (sortPrefix.equals(PREFIX_DEADLINE)) {
-            model.sortProjectsByDeadline(sortKey);
+        if (sortKey.equals(PREFIX_DEADLINE)) {
+            model.sortProjectsByDeadline(sortOrder);
             sortPrefixString = "deadline.";
         }
 
-        if (sortPrefix.equals(PREFIX_ISSUE_COUNT)) {
-            model.sortProjectsByIssueCount(sortKey);
+        if (sortKey.equals(PREFIX_ISSUE_COUNT)) {
+            model.sortProjectsByIssueCount(sortOrder);
             sortPrefixString = "issue count.";
         }
 
-        if (sortPrefix.equals(PREFIX_NAME)) {
-            model.sortProjectsByName(sortKey);
+        if (sortKey.equals(PREFIX_NAME)) {
+            model.sortProjectsByName(sortOrder);
             sortPrefixString = "names.";
         }
 

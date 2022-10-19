@@ -276,11 +276,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Sort projects in chronological order or reverse chronological order based on key value of 0 or 1 respectively.
      *
-     * @param key zero for chronological order and one for reverse chronological order
+     * @param order zero for chronological order and one for reverse chronological order
      */
-    public void sortProjectsByDeadline(int key) {
+    public void sortProjectsByDeadline(int order) {
         ObservableList<Project> sortedProjectsByDeadline;
-        if (key == 0) {
+        if (order == 0) {
             //sort according to chronological deadlines
             sortedProjectsByDeadline =
                     getModifiableProjectList().sorted(Comparator.comparing(p -> p.getDeadline().getLocalDate()));
@@ -295,11 +295,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Sort projects in ascending or descending order of issue counts based on key value of 0 or 1 respectively.
      *
-     * @param key zero for ascending order and one for descending order
+     * @param order zero for ascending order and one for descending order
      */
-    public void sortProjectsByIssueCount(int key) {
+    public void sortProjectsByIssueCount(int order) {
         ObservableList<Project> sortedProjectsByIssueCount;
-        if (key == 0) {
+        if (order == 0) {
             //sort according to ascending issue count
             sortedProjectsByIssueCount =
                     getModifiableProjectList().sorted(Comparator.comparingInt(p -> p.getIssueList().size()));
@@ -314,11 +314,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Sort projects in alphabetical or reverse alphabetical order of names based on key value of 0 or 1 respectively.
      *
-     * @param key zero for alphabetical order and one for reverse alphabetical order
+     * @param order zero for alphabetical order and one for reverse alphabetical order
      */
-    public void sortProjectsByName(int key) {
+    public void sortProjectsByName(int order) {
         ObservableList<Project> sortedProjectsByName;
-        if (key == 0) {
+        if (order == 0) {
             //sort according to alphabetical order
             sortedProjectsByName =
                     getModifiableProjectList().sorted(Comparator.comparing(p -> p.getProjectName().toString()));
