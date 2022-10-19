@@ -30,7 +30,9 @@ public class DeleteTagCommandTest {
     public void execute_noDuplicateTags_addSuccessful() throws Exception {
         ModelStubAcceptingTagsAdded modelStub = new ModelStubAcceptingTagsAdded();
 
-        Set<Tag> tagsToDelete = Set.of(VALID_TAG_FRIENDS, VALID_TAG_OWES_MONEY);
+        Set<Tag> tagsToDelete = new HashSet<>();
+        tagsToDelete.add(VALID_TAG_FRIENDS);
+        tagsToDelete.add(VALID_TAG_OWES_MONEY);
 
         CommandResult commandResult = new DeleteTagCommand(tagsToDelete).execute(modelStub);
 
