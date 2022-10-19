@@ -27,7 +27,12 @@ public class AllTagCustomerCommandParser implements Parser<AllTagCustomerCommand
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllTagCustomerCommand.MESSAGE_USAGE));
         }
 
-        String[] tagsAsString = trimmedArgs.split("\\s+");
+        trimmedArgs = trimmedArgs
+                .replaceAll("\\s+", " ")
+                .replaceAll("\\s+\\|", "\\|")
+                .replaceAll("\\|\\s+", "\\|");
+        String[] tagsAsString = trimmedArgs.split("\\|");
+
         Tag[] tags = new Tag[tagsAsString.length];
         for (int i = 0; i < tags.length; i++) {
             tags[i] = new Tag(tagsAsString[i]);

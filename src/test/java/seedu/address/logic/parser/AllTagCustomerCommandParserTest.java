@@ -24,17 +24,17 @@ public class AllTagCustomerCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsAnyTagCustomerCommand() {
+    public void parse_validArgs_returnsAllTagCustomerCommand() {
         // no leading and trailing whitespaces
         List<Tag> tagList = new ArrayList<Tag>();
         tagList.add(new Tag("tag1"));
         tagList.add(new Tag("tag2"));
         AllTagCustomerCommand expectedAllTagCustomerCommand =
                 new AllTagCustomerCommand(new CustomerContainsAllTagPredicate(tagList));
-        assertParseSuccess(parser, "tag1 tag2", expectedAllTagCustomerCommand);
+        assertParseSuccess(parser, " tag1|tag2 ", expectedAllTagCustomerCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n tag1 \n \t tag2  \t", expectedAllTagCustomerCommand);
+        assertParseSuccess(parser, " \n tag1 \n | \t tag2  \t", expectedAllTagCustomerCommand);
     }
 
 }

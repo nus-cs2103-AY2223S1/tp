@@ -31,10 +31,10 @@ public class AnyTagCustomerCommandParserTest {
         tagList.add(new Tag("tag2"));
         AnyTagCustomerCommand expectedAnyTagCustomerCommand =
                 new AnyTagCustomerCommand(new CustomerContainsAnyTagPredicate(tagList));
-        assertParseSuccess(parser, "tag1 tag2", expectedAnyTagCustomerCommand);
+        assertParseSuccess(parser, " tag1|tag2 ", expectedAnyTagCustomerCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n tag1 \n \t tag2  \t", expectedAnyTagCustomerCommand);
+        assertParseSuccess(parser, " \n tag1 \n|\t tag2  \t", expectedAnyTagCustomerCommand);
     }
 
 }
