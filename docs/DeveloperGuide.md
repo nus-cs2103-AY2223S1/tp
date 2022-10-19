@@ -309,6 +309,12 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Display Details of Contacts in Secondary Panel
+
+#### Implementation
+
+#### Design Considerations
+
 
 --------------------------------------------------------------------------------------------------------------------
 
