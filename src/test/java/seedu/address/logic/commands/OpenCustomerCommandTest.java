@@ -28,7 +28,7 @@ public class OpenCustomerCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
+        Customer customerToDelete = model.getSortedFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         OpenCustomerCommand openCommand = new OpenCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(OpenCustomerCommand.MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToDelete);
@@ -40,7 +40,7 @@ public class OpenCustomerCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredCustomerList().size() + 1);
         OpenCustomerCommand openCustomerCommand = new OpenCustomerCommand(outOfBoundIndex);
 
         assertCommandFailure(openCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
@@ -50,7 +50,7 @@ public class OpenCustomerCommandTest {
     public void execute_validIndexFilteredList_success() {
         showCustomerAtIndex(model, INDEX_FIRST);
 
-        Customer customerToOpen = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
+        Customer customerToOpen = model.getSortedFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         OpenCustomerCommand openCommand = new OpenCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(OpenCustomerCommand.MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToOpen);
@@ -102,6 +102,6 @@ public class OpenCustomerCommandTest {
     private void showNoCustomer(Model model) {
         model.updateFilteredCustomerList(p -> false);
 
-        assertTrue(model.getFilteredCustomerList().isEmpty());
+        assertTrue(model.getSortedFilteredCustomerList().isEmpty());
     }
 }

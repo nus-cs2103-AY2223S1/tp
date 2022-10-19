@@ -21,6 +21,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenCommissionCommand;
 import seedu.address.logic.commands.OpenCustomerCommand;
+import seedu.address.logic.commands.SortCustomerCommand;
 import seedu.address.logic.commands.iteration.AddIterationCommand;
 import seedu.address.logic.commands.iteration.DeleteIterationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -101,6 +102,9 @@ public class AddressBookParser {
 
         case AllTagCustomerCommand.COMMAND_WORD:
             return new AllTagCustomerCommandParser().parse(arguments);
+
+        case SortCustomerCommand.COMMAND_WORD:
+            return new SortCustomerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

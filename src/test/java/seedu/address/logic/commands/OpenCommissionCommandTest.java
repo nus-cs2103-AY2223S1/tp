@@ -36,7 +36,7 @@ class OpenCommissionCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        model.selectCustomer(model.getFilteredCustomerList().get(0));
+        model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         model.getSelectedCustomer().getValue().addCommission(
                 DOG_PRODUCER.apply(model.getSelectedCustomer().getValue()));
         model.getSelectedCustomer().getValue().addCommission(
@@ -60,7 +60,7 @@ class OpenCommissionCommandTest {
 
     @Test
     public void execute_indexTooHigh_throwsCommandException() {
-        model.selectCustomer(model.getFilteredCustomerList().get(0));
+        model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         OpenCommissionCommand openCommissionCommand = new OpenCommissionCommand(INDEX_FIRST);
         assertCommandFailure(openCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }

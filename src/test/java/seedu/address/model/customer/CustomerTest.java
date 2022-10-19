@@ -65,8 +65,9 @@ public class CustomerTest {
 
     @Test
     public void equals() {
+        Customer alice = new CustomerBuilder(ALICE).build();
         // same values -> returns true
-        Customer aliceCopy = new CustomerBuilder(ALICE).build();
+        Customer aliceCopy = new CustomerBuilder(alice).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
