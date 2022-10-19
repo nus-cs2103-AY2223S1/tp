@@ -47,14 +47,17 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
+            // Fallthrough
         case AddCommand.COMMAND_WORD_ALIAS:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
+            // Fallthrough
         case EditCommand.COMMAND_WORD_ALIAS:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
+            // Fallthrough
         case DeleteCommand.COMMAND_WORD_ALIAS:
             return new DeleteCommandParser().parse(arguments);
 
@@ -62,14 +65,18 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case FilterCommand.COMMAND_WORD:
+            // Fallthrough
         case FilterCommand.COMMAND_WORD_ALIAS:
             return new FilterCommandParser().parse(arguments);
 
         case TagCommandGroup.COMMAND_GROUP:
+            // Fallthrough
         case TagCommandGroup.COMMAND_GROUP_ALIAS:
             return new TagCommandGroupParser().parse(arguments);
 
         case MessageCommandGroup.COMMAND_GROUP:
+            // Fallthrough
+        case MessageCommandGroup.COMMAND_GROUP_ALIAS:
             return new MessageCommandGroupParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
@@ -79,6 +86,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case ShowCommand.COMMAND_WORD:
+            // Fallthrough
         case ShowCommand.COMMAND_WORD_ALIAS:
             return new ShowCommandParser().parse(arguments);
 
