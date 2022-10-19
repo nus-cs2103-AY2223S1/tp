@@ -24,7 +24,7 @@ public class Timezone {
      * Returns true if a given string is a valid role.
      */
     public static boolean isValidTimezone(String timezoneString) {
-        return  timezoneString.matches(VALIDATION_REGEX);
+        return timezoneString.matches(VALIDATION_REGEX);
     }
 
     @Override

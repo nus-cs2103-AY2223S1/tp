@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;

@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
