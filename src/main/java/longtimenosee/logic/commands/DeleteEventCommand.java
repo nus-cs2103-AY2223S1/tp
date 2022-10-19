@@ -18,7 +18,7 @@ import longtimenosee.model.event.Event;
  */
 public class DeleteEventCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete event";
+    public static final String COMMAND_WORD = "deleteEvent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the event identified by the index number used in the fully displayed event list.\n"
