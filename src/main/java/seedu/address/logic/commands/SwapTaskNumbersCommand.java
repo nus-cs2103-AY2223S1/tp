@@ -192,7 +192,8 @@ public class SwapTaskNumbersCommand extends Command {
             SwapTaskNumbersDescriptor e = (SwapTaskNumbersDescriptor) other;
 
             return moduleCodeOfModuleWithTasksToSwap.equals(e.moduleCodeOfModuleWithTasksToSwap)
-                    && getTaskIndexesToSwap().equals(e.getTaskIndexesToSwap());
+                    && getTaskIndexesToSwap().containsAll(e.getTaskIndexesToSwap())
+                    && e.getTaskIndexesToSwap().containsAll(getTaskIndexesToSwap());
         }
     }
 }

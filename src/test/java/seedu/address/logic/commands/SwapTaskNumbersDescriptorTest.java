@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.SwapTaskNumbersCommand.SwapTaskNumber
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -23,6 +25,13 @@ public class SwapTaskNumbersDescriptorTest {
 
         // same object -> returns true
         assertTrue(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO.equals(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO));
+
+        // same numbers in different order -> returns true
+        SwapTaskNumbersDescriptor descriptorWithDifferentTaskNumberOrder =
+                new SwapTaskNumbersDescriptor(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO);
+        descriptorWithDifferentTaskNumberOrder.setIndexesOfTaskToSwap(
+                    Arrays.asList(Index.fromOneBased(2), Index.fromOneBased(1)));
+        assertTrue(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO.equals(descriptorWithDifferentTaskNumberOrder));
 
         // null -> returns false
         assertFalse(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO.equals(null));
