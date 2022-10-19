@@ -46,7 +46,7 @@ public class StudentDescription extends UiPart<Region> {
     @FXML
     protected FlowPane tags;
     @FXML
-    protected VBox belongedClassList;
+    protected VBox assignedClassList;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -66,7 +66,7 @@ public class StudentDescription extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         student.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
-                .forEach(tuitionClass -> belongedClassList.getChildren().add(new BelongedClass(tuitionClass.getName().name).getRoot()));
+                .forEach(tuitionClass -> assignedClassList.getChildren().add(new AssignedClass(tuitionClass.getName().name).getRoot()));
 
     }
 

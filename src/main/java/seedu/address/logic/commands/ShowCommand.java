@@ -14,6 +14,7 @@ import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 
+
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
@@ -67,7 +68,7 @@ public class ShowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation));
+        return new CommandResult(String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation), targetIndex.getZeroBased());
     }
 
     @Override

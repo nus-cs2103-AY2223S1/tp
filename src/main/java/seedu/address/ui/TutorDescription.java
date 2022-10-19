@@ -67,7 +67,7 @@ public class TutorDescription extends UiPart<Region> {
         tutor.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
                 .forEach(tuitionClass -> belongedClassList.getChildren().add(
-                        new BelongedClass(tuitionClass.getName().name).getRoot()));
+                        new AssignedClass(tuitionClass.getName().name).getRoot()));
     }
 
     @Override

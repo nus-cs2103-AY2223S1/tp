@@ -43,7 +43,8 @@ public class ShowCommandTest {
 
         ModelManager expectedModel = new ModelManager(studentModel.getAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(showCommand, studentModel, expectedMessage, expectedModel);
+        assertCommandSuccess(showCommand, studentModel, expectedMessage,
+                expectedModel, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -78,7 +79,8 @@ public class ShowCommandTest {
         tutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
 
-        assertCommandSuccess(showCommand, tutorModel, expectedMessage, expectedModel);
+        assertCommandSuccess(showCommand, tutorModel, expectedMessage,
+                expectedModel, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -114,7 +116,8 @@ public class ShowCommandTest {
         tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
 
-        assertCommandSuccess(showCommand, tuitionClassModel, expectedMessage, expectedModel);
+        assertCommandSuccess(showCommand, tuitionClassModel, expectedMessage,
+                expectedModel, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test

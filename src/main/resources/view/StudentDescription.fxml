@@ -20,16 +20,25 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="name-label">
+      <HBox alignment="CENTER_LEFT" spacing="5.0">
+        <Label fx:id="id">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="name-label" text="\$first" />
+        <Label id="student-name-label" fx:id="name" styleClass="student-name-label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" />
+         <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
+            <children>
+               <Label id="studentDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="45.0" text="Student" textAlignment="CENTER">
+                  <HBox.margin>
+                     <Insets top="1.0" />
+                  </HBox.margin>
+               </Label>
+            <FlowPane fx:id="tags" />
+            </children>
+         </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
                <Label styleClass="prefix-label" text="Phone:" />
@@ -63,9 +72,9 @@
          <Label styleClass="prefix-label" text="Class:" />
          <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
             <children>
-               <VBox fx:id="belongedClassList" alignment="TOP_CENTER" spacing="5.0">
+               <VBox fx:id="assignedClassList" spacing="5.0">
                   <StackPane.margin>
-                     <Insets bottom="5.0" top="5.0" />
+                     <Insets />
                   </StackPane.margin>
                </VBox>
             </children>

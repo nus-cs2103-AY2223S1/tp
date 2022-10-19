@@ -11,33 +11,34 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
 
-    /** The application should exit. */
-    private final boolean exit;
+    /** the index of the entity being shown if the command is show **/
+    private int indexOfShownEntity;
 
-    /** The list displayed updates to the current list **/
-    private final boolean list;
+    private final CommandType type;
+
+    public enum CommandType { LIST, SHOW, HELP, EXIT, OTHER }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * This should not be called by ShowCommand as it does not pass
+     * the index of the entity shwon to the Ui.
      */
-    public CommandResult(String feedbackToUser, boolean list) {
+    public CommandResult(String feedbackToUser, CommandType type) {
+        assert(type != CommandType.SHOW);
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.list = list;
-        this.showHelp = false;
-        this.exit = false;
+        this.type = type;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * This should only be called by ShowCommand to pass the index
+     * of the entity shown to the Ui.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.list = false;
+        this.type = CommandType.SHOW;
+        this.indexOfShownEntity = index;
     }
 
     /**
@@ -45,7 +46,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.type = CommandType.OTHER;
     }
 
     public String getFeedbackToUser() {
@@ -53,15 +55,25 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return this.type == CommandType.HELP;
     }
 
     public boolean isExit() {
-        return exit;
+        return this.type == CommandType.EXIT;
     }
 
     public boolean isList() {
-        return list;
+        return this.type == CommandType.LIST;
+    }
+
+    public boolean isShow() {
+        return this.type == CommandType.SHOW;
+    }
+
+    public int getIndex() {
+        assert(this.type == CommandType.SHOW);
+
+        return indexOfShownEntity;
     }
 
     @Override
@@ -77,14 +89,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && list == otherCommandResult.list;
+                && type == otherCommandResult.type
+                && indexOfShownEntity == otherCommandResult.indexOfShownEntity;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, list);
+        return Objects.hash(feedbackToUser, type);
     }
 
 }

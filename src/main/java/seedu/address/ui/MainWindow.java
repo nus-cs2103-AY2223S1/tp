@@ -32,6 +32,12 @@ import seedu.address.model.Model;
 public class MainWindow extends UiPart<Stage> {
     private static final String SELECTED_LABEL_STYLE_CLASS = "active-label";
 
+    private static final String SELECTED_STUDENT_LABEL_STYLE_CLASS = "active-student-label";
+
+    private static final String SELECTED_TUTOR_LABEL_STYLE_CLASS = "active-tutor-label";
+
+    private static final String SELECTED_CLASS_LABEL_STYLE_CLASS = "active-class-label";
+
     private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
     private static final String FXML = "MainWindow.fxml";
 
@@ -153,11 +159,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        studentDescription = new StudentDescription(logic.getFilteredStudentList().get(0), 1);
-        tutorDescription = new TutorDescription(logic.getFilteredTutorList().get(0), 1);
-        tuitionClassDescription = new TuitionClassDescription(logic.getFilteredTuitionClassList(), 1);
-        //entityDescriptionPlaceholder.getChildren().add(tuitionClassDescription.getRoot());
     }
 
     /**
@@ -198,6 +199,30 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    /** Shows the specified entity **/
+    private void handleShow(int index) {
+        Model.ListType type = logic.getCurrentListType();
+        entityDescriptionPlaceholder.getChildren().clear();
+        switch(type) {
+        case STUDENT_LIST:
+            studentDescription = new StudentDescription(
+                    logic.getFilteredStudentList().get(index), index + 1);
+            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            break;
+        case TUTOR_LIST:
+            tutorDescription = new TutorDescription(logic.getFilteredTutorList().get(index), index + 1);
+            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+            break;
+        case TUITIONCLASS_LIST:
+            tuitionClassDescription = new TuitionClassDescription(
+                    logic.getFilteredTuitionClassList().get(index), index + 1);
+            entityDescriptionPlaceholder.getChildren().add(tuitionClassDescription.getRoot());
+            break;
+        default:
+            break;
+        }
     }
 
     /**
@@ -269,17 +294,17 @@ public class MainWindow extends UiPart<Stage> {
         case STUDENT_LIST:
             tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            studentLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
+            studentLabelPanel.getStyleClass().add(SELECTED_STUDENT_LABEL_STYLE_CLASS);
             break;
         case TUTOR_LIST:
             studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            tutorLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
+            tutorLabelPanel.getStyleClass().add(SELECTED_TUTOR_LABEL_STYLE_CLASS);
             break;
         case TUITIONCLASS_LIST:
             studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            tuitionClassLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
+            tuitionClassLabelPanel.getStyleClass().add(SELECTED_CLASS_LABEL_STYLE_CLASS);
             break;
         default:
             break;
@@ -308,6 +333,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isList()) {
                 handleList();
             }
+
+            if (commandResult.isShow()) {
+                handleShow(commandResult.getIndex());
+            }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {

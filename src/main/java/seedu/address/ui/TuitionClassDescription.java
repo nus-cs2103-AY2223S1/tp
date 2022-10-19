@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -43,9 +42,9 @@ public class TuitionClassDescription extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public TuitionClassDescription(ObservableList<TuitionClass> tuitionClasses, int displayedIndex) {
+    public TuitionClassDescription(TuitionClass tuitionClass, int displayedIndex) {
         super(FXML);
-        this.tuitionClass = tuitionClasses.get(displayedIndex - 1);
+        this.tuitionClass = tuitionClass;
         id.setText(displayedIndex + ". ");
         name.setText(tuitionClass.getName().name);
         day.setText(tuitionClass.getDay().day);

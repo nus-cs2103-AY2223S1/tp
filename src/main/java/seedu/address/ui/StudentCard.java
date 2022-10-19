@@ -66,7 +66,8 @@ public class StudentCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         student.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
-                .forEach(tuitionClass -> classes.getChildren().add(new Label(tuitionClass.getName().name)));
+                .forEach(tuitionClass -> classes.getChildren()
+                        .add(new Label(tuitionClass.getName().name.toUpperCase())));
     }
 
     @Override

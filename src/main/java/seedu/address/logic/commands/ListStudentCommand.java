@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.ListType;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENT;
 
+import seedu.address.logic.commands.CommandResult.CommandType;
 import seedu.address.model.Model;
 
 /**
@@ -26,6 +27,6 @@ public class ListStudentCommand extends Command {
         requireNonNull(model);
         model.updateCurrentListType(ListType.STUDENT_LIST);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENT);
-        return new CommandResult(MESSAGE_SUCCESS, true);
+        return new CommandResult(MESSAGE_SUCCESS, CommandType.LIST);
     }
 }

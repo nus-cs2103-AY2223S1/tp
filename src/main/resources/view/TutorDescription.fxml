@@ -29,7 +29,16 @@
         </Label>
         <Label fx:id="name" styleClass="name-label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" />
+         <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
+            <children>
+               <Label id="tutorDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="35.0" text="Tutor" textAlignment="CENTER">
+                  <HBox.margin>
+                     <Insets top="1.0" />
+                  </HBox.margin>
+               </Label>
+               <FlowPane fx:id="tags1" />
+            </children>
+         </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
                <Label styleClass="prefix-label" text="Phone:" />

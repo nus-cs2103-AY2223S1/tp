@@ -45,7 +45,7 @@ public class TuitionClassCard extends UiPart<Region> {
         super(FXML);
         this.tuitionClass = tuitionClass;
         id.setText(displayedIndex + ". ");
-        name.setText(tuitionClass.getName().name);
+        name.setText(tuitionClass.getName().name.toUpperCase());
         day.setText("Day: " + tuitionClass.getDay().day);
         time.setText("Time: " + tuitionClass.getTime().toString());
         level.setText("Level: " + tuitionClass.getLevel().level);

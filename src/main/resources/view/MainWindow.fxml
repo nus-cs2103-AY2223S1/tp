@@ -52,7 +52,7 @@
                             <children>
                         <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStudentList" prefHeight="30.0" prefWidth="110.0">
                            <graphic>
-                                      <Pane fx:id="studentLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="110.0" styleClass="active-label">
+                                      <Pane fx:id="studentLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="110.0" styleClass="active-student-label">
                                           <children>
                                               <Label alignment="CENTER" prefHeight="26.0" prefWidth="113.0" styleClass="label-bright" text="Student" textAlignment="CENTER" />
                                           </children>
@@ -96,9 +96,9 @@
                         <Insets bottom="10.0" left="10.0" />
                      </HBox.margin>
                       </VBox>
-                  <StackPane fx:id="entityDescriptionPlaceholder" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <StackPane fx:id="entityDescriptionPlaceholder" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="211.0" prefWidth="203.0" styleClass="label-bright" text="No entity displayed" textAlignment="CENTER" textFill="WHITE" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="250.0" text="No entity displayed" textAlignment="CENTER" textFill="WHITE" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />

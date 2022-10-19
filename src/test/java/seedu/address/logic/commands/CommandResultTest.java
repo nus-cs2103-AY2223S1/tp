@@ -4,17 +4,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult.CommandType;
+
 public class CommandResultTest {
+
+    @Test
+    public void constructor_typeShow_assertFails() {
+        // not allowed to pass in command type of show without specifying the index
+        assertThrows(AssertionError.class, () -> new CommandResult("feedback", CommandType.SHOW));
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,10 +38,22 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandType.HELP)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandType.EXIT)));
+
+        // different list value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandType.LIST)));
+
+        // different show value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", 0)));
+
+        commandResult = new CommandResult("feedback", 0);
+
+        //different index of show command -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", 1)));
+
     }
 
     @Test
@@ -46,9 +67,19 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", CommandType.HELP).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", CommandType.EXIT).hashCode());
+
+        // different list value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", CommandType.LIST).hashCode());
+
+        // different show value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", 0).hashCode());
     }
 }
