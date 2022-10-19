@@ -30,7 +30,7 @@ public class AddCommand extends Command {
         + PREFIX_TYPE + "e "
         + PREFIX_DESCRIPTION + "Lunch "
         + PREFIX_AMOUNT + "7.20 "
-        + PREFIX_DATE + "4-10-2022 "
+        + PREFIX_DATE + "04-10-2022 "
         + PREFIX_TAG + "Food";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
