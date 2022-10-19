@@ -112,14 +112,14 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * returns a list of {@code Task}s that are due today.
+     * Returns a list of {@code Task}s that are due today.
      */
     public List<Task> getAllTasksToday() {
         return internalTaskList.stream().filter(Task::isTaskToday).collect(Collectors.toList());
     }
 
     /**
-     * returns whether there are tasks today.
+     * Returns true if there are tasks today.
      */
     public boolean containsTaskToday() {
         return !this.getAllTasksToday().isEmpty();
