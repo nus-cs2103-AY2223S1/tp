@@ -49,7 +49,7 @@ public class EventCommandParser implements Parser<EventCommand> {
         case ViewUpcomingEventsCommand.COMMAND_OPTION:
             return new ViewUpcomingEventsCommandParser().parse(args);
         default:
-            throw new ParseException(EventCommand.OPTION_UNKNOWN);
+            throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
     }
 }
