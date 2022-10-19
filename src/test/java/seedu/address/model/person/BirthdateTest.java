@@ -50,11 +50,11 @@ class BirthdateTest {
         Birthdate bd4 = new Birthdate("30-03-2003");
         Birthdate bd5 = new Birthdate("10-10-2010");
 
-        assertEquals(48, bd1.getAge());
-        assertEquals(27, bd2.getAge());
-        assertEquals(33, bd3.getAge());
-        assertEquals(19, bd4.getAge());
-        assertEquals(12, bd5.getAge());
+        assertEquals(48, bd1.calculateAge());
+        assertEquals(27, bd2.calculateAge());
+        assertEquals(33, bd3.calculateAge());
+        assertEquals(19, bd4.calculateAge());
+        assertEquals(12, bd5.calculateAge());
     }
 
     @Test

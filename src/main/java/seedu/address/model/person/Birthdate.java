@@ -46,11 +46,11 @@ public class Birthdate {
     }
 
     /**
-     * Returns the age of a Person.
+     * Calculates and returns the age of a Person with this birthdate.
      *
-     * @return the age of a Person.
+     * @return the age of a Person with this birthdate.
      */
-    public int getAge() {
+    public int calculateAge() {
         return Period.between(birthdate, LocalDate.now()).getYears();
     }
 

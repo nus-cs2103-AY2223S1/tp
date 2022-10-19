@@ -103,6 +103,24 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    /**
+     * Returns the age of a Person.
+     *
+     * @return the age of a Person.
+     */
+    public int getAge() {
+        return this.birthdate.calculateAge();
+    }
+
+    /**
+     * Returns the String representation of a Person's birthdate, when displayed on the GUI.
+     *
+     * @return the String representation of a Person's birthdate, when displayed on the GUI.
+     */
+    public String displayBirthdate() {
+        return this.birthdate.toDisplayFormat();
+    }
+
     //======= Record List ========================================
 
     /**
