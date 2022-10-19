@@ -14,7 +14,6 @@ import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.model.FoodRem;
@@ -29,7 +28,7 @@ import seedu.foodrem.testutil.TypicalTags;
 
 public class UntagCommandTest {
     private static final String MESSAGE_SUCCESS = "Item untagged successfully";
-    private static final String ERROR_DUPLICATE = "This item is not tagged with this tag";
+    private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item is not tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 
@@ -66,7 +65,7 @@ public class UntagCommandTest {
     @Test
     public void execute_untagItemWithoutExistingTagInModel_throwsCommandException() {
 
-        final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
+        final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
@@ -77,32 +76,30 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_itemIndexNotFound_throwsCommandException() {
-        final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
+    public void execute_untagItemWithInvalidIndex_throwsCommandException() {
+        final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
         model.addTag(tag);
 
-        TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_THIRD_ITEM);
+        UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_THIRD_ITEM);
 
-        assertCommandFailure(tagItemCommand, model, ERROR_NOT_FOUND_ITEM);
+        assertCommandFailure(untagItemCommand, model, ERROR_NOT_FOUND_ITEM);
 
     }
 
     @Test
-    public void execute_duplicateTagInItem_throwsCommandException() {
+    public void execute_untagItemWithoutExistingTagInItem_throwsCommandException() {
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
         model.addTag(tag);
 
-        model.getFilteredItemList().get(0).addItemTag(tag);
+        UntagCommand tagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
-        TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
-
-        assertCommandFailure(tagItemCommand, model, ERROR_DUPLICATE);
+        assertCommandFailure(tagItemCommand, model, ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
 
     }
 
@@ -111,24 +108,24 @@ public class UntagCommandTest {
         Tag vegetableTag = TypicalTags.VEGETABLES;
         Tag fruitsTag = TypicalTags.FRUITS;
 
-        TagCommand tagItemWithVegetableCommand = new TagCommand(vegetableTag.getName(), INDEX_FIRST_ITEM);
-        TagCommand tagItemWithFruitsCommand = new TagCommand(fruitsTag.getName(),INDEX_FIRST_ITEM);
+        UntagCommand untagItemWithVegetableCommand = new UntagCommand(vegetableTag.getName(), INDEX_FIRST_ITEM);
+        UntagCommand untagItemWithFruitsCommand = new UntagCommand(fruitsTag.getName(),INDEX_FIRST_ITEM);
 
         // same object -> returns true
-        assertEquals(tagItemWithVegetableCommand, tagItemWithVegetableCommand);
+        assertEquals(untagItemWithVegetableCommand, untagItemWithVegetableCommand);
 
         // same values -> returns true
         Tag vegetableTagCopy = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
-        TagCommand tagItemWithVegetableCommandCopy = new TagCommand(vegetableTagCopy.getName(),INDEX_FIRST_ITEM);
-        assertEquals(tagItemWithVegetableCommand, tagItemWithVegetableCommandCopy);
+        UntagCommand untagItemWithVegetableCommandCopy = new UntagCommand(vegetableTagCopy.getName(),INDEX_FIRST_ITEM);
+        assertEquals(untagItemWithVegetableCommand, untagItemWithVegetableCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(tagItemWithFruitsCommand, new ResetCommand());
+        assertNotEquals(untagItemWithFruitsCommand, new ResetCommand());
 
         // null -> returns false
-        assertNotEquals(tagItemWithFruitsCommand, null);
+        assertNotEquals(untagItemWithFruitsCommand, null);
 
         // different item -> returns false
-        assertNotEquals(tagItemWithVegetableCommand, tagItemWithFruitsCommand);
+        assertNotEquals(untagItemWithVegetableCommand, untagItemWithFruitsCommand);
     }
 }
