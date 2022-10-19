@@ -40,6 +40,9 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
+        assert (commands.equals(List.of("add", "clear", "delete", "edit", "exit", "find",
+                "help", "list", "suggest")));
+
         // autocomplete
         AutoCompletionBinding<String> autoComplete = TextFields.bindAutoCompletion(commandTextField, commands);
         AutoCompletePopup<String> autoCompletePopup = autoComplete.getAutoCompletionPopup();
