@@ -238,13 +238,13 @@ public class ParserUtil {
         return new GithubUsername(trimmedUsername, true);
     }
 
-    /**
+     /**
      * Parses a {@code String person} into an {@code string}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code person} is invalid.
      */
-     public static String parseTemplate(String person) throws ParseException {
+    public static String parseTemplate(String person) throws ParseException {
         requireNonNull(person);
         String trimmedPerson = person.trim();
 
