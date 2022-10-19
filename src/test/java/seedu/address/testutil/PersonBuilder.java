@@ -92,6 +92,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Priority} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriority(String priority) {
+        this.priority = new Priority(priority);
+        return this;
+    }
+
+    /**
      * Sets the {@code Price Range} of the {@code Person} that we are building.
      */
     public PersonBuilder withPriceRange(String priceRange) {

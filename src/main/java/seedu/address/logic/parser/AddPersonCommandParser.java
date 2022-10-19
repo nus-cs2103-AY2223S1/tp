@@ -57,7 +57,7 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
         }
 
         Priority priority = new Priority("normal");
-        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_TAG).get());
         }
 

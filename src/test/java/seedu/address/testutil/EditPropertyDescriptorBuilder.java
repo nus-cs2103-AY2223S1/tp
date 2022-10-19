@@ -36,7 +36,6 @@ public class EditPropertyDescriptorBuilder {
         descriptor.setPrice(property.getPrice());
         descriptor.setAddress(property.getAddress());
         descriptor.setDescription(property.getDescription());
-        descriptor.setTags(property.getTags());
     }
 
     /**

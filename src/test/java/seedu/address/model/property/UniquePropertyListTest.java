@@ -43,7 +43,7 @@ public class UniquePropertyListTest {
     public void contains_propertyWithSameIdentityFieldsInList_returnsTrue() {
         uniquePropertyList.add(PEAKRESIDENCE);
         Property editedPeakResidence = new PropertyBuilder(PEAKRESIDENCE)
-                .withAddress(VALID_ADDRESS_HOME).withTags(VALID_TAG_DORM)
+                .withAddress(VALID_ADDRESS_HOME)
                 .build();
         assertTrue(uniquePropertyList.contains(editedPeakResidence));
     }
@@ -89,7 +89,7 @@ public class UniquePropertyListTest {
     public void setProperty_editedPropertyHasSameIdentity_success() {
         uniquePropertyList.add(PEAKRESIDENCE);
         Property editedPeakResidence = new PropertyBuilder(PEAKRESIDENCE).withPrice("3000000")
-                .withAddress(VALID_ADDRESS_HOME).withTags(VALID_TAG_DORM)
+                .withAddress(VALID_ADDRESS_HOME)
                 .build();
         uniquePropertyList.setProperty(PEAKRESIDENCE, editedPeakResidence);
         UniquePropertyList expectedUniquePropertyList = new UniquePropertyList();

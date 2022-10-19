@@ -43,8 +43,8 @@ public class BuyerCommandTestUtil {
     public static final String VALID_PRICE_RANGE_BOB = "20 - 50";
     public static final String VALID_DESIRED_CHARACTERISTICS_AMY = "Toa Payoh; 5-Room";
     public static final String VALID_DESIRED_CHARACTERISTICS_BOB = "Jurong; 3-Room";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_PRIORITY_HIGH = "HIGH";
+    public static final String VALID_PRIORITY_LOW = "LOW";
     public static final String VALID_NAME_HOME = "Home";
     public static final String VALID_ADDRESS_HOME = "25 College Avenue East";
     public static final String VALID_PRICE_HOME = "0";
@@ -65,8 +65,8 @@ public class BuyerCommandTestUtil {
             + VALID_DESIRED_CHARACTERISTICS_AMY;
     public static final String DESIRED_CHARACTERISTICS_DESC_BOB = " " + PREFIX_CHARACTERISTICS
             + VALID_DESIRED_CHARACTERISTICS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_PRIORITY_HIGH = " " + PREFIX_TAG + VALID_PRIORITY_HIGH;
+    public static final String TAG_DESC_PRIORITY_LOW = " " + PREFIX_TAG + VALID_PRIORITY_LOW;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -77,6 +77,7 @@ public class BuyerCommandTestUtil {
     // empty string not allowed for desired characteristics
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_TAG + "zzz";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -87,11 +88,11 @@ public class BuyerCommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withPriceRange(VALID_PRICE_RANGE_AMY).withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withPriority(VALID_PRIORITY_HIGH).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withPriceRange(VALID_PRICE_RANGE_BOB).withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPriority(VALID_PRIORITY_LOW).build();
     }
 
     /**

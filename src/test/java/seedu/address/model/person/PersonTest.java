@@ -8,7 +8,8 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_LOW;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -19,11 +20,11 @@ import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
 
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
-    }
+//    @Test
+//    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+//        Person person = new PersonBuilder().build();
+//        assertThrows(UnsupportedOperationException.class, () -> person.getName().toString());
+//    }
 
     @Test
     public void isSamePerson() {
@@ -40,7 +41,7 @@ public class PersonTest {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withPriceRange(VALID_PRICE_RANGE_BOB)
                 .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withPriority(VALID_PRIORITY_HIGH).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -100,7 +101,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PersonBuilder(ALICE).withPriority(VALID_PRIORITY_LOW).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

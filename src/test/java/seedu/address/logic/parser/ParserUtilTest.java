@@ -155,53 +155,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePriority(null));
-    }
-
-    @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePriority(INVALID_TAG));
-    }
-
-    @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Priority expectedPriority = new Priority(VALID_TAG_1);
-        assertEquals(expectedPriority, ParserUtil.parsePriority(VALID_TAG_1));
-    }
-
-    @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Priority expectedPriority = new Priority(VALID_TAG_1);
-        assertEquals(expectedPriority, ParserUtil.parsePriority(tagWithWhitespace));
-    }
-
-    @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    }
-
-    @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Priority> actualPrioritySet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Priority> expectedPrioritySet = new HashSet<Priority>(Arrays.asList(new Priority(VALID_TAG_1),
-                new Priority(VALID_TAG_2)));
-
-        assertEquals(expectedPrioritySet, actualPrioritySet);
-    }
-
-    @Test
     public void parsePriceRange_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePriceRange(null));
     }

@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_EMAIL_DE
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PRICE_RANGE_DESC;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.NAME_DESC_BOB;
@@ -22,14 +23,13 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.PREAMBLE_NON_EMP
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PRICE_RANGE_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PRICE_RANGE_DESC_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.TAG_DESC_PRIORITY_HIGH;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.TAG_DESC_PRIORITY_LOW;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -53,58 +53,52 @@ public class AddPersonCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withPriority(VALID_PRIORITY_HIGH).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
 
         // multiple price ranges - last price range accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRICE_RANGE_DESC_AMY + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_FRIEND,
+                + PRICE_RANGE_DESC_AMY + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
 
         // multiple desired characteristics - last desired characteristics accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_AMY
-                        + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_FRIEND,
+                        + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
-
-        // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddPersonCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().withNoDesiredCharacteristics()
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withNoDesiredCharacteristics()
                 .withNoPriceRange().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
     }
 
@@ -137,33 +131,33 @@ public class AddPersonCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PRIORITY_LOW + TAG_DESC_PRIORITY_HIGH, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PRIORITY_LOW + TAG_DESC_PRIORITY_HIGH, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PRIORITY_LOW + TAG_DESC_PRIORITY_HIGH, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PRIORITY_LOW + TAG_DESC_PRIORITY_HIGH, Address.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid priority
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Priority.MESSAGE_CONSTRAINTS);
+                +  INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
 
         // invalid price range
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_PRICE_RANGE_DESC + DESIRED_CHARACTERISTICS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, PriceRange.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PRIORITY_LOW, PriceRange.MESSAGE_CONSTRAINTS);
 
         // invalid desired characteristics
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + PRICE_RANGE_DESC_BOB + INVALID_DESIRED_CHARACTERISTICS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Characteristics.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PRIORITY_LOW, Characteristics.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
@@ -173,7 +167,7 @@ public class AddPersonCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + TAG_DESC_PRIORITY_LOW,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
     }
 }

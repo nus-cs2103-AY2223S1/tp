@@ -42,9 +42,7 @@ public class PersonUtil {
         if (person.getDesiredCharacteristics().isPresent()) {
             sb.append(PREFIX_CHARACTERISTICS + person.getDesiredCharacteristics().get().toString());
         }
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        sb.append(PREFIX_TAG + person.getPriority().toString() + " ");
         return sb.toString();
     }
 
@@ -61,14 +59,8 @@ public class PersonUtil {
                 .append(priceRange).append(" "));
         descriptor.getDesiredCharacteristics().ifPresent(desiredCharacteristics -> sb.append(PREFIX_CHARACTERISTICS)
                 .append(desiredCharacteristics).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Priority> priorities = descriptor.getTags().get();
-            if (priorities.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                priorities.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
+        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_TAG)
+                .append(priority.specifiedPriority).append(" "));
         return sb.toString();
     }
 }

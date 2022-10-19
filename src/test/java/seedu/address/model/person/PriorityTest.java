@@ -21,7 +21,7 @@ public class PriorityTest {
     @Test
     public void isValidTagName() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> Priority.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> Priority.isValidPriority(null));
     }
 
 }
