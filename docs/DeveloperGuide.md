@@ -355,6 +355,61 @@ Pros: Format similar to the delete command for project and task so would be easy
 Cons: Troublesome to delete since you might have to use multiple commands like list then find the `INDEX` before deleting.
 If you already know the `PROJECT_NAME` and `STAFF_NAME`, current implementation helps you to delete staff faster.
 
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Adding staff feature
+#### Implementation
+The adding staff features is facilitated by `AddStaffCommand`. It extends the `Command` class with functionality
+to add a  `Staff` to a `Project`, both of which are provided via the `addStaff` command.
+
+The following operations are implemented:
+- `execute(Model model)` - Executes an `AddStaffCommand`.
+
+An example of an `AddStaffCommand` is:
+`addStaff pn/CS2103T sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false`
+
+The arguments passed into the command are as follows:
+- `pn` is the `Project` name of the project to add the staff to.
+- `sn` is the name of the `Staff` to add
+- `sp` is the phone number of the `Staff`
+- `st` is the title of the `Staff`
+- `sd` is the department of the `Staff`
+- `sl` is the leave status of the `Staff`, which is either `true` or `false`
+
+The usage scenario and how the add staff mechanism behaves is described as following.
+
+Step 1. The user launches the application, and uses the `addStaff` command as described in the UserGuide.
+A `AddStaffCommand` is created, and the arguments are passed into an `AddStaffCommandParser`.
+The `AddStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs and creates
+two objects, a `ProjectName` object, and a `Staff` object.
+
+Step 2. The `AddStaffCommand` checks if the project exists by checking if the `ProjectName` already exists in
+`Model.getFilteredProjectList()`.
+
+Step 3. The method also checks if the `Staff` already exists in the `Project`. If the `Staff` already exists, a `CommandException` is thrown.
+
+Step 4. The `Staff` is added to the `Project`. The `execute()` method updates the `filteredProjectList` before exiting.
+
+Sequence diagram for the execution of `AddStaffCommand`
+![AddStaffCommandExecution](images/AddStaffCommandExecution.png)
+
+#### Design Considerations
+**Aspect: Finding project to add**
+
+Finding project to add is not straightforward since only `ProjectName` is passed as argument to the `AddStaffCommand`.
+
+- **Alternative 1 (current choice)**: Checks all projects using `ProjectName`.
+    - Pros: Easy to code out.
+    - Cons: Intuitively does not make sense, since we are adding a `Staff` to a `Project`, not a `ProjectName`.
+
+- **Alternative 2**: Create a dummy project to check with
+    - Pros: Intuitively makes sense, since we are adding the `Staff` to the `Project.
+    - Cons: Hard to implement. The `Project` `equals()` method checks for equality on all the parameters of a project, so
+      simply creating a blank `Project` won't do.`
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
