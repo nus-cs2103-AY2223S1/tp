@@ -92,7 +92,8 @@ public class UniqueApplicantList implements Iterable<Applicant> {
         }
     }
 
-    /** Removes the equivalent applicant from the list.
+    /**
+     * Removes the equivalent applicant from the list.
      * The applicant must exist in the list.
      */
     public void sort(Comparator<Applicant> comparator) {
