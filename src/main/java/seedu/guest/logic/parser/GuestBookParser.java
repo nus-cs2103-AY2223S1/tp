@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.guest.logic.commands.AddCommand;
+import seedu.guest.logic.commands.BillCommand;
 import seedu.guest.logic.commands.ClearCommand;
 import seedu.guest.logic.commands.Command;
 import seedu.guest.logic.commands.DeleteCommand;
@@ -50,6 +51,9 @@ public class GuestBookParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case BillCommand.COMMAND_WORD:
+            return new BillCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

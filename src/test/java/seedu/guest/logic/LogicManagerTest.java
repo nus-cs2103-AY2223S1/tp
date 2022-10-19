@@ -9,6 +9,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.IS_ROOM_CLEAN_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.ROOM_DESC_AMY;
 import static seedu.guest.testutil.Assert.assertThrows;
 import static seedu.guest.testutil.TypicalGuests.AMY;
 
@@ -83,7 +84,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY + IS_ROOM_CLEAN_DESC_AMY;
+                + ROOM_DESC_AMY + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY + IS_ROOM_CLEAN_DESC_AMY;
         Guest expectedGuest = new GuestBuilder(AMY).build();
 
         ModelManager expectedModel = new ModelManager();

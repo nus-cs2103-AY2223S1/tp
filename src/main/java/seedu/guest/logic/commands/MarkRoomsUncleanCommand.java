@@ -15,10 +15,10 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
-
+import seedu.guest.model.guest.Room;
 
 /**
- * Changes isRoomClean field of all guest in guest book to "no".
+ * Changes isRoomClean field of all guests in guest book to "no".
  */
 public class MarkRoomsUncleanCommand extends Command {
 
@@ -57,11 +57,12 @@ public class MarkRoomsUncleanCommand extends Command {
         Name updatedName = guestToEdit.getName();
         Phone updatedPhone = guestToEdit.getPhone();
         Email updatedEmail = guestToEdit.getEmail();
+        Room updatedRoom = guestToEdit.getRoom();
         DateRange updatedDateRange = guestToEdit.getDateRange();
         NumberOfGuests updatedNumberOfGuests = guestToEdit.getNumberOfGuests();
         IsRoomClean updatedIsRoomClean = new IsRoomClean("no");
         Bill updatedBill = guestToEdit.getBill();
-        return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange,
+        return new Guest(updatedName, updatedPhone, updatedEmail,updatedRoom, updatedDateRange,
                 updatedNumberOfGuests, updatedIsRoomClean, updatedBill);
     }
 
