@@ -63,7 +63,8 @@ contains some sample data.<br>
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
 to be present.
-  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
+
+e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
 * Parameters can be in any order.<br>
@@ -88,8 +89,9 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
-* You may optionally add a module title. If provided module title is empty, then Plannit
-  interprets it as that there is no module title.
+
+* You may optionally add a module title. If provided module title is empty, then Plannit 
+interprets it as that there is no module title. 
 * You cannot add a duplicate module code.
 
 Examples:
@@ -160,7 +162,7 @@ This command will require two flags:
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
 * You should provide a task number corresponding to that of an existing task in
-  the module.
+the module.
 
 Example:
 ```

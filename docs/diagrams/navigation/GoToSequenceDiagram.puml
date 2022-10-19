@@ -1,0 +1,84 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GoToCommandParser" as GoToCommandParser LOGIC_COLOR
+participant "predicate:ModuleCodeMatchesKeywordPredicate" as ModuleCodeMatchesKeywordPredicate LOGIC_COLOR
+participant "command:GoToCommand" as GoToCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("goto CS1231S")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("goto CS1231S")
+activate AddressBookParser
+
+create GoToCommandParser
+AddressBookParser -> GoToCommandParser
+
+activate GoToCommandParser
+GoToCommandParser --> AddressBookParser
+deactivate GoToCommandParser
+
+AddressBookParser -> GoToCommandParser : parse("CS1231S")
+
+activate GoToCommandParser
+create ModuleCodeMatchesKeywordPredicate
+GoToCommandParser -> ModuleCodeMatchesKeywordPredicate
+activate ModuleCodeMatchesKeywordPredicate
+ModuleCodeMatchesKeywordPredicate -> GoToCommandParser
+deactivate ModuleCodeMatchesKeywordPredicate
+
+create GoToCommand
+GoToCommandParser -> GoToCommand
+activate GoToCommand
+GoToCommand --> GoToCommandParser
+deactivate GoToCommand
+
+GoToCommandParser --> AddressBookParser
+deactivate GoToCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GoToCommandParser -[hidden]-> AddressBookParser
+destroy GoToCommandParser
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> GoToCommand : execute()
+
+activate GoToCommand
+GoToCommand -> Model : setHomeStatus(false)
+
+activate Model
+Model --> GoToCommand
+deactivate Model
+
+GoToCommand -> Model : updateFilteredModuleList(predicate)
+
+activate Model
+Model --> GoToCommand
+deactivate Model
+
+create CommandResult
+GoToCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GoToCommand
+deactivate CommandResult
+
+GoToCommand --> LogicManager : result
+deactivate GoToCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GoToCommand -[hidden]-> GoToCommand
+destroy GoToCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
