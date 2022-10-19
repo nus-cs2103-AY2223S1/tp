@@ -13,11 +13,15 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueStallList
-Class Name
+Class UniqueReviewList
 Class Stall
+Class Name
 Class Address
-class Review
+Class Review
 Class Tag
+Class Date
+Class Content
+Class Rating
 
 }
 
@@ -34,11 +38,19 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueStallList
-UniqueStallList --> "~* all" Stall
-Stall *--> Name
+AddressBook *--> "1" UniqueReviewList
+UniqueStallList ---> "~* all" Stall
+UniqueReviewList ---> "~* all" Review
 Stall *--> Address
-Stall *--> "*" Review
+Stall *-> "*" Review
+Stall *--> Name
 Stall *--> "*" Tag
+Review *--> Date
+Review *--> Content
+Review *--> Rating
+Review *--> Name
+Review *--> "*" Tag
 
 ModelManager -->"~* filtered" Stall
+ModelManager -->"~* filtered" Review
 @enduml
