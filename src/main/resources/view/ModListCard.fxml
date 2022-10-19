@@ -37,7 +37,7 @@
                 <padding>
                     <Insets top="5"/>
                 </padding>
-                <Label fx:id="completedStatus" text = "Completed" wrapText="true"
+                <Label fx:id="takenStatus" text = "Taken" wrapText="true"
                        alignment="CENTER" prefHeight="20.0" />
             </HBox>
 
