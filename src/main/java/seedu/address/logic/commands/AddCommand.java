@@ -27,11 +27,12 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_LESSON_PLAN + "Data structures "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "Science "
+            + PREFIX_TAG + "Maths";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book!";
+    public static final String MESSAGE_NOT_LIST_MODE = "You need to be in list mode to add a person.";
 
     private final Person toAdd;
 
@@ -46,6 +47,9 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isFullView()) {
+            throw new CommandException(MESSAGE_NOT_LIST_MODE);
+        }
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

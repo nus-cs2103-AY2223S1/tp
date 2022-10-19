@@ -154,6 +154,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Grade Progress Feature
+
+#### Implementation
+
+The grade progress feature is facilitated by `GradeProgressCommand` class. It extends `Command` abstract class that has 
+abstract method, `execute()`.
+
+Given below is an example usage scenario and how the grade progress feature behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the sample data and
+each person in the `AddressBook` contains an empty `GradeProgressList` object.
+
+Step 2. The user executes `grade 2 g/Math: B` command to insert the grade, `Math: B` in the 2nd person in the `AddressBook`.
+1. The `grade` command calls the `Model#getFilteredPersonList()` to get the current list of persons prior to the grade progress command.
+2. The command then calls the creation of a new `Person` with the updated grade progress list.
+3. `Model#setPerson()` is invoked and then `Model#updateFilteredPersonList()` is invoked to update the `AddressBook` entirely with the `grade` command.
+
+Step 3. Upon successful entry of grade inputs, the `CommandResult()` message will be invoked.
+
+#### Design Consideration
+
+Aspect: How grade progress command executes
+- Alternative 1 (current choice): Creates a new `Person` object and overwrites current 'Person' object
+  - Pros: Easy to implement and simple understandable code.
+  - Cons: May lead to performance issues, when contents of the `Person` object is greater.
+- Alternative 2:  Include grade progress to the current 'Person' object with a setter method
+  - Pros: Faster, as there is no need to recreate the whole `Person` object
+  - Cons: Implementation details are greatly exposed, damages code's maintainability
+
+Aspect: Addition of Grade progress
+- Alternative 1 (current choice): Creation of `Person` object first with empty `GradeProgressList` and thereafter executing `GradeProgressCommand`
+  - Pros: Users would not have to key in a long statement when adding a new `Person` to the `AddressBook`
+  - Cons: 2 command lines to be written for addition of new `Person` with non-empty `GradeProgressList`
+- Alternative 2: Grade progress to be added during the creation of the new object
+  - Pros: Reduce the need to recreate new `Person` object for the addition of grade progress
+  - Cons: Increase tendency of user-made errors when inputting longer command lines
+
+Aspect: Data Structure of `GradeProgressList`
+- Alternative 1 (current choice): ArrayList
+  - Pros: Easy to perform basic functions such as add, delete and remove of respective grade progress elements in the list.
+  - Cons: Deletion of data from the middle is time-consuming as data needs to be shifted to update the list.
+- Alternative 2: Singly Linked list
+  - Pros: Insertion and deletion are easier in the linked list. There is no need to shift elements after the insertion or deletion of any element only the address present in the next pointer needs to be updated.
+  - Cons: More memory is required in the linked list as compared to an array.
+
+The following sequence diagram shows how the undo operation works:
+
+![GradeProgressSequenceDiagram](images/GradeProgressSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -237,7 +286,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

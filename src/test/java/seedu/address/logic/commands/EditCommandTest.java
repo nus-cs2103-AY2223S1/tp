@@ -41,8 +41,13 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    public void setFullView() {
+        model.setFullView();
+    }
+
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        setFullView();
         Person editedPerson = new PersonBuilder().withHomework(VALID_HOMEWORK_BOB)
                 .withAttendance(VALID_ATTENDANCE_BOB).withGradeProgress(VALID_GRADE_PROGRESS_BOB)
                 .withSession(VALID_SESSION_BOB).build();
@@ -61,6 +66,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        setFullView();
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
@@ -82,6 +88,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
+        setFullView();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
@@ -94,6 +101,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        setFullView();
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -111,6 +119,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
+        setFullView();
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
@@ -120,6 +129,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
+        setFullView();
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
@@ -132,6 +142,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
+        setFullView();
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
@@ -145,6 +156,7 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
+        setFullView();
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -154,6 +166,13 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_notInViewMode_failure() {
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NOT_VIEW_MODE);
     }
 
     @Test
