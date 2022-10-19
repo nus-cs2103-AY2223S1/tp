@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
 
-import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.commands.FilterPropsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pricerange.PriceRange;
@@ -15,7 +14,7 @@ import seedu.address.model.property.FilterPropsByPricePredicate;
 
 
 /**
- * Parses user input to create a {@code FilterBuyersCommand}.
+ * Parses user input to create a {@code FilterPropsCommand}.
  */
 public class FilterPropsCommandParser extends Parser<FilterPropsCommand> {
 
@@ -27,7 +26,8 @@ public class FilterPropsCommandParser extends Parser<FilterPropsCommand> {
     public FilterPropsCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_SELLER);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PRICE_RANGE,
+                PREFIX_CHARACTERISTICS, PREFIX_SELLER);
 
         if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
                 || areNoPrefixesPresent(argMultimap, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
@@ -36,12 +36,14 @@ public class FilterPropsCommandParser extends Parser<FilterPropsCommand> {
         }
 
         AbstractFilterPropsPredicate predicate = null;
-        
+
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             PriceRange priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
-            predicate = new FilterPropsByPricePredicate(priceRange); 
+            predicate = new FilterPropsByPricePredicate(priceRange);
         }
-        
+
+        // TODO: Consider allowing filtering by multiple characteristics at once
+
         return new FilterPropsCommand(predicate);
     }
 }

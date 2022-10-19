@@ -1,7 +1,5 @@
 package seedu.address.model.property;
 
-import seedu.address.model.pricerange.PriceRange;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 

@@ -14,8 +14,7 @@ public class FilterPropsByPricePredicate extends AbstractFilterPropsPredicate {
     private final PriceRange priceRange;
 
     /**
-     * Standard constructor for the predicate. priceRange will be validated
-     * by PriceRange's constructor.
+     * Standard constructor for the predicate.
      */
     public FilterPropsByPricePredicate(PriceRange priceRange) {
         requireNonNull(priceRange);

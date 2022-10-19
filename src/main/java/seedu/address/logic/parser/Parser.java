@@ -25,7 +25,7 @@ public abstract class Parser<T extends Command> {
     }
 
     /**
-     * Returns true if more than one {@code Prefix} is present in the given 
+     * Returns true if more than one {@code Prefix} is present in the given
      * {@code ArgumentMultimap}.
      */
     public boolean areMoreThanOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
@@ -33,7 +33,7 @@ public abstract class Parser<T extends Command> {
     }
 
     /**
-     * Returns true if no {@code Prefix} is present in the given 
+     * Returns true if no {@code Prefix} is present in the given
      * {@code ArgumentMultimap}.
      */
     public boolean areNoPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

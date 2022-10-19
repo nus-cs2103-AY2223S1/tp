@@ -37,24 +37,13 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         }
 
         AbstractFilterBuyerPredicate predicate = null;
-        
+
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
             predicate = new FilterBuyerByPricePredicate(price);
         }
-        
-        // NOTE: THIS BUG HAS BEEN FIXED AND SHOULD FOLLOW ABOVE FORMAT FOR PRICE
-        // BUG: Owing to StringUtil.containsWordIgnoreCase, characteristics can only be a single word.
-        // However, the error message does not show up in the dialog box in the GUI.
-//        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
-//            try {
-//                return new FilterBuyersCommand(new FilterBuyerByCharacteristicsPredicate(argMultimap
-//                    .getValue(PREFIX_CHARACTERISTICS).get()));
-//            } catch (Exception e) {
-//                throw new ParseException(e.getMessage());
-//            }
-//        }
-//        // TODO andre: add case for tags
+
+        // TODO: Consider allowing filtering by multiple characteristics and tags at once
 
         return new FilterBuyersCommand(predicate);
     }

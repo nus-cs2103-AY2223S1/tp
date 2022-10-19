@@ -10,8 +10,8 @@ import seedu.address.model.Model;
 import seedu.address.model.property.AbstractFilterPropsPredicate;
 
 /**
- * Filters and lists all buyers in the buyer list that either have a price range that accepts the given price,
- * characteristics that match the given characteristics list, or have the given tag.
+ * Filters and lists all properties in the property list that either has a price that is within the given price price,
+ * characteristics that match the given characteristics list, or have the given seller.
  * Keyword matching is case-insensitive.
  */
 public class FilterPropsCommand extends Command {
@@ -21,9 +21,9 @@ public class FilterPropsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties in the database that"
             + " either have a price that is within the given price range, characteristics that match the given"
             + " characteristics list, or has the given seller. You must filter by exactly one criteria at a time.\n"
-            + "Parameters: " 
+            + "Parameters: "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
-            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]"
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             + "[" + PREFIX_SELLER + " SELLER]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PRICE_RANGE + " 200000 - 500000 ";
