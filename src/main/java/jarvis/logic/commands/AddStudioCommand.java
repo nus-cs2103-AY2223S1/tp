@@ -3,7 +3,6 @@ package jarvis.logic.commands;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
-import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
