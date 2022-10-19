@@ -6,10 +6,14 @@ import static jarvis.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jarvis.logic.commands.AddConsultCommand;
+import jarvis.logic.commands.AddMasteryCheckCommand;
 import jarvis.logic.commands.AddStudentCommand;
+import jarvis.logic.commands.AddStudioCommand;
 import jarvis.logic.commands.AddTaskCommand;
 import jarvis.logic.commands.ClearCommand;
 import jarvis.logic.commands.Command;
+import jarvis.logic.commands.DeleteLessonCommand;
 import jarvis.logic.commands.DeleteStudentCommand;
 import jarvis.logic.commands.DeleteTaskCommand;
 import jarvis.logic.commands.EditStudentCommand;
@@ -56,6 +60,15 @@ public class JarvisParser {
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
 
+        case AddMasteryCheckCommand.COMMAND_WORD:
+            return new AddMasteryCheckCommandParser().parse(arguments);
+
+        case AddStudioCommand.COMMAND_WORD:
+            return new AddStudioCommandParser().parse(arguments);
+
+        case AddConsultCommand.COMMAND_WORD:
+            return new AddConsultCommandParser().parse(arguments);
+
         case EditStudentCommand.COMMAND_WORD:
             return new EditStudentCommandParser().parse(arguments);
 
@@ -64,6 +77,9 @@ public class JarvisParser {
 
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
+
+        case DeleteLessonCommand.COMMAND_WORD:
+            return new DeleteLessonCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

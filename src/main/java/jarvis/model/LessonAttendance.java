@@ -11,6 +11,7 @@ import jarvis.model.exceptions.StudentNotFoundException;
  * Represents the attendance for a lesson in JARVIS.
  */
 public class LessonAttendance {
+
     private final HashMap<Student, Boolean> attendance;
 
     /**

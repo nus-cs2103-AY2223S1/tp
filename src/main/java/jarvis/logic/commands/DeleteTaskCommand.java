@@ -27,6 +27,7 @@ public class DeleteTaskCommand extends Command {
     private final Index targetIndex;
 
     public DeleteTaskCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
