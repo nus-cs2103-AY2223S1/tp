@@ -25,6 +25,10 @@ import tuthub.model.tutor.Year;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_ORDER = "Order %1$s is not valid for this command. "
+            + "Valid orders are a or d.";
+    public static final String MESSAGE_INVALID_PREFIX = "Prefix %1$s is not valid for this command. "
+            + "Valid prefixes are tn/ or r/.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -184,5 +188,25 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code order} into an {@code String} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified order is invalid (not a or d).
+     */
+    public static String parseOrder(String order) throws ParseException {
+        String trimmedOrder = order.trim();
+        return trimmedOrder;
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Prefix parseSortPrefix(Prefix prefix) throws ParseException {
+        String trimmedPrefix = prefix.getPrefix().trim();
+        return new Prefix(trimmedPrefix);
     }
 }

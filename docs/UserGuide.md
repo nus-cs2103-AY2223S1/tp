@@ -167,6 +167,21 @@ Examples:
 * `findbymodule CS2103` returns all tutors teaching `CS2103`.
 * `findbymodule CS2103 CS2100` returns all tutors teaching `CS2103` or `CS2100`.
 
+### Sorting tutors by quantitative measures: `sort`
+
+Looking for tutors with the best reviews? The sort command allows you to sort the 
+list of tutors in ascending or descending order based on different quantitative 
+measures, such as rating and teaching nomination. More specifications on the sort command is visible below.
+
+Format: `sort ORDER PREFIX`
+* `ORDER` can be one of the two values: a (ascending) or d (descending).
+* `PREFIX` refers to one of the prefixes of quantitative measures (e.g. `r/`).
+* Currently, sort is implemented for the prefixes `r/` (`Rating`) and `tn/` (`TeachingNomination`).
+
+Examples:
+* `sort a r/` sorts the tutors in ascending order (low to high) based on tutor ratings.
+* `sort d tn/` sorts the tutors in descending order (high to low) based on tutor teaching nominations.
+
 ### Deleting a tutor : `delete`
 
 Deletes the specified tutors from Tuthub.
@@ -216,5 +231,6 @@ Format: `exit`
 | **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                                                          |
 | **Find**           | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Alex`                                                                                                                                                                            |
 | **Find by Module** | `findbymodule KEYWORD [MORE_KEYWORDS]` <br> e.g., `findbymodule CS2100`                                                                                                                                                          |
+| **Sort**           | `sort ORDER PREFIX` <br> e.g., `sort a r/`                                                                                                                                                                                       |
 | **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
 | **Exit**           | `exit`                                                                                                                                                                                                                           |
