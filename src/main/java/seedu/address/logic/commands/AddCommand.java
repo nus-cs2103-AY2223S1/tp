@@ -26,9 +26,9 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_DOB + "DATE OF BIRTH "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_GENDER + "GENDER]"
-            + "[" + PREFIX_DOB + "DATE OF BIRTH] ... \n"
+            + "[" + PREFIX_GENDER + "GENDER] ... \n"
             // add gender field in add command usage
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

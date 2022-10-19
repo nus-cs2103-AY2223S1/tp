@@ -41,15 +41,11 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
 
     /**
      * Returns true if a given string is a valid DOB input.
-     * {@code null} is used to represent an empty DateOfBirth value.
      * @return boolean
      */
 
     //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidDateOfBirth(String test) {
-        if (test == null) {
-            return true;
-        }
         try {
             LocalDate.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
