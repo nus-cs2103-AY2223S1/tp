@@ -224,7 +224,7 @@ Prefixes without the prefix `s` are meant for project details.
 | **sd/**    | Staff department   | sd/STAFF_DEPARTMENT    |
 | **sl/**    | Staff leave status | si/LEAVE_STATUS        |
 | **sn/**    | Staff name         | sn/STAFF_NAME          |
-| **st/**    | Staff title        | st/STAFF_TITLE         | 
+| **st/**    | Staff title        | st/STAFF_TITLE         |
 | **td/**    | Task deadline      | td/TASK_DEADLINE       |
 | **tdesc/** | Task description   | tdesc/TASK_DESCRIPTION |
 | **tm/**    | Task mark          | tm/TASK_MARK           |
