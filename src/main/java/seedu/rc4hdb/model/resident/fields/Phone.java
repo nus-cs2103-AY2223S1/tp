@@ -3,6 +3,8 @@ package seedu.rc4hdb.model.resident.fields;
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.commons.util.StringUtil;
+
 /**
  * Represents a Resident's phone number in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
@@ -36,6 +38,15 @@ public class Phone extends Field {
     @Override
     public String toString() {
         return value;
+    }
+
+    /**
+     * Returns true if given {@code Phone} is contained in this phone
+     * @param phone a valid phone object
+     * @return true if the given phone value is a substring of value
+     */
+    public boolean contains(Phone phone) {
+        return StringUtil.containsWordIgnoreCase(this.value, phone.value);
     }
 
     @Override

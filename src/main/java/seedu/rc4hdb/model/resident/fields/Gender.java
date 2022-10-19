@@ -3,6 +3,8 @@ package seedu.rc4hdb.model.resident.fields;
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.commons.util.StringUtil;
+
 /**
  * Represents a Resident's gender in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
@@ -49,6 +51,15 @@ public class Gender extends Field {
     @Override
     public String toString() {
         return gender;
+    }
+
+    /**
+     * Returns true if given {@code Gender} is contained in this gender
+     * @param gender a valid gender object
+     * @return true if the gender is a substring of gender
+     */
+    public boolean contains(Gender gender) {
+        return StringUtil.containsWordIgnoreCase(this.gender, gender.gender);
     }
 
     @Override

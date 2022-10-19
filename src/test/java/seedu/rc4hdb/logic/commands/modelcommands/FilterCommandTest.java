@@ -7,6 +7,7 @@ import static seedu.rc4hdb.commons.core.Messages.MESSAGE_RESIDENTS_LISTED_OVERVI
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.AMY;
+import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 import static seedu.rc4hdb.testutil.TypicalResidents.DANIEL;
 import static seedu.rc4hdb.testutil.TypicalResidents.ELLE;
 import static seedu.rc4hdb.testutil.TypicalResidents.FIONA;
@@ -22,7 +23,8 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
-import seedu.rc4hdb.model.resident.predicates.AttributesMatchKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.AttributesMatchAllKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.AttributesMatchAnyKeywordPredicate;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 
 public class FilterCommandTest {
@@ -33,8 +35,8 @@ public class FilterCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredListForAll_success() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(new ResidentDescriptorBuilder(ALICE).build(), ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(new ResidentDescriptorBuilder(ALICE).build());
         FilterCommand command = new FilterCommand(new ResidentDescriptorBuilder(ALICE).build(), ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -46,8 +48,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(ALICE.getName())
                 .withPhone(ALICE.getPhone()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -58,8 +60,8 @@ public class FilterCommandTest {
     public void execute_nameSpecifiedUnfilteredListForAll_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(ALICE.getName()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -70,8 +72,8 @@ public class FilterCommandTest {
     public void execute_phoneSpecifiedUnfilteredListForAll_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withPhone(ALICE.getPhone()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -82,8 +84,8 @@ public class FilterCommandTest {
     public void execute_emailSpecifiedUnfilteredListForAll_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withEmail(ALICE.getEmail()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -96,8 +98,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withMatricNumber(ALICE.getMatricNumber()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -109,8 +111,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withHouse(ALICE.getHouse()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -122,8 +124,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withGender(ALICE.getGender()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -134,13 +136,13 @@ public class FilterCommandTest {
     public void execute_tagsSpecifiedUnfilteredListForAll_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withTags(ALICE.getTags()).build();
-        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, DANIEL), model.getFilteredResidentList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredResidentList());
     }
 
     @Test
@@ -148,8 +150,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withRoom(ALICE.getRoom()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ALL_SPECIFIER);
+        AttributesMatchAllKeywordsPredicate predicate =
+                new AttributesMatchAllKeywordsPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ALL_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -159,8 +161,8 @@ public class FilterCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredListForAny_success() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 4);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(new ResidentDescriptorBuilder(ALICE).build(), ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(new ResidentDescriptorBuilder(ALICE).build());
         FilterCommand command = new FilterCommand(new ResidentDescriptorBuilder(ALICE).build(), ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -172,8 +174,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(ALICE.getName())
                 .withPhone(ALICE.getPhone()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -184,8 +186,8 @@ public class FilterCommandTest {
     public void execute_nameSpecifiedUnfilteredListForAny_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(ALICE.getName()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -196,8 +198,8 @@ public class FilterCommandTest {
     public void execute_phoneSpecifiedUnfilteredListForAny_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withPhone(ALICE.getPhone()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -208,8 +210,8 @@ public class FilterCommandTest {
     public void execute_emailSpecifiedUnfilteredListForAny_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withEmail(ALICE.getEmail()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -222,8 +224,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withMatricNumber(ALICE.getMatricNumber()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -235,8 +237,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withHouse(ALICE.getHouse()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -248,8 +250,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withGender(ALICE.getGender()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -261,8 +263,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withTags(ALICE.getTags()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -274,8 +276,8 @@ public class FilterCommandTest {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withRoom(ALICE.getRoom()).build();
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(descriptor, ANY_SPECIFIER);
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
