@@ -5,7 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
