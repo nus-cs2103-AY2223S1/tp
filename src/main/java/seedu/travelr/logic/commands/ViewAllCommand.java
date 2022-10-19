@@ -21,6 +21,7 @@ public class ViewAllCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        model.resetSelectedTrip();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

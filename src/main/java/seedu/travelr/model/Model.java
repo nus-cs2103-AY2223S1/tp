@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -112,6 +113,8 @@ public interface Model {
      */
     void removeFromBucketList(Event event);
 
+    void updateSelectedTrip(Trip trip);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -151,6 +154,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    ObservableTrip getSelectedTrip();
+
+    void resetSelectedTrip();
 
     void sortTripsByComparator(Comparator<Trip> comp);
 }

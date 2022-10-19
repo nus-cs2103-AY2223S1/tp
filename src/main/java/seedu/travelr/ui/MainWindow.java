@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tripListPanel = new TripListPanel(logic.getFilteredTripList());
+        tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip());
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         personListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());

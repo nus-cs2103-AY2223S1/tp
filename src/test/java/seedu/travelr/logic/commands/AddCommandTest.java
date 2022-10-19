@@ -24,6 +24,7 @@ import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.ReadOnlyUserPrefs;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
 
@@ -208,6 +209,21 @@ public class AddCommandTest {
 
         @Override
         public void sortTripsByComparator(Comparator<Trip> trip) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableTrip getSelectedTrip() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedTrip(Trip trip) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetSelectedTrip() {
             throw new AssertionError("This method should not be called.");
         }
 
