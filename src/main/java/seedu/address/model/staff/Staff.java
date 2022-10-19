@@ -20,7 +20,7 @@ public class Staff {
     private final StaffContact contact;
     private final StaffTitle title;
     private final StaffDepartment department;
-    private final StaffInsurance insurance;
+    private final StaffLeave leave;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -29,13 +29,13 @@ public class Staff {
      * Every field must be present and not null.
      */
     public Staff(StaffName name, StaffContact contact, StaffTitle title,
-                 StaffDepartment department, StaffInsurance insurance, Set<Tag> tags) {
-        requireAllNonNull(name, contact, title, department, insurance, tags);
+                 StaffDepartment department, StaffLeave leave, Set<Tag> tags) {
+        requireAllNonNull(name, contact, title, department, leave, tags);
         this.name = name;
         this.contact = contact;
         this.title = title;
         this.department = department;
-        this.insurance = insurance;
+        this.leave = leave;
         this.tags.addAll(tags);
     }
 
@@ -55,8 +55,8 @@ public class Staff {
         return department;
     }
 
-    public StaffInsurance getStaffInsurance() {
-        return insurance;
+    public StaffLeave getStaffLeave() {
+        return leave;
     }
 
     /**
@@ -99,14 +99,14 @@ public class Staff {
                 && otherStaff.getStaffContact().equals(getStaffContact())
                 && otherStaff.getStaffTitle().equals(getStaffTitle())
                 && otherStaff.getStaffDepartment().equals(getStaffDepartment())
-                && otherStaff.getStaffInsurance().equals(getStaffInsurance())
+                && otherStaff.getStaffLeave().equals(getStaffLeave())
                 && otherStaff.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, contact, title, department, insurance, tags);
+        return Objects.hash(name, contact, title, department, leave, tags);
     }
 
     @Override
@@ -119,8 +119,8 @@ public class Staff {
                 .append(getStaffTitle())
                 .append("; Staff Department: ")
                 .append(getStaffDepartment())
-                .append("; Staff Insurance: ")
-                .append(getStaffInsurance());
+                .append("; Staff Leave: ")
+                .append(getStaffLeave());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

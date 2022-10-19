@@ -14,7 +14,7 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
-import seedu.address.model.staff.StaffInsurance;
+import seedu.address.model.staff.StaffLeave;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
@@ -47,7 +47,7 @@ public class SampleDataUtil {
         tagList.add(new Tag("friend"));
         Staff staff = new Staff(new StaffName("Andy Lee"), new StaffContact("11111111"),
                 new StaffTitle("Senior Software Engineer"), new StaffDepartment("IT Department"),
-                new StaffInsurance("true"), tagList);
+                new StaffLeave("true"), tagList);
         tempProject.getStaffList().add(staff);
         projectList[0] = tempProject;
         return projectList;

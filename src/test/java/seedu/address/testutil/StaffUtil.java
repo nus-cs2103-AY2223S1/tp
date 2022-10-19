@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_LEAVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,7 +31,7 @@ public class StaffUtil {
         sb.append(PREFIX_STAFF_CONTACT + staff.getStaffContact().toString() + " ");
         sb.append(PREFIX_STAFF_TITLE + staff.getStaffTitle().toString() + " ");
         sb.append(PREFIX_STAFF_DEPARTMENT + staff.getStaffDepartment().toString() + " ");
-        sb.append(PREFIX_STAFF_INSURANCE + staff.getStaffInsurance().toString() + " ");
+        sb.append(PREFIX_STAFF_LEAVE + staff.getStaffLeave().toString() + " ");
         staff.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

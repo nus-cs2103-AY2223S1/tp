@@ -23,7 +23,7 @@ public class JsonAdaptedProjectTest {
     private static final String INVALID_BUDGET = "+651234";
     private static final String INVALID_DEADLINE = "2022-05";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_STAFF_INSURANCE = "Invalid";
+    private static final String INVALID_STAFF_LEAVE = "Invalid";
 
     private static final String VALID_NAME = BANANA.getProjectName().toString();
     private static final String VALID_BUDGET = BANANA.getBudget().toString();
@@ -32,7 +32,7 @@ public class JsonAdaptedProjectTest {
     private static final String VALID_STAFF_CONTACT = STAFF_1.getStaffContact().toString();
     private static final String VALID_STAFF_TITLE = STAFF_1.getStaffTitle().toString();
     private static final String VALID_STAFF_DEPARTMENT = STAFF_1.getStaffDepartment().toString();
-    private static final String VALID_STAFF_INSURANCE = STAFF_1.getStaffInsurance().toString();
+    private static final String VALID_STAFF_LEAVE = STAFF_1.getStaffLeave().toString();
     private static final List<JsonAdaptedStaff> VALID_STAFF = Arrays.asList(new JsonAdaptedStaff(STAFF_1));
     private static final List<JsonAdaptedTag> VALID_TAGS = STAFF_1.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -95,7 +95,7 @@ public class JsonAdaptedProjectTest {
     public void toModelType_invalidStaffList_throwsIllegalValueException() {
         List<JsonAdaptedStaff> invalidStaff = new ArrayList<>(VALID_STAFF);
         invalidStaff.add(new JsonAdaptedStaff(VALID_STAFF_NAME, VALID_STAFF_CONTACT,
-                VALID_STAFF_TITLE, VALID_STAFF_DEPARTMENT, INVALID_STAFF_INSURANCE, null));
+                VALID_STAFF_TITLE, VALID_STAFF_DEPARTMENT, INVALID_STAFF_LEAVE, null));
         JsonAdaptedProject project =
                 new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, VALID_DEADLINE, VALID_TAGS, invalidStaff);
         assertThrows(IllegalValueException.class, project::toModelType);
