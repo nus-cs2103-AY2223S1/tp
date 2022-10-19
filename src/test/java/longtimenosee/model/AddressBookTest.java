@@ -15,11 +15,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import longtimenosee.model.event.Event;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.exceptions.DuplicatePersonException;
 import longtimenosee.model.policy.Policy;
