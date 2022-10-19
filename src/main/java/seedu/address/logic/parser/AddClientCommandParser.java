@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -19,7 +18,6 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.product.Product;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddClientCommand object
@@ -34,7 +32,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
     public AddClientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRODUCT);
+                        PREFIX_ADDRESS, PREFIX_PRODUCT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -49,10 +47,9 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Address address = argMultimap.getValue(PREFIX_ADDRESS).isPresent()
                 ? ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
                 : new Address("");
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Product> product = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
 
-        Client client = new Client(name, phone, email, address, tagList, product);
+        Client client = new Client(name, phone, email, address, product);
         return new AddClientCommand(client);
     }
 

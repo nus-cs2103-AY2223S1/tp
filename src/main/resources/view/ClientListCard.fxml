@@ -30,7 +30,7 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="products" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
             <graphic>
                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
