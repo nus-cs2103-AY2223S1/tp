@@ -1,5 +1,7 @@
 package seedu.application.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.application.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.application.testutil.TypicalApplications.getTypicalApplicationBook;
 
@@ -38,5 +40,31 @@ class SortByCompanyCommandTest {
         expectedModel.sortApplicationListByCompany(true);
 
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        SortCommand sortByCompanyCommand = new SortByCompanyCommand(false);
+        SortCommand sortByCompanyReversedCommand = new SortByCompanyCommand(true);
+        SortCommand sortByPositionCommand = new SortByPositionCommand(false);
+
+        // same object -> returns true
+        assertEquals(sortByCompanyCommand, sortByCompanyCommand);
+
+        // same values -> returns true
+        SortCommand sortByCompanyCommandCopy = new SortByCompanyCommand(false);
+        assertEquals(sortByCompanyCommand, sortByCompanyCommandCopy);
+
+        // different types -> returns false
+        assertNotEquals(sortByCompanyCommand, 1);
+
+        // null -> returns false
+        assertNotEquals(sortByCompanyCommand, null);
+
+        // different values -> return false
+        assertNotEquals(sortByCompanyCommand, sortByCompanyReversedCommand);
+
+        // different sort command subtype -> return false
+        assertNotEquals(sortByCompanyCommand, sortByPositionCommand);
     }
 }
