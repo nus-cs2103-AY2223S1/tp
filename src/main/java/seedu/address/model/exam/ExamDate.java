@@ -19,7 +19,6 @@ public class ExamDate {
             DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
     public final String examDate;
     public final String dateWithoutFormatting;
-    //public final LocalDate currDate;
 
 
     /**
@@ -32,7 +31,6 @@ public class ExamDate {
         checkArgument(isValidDate(date), DATE_CONSTRAINTS);
         examDate = LocalDate.parse(date, DATE_TIME_FORMATTER).format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         dateWithoutFormatting = date;
-        //currDate = LocalDate.now();
     }
 
     /**
