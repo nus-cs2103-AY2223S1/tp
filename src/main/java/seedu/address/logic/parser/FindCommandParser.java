@@ -1,12 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.IdPredicate;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -25,9 +29,17 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_NAME, PREFIX_ID);
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (argMultiMap.getValue(PREFIX_STUDENT_NAME).isPresent()) {
+            String[] nameKeywords = argMultiMap.getValue(PREFIX_STUDENT_NAME).get().split("\\s+");
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else if (argMultiMap.getValue(PREFIX_ID).isPresent()) {
+            return new FindCommand(new IdPredicate(new Id(argMultiMap.getValue(PREFIX_ID).get())));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
     }
 
 }

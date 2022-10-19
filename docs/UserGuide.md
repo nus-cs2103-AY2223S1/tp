@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Class-ify is a class management desktop application for teachers to **view and organize students’ details and class progress via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, and struggle with managing all your students' information, Class-ify is for you.
 
 * Table of Contents
 {:toc}
@@ -14,9 +15,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `classify.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the **home folder** for *Class-ify*.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +25,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`viewAll`** : Lists all student records.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`addstud`**`nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25` : Adds a new student named `Jonathan Tan` with his details to *Class-ify*.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`n/Jonathan Tan` : Deletes the student record with name of student as 'Jonathan Tan'.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all student records.
 
    * **`exit`** : Exits the app.
 
@@ -40,59 +41,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Creating a new student record : `new student`
+### Creating a new student record : `addstud`
 
 Creates a new student record with the name of the student and other relevant details such as:
 
-* Student ID
+* Student ID (last 4 digits of NRIC)
 * Name of Parent
 * Home Address
 * Mobile Number of Parent
+* Tags (Optional)
 
-Format: `new student n/[name of student] id/[id of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]`
+Format: `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-All fields are compulsory and cannot be left empty.
+All fields are compulsory and except for the tag field. A student can have multiple tags.
 </div>
 
 Examples:
-* `new student n/Jonathan Tan id/123A pn/George Tan a/10 Kent Ridge View hp/91234567`
-* `new student n/Sally Teo id/789B pn/Amy Toh a/200 River Valley Street hp/97654321`
+* `addstud nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25 t/Peanut-Allergy t/No-Seafood`
+* `addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18`
 
-### Listing all persons : `view all`
+### Listing all students : `viewAll`
 
 Shows a list of all students in the class.
 For each student in the list, only the Student's Name and Student's ID are displayed.
@@ -100,56 +69,64 @@ For each student in the list, only the Student's Name and Student's ID are displ
 :bulb: Note: The other details of a student are hidden to reduce cluttering.
 To view the full record of a student, use the `view` command instead.   
 
-Format: `view all`
+Format: `viewAll`
 
-### Editing a person : `edit`
+### Listing students in a class : `viewClass`
 
-Edits an existing person in the address book.
+Shows a list of all students in the specified class.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `viewClass [class name]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+:bulb: Note: Class name is case-insensitive.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `viewClass 2A`
+* `viewClass Loyalty1`
 
-### Locating persons by name: `find`
+### Editing a student : `edit`
 
-Finds persons whose names contain any of the given keywords.
+Edits the respective details of an existing student in the class list.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `edit [index] n/[name of student] id/[id of student] pn/[name of parent]…​`
+
+:bulb: Note:
+* Edits the person at the specified `index`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* Any tag can be used to edit the respective information.
+* At least one tag must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit 1 pn/91234567 a/8 College Ave East` Edits the parent phone number and address of the 1st student to be `91234567` and `8 College Ave East` respectively.
+*  `edit 2 n/Jacob Teo` Edits the name of the 2nd student to be `Jacob Teo`.
+
+### Listing a single student: `view`
+
+Shows a full record, including all stored details, using the input student's name or student's id. Search for multiple 
+students by including more keywords
+
+Format: `view nm/[name]` or `view id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the name or the id is searched, depending on the given input.
+* Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `view nm/John` returns the record for the student named `john`
+* `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
 ### Deleting individual student record : `delete`
 
 Deletes an existing student record from the class list, using the student’s name or the student’s ID.
 
-Format: `delete n/[name of student]` or `delete id/[id of student]`
+Format: `delete nm/[name of student]` or `delete id/[id of student]`
 
 Examples:
-* `delete Jonathan Tan` deletes student record with student's name as 'Jonathan Tan'.
-* `delete 123A` deletes student record with students' ID as '123A'.
+* `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
+* `delete id/123A` deletes student record with student ID as '123A'.
 
-### Clearing all entries : `clear`
+### Clearing all student records : `clear`
 
-Clears all entries from the address book.
+Clears all student records from local storage.
 
 Format: `clear`
 
@@ -163,35 +140,30 @@ Format: `exit`
 
 Student records are saved locally after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: Where can I locate my data file?  
+**A**: You can locate the JSON file in the path `[JAR file location]/data/classify.json`.
+We suggest that you **do not** edit the data file.
+Class-ify will discard all data and start with an empty data file at the next run if the format of the data file is invalid.
+
+**Q**: Why is Class-ify not running?  
+**A**: Ensure Java`11` or above is installed on your computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+|                Action                 | Format                                                                                                                          | Example                                                                                               |  
+|:-------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
+|        Add individual student         | `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]` | _addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18_ |
+|     View all student information      | `viewAll`                                                                                                                       | _viewAll_                                                                                             |
+|       View students in a class        | `viewClass [class name]`                                                                                                        | _viewClass 1A_                                                                                        |
+|  View individual student information  | `view nm/[name]` or `view id/[id]`                                                                                              | _view nm/Jonathan Tan_                                                                                |
+| Update individual student information | `update [index] nm/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                            | _update 1 a/Kent Ridge View_                                                                          |
+|       Delete individual student       | `delete nm/[name]` or `delete id/[id]`                                                                                          | _delete nm/Jonathan Tan or delete id/123A_                                                            |
+|       Clear all student records       | `clear`                                                                                                                         | _clear_                                                                                               |
+|             Exit program              | `exit`                                                                                                                          | _exit_                                                                                                |
+                                                                                                                              
