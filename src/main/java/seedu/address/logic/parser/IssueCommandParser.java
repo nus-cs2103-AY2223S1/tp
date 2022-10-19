@@ -8,8 +8,6 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
@@ -21,7 +19,6 @@ import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
 import seedu.address.logic.commands.issue.SortIssueCommand;
-import seedu.address.logic.commands.project.SortProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
