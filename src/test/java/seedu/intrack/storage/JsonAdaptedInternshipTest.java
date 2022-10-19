@@ -173,7 +173,7 @@ public class JsonAdaptedInternshipTest {
         invalidTasks.add(new JsonAdaptedTask(INVALID_TASK, ""));
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL,
-                        VALID_STATUS, VALID_ADDRESS, invalidTasks, VALID_TAGS);
+                        VALID_STATUS, VALID_ADDRESS, invalidTasks, VALID_TAGS, VALID_REMARK);
         assertThrows(IllegalValueException.class, internship::toModelType);
     }
 }

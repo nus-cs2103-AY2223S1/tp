@@ -34,7 +34,7 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
     // todo fix test
-/*
+    /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Internship editedInternship = new InternshipBuilder().build();
@@ -49,7 +49,7 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
- */
+     */
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
