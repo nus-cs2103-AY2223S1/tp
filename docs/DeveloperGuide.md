@@ -218,7 +218,7 @@ returns it to `PennyWiseParser`, which in turn returns to `LogicManger`.
 
 Step 7. The `LogicManager` calls the `SummaryCommand#execute` method.
 
-Step 8. The `SummaryCommand` calls the `Model#updateFilteredEntry` method and 
+Step 8. The `SummaryCommand` calls the `Model#updateFilteredEntry` method and
 filters the income and expenditure entries by the month
 
 Step 9. The application calculates the summary statistics for the filtered income and expenditure entries.
