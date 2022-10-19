@@ -206,11 +206,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTask(Task task, Task editedTask) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteTask(Task target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -226,7 +221,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void replaceTask(Task task, Task editedTask) {
+        public void replaceTask(Task task, Task editedTask, boolean isSameTask) {
             throw new AssertionError("This method should not be called.");
         }
 

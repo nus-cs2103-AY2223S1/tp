@@ -22,7 +22,8 @@ public class UnmarkCommand extends Command {
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Successfully Unmarked Task: %1$s";
+    public static final String MESSAGE_TASK_ALREADY_UNMARKED = "The task is already unmarked!";
 
     private final Index targetIndex;
 
@@ -40,8 +41,12 @@ public class UnmarkCommand extends Command {
         }
 
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
+        if (!taskToUnmark.isComplete()) {
+            throw new CommandException(MESSAGE_TASK_ALREADY_UNMARKED);
+        }
         Task unmarkedTask = taskToUnmark.unmark();
-        model.setTask(taskToUnmark, unmarkedTask);
+
+        model.replaceTask(taskToUnmark, unmarkedTask, true);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }

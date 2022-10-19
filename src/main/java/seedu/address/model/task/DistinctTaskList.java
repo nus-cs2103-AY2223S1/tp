@@ -10,8 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
-import seedu.address.model.task.exceptions.TaskIdentityModifiedException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.model.task.exceptions.WrongTaskModifiedException;
 
 /**
  * This class represents a list which contains Tasks objects which are distinct from
@@ -56,42 +56,33 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the list.
-     * The task identity of {@code editedTask} should be the same as task identity of {@code target}.
-     */
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        int index = taskList.indexOf(target);
-        if (index == -1) {
-            throw new TaskNotFoundException();
-        }
-
-        if (!target.isSameTask(editedTask)) {
-            throw new TaskIdentityModifiedException();
-        }
-
-        taskList.set(index, editedTask);
-    }
-
-    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
+     * If {@code isSameTask} is true, the task identity of {@code editedTask} should be the same as {@code target}.
      *
-     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
-     *     in the list (other than {@code target}).
+     * @param target the task to be replaced.
+     * @param editedTask the edited task to replace {@code target}.
+     * @param isSameTask true if {@code target} has the same task identity as {@code editedTask}, false otherwise.
+     * @throws DuplicateTaskException if {@code isSameTask} is false but task identity of {@code editedTask}
+     *     is the same as another task in the list (other than {@code target}).
      */
-    public void replaceTask(Task target, Task editedTask) throws DuplicateTaskException {
-        requireAllNonNull(target, editedTask);
+    public void replaceTask(Task target, Task editedTask, boolean isSameTask) throws DuplicateTaskException {
+        requireAllNonNull(target, editedTask, isSameTask);
 
         int index = taskList.indexOf(target);
         if (index == -1) {
             throw new TaskNotFoundException();
         }
-        if (contains(editedTask) && !editedTask.isSameTask(target)) {
+
+        if (isSameTask && !target.isSameTask(editedTask)) {
+            throw new WrongTaskModifiedException();
+        }
+
+        boolean isDuplicateTask = contains(editedTask) && !editedTask.isSameTask(target);
+        if (!isSameTask && contains(editedTask) && isDuplicateTask) {
             throw new DuplicateTaskException();
         }
+
         taskList.set(index, editedTask);
     }
 

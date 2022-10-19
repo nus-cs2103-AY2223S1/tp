@@ -144,27 +144,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the task list.
-     * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
-     */
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        tasks.setTask(target, editedTask);
-    }
-
-    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
+     * If {@code isSameTask} is true, the task identity of {@code editedTask} should be the same as {@code target}.
      *
-     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
-     *     in the list (other than {@code target}).
+     * @param target the task to be replaced.
+     * @param editedTask the edited task to replace {@code target}.
+     * @param isSameTask true if {@code target} has the same task identity as {@code editedTask}, false otherwise.
+     * @throws DuplicateTaskException if {@code isSameTask} is false but task identity of {@code editedTask}
+     *     is the same as another task in the list (other than {@code target}).
      */
-    public void replaceTask(Task target, Task editedTask) throws DuplicateTaskException {
-        requireAllNonNull(target, editedTask);
-
-        tasks.replaceTask(target, editedTask);
+    public void replaceTask(Task target, Task editedTask, boolean isSameTask) throws DuplicateTaskException {
+        requireAllNonNull(target, editedTask, isSameTask);
+        tasks.replaceTask(target, editedTask, isSameTask);
     }
 
     public void setTasks(List<Task> tasks) {
