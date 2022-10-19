@@ -21,13 +21,15 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-
         // will add more cases of keywords later on
 
         switch (trimmedArgs) {
 
         case "name":
-            return new SortCommand(new SortByName(), "name");
+            return new SortCommand(new SortByName("asc"), "name");
+
+        case "name desc":
+            return new SortCommand(new SortByName("desc"), "name");
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
