@@ -4,14 +4,10 @@ import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
-import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.stream.Stream;
 
-import jarvis.commons.core.index.Index;
-import jarvis.logic.commands.AddMasteryCheckCommand;
 import jarvis.logic.commands.AddStudioCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.LessonDesc;
