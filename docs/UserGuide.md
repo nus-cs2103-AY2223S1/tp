@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-GuestBook is a **desktop app for managing guests in a hotel, 
-optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, GuestBook can get your 
+GuestBook is a **desktop app for managing guests in a hotel,
+optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, GuestBook can get your
 guest management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -66,7 +66,7 @@ guest management tasks done faster than traditional GUI apps.
 [//]: # (  e.g. `[t/TAG]…​` can be used as ` ` &#40;i.e. 0 times&#41;, `t/friend`, `t/friend t/family` etc.)
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. 
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
