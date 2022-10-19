@@ -281,15 +281,34 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void sortProjectsByDeadline(int key) {
         ObservableList<Project> sortedProjectsByDeadline;
         if (key == 0) {
-            //sort ascending deadlines
+            //sort according to chronological deadlines
             sortedProjectsByDeadline =
                     getModifiableProjectList().sorted(Comparator.comparing(s -> s.getDeadline().getLocalDate()));
         } else {
-            //sort descending deadlines
+            //sort according to descending deadlines
             sortedProjectsByDeadline = getModifiableProjectList().sorted((s1, s2) ->
                 s2.getDeadline().getLocalDate().compareTo(s1.getDeadline().getLocalDate()));
         }
         setSortedProjects(sortedProjectsByDeadline);
+    }
+
+    /**
+     * Sort projects in ascending or descending order of issue counts based on key value of 0 or 1 respectively.
+     *
+     * @param key zero for ascending order and one for descending order
+     */
+    public void sortProjectsByIssueCount(int key) {
+        ObservableList<Project> sortedProjectsByIssueCount;
+        if (key == 0) {
+            //sort according to ascending issue count
+            sortedProjectsByIssueCount =
+                    getModifiableProjectList().sorted(Comparator.comparingInt(l -> l.getIssueList().size()));
+        } else {
+            //sort according to descending issue count
+            sortedProjectsByIssueCount = getModifiableProjectList().sorted((l1, l2) ->
+                    l2.getIssueList().size() - l1.getIssueList().size());
+        }
+        setSortedProjects(sortedProjectsByIssueCount);
     }
 
     //// util methods

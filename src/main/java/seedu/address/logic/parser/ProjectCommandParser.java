@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
@@ -87,7 +88,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
      * @param arguments user input for key for sort by deadline
      * @return true if there is only one valid input
      */
-    private boolean hasOneSortDeadlineKey(String arguments) {
+    private boolean hasOneArgumentOfLengthThree(String arguments) {
         return arguments.trim().length() != 3;
     }
 
@@ -185,21 +186,33 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
     private SortProjectCommand parseSortProjectCommand(String arguments) throws ParseException {
 
-        if (hasOneSortDeadlineKey(arguments)) {
+        Prefix sortPrefix = null;
+        int key = -1;
+
+        if (hasOneArgumentOfLengthThree(arguments)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortProjectCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortProjectCommand.MESSAGE_USAGE));
         }
 
-        int key = ParserUtil.parseDeadlineSort(argMultimap.getValue(PREFIX_DEADLINE).get());
-        return new SortProjectCommand(key);
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            sortPrefix = PREFIX_DEADLINE;
+            key = ParserUtil.parseDeadlineSort(argMultimap.getValue(PREFIX_DEADLINE).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_ISSUE_COUNT)) {
+            sortPrefix = PREFIX_ISSUE_COUNT;
+            key = ParserUtil.parseIssueCountSort(argMultimap.getValue(PREFIX_ISSUE_COUNT).get());
+        }
+
+        return new SortProjectCommand(sortPrefix, key);
     }
 
     private ListProjectCommand parseListProjectCommand(String arguments) {

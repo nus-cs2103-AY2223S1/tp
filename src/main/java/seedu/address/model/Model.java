@@ -160,6 +160,8 @@ public interface Model {
 
     void sortProjectsByDeadline(int sortByDeadlineKey);
 
+    void sortProjectsByIssueCount(int sortByIssueCountKey);
+
     ObservableList<Project> getFilteredSortedProjectList();
     void setDefaultView(DefaultView defaultView);
 }

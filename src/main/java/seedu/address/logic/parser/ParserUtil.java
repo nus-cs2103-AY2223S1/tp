@@ -287,13 +287,28 @@ public class ParserUtil {
      * Parses a {@code String key} into an {@code Integer}.
      *
      * @param key is the value entered by the user for sort by deadline.
-     * @return Integer of 0 or 1 specifies the chronology of sort
+     * @return Integer of 0 or 1 which specifies the chronology of sort
      */
     public static Integer parseDeadlineSort(String key) throws ParseException {
         requireNonNull(key);
         String trimmedKey = key.trim();
-        if (!Deadline.isValidDeadlineSortKey(trimmedKey)) {
-            throw new ParseException(Deadline.MESSAGE_INVALID_DEADLINE_SORT);
+        if (!Project.isValidDeadlineSortKey(trimmedKey)) {
+            throw new ParseException(Project.MESSAGE_INVALID_DEADLINE_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by issue count.
+     * @return Integer of 0 or 1 which specifies the chronology of sort
+     */
+    public static Integer parseIssueCountSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Project.isValidIssueCountSortKey(trimmedKey)) {
+            throw new ParseException(Project.MESSAGE_INVALID_ISSUE_COUNT_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }
