@@ -3,6 +3,7 @@ package seedu.address.model.reminder;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ import seedu.address.model.person.Phone;
  */
 public class ReminderList implements ReadOnlyReminderList {
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
-    private final SortedList<Reminder> sortedList = new SortedList<>(internalList);
+    private final SortedList<Reminder> sortedList = internalList.sorted(Comparator.naturalOrder());
     private final ObservableList<Reminder> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(sortedList);
 
@@ -25,8 +26,6 @@ public class ReminderList implements ReadOnlyReminderList {
      * Creates an empty ReminderList.
      */
     public ReminderList() {
-        this.sortedList.setComparator(((Reminder r1, Reminder r2) ->
-                r1.dateTime.getLocalDateTime().compareTo(r1.dateTime.getLocalDateTime())));
     }
 
     /**
@@ -68,6 +67,13 @@ public class ReminderList implements ReadOnlyReminderList {
     public void delete(Reminder toDelete) {
         requireNonNull(toDelete);
         internalList.remove(toDelete);
+    }
+
+    /**
+     * Returns the size of the reminder list.
+     */
+    public int size() {
+        return internalList.size();
     }
 
     /**
@@ -121,6 +127,7 @@ public class ReminderList implements ReadOnlyReminderList {
 
     @Override
     public ObservableList<Reminder> getAllReminders() {
+        System.out.println(internalUnmodifiableList.size());
         return internalUnmodifiableList;
     }
 

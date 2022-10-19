@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminderList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
@@ -158,6 +159,9 @@ public interface Model {
 
     /** Returns the target {@code Person} */
     Person getTargetPerson();
+
+    /** Returns list of reminders */
+    ReadOnlyReminderList getReminderList();
 
     /** Returns an unmodifiable view of the list of reminders */
     ObservableList<Reminder> getReminderListAsObservableList();

@@ -11,7 +11,7 @@ import seedu.address.model.person.Phone;
 /**
  * Represents reminders that the user can have.
  */
-public class Reminder {
+public class Reminder implements Comparable<Reminder> {
     public static final String MESSAGE_CONSTRAINTS = "";
     public final String description;
     public final DateTime dateTime;
@@ -64,6 +64,15 @@ public class Reminder {
     }
 
     @Override
+    public int compareTo(Reminder other) {
+        int value = this.dateTime.compareTo(other.dateTime);
+        if (value == 0) {
+            return this.description.compareTo(other.description);
+        }
+        return value;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Reminder // instanceof handles nulls
@@ -84,6 +93,7 @@ public class Reminder {
      */
     @Override
     public String toString() {
-        return "";
+        return "Description: " + description + "\nDate and Time: " + dateTime
+                + "\nName: " + name.get().toString() + "\nPhone: " + phone.get().toString();
     }
 }

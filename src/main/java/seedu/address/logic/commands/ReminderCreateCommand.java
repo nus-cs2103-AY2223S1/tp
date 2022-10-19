@@ -24,14 +24,14 @@ public class ReminderCreateCommand extends ReminderCommandGroup {
     public static final String COMMAND_WORD = COMMAND_GROUP;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates reminders for a person "
-            + "with the specified description and time."
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "with the specified description and time.\n"
+            + "Parameters: [INDEX] "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DATETIME + "DATETIME "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Meeting" + " " + PREFIX_DATETIME + "2022-12-12 11:00";
 
-    public static final String MESSAGE_SUCCESS = "New reminder created: %1$s";
+    public static final String MESSAGE_SUCCESS = "New reminder created: \n%1$s";
 
     private final Optional<Index> index;
     private final String description;

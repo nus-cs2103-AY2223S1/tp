@@ -49,7 +49,7 @@ public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> 
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
-            return new ReminderCreateCommandParser().parse(argArray[1]);
+            return new ReminderCreateCommandParser().parse(trimmedArgs);
         }
     }
 }

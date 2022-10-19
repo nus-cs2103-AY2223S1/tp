@@ -282,6 +282,12 @@ public class ModelManager implements Model {
     }
 
     // =========== Reminder ====================================================================
+
+    @Override
+    public ReadOnlyReminderList getReminderList() {
+        return reminderList;
+    }
+
     @Override
     public ObservableList<Reminder> getReminderListAsObservableList() {
         return reminderList.getAllReminders();

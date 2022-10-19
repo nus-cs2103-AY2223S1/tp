@@ -4,8 +4,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ReminderCreateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.DateTime;
@@ -22,19 +24,26 @@ public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand
      * @throws ParseException if the user input does not conform to the specified format
      */
     public ReminderCreateCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_DESCRIPTION, PREFIX_DATETIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATETIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATETIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATETIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ReminderCreateCommand.MESSAGE_USAGE));
+        }
+        Optional<Index> index;
+
+        try {
+            index = parseIndex(argMultimap);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReminderCreateCommand.MESSAGE_USAGE), pe);
         }
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
         DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
-        return new ReminderCreateCommand(description, dateTime);
+        return index.map(i -> new ReminderCreateCommand(i, description, dateTime))
+                .orElse(new ReminderCreateCommand(description, dateTime));
     }
 
     /**
@@ -42,7 +51,13 @@ public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes)
-                .allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private Optional<Index> parseIndex(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getPreamble().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseIndex(argMultimap.getPreamble()));
     }
 }

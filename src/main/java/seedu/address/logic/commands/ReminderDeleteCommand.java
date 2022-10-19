@@ -42,7 +42,7 @@ public class ReminderDeleteCommand extends ReminderCommandGroup {
         List<Reminder> reminderList = model.getReminderListAsObservableList();
 
         if (index.getZeroBased() >= reminderList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
 
 
