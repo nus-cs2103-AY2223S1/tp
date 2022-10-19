@@ -28,7 +28,7 @@ public class AddTaskCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
             + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE (YYYY-MM-DD)] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE (YYYY-MM-DD, must be after current date)] "
             + "[" + PREFIX_PERSON + "PERSON EMAIL ADDRESS (must be a valid email)]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Create Initial UIUX Design "
