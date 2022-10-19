@@ -48,6 +48,16 @@ public class ClassStorage {
     }
 
     /**
+     * Gets a list of persons who are attending classes on a particular date.
+     *
+     * @param date LocalDate object.
+     * @return List of Person objects.
+     */
+    public static List<Person> getListOfPerson(LocalDate date) {
+        return classes.get(date);
+    }
+
+    /**
      * Initialises HashMap classes field.
      *
      * @return HashMap object.
