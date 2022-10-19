@@ -14,14 +14,15 @@ public class Request {
     public final String value;
 
     /**
-     * The constructor with no specific request.
+     * Constructs a {@code Request}.
      */
     public Request() {
         value = "-";
     }
 
     /**
-     * The constructor with specific Request object.
+     * Constructs a {@code Request}.
+     *
      * @param request the specific Request
      */
     public Request(String request) {
@@ -31,9 +32,7 @@ public class Request {
     }
 
     /**
-     * To check whether the Request is valid.
-     * @param inputRequest
-     * @return boolean
+     * Returns true if a given string is a valid request.
      */
     public static boolean isValidRequest(String inputRequest) {
         return (inputRequest.length() <= 500);
@@ -41,18 +40,13 @@ public class Request {
 
     /**
      * return the String representation of Request.
-     * @return
+     * @return String
      */
     @Override
     public String toString() {
         return value;
     }
 
-    /**
-     * to check whether this Request is the same as another.
-     * @param other other object, might be Request
-     * @return boolean
-     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -60,10 +54,6 @@ public class Request {
                 && value.equals(((Request) other).value)); // state check
     }
 
-    /**
-     * To override hashcode.
-     * @return integer
-     */
     @Override
     public int hashCode() {
         return value.hashCode();
