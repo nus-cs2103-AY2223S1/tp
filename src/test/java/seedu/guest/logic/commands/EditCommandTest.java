@@ -35,7 +35,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Guest editedGuest = new GuestBuilder().build(); //Amy Bee
+        Guest editedGuest = new GuestBuilder().build();
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(editedGuest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_GUEST, descriptor);
 

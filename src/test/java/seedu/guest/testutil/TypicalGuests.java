@@ -60,7 +60,7 @@ public class TypicalGuests {
     public static final Guest GEORGE = new GuestBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withRoom("07-05").withDateRange("01/01/23 - 07/01/23")
             .withNumberOfGuests("3").withIsRoomClean("yes").withBill("1000.01")
-            .withRequest("Help me to fix Wi-Fi!")
+            .withRequest("I want to live with my pet dog")
             .build();
 
     // Manually added
@@ -70,7 +70,7 @@ public class TypicalGuests {
             .build();
     public static final Guest IDA = new GuestBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withRoom("05-36").withDateRange("11/11/23 - 12/11/23")
-            .withNumberOfGuests("4").withIsRoomClean("yes").withBill("9999999999").withRequest("Room service")
+            .withNumberOfGuests("4").withIsRoomClean("yes").withBill("9999999999").withRequest("Room Cleaning")
             .build();
 
     // Manually added - Guest's details found in {@code CommandTestUtil}

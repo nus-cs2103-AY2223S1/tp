@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.guest.commons.util.AppUtil.checkArgument;
 
 /**
- * The class Request.
+ * Represents the Request of a guest.
+ * Guarantees:
+ * Case 1: details are present and not null, field values are validated, immutable.
+ * Case 2: there are no specific Request.
  */
 public class Request {
     public static final String MESSAGE_CONSTRAINTS = "The request should not be null";
