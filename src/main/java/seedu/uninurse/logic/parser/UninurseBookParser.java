@@ -17,6 +17,7 @@ import seedu.uninurse.logic.commands.HelpCommand;
 import seedu.uninurse.logic.commands.ListCommand;
 import seedu.uninurse.logic.commands.ListTaskCommand;
 import seedu.uninurse.logic.commands.PatientsTodayCommand;
+import seedu.uninurse.logic.commands.TasksOnCommand;
 import seedu.uninurse.logic.commands.ViewTaskCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
@@ -68,6 +69,9 @@ public class UninurseBookParser {
 
         case PatientsTodayCommand.COMMAND_WORD:
             return new PatientsTodayCommand();
+
+        case TasksOnCommand.COMMAND_WORD:
+            return new TasksOnCommandParser().parse(arguments);
 
         case ViewTaskCommand.COMMAND_WORD:
             return new ViewTaskCommandParser().parse(arguments);

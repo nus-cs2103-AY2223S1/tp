@@ -1,6 +1,6 @@
 package seedu.uninurse.testutil;
 
-import static seedu.uninurse.model.task.DateTime.FORMATTER;
+import static seedu.uninurse.model.task.DateTime.DATE_TIME_FORMATTER;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -57,6 +57,6 @@ public class TestUtil {
     }
 
     public static String getCurrentDate() {
-        return LocalDateTime.now().format(FORMATTER);
+        return LocalDateTime.now().format(DATE_TIME_FORMATTER);
     }
 }

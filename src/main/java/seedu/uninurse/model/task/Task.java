@@ -54,6 +54,10 @@ public class Task {
         return dateTime.isToday();
     }
 
+    public boolean isTaskOnDay(DateTime test) {
+        return dateTime.isDate(test);
+    }
+
     @Override
     public String toString() {
         return taskDescription + " " + dateTime;

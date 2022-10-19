@@ -16,6 +16,13 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // In case the previous command filters the task list
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.getFilteredPersonList().forEach(p -> p.getTasks().showAllTasks());
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         model.updateFilteredPersonListWithTasks(p -> !(p.getTasks().isEmpty()));
         return new CommandResult(MESSAGE_SUCCESS);
     }

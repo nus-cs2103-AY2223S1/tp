@@ -62,7 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tasks.addAll(source.getTasks().getTasks().stream()
+        tasks.addAll(source.getTasks().getInternalList().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
