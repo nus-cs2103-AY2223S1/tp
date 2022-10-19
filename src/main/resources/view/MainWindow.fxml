@@ -60,11 +60,19 @@
           </VBox>
 
           <VBox fx:id="viewCommand" maxHeight="Infinity" minWidth="450.0" prefHeight="250.0"
-                styleClass="pane-with-border" GridPane.columnIndex="1" alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
+                styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
             <StackPane fx:id="viewCommandPanelPlaceholder" alignment="TOP_RIGHT"/>
+          </VBox>
+
+          <VBox fx:id="statistics" maxHeight="Infinity" minWidth="450.0" prefHeight="250.0" style="-fx-background-color: white;"
+                styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <StackPane fx:id="statisticsPlaceholder" alignment="BOTTOM_RIGHT"/>
           </VBox>
 
           <columnConstraints>
