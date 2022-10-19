@@ -14,6 +14,7 @@ import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -87,6 +88,9 @@ public class JeeqTrackerParser {
 
         case BuyCommand.COMMAND_WORD:
             return new BuyCommandParser().parse(arguments);
+
+        case FilterTransCommand.COMMAND_WORD:
+            return new FilterTransCmdParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

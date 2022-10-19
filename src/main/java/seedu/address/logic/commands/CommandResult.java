@@ -17,13 +17,24 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Filter transactions. */
+    private final boolean filterTransactions;
+
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with all the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean filterTransactions) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showUserGuide = showUserGuide;
         this.exit = exit;
+        this.filterTransactions = filterTransactions;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified 3 fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
+        this(feedbackToUser, showUserGuide, exit, false);
     }
 
     /**
@@ -31,7 +42,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -40,6 +51,10 @@ public class CommandResult {
 
     public boolean isShowUserGuide() {
         return showUserGuide;
+    }
+
+    public boolean isFilterTransactions() {
+        return filterTransactions;
     }
 
     public boolean isExit() {

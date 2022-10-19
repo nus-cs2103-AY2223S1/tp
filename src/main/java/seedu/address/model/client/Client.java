@@ -218,4 +218,18 @@ public class Client implements ReadOnlyClient {
         return transactions.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns an unmodifiable view of the sell transactions list.
+     */
+    public ObservableList<Transaction> getSellTransactionList() {
+        return transactions.getSellTransactionList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the buy transactions list.
+     */
+    public ObservableList<Transaction> getBuyTransactionList() {
+        return transactions.getBuyTransactionList();
+    }
+
 }
