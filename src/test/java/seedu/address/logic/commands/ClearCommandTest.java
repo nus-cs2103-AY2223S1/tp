@@ -23,6 +23,16 @@ public class ClearCommandTest {
     }
 
     @Test
+    public void confirmClear_EmptyTrackAScholar_success() {
+        ClearCommand clearCommand = new ClearCommand();
+        Model model = new ModelManager();
+        CommandResult commandResult = clearCommand.confirmClear(model);
+        CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
+        assertEquals(commandResult,successResult);
+
+    }
+
+    @Test
     public void cancelClear_TrackAScholar_failure() {
         ClearCommand clearCommand = new ClearCommand();
         CommandResult commandResult = clearCommand.cancelClear();
