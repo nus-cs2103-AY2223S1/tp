@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant ":ComparableCategoryParser" as ComparableCategoryParser LOGIC_COLOR
+participant ":ListCommand" as ListCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list c/n true")
+activate LogicManager
+
+LogicManager -> InternshipBookParser : parseCommand("list c/n true")
+activate InternshipBookParser
+
+create ListCommandParser
+InternshipBookParser -> ListCommandParser
+activate ListCommandParser
+
+ListCommandParser --> InternshipBookParser
+deactivate ListCommandParser
+
+InternshipBookParser -> ListCommandParser : parse("c/n true")
+activate ListCommandParser
+
+create ComparableCategoryParser
+ListCommandParser -> ComparableCategoryParser
+activate ComparableCategoryParser
+
+ComparableCategoryParser --> ListCommandParser
+deactivate ComparableCategoryParser
+
+ListCommandParser -> ComparableCategoryParser : parse("n")
+activate ComparableCategoryParser
+
+ComparableCategoryParser --> ListCommandParser
+deactivate ComparableCategoryParser
+
+create ListCommand
+ListCommandParser -> ListCommand
+activate ListCommand
+
+ListCommand --> ListCommandParser
+deactivate ListCommand
+
+ListCommandParser --> InternshipBookParser
+deactivate ListCommandParser
+
+InternshipBookParser --> LogicManager :
+deactivate InternshipBookParser
+
+LogicManager -> ListCommand : execute(model)
+activate ListCommand
+
+ListCommand -> Model : sortList(category)
+activate Model
+
+Model --> ListCommand
+deactivate Model
+
+create CommandResult
+ListCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListCommand
+deactivate CommandResult
+
+ListCommand --> LogicManager : result
+deactivate ListCommand
+
+ListCommand -[hidden]-> LogicManager : result
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
