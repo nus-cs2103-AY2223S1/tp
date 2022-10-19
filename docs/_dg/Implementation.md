@@ -16,3 +16,19 @@ The `tag` feature tags an item with with the provided tag name in FoodRem. If bo
 When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included. 
 
 ![TagSequenceDiagram](../images/TagSequenceDiagram.png)
+
+#### Receiving help for a command
+The `help` feature provides a user with instructions of how to use certain commands.
+
+#### How the `help` command works
+1. The user specifies a specific command that they need help with. This is done using the word needed to execute a particular command in FoodRem.
+2. If this is not provided, a general help message will be shown.
+4. The provided command is cross-referenced with all available commands in FoodRem. If the command that the user needs help with does not exist, an error would be thrown. This informs the user that the command does not exist. A general help is also shown to the user.
+5. The help is shown in a new window that will open upon successful execution of the command.
+
+#### Why it is implemented this way
+When the `HelpCommand` is executed we want users to receive help immediately instead of searching for it the user guide.
+
+![HelpSequenceDiagram](../images/HelpSequenceDiagram.png)
+
+Only methods relevant to showing the HelpWindow was shown. Other methods such as `setFeedbackToUser` and `isShowHelp` is not shown.
