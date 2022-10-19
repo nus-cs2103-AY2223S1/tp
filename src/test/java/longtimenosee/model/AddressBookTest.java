@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import longtimenosee.model.event.Event;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -94,6 +95,8 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Policy> policies = FXCollections.observableArrayList();
 
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
+
         AddressBookStub(Collection<Person> persons, Collection<Policy> policies) {
             this.persons.setAll(persons);
             this.policies.setAll(policies);
@@ -108,6 +111,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Policy> getPolicyList() {
             return policies;
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            return events;
         }
     }
 

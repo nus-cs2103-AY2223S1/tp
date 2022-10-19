@@ -43,7 +43,7 @@ public class PolicyDeleteCommand extends Command {
         Policy policyToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePolicy(policyToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_POLICY_SUCCESS, policyToDelete),
-                true, false);
+                true, false, false);
     }
 
     @Override

@@ -10,8 +10,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
+import longtimenosee.model.event.Event;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -178,6 +180,83 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPolicyList(Predicate<Policy> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param toAdd
+         * @param personName
+         */
+        @Override
+        public void addEvent(Event toAdd, String personName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param toAdd Event to be added
+         * @return
+         */
+        @Override
+        public boolean hasEventOverlap(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param toAdd
+         * @return
+         */
+        @Override
+        public List<Event> listEventsOverlap(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param toAdd
+         * @return
+         */
+        @Override
+        public boolean hasEvent(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param toDelete event to delete
+         */
+        @Override
+        public void deleteEvent(Event toDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param toAdd
+         * @return
+         */
+        @Override
+        public List<Event> listEventsSameDay(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        public List<Event> calendarView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param predicate
+         */
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
