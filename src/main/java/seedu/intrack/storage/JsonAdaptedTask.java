@@ -2,7 +2,6 @@ package seedu.intrack.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.intrack.commons.exceptions.IllegalValueException;
 import seedu.intrack.model.internship.Task;
@@ -17,7 +16,7 @@ class JsonAdaptedTask {
     private final String taskTime;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
+     * Constructs a {@code JsonAdaptedTask} with the given {@code taskName} and {@code taskTime}.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName, @JsonProperty("taskTime") String taskTime) {
@@ -29,13 +28,8 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        taskName = source.taskName;
-        taskTime = source.taskTime.format(Task.FORMATTER);
-    }
-
-    @JsonValue
-    public String getTaskName() {
-        return taskName;
+        this.taskName = source.getTaskName();
+        this.taskTime = source.getTaskTime().format(Task.FORMATTER);
     }
 
     /**
@@ -51,10 +45,5 @@ class JsonAdaptedTask {
             throw new IllegalValueException(Task.TIME_CONSTRAINTS);
         }
         return new Task(taskName, taskTime);
-    }
-
-    @Override
-    public String toString() {
-        return taskName + " /at " + taskTime;
     }
 }

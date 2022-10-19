@@ -142,6 +142,9 @@ class JsonAdaptedInternship {
         }
         final Address modelAddress = new Address(address);
 
+        if (taskFilled == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Task.class.getSimpleName()));
+        }
         final List<Task> modelTasks = new ArrayList<>(internshipTasks);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);

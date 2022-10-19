@@ -6,6 +6,7 @@ import static seedu.intrack.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 /**
@@ -33,7 +34,7 @@ public class Task {
      */
     public Task() {
         this.taskName = "Application submitted";
-        this.taskTime = LocalDateTime.now();
+        this.taskTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**
@@ -70,9 +71,17 @@ public class Task {
         return true;
     }
 
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public LocalDateTime getTaskTime() {
+        return taskTime;
+    }
+
     @Override
     public String toString() {
-        return taskName + " /at " + taskTime.format(FORMATTER);
+        return taskName + " at " + taskTime.format(FORMATTER);
     }
 
     @Override

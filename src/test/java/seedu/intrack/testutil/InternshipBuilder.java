@@ -1,7 +1,7 @@
 package seedu.intrack.testutil;
 
 import java.time.LocalDateTime;
-
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +29,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STATUS = "Progress";
     public static final Task DEFAULT_TASK = new Task("Application submitted",
-            LocalDateTime.now().format(Task.FORMATTER));
+            LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER));
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;

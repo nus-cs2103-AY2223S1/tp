@@ -10,6 +10,8 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +22,7 @@ import seedu.intrack.model.InTrack;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
+import seedu.intrack.model.internship.Task;
 import seedu.intrack.testutil.EditInternshipDescriptorBuilder;
 
 /**
@@ -39,6 +42,10 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_MSFT = "Microsoft Campus";
     public static final String VALID_STATUS_AAPL = "Offered";
     public static final String VALID_STATUS_MSFT = "Progress";
+    public static final String VALID_TASK_AAPL = "Application submitted /at "
+            + LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER);
+    public static final String VALID_TASK_MSFT = "Application submitted /at "
+            + LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER);
     public static final String VALID_TAG_REMOTE = "Remote";
     public static final String VALID_TAG_URGENT = "Urgent";
 

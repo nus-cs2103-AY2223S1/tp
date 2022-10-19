@@ -18,7 +18,6 @@ import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Status;
-import seedu.intrack.model.internship.Task;
 
 public class JsonAdaptedInternshipTest {
     private static final String INVALID_NAME = "R@chel";
@@ -164,15 +163,6 @@ public class JsonAdaptedInternshipTest {
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL, INVALID_STATUS,
                         VALID_ADDRESS, VALID_TASKS, VALID_TAGS);
         String expectedMessage = Status.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullTasks_throwsIllegalValueException() {
-        JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL, VALID_STATUS,
-                        VALID_ADDRESS, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Task.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
