@@ -154,6 +154,29 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Order Management
+
+Order management is one of two core features of TrackO alongside inventory management. These two features work together
+to form the backbone of the application, allowing for efficient and reliable tracking of order and inventory data.
+
+#### Overview
+
+As per the Model diagram given [above](<ENSURE DIAGRAM CONSISTENCY HERE>), the application keeps track of one `OrderList`
+at any point in time. This `OrderList` instance represents the container that keeps track of all order data in the system.
+
+Currently, the application supports 5 main operations that interact directly with the `OrderList`. They are represented by
+the following commands:
+* `AddOrderCommand` - creates a new order to be added to the `OrderList`
+* `FindOrderCommand` - filters and display matching orders from the `OrderList` based on provided keywords
+* `ListOrderCommand` - display all order data from the `OrderList`
+* `EditOrderCommand` - edit the data of an order from the `OrderList`
+* `DeleteOrderCommand` - deletes an existing order from the `OrderList`
+
+#### Add Order Feature
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
