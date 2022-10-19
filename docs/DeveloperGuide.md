@@ -158,6 +158,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Tutorial group feature
+
+#### Implementation
+
+The tutorial group feature is facilitated by `TutorialGroup`. It implements the following operations:
+
+- `TutorialGroup#TutorialGroup(String)` — Create a tutorial group with the name provided. The name must follow a format of "TXX".
+- `TutorialGroup#isSameTutorialGroup()` — Check whether the two tutorial groups have the same name.
+- `TutorialGroup#getStudents()` — Gets a list of students belong to this tutorial group.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `tutorialList` command to display all the tutorial groups.
+
+Step 3. The user executes `tutorialAdd g/T03` command to add a new tutorial group.
+
+Step 1. The user executes `studentEdit 1 g/T03` command to assign the first student to the newly created tutorial group.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
