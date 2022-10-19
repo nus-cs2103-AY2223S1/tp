@@ -16,8 +16,11 @@ Class UniquePersonList
 Class Person
 Class Address
 Class Email
+Class MoneyOwed
+Class MoneyPaid
 Class Name
 Class Phone
+Class RatesPerClass
 Class Tag
 
 }
@@ -41,10 +44,17 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> MoneyOwed
+Person *--> MoneyPaid
+Person *--> RatesPerClass
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Name -[hidden]down-> MoneyOwed
+MoneyOwed -[hidden]right-> MoneyPaid
+MoneyPaid -[hidden]right-> RatesPerClass
 
 ModelManager -->"~* filtered" Person
 @enduml
