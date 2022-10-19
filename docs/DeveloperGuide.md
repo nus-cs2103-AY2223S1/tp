@@ -128,11 +128,23 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
 
+**UniqueList**
+
 The `UniqueList` class is a generic class that stores a collection of unique elements. In TA Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
 
 <img src="images/TaAssistObjectDiagram.png" width="600"/>
 
-Each `Student` object stores all module-class-related data in a `StudentModuleData` object. All `Session` objects corresponding to a `Student` are stored in a `SessionData` object.
+**Student, ModuleClass and Session**
+
+Each `Student` object stores all module-class-related data, such as the `ModuleClass` and session data, in a `StudentModuleData` object. 
+Session data belonging to a `Student` is stored in `SessionData` objects.
+
+`Student`, `ModuleClass` and `Session` objects implement the `Identity` interface which has a single `isSame` method. The `isSame` method allows `Identity` objects to define
+a weaker notion of equality than the `equals` method.
+
+Similarly, objects that keep a reference of `Student`, `ModuleClass` or `Session` objects such as the `UniqueList` and `StudentModuleData` may also implement the `Identity` method.
+
+
 
 <img src="images/StudentAndModuleClassDiagram.png" width="600"/>
 

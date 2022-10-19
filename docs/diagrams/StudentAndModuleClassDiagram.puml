@@ -4,7 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package "ModuleClass and Student" <<Rectangle>>{
+Package "Student, ModuleClass and Session" <<Rectangle>>{
+Class "<<interface>>\nIdentity" as Identity
 Class Student
 Class ModuleClass {
     -className: String
@@ -27,14 +28,21 @@ Student *--> "1" Name
 Student *--> "0..1" Address
 Student *--> "0..1" Email
 Student *--> "0..1" Phone
+Student .up.|> Identity
 
 ModuleClass "1" *--> "*" Session
+ModuleClass .up.|> Identity
 
+StudentModuleData .up.|> Identity
 StudentModuleData "*" --> "1" ModuleClass
+
 Student "1" *-up-> "*" StudentModuleData
 StudentModuleData --> "*" SessionData
 
 Session -right-> "1" Date
+Session .up.|> Identity
+
+SessionData .up.|> Identity
 SessionData --> "1" Session
 
 
