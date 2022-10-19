@@ -137,11 +137,14 @@ _Help window displayed after running the `help` command_
 
 Adds a patient to the patient list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE TIME]… [t/TAG]…`
+
+* Date and time should be in the format like 16-10-2022 1030
+* If not date and time is provided, then a default date and time of 24 hours from creation will be set
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine [t/Severe]`
-* `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm [t/Low Risk]`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 16-10-2022 10:30 t/Severe`
+* `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm t/Low Risk`
 
 ### Editing a patient’s details : `edit -p`
 
@@ -181,6 +184,12 @@ Examples:
 Shows a list of all patients.
 
 Format: `list`
+
+### Listing all patients for the day: `patientsToday`
+
+Shows a list of all patients with tasks due today
+
+Format: `patientsToday`
 
 ### Finding patient by name: `find`
 
@@ -332,6 +341,7 @@ the data of your previous UniNurse home folder.
 | **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`     |
 | **Delete patient**              | `delete -p INDEX`                                                            |
 | **List all patients**           | `list`                                                                       |
+| **List all patients today**     | `patientsToday`                                                              |
 | **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                               |
 | **Add task**                    | `add -p PATIENT_INDEX d/TASK_DESCRIPTION`                                    |
 | **Edit task**                   | `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION`                     |
