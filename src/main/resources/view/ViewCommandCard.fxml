@@ -45,7 +45,7 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
             <HBox>
-                <Label fx:id="websiteLabel" styleClass="cell_small_label" text="website: " />
+                <Label fx:id="websiteLabel" styleClass="cell_small_label" text="Website: " />
                 <Hyperlink fx:id="website" styleClass="cell_small_label" text="\$website" onMouseClicked="#handleWebsite" >
                     <padding>
                         <Insets bottom="0" left="-1" right="0" top="-1"/>
