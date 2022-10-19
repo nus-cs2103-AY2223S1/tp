@@ -1,13 +1,10 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.order.Order;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -15,7 +12,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Deliverer extends Person {
 
-    private final List<Order> orders;
+    private final List<UniqueId> orders;
 
     /**
      * Constructs a deliverer object.
@@ -33,7 +30,7 @@ public class Deliverer extends Person {
                      Phone phone,
                      Email email,
                      Address address,
-                     Set<Tag> tags, List<Order> orders) {
+                     Set<Tag> tags, List<UniqueId> orders) {
         super(PersonCategory.DELIVERER, name, phone, email, address, tags);
         this.orders = orders;
     }
@@ -53,23 +50,28 @@ public class Deliverer extends Person {
                      Phone phone,
                      Email email,
                      Address address,
-                     Set<Tag> tags, List<Order> orders) {
+                     Set<Tag> tags, List<UniqueId> orders) {
         super(PersonCategory.DELIVERER, name, phone, email, address, tags);
         this.orders = orders;
     }
 
-    public List<Order> getOrders() {
+    /**
+     * Gets the list of unique ids of the orders.
+     * @return The list of unique ids.
+     */
+    public List<UniqueId> getOrders() {
         return orders;
     }
 
     /**
-     * Converts the delverer's orders from a {@code List} to a {@code ObservableList} and returns the result.
-     *
-     * @return An {@code ObservableList} instance containing all the deliverer's orders.
+     * Compares a deliverer with another deliverer in default way in terms of the number of orders that they have.
+     * @param deliverer The other buyer being compared.
+     * @return The method returns 0 if the deliverer and the other deliverer has the same number of orders.
+     *      A value less than 0 is returned if the deliverer has less order than the other deliverer,
+     *      and a value greater than 0 if the deliverer has more order than the other deliverer.
      */
-    public ObservableList<Order> getOrdersAsObservableList() {
-        // TODO: should be FXCollections.observableList(getOrders()) but it causes exception
-        return FXCollections.observableList(getOrders() == null ? new ArrayList<>() : getOrders());
+    public int compareTo(Deliverer deliverer) {
+        return this.orders.size() - deliverer.orders.size();
     }
 
     @Override
@@ -91,21 +93,7 @@ public class Deliverer extends Person {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        int i = 1;
-        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
-                .append("Orders received").append(System.lineSeparator());
-
-        if (orders != null) {
-            for (Order order : orders) {
-                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-                        .append("Buyer: ").append(order.getBuyer().getName()).append(System.lineSeparator())
-                        .append(order.toString()).append(System.lineSeparator());
-                i++;
-            }
-        }
-
-        return builder.toString();
+        return super.toString();
     }
 
 }

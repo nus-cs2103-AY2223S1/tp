@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -39,162 +41,203 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    //Buyers
+    public static final Buyer ALEX = new Buyer(PersonCategory.BUYER, new Name("Alex"),
+            new Phone("87438807"), new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
+            getTagSet("friends"), new ArrayList<>());
+    public static final Buyer BERNICE = new Buyer(PersonCategory.BUYER, new Name("Bernice Yu"), new Phone("99272758"),
+            new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            getTagSet("colleagues", "friends"), new ArrayList<>());
+    public static final Buyer CHARLOTTE = new Buyer(PersonCategory.BUYER, new Name("Charlotte Oliveiro"),
+            new Phone("93210283"), new Email("charlotte@example.com"),
+            new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            getTagSet("neighbours"), new ArrayList<>());
+    public static final Buyer DAVID = new Buyer(PersonCategory.BUYER, new Name("David Li"), new Phone("91031282"),
+            new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            getTagSet("family"), new ArrayList<>());
+    public static final Buyer IRFAN = new Buyer(PersonCategory.BUYER, new Name("Irfan Ibrahim"), new Phone("92492021"),
+            new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
+            getTagSet("classmates"), new ArrayList<>());
+    public static final Buyer ROY = new Buyer(PersonCategory.BUYER, new Name("Roy Balakrishnan"), new Phone("92624417"),
+            new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
+            getTagSet("colleagues"), new ArrayList<>());
+
+    //Suppliers
+    public static final Supplier SHIN_CHAN = new Supplier(PersonCategory.SUPPLIER, new Name("ShinChan"),
+            new Phone("09594177555"), new Email("Shin-chan@crayon.com"),
+            new Address("The Nohara family household, Kasukabe"),
+            getTagSet("friends"), new ArrayList<>());
+    public static final Supplier YU = new Supplier(PersonCategory.SUPPLIER, new Name("Bernice Yu"),
+            new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            getTagSet("colleagues", "friends"), new ArrayList<>());
+    public static final Supplier OLIVE = new Supplier(PersonCategory.SUPPLIER, new Name("Charlotte Oliveiro"),
+            new Phone("93210283"), new Email("charlotte@example.com"),
+            new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            getTagSet("neighbours"), new ArrayList<>());
+    public static final Supplier LI = new Supplier(PersonCategory.SUPPLIER, new Name("David Li"),
+            new Phone("91031282"), new Email("lidavid@example.com"),
+            new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            getTagSet("family"), new ArrayList<>());
+    public static final Supplier IBRAHIM = new Supplier(PersonCategory.SUPPLIER, new Name("Irfan Ibrahim"),
+            new Phone("92492021"), new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
+            getTagSet("classmates"), new ArrayList<>());
+    public static final Supplier BALA = new Supplier(PersonCategory.SUPPLIER, new Name("Roy Balakrishnan"),
+            new Phone("92624417"),
+            new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
+            getTagSet("colleagues"), new ArrayList<>());
+
+    //Deliverers
+    public static final Deliverer A = new Deliverer(PersonCategory.DELIVERER, new Name("ThisIs DelivererList"),
+            new Phone("87438807"),
+            new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
+            getTagSet("friends"), new ArrayList<>());
+    public static final Deliverer B = new Deliverer(PersonCategory.DELIVERER, new Name("Bernice Yu"),
+            new Phone("99272758"),
+            new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            getTagSet("colleagues", "friends"), new ArrayList<>());
+    public static final Deliverer C = new Deliverer(PersonCategory.DELIVERER, new Name("Charlotte Oliveiro"),
+            new Phone("93210283"),
+            new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            getTagSet("neighbours"), new ArrayList<>());
+    public static final Deliverer D = new Deliverer(PersonCategory.DELIVERER, new Name("David Li"),
+            new Phone("91031282"),
+            new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            getTagSet("family"), new ArrayList<>());
+    public static final Deliverer E = new Deliverer(PersonCategory.DELIVERER, new Name("Irfan Ibrahim"),
+            new Phone("92492021"),
+            new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
+            getTagSet("classmates"), new ArrayList<>());
+    public static final Deliverer F = new Deliverer(PersonCategory.DELIVERER, new Name("Roy Balakrishnan"),
+            new Phone("92624417"),
+            new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
+            getTagSet("colleagues"), new ArrayList<>());
+
+    //Orders
+    public static final Order O1 = getOrder(ALEX, 10.0, 15.0,
+            getRequest(2, "white", "black", "pokemon"),
+            getAdditionalRequests("1", "2", "3"),
+            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
+    public static final Order O2 = getOrder(BERNICE, 10.2, 15.0,
+            getRequest(2, "white", "black", "pokemon"),
+            getAdditionalRequests("1", "2", "3"),
+            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
+    public static final Order O3 = getOrder(CHARLOTTE, 10.3, 15.0,
+            getRequest(2, "white", "black", "pokemon"),
+            getAdditionalRequests("1", "2", "3"),
+            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
+    public static final Order O4 = getOrder(DAVID, 10.1, 15.0,
+            getRequest(2, "white", "black", "pokemon"),
+            getAdditionalRequests("1", "2", "3"),
+            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
+    public static final Order O5 = getOrder(IRFAN, 11110.0, 15.0,
+            getRequest(2, "white", "black", "pokemon"),
+            getAdditionalRequests("i need it now"),
+            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
+    public static final Order O6 = getOrder(ROY, 11110.0, 15.0,
+            getRequest(2, "white", "black", "pokemon"),
+            getAdditionalRequests("i need it now"),
+            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
+
+    //Pets
+    private static final DateOfBirth standard = getStandard();
+    public static final Pet P1 = new Pet(new Name("Shiro"), SHIN_CHAN, new Color("white"),
+            new ColorPattern("white"),
+            standard, new Species("dog"), new Weight(10.05),
+            new Height(100.5), new VaccinationStatus(true),
+            new Price(9999.99), getTagSet("dog"),
+            new HashSet<>());
+    public static final Pet P2 = new Pet(new Name("Ashy"), YU, new Color("white"),
+            new ColorPattern("white and brown"),
+            standard, new Species("cat"), new Weight(10.05),
+            new Height(100.5), new VaccinationStatus(true),
+            new Price(8888.88), getTagSet("cat"),
+            new HashSet<>());
+    public static final Pet P3 = new Pet(new Name("Plum"), OLIVE, new Color("white"),
+            new ColorPattern("white and brown"),
+            standard, new Species("cat"), new Weight(10.05),
+            new Height(100.5), new VaccinationStatus(true),
+            new Price(7777.77), getTagSet("cat"), new HashSet<>());
+    public static final Pet P4 = new Pet(new Name("Plum"), LI, new Color("white"),
+            new ColorPattern("white and brown"),
+            standard, new Species("cat"), new Weight(10.05),
+            new Height(100.5), new VaccinationStatus(true),
+            new Price(7777.77), getTagSet("cat"), new HashSet<>());
+    public static final Pet P5 = new Pet(new Name("I am a dog"), OLIVE, new Color("white"),
+            new ColorPattern("white and brown"),
+            standard, new Species("cat"), new Weight(10.05),
+            new Height(100.5), new VaccinationStatus(true),
+            new Price(7777.77), getTagSet("cat"), new HashSet<>());
+    public static final Pet P6 = new Pet(new Name("I am a cat"), OLIVE, new Color("white"),
+            new ColorPattern("white and brown"),
+            standard, new Species("cat"), new Weight(10.05),
+            new Height(100.5), new VaccinationStatus(true),
+            new Price(7777.77), getTagSet("cat"), new HashSet<>());
+
+
     public static Buyer[] getSampleBuyers() {
-        return new Buyer[] {
-            new Buyer(PersonCategory.BUYER, new Name("This Is BuyerList"), new Phone("87438807"),
-                    new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends"), new ArrayList<Order>()),
-            new Buyer(PersonCategory.BUYER, new Name("Bernice Yu"), new Phone("99272758"),
-                    new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"), new ArrayList<>()),
-            new Buyer(PersonCategory.BUYER, new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                    new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours"), new ArrayList<>()),
-            new Buyer(PersonCategory.BUYER, new Name("David Li"), new Phone("91031282"),
-                    new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family"), new ArrayList<>()),
-            new Buyer(PersonCategory.BUYER, new Name("Irfan Ibrahim"), new Phone("92492021"),
-                    new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates"), new ArrayList<>()),
-            new Buyer(PersonCategory.BUYER, new Name("Roy Balakrishnan"), new Phone("92624417"),
-                    new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"), new ArrayList<Order>())
-        };
+        return new Buyer[] {ALEX, BERNICE, CHARLOTTE, DAVID, IRFAN, ROY};
     }
 
     public static Supplier[] getSampleSuppliers() {
-        return new Supplier[]{
-            new Supplier(PersonCategory.SUPPLIER, new Name("This Is SupplierList"), new Phone("87438807"),
-                    new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends"), null),
-            new Supplier(PersonCategory.SUPPLIER, new Name("Bernice Yu"), new Phone("99272758"),
-                    new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"), null),
-            new Supplier(PersonCategory.SUPPLIER, new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                    new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours"), null),
-            new Supplier(PersonCategory.SUPPLIER, new Name("David Li"), new Phone("91031282"),
-                    new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family"), null),
-            new Supplier(PersonCategory.SUPPLIER, new Name("Irfan Ibrahim"), new Phone("92492021"),
-                    new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates"), null),
-            new Supplier(PersonCategory.SUPPLIER, new Name("Roy Balakrishnan"), new Phone("92624417"),
-                    new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"), null)
-        };
+        return new Supplier[]{SHIN_CHAN, YU, OLIVE, LI, IBRAHIM, BALA};
     }
 
     public static Deliverer[] getSampleDeliverers() {
-        return new Deliverer[] {
-            new Deliverer(PersonCategory.DELIVERER, new Name("ThisIs DelivererList"), new Phone("87438807"),
-                    new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends"), null),
-            new Deliverer(PersonCategory.DELIVERER, new Name("Bernice Yu"), new Phone("99272758"),
-                    new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"), null),
-            new Deliverer(PersonCategory.DELIVERER, new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                    new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours"), null),
-            new Deliverer(PersonCategory.DELIVERER, new Name("David Li"), new Phone("91031282"),
-                    new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family"), null),
-            new Deliverer(PersonCategory.DELIVERER, new Name("Irfan Ibrahim"), new Phone("92492021"),
-                    new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates"), null),
-            new Deliverer(PersonCategory.DELIVERER, new Name("Roy Balakrishnan"), new Phone("92624417"),
-                    new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"), null)
-        };
+        return new Deliverer[] {A, B, C, D, E, F};
     }
 
     public static Order[] getSampleOrders() {
-        return new Order[] {
-                getOrder(10.0, 15.0,
-                        getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1", "2", "3"),
-                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
-                getOrder(12.0, 15.0,
-                        getRequest(3, "white", "black", "monster"),
-                        getAdditionalRequests("1", "2", "3"),
-                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
-                getOrder(10.2, 15.0,
-                        getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1", "2", "3"),
-                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
-                getOrder(10.3, 15.0,
-                        getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1", "2", "3"),
-                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
-                getOrder(10.1, 15.0,
-                        getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1", "2", "3"),
-                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
-                getOrder(11110.0, 15.0,
-                        getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("i need it now"),
-                        "2022-12-21", 12.5, OrderStatus.PENDING.toString())
-
-        };
+        return new Order[] {O1, O2, O3, O4, O5, O6};
     }
 
     public static Pet[] getSamplePets() {
-        Supplier elizabeth = new Supplier(PersonCategory.SUPPLIER, new Name("Bernice Yu"), new Phone("99272758"),
-                new Email("berniceyu@example.com"), new Address("somewhere in choa chu kang"),
-                getTagSet("colleagues", "friends"), null);
+        return new Pet[] {P1, P2, P3, P4, P5, P6};
+    }
 
-        DateOfBirth standard;
-
+    private static DateOfBirth getStandard() {
         try {
-            standard = DateOfBirth.parseString("2020-10-10");
+            return DateOfBirth.parseString("2020-10-10");
         } catch (IllegalValueException e) {
-            return null;
+            throw new RuntimeException(e);
         }
-
-        return new Pet[] {
-            new Pet(new Name("This is sample Pet List"), elizabeth, new Color("white"),
-                    new ColorPattern("white and brown"),
-                    standard, new Species("cat"), new Weight(10.05),
-                    new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
-                    new HashSet<>()),
-            new Pet(new Name("Ashy"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
-                    standard, new Species("cat"), new Weight(10.05),
-                    new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
-                    new HashSet<>()),
-            new Pet(new Name("Plum"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
-                    standard, new Species("cat"), new Weight(10.05),
-                    new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
-                    new HashSet<>())
-        };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
 
         Buyer[] buyers = getSampleBuyers();
+        Supplier[] suppliers = getSampleSuppliers();
         Order[] orders = getSampleOrders();
+        Pet[] pets = getSamplePets();
 
         for (int i = 0; i < buyers.length; i++) {
-            buyers[i].addOrder(orders[i]);
-            orders[i].setBuyer(buyers[i]);
+            List<UniqueId> tmp = new ArrayList<>();
+            tmp.add(orders[i].getId());
+            buyers[i].addOrder(tmp);
+        }
+
+        for (int i = 0; i < suppliers.length; i++) {
+            List<UniqueId> tmp = new ArrayList<>();
+            tmp.add(pets[i].getId());
+            suppliers[i].addPets(tmp);
         }
 
         for (Buyer sampleBuyer :buyers) {
             sampleAb.addBuyer(sampleBuyer);
         }
-        for (Supplier sampleSupplier : getSampleSuppliers()) {
+        for (Supplier sampleSupplier : suppliers) {
             sampleAb.addSupplier(sampleSupplier);
         }
         for (Deliverer sampleDeliverer : getSampleDeliverers()) {
             sampleAb.addDeliverer(sampleDeliverer);
         }
         for (Order sampleOrder : orders) {
-            System.out.println("order " + sampleOrder);
             sampleAb.addOrder(sampleOrder);
         }
 
         for (Pet samplePet : getSamplePets()) {
-            System.out.println("pet " + samplePet);
             sampleAb.addPet(samplePet);
         }
 
@@ -210,7 +253,7 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static Order getOrder(double upperBound, double lowerBound, Request request,
+    public static Order getOrder(Buyer buyer, double upperBound, double lowerBound, Request request,
                                  AdditionalRequests additionalRequests, String byDate,
                                  double settledPrice, String status) {
         PriceRange priceRange = new PriceRange(new Price(upperBound), new Price(lowerBound));
@@ -222,7 +265,7 @@ public class SampleDataUtil {
                 .filter(x -> x.toString().equals(status))
                 .findFirst()
                 .orElse(OrderStatus.PENDING);
-        return new Order(null, priceRange, orderRequest, orderAdditionalRequests, orderDate, orderSettledPrice,
+        return new Order(buyer, priceRange, orderRequest, orderAdditionalRequests, orderDate, orderSettledPrice,
                     orderStatus);
     }
 

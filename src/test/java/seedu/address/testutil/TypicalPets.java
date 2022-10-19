@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
@@ -24,18 +25,18 @@ import seedu.address.model.tag.Tag;
  * A utility class containing a list of {@code Pets} objects to be used in tests.
  */
 public class TypicalPets {
-    public static final Pet DOJA = new Pet(new Name("Doja"), TypicalBuyers.ALICE,
+    public static final Pet DOJA = new Pet(new Name("Doja"), TypicalSuppliers.ALICE,
             new Color("white"),
             new ColorPattern("white and brown"),
             new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+            new Height(100.5), new VaccinationStatus(true), new Price(66.66), getTagSet("cat"),
             new HashSet<>());
 
-    public static final Pet PLUM = new Pet(new Name("Plum"), TypicalBuyers.CARL,
+    public static final Pet PLUM = new Pet(new Name("Plum"), TypicalSuppliers.CARL,
             new Color("brown"),
             new ColorPattern("grey and brown"),
             new DateOfBirth(LocalDate.parse("2020-10-10")), new Species("cat"), new Weight(10.75),
-            new Height(110.1), new VaccinationStatus(true), getTagSet("cat"),
+            new Height(110.1), new VaccinationStatus(true), new Price(66.66), getTagSet("cat"),
             new HashSet<>());
 
     private TypicalPets() {}

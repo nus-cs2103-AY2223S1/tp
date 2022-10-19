@@ -37,12 +37,12 @@ public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
-    @Test
-    public void parseCommand_addBuyer() throws Exception {
-        Buyer buyer = TypicalBuyers.ALICE;
-        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(buyer));
-        assertEquals(new AddBuyerCommand(buyer), command);
-    }
+//    @Test
+//    public void parseCommand_addBuyer() throws Exception {
+//        Buyer buyer = TypicalBuyers.ALICE;
+//        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(buyer));
+//        assertEquals(new AddBuyerCommand(buyer), command);
+//    }
 
     //Uncomment the test below when AddDelivererCommand is done
     /*

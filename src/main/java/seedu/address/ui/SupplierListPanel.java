@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Supplier;
 
 
@@ -26,16 +27,23 @@ public class SupplierListPanel extends UiPart<Region> {
     /**
      * Creates a {@code SupplierListPanel} with the given {@code ObservableList}.
      */
-    public SupplierListPanel(ObservableList<Supplier> supplierList) {
+    public SupplierListPanel(ObservableList<Supplier> supplierList, Logic logic) {
         super(FXML);
         supplierListView.setItems(supplierList);
-        supplierListView.setCellFactory(listView -> new SupplierListViewCell());
+        supplierListView.setCellFactory(listView -> new SupplierListViewCell(logic));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Supplier} using a {@code SupplierCard}.
      */
     private static class SupplierListViewCell extends ListCell<Supplier> {
+
+        private final Logic logic;
+
+        public SupplierListViewCell(Logic logic) {
+            this.logic = logic;
+        }
+
         @Override
         protected void updateItem(Supplier supplier, boolean empty) {
             super.updateItem(supplier, empty);
@@ -44,7 +52,7 @@ public class SupplierListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SupplierCard(supplier, getIndex() + 1).getRoot());
+                setGraphic(new SupplierCard(supplier, getIndex() + 1, logic).getRoot());
             }
         }
     }

@@ -2,6 +2,7 @@ package seedu.address.model.pet;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +25,7 @@ public class Pet {
 
     private final UniqueId id;
     private final Name name;
-    private final Person owner;
+    private final Supplier supplier;
     private final Color color;
     private final ColorPattern colorPattern;
     private final DateOfBirth dateOfBirth;
@@ -40,7 +41,7 @@ public class Pet {
      * Constructs a pet completely.
      *
      * @param name The name of this pet.
-     * @param owner The owner of this pet. Could be a Buyer or a Supplier.
+     * @param supplier The owner of this pet. Could be a Buyer or a Supplier.
      * @param color The color of this pet. Could be red.
      * @param colorPattern The color pattern. Could be stripped.
      * @param dateOfBirth The date of birth.
@@ -53,7 +54,7 @@ public class Pet {
      * @param certificates Its certificates, for example, noble blood.
      */
     public Pet(Name name,
-               Person owner,
+               Supplier supplier,
                Color color,
                ColorPattern colorPattern,
                DateOfBirth dateOfBirth,
@@ -64,14 +65,14 @@ public class Pet {
                Price price,
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
-        requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
+        requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus, price);
         this.id = PET_ID_GENERATOR.next();
         this.name = name;
-        this.owner = owner;
+        this.supplier = supplier;
+        this.species = species;
         this.color = color;
         this.colorPattern = colorPattern;
         this.dateOfBirth = dateOfBirth;
-        this.species = species;
         this.weight = weight;
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
@@ -181,6 +182,27 @@ public class Pet {
                 price);
     }
 
+    /**
+     * Gets the age of a pet.
+     * @return The age
+     */
+    public int getAge() {
+        int currYear = Calendar.getInstance().get(Calendar.YEAR);
+        int bornYear = this.dateOfBirth.getDate().getYear();
+        return currYear - bornYear;
+    }
+
+    /**
+     * Compares a pet with another pet in default way in terms of the age.
+     * @param pet The other pet being compared.
+     * @return The method returns 0 if the pet and the other pet has the same age.
+     *      A value less than 0 is returned if the pet is younger than the other pet,
+     *      and a value greater than 0 if the pet is older than the other pet.
+     */
+    public int compareTo(Pet pet) {
+        return this.getAge() - pet.getAge();
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -242,7 +264,7 @@ public class Pet {
     @Override
     public int hashCode() {
         return Objects.hash(name, color, dateOfBirth, species, weight, height, vaccinationStatus, tags,
-                certificates, owner);
+                certificates, supplier);
     }
 
     /**
@@ -257,7 +279,11 @@ public class Pet {
         }
 
         return otherPet != null
-                && otherPet.getName().equals(getName());
+                && otherPet.getName().equals(getName())
+                && otherPet.getSupplier().equals(getSupplier())
+                && otherPet.getCertificates().equals(getCertificates())
+                && otherPet.getColor().equals(getColor())
+                && otherPet.getDateOfBirth().equals(getDateOfBirth());
     }
 
     public Name getName() {
@@ -280,8 +306,8 @@ public class Pet {
         return height;
     }
 
-    public Person getOwner() {
-        return owner;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
     public Species getSpecies() {
@@ -318,6 +344,13 @@ public class Pet {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if the two uniqueId matches.
+     */
+    public boolean hasId(UniqueId id) {
+        return this.id.equals(id);
     }
 
 }

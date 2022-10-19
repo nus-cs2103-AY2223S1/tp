@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
@@ -27,16 +28,22 @@ public class MainListPanel extends UiPart<Region> {
     /**
      * Creates a {@code MainListPanel} with the given {@code ObservableList}.
      */
-    public MainListPanel(ObservableList<Object> mainList) {
+    public MainListPanel(ObservableList<Object> mainList, Logic logic) {
         super(FXML);
         mainListView.setItems(mainList);
-        mainListView.setCellFactory(listView -> new MainListViewCell());
+        mainListView.setCellFactory(listView -> new MainListViewCell(logic));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Deliverer} using a {@code DelivererCard}.
      */
     private static class MainListViewCell extends ListCell<Object> {
+        private final Logic logic;
+
+        public MainListViewCell(Logic logic) {
+            this.logic = logic;
+        }
+
         @Override
         protected void updateItem(Object object, boolean empty) {
             super.updateItem(object, empty);
@@ -47,15 +54,15 @@ public class MainListPanel extends UiPart<Region> {
             } else {
                 if (object instanceof Buyer) {
                     Buyer buyer = (Buyer) object;
-                    setGraphic(new BuyerCard(buyer, getIndex() + 1).getRoot());
+                    setGraphic(new BuyerCard(buyer, getIndex() + 1, logic).getRoot());
                 }
                 if (object instanceof Supplier) {
                     Supplier supplier = (Supplier) object;
-                    setGraphic(new SupplierCard(supplier, getIndex() + 1).getRoot());
+                    setGraphic(new SupplierCard(supplier, getIndex() + 1, logic).getRoot());
                 }
                 if (object instanceof Deliverer) {
                     Deliverer deliverer = (Deliverer) object;
-                    setGraphic(new DelivererCard(deliverer, getIndex() + 1).getRoot());
+                    setGraphic(new DelivererCard(deliverer, getIndex() + 1, logic).getRoot());
                 }
                 /* if (object instanceof Pet) {
 

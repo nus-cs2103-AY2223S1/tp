@@ -29,12 +29,12 @@ public class SupplierTest {
         assertThrows(UnsupportedOperationException.class, () -> supplier.getTags().remove(0));
     }
 
-    @Test
-    public void addPet_success() {
-        Supplier supplier = new PersonBuilder().buildSupplier();
-        supplier.addPet(TypicalPets.PLUM);
-        assertEquals(supplier.getPetIds(), new ArrayList<>(Arrays.asList(TypicalPets.PLUM)));
-    }
+//    @Test
+//    public void addPet_success() {
+//        Supplier supplier = new PersonBuilder().buildSupplier();
+//        supplier.addPet(TypicalPets.PLUM);
+//        assertEquals(supplier.getPetIds(), new ArrayList<>(Arrays.asList(TypicalPets.PLUM)));
+//    }
 
     @Test
     public void isSamePerson() {
@@ -102,14 +102,14 @@ public class SupplierTest {
         assertFalse(ALICE.equals(editedAlice));
     }
 
-    @Test
-    public void toString_withPetsOnSale() {
-        Supplier supplier1 = new PersonBuilder().buildSupplier();
-        Supplier supplier2 = new PersonBuilder().buildSupplier();
-        supplier1.addPet(TypicalPets.DOJA);
-        supplier1.addPet(TypicalPets.PLUM);
-        supplier2.addPet(TypicalPets.DOJA);
-        supplier2.addPet(TypicalPets.PLUM);
-        assertEquals(supplier1.toString(), supplier2.toString());
-    }
+//    @Test
+//    public void toString_withPetsOnSale() {
+//        Supplier supplier1 = new PersonBuilder().buildSupplier();
+//        Supplier supplier2 = new PersonBuilder().buildSupplier();
+//        supplier1.addPet(TypicalPets.DOJA);
+//        supplier1.addPet(TypicalPets.PLUM);
+//        supplier2.addPet(TypicalPets.DOJA);
+//        supplier2.addPet(TypicalPets.PLUM);
+//        assertEquals(supplier1.toString(), supplier2.toString());
+//    }
 }

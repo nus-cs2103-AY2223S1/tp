@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
 
@@ -103,6 +105,16 @@ public class UniqueOrderList implements Iterable<Order> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Gets the list of orders from list of ids.
+     */
+    public List<Order> getOrdersFromId(List<UniqueId> ids) {
+        return internalList.stream()
+                .filter(order -> ids.stream()
+                        .anyMatch(order::hasId))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public Iterator<Order> iterator() {
         return internalList.iterator();
@@ -133,4 +145,5 @@ public class UniqueOrderList implements Iterable<Order> {
         }
         return true;
     }
+
 }

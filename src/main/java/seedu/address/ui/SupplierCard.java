@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
@@ -22,9 +23,10 @@ public class SupplierCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
     public final Supplier supplier;
+    private final Logic logic;
     private final int displayedIndex;
+
 
     @FXML
     private Label address;
@@ -50,10 +52,11 @@ public class SupplierCard extends UiPart<Region> {
     /**
      * Creates a {@code SupplierCard} with the given {@code Supplier} and index to display.
      */
-    public SupplierCard(Supplier supplier, int displayedIndex) {
+    public SupplierCard(Supplier supplier, int displayedIndex, Logic logic) {
         super(FXML);
         this.supplier = supplier;
         this.displayedIndex = displayedIndex;
+        this.logic = logic;
         fillSupplierCard();
     }
 
@@ -70,7 +73,7 @@ public class SupplierCard extends UiPart<Region> {
         email.setText(supplier.getEmail().value);
 
         // Set the buyer's orders in the list view
-        petListView.setItems(supplier.getPetsAsObservableList());
+        petListView.setItems(logic.getPetAsObservableListFromSupplier(supplier));
         petListView.setCellFactory(listView -> new SupplierPetsListViewCell());
 
         /*        supplier.getTags().stream()

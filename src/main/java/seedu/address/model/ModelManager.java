@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -319,6 +320,24 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
         collect();
+    }
+
+    @Override
+    public List<Order> getOrdersFromBuyer(Buyer buyer) {
+        requireNonNull(buyer);
+        return addressBook.getOrderFromId(buyer.getOrderIds());
+    }
+
+    @Override
+    public List<Order> getOrdersFromDeliverer(Deliverer deliverer) {
+        requireNonNull(deliverer);
+        return addressBook.getOrderFromId(deliverer.getOrders());
+    }
+
+    @Override
+    public List<Pet> getPetsFromSupplier(Supplier supplier) {
+        requireNonNull(supplier);
+        return addressBook.getPetFromId(supplier.getPetIds());
     }
 
     private void collect() {

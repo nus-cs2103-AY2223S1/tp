@@ -15,6 +15,10 @@ public class UniqueId implements Comparable<UniqueId> {
         this.id = id;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
     @Override
     public int compareTo(UniqueId other) {
         return this.id.compareTo(other.id);

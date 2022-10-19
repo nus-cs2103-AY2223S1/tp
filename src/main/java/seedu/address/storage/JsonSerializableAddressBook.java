@@ -15,6 +15,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -32,6 +33,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedSupplier> suppliers = new ArrayList<>();
     private final List<JsonAdaptedDeliverer> deliverers = new ArrayList<>();
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
+    private final List<JsonAdaptedPet> pets = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -40,11 +42,13 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("buyers") List<JsonAdaptedBuyer> buyers,
                                        @JsonProperty("suppliers") List<JsonAdaptedSupplier> suppliers,
                                        @JsonProperty("deliverers") List<JsonAdaptedDeliverer> deliverers,
-                                       @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
+                                       @JsonProperty("orders") List<JsonAdaptedOrder> orders,
+                                       @JsonProperty("pets") List<JsonAdaptedPet> pets) {
         this.buyers.addAll(buyers);
         this.suppliers.addAll(suppliers);
         this.deliverers.addAll(deliverers);
         this.orders.addAll(orders);
+        this.pets.addAll(pets);
     }
 
     /**
@@ -58,6 +62,7 @@ class JsonSerializableAddressBook {
         deliverers.addAll(source.getDelivererList().stream().map(JsonAdaptedDeliverer::new)
                 .collect(Collectors.toList()));
         orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
+        pets.addAll(source.getPetList().stream().map(JsonAdaptedPet::new).collect(Collectors.toList()));
     }
 
     /**
@@ -91,9 +96,16 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedOrder jsonAdaptedOrder: orders) {
             Order order = jsonAdaptedOrder.toModelType();
             if (addressBook.hasOrder(order)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_DELIEVER);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
             }
             addressBook.addOrder(order);
+        }
+        for (JsonAdaptedPet jsonAdaptedPet: pets) {
+            Pet pet = jsonAdaptedPet.toModelType();
+            if (addressBook.hasPet(pet)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PET);
+            }
+            addressBook.addPet(pet);
         }
         return addressBook;
     }

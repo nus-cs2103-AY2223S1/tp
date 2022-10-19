@@ -21,6 +21,6 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format(MESSAGE_SUCCESS, "buyer book", "2333"));
+        return new CommandResult(String.format("Still in progress"));
     }
 }

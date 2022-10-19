@@ -37,6 +37,14 @@ public class Location {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Compares a location with another location.
+     * @param loc The other location.
+     */
+    public int compareTo(Location loc) {
+        return this.location.compareTo(loc.location);
+    }
+
     @Override
     public String toString() {
         return location;
@@ -53,4 +61,5 @@ public class Location {
     public int hashCode() {
         return location.hashCode();
     }
+
 }

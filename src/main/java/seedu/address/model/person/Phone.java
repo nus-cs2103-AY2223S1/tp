@@ -34,6 +34,14 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Compares two phone instances.
+     * @param phone The phone being compared.
+     */
+    public int compareTo(Phone phone) {
+        return this.value.compareTo(phone.value);
+    }
+
     @Override
     public String toString() {
         return value;

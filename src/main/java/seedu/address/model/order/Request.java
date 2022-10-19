@@ -4,9 +4,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COLOR_PATTERN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 
 import java.util.Objects;
 

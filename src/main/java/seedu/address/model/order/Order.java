@@ -149,13 +149,31 @@ public class Order {
     }
 
     /**
-     * Update the price range changed during negotiation.
+     * Updates the price range changed during negotiation.
      *
      * @param upperBound The price is not greater than it.
      * @param lowerBound The price is not smaller than it.
      */
     public void updateRequestedPriceRange(Price upperBound, Price lowerBound) {
         requestedPriceRange.updatePriceRange(upperBound, lowerBound);
+    }
+
+    /**
+     * Compares an order with another order in default way in terms of the due date.
+     * @param order The other order being compared.
+     * @return The method returns 0 if the order and the other order has the same due date.
+     *      A value less than 0 is returned if the order has earlier due date than the other order,
+     *      and a value greater than 0 if the order has later due date than the other order.
+     */
+    public int compareTo(Order order) {
+        return this.byDate.compareTo(order.byDate);
+    }
+
+    /**
+     * Returns true if the two uniqueId matches.
+     */
+    public boolean hasId(UniqueId id) {
+        return this.id.equals(id);
     }
 
     @Override

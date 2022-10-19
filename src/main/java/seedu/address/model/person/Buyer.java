@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
@@ -72,16 +69,6 @@ public class Buyer extends Person {
     }
 
     /**
-     * Converts the buyer's orders from a {@code List} to a {@code ObservableList} and returns the result.
-     *
-     * @return An {@code ObservableList} instance containing all the buyer's orders.
-     */
-    public ObservableList<Order> getOrdersAsObservableList() {
-        return FXCollections.observableList(getOrders());
-    }
-
-
-    /**
      * Adds all orders in a Collection.
      *
      * @param orders The collection of orders to be added.
@@ -94,6 +81,17 @@ public class Buyer extends Person {
 
     public void deleteOrder(Order order) {
         // TODO: implement this method
+    }
+
+    /**
+     * Compares a buyer with another buyer in default way in terms of the number of orders that they have.
+     * @param buyer The other buyer being compared.
+     * @return The method returns 0 if the buyer and the other buyer has the same number of orders.
+     *      A value less than 0 is returned if the buyer has less order than the other buyer,
+     *      and a value greater than 0 if the buyer has more order than the other buyer.
+     */
+    public int compareTo(Buyer buyer) {
+        return this.orders.size() - buyer.orders.size();
     }
 
     @Override
@@ -115,19 +113,6 @@ public class Buyer extends Person {
 
     @Override
     public String toString() {
-        //TODO change the string representation
-        //        StringBuilder builder = new StringBuilder();
-        //        int i = 1;
-        //        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
-        //                .append("Order summary").append(System.lineSeparator());
-        //        if (orders != null) {
-        //            for (Order order : orders) {
-        //                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-        //                        .append(order.toString()).append(System.lineSeparator());
-        //                i++;
-        //            }
-        //        }
-        //        return builder.toString();
         return super.toString();
     }
 }

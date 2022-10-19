@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Deliverer;
 
@@ -23,6 +24,7 @@ public class DelivererCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
+    private final Logic logic;
     private final Deliverer deliverer;
     private final int displayedIndex;
 
@@ -50,10 +52,11 @@ public class DelivererCard extends UiPart<Region> {
     /**
      * Creates a {@code DelivererCode} with the given {@code Deliverer} and index to display.
      */
-    public DelivererCard(Deliverer deliverer, int displayedIndex) {
+    public DelivererCard(Deliverer deliverer, int displayedIndex, Logic logic) {
         super(FXML);
         this.deliverer = deliverer;
         this.displayedIndex = displayedIndex;
+        this.logic = logic;
         fillDeliverCard();
     }
 
@@ -70,7 +73,7 @@ public class DelivererCard extends UiPart<Region> {
         email.setText(deliverer.getEmail().value);
 
         // Set the buyer's orders in the list view
-        orderListView.setItems(deliverer.getOrdersAsObservableList());
+        orderListView.setItems(logic.getOrderAsObservableListFromDeliverer(deliverer));
         orderListView.setCellFactory(listView -> new DelivererOrdersListViewCell());
     }
 
