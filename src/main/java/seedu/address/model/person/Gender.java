@@ -18,7 +18,7 @@ public class Gender implements Comparable<Gender> {
         + " format: m, f, M, F, male, female, Male, Female";
 
     private static final Set<String> VALID_GENDERS = new HashSet<>(Arrays.asList("m", "male", "M", "Male",
-            "f", "female", "F", "Female", "NA"));
+            "f", "female", "F", "Female")); //NA is removed from the valid gender list
     public final GenderType value;
 
 
