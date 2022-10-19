@@ -290,23 +290,44 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Pie Chart View feature
+### [Proposed\] Pie Chart View feature
 
 #### Implementation
-The pie chart view feature extends `PennyWise` with a pie chart view by categories of spending/income, and can be accessed via the view command. Additionally, it implements the following operation
+The pie chart view feature displays a pie chart view by categories of spending/income entries, and can be accessed via the `view` command. Additionally, it implements the following operation
 * `getExpensePieChartData()`
 * `getIncomePieChartData()`
 
-These operations are exposed in the `Model` interface as Model#getExpensePieChartData(), Model#getIncomePieChartData() respectively. 
+These operations are exposed in the `Model` interface as `Model#getExpensePieChartData()`, `Model#getIncomePieChartData()` respectively. 
 
-Given below is an example usage scenario and how the pie chart view mechanism behaves at each step. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
+view entryType graphType
+E.g. `view t/e g/c` indicates type expenses, graph category. This shows a pie chart view of the expenses entries grouped by categories.
+</div>
 
-Step 1: The user launches the application for the first time. PennyWise will be initialised with the initial expenses or income entries. By default, the app opens to the expenses tab and the pie chart of the expenses will be shown 
+Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
+![PieChartViewSequenceDiagram](images/PieChartViewSequenceDiagram.png)
 
-Step 2: The user executes the `view t/i g/c` command to view their income entries as a pie chart. The view command calls 
+Step 1. The user types in `view t/e g/c` command in the main window. 
 
+Step 2. This command is handled by `MainWindow#executeCommand` method, which then calls the `LogicManager#execute` method
 
+Step 3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e g/c`.
 
+Step 4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method. In this method, it is ensured that the input is of the correct format, and the entryType and graphType is extracted.
+
+Step 5. `LogicManager`then calls the `ViewCommand#execute` method which returns a `CommandResult` that is returned to `LogicManager` and passed to `MainWindow`.
+
+Step 6. `MainWindow` then calls the `handleGraph` method which determines what data to update before calling `updateGraph`.
+
+Step 7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the pieChartData for the pieChart to be created and rendered on the UI.
+
+Design considerations:
+* **Alternative 1(current choice):** The pie chart updates only after `view` command.
+    * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
+    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be automatically updated.
+* **Alternative 2:** Pie chart updates immediately after changing tabs from expenses and income.
+    * Pros: Intuitive, simple and quick for user.
+    * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PennyWiseParser" as PennyWiseParser LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> MainWindow: executeCommand(view)]
+activate MainWindow
+
+MainWindow -> LogicManager : execute(view)
+activate LogicManager
+
+LogicManager -> PennyWiseParser : parseCommand(view)
+activate PennyWiseParser
+
+create ViewCommand
+PennyWiseParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> PennyWiseParser
+deactivate ViewCommand
+
+PennyWiseParser --> LogicManager : v
+deactivate PennyWiseParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+ViewCommand --> LogicManager
+deactivate ViewCommand
+
+LogicManager --> MainWindow :
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleGraph()
+MainWindow -> MainWindow : updateGraph()
+activate MainWindow
+
+MainWindow -> LogicManager : getExpensePieChartData()
+activate LogicManager
+
+LogicManager -> ModelManager : getExpensePieChartData()
+activate ModelManager
+
+ModelManager -> LogicManager
+deactivate ModelManager
+
+LogicManager -> MainWindow
+deactivate LogicManager
+deactivate MainWindow
+
+ViewCommand -[hidden]-> LogicManager : result
+destroy ViewCommand
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
