@@ -30,18 +30,17 @@ public class TypicalGuests {
             .withEmail("alice@example.com").withRoom("05-73")
             .withDateRange("13/09/22 - 15/09/22").withNumberOfGuests("1")
             .withPhone("94351253").withIsRoomClean("yes").withBill("0")
-            .withRequest("I want to apply for late check out")
             .build();
     public static final Guest BENSON = new GuestBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withRoom("03-23")
             .withDateRange("30/09/22 - 02/10/22").withNumberOfGuests("2")
             .withPhone("98765432").withIsRoomClean("yes").withBill("1")
-            .withRequest("I want to clean my room for one more time")
+            .withRequest("I want to clean my room again")
             .build();
     public static final Guest CARL = new GuestBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withRoom("05-25").withDateRange("30/12/22 - 02/01/23")
             .withNumberOfGuests("3").withIsRoomClean("no").withBill("19.99")
-            .withRequest("There are too many insects in my room")
+            .withRequest("There are too many insects in my room, can you help me kill them?")
             .build();
     public static final Guest DANIEL = new GuestBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withRoom("04-03").withDateRange("29/05/23 - 03/06/23")
@@ -55,7 +54,7 @@ public class TypicalGuests {
     public static final Guest FIONA = new GuestBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withRoom("06-22").withDateRange("21/10/22 - 22/10/22")
             .withNumberOfGuests("2").withIsRoomClean("no").withBill("999.99")
-            .withRequest("The neighbour is too noisy, could you help me shoot him or her?")
+            .withRequest("The neighbour is too noisy, could you help me call him or her?")
             .build();
     public static final Guest GEORGE = new GuestBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withRoom("07-05").withDateRange("01/01/23 - 07/01/23")

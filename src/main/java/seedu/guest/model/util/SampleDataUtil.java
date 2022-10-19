@@ -30,13 +30,13 @@ public class SampleDataUtil {
                     new IsRoomClean("no"), new Bill("19.99"), new Request("Room service")),
             new Guest(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Room("02-50"), new DateRange("08/04/23 - 22/04/23"), new NumberOfGuests("3"),
-                    new IsRoomClean("yes"), new Bill("50.50"), new Request("Room service")),
+                    new IsRoomClean("yes"), new Bill("50.50"), new Request("Dinner in the room")),
             new Guest(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Room("09-72"), new DateRange("29/05/23 - 03/06/23"), new NumberOfGuests("1"),
-                    new IsRoomClean("no"), new Bill("100"), new Request("Room service")),
+                    new IsRoomClean("no"), new Bill("100"), new Request("Apply for living extension")),
             new Guest(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Room("04-23"), new DateRange("30/12/22 - 02/01/23"), new NumberOfGuests("4"),
-                    new IsRoomClean("yes"), new Bill("1000.01"), new Request("Room service"))
+                    new IsRoomClean("yes"), new Bill("1000.01"), new Request("Change to a higher level"))
         };
     }
 

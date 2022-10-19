@@ -22,12 +22,12 @@ public class Request {
 
     /**
      * The constructor with specific Request object.
-     * @param str the specific Request
+     * @param request the specific Request
      */
-    public Request(String str) {
-        requireNonNull(str);
-        checkArgument(isValidRequest(str), MESSAGE_CONSTRAINTS);
-        value = str;
+    public Request(String request) {
+        requireNonNull(request);
+        checkArgument(isValidRequest(request), MESSAGE_CONSTRAINTS);
+        value = request;
     }
 
     /**

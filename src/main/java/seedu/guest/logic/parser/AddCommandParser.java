@@ -47,7 +47,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_REQUEST)) {
-            Request request = ParserUtil.parseRequest(argMultimap.getValue(PREFIX_REQUEST).get());
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -58,6 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             IsRoomClean isRoomClean = ParserUtil
                     .parseIsRoomClean(argMultimap.getValue(PREFIX_IS_ROOM_CLEAN).get());
             Bill bill = new Bill();
+            Request request = ParserUtil.parseRequest(argMultimap.getValue(PREFIX_REQUEST).get());
             Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
             return new AddCommand(guest);
         } else {

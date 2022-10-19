@@ -83,12 +83,12 @@ public class SampleDataUtilTest {
                 new Email("irfan@example.com"), new Room("06-33"),
                 new DateRange("23/05/23 - 03/06/23"),
                 new NumberOfGuests("1"), new IsRoomClean("yes"), new Bill("999.99"),
-                new Request("Could you help me to do the team project?")));
+                new Request("Could you help me kill the insect?")));
         exceptedGb.addGuest(new Guest(new Name("Dave Balakrishnan"), new Phone("92821374"),
                 new Email("daveb@example.com"), new Room("07-55"),
                 new DateRange("30/12/22 - 02/01/23"),
                 new NumberOfGuests("3"), new IsRoomClean("no"), new Bill("1000.01"),
-                new Request("Could your officer help me complete the assignments, it is too hard.")));
+                new Request("Could your officer resolve problem with my television?")));
 
         // different values -> return false
         assertNotEquals(SampleDataUtil.getSampleGuestBook(), exceptedGb);
