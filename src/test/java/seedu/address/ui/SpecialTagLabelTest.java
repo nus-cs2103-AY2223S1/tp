@@ -6,7 +6,6 @@ import static seedu.address.ui.SpecialTagLabel.HIGH_KEYWORD;
 import static seedu.address.ui.SpecialTagLabel.LOW_KEYWORD;
 import static seedu.address.ui.SpecialTagLabel.MEDIUM_KEYWORD;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class SpecialTagLabelTest extends GuiUnitTest {

@@ -1,14 +1,15 @@
 package guitests;
 
-import guitests.guihandles.exceptions.StageNotFoundException;
-import javafx.stage.Stage;
-import org.testfx.api.FxRobot;
-
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
 
+import org.testfx.api.FxRobot;
+
+import guitests.guihandles.exceptions.StageNotFoundException;
+import javafx.stage.Stage;
+
 /**
- * @author {se-edu}-reused
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  *
  * Robot used to simulate user actions on the GUI.
@@ -23,6 +24,9 @@ public class GuiRobot extends FxRobot {
 
     private final boolean isHeadlessMode;
 
+    /**
+     * Creates a {@code GuiRobot} for Ui testing.
+     */
     public GuiRobot() {
         String headlessPropertyValue = System.getProperty(PROPERTY_TESTFX_HEADLESS);
         isHeadlessMode = headlessPropertyValue != null && headlessPropertyValue.equals("true");
@@ -52,7 +56,7 @@ public class GuiRobot extends FxRobot {
      * Waits for {@code event} to be true by {@code DEFAULT_WAIT_FOR_EVENT_TIMEOUT_MILLISECONDS} milliseconds.
      *
      * @throws EventTimeoutException if the time taken exceeds {@code DEFAULT_WAIT_FOR_EVENT_TIMEOUT_MILLISECONDS}
-     * milliseconds.
+     *         milliseconds.
      */
     public void waitForEvent(BooleanSupplier event) {
         waitForEvent(event, DEFAULT_WAIT_FOR_EVENT_TIMEOUT_MILLISECONDS);

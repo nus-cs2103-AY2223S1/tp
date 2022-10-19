@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import seedu.address.ui.UiPart;
 
 /**
- * @author {se-edu}-reused
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  *
  * Provides an isolated stage to test an individual {@code UiPart}.

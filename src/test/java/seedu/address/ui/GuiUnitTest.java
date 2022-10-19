@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import seedu.address.ui.testutil.UiPartExtension;
 
 /**
- * @author {se-edu}-reused
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  *
  * A GUI unit test class for AddressBook.
