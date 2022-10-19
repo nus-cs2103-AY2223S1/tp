@@ -28,10 +28,10 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        NameContainsKeywordsPredicate name_predicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-        ModuleCodeContainsKeywordsPredicate module_predicate =
+        NameContainsKeywordsPredicate personPredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+        ModuleCodeContainsKeywordsPredicate modulePredicate =
                 new ModuleCodeContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-        return new FindCommand(name_predicate, module_predicate);
+        return new FindCommand(personPredicate, modulePredicate);
     }
 
 }

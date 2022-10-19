@@ -22,31 +22,36 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2100 cs ";
 
-    private final NameContainsKeywordsPredicate namePredicate;
+    private final NameContainsKeywordsPredicate personPredicate;
     private final ModuleCodeContainsKeywordsPredicate modulePredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate person_predicate,
+    /**
+     * Constructor
+     * @param personPredicate keyword to filter person list by
+     * @param modulePredicate keyword to filter module list by
+     */
+    public FindCommand(NameContainsKeywordsPredicate personPredicate,
                        ModuleCodeContainsKeywordsPredicate modulePredicate) {
-        this.namePredicate = person_predicate;
+        this.personPredicate = personPredicate;
         this.modulePredicate = modulePredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(namePredicate);
+        model.updateFilteredPersonList(personPredicate);
         model.updateFilteredModuleList(modulePredicate);
         return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredPersonList().size())
-                        + " "
-                        + String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
+                        + " " + String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW,
+                model.getFilteredModuleList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && namePredicate.equals(((FindCommand) other).namePredicate)
+                && personPredicate.equals(((FindCommand) other).personPredicate)
                 && modulePredicate.equals(((FindCommand) other).modulePredicate)); // state check
     }
 }
