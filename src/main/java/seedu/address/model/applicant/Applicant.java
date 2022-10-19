@@ -81,6 +81,14 @@ public class Applicant {
     }
 
     /**
+     * Returns true if this applicant has a matching application status.
+     */
+    public boolean isMatchingApplicationStatus(ApplicationStatus otherStatus) {
+        return otherStatus != null
+                && otherStatus.equals(applicationStatus);
+    }
+
+    /**
      * Returns true if both applicants have the same identity and data fields.
      * This defines a stronger notion of equality between two applicants.
      */

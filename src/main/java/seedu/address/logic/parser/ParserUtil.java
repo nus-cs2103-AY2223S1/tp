@@ -67,10 +67,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String scholarship} into an {@code Scholarship}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code scholarship} is invalid.
      */
     public static Scholarship parseScholarship(String scholarship) throws ParseException {
         requireNonNull(scholarship);
@@ -82,16 +82,31 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String applicationStatus} into an {@code ApplicationStatus}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code applicationStatus} is invalid.
      */
     public static ApplicationStatus parseApplicationStatus(String applicationStatus) throws ParseException {
         requireNonNull(applicationStatus);
         String trimmedApplicationStatus = applicationStatus.trim();
         if (!ApplicationStatus.isValidApplicationStatus(trimmedApplicationStatus)) {
             throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new ApplicationStatus(trimmedApplicationStatus);
+    }
+
+    /**
+     * Parses a {@code String applicationStatus} into a completed {@code ApplicationStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code applicationStatus} is invalid or pending.
+     */
+    public static ApplicationStatus parseCompletedApplicationStatus(String applicationStatus) throws ParseException {
+        requireNonNull(applicationStatus);
+        String trimmedApplicationStatus = applicationStatus.trim();
+        if (!ApplicationStatus.isCompletedApplicationStatus(trimmedApplicationStatus)) {
+            throw new ParseException(ApplicationStatus.MESSAGE_COMPLETED_STATUS_CONSTRAINTS);
         }
         return new ApplicationStatus(trimmedApplicationStatus);
     }
