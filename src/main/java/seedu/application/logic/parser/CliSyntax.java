@@ -12,4 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_POSITION = new Prefix("p/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
 
+    public static final Prefix PREFIX_ORDER = new Prefix("o/");
+    public static final Prefix PREFIX_REVERSE = new Prefix("r/");
+
 }
