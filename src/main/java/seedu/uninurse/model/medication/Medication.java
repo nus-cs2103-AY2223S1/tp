@@ -9,15 +9,16 @@ import static seedu.uninurse.commons.util.AppUtil.checkArgument;
  */
 public class Medication {
     public static final String MESSAGE_CONSTRAINTS =
-            "Medication type can take any values and dosage amount should only contain "
-            + "alphanumeric characters and spaces, and it should not be blank";
+            "Medication type can take any values and should not be blank.\n"
+            + "Dosage amount should only contain alphanumeric characters, "
+            + "decimal points and spaces and should not be blank";
 
     /*
      * The first character of the medication type and dosage amount must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String MEDICATION_VALIDATION_REGEX = "[^\\s].*";
-    public static final String DOSAGE_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String DOSAGE_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}. ]*";
 
     public final String medicationType;
     public final String dosage;
