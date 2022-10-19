@@ -69,10 +69,10 @@ The following activity diagram summarizes what happens when a teacher executes a
 
 * **Alternative 1**: dt/yyyy-MM-dd 0000-2359
   * Pros: Easy to implement.
-  * Cons: The tutor has to fully match the date format and order, which is much more cumbersome.
+  * Cons: The teacher has to fully match the date format and order, which is much more cumbersome.
 
 * **Alternative 2**: dt/Day-of-Week 0000-2359 (case-insensitive)
-  * Pros: More convenient and easier for tutor to type.
+  * Pros: More convenient and easier for the teacher to type.
   * Cons: 
     1. Harder to implement.
     2. Only can set the class to a date at most 1 week away.
@@ -256,11 +256,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Glossary
 
-| Terms         | Definition                              |
-|---------------|-----------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X              |
-| CLI           | Command Line Interface                  |
-| Class         | The 1-1 tutoring time slot of a student |
+| Terms         | Definition                                           |
+|---------------|------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                           |
+| CLI           | Command Line Interface                               |
+| Class         | The 1-1 tutoring time slot of a student              |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive eg. Mon, MON |
+
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.
