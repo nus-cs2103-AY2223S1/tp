@@ -1,6 +1,6 @@
 package seedu.nutrigoals.model.meal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_EARLIER_TIME;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_LATER_TIME;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
@@ -17,17 +17,17 @@ public class FoodComparatorTest {
     @Test
     public void compare() {
         // breakfast before lunch
-        assertEquals(-1, foodComparator.compare(APPLE, BREAD));
+        assertTrue(foodComparator.compare(APPLE, BREAD) < 0);
 
         // lunch after breakfast
-        assertEquals(1, foodComparator.compare(BREAD, APPLE));
+        assertTrue(foodComparator.compare(BREAD, APPLE) > 0);
 
         // breakfast before dinner
-        assertEquals(-1, foodComparator.compare(APPLE, GRAPES));
+        assertTrue(foodComparator.compare(APPLE, GRAPES) < 0);
 
         // same tag, food recorded earlier before food recorded later
         Food earlierApple = new FoodBuilder(APPLE).withDateTime(DEFAULT_EARLIER_TIME).build();
         Food laterApple = new FoodBuilder(APPLE).withDateTime(DEFAULT_LATER_TIME).build();
-        assertEquals(-1, foodComparator.compare(earlierApple, laterApple));
+        assertTrue(foodComparator.compare(earlierApple, laterApple) < 0);
     }
 }

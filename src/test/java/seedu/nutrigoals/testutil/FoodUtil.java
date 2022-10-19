@@ -28,7 +28,7 @@ public class FoodUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + food.getName().fullName + " ");
         sb.append(PREFIX_CALORIE + food.getCalorie().value + " ");
-        sb.append(PREFIX_TAG + food.getTag().tagName + " ");
+        sb.append(PREFIX_TAG + food.getTag().getTagName() + " ");
         return sb.toString();
     }
 

@@ -13,11 +13,6 @@ import seedu.nutrigoals.model.tag.Tag;
  */
 public class Food {
 
-    private static final String TAG_BREAKFAST = "B";
-    private static final String TAG_LUNCH = "L";
-    private static final String TAG_DINNER = "D";
-    private static final String TAG_NONE = "X";
-
     // Identity fields
     private final Name name;
     private final Calorie calorie;
@@ -77,26 +72,6 @@ public class Food {
 
         return otherFood != null
                 && otherFood.getName().equals(getName());
-    }
-
-    private boolean hasTag(String tagName) {
-        return tag.tagName.equals(tagName);
-    }
-
-    /**
-     * Returns a String representing the earliest meal tag on this {@code Food}.
-     * @return "B" for breakfast, "L" for lunch, "D" for dinner and "X" for no tag.
-     */
-    public String getEarliestMealTag() {
-        if (hasTag("breakfast")) {
-            return TAG_BREAKFAST;
-        } else if (hasTag("lunch")) {
-            return TAG_LUNCH;
-        } else if (hasTag("dinner")) {
-            return TAG_DINNER;
-        } else {
-            return TAG_NONE;
-        }
     }
 
     /**

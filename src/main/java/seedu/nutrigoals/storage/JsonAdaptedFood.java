@@ -41,7 +41,7 @@ class JsonAdaptedFood {
     public JsonAdaptedFood(Food source) {
         name = source.getName().fullName;
         calorie = source.getCalorie().value;
-        tagged = source.getTag().tagName;
+        tagged = source.getTag().getTagName();
         dateTime = source.getDateTime().toString();
     }
 
