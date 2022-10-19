@@ -191,11 +191,33 @@ This section describes some noteworthy details on how certain features are imple
 
 *To be updated*
 
-#### 4.2.5 ViewStats command
+#### 4.2.6 Toggle View command
+Implementation: 
+
+The `ToggleViewCommand` extends `Command` that toggles the application to display or hide all students' parent details. The `StudentListPanel` is dependent on `FilteredStudent` which encapsulates the current toggle status and the `FilteredEStudentList`.
+
+<Insert class diagram> 
+
+<Insert sequence diagram> 
+
+
+Design considerations:
+- Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
+  - Pros:
+    - Does not increase coupling despite the feature being UI related 
+  - Cons: 
+    - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects 
+    - Needs a global variable to track the current toggle as new `Student` objects added need to know the current state of the toggle
+- Option 2 (current choice): The UI keeps track of the toggle
+  - Pros:
+    - No need to edit every student in the `FilteredStudentList`
+    - Able to retain the previously filtered list after toggling
+
+#### 4.2.7 ViewStats command
 
 *To be updated*
 
-#### 4.2.6 \[Proposed\] Undo/redo feature
+#### 4.2.8 \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
