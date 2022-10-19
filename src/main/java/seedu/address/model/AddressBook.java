@@ -130,7 +130,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.events.remove(e);
     }
 
-
+    /**
+     * Returns true if {@code event} exists in this {@code AddressBook}.
+     */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return events.contains(event);
