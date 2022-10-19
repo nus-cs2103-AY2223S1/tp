@@ -35,6 +35,7 @@ public class ActivityBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
         dateList = new ArrayList<>();
+        status = new Status();
     }
 
     /**
@@ -45,6 +46,7 @@ public class ActivityBuilder {
         description = activityToCopy.getDescription();
         tags = new HashSet<>(activityToCopy.getTags());
         dateList = new ArrayList<>(activityToCopy.getDate());
+        status = activityToCopy.getStatus();
     }
 
     /**
