@@ -134,7 +134,11 @@ public class ParserUtil {
         requireNonNull(url);
         String trimmedUrl = url.trim();
 
-        String trimmedUrlWithHttps = Url.isValidUrl(trimmedUrl)? trimmedUrl: "https://" + trimmedUrl;
+        String trimmedUrlWithHttps = Url.isValidUrl(trimmedUrl)
+                ? trimmedUrl //If it is already a valid url, do not append.
+                : trimmedUrl.startsWith("http") | trimmedUrl.startsWith("https")
+                ? trimmedUrl //If it starts with http or https, do not append.
+                : "https://" + trimmedUrl;
 
         if (!Url.isValidUrl(trimmedUrlWithHttps)) {
             throw new ParseException(Url.MESSAGE_CONSTRAINTS);

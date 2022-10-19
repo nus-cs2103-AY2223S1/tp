@@ -10,16 +10,15 @@ import seedu.address.model.person.Email;
  */
 public class Url {
 
-    public static final String MESSAGE_CONSTRAINTS = "Links should be of the following format\n"
-            + "[Optional] Protocol 'https://'\n"
-            + "[Optional] Sub domain 'www.'\n"
-            + "[Required] Root domain 'google'\n"
-            + "[Required] Top level domain '.com'\n"
-            + "[Optional] Subdirectories '/home'\n"
-            + "[Optional] Query string '?yes=1'";
+    public static final String MESSAGE_CONSTRAINTS = "The URL must start with either http or https and\n"
+    + "then followed by :// and\n"
+    + "then it must contain www. and\n"
+    + "then followed by subdomain of length (2, 256) and\n"
+    + "last part contains top level domain like .com, .org etc.";
 
-    public static final String VALIDATION_REGEX = "^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))" +
-            "(%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@&=+$,A-Za-z0-9])+)([).!';/?:,][[:blank:]])?$";
+    public static final String VALIDATION_REGEX = "((http|https)://)(www.)?"
+            + "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]"
+            + "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
 
     public final String value;
 

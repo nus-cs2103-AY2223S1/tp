@@ -27,11 +27,12 @@ class EditLinkCommandTest {
     void execute_linkNothingEdited_throwsCommandException() {
         Link googleLink = new Link(new Name("Google"), new Url("https://google.com"));
         model.addLink(googleLink);
-        EditLinkDescriptor editedFields = new EditLinkDescriptor();
-        editedFields.setName(new Name("Google"));
-        editedFields.setUrl(new Url("https://google.com"));
-        EditLinkCommand editLinkCommand = new EditLinkCommand(INDEX_FIRST_PERSON,editedFields);
-        assertCommandFailure(editLinkCommand, model, editLinkCommand.MESSAGE_NOT_EDITED);
+
+        Link facebookLink = new Link(new Name("Facebook"), new Url("https://facebook.com"));
+        model.addLink(facebookLink);
+
+        EditLinkCommand editLinkCommand = new EditLinkCommand(INDEX_SECOND_PERSON, DESC_GOOGLE);
+        assertCommandFailure(editLinkCommand, model, editLinkCommand.MESSAGE_DUPLICATE_LINK);
     }
 
     @Test
