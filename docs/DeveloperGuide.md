@@ -238,7 +238,49 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Interview Feature
 
+#### Implementation
+
+The `Interview` feature acts as one of the fields under `Application`. `Interview` itself contains four different compulsory fields in order to let Interview exist, which are `Round`, `InterviewDate`, `InterviewTime` and `Location`.
+
+The class diagram is as follows:
+![ApplicationClassDiagram](images/ApplicationClassDiagram.png)
+
+Since an `Application` can have either zero or one `Interview`, hence `Interview` is wrapped with `Optional` class, with `Optional.empty()` assigned to the `Interview` field if the `Application` does not have an interview yet.
+
+New commands are added to facilitate the operations of `Interview`.
+- `AddInterviewCommand` : Utilising `ApplicationBook#setApplication()` to assign new `Interview` to `Application`.
+- `DeleteInterviewCommand` : Utilising `ApplicationBook#setApplication()` to reset `Interview` to empty in an `Application`.
+
+1. The user enter the `interview 2 ir/Technical interview id/2022-10-12 it/1400 il/Zoom` to assign new Interview to the labelled "2" Application in the application list. The execution prompts the `LogicManager` to parse the command to the `AplicationBookParser`.
+2. The ApplicationBookParser then identify the corresponding `AddInterviewCommandParser` to create. Then, the corresponding interview sub-fields are used to instantiate new `Interview`, which in turn is used to create new `AddInterviewCommand`.
+3. The LogicManager executes the returned `AddInterviewCommand`. In here, the target application is retrieve from the `ApplicationBook` to create another new `Application` with the `Interview`.
+4. Now, we replace the old `Application` with the newly created `Application`. But before that, the `ApplicationBook#setApplication()` goes through checks to ensure the `ApplicationBook` does not contain duplicated `Interview`.
+5. Once the check is passed, the `ApplicationBook` successfully replaced the `Application`, hence it now contain the `Application` with `Interview`.
+6. The `DeleteInterview` operation with command `remove-i 3` has the similar implementation as the `AddInterview` operation, but new `Application` with empty `Interview` is used to replace the old `Application` instead.
+
+The sequence diagram is as follows:
+![AddInterviewSequenceDiagram](images/AddInterviewSequenceDiagram.png)
+
+#### Constraints of Interview:
+
+In order to have the Interview fields to make sense, several constraints are added:
+1. `InterviewDate` must be after the `Application` applied `Date`, else `InvalidInterviewException` will be thrown.
+2. `Interview` duration is set to be one hour long for each `Interview`.
+3. Two Interviews are considered duplicates if they have the same `InterviewDate` and overlapping `InterviewTime`, then `DuplicateInterviewException` will be thrown.
+4. New `Interview` is allowed to override the current `Interview` that is already assign to an Application, this can be considered as `EditInterview` feature, but we did not explicitly write out this feature, the `AddInterviewCommand` can be reused here instead.
+
+#### Design considerations:
+
+Aspect: How should Interview be presented?
+
+- Alternative 1 (current choice): Interview exists as one of the fields under Application.
+  - Pros: Easy to implement, represent the real world OOP model.
+  - Cons: Current tests need to be modified.
+- Alternative 2: Interview exists as another separate list, stored under another new list, called `InterviewBook`.
+  - Pros: Tests do not need to be modified, only new tests need to be added.
+  - Cons: Too much duplication of code (Another copy of ApplicationBook).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
