@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GradeProgressCommandParser" as GradeProgressCommandParser LOGIC_COLOR
+participant "g:GradeProgressCommand" as GradeProgressCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":GradeProgressList" as GradeProgressList LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "editedPerson:Person" as Person MODEL_COLOR
+end box
+
+[-> LogicManager : execute("grade 2 g/Math: A")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("grade 2 g/Math: A")
+activate AddressBookParser
+
+create GradeProgressCommandParser
+AddressBookParser -> GradeProgressCommandParser
+activate GradeProgressCommandParser
+
+GradeProgressCommandParser --> AddressBookParser
+deactivate GradeProgressCommandParser
+
+AddressBookParser -> GradeProgressCommandParser : parse("2 g/Math: A")
+activate GradeProgressCommandParser
+
+create GradeProgressCommand
+GradeProgressCommandParser -> GradeProgressCommand
+activate GradeProgressCommand
+
+GradeProgressCommand --> GradeProgressCommandParser : g
+deactivate GradeProgressCommand
+
+GradeProgressCommandParser --> AddressBookParser : g
+deactivate GradeProgressCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GradeProgressCommandParser -[hidden]-> AddressBookParser
+destroy GradeProgressCommandParser
+
+AddressBookParser --> LogicManager : g
+deactivate AddressBookParser
+
+LogicManager -> GradeProgressCommand : execute()
+activate GradeProgressCommand
+
+GradeProgressCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> GradeProgressCommand
+deactivate Model
+
+
+GradeProgressCommand -> GradeProgressList: addGradeProgress(gradeProgress)
+activate GradeProgressList
+GradeProgressList --> GradeProgressCommand
+deactivate GradeProgressList
+
+
+create Person
+GradeProgressCommand -> Person
+activate Person
+
+Person --> GradeProgressCommand
+deactivate Person
+
+GradeProgressCommand -> Model : setPerson(personToEdit,editedPerson)
+activate Model
+
+Model --> GradeProgressCommand
+deactivate Model
+
+GradeProgressCommand -> Model : updateFilteredPersonList(Predicate<Person> predicate)
+activate Model
+
+Model --> GradeProgressCommand
+deactivate Model
+
+create CommandResult
+GradeProgressCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GradeProgressCommand
+deactivate CommandResult
+
+GradeProgressCommand --> LogicManager : result
+deactivate GradeProgressCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -101,20 +101,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String homeworkInfo} and disassembles it into index and homework.
-     *
-     * @param homeworkInfo index and description of homework.
-     * @return array containing index in position 0 and homework description in position 1.
-     */
-    public static String[] parseHomeworkInfo(String homeworkInfo) throws ParseException {
-        String[] args = homeworkInfo.split(" ", 2);
-        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
-        }
-        return args;
-    }
-
-    /**
      * Parses a {@code String gradeProgress} into an {@code GradeProgress}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -125,45 +111,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String gradeProgressInfo} and disassembles it into index and grade progress.
-     *
-     * @param gradeProgressInfo index and description of grade progress.
-     * @return array containing index in position 0 and grade in position 1.
-     */
-    public static String[] parseGradeProgressInfo(String gradeProgressInfo) throws ParseException {
-        String[] args = gradeProgressInfo.split(" ", 2);
-        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
-        }
-        return args;
-    }
-
-    /**
      * Parses a {@code String attendance} into an {@code Attendance}.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static Attendance parseAttendance(String attendance) throws ParseException {
         requireNonNull(attendance);
         String trimmedAttendance = attendance.trim();
-        if (!Attendance.isValidAttendance(attendance)) {
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
         return new Attendance(trimmedAttendance);
     }
 
-    /**
-     * Parses an {@code String attendanceInfo} and disassembles it into index and attendance.
-     *
-     * @param attendanceInfo index and description of attendance.
-     * @return array containing index in position 0 and attendance in position 1.
-     */
-    public static String[] parseAttendanceInfo(String attendanceInfo) throws ParseException {
-        String[] args = attendanceInfo.split(" ", 2);
-        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
-        }
-        return args;
-    }
     /**
      * Parses a {@code String Session} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
@@ -171,19 +130,19 @@ public class ParserUtil {
     public static Session parseSession(String session) throws ParseException {
         requireNonNull(session);
         String trimmedSession = session.trim();
-        if (!Session.isValidSession(session)) {
+        if (!Session.isValidSession(trimmedSession)) {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new Session(trimmedSession);
     }
+
     /**
-     * Parses a {@code String sessionInfo} and disassembles it into index and session.
+     * Parses a {@code String text} and disassembles it into index and description.
      *
-     * @param sessionInfo index and description of session.
-     * @return array containing index in position 0 and session in position 1.
+     * @throws ParseException if the input is less than 2, or does not start with an integer.
      */
-    public static String[] parseSessionInfo(String sessionInfo) throws ParseException {
-        String[] args = sessionInfo.split(" ", 2);
+    public static String[] parseIndexedEdit(String text) throws ParseException {
+        String[] args = text.split(" ", 2);
         if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }
