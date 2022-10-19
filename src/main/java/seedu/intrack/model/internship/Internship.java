@@ -45,7 +45,7 @@ public class Internship {
         this.email = email;
         this.status = status;
         this.address = address;
-        this.tasks.addAll(task);
+        this.tasks.addAll(tasks);
         this.tags.addAll(tags);
         this.remark = remark;
     }
