@@ -1,32 +1,43 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalApplicants.getTypicalTrackAScholar;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.TrackAScholar;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyTrackAScholar_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+    public void confirmClear_nonEmptyTrackAScholar_success() {
+        ClearCommand clearCommand = new ClearCommand();
+        Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
+        CommandResult commandResult = clearCommand.confirmClear(model);
+        CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
+        assertEquals(commandResult, successResult);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_nonEmptyTrackAScholar_success() {
-        Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
-        expectedModel.setTrackAScholar(new TrackAScholar());
+    public void confirmClear_emptyTrackAScholar_success() {
+        ClearCommand clearCommand = new ClearCommand();
+        Model model = new ModelManager();
+        CommandResult commandResult = clearCommand.confirmClear(model);
+        CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
+        assertEquals(commandResult, successResult);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void cancelClear_trackAScholar_success() {
+        ClearCommand clearCommand = new ClearCommand();
+        CommandResult commandResult = clearCommand.cancelClear();
+        CommandResult terminationResult = new CommandResult(ClearCommand.MESSAGE_TERMINATION);
+        assertEquals(commandResult, terminationResult);
+
     }
 
 }
