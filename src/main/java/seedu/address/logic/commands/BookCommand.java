@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AppointmentList;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
@@ -29,7 +29,7 @@ public class BookCommand extends Command {
             + PREFIX_RECURRING_PERIOD + "PERIOD "
             + "Example: " + COMMAND_WORD + " 3 "
             + PREFIX_REASON + "Sore Throat "
-            + PREFIX_DATE + "2022-10-12 16:30"
+            + PREFIX_DATE + "2022-10-12 16:30 "
             + PREFIX_RECURRING_PERIOD + "1Y2M3D";
 
     public static final String MESSAGE_BOOK_APPOINTMENT_SUCCESS = "Booked Appointment for Person: %1$s";
@@ -60,24 +60,8 @@ public class BookCommand extends Command {
         }
 
         Person personToBookFor = lastShownList.get(targetIndex.getZeroBased());
-        List<Appointment> appointments = personToBookFor.getAppointments();
-        bookAppointment(appointments, appointment);
-        appointment.setPatient(personToBookFor);
-
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.addAppointment(appointment);
+        AppointmentList.addAppointment(model, personToBookFor, appointment);
         return new CommandResult(String.format(MESSAGE_BOOK_APPOINTMENT_SUCCESS, personToBookFor));
-    }
-
-    private boolean hasSameAppointment(List<Appointment> appointments, Appointment appointment) {
-        return appointments.stream().anyMatch(x -> x.isSameTime(appointment));
-    }
-
-    private void bookAppointment(List<Appointment> appointments, Appointment appointment) throws CommandException {
-        if (hasSameAppointment(appointments, appointment)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-        }
-        appointments.add(appointment);
     }
 
     @Override

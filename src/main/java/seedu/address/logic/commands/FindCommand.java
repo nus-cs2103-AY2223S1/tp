@@ -23,7 +23,7 @@ import seedu.address.model.person.predicates.CombinedPersonPredicate;
 
 /**
  * Finds and lists all persons and their appointments in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -59,7 +59,7 @@ public class FindCommand extends Command {
      * Creates a findCommand to search for specific details in the app.
      *
      * @param personPredicate A predicate for searching person details.
-     * @param appointmentPredicate A perdicate for searching appointment details.
+     * @param appointmentPredicate A predicate for searching appointment details.
      * @param isUsingAppointmentPredicate True if any search fields relating to appointments are entered,
      *                                   false otherwise.
      */
@@ -79,10 +79,10 @@ public class FindCommand extends Command {
         the appointmentPredicate if any input related to appointments are present (Reason, date),
         and updates the model accordingly.
          */
-        Predicate<Person> personFufillingBothPredicates = !isUsingAppointmentPredicate
+        Predicate<Person> personFulfillingBothPredicates = !isUsingAppointmentPredicate
                 ? personPredicate
                 : personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
-        model.updateFilteredPersonList(personFufillingBothPredicates);
+        model.updateFilteredPersonList(personFulfillingBothPredicates);
 
         /*
         Creates a Predicate<Appointment> that returns true if an appointment's patient is one who satisfies
@@ -93,13 +93,13 @@ public class FindCommand extends Command {
                 new AppointmentOfFilteredPersonsPredicate(validPersons);
 
         /*
-        Finds all appointments that satisfies the given appointmentPredicate whose patient matches the personPredicate,
+        Finds all appointments that satisfy the given appointmentPredicate whose patient matches the personPredicate,
         and updates the model accordingly.
          */
-        Predicate<Appointment> appointmentFufillingBothPredicates = !isUsingAppointmentPredicate
+        Predicate<Appointment> appointmentFulfillingBothPredicates = !isUsingAppointmentPredicate
                 ? appointmentOfFilteredPersonsPredicate
                 : appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
-        model.updateFilteredAppointmentList(appointmentFufillingBothPredicates);
+        model.updateFilteredAppointmentList(appointmentFulfillingBothPredicates);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,
