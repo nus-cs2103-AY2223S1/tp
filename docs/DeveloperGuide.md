@@ -121,12 +121,32 @@ How the parsing works:
 The `Model` component,
 
 * stores data in TA Assist:
-  * all `Student` objects are contained in a `UniqueStudentList` object.
-  * all `ModuleClass` objects are contained in a `UniqueModuleClassList` object.
+  * all `Student` objects are contained in a `UniqueList` object.
+  * all `ModuleClass` objects are also contained in a `UniqueList` object.
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'focused' `ModuleClass` object.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
+
+**UniqueList**
+
+The `UniqueList` class is a generic class that stores a collection of unique elements. In TA Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
+
+<img src="images/TaAssistObjectDiagram.png" width="600"/>
+
+**Student, ModuleClass and Session**
+
+Each `Student` object stores all module-class-related data, such as the `ModuleClass` and session data, in a `StudentModuleData` object. 
+Session data belonging to a `Student` is stored in `SessionData` objects.
+
+`Student`, `ModuleClass` and `Session` objects implement the `Identity` interface which has a single `isSame` method. The `isSame` method allows `Identity` objects to define
+a weaker notion of equality than the `equals` method.
+
+Similarly, objects that keep a reference of `Student`, `ModuleClass` or `Session` objects such as the `UniqueList` and `StudentModuleData` may also implement the `Identity` method.
+
+
+
+<img src="images/StudentAndModuleClassDiagram.png" width="600"/>
 
 ### Storage component
 
@@ -158,9 +178,8 @@ The following methods in `TaAssist` manages the adding and deleting of classes f
 - `TaAssist#addModuleClass(ModuleClass moduleClass)` - Adds the provided class to the list of classes created.
 - `TaAssist#removeModuleClass(ModuleClass moduleClass)` - Removes the provided class from the list of classes created.
 
-### Assigning students to classes
-
-<img src="images/AssignCommandSequenceDiagram.png" width="550" />
+### Assigning students to a class
+<img src="images/AssignCommandSequenceDiagram.png" width="700" />
 
 Each student object contains a collection of `StudentModuleData` where classes and the grades the student obtained for the sessions of the classes are stored. When the user tries to assign students to a class, we are essentially creating a new `StudentModuleData` object to be added to the collection for each student.
 
@@ -210,14 +229,11 @@ The above methods are also exposed to the `Model` interface.
 
 The `Logic` component calls these methods in `Model` to execute commands that require access to the state of the focus mode.
 
-For example, the following sequence diagram shows how the `focus` command activates focus mode:
+For example, the following sequence diagram shows how the `focus` command activates focus mode with the `CS1101S` module class:
 
-<img src="images/FocusCommandSequenceDiagram.png" width="550" />
+<img src="images/FocusCommandSequenceDiagram.png" width="700" />
 
-The call to `ModelManager#hasModuleClass` is necessary to ensure that the `ModuleClass` to focus exists before passing it as an
-argument to `ModelManager#enterFocusMode`.
-
-On the other hand, the `unfocus` command deactivates focus mode.
+On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -50,7 +50,7 @@ activate AssignCommand
 
 AssignCommand -> Model: getFilteredStudentList()
 activate Model
-Model --> AssignCommand: List<Students>
+Model --> AssignCommand: students
 deactivate Model
 
 loop for each student to assign

@@ -57,15 +57,12 @@ deactivate TaAssistParser
 LogicManager -> FocusCommand: execute()
 activate FocusCommand
 
-FocusCommand -> Model: hasModuleClass(m)
-activate Model
-Model --> FocusCommand
-deactivate Model
-
-FocusCommand -> Model: enterFocusMode(m)
-activate Model
-Model --> FocusCommand
-deactivate Model
+opt module class exists
+    FocusCommand -> Model: enterFocusMode(m)
+    activate Model
+    Model --> FocusCommand
+    deactivate Model
+end
 
 create CommandResult
 FocusCommand -> CommandResult
