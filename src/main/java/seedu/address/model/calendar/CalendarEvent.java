@@ -36,6 +36,10 @@ public class CalendarEvent {
         return appointment.getLocation();
     }
 
+    public String getDate() {
+        return appointment.getDate().toString();
+    }
+
     public int getDay() {
         return this.appointment.getDay();
     }

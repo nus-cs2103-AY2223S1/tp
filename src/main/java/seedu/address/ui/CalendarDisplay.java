@@ -6,7 +6,8 @@ import java.util.GregorianCalendar;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -32,6 +33,8 @@ public class CalendarDisplay extends UiPart<Region> {
         "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
     private static final String switchButtonStyle = "-fx-border-color: grey; -fx-border-radius: 5;";
+    private PrevButton prevButton = new PrevButton("Prev", this);
+    private NextButton nextButton = new NextButton("Next", this);
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
     private Stage primaryStage;
@@ -51,6 +54,7 @@ public class CalendarDisplay extends UiPart<Region> {
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
         drawCalendar();
+        calendarDisplay.setOnKeyPressed(e -> handleKeyPressed(e));
     }
 
     private void drawCalendar() {
@@ -60,10 +64,7 @@ public class CalendarDisplay extends UiPart<Region> {
 
     private void drawHeader() {
         Text textHeader = getTextHeader();
-        Button prevButtonHeader = getButtonHeader("Prev");
-        Button nextButtonHeader = getButtonHeader("Next");
-
-        topCalendar.getChildren().addAll(textHeader, prevButtonHeader, nextButtonHeader);
+        topCalendar.getChildren().addAll(textHeader, prevButton, nextButton);
     }
 
     private void drawBody() {
@@ -97,7 +98,6 @@ public class CalendarDisplay extends UiPart<Region> {
         }
     }
 
-
     private String getDayName(int n) {
         return dayNames[n - 1];
     }
@@ -115,32 +115,18 @@ public class CalendarDisplay extends UiPart<Region> {
         return header;
     }
 
-    public Button getButtonHeader(String text) {
-        if (text.equals("Prev")) {
-            Button prevButton = new Button(text);
-            prevButton.setOnAction(e -> previous());
-            prevButton.setStyle(switchButtonStyle);
-            return prevButton;
-        } else {
-            Button nextButton = new Button(text);
-            nextButton.setOnAction(e -> next());
-            nextButton.setStyle(switchButtonStyle);
-            return nextButton;
-        }
-    }
-
-    private void previous() {
-        topCalendar.getChildren().clear();
+    public void previous() {
         calendarDisplay.getChildren().clear();
         currentMonth = getPreviousMonth(currentMonth);
-        drawCalendar();
+        topCalendar.getChildren().set(0, getTextHeader());
+        drawBody();
     }
 
-    private void next() {
-        topCalendar.getChildren().clear();
+    public void next() {
         calendarDisplay.getChildren().clear();
         currentMonth = getNextMonth(currentMonth);
-        drawCalendar();
+        topCalendar.getChildren().set(0, getTextHeader());
+        drawBody();
     }
 
     private GregorianCalendar getPreviousMonth(Calendar cal) {
@@ -173,4 +159,13 @@ public class CalendarDisplay extends UiPart<Region> {
         return new GregorianCalendar(futureYear, futureMonth, 1);
     }
 
+    private void handleKeyPressed(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.B)) {
+            previous();
+            calendarDisplay.requestFocus();
+        } else if (event.getCode().equals(KeyCode.N)) {
+            next();
+            calendarDisplay.requestFocus();
+        }
+    }
 }
