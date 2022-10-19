@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+
+Participant ":ListPersonsCommand" as listPersonsCommand LOGIC_COLOR
+Participant "m:Model" as model MODEL_COLOR
+Participant ":AddressBook" as addressBook MODEL_COLOR
+Participant "persons:UniquePersonList" as uniquePersonList MODEL_COLOR
+
+
+' Operation arrows
+[-> listPersonsCommand : execute(m)
+activate listPersonsCommand LOGIC_COLOR
+
+listPersonsCommand -[LOGIC_COLOR]> model : sortPersons(s)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]> addressBook : sortPersons(s)
+activate addressBook MODEL_COLOR
+
+addressBook -[MODEL_COLOR]> uniquePersonList : sort(s)
+activate uniquePersonList MODEL_COLOR
+
+
+' Return arrows
+addressBook <-[MODEL_COLOR]- uniquePersonList
+deactivate uniquePersonList
+
+model <-[MODEL_COLOR]- addressBook
+deactivate addressBook
+
+listPersonsCommand <-[LOGIC_COLOR]- model
+deactivate model
+
+[<-- listPersonsCommand : result
+deactivate listPersonsCommand
+
+skinparam NoteTextAlignment left
+note right of model : s represents the SortField object\nwithin the ListPersonsCommand object
+
+@enduml

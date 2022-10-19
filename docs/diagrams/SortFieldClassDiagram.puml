@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+
+
+' Override style.puml
+show members
+hide empty members
+skinparam ClassAttributeIconSize 0
+skinparam Nodesep 100
+skinparam arrowThickness 1.1
+skinparam PackageBackgroundColor #FFFFFF
+
+
+' Class definitions
+Class ListPersonsCommand LOGIC_COLOR
+
+Class SortField MODEL_COLOR {
+    -comp : Comparator<Person>
+}
+
+Class "<<enumeration>>\nSortFieldType" as SortFieldType MODEL_COLOR {
+    NAME
+    DATE_OF_BIRTH
+    GENDER
+    NO_FIELD
+}
+
+package Model{
+    Class HiddenModel #FFFFFF
+}
+
+
+' Arrow definitions
+ListPersonsCommand .right[LOGIC_COLOR_T4].> Model
+ListPersonsCommand -[LOGIC_COLOR_T4]-> "1" SortField
+SortField *-[MODEL_COLOR]-> "1" SortFieldType
+
+@enduml
