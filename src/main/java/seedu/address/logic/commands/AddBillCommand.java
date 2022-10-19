@@ -26,7 +26,7 @@ public class AddBillCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("addbill", "ab");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a bill corresponds to an appointment to the address book. "
+            + ": Adds a bill that corresponds to an appointment to the address book. "
             + "Parameters: INDEX_OF_APPOINTMENT (must be a positive integer)"
             + PREFIX_BILL_DATE + " DATE<yyyy-MM-dd> "
             + PREFIX_AMOUNT + " AMOUNT ";
