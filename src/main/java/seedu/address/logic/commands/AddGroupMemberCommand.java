@@ -68,6 +68,7 @@ public class AddGroupMemberCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_GROUP);
         }
 
+        // check if person already in group
         if (groupToAddPerson.contains(personToGroup)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_GROUP);
         }
