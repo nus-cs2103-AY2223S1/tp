@@ -9,6 +9,8 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FAC
 import static seedu.application.logic.commands.CommandTestUtil.VALID_DATE_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
+import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalApplications.FACEBOOK;
 import static seedu.application.testutil.TypicalApplications.GOOGLE;
 
@@ -17,6 +19,12 @@ import org.junit.jupiter.api.Test;
 import seedu.application.testutil.ApplicationBuilder;
 
 public class ApplicationTest {
+
+    @Test
+    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+        Application application = new ApplicationBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> application.getTags().remove(0));
+    }
 
     @Test
     public void isSameApplication() {
@@ -28,7 +36,7 @@ public class ApplicationTest {
 
         // same company and position, all other attributes different -> returns true
         Application editedGoogle = new ApplicationBuilder(GOOGLE).withContact(VALID_CONTACT_FACEBOOK)
-                .withEmail(VALID_EMAIL_FACEBOOK).withDate(VALID_DATE_FACEBOOK).build();
+                .withEmail(VALID_EMAIL_FACEBOOK).withDate(VALID_DATE_FACEBOOK).withTags(VALID_TAG_PREFERRED).build();
         assertTrue(GOOGLE.isSameApplication(editedGoogle));
 
         // different company, all other attributes same -> returns false
@@ -97,5 +105,9 @@ public class ApplicationTest {
         // different date -> returns false
         editedGoogle = new ApplicationBuilder(GOOGLE).withDate(VALID_DATE_FACEBOOK).build();
         assertNotEquals(GOOGLE, editedGoogle);
+
+        // different tags -> returns false
+        editedGoogle = new ApplicationBuilder(GOOGLE).withTags(VALID_TAG_PREFERRED).build();
+        assertFalse(GOOGLE.equals(editedGoogle));
     }
 }
