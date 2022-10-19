@@ -22,7 +22,7 @@ public class Student {
     // Parent fields
     private final Name parentName;
     private final Phone phone;
-    private final Address address;
+    private final Email email;
 
     // Class
     private final Class className;
@@ -34,14 +34,14 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name studentName, Id id, Class className, Name parentName, Phone phone,
-                   Address address, Set<Tag> tags) {
-        requireAllNonNull(studentName, id, className, parentName, phone, address, tags);
+                   Email email, Set<Tag> tags) {
+        requireAllNonNull(studentName, id, className, parentName, phone, email, tags);
         this.studentName = studentName;
         this.id = id;
         this.className = className;
         this.parentName = parentName;
         this.phone = phone;
-        this.address = address;
+        this.email = email;
         this.tags.addAll(tags);
     }
 
@@ -65,8 +65,8 @@ public class Student {
         return phone;
     }
 
-    public Address getAddress() {
-        return address;
+    public Email getEmail() {
+        return email;
     }
 
     /**
@@ -111,14 +111,14 @@ public class Student {
                 && otherStudent.getClassName().equals(getClassName())
                 && otherStudent.getParentName().equals(getParentName())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(studentName, id, className, parentName, phone, address, tags);
+        return Objects.hash(studentName, id, className, parentName, phone, email, tags);
     }
 
     @Override
@@ -131,10 +131,10 @@ public class Student {
                 .append(getClassName())
                 .append("; Parent Name: ")
                 .append(getParentName())
-                .append("; Phone: ")
+                .append("; Parent Phone: ")
                 .append(getPhone())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Parent Email: ")
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

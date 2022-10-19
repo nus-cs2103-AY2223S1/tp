@@ -71,7 +71,7 @@ public class EmailTest {
     public void getStringValue() {
         String emailString = "johndoe@example.com";
         Email email = new Email(emailString);
-        assertEquals(email.toString(), emailString);
+        assertEquals(email.toString(), emailString.toUpperCase());
     }
 
 }
