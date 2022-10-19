@@ -20,12 +20,15 @@ Class "Name" as PlannedName
 Class Tutorial
 Class Recitation
 Class Lecture
+Class Lab
 Class "StartTime" as TutorialStartTime
 Class "EndTime" as TutorialEndTime
 Class "StartTime" as LectureStartTime
 Class "EndTime" as LectureEndTime
 Class "StartTime" as RecitationStartTime
 Class "EndTime" as RecitationEndTime
+Class "StartTime" as LabStartTime
+Class "EndTime" as LabEndTime
 
 }
 
@@ -40,6 +43,7 @@ CurrentModule *-->  "1" CurrentName
 CurrentModule --> "*" Tutorial
 CurrentModule --> "*" Lecture
 CurrentModule --> "*" Recitation
+CurrentModule --> "*" Lab
 
 PlannedModule *-->  "1" PlannedName
 PreviousModule *-->  "1" PreviousName
@@ -53,8 +57,12 @@ Lecture *--> "1" LectureEndTime
 Recitation *--> "1" RecitationStartTime
 Recitation *--> "1" RecitationEndTime
 
+Lab *--> "1" LabStartTime
+Lab *--> "1" LabEndTime
+
 Recitation .up.|> Lesson
 Lecture .up.|> Lesson
 Tutorial .up.|> Lesson
+Lab .up.|> Lesson
 
 @enduml
