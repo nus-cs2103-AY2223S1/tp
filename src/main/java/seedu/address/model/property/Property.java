@@ -6,14 +6,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Property in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: field values are validated, immutable.
+ * Only characteristics may be null.
  */
 public class Property {
 
@@ -25,6 +28,7 @@ public class Property {
     private final Address address;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
+    private final Optional<Characteristics> characteristics;
 
     // private final Seller seller;
     private final String seller; // TODO: change to Seller object
@@ -33,7 +37,7 @@ public class Property {
      * Every field must be present and not null.
      */
     public Property(PropertyName propertyName, Price price, Address address, Description description,
-                    Set<Tag> tags, String seller) {
+                    Set<Tag> tags, String seller, Characteristics characteristics) {
         requireAllNonNull(propertyName, price, address, description, tags, seller);
         this.propertyName = propertyName;
         this.price = price;
@@ -41,6 +45,7 @@ public class Property {
         this.description = description;
         this.tags.addAll(tags);
         this.seller = seller;
+        this.characteristics = Optional.ofNullable(characteristics);
     }
 
     public PropertyName getName() {
@@ -71,6 +76,10 @@ public class Property {
         return seller;
     }
 
+    public Optional<Characteristics> getCharacteristics() {
+        return this.characteristics;
+    }
+
     /**
      * Returns true if both properties have the same name and price.
      * This defines a weaker notion of equality between two properties.
@@ -99,12 +108,14 @@ public class Property {
             return false;
         }
 
+        // TODO : Should this be checking for equal tags as well?
         Property otherProperty = (Property) other;
         return otherProperty.getName().equals(getName())
                 && otherProperty.getPrice().equals(getPrice())
                 && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getDescription().equals(getDescription())
-                && otherProperty.getSeller().equals(getSeller());
+                && otherProperty.getSeller().equals(getSeller())
+                && otherProperty.getCharacteristics().equals(getCharacteristics());
     }
 
     @Override
@@ -131,6 +142,10 @@ public class Property {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Characteristics: ")
+                .append(getCharacteristics()
+                        .map(Characteristics::toString)
+                        .orElse("Not Specified"));
         return builder.toString();
     }
 

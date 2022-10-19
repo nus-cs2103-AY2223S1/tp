@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -237,9 +237,9 @@ public class ParserUtilTest {
     @Test
     public void parseCharacteristics_validCharacteristicsWithoutWhitespace_returnsDesiredCharacteristics()
             throws Exception {
-        DesiredCharacteristics expectedDesiredCharacteristics =
-                new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
-        assertEquals(expectedDesiredCharacteristics,
+        Characteristics expectedCharacteristics =
+                new Characteristics(VALID_DESIRED_CHARACTERISTICS);
+        assertEquals(expectedCharacteristics,
                 ParserUtil.parseCharacteristics(VALID_DESIRED_CHARACTERISTICS));
     }
 
@@ -247,9 +247,9 @@ public class ParserUtilTest {
     public void parseCharacteristics_validCharacteristicsWithWhitespace_returnsTrimmedCharacteristics()
             throws Exception {
         String desiredCharacteristicsWithWhitespace = WHITESPACE + VALID_DESIRED_CHARACTERISTICS + WHITESPACE;
-        DesiredCharacteristics expectedDesiredCharacteristics =
-                new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
-        assertEquals(expectedDesiredCharacteristics,
+        Characteristics expectedCharacteristics =
+                new Characteristics(VALID_DESIRED_CHARACTERISTICS);
+        assertEquals(expectedCharacteristics,
                 ParserUtil.parseCharacteristics(desiredCharacteristicsWithWhitespace));
     }
 }

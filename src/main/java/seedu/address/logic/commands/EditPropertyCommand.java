@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
@@ -38,16 +40,18 @@ public class EditPropertyCommand extends Command {
             + "by the index number used in the displayed property list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRICE + "PRICE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_DESCRIPTION + "DESC] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_PRICE + " PRICE] "
+            + "[" + PREFIX_ADDRESS + " ADDRESS] "
+            + "[" + PREFIX_DESCRIPTION + " DESC] "
+            + "[" + PREFIX_TAG + " TAG]..."
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "4 Room Heng Mui Keng Condo"
-            + PREFIX_PRICE + "$500,000"
-            + PREFIX_ADDRESS + "Heng Mui Keng Terrace 22"
-            + PREFIX_DESCRIPTION + "4 Room Condo with 2 bathrooms";
+            + PREFIX_NAME + " 4 Room Heng Mui Keng Condo "
+            + PREFIX_PRICE + " 500000 "
+            + PREFIX_ADDRESS + " Heng Mui Keng Terrace 22 "
+            + PREFIX_DESCRIPTION + " 4 Room Condo with 2 bathrooms "
+            + PREFIX_CHARACTERISTICS + " 5-Room; Near School";
 
     public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -101,9 +105,12 @@ public class EditPropertyCommand extends Command {
         Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
         Set<Tag> updatedTags = descriptor.getTags().orElse(propertyToEdit.getTags());
         String updatedSeller = descriptor.getSeller().orElse(propertyToEdit.getSeller());
+        Characteristics updatedCharacteristics = descriptor
+                .getCharacteristics()
+                .orElse(propertyToEdit.getCharacteristics().orElse(null));
 
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
-                updatedTags, updatedSeller);
+                updatedTags, updatedSeller, updatedCharacteristics);
     }
 
     @Override
@@ -135,6 +142,7 @@ public class EditPropertyCommand extends Command {
         private Description description;
         private Set<Tag> tags;
         private String seller;
+        private Characteristics characteristics;
 
         public EditPropertyDescriptor() {}
 
@@ -149,6 +157,7 @@ public class EditPropertyCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setSeller(toCopy.seller);
+            setCharacteristics(toCopy.characteristics);
         }
 
         /**
@@ -215,6 +224,14 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(seller);
         }
 
+        public void setCharacteristics(Characteristics characteristics) {
+            this.characteristics = characteristics;
+        }
+
+        public Optional<Characteristics> getCharacteristics() {
+            return Optional.ofNullable(characteristics);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -235,7 +252,8 @@ public class EditPropertyCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getSeller().equals(e.getSeller());
+                    && getSeller().equals(e.getSeller())
+                    && getCharacteristics().equals(e.getCharacteristics());
         }
     }
 }
