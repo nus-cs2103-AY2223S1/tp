@@ -25,7 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox style="-fx-background-color: #05071F;">
+      <VBox>
         <MenuBar fx:id="menuBar" style="-fx-background-color: #0e1011;" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -46,7 +46,7 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <TabPane fx:id="tabpane" minWidth="340" prefWidth="340" style="-fx-background-color: #05071F;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane fx:id="tabpane" minWidth="340" prefWidth="340" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab style="-fx-background-color: #2200f9;" text="contacts">
                   <content>
