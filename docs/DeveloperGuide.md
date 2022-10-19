@@ -156,34 +156,124 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add/Delete Module
+
+#### Implementation
+
+A `Module` class is used to represent a module. A `Module` contains a `ModuleCode` and an 
+optional `ModuleTitle`. Here are the ways in which different classes in the `Model` component interact
+with `Module`:
+- A `UniqueModuleList` represents the list of `Module` objects.
+- The list of modules is stored in the `AddressBook` class.
+- The `ModelManager` class stores the `AddressBook` containing the list of unfiltered `Module` 
+  objects, and a separate instance variable storing the list of filtered `Module` objects.
+
+The UML class diagram of the `Module`-related parts of `Model` component is shown below:
+
+![ModelModuleClassDiagram](images/ModelModuleClassDiagram.png)
+
+We have implemented the following `Command` classes:
+- `AddModuleCommand` allows the user to add a module to Plannit.
+- `DeleteModuleCommand` allows the user to delete a module from Plannit.
+
+The Storage component has been updated for persistent storage of modules. `JsonAdaptedModule` 
+has been added to represent a `Module` object in JSON format.
+
+Below shows a description of an example scenario for adding a command. Deletion of a command is 
+similar except that the corresponding deletion class is used instead. 
+
+Step 1: User enters command `add-module m/CS2105` to add module CS2105 to Plannit.
+
+Step 2: `addressBookParser`, the parser for Plannit, will parse the user command to return an 
+`AddModuleCommand` object.
+
+Step 3: The resulting `AddModuleCommand` object is then executed. The validity of the input 
+module code provided is checked. This involves a check of whether the input is a duplicate module 
+(case-insensitive, removing leading and trailing whitespaces). 
+
+Step 4: After successful checks, the module `CS2105` will be added into Plannit. 
+
+Step 5: The `saveAddressBook()` method of `StorageManager` is called to save the newly-updated list
+of modules to a JSON file. 
+
+Step 6: `JsonAddressBookStorage` is called, which serializes/converts the new list of modules 
+into JSON format, so that it can be saved into a file. The file will be read whenever Plannit 
+starts up so that it can load saved module and person data.
+
+Step 7: Plannit Graphical User Interface (GUI) displays message that the addition of module has 
+been successful. 
+
+The following activity diagram summarizes what happens when the user requests to add module to 
+Plannit via `add-module` command.
+
+![AddModuleActivityDiagram](images/AddModuleActivityDiagram.png)
+
+#### Alternatives Considered
+
+Aspect: The class-level design of how to integrate the `Module` class to the `Model` component.
+
+* **Alternative 1 (current choice):** Reuse the same `AddressBook` to also store the list of 
+  unique `Module` objects.
+
+    * Pros: A duplicate class `AddressBook` for `Model` methods is not necessary.
+
+    * Cons: `AddressBook`, `ModelManager` and other classes would need to be updated to include 
+`Module`. Hence, the interfaces `ReadOnlyAddressBook` and `Model` also need to be updated to support
+the `Module`-related methods.
+
+* **Alternative 2:** Create another `AddressBook`-like class to store the list of `Module` objects.
+
+    * Pros: Functionality for `Person` and `Module` are now separate. This better adheres to the 
+Single Responsibility Principle because `AddressBook` only does operations regarding `Person` 
+rather than doing operations regarding both `Person` and `Module`.
+
+    * Cons: More classes to implement. In particular, `AddressBook` and `ReadOnlyAddressBook` 
+need to be duplicated into separate classes to support `Module`.
+
+Rationale behind current choice: 
+1. Duplicating `AddressBook` will result in duplicating dependent classes such as 
+`ReadOnlyAddressBook`, `JsonAddressBookStorage` and `JsonSerializableAddressBook`, hence complicating
+the implementation. For example, the storage component will now need to deal with two `AddressBook` 
+instances, hence requiring either two separate storage files, or changing the implementation 
+to combine the contents of the two different `AddressBook`-like classes into one file. Combining 
+`Person` and `Module` into one `AddressBook` would avoid this issue.
+2. While dealing with lists of `Person` and `Module` objects are two different functionalities, 
+both functionalities deal with a list of user-provided objects. Therefore, the cohesion should not 
+significantly decrease.
+
+### \[Coming soon\] Add person to module
+
+A person can take several modules. The relationship between `Person` and `Model` is displayed 
+in the Object Oriented Domain Model diagram below:
+
+![ModulePersonObjectOrientedDomainModel](images/ModulePersonObjectOrientedDomainModel.png)
+
 ### Add/delete/swap task feature
 
 #### Implementation
 
-The add/delete/swap task mechanism is facilitated by a `TaskList` data. Each 
-`Module` within the `UniqueModuleList` stores a `TaskList` instance, which 
-in turn stores a list of `Task` objects. Each `Module` is instantiated with 
+The add/delete/swap task mechanism is facilitated by a `TaskList` data. Each
+`Module` within the `UniqueModuleList` stores a `TaskList` instance, which
+in turn stores a list of `Task` objects. Each `Module` is instantiated with
 an empty `TaskList`.
 
 ![TaskListClassDiagram](images/AddDeleteSwapTaskFeature/TaskListClassDiagram.png)
 
 Similar to `UniqueModuleList` and `UniquePersonList`, a `TaskList` contains the following:
-* `internaList` - An `ObservableList<>` containing the tasks 
-  of a module. This list is used for the adding and removing of objects in 
+* `internaList` - An `ObservableList<>` containing the tasks
+  of a module. This list is used for the adding and removing of objects in
   the data structure.
-* `internaUnmodifiableList` - An `ObservableList<>` that is 
-  an **unmodifiable** copy of `internalList`. This list is used when external 
+* `internaUnmodifiableList` - An `ObservableList<>` that is
+  an **unmodifiable** copy of `internalList`. This list is used when external
   objects requests a copy of the current list of objects.
 
-
-
 However, there exists two key differences:
-1. `TaskList` is used to store `Task` objects as opposed to the storage of 
+1. `TaskList` is used to store `Task` objects as opposed to the storage of
    `Module` in `UniqueModuleList` and `Person` in `UniquePersonList`.
-2. A different `TaskList` instance exists in each `Module` object, meaning 
-   multiple instances of the `TaskList` object can exist within an 
+2. A different `TaskList` instance exists in each `Module` object, meaning
+   multiple instances of the `TaskList` object can exist within an
    `AddressBook` instance. On the other hand, there will always be only one
-   `UniqueModuleList` instance and one `UniquePersonList` instance in the 
+   `UniqueModuleList` instance and one `UniquePersonList` instance in the
    `AddressBook` instance.
 
 Here's a (partial) object diagram of an `AddressBook` instance:
@@ -195,18 +285,18 @@ Notice that there is only one instance of `UniquePersonList` (in purple) and
 </div>
 
 We have implemented the following `Command` classes:
-- `AddTaskCommand` allows the user to add a task to a specified `Module` in 
+- `AddTaskCommand` allows the user to add a task to a specified `Module` in
   Plannit.
-- `DeleteTaskCommand` allows the user to delete a task from a specified 
+- `DeleteTaskCommand` allows the user to delete a task from a specified
   `Module` in Plannit.
-- `SwapTaskCommand` allows the user to swap the order of `Task`s within a 
+- `SwapTaskCommand` allows the user to swap the order of `Task`s within a
   specified `Module` in Plannit.
 
-Given below is an example usage scenario and how the mechanism 
-behaves when a user adds a new `Task`. The behavior for the deleting and 
+Given below is an example usage scenario and how the mechanism
+behaves when a user adds a new `Task`. The behavior for the deleting and
 swapping of tasks is highly similar.
 
-**Step 1**. The user requests to add a task into a module present in Plannit by 
+**Step 1**. The user requests to add a task into a module present in Plannit by
 inputting the `add-task` command followed by the `m/` flag to indicate the
 module code argument and the `td/` flag indicate the task description argument.
 <br>
@@ -215,39 +305,39 @@ E.g.:
 add-task m/CS1231 td/Submit the weekly assignment
 ```
 
-**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the 
+**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the
 user input `String`.
 
-**Step 3**: The `LogicManager::execute` method first parses the user input 
+**Step 3**: The `LogicManager::execute` method first parses the user input
 `String` using the `AddressBookParser::parseCommand` method.
 
 **Step 4**: The command word, `add-task`, is extracted from the user input and
 a new `AddTaskCommandParser` is instantiated to parse the arguments.
 
-**Step 5**: The `AddTaskCommandParser::parse` method is then called to 
-parse the arguments. After validating the arguments provided by the user, a 
+**Step 5**: The `AddTaskCommandParser::parse` method is then called to
+parse the arguments. After validating the arguments provided by the user, a
 new `Task` is instantiated with the provided description.
 
-**Step 6**: An `AddTaskToModuleDescriptor` object is then instantiated to 
+**Step 6**: An `AddTaskToModuleDescriptor` object is then instantiated to
 contain the new `Task` and `ModuleCode` of the module to add the `Task` to.
 
-**Step 7**: This `AddTaskToModuleDescriptor` is then used to instantiate an 
+**Step 7**: This `AddTaskToModuleDescriptor` is then used to instantiate an
 `AddTaskCommand` object that is returned to the `LogicManager`.
 
-**Step 8**: The `AddTaskCommand::execute` method is then called by the 
-`LogicManager`. This method will first obtain the `Module` with the 
-`ModuleCode` indicated by the user by calling `Model::getModule`. A copy of 
-the `Module`'s fields are then created. 
+**Step 8**: The `AddTaskCommand::execute` method is then called by the
+`LogicManager`. This method will first obtain the `Module` with the
+`ModuleCode` indicated by the user by calling `Model::getModule`. A copy of
+the `Module`'s fields are then created.
 
 **Step 9**: A new `Task` is then added to the copied `TaskList` field.
 
-**Step 10**: A new `Module` is then created using the copied fields along 
+**Step 10**: A new `Module` is then created using the copied fields along
 with the updated `TaskList` field.
 
-**Step 11**: The `Module` currently existing in the `Model` is then 
+**Step 11**: The `Module` currently existing in the `Model` is then
 replaced with this new updated `Module` using the `Model::setModule` method.
 
-The following sequence diagram summarizes what happens when a user executes 
+The following sequence diagram summarizes what happens when a user executes
 the `add-task` command:
 
 ![AddTaskSequenceDiagram](images/AddDeleteSwapTaskFeature/AddTaskSequenceDiagram.png)
@@ -255,13 +345,13 @@ the `add-task` command:
 #### Design considerations:
 **Aspect: Data structure to store `Task`:**
 
-* **Alternative 1 (current choice): Define a new `TaskList` class** 
-    * Pros: Methods handling the adding, deleting and maintaining of `Task`s 
+* **Alternative 1 (current choice): Define a new `TaskList` class**
+    * Pros: Methods handling the adding, deleting and maintaining of `Task`s
       can be abstracted away into the `TaskList`.
     * Cons: Additional complexities brought about by implementing a new class.
 
 * **Alternative 2:** Store `Task` as an `ArrayList` field in `Module`.
-    * Pros: `Module` can directly handle the adding, deleting and 
+    * Pros: `Module` can directly handle the adding, deleting and
       maintaining of its `Task`s.
     * Cons: Poor adherence to [SOLID](https://nus-cs2103-ay2223s1.github.io/website/se-book-adapted/chapters/principles.html#solid-principles)
       design principles.
@@ -270,101 +360,109 @@ the `add-task` command:
 
 * **Alternative 1 (current choice):** Pass arguments as a single
   `AddTaskToModuleDescriptor` object.
-    * Pros: Neater to store all arguments in a single data structure. 
-      Will be highly beneficial when more fields are added to a `Task` 
+    * Pros: Neater to store all arguments in a single data structure.
+      Will be highly beneficial when more fields are added to a `Task`
       in the future.
     * Cons: Additional complexities brought about by implementing a new class.
 
-* **Alternative 2:** , Pass arguments directly into the `AddTaskCommand` 
+* **Alternative 2:** , Pass arguments directly into the `AddTaskCommand`
   constructor
     * Pros: Simpler to implement.
-    * Cons: Number of arguments taken in by the constructor will 
+    * Cons: Number of arguments taken in by the constructor will
       increase when more fields are added to a Task in the future.
 
-### \[Proposed\] Undo/redo feature
+### Goto module feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Goto module mechanism is facilitated by `GoToCommand`, `ModuleCodeMatchesKeywordPredicate` and `GoToCommandParser`.
+It allows users to navigate to a specific module given their respective module code. <br>
 
-* `VersionedAddressBook#commit()`—Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`—Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`—Restores a previously undone address book state from its history.
+It uses the following methods provided by `ModelManager` which implements the `Model` interface.
+* `ModelManager::updateFilteredModuleList`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `ModelManager::setHomeStatus`: Sets the home status of Plannit.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Given below is an example usage scenario and how the mechanism
+behaves when a user navigates to a module in Plannit.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+**Step 1**. The user requests to navigate to a module present in the Plannit
+by inputting the `goto` command followed by the module code of the module.
+E.g.:
+```
+goto CS1231
+```
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the
+user input `String`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+**Step 3**: The `LogicManager::execute` method first parses the user input
+`String` into a `Command` object using the `AddressBookParser::parseCommand`
+method.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+**Step 4**: The command word, `goto`, is extracted from the user input and
+a new `GoToCommandParser` is instantiated to parse the arguments.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+**Step 5**: The `GoToCommandParser::parse` method is then called to
+parse the arguments. After validating the arguments provided by the user, a
+new `ModuleCodeMatchesKeywordPredicate` is instantiated with the provided module code.
 
-Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 6**: The `ModuleCodeMatchesKeywordPredicate` object is then used to instantiate
+a `GoToCommand` object that is returned to the `LogicManager`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+**Step 7**: The `GoToCommand::execute` method is then called by the
+`LogicManager`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Step 8**: The current module list via `ModelManager::updateFilteredModuleList`,
+filtering the module list according to the predicate object instantiated in **Step 5**.
 
+**Step 9**: The home status is set to false via `ModelManager::SetHomeStatus`.
+
+**Step 10**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `goto` command:
+
+![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+<div style="page-break-after: always;"></div>
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The following activity diagram summarizes what happens when a user executes a `GoToCommand`:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+![GoToActivityDiagram](images/GoToActivityDiagram.png)
 
-</div>
+#### Design consideration:
 
-The following sequence diagram shows how the undo operation works:
+##### Aspect: How find executes
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+* **Alternative 1 (current choice):** Navigate to a single module by module code and updating home status.
+    * Pros:
+        * Provides an intuitive and more versatile way for users to navigate between modules.
+        * Provides an intuitive usage of commands by limiting the scope of possible commands usable
+          when out of the home page.
+    * Cons: Unable to search for multiple persons with different attributes.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* **Alternative 2:** Navigate to a single module by module code.
+    * Pros: Provides an intuitive and more versatile way for users to navigate between modules.
+    * Cons: Might result in confusion when some commands are usable out of the home page.
 
-</div>
+* **Alternative 3:** Navigate to module by index.
+    * Pros: Allows for quicker input as compared to typing out the entire module code
+    * Cons: Require user to navigate back to home page before going to another module which might be unintuitive for users.
 
-The `redo` command does the opposite—it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+##### Rationale behind current choice:
+* Alternative 1 was chosen as it provides a more intuitive way for prospective users.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+* The following commands`list-module`, `find-module` are implemented to allow users to filter
+  the module list via module code prefix and reset the filtered module list while in home page. <br>
+  It is not meant to be used in tandem with `goto` command. Instead, `home` command should be used to navigate back to the home page
+  after usage of the `goto` command.
 
-</div>
+Hence, to prevent confusion we chose Alternative 1.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
