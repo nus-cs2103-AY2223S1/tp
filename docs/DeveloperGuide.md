@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProjectListPanel`, `StaffListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -83,6 +83,13 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+### Current implementation
+The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
+There are 2 main columns, with the left column reflecting the `Project` and `Task` objects that are residing in the Model, and the right column reflecting the `Staff` objects that are residing in the Model.
+Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively.
+Each of the `ProjectCard`, `StaffCard` and `TaskCard` would display the fields under the corresponding `Project`, `Staff` and `Task` objects as discussed under [Model Component](#model-component).
+
 
 ### Logic component
 
@@ -114,24 +121,37 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data consisting of all `Project` objects (which are contained in a `UniqueProjectList` object) and all `Task` objects (which are contained in a `UniqueTaskList` object).
+* stores the currently 'selected' `Project` objects and `Task` objects  (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>` or `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+**API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/project/Project.java)
 
-</div>
+<img src="images/ModelProjectClassDiagram.png" width="650" />
 
+The `Project` class,
+
+* stores the details of a particular project (i.e. `ProjectName`, `Budget`, `Deadline`).
+* stores the details of all Staff members (which are contained in a `UniqueStaffList` object) working on the project.
+* at most one of this `Project` object (e.g., result of a view query) is stored in a separate _target_ list whose `UniqueStaffList` will be shown to outsiders e.g. the UI can be bound to this list so that the UI automatically updates when the data in this list changes.
+
+
+**API** : [`Task.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
+
+<img src="images/ModelTaskClassDiagram.png" width="550" />
+
+The `Task` class,
+
+* stores the details of a particular task (i.e. `TaskDescription`, `TaskDeadline`).
 
 ### Storage component
 
@@ -234,10 +254,106 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Task List
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+`Task List` is implemented in a way that is similar to
+`Staff List` and `Project List`. The `Task ` class is first created, alongside the supporting field
+classes `TaskDeadline` and `TaskDescription`. With these classes, the `Task` class can hold information
+regarding the description and deadline of a task.
 
+* `UniqueTaskList`: A list of tasks which are unique and can be displayed to the `UI`.
+* `Task`: The task to be done.
+* `TaskDeadline`: The deadline of the task.
+* `TaskDescription`: The description of the task.
+
+![img.png](images/TaskListUML.png)
+
+#### Design considerations
+
+* A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
+are well-defined.
+* By making sure all added tasks are checked using `Task.isSameTask`, we can be sure that
+there are no duplicates in the task list.
+* When storing the task list, we ensured that both `Project List` and `Task List` are stored together
+in one file so that the file can be read easily.
+
+### \[Proposed\] Mark and unmark task
+
+#### Proposed Implementation
+For tasks, they can either be marked as being completed or not. The proposed implementation would
+be to add a new field `TaskMark` into each `Task` object and `TaskMark` will only accept a `true` or
+`false` value.
+
+The `true` value would mean that the task is marked as completed and the `false` value
+mean that the task is not yet done.
+
+The switching of `true` and `false` values for `TaskMark` will be facillitaed using `mark INDEX` and
+`unmark INDEX` commands.
+
+* `mark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as completed.
+* `unmark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as uncompleted.
+
+The following activity diagram summarizes how users are expected to use the commands.
+
+![Expected mark and unmark command usage](images/MarkAndUnmarkActivityDiagram.png)
+
+The following sequence diagram shows how the mark command will run throughout HR Pro Max++.
+
+![mark command](images/MarkCommandSequenceDiagram.png)
+
+#### Design Consideration:
+
+* Users when done with a task might just delete it and thus the need to mark
+task as complete or not is redundant.
+  * Pros: Less memory since there is a need for task to have additional field and 2 extra commands
+  * Cons: Some users might like to record what they have done, so they would not delete completed tasks.
+  Having a way to mark task as completed or not will help them manage their task.
+
+
+### Delete Staff from a project
+
+#### Implementation
+
+For each project, there is a unique staff list and removing staff object from this list
+will remove staff that are part of the project. This can be done using a delete command
+specifically for staff called `delstaff`. This `Staff` is then deleted.
+
+As the `AddressBook` contains a unique `UniqueProjectList`, we would look through and find for
+the project with the specified `PROJECT_NAME`. Then from that project we would look through its
+`UniqueStaffList` to find the staff with the specified `STAFF_NAME`.
+
+If there is no project with the `PROJECT_NAME` or staff with the `STAFF_NAME`, exception is thrown.
+
+* `delstaff pn/PROJECT_NAME sn/STAFF_NAME` : deletes the staff with specified staff name from
+the project with the specified project name
+
+The activity diagram below shows how the `delstaff` command propagates through HR Pro Max++ to delete the staff.
+
+![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
+
+#### Design Consideration:
+
+The `delstaff` command could be implemented in the form `delstaff INDEX sn/STAFF_NAME`.
+* The `INDEX` would then refer to the project at that specific index of the projects displayed in the UI.
+* The `STAFF_NAME` would then be the keyword used to find a staff with a similar `STAFF_NAME` from
+the project with the specified index. This staff would then be deleted.
+
+Example:
+```
+Filtered project list :
+1) CS2103T TP
+2) CS2102 project
+3) Orbital
+```
+
+Index 2 in this case would refer to CS2102 project and then we would find the staff
+within CS2102 project staff list.
+
+Pros: Format similar to the delete command for project and task so would be easy to implement and spot bugs.
+
+Cons: Troublesome to delete since you might have to use multiple commands like list then find the `INDEX` before deleting.
+If you already know the `PROJECT_NAME` and `STAFF_NAME`, current implementation helps you to delete staff faster.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -402,9 +518,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 5a1. HR Pro Max++ shows error.
 
       Use case resume at step 5.
+
+**Use case: UC06- View Staff details**
+
+**MSS**
+
+1. User add staff to project(UC02).
+2. User request to view staff details.
+3. HR Pro Max++ displays staff details.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. The given project is invalid.
+    * 1a1. HR Pro Max++ shows error.
+
+      Use case resume at step 1.
+* 2a. The given project is invalid.
+    * 2a1. HR Pro Max++ shows error.
+
+      Use case resume at step 2.
+
     
 ### Non-Functional Requirements
-
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.

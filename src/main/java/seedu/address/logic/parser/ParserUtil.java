@@ -14,7 +14,7 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
-import seedu.address.model.staff.StaffInsurance;
+import seedu.address.model.staff.StaffLeave;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
@@ -138,15 +138,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String insurance} into a {@code StaffInsurance}.
+     * Parses {@code String leave} into a {@code StaffLeave}.
      */
-    public static StaffInsurance parseStaffInsurance(String insurance) throws ParseException {
-        requireNonNull(insurance);
-        String trimmedInsurance = insurance.trim();
-        if (!StaffInsurance.isValidStaffInsurance(insurance)) {
-            throw new ParseException(StaffInsurance.MESSAGE_CONSTRAINTS);
+    public static StaffLeave parseStaffLeave(String leave) throws ParseException {
+        requireNonNull(leave);
+        String trimmedLeave = leave.trim();
+        if (!StaffLeave.isValidStaffLeave(leave)) {
+            throw new ParseException(StaffLeave.MESSAGE_CONSTRAINTS);
         }
-        return new StaffInsurance(trimmedInsurance);
+        return new StaffLeave(trimmedLeave);
     }
 
     /**

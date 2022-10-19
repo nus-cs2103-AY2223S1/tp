@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_LEAVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -26,12 +26,13 @@ import seedu.address.model.staff.Staff;
  */
 public class AddStaffCommand extends Command {
     public static final String COMMAND_WORD = "addstaff";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the Project List. "
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to a selected project. "
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
             + PREFIX_STAFF_NAME + "NAME "
             + PREFIX_STAFF_CONTACT + "PHONE_NUMBER "
-            + PREFIX_STAFF_INSURANCE + "INSURANCE_STATUS "
+            + PREFIX_STAFF_LEAVE + "LEAVE_STATUS "
             + PREFIX_STAFF_TITLE + "STAFF_TITLE "
             + PREFIX_STAFF_DEPARTMENT + "STAFF_DEPARTMENT "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -39,7 +40,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_PROJECT_NAME + "CS2103T TP "
             + PREFIX_STAFF_NAME + "John Doe "
             + PREFIX_STAFF_CONTACT + "98765432 "
-            + PREFIX_STAFF_INSURANCE + "true "
+            + PREFIX_STAFF_LEAVE + "true "
             + PREFIX_STAFF_TITLE + "Accountant "
             + PREFIX_STAFF_DEPARTMENT + "Accounting";
 
