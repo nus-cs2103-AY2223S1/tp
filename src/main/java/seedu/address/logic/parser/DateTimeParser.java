@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -13,25 +14,18 @@ import seedu.address.model.reminder.DateTime;
  * Contains utility methods used for parsing date time strings.
  */
 public class DateTimeParser {
-    public static final String DATE_TIME_FORMATTER = "dd MMM yy 'at' HH:mm";
-    public static final String[] VALID_ISO8601_DATE_TIME_FORMATS = {
-        "yyyy-MM-dd", "yyyy-MM-dd H:mm", "yyyy-MM-dd h:mm a", "yyyy-MM-dd h:mma"};
-    public static final String[] VALID_DATE_FORMATS = {
-        "d MM yy", "d/MM/yy", "d-MM-yy", "d MMM yy",
-        "d/MMM/yy", "d-MMM-yy", "d MM yyyy", "d/MM/yyyy",
-        "d-MM-yyyy", "d MMM yyyy", "d/MMM/yyyy", "d-MMM-yyyy"};
+    public static final String DATE_TIME_FORMATTER = "yyyy-MM-dd 'at' HH:mm";
     public static final String[] VALID_DATE_24HOUR_TIME_FORMATS = {
-        "d MM yy H:mm", "d/MM/yy H:mm", "d-MM-yy H:mm", "d MMM yy H:mm",
-        "d/MMM/yy H:mm", "d-MMM-yy H:mm", "d MM yyyy H:mm", "d/MM/yyyy H:mm",
-        "d-MM-yyyy H:mm", "d MMM yyyy H:mm", "d/MMM/yyyy H:mm", "d-MMM-yyyy H:mm"};
+        "yy-M-d H:mm", "yy-MMM-d H:mm", "yyyy-M-d H:mm", "yyyy-MMM-d H:mm"};
     public static final String[] VALID_DATE_AMPM_TIME_FORMATS = {
-        "d MM yy h:mm a", "d/MM/yy h:mm a", "d-MM-yy h:mm a", "d MMM yy h:mm a",
-        "d/MMM/yy h:mm a", "d-MMM-yy h:mm a", "d MM yyyy h:mm a", "d/MM/yyyy h:mm a",
-        "d-MM-yyyy h:mm a", "d MMM yyyy h:mm a", "d/MMM/yyyy h:mm a", "d-MMM-yyyy h:mm a"};
-    public static final String[][] ALL_DATE_TIME_FORMATS = {VALID_ISO8601_DATE_TIME_FORMATS, VALID_DATE_FORMATS,
-        VALID_DATE_24HOUR_TIME_FORMATS, VALID_DATE_AMPM_TIME_FORMATS};
+        "yy-M-d h:mm a", "yy-MMM-d h:mm a", "yyyy-M-d h:mm a", "yyyy-MMM-d h:mm a",
+        "yy-M-d h:mma", "yy-MMM-d h:mma", "yyyy-M-d h:mma", "yyyy-MMM-d h:mma"};
+    public static final String[][] ALL_DATE_TIME_FORMATS = {
+        VALID_DATE_24HOUR_TIME_FORMATS, VALID_DATE_AMPM_TIME_FORMATS };
 
-    public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "Please enter a valid date time";
+    public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "Please enter a valid date time "
+            + "in the following format: year-month-day hour:minute\n"
+            + "Example: 2022-12-27 23:00, 22-08-25 07:30, 22-nov-11 7:00PM";
 
     /**
      * Parses a {@code String dateTime} into a {@code DateTime}.
@@ -68,7 +62,10 @@ public class DateTimeParser {
     private static LocalDateTime parseLocalDateTime(String dateTimeString, String[] formats) {
         LocalDateTime dateTime = null;
         for (int i = 0; i < formats.length; i++) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formats[i]);
+            DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                    .parseCaseInsensitive()
+                    .appendPattern(formats[i])
+                    .toFormatter();
             try {
                 dateTime = LocalDateTime.parse(dateTimeString, formatter);
                 break;

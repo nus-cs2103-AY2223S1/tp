@@ -14,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * in the ReminderCommandGroup, as indicated by the commandSpecifier.
  */
 public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> {
-    private static String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s",
+    public static final String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s",
                     ReminderCreateCommand.MESSAGE_USAGE,
                     ReminderDeleteCommand.MESSAGE_USAGE,
                     ReminderClearCommand.MESSAGE_USAGE);

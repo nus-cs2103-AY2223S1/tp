@@ -16,7 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * in the TagCommandGroup, as indicated by the commandSpecifier.
  */
 public class TagCommandGroupParser implements Parser<TagCommandGroup> {
-    private static String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s",
+    public static final String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s",
                     CreateTagCommand.MESSAGE_USAGE,
                     TagCommand.MESSAGE_USAGE,
                     RemoveTagCommand.MESSAGE_USAGE);
