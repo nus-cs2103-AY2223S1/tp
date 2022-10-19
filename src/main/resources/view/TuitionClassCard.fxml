@@ -38,10 +38,10 @@
                <FlowPane fx:id="tags1" />
             </children>
          </HBox>
-      <Label fx:id="day" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="time" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="level" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="subject" styleClass="cell_small_label" text="\$level" />
+      <Label fx:id="day" styleClass="cell_small_label" text="\$day" />
+      <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
+      <Label fx:id="level" styleClass="cell_small_label" text="\$level" />
+      <Label fx:id="subject" styleClass="cell_small_label" text="\$subject" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

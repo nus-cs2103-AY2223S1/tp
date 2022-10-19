@@ -33,18 +33,6 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     protected Label id;
     @FXML
-    protected Label phone;
-    @FXML
-    protected Label address;
-    @FXML
-    protected Label email;
-    @FXML
-    protected Label level;
-    @FXML
-    protected Label school;
-    @FXML
-    protected FlowPane tags;
-    @FXML
     protected FlowPane classes;
 
     /**
@@ -55,15 +43,6 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText("Phone: " + student.getPhone().value);
-        address.setText("Address: " + student.getAddress().value);
-        email.setText("Email: " + student.getEmail().value);
-        level.setText("Level: " + student.getLevel().level);
-        //nextOfKin.setText("Next of Kin: " + student.getNextOfKin().nextOfKin);
-        school.setText("School: " + student.getSchool().school);
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         student.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
                 .forEach(tuitionClass -> classes.getChildren()

@@ -32,17 +32,9 @@ public class TutorCard extends UiPart<Region> {
     @FXML
     protected Label id;
     @FXML
-    protected Label phone;
-    @FXML
-    protected Label address;
-    @FXML
-    protected Label email;
-    @FXML
-    protected Label institution;
-    @FXML
-    protected Label qualification;
-    @FXML
     protected FlowPane tags;
+    @FXML
+    protected FlowPane classes;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,14 +44,10 @@ public class TutorCard extends UiPart<Region> {
         this.tutor = tutor;
         id.setText(displayedIndex + ". ");
         name.setText(tutor.getName().fullName);
-        phone.setText("Phone: " + tutor.getPhone().value);
-        address.setText("Address: " + tutor.getAddress().value);
-        email.setText("Email: " + tutor.getEmail().value);
-        institution.setText("Institution: " + tutor.getInstitution().institution);
-        qualification.setText("Qualification: " + tutor.getQualification().qualification);
-        tutor.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tutor.getTuitionClasses().stream()
+                .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
+                .forEach(tuitionClass -> classes.getChildren()
+                        .add(new Label(tuitionClass.getName().name.toUpperCase())));
     }
 
     @Override

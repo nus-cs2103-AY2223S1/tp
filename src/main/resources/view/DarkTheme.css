@@ -140,6 +140,12 @@
     -fx-text-fill: white;
 }
 
+.name-label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 20px;
+    -fx-text-fill: #010504;
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
@@ -397,7 +403,7 @@
     -fx-padding: 1 5 1 5;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 10px;
+    -fx-font-size: 12px;
     -fx-alignment: center;
 }
 
@@ -449,4 +455,8 @@
     -fx-background-radius: 2;
     -fx-padding: 1 3 1 3;
     -fx-font-size: 11;
+}
+
+.studentColor {
+    -fx-background-color: #d2691e;
 }
