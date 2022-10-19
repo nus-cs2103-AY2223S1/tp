@@ -176,17 +176,9 @@ public class ParserUtil {
             throw new ParseException(Social.MESSAGE_CONSTRAINTS);
         }
         String[] strArray = socialStr.split("@");
-        if (strArray.length != 2) {
-            throw new ParseException(Social.MESSAGE_CONSTRAINTS);
-        }
         String platform = strArray[0];
-        if (strArray[0] == "") {
-            throw new ParseException(Social.MESSAGE_CONSTRAINTS);
-        }
         String handle = strArray[1];
-
         return new Social(handle, platform);
-
     }
 
     /**

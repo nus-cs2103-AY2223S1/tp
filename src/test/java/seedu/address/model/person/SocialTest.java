@@ -20,11 +20,11 @@ public class SocialTest {
 
         // invalid social handles
         assertFalse(Social.isValidSocial(" ")); // spaces only
+        assertFalse(Social.isValidSocial("@username")); // no platform
         assertFalse(Social.isValidSocial("facebook@")); // no handle
         assertFalse(Social.isValidSocial("instagram@username@2002")); // multiple '@'s
 
         // valid social handles
-        assertTrue(Social.isValidSocial("")); // empty string
         assertTrue(Social.isValidSocial("snapchat@hellokitty")); // alphabets only
         assertTrue(Social.isValidSocial("2002@123456")); // numbers only
         assertTrue(Social.isValidSocial("facebook@user123")); // alphanumeric

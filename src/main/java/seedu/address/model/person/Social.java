@@ -17,8 +17,8 @@ public class Social {
      */
     public static final String VALIDATION_REGEX = ".*@.*";
 
-    private String handle;
-    private String platform;
+    private final String handle;
+    private final String platform;
 
     /**
      * Constructs a {@code Social}.
@@ -53,7 +53,9 @@ public class Social {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidSocial(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String[] strArray = test.split("@");
+        return strArray.length == 2 && !strArray[0].equals("") && !strArray[1].equals("")
+                && test.matches(VALIDATION_REGEX);
     }
 
     public String toString() {
