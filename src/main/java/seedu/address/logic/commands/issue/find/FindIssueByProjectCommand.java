@@ -1,13 +1,13 @@
 package seedu.address.logic.commands.issue.find;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.issue.predicates.ProjectContainsKeywordsPredicate;
-import seedu.address.model.issue.predicates.StatusMatchesKeywordsPredicate;
 import seedu.address.ui.Ui;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a class to find and filter issue list by project.

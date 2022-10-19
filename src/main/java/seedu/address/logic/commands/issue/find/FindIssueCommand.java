@@ -2,7 +2,6 @@ package seedu.address.logic.commands.issue.find;
 
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
