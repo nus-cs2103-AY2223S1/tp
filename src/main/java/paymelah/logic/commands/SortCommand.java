@@ -11,7 +11,7 @@ import paymelah.model.Model;
 import paymelah.model.person.Person;
 
 /**
- * Sorts persons in the address book by the alphabetical order their names.
+ * Sorts persons in the address book by their names or amount owed.
  */
 public class SortCommand extends Command {
 

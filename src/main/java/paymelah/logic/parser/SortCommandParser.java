@@ -24,15 +24,14 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
-     * and returns an SortCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * and returns a SortCommand object for execution.
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public SortCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MONEY);
 
-        if ((!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)
-                && (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_MONEY)))
+        if (!ParserUtil.isExactlyOneOfPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MONEY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
@@ -49,7 +48,6 @@ public class SortCommandParser implements Parser<SortCommand> {
                 break;
             case "-":
                 comparator = new NameComparator().reversed();
-                criteria = CRITERIA_NAME;
                 order = ORDER_DESCENDING;
                 break;
             default:
@@ -59,15 +57,14 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         if (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_MONEY)) {
             String arg = argMultimap.getValue(PREFIX_MONEY).get().trim();
+            criteria = CRITERIA_MONEY;
             switch (arg) {
             case "+":
                 comparator = new TotalDebtAmountComparator();
-                criteria = CRITERIA_MONEY;
                 order = ORDER_ASCENDING;
                 break;
             case "-":
                 comparator = new TotalDebtAmountComparator().reversed();
-                criteria = CRITERIA_MONEY;
                 order = ORDER_DESCENDING;
                 break;
             default:
