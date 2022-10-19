@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.ViewModuleScheduleCommand;
+import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 
@@ -16,24 +16,24 @@ import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new ViewScheduleCommand object
  */
-public class ViewScheduleCommandParser implements Parser<ViewModuleScheduleCommand> {
+public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewScheduleCommand
      * and returns a ViewScheduleCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ViewModuleScheduleCommand parse(String args) throws ParseException {
+    public ViewScheduleCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isEmpty()) {
-            return new ViewModuleScheduleCommand();
+            return new ViewScheduleCommand();
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WEEKDAY, PREFIX_MODULE_OF_SCHEDULE);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewModuleScheduleCommand.MESSAGE_USAGE));
+                    ViewScheduleCommand.MESSAGE_USAGE));
         }
 
         Set<String> weekdaysList = ParserUtil.parseWeekdays(argMultimap.getAllValues(PREFIX_WEEKDAY));
@@ -43,7 +43,7 @@ public class ViewScheduleCommandParser implements Parser<ViewModuleScheduleComma
         keywords.addAll(weekdaysList);
         keywords.addAll(modulesList);
 
-        return new ViewModuleScheduleCommand(new ScheduleContainsKeywordsPredicate(keywords));
+        return new ViewScheduleCommand(new ScheduleContainsKeywordsPredicate(keywords));
     }
 
     /**

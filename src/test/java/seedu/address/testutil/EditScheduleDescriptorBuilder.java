@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditScheduleCommand.EditScheduleDescriptor;
+import seedu.address.logic.commands.schedule.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.model.module.schedule.ClassType;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.Venue;

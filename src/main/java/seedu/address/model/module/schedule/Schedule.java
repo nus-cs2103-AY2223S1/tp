@@ -12,8 +12,21 @@ public class Schedule {
     public static final String MESSAGE_WEEKDAYS_CONSTRAINT = "Weekday should be one of Monday, Tuesday, Wednesday, "
             + "Thursday, Friday, Saturday, and Sunday.";
 
-    public static final String MESSAGE_CLASS_TIME_CONSTRAINT = "The time slot of a class should follow the format of "
-            + "HH:MM-HH:MM";
+
+    public static final String MESSAGE_TIMESLOT_CONSTRAINT = "The time slot of a class should follow the 24:00-format"
+            + " : HH:MM-HH:MM" + "\n"
+            + "HH denotes hour : from 00 to 23 \n"
+            + "MM denotes minute : only 00 or 30 \n";
+
+    public static final String MESSAGE_CLASS_STARTINGTIME_CONSTRAINT = "The class starting time should be after 08:00 "
+            + "\n";
+    public static final String MESSAGE_CLASS_ENDINGTIME_CONSTRAINT = "The class ending time should be before 22:00 \n";
+    public static final String MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT = "The class starting time should be before "
+            + "the class ending time \n";
+    public static final String MESSAGE_CLASS_TIME_CONSTRAINT = MESSAGE_TIMESLOT_CONSTRAINT
+            + MESSAGE_CLASS_STARTINGTIME_CONSTRAINT
+            + MESSAGE_CLASS_ENDINGTIME_CONSTRAINT
+            + MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT;
     public static final String MESSAGE_CLASS_TYPE_CONSTRAINT = "Class type should be one of lec, tut, lab, rec.";
     private String module;
     private Venue venue;

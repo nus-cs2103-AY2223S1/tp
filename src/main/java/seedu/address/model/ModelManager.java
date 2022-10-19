@@ -178,6 +178,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearSchedules() {
+        addressBook.clearSchedules();
+        updateFilteredScheduleList((PREDICATE_SHOW_ALL_SCHEDULES));
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
@@ -285,10 +291,9 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-        // filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
+        filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
         requireNonNull(predicate);
         filteredSchedule.setPredicate(predicate);
-        // filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
     }
 
     @Override

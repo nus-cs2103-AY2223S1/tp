@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
@@ -6,13 +6,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 
 /**
  * Views all slots in the schedule which satisfies selection requirements
  */
-public class ViewModuleScheduleCommand extends Command {
+public class ViewScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
@@ -25,11 +27,11 @@ public class ViewModuleScheduleCommand extends Command {
 
     private final ScheduleContainsKeywordsPredicate predicate;
 
-    public ViewModuleScheduleCommand() {
+    public ViewScheduleCommand() {
         this.predicate = null;
     }
 
-    public ViewModuleScheduleCommand(ScheduleContainsKeywordsPredicate predicate) {
+    public ViewScheduleCommand(ScheduleContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -52,8 +54,8 @@ public class ViewModuleScheduleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof ViewModuleScheduleCommand
-                && predicate.equals(((ViewModuleScheduleCommand) other).predicate));
+                || (other instanceof ViewScheduleCommand
+                && predicate.equals(((ViewScheduleCommand) other).predicate));
     }
 
 }

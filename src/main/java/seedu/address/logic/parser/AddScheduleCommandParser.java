@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddScheduleCommand;
+import seedu.address.logic.commands.schedule.AddScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.schedule.ClassType;
 import seedu.address.model.module.schedule.Schedule;
@@ -41,8 +41,17 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         ClassType classType = ParserUtil.parseClassType(argMultimap.getValue(PREFIX_CLASS_CATEGORY).get());
         Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_CLASS_VENUE).get());
 
-        Schedule newSchedule = new Schedule(module, venue, weekday, startTime, endTime, classType);
-        return new AddScheduleCommand(newSchedule);
+        System.out.println("1");
+        if (isValidTimeSlot(startTime, endTime)) {
+            System.out.println("10");
+            Schedule newSchedule = new Schedule(module, venue, weekday, startTime, endTime, classType);
+            return new AddScheduleCommand(newSchedule);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddScheduleCommand.MESSAGE_USAGE));
+        }
+
+
     }
 
     /**
@@ -51,5 +60,41 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static boolean isValidTimeSlot(String startTime, String endTime) throws ParseException {
+        try {
+            int startHour = Integer.parseInt(startTime.split(":")[0]);
+            int startMin = Integer.parseInt(startTime.split(":")[1]);
+            int endHour = Integer.parseInt(endTime.split(":")[0]);
+            int endMin = Integer.parseInt(endTime.split(":")[1]);
+
+            if (startHour >= 24 || endHour >= 24 || startHour < 0 || endHour < 0) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            System.out.println("2");
+            if (startMin != 0 && startMin != 30 && endMin != 0 && endMin != 30) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            System.out.println("3");
+            if (startHour < 7) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
+            }
+            System.out.println("4");
+            if (endHour >= 22 && endMin > 0 ) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
+            }
+
+            if ((startHour > endHour) || ((startHour == endHour) && (startMin > endMin))) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT);
+            }
+
+            return true;
+
+
+        } catch (Exception e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddScheduleCommand.MESSAGE_USAGE));
+        }
+
     }
 }

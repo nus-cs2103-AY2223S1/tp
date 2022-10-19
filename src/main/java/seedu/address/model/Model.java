@@ -106,6 +106,11 @@ public interface Model {
     void deleteSchedule(Schedule target);
 
     /**
+     * Clears all schedules.
+     */
+    void clearSchedules();
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the ProfNUS.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the ProfNUS.

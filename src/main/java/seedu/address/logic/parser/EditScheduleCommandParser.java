@@ -10,8 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditScheduleCommand;
-import seedu.address.logic.commands.EditScheduleCommand.EditScheduleDescriptor;
+import seedu.address.logic.commands.schedule.EditScheduleCommand;
+import seedu.address.logic.commands.schedule.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

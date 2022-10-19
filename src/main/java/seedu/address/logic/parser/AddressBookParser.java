@@ -6,19 +6,20 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddScheduleCommand;
+import seedu.address.logic.commands.schedule.AddScheduleCommand;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteScheduleCommand;
-import seedu.address.logic.commands.EditScheduleCommand;
+import seedu.address.logic.commands.schedule.ClearScheduleCommand;
+import seedu.address.logic.commands.schedule.DeleteScheduleCommand;
+import seedu.address.logic.commands.schedule.EditScheduleCommand;
 import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewModuleScheduleCommand;
+import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.logic.commands.module.AddModuleCommand;
 import seedu.address.logic.commands.module.DeleteModuleCommand;
 import seedu.address.logic.commands.module.EditModuleCommand;
@@ -83,10 +84,13 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case ClearScheduleCommand.COMMAND_WORD:
+            return new ClearScheduleCommand();
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ViewModuleScheduleCommand.COMMAND_WORD:
+        case ViewScheduleCommand.COMMAND_WORD:
             return new ViewScheduleCommandParser().parse(arguments);
             // return new ViewScheduleCommand();
 
