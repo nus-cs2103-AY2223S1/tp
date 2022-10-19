@@ -39,7 +39,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label telegram;
+    private Label telegramHandle;
     @FXML
     private Label tutorialModule;
     @FXML
@@ -64,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
         stuId.setText("Student ID: " + student.getId().id);
         phone.setText("Phone: " + student.getPhone().value);
         email.setText("Email: " + student.getEmail().value);
-        telegram.setText("Telegram: @" + student.getTelegram().telegram);
+        telegramHandle.setText("Telegram: @" + student.getTelegram().telegram);
         tutorialModule.setText(student.getTutorialModule().moduleName);
         tutorialName.setText(student.getTutorialName().fullName);
         attendance.setText("Attendance: " + student.getAttendance().value);
