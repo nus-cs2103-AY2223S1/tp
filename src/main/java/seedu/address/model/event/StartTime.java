@@ -44,7 +44,6 @@ public class StartTime {
         try {
             LocalTime.parse(test, checkAndLogFormatter);
         } catch (DateTimeParseException e) {
-            System.out.println(e);
             return false;
         }
         return true;
