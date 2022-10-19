@@ -28,13 +28,23 @@ public class SortCommandParserTest {
 
     // No Trailing or leading whitespaces
     @Test
-    public void parse_validArgs_returnsSortCommand() {
+    public void parse_validArgs_returnsSortCommandAsc() {
         SortCommand expectedSortCommand =
-                new SortCommand(new SortByName(), "name");
+                new SortCommand(new SortByName("asc"), "name");
         assertParseSuccess(parser, "name", expectedSortCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name \n", expectedSortCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsSortCommandDesc() {
+        SortCommand expectedSortCommand =
+                new SortCommand(new SortByName("desc"), "name");
+        assertParseSuccess(parser, "name desc", expectedSortCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n name desc \n", expectedSortCommand);
     }
 }
 
