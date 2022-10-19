@@ -44,7 +44,7 @@ public class ClassStorage {
         ObservableList<Person> listOfPersons = teachersPet.getPersonList();
         for (Person person : listOfPersons) {
             Class classOfPerson = person.getAClass();
-            if (!classOfPerson.classDateTime.equals("")) {
+            if (!classOfPerson.isEmpty()) {
                 if (!map.containsKey(classOfPerson.date)) {
                     List<Person> newListOfPersons = new ArrayList<>();
                     newListOfPersons.add(person);
@@ -114,7 +114,7 @@ public class ClassStorage {
      * @param personToEdit Person object.
      */
     public static void removeExistingClass(Person personToEdit) {
-        if (!personToEdit.getAClass().classDateTime.equals("")) {
+        if (!personToEdit.hasEmptyClass()) {
             LocalDate date = personToEdit.getAClass().date;
             // Removes the pre-existing class from storage to prevent future conflicts
             ClassStorage.classes.get(date).remove(personToEdit);
