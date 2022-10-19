@@ -48,7 +48,6 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
         Set<Index> nonSelfIndexList;
 
         try {
-
             List<String> indexList = Arrays.stream(argMultimap.getPreamble().split(" "))
                     .collect(Collectors.toList());
             logger.info("Split Debt command Person index list: " + indexList);
