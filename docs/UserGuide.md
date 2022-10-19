@@ -99,6 +99,7 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022 r/low 
    pl/NTUC Income Plan`  
 
+
 ---
 
 ### Listing all client : `list`
@@ -115,6 +116,7 @@ Edits an existing client in the FinBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
         [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`
+
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​

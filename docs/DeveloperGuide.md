@@ -351,7 +351,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * manage contacts faster than a typical mouse/GUI driven app
 * FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients' details as well as portfolio in one glance
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -359,24 +358,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …                                     | I can …                                                                          | So that …                                                                           |
 |----------|--------------------------------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | `* * *`  | relatively new user                        | add a new client                                                                 | I wont forget my new client's details                                               |
-| `* * *`  | relatively new user                        | delete meeting dates for a contact                                               | I can maintain an updated list of my clients’ details                               |
+| `* * *`  | relatively new user                        | delete meeting dates for a client                                                | I can maintain an updated list of my clients’ details                               |
 | `* * *`  | relatively new user                        | click a button                                                                   | I can exit the program easily                                                       |
 | `* * *`  | relatively new user                        | save my clients' data                                                            | the data will not be lost after I close the application                             |
-| `* * *`  | relatively new user                        | update meeting dates for a contact                                               | I can maintain an updated list of my clients’ details                               |
-| `* * *`  | relatively new user                        | read updated meeting dates for a contact                                         | I can always know an updated list of my clients’ details                            |
-| `* * *`  | relatively new user                        | list all contacts                                                                | I will be able to find and view all my clients easily                               |
-| `* * *`  | relatively new user                        | view email addresses as part of contact information                              | it would be easier for me to contact the respective client                          |
+| `* * *`  | relatively new user                        | update meeting dates for a client                                                | I can maintain an updated list of my clients’ details                               |
+| `* * *`  | relatively new user                        | read updated meeting dates for a client                                          | I can always know an updated list of my clients’ details                            |
+| `* * *`  | relatively new user                        | list all clients                                                                 | I will be able to find and view all my clients easily                               |
+| `* * *`  | relatively new user                        | view email addresses as part of client information                               | it would be easier for me to contact the respective client                          |
 | `* *`    | user ready to start using the app          | import a set of data from another source                                         | I do not have to insert each client’s data one by one                               |
-| `* *`    | user who is a little familiar with the app | search for contacts                                                              | I do not have to scroll through all of my clients’ details to find a certain client |
+| `* *`    | user who is a little familiar with the app | search for clients                                                               | I do not have to scroll through all of my clients’ details to find a certain client |
 | `*`      | user who is a little familiar with the app | sort meetings                                                                    | I can plan for the upcoming days                                                    |
 | `*`      | user ready to start using the app          | purge all current data                                                           | I can get rid of sample/experimental data I used for exploring the app              |
 | `*`      | user ready to start using the app          | view a list of instructions or commands built in by the app for easier reference | it would be easier for me to adapt to these commands                                |
 | `*`      | user ready to start using the app          | be asked to set up a password                                                    | I don’t forget it later                                                             |
-| `*`      | user who is familiar with the app          | sort my contacts into groups                                                     | I can keep them organised                                                           |
+| `*`      | user who is familiar with the app          | sort my clients into groups                                                      | I can keep them organised                                                           |
 | `*`      | user who is familiar with the app          | copy data to the clipboard with the click of a button or the use of a shortcut   | it is more convenient for me                                                        |
 | `*`      | new user                                   | choose to use a generated password                                               | I can avoid using an insecure password                                              |
 | `*`      | new user                                   | lock the application                                                             | unauthorised parties cannot access my data                                          |
-| `*`      | long-time user                             | view the dashboard as an overview for all contacts                               | I can view the overall details of all my clients                                    |
+| `*`      | long-time user                             | view the dashboard as an overview for all clients                                | I can view the overall details of all my clients                                    |
 | `*`      | long-time user                             | archive/hide unused data                                                         | I am not distracted by irrelevant data                                              |
 | `*`      | long-time user                             | archive/hide unused data                                                         | I am not distracted by irrelevant data                                              |
 | `*`      | long-time user                             | delete multiple “old” clients                                                    | I can easily identify clients I am still working with                               |
@@ -656,16 +655,16 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: Importing an invalid JSON file
        Expected: list of clients will be empty and nothing is shown
-   
+
     2. Test case: Importing an invalid CSV file
        Expected: list of clients will be empty and nothing is shown
-   
+
     3. Test case: Editing the JSON file when the application is not launched with invalid datas
        Expected: list of clients will be empty and nothing is shown
-   
+
     4. Test case: Missing JSON file
        Expected: Creates a new addressbook.json file when there is a new command entered
-   
+
     5. {explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
