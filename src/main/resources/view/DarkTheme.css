@@ -351,6 +351,29 @@
     -fx-background-radius: 4px;
 }
 
+.addButton, .addButton:armed, .addButton:pressed, .addButton:selected, .addButton:hover, .addButton:focused {
+    -fx-background-color: #949AA4, #1E2128;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0, 1;
+    -fx-border-width: 0px;
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: #D3D3D3;
+}
+
+.addButton:focused {
+    -fx-border-insets: 0;
+}
+
+.addButton:hover {
+    -fx-background-color: #949AA4, #282D39;
+}
+
+.addButton:pressed {
+    -fx-background-color: #949AA4, #383D48;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

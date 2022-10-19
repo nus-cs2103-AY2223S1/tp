@@ -8,6 +8,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
@@ -25,6 +26,8 @@ public class CommissionListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Commission> commissionListView;
+    @FXML
+    private AnchorPane commissionPanelControlsPlaceholder;
 
     /**
      * Creates a {@code CommissionListPanel} with the given {@code ObservableList}.
@@ -33,6 +36,7 @@ public class CommissionListPanel extends UiPart<Region> {
                                Consumer<Commission> selectCommission,
                                ObservableObject<Commission> selectedCommission) {
         super(FXML);
+        commissionPanelControlsPlaceholder.getChildren().add(new CommissionListPanelControlBar().getRoot());
         this.updateUI(observableCommissionList.getValue().getValue());
         this.selectCommission = selectCommission;
 
