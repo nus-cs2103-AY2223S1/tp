@@ -103,7 +103,6 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        
         if (!Description.isValidTaskDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
