@@ -43,7 +43,7 @@ public class ConditionList implements GenericList<Condition> {
      */
     public boolean contains(Condition toCheck) {
         requireNonNull(toCheck);
-        return internalConditionList.stream().anyMatch(toCheck::equals);
+        return internalConditionList.contains(toCheck);
     }
 
     @Override

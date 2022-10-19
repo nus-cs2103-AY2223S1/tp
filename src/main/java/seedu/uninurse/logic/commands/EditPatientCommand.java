@@ -19,6 +19,7 @@ import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.CollectionUtil;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -95,10 +96,12 @@ public class EditPatientCommand extends EditGenericCommand {
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        ConditionList updatedConditions = patientToEdit.getConditions(); // editing of conditions is not supported
         TaskList updatedTasks = patientToEdit.getTasks(); // editPatient command does not allow editing tasks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTasks, updatedTags);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedConditions, updatedTasks,
+                updatedTags);
     }
 
     @Override

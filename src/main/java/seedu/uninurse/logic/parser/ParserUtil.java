@@ -14,6 +14,8 @@ import java.util.Set;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.StringUtil;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
+import seedu.uninurse.model.condition.Condition;
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -128,6 +130,33 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String condition} into a {@code Condition}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code condition} is invalid.
+     */
+    public static Condition parseCondition(String condition) throws ParseException {
+        requireNonNull(condition);
+        String trimmedCondition = condition.trim();
+        if (!Condition.isValidCondition(trimmedCondition)) {
+            throw new ParseException(Condition.MESSAGE_CONSTRAINTS);
+        }
+        return new Condition(trimmedCondition);
+    }
+
+    /**
+     * Parses {@code Collection<String> conditions} into a {@code ConditionList}.
+     */
+    public static ConditionList parseConditions(Collection<String> conditions) throws ParseException {
+        requireNonNull(conditions);
+        final List<Condition> conditionList = new ArrayList<>();
+        for (String condition : conditions) {
+            conditionList.add(parseCondition(condition));
+        }
+        return new ConditionList(conditionList);
     }
 
     /**

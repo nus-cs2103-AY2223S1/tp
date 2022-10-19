@@ -3,6 +3,7 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -56,6 +57,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_CONDITION_DESC = " "
+            + PREFIX_CONDITION; // empty string not allowed for conditions
     public static final String INVALID_TASK_DESC = " "
             + PREFIX_TASK_DESCRIPTION; // empty string not allowed for tasks descriptions
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags

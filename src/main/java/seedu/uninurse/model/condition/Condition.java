@@ -1,7 +1,6 @@
 package seedu.uninurse.model.condition;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
 
 /**

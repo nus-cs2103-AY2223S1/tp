@@ -2,10 +2,12 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
@@ -21,14 +23,18 @@ public class AddPatientCommand extends AddGenericCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + "[" + PREFIX_CONDITION + "CONDITION]... "
+            + "[" + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_CONDITION + "Cerebral palsy "
+            + PREFIX_TASK_DESCRIPTION + "Refer to rehabilitation therapist "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "highRisk";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the uninurse book";
