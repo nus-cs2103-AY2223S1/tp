@@ -131,10 +131,8 @@ public class MainWindow extends UiPart<Stage> {
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         // show the person list by default.
-//        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-//        listHeader.setText("Student");
-        modelListPanelPlaceholder.getChildren().add(gradeChart.getRoot());
-        listHeader.setText("Grade Chart");
+        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listHeader.setText("Student");
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -156,6 +154,15 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Opens the pie chart.
+     */
+    public void handleShowChart() {
+        modelListPanelPlaceholder.getChildren().clear();
+        modelListPanelPlaceholder.getChildren().add(gradeChart.getRoot());
+        listHeader.setText("Grade chart");
     }
 
     /**
@@ -241,6 +248,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowChart()) {
+                handleShowChart();
             }
 
             return commandResult;
