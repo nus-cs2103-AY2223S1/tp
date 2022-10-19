@@ -3,9 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":ModtRektParser" as ModtRektParser LOGIC_COLOR
+participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
+participant "d:RemoveCommand" as RemoveCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,56 +13,56 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete -m 1")
 activate LogicManager
 
-LogicManager -> ModuleListParser : parseCommand("delete 1")
-activate ModuleListParser
+LogicManager -> ModtRektParser : parseCommand("delete -m 1")
+activate ModtRektParser
 
-create DeleteCommandParser
-ModuleListParser -> DeleteCommandParser
-activate DeleteCommandParser
+create RemoveCommandParser
+ModtRektParser -> RemoveCommandParser
+activate RemoveCommandParser
 
-DeleteCommandParser --> ModuleListParser
-deactivate DeleteCommandParser
+RemoveCommandParser --> ModtRektParser
+deactivate RemoveCommandParser
 
-ModuleListParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+ModtRektParser -> RemoveCommandParser : parse("1")
+activate RemoveCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create RemoveCommand
+RemoveCommandParser -> RemoveCommand
+activate RemoveCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+RemoveCommand --> RemoveCommandParser : d
+deactivate RemoveCommand
 
-DeleteCommandParser --> ModuleListParser : d
-deactivate DeleteCommandParser
+RemoveCommandParser --> ModtRektParser : d
+deactivate RemoveCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> ModuleListParser
-destroy DeleteCommandParser
+RemoveCommandParser -[hidden]-> ModtRektParser
+destroy RemoveCommandParser
 
-ModuleListParser --> LogicManager : d
-deactivate ModuleListParser
+ModtRektParser --> LogicManager : d
+deactivate ModtRektParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> RemoveCommand : execute()
+activate RemoveCommand
 
-DeleteCommand -> Model : deleteModule(1)
+RemoveCommand -> Model : deleteModule(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> RemoveCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+RemoveCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> RemoveCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+RemoveCommand --> LogicManager : result
+deactivate RemoveCommand
 
 [<--LogicManager
 deactivate LogicManager
