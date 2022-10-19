@@ -12,17 +12,17 @@
             <Insets bottom="10" left="20" right="20" top="20" />
         </padding>
         <Label fx:id="name" styleClass="cell_name_label" text="\$first" />
-        <HBox spacing="8">
+        <VBox spacing="3">
             <padding>
                 <Insets left="5" />
             </padding>
-            <Label fx:id="module" styleClass="cell_module_label" text="\$module" />
-            <FlowPane fx:id="tags" />
-            <minWidth>
-                <!-- Ensures that the label text is never truncated -->
-                <Region fx:constant="USE_PREF_SIZE" />
-            </minWidth>
-        </HBox>
+            <FlowPane fx:id="modules"/>
+            <FlowPane fx:id="tags"/>
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+        </VBox>
         <Label styleClass="cell_header_label" text="PARTICULARS" />
         <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
         <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
