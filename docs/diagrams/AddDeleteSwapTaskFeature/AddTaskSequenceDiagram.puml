@@ -12,19 +12,31 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant "m':Module" as Module MODEL_COLOR
+participant "t:Task" as Task MODEL_COLOR
 end box
-[-> LogicManager : execute(add-task)
+[-> LogicManager : execute(\ninput)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(add-task)
+LogicManager -> AddressBookParser : parseCommand(\ninput)
 activate AddressBookParser
 
 create AddTaskCommandParser
-AddressBookParser -> AddTaskCommandParser : AddTaskCommandParser(add-task)
+AddressBookParser -> AddTaskCommandParser : AddTaskCommandParser(input)
 activate AddTaskCommandParser
 
 create AddTaskToModuleDescriptor
 AddTaskCommandParser -> AddTaskToModuleDescriptor
+activate AddTaskToModuleDescriptor
+
+create Task
+AddTaskCommandParser -> Task
+activate Task
+deactivate AddTaskToModuleDescriptor
+
+Task --> AddTaskCommandParser
+deactivate Task
+
+AddTaskCommandParser -> AddTaskToModuleDescriptor : setNewTask(t)
 activate AddTaskToModuleDescriptor
 
 AddTaskToModuleDescriptor --> AddTaskCommandParser : d
@@ -38,10 +50,10 @@ AddTaskCommand --> AddTaskCommandParser : a
 deactivate AddTaskCommand
 
 AddTaskCommandParser --> AddressBookParser : a
-deactivate AddTaskCommandParser
+destroy AddTaskCommandParser
 
 AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+destroy AddressBookParser
 
 LogicManager -> AddTaskCommand : execute()
 activate AddTaskCommand
@@ -52,20 +64,20 @@ activate Model
 Model --> AddTaskCommand : m
 deactivate Model
 
-AddTaskCommand -> AddTaskCommand :createModuleWithNewTask(m, d)
+AddTaskCommand -> AddTaskCommand :createModuleWithNewTask(\nm, d)
 activate AddTaskCommand
 
 create Module
 AddTaskCommand -> Module
 activate Module
 
-Module --> AddTaskCommand : m''
+Module --> AddTaskCommand : m'
 deactivate Module
 
-AddTaskCommand --> AddTaskCommand : m''
+AddTaskCommand --> AddTaskCommand : m'
 deactivate AddTaskCommand
 
-AddTaskCommand -> Model : setModule(m, m'')
+AddTaskCommand -> Model : setModule(m, m')
 activate Model
 
 Model --> AddTaskCommand

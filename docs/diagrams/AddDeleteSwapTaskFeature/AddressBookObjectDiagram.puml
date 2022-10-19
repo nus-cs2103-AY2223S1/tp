@@ -21,17 +21,17 @@ Class "__tasks:TaskList__" as TaskList2 MODEL_COLOR_T5
 
 }
 
-AddressBook *--> "1" UniquePersonList MODEL_COLOR_T6
-AddressBook *--> "1" UniqueModuleList MODEL_COLOR_T7
+AddressBook *--> UniquePersonList MODEL_COLOR_T6
+AddressBook *--> UniqueModuleList MODEL_COLOR_T7
 
 UniqueModuleList *--> Module1
-Module1 *--> "1" ModuleCode1
-Module1 *--> "1" ModuleTitle1
-Module1 *--> "1" TaskList1 MODEL_COLOR_T5
+Module1 *--> ModuleCode1
+Module1 *--> ModuleTitle1
+Module1 *--> TaskList1 MODEL_COLOR_T5
 
 UniqueModuleList *----> Module2
-Module2 *--> "1" ModuleCode2
-Module2 *--> "1" ModuleTitle2
-Module2 *--> "1" TaskList2 MODEL_COLOR_T5
+Module2 *--> ModuleCode2
+Module2 *--> ModuleTitle2
+Module2 *--> TaskList2 MODEL_COLOR_T5
 
 @enduml

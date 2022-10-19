@@ -206,24 +206,23 @@ Given below is an example usage scenario and how the mechanism
 behaves when a user adds a new `Task`. The behavior for the deleting and 
 swapping of tasks is highly similar.
 
-**Step 1**. The user requests to add a task into a module present in the 
-application by inputting the `add-task` command followed by the `m/` flag to 
-indicate the module code argument and the `td/` flag indicate the task 
-description argument.
+**Step 1**. The user requests to add a task into a module present in Plannit by 
+inputting the `add-task` command followed by the `m/` flag to indicate the
+module code argument and the `td/` flag indicate the task description argument.
+<br>
 E.g.:
 ```
 add-task m/CS1231 td/Submit the weekly assignment
 ```
 
-**Step 2**: The `LogicManager` calls the `LogManager::execute` method on the 
+**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the 
 user input `String`.
 
 **Step 3**: The `LogicManager::execute` method first parses the user input 
-`String` into a `Command` object using the `AddressBookParser::parseCommand` 
-method.
+`String` using the `AddressBookParser::parseCommand` method.
 
 **Step 4**: The command word, `add-task`, is extracted from the user input and
-a new `AddTaskComamandParser` is instantiated to parse the arguments.
+a new `AddTaskCommandParser` is instantiated to parse the arguments.
 
 **Step 5**: The `AddTaskCommandParser::parse` method is then called to 
 parse the arguments. After validating the arguments provided by the user, a 
@@ -254,7 +253,7 @@ the `add-task` command:
 ![AddTaskSequenceDiagram](images/AddDeleteSwapTaskFeature/AddTaskSequenceDiagram.png)
 
 #### Design considerations:
-**Aspect: data structure to store `Task`:**
+**Aspect: Data structure to store `Task`:**
 
 * **Alternative 1 (current choice): Define a new `TaskList` class** 
     * Pros: Methods handling the adding, deleting and maintaining of `Task`s 
