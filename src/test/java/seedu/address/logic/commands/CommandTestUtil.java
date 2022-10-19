@@ -47,10 +47,11 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_CS_MODULE_CODE = "CS2106";
-    public static final String VALID_CS_MODULE_TITLE = "Introduction to Operating Systems";
-    public static final String VALID_MA_MODULE_CODE = "MA2001";
-    public static final String VALID_MA_MODULE_TITLE = "Linear Algebra I";
+    public static final String VALID_CS2106_MODULE_CODE = "CS2106";
+    public static final String VALID_CS2106_MODULE_TITLE = "Introduction to Operating Systems";
+    public static final String VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK = "CS9999";
+    public static final String VALID_MA2001_MODULE_CODE = "MA2001";
+    public static final String VALID_MA2001_MODULE_TITLE = "Linear Algebra I";
     public static final String VALID_MODULE_CODE = CS2103T.getModuleCode().toString();
     public static final String VALID_MODULE_TITLE = CS2103T.getModuleTitle().toString();
     public static final String VALID_TASK_A = "Complete assignment for week 8";
@@ -69,10 +70,10 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String MODULE_CODE_DESC_CS2106 = " " + PREFIX_MODULE_CODE + VALID_CS_MODULE_CODE;
-    public static final String MODULE_CODE_DESC_MA2001 = " " + PREFIX_MODULE_CODE + VALID_MA_MODULE_CODE;
-    public static final String MODULE_TITLE_DESC_CS2106 = " " + PREFIX_MODULE_TITLE + VALID_CS_MODULE_TITLE;
-    public static final String MODULE_TITLE_DESC_MA2001 = " " + PREFIX_MODULE_TITLE + VALID_MA_MODULE_TITLE;
+    public static final String MODULE_CODE_DESC_CS2106 = " " + PREFIX_MODULE_CODE + VALID_CS2106_MODULE_CODE;
+    public static final String MODULE_CODE_DESC_MA2001 = " " + PREFIX_MODULE_CODE + VALID_MA2001_MODULE_CODE;
+    public static final String MODULE_TITLE_DESC_CS2106 = " " + PREFIX_MODULE_TITLE + VALID_CS2106_MODULE_TITLE;
+    public static final String MODULE_TITLE_DESC_MA2001 = " " + PREFIX_MODULE_TITLE + VALID_MA2001_MODULE_TITLE;
     public static final String MODULE_TASK_DESC_A = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_A;
     public static final String MODULE_TASK_DESC_B = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_B;
     public static final String MODULE_TASK_DESC_C = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_C;
@@ -104,8 +105,8 @@ public class CommandTestUtil {
     public static final String INVALID_TASK_NUMBER_DESC_ZERO =
             " " + PREFIX_TASK_NUMBER + "0";
 
-    public static final EditContactCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditContactCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_A;
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_B;
     public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_ONE;

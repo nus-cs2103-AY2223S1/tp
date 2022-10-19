@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Module in the address book.
@@ -29,6 +30,7 @@ public class Module {
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
     private final Set<Link> links = new HashSet<>();
+    private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -106,7 +108,7 @@ public class Module {
      * Returns a copied links set
      */
     public Set<Link> copyLinks() {
-        return new HashSet<Link>(links);
+        return new HashSet<>(links);
     }
 
     /**
@@ -125,6 +127,13 @@ public class Module {
         return tasks.containsDuplicate();
     }
 
+    /**
+     * Returns an immutable person set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Person> getPersons() {
+        return Collections.unmodifiableSet(persons);
+    }
 
     /**
      * Returns true if both modules have the same moduleCode.
@@ -157,13 +166,14 @@ public class Module {
         return otherModule.getModuleCode().equals(getModuleCode())
                 && otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getLinks().equals(getLinks())
-                && otherModule.getTasks().equals(getTasks());
+                && otherModule.getTasks().equals(getTasks())
+                && otherModule.getPersons().equals(getPersons());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleCode, links, tasks);
+        return Objects.hash(moduleCode, links, tasks, persons);
     }
 
     @Override
