@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(applicant.getName().fullName);
         phone.setText(applicant.getPhone().value);
-        scholarship.setText(applicant.getScholarship().value);
+        scholarship.setText(applicant.getScholarship().scholarship);
         applicationStatus.setText(applicant.getApplicationStatus().applicationStatus);
         email.setText(applicant.getEmail().value);
         applicant.getTags().stream()

@@ -34,7 +34,7 @@ public class ApplicantUtil {
         sb.append(PREFIX_NAME + applicant.getName().fullName + " ");
         sb.append(PREFIX_PHONE + applicant.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + applicant.getEmail().value + " ");
-        sb.append(PREFIX_SCHOLARSHIP + applicant.getScholarship().value + " ");
+        sb.append(PREFIX_SCHOLARSHIP + applicant.getScholarship().scholarship + " ");
         sb.append(PREFIX_APPLICATION_STATUS + applicant.getApplicationStatus().applicationStatus + " ");
         applicant.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -51,7 +51,7 @@ public class ApplicantUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getScholarship()
-                .ifPresent(scholarship -> sb.append(PREFIX_SCHOLARSHIP).append(scholarship.value).append(" "));
+                .ifPresent(scholarship -> sb.append(PREFIX_SCHOLARSHIP).append(scholarship.scholarship).append(" "));
         descriptor.getApplicationStatus()
                 .ifPresent(applicationStatus -> sb.append(PREFIX_APPLICATION_STATUS)
                         .append(applicationStatus.applicationStatus).append(" "));

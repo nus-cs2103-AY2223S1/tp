@@ -61,7 +61,7 @@ class JsonAdaptedApplicant {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        scholarship = source.getScholarship().value;
+        scholarship = source.getScholarship().scholarship;
         applicationStatus = source.getApplicationStatus().applicationStatus;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

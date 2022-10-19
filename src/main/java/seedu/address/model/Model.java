@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -82,6 +83,8 @@ public interface Model {
      * the same as another existing applicant in TrackAScholar.
      */
     void setApplicant(Applicant target, Applicant editedApplicant);
+
+    void sortApplicants(Comparator<Applicant> comparator);
 
     /** Returns an unmodifiable view of the filtered applicant list */
     ObservableList<Applicant> getFilteredApplicantList();
