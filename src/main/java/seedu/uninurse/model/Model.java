@@ -14,6 +14,7 @@ import seedu.uninurse.model.person.Patient;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Patient> PREDICATE_SHOW_PATIENTS_FOR_TODAY = patient -> patient.getTasks().containsTaskToday();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
