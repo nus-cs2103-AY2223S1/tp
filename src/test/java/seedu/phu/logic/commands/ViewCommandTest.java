@@ -34,12 +34,13 @@ public class ViewCommandTest {
 
     private Model model;
     private Model expectedModel;
-    private CommandHistory commandHistory = new CommandHistory();
+    private CommandHistory commandHistory;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
+        commandHistory = new CommandHistory();
     }
 
     @Test
@@ -65,7 +66,8 @@ public class ViewCommandTest {
     @Test
     public void execute_validMessage_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS);
-        assertCommandSuccess(new ViewCommand(INDEXES_FIRST_INTERNSHIP), model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new ViewCommand(INDEXES_FIRST_INTERNSHIP), model,
+                commandHistory, expectedCommandResult, expectedModel);
     }
 
     @Test
