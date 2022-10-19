@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -46,12 +50,22 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_DOG = "A black dog";
     public static final String VALID_DESCRIPTION_ELEPHANT = "A red elephant";
 
+    public static final String VALID_DATE_FIRST_DAY_OF_YEAR = "2022-01-01";
+    public static final String VALID_DATE_LAST_DAY_OF_YEAR = "2022-12-31";
+    public static final String INVALID_DATE_YYYY_M_D = "2022-3-1";
+    public static final String INVALID_DATE_YY_MM_DD = "22-2-2";
+    public static final String INVALID_DATE_NO_DELIMINATOR = "2022 10 10";
+
     public static final String VALID_ITERATION_DESCRIPTION_FINALISE = "Finalised the commission";
     public static final String VALID_ITERATION_DESCRIPTION_COLOR = "Added colours to the artwork";
     public static final String VALID_ITERATION_DESCRIPTION_REMOVE = "Removed the character from the scene";
     public static final String VALID_FEEDBACK_HORRIBLE = "This looks horrible!";
     public static final String VALID_FEEDBACK_UGLY = "The colours are very ugly- please change it";
     public static final String VALID_FEEDBACK_AMAZING = "Wow, looks amazing";
+    public static final String VALID_ITERATION_IMAGEPATH_FINALISE = System.getProperty("user.dir")
+            + "/src/test/data/images/test_image_1.png";
+    public static final String VALID_ITERATION_IMAGEPATH_COLOR = System.getProperty("user.dir")
+            + "/src/test/data/images/test_image_2.png";;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -69,6 +83,23 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String ITERATION_DESCRIPTION_DESC_FINALISE = " " + PREFIX_ITERATION_DESCRIPTION
+            + VALID_ITERATION_DESCRIPTION_FINALISE;
+    public static final String ITERATION_DESCRIPTION_DESC_COLOR = " " + PREFIX_ITERATION_DESCRIPTION
+            + VALID_ITERATION_DESCRIPTION_COLOR;
+    public static final String ITERATION_DATE_DESC_FINALISE = " " + PREFIX_ITERATION_DATE
+            + VALID_DATE_FIRST_DAY_OF_YEAR;
+    public static final String ITERATION_DATE_DESC_COLOR = " " + PREFIX_ITERATION_DATE
+            + VALID_DATE_LAST_DAY_OF_YEAR;
+    public static final String ITERATION_FEEDBACK_DESC_FINALISE = " " + PREFIX_ITERATION_FEEDBACK
+            + VALID_FEEDBACK_HORRIBLE;
+    public static final String ITERATION_FEEDBACK_DESC_COLOR = " " + PREFIX_ITERATION_FEEDBACK
+            + VALID_FEEDBACK_UGLY;
+    public static final String ITERATION_IMAGEPATH_DESC_FINALISE = " " + PREFIX_ITERATION_IMAGEPATH
+            + VALID_ITERATION_IMAGEPATH_FINALISE;
+    public static final String ITERATION_IMAGEPATH_DESC_COLOR = " " + PREFIX_ITERATION_IMAGEPATH
+            + VALID_ITERATION_DESCRIPTION_COLOR;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
