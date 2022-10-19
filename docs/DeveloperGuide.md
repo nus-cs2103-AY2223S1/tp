@@ -231,6 +231,26 @@ The following activity diagrams summarizes what happens when a user enters an `e
 **Aspect: Excluding b/ (Bill) in the `edit` command**
 * As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace it by accident.
 
+### MarkRoomsUnclean Feature
+
+#### Implementation
+* The `markRoomsUnclean` command edits all the guests in the guest book and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields. 
+
+The following activity diagram summarizes what happens when a user enters a `markRoomsUnclean` command.
+
+![MarkRoomsUncleanActivityDiagram](images/markRoomsUncleanActivityDiagram.png)
+
+#### Design Considerations:
+**Aspect: The scope at which the command changes all guests' isRoomClean statuses**
+* Alternative 1: Allow `markRoomsUnclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete). 
+  * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
+  * Cons: User is unable to change all the guests' isRoomClean statuses in a single command.
+* Alternative 2 (current choice): Allow `markRoomsUnclean` command to change all guests' isRoomClean statuses in the guest book instead of the last shown list.
+  * Pros: User is able to change all the guests' isRoomClean statuses in a single command.
+  * Cons: There is less flexibility in marking groups of guests' room as unclean.
+
+Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
