@@ -338,15 +338,22 @@ Given below is an example usage scenario and how the creation of new TAB mechani
 Step 1: User enters the `new` command into the Command-Line Interface (CLI) or user navigates via `Files -> New Book` to
 create a new TAB.
 
-TODO: Add sequence diagram
+The following sequence diagram shows how creation of new book work:
+![Creating New Book](images/CreateNewBookSequenceDiagram.png)
 
-Step 1.1: User adds X amount of TABs (up to 5)
+Step 1.1: User adds X amount of TABs (up to 5):
 
-TODO: Add State diagram
+![Swapping Books](images/CreatingNewBookState0.png)
 
-Step 2: User enters the `swap` command or navigates via `Files -> New Book` to toggle between TABs.
+![Swapping Books](images/CreatingNewBookState1.png)
 
-TODO: Add sequence diagram
+Step 2: User enters the `swap` command or navigates via `Files -> New Book` to toggle between TABs:
+
+![Swapping Books](images/SwapState0.png)
+
+The following sequence diagram shows how swapping works:
+NOTE: Sequence Diagram Only includes added portions
+![Swapping Books](images/SwapBooksSequenceDiagram.png)
 
 **Design Considerations**
 
