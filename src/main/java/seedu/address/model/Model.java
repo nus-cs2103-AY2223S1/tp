@@ -93,6 +93,10 @@ public interface Model {
      */
     void deleteEvent(Event event);
 
+    void setEvent(Event target, Event editedEvent);
+
+    boolean hasEvent(Event target);
+
     /**
      * Sorts all the persons in the address book by the given {@code sortField}.
      */
