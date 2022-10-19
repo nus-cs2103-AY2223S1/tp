@@ -29,13 +29,13 @@ public class DateTimeConverter {
     /**
      * Function to convert processed string values to LocalDateTime values
      * which are primarily used for comparisons
-     * specifically, converts strings in the EEEE, dd MMMM yyyy HH:mm a format into LocalDateTime
+     * specifically, converts strings in the EEEE, dd MMMM yyyy hh:mm a format into LocalDateTime
      * @param date string to be converted
      * @return LocalDateTime value of the string
      * @throws DateTimeParseException if it fails to parse IE it's in the wrong format
      */
     public static LocalDateTime processedStringToLocalDatetime(String date) throws DateTimeParseException {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy HH:mm a");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy hh:mm a");
         return LocalDateTime.parse(date, format);
     }
 
