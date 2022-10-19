@@ -96,7 +96,7 @@ public class AddressBookParser {
             return new FindPersonCommandParser().parse(arguments);
 
         case ListGroupsCommand.COMMAND_WORD:
-        return new ListGroupsCommand();
+            return new ListGroupsCommand();
 
         case ListPersonsCommand.COMMAND_WORD:
             return new ListPersonsCommand();

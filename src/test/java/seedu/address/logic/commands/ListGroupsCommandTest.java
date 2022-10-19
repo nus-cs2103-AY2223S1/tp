@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showGroupAtIndex;
-import static seedu.address.model.group.testutil.TypicalIndexesForGroups.INDEX_FIRST_GROUP;
 import static seedu.address.model.group.testutil.TypicalGroups.getTypicalAddressBookWithGroups;
+import static seedu.address.model.group.testutil.TypicalIndexesForGroups.INDEX_FIRST_GROUP;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,6 +36,5 @@ public class ListGroupsCommandTest {
         showGroupAtIndex(model, INDEX_FIRST_GROUP);
         assertCommandSuccess(new ListGroupsCommand(), model, ListGroupsCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
 
 }
