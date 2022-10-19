@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 * provide doctors with a place to **store and centrally manage their patients’ information**
-* allows doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
+* allow doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
   information) to patients using their stored contact information.
 
 
@@ -335,10 +335,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list patients
-2.  OmniHealth shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  OmniHealth deletes the person
+1. User requests to delete a specific patient in the list
+2. OmniHealth deletes the person
 
     Use case ends.
 
@@ -574,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User !!requests to list patients (UC05).!!
 2. User !!requests to display record list of specific patient (UC06).!!
 3. User requests to edit a record
-4. OmniHealth replaces the record with a new edited one
+4. OmniHealth replaces the record in the record list with a new edited one
 
 **Extensions**
 * 3a. The record list is empty.
@@ -590,6 +588,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * *a. User attempts to edit a record before listing records.
+
+    * *a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+**Use Case: UC15 - Edit a patient's details**
+
+**MSS**
+
+1. User !!requests to list patients (UC05).!!
+2. User requests to edit a patient's details
+3. OmniHealth replaces the patient in the patient database with a new edited one
+
+**Extensions**
+* 2a. The patient list is empty.
+
+    * 3a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* 2b. The given index is invalid.
+
+    * 3b1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* *a. User attempts to edit a patient before listing patients.
 
     * *a1. OmniHealth shows an error message.
 
