@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SetCommand;
-import seedu.address.logic.commands.SetCommand.SetContactDescriptor;
+import seedu.address.logic.commands.SetCommand.SetPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.contact.ContactType;
 
@@ -35,27 +35,27 @@ public class SetCommandParser implements Parser<SetCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCommand.MESSAGE_USAGE));
         }
 
-        SetContactDescriptor setContactDescriptor = new SetContactDescriptor();
+        SetPersonDescriptor setPersonDescriptor = new SetPersonDescriptor();
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            setContactDescriptor.updateContacts(ContactType.EMAIL,
+            setPersonDescriptor.updateContacts(ContactType.EMAIL,
                                                 ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            setContactDescriptor.updateContacts(ContactType.PHONE,
+            setPersonDescriptor.updateContacts(ContactType.PHONE,
                     ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_SLACK).isPresent()) {
-            setContactDescriptor.updateContacts(ContactType.SLACK,
+            setPersonDescriptor.updateContacts(ContactType.SLACK,
                     ParserUtil.parseSlack(argMultimap.getValue(PREFIX_SLACK).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            setContactDescriptor.updateContacts(ContactType.TELEGRAM,
+            setPersonDescriptor.updateContacts(ContactType.TELEGRAM,
                     ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
-        return new SetCommand(setContactDescriptor);
+        return new SetCommand(setPersonDescriptor);
     }
 
     /**

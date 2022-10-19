@@ -41,15 +41,15 @@ public class SetCommand extends Command {
 
     public static final String MESSAGE_UPDATE_SUCCESS = "Contact updated.";
 
-    private final SetContactDescriptor setContactDescriptor;
+    private final SetPersonDescriptor setPersonDescriptor;
 
     /**
      * Instantiates a SetCommand object.
      *
-     * @param setContactDescriptor Container for the Contacts to be updated
+     * @param setPersonDescriptor Container for the Contacts to be updated
      */
-    public SetCommand(SetContactDescriptor setContactDescriptor) {
-        this.setContactDescriptor = setContactDescriptor;
+    public SetCommand(SetPersonDescriptor setPersonDescriptor) {
+        this.setPersonDescriptor = setPersonDescriptor;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class SetCommand extends Command {
         assert toUpdate != null;
 
         // Create the updated person
-        Person updatedPerson = createUpdatedPerson(toUpdate, setContactDescriptor);
+        Person updatedPerson = createUpdatedPerson(toUpdate, setPersonDescriptor);
 
         // Updates the current person
         model.setPerson(toUpdate, updatedPerson);
@@ -72,11 +72,11 @@ public class SetCommand extends Command {
      * Creates a Person object with the updated Contacts.
      *
      * @param personToEdit The original Person to be updated
-     * @param setContactDescriptor Container for the Contacts to be updated
+     * @param setPersonDescriptor Container for the Contacts to be updated
      * @return A Person object with the updated Contacts
      */
     private Person createUpdatedPerson(Person personToEdit,
-                                       SetContactDescriptor setContactDescriptor) {
+                                       SetPersonDescriptor setPersonDescriptor) {
         assert personToEdit != null;
         Name name = personToEdit.getName();
         Address addr = personToEdit.getAddress();
@@ -86,7 +86,7 @@ public class SetCommand extends Command {
 
         // get map of contacts from person
         Map<ContactType, Contact> oldContacts = personToEdit.getContacts();
-        Map<ContactType, Contact> newContacts = setContactDescriptor.getContacts();
+        Map<ContactType, Contact> newContacts = setPersonDescriptor.getContacts();
         for (ContactType key : oldContacts.keySet()) {
             if (!newContacts.containsKey(key)) {
                 newContacts.put(key, oldContacts.get(key));
@@ -115,19 +115,19 @@ public class SetCommand extends Command {
 
         // state check
         SetCommand s = (SetCommand) other;
-        return this.setContactDescriptor.equals(s.setContactDescriptor);
+        return this.setPersonDescriptor.equals(s.setPersonDescriptor);
     }
 
     /**
      * Stores the data to update the Person's Contacts with.
      */
-    public static class SetContactDescriptor {
+    public static class SetPersonDescriptor {
         private Map<ContactType, Contact> contacts = new HashMap<>();
 
         /**
          * Instantiates a SetContactDescriptor object.
          */
-        public SetContactDescriptor() {}
+        public SetPersonDescriptor() {}
 
         /**
          * Updates the Contacts map.
@@ -156,12 +156,12 @@ public class SetCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof SetContactDescriptor)) {
+            if (!(other instanceof SetPersonDescriptor)) {
                 return false;
             }
 
             // state check
-            SetContactDescriptor s = (SetContactDescriptor) other;
+            SetPersonDescriptor s = (SetPersonDescriptor) other;
             return this.contacts.equals(s.contacts);
         }
     }
