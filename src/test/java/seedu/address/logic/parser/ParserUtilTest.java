@@ -246,7 +246,6 @@ public class ParserUtilTest {
 
     @Test
     public void parseAttendance_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseAttendance(INVALID_ATTENDANCE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendance(INVALID_ATTENDANCE));
     }
 }
