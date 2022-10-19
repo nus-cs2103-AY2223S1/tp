@@ -26,6 +26,11 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private final Label emailLabel;
     private final List<Label> tagLabels;
 
+    /**
+     * Constructor for a PersonCardHandle.
+     *
+     * @param cardNode The Card that this PersonCardHandle handles.
+     */
     public PersonCardHandle(Node cardNode) {
         super(cardNode);
 

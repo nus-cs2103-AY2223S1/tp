@@ -10,6 +10,11 @@ import seedu.address.ui.UiManager;
 public class AlertDialogHandle extends StageHandle {
     private final DialogPane dialogPane;
 
+    /**
+     * Constructor.
+     *
+     * @param stage The stage for JavaFX.
+     */
     public AlertDialogHandle(Stage stage) {
         super(stage);
 

@@ -22,5 +22,4 @@ public class HelpWindowHandle extends StageHandle {
     public static boolean isWindowPresent() {
         return new GuiRobot().isWindowShown(HELP_WINDOW_TITLE);
     }
-
 }

@@ -13,6 +13,11 @@ public class MainWindowHandle extends StageHandle {
     private final StatusBarFooterHandle statusBarFooter;
     private final MainMenuHandle mainMenu;
 
+    /**
+     * Constructor for the MainWindowHandle.
+     *
+     * @param stage The Stage for JavaFX.
+     */
     public MainWindowHandle(Stage stage) {
         super(stage);
 
