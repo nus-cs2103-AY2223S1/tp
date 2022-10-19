@@ -309,6 +309,68 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Multiple Teacher’s Address Books (TABs)
+**Feature Summary**
+- Users are able to create multiple TABs (currently limited to 5).
+  - Through `new` command
+- Users are able to swap between the TABs 
+  - Through `swap` command
+
+**Implementation**
+
+Current implementation consists of two parts. First part is creating new books, second part is swapping between books.
+
+**Creating new Books**
+
+This feature builds on `MainWindow` class to facilitate communication between the UI and backend functions. It 
+communicates with `Logic` to create new TABs and uses `Model` class to alter the current `UserPref` instance.
+
+**Swapping between Books**
+
+This feature, similar to creating new TABs builds on `MainWindow` class and communicates with `Logic` class to swap
+between TABs. It uses `Model` class to fetch the next TAB from `UserPref`. The TABs' information are stored as an
+array under `preferences.json` as well as the current TAB's index. `UserPref` loops around the array when it reaches
+the end. `Logic` then make use of the path information to call `storage` to update the current TAB.
+
+**Example**
+Given below is an example usage scenario and how the creation of new TAB mechanism behaves at each step.
+
+Step 1: User enters the `new` command into the Command-Line Interface (CLI) or user navigates via `Files -> New Book` to
+create a new TAB.
+
+The following sequence diagram shows how creation of new book work:
+![Creating New Book](images/CreateNewBookSequenceDiagram.png)
+
+Step 1.1: User adds X amount of TABs (up to 5):
+
+![Swapping Books](images/CreatingNewBookState0.png)
+
+![Swapping Books](images/CreatingNewBookState1.png)
+
+Step 2: User enters the `swap` command or navigates via `Files -> New Book` to toggle between TABs:
+
+![Swapping Books](images/SwapState0.png)
+
+The following sequence diagram shows how swapping works:
+NOTE: Sequence Diagram Only includes added portions
+![Swapping Books](images/SwapBooksSequenceDiagram.png)
+
+**Design Considerations**
+
+- Alternative 1 (current choice): Toggle between books
+  - Pros:
+    - Swapping between TAB occurs within 1 window
+    - Open for future features
+  - Cons:
+    - Might be more prone to bugs due to complex implementations
+    - Might be slower to load between books
+- Alternative 2: Multiple copies of .java applications
+  - Pros
+    - Easier to implement
+    - Can have multiple books open at once
+  - Cons:
+    - User need to create multiple books
+    - Less open to future feature extensions (communicate between books)
 
 --------------------------------------------------------------------------------------------------------------------
 
