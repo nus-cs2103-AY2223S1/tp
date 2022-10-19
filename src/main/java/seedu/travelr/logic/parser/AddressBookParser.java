@@ -12,6 +12,7 @@ import seedu.travelr.logic.commands.AddEventToTripCommand;
 import seedu.travelr.logic.commands.ClearCommand;
 import seedu.travelr.logic.commands.Command;
 import seedu.travelr.logic.commands.DeleteCommand;
+import seedu.travelr.logic.commands.DeleteEventCommand;
 import seedu.travelr.logic.commands.DeleteEventFromTripCommand;
 import seedu.travelr.logic.commands.EditCommand;
 import seedu.travelr.logic.commands.EventListCommand;
@@ -19,7 +20,10 @@ import seedu.travelr.logic.commands.ExitCommand;
 import seedu.travelr.logic.commands.FindCommand;
 import seedu.travelr.logic.commands.HelpCommand;
 import seedu.travelr.logic.commands.ListCommand;
+import seedu.travelr.logic.commands.MarkTripDoneCommand;
 import seedu.travelr.logic.commands.SelectCommand;
+import seedu.travelr.logic.commands.SortTripsCommand;
+import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
 import seedu.travelr.logic.commands.ViewAllCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 
@@ -50,6 +54,12 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case UnmarkDoneTripCommand.COMMAND_WORD:
+            return new UnmarkDoneTripCommandParser().parse(arguments);
+
+        case MarkTripDoneCommand.COMMAND_WORD:
+            return new MarkTripDoneCommandParser().parse(arguments);
+
         case DeleteEventFromTripCommand.COMMAND_WORD:
             return new DeleteEventFromTripCommandParser().parse(arguments);
 
@@ -64,6 +74,9 @@ public class AddressBookParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case DeleteEventCommand.COMMAND_WORD:
+            return new DeleteEventCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -91,6 +104,9 @@ public class AddressBookParser {
 
         case ViewAllCommand.COMMAND_WORD:
             return new ViewAllCommand();
+
+        case SortTripsCommand.COMMAND_WORD:
+            return new SortTripsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

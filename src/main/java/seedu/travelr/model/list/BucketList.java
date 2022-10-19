@@ -167,19 +167,19 @@ public class BucketList extends EventList {
         return true;
     }
 
-    public void addEvent(Event event) {
+    private void addEvent(Event event) {
         events.add(event);
     }
 
-    public void addEvents(Set<Event> events) {
+    private void addEvents(Set<Event> events) {
         this.events.addAll(events);
     }
 
-    public void removeEvent(Event event) {
+    private void removeEvent(Event event) {
         events.remove(event);
     }
 
-    public void removeEvent(int i) {
+    private void removeEvent(int i) {
         events.remove(events.toArray()[i - 1]);
     }
 

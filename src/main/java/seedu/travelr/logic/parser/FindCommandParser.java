@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.travelr.logic.commands.FindCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.trip.NameContainsKeywordsPredicate;
+import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

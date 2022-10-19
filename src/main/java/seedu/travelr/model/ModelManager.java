@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -24,7 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
-
+    private ObservableTrip selectedTrip;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> bucketList;
 
@@ -42,7 +44,7 @@ public class ModelManager implements Model {
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
         filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
         bucketList = new FilteredList<>(this.addressBook.getEventList());
-        System.out.println("One retrieval");
+        selectedTrip = new ObservableTrip();
     }
 
     public ModelManager() {
@@ -125,9 +127,14 @@ public class ModelManager implements Model {
         updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
+    /**
+     * This is when we create a new event
+     *
+     * @param event
+     */
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        addressBook.addEventToBucketListAndAllEventsList(event);
         //update filtered trip list??
     }
 
@@ -136,12 +143,32 @@ public class ModelManager implements Model {
         addressBook.returnToBucketList(event);
     }
 
+    @Override
+    public void removeFromBucketList(Event event) {
+        addressBook.removeFromBucketList(event);
+    }
+
     public Event getEvent(Event event) {
         return addressBook.getEvent(event);
     }
 
     public Trip getTrip(Trip trip) {
         return addressBook.getTrip(trip);
+    }
+
+    @Override
+    public ObservableTrip getSelectedTrip() {
+        return selectedTrip;
+    }
+
+    @Override
+    public void updateSelectedTrip(Trip trip) {
+        selectedTrip.setTrip(trip);
+    }
+
+    @Override
+    public void resetSelectedTrip() {
+        selectedTrip.resetTrip();
     }
 
     @Override
@@ -168,11 +195,11 @@ public class ModelManager implements Model {
         return filteredTrips;
     }
 
-
     @Override
     public AllInBucketListPredicate getBucketPredicate() {
         return new AllInBucketListPredicate(bucketList);
     }
+
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
@@ -207,6 +234,11 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTrips.equals(other.filteredTrips);
+    }
+
+    @Override
+    public void sortTripsByComparator(Comparator<Trip> comp) {
+        addressBook.sortTrips(comp);
     }
 
 }

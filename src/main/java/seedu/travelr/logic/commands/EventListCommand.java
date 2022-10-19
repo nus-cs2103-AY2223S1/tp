@@ -12,7 +12,7 @@ public class EventListCommand extends Command {
 
     public static final String COMMAND_WORD = "list-e";
 
-    public static final String MESSAGE_SUCCESS = "Listed all events";
+    public static final String MESSAGE_SUCCESS = "Listed all events in Bucket list";
 
 
     @Override
@@ -20,6 +20,7 @@ public class EventListCommand extends Command {
         requireNonNull(model);
         AllInBucketListPredicate predicate = model.getBucketPredicate();
         model.updateFilteredEventList(predicate);
+        model.resetSelectedTrip();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

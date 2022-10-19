@@ -15,4 +15,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_EVENT = new Prefix("E/");
 
+    public static final Prefix PREFIX_SORTBY = new Prefix("by/");
+
+    public static final Prefix PREFIX_REVERSE_ORDER = new Prefix("r/");
+
 }

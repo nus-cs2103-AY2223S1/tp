@@ -2,6 +2,7 @@ package seedu.travelr.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final BucketList bucketList;
     private final UniqueEventList allEventsList;
     private final UniqueTripList trips;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -62,13 +64,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.bucketList.setEvents(events);
     }
 
+    public void setAllEventsList(List<Event> events) {
+        this.allEventsList.setEvents(events);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         assert !newData.getTripList().isEmpty();
-
+        setAllEventsList(newData.getAllEventList());
         setTrips(newData.getTripList());
         setEvents(newData.getEventList());
     }
@@ -102,8 +108,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds an event to Travelr.
      */
-    public void addEvent(Event e) {
+    public void addEventToBucketListAndAllEventsList(Event e) {
         bucketList.add(e);
+        addEventToAllEventsList(e);
+    }
+
+    public void addEventToAllEventsList(Event e) {
         allEventsList.add(e);
     }
 
@@ -112,6 +122,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void returnToBucketList(Event e) {
         bucketList.add(e);
+    }
+
+    /**
+     * Removes an event from bucket list before adding it to trip.
+     */
+    public void removeFromBucketList(Event e) {
+        bucketList.remove(e);
     }
 
     /**
@@ -166,6 +183,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEvent(Event key) {
         bucketList.remove(key);
+        allEventsList.remove(key);
+    }
+
+    public void sortTrips(Comparator<Trip> comp) {
+        trips.sort(comp);
     }
 
     //// util methods

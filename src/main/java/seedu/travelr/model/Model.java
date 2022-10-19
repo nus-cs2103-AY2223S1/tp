@@ -1,12 +1,14 @@
 package seedu.travelr.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -22,6 +24,7 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -104,6 +107,14 @@ public interface Model {
      * Returns the given event to the bucket list.
      */
     void returnToBucketList(Event event);
+
+    /**
+     * Removes the given event from the bucket list.
+     */
+    void removeFromBucketList(Event event);
+
+    void updateSelectedTrip(Trip trip);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -124,6 +135,7 @@ public interface Model {
     ObservableList<Trip> getFilteredTripList();
 
     AllInBucketListPredicate getBucketPredicate();
+
     /**
      * Returns an unmodifiable view of the filtered events list
      */
@@ -142,4 +154,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    ObservableTrip getSelectedTrip();
+
+    void resetSelectedTrip();
+
+    void sortTripsByComparator(Comparator<Trip> comp);
 }
