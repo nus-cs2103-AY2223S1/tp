@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_LOW;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;

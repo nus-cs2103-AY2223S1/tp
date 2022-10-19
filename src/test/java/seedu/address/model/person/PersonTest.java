@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_LOW;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -20,11 +19,11 @@ import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
 
-//    @Test
-//    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-//        Person person = new PersonBuilder().build();
-//        assertThrows(UnsupportedOperationException.class, () -> person.getName().toString());
-//    }
+    //    @Test
+    //    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+    //        Person person = new PersonBuilder().build();
+    //        assertThrows(UnsupportedOperationException.class, () -> person.getName().toString());
+    //    }
 
     @Test
     public void isSamePerson() {

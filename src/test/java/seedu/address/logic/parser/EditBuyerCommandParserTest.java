@@ -13,7 +13,6 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_NAME_DES
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PRICE_RANGE_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PRIORITY_DESC;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PHONE_DESC_BOB;
@@ -47,8 +46,8 @@ import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.person.Priority;
+import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditBuyerCommandParserTest {
@@ -105,11 +104,14 @@ public class EditBuyerCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-//        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-//        // parsing it together with a valid tag results in error
-//        assertParseFailure(parser, "1" + TAG_DESC_PRIORITY_HIGH + TAG_DESC_PRIORITY_LOW + TAG_EMPTY, Priority.MESSAGE_CONSTRAINTS);
-//        assertParseFailure(parser, "1" + TAG_DESC_PRIORITY_HIGH + TAG_EMPTY + TAG_DESC_PRIORITY_LOW, Priority.MESSAGE_CONSTRAINTS);
-//        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_PRIORITY_HIGH + TAG_DESC_PRIORITY_LOW, Priority.MESSAGE_CONSTRAINTS);
+        //        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        //        // parsing it together with a valid tag results in error
+        //        assertParseFailure(parser, "1" +
+        //        TAG_DESC_PRIORITY_HIGH + TAG_DESC_PRIORITY_LOW + TAG_EMPTY, Priority.MESSAGE_CONSTRAINTS);
+        //        assertParseFailure(parser, "1" +
+        //        TAG_DESC_PRIORITY_HIGH + TAG_EMPTY + TAG_DESC_PRIORITY_LOW, Priority.MESSAGE_CONSTRAINTS);
+        //        assertParseFailure(parser, "1" +
+        //        TAG_EMPTY + TAG_DESC_PRIORITY_HIGH + TAG_DESC_PRIORITY_LOW, Priority.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,

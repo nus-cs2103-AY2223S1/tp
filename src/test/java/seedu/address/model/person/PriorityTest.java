@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Priority;
 
 public class PriorityTest {
 

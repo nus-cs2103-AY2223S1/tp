@@ -14,7 +14,6 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_NAME_DES
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PRICE_RANGE_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_PRIORITY_DESC;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PHONE_DESC_AMY;
@@ -44,8 +43,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.person.Priority;
+import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandParserTest {
@@ -82,7 +81,8 @@ public class AddPersonCommandParserTest {
 
         // multiple price ranges - last price range accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRICE_RANGE_DESC_AMY + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
+                + PRICE_RANGE_DESC_AMY + PRICE_RANGE_DESC_BOB
+                + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddPersonCommand(expectedPerson));
 
         // multiple desired characteristics - last desired characteristics accepted
@@ -147,7 +147,7 @@ public class AddPersonCommandParserTest {
 
         // invalid priority
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                +  INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
+                + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
 
         // invalid price range
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

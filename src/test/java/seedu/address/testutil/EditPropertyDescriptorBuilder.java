@@ -7,10 +7,10 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.model.address.Address;
 import seedu.address.model.property.Description;
+import seedu.address.model.person.Priority;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.person.Priority;
 
 /**
  * A utility class to help with building EditPropertyDescriptor objects.

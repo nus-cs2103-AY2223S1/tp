@@ -7,8 +7,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.person.Priority;
+import seedu.address.model.pricerange.PriceRange;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
