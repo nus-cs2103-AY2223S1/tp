@@ -2,6 +2,7 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.ArrayList;
@@ -21,9 +22,11 @@ public class SessionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new session for a class. "
             + "Paramaters: "
-            + PREFIX_SESSION + "SESSION_NAME\n"
+            + PREFIX_SESSION + "SESSION_NAME "
+            + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SESSION + "Lab1";
+            + PREFIX_SESSION + "Lab1 "
+            + PREFIX_DATE + "2022-01-01";
 
     public static final String MESSAGE_SUCCESS = "New session added: %s";
     public static final String MESSAGE_SESSION_EXISTS = "Session %s already exists!";

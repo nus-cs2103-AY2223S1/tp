@@ -1,16 +1,14 @@
 package seedu.taassist.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
-import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
@@ -29,8 +27,8 @@ class JsonAdaptedStudent {
     private final String email;
     private final String address;
 
-    @JsonProperty("classes")
-    private final List<String> moduleClasses = new ArrayList<>();
+    @JsonProperty("moduleData")
+    private final List<JsonAdaptedStudentModuleData> moduleData = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -38,13 +36,13 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("classes") List<String> moduleClasses) {
+            @JsonProperty("moduleData") List<JsonAdaptedStudentModuleData> moduleData) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (moduleClasses != null) {
-            this.moduleClasses.addAll(moduleClasses);
+        if (moduleData != null) {
+            this.moduleData.addAll(moduleData);
         }
     }
 
@@ -56,8 +54,8 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        moduleClasses.addAll(source.getModuleClasses().stream()
-                .map(x -> x.getClassName())
+        moduleData.addAll(source.getModuleDataList().stream()
+                .map(JsonAdaptedStudentModuleData::new)
                 .collect(Collectors.toList()));
     }
 
@@ -67,18 +65,6 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module class.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<ModuleClass> studentModuleClasses = new ArrayList<>();
-        for (String moduleName : moduleClasses) {
-            if (moduleName == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleClass.class.getSimpleName()));
-            }
-            if (!ModuleClass.isValidModuleClassName(moduleName)) {
-                throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
-            }
-            studentModuleClasses.add(new ModuleClass(moduleName));
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -111,8 +97,12 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<ModuleClass> modelModuleClasses = new HashSet<>(studentModuleClasses);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelModuleClasses);
+        final List<StudentModuleData> studentModuleData = new ArrayList<>();
+        for (JsonAdaptedStudentModuleData moduleData : moduleData) {
+            studentModuleData.add(moduleData.toModelType());
+        }
+
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, studentModuleData);
     }
 
 }

@@ -21,17 +21,13 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeletecCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-            if (!argMultimap.containsPrefixes(PREFIX_MODULE_CLASS)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE));
-            }
-
-            List<String> moduleClassStrings = argMultimap.getAllValues(PREFIX_MODULE_CLASS);
-            Set<ModuleClass> moduleClasses = ParserUtil.parseModuleClasses(moduleClassStrings);
-            return new DeletecCommand(moduleClasses);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE), pe);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
+        if (!argMultimap.containsPrefixes(PREFIX_MODULE_CLASS) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE));
         }
+
+        List<String> moduleClassStrings = argMultimap.getAllValues(PREFIX_MODULE_CLASS);
+        Set<ModuleClass> moduleClasses = ParserUtil.parseModuleClasses(moduleClassStrings);
+        return new DeletecCommand(moduleClasses);
     }
 }

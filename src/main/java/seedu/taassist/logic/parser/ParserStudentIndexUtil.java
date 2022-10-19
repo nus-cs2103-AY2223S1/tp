@@ -34,4 +34,17 @@ public class ParserStudentIndexUtil {
         }
         return indexedStudents;
     }
+
+    /**
+     * Retrieves the student at the relative one-based index from the list.
+     */
+    public static Student parseStudentFromIndex(Index index, List<Student> students) throws ParseException {
+        final int listSize = students.size();
+        int zeroBasedIndex = index.getZeroBased();
+        if (zeroBasedIndex < listSize) {
+            return students.get(zeroBasedIndex);
+        } else {
+            throw new ParseException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+    }
 }

@@ -20,6 +20,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
+
 public class AddCommandTest {
 
     @Test
@@ -85,7 +86,7 @@ public class AddCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return this.student.isSameStudent(student);
+            return this.student.isSame(student);
         }
     }
 
@@ -98,7 +99,7 @@ public class AddCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+            return studentsAdded.stream().anyMatch(student::isSame);
         }
 
         @Override
@@ -117,5 +118,4 @@ public class AddCommandTest {
             return new TaAssist();
         }
     }
-
 }

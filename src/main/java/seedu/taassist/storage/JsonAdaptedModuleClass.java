@@ -16,6 +16,8 @@ import seedu.taassist.model.session.Session;
  */
 class JsonAdaptedModuleClass {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Class's %s field is missing!";
+
     @JsonProperty("name")
     private final String className;
 
@@ -49,6 +51,11 @@ class JsonAdaptedModuleClass {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module class.
      */
     public ModuleClass toModelType() throws IllegalValueException {
+        if (className == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleClass.class.getSimpleName()));
+        }
+
         if (!ModuleClass.isValidModuleClassName(className)) {
             throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
         }

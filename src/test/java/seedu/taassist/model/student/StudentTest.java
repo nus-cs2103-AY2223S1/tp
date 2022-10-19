@@ -3,7 +3,7 @@ package seedu.taassist.model.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_HUSBAND;
+import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1101S;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -20,34 +20,34 @@ public class StudentTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Student student = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> student.getModuleClasses().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> student.getModuleDataList().remove(0));
     }
 
     @Test
     public void isSameStudent() {
         // same object -> returns true
-        assertTrue(ALICE.isSameStudent(ALICE));
+        assertTrue(ALICE.isSame(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameStudent(null));
+        assertFalse(ALICE.isSame(null));
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withModuleClasses(VALID_CLASS_HUSBAND).build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+                .withAddress(VALID_ADDRESS_BOB).withModuleClasses(VALID_CLASS_CS1101S).build();
+        assertTrue(ALICE.isSame(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.isSame(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertFalse(BOB.isSame(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertFalse(BOB.isSame(editedBob));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different classes -> returns false
-        editedAlice = new StudentBuilder(ALICE).withModuleClasses(VALID_CLASS_HUSBAND).build();
+        editedAlice = new StudentBuilder(ALICE).withModuleClasses(VALID_CLASS_CS1101S).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

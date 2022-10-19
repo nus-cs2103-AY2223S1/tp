@@ -3,11 +3,11 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -15,6 +15,7 @@ import seedu.taassist.logic.parser.ParserStudentIndexUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -40,7 +41,7 @@ public class UnassignCommand extends Command {
      * Creates an UnassignCommand to unassign the given {@Code ModuleClass} from students at the given {@Code Indices}.
      */
     public UnassignCommand(List<Index> indices, ModuleClass moduleClassToUnassign) {
-        requireNonNull(indices);
+        requireAllNonNull(indices);
         requireNonNull(moduleClassToUnassign);
         this.indices = indices;
         this.moduleClassToUnassign = moduleClassToUnassign;
@@ -64,14 +65,15 @@ public class UnassignCommand extends Command {
         }
 
         for (Student student : studentsToUnassign) {
-            Set<ModuleClass> newModuleClasses = new HashSet<>(student.getModuleClasses());
-            newModuleClasses.remove(moduleClassToUnassign);
+            List<StudentModuleData> newModuleData = student.getModuleDataList().stream()
+                    .filter(moduleData -> !moduleData.getModuleClass().isSame(moduleClassToUnassign))
+                    .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
             Student editedStudent = new Student(
                     student.getName(),
                     student.getPhone(),
                     student.getEmail(),
                     student.getAddress(),
-                    newModuleClasses);
+                    newModuleData);
             model.setStudent(student, editedStudent);
         }
 

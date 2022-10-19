@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_HUSBAND;
+import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1101S;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.model.student.exceptions.DuplicateStudentException;
+import seedu.taassist.model.uniquelist.exceptions.DuplicateElementException;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class TaAssistTest {
@@ -48,13 +48,13 @@ public class TaAssistTest {
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withModuleClasses(VALID_CLASS_HUSBAND)
+                .withModuleClasses(VALID_CLASS_CS1101S)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         List<ModuleClass> newModuleClasses = Arrays.asList(); // TODO: Add test case for classes too
         TaAssistStub newData = new TaAssistStub(newStudents, newModuleClasses);
 
-        assertThrows(DuplicateStudentException.class, () -> taAssist.resetData(newData));
+        assertThrows(DuplicateElementException.class, () -> taAssist.resetData(newData));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class TaAssistTest {
     public void hasStudent_studentWithSameIdentityFieldsInTaAssist_returnsTrue() {
         taAssist.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withModuleClasses(VALID_CLASS_HUSBAND)
+                .withModuleClasses(VALID_CLASS_CS1101S)
                 .build();
         assertTrue(taAssist.hasStudent(editedAlice));
     }
