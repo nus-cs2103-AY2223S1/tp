@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
@@ -132,6 +133,8 @@ public class ModelManagerTest {
 
     @Test
     public void calculateTotalTransactions() {
-
+        modelManager.addClient(ALICE);
+        modelManager.addClient(BENSON);
+        assertEquals(modelManager.calculateTotalTransaction(modelManager.getFilteredClientList()), -423);
     }
 }
