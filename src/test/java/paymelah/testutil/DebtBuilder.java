@@ -1,12 +1,12 @@
 package paymelah.testutil;
 
-import paymelah.model.debt.Debt;
-import paymelah.model.debt.Description;
-import paymelah.model.debt.Money;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+
+import paymelah.model.debt.Debt;
+import paymelah.model.debt.Description;
+import paymelah.model.debt.Money;
 
 /**
  * A utility class to help with building Debt objects.

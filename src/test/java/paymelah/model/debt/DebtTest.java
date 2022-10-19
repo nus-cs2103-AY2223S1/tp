@@ -1,6 +1,9 @@
 package paymelah.model.debt;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.testutil.TypicalDebts.CHICKEN_RICE;
 import static paymelah.testutil.TypicalDebts.MCDONALDS;
 
@@ -55,15 +58,15 @@ public class DebtTest {
 
     @Test
     public void makeDebt_invalidDate() {
-        AssertionError e = assertThrows(AssertionError.class,
-                () -> Debt.makeDebt("Gift cards", "50", "2022-13-12", "12:34"));
+        AssertionError e = assertThrows(AssertionError.class, () ->
+                Debt.makeDebt("Gift cards", "50", "2022-13-12", "12:34"));
         assertEquals("makeDebt called with erroneous date format.", e.getMessage());
     }
 
     @Test
     public void makeDebt_invalidTime() {
-        AssertionError e = assertThrows(AssertionError.class,
-                () -> Debt.makeDebt("Gift cards", "50", "2022-12-12", "25:34"));
+        AssertionError e = assertThrows(AssertionError.class, () ->
+                Debt.makeDebt("Gift cards", "50", "2022-12-12", "25:34"));
         assertEquals("makeDebt called with erroneous time format.", e.getMessage());
     }
 }

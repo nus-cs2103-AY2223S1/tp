@@ -63,7 +63,7 @@ public class Debt {
         LocalTime localTime = null;
 
         try {
-             localDate = LocalDate.parse(date);
+            localDate = LocalDate.parse(date);
         } catch (DateTimeParseException dateException) {
             assert false : "makeDebt called with erroneous date format.";
         }
