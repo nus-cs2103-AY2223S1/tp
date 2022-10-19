@@ -1,0 +1,26 @@
+@startuml
+start
+:User executes add module command;
+
+/'
+@@author cheeheng-reused
+Comment reused from AB3 Activity Diagram Template.
+'/
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+'@@author
+
+if () then ([syntax is valid])
+    if () then ([module does not already exist])
+        :Add module to Plannit;
+        :Save current Plannit state to
+        addressBookStateList;
+    else ([else])
+        :Show module already
+        exists error;
+    endif
+else ([else])
+    :Display usage syntax;
+endif
+stop
+@enduml
