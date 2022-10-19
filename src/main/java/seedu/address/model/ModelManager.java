@@ -282,7 +282,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sort(Comparator<Patient> comparator) {
-        this.addressBook.sortPatients(comparator);
+    public void sortPatients(Comparator<Patient> comparator, boolean isAscending) {
+        this.addressBook.sortPatients(comparator, isAscending);
+    }
+
+    @Override
+    public void sortBills(Comparator<Bill> comparator, boolean isAscending) {
+        this.addressBook.sortBills(comparator, isAscending);
+    }
+
+    @Override
+    public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
+        this.addressBook.sortAppointments(comparator, isAscending);
     }
 }

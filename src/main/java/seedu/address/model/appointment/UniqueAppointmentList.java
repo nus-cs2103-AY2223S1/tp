@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -132,5 +133,16 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the list of appointments in alphabetical order by given criteria.
+     */
+    public void sort(Comparator<Appointment> comparator, boolean isAscending) {
+        if (isAscending) {
+            FXCollections.sort(internalList, comparator);
+        } else {
+            FXCollections.sort(internalList, comparator.reversed());
+        }
     }
 }

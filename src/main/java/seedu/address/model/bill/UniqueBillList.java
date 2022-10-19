@@ -3,6 +3,7 @@ package seedu.address.model.bill;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -134,5 +135,16 @@ public class UniqueBillList implements Iterable<Bill> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the list of bills in alphabetical order by given criteria.
+     */
+    public void sort(Comparator<Bill> comparator, boolean isAscending) {
+        if (isAscending) {
+            FXCollections.sort(internalList, comparator);
+        } else {
+            FXCollections.sort(internalList, comparator.reversed());
+        }
     }
 }
