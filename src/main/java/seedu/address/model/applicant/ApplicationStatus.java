@@ -12,7 +12,7 @@ public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "ApplicationStatus can only be 3 values (PENDING, ACCEPTED or REJECTED), and it should not be blank";
 
-    public static final String MESSAGE_COMPLETED_STATUS_CONSTRAINTS =
+    public static final String MESSAGE_STATUS_REJECTION =
             "Completed ApplicationStatus can only be 2 values (ACCEPTED or REJECTED), and it should not be blank";
 
     private static final String PENDING = "pending";

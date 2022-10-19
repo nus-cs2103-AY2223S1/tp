@@ -106,7 +106,7 @@ public class ParserUtil {
         requireNonNull(applicationStatus);
         String trimmedApplicationStatus = applicationStatus.trim();
         if (!ApplicationStatus.isCompletedApplicationStatus(trimmedApplicationStatus)) {
-            throw new ParseException(ApplicationStatus.MESSAGE_COMPLETED_STATUS_CONSTRAINTS);
+            throw new ParseException(ApplicationStatus.MESSAGE_STATUS_REJECTION);
         }
         return new ApplicationStatus(trimmedApplicationStatus);
     }
