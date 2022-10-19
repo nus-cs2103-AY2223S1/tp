@@ -54,4 +54,5 @@ deactivate ShowCommand
 
 [<-- LogicManager
 deactivate LogicManager
+
 @enduml
