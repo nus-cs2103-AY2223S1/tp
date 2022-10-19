@@ -490,6 +490,11 @@
     -fx-background-color: #F26417;
 }
 
+.deleteTagLabel {
+    -fx-background-color: #6F747E!important;
+    -fx-text-fill: #333F4F!important;
+}
+
 #iterationListView.list-view {
     -fx-padding: 0px;
     -fx-background-color: #15181F;

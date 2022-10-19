@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.FlowPane?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
-         xmlns:fx="http://javafx.com/fxml/1" width="720" height="480" onCloseRequest="#handleCloseAddCommissionWindow">
+         xmlns:fx="http://javafx.com/fxml/1" width="720" height="500" onCloseRequest="#handleCloseAddCommissionWindow">
     <scene>
         <Scene>
             <stylesheets>
@@ -57,7 +57,11 @@
                             <VBox minWidth="500" maxWidth="500">
                                 <FlowPane fx:id="tags" styleClass="commissionTags" maxWidth="500"/>
                                 <TextField fx:id="tagField" promptText="To create a tag, key in the tag name and press enter"
-                                           styleClass="addCommissionTextField" minWidth="500" maxWidth="500"/>
+                                           styleClass="addCommissionTextField" minWidth="500" maxWidth="500">
+                                    <VBox.margin>
+                                        <Insets top="8"/>
+                                    </VBox.margin>
+                                </TextField>
                             </VBox>
                         </HBox>
 

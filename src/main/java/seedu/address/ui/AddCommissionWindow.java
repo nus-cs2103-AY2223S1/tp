@@ -160,15 +160,17 @@ public class AddCommissionWindow extends UiPart<Stage> {
             return;
         }
 
-        String tagName = tagField.getText().trim();
+        String inputTagName = tagField.getText().trim();
         tagField.clear();
 
-        if (tagName.length() > 25) {
-            tagName = tagName.substring(0, 25);
+        if (inputTagName.length() > 25) {
+            inputTagName = inputTagName.substring(0, 25);
             setErrorLabel(ERROR_LIMIT_TAG_NAME_LENGTH);
         } else {
             errorMessagePlaceholder.getChildren().clear(); // clear previous error message
         }
+
+        final String tagName = inputTagName;
 
         if (tagName.isEmpty()) {
             setErrorLabel(ERROR_BLANK_TAG_NAME);
@@ -181,8 +183,16 @@ public class AddCommissionWindow extends UiPart<Stage> {
         }
 
         if (uniqueTags.add(tagName)) {
-            Label newTag = new Label(tagName);
-            newTag.setMaxWidth(80);
+            Label newTagName = new Label(tagName);
+            Label deleteTag = new Label("X");
+            HBox newTag = new HBox(newTagName, deleteTag);
+            newTag.setSpacing(4);
+            deleteTag.getStyleClass().add("deleteTagLabel");
+            deleteTag.setOnMouseClicked(e -> {
+                tags.getChildren().remove(newTag);
+                uniqueTags.remove(tagName);
+            });
+            newTag.setMaxWidth(100);
             tags.getChildren().add(newTag);
         }
     }
