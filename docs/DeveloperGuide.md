@@ -252,11 +252,6 @@ Step 3. The `TemplateCommandParser` will parse `prof` using `parse()`. This will
 
 Step 4. The `TemplateCommand` will then be executed using `TemplateCommand#execute()`.
 
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** openGithub() checks if the url built is invalid. If url is invalid an exception would be thrown.
-</div>
-
 Step 5. A `CommandResult` will be returned. It has the field `personTemplateString` that is set to `"prof"`.
 
 Step 6. The UI will call `hasPersonTemplate()` from the CommandResult.
