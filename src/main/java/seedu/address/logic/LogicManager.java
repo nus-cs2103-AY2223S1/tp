@@ -48,8 +48,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getPersonModel()); // storage.savePersonModel(model.getPersonModel())
-            // storage.savePropertyModel(model.getPropertyModel())
+            storage.saveAddressBook(model.getPersonModel());
+            storage.savePropertyBook(model.getPropertyModel());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
