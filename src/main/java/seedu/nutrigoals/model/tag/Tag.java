@@ -14,7 +14,14 @@ public class Tag {
     public static final String LUNCH_REGEX = "^\\s*(?i)lunch\\s*$";
     public static final String DINNER_REGEX = "^\\s*(?i)dinner\\s*$";
 
-    public final String tagName;
+    /**
+     * Represents the different meal types a tag name can have.
+     */
+    public enum TagName {
+        BREAKFAST, LUNCH, DINNER
+    }
+
+    public final TagName tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -24,7 +31,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName.toLowerCase();
+        this.tagName = TagName.valueOf(tagName.toUpperCase());
     }
 
     /**
@@ -36,6 +43,14 @@ public class Tag {
                 || test.matches(DINNER_REGEX);
 
         return isValidTag;
+    }
+
+    /**
+     * Returns the name of the tag in lower case.
+     * @return The tag name in lower case.
+     */
+    public String getTagName() {
+        return tagName.toString().toLowerCase();
     }
 
     @Override
@@ -54,7 +69,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + getTagName() + ']';
     }
 
     /**

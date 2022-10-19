@@ -9,6 +9,7 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.Calorie;
+import seedu.nutrigoals.model.Location;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.ReadOnlyNutriGoals;
@@ -182,9 +184,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called");
         }
 
-        /**
-         * @return
-         */
+        @Override
+        public List<Location> getNusGymLocations() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public boolean isUserCreated() {
             throw new AssertionError("This method should not be called.");

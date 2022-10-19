@@ -15,6 +15,7 @@ import seedu.nutrigoals.logic.commands.ExitCommand;
 import seedu.nutrigoals.logic.commands.FindCommand;
 import seedu.nutrigoals.logic.commands.HelpCommand;
 import seedu.nutrigoals.logic.commands.ListCommand;
+import seedu.nutrigoals.logic.commands.LocateGymCommand;
 import seedu.nutrigoals.logic.commands.ProfileCommand;
 import seedu.nutrigoals.logic.commands.ReviewCommand;
 import seedu.nutrigoals.logic.commands.SetupCommand;
@@ -48,7 +49,6 @@ public class NutriGoalsParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -84,6 +84,9 @@ public class NutriGoalsParser {
 
         case SuggestCommand.COMMAND_WORD:
             return new SuggestCommand();
+
+        case LocateGymCommand.COMMAND_WORD:
+            return new LocateGymCommandParser().parse(arguments);
 
         case ProfileCommand.COMMAND_WORD:
             return new ProfileCommand();

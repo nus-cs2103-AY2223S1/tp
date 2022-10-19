@@ -8,8 +8,10 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -92,6 +94,11 @@ public class NutriGoalsTest {
         @Override
         public User getUser() {
             return user;
+        }
+
+        @Override
+        public List<Location> getGymLocations() {
+            return new ArrayList<>();
         }
     }
 

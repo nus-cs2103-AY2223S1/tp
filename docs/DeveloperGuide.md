@@ -268,14 +268,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                 | So that I can…​                            |
-| -------- |-----------------|----------------------------------------------|--------------------------------------------|
-| `* * *`  | careless user   | delete a wrongly added meal                  | fix my food records easily                 |
-| `* * *`  | user            | add my daily calorie intake                  | know how much I am eating                  |
-| `* * *`  | food enthusiast | calculate my daily calorie intake            | know how nutrient dense my food is         |
-| `* * *`  | careless user   | edit a meal wrongly recorded                 | change my food records easily              |
-| `* *`    | user            | key in the calorie intake for each type of food | know how much calories a particular food contains |
-| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess    | know if I should consume more / less calories                   |
+| Priority | As a            | I want to                                                         | So that I can…                                                          |
+|----------|-----------------|-------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | careless user   | delete a wrongly added meal                                       | fix my food records easily                                              |
+| `* * *`  | user            | add my daily calorie intake                                       | know how much I am eating                                               |
+| `* * *`  | food enthusiast | calculate my daily calorie intake                                 | know how nutrient dense my food is                                      |
+| `* * *`  | careless user   | edit a meal wrongly recorded                                      | change my food records easily                                           |
+| `* *`    | user            | key in the calorie intake for each type of food                   | know how much calories a particular food contains                       |
+| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess            | know if I should consume more / less calories                           |
+| `* *`    | user            | specify my body composition                                       | I find out how much calories is should be consuming based on my profile |
+| `* *`    | user            | calculate my BMI                                                  | I know if my current weight is in a healthy range                       |
+| `* *`    | sedentary user  | get information on healthy lifestyle habits                       | I can adopt a more active lifestyle                                     |
+| `* *`    | nus student     | find the nearest gym in school based on where I am at             | I know where to go if I want to exercise                                |
+| `* * *`  | forgetful user  | find my list of foods consumed for any day                        | I can get a better understanding of my eating habits                    |
+| `* *`    | user            | get a suggested daily calorie intake based on my body composition | I know what would be a reasonable calorie target                        |
 
 *{More to be added}*
 
@@ -283,12 +289,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC-1 Summarise daily calorie intake**
+**Use case: UC-1 List food items**
 
 **MSS**
 
-1. User requests to summarise his / her daily calorie intake
-2. NutriGoals shows the total calorie intake and the list of meals
+1. User requests to list the food items consumed.
+2. NutriGoals shows the list of food items consumed.
 
    Use case ends.
 
@@ -304,8 +310,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User enters the command to add a food item
-2. NutriGoals shows the new list of meals
+1. User enters the command to add a food item.
+2. NutriGoals shows the new list of food items.
 
    Use case ends.
 
@@ -333,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given food item is invalid.
+* 3a. The specified food item is invalid.
 
     * 3a1. NutriGoals shows an error message.
 
@@ -343,32 +349,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to <ins>list all the meals recorded (UC-1)</ins>
-2. NutriGoals shows a list of meals
-3. User requests to edit a specific meal in the list
-4. NutriGoals edits the meal
+1. User requests to <ins>list all the meals recorded (UC-1).</ins>
+2. NutriGoals shows a list of meals.
+3. User requests to edit a specific meal in the list.
+4. NutriGoals edits the meal.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
   
   Use case ends.
 
-* 3a. The given food item is invalid
+* 3a. The edited food item is invalid.
 
-  * 3a1. NutriGoals show an error message
+  * 3a1. NutriGoals shows an error message.
     
     Use case resumes at step 2.
 
+**Use case: UC-5 Set up a profile**
+
+**MSS**
+
+1. User requests to set up his / her profile.
+2. NutriGoals creates and saves the user's profile.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The information provided is invalid.
+
+  * 1a1. NutriGoals shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC-6 View the profile created**
+
+**MSS**
+
+1. User requests to view his / her profile.
+2. NutriGoals shows the user's profile.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User profile is not created.
+
+    * 1a1. NutriGoals requests the user to set up a profile.
+
+    * 1a2. User requests to <ins>set up his / her profile (UC-5).</ins>
+
+      Use case resumes at step 1.
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 foods without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The system should respond to a command within two seconds.
-5.  Project scope:
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 foods without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond to a command within two seconds.
+5. Project scope:
     * The system only handles information regarding the calorie intake of a food and no other nutrients.
 
 *{More to be added}*

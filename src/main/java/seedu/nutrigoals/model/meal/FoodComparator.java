@@ -2,6 +2,8 @@ package seedu.nutrigoals.model.meal;
 
 import java.util.Comparator;
 
+import seedu.nutrigoals.model.tag.Tag;
+
 /**
  * A comparator class to sort the {@code Food} in the order of breakfast, lunch then dinner
  * and in the order in which the user input the {@code Food}.
@@ -9,28 +11,13 @@ import java.util.Comparator;
 public class FoodComparator implements Comparator<Food> {
     @Override
     public int compare(Food food1, Food food2) {
-        switch (food1.getEarliestMealTag() + food2.getEarliestMealTag()) {
-        case "BB":
-        case "LL":
-        case "DD":
-        case "XX":
+        Tag.TagName tagName1 = food1.getTag().tagName;
+        Tag.TagName tagName2 = food2.getTag().tagName;
+
+        if (tagName1 == tagName2) {
             return food1.isAfter(food2) ? 1 : -1;
-        case "BL":
-        case "BD":
-        case "BX":
-        case "LD":
-        case "LX":
-        case "DX":
-            return -1;
-        case "LB":
-        case "DB":
-        case "DL":
-        case "XB":
-        case "XL":
-        case "XD":
-            return 1;
-        default:
-            return 0;
+        } else {
+            return tagName1.compareTo(tagName2);
         }
     }
 }
