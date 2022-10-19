@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 
 /**
- * Sorts all applicants in TrackAScholar whose status matches the keyword
+ * Sorts all applicants in TrackAScholar whose status matches the keyword.
  * Keyword matching is case-insensitive.
  */
 public class SortCommand extends Command {

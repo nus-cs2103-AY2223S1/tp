@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Applicant's Scholarship name in TrackAScholar.
  * Guarantees: immutable; is valid as declared in {@link #isValidScholarship(String)}
  */
-public class Scholarship {
+public class Scholarship implements Comparable<Scholarship>{
 
     public static final String MESSAGE_CONSTRAINTS = "Scholarship can take any values, and it should not be blank";
 
@@ -17,17 +17,17 @@ public class Scholarship {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String scholarship;
 
     /**
      * Constructs an {@code Address}.
      *
-     * @param address A valid address.
+     * @param scholarship A valid scholarship.
      */
-    public Scholarship(String address) {
-        requireNonNull(address);
-        checkArgument(isValidScholarship(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Scholarship(String scholarship) {
+        requireNonNull(scholarship);
+        checkArgument(isValidScholarship(scholarship), MESSAGE_CONSTRAINTS);
+        this.scholarship = scholarship;
     }
 
     /**
@@ -39,19 +39,23 @@ public class Scholarship {
 
     @Override
     public String toString() {
-        return value;
+        return scholarship;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Scholarship // instanceof handles nulls
-                && value.equals(((Scholarship) other).value)); // state check
+                && scholarship.equals(((Scholarship) other).scholarship)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return scholarship.hashCode();
     }
 
+    @Override
+    public int compareTo(Scholarship other) {
+        return this.scholarship.compareTo(other.scholarship);
+    }
 }

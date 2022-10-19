@@ -27,8 +27,18 @@ public class SortCommandParser implements Parser<SortCommand> {
                 @Override
                 public int compare(Applicant o1, Applicant o2) {
                     return o1.getName().compareTo(o2.getName());
+                }
+            });
+        case "scholarship":
+            return new SortCommand(new Comparator<Applicant>() {
+                @Override
+                public int compare(Applicant o1, Applicant o2) {
 
-
+                    int value = o1.getScholarship().compareTo(o2.getScholarship());
+                    if (value == 0) {
+                        return o1.getName().compareTo(o2.getName());
+                    }
+                    return value;
                 }
             });
         default:
