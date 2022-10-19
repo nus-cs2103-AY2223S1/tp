@@ -42,10 +42,11 @@ public class LinkCommandTest {
 
     @Test
     public void execute_linkLinkedPersonAndInternship_throwCommandException() {
-        model.addPerson(new PersonBuilder().withPersonId(0).withInternshipId(1).build()); //amy
+        model.addPerson(new PersonBuilder().withPersonId(0).withInternshipId(1).build()); //amy linked to ABCltd
         model.addInternship(new InternshipBuilder().withName("Google").withInternshipId(0).build()); //google
-        model.addInternship(new InternshipBuilder().withInternshipId(1).withPersonId(0).build()); //ABC ltd
+        model.addInternship(new InternshipBuilder().withInternshipId(1).withPersonId(0).build()); //ABCltd linked to amy
 
+        //attempt to link amy with google
         Command command = new LinkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_INTERNSHIP);
 
         assertThrows(CommandException.class,
@@ -72,5 +73,21 @@ public class LinkCommandTest {
         assertEquals(model.findInternshipById(new InternshipId(0)).getContactPersonId(),
                 model.findPersonById(new PersonId(1)).getPersonId());
         assertNull(model.findPersonById(new PersonId(0)).getInternshipId());
+    }
+
+    @Test
+    public void execute_linkLinkedPersonAndLinkedInternship_throwCommandException() {
+        model.addPerson(new PersonBuilder().withPersonId(0).withInternshipId(0).build()); //amy linked to ABCltd
+        model.addInternship(new InternshipBuilder().withInternshipId(0).withPersonId(0).build()); //ABCltd linked to amy
+
+        //attempt to link amy with ABCltd again
+        Command command = new LinkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_INTERNSHIP);
+
+        assertThrows(CommandException.class,
+                String.format(LinkCommand.MESSAGE_LINKED_PERSON,
+                        PersonBuilder.DEFAULT_NAME,
+                        InternshipBuilder.DEFAULT_NAME), () -> command.execute(model));
+        assertEquals(model.findPersonById(new PersonId(0)).getInternshipId(), new InternshipId(0));
+        assertEquals(model.findInternshipById(new InternshipId(0)).getContactPersonId(), new PersonId(0));
     }
 }
