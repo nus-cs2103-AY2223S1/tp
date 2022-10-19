@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1" minHeight="80" minWidth="550">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -27,6 +28,11 @@
             </HBox.margin>
           </Label>
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+            <HBox.margin>
+              <Insets left="5.0" />
+            </HBox.margin>
+          </Button>
+          <Button fx:id="openButton" mnemonicParsing="false" onAction="#openUrl" text="Open URL">
             <HBox.margin>
               <Insets left="5.0" />
             </HBox.margin>
