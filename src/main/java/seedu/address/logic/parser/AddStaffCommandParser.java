@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_LEAVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -18,7 +18,7 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
-import seedu.address.model.staff.StaffInsurance;
+import seedu.address.model.staff.StaffLeave;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
@@ -36,10 +36,10 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STAFF_CONTACT, PREFIX_STAFF_NAME, PREFIX_STAFF_DEPARTMENT,
-                        PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE, PREFIX_PROJECT_NAME, PREFIX_TAG);
+                        PREFIX_STAFF_LEAVE, PREFIX_STAFF_TITLE, PREFIX_PROJECT_NAME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STAFF_CONTACT, PREFIX_STAFF_NAME, PREFIX_STAFF_DEPARTMENT,
-                PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE, PREFIX_PROJECT_NAME)
+                PREFIX_STAFF_LEAVE, PREFIX_STAFF_TITLE, PREFIX_PROJECT_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
         }
@@ -49,8 +49,8 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         StaffDepartment staffDepartment =
                 ParserUtil.parseStaffDepartment(argMultimap.getValue(PREFIX_STAFF_DEPARTMENT).get());
 
-        StaffInsurance staffInsurance =
-                ParserUtil.parseStaffInsurance(argMultimap.getValue(PREFIX_STAFF_INSURANCE).get());
+        StaffLeave staffLeave =
+                ParserUtil.parseStaffLeave(argMultimap.getValue(PREFIX_STAFF_LEAVE).get());
         StaffName staffName =
                 ParserUtil.parseStaffName(argMultimap.getValue(PREFIX_STAFF_NAME).get());
         StaffTitle staffTitle =
@@ -59,7 +59,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // do staff creation
-        Staff staff = new Staff(staffName, staffContact, staffTitle, staffDepartment, staffInsurance, tagList);
+        Staff staff = new Staff(staffName, staffContact, staffTitle, staffDepartment, staffLeave, tagList);
         // do project name parsing
         // return new add staff command
         return new AddStaffCommand(staff, projectName);

@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
-import seedu.address.model.staff.StaffInsurance;
+import seedu.address.model.staff.StaffLeave;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
@@ -20,13 +20,13 @@ public class StaffBuilder {
     public static final String DEFAULT_STAFF_NAME = "Thomas Train";
     public static final String DEFAULT_STAFF_CONTACT = "91234567";
     public static final String DEFAULT_STAFF_TITLE = "Senior Software Engineer";
-    public static final String DEFAULT_STAFF_INSURANCE = "true";
+    public static final String DEFAULT_STAFF_LEAVE = "true";
     public static final String DEFAULT_STAFF_DEPARTMENT = "IT Department";
 
     private StaffName staffName;
     private StaffContact staffContact;
     private StaffTitle staffTitle;
-    private StaffInsurance staffInsurance;
+    private StaffLeave staffLeave;
     private StaffDepartment staffDepartment;
     private Set<Tag> tags;
 
@@ -37,7 +37,7 @@ public class StaffBuilder {
         staffName = new StaffName(DEFAULT_STAFF_NAME);
         staffContact = new StaffContact(DEFAULT_STAFF_CONTACT);
         staffTitle = new StaffTitle(DEFAULT_STAFF_TITLE);
-        staffInsurance = new StaffInsurance(DEFAULT_STAFF_INSURANCE);
+        staffLeave = new StaffLeave(DEFAULT_STAFF_LEAVE);
         staffDepartment = new StaffDepartment(DEFAULT_STAFF_DEPARTMENT);
         tags = new HashSet<>();
     }
@@ -49,7 +49,7 @@ public class StaffBuilder {
         staffName = staffToCopy.getStaffName();
         staffContact = staffToCopy.getStaffContact();
         staffTitle = staffToCopy.getStaffTitle();
-        staffInsurance = staffToCopy.getStaffInsurance();
+        staffLeave = staffToCopy.getStaffLeave();
         staffDepartment = staffToCopy.getStaffDepartment();
         tags = new HashSet<>(staffToCopy.getTags());
     }
@@ -80,10 +80,10 @@ public class StaffBuilder {
     }
 
     /**
-     * Sets the {@code StaffInsurance} of the {@code Staff} that we are building.
+     * Sets the {@code StaffLeave} of the {@code Staff} that we are building.
      */
-    public StaffBuilder withStaffInsurance(String deadline) {
-        this.staffInsurance = new StaffInsurance(deadline);
+    public StaffBuilder withStaffLeave(String deadline) {
+        this.staffLeave = new StaffLeave(deadline);
         return this;
     }
 
@@ -104,7 +104,7 @@ public class StaffBuilder {
     }
 
     public Staff build() {
-        return new Staff(staffName, staffContact, staffTitle, staffDepartment, staffInsurance, tags);
+        return new Staff(staffName, staffContact, staffTitle, staffDepartment, staffLeave, tags);
     }
 
 }

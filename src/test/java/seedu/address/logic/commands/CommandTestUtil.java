@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_LEAVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -43,8 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_STAFFTITLE_JAY = "Software Engineer";
     public static final String VALID_STAFFDEPARTMENT_ANDY = "IT Department";
     public static final String VALID_STAFFDEPARTMENT_JAY = "idk Department";
-    public static final String VALID_STAFFINSURANCE_ANDY = "true";
-    public static final String VALID_STAFFINSURANCE_JAY = "false";
+    public static final String VALID_STAFFLEAVE_ANDY = "true";
+    public static final String VALID_STAFFLEAVE_JAY = "false";
 
     public static final String STAFFNAME_DESC_ANDY = " " + PREFIX_STAFF_NAME + VALID_STAFFNAME_ANDY;
     public static final String STAFFNAME_DESC_JAY = " " + PREFIX_STAFF_NAME + VALID_STAFFNAME_JAY;
@@ -54,14 +54,14 @@ public class CommandTestUtil {
     public static final String STAFFTITLE_DESC_JAY = " " + PREFIX_STAFF_TITLE + VALID_STAFFTITLE_JAY;
     public static final String STAFFDEPARTMENT_DESC_ANDY = " " + PREFIX_STAFF_DEPARTMENT + VALID_STAFFDEPARTMENT_ANDY;
     public static final String STAFFDEPARTMENT_DESC_JAY = " " + PREFIX_STAFF_DEPARTMENT + VALID_STAFFDEPARTMENT_JAY;
-    public static final String STAFFINSURANCE_DESC_ANDY = " " + PREFIX_STAFF_INSURANCE + VALID_STAFFINSURANCE_ANDY;
-    public static final String STAFFINSURANCE_DESC_JAY = " " + PREFIX_STAFF_INSURANCE + VALID_STAFFINSURANCE_JAY;
+    public static final String STAFFLEAVE_DESC_ANDY = " " + PREFIX_STAFF_LEAVE + VALID_STAFFLEAVE_ANDY;
+    public static final String STAFFLEAVE_DESC_JAY = " " + PREFIX_STAFF_LEAVE + VALID_STAFFLEAVE_JAY;
 
     public static final String INVALID_STAFFNAME_DESC = " " + PREFIX_STAFF_NAME + "S@muel";
     public static final String INVALID_STAFFCONTACT_DESC = " " + PREFIX_STAFF_CONTACT + "9090 A32!";
     public static final String INVALID_STAFFDEPARTMENT_DESC = " " + PREFIX_STAFF_DEPARTMENT + "GREAT department!!";
     public static final String INVALID_STAFFTITLE_DESC = " " + PREFIX_STAFF_TITLE + "THE Best :3";
-    public static final String INVALID_STAFFINSURANCE_DESC = " " + PREFIX_STAFF_INSURANCE + "T";
+    public static final String INVALID_STAFFLEAVE_DESC = " " + PREFIX_STAFF_LEAVE + "T";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

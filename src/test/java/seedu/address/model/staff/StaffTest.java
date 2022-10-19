@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_AN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_JAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_JAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFINSURANCE_ANDY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFINSURANCE_JAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFLEAVE_ANDY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFLEAVE_JAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_JAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_JAY;
@@ -41,7 +41,7 @@ public class StaffTest {
         Staff editedStaff1 = new StaffBuilder(STAFF_1).withStaffContact(VALID_STAFFCONTACT_ANDY)
                 .withStaffTitle(VALID_STAFFTITLE_ANDY)
                 .withStaffDepartment(VALID_STAFFDEPARTMENT_ANDY)
-                .withStaffInsurance(VALID_STAFFINSURANCE_ANDY)
+                .withStaffLeave(VALID_STAFFLEAVE_ANDY)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(STAFF_1.isSameStaff(editedStaff1));
 
@@ -93,8 +93,8 @@ public class StaffTest {
         editedStaff1 = new StaffBuilder(STAFF_1).withStaffDepartment(VALID_STAFFDEPARTMENT_JAY).build();
         assertFalse(STAFF_1.equals(editedStaff1));
 
-        //different insurance -> returns false;
-        editedStaff1 = new StaffBuilder(STAFF_1).withStaffInsurance(VALID_STAFFINSURANCE_JAY).build();
+        //different leave -> returns false;
+        editedStaff1 = new StaffBuilder(STAFF_1).withStaffLeave(VALID_STAFFLEAVE_JAY).build();
         assertFalse(STAFF_1.equals(editedStaff1));
 
         // different tags -> returns false
