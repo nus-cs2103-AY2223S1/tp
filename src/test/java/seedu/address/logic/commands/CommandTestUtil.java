@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTITUTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXTOFKIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -61,8 +60,6 @@ public class CommandTestUtil {
     public static final String VALID_SCHOOL_BOB = "Bob Primary School";
     public static final String VALID_LEVEL_AMY = "Primary1";
     public static final String VALID_LEVEL_BOB = "Primary2";
-    public static final String VALID_NEXTOFKIN_AMY = "Amy Nok";
-    public static final String VALID_NEXTOFKIN_BOB = "Bob Nok";
 
     public static final String VALID_QUALIFICATION_AMY = "BAmy";
     public static final String VALID_QUALIFICATION_BOB = "MBob";
@@ -79,6 +76,9 @@ public class CommandTestUtil {
     public static final String VALID_STARTTIME_CLASS2 = "08:00";
     public static final String VALID_ENDTIME_CLASS1 = "14:00";
     public static final String VALID_ENDTIME_CLASS2 = "10:00";
+
+    public static final String VALID_RELATIONSHIP_AMY = "Father";
+    public static final String VALID_RELATIONSHIP_BOB = "Mother";
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -99,8 +99,6 @@ public class CommandTestUtil {
     public static final String SCHOOL_DESC_BOB = " " + PREFIX_SCHOOL + VALID_SCHOOL_BOB;
     public static final String LEVEL_DESC_AMY = " " + PREFIX_LEVEL + VALID_LEVEL_AMY;
     public static final String LEVEL_DESC_BOB = " " + PREFIX_LEVEL + VALID_LEVEL_BOB;
-    public static final String NEXTOFKIN_DESC_AMY = " " + PREFIX_NEXTOFKIN + VALID_NEXTOFKIN_AMY;
-    public static final String NEXTOFKIN_DESC_BOB = " " + PREFIX_NEXTOFKIN + VALID_NEXTOFKIN_BOB;
 
     public static final String QUALIFICATION_DESC_AMY = " " + PREFIX_QUALIFICATION + VALID_QUALIFICATION_AMY;
     public static final String QUALIFICATION_DESC_BOB = " " + PREFIX_QUALIFICATION + VALID_QUALIFICATION_BOB;
@@ -137,8 +135,6 @@ public class CommandTestUtil {
             " " + PREFIX_SCHOOL + "& Primary School"; // '&' not allowed in school name
     public static final String INVALID_LEVEL_DESC =
             " " + PREFIX_LEVEL + "Kindergarten1"; //outside p1-6, s1-4 not allowed
-    public static final String INVALID_NEXTOFKIN_DESC =
-            " " + PREFIX_NEXTOFKIN + "& Doe"; // '&' now allowed in nok names
     public static final String INVALID_QUALIFICATION_DESC =
             " " + PREFIX_QUALIFICATION + "M&c"; // '&' not allowed in qualifications name
     public static final String INVALID_INSTITUTION_DESC =
@@ -176,11 +172,11 @@ public class CommandTestUtil {
         DESC_AMY_STUDENT = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).withSchool(VALID_SCHOOL_AMY).withLevel(VALID_LEVEL_AMY)
-                .withNextOfKin(VALID_NEXTOFKIN_AMY).build();
+                .build();
         DESC_BOB_STUDENT = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withSchool(VALID_SCHOOL_BOB).withLevel(VALID_LEVEL_BOB)
-                .withNextOfKin(VALID_NEXTOFKIN_BOB).build();
+                .build();
         DESC_AMY_TUTOR = new EditTutorDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).withQualification(VALID_QUALIFICATION_AMY)

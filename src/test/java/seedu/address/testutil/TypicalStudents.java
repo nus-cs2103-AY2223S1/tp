@@ -8,13 +8,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXTOFKIN_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXTOFKIN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN1;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN2;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN3;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 
@@ -36,7 +37,7 @@ public class TypicalStudents {
             .withTags("friends")
             .withSchool("Keming Primary School")
             .withLevel("PRIMARY3")
-            .withNextOfKin("Teresa Lim")
+            .withNextOfKin(NEXTOFKIN1)
             .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
             .build();
 
@@ -46,7 +47,7 @@ public class TypicalStudents {
             .withTags("owesMoney", "friends")
             .withSchool("Zheng Hua Secondary School")
             .withLevel("SECONDARY2")
-            .withNextOfKin("Aries Toh")
+            .withNextOfKin(NEXTOFKIN2)
             .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
             .build();
 
@@ -56,7 +57,7 @@ public class TypicalStudents {
             .withTags("applefanboy")
             .withSchool("Apple Primary School")
             .withLevel("PRIMARY6")
-            .withNextOfKin("Mary Appleseed")
+            .withNextOfKin(NEXTOFKIN3)
             .withTuitionClasses(TUITIONCLASS2)
             .build();
 
@@ -66,7 +67,6 @@ public class TypicalStudents {
             .withAddress(VALID_ADDRESS_AMY)
             .withSchool(VALID_SCHOOL_AMY)
             .withLevel(VALID_LEVEL_AMY)
-            .withNextOfKin(VALID_NEXTOFKIN_AMY)
             .withTags(VALID_TAG_FRIEND)
             .build();
 
@@ -76,7 +76,6 @@ public class TypicalStudents {
             .withAddress(VALID_ADDRESS_BOB)
             .withSchool(VALID_SCHOOL_BOB)
             .withLevel(VALID_LEVEL_BOB)
-            .withNextOfKin(VALID_NEXTOFKIN_BOB)
             .withTags(VALID_TAG_FRIEND)
             .build();
 
