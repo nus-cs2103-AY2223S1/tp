@@ -1,0 +1,17 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "johndip@123",
+    "deadline" : "20203",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "1"
+  } ],
+  "issues" : [ ]
+}
