@@ -92,9 +92,6 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     // '$' not allowed in module code
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "C$2500";
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
     public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "-99$9";
@@ -102,6 +99,21 @@ public class CommandTestUtil {
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "-999";
     public static final String INVALID_TASK_NUMBER_DESC_ZERO =
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "0";
+    public static final String INVALID_TASK_NUMBERS_DESC_NON_NUMERIC =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "a $9";
+    public static final String INVALID_TASK_NUMBERS_DESC_NEGATIVE =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "-1 -2";
+    public static final String INVALID_TASK_NUMBERS_DESC_ZERO =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "0 1";
+    public static final String INVALID_TASK_NUMBERS_DESC_SAME_NUMBER =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1 1";
+    public static final String INVALID_TASK_NUMBERS_DESC_ONLY_ONE_NUMBER =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1";
+    public static final String INVALID_TASK_NUMBERS_DESC_THREE_NUMBERS =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1 2 3";
+
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;

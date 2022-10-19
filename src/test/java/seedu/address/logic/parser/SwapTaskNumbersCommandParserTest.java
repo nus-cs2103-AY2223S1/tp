@@ -10,14 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBERS_DESC_NEGATIVE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBERS_DESC_NON_NUMERIC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBERS_DESC_ONLY_ONE_NUMBER;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBERS_DESC_SAME_NUMBER;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBERS_DESC_THREE_NUMBERS;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBERS_DESC_ZERO;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER_DESC_NEGATIVE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER_DESC_NON_NUMERIC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER_DESC_ZERO;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2106;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_MA2001;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_LINK_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_THREE;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE;
@@ -77,34 +76,53 @@ public class SwapTaskNumbersCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // incorrect prefix
-        assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + MODULE_LINK_CS2103T,
+        assertParseFailure(parser,
+                MODULE_CODE_DESC_MA2001 + MODULE_LINK_CS2103T,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SwapTaskNumbersCommand.MESSAGE_USAGE));
 
         // invalid module code
-        assertParseFailure(parser, MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE + INVALID_MODULE_CODE_DESC,
+        assertParseFailure(parser,
+                MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE + INVALID_MODULE_CODE_DESC,
                 ModuleCode.MESSAGE_CONSTRAINTS);
 
         // invalid task number - non-numeric
-        assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_NON_NUMERIC,
-                MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+        assertParseFailure(parser,
+                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_NON_NUMERIC,
+                MESSAGE_INVALID_TASK_NUMBER);
 
         // invalid task number - negative
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_NEGATIVE,
-                MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+                MESSAGE_INVALID_TASK_NUMBER);
 
         // invalid task number - ZERO
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_ZERO,
+                MESSAGE_INVALID_TASK_NUMBER);
+
+        // invalid task number - only one number given
+        assertParseFailure(parser,
+                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_ONLY_ONE_NUMBER,
+                MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+
+        // invalid task number - three numbers given
+        assertParseFailure(parser,
+                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_THREE_NUMBERS,
+                MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+
+        // invalid task number - same number given
+        assertParseFailure(parser,
+                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_SAME_NUMBER,
                 MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
 
 
-
-        // both module code and task description are invalid - only
+        // both module code and task numbers are invalid - only
         // invalid module code is reported.
-        assertParseFailure(parser, INVALID_TASK_NUMBER_DESC_NON_NUMERIC + INVALID_MODULE_CODE_DESC,
+        assertParseFailure(parser,
+                INVALID_TASK_NUMBERS_DESC_SAME_NUMBER + INVALID_MODULE_CODE_DESC,
                 ModuleCode.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, INVALID_MODULE_CODE_DESC + INVALID_TASK_NUMBER_DESC_NON_NUMERIC,
+        assertParseFailure(parser,
+                INVALID_MODULE_CODE_DESC + INVALID_TASK_NUMBERS_DESC_SAME_NUMBER,
                 ModuleCode.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
