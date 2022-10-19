@@ -64,7 +64,7 @@ public class PriceRange {
     }
 
     /*
-    Checks if a given float value is within the price range.
+    Checks if a given Price is within the PriceRange.
      */
     public boolean isWithinPriceRange(Price p) {
         return (low.isSmallerThan(p) && high.isGreaterThan(p));

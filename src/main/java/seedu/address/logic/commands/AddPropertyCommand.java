@@ -25,6 +25,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + " PRICE "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
+            + PREFIX_SELLER + " SELLER "
             + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Clementi Ave 2 Second Floor Flat "
