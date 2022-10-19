@@ -4,6 +4,7 @@ package seedu.address.logic.parser;
  * Represents Prefix definitions for client commands.
  */
 public class ClientCliSyntax {
+
     /* Prefix definitions */
     public static final Prefix PREFIX_CLIENT_NAME = new Prefix("n/");
     public static final Prefix PREFIX_CLIENT_PHONE = new Prefix("p/");
