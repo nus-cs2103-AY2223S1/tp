@@ -30,27 +30,27 @@ public class SampleDataUtil {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 new PriceRange("200000 - 250000"), new Characteristics("Bright; 5-Room"),
-                getTagSet("friends")),
+                getTagSet("high")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 new PriceRange("250000 - 280000"), new Characteristics("Clean; Large"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("low")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 new PriceRange("300000 - 400000"), new Characteristics("Near MRT"),
-                getTagSet("neighbours")),
+                getTagSet("low")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 new PriceRange("500000 - 800000"), new Characteristics("Near School"),
-                getTagSet("family")),
+                getTagSet("normal")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 new PriceRange("200000 - 250000"), new Characteristics("Bishan"),
-                getTagSet("classmates")),
+                getTagSet("normal")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 new PriceRange("100000 - 150000"), new Characteristics("Toa Payoh; Kid-Friendly"),
-                getTagSet("colleagues"))
+                getTagSet("low"))
         };
     }
 

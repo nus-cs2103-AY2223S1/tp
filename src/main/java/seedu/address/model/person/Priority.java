@@ -27,8 +27,9 @@ public class Priority {
      */
     public Priority(String specifiedPriority) {
         requireNonNull(specifiedPriority);
+        specifiedPriority = specifiedPriority.toUpperCase();
         checkArgument(isValidPriority(specifiedPriority), MESSAGE_CONSTRAINTS);
-        this.specifiedPriority = priority.valueOf(specifiedPriority.toUpperCase());
+        this.specifiedPriority = priority.valueOf(specifiedPriority);
     }
 
     /**
