@@ -22,6 +22,9 @@ import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.task.Task;
 
+/**
+ * Tests parser for {@code AddTaskCommand}.
+ */
 public class AddTaskCommandParserTest {
     private final AddTaskCommandParser parser = new AddTaskCommandParser();
 
