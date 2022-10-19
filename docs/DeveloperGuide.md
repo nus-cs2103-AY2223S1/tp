@@ -154,6 +154,77 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+The proposed Filter feature is facilitated by `FilterCommand`. It extends `Command` with a checking predicate, stored internally as a `TagContainsKeywordPredicate`. It overwrites the following operations:
+
+* `FilterCommand#execute()` — Executes the command, filtering the list of people according to whether they have a matching tag.
+* `FilterCommand#equals(Object o)` — Checks if two objects are equal.
+
+Given below is a Class Diagram of this feature.
+
+![FilterDiagram1](images/FilterDiagram1.png)
+
+Given below is an example usage scenario and how the filtering mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons.
+
+![FilterDiagram2](images/FilterDiagram2.png)
+
+Step 2. The user executes `filter CS2103-T17` command to filter people that have the `CS2103-T17 tag`. The `filter` keyword causes `AddressBookParser#parseCommand()` to call `FilterCommandParser#parse()`. This creates a `TagContainsKeywordPredicate` with the keyword `CS2103-T17`, and returns a `FilterCommand` containing this predicate. 
+
+![FilterDiagram3](images/FilterDiagram3.png)
+
+Step 3. `Model` then loops through all people in the list, checking if they have a `CS2103-T17` tag.
+
+![FilterDiagram4](images/FilterDiagram4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the filter command fails its execution, this step will not be reached. A Message will be displayed, letting the reader know how the filter command should be used.
+
+</div>
+
+Step 4. The filtered list will then be displayed to the user.
+
+![FilterDiagram5](images/FilterDiagram5.png)
+
+
+
+The following sequence diagram shows how the filter operation works:
+
+![FilterDiagram6](images/FilterDiagram6.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. `AddressBook` removes the filter, showing all persons.
+
+![FilterDiagram2](images/FilterDiagram2.png)
+
+The following activity diagram summarizes what happens in AddressBookParser when a user executes a filter command:
+
+<img src="images/FilterDiagram7.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How filter executes:**
+
+* **Alternative 1 (current choice):** Updates the displayed list by hiding information.
+    * Pros: Uses less memory
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Creates a new Address Book.
+    * Pros: Does not modify the master address book.
+    * Cons: May have performance issues in terms of memory usage.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
