@@ -4,15 +4,23 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.util.FindMeetingFunctionalInterface;
 
 /**
  * Tests that a {@code Meetings}'s description matches any of the keywords given.
  */
 public class MeetingContainsKeywordsPredicate implements Predicate<Meeting> {
     private final List<String> keywords;
+    private final FindMeetingFunctionalInterface meetingField;
 
-    public MeetingContainsKeywordsPredicate(List<String> keywords) {
+    /**
+     * Constructor
+     * @param keywords list of keywords to search for
+     * @param meetingField meetingField to retrieve based on parameters from parser
+     */
+    public MeetingContainsKeywordsPredicate(List<String> keywords, FindMeetingFunctionalInterface meetingField) {
         this.keywords = keywords;
+        this.meetingField = meetingField;
     }
 
     /**
@@ -23,8 +31,9 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Meeting> {
      */
     @Override
     public boolean test(Meeting meeting) {
+        String searchContext = meetingField.getField(meeting);
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(meeting.getDescription(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(searchContext, keyword));
     }
     @Override
     public boolean equals(Object other) {
