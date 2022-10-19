@@ -403,17 +403,19 @@ Given below is an example usage scenario and how this feature behaves at each pa
 
 Step 1. The user launches the application. Under each contacts' name, the current order the user sees is: Tags, phone number, email and address (This is also the default order)
 
-Step 2. The user wants to have each email right below each name instead. The user executes `customise order e/` to make the emails appear right below the name.
+Step 2. The user wants to have each email right below each name instead.
 
-1. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`
-2. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
-3. `CustomiseOrderCommandParser` processes the input and adds to a list of attributes with `EMAIL` and then fills in the rest of the attributes in the following default order `TAGS`, `PHONE` and lastly `ADDRESS`.
-4. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
-5. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
-6. `Logic` executes the `CustomiseOrderCommand`.
-7. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
+Step 3. The user executes `customise order e/` to make the emails appear right below the name.
 
-The following sequence diagram illustrates points 1-7 in Step 2:
+* Step 3a. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`
+* Step 3b. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
+* Step 3c. `CustomiseOrderCommandParser` processes the input and adds to a list of attributes with `EMAIL` and then fills in the rest of the attributes in the following default order `TAGS`, `PHONE` and lastly `ADDRESS`.
+* Step 3d. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
+* Step 3e. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
+* Step 3f. `Logic` executes the `CustomiseOrderCommand`.
+* Step 3g. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
+
+The following sequence diagram illustrates Steps 3a to 3g:
 
 ![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
 
@@ -421,11 +423,11 @@ The following sequence diagram illustrates points 1-7 in Step 2:
 
 * The lifeline for `CustomiseOrderCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-Step 3. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
+Step 4. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
 
-Step 4. The user closes the application.
+Step 5. The user closes the application.
 
-Step 5. The user relaunches the application and the attributes are still in the same order that the user set previously.
+Step 6. The user relaunches the application and the attributes are still in the same order that the user set previously.
 
 #### Design consideration
 * **Alternative 1 (current choice):** Sets the order by using 4 placeholder JavaFX `FlowPane`.
