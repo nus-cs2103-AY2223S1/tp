@@ -156,6 +156,95 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add link feature
+
+The 'add link' feature allows for the user to add links with corresponding aliases to a `Module` in Plannit.
+Links in Plannit are represented by the `Link` class. A `Link` object contains two required fields,
+a `String` URL and a `String` alias. For each Plannit `Module`, `Link` objects are stored in a `TreeMap`.
+
+The implementation of the 'delete link' feature is highly similar to this, but without a String URL input.
+
+#### Implementation
+
+The add link mechanism is facilitated by `AddLinkCommandParser` and `AddLinkCommand`. 
+`AddLinkCommandParser` implements the `Parser` interface to validate the `Module` and
+pair link URLs with their aliases from the user input.
+It then creates a `AddLinkCommand` object with the pairings for the specified `Module`.
+`AddLinkCommand` extends the `Command` class to add `Link` objects into a `Module` in Plannit.
+
+Given below is an example usage scenario and how the add link mechanism behaves at each step.
+
+**Step 1**: The user decides to add a link to a current module in Plannit using the following input:
+`add-link m/CS1231 l/aikendueet.com la/Prof Aaron`.
+
+**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the user input. 
+Then, the `LogicManager` calls the `AddressBookParser::parseCommand` method 
+with the user input `String` to create a `Command` object.
+
+**Step 3**: The `AddressBookParser` finds the command keyword `add-link` in the user input.
+Thus, a new `AddLinkCommandParser` object is instantiated to parse the arguments from the user input
+to create a new `AddLinkCommand` object.
+
+**Step 4**: Within the new `AddLinkCommandParser` object, the `parse` method is used on the arguments to validate
+its module code, link URL, and alias. Also, it forms a new `Link` object with its link URL and alias.
+A new `AddLinkCommand` is created with the module code and `Link` object, which is returned to `LogicManager`.
+
+**Step 5**: The `AddLinkCommand::execute` method is then called by the `LogicManager`.
+This method will first obtain the `Module` object with the module code indicated by the user.
+A copy of the `Module`'s fields are then created and the `Link` object is added to the copied `TreeMap` of links.
+
+**Step 6**: A new `Module` is created with the modified and copied fields, which replaces 
+the original `Module` object in Plannit using the `Model::setModule` method.
+
+The following sequence diagram shows how the 'add link' feature works:
+
+The following activity diagram shows how the 'add link' feature works:
+
+#### Design considerations:
+**Aspect: Link Representation:**
+* **Alternative 1 (current choice)**: Link objects require alias and URL.
+    * Pros: 
+        * Fast identification, access, and deletion of links from the user's perspective.
+        * Improved sorted display of links (shorter and standardised format).
+    * Cons: 
+        * Longer time for the user to type input.
+* **Alternative 2**: Link objects require URL only and its alias is an optional input.
+    * Pros: 
+        * Greater flexibility for different user preferences.
+    * Cons: 
+        * Inconsistent link display format
+        * Slow identification, access, and deletion of links from the user's perspective.
+* **Alternative 3**: Link objects require URL only and its alias is an optional input with a default alias.
+    * Pros: 
+        * Greater flexibility for different user preferences.
+    * Cons: 
+        * Default alias may be confusing and/or undesirable.
+        * Slow identification, access, and deletion of links from the user's perspective.
+* **Alternative 4**: Link objects require URL only with no alias.
+    * Pros: 
+        * Easy to implement.
+    * Cons: 
+        * Cluttered and unorganised display of links.
+        * Slow identification, access, and deletion of links from the user's perspective.
+
+**Aspect: Link Storage:**
+* **Alternative 1 (current choice)**: Link objects stored in a `TreeMap` object within `Module`.
+    * Pros: 
+        * Consistent display order of links in Plannit.
+    * Cons: 
+        * Harder to implement.
+* **Alternative 2**: Link objects stored in a `ArrayList` object within `Module`.
+    * Pros: 
+        * Easy to implement.
+    * Cons: 
+        * No standardised display order of links across `Module` objects.
+        * Slow performance when accessing and deleting links in terms of time.
+* **Alternative 3**: Link objects stored in a `HashSet` object within `Module`.
+    * Pros: 
+        * Fast performance when accessing and deleting links in terms of time.
+    * Cons: 
+        * Display order of links changes after each modification to the `HashSet` of links for a `Module`.
+        
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
