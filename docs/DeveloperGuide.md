@@ -2,8 +2,32 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+# Developer Guide
+* Table of Contents {:toc}
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [[Proposed] Add](#proposed-add)
+  - [[Proposed] Delete](#proposed-delete)
+  - [[Proposed] List](#proposed-list)
+  - [[Proposed] Find](#proposed-find)
+  - [[Proposed] Loan](#proposed-loan)
+  - [[Proposed] Return](#proposed-return)
+- [Documentation, logging, testing, configuration](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-function Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -156,6 +180,23 @@ Classes used by multiple components are in the `bookface.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### [Proposed] Add
+
+
+### [Proposed] Delete
+
+
+
+### [Proposed] List
+
+### [Proposed] Find
+
+### [Proposed] Loan
+
+
+### [Proposed] Return
+
 
 ### \[Proposed\] Undo/redo feature
 
