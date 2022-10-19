@@ -8,27 +8,27 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.intrack.logic.commands.FindPCommand;
+import seedu.intrack.logic.commands.FindPositionCommand;
 import seedu.intrack.model.internship.PositionContainsKeywordsPredicate;
 
-public class FindPCommandParserTest {
+public class FindPositionCommandParserTest {
 
-    private FindPCommandParser parser = new FindPCommandParser();
+    private FindPositionCommandParser parser = new FindPositionCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPositionCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindPCommand expectedFindPCommand =
-                new FindPCommand(new PositionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindPCommand);
+        FindPositionCommand expectedFindPositionCommand =
+                new FindPositionCommand(new PositionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "Alice Bob", expectedFindPositionCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindPCommand);
+        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindPositionCommand);
     }
 
 }

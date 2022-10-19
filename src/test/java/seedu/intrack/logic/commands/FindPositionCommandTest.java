@@ -21,9 +21,9 @@ import seedu.intrack.model.UserPrefs;
 import seedu.intrack.model.internship.PositionContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindPCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindPositionCommand}.
  */
-public class FindPCommandTest {
+public class FindPositionCommandTest {
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalInTrack(), new UserPrefs());
 
@@ -34,14 +34,14 @@ public class FindPCommandTest {
         PositionContainsKeywordsPredicate secondPredicate =
                 new PositionContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindPCommand findFirstCommand = new FindPCommand(firstPredicate);
-        FindPCommand findSecondCommand = new FindPCommand(secondPredicate);
+        FindPositionCommand findFirstCommand = new FindPositionCommand(firstPredicate);
+        FindPositionCommand findSecondCommand = new FindPositionCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindPCommand findFirstCommandCopy = new FindPCommand(firstPredicate);
+        FindPositionCommand findFirstCommandCopy = new FindPositionCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -58,7 +58,7 @@ public class FindPCommandTest {
     public void execute_zeroKeywords_noInternshipFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 0);
         PositionContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindPCommand command = new FindPCommand(predicate);
+        FindPositionCommand command = new FindPositionCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredInternshipList());
@@ -68,7 +68,7 @@ public class FindPCommandTest {
     public void execute_multipleKeywords_multipleInternshipsFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 3);
         PositionContainsKeywordsPredicate predicate = preparePredicate("Frontend Stack Security");
-        FindPCommand command = new FindPCommand(predicate);
+        FindPositionCommand command = new FindPositionCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());

@@ -10,7 +10,7 @@ import seedu.intrack.model.internship.PositionContainsKeywordsPredicate;
  * Finds and lists all internships in the internship tracker whose position contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindPCommand extends Command {
+public class FindPositionCommand extends Command {
 
     public static final String COMMAND_WORD = "findp";
 
@@ -21,7 +21,7 @@ public class FindPCommand extends Command {
 
     private final PositionContainsKeywordsPredicate predicate;
 
-    public FindPCommand(PositionContainsKeywordsPredicate predicate) {
+    public FindPositionCommand(PositionContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,8 +36,8 @@ public class FindPCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindPCommand // instanceof handles nulls
-                && predicate.equals(((FindPCommand) other).predicate)); // state check
+                || (other instanceof FindPositionCommand // instanceof handles nulls
+                && predicate.equals(((FindPositionCommand) other).predicate)); // state check
     }
 
 }
