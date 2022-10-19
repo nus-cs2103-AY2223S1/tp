@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.beans.property.ObjectProperty;
@@ -11,7 +12,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.UniqueLinkList;
 import seedu.address.model.team.UniqueTeamList;
 
 /**
@@ -36,7 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams = new UniqueTeamList();
     }
 
-    public AddressBook() {
+    private AddressBook() {
     }
 
     /**
@@ -45,6 +45,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    public static AddressBook createNewAddressBook() {
+        Team defaultTeam = Team.createDefaultTeam();
+        AddressBook ab = new AddressBook();
+        ab.addTeam(defaultTeam);
+        ab.setTeam(defaultTeam);
+        return ab;
     }
 
     //// list overwrite operations

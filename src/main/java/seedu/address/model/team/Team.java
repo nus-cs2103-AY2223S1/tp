@@ -3,6 +3,7 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -64,6 +65,10 @@ public class Team {
         this.teamMembers.setPersons(teamMembers);
         this.taskList.setTasks(tasks);
         this.links.setLinks(links);
+    }
+
+    public static Team createDefaultTeam() {
+        return new Team("default", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     public String getTeamName() {

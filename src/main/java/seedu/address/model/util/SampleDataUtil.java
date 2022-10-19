@@ -43,13 +43,10 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        AddressBook sampleAb = AddressBook.createNewAddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
-        Team defaultTeam = new Team("default", new ArrayList<>(), new ArrayList<>());
-        sampleAb.addTeam(defaultTeam);
-        sampleAb.setTeam(defaultTeam);
         return sampleAb;
     }
 

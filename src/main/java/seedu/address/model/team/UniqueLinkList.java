@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.team.exceptions.DuplicateLinkException;
@@ -22,6 +23,9 @@ import seedu.address.model.team.exceptions.LinkNotFoundException;
 public class UniqueLinkList implements Iterable<Link> {
 
     private final ObservableList<Link> internalLinks = FXCollections.observableArrayList();
+
+    private final ObservableList<Link> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalLinks);
 
     /**
      * Returns true if the list contains a link with the same name as the given argument.
@@ -88,7 +92,7 @@ public class UniqueLinkList implements Iterable<Link> {
      */
 
     public ObservableList<Link> asUnmodifiableObservableList() {
-        return this.internalLinks;
+        return this.internalUnmodifiableList;
     }
 
     /**

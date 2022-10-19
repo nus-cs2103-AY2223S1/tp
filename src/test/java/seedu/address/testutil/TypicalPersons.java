@@ -64,13 +64,10 @@ public class TypicalPersons {
      * Returns an {@code AddressBook} with all the typical persons.
      */
     public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+        AddressBook ab = AddressBook.createNewAddressBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
-        Team defaultTeam = new Team("default", new ArrayList<>(), new ArrayList<>());
-        ab.addTeam(defaultTeam);
-        ab.setTeam(defaultTeam);
         return ab;
     }
 
