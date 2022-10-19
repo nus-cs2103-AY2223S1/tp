@@ -20,7 +20,7 @@ import longtimenosee.model.person.exceptions.PersonNotFoundException;
  * Adds an Event to the address book.
  */
 public class AddEventCommand extends Command {
-    public static final String COMMAND_WORD = "newEvent";
+    public static final String COMMAND_WORD = "addEvent";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
     public static final String MESSAGE_OVERLAP_EVENT = "The event you would like to add overlaps with another event \n"
             + "Perhaps choose a different timing? ";

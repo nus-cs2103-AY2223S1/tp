@@ -15,7 +15,12 @@ public class Event {
     public static final Comparator<Event> EVENT_COMPARATOR = new Comparator<Event>() {
         @Override
         public int compare(Event e1, Event e2) {
-            return e1.getDate().getDate().compareTo(e2.getDate().getDate());
+            int x = e1.getDate().getDate().compareTo(e2.getDate().getDate());
+            if (x != 0) {
+                return x;
+            } else {
+                return e1.getDuration().getStartTime().compareTo(e2.getDuration().getStartTime());
+            }
         }
     };
     private final Description description;

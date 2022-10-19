@@ -10,7 +10,7 @@ import longtimenosee.model.Model;
  */
 public class ListEventsCommand extends Command {
 
-    public static final String COMMAND_WORD = "listEvents";
+    public static final String COMMAND_WORD = "events";
 
     public static final String MESSAGE_SUCCESS = "Listed all events";
 
