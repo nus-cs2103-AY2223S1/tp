@@ -1,8 +1,8 @@
 package seedu.uninurse.model.medication.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Conditions.
- * Conditions are considered duplicates if they have the same name.
+ * Signals that the operation did not modify an existing duplicate Medication.
+ * Medications are considered duplicates if they have the same medication type and dosage amount.
  */
 public class UnmodifiedMedicationException extends RuntimeException {
     public UnmodifiedMedicationException() {
