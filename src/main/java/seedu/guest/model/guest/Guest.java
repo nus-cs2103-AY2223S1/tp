@@ -21,13 +21,14 @@ public class Guest {
     private final NumberOfGuests numberOfGuests;
     private final IsRoomClean isRoomClean;
     private final Bill bill;
+    private final Request request;
 
     /**
      * Every field must be present and not null.
      */
     public Guest(Name name, Phone phone, Email email, Room room, DateRange dateRange,
-                 NumberOfGuests numberOfGuests, IsRoomClean isRoomClean, Bill bill) {
-        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
+                 NumberOfGuests numberOfGuests, IsRoomClean isRoomClean, Bill bill, Request request) {
+        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -36,6 +37,7 @@ public class Guest {
         this.numberOfGuests = numberOfGuests;
         this.isRoomClean = isRoomClean;
         this.bill = bill;
+        this.request = request;
     }
 
     public Name getName() {
@@ -68,6 +70,10 @@ public class Guest {
 
     public Bill getBill() {
         return bill;
+    }
+
+    public Request getRequest() {
+        return request;
     }
 
     /**
@@ -106,13 +112,14 @@ public class Guest {
                 && otherGuest.getDateRange().equals(getDateRange())
                 && otherGuest.getNumberOfGuests().equals(getNumberOfGuests())
                 && otherGuest.getIsRoomClean().equals(getIsRoomClean())
-                && otherGuest.getBill().equals(getBill());
+                && otherGuest.getBill().equals(getBill())
+                && otherGuest.getRequest().equals(getRequest());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
+        return Objects.hash(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
     }
 
     @Override
@@ -132,7 +139,9 @@ public class Guest {
                 .append("; Is Room Clean: ")
                 .append(getIsRoomClean())
                 .append("; Bill: ")
-                .append(getBill());
+                .append(getBill())
+                .append("; Request: ")
+                .append(getRequest());
 
         return builder.toString();
     }

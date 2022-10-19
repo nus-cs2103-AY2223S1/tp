@@ -7,7 +7,8 @@
     "dateRange": "13/09/22 - 15/09/22",
     "numberOfGuests": "1",
     "isRoomClean": "yes",
-    "bill": "10.00"
+    "bill": "10.00",
+    "request": "room service"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -16,6 +17,7 @@
     "dateRange": "13/09/22 - 15/09/22",
     "numberOfGuests": "1",
     "isRoomClean": "yes",
-    "bill": "10.00"
+    "bill": "10.00",
+    "request": "room service"
   } ]
 }

@@ -122,8 +122,8 @@
 
         <Region minWidth="10" HBox.hgrow="NEVER"/>
 
-        <HBox minWidth="280" maxWidth="280" HBox.hgrow="NEVER">
-          <VBox id="roomStatus" minWidth="280" HBox.hgrow="NEVER">
+        <HBox minWidth="210" maxWidth="210" HBox.hgrow="NEVER">
+          <VBox id="roomStatus" minWidth="210" HBox.hgrow="NEVER">
             <Label fx:id="roomStatus" text="Room Status" />
 
             <HBox fx:id="isRoomCleanBox" alignment="CENTER_LEFT">
@@ -154,6 +154,21 @@
               </ImageView>
               <Region minWidth="5" HBox.hgrow="NEVER" />
               <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
+            </HBox>
+
+            <HBox fx:id="requestBox" alignment="CENTER_LEFT">
+              <ImageView
+                      fitHeight="14.0"
+                      fitWidth="14.0"
+                      smooth="false"
+                      HBox.hgrow="NEVER"
+                      translateY="-1" >
+                <image>
+                  <Image url="@/images/request.png" />
+                </image>
+              </ImageView>
+              <Region minWidth="5" HBox.hgrow="NEVER" />
+              <Label fx:id="request" styleClass="cell_small_label" text="\$request" />
             </HBox>
 
             <HBox alignment="CENTER_LEFT">

@@ -231,6 +231,68 @@ The following activity diagrams summarizes what happens when a user enters an `e
 **Aspect: Excluding b/ (Bill) in the `edit` command**
 * As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace it by accident.
 
+### MarkRoomsUnclean Feature
+
+#### Implementation
+* The `markRoomsUnclean` command edits all the guests in the guest book and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields. 
+
+The following activity diagram summarizes what happens when a user enters a `markRoomsUnclean` command.
+
+![MarkRoomsUncleanActivityDiagram](images/markRoomsUncleanActivityDiagram.png)
+
+#### Design Considerations:
+**Aspect: The scope at which the command changes all guests' isRoomClean statuses**
+* Alternative 1: Allow `markRoomsUnclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete). 
+  * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
+  * Cons: User is unable to change all the guests' isRoomClean statuses in a single command.
+* Alternative 2 (current choice): Allow `markRoomsUnclean` command to change all guests' isRoomClean statuses in the guest book instead of the last shown list.
+  * Pros: User is able to change all the guests' isRoomClean statuses in a single command.
+  * Cons: There is less flexibility in marking groups of guests' room as unclean.
+
+Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous.
+
+### Find feature
+
+#### Implementation:
+* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `Name` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
+
+The following activity diagram summarizes what happens when a user enters a `find` command.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: Allowing searching only through `Name` field**
+* As the hotel manager would usually search by the Guest's name, it would be appropriate enough to search by the Guest's name. However, we do not rule out the possibility that the hotel manager might want to search by other fields as well. Hence, there could be another implementation, further elaborated on in the `Proposed` section below.
+
+**Aspect: Only matching full keywords**
+* The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
+
+### \[Proposed\] Improved `find` command
+
+#### Proposed Implementation
+
+The current `find` command enables the hotel manager to only search by the `Name` field. However, it is possible that the hotel manager might want to search by other fields as well, such as `Room`.
+Hence, we should make the `find` functionality extensible enough to search by other fields.
+
+The following activity diagram summarizes the proposed implementation of what should happen when a user enters a `find` command.
+
+![ProposedImplementationFindActivityDiagram](images/ProposedImplementationFindActivityDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: How to implement the extensible `find` command:**
+
+* **Alternative 1:** Use the functionality to find `Name` for other fields .
+    * Pros: Easy to implement.
+    * Cons: May lead to bugs as `Name` fields only accept alphanumeric characters, while other fields can accept other symbols.
+
+* **Alternative 2 (current choice):** Create the functionality for matching keywords for each field.
+    * Pros: Will be more accurate.
+    * Cons: We must ensure that the implementation of each field predicate are correct.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -396,11 +458,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User searches for guest 
-2. Guest is not found in list of guests 
+1. User searches for guest
+2. Guest is not found in list of guests
 3. User requests to add a guest to the list
 4. GuestBook adds the guest
-    
+
     Use case ends.
 
 **Extensions**
@@ -411,9 +473,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The input data is invalid
 
   * 3a1. GuestBook shows an error message.
-  
+
     Use case resumes at step 2.
-  
+
 **Use case: Delete a guest**
 
 **MSS**
