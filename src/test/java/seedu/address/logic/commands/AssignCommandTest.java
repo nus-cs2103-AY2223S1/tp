@@ -5,11 +5,11 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.STUDENT3;
-import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
-import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
+import static seedu.address.testutil.TypicalTuitionClasses.*;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
 import static seedu.address.testutil.TypicalTutors.TUTOR3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -31,34 +31,38 @@ public class AssignCommandTest {
     @Test
     public void executeForStudent_validIndexAndTuitionClass_success() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        model.updateCurrentListType(Model.ListType.STUDENT_LIST);
         model.addPerson(STUDENT3);
         model.addTuitionClass(TUITIONCLASS1);
-        List<TuitionClass> expectedTuitionClasses = STUDENT3.getTuitionClasses();
+        List<TuitionClass> expectedTuitionClasses = new ArrayList<>();
+        expectedTuitionClasses.add(TUITIONCLASS2);
         expectedTuitionClasses.add(TUITIONCLASS1);
         try {
             AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, TUITIONCLASS1.getName());
             CommandResult commandResult = assignCommand.execute(model);
-            assertEquals(commandResult, String.format(AssignCommand.MESSAGE_ASSIGN_STUDENT_SUCCESS, STUDENT3));
+            assertEquals(commandResult.getFeedbackToUser(), String.format(AssignCommand.MESSAGE_ASSIGN_STUDENT_SUCCESS, STUDENT3));
             assertEquals(expectedTuitionClasses, STUDENT3.getTuitionClasses());
         } catch (CommandException e) {
-            return;
+            throw new AssertionError("Test should not fail");
         }
     }
 
     @Test
     public void executeForTutor_validIndexAndTuitionClass_success() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        model.updateCurrentListType(Model.ListType.TUTOR_LIST);
         model.addPerson(TUTOR3);
         model.addTuitionClass(TUITIONCLASS2);
-        List<TuitionClass> expectedTuitionClasses = TUTOR3.getTuitionClasses();
+        List<TuitionClass> expectedTuitionClasses = new ArrayList<>();
+        expectedTuitionClasses.add(TUITIONCLASS1);
         expectedTuitionClasses.add(TUITIONCLASS2);
         try {
             AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, TUITIONCLASS2.getName());
             CommandResult commandResult = assignCommand.execute(model);
-            assertEquals(commandResult, String.format(AssignCommand.MESSAGE_ASSIGN_STUDENT_SUCCESS, TUTOR3));
+            assertEquals(commandResult.getFeedbackToUser(), String.format(AssignCommand.MESSAGE_ASSIGN_TUTOR_SUCCESS, TUTOR3));
             assertEquals(expectedTuitionClasses, TUTOR3.getTuitionClasses());
         } catch (CommandException e) {
-            return;
+            throw new AssertionError("Test should not fail");
         }
     }
 
