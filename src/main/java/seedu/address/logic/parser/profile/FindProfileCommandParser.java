@@ -16,7 +16,7 @@ import seedu.address.model.profile.NameContainsKeywordsPredicate;
  */
 public class FindProfileCommandParser implements Parser<FindProfileCommand> {
 
-    public static final String MESSAGE_MISSING_KEYWORDS = "Provide at least one keyword. \n";
+    public static final String MESSAGE_MISSING_KEYWORDS = "Provide at least one keyword.\n";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
