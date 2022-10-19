@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
 import seedu.address.storage.Storage;
 
 /**
@@ -81,10 +82,10 @@ public class LogicManager implements Logic {
 
     @Override
     public double calculateTotalTransaction(ObservableList<Client> filteredClientList) {
-        double netTransacted = 0.0;
+        UniqueClientList filteredList = new UniqueClientList();
         for (Client client : filteredClientList) {
-            netTransacted += client.getTotalTransacted();
+            filteredList.add(client);
         }
-        return netTransacted;
+        return filteredList.calculateNetTransaction();
     }
 }
