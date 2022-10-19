@@ -139,33 +139,28 @@ Examples:
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
 * `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
 
-### Locating tutor by name: `find`
+### Search for tutor by attribute: `find`
 
-Finds tutor whose names contain any of the given keywords.
+Finds tutor(s) whose specific profile attribute contains any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING]`
+* The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-* Only the name is searched.
+* Only the attribute that corresponds to the prefix entered is searched.
 * Only full words will be matched e.g. Han will not match Hans
-* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* Tutors matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
 Examples:
-* `find John` returns all tutors with names that contains `John`.
-* `find alex david` returns all tutors with names that contain `Alex` or `David`.
-
-### Locating tutors of modules: `findbymodule`
-
-Finds tutor whose teaches the given keyword.
-
-Format: `findbymodule KEYWORD [MORE_KEYWORDS]`
-* The search is case-insensitive. e.g cs2103 will match CS2103
-* Only the module code is searched.
-* Only full words will be matched e.g. CS210 will not match CS2103
-
-Examples:
-* `findbymodule CS2103` returns all tutors teaching `CS2103`.
-* `findbymodule CS2103 CS2100` returns all tutors teaching `CS2103` or `CS2100`.
+* `find n/John` returns all tutors with names that contains `John`.
+* `find n/alex david` returns all tutors with names that contain `Alex` or `David`.
+* `find p/98765432 99999999` returns the tutors with phone number `98765432` or `99999999`.
+* `find e/alice@example.com ben@example.com` returns the tutors with email `alice@example.com` or `ben@example.com`.
+* `find m/cs2100 cs2105` returns the tutors teaching module `cs2100` or `cs2105`.
+* `find y/4` returns all tutors who are in year `4` of their studies.
+* `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X1 or `A0123456y`.
+* `find tn/3` returns all tutors that have `3` teaching nominations.
+* `find r/4.0` returns all tutors that have rating of `4.0`.
 
 ### Sorting tutors by quantitative measures: `sort`
 
