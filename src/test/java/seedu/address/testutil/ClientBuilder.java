@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +29,8 @@ public class ClientBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private ArrayList<Meeting> meetings;
+    private Set<Product> products;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -36,6 +41,8 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        meetings = new ArrayList<>();
+        products = new HashSet<>();
     }
 
     /**
@@ -47,6 +54,7 @@ public class ClientBuilder {
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
+        products = new HashSet<>(clientToCopy.getProducts());
     }
 
     /**
@@ -89,8 +97,16 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code products} into a {@code Set<Product>} and set it to the {@code Client} that we are building.
+     */
+    public ClientBuilder withProducts(String ... products) {
+        this.products = SampleDataUtil.getProductSet(products);
+        return this;
+    }
+
     public Client build() {
-        return new Client(name, phone, email, address, tags);
+        return new Client(name, phone, email, address, tags, products);
     }
 
 }
