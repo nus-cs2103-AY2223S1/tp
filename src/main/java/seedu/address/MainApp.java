@@ -113,8 +113,10 @@ public class MainApp extends Application {
             reminderListOptional = storage.readReminderList();
             if (!reminderListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ReminderList");
+                reminderListData = new ReminderList();
+            } else {
+                reminderListData = reminderListOptional.get();
             }
-            reminderListData = reminderListOptional.get();
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ReminderList");
             reminderListData = new ReminderList();
