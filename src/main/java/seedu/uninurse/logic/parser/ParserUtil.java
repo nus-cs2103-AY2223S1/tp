@@ -19,6 +19,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -137,11 +138,38 @@ public class ParserUtil {
      */
     public static Task parseTask(String taskDescription) throws ParseException {
         requireNonNull(taskDescription);
+        String[] descriptionAndTime = taskDescription.trim().split("\\|");
+
+        if (descriptionAndTime.length == 1) {
+            return parseTaskWithoutDateTime(descriptionAndTime[0]);
+        }
+
+        return parseTaskWithDateTime(descriptionAndTime[0], descriptionAndTime[1]);
+    }
+
+    private static Task parseTaskWithoutDateTime(String taskDescription) throws ParseException {
         String trimmedTaskDescription = taskDescription.trim();
+
         if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
+
         return new Task(trimmedTaskDescription);
+    }
+
+    private static Task parseTaskWithDateTime(String taskDescription, String dateTime) throws ParseException {
+        String trimmedTaskDescription = taskDescription.trim();
+        String trimmedDateTime = dateTime.trim();
+
+        if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));
     }
 
     /**

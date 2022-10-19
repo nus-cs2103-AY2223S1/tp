@@ -2,7 +2,6 @@ package seedu.uninurse.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Task for a Patient.
  * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}
@@ -21,15 +20,27 @@ public class Task {
 
     public final String taskDescription;
 
+    public final DateTime dateTime;
+
     /**
-     * Constructs a {@code Task}.
-     *
-     * @param description A valid task description.
+     * Constructs a {@code Task} with the given {@code description}.
      */
     public Task(String description) {
         requireNonNull(description);
         checkArgument(isValidTaskDescription(description), MESSAGE_CONSTRAINTS);
         taskDescription = description;
+        dateTime = new DateTime();
+    }
+
+    /**
+     * Constructs a {@code Task} with the given {@code description} and {@code dateAndTime}.
+     */
+    public Task(String description, DateTime dateAndTime) {
+        requireNonNull(description);
+        requireNonNull(description);
+        checkArgument(isValidTaskDescription(description), MESSAGE_CONSTRAINTS);
+        taskDescription = description;
+        dateTime = dateAndTime;
     }
 
     /**
@@ -39,9 +50,13 @@ public class Task {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isTaskToday() {
+        return dateTime.isToday();
+    }
+
     @Override
     public String toString() {
-        return taskDescription;
+        return taskDescription + " " + dateTime;
     }
 
     @Override
