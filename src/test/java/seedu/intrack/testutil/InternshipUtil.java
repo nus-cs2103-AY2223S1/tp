@@ -5,7 +5,6 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
-//import static seedu.intrack.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -36,7 +35,6 @@ public class InternshipUtil {
         sb.append(PREFIX_POSITION + internship.getPosition().positionName + " ");
         sb.append(PREFIX_PHONE + internship.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + internship.getEmail().value + " ");
-        //sb.append(PREFIX_STATUS + internship.getStatus().value + " ");
         sb.append(PREFIX_ADDRESS + internship.getAddress().value + " ");
         internship.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

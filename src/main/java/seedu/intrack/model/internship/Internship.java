@@ -2,8 +2,10 @@ package seedu.intrack.model.internship;
 
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,6 +27,8 @@ public class Internship {
 
     // Data fields
     private final Address address;
+
+    private final List<Task> tasks = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -32,14 +36,16 @@ public class Internship {
      */
 
     public Internship(Name name, Position position, Phone phone, Email email, Status status, Address address,
-            Set<Tag> tags, Remark remark) {
-        requireAllNonNull(name, position, phone, email, status, address, tags, remark);
+                      List<Task> tasks, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, position, phone, email, status, address, tasks, tags, remark);
+
         this.name = name;
         this.position = position;
         this.phone = phone;
         this.email = email;
         this.status = status;
         this.address = address;
+        this.tasks.addAll(tasks);
         this.tags.addAll(tags);
         this.remark = remark;
     }
@@ -68,7 +74,17 @@ public class Internship {
         return status;
     }
 
-    public Remark getRemark() { return remark; }
+    public Remark getRemark() {
+        return remark;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Task> getTasks() {
+        return Collections.unmodifiableList(tasks);
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -113,13 +129,14 @@ public class Internship {
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getStatus().equals(getStatus())
                 && otherInternship.getAddress().equals(getAddress())
+                && otherInternship.getTasks().equals(getTasks())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, position, phone, email, address, tags);
+        return Objects.hash(name, position, phone, email, status, address, tasks, tags);
     }
 
     @Override
@@ -138,6 +155,11 @@ public class Internship {
                 .append("; Address: ")
                 .append(getAddress());
 
+        List<Task> tasks = getTasks();
+        if (!tasks.isEmpty()) {
+            builder.append("; Tasks: ");
+            tasks.forEach(builder::append);
+        }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
@@ -147,5 +169,4 @@ public class Internship {
                 .append(getRemark());
         return builder.toString();
     }
-
 }

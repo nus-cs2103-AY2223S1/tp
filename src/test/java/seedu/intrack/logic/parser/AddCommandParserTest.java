@@ -87,8 +87,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Internship expectedInternship = new InternshipBuilder(MSFT).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_MSFT + POSITION_DESC_MSFT + PHONE_DESC_MSFT + EMAIL_DESC_MSFT
-                + ADDRESS_DESC_MSFT, new AddCommand(expectedInternship));
+        assertParseSuccess(parser, NAME_DESC_MSFT + POSITION_DESC_MSFT + PHONE_DESC_MSFT
+                + EMAIL_DESC_MSFT + ADDRESS_DESC_MSFT, new AddCommand(expectedInternship));
     }
 
     @Test

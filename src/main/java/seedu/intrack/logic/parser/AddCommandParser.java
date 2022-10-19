@@ -8,6 +8,8 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -21,6 +23,7 @@ import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
+import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -49,10 +52,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = new Status("PROGRESS");
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        List<Task> taskList = new ArrayList<>();
+        taskList.add(new Task());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark("");
 
-        Internship internship = new Internship(name, position, phone, email, status, address, tagList, remark);
+        Internship internship = new Internship(name, position, phone, email, status, address, taskList,
+                tagList, remark);
 
         return new AddCommand(internship);
     }

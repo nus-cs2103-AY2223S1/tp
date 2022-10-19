@@ -55,7 +55,7 @@ public class RemarkCommand extends Command {
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
         Internship editedinternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
                 internshipToEdit.getPhone(), internshipToEdit.getEmail(), internshipToEdit.getStatus(),
-                internshipToEdit.getAddress(), internshipToEdit.getTags(), remark);
+                internshipToEdit.getAddress(), internshipToEdit.getTasks(), internshipToEdit.getTags(), remark);
 
         model.setInternship(internshipToEdit, editedinternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);

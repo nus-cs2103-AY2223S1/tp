@@ -7,6 +7,11 @@
     "email" : "alice@example.com",
     "status" : "Progress",
     "address" : "123, Jurong West Ave 6, #08-111",
+
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    } ],
     "tagged" : [ "friends" ],
     "remark" : ""
   }, {
@@ -16,6 +21,10 @@
     "email" : "johnd@example.com",
     "status" : "Offered",
     "address" : "311, Clementi Ave 2, #02-25",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "20-10-2022 12:00"
+    } ],
     "tagged" : [ "owesMoney", "friends" ],
     "remark" : ""
   }, {
@@ -25,6 +34,10 @@
     "email" : "heinz@example.com",
     "status" : "Offered",
     "address" : "wall street",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    } ],
     "tagged" : [ ],
     "remark" : ""
   }, {
@@ -34,6 +47,13 @@
     "email" : "cornelia@example.com",
     "status" : "Offered",
     "address" : "10th street",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    }, {
+      "taskName" : "HR Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
     "tagged" : [ "friends" ],
     "remark" : ""
   }, {
@@ -43,6 +63,13 @@
     "email" : "werner@example.com",
     "status" : "Offered",
     "address" : "michegan ave",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "25-10-2022 08:30"
+    }, {
+      "taskName" : "Technical Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
     "tagged" : [ ],
     "remark" : ""
   }, {
@@ -52,6 +79,13 @@
     "email" : "lydia@example.com",
     "status" : "Offered",
     "address" : "little tokyo",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    }, {
+      "taskName" : "HR Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
     "tagged" : [ ],
     "remark" : ""
   }, {
@@ -61,6 +95,13 @@
     "email" : "anna@example.com",
     "status" : "Offered",
     "address" : "4th street",
+    "taskFilled" : [ {
+      "taskName" : "Application submitted",
+      "taskTime" : "19-10-2022 11:38"
+    }, {
+      "taskName" : "HR Interview",
+      "taskTime" : "30-10-2022 09:00"
+    } ],
     "tagged" : [ ],
     "remark" : ""
   } ]

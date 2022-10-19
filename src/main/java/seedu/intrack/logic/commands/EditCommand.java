@@ -28,6 +28,7 @@ import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
+import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -107,11 +108,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Status updatedStatus = internshipToEdit.getStatus();
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
+        List<Task> updatedTasks = internshipToEdit.getTasks();
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
         Remark updatedRemark = internshipToEdit.getRemark();
 
         return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedStatus,
-                updatedAddress, updatedTags, updatedRemark);
+                updatedAddress, updatedTasks, updatedTags, updatedRemark);
     }
 
     @Override
