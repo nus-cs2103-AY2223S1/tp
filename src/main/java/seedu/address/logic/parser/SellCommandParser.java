@@ -37,7 +37,6 @@ public class SellCommandParser implements Parser<SellCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
                 PREFIX_DATE);
-        boolean isDateEmpty = argMultimap.getValue(PREFIX_DATE).isEmpty();
 
         Index index;
         try {
@@ -54,18 +53,18 @@ public class SellCommandParser implements Parser<SellCommand> {
         Goods goods = ParserUtil.parseGoods(argMultimap.getValue(PREFIX_GOODS).orElse(""));
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).orElse(""));
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
-        Date date;
-        if (isDateEmpty) {
+
+        boolean isEmptyDate = argMultimap.getValue(PREFIX_DATE).isEmpty();
+        if (isEmptyDate) {
             LocalDate now = LocalDate.now();
             LocalDate datetime = LocalDate.parse(now.toString(), DEFAULT_PATTERN);
             String output = datetime.format(NEW_PATTERN);
-            date = new Date(output);
-        } else {
-            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
+            Transaction transaction = new SellTransaction(goods, price, quantity, new Date(output));
+
+            return new SellCommand(index, transaction);
         }
 
-        Transaction transaction = new SellTransaction(goods, price, quantity, date);
-
-        return new SellCommand(index, transaction);
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
+        return new SellCommand(index, new SellTransaction(goods, price, quantity, date));
     }
 }
