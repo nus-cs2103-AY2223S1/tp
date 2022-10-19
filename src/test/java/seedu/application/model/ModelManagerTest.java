@@ -3,7 +3,6 @@ package seedu.application.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalApplications.FACEBOOK;
 import static seedu.application.testutil.TypicalApplications.SHOPEE;
@@ -127,7 +126,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(applicationBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        modelManager.updateFilteredApplicationList(new HideArchiveFromListPredicate());
 
         // different filteredList (filtered by position) -> returns false
         String keyword = SHOPEE.getPosition().value.split("\\s+")[0]; //"Frontend"
@@ -137,7 +136,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(applicationBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        modelManager.updateFilteredApplicationList(new HideArchiveFromListPredicate());
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

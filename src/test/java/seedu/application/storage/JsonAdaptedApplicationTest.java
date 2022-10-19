@@ -34,6 +34,7 @@ public class JsonAdaptedApplicationTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = SHOPEE.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final boolean DEFAULT_ARCHIVE_STATUS = false;
 
     @Test
     public void toModelType_validApplicationDetails_returnsApplication() throws Exception {
@@ -44,7 +45,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_invalidCompany_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(INVALID_COMPANY, VALID_CONTACT, VALID_EMAIL,
-                        VALID_POSITION, VALID_DATE, VALID_TAGS);
+                        VALID_POSITION, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = Company.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -52,7 +53,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_nullCompany_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(null, VALID_CONTACT, VALID_EMAIL,
-                VALID_POSITION, VALID_DATE, VALID_TAGS);
+                VALID_POSITION, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -60,7 +61,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_invalidContact_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, INVALID_CONTACT, VALID_EMAIL,
-                VALID_POSITION, VALID_DATE, VALID_TAGS);
+                VALID_POSITION, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = Contact.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -68,7 +69,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_nullContact_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, null, VALID_EMAIL,
-                VALID_POSITION, VALID_DATE, VALID_TAGS);
+                VALID_POSITION, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Contact.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -76,7 +77,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, VALID_CONTACT, INVALID_EMAIL,
-                VALID_POSITION, VALID_DATE, VALID_TAGS);
+                VALID_POSITION, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -84,7 +85,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, VALID_CONTACT, null,
-                VALID_POSITION, VALID_DATE, VALID_TAGS);
+                VALID_POSITION, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -92,7 +93,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_invalidPosition_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, VALID_CONTACT, VALID_EMAIL,
-                INVALID_POSITION, VALID_DATE, VALID_TAGS);
+                INVALID_POSITION, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = Position.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -100,7 +101,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_nullPosition_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, VALID_CONTACT, VALID_EMAIL,
-                null, VALID_DATE, VALID_TAGS);
+                null, VALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Position.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -108,7 +109,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, VALID_CONTACT, VALID_EMAIL,
-                VALID_POSITION, INVALID_DATE, VALID_TAGS);
+                VALID_POSITION, INVALID_DATE, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -116,7 +117,7 @@ public class JsonAdaptedApplicationTest {
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedApplication application = new JsonAdaptedApplication(VALID_COMPANY, VALID_CONTACT, VALID_EMAIL,
-                VALID_POSITION, null, VALID_TAGS);
+                VALID_POSITION, null, VALID_TAGS, DEFAULT_ARCHIVE_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, application::toModelType);
     }
@@ -127,7 +128,7 @@ public class JsonAdaptedApplicationTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedApplication application =
                 new JsonAdaptedApplication(VALID_COMPANY, VALID_CONTACT, VALID_EMAIL, VALID_POSITION, VALID_DATE,
-                        invalidTags);
+                        invalidTags, DEFAULT_ARCHIVE_STATUS);
         assertThrows(IllegalValueException.class, application::toModelType);
     }
 

@@ -22,6 +22,7 @@ public class ApplicationBuilder {
     public static final String DEFAULT_DATE = "2022-01-01";
     public static final String DEFAULT_EMAIL = "google@gmail.com";
     public static final String DEFAULT_POSITION = "Software Engineer";
+    public static final boolean DEFAULT_ARCHIVE_STATUS = false;
 
     private Company company;
     private Contact contact;
@@ -29,6 +30,7 @@ public class ApplicationBuilder {
     private Email email;
     private Position position;
     private Set<Tag> tags;
+    private boolean isArchived;
 
     /**
      * Creates an {@code ApplicationBuilder} with the default details.
@@ -40,6 +42,7 @@ public class ApplicationBuilder {
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
         tags = new HashSet<>();
+        isArchived = DEFAULT_ARCHIVE_STATUS;
     }
 
     /**
@@ -52,6 +55,7 @@ public class ApplicationBuilder {
         email = applicationToCopy.getEmail();
         position = applicationToCopy.getPosition();
         tags = new HashSet<>(applicationToCopy.getTags());
+        isArchived = applicationToCopy.isArchived();
     }
 
     /**
@@ -102,7 +106,21 @@ public class ApplicationBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withArchiveStatus(boolean isArchived) {
+        this.isArchived = isArchived;
+        return this;
+    }
+
+    /**
+     * Creates an Application object according to the parameters.
+     */
     public Application build() {
+        if (isArchived) {
+            return new Application(company, contact, email, position, date, tags).setToArchive();
+        }
         return new Application(company, contact, email, position, date, tags);
     }
 

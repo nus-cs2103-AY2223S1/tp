@@ -135,6 +135,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void archiveApplication(Application target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void retrieveApplication(Application target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setApplication(Application target, Application editedApplication) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,6 +156,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredApplicationList(Predicate<Application> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void hideArchiveInFilteredApplicationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void showArchiveInFilteredApplicationList() {
             throw new AssertionError("This method should not be called.");
         }
     }
