@@ -1,14 +1,16 @@
-package foodwhere.testutil;
+package foodwhere.model.stall;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
-import foodwhere.model.stall.Address;
-import foodwhere.model.stall.Stall;
+import foodwhere.model.review.exceptions.ReviewNotFoundException;
 import foodwhere.model.util.SampleDataUtil;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * A utility class to help with building Stall objects.
@@ -21,7 +23,7 @@ public class StallBuilder {
     private Name name;
     private Address address;
     private Set<Tag> tags;
-    private Set<Review> reviews;
+    private HashSet<Review> reviews;
 
     /**
      * Creates a {@code StallBuilder} with the default details.
@@ -44,7 +46,7 @@ public class StallBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Stall} that we are building.
+     * Sets the {@code name} of the {@code Stall} that we are building.
      */
     public StallBuilder withName(String name) {
         this.name = new Name(name);
@@ -60,7 +62,7 @@ public class StallBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Stall} that we are building.
+     * Sets the {@code address} of the {@code Stall} that we are building.
      */
     public StallBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -68,15 +70,43 @@ public class StallBuilder {
     }
 
     /**
-     * Sets the {@code Review} of the {@code Stall} that we are building.
+     * Sets the {@code reviews} of the {@code Stall} that we are building.
      */
-    public StallBuilder withReview(Review ... reviews) {
-        this.reviews = SampleDataUtil.getReviewSet(reviews);
+    public StallBuilder withReviews(Review ... reviews) {
+        requireNonNull(reviews);
+        for (Review review : reviews) {
+            requireNonNull(review);
+        }
+        this.reviews = new HashSet<>(List.of(reviews));
         return this;
     }
 
+    /**
+     * Adds a review to the {@code Stall} that we are building.
+     */
+    public StallBuilder addReview(Review review) {
+        requireNonNull(review);
+        this.reviews.add(review);
+        return this;
+    }
+
+    /**
+     * Removes a review from the {@code Stall} that we are building.
+     */
+    public StallBuilder removeReview(Review review) {
+        requireNonNull(review);
+        if (!this.reviews.contains(review)) {
+            throw new ReviewNotFoundException();
+        }
+        this.reviews.remove(review);
+        return this;
+    }
+
+    /**
+     * Builds a stall.
+     * @return Stall with the stored data.
+     */
     public Stall build() {
         return new Stall(name, address, tags, reviews);
     }
-
 }

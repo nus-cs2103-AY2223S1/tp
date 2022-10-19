@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.logic.commands.CommandTestUtil;
-import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalReviews;
 import foodwhere.testutil.TypicalStalls;
 
@@ -31,7 +30,7 @@ public class StallTest {
         Stall editedAlice = new StallBuilder(TypicalStalls.ALICE)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                .withReview(TypicalReviews.BOB)
+                .withReviews(TypicalReviews.BOB)
                 .build();
         assertTrue(TypicalStalls.ALICE.isSameStall(editedAlice));
 
@@ -81,8 +80,8 @@ public class StallTest {
         assertFalse(TypicalStalls.ALICE.equals(editedAlice));
 
         // different reviews -> returns false
-        Stall alice = new StallBuilder(TypicalStalls.ALICE).withReview(TypicalReviews.ALICE).build();
-        editedAlice = new StallBuilder(TypicalStalls.ALICE).withReview(TypicalReviews.BOB).build();
+        Stall alice = new StallBuilder(TypicalStalls.ALICE).withReviews(TypicalReviews.ALICE).build();
+        editedAlice = new StallBuilder(TypicalStalls.ALICE).withReviews(TypicalReviews.BOB).build();
         assertFalse(alice.equals(editedAlice));
     }
 }

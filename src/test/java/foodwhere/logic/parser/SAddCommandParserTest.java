@@ -26,7 +26,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
-import foodwhere.testutil.StallBuilder;
+import foodwhere.model.stall.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
 
 public class SAddCommandParserTest {

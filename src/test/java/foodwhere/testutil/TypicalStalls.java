@@ -14,7 +14,7 @@ import java.util.List;
 import foodwhere.model.AddressBook;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
-
+import foodwhere.model.stall.StallBuilder;
 
 /**
  * A utility class containing a list of {@code Stall} objects to be used in tests.

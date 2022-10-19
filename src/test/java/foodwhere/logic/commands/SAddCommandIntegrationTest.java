@@ -10,7 +10,7 @@ import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
 import foodwhere.model.stall.Stall;
-import foodwhere.testutil.StallBuilder;
+import foodwhere.model.stall.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
 
 /**
