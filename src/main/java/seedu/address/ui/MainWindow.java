@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -26,7 +28,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-
+    private DataPanelsTabPaneManager dataPanelsTabPaneManager;
+    @FXML
+    private TabPane dataPanelsTabPane;
     private Stage primaryStage;
     private Logic logic;
 
@@ -53,6 +57,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private Tab personListPanel1;
+    @FXML
+    private Tab groupListPanel1;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -129,6 +137,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        dataPanelsTabPaneManager = new DataPanelsTabPaneManager(dataPanelsTabPane,
+                personListPanel1,
+                groupListPanel1);
     }
 
 
