@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
 /**
  * Adds a person to the address book.
  */
-public class AddIntCommand extends Command {
+public class AddInterestCommand extends Command {
 
     public static final String COMMAND_WORD = "addInt";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -34,7 +34,7 @@ public class AddIntCommand extends Command {
      * @param index The index of the batchmate.
      * @param interests The set of mods to be marked.
      */
-    public AddIntCommand(Index index, ObservableList<Interest> interests) {
+    public AddInterestCommand(Index index, ObservableList<Interest> interests) {
         requireNonNull(index);
         requireNonNull(interests);
 
@@ -65,12 +65,12 @@ public class AddIntCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddIntCommand)) {
+        if (!(other instanceof AddInterestCommand)) {
             return false;
         }
 
         // state check
-        AddIntCommand e = (AddIntCommand) other;
+        AddInterestCommand e = (AddInterestCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && interests.equals(e.interests);
     }

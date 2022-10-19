@@ -76,7 +76,7 @@ public class Person {
     /**
      * Appends a list of interests to the current interests linked to this batchmate.
      *
-     * @param interestsToBeAdded The list of mods to add in.
+     * @param interestsToBeAdded The list of interests to add in.
      */
     public void addInterests(ObservableList<Interest> interestsToBeAdded) {
         Set<Interest> uniqueInterestsSet = interestsToBeAdded
