@@ -1,3 +1,4 @@
+!-- markdownlint-disable-file first-line-h1 --
 ### Model component
 
 **API** : [`Model.java`](/src/main/java/seedu/foodrem/model/Model.java)
