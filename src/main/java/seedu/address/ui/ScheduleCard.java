@@ -73,7 +73,7 @@ public class ScheduleCard extends UiPart<Region> {
      * @param person to check whether he/she is marked.
      */
     private void setMarkStatus(Person person) {
-        if (person.getMarkStatus().isPresent) {
+        if (person.getMarkStatus().isMarked()) {
             markStatus.setText("[X]");
         } else {
             markStatus.setText("[  ]");

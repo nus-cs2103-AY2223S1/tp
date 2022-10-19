@@ -116,7 +116,7 @@ public class Person {
      * @param displayedClass class that should be displayed on the schedule if present.
      */
     public void setDisplayClass(Class displayedClass) {
-        if (mark.isPresent) {
+        if (mark.isMarked()) {
             this.displayedClass = displayedClass;
         } else {
             this.displayedClass = aClass;

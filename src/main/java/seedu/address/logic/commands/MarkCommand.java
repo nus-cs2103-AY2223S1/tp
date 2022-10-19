@@ -1,19 +1,26 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Class;
-import seedu.address.model.tag.Tag;
-import seedu.address.storage.ClassStorage;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.AdditionalNotes;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Mark;
+import seedu.address.model.person.Money;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
+import seedu.address.storage.ClassStorage;
 
 /**
  * Marks an existing person as present for his/her class.
@@ -67,7 +74,7 @@ public class MarkCommand extends Command {
     private static Person createMarkedPerson(Person personToMark) {
         assert personToMark != null;
 
-        if (personToMark.getMarkStatus().isPresent == true) {
+        if (personToMark.getMarkStatus().isMarked() == true) {
             return personToMark;
         }
 

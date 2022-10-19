@@ -241,7 +241,6 @@ public class Class {
     }
 
     /**
-<<<<<<< HEAD
      * Returns a Class that has a predefined number of days ahead of the current class date, with the same starting and
      * ending timing.
      *

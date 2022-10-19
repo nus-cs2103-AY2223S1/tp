@@ -20,7 +20,6 @@ import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,7 +92,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        isPresent = source.getMarkStatus().isPresent;
+        isPresent = source.getMarkStatus().isMarked();
         displayedClass = source.getDisplayedClass().classDateTime;
     }
 

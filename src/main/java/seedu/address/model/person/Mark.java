@@ -10,7 +10,7 @@ public class Mark {
     public static final String MESSAGE_CONSTRAINTS = "Mark can take in a boolean value,"
             + " and its default value is false";
 
-    public Boolean isPresent;
+    private Boolean isPresent;
 
     /**
      * Constructs {@code Mark} to track attendance.
@@ -48,6 +48,15 @@ public class Mark {
      */
     public void reset() {
         this.isPresent = Boolean.FALSE;
+    }
+
+    /**
+     * Getter function to access the attendance status.
+     *
+     * @return true if attendance is marked.
+     */
+    public Boolean isMarked() {
+        return isPresent;
     }
 
     @Override

@@ -12,8 +12,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Money;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -39,7 +43,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ADDITIONAL_NOTES = BENSON.getAdditionalNotes().toString();
     private static final String VALID_CLASS_DATE_TIME = "2022-03-03 1300-1500";
     private static final String VALID_DISPLAYED_CLASS_DATE = "2022-03-03 1300-1500";
-    private static final Boolean VALID_ATTENDANCE_STATUS = BENSON.getMarkStatus().isPresent;
+    private static final Boolean VALID_ATTENDANCE_STATUS = BENSON.getMarkStatus().isMarked();
 
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
