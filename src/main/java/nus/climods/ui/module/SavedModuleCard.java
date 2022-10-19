@@ -1,5 +1,7 @@
 package nus.climods.ui.module;
 
+import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -51,17 +53,17 @@ public class SavedModuleCard extends UiPart<Region> {
         ayData.getChildren().add(createSemesterPill(module.getSelectedSemester()));
     }
 
-    private Pill createSemesterPill(String semesterInfo) {
+    private Pill createSemesterPill(SemestersEnum semesterInfo) {
         String semesterText;
         switch (semesterInfo) {
-        case "Semester 3":
-            semesterText = "Special Term I";
+        case NUMBER_3:
+            semesterText = "Special Term 1";
             break;
-        case "Semester 4":
-            semesterText = "Special Term II";
+        case NUMBER_4:
+            semesterText = "Special Term 2";
             break;
         default:
-            semesterText = semesterInfo;
+            semesterText = "Semester" + semesterInfo.getValue();
         }
 
         return new Pill(semesterText, AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR);
