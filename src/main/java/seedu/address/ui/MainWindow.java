@@ -223,6 +223,7 @@ public class MainWindow extends UiPart<Stage> {
             default:
                 break;
             }
+            break;
         default:
             break;
 

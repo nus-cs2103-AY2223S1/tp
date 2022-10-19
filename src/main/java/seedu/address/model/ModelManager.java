@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -15,10 +16,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.entry.Amount;
-import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.Expenditure;
 
 /**
  * Represents the in-memory model of the PennyWise application data.
@@ -276,23 +274,25 @@ public class ModelManager implements Model {
 
     @Override
     public XYChart.Series<String, Number> getExpenseLineChartData() {
-        HashMap<Date, Number> dateToExpenditureMap = new HashMap<>();
-        ObservableList<XYChart.Data<String, Number>> expenseSeries= FXCollections.observableArrayList();
+        HashMap<LocalDate, Number> dateToExpenditureMap = new HashMap<>();
 
-        filteredExpenditure.stream()
-                .filter(entry -> isInMonth(entry.getDate()))
-                .forEach(entry -> dateToExpenditureMap.put(entry.getDate(),
-                        entry.getAmount().getValue()
-                                + dateToExpenditureMap.getOrDefault(entry.getDate(), 0.00).doubleValue()));
+        LocalDate date = LocalDate.of(2022, 1, 19);
+        date = date.withDayOfMonth(1);
+        int daysInMonth = date.lengthOfMonth();
+        for (int i = 0; i < daysInMonth; i++) {
+            dateToExpenditureMap.put(date, 0);
+            date = date.plusDays(1);
+        }
 
-        for (HashMap.Entry<Date, Number> entry : dateToExpenditureMap.entrySet()) {
+        ObservableList<XYChart.Data<String, Number>> expenseSeries = FXCollections.observableArrayList();
+
+        filteredExpenditure.forEach(entry -> dateToExpenditureMap.computeIfPresent(
+                entry.getDate().getLocalDate(), (key, val) -> val.doubleValue() + entry.getAmount().getValue()));
+
+        for (HashMap.Entry<LocalDate, Number> entry : dateToExpenditureMap.entrySet()) {
             expenseSeries.add(new XYChart.Data<>(entry.getKey().toString(), entry.getValue()));
         }
         return new XYChart.Series<>(expenseSeries);
-    }
-
-    private boolean isInMonth(Date date){
-        return true;
     }
 
     @Override

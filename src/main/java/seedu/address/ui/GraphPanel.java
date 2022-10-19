@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.entry.Amount;
-import seedu.address.model.entry.Date;
 import seedu.address.model.entry.EntryType;
 
 /**
@@ -24,7 +22,7 @@ public class GraphPanel extends UiPart<Region> {
     private EntryLineChart lineChart;
 
     @FXML
-    private Label ChartTitle;
+    private Label chartTitle;
 
     @FXML
     private StackPane graphPlaceholder;
@@ -40,10 +38,10 @@ public class GraphPanel extends UiPart<Region> {
 
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
-            ChartTitle.setText("Expenses");
+            chartTitle.setText("Expenses");
             break;
         case INCOME:
-            ChartTitle.setText("Income");
+            chartTitle.setText("Income");
             break;
         default:
             break;
@@ -52,20 +50,23 @@ public class GraphPanel extends UiPart<Region> {
 
     }
 
+    /**
+     * Creates a {@code GraphPanel} with a line chart image
+     */
     public GraphPanel(EntryType entryType, XYChart.Series<String, Number> lineGraphData) {
         super(FXML);
 
         this.lineChart = new EntryLineChart(lineGraphData);
 
         switch (entryType.getEntryType()) {
-            case EXPENDITURE:
-                ChartTitle.setText("Expenses");
-                break;
-            case INCOME:
-                ChartTitle.setText("Income");
-                break;
-            default:
-                break;
+        case EXPENDITURE:
+            chartTitle.setText("Expenses");
+            break;
+        case INCOME:
+            chartTitle.setText("Income");
+            break;
+        default:
+            break;
         }
         graphPlaceholder.getChildren().add(lineChart.getRoot());
     }

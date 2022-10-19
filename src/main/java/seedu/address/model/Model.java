@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.entry.Amount;
-import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
 
 /**

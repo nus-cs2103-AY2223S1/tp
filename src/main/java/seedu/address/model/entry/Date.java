@@ -37,6 +37,10 @@ public class Date {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public LocalDate getLocalDate() {
+        return this.date;
+    }
+
     @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern(VALIDATION_PATTERN));

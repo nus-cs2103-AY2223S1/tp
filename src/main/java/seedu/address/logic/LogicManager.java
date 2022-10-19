@@ -17,8 +17,6 @@ import seedu.address.logic.parser.PennyWiseParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPennyWise;
-import seedu.address.model.entry.Amount;
-import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
 import seedu.address.storage.Storage;
 

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import javafx.scene.chart.XYChart;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -187,6 +188,11 @@ public class AddCommandTest {
         @Override
         public ObservableList<PieChart.Data> getExpensePieChartData() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public XYChart.Series<String, Number> getExpenseLineChartData() {
+            return null;
         }
 
         @Override

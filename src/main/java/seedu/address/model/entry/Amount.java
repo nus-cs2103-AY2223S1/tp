@@ -41,7 +41,7 @@ public class Amount {
     }
 
     public static Amount add(Amount amount1, Amount amount2) {
-        return new Amount (String.valueOf(amount1.getValue() + amount2.getValue()));
+        return new Amount(String.valueOf(amount1.getValue() + amount2.getValue()));
     }
 
     @Override
