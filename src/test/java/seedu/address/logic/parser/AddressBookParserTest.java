@@ -22,38 +22,44 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ProfCommand;
+import seedu.address.logic.commands.StudentCommand;
+import seedu.address.logic.commands.TaCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonMatchesPredicate;
+import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.ProfessorBuilder;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TeachingAssistantBuilder;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
-    //    @Test
-    //    public void parseCommand_addStudent() throws Exception {
-    //        Student person = new StudentBuilder().build();
-    //        StudentCommand command = (StudentCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-    //        assertEquals(new StudentCommand(person), command);
-    //    }
-    //
-    //    @Test
-    //    public void parseCommand_addProfessor() throws Exception {
-    //        Person person = new ProfessorBuilder().build();
-    //        ProfCommand command = (ProfCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-    //        assertEquals(new ProfCommand(person), command);
-    //    }
-    //
-    //    @Test
-    //    public void parseCommand_addTeachingAssistant() throws Exception {
-    //        TeachingAssistant person = new TeachingAssistantBuilder().build();
-    //        System.out.println(person);
-    //        TaCommand command = (TaCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-    //        assertEquals(new TaCommand(person), command);
-    //    }
+    @Test
+    public void parseCommand_addStudent() throws Exception {
+        Student person = new StudentBuilder().build();
+        StudentCommand command = (StudentCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new StudentCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addProfessor() throws Exception {
+        Professor person = new ProfessorBuilder().build();
+        ProfCommand command = (ProfCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new ProfCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addTeachingAssistant() throws Exception {
+        TeachingAssistant person = new TeachingAssistantBuilder().build();
+        TaCommand command = (TaCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new TaCommand(person), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {

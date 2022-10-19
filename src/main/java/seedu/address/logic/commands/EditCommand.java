@@ -9,7 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -33,8 +35,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,6 +53,8 @@ public class EditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_YEAR + "YEAR] "
+        + "[" + PREFIX_SPECIALISATION + "SPECIALISATION] "
         + "[" + PREFIX_MODULE_CODE + "MODULE_CODE] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_GENDER + "GENDER] "
@@ -130,8 +136,9 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation,
-                updatedUsername, updatedModuleCodes);
+                updatedUsername, updatedModuleCodes, updatedYear);
     }
 
     /**
@@ -150,9 +157,11 @@ public class EditCommand extends Command {
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
         Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
+        Specialisation updatedSpecialisation = editPersonDescriptor.getSpecialisation()
+                .orElse(personToEdit.getSpecialisation());
 
         return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
-            updatedLocation, updatedUsername, updatedRating);
+            updatedLocation, updatedUsername, updatedRating, updatedSpecialisation);
     }
 
     /**
@@ -211,6 +220,8 @@ public class EditCommand extends Command {
         private Location location;
         private GithubUsername githubUsername;
         private Rating rating;
+        private Year year;
+        private Specialisation specialisation;
 
         public EditPersonDescriptor() {
         }
@@ -230,13 +241,16 @@ public class EditCommand extends Command {
             setLocation(toCopy.location);
             setGithubUsername(toCopy.githubUsername);
             setRating(toCopy.rating);
+            setYear(toCopy.year);
+            setSpecialisation(toCopy.specialisation);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating,
+                    year, specialisation);
         }
 
         public void setName(Name name) {
@@ -312,11 +326,28 @@ public class EditCommand extends Command {
             this.githubUsername = username;
         }
 
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
+        }
+
+        public void setYear(Year year) {
+            this.year = year;
+        }
+
         public Optional<Rating> getRating() {
             return Optional.ofNullable(rating);
         }
+
         public void setRating(Rating rating) {
             this.rating = rating;
+        }
+
+        public Optional<Specialisation> getSpecialisation() {
+            return Optional.ofNullable(specialisation);
+        }
+
+        public void setSpecialisation(Specialisation specialisation) {
+            this.specialisation = specialisation;
         }
 
         /**
@@ -360,7 +391,9 @@ public class EditCommand extends Command {
                 && getTags().equals(e.getTags())
                 && getLocation().equals(e.getLocation())
                 && getGithubUsername().equals(e.getGithubUsername())
-                && getRating().equals(e.getRating());
+                && getRating().equals(e.getRating())
+                && getYear().equals(e.getYear())
+                && getSpecialisation().equals(e.getSpecialisation());
         }
 
     }
