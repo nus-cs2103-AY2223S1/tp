@@ -97,6 +97,7 @@ public class LogicManagerTest {
     }
 
 
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

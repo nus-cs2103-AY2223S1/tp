@@ -142,6 +142,11 @@
      -fx-border-top-width: 1px;
 }
 
+.gridStyle Line {
+  -fx-stroke: red;
+}
+
+
 .status-bar {
     -fx-background-color: derive(#0e1011, 10%);
 }
@@ -208,7 +213,11 @@
 }
 
 .tab-pane .tab-header-area .tab-header-background {
-   -fx-background-color: #05071F;
+   -fx-background-color: #0e1011;
+}
+
+.tab-pane:focused>.tab-header-area>.headers-region>.tab:selected .focus-indicator {
+   -fx-border-color: orange;
 }
 
 .tab-label {
