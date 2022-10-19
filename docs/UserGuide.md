@@ -134,16 +134,17 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from idENTify.
+Deletes a patient or a range of patients from idENTify.
 
-Format: `delete INDEX`
+Format: `delete INDEX [endIndex]` 
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in idENTify.
+* `list patients` followed by `delete 2` deletes the 2nd person in idENTify.
+* `delete 1 3` deletes the first 3 patients (index 1 to 3 inclusive) in idENTify
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Add an appointment:  `book`
