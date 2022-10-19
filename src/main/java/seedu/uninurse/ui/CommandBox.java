@@ -2,12 +2,14 @@ package seedu.uninurse.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.uninurse.commons.core.Config;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
@@ -60,21 +62,21 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleOnKeyPressed(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getCode());
+        Optional<String> text;
         switch (keyEvent.getCode()) {
         case UP:
-            if (history.handleUpKey()) {
-                commandTextField.setText(history.get());
-            }
+            text = history.handleUpKey();
             break;
         case DOWN:
-            if (history.handleDownKey()) {
-                commandTextField.setText(history.get());
-            }
+            text = history.handleDownKey();
             break;
         default:
-            // Default onKeyPress event
+            text = Optional.empty();
             break;
+        }
+        if (text.isPresent()) {
+            commandTextField.setText(text.get());
+            commandTextField.positionCaret(text.get().length());
         }
     }
 
@@ -115,7 +117,6 @@ public class CommandBox extends UiPart<Region> {
      * The command history list.
      */
     private static final class CommandHistoryList {
-        private final int sizeLimit = 100;
         private final List<String> history;
         private int currentPointer;
 
@@ -123,9 +124,9 @@ public class CommandBox extends UiPart<Region> {
          * Creates a {@code CommandHistoryList}.
          */
         public CommandHistoryList() {
-            history = new ArrayList<String>();
-            history.add("");
-            currentPointer = 0;
+            this.history = new ArrayList<String>();
+            this.history.add("");
+            this.currentPointer = 0;
         }
 
         /**
@@ -135,7 +136,7 @@ public class CommandBox extends UiPart<Region> {
             if (history.size() < 2 || !history.get(history.size() - 2).equals(command)) {
                 // Update history only if the new command is different from the last one
                 history.set(history.size() - 1, command);
-                while (history.size() > sizeLimit) {
+                while (history.size() > Config.HISTORY_SIZE_LIMIT) {
                     history.remove(0);
                 }
                 history.add("");
@@ -146,29 +147,29 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Handles the Up Key Button Pressed event.
          */
-        public boolean handleUpKey() {
+        public Optional<String> handleUpKey() {
             if (currentPointer == 0) {
-                return false;
+                return Optional.empty();
             }
             currentPointer -= 1;
-            return true;
+            return Optional.of(this.get());
         }
 
         /**
          * Handles the Down Key Button Pressed event.
          */
-        public boolean handleDownKey() {
+        public Optional<String> handleDownKey() {
             if (currentPointer + 1 == history.size()) {
-                return false;
+                return Optional.empty();
             }
             currentPointer += 1;
-            return true;
+            return Optional.of(this.get());
         }
 
         /**
          * Returns the command currently pointed to in the history list.
          */
-        public String get() {
+        private String get() {
             return history.get(currentPointer);
         }
     }
