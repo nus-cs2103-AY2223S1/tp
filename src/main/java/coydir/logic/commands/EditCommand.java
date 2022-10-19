@@ -155,6 +155,7 @@ public class EditCommand extends Command {
             setPosition(toCopy.position);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setLeaves(toCopy.totalNumberofLeaves);
         }
 
         /**
