@@ -3,6 +3,7 @@ package seedu.uninurse.model.task;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -102,13 +103,13 @@ public class TaskList implements GenericList<Task> {
     /**
      * Returns the internal task list.
      */
-    public ArrayList<Task> getTasks() {
+    public List<Task> getTasks() {
         return filteredTaskLists;
     }
 
     @Override
     public List<Task> getInternalList() {
-        return internalTaskList;
+        return Collections.unmodifiableList(internalTaskList);
     }
 
     /**
