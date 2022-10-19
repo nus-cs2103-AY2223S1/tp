@@ -8,8 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalApplicants.ALICE;
-import static seedu.address.testutil.TypicalApplicants.BOB;
+import static seedu.address.testutil.TypicalApplicants.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +47,33 @@ public class ApplicantTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new ApplicantBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameApplicant(editedBob));
+    }
+
+    @Test
+    public void sortByName_DifferentNames_NegativeOne() {
+        int result = Applicant.sortByName().compare(ALICE, BENSON);
+        assertTrue(result == -1);
+    }
+
+    @Test
+    public void sortByName_DifferentNames_One() {
+        int result = Applicant.sortByName().compare(CARL, BENSON);
+        assertTrue(result == 1);
+    }
+
+    @Test
+    public void sortByScholarship_SameScholarshipDifferentNames_Four() {
+        int result = Applicant.sortByScholarship().compare(ELLE, ALICE);
+        // returns 18 which is the result of comparing Alice and Elle's names
+        // both Alice and Elle have the same Scholarships and thus names are used as a tiebreaker
+        assertTrue(result == 4);
+    }
+
+    @Test
+    public void sortByScholarship_DifferentScholarship_Eighteen() {
+        int result = Applicant.sortByScholarship().compare(CARL, DANIEL);
+        // returns 18 which is the result of comparing Arts and Sports Scholarships
+        assertTrue(result == 18);
     }
 
     @Test
