@@ -210,6 +210,69 @@ The following sequence diagram shows how the grade progress command operation wo
 
 ![GradeProgressSequenceDiagram](images/GradeProgressSequenceDiagram.png)
 
+### Session feature
+
+#### Implementation
+
+The Session feature allows users of Pupilist to keep track of the session day and start timing of their students represented by the Person class. The Sessions of each student is implemented such that they are stored internally as a `Session List` specific to each Person.
+
+The `Session` class implements the `Session` Objects to be stored in the `SessionList` and implements the `Comparator<Session>` Java interface to allow for comparison between `Session instances`.
+It encapsulates the exact string input by the user that is to be used by the `Session` class to create the instance of `Session`. It also uses `LocalDateTime` class to encapsulate the `time` attribute 
+associated to each instance of the class. The `Session` class uses the format `EEE HH:mm` for the `LocalDateTimeFormatter` to be used to format the string input to instantiate the `time` attribute.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to `LocalDateTimeFormatter` requiring enough information to create a `LocalDateTime` instance, the implementation of `Session` is such that the `LocalDateTimeFormatter` will default to its `ChronoField.YEAR` to be 2000, its `ChronoField.MONTH` be 1 and `ChronoField.ALIGNED_WEEK_OF_MONTH` be 1, as a workaround around this issue.
+
+
+Additionally, it implements the following operations:
+* `Session#isValidSession(String test)` - Checks whether the string passed by the user is in the valid format to create a `Session` Object.
+* `Session#isValidDay(String test)` - Checks whether the day component of the string passed by the user is a valid day of the `LocalDateTime` class. It is a helper method for `isValidSession(String test)`
+* `Session#toString()` - The specific String representation for the `Session` Object.
+* `Session#equals(Object other)` - Compares a `Session` object to an object, only returning true when the other Object is an instance of `Session` with the specified equality checks with the 'this' `Session` object.
+* `Session#compareTo(Session other)` - Compares two instance of the `Session` class for the sorting of `Session` objects in the `SessionList`.
+* `Session#hashCode()` - Provides the hashcode of the `Session` Object instance.
+
+Below is the Activity diagram showing how a `Session` instance is created upon the `Session` class constructor being called.
+![How a `Session` instance is called upon `Session` constructor being called](images/SessionActivity.png)
+
+These operations are exposed in the `Command` interface through the `SessionCommand` class, the `EditPersonDescriptor` class and `SessionList` class.
+
+Below is the partial class diagram aimed at showing the dependencies of the `Session` class with other classes of the Pupilist code base.
+
+![Dependencies of the `Session` class with other classes](images/SessionDependency.png)
+
+Given below is an example usage scenario and how the Session class behaves at each step.
+
+**Assumption: There are `Person` instances of the name Benson Meier and Alice Pauline `Person` list.**
+
+
+Step 1. The user executes a `view benson meier` command which puts the `Person` with the name Benson Meier in view mode. Assume that the Person has a `SessionList` of size >= 3.
+
+Step 2. The user executes an `edit s/1 Mon 08:30` command which edits the index 0 of the `SessionList` displayed on the GUI. This creates a new Session instance with the string input of the format `EEE HH:mm`.
+		The `Session` instances in the `SessionList` of the `Person` is immediately sorted using the `Session` class `compareTo` implementation.
+
+Step 3. The user executes a `list` command which puts the `Pupilist` application into list view, displaying multiple Persons to the user.
+
+Step 4. The user executes an `add 1 s/ Tue 09:00` command which creates a new instance of `Session` with the string input of the format `EEE HH:mm` and adds it to the `SessionList` of the `Person` of the first Person Card shown in the GUI.
+	The `Session` instances in the modified `SessionList` of the `Person` is immediately sorted using the `Session` class `compareTo` implementation.
+	
+Step 5. The user executes a `view Alice Pauline` command which puts the `Person` with the name Alice Pauline in view mode.
+
+Step 6. The user executes a `remove s/3` command which removes the instance of `Session` in index 2 of the `SessionList` of the `Person` displayed in the GUI in view mode. The Session 
+	instances in the `SessionList` of the `Person` in view are then immediately sorted using the `Session` class `compareTo` implementation.
+		
+#### Design considerations:
+
+**Aspect: How to encapsulate user input in Sesssion**
+
+***Alternative 1 (current choice):** Use defaulting of `LocalDateTimeFormatter` as formatter for `LocalDateTime`.
+  * Pros: Easier to implement, uses only one imported Java class `LocalDateTime` for encapsulating user input.
+  * Cons: Have to default to a *Black Box* year, month and week which is a workaround. 
+
+***Alternative 2:** Use of extra `DayOfWeek` class alongside `LocalDateTime`.
+  * Pros: Less of a workaround. More accurate backstage representation of user input.
+  * Cons: Harder to implement. Have to concatenate `DayOfWeek` and `LocalDateTime` in `toString` method, which may affect performance with a large `SessionList`.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
