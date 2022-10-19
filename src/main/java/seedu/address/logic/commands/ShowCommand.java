@@ -17,6 +17,7 @@ import seedu.address.ui.SecondaryPaneState;
 public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
+    public static final String COMMAND_WORD_ALIAS = "s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows the person identified by the index number used in the displayed person list.\n"

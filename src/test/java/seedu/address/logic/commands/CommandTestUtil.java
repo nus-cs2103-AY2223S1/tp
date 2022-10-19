@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -23,6 +24,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -206,6 +208,11 @@ public class CommandTestUtil {
         }
 
         @Override
+        public Set<Tag> deleteTags(Set<Tag> tag) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void removeTags(Person person, Collection<Tag> tags) {
             throw new AssertionError("This method should not be called");
         }
@@ -262,6 +269,26 @@ public class CommandTestUtil {
 
         @Override
         public Person getTargetPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Message> getMessages() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void createMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMessage(Message message) {
             throw new AssertionError("This method should not be called.");
         }
     }

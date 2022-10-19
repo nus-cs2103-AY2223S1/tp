@@ -33,6 +33,11 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
 
         String[] argArray = trimmedArgs.split("\\s+");
 
+        if (argArray.length == 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE));
+        }
+
         Optional<Index> index;
         Set<Tag> tags;
 

@@ -43,7 +43,7 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(TagCommand.MESSAGE_USAGE);
         }
 
-        return index.isPresent() ? new TagCommand(index.get(), tags) : new TagCommand(tags);
+        return index.map(i -> new TagCommand(i, tags)).orElse(new TagCommand(tags));
     }
 
     private Optional<Index> parseIndex(String arg) throws ParseException {
