@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindPatientCommandParser parser = new FindPatientCommandParser();
 
     /*@Test
     public void parse_emptyArg_throwsParseException() {

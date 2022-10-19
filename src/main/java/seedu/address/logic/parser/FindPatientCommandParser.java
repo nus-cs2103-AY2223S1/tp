@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.AddressContainsKeywordsPredicate;
 import seedu.address.model.patient.EmailContainsKeywordsPredicate;
@@ -25,7 +25,7 @@ import seedu.address.model.patient.TagContainsKeywordPredicate;
 /**
  * Parses input arguments and creates a new FilterCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
     private Predicate<Patient> predicate = null;
 
@@ -34,7 +34,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * and returns a FilterNameCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindPatientCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
@@ -44,7 +44,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
             String[] nameKeywords = trimmedArgs.split("\\s+");
@@ -60,7 +60,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedArgs = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).toString().trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
             String[] numbers = trimmedArgs.split("\\s+");
@@ -71,7 +71,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
             String[] nameKeywords = trimmedArgs.split("\\s+");
@@ -87,7 +87,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedArgs = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).toString().trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
             String[] keywords = trimmedArgs.split("\\s+");
@@ -103,7 +103,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedArgs = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()).toString().trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
             String[] keywords = trimmedArgs.split("\\s+");
@@ -120,13 +120,13 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedArgs = argMultimap.getValue(PREFIX_TAG).get().trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
             this.predicate = new TagContainsKeywordPredicate(trimmedArgs);
         }
 
-        return new FindCommand(this.predicate);
+        return new FindPatientCommand(this.predicate);
 
     }
 }
