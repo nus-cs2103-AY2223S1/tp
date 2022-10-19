@@ -65,7 +65,7 @@ ConnectNUS data is saved as a JSON file `[JAR file location]/data/connectnus.jso
 
 Add your own user profile into the contact list.
 
-Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address] curr/[current module] prev/[previous module] plan/[future module]`
+Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address] [curr/current module] [prev/previous module] [plan/future module]`
 
 
 
@@ -83,7 +83,7 @@ Examples:
 
 Edit the current user profile.
 
-Format: `edit user n/[your name] p/[your phone number] e/[your email] a/[your address]`
+Format: `edit user [n/your name] [p/your phone number] [e/your email] [a/your address]`
 
 
 
@@ -113,7 +113,7 @@ Format: `delete user`
 
 Add a contact to your contact list.
 
-Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]`
+Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] [t/contact tag] [curr/current module] [prev/previous module] [plan/future module]`
 
 
 
@@ -144,7 +144,7 @@ Format: `list`
 
 Edit a specified contact from the user’s contacts list.
 
-Format: `edit INDEX n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag]`
+Format: `edit INDEX [n/contact name] [p/contact phone number] [e/contact email] [a/contact address] [t/contact tag]`
 
 
 

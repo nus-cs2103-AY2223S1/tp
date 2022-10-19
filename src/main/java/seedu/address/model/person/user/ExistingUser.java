@@ -10,10 +10,7 @@ import java.util.Set;
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 
 /**
  * Represents the User of the address book.
@@ -28,6 +25,7 @@ public class ExistingUser extends User {
 
     // Data fields
     private final Address address;
+    private final Github github;
     private final Set<CurrentModule> currModules = new HashSet<>();
     private final Set<PreviousModule> prevModules = new HashSet<>();
     private final Set<PlannedModule> planModules = new HashSet<>();
@@ -35,13 +33,15 @@ public class ExistingUser extends User {
     /**
      * Every field must be present and not null.
      */
-    public ExistingUser(Name name, Phone phone, Email email, Address address, Set<CurrentModule> currModules,
-                Set<PreviousModule> prevModules, Set<PlannedModule> planModules) {
-        requireAllNonNull(name, phone, email, address);
+    public ExistingUser(Name name, Phone phone, Email email, Address address, Github github,
+                        Set<CurrentModule> currModules, Set<PreviousModule> prevModules,
+                        Set<PlannedModule> planModules) {
+        requireAllNonNull(name, phone, email, address, github);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.github = github;
         this.currModules.addAll(currModules);
         this.prevModules.addAll(prevModules);
         this.planModules.addAll(planModules);
@@ -61,6 +61,10 @@ public class ExistingUser extends User {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Github getGithub() {
+        return github;
     }
 
     /**
@@ -90,7 +94,7 @@ public class ExistingUser extends User {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
+        return Objects.hash(name, phone, email, address, github);
     }
 
     @Override
@@ -102,7 +106,9 @@ public class ExistingUser extends User {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Github: ")
+                .append(getGithub());
 
         Set<CurrentModule> currModules = getCurrModules();
         if (!currModules.isEmpty()) {

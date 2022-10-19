@@ -13,10 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.person.user.EmptyUser;
 import seedu.address.model.person.user.ExistingUser;
 import seedu.address.model.person.user.User;
@@ -33,6 +30,7 @@ class JsonAdaptedUser {
     private final String phone;
     private final String email;
     private final String address;
+    private final String github;
     private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
     private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
     private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
@@ -43,6 +41,7 @@ class JsonAdaptedUser {
     @JsonCreator
     public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("github") String github,
                              @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
                              @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
                              @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
@@ -50,6 +49,7 @@ class JsonAdaptedUser {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.github = github;
         if (currModules != null) {
             this.currModules.addAll(currModules);
         }
@@ -70,6 +70,7 @@ class JsonAdaptedUser {
             phone = "empty";
             email = "";
             address = "";
+            github = "";
         } else {
             assert source instanceof ExistingUser : "User cannot be any other type";
             ExistingUser user = (ExistingUser) source;
@@ -77,6 +78,7 @@ class JsonAdaptedUser {
             phone = user.getPhone().value;
             email = user.getEmail().value;
             address = user.getAddress().value;
+            github = user.getGithub().value;
             currModules.addAll(user.getCurrModules().stream()
                     .map(JsonAdaptedCurrentModule::new)
                     .collect(Collectors.toList()));
@@ -147,13 +149,21 @@ class JsonAdaptedUser {
         }
         final Address modelAddress = new Address(address);
 
+        if (github == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Github.class.getSimpleName()));
+        }
+        if (!Github.isValidUsername(github)) {
+            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
+        }
+        final Github modelGithub = new Github(github);
+
         final Set<CurrentModule> modelCurrModules = new HashSet<>(personCurrModules);
 
         final Set<PreviousModule> modelPrevModules = new HashSet<>(personPrevModules);
 
         final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
 
-        return new ExistingUser(modelName, modelPhone, modelEmail, modelAddress,
+        return new ExistingUser(modelName, modelPhone, modelEmail, modelAddress, modelGithub,
                 modelCurrModules, modelPrevModules, modelPlanModules);
     }
 

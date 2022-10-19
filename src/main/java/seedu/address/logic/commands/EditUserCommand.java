@@ -11,6 +11,7 @@ import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.user.EmptyUser;
@@ -65,6 +66,7 @@ public class EditUserCommand extends EditCommand {
         Phone updatedPhone = editUserDescriptor.getPhone().orElse(userToEdit.getPhone());
         Email updatedEmail = editUserDescriptor.getEmail().orElse(userToEdit.getEmail());
         Address updatedAddress = editUserDescriptor.getAddress().orElse(userToEdit.getAddress());
+        Github updatedGithub = editUserDescriptor.getGithub().orElse(userToEdit.getGithub());
         Set<CurrentModule> updatedCurrentModules = editUserDescriptor.getCurrModules()
                 .orElse(userToEdit.getCurrModules());
         Set<PreviousModule> updatedPreviousModules = editUserDescriptor.getPrevModules()
@@ -72,7 +74,7 @@ public class EditUserCommand extends EditCommand {
         Set<PlannedModule> updatedPlannedModules = editUserDescriptor.getPlanModules()
                 .orElse(userToEdit.getPlanModules());
 
-        return new ExistingUser(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new ExistingUser(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub,
                 updatedCurrentModules, updatedPreviousModules, updatedPlannedModules);
     }
 

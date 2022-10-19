@@ -1,13 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CURRENTMOD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANNEDMOD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PREVIOUSMOD;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,6 +20,7 @@ public class UserCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + "[" + PREFIX_GITHUB + "GITHUB USERNAME] "
             + "[" + PREFIX_CURRENTMOD + "MOD]..."
             + "[" + PREFIX_PREVIOUSMOD + "MOD]..."
             + "[" + PREFIX_PLANNEDMOD + "MOD]...\n"
