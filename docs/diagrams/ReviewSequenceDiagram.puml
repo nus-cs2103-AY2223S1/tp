@@ -2,34 +2,30 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":NutriGoalsParser" as NutriGoalsParser LOGIC_COLOR
 participant ":ReviewCommand" as ReviewCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "p:IsFoodAddedOnThisDatePredicate" as IsFoodAddedOnThisDatePredicate MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("review")
-activate LogicManager
-
-LogicManager -> NutriGoalsParser : parseCommand("review")
-activate NutriGoalsParser
-
-create ReviewCommand
-NutriGoalsParser -> ReviewCommand
+[-> ReviewCommand : execute()
 activate ReviewCommand
 
-ReviewCommand --> NutriGoalsParser
-deactivate ReviewCommand
+create IsFoodAddedOnThisDatePredicate
+ReviewCommand -> IsFoodAddedOnThisDatePredicate : IsFoodAddedOnThisDatePredicate(today)
+activate IsFoodAddedOnThisDatePredicate
 
-NutriGoalsParser --> LogicManager
-deactivate NutriGoalsParser
+IsFoodAddedOnThisDatePredicate --> ReviewCommand
+deactivate IsFoodAddedOnThisDatePredicate
 
-LogicManager -> ReviewCommand : execute()
-activate ReviewCommand
+ReviewCommand -> Model : updateFilteredFoodList(p)
+activate Model
+
+Model --> ReviewCommand
+deactivate Model
 
 ReviewCommand -> Model : getTotalCalorie()
 activate Model
@@ -56,10 +52,7 @@ activate CommandResult
 CommandResult --> ReviewCommand
 deactivate CommandResult
 
-ReviewCommand --> LogicManager
+[<--ReviewCommand
 deactivate ReviewCommand
-
-[<--LogicManager
-deactivate LogicManager
 
 @enduml

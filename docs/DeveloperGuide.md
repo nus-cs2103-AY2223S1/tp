@@ -181,9 +181,9 @@ Step 3. The following methods of `Model` are called:
 
 Step 4. `ReviewCommand#execute()` returns a `CommandResult` with the following information to be displayed to the user:
 
-* total calories: 1330 kcal
+* total calories: 1343 kcal
 * calorie target: 2000 kcal
-* deficient amount of calories: 670 kcal
+* deficient amount of calories: 657 kcal
 
 The following sequence diagram shows how the review operation works:
 
