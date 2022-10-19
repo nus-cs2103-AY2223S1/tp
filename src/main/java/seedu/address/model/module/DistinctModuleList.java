@@ -32,7 +32,7 @@ public class DistinctModuleList implements Iterable<Module> {
      */
     public boolean containsModule(Module module) {
         requireNonNull(module);
-        return moduleList.stream().anyMatch(module::isSameModuleCode);
+        return moduleList.stream().anyMatch(module::isSameModule);
     }
 
     /**
@@ -118,7 +118,7 @@ public class DistinctModuleList implements Iterable<Module> {
         if (index == -1) {
             throw new ModuleNotFoundException();
         }
-        if (containsModule(editedModule) && !editedModule.isSameModuleCode(target)) {
+        if (containsModule(editedModule) && !editedModule.isSameModule(target)) {
             throw new DuplicateModuleException();
         }
         moduleList.set(index, editedModule);

@@ -49,17 +49,14 @@ public class Module {
     }
 
     /**
-     * Checks whether two modules have the same module code.
+     * Checks whether two modules have the same data fields.
      *
      * @param otherModule The other module being compared against.
      * @return true if the two Module objects have the same module code;
      *         else return false
      */
-    public boolean isSameModuleCode(Module otherModule) {
-        if (otherModule == null) {
-            return false;
-        }
-        return otherModule == this || otherModule.moduleCode.equals(this.moduleCode);
+    public boolean isSameModule(Module otherModule) {
+        return this.equals(otherModule);
     }
 
     /**
@@ -104,9 +101,17 @@ public class Module {
     }
 
     @Override
-    public boolean equals(Object otherModule) {
-        return otherModule == this || (otherModule instanceof Module
-                && isSameModuleCode((Module) otherModule));
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Module)) {
+            return false;
+        }
+
+        Module otherModule = (Module) other;
+        return otherModule.getModuleCode().equals(getModuleCode());
     }
 
     @Override
