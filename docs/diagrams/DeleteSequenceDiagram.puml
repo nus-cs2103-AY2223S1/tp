@@ -49,7 +49,7 @@ deactivate AddressBookParser
 LogicManager -> DeleteCustomerCommand : execute()
 activate DeleteCustomerCommand
 
-DeleteCustomerCommand -> Model : getFilteredCustomerList()
+DeleteCustomerCommand -> Model : getSortedFilteredCustomerList()
 activate Model
 
 Model --> DeleteCustomerCommand : customerList

@@ -16,6 +16,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
@@ -115,22 +117,36 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCustomerList().remove(0));
+    public void getSortedFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedFilteredCustomerList().remove(0));
     }
 
     @Test
-    public void selectCustomer_newCustomer_resetsSelectedCommission() {
+    public void selectCustomer_newCustomer_selectsNewCustomer() {
         Customer testCustomer = new CustomerBuilder(ALICE).build();
         modelManager.addCustomer(testCustomer);
         Commission testCommission = new CommissionBuilder().build(testCustomer);
         testCustomer.addCommission(testCommission);
-        modelManager.addCustomer(BENSON);
         modelManager.selectCustomer(testCustomer);
-        modelManager.selectCommission(testCommission);
-        assertEquals(testCommission, modelManager.getSelectedCommission().getValue());
+        assertEquals(testCustomer, modelManager.getSelectedCustomer().getValue());
+        modelManager.addCustomer(BENSON);
         modelManager.selectCustomer(BENSON);
+        assertEquals(BENSON, modelManager.getSelectedCustomer().getValue());
+        modelManager.selectCustomer(null);
         assertNull(modelManager.getSelectedCommission().getValue());
+    }
+
+    @Test
+    public void addCommission_emptyList_updatesObservableList() {
+        Customer aliceCopy = new CustomerBuilder(ALICE).build();
+        modelManager.selectCustomer(null);
+        Pair<Customer, FilteredList<Commission>> originalList =
+                modelManager.getObservableFilteredCommissionList().getValue();
+        modelManager.addCustomer(aliceCopy);
+        Commission testCommission = new CommissionBuilder().build(aliceCopy);
+        modelManager.selectCustomer(aliceCopy);
+        aliceCopy.addCommission(testCommission);
+        assertNotEquals(originalList, modelManager.getObservableFilteredCommissionList().getValue());
     }
 
 

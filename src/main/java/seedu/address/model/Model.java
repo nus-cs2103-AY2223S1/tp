@@ -1,11 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
@@ -25,6 +26,34 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Commission> PREDICATE_SHOW_ALL_COMMISSIONS = unused -> true;
+
+    /**
+     * {@code Comparator} that sorts by name
+     */
+    Comparator<Customer> CUSTOMER_NAME_COMPARATOR = Comparator.comparing(Customer::getName);
+
+    /**
+     * {@code Comparator} that sorts by number of commissions
+     */
+    Comparator<Customer> CUSTOMER_NUM_COMMISSIONS_COMPARATOR = Comparator.comparing(Customer::getCommissionsCount);
+
+    /**
+     * {@code Comparator} that sorts by number of active commissions
+     */
+    Comparator<Customer> CUSTOMER_NUM_ACTIVE_COMMISSIONS_COMPARATOR =
+            Comparator.comparing(Customer::getActiveCommissionCount);
+
+    /**
+     * {@code Comparator} that sorts by customer's revenue
+     */
+    Comparator<Customer> CUSTOMER_REVENUE_COMPARATOR = Comparator.comparing(Customer::getRevenue);
+
+    /**
+     * {@code Comparator} that sorts by the customer's latest commission
+     */
+    Comparator<Customer> CUSTOMER_LAST_DATE_COMPARATOR = Comparator.comparing(Customer::getLastDate);
+
+
 
     /**
      * Returns the user prefs.
@@ -95,9 +124,9 @@ public interface Model {
     void selectCustomer(Customer customer);
 
     /**
-     * Returns an unmodifiable view of the filtered customer list
+     * Returns an unmodifiable view of the sorted and filtered customer list
      */
-    ObservableList<Customer> getFilteredCustomerList();
+    ObservableList<Customer> getSortedFilteredCustomerList();
 
     /**
      * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
@@ -107,17 +136,23 @@ public interface Model {
 
     void updateFilteredCustomerList(Predicate<Customer> predicate);
 
+    /**
+     * Updates the comparator of the sorted customer list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedCustomerList(Comparator<Customer> comparator);
 
     /**
      * Returns an unmodifiable view of the list of {@code Commission} backed by the internal list of
      * {@code versionedAddressBook}
      */
-    ObservableList<Commission> getFilteredCommissionList();
+    FilteredList<Commission> getFilteredCommissionList();
 
     /**
      * Returns an observable instance of the current filtered list of {@code Commission}
      */
-    ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList();
+    ObservableObject<Pair<Customer, FilteredList<Commission>>> getObservableFilteredCommissionList();
 
     /**
      * Updates the filter of the current filtered commission list to filter by the given {@code predicate}.

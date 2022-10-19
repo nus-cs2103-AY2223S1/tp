@@ -337,7 +337,7 @@ save it with `Model#setCustomer()`.
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Customer> lastShownList = model.getFilteredCustomerList();
+        List<Customer> lastShownList = model.getSortedFilteredCustomerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
