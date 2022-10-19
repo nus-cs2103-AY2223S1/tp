@@ -191,6 +191,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void sortMeetingListByDate(boolean isInAscending) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         /**
          * Updates the filter of the filtered meeting list to filter by implementation.
          *

@@ -147,5 +147,6 @@ public interface Model {
 
     void setMeetingListFilePath(Path meetingListFilePath);
 
+    void sortMeetingListByDate(boolean isInAscending);
 
 }

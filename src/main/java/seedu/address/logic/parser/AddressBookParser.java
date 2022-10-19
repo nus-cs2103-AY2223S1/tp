@@ -22,6 +22,7 @@ import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
+import seedu.address.logic.commands.SortMeetingsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -95,6 +96,9 @@ public class AddressBookParser {
 
         case FilterMeetingCommand.COMMAND_WORD:
             return new FilterMeetingCommandParser().parse(arguments);
+
+        case SortMeetingsCommand.COMMAND_WORD:
+            return new SortMeetingsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

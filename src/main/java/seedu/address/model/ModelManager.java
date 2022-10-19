@@ -182,7 +182,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Meetings ================================================================================
-
     @Override
     public void setMeetingList(ReadOnlyMeetingList meetingList) {
         this.meetingList.resetData(meetingList);
@@ -231,6 +230,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
         return filteredMeetings;
+    }
+
+    /**
+     * sorts the model's meeting list
+     * @param isInAscending if true the list is set to ascending order, else descending
+     */
+    @Override
+    public void sortMeetingListByDate(boolean isInAscending) {
+        this.meetingList.sortByDate(isInAscending);
     }
 
     //=========== Others ================================================================================

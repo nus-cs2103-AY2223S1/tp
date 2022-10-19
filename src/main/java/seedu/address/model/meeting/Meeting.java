@@ -1,7 +1,9 @@
 package seedu.address.model.meeting;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
@@ -17,12 +19,13 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.util.DateTimeConverter;
 import seedu.address.model.util.DateTimeProcessor;
 
 /**
  * Class for a new Meeting
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
 
     private final ArrayList<Person> peopleToMeetArray;
     private final UniquePersonList peopleToMeetList = new UniquePersonList();
@@ -216,4 +219,25 @@ public class Meeting {
             + "At: " + this.meetingLocation + "\n";
     }
 
+    /**
+     * Compares this object with the specified object for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     *
+     * @param m the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     *     is less than, equal to, or greater than the specified object.
+     * @throws NullPointerException if the specified object is null
+     * @throws ClassCastException   if the specified object's type prevents it
+     *                              from being compared to this object.
+     */
+    @Override
+    public int compareTo(Meeting m) {
+        requireNonNull(m);
+        LocalDateTime currObj = DateTimeConverter
+            .processedStringToLocalDatetime(this.meetingDateAndTime);
+        LocalDateTime compObj = DateTimeConverter
+            .processedStringToLocalDatetime(m.getDateAndTime());
+        return currObj.compareTo(compObj);
+    }
 }
