@@ -8,7 +8,7 @@ import static seedu.uninurse.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidMedication(String)}
  */
 public class Medication {
-    public static final String MESSAGE_CONSTRAINTS = 
+    public static final String MESSAGE_CONSTRAINTS =
             "Medication type can take any values and dosage amount should only contain "
             + "alphanumeric characters and spaces, and it should not be blank";
 
@@ -52,7 +52,7 @@ public class Medication {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Medication // instanceof handles nulls
-                && medicationType.equals(((Medication) other).medicationType) 
+                && medicationType.equals(((Medication) other).medicationType)
                 && dosage.equals(((Medication) other).dosage)); // state check
     }
 
