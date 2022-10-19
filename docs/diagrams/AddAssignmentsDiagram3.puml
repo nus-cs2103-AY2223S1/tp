@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddAssignmentsCommandParser" as AddAssignmentsCommandParser LOGIC_COLOR
+participant ":AddAssignmentsCommand" as AddAssignmentsCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+
+[-> AddressBookParser : parseCommand(assignments)
+activate AddressBookParser
+
+create AddAssignmentsCommandParser
+AddressBookParser -> AddAssignmentsCommandParser:
+activate AddAssignmentsCommandParser
+
+AddAssignmentsCommandParser --> AddressBookParser
+deactivate AddAssignmentsCommandParser
+
+AddressBookParser -> AddAssignmentsCommandParser: parse()
+activate AddAssignmentsCommandParser
+
+create AddAssignmentsCommand
+AddAssignmentsCommandParser -> AddAssignmentsCommand: parse()
+activate AddAssignmentsCommand
+
+create Model
+AddAssignmentsCommand -> Model: setPerson()
+activate Model
+
+Model --> AddAssignmentsCommand
+deactivate Model
+
+create CommandResult
+AddAssignmentsCommand -> CommandResult: execute()
+activate CommandResult
+
+CommandResult --> AddAssignmentsCommand
+deactivate CommandResult
+
+AddAssignmentsCommand --> AddAssignmentsCommandParser
+deactivate AddAssignmentsCommand
+
+AddAssignmentsCommandParser --> AddressBookParser
+deactivate AddAssignmentsCommandParser
+
+[<-- AddressBookParser
+deactivate AddressBookParser
+@enduml

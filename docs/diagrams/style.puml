@@ -13,6 +13,12 @@
 !define UI_COLOR_T3 #166800
 !define UI_COLOR_T4 #0E4100
 
+!define PREF_COLOR #Violet
+!define PREF_COLOR_T1 #DarkOrchid
+!define PREF_COLOR_T2 #DarkMagenta
+!define PREF_COLOR_T3 #DarkSlateBlue
+!define PREF_COLOR_T4 #Indigo
+
 !define LOGIC_COLOR #3333C4
 !define LOGIC_COLOR_T1 #C8C8FA
 !define LOGIC_COLOR_T2 #6A6ADC
