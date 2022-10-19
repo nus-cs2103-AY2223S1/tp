@@ -5,6 +5,17 @@
       "name": "Alice Pauline",
       "address": "123, Jurong West Ave 6, #08-111",
       "role": "Software Engineer",
+      "timezone": "+8",
+      "contacts": [
+        {
+          "contactType": "TELEGRAM",
+          "contactValue": "@alice"
+        },
+        {
+          "contactType": "EMAIL",
+          "contactValue": "alice@gmail.com"
+        }
+      ],
       "tagged": [
         "friends"
       ]
@@ -13,6 +24,17 @@
       "name": "Benson Meier",
       "address": "311, Clementi Ave 2, #02-25",
       "role": "Software Engineer",
+      "timezone": "+8",
+      "contacts": [
+        {
+          "contactType": "TELEGRAM",
+          "contactValue": "@benson"
+        },
+        {
+          "contactType": "EMAIL",
+          "contactValue": "benson@gmail.com"
+        }
+      ],
       "tagged": [
         "owesMoney",
         "friends"
@@ -22,6 +44,7 @@
       "name": "Carl Kurz",
       "address": "wall street",
       "role": "Software Engineer",
+      "timezone": "+8",
       "tagged": []
     },
     {
@@ -30,6 +53,7 @@
       "email": "cornelia@example.com",
       "address": "10th street",
       "role": "Software Engineer",
+      "timezone": "+8",
       "tagged": [
         "friends"
       ]
@@ -38,6 +62,7 @@
       "name": "Elle Meyer",
       "address": "michegan ave",
       "role": "Software Engineer",
+      "timezone": "+8",
       "tagged": []
     },
     {
@@ -46,12 +71,14 @@
       "email": "lydia@example.com",
       "address": "little tokyo",
       "role": "Software Engineer",
+      "timezone": "+8",
       "tagged": []
     },
     {
       "name": "George Best",
       "address": "4th street",
       "role": "Software Engineer",
+      "timezone": "+8",
       "tagged": []
     }
   ]
