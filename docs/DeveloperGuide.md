@@ -154,6 +154,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Lesson plan feature
+
+The lesson plan feature allows the user to keep track of a lesson plan for a student. It is a required parameter when a new person is added, through `AddCommandParser`.
+
+It can also be added independently, and is facilitated by `LessonPlanCommand` in the Logic component. It extends `Commmand` with a `LessonPlan` object stored internally.
+`LessonPlanCommand` is created by `LessonPlanCommandParser` which implements `Parser<LessonPlanCommand>`.
+The `LessonPlan` object contains a string value with the Lesson Plan.
+
+The functionality is implemented as described in the Logic component.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
