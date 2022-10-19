@@ -356,7 +356,7 @@ otherwise)
 **MSS**
 
 1. User requests to add a student.
-2. SETA adds the student with his or her details into the student list.  
+2. SETA adds the student with his or her details into the student list.
    Use case ends.
 
 **Extensions**
