@@ -27,9 +27,9 @@ public class GradeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a grade to a student for a session. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_SESSION + "SESSION (must be a valid session)\n"
-            + PREFIX_GRADE + "GRADE (must be a non-negative number) "
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_SESSION + "SESSION (must be a valid session) "
+            + PREFIX_GRADE + "GRADE (must be a non-negative number)\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SESSION + "Tutorial1 "
             + PREFIX_GRADE + "100";
 

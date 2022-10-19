@@ -41,7 +41,7 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         if (!model.isInFocusMode()) {
-            throw new CommandException(MESSAGE_NOT_IN_FOCUS_MODE);
+            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
         ModuleClass focusedClass = model.getFocusedClass();
@@ -51,7 +51,7 @@ public class ViewCommand extends Command {
         try {
             student = ParserStudentIndexUtil.parseStudentFromIndex(index, lastShownList);
         } catch (ParseException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX));
+            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         List<SessionData> sessionDataList = student.findStudentModuleData(focusedClass).getSessionDataList();
