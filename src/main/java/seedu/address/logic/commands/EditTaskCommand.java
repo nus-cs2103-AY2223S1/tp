@@ -112,9 +112,6 @@ public class EditTaskCommand extends Command {
         private Module module;
         private TaskDescription description;
 
-        public EditTaskDescriptor() {
-        }
-
         /**
          * Returns true if at least one field is edited.
          */

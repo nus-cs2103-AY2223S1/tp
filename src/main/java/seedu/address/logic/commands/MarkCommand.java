@@ -22,7 +22,9 @@ public class MarkCommand extends Command {
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
+    public static final String MESSAGE_MARK_TASK_SUCCESS = "Successfully Marked Task: %1$s";
+    public static final String MESSAGE_TASK_ALREADY_MARKED = "The task is already marked!";
+
 
     private final Index targetIndex;
 
@@ -40,7 +42,11 @@ public class MarkCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        if (taskToMark.isComplete()) {
+            throw new CommandException(MESSAGE_TASK_ALREADY_MARKED);
+        }
         Task markedTask = taskToMark.mark();
+
         model.replaceTask(taskToMark, markedTask, true);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
