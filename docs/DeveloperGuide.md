@@ -237,11 +237,25 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+### Delete feature
 
-### \[Proposed\] Data archiving
+#### Implementation
+This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
-_{Explain here how the data archiving feature will be implemented}_
+Below is a sequence diagram and explanation of how `delete` is executed.
+
+<img src="images/DeleteCommandUML.png" width="550" />
+
+Step 1. The user enters the command `delete 1`
+
+Step 2. User input is parsed by `DeleteCommandParser`, then the method LogicManager#execute is called to create the DeleteCommand object.
+
+Step 3. The `execute` method of DeleteCommand is then called on the object.
+
+Step 4. This finds the `person` from the list from model#getFilteredPersonList by its employee ID which is `1` in this case, and 
+then using model#deletePerson(), the `person` object is deleted from the `database`.
+
+Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`
 
 ---
 
