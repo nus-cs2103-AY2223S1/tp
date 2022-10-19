@@ -55,6 +55,15 @@ public class TypicalTutors {
             .withTuitionClasses(TUITIONCLASS1)
             .build();
 
+    public static final Tutor TUTOR4 = new TutorBuilder().withName("Peter James")
+            .withAddress("300, Woodlands Road, #01-45")
+            .withEmail("peterj@example.com").withPhone("90021252")
+            .withTags("friend")
+            .withQualification("Bachelor of Science")
+            .withInstitution("National University of Singapore")
+            .withTuitionClasses(TUITIONCLASS1)
+            .build();
+
     public static final Tutor AMY_TUTOR = new TutorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
