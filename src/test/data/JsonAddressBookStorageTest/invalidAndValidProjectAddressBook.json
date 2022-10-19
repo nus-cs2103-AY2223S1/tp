@@ -2,11 +2,13 @@
   "projects": [ {
     "projectName": "Valid Project",
     "budget": "9482424",
-    "deadline": "2022-01-02"
+    "deadline": "2022-01-02",
+    "staffList": []
   }, {
     "projectName": "Person With Invalid Budget Field",
     "budget": "9482424",
-    "deadline": "invalid date"
+    "deadline": "invalid date",
+    "staffList": []
   } ],
   "tasks": []
 }

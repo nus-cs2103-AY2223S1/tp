@@ -2,7 +2,8 @@
   "projects": [ {
     "projectName": "Hans Muster",
     "budget": "invalid budget 4",
-    "deadline": "2022-01-01"
+    "deadline": "2022-01-01",
+    "staffList": []
   } ],
   "tasks" : []
 }

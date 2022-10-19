@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.model.task.Task;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+
+import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.model.task.Task;
 
 /**
  * Utility class for task test cases.

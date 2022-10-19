@@ -28,7 +28,13 @@ public class AddTaskCommand extends Command {
 
     private final Task task;
 
+    /**
+     * Constructor for a AddTaskCommand.
+     * @param task The task to be added into the model.
+     */
     public AddTaskCommand(Task task) {
+        requireNonNull(task);
+
         this.task = task;
     }
 

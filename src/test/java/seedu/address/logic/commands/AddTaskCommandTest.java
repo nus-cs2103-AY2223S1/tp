@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTasks.TASK_ALPHA;
+import static seedu.address.testutil.TypicalTasks.TASK_BRAVO;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,57 +24,58 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TaskBuilder;
 
-public class AddCommandTest {
-
+public class AddTaskCommandTest {
     @Test
     public void constructor_nullProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
     }
 
     @Test
-    public void execute_projectAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
-        Project validProject = new ProjectBuilder().build();
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded model = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validProject).execute(modelStub);
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(model);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validProject), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validProject), modelStub.projectsAdded);
+        assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, validTask),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), model.tasksAdded);
     }
 
     @Test
-    public void execute_duplicateProject_throwsCommandException() {
-        Project validProject = new ProjectBuilder().build();
-        AddCommand addCommand = new AddCommand(validProject);
-        ModelStub modelStub = new ModelStubWithProject(validProject);
+    public void execute_duplicateTask_throwsCommandException() {
+        Task validTask = new TaskBuilder().build();
+        ModelStubWithTask model = new ModelStubWithTask(validTask);
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PROJECT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddTaskCommand.MESSAGE_DUPLICATE_TASK, () -> addTaskCommand.execute(model));
     }
 
     @Test
     public void equals() {
-        Project alice = new ProjectBuilder().withName("Alice").build();
-        Project bob = new ProjectBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Task taskAlpha = new TaskBuilder(TASK_ALPHA).build();
+        Task taskBravo = new TaskBuilder(TASK_BRAVO).build();
+        AddTaskCommand addTaskAlpha = new AddTaskCommand(taskAlpha);
+        AddTaskCommand addTaskBravo = new AddTaskCommand(taskBravo);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addTaskAlpha.equals(addTaskAlpha));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTaskCommand addTaskAlphaCopy = new AddTaskCommand(taskAlpha);
+        assertTrue(addTaskAlpha.equals(addTaskAlphaCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addTaskAlpha.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addTaskAlpha.equals(null));
 
         // different project -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addTaskAlpha.equals(addTaskBravo));
     }
 
     /**
@@ -208,37 +211,37 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single project.
      */
-    private class ModelStubWithProject extends ModelStub {
-        private final Project project;
+    private class ModelStubWithTask extends AddTaskCommandTest.ModelStub {
+        private final Task task;
 
-        ModelStubWithProject(Project project) {
-            requireNonNull(project);
-            this.project = project;
+        ModelStubWithTask(Task task) {
+            requireNonNull(task);
+            this.task = task;
         }
 
         @Override
-        public boolean hasProject(Project project) {
-            requireNonNull(project);
-            return this.project.isSameProject(project);
+        public boolean hasTask(Task task) {
+            requireNonNull(task);
+            return this.task.isSameTask(task);
         }
     }
 
     /**
      * A Model stub that always accept the project being added.
      */
-    private class ModelStubAcceptingProjectAdded extends ModelStub {
-        final ArrayList<Project> projectsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTaskAdded extends AddTaskCommandTest.ModelStub {
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
-        public boolean hasProject(Project project) {
-            requireNonNull(project);
-            return projectsAdded.stream().anyMatch(project::isSameProject);
+        public boolean hasTask(Task task) {
+            requireNonNull(task);
+            return tasksAdded.stream().anyMatch(task::isSameTask);
         }
 
         @Override
-        public void addProject(Project project) {
-            requireNonNull(project);
-            projectsAdded.add(project);
+        public void addTask(Task task) {
+            requireNonNull(task);
+            tasksAdded.add(task);
         }
 
         @Override

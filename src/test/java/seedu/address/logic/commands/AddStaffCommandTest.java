@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class AddStaffCommandTest {
 
     @Test
-    public void constructor_nullProject_throwsNullPointerException() {
+    public void constructor_nullStaff_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddStaffCommand(null, null));
     }
 
