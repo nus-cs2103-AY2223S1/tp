@@ -119,5 +119,9 @@ public class Duration {
                 + " || End: " + endTime.format(DateTimeFormatter
                 .ofLocalizedTime(FormatStyle.MEDIUM));
     }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
 }
 
