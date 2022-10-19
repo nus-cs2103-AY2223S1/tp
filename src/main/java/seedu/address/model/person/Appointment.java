@@ -49,6 +49,22 @@ public class Appointment implements Comparable<Appointment> {
         return dateTime.getTime();
     }
 
+    public String getTimeFormat() {
+        return dateTime.getTimeFormat();
+    }
+
+    public int getDay() {
+        return dateTime.getDay();
+    }
+
+    public int getMonth() {
+        return dateTime.getMonth();
+    }
+
+    public int getYear() {
+        return dateTime.getYear();
+    }
+
     @Override
     public String toString() {
         return dateTime.toString() + ", " + location.toString();
@@ -71,6 +87,7 @@ public class Appointment implements Comparable<Appointment> {
     public int compareTo(Appointment other) {
         return this.dateTime.compareTo(other.dateTime);
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

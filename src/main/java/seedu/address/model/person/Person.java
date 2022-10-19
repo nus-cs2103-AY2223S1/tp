@@ -4,10 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.util.MaximumSortedList;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
@@ -91,12 +94,19 @@ public class Person {
         return appointments;
     }
 
+    public List<CalendarEvent> getCalendarEvents() {
+        return appointments.stream().map(x -> new CalendarEvent(this.name, x)).collect(Collectors.toList());
+
+    }
+
+
     public IncomeLevel getIncome() {
         return incomeLevel;
     }
     public RiskTag getRiskTag() {
         return riskTag;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
