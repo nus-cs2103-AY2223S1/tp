@@ -122,15 +122,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        // add in optional field gender
-        Gender modelGender;
+        // add in not optional field gender
         if (gender == null) {
-            modelGender = Gender.getNoGender();
-        } else if (!Gender.isValidGender(gender)) {
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
-        } else {
-            modelGender = new Gender(gender);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
         }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags, modelGender);
