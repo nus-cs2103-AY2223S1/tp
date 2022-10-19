@@ -8,7 +8,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Product {
     public static final String MESSAGE_CONSTRAINTS = "Product names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    /*
+     * The first character of the product must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String productName;
 
