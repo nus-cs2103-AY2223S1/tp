@@ -1,4 +1,4 @@
-package soconnect.logic.parser;
+package soconnect.logic.parser.tagcommandparser;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,9 +7,10 @@ import static soconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import soconnect.logic.commands.TagAddCommand;
-import soconnect.logic.commands.TagCreateCommand;
-import soconnect.logic.commands.TagEditCommand;
+import soconnect.logic.commands.tagcommands.TagAddCommand;
+import soconnect.logic.commands.tagcommands.TagCreateCommand;
+import soconnect.logic.commands.tagcommands.TagEditCommand;
+import soconnect.logic.parser.tagcommandparsers.TagCommandParser;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;

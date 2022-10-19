@@ -2,6 +2,7 @@ package soconnect.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 import soconnect.commons.exceptions.DataConversionException;
@@ -9,6 +10,7 @@ import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.UserPrefs;
+import soconnect.model.tag.Tag;
 
 /**
  * API of the Storage component.
@@ -34,7 +36,7 @@ public interface Storage extends SoConnectStorage, TodoListStorage, UserPrefsSto
     Path getTodoListFilePath();
 
     @Override
-    Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException;
+    Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException, IOException;
 
     @Override
     void saveTodoList(ReadOnlyTodoList todoList) throws IOException;

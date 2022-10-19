@@ -56,6 +56,37 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Checks if the tagList has all the tags from the contact.
+     *
+     * @param list The tag list from the contact.
+     * @return True if the tagList has all the tags from the contact. False if otherwise.
+     */
+    public boolean containsAll(List<Tag> list) {
+        return tagArrayList.containsAll(list);
+    }
+
+    /**
+     * Deletes the tag from the tagList.
+     *
+     * @param tag The tag to be deleted.
+     */
+    public void deleteTag(Tag tag) {
+        requireNonNull(tag);
+        tagArrayList.remove(tag);
+    }
+
+    /**
+     * Gets the tag from the tagList.
+     *
+     * @param tag The reference tag.
+     * @return The tag that has the same name as the reference tag.
+     */
+    public Tag getTag(Tag tag) {
+        int index = tagArrayList.indexOf(tag);
+        return tagArrayList.get(index);
+    }
+
+    /**
      * Changes the old tags to a new list of tags.
      *
      * @param tags The new list of tags.

@@ -2,8 +2,7 @@ package soconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static soconnect.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -62,20 +61,20 @@ public class AddCommandTest {
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertNotEquals(1, addAliceCommand);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(null, addAliceCommand);
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertNotEquals(addAliceCommand, addBobCommand);
     }
 
     /**
@@ -153,6 +152,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean areTagsAvailable(Person person) {
+            return true;
+        }
+
+        @Override
+        public boolean areTagsAvailable(Todo todo) {
+            return true;
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -175,6 +184,16 @@ public class AddCommandTest {
         @Override
         public void editTag(Tag oldTag, Tag newTag) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag tag) {
+
+        }
+
+        @Override
+        public Tag getTagFromList(Tag tag) {
+            return null;
         }
 
         @Override
@@ -240,6 +259,11 @@ public class AddCommandTest {
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Boolean isFilteredPersonListEmpty() {
+            return getFilteredPersonList().size() == 0;
         }
 
         @Override

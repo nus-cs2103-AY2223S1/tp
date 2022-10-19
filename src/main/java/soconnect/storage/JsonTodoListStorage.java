@@ -5,6 +5,7 @@ import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -14,9 +15,10 @@ import soconnect.commons.exceptions.IllegalValueException;
 import soconnect.commons.util.FileUtil;
 import soconnect.commons.util.JsonUtil;
 import soconnect.model.ReadOnlyTodoList;
+import soconnect.model.tag.Tag;
 
 /**
- * A class to access TodoList data stored as a json file on the hard disk.
+ * A class to access {@code TodoList} data stored as a json file on the hard disk.
  */
 public class JsonTodoListStorage implements TodoListStorage {
 
@@ -33,28 +35,31 @@ public class JsonTodoListStorage implements TodoListStorage {
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException {
-        return readTodoList(filePath);
+    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException {
+        return readTodoList(tagList, filePath);
     }
 
     /**
-     * Similar to {@link #readTodoList()}.
+     * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
+     * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @param filePath Location of the data. Cannot be null.
-     * @throws DataConversionException If the file is not in the correct format.
+     * @param tagList The list of existing {@code Tag}s in {@code SoConnect}.
+     * @param filePath The path of the {@code TodoList} data file.
+     * @throws DataConversionException If the data in storage is not in the expected format.
      */
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList, Path filePath)
+            throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableTodoList> jsonTodoList = JsonUtil.readJsonFile(
             filePath, JsonSerializableTodoList.class);
-        if (!jsonTodoList.isPresent()) {
+        if (jsonTodoList.isEmpty()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonTodoList.get().toModelType());
+            return Optional.of(jsonTodoList.get().toModelType(tagList));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
