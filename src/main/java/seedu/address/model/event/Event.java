@@ -6,12 +6,9 @@ import seedu.address.model.person.Person;
  * Event represents a marketing events in the application.
  */
 public class Event {
-    //Temporary representation with String
-    //TODO: create Data Structure for each field; Single DateTime object for Date & Time?
-
     private final String eventTitle;
-    private final String date;
-    private final String time;
+    private final StartDate startDate;
+    private final StartTime startTime;
     private final String purpose;
 
     //add a list of Customers here
@@ -20,14 +17,14 @@ public class Event {
     /**
      * Constructor to create new Event object
      * @param eventTitle title of marketing event
-     * @param date date when marketing event occurs
-     * @param time time when marketing event occurs
+     * @param startDate date when marketing event begins
+     * @param startTime time when marketing event begins
      * @param purpose summary of what the marketing is about
      */
-    public Event(String eventTitle, String date, String time, String purpose) {
+    public Event(String eventTitle, StartDate startDate, StartTime startTime, String purpose) {
         this.eventTitle = eventTitle;
-        this.date = date;
-        this.time = time;
+        this.startDate = startDate;
+        this.startTime = startTime;
         this.purpose = purpose;
         this.uids = new UidList();
     }
@@ -39,18 +36,18 @@ public class Event {
      */
     public Event(Event eventToCopy, UidList uids) {
         this.eventTitle = eventToCopy.eventTitle;
-        this.date = eventToCopy.date;
-        this.time = eventToCopy.time;
+        this.startDate = eventToCopy.startDate;
+        this.startTime = eventToCopy.startTime;
         this.purpose = eventToCopy.purpose;
         this.uids = uids;
     }
     /**
      * Overloaded constructor to create new Event object
      */
-    public Event(String eventTitle, String date, String time, String purpose, UidList uids) {
+    public Event(String eventTitle, StartDate startDate, StartTime startTime, String purpose, UidList uids) {
         this.eventTitle = eventTitle;
-        this.date = date;
-        this.time = time;
+        this.startDate = startDate;
+        this.startTime = startTime;
         this.purpose = purpose;
         this.uids = uids;
     }
@@ -59,12 +56,12 @@ public class Event {
         return this.eventTitle;
     }
 
-    public String getDate() {
-        return this.date;
+    public StartDate getStartDate() {
+        return this.startDate;
     }
 
-    public String getTime() {
-        return this.time;
+    public StartTime getStartTime() {
+        return this.startTime;
     }
 
     public String getPurpose() {
@@ -86,8 +83,8 @@ public class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getEventTitle().equals(this.getEventTitle())
-                && otherEvent.getDate().equals(this.getDate())
-                && otherEvent.getTime().equals(this.getTime())
+                && otherEvent.getStartDate().equals(this.getStartDate())
+                && otherEvent.getStartTime().equals(this.getStartTime())
                 && otherEvent.getPurpose().equals(this.getPurpose())
                 && otherEvent.getUids().equals(this.getUids()); //add customers in equals method
     }
@@ -97,10 +94,10 @@ public class Event {
         final StringBuilder builder = new StringBuilder();
         builder.append("Event Title: ")
                 .append(this.getEventTitle())
-                .append("; Date: ")
-                .append(this.getDate())
-                .append("; Time: ")
-                .append(this.getTime())
+                .append("; Start Date: ")
+                .append(this.getStartDate())
+                .append("; Start Time: ")
+                .append(this.getStartTime())
                 .append("; Purpose: ")
                 .append(this.getPurpose());
 
