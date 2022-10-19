@@ -16,7 +16,7 @@ public class TagContainsKeywordPredicate implements Predicate<Patient> {
     @Override
     public boolean test(Patient patient) {
         return patient.getTags().stream()
-                .anyMatch(tag -> tag.toString().contains(keyword));
+                .anyMatch(tag -> tag.toString().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
