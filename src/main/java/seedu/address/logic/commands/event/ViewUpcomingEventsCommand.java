@@ -2,7 +2,6 @@ package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.time.LocalDate;
 
@@ -11,7 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.StartDateWithinTimeFramePredicate;
 
-public class ViewUpcomingEventCommand extends EventCommand {
+public class ViewUpcomingEventsCommand extends EventCommand {
     public static final String COMMAND_OPTION = "u";
 
     public static final String MESSAGE_INVALID_EVENT_UPCOMING_DAYS =
@@ -35,7 +34,7 @@ public class ViewUpcomingEventCommand extends EventCommand {
     private final LocalDate currentDate;
     private final LocalDate endDate;
 
-    public ViewUpcomingEventCommand(int days) {
+    public ViewUpcomingEventsCommand(int days) {
         this.days = days;
         this.currentDate = java.time.LocalDate.now();
         this.endDate = currentDate.plusDays(days);
@@ -75,12 +74,12 @@ public class ViewUpcomingEventCommand extends EventCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ViewUpcomingEventCommand)) {
+        if (!(other instanceof ViewUpcomingEventsCommand)) {
             return false;
         }
 
         // state check
-        ViewUpcomingEventCommand otherViewUpcomingEventCommand = (ViewUpcomingEventCommand) other;
+        ViewUpcomingEventsCommand otherViewUpcomingEventCommand = (ViewUpcomingEventsCommand) other;
 
         return days == otherViewUpcomingEventCommand.days
                 && currentDate.isEqual(otherViewUpcomingEventCommand.currentDate)
