@@ -13,7 +13,7 @@ import longtimenosee.model.policy.Policy;
 /**
  * Adds a policy to the address book.
  */
-public class AddPolicyCommand extends Command {
+public class PolicyAddCommand extends Command {
     public static final String COMMAND_WORD = "newPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the address book. "
@@ -37,11 +37,11 @@ public class AddPolicyCommand extends Command {
     final Policy toAdd;
 
     /**
-     * Creates an AddPolicyCommand to add the specified {@code Policy}
+     * Creates an PolicyAddCommand to add the specified {@code Policy}
      *
      * @param policy
      */
-    public AddPolicyCommand(Policy policy) {
+    public PolicyAddCommand(Policy policy) {
         requireNonNull(policy);
         toAdd = policy;
     }
@@ -61,7 +61,7 @@ public class AddPolicyCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddPolicyCommand // instanceof handles nulls
-                && toAdd.equals(((AddPolicyCommand) other).toAdd));
+                || (other instanceof PolicyAddCommand // instanceof handles nulls
+                && toAdd.equals(((PolicyAddCommand) other).toAdd));
     }
 }
