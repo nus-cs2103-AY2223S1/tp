@@ -13,6 +13,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.tag.Tag;
@@ -31,6 +32,7 @@ public class InternshipBuilder {
     public static final Task DEFAULT_TASK = new Task("Application submitted",
             LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER));
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REMARK = "";
 
     private Name name;
     private Position position;
@@ -40,6 +42,7 @@ public class InternshipBuilder {
     private Address address;
     private List<Task> tasks;
     private Set<Tag> tags;
+    private Remark remark;
 
     /**
      * Creates a {@code InternshipBuilder} with the default details.
@@ -54,6 +57,7 @@ public class InternshipBuilder {
         tasks = new ArrayList<>();
         tasks.add(DEFAULT_TASK);
         tags = new HashSet<>();
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -68,6 +72,7 @@ public class InternshipBuilder {
         address = internshipToCopy.getAddress();
         tasks = new ArrayList<>(internshipToCopy.getTasks());
         tags = new HashSet<>(internshipToCopy.getTags());
+        remark = internshipToCopy.getRemark();
     }
 
     /**
@@ -134,8 +139,16 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Internship build() {
-        return new Internship(name, position, phone, email, status, address, tasks, tags);
+        return new Internship(name, position, phone, email, status, address, tasks, tags, remark);
     }
 
 }

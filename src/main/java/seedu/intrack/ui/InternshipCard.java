@@ -2,6 +2,7 @@ package seedu.intrack.ui;
 
 import java.util.Comparator;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -47,12 +48,19 @@ public class InternshipCard extends UiPart<Region> {
     private FlowPane status;
     @FXML
     private FlowPane tasks;
+    @FXML
+    private Label remark;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
      */
     public InternshipCard(Internship internship, int displayedIndex) {
         super(FXML);
+        Label lab = new Label(internship.getStatus().toString());
+        PseudoClass rejected = PseudoClass.getPseudoClass("rejected");
+        lab.pseudoClassStateChanged(rejected, (internship.getStatus().toString()).equals("Rejected"));
+        PseudoClass offered = PseudoClass.getPseudoClass("offered");
+        lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         this.internship = internship;
         id.setText(displayedIndex + ". ");
         name.setText(internship.getName().fullName);
@@ -65,9 +73,11 @@ public class InternshipCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(task -> task.taskTime))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName + " at "
                         + task.taskTime.format(Task.FORMATTER))));
+        status.getChildren().add(lab);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        remark.setText(internship.getRemark().value);
     }
 
     @Override

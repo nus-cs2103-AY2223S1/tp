@@ -59,7 +59,7 @@ public class StatusCommand extends Command {
         Internship editedInternship = new Internship(internshipToEdit.getName(),
                 internshipToEdit.getPosition(), internshipToEdit.getPhone(),
                 internshipToEdit.getEmail(), status, internshipToEdit.getAddress(),
-                internshipToEdit.getTasks(), internshipToEdit.getTags());
+                internshipToEdit.getTasks(), internshipToEdit.getTags(), internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);

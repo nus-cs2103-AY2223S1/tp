@@ -129,6 +129,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getFilteredStatusInternshipListSize(Predicate<Internship> predicate) {
+        requireNonNull(predicate);
+        FilteredList<Internship> internshipListToFilter = new FilteredList<>(filteredInternships);
+        internshipListToFilter.setPredicate(predicate);
+        return internshipListToFilter.size();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

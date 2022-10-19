@@ -47,7 +47,7 @@ public class Position {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && positionName.equals(((Position) other).positionName)); // state check
+                && positionName.equalsIgnoreCase(((Position) other).positionName)); // state check
     }
 
     @Override

@@ -21,6 +21,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.tag.Tag;
@@ -54,8 +55,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Task> taskList = new ArrayList<>();
         taskList.add(new Task());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Remark remark = new Remark("");
 
-        Internship internship = new Internship(name, position, phone, email, status, address, taskList, tagList);
+        Internship internship = new Internship(name, position, phone, email, status, address, taskList, tagList, remark);
 
         return new AddCommand(internship);
     }
