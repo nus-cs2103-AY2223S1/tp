@@ -28,7 +28,7 @@ public class Guest {
      */
     public Guest(Name name, Phone phone, Email email, Room room, DateRange dateRange,
                  NumberOfGuests numberOfGuests, IsRoomClean isRoomClean, Bill bill, Request request) {
-        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
+        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
         this.name = name;
         this.phone = phone;
         this.email = email;
