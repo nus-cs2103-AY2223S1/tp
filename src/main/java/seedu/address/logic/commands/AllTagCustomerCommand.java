@@ -33,7 +33,7 @@ public class AllTagCustomerCommand extends Command {
         model.updateFilteredCustomerList(predicate);
         model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
+                String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getSortedFilteredCustomerList().size()));
     }
 
     @Override
