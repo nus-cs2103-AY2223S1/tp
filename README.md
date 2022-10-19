@@ -1,6 +1,5 @@
 [![CI Status](https://github.com/AY2223S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T11-4/tp/actions)
-
-![Ui](docs/images/Ui.png)
+![](docs/images/Ui.png)
 
 * Mass Linkers is a powerful Desktop application tool that enables CS2103T students in a tutorial group to search for their classmates, view their teammates’ repos and view each other’s code reviews.<br>
   Example usage:
