@@ -7,6 +7,8 @@ import java.util.Comparator;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Name;
+import seedu.address.model.applicant.Scholarship;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -25,20 +27,25 @@ public class SortCommandParser implements Parser<SortCommand> {
         case "name":
             return new SortCommand(new Comparator<Applicant>() {
                 @Override
-                public int compare(Applicant o1, Applicant o2) {
-                    return o1.getName().compareTo(o2.getName());
+                public int compare(Applicant a1, Applicant a2) {
+                    Name n1 = a1.getName();
+                    Name n2 = a2.getName();
+                    return n1.compareTo(n2);
                 }
             });
         case "scholarship":
             return new SortCommand(new Comparator<Applicant>() {
                 @Override
-                public int compare(Applicant o1, Applicant o2) {
-
-                    int value = o1.getScholarship().compareTo(o2.getScholarship());
-                    if (value == 0) {
-                        return o1.getName().compareTo(o2.getName());
+                public int compare(Applicant a1, Applicant a2) {
+                    Scholarship s1 = a1.getScholarship();
+                    Scholarship s2 = a2.getScholarship();
+                    int result = s1.compareTo(s2);
+                    if (result == 0) {
+                        Name n1 = a1.getName();
+                        Name n2 = a2.getName();
+                        return n1.compareTo(n2);
                     }
-                    return value;
+                    return result;
                 }
             });
         default:

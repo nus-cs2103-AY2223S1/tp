@@ -129,8 +129,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the applicant with. Each non-empty field scholarship will replace the
-     * corresponding field scholarship of the applicant.
+     * Stores the details to edit the applicant with. Each non-empty field value will replace the
+     * corresponding field value of the applicant.
      */
     public static class EditApplicantDescriptor {
         private Name name;
