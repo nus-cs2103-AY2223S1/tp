@@ -1,10 +1,12 @@
-package seedu.address.commons.core;
+package seedu.address.commons.util.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Version;
 
 public class VersionTest {
 

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -23,6 +24,7 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,7 +40,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
     public StudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG,
-                    PREFIX_LOCATION, PREFIX_GITHUBUSERNAME);
+                    PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_YEAR, PREFIX_MODULE_CODE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -55,8 +57,11 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         GithubUsername username = ParserUtil.parseGitHubUsername(argMultimap
                 .getValue(PREFIX_GITHUBUSERNAME)
                 .orElse(GithubUsername.DEFAULT_USERNAME), argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent());
+        Year year = ParserUtil.parseYear(argMultimap
+                .getValue(PREFIX_YEAR)
+                .orElse(Year.EMPTY_YEAR), argMultimap.getValue(PREFIX_YEAR).isPresent());
 
-        Student person = new Student(name, phone, email, gender, tagList, location, username, moduleCodes);
+        Student person = new Student(name, phone, email, gender, tagList, location, username, moduleCodes, year);
 
         return new StudentCommand(person);
     }

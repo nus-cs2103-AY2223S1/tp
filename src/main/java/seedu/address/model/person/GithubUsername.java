@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's location in the address book.
+ * Represents a Person's Github username in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidUsername(String)} (String)}
  */
 public class GithubUsername {

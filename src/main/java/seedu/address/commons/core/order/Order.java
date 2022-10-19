@@ -48,4 +48,13 @@ public class Order {
     public boolean isIncreasingOrder() {
         return this.isIncreasing;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Order) {
+            Order order = (Order) obj;
+            return this.isIncreasing == order.isIncreasingOrder();
+        }
+        return this == obj;
+    }
 }

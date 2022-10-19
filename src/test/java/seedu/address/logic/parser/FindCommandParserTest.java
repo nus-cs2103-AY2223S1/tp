@@ -27,7 +27,6 @@ public class FindCommandParserTest {
         predicate.setNamesList(Arrays.asList("Alice", "Bob"));
         FindCommand expectedFindCommand = new FindCommand(predicate);
         String userInput = " " + PREFIX_NAME + "Alice Bob";
-        System.out.println(userInput);
         assertParseSuccess(parser, " " + PREFIX_NAME + "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
