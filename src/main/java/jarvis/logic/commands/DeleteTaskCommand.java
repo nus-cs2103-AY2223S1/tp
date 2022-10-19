@@ -1,6 +1,5 @@
 package jarvis.logic.commands;
 
-import static jarvis.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -34,7 +33,6 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
