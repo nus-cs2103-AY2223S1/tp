@@ -104,17 +104,10 @@ public class CommandBox extends UiPart<Region> {
          * in CommandBox or ResultDisplay.
          */
         commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-
-            if (KeyCode.DOWN == event.getCode()) {
-                System.out.println(event.getCode());
-                String commandText = commandHistory.traverseBackward();
-                commandTextField.setText(commandText);
-            } else if (KeyCode.UP == event.getCode()) {
-                System.out.println(event.getCode());
-                String commandText = commandHistory.traverseForward();
+            if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
+                String commandText = commandHistory.handle(event.getCode());
                 commandTextField.setText(commandText);
             }
-
             commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
             }
         );
