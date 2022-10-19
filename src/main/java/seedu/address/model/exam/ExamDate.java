@@ -33,13 +33,30 @@ public class ExamDate {
         dateWithoutFormatting = date;
     }
 
+
+    /**
+     * Constructs a {@code ExamDate} for storage.
+     *
+     * @param date A valid exam date.
+     */
+    public ExamDate(String date, String n) {
+        requireNonNull(date);
+        checkArgument(isExistingDate(date), DATE_CONSTRAINTS);
+        checkArgument(isValidDateLength(date), DATE_CONSTRAINTS);
+        examDate = LocalDate.parse(date, DATE_TIME_FORMATTER).format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        dateWithoutFormatting = date;
+    }
+
     /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String date) {
-        return date.length() >= 10 && isExistingDate(date) && isNotAPastDate(date);
+        return isValidDateLength(date) && isExistingDate(date) && isNotAPastDate(date);
     }
 
+    public static boolean isValidDateLength(String date) {
+        return date.length() >= 10;
+    }
 
     /**
      * Returns true if date inputted exists.

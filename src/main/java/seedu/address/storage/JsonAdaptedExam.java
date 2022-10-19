@@ -67,15 +67,17 @@ public class JsonAdaptedExam {
         if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MODULE_CODE_CONSTRAINTS);
         }
-        if (!ExamDate.isValidDate(date)) {
+        if (!ExamDate.isValidDateLength(date)) {
             throw new IllegalValueException(ExamDate.DATE_CONSTRAINTS);
         }
-
+        if (!ExamDate.isExistingDate(date)) {
+            throw new IllegalValueException(ExamDate.DATE_CONSTRAINTS);
+        }
 
         final ExamDescription examDescription = new ExamDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);
-        final ExamDate examDate = new ExamDate(date);
+        final ExamDate examDate = new ExamDate(date, "");
         return new Exam(module, examDescription, examDate);
     }
 
