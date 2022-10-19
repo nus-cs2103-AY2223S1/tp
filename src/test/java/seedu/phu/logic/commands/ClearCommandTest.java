@@ -11,13 +11,15 @@ import seedu.phu.model.ModelManager;
 import seedu.phu.model.UserPrefs;
 
 public class ClearCommandTest {
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_emptyInternshipBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, commandHistory, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -25,8 +27,9 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
         expectedModel.setInternshipBook(new InternshipBook());
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, commandHistory, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

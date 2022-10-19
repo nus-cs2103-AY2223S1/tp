@@ -35,6 +35,7 @@ import seedu.phu.model.internship.UniqueInternshipList;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_oneValidIndexUnfilteredList_success() {
@@ -49,8 +50,9 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -64,9 +66,11 @@ public class DeleteCommandTest {
         ModelManager expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteInternship(firstInternshipToDelete);
         expectedModel.deleteInternship(secondInternshipToDelete);
+        expectedModel.commitInternshipBookChange();
 
         try {
-            deleteCommand.execute(model);
+            commandHistory.addCommand(deleteCommand.toString());
+            deleteCommand.execute(model, commandHistory);
             assertEquals(model, expectedModel);
         } catch (CommandException ce) {
             fail("Should not have thrown any exception.");
@@ -78,7 +82,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(new Indexes(Set.of(outOfBoundIndex)));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -88,7 +92,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(
                 new Indexes(Set.of(firstIndex, outOfBoundIndex)));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -106,9 +110,10 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
+        expectedModel.commitInternshipBookChange();
         showNoInternship(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -124,10 +129,12 @@ public class DeleteCommandTest {
         Model expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteInternship(firstInternshipToDelete);
         expectedModel.deleteInternship(secondInternshipToDelete);
+        expectedModel.commitInternshipBookChange();
         showNoInternship(expectedModel);
 
         try {
-            deleteCommand.execute(model);
+            commandHistory.addCommand(deleteCommand.toString());
+            deleteCommand.execute(model, commandHistory);
             assertEquals(model, expectedModel);
         } catch (CommandException ce) {
             fail("Should not have thrown any exception.");
@@ -144,7 +151,8 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(new Indexes(Set.of(outOfBoundIndex)));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -159,7 +167,8 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(
                 new Indexes(Set.of(validIndex, outOfBoundIndex)));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test

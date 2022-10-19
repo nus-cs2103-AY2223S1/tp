@@ -33,7 +33,7 @@ public class UiManager implements Ui {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage, boolean isExistingUser) {
         logger.info("Starting UI...");
 
         //Set the application icon.
@@ -43,6 +43,9 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            if (!isExistingUser) {
+                mainWindow.handleHelp();
+            }
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

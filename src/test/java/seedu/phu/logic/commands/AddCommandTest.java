@@ -25,6 +25,7 @@ import seedu.phu.model.internship.Internship;
 import seedu.phu.testutil.InternshipBuilder;
 
 public class AddCommandTest {
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void constructor_nullInternship_throwsNullPointerException() {
@@ -35,8 +36,10 @@ public class AddCommandTest {
     public void execute_internshipAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingInternshipAdded modelStub = new ModelStubAcceptingInternshipAdded();
         Internship validInternship = new InternshipBuilder().build();
+        AddCommand addCommand = new AddCommand(validInternship);
+        commandHistory.addCommand(addCommand.toString());
 
-        CommandResult commandResult = new AddCommand(validInternship).execute(modelStub);
+        CommandResult commandResult = addCommand.execute(modelStub, commandHistory);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validInternship), modelStub.internshipsAdded);
@@ -49,7 +52,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithInternship(validInternship);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () -> addCommand.execute(modelStub));
+                AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () -> addCommand.execute(modelStub, commandHistory));
     }
 
     @Test
@@ -174,6 +177,31 @@ public class AddCommandTest {
         public void viewInternship(Internship internshipToView) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean canUndoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoInternshipBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitInternshipBookChange() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -216,6 +244,9 @@ public class AddCommandTest {
         public ReadOnlyInternshipBook getInternshipBook() {
             return new InternshipBook();
         }
+
+        @Override
+        public void commitInternshipBookChange() {}
     }
 
 }

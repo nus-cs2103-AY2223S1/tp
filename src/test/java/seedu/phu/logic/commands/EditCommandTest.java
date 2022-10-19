@@ -33,6 +33,7 @@ import seedu.phu.testutil.InternshipBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -44,8 +45,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -65,8 +67,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setInternship(lastInternship, editedInternship);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -77,8 +80,9 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new InternshipBook(model.getInternshipBook()), new UserPrefs());
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -93,8 +97,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -111,8 +116,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -125,8 +131,9 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new InternshipBook(model.getInternshipBook()), new UserPrefs());
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -135,7 +142,7 @@ public class EditCommandTest {
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(firstInternship).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_INTERNSHIP, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
+        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test
@@ -148,7 +155,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder(internshipInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
+        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test
@@ -157,7 +164,7 @@ public class EditCommandTest {
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     /**
@@ -174,7 +181,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditInternshipDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test

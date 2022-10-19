@@ -61,7 +61,8 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory)
+            throws CommandException {
         requireNonNull(model);
 
         if (model.hasInternship(toAdd)) {
@@ -69,6 +70,9 @@ public class AddCommand extends Command {
         }
 
         model.addInternship(toAdd);
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

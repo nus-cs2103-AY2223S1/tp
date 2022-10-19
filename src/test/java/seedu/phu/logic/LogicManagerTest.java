@@ -89,6 +89,7 @@ public class LogicManagerTest {
                 .withDate(LocalDate.now().format(Date.DEFAULT_FORMATTER)).withWebsite("NA").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
+        expectedModel.commitInternshipBookChange();
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
