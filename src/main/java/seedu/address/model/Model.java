@@ -76,6 +76,21 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Toggles the full view to view mode where details of a single person are listed in full.
+     */
+    void setFullView();
+
+    /**
+     * Toggles the full view to list mode where details are truncated.
+     */
+    void setListView();
+
+    /**
+     * Returns true if the address book is currently in full view mode.
+     */
+    boolean isFullView();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
