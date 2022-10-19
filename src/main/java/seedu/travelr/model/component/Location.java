@@ -24,8 +24,6 @@ public class Location {
     
     public final String locationName;
     
-    
-    
     /**
      * Constructs a {@code Name}.
      *
@@ -51,7 +49,10 @@ public class Location {
     public static Location getDefaultLocation() {
         return DEFAULT_LOCATION;
     }
-
+    
+    public boolean isDefaultValue() {
+        return this.equals(DEFAULT_LOCATION);
+    }
 
     @Override
     public String toString() {

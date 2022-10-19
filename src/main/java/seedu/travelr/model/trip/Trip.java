@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
@@ -23,6 +24,7 @@ public class Trip {
     private final Description description;
     private final Location location;
     private boolean done;
+    private final DateField dateField;
 
     // Data fields
     private final Itineraries events = new Itineraries();
@@ -37,6 +39,7 @@ public class Trip {
         this.events.setInternalList(events);
         this.location = Location.getDefaultLocation();
         this.done = false;
+        this.dateField = DateField.getDefaultDateField();
     }
 
     /**
@@ -50,19 +53,21 @@ public class Trip {
         this.events.setInternalList(events);
         this.location = location;
         this.done = markedAsDone;
+        this.dateField = DateField.getDefaultDateField();
     }
 
     /**
      * Main constructor
      * Every field must be present and not null.
      */
-    public Trip(Title title, Description description, Set<Event> events, Location location) {
-        requireAllNonNull(title, description, events, location);
+    public Trip(Title title, Description description, Set<Event> events, Location location, DateField dateField) {
+        requireAllNonNull(title, description, events, location, dateField);
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
         this.location = location;
         this.done = false;
+        this.dateField = dateField;
     }
 
     public void addEvent(Event event) {
@@ -103,6 +108,10 @@ public class Trip {
 
     public Location getLocation() {
         return location;
+    }
+
+    public DateField getDateField() {
+        return dateField;
     }
 
     /**
@@ -171,12 +180,17 @@ public class Trip {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-        
-        if (getLocation() != Location.getDefaultLocation()) {
+
+        if (!getLocation().isDefaultValue()) {
             builder.append("; Location: ");
-            builder.append(getLocation());    
+            builder.append(getLocation());
         }
-        
+
+        if (!getDateField().isDefaultValue()) {
+            builder.append("; Date: ");
+            builder.append(getDateField());
+        }
+
         return builder.toString();
     }
 

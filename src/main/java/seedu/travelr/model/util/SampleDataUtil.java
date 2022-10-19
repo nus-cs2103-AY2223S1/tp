@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
@@ -21,9 +22,9 @@ public class SampleDataUtil {
     public static Trip[] getSampleTrips() {
         return new Trip[] {
             new Trip(new Title("Grad Trip"), new Description("Grad Trip with friends!"),
-                getEventSet("friends"), new Location("Bristol")),
+                getEventSet("friends"), new Location("Bristol"), new DateField("11-01-2023")),
             new Trip(new Title("Honeymoon"), new Description("Lorem ipsum dolor sit amet."),
-                getEventSet("girlfriend"), new Location("Jeju Island")),
+                getEventSet("girlfriend"), new Location("Jeju Island"), new DateField("13-04-2021")),
             new Trip(new Title("Business Trip"), new Description("Consectetur adipiscing elit."),
                 getEventSet("neighbours")),
             new Trip(new Title("Solo Trip"), new Description("Sed do eiusmod tempor."),
@@ -31,7 +32,7 @@ public class SampleDataUtil {
             new Trip(new Title("Backpacking"), new Description("Incididunt ut labore et dolore magna aliqua."),
                 getEventSet("classmates")),
             new Trip(new Title("Conference"), new Description("Dolore eu fugiat nulla pariatur."),
-                getEventSet("colleagues"), new Location("New York"))
+                getEventSet("colleagues"), new Location("New York"), new DateField("31-12-2023"))
         };
     }
 

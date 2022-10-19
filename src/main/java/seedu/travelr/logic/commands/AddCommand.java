@@ -1,6 +1,7 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -20,11 +21,13 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESC + "DESCRIPTION "
-            + PREFIX_LOCATION + "Location \n"
+            + PREFIX_LOCATION + "LOCATION "
+            + PREFIX_DATE + "{dd-mm-yyyy} \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Honeymoon "
             + PREFIX_DESC + "Going on a honeymoon with my prof "
-            + PREFIX_LOCATION + "Jeju Island";
+            + PREFIX_LOCATION + "Jeju Island "
+            + PREFIX_DATE + "26-12-2023";
 
     public static final String MESSAGE_SUCCESS = "New trip added: %1$s";
     public static final String MESSAGE_DUPLICATE_TRIP = "This trip already exists in Travelr";
