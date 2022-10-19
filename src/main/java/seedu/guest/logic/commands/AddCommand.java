@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_DATE_RANGE + "DATE_RANGE "
             + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS "
             + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN "
-            + PREFIX_REQUEST + "REQUEST(Optional) "
+            + "[" + PREFIX_REQUEST + "REQUEST] "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
             + PREFIX_DATE_RANGE + "13/09/22 - 15/09/22 "
             + PREFIX_NUMBER_OF_GUESTS + "1 "
             + PREFIX_IS_ROOM_CLEAN + "yes"
-            + "(Optional: " + PREFIX_REQUEST + "Apply for room service" + ")";
+            + "[" + PREFIX_REQUEST + "Apply for room service" + "]";
 
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in the guest book";

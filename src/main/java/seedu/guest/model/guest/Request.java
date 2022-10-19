@@ -36,7 +36,7 @@ public class Request {
      * @return boolean
      */
     public static boolean isValidRequest(String inputRequest) {
-        return (!inputRequest.equals(""));
+        return (inputRequest.length() <= 500);
     }
 
     /**
