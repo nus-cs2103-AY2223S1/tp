@@ -10,6 +10,8 @@ import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 
+import java.util.function.Predicate;
+
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
@@ -23,11 +25,11 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " [b/d/s]/Bernice Charlotte";
 
-    private final NameContainsKeywordsPredicate<Buyer> bPredicate;
+    private final Predicate<Buyer> bPredicate;
 
-    private final NameContainsKeywordsPredicate<Deliverer> dPredicate;
+    private final Predicate<Deliverer> dPredicate;
 
-    private final NameContainsKeywordsPredicate<Supplier> sPredicate;
+    private final Predicate<Supplier> sPredicate;
 
     private final PersonCategory type;
 
@@ -43,9 +45,8 @@ public class FindCommand extends Command {
      *             Buyer, Deliverer or Supplier.
      * @return FindCommand.
      */
-    public FindCommand(NameContainsKeywordsPredicate<Buyer> bPredicate,
-                       NameContainsKeywordsPredicate<Deliverer> dPredicate,
-                       NameContainsKeywordsPredicate<Supplier> sPredicate, PersonCategory type) {
+    public FindCommand(Predicate<Buyer> bPredicate, Predicate<Deliverer> dPredicate,
+                       Predicate<Supplier> sPredicate, PersonCategory type) {
         this.bPredicate = bPredicate;
         this.dPredicate = dPredicate;
         this.sPredicate = sPredicate;

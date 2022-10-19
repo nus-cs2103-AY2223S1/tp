@@ -22,17 +22,21 @@ public class PredicateParser {
 
     public static Predicate<Buyer> parseBuyer(String input) throws ParseException {
         String[] nameKeywords = input.trim().split("/", 2);
+        if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
-            case "a":
+            case addressPrefix:
                 return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
-            case "e":
+            case emailPrefix:
                 return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
-            case "l":
+            case locPrefix:
                 return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
-            case "n":
+            case namePrefix:
                 return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
-            case "p":
+            case phonePrefix:
                 return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
             default:
                 throw new ParseException(
