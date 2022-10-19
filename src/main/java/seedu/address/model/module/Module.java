@@ -88,7 +88,7 @@ public class Module {
     /**
      * Returns a string representation of the number of completed tasks and number of total tasks.
      */
-    public String generateProgressString() {
+    public String generateProgressMessage() {
         if (totalNumOfTasks == 0) {
             return MESSAGE_NO_TASKS_FOR_MODULE;
         } else {

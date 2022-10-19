@@ -42,7 +42,7 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         percentageCompleted.setProgress(module.getPercentageCompleted());
-        progressString.setText(module.generateProgressString());
+        progressString.setText(module.generateProgressMessage());
     }
 
 }
