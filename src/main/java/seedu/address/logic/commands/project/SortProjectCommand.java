@@ -18,12 +18,13 @@ public class SortProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted projects by deadline";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort projects in address book by deadline."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort projects in address book by deadline. "
             + "Parameters: "
-            + PREFIX_DEADLINE + " "
+            + PREFIX_DEADLINE + "0 (chronological) or "
+            + PREFIX_DEADLINE + "1 (reverse chronological). "
             + "Example: "
             + COMMAND_WORD + " "
-            + PREFIX_DEADLINE;
+            + PREFIX_DEADLINE + "0";
 
     private final int sortByDeadlineKey;
 

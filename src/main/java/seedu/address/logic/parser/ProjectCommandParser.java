@@ -81,8 +81,14 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    private static boolean onlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() == 1;
+    /**
+     * Verify that there is only one user input.
+     *
+     * @param arguments user input for key for sort by deadline
+     * @return true if there is only one valid input
+     */
+    private boolean hasOneSortDeadlineKey(String arguments) {
+        return arguments.trim().length() != 3;
     }
 
     private AddProjectCommand parseAddProjectCommand(String arguments) throws ParseException {
@@ -178,16 +184,22 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
     }
 
     private SortProjectCommand parseSortProjectCommand(String arguments) throws ParseException {
+
+        if (hasOneSortDeadlineKey(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortProjectCommand.MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
-            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortProjectCommand.MESSAGE_USAGE));
         }
 
-        int ascDesc = ParserUtil.parseDeadlineSort(argMultimap.getValue(PREFIX_DEADLINE).get());
-        return new SortProjectCommand(ascDesc);
+        int key = ParserUtil.parseDeadlineSort(argMultimap.getValue(PREFIX_DEADLINE).get());
+        return new SortProjectCommand(key);
     }
 
     private ListProjectCommand parseListProjectCommand(String arguments) {
