@@ -16,13 +16,12 @@ public class DateField {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should follow the format dd-mm-yyyy, and it should not be blank";
 
+    private static final String DEFAULT_DATE_VALUE = "01-01-0000";
+    private static final DateField DEFAULT_DATE_FIELD = new DateField(DEFAULT_DATE_VALUE);
+    private static final DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+
     public final LocalDate dateValue;
-    private final static DateTimeFormatter df = DateTimeFormatter.ofPattern( "dd-MM-uuuu" ) ;
-    
-    private final static String DEFAULT_DATE_VALUE = "01-01-0000";
-    private final static DateField DEFAULT_DATE_FIELD = new DateField(DEFAULT_DATE_VALUE);
-    
-    
+
     /**
      * Constructs a {@code Name}.
      *
@@ -33,7 +32,7 @@ public class DateField {
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         dateValue = LocalDate.parse(date, df);
     }
-    
+
     /**
      * Returns true if a given string is a valid title.
      */
@@ -45,15 +44,15 @@ public class DateField {
         }
         return true;
     }
-    
+
     public static String getDefaultValue() {
         return DEFAULT_DATE_VALUE;
     }
-    
+
     public static DateField getDefaultDateField() {
         return DEFAULT_DATE_FIELD;
     }
-    
+
     public boolean isDefaultValue() {
         return this.equals(getDefaultDateField());
     }

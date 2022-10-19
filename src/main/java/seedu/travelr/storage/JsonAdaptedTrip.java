@@ -116,7 +116,7 @@ class JsonAdaptedTrip {
         final boolean done = this.done;
 
         final Location location = new Location(this.location);
-        
+
         final DateField dateField = new DateField(this.dateField);
 
         return new Trip(modelTitle, modelDescription, modelEvents, done, location, dateField);

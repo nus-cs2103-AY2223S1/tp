@@ -46,7 +46,8 @@ public class Trip {
      * Used in JsonAdaptedTrips
      * Every field must be present and not null.
      */
-    public Trip(Title title, Description description, Set<Event> events, boolean markedAsDone, Location location, DateField dateField) {
+    public Trip(Title title, Description description, Set<Event> events,
+                boolean markedAsDone, Location location, DateField dateField) {
         requireAllNonNull(title, description, events);
         this.title = title;
         this.description = description;

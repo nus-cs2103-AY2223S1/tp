@@ -38,21 +38,24 @@ public class JsonAdaptedTripTest {
     @Test
     public void toModelType_invalidTitle_throwsIllegalValueException() {
         JsonAdaptedTrip trip =
-                new JsonAdaptedTrip(INVALID_TITLE, VALID_DESCRIPTION, VALID_DONE_VALUE, VALID_LOCATION_VALUE, VALID_DATE, VALID_EVENTS);
+                new JsonAdaptedTrip(INVALID_TITLE, VALID_DESCRIPTION, VALID_DONE_VALUE,
+                        VALID_LOCATION_VALUE, VALID_DATE, VALID_EVENTS);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, trip::toModelType);
     }
 
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
-        JsonAdaptedTrip trip = new JsonAdaptedTrip(null, VALID_DESCRIPTION, VALID_DONE_VALUE, VALID_LOCATION_VALUE, VALID_DATE, VALID_EVENTS);
+        JsonAdaptedTrip trip = new JsonAdaptedTrip(null, VALID_DESCRIPTION, VALID_DONE_VALUE,
+                VALID_LOCATION_VALUE, VALID_DATE, VALID_EVENTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, trip::toModelType);
     }
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedTrip trip = new JsonAdaptedTrip(VALID_TITLE, null, VALID_DONE_VALUE, VALID_LOCATION_VALUE, VALID_DATE, VALID_EVENTS);
+        JsonAdaptedTrip trip = new JsonAdaptedTrip(VALID_TITLE, null, VALID_DONE_VALUE,
+                VALID_LOCATION_VALUE, VALID_DATE, VALID_EVENTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, trip::toModelType);
     }

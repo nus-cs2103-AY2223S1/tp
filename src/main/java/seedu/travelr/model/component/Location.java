@@ -21,9 +21,9 @@ public class Location {
     private static final String DEFAULT_LOCATION_NAME = "Default";
 
     private static final Location DEFAULT_LOCATION = new Location(DEFAULT_LOCATION_NAME);
-    
+
     public final String locationName;
-    
+
     /**
      * Constructs a {@code Name}.
      *
@@ -41,15 +41,15 @@ public class Location {
     public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-    
+
     public static String getDefaultValue() {
         return DEFAULT_LOCATION_NAME;
     }
-    
+
     public static Location getDefaultLocation() {
         return DEFAULT_LOCATION;
     }
-    
+
     public boolean isDefaultValue() {
         return this.equals(DEFAULT_LOCATION);
     }

@@ -33,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESC, PREFIX_TAG, PREFIX_LOCATION, PREFIX_DATE);
-        
+
         // Location and DateField is optional
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESC)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,9 +43,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
         Set<Event> eventList = ParserUtil.parseEvents(argMultimap.getAllValues(PREFIX_TAG));
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(Location.getDefaultValue()));
-        DateField dateField = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(DateField.getDefaultValue()));
-        
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION)
+                .orElse(Location.getDefaultValue()));
+        DateField dateField = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)
+                .orElse(DateField.getDefaultValue()));
+
         Trip trip = new Trip(title, description, eventList, location, dateField);
 
         return new AddCommand(trip);
