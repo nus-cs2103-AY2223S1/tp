@@ -71,14 +71,13 @@ public class AddPersonCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        //Person expectedPersonTags = new PersonBuilder(AMY).withTags().build();
-        //assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
-        //        new AddPersonCommand(expectedPersonTags));
+        Person expectedPersonTags = new PersonBuilder(AMY).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
+                new AddPersonCommand(expectedPersonTags));
         // zero phone
         Person expectedPersonPhone = new PersonBuilder(AMY).withPhone(null).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY,
                 new AddPersonCommand(expectedPersonPhone));
-        /*
         // zero email
         Person expectedPersonEmail = new PersonBuilder(AMY).withEmail(null).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY,
@@ -88,7 +87,6 @@ public class AddPersonCommandParserTest {
         Person expectedPersonEmailAndPhone = new PersonBuilder(AMY).withEmail(null).withPhone(null).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY,
                 new AddPersonCommand(expectedPersonEmailAndPhone));
-        */
     }
 
     @Test

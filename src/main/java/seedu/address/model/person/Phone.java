@@ -48,7 +48,11 @@ public class Phone {
             return true;
         } else if (other instanceof Phone) {
             // instanceof handles nulls
-            return value == ((Phone) other).value || value.equals(((Phone) other).value); // state check
+            if (value == null || ((Phone) other).value == null) {
+                // at least 1 of the values are null
+                return value == ((Phone) other).value;
+            }
+            return value.equals(((Phone) other).value); // state check
         }
         return false; // this is not null while other is null
     }
