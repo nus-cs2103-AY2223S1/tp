@@ -239,9 +239,6 @@ Finds batchmates who have taken or are taking all the specified modules.
 
 Format: `mod find taken MODULE [MORE_MODULES]...` or `mod find taking MODULE [MORE_MODULES]...`
 
-* The search is case-insensitive. e.g `cs2100` will match `CS2100`.
-* Only full words will be matched. e.g. `cs21` will not return batchmates with the mods `CS2100` and `CS2101`.
-
 Examples:
 * `mod find taken cs2100` returns batchmates who have taken `cs2100`.
 * `mod find taken cs2101 cs2103t` returns batchmates who have taken both `cs2101` and `cs2103t`.
