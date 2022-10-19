@@ -188,7 +188,7 @@ The delete person mechanism is facilitated by `DeletePersonCommand` and `DeleteP
 
 Given below is an example usage scenario and how the delete person mechanism behaves at each step.
 
-Step 1. There currently exists some persons added to a Module.
+Step 1. There currently exists 3 persons in Plannit, with 2 of them already added to a module.
 
 ![DeletePersonStep1ObjectDiagram](images/DeletePersonStep1ObjectDiagram.png)
 
