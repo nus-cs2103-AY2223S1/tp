@@ -137,9 +137,10 @@ public class AddCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public void sortTaskList(String criteria) {
-=======
+
+        }
+
         public boolean hasExam(Exam exam) {
             throw new AssertionError("This method should not be called.");
         }
@@ -176,7 +177,6 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredExamList(Predicate<Exam> predicate) {
->>>>>>> 163a496b2c728aec3e45aea318b71d0e7efd48c7
             throw new AssertionError("This method should not be called.");
         }
 
