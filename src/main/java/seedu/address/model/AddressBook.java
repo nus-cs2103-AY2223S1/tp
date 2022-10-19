@@ -132,6 +132,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTask(Task task) {
         tasks.addTask(task);
+        modules.updateTotalNumOfTasks(task.getModule(), tasks);
+        modules.updateNumOfCompletedTasks(task.getModule(), tasks);
     }
 
     /**
@@ -143,6 +145,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(target, editedTask);
 
         tasks.setTask(target, editedTask);
+        modules.updateNumOfCompletedTasks(target.getModule(), tasks);
     }
 
     /**
@@ -156,6 +159,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(target, editedTask);
 
         tasks.replaceTask(target, editedTask);
+        modules.updateNumOfCompletedTasks(target.getModule(), tasks);
+        modules.updateTotalNumOfTasks(target.getModule(), tasks);
+        modules.updateNumOfCompletedTasks(editedTask.getModule(), tasks);
+        modules.updateTotalNumOfTasks(editedTask.getModule(), tasks);
+
+
     }
 
     public void setTasks(List<Task> tasks) {
@@ -168,6 +177,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+        modules.updateNumOfCompletedTasks(key.getModule(), tasks);
+        modules.updateTotalNumOfTasks(key.getModule(), tasks);
     }
 
     //// util methods
