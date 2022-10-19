@@ -15,9 +15,12 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Address
+Class Class
 Class Email
+Class Money
 Class Name
 Class Phone
+Class AdditionalNotes
 Class Tag
 
 }
@@ -40,11 +43,18 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Class
+Person *--> Money
+Person *--> AdditionalNotes
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Class
+Class -[hidden]right-> Money
+Money -[hidden]right-> AdditionalNotes
+AdditionalNotes -[hidden]right-> Tag
 
 ModelManager -->"~* filtered" Person
 @enduml
