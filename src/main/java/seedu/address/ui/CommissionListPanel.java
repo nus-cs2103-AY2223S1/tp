@@ -34,9 +34,11 @@ public class CommissionListPanel extends UiPart<Region> {
      */
     public CommissionListPanel(ObservableObject<Pair<Customer, FilteredList<Commission>>> observableCommissionList,
                                Consumer<Commission> selectCommission,
-                               ObservableObject<Commission> selectedCommission) {
+                               ObservableObject<Commission> selectedCommission,
+                               MainWindow mainWindow, CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
-        commissionPanelControlsPlaceholder.getChildren().add(new CommissionListPanelControlBar().getRoot());
+        commissionPanelControlsPlaceholder.getChildren()
+                .add(new CommissionListPanelControlBar(mainWindow, commandExecutor).getRoot());
         this.updateUI(observableCommissionList.getValue().getValue());
         this.selectCommission = selectCommission;
 

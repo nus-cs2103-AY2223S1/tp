@@ -14,7 +14,8 @@
     </minWidth>
     <right>
         <HBox>
-            <Button fx:id="addCommissionButton" text="+   Add Commission" styleClass="addButton"/>
+            <Button fx:id="addCommissionButton" mnemonicParsing="false"
+                    text="+   Add Commission" styleClass="addButton" onAction="#showAddCommissionWindow"/>
             <BorderPane.margin>
                 <Insets right="16" bottom="8"/>
             </BorderPane.margin>

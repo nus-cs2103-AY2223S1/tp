@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.HashSet;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommissionListPanel commissionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HashSet<UiPart<Stage>> childWindows;
 
     private CustomerDetailsPane customerDetailsPane;
     private CommissionDetailsPane commissionDetailsPane;
@@ -83,6 +85,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        childWindows = new HashSet<>();
     }
 
     public Stage getPrimaryStage() {
@@ -144,7 +147,7 @@ public class MainWindow extends UiPart<Stage> {
         customerDetailsPanePlaceholder.getChildren().add(customerDetailsPane.getRoot());
 
         commissionListPanel = new CommissionListPanel(logic.getObservableFilteredCommissionList(),
-                logic::selectCommission, logic.getSelectedCommission());
+                logic::selectCommission, logic.getSelectedCommission(), this, this::executeCommand);
         commissionListPanelPlaceholder.getChildren().add(commissionListPanel.getRoot());
 
         commissionDetailsPane = new CommissionDetailsPane(logic.getSelectedCommission());
@@ -188,11 +191,20 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        childWindows.forEach(window -> window.getRoot().close());
         primaryStage.hide();
     }
 
     public CustomerListPanel getCustomerListPanel() {
         return customerListPanel;
+    }
+
+    public void addChildWindow(UiPart<Stage> stageToAdd) {
+        childWindows.add(stageToAdd);
+    }
+
+    public void removeChildWindow(Stage stageToRemove) {
+        childWindows.remove(stageToRemove);
     }
 
     /**

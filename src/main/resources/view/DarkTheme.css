@@ -309,11 +309,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #3C424B;
     -fx-background-insets: 3;
 }
 
@@ -372,6 +372,70 @@
 
 .addButton:pressed {
     -fx-background-color: #949AA4, #383D48;
+}
+
+.addCommissionWindowButton, .addCommissionWindowButton:armed, .addCommissionWindowButton:pressed,
+.addCommissionWindowButton:selected, .addCommissionWindowButton:hover,
+.addCommissionWindowButton:focused {
+    -fx-background-color: #027900;
+    -fx-background-radius: 4px;
+    -fx-border-width: 0px;
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: #D3D3D3;
+}
+
+.addCommissionWindowButton:focused {
+    -fx-border-insets: 0;
+}
+
+.addCommissionWindowButton:hover {
+    -fx-background-color: #0B5E0A;
+}
+
+.addCommissionWindowButton:pressed {
+    -fx-background-color: #145712;
+}
+
+.addCommissionWindowLabel {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+
+.addCommissionTextField {
+    -fx-background-color: #4E545F;
+    -fx-text-fill: #E8E8E8;
+    -fx-background-radius: 8px;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #6F747E;
+    -fx-font-size: 16px;
+}
+
+.addCommissionTextArea {
+    -fx-background-color: #6F747E;
+    -fx-text-fill: #E8E8E8;
+    -fx-font-size: 16px;
+}
+
+.addCommissionTextArea .content {
+    -fx-border-width: 0.5px;
+    -fx-border-color: #6F747E;
+    -fx-background-color: #4E545F;
+    -fx-font-size: 16px;
+}
+
+.commandWindowErrorMessage {
+    -fx-font-size: 16px;
+    -fx-text-fill: #A7BAFF;
+    -fx-text-alignment: center;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #A7BAFF;
+    -fx-padding: 8px;
 }
 
 #cardPane {
