@@ -159,29 +159,28 @@ Classes used by multiple components are in the `seedu.nutrigoals.commons` packag
 
 The edit mechanism is facilitated by `EditCommand`, which extends `Command`. It overrides the following operation:
 
-* `EditCommand#execute`: Edits the food name, meal type or calories associated with the food at the specified index.
+* `EditCommand#execute()`: Edits the food name, meal type or calories associated with the food at the specified index.
 
 Given below is an example usage scenario and how edit mechanism behaves at each step.
 
-Step 1. The user launches the application on 19 October 2022. Suppose the food added into the list on 
-19 October 2022 are:
+Step 1. The user launches the application today. Suppose the foods added for the day are:
 
 1. bread: 100 calories, breakfast
 2. milk tea: 300 calories, lunch
-2. sushi: 500 calories, lunch
+3. sushi: 500 calories, lunch
 
-Step 2. The user executes `edit 2 n/honey milk tea c/310`, which calls `LogicManager#execute`. 
-`NutriGoals#parseCommand` is called subsequently, which then creates an `EditCommandParser` object.
-`EditCommandParser#parse` is then called to make sense of the arguments supplied by the user.
+Step 2. The user executes `edit 2 n/honey milk tea c/310`, which calls `LogicManager#execute()`. 
+`NutriGoals#parseCommand()` is called subsequently, which then creates an `EditCommandParser` object.
+`EditCommandParser#parse()` is then called to make sense of the arguments supplied by the user.
 
-Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute`.
+Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute()`.
 
-Step 4. The `edit` command calls the following methods from `Model`:
+Step 4. `EditCommand#excecute()` calls the following methods from `Model`:
 
-1. `setFood(foodToEdit, editedFood)`
-2. `updateFilteredFoodList()`
+* `setFood(foodToEdit, editedFood)`
+* `updateFilteredFoodList()`
 
-Step 5. `EditCommand#execute` returns a `CommandResult` with the following result
+Step 5. `EditCommand#execute()` returns a `CommandResult` with the following result
 displayed:
 
 Edited Food: honey milk tea; Calories: 310 calories; Tag[lunch]
