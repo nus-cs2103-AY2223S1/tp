@@ -5,13 +5,15 @@
     "email": "alice@example.com",
     "dob" : "1/1/2000",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "gender" : "Male"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "dob" : "1/1/2000",
-    "address": "4th street"
+    "address": "4th street",
+    "gender" : "Male"
   } ],
   "events" : [ {
     "eventTitle" : "Dinosaur Sale",
