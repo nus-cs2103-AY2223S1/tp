@@ -227,7 +227,7 @@ public class ParserUtil {
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
         if (interviewDate.isBlank()) {
-            return null;
+            return new InterviewDate(null);
         }
         String trimmedInterviewDate = interviewDate.trim();
         if (!InterviewDate.isValidDatetimeStr(trimmedInterviewDate)) {

@@ -112,9 +112,11 @@ public class Internship {
                 .append("; Role: ")
                 .append(getInternshipRole())
                 .append("; Status: ")
-                .append(getInternshipStatus())
-                .append("; InterviewDate: ")
-                .append(getInterviewDate());
+                .append(getInternshipStatus());
+        if (getInterviewDate().toString() != null) {
+            builder.append("; InterviewDate: ")
+                    .append(getInterviewDate());
+        }
 
         return builder.toString();
     }

@@ -26,11 +26,14 @@ public class InterviewDate {
      * @param datetimeStr A valid String in the format yyyy-MM-dd HH:mm that represents a date and time.
      */
     public InterviewDate(String datetimeStr) {
-        requireNonNull(datetimeStr);
-        checkArgument(isValidDatetimeStr(datetimeStr), MESSAGE_CONSTRAINTS);
+        if (datetimeStr == null || datetimeStr.isBlank()) {
+            this.datetime = null;
+        } else {
+            checkArgument(isValidDatetimeStr(datetimeStr), MESSAGE_CONSTRAINTS);
 
-        LocalDateTime datetime = LocalDateTime.parse(datetimeStr, formatter);
-        this.datetime = datetime;
+            LocalDateTime datetime = LocalDateTime.parse(datetimeStr, formatter);
+            this.datetime = datetime;
+        }
     }
 
     public static boolean isValidDatetimeStr(String test) {
@@ -39,6 +42,9 @@ public class InterviewDate {
 
     @Override
     public String toString() {
+        if (datetime == null) {
+            return null;
+        }
         return datetime.format(formatter);
     }
 

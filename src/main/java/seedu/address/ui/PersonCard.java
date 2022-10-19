@@ -17,8 +17,8 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
     private static final String NO_INTERNSHIP = "No internship linked.";
-    private static final String NO_PHONE = null;
-    private static final String NO_EMAIL = null;
+    private static final String NO_PHONE = "No phone number.";
+    private static final String NO_EMAIL = "No email.";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

@@ -20,7 +20,6 @@ public class Phone {
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
-        //requireNonNull(phone);
         if (phone != null) {
             checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         }
