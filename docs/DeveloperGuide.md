@@ -150,94 +150,119 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 3.1. Module Features
 
-#### Proposed Implementation
+### 3.1.1. Add module
 
-The proposed undo/redo mechanism is facilitated by `VersionedModuleList`. It extends `ModuleList` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+In this section, the functionality of `add` module feature, expected execution path, and the interactions between
+`AddCommand`, `AddCommandParser`, and other objects will be discussed.
 
-* `VersionedModuleList#commit()` — Saves the current address book state in its history.
-* `VersionedModuleList#undo()` — Restores the previous address book state from its history.
-* `VersionedModuleList#redo()` — Restores a previously undone address book state from its history.
+### What is the add module feature
 
-These operations are exposed in the `Model` interface as `Model#commitModuleList()`, `Model#undoModuleList()` and `Model#redoModuleList()` respectively.
+The `add` module features allows users to add a module that they have taken or are currently taking into the
+`ModuleList`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+In order to add tasks or deadlines related to the module, a module would have to be created.
 
-Step 1. The user launches the application for the first time. The `VersionedModuleList` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Information regarding module can be recognised in the CLI using tags
 
-![UndoRedoState0](images/UndoRedoState0.png)
+These tags are:
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitModuleList()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+- `-m <module_name>`
+- `-c <module_code>`
+- `-cr <module_credit>`
 
-![UndoRedoState1](images/UndoRedoState1.png)
+### Design considerations
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitModuleList()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Aspect 1: How many modules are added:**
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleList()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleList()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ModuleList state, then there are no previous ModuleList states to restore. The `undo` command uses `Model#canUndoModuleList()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoModuleList()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone ModuleList states to restore. The `redo` command uses `Model#canRedoModuleList()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitModuleList()`, `Model#undoModuleList()` or `Model#redoModuleList()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitModuleList()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Add 1 module added per AddCommand.
   * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+  * Cons: May have to type more to add multiple modules.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Add multiple modules per AddCommand.
+  * Pros: Convenient for user.
+  * Cons: More complicated, may require much more parsing.
 
-_{more aspects and alternatives to be added}_
+We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
+reduce the compulsory AddCommand parameters.
 
-### \[Proposed\] Data archiving
+**Aspect 2: What parameters do we need:**
 
-_{Explain here how the data archiving feature will be implemented}_
+* **Alternative 1:** Manually add all the required parameters.
+    * Pros: Able to add modules that are not on NUSMods.
+    * Cons: Troublesome to add multiple parameters.
 
+* **Alternative 2:** Only require module code and fetch the relevant information from NUSMods API.
+    * Pros: Convenient for user as the only module code is required for the parameter.
+    * Cons: If the NUSMods API server is down, users would not be able to add their modules.
+
+We decided to go implement both alternatives as we wanted to give users greater flexibility.
+
+### Current implementation
+
+The diagram below showcases the path execution for when adding a module
+
+<img src="images/ModulePUMLs/AddModule/ModuleAddPathExecution.png" width="800" />
+
+The diagram below shows how the add command work with input `add -m -c CS2103T`
+
+<img src="images/ModulePUMLs/AddModule/ModuleAddSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `AddCommandParser`. After
+obtaining the module code, the argument would be passed to static method `ModuleParser:fetchModule()`. This would fetch
+the module details from NUSMods and return a `Module`. The module would be used to instantiate an `AddCommand`. When the
+`AddCommand` is executed, the `Model` would add the module to the `ModuleList`. 
+
+### 3.1.2. Remove Module
+
+In this section, the functionality of `remove` module feature, expected execution path, and the interactions between the
+`RemoveCommand`, `RemoveCommandParser`, and other objects will be discussed.
+
+### What is the remove module feature
+
+The `remove` module features allows users to remove a module that they have taken or mistakenly inputted into
+`ModuleList`.
+
+Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
+
+### Design considerations
+
+**Aspect: How are modules removed:**
+
+* **Alternative 1 (current choice):** Using their index in the list.
+    * Pros: Easier for user to select.
+    * Cons: May be hard to find module especially if module list is long. More complicated as index may change
+    especially after modifying the module list
+
+* **Alternative 2:** Using the module code.
+    * Pros: User need not list the modules to find exact module to remove.
+    * Cons: User needs to type more.
+
+We decided to go with the alternative 1 as it would be faster for users to type inputs. Furthermore, at any point, it is
+unlikely that users will take so many modules such that the GUI is unable to display all the modules. We also have an 
+archive feature that would remove previously taken modules so that it would not clutter up the GUI.
+
+### Current implementation
+
+The diagram below showcases the path execution for when removing a module
+
+<img src="images/ModulePUMLs/RemoveModule/ModuleRemovePathExecution.png" width="800" />
+
+The diagram below shows how the remove command work with input `remove -m 1`
+
+<img src="images/ModulePUMLs/RemoveModule/ModuleRemoveSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `RemoveCommandParser`. After
+obtaining the index, it would be used to instantiate a `RemoveCommand`. When the `RemoveCommand` is executed, it would
+first obtain the `Module` using the index. Then it would remove the `Module` from the `ModuleList`. Using the saved
+`Module` it would then remove all `Task` in the `TaskBook` with the `Module`.
 
 --------------------------------------------------------------------------------------------------------------------
 
