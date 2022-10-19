@@ -45,19 +45,28 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 * An address book cannot have multiple persons with the same `NAME`, `EMAIL`, and `JOB_ID` at once.
 
 * Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
-  e.g., in `add name/NAME`, `NAME` is a parameter which can be used as `add name/Bobby Doe`.
+  
+    e.g., in `add name/NAME`, `NAME` is a parameter which can be used as `add name/Bobby Doe`.
 
 * Items in curly brackets are mandatory.
-  e.g., `name/NAME phone/PHONE email/EMAIL {specifier/SPECIFIER_DETAIL}`, all specifiers need to be listed
+  
+    e.g., `name/NAME phone/PHONE email/EMAIL {specifier/SPECIFIER_DETAIL}`, all specifiers need to be listed
 
 * Items in square brackets are optional.
-  e.g., `name/NAME phone/PHONE email/EMAIL [tag/TAGS]` can be used as `name/Bobby phone/91234567 email/bob@example.com tag/KIV` or as `name/Bobby phone/91234567 email/bob@example.com`
+  
+    e.g., `name/NAME phone/PHONE email/EMAIL [tag/TAGS]` can be used as `name/Bobby phone/91234567 email/bob@example.com tag/KIV` or as `name/Bobby phone/91234567 email/bob@example.com`
 
 * Parameters can be in any order.
-  e.g., if the command specifies `name/NAME phone/PHONE email/EMAIL`, `name/NAME email/EMAIL phone/PHONE` is also acceptable.
+  
+    e.g., if the command specifies `name/NAME phone/PHONE email/EMAIL`, `name/NAME email/EMAIL phone/PHONE` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. 
+  
+    e.g. if you specify p/12341234 p/56785678, only p/56785678 will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.  
-  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
+  
+    e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -155,6 +164,17 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
+### Exporting the displayed list: `export`
+
+Exports the displayed list from InternConnect.
+
+Format: `export`
+
+* Exported JSON file will be stored in `data/export/` folder
+
+Examples:
+* `find university/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+
 
 ### Clearing all entries: `clear`
 
@@ -191,6 +211,7 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                    |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                        |
 | **Edit**   | `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER_DETAIL]…​`<br> e.g.,`edit 1 phone/91234567 email/bob@example.com`                                                                                                                                                                                                                 |
+| **Export** | `export`
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                 |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                                                                                            |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                                     | 
