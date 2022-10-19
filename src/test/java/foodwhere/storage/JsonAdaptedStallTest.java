@@ -1,5 +1,6 @@
 package foodwhere.storage;
 
+import static foodwhere.storage.JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT;
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalStalls.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.commons.Name;
 import foodwhere.model.stall.Address;
+import foodwhere.testutil.TypicalReviews;
+
 
 public class JsonAdaptedStallTest {
     private static final String INVALID_NAME = "R@chel";
@@ -24,6 +27,16 @@ public class JsonAdaptedStallTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+
+    @Test
+    public void isReviewOfStall_nullName_throwsException() throws Exception {
+        JsonAdaptedStall jsonAdaptedStall = new JsonAdaptedStall(null, VALID_ADDRESS,
+                VALID_TAGS, new ArrayList<>());
+        String expectedMessage =
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, () -> jsonAdaptedStall
+                .isReviewOfStall(TypicalReviews.ALICE));
+    }
 
     @Test
     public void toModelType_validStallTags_returnsStall() throws Exception {
@@ -40,12 +53,29 @@ public class JsonAdaptedStallTest {
     }
 
     @Test
+    public void getModelReviews_invalidName_throwsIllegalValueException() {
+        JsonAdaptedStall stall = new JsonAdaptedStall(INVALID_NAME, VALID_ADDRESS,
+                VALID_TAGS, new ArrayList<>());
+        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, stall::getModelReviews);
+    }
+
+    @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedStall stall = new JsonAdaptedStall(null, VALID_ADDRESS,
                 VALID_TAGS, new ArrayList<>());
         String expectedMessage =
-                String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
+    }
+
+    @Test
+    public void getModelReviews_nullName_throwsIllegalValueException() {
+        JsonAdaptedStall stall = new JsonAdaptedStall(null, VALID_ADDRESS,
+                VALID_TAGS, new ArrayList<>());
+        String expectedMessage =
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, stall::getModelReviews);
     }
 
     @Test
@@ -60,7 +90,7 @@ public class JsonAdaptedStallTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedStall stall = new JsonAdaptedStall(VALID_NAME, null,
                 VALID_TAGS, new ArrayList<>());
-        String expectedMessage = String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
