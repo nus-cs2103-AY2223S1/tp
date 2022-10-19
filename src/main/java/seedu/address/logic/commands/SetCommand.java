@@ -150,6 +150,11 @@ public class SetCommand extends Command {
             this.address = address;
         }
 
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
         public void updateTags(Set<Tag> tags) {
             // Set tags to a defensive copy of the given set of Tags
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
