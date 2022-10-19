@@ -29,8 +29,7 @@ The `sort` feature sorts the list of items currently displayed to the user by sp
 * Bought Date
 * Expiry Date
 
-Currently, sorting is performed ascendingly. A future implementation will allow sorting either ascendingly or
-descendingly.
+Currently, sorting is performed ascendingly. A future implementation will allow sorting either ascendingly or  descendingly.
 
 #### How the `sort` command works
 
@@ -42,11 +41,6 @@ descendingly.
 ![TagSequenceDiagram](images/SortItemsSequenceDiagram.png)
 
 #### Why is it implemented this way
-There is a `SortedList` obtained from an immutable item
-list. When the `SortCommand` is executed to sort the list
-of items, one or more comparators are chosen depending on
-the provided sorting criteria. the comparators are
-combined into one comparator. The `SortedList`  are sorted in the specified order of the Comparators. The UI tracks changes to the `SortedList` and displays the updated sorted item list.
+There is a `SortedList` obtained from an immutable item list. When the `SortCommand` is executed to sort the list of items, one or more comparators are chosen depending on the provided sorting criteria. the comparators are combined into one comparator. The `SortedList`  are sorted in the specified order of the Comparators. The UI tracks changes to the `SortedList` and displays the updated sorted item list.
 
-Notably, the `SortedList` wraps around a `FilteredList`,
-which wraps around an immutable `ObservableList`.
+Notably, the `SortedList` wraps around a `FilteredList`, which wraps around an immutable `ObservableList`.
