@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.StringJoiner;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -50,6 +52,17 @@ public class StudentCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Student already exists in the address book";
 
+    public static final String STUDENT_TEMPLATE = new StringJoiner(" ").add(COMMAND_WORD)
+        .add(PREFIX_NAME.getPrefix())
+        .add(PREFIX_MODULE_CODE.getPrefix())
+        .add(PREFIX_PHONE.getPrefix())
+        .add(PREFIX_EMAIL.getPrefix())
+        .add(PREFIX_GENDER.getPrefix())
+        .add(PREFIX_TAG.getPrefix())
+        .add(PREFIX_LOCATION.getPrefix())
+        .add(PREFIX_GITHUBUSERNAME.getPrefix())
+        .toString();
+
     private final Person toAdd;
 
     /**
@@ -75,7 +88,7 @@ public class StudentCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StudentCommand // instanceof handles nulls
-                && toAdd.equals(((StudentCommand) other).toAdd));
+            || (other instanceof StudentCommand // instanceof handles nulls
+            && toAdd.equals(((StudentCommand) other).toAdd));
     }
 }

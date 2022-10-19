@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.StringJoiner;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -48,7 +50,20 @@ public class ProfCommand extends Command {
             + PREFIX_RATING + "5";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Professor already exists in the address book";
+
     public static final String MESSAGE_SUCCESS = "New professor added: %1$s";
+
+    public static final String PROF_TEMPLATE = new StringJoiner(" ").add(COMMAND_WORD)
+        .add(PREFIX_NAME.getPrefix())
+        .add(PREFIX_MODULE_CODE.getPrefix())
+        .add(PREFIX_PHONE.getPrefix())
+        .add(PREFIX_EMAIL.getPrefix())
+        .add(PREFIX_GENDER.getPrefix())
+        .add(PREFIX_TAG.getPrefix())
+        .add(PREFIX_LOCATION.getPrefix())
+        .add(PREFIX_GITHUBUSERNAME.getPrefix())
+        .add(PREFIX_RATING.getPrefix())
+        .toString();
 
     private final Person toAdd;
 
@@ -75,7 +90,7 @@ public class ProfCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProfCommand // instanceof handles nulls
-                && toAdd.equals(((ProfCommand) other).toAdd));
+            || (other instanceof ProfCommand // instanceof handles nulls
+            && toAdd.equals(((ProfCommand) other).toAdd));
     }
 }
