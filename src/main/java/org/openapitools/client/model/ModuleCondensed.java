@@ -175,24 +175,24 @@ public class ModuleCondensed {
      * Gets or Sets semesters
      */
     public enum SemestersEnum {
-        NUMBER_1(new BigDecimal("1")),
+        NUMBER_1(1),
 
-        NUMBER_2(new BigDecimal("2")),
+        NUMBER_2(2),
 
-        NUMBER_3(new BigDecimal("3")),
+        NUMBER_3(3),
 
-        NUMBER_4(new BigDecimal("4"));
+        NUMBER_4(4);
 
-        private BigDecimal value;
+        private int value;
 
-        SemestersEnum(BigDecimal value) {
+        SemestersEnum(int value) {
             this.value = value;
         }
 
         @JsonCreator
-        public static SemestersEnum fromValue(BigDecimal value) {
+        public static SemestersEnum fromValue(int value) {
             for (SemestersEnum b : SemestersEnum.values()) {
-                if (b.value.equals(value)) {
+                if (b.value == value) {
                     return b;
                 }
             }
@@ -200,13 +200,24 @@ public class ModuleCondensed {
         }
 
         @JsonValue
-        public BigDecimal getValue() {
+        public int getValue() {
             return value;
         }
 
         @Override
         public String toString() {
-            return String.valueOf(value);
+            switch (value) {
+            case 1:
+                return "Semester 1";
+            case 2:
+                return "Semester 2";
+            case 3:
+                return "Special Term 1";
+            case 4:
+                return "Special Term 2";
+            default:
+                return "Invalid semester!";
+            }
         }
     }
 
