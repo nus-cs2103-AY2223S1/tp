@@ -223,6 +223,37 @@ Activity: Determines and returns a category
     * Pros: Users can edit mod categories with less changes to the code base. Increased performance.
     * Cons: Increased complexity.
 
+### Add Interest Feature
+The ```addInt``` command allows users to add an interest or a list of interests by indicating the index of the student to be modified and the list of interests to add.
+
+The arguments of the command are:
+- ```Index```
+- ```Set<Interest>```
+
+#### Implementation
+Each ```Person``` has a ```Set``` of ```Interest``` and adding an ```Interest``` would add the specified ```Interest``` into this set.
+
+The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
+```Parser```. ```AddInterestCommandParser``` serves to check the syntax of the command, while ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
+
+####Steps:
+1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```AddressBookParser``` to parse the command.
+2. From the command word ```addInt```, a new ```AddInterestCommandParser``` object is constructed.
+3. ```AddInterestCommandParser#parse``` checks the command syntax, after which a new ```AddInterestCommand``` is constructed.
+4.  ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
+5. The index is verified to be valid and if so, the list of interests are added to the ```Person``` marked by the ```Index```.
+6. Once ```Person``` is updated with the added interests, ```ModelManager``` will be updated with the changes as well.
+
+####Design considerations:
+1. Usefulness of ```AddInterestCommand```
+- Current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` provides a quick way to add new interests.
+2. Managing the List of Interests
+- **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Person``` class.
+    * Pros: Easy to implement and the use of ```HashSet``` to prevent duplicates.
+    * Cons: Less abstraction as the logic of getting the list and adding to the list has to be handled by ```Person```.
+- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniquePersonList```)
+  * Pros: Greater abstraction as the low-level details of adding, removing and checking the interests are abstracted. Adhering to Single Responsibility Responsibility as the list of interests are handled by the ```UniqueInterestList``` class.
+  * Cons: List of ```Interest``` is often moderately few so the implementation details for Alternative 2 could be an overkill.
 
 ### \[Proposed\] Undo/redo feature
 
