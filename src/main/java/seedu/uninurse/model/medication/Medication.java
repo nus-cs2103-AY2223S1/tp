@@ -38,7 +38,7 @@ public class Medication {
     }
 
     /**
-     * Returns true if a given string is a valid condition.
+     * Returns true if a given string is a valid medication.
      */
     public static boolean isValidMedication(String medicationType, String dosage) {
         return medicationType.matches(MEDICATION_VALIDATION_REGEX) && dosage.matches(DOSAGE_VALIDATION_REGEX);
