@@ -14,7 +14,6 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.ParentName;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -107,10 +106,10 @@ class JsonAdaptedStudent {
         if (parentName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!ParentName.isValidName(parentName)) {
-            throw new IllegalValueException(ParentName.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(parentName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final ParentName modelParentName = new ParentName(parentName);
+        final Name modelParentName = new Name(parentName);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));

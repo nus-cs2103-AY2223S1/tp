@@ -18,7 +18,6 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.ParentName;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -46,9 +45,24 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
         Name studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_STUDENT_NAME).get());
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Class className = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
-        ParentName parentName = ParserUtil.parseParentName(argMultimap.getValue(PREFIX_PARENT_NAME).orElse(""));
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Phone phone;
+        Name parentName;
+        Email email;
+        if(argMultimap.getValue(PREFIX_PHONE).isEmpty()) {
+            phone = new Phone();
+        } else {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        }
+        if(argMultimap.getValue(PREFIX_PARENT_NAME).isEmpty()) {
+            parentName = new Name();
+        } else {
+            parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).orElse(""));
+        }
+        if(argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
+            email = new Email();
+        } else {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Student person = new Student(studentName, id, className, parentName, phone, email, tagList);

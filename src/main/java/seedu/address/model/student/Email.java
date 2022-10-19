@@ -29,12 +29,12 @@ public class Email {
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX + "|^$";
+    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Email} and checks for validity.
      *
      * @param email A valid email address.
      */
@@ -42,6 +42,14 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email.toUpperCase();
+    }
+
+    /**
+     * Constructs an {@code Email} with empty value.
+     *
+     */
+    public Email() {
+        value = "";
     }
 
     /**

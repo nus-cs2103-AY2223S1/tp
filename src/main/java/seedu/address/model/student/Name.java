@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's name in the record.
+ * Represents a Student or Parent name in the record.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Student mame should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Name should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -21,7 +21,7 @@ public class Name {
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Name} and checks for validity.
      *
      * @param name A valid name.
      */
@@ -29,6 +29,14 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name.toUpperCase();
+    }
+
+    /**
+     * Constructs a {@code Name} with empty value.
+     *
+     */
+    public Name() {
+        fullName = "";
     }
 
     /**

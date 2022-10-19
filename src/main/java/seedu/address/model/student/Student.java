@@ -23,7 +23,7 @@ public class Student {
     private final Class className;
 
     // Parent fields
-    private final ParentName parentName;
+    private final Name parentName;
     private final Phone phone;
     private final Email email;
 
@@ -33,7 +33,7 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name studentName, Id id, Class className, ParentName parentName, Phone phone,
+    public Student(Name studentName, Id id, Class className, Name parentName, Phone phone,
                    Email email, Set<Tag> tags) {
         requireAllNonNull(studentName, id, className, phone, email, tags);
         this.studentName = studentName;
@@ -57,7 +57,7 @@ public class Student {
         return className;
     }
 
-    public ParentName getParentName() {
+    public Name getParentName() {
         return parentName;
     }
 
