@@ -29,14 +29,13 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + DESCRIPTOR_WORD
             + ": Edits the appointment details of the person identified "
-            + "by the patientIndex number used in the displayed person list and the appointmentIndex. "
+            + "by the appointmentIndex number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: PATIENT INDEX (must be a positive integer) "
-            + "APPOINTMENT INDEX (must be a positive integer) "
+            + "Parameters: APPOINTMENT_INDEX (must be a positive integer) "
             + "[" + PREFIX_REASON + "REASON] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_RECURRING_PERIOD + "TIME PERIOD] "
-            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " 1 1 "
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " 1 "
             + PREFIX_REASON + "Sore Throat "
             + PREFIX_DATE + "2022-10-12 16:30 "
             + PREFIX_RECURRING_PERIOD + "1Y0M0D";
@@ -47,48 +46,47 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
-     * Creates an EditAppointmentCommand with the given patient and appointment index,
+     * Creates an EditAppointmentCommand with the given appointment index,
      * and the editAppointmentDescriptor.
      *
-     * @param patientIndex The index of the patient to edit the appointment.
      * @param indexOfAppointment The index of the appointment to edit.
      * @param editAppointmentDescriptor The descriptor that contains the edited details.
      */
-    public EditAppointmentCommand(Index patientIndex, Index indexOfAppointment,
+    public EditAppointmentCommand(Index indexOfAppointment,
                                   EditAppointmentDescriptor editAppointmentDescriptor) {
-        super(patientIndex, indexOfAppointment);
+        super(indexOfAppointment);
         this.editAppointmentDescriptor = editAppointmentDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Person targetPerson = getTargetPerson(model);
-        List<Appointment> appointmentList = targetPerson.getAppointments();
         Appointment targetAppointment = getTargetAppointment(model);
+        Person person = getTargetPerson(model);
+        List<Appointment> currentAppts = person.getAppointments();
+        int index = currentAppts.indexOf(targetAppointment);
 
-        Appointment editedAppointment = createEditedAppointment(targetPerson,
-                targetAppointment, editAppointmentDescriptor);
-        if (hasSameTime(appointmentList, targetAppointment, editedAppointment)) {
+        Appointment editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
+        if (hasSameTime(currentAppts, targetAppointment, editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        appointmentList.set(indexOfAppointment.getZeroBased(), editedAppointment);
         model.setAppointment(targetAppointment, editedAppointment);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, targetPerson.getName(),
-                editedAppointment));
+        currentAppts.set(index, editedAppointment);
+        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS,
+                person.getName(), editedAppointment));
     }
 
-    private static Appointment createEditedAppointment(Person patient, Appointment appointmentToEdit,
+    private static Appointment createEditedAppointment(Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
         String reason = editAppointmentDescriptor.getReason().orElse(appointmentToEdit.getReason());
         LocalDateTime dateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
         List<Integer> period = editAppointmentDescriptor.getTimePeriod().orElse(appointmentToEdit.getTimePeriod());
+
         Appointment editedAppointment = new Appointment(reason, dateTime, period,
                 appointmentToEdit.isMarked());
-        editedAppointment.setPatient(patient);
+        editedAppointment.setPatient(appointmentToEdit.getPatient());
         return editedAppointment;
     }
 
@@ -113,7 +111,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
 
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
-        return super.equals(other) && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
+        return hasSameIndexOfAppointment(e) && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
     }
 
     /**

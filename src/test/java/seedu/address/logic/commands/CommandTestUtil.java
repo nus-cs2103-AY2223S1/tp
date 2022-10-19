@@ -20,8 +20,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -29,6 +29,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String EMPTY_STRING = "";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -38,7 +39,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friends";
+    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_COUGH = "cough";
+    public static final String VALID_TAG_SINUS = "sinus";
 
     public static final String VALID_REASON_AMY = "Sore Throat";
     public static final String VALID_DATE_AMY = "2019-12-10 16:30";
@@ -58,6 +61,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_COUGH = " " + PREFIX_TAG + VALID_TAG_COUGH;
+    public static final String TAG_DESC_SINUS = " " + PREFIX_TAG + VALID_TAG_SINUS;
     public static final String REASON_DESC_AMY = " " + PREFIX_REASON + VALID_REASON_AMY;
     public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String REASON_DESC_BOB = " " + PREFIX_REASON + VALID_REASON_BOB;

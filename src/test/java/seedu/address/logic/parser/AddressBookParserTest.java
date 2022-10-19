@@ -4,14 +4,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
 
-import java.util.Arrays;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,9 +45,12 @@ import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.HideAppointmentPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
+import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -64,25 +77,23 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_mark() throws ParseException {
         MarkCommand command = (MarkCommand) parser.parseCommand(
-                MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                        + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
-        assertEquals(new MarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+                MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_APPOINTMENT.getOneBased());
+        assertEquals(new MarkCommand(INDEX_FIRST_APPOINTMENT), command);
     }
 
     @Test
     public void parseCommand_unmark() throws ParseException {
         UnmarkCommand command = (UnmarkCommand) parser.parseCommand(
-                UnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                        + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
-        assertEquals(new UnmarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+                UnmarkCommand.COMMAND_WORD + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+        assertEquals(new UnmarkCommand(INDEX_SECOND_APPOINTMENT), command);
     }
 
     @Test
     public void parseCommand_cancel() throws Exception {
         CancelCommand command = (CancelCommand) parser.parseCommand(CancelCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+                + " " + INDEX_THIRD_APPOINTMENT.getOneBased());
 
-        assertEquals(new CancelCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+        assertEquals(new CancelCommand(INDEX_THIRD_APPOINTMENT), command);
     }
 
     @Test
@@ -116,10 +127,10 @@ public class AddressBookParserTest {
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand command = (EditAppointmentCommand)
                 parser.parseCommand(EditAppointmentCommand.COMMAND_WORD
-                + " " + EditAppointmentCommand.DESCRIPTOR_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + EditAppointmentCommand.DESCRIPTOR_WORD
                 + " " + INDEX_FIRST_APPOINTMENT.getOneBased()
                 + " " + AppointmentUtil.getEditAppointmentDescriptorDetails(descriptor));
-        assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor), command);
+        assertEquals(new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor), command);
     }
 
     @Test
@@ -130,10 +141,36 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws ParseException {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> searchString = new ArrayList<>();
+        String name = "John";
+        String phone = "1234";
+        String email = "abcd";
+        String address = "clementi";
+        String tag = "throat";
+        String reason = "cough";
+        String dateTimeStart = "2022-12-13 12:12";
+        String dateTimeStartToParse = "2022-12-13T12:12";
+        String dateTimeEnd = "2025-12-13 12:12";
+        String dateTimeEndToParse = "2025-12-13T12:12";
+        searchString.add(PREFIX_NAME + name);
+        searchString.add(PREFIX_PHONE + phone);
+        searchString.add(PREFIX_EMAIL + email);
+        searchString.add(PREFIX_ADDRESS + address);
+        searchString.add(PREFIX_REASON + reason);
+        searchString.add(PREFIX_TAG + tag);
+        searchString.add(PREFIX_DATE_TIME_START + dateTimeStart);
+        searchString.add(PREFIX_DATE_TIME_END + dateTimeEnd);
+
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + String.join(" ", searchString));
+
+        CombinedPersonPredicate expectedPersonPredicate =
+                new CombinedPersonPredicate(name, phone, email, address, Collections.singletonList(tag));
+        CombinedAppointmentPredicate expectedAppointmentPredicate = new CombinedAppointmentPredicate(reason,
+                LocalDateTime.parse(dateTimeStartToParse), LocalDateTime.parse(dateTimeEndToParse));
+        boolean isAnyAppointmentFieldSpecified = true;
+        assertEquals(new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate,
+                        isAnyAppointmentFieldSpecified), command);
     }
 
     @Test
