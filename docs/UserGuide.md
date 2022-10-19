@@ -26,7 +26,7 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
 
    * **`list-e`** : Lists all events.
 
-   * **`add`**`-e Sightseeing/20-06-2030/Portugal/Visit Mountains` : Adds an event with the respective dateField, location, and activity into your event list.
+   * **`add`**`-e Sightseeing/20-06-2030/Portugal/Visit Mountains` : Adds an event with the respective date, location, and activity into your event list.
 
    * **`delete -e`**`3` : Deletes the 3rd event shown in the current event list.
 
