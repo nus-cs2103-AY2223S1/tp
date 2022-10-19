@@ -233,6 +233,7 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Edit an item
+
 Items stored in an ItemContainer object can either be stored under the unscheduled or scheduled list.
 
 Since scheduled items maintain a reference to the day that it is under, the edit behaviour for unscheduled and scheduled items differ.
@@ -247,6 +248,43 @@ or start time, check for time conflicts.
     * If day is edited, place the item in the corresponding Day object and re-sort the list.
   * If conflicts are detected, throw an exception for the time conflict.
 
+### \[Proposed\] Plan an item
+
+When an item from the unscheduled list is moved to the scheduled list, the following checks are made:
+
+* Check if the item has a duration
+  * Duration is optional at initialisation but compulsory when scheduling
+  * Proceed if the item has a duration
+  * If no duration has been specified yet, prompt the user to specify a duration before planning the item
+* Check for time conflict
+  * Proceed if no conflicts are detected
+  * If conflicts are detected, throw an exception for the time conflict
+* Check for time overflow
+  * Proceed if the item ends before midnight
+  * If the item runs past 2359 into the next day, automatically cut the item at 2359, and create another item with the remaining duration starting at 0000 on the next day
+
+If the item passes all checks, the item is moved and the following are updated:
+* The respective lists
+  * Item is removed from the unscheduled list and added to the scheduled list
+  * Scheduled list is re-sorted
+* The Day field of the Item object
+* The respective Day item
+* Itinerary's Budget
+  * The cost of the item is deducted automatically from the itinerary's budget
+
+### \[Proposed\] Edit an itinerary
+
+An itinerary's details (description, start date, duration, and budget) can be edited by changing the fields of an Itinerary object.
+
+Given below are some example usage scenarios and how the editing mechanism is carried out.
+
+* Editing an itinerary's description, budget, and start date
+    * Update the specified fields in the Itinerary object.
+* Editing an itinerary's duration
+    * If the duration is extended, add more Day objects to the Itinerary's list and update the duration field.
+    * If the duration is reduced, remove the extra Day objects from the Itinerary's list starting from the back (i.e., the last Day is removed first).
+        Update the duration field. The Items that were scheduled during the corresponding Days would become unscheduled.
+
 ### \[Proposed\] Export
 
 The Export feature is facilitated by accessing the list of items stored in a "Day" object, which is part of a list of "Day" in a "Itinerary" Object.
@@ -259,6 +297,17 @@ PDF is then exported.
 
 PDF will be stored under "./exports".
 
+### \[Proposed\] Unplan scheduled item
+
+The scheduled item will be taken off the list of items in their respective Day object.
+
+ItemContainer class will receive the removed item.
+
+ItemContainer will unschedule the item and return it to the unscheduled wish list of items in ItemContainer.
+
+The cost assigned to the item will be refunded back to the selected Itinerary's budget.
+
+Day field contained in the unplanned item will be set to null.
 
 --------------------------------------------------------------------------------------------------------------------
 
