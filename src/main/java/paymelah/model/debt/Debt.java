@@ -74,7 +74,7 @@ public class Debt {
             assert false : "makeDebt called with erroneous time format.";
         }
 
-        assert localDate != null && localTime != null : String.format("%s, %s", localDate, localTime);
+        assert localDate != null && localTime != null;
         return new Debt(new Description(description), new Money(money), localDate, localTime);
     }
 
