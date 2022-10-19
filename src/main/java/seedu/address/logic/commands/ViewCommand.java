@@ -29,11 +29,12 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        model.setFullView();
+
         Person person = model.getFilteredPersonList().get(0);
         person.setFullView();
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSON_FULL_VIEW,
-                        person.getName().fullName), false, false);
+
+        return new CommandResult(String.format(Messages.MESSAGE_PERSON_FULL_VIEW, person.getName().fullName));
     }
 
     @Override
