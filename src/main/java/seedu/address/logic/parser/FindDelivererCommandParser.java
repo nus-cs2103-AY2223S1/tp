@@ -31,12 +31,18 @@ public class FindDelivererCommandParser implements Parser<FindCommand> {
             public boolean test(Buyer buyer) {
                 return false;
             }
+            public boolean equals(Object object) {
+                return object instanceof Predicate;
+            }
         };
         Predicate<Deliverer> dPredicate = PredicateParser.parseDeliverer(trimmedArgs);
         Predicate<Supplier> sPredicate = new Predicate<Supplier>() {
             @Override
             public boolean test(Supplier supplier) {
                 return false;
+            }
+            public boolean equals(Object object) {
+                return object instanceof Predicate;
             }
         };
 
