@@ -20,9 +20,8 @@ of the technical details and inner workings of Class-ify.
 
 ### 1.3 About Class-ify
 
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor 
-their students’ academic progress. With a few intuitive commands, teachers can generate exam statistics for each class 
-and Class-ify will quickly flag out students who require more support.
+Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor their students’ academic progress.
+Teachers can generate exam statistics for each class, and Class-ify quickly flags out students who require more support for contacting.
 
 --------------------------------------------------------------------------------------------------------------------
 
