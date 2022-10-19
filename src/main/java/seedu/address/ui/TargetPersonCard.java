@@ -27,6 +27,11 @@ public class TargetPersonCard extends UiPart<Region> {
 
     public final Person person;
 
+    private static final String NO_REMARKS_VALUE = "No remarks";
+
+    private static final String ITALIC_FONT_STYLE = "-fx-font-style: italic";
+    private static final String NORMAL_FONT_STYLE = "-fx-font-style: normal";
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -52,7 +57,13 @@ public class TargetPersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        remark.setText(person.getRemark().value);
+        if (person.getRemark().value == "") {
+            remark.setText(NO_REMARKS_VALUE);
+            remark.setStyle(ITALIC_FONT_STYLE);
+        } else {
+            remark.setText(person.getRemark().value);
+            remark.setStyle(NORMAL_FONT_STYLE);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

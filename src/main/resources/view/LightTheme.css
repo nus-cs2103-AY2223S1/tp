@@ -401,3 +401,48 @@
     -fx-font-weight: 300;
     -fx-padding: 0 0 6 0;
 }
+
+.target-person-header {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 700;
+    -fx-font-size: 36px;
+    -fx-padding: 10 0;
+}
+
+.target-person-header-2 {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 400;
+    -fx-font-size: 24px;
+    -fx-padding: 10 0;
+}
+
+.target-person-name {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 400;
+    -fx-text-fill: #010504;
+    -fx-font-size: 24px;
+    -fx-padding: 8 0;
+}
+
+.target-person-tag-container {
+    -fx-padding: 8 0;
+}
+
+.target-person-tag {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 300;
+    -fx-text-fill: #010504;
+    -fx-font-size: 14px;
+}
+
+.target-person-icon-container {
+    -fx-padding: 0 8 0 0;
+}
+
+.target-person-details {
+    -fx-padding: 8 0;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 300;
+    -fx-text-fill: #010504;
+    -fx-font-size: 16px;
+}
