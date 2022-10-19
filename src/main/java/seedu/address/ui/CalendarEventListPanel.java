@@ -27,7 +27,7 @@ public class CalendarEventListPanel extends VBox {
         this.calendarEventList = new VBox();
 
     }
-    public VBox     getCalendarEventList(int currentDay) {
+    public VBox getCalendarEventList(int currentDay) {
         Text tDate = getTextDate(currentDay);
 
         calendarEventList.getChildren().add(tDate);

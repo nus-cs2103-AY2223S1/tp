@@ -140,13 +140,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
-        List<Person> lastShownList = filteredPersons;
-        List<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
-        return FXCollections.observableList(calendarEventList);
+        ObservableList<Person> lastShownList = this.filteredPersons;
+        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
+        return calendarEventList;
     }
 
-    private List<CalendarEvent> getCalendarEventList(List<Person> lastShownList) {
-        List<CalendarEvent> calendarEventList = new ArrayList<>();
+    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Person> lastShownList) {
+        ObservableList<CalendarEvent> calendarEventList = FXCollections.observableArrayList();
         lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
         return calendarEventList;
     }
