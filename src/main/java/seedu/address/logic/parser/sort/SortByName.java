@@ -2,7 +2,6 @@ package seedu.address.logic.parser.sort;
 
 import java.util.Comparator;
 
-import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.person.Person;
 
 /**
@@ -10,7 +9,7 @@ import seedu.address.model.person.Person;
  */
 public class SortByName implements Comparator<Person> {
 
-    String order;
+    private String order;
 
     /**
      * Constructor that takes in the order to sort the contact book by.
