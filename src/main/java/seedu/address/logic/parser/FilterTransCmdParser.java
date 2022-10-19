@@ -5,6 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new FilterTransCommand object
+ */
 public class FilterTransCmdParser implements Parser<FilterTransCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
