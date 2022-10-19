@@ -181,6 +181,29 @@ as they have been explained under [logic](#logic-component).
 
 <img src="images/SuggestFriendSequenceDiagram.png" width="550" />
 
+### Autocomplete Commands
+
+#### Description
+
+The "autocomplete" feature matches the current text to all the commands for the user when the user types in the command box.
+
+#### Implementation
+
+The autocomplete feature is facilitated through the `TextFields` class under the ControlsFX library.
+The `TextFields` class provides a static method `bindAutoCompletion` that will create a new auto-completion binding between
+the given TextField using the given auto-complete suggestions.
+
+Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the CommandBox.
+The object will display a list of suggestions that matches the current text in the text field.
+
+Alternative implementations of coming up with our own classes were considered aside from using the ControlsFX library. 
+However, coming up with the solution requires a great amount of effort for the same amount of functionality. 
+Hence, the decision was made to use the ControlsFX library.
+
+The following activity diagram shows the workflow for the autocomplete feature.
+
+<img src="images/AutoCompleteActivityDiagram.png" width="750" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
