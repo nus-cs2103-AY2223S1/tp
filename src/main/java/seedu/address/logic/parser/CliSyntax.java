@@ -13,5 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("phone/");
     public static final Prefix PREFIX_SLACK = new Prefix("slack/");
     public static final Prefix PREFIX_TELEGRAM = new Prefix("telegram/");
+    public static final Prefix PREFIX_ROLE = new Prefix("role/");
 
 }

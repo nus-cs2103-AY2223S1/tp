@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
@@ -79,6 +80,7 @@ public class SetCommand extends Command {
         Name name = personToEdit.getName();
         Address addr = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
+        Role role = personToEdit.getRole();
 
         // get map of contacts from person
         Map<ContactType, Contact> oldContacts = personToEdit.getContacts();
@@ -89,7 +91,7 @@ public class SetCommand extends Command {
             }
         }
 
-        return new Person(name, addr, tags, newContacts);
+        return new Person(name, addr, tags, newContacts, role);
     }
 
     @Override

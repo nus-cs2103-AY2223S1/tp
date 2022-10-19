@@ -23,11 +23,13 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111")
         .withTags("friends")
+        .withRole("Software Engineer")
         .withContact(ContactType.TELEGRAM, "@alice")
         .withContact(ContactType.EMAIL, "alice@gmail.com").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25")
         .withTags("owesMoney", "friends")
+        .withRole("Product Manager")
         .withContact(ContactType.TELEGRAM, "@benson")
         .withContact(ContactType.EMAIL, "benson@gmail.com").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withAddress("wall street").build();
@@ -42,10 +44,16 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY =
-        new PersonBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
-        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Person AMY = new PersonBuilder()
+            .withName(VALID_NAME_AMY)
+            .withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND)
+            .withRole("Software Engineer").build();
+    public static final Person BOB = new PersonBuilder()
+            .withName(VALID_NAME_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withRole("Software Engineer").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

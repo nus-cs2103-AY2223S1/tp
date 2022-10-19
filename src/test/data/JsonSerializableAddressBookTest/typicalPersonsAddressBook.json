@@ -4,6 +4,7 @@
     {
       "name": "Alice Pauline",
       "address": "123, Jurong West Ave 6, #08-111",
+      "role": "Software Engineer",
       "tagged": [
         "friends"
       ]
@@ -11,6 +12,7 @@
     {
       "name": "Benson Meier",
       "address": "311, Clementi Ave 2, #02-25",
+      "role": "Software Engineer",
       "tagged": [
         "owesMoney",
         "friends"
@@ -19,6 +21,7 @@
     {
       "name": "Carl Kurz",
       "address": "wall street",
+      "role": "Software Engineer",
       "tagged": []
     },
     {
@@ -26,6 +29,7 @@
       "phone": "87652533",
       "email": "cornelia@example.com",
       "address": "10th street",
+      "role": "Software Engineer",
       "tagged": [
         "friends"
       ]
@@ -33,6 +37,7 @@
     {
       "name": "Elle Meyer",
       "address": "michegan ave",
+      "role": "Software Engineer",
       "tagged": []
     },
     {
@@ -40,11 +45,13 @@
       "phone": "9482427",
       "email": "lydia@example.com",
       "address": "little tokyo",
+      "role": "Software Engineer",
       "tagged": []
     },
     {
       "name": "George Best",
       "address": "4th street",
+      "role": "Software Engineer",
       "tagged": []
     }
   ]
