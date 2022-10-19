@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,15 +32,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Income income, Meeting meeting,
+    public Person(Name name, Phone phone, Email email, Address address, Income income,
+                  MeetingDate meetingDate, MeetingLocation meetingLocation,
                   Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, income, meeting, tags);
+        requireAllNonNull(name, phone, email, address, income, meetingDate, meetingLocation, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.income = income;
-        this.meeting = meeting;
+        this.meeting = new Meeting(meetingDate, meetingLocation);
         this.tags.addAll(tags);
     }
 

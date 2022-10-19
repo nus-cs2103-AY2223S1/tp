@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -29,14 +30,15 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME,
-                        PREFIX_MEETING_DATE, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(
+                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME,
+                PREFIX_MEETING_DATE, PREFIX_MEETING_LOCATION, PREFIX_TAG);
 
         Index index;
 
@@ -64,7 +66,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_MEETING_DATE).isPresent()) {
             editPersonDescriptor.setMeetingDate(
-                    ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_MEETING_DATE).get()));
+                ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_MEETING_DATE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MEETING_LOCATION).isPresent()) {
+            editPersonDescriptor.setMeetingLocation(
+                ParserUtil.parseMeetingLocation(argMultimap.getValue(PREFIX_MEETING_DATE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

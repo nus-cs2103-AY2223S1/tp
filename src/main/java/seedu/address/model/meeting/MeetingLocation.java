@@ -9,7 +9,7 @@ import java.util.Optional;
 
 /**
  * Represents a Meeting Date in the FinBook.
- * Guarantees: immutable; name is valid as declared in {@link #isValidMeetingDate(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidMeetingLocation(String)}
  */
 public class MeetingLocation {
 
@@ -26,7 +26,7 @@ public class MeetingLocation {
      */
     public MeetingLocation(String location) {
         if (location != null && !location.isEmpty()) {
-            checkArgument(isValidMeetingDate(location), MESSAGE_CONSTRAINTS);
+            checkArgument(isValidMeetingLocation(location), MESSAGE_CONSTRAINTS);
             isVirtual = Optional.of(checkIsVirtual(location));
             value = Optional.of(location);
         } else {
@@ -38,7 +38,7 @@ public class MeetingLocation {
     /**
      * Returns true if a given string is a valid location.
      */
-    public static boolean isValidMeetingDate(String test) {
+    public static boolean isValidMeetingLocation(String test) {
         return true;
     }
 
