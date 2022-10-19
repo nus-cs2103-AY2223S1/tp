@@ -2,10 +2,14 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.module.Lesson;
 
+/**
+ * Jackson-friendly version of {@link Lesson}.
+ */
 public class JsonAdaptedLesson {
 
     private final String type;

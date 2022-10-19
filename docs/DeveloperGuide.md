@@ -141,7 +141,7 @@ All implementations of `Module`s have a name.
 
 `CurrentModule` has additional fields, which are implementations of `Lesson`s. These are `Tutorial`, `Recitation`, `Lab`, and `Lecture`.
 
-All implementations of `Lesson`s have a `StartTime` and `EndTime`. 
+All implementations of `Lesson`s have a `StartTime` and `EndTime`.
 
 
 ### Storage component
@@ -236,7 +236,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The proposed feature enables users to filter contacts by tags or modules. It is facilitated by `Command`, with the PersonCards being sorted according to tags instead of the order in which they were added to the app. This will be stored as an `ObservableList<Person>`. Additionally, it implements the following operations:
 
-* `FilterByTagCommand#execute(Model model)` — Filters the `FilteredPersonList` according to tag. 
+* `FilterByTagCommand#execute(Model model)` — Filters the `FilteredPersonList` according to tag.
 * `FilterByCurrModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Current Modules.
 * `FilterByPrevModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Previous Modules.
 * `FilterByPlanModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Planned Modules.
@@ -266,7 +266,7 @@ The proposed feature enables the user to move the CurrentModules in both the Use
 
 These operations are exposed in the Model interface as `Model#getPerson` and `Model#getUser` respectively.
 
-Given below is an example of the usage scenario and how the User's PreviousModule's are updated. 
+Given below is an example of the usage scenario and how the User's PreviousModule's are updated.
 
 Step 1. The User wants to update his ConnnectNUS app details as a new AY has started. He inputs the `shift` command.
 
@@ -274,7 +274,7 @@ Step 2. The LogicManager will parse the User's input and execute a `ShiftCommand
 
 Step 3. When `ShiftCommand` is called, it will call on `Person#updatePrevMods` and `User#updatePrevMods`, updating both the User and all the Person's in the User's contact list.
 
-Step 4. The changes will be reflected in the PersonCard and UserProfile Uis. 
+Step 4. The changes will be reflected in the PersonCard and UserProfile Uis.
 
 The following activity diagram summarizes what happens when a user executes a shift command:
 
