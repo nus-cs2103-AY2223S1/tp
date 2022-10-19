@@ -12,7 +12,7 @@
 <?import java.net.URL?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@ProfileListCard.css" />
+    <URL value="@EventListCard.css" />
   </stylesheets>
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -29,13 +29,22 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="name_label" />
+        <Label fx:id="title" text="\$first" styleClass="name_label" />
       </HBox>
-      <VBox spacing="6">
-        <HBox fx:id="phone" alignment="CENTER_LEFT" spacing="10"/>
-        <HBox fx:id="email" alignment="CENTER_LEFT" spacing="10"/>
-        <HBox fx:id="telegram" alignment="CENTER_LEFT" spacing="10"/>
-      </VBox>
+      <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label fx:id="startDateTime">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="endDateTime">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+      </HBox>
       <FlowPane fx:id="tags" />
     </VBox>
   </GridPane>

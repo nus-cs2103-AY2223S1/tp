@@ -17,7 +17,7 @@ import seedu.address.logic.parser.profile.AddProfileCommandParser;
  */
 public class EventCommandParser implements Parser<EventCommand> {
     private static final Pattern EVENT_COMMAND_FORMAT = Pattern.compile(
-            "\\s+(-(?<eventOption>\\S*)(\\s+(?!-)\\S+)?)(\\s+(?!-)\\S*.)*");
+            "\\s+(-(?<eventOption>\\S*))(\\s+(?!-)\\S+)*");
 
     /**
      * Parses the given {@code String} of arguments in the context of the EventCommand
