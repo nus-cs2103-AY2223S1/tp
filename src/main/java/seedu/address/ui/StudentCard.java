@@ -66,6 +66,12 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         updatePicture();
+
+        // Set wrap
+        name.setWrapText(true);
+        email.setWrapText(true);
+        attendanceList.setWrapText(true);
+        classGroup.setWrapText(true);
     }
 
     /**

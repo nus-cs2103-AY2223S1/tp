@@ -35,6 +35,10 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);
         description.setText(task.getDescription().description);
+
+        // Set wrap
+        title.setWrapText(true);
+        description.setWrapText(true);
     }
 
     @Override
