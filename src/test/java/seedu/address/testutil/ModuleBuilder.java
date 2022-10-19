@@ -68,7 +68,7 @@ public class ModuleBuilder {
      * we are building.
      */
     public ModuleBuilder withTasks(List<Task> tasks) {
-        this.tasks.addAll(tasks);
+        this.tasks = new ArrayList<>(tasks);
         return this;
     }
 
