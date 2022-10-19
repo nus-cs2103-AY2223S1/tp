@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.TrackAScholar;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -18,26 +17,26 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
         CommandResult commandResult = clearCommand.confirmClear(model);
         CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
-        assertEquals(commandResult,successResult);
+        assertEquals(commandResult, successResult);
 
     }
 
     @Test
-    public void confirmClear_EmptyTrackAScholar_success() {
+    public void confirmClear_emptyTrackAScholar_success() {
         ClearCommand clearCommand = new ClearCommand();
         Model model = new ModelManager();
         CommandResult commandResult = clearCommand.confirmClear(model);
         CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
-        assertEquals(commandResult,successResult);
+        assertEquals(commandResult, successResult);
 
     }
 
     @Test
-    public void cancelClear_TrackAScholar_failure() {
+    public void cancelClear_trackAScholar_failure() {
         ClearCommand clearCommand = new ClearCommand();
         CommandResult commandResult = clearCommand.cancelClear();
         CommandResult terminationResult = new CommandResult(ClearCommand.MESSAGE_TERMINATION);
-        assertEquals(commandResult,terminationResult);
+        assertEquals(commandResult, terminationResult);
 
     }
 
