@@ -217,7 +217,7 @@ The arguments are first parsed through `ModtrektParser` to identify the command 
 identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `AddCommandParser`. After
 obtaining the module code, the argument would be passed to static method `ModuleParser:fetchModule()`. This would fetch
 the module details from NUSMods and return a `Module`. The module would be used to instantiate an `AddCommand`. When the
-`AddCommand` is executed, the `Model` would add the module to the `ModuleList`. 
+`AddCommand` is executed, the `Model` would add the module to the `ModuleList`.
 
 ### 3.1.2. Remove Module
 
@@ -245,7 +245,7 @@ Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
     * Cons: User needs to type more.
 
 We decided to go with the alternative 1 as it would be faster for users to type inputs. Furthermore, at any point, it is
-unlikely that users will take so many modules such that the GUI is unable to display all the modules. We also have an 
+unlikely that users will take so many modules such that the GUI is unable to display all the modules. We also have an
 archive feature that would remove previously taken modules so that it would not clutter up the GUI.
 
 ### Current implementation
