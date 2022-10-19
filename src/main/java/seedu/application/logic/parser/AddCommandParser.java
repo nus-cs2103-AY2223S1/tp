@@ -22,7 +22,7 @@ import seedu.application.model.application.Position;
 import seedu.application.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
 

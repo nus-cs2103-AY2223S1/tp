@@ -4,6 +4,9 @@ import java.util.function.Predicate;
 
 import seedu.application.model.application.Application;
 
+/**
+ * Tests an {@code Application}'s archive status is true.
+ */
 public class ShowArchiveOnlyPredicate implements Predicate<Application> {
 
     @Override

@@ -113,7 +113,7 @@ public class ModelManager implements Model {
 
     @Override
     public void archiveApplication(Application target) {
-        applicationBook.addArchive(target);
+        applicationBook.setArchive(target);
         hideArchiveInFilteredApplicationList();
     }
 

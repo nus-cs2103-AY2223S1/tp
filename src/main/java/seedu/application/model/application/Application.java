@@ -98,10 +98,16 @@ public class Application {
                 && otherApplication.getPosition().equals(getPosition());
     }
 
+    /**
+     * Returns a new Application object with its archive status set to true and other attributes remain the same.
+     */
     public Application setToArchive() {
         return new Application(company, contact, email, position, date, tags, true);
     }
 
+    /**
+     * Returns a new Application object with its archive status set to false and other attributes remain the same.
+     */
     public Application retrieveFromArchive() {
         return new Application(company, contact, email, position, date, tags);
     }

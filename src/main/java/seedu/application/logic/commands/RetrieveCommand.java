@@ -10,6 +10,9 @@ import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
 import seedu.application.model.application.Application;
 
+/**
+ * Retrieves an archived application back to the application list in CinternS.
+ */
 public class RetrieveCommand extends Command {
     public static final String COMMAND_WORD = "retrieve";
 
@@ -27,6 +30,10 @@ public class RetrieveCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an RetrieveCommand to retrieve the specified {@code Application}.
+     * @param targetIndex of the application in the filtered application list to retrieve.
+     */
     public RetrieveCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

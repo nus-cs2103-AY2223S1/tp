@@ -26,6 +26,10 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCommand to delete the specified {@code Application} exist in the filtered list.
+     * @param targetIndex of the application in the filtered application list to delete.
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

@@ -10,6 +10,9 @@ import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
 import seedu.application.model.application.Application;
 
+/**
+ * Archives an application in the application list in CinternS.
+ */
 public class ArchiveCommand extends Command {
     public static final String COMMAND_WORD = "archive";
 
@@ -27,6 +30,10 @@ public class ArchiveCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an ArchiveCommand to archive the specified {@code Application}.
+     * @param targetIndex of the application in the filtered application list to archive.
+     */
     public ArchiveCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

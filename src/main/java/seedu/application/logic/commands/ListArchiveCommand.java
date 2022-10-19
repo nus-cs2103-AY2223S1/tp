@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.application.model.Model;
 import seedu.application.model.ShowArchiveOnlyPredicate;
 
+/**
+ * Lists all the archived applications in CinternS to the user.
+ */
 public class ListArchiveCommand extends Command {
     public static final String COMMAND_WORD = "list-archive";
 

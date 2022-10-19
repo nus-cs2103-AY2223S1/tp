@@ -11,9 +11,6 @@ import seedu.application.model.application.Application;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    //deprecated
-    Predicate<Application> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -71,14 +68,14 @@ public interface Model {
     void addApplication(Application application);
 
     /**
-     * Archives the given application to the UniqueApplicationList.
-     * {@code application} must not already exist in the archiveList.
+     * Archives the given application.
+     * {@code application} must not be archived.
      */
     void archiveApplication(Application target);
 
     /**
-     * Retrieves the given application from the UniqueAchieveList.
-     * {@code application} must not already exist in the UniqueApplicationList.
+     * Retrieves the given application from the archives.
+     * {@code application} must be archived.
      */
     void retrieveApplication(Application target);
 
@@ -98,6 +95,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
+
+    /**
+     * Updates the filter of the filtered application list to filter by {@code HideArchiveFromListPredicate}.
+     */
     void hideArchiveInFilteredApplicationList();
+
+    /**
+     * Updates the filter of the filtered application list to filter by {@code ShowArchiveOnlyPredicate}.
+     */
     void showArchiveInFilteredApplicationList();
 }
