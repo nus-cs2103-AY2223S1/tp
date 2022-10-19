@@ -77,7 +77,30 @@ The following activity diagram summarizes what happens when a teacher executes a
     1. Harder to implement.
     2. Only can set the class to a date at most 1 week away.
   
-    
+### Schedule List Feature
+This feature allows the user to be able to view a schedule on the right hand side of the panel.
+
+#### Implementation Details
+In order to update the `UI` from original view of a single panel to the right panel, there was a
+need to modify the existing `UI`. As a result, `MainWindow.fxml` had to be modified.
+
+Since there is a need for the schedule list to be a constant panel, which is separate from the `PersonListPanel`,
+a `ScheduleListPanel` under `UI` had to be created along with a `ScheduleListCard` class also under `UI`. The
+`ScheduleListCard` will contain more specific information than `PersonCard`. 
+
+Correspondingly, `PersonListCard.fxml` and `PersonListPanel.fxml` had to be created too.
+
+Since the `UI` depends on the `Model`, there was a need to update hte model to now include a `UniqueScheduleList`.
+This `UniqueScheduleList` would store the filtered version of the original `AddressBook`, based on the current date.
+
+#### Design Considerations
+#### Aspect: Determining how to design ScheduleList:
+* Alternative 1: Reusing `UniquePersonList` to store the `ScheduleList` under `AddressBook`
+  * Pros: Minimise code duplication since class is reused
+  * Cons: UniquePersonList insufficient in design to support the needs of holding untouched state and filtered state
+* Alternative 2: Creating a dedicated `UniqueScheduleList` 
+  * Pros: Achieved our purpose of a `ScheduleList`
+  * Cons: Code duplication
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix: Requirements
 
