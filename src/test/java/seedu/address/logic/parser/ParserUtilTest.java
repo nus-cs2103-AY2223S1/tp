@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalFilePaths.PATH_TO_JERRY_JPG;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -47,7 +48,7 @@ public class ParserUtilTest {
     private static final String INVALID_MAJOR = "C0MPUT3R $C13NC3";
     private static final String INVALID_ID = "J9021-1";
     private static final String INVALID_TITLE = "Intern | Software Engineer";
-
+    private static final String INVALID_FILE_PATH = "src|a";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -63,6 +64,7 @@ public class ParserUtilTest {
     private static final String VALID_TITLE = "Intern - Software Engineer";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_FILE_PATH = "src/folder/jerry.jpg";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -84,6 +86,16 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseFilePath_invalidFilePath_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilePath(INVALID_FILE_PATH));
+    }
+
+    @Test
+    public void parseFilePath_validFilePath_success() throws Exception {
+        assertEquals(PATH_TO_JERRY_JPG, ParserUtil.parseFilePath(VALID_FILE_PATH));
     }
 
     @Test

@@ -51,7 +51,7 @@ public class ParserUtil {
     /**
      * Parses {@code filePath} into a {@code File} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified file path is invalid.
+     * @throws ParseException if the specified file path format is invalid.
      */
     public static Path parseFilePath(String filePath) throws ParseException {
         String trimmedPath = filePath.trim();
