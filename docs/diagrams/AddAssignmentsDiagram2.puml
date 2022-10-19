@@ -30,6 +30,4 @@ AddAssignmentsCommand --> alpha : check
 AddAssignmentsCommand ---> bravo : check
 AddAssignmentsCommand ----> charlie : check
 AddAssignmentsCommand -----> delta : check
-
-
 @end

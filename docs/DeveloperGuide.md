@@ -224,7 +224,7 @@ The following activity diagram summarizes what happens in AddressBookParser when
 * **Alternative 2:** Creates a new Address Book.
     * Pros: Does not modify the master address book.
     * Cons: May have performance issues in terms of memory usage.
-  
+
 ### \[Proposed\] Add Assignments feature
 
 #### Proposed Implementation
@@ -240,7 +240,7 @@ The `AddAssignmentsCommandParser` parses the user input to check the validity of
 
 Listed below are the possible scenarios as well as the behavior of the feature in each scenario.
 
-Scenario 1: User inputs assignments with weightage that does not add up to 100% 
+Scenario 1: User inputs assignments with weightage that does not add up to 100%
 
 e.g. `assignments assignments/ Assignment 1 w/50, Finals w/40`
 

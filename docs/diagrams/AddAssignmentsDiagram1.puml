@@ -21,7 +21,4 @@ map "__:TAB__" as Tab {
  <u> :Person3 *---> charlie
  <u> :Person4 *----> delta
 }
-
-
-
 @end

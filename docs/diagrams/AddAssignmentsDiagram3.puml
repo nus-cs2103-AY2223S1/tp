@@ -53,10 +53,4 @@ deactivate AddAssignmentsCommandParser
 
 [<-- AddressBookParser
 deactivate AddressBookParser
-
-
-
-
-
-
 @enduml
