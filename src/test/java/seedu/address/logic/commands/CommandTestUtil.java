@@ -2,19 +2,18 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
+import static seedu.address.testutil.TypicalModules.MA2001;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +30,7 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.AddTaskToModuleDescriptorBuilder;
 import seedu.address.testutil.DeleteTaskFromModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.SwapTaskNumbersDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -43,10 +43,6 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_CS_MODULE_CODE = "CS2106";
     public static final String VALID_CS_MODULE_TITLE = "Introduction to Operating Systems";
     public static final String VALID_MA_MODULE_CODE = "MA2001";
@@ -89,8 +85,6 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     // '$' not allowed in module code
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "C$2500";
 
@@ -110,6 +104,7 @@ public class CommandTestUtil {
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_B;
     public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_ONE;
     public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_TWO;
+    public static final SwapTaskNumbersCommand.SwapTaskNumbersDescriptor DESC_CS2106_SWAP_TASKS_ONE_AND_TWO;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -123,12 +118,18 @@ public class CommandTestUtil {
                 new AddTaskToModuleDescriptorBuilder(CS2106, VALID_TASK_A).build();
         DESC_CS2106_ADD_TASK_B =
                 new AddTaskToModuleDescriptorBuilder(CS2106, VALID_TASK_B).build();
+
         DESC_CS2106_DELETE_TASK_ONE =
                 new DeleteTaskFromModuleDescriptorBuilder(CS2106,
                         Index.fromOneBased(1)).build();
         DESC_CS2106_DELETE_TASK_TWO =
                 new DeleteTaskFromModuleDescriptorBuilder(CS2106,
                         Index.fromOneBased(2)).build();
+
+        DESC_CS2106_SWAP_TASKS_ONE_AND_TWO =
+                new SwapTaskNumbersDescriptorBuilder(CS2106,
+                                                     Index.fromOneBased(1),
+                                                     Index.fromOneBased(2)).build();
     }
 
     /**
