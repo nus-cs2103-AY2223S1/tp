@@ -14,6 +14,18 @@
     -fx-background-color: darkgray;
 }
 
+#openButton {
+    -fx-background-color: darkgray;
+}
+
+#openButton:hover {
+    -fx-background-color: gray;
+}
+
+#openButton:armed {
+    -fx-background-color: dimgray;
+}
+
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
