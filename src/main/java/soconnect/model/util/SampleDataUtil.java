@@ -64,6 +64,9 @@ public class SampleDataUtil {
         for (Person samplePerson : getSamplePersons()) {
             sampleSC.addPerson(samplePerson);
         }
+        for (Tag sampleTag : getSampleTagList()) {
+            sampleSC.addTag(sampleTag);
+        }
         return sampleSC;
     }
 
@@ -73,6 +76,16 @@ public class SampleDataUtil {
             sampleTodoList.addTodo(sampleTodo);
         }
         return sampleTodoList;
+    }
+
+    public static Tag[] getSampleTagList() {
+        return new Tag[]{
+                new Tag("friends"),
+                new Tag("colleagues"),
+                new Tag("neighbours"),
+                new Tag("family"),
+                new Tag("classmates")
+        };
     }
 
     /**
