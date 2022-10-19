@@ -47,13 +47,15 @@ Person *--> Phone
 Person *--> NokPhone
 Person *--> Email
 Person *--> Address
+Person *--> Class
+Person *--> Money
+Person *--> AdditionalNotes
 Person *--> "*" Tag
 Person *--> Class
 Person *--> AdditionalNotes
 Person *--> MoneyOwed
 Person *--> MoneyPaid
 Person *--> RatesPerClass
-
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> NokPhone

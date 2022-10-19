@@ -6,15 +6,23 @@ title: Developer Guide
 
 ## Table of contents
 * [Implementation](#implementation)
+  * [Edit Class Feature](#edit-class-feature)
+    * [Implementation details](#implementation-details)
+    * [Design Considerations](#design-considerations)
   * [[Proposed] Sort-by](#proposed-sort-by-feature)
-* [Appendix](#appendix-requirement)
-    * [Target User Profile](#target-user-profile)
-    * [Value Proposition](#value-proposition)
-    * [User Stories](#user-stories)
-    * [Use Case](#use-case)
-* [Non-Functional Requirement](#non-functional-requirement)
+* [Appendix](#appendix-requirements)
+  * [Target User Profile](#target-user-profile)
+  * [Value Proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
+    * [Use case: **Delete a student**](#use-case-delete-a-student)
+    * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
+    * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
+    * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
+    * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
+  * [Non-Functional Requirement](#non-functional-requirement)
   * [Glossary](#glossary)
-
+    
 --------------------------------------------------------------------------------------------------------------------
 ## Design
 ### Architecture
@@ -144,6 +152,60 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+The features covered in this guide are:
+
+* [Edit Class Feature](#edit-class-feature)
+* [[Proposed] Sort-by](#proposed-sort-by-feature)
+
+### Edit Class Feature
+
+This feature allows the teacher to create a class at a specified date and time.
+
+#### Implementation Details
+
+The edit class mechanism is facilitated by ClassStorage. It stores the date of the classes as well as the students who attend them.
+
+Additionally, it implements the following operations:
+
+ClassStorage#saveClass() — Saves the new class into its storage.
+
+ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
+
+ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
+
+The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer, 
+a `ParseException` will be thrown.
+If the index is valid, `ParserUtil` will then check that both the date and time are valid before creating an `EditCommand`.
+
+During the execution of `EditCommand`, if the given index is not within the range of the list, a `CommandException` will be thrown.
+Otherwise, the model will then obtain the student using getFilteredPersonList.
+
+Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new class
+and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class 
+will be removed in order to free up the time slot. If there is no time conflict, `ClassStorage` will proceed to 
+save both the new class and student.
+
+The following sequence diagram shows how the edit class operation works:
+
+![EditClassSequenceDiagram](images/EditClassSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a teacher executes an edit class command:
+
+![EditClassActivityDiagram](images/EditClassActivityDiagram.png)
+
+#### Design Considerations:
+##### Aspect: Input format for edit class:
+
+* **Alternative 1**: dt/yyyy-MM-dd 0000-2359
+  * Pros: Easy to implement.
+  * Cons: The teacher has to fully match the date format and order, which is much more cumbersome.
+
+* **Alternative 2**: dt/Day-of-Week 0000-2359 (case-insensitive)
+  * Pros: More convenient and easier for the teacher to type.
+  * Cons: 
+    1. Harder to implement.
+    2. Only can set the class to a date at most 1 week away.
+  
 
 ### [Proposed] Sort-by feature
 
@@ -164,7 +226,8 @@ The following diagram illustrates how the operation works:
 
 </div>
 
-## Appendix: Requirement
+
+## Appendix: Requirements
 
 ### Target User Profile
 
@@ -214,7 +277,8 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 | 30  | Tutor who loves money                                                        | Know the total money unpaid by all students                                         | Know the total money unpaid by students                                 | LOW        |
 | 31  | Tutor who wants to keep track of expenses                                    | Check the total amount of money paid by all students                                | I can check the total amount I have earned                              | LOW        |
 
-### Use Case
+
+### Use Cases
 
 (For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `Teacher`, unless specified otherwise)
 
@@ -340,11 +404,12 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Glossary
 
-| Terms         | Definition                              |
-|---------------|-----------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X              |
-| CLI           | Command Line Interface                  |
-| Class         | The 1-1 tutoring time slot of a student |
+| Terms         | Definition                                           |
+|---------------|------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                           |
+| CLI           | Command Line Interface                               |
+| Class         | The 1-1 tutoring time slot of a student              |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive eg. Mon, MON |
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.
