@@ -154,6 +154,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Review feature
+
+#### Implementation
+
+The review mechanism is facilitated by `ReviewCommand`, which extends `Command`. It overrides the following operation:
+
+* `ReviewCommand#execute()`: Calculates the total calories, the calorie target and the deficient or excess amount of calories for the day.
+
+Given below is an example usage scenario and how the review mechanism behaves at each step.
+
+Step 1. The user launches the application on 19 October 2022. Suppose the user has set a calorie target of 2000 kcal and the foods added for the day are:
+
+1. bubble tea: 232 kcal
+2. chicken rice: 702 kcal
+3. wanton noodles: 409 kcal
+
+Step 2. The user executes `review` command, which calls `ReviewCommand#execute()`. This first creates a `IsFoodAddedOnThisDatePredicate` with 19 October 2022 as the date. 
+`Model#updateFilteredFoodList()` is then called with this predicate, causing the food list to be filtered for foods that were added on 19 October 2022.
+
+Step 3. `ReviewCommand#execute()` calls the following methods from `Model`:
+
+* `Model#getTotalCalorie()` calculates the total calories of all foods in the food list
+* `Model#getCalorieDifference()` calculates the difference in total calories with respect to the calorie target
+* `Model#getCalorieTarget()` returns the calorie target
+
+Step 4. `ReviewCommand#execute()` returns a `CommandResult` with the following information to be displayed to the user:
+
+* total calories: 1343 kcal
+* calorie target: 2000 kcal
+* deficient amount of calories: 657 kcal
+
+The following sequence diagram illustrates how the review operation works:
+
+![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -268,20 +303,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a            | I want to                                                         | So that I can…                                                          |
-|----------|-----------------|-------------------------------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | careless user   | delete a wrongly added meal                                       | fix my food records easily                                              |
-| `* * *`  | user            | add my daily calorie intake                                       | know how much I am eating                                               |
-| `* * *`  | food enthusiast | calculate my daily calorie intake                                 | know how nutrient dense my food is                                      |
-| `* * *`  | careless user   | edit a meal wrongly recorded                                      | change my food records easily                                           |
-| `* *`    | user            | key in the calorie intake for each type of food                   | know how much calories a particular food contains                       |
-| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess            | know if I should consume more / less calories                           |
-| `* *`    | user            | specify my body composition                                       | I find out how much calories is should be consuming based on my profile |
-| `* *`    | user            | calculate my BMI                                                  | I know if my current weight is in a healthy range                       |
-| `* *`    | sedentary user  | get information on healthy lifestyle habits                       | I can adopt a more active lifestyle                                     |
-| `* *`    | nus student     | find the nearest gym in school based on where I am at             | I know where to go if I want to exercise                                |
-| `* * *`  | forgetful user  | find my list of foods consumed for any day                        | I can get a better understanding of my eating habits                    |
-| `* *`    | user            | get a suggested daily calorie intake based on my body composition | I know what would be a reasonable calorie target                        |
+| Priority | As a            | I want to                                                         | So that I can…                                                        |
+|----------|-----------------|-------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | careless user   | delete a wrongly added meal                                       | fix my food records easily                                            |
+| `* * *`  | user            | add my daily calorie intake                                       | know how much I am eating                                             |
+| `* * *`  | food enthusiast | calculate my daily calorie intake                                 | know how nutrient dense my food is                                    |
+| `* * *`  | careless user   | edit a meal wrongly recorded                                      | change my food records easily                                         |
+| `* * *`  | forgetful user  | find my list of foods consumed for any day                        | get a better understanding of my eating habits                        |
+| `* *`    | user            | key in the calorie intake for each type of food                   | know how much calories a particular food contains                     |
+| `* *`    | user            | specify my body composition                                       | find out how much calories is should be consuming based on my profile |
+| `* *`    | user            | calculate my BMI                                                  | know if my current weight is in a healthy range                       |
+| `* *`    | sedentary user  | get information on healthy lifestyle habits                       | adopt a more active lifestyle                                         |
+| `* *`    | nus student     | find the nearest gym in school based on where I am at             | know where to go if I want to exercise                                |
+| `* *`    | user            | get a suggested daily calorie intake based on my body composition | know what would be a reasonable calorie target                        |
+| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess            | know if I should consume more / less calories                         |
 
 *{More to be added}*
 
@@ -300,8 +335,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extension**
 
-* 1a. No food item recorded
-    * 1a1. NutriGoals displays a default message
+* 1a. No food item recorded.
+    * 1a1. NutriGoals displays a default message.
 
       Use case ends.
 
@@ -317,8 +352,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extension**
 
-* 1a. The information provided is invalid
-  * 1a1. NutriGoals shows an error message
+* 1a. The information provided is invalid.
+  * 1a1. NutriGoals shows an error message.
 
     Use case ends.
 
@@ -326,10 +361,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to <ins>list the meals recorded (UC-1)</ins>
-2. NutriGoals shows a list of meals
-3. User requests to delete a specific meal in the list
-4. NutriGoals deletes the meal
+1. User requests to <ins>list the meals recorded (UC-1)</ins>.
+2. NutriGoals shows a list of meals.
+3. User requests to delete a specific meal in the list.
+4. NutriGoals deletes the meal.
 
     Use case ends.
 
@@ -349,7 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to <ins>list all the meals recorded (UC-1).</ins>
+1. User requests to <ins>list all the meals recorded (UC-1)</ins>.
 2. NutriGoals shows a list of meals.
 3. User requests to edit a specific meal in the list.
 4. NutriGoals edits the meal.
@@ -400,9 +435,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. NutriGoals requests the user to set up a profile.
 
-    * 1a2. User requests to <ins>set up his / her profile (UC-5).</ins>
+    * 1a2. User requests to <ins>set up his / her profile (UC-5)</ins>.
 
       Use case resumes at step 1.
+
+**Use case: UC-7 View a summary of the daily calorie intake**
+
+**MSS**
+
+1. User requests to view a summary of the daily calorie intake.
+2. NutriGoals shows the user's total calories consumed, the calorie target and the deficient or excess amount of calories for the day.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
