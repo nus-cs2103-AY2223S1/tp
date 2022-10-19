@@ -4,7 +4,22 @@ import java.time.LocalTime;
 
 public class Recitation extends Lesson {
 
-    public Recitation(String day, LocalTime startTime, LocalTime endTime) {
-        super(day, startTime, endTime);
+    private static String type = "rec";
+
+    public Recitation(String module, int day, LocalTime startTime, LocalTime endTime) {
+        super(module, day, startTime, endTime);
     }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return type + module + day + startTime + endTime;
+    }
+
 }
