@@ -53,11 +53,14 @@ public class AddTaskCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddTaskCommand.MESSAGE_USAGE);
 
-        // missing module code prefix
+        // missing task description prefix
         assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
 
-        // all prefixes missing
+        // missing module code prefix
         assertParseFailure(parser, MODULE_TASK_DESC_C, expectedMessage);
+
+        // all prefixes missing
+        assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test

@@ -58,11 +58,14 @@ public class DeleteTaskCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteTaskCommand.MESSAGE_USAGE);
 
-        // missing module code prefix
+        // missing task number prefix
         assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
 
+        // missing module code prefix
+        assertParseFailure(parser, MODULE_TASKLIST_DESC_NUMBER_TWO, expectedMessage);
+
         // all prefixes missing
-        assertParseFailure(parser, MODULE_TASK_DESC_C, expectedMessage);
+        assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test
