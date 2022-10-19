@@ -173,6 +173,13 @@ the following commands:
 * `DeleteOrderCommand` - deletes an existing order from the `OrderList`
 
 The order management feature is supported by the `Order` class, represented by the class diagram below.
+![OrderClassDiagram](images/developer-guide/OrderClassDiagram.png)
+
+The `Order` class contains order-related data packaged in the following classes/attributes:
+* `Name`, `Phone`, `Email`, `Address` - customer data related to the `Order`
+* `ItemQuantityPair` - represents an ordered `Item` in the `Order`, with an accompanying `Quantity` that represents the amount of units of said `Item` ordered by the customer
+* `LocalDateTime` - the time at which the order entry was created in the system
+* `isPaid`/`isDelivered` - represents the completion status of the order (an `Order` is considered complete if both fields are true)
 
 #### Add Order Feature
 
