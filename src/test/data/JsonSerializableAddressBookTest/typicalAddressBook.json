@@ -1,5 +1,4 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "projects" : [ {
     "name" : "Individual Project",
     "repository" : "johndoe/ip",

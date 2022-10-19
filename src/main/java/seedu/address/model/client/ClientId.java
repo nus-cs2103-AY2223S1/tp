@@ -38,7 +38,7 @@ public class ClientId {
      */
     public static class EmptyClientId extends ClientId {
         public static final ClientId EMPTY_CLIENT_ID = new EmptyClientId();
-        public static final int ID = -1;
+        public static final int ID = Integer.MAX_VALUE;
         public EmptyClientId() {
             super(ID);
         }

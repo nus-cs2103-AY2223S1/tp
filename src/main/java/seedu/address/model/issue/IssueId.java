@@ -30,7 +30,7 @@ public class IssueId {
         public static final IssueId EMPTY_ISSUE_ID = new EmptyIssueId();
 
         private EmptyIssueId() {
-            super(0);
+            super(Integer.MAX_VALUE);
         }
 
         @Override

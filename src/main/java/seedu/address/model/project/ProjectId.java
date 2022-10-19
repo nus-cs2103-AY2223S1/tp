@@ -36,7 +36,7 @@ public class ProjectId {
     public static class EmptyProjectId extends ProjectId {
         public static final ProjectId EMPTY_PROJECT_ID = new EmptyProjectId();
         public EmptyProjectId() {
-            super(-1);
+            super(Integer.MAX_VALUE);
         }
 
 
