@@ -13,7 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
-import seedu.address.model.staff.StaffInsurance;
+import seedu.address.model.staff.StaffLeave;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
@@ -26,7 +26,7 @@ class JsonAdaptedStaff {
 
     private final String staffContact;
     private final String staffDepartment;
-    private final String staffInsurance;
+    private final String staffLeave;
     private final String staffName;
     private final String staffTitle;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -39,11 +39,11 @@ class JsonAdaptedStaff {
                             @JsonProperty("staffContact") String staffContact,
                             @JsonProperty("staffTitle") String staffTitle,
                             @JsonProperty("staffDepartment") String staffDepartment,
-                            @JsonProperty("staffInsurance") String staffInsurance,
+                            @JsonProperty("staffLeave") String staffLeave,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.staffContact = staffContact;
         this.staffDepartment = staffDepartment;
-        this.staffInsurance = staffInsurance;
+        this.staffLeave = staffLeave;
         this.staffName = staffName;
         this.staffTitle = staffTitle;
         if (tagged != null) {
@@ -58,7 +58,7 @@ class JsonAdaptedStaff {
         staffName = source.getStaffName().staffName;
         staffContact = source.getStaffContact().staffContact;
         staffDepartment = source.getStaffDepartment().staffDepartment;
-        staffInsurance = source.getStaffInsurance().staffInsurance;
+        staffLeave = source.getStaffLeave().staffLeave;
         staffTitle = source.getStaffTitle().staffTitle;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -112,18 +112,18 @@ class JsonAdaptedStaff {
         }
         final StaffTitle modelStaffTitle = new StaffTitle(staffTitle);
 
-        if (staffInsurance == null) {
+        if (staffLeave == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    StaffInsurance.class.getSimpleName()));
+                    StaffLeave.class.getSimpleName()));
         }
-        if (!StaffInsurance.isValidStaffInsurance(staffInsurance)) {
-            throw new IllegalValueException(StaffInsurance.MESSAGE_CONSTRAINTS);
+        if (!StaffLeave.isValidStaffLeave(staffLeave)) {
+            throw new IllegalValueException(StaffLeave.MESSAGE_CONSTRAINTS);
         }
-        final StaffInsurance modelStaffInsurance = new StaffInsurance(staffInsurance);
+        final StaffLeave modelStaffLeave = new StaffLeave(staffLeave);
 
         final Set<Tag> modelTags = new HashSet<>(staffTags);
         return new Staff(modelStaffName, modelStaffContact, modelStaffTitle,
-                         modelStaffDepartment, modelStaffInsurance, modelTags);
+                         modelStaffDepartment, modelStaffLeave, modelTags);
     }
 
 }

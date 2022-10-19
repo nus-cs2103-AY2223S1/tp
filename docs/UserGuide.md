@@ -108,13 +108,13 @@ Format: `list`
 
 Adds a staff member info to Project in project list.
 
-Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME si/INSURANCE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT NUMBER`
+Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT NUMBER`
 
 * All fields for staff member are required
 
 Examples:
-* `addStaff pn/DUKE sn/John Doe sp/98765432 si/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
-* `addStaff pn/ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin si/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
+* `addStaff pn/DUKE sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
+* `addStaff pn/ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
 
 ### Deleting a staff member from Project : `delstaff`
 
@@ -199,7 +199,7 @@ Project data is saved in the hard disk automatically after any command that chan
 | Action              | Format, Examples                                                                                 |
 |---------------------|--------------------------------------------------------------------------------------------------|
 | **Add project**     | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/DUKE pd/2022-10-25 pb/10000 t/funz`          |
-| **Add staff**       | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/DUKE sn/DEXTER si/true sd/HR` |
+| **Add staff**       | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/DUKE sn/DEXTER sl/true sd/HR` |
 | **Delete staff**    | `delstaff pn/PROJECT_NAME sn/STAFF_NAME` <br> e.g., `delstaff pn/DUKE sn/DEXTER`                 |
 | **Clear**           | `clear`                                                                                          |
 | **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                              |
@@ -213,14 +213,14 @@ Project data is saved in the hard disk automatically after any command that chan
 Prefixes that start with `s` are for project staff member details.
 Prefixes without the prefix `s` are meant for project details.
 
-| Prefix  | Meaning                | Format/ Examples        |
-|---------|------------------------|-------------------------|
-| **pb/** | Project budget         | pb/PROJECT_BUDGET       |
-| **pd/** | Project deadline       | pd/PROJECT_DEADLINE     |
-| **pn/** | Project name           | pn/PROJECT_NAME         |
-| **sc/** | Staff Contact          | sc/STAFF_CONTACT        |
-| **sd/** | Staff department       | sd/STAFF_DEPARTMENT     |
-| **si/** | Staff insurance status | si/INSURANCE_STATUS     |
-| **sn/** | Staff name             | sn/STAFF_NAME           |
-| **st/** | Staff title            | st/STAFF_TITLE          | 
+| Prefix  | Meaning               | Format/ Examples      |
+|---------|-----------------------|-----------------------|
+| **pb/** | Project budget        | pb/PROJECT_BUDGET     |
+| **pd/** | Project deadline      | pd/PROJECT_DEADLINE   |
+| **pn/** | Project name          | pn/PROJECT_NAME       |
+| **sc/** | Staff Contact         | sc/STAFF_CONTACT      |
+| **sd/** | Staff department      | sd/STAFF_DEPARTMENT   |
+| **sl/** | Staff leave status    | sl/LEAVE_STATUS       |
+| **sn/** | Staff name            | sn/STAFF_NAME         |
+| **st/** | Staff title           | st/STAFF_TITLE        | 
 
