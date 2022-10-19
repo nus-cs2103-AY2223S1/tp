@@ -66,8 +66,8 @@ class EditTaskCommandTest {
         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(secondPatient)
                 .withTasks(secondPatient.getTasks().edit(INDEX_FIRST_TASK.getZeroBased(), editedTask)
-                        .getTasks().stream().map(Object::toString).toArray(String[]::new)) // to convert the TaskList
-                // into an array of string representation of tasks
+                        .getTasks().toArray(Task[]::new))
+                // to convert the TaskList into an array of string representation of tasks
                 .build();
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK, editedTask);
