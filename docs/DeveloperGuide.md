@@ -238,6 +238,23 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Many-to-many relationship between `Person` and `Task`
+
+#### Implementation
+
+The implementation of the contact-task relation is facilitated by `PersonTaskBridge` and `PersonTaskBridgeList`.
+
+`PersonTaskBridge` is a class containing a `Person`'s ID and a `Task`'s ID, representing a relation between a `Person` and a `Task`.
+
+`PersonTaskBridgeList` is a class containing a list of `PersonTaskBridge` objects, representing all the relations between `Person` and `Task` objects in the `AddressBook`. Additionally, it implements the following operations:
+
+* `PersonTaskBridgeList#add(PersonTaskBridge)` - Saves a new relation between a `Person` and a `Task` in the list.
+* `PersonTaskBridgeList#remove(PersonTaskBridge)` - Removes an existing relation between a `Person` and a `Task` from the list.
+* `PersonTaskBridgeList#removePerson(Person)` and `PersonTaskBridgeList#removeTask(Task)` - Removes all existing relations between a `Person` and `Task` objects from the list.
+
+These operations will be exposed in the `Model` interface.
+
+<img src="images/PersonTaskBridgeDiagram.png" width="250" />
 
 --------------------------------------------------------------------------------------------------------------------
 
