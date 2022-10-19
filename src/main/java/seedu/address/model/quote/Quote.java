@@ -13,13 +13,7 @@ class Quote {
         requireNonNull(message);
         requireNonNull(quotee);
         this.message = message;
-        this.message = quotee;
-    }
-
-    Quote(String message) {
-        requireNonNull(message);
-        this.message = message;
-        this.message = "Anonymous";
+        this.quotee = quotee;
     }
 
     public String getMessage() {
@@ -30,7 +24,8 @@ class Quote {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Quote // instanceof handles nulls
-                        && message.equals(((Quote) other).message));
+                        && message.equals(((Quote) other).message)
+                        && quotee.equals(((Quote) other).quotee));
     }
 
     @Override
