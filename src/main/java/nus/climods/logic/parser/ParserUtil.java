@@ -1,9 +1,12 @@
 package nus.climods.logic.parser;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+
+import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -95,7 +98,7 @@ public class ParserUtil {
      * @return Optional of String representing semester number. Returns empty Optional if user input is not a valid
      *      semester.
      */
-    public static Optional<String> parseSemesterType(String input) {
+    public static Optional<SemestersEnum> parseSemesterType(String input) {
         List<String> acceptedSemesterType = Arrays.asList("S1", "S2", "ST1", "ST2");
         String toCheck = input.trim().toUpperCase();
 
@@ -103,7 +106,7 @@ public class ParserUtil {
             return Optional.empty();
         }
 
-        String index = String.valueOf(acceptedSemesterType.indexOf(toCheck) + 1);
-        return Optional.of(index);
+        BigDecimal index = new BigDecimal(acceptedSemesterType.indexOf(toCheck) + 1);
+        return Optional.of(SemestersEnum.fromValue(index));
     }
 }
