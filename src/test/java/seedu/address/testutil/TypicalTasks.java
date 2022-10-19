@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.module.task.Task;
-import seedu.address.model.module.task.TaskList;
 
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
