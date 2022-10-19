@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,8 +16,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * API of the Storage component
@@ -37,6 +37,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
+    /**
+     * Saves the given {@link ObservableList} as a JSON file to the storage at filePathString.
+     * @param shownList cannot be null.
+     * @param filePathString cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
     static void saveShownList(ObservableList<Person> shownList, String filePathString) throws IOException {
         requireNonNull(shownList);
         requireNonNull(filePathString);

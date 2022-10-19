@@ -1,21 +1,21 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
-
-import static java.util.Objects.requireNonNull;
-
 /**
  * Exports the shown list to a JSON file.
  */
-public class ExportCommand extends Command{
+public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
 
