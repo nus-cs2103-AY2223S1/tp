@@ -126,4 +126,8 @@ public interface Model {
      * Save change in internship book of the model.
      */
     void commitInternshipBookChange();
+
+    ObservableList<Internship> getViewItem();
+
+    void updateViewItem(Predicate<Internship> predicate);
 }

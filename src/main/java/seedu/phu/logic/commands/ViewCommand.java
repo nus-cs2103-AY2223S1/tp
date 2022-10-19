@@ -43,7 +43,6 @@ public class ViewCommand extends Command {
 
         try {
             targetInternships = targetIndex.getAllInternshipsFromIndexes(lastShownList);
-            System.out.println(targetInternships);
         } catch (IllegalIndexException error) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
@@ -53,7 +52,7 @@ public class ViewCommand extends Command {
             internshipList.add(internship);
         }
 
-        model.updateFilteredInternshipList(new ExactMatchPredicate(internshipList));
+        model.updateViewItem(new ExactMatchPredicate(internshipList));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

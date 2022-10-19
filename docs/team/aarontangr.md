@@ -14,7 +14,7 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because a user will want to view detailed information.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=aarontangr&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
- 
+
 * **Project management**:
 * **Enhancements to existing features**:
 * **Documentation**:
