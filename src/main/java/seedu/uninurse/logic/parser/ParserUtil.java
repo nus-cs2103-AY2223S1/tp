@@ -154,16 +154,19 @@ public class ParserUtil {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 
-        return new Task(taskDescription);
+        return new Task(trimmedTaskDescription);
     }
 
     private static Task parseTaskWithDateTime(String taskDescription, String dateTime) throws ParseException {
         String trimmedTaskDescription = taskDescription.trim();
         String trimmedDateTime = dateTime.trim();
 
-        if (!Task.isValidTaskDescription(trimmedTaskDescription) || !DateTime.isValidDateTime(trimmedDateTime)) {
-            System.out.println(DateTime.isValidDateTime(trimmedDateTime));
+        if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
         return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));

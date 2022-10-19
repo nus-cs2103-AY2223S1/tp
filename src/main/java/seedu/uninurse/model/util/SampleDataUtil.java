@@ -69,8 +69,8 @@ public class SampleDataUtil {
     /**
      * Returns a {@code TaskList} containing the list of strings given.
      */
-    public static TaskList getTaskList(Task... strings) {
-        ArrayList<Task> taskArrayList = Arrays.stream(strings).collect(Collectors.toCollection(ArrayList::new));
+    public static TaskList getTaskList(Task... taskStrings) {
+        ArrayList<Task> taskArrayList = Arrays.stream(taskStrings).collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(taskArrayList);
     }
 
