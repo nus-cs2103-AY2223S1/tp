@@ -89,7 +89,7 @@ public class DeleteTaskCommandParserTest {
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBER_DESC_ZERO,
                 MESSAGE_INVALID_TASK_NUMBER);
-        // both module code and task description are invalid - only
+        // both module code and task number are invalid - only
         // invalid module code is reported.
         assertParseFailure(parser, INVALID_TASK_NUMBER_DESC_NON_NUMERIC + INVALID_MODULE_CODE_DESC,
                 ModuleCode.MESSAGE_CONSTRAINTS);
