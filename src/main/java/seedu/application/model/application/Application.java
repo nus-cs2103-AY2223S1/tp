@@ -16,6 +16,7 @@ public class Application {
     private final Email email;
     private final Position position;
     private final Date date;
+    private final boolean isArchived;
 
     /**
      * Every field must be present and not null.
@@ -27,6 +28,18 @@ public class Application {
         this.email = email;
         this.position = position;
         this.date = date;
+        this.isArchived = false;
+    }
+
+    private Application(Company company, Contact contact, Email email, Position position,
+                        Date date, boolean isArchived) {
+        requireAllNonNull(company, contact, email, position, date);
+        this.company = company;
+        this.contact = contact;
+        this.email = email;
+        this.position = position;
+        this.date = date;
+        this.isArchived = isArchived;
     }
 
     public Company getCompany() {
@@ -48,6 +61,10 @@ public class Application {
         return date;
     }
 
+    public boolean isArchived() {
+        return isArchived;
+    }
+
     /**
      * Returns true if both applications have the same company and position.
      * This defines a weaker notion of equality between two applications.
@@ -60,6 +77,14 @@ public class Application {
         return otherApplication != null
                 && otherApplication.getCompany().equals(getCompany())
                 && otherApplication.getPosition().equals(getPosition());
+    }
+
+    public Application setToArchive() {
+        return new Application(company, contact, email, position, date, true);
+    }
+
+    public Application retrieveFromArchive() {
+        return new Application(company, contact, email, position, date);
     }
 
     /**

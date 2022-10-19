@@ -19,7 +19,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         HideArchiveFromListPredicate hideArchiveFromListPredicate =
-                new HideArchiveFromListPredicate(model.getArchiveList());
+                new HideArchiveFromListPredicate();
         model.updateFilteredApplicationList(hideArchiveFromListPredicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }

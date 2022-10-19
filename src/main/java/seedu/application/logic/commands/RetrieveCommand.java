@@ -42,7 +42,7 @@ public class RetrieveCommand extends Command {
 
         Application applicationToRetrieve = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!model.getArchiveList().contains(applicationToRetrieve)) {
+        if (!applicationToRetrieve.isArchived()) {
             throw new CommandException(MESSAGE_APPLICATION_IS_NOT_ARCHIVE);
         }
         model.retrieveApplication(applicationToRetrieve);

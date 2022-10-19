@@ -22,16 +22,13 @@ class JsonSerializableApplicationBook {
     public static final String MESSAGE_DUPLICATE_APPLICATION = "Application list contains duplicate application(s).";
 
     private final List<JsonAdaptedApplication> applications = new ArrayList<>();
-    private final List<JsonAdaptedApplication> archives = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableApplicationBook} with the given applications.
      */
     @JsonCreator
-    public JsonSerializableApplicationBook(@JsonProperty("applications") List<JsonAdaptedApplication> applications,
-                                           @JsonProperty("archives") List<JsonAdaptedApplication> archives) {
+    public JsonSerializableApplicationBook(@JsonProperty("applications") List<JsonAdaptedApplication> applications) {
         this.applications.addAll(applications);
-        this.archives.addAll(archives);
     }
 
     /**
@@ -41,8 +38,6 @@ class JsonSerializableApplicationBook {
      */
     public JsonSerializableApplicationBook(ReadOnlyApplicationBook source) {
         applications.addAll(source.getApplicationList().stream().map(JsonAdaptedApplication::new)
-                .collect(Collectors.toList()));
-        archives.addAll(source.getArchiveList().stream().map(JsonAdaptedApplication::new)
                 .collect(Collectors.toList()));
     }
 
@@ -59,13 +54,6 @@ class JsonSerializableApplicationBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPLICATION);
             }
             applicationBook.addApplication(application);
-        }
-        for (JsonAdaptedApplication jsonAdaptedArchiveApplication : archives) {
-            Application archivedApplication = jsonAdaptedArchiveApplication.toModelType();
-            if (applicationBook.hasArchive(archivedApplication)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_APPLICATION);
-            }
-            applicationBook.addArchive(archivedApplication);
         }
         return applicationBook;
     }

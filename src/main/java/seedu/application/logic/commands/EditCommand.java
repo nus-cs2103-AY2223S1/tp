@@ -81,9 +81,6 @@ public class EditCommand extends Command {
         }
 
         model.setApplication(applicationToEdit, editedApplication);
-        HideArchiveFromListPredicate hideArchiveFromListPredicate =
-                new HideArchiveFromListPredicate(model.getArchiveList());
-        model.updateFilteredApplicationList(hideArchiveFromListPredicate);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
 
@@ -101,6 +98,10 @@ public class EditCommand extends Command {
         Position updatedPosition = editApplicationDescriptor.getPosition().orElse(applicationToEdit.getPosition());
         Date updatedDate = editApplicationDescriptor.getDate().orElse(applicationToEdit.getDate());
 
+        if (applicationToEdit.isArchived()) {
+            return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition,
+                    updatedDate).setToArchive();
+        }
         return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition, updatedDate);
     }
 

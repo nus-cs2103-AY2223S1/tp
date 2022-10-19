@@ -23,19 +23,20 @@ class JsonAdaptedApplication {
     private final String email;
     private final String position;
     private final String date;
-
+    private final boolean isArchived;
     /**
      * Constructs a {@code JsonAdaptedApplication} with the given application details.
      */
     @JsonCreator
     public JsonAdaptedApplication(@JsonProperty("company") String company, @JsonProperty("contact") String contact,
                                   @JsonProperty("email") String email, @JsonProperty("position") String position,
-                                  @JsonProperty("date") String date) {
+                                  @JsonProperty("date") String date, @JsonProperty("isArchived") boolean isArchived) {
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
+        this.isArchived = isArchived;
     }
 
     /**
@@ -47,6 +48,7 @@ class JsonAdaptedApplication {
         email = source.getEmail().value;
         position = source.getPosition().value;
         date = source.getDate().value.toString();
+        isArchived = source.isArchived();
     }
 
     /**
@@ -96,6 +98,9 @@ class JsonAdaptedApplication {
         }
         final Date modelDate = new Date(date);
 
+        if (isArchived) {
+            return new Application(modelCompany, modelContact, modelEmail, modelPosition, modelDate).setToArchive();
+        }
         return new Application(modelCompany, modelContact, modelEmail, modelPosition, modelDate);
     }
 

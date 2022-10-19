@@ -15,7 +15,7 @@ public class ListArchiveCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         ShowArchiveOnlyPredicate showArchiveOnlyPredicate =
-                new ShowArchiveOnlyPredicate(model.getArchiveList());
+                new ShowArchiveOnlyPredicate();
         model.updateFilteredApplicationList(showArchiveOnlyPredicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }

@@ -42,9 +42,10 @@ public class ArchiveCommand extends Command {
 
         Application applicationToArchive = lastShownList.get(targetIndex.getZeroBased());
 
-        if (model.getArchiveList().contains(applicationToArchive)) {
+        if (applicationToArchive.isArchived()) {
             throw new CommandException(MESSAGE_APPLICATION_EXIST_IN_ARCHIVE);
         }
+
         model.archiveApplication(applicationToArchive);
         return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, applicationToArchive));
     }

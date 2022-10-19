@@ -21,7 +21,6 @@ public class ModelManager implements Model {
     private final ApplicationBook applicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
-    private final FilteredList<Application> filteredArchives;
 
     /**
      * Initializes a ModelManager with the given applicationBook and userPrefs.
@@ -34,7 +33,6 @@ public class ModelManager implements Model {
         this.applicationBook = new ApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = initialiseFilterList(this.applicationBook);
-        filteredArchives = new FilteredList<>(this.applicationBook.getArchiveList());
     }
 
     public ModelManager() {
@@ -43,7 +41,7 @@ public class ModelManager implements Model {
 
     private static FilteredList<Application> initialiseFilterList(ApplicationBook applicationBook) {
         HideArchiveFromListPredicate hideArchiveFromListPredicate =
-                new HideArchiveFromListPredicate(applicationBook.getArchiveList());
+                new HideArchiveFromListPredicate();
         FilteredList<Application> initialList = new FilteredList<>(applicationBook.getApplicationList());
         initialList.setPredicate(hideArchiveFromListPredicate);
         return initialList;
@@ -110,25 +108,19 @@ public class ModelManager implements Model {
     @Override
     public void addApplication(Application application) {
         applicationBook.addApplication(application);
-        HideArchiveFromListPredicate hideArchiveFromListPredicate =
-                new HideArchiveFromListPredicate(getArchiveList());
-        updateFilteredApplicationList(hideArchiveFromListPredicate);
+        hideArchiveInFilteredApplicationList();
     }
 
     @Override
     public void archiveApplication(Application target) {
         applicationBook.addArchive(target);
-        HideArchiveFromListPredicate hideArchiveFromListPredicate =
-                new HideArchiveFromListPredicate(getArchiveList());
-        updateFilteredApplicationList(hideArchiveFromListPredicate);
+        hideArchiveInFilteredApplicationList();
     }
 
     @Override
     public void retrieveApplication(Application target) {
         applicationBook.retrieveApplication(target);
-        ShowArchiveOnlyPredicate showArchiveOnlyPredicate =
-                new ShowArchiveOnlyPredicate(getArchiveList());
-        updateFilteredApplicationList(showArchiveOnlyPredicate);
+        showArchiveInFilteredApplicationList();
     }
 
     @Override
@@ -150,13 +142,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Application> getArchiveList() {
-        return filteredArchives;
+    public void updateFilteredApplicationList(Predicate<Application> predicate) {
+        requireNonNull(predicate);
+        filteredApplications.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredApplicationList(Predicate<Application> predicate) {
-        requireNonNull(predicate);
+    public void hideArchiveInFilteredApplicationList() {
+        Predicate<Application> predicate = new HideArchiveFromListPredicate();
+        filteredApplications.setPredicate(predicate);
+    }
+
+    @Override
+    public void showArchiveInFilteredApplicationList() {
+        Predicate<Application> predicate = new ShowArchiveOnlyPredicate();
         filteredApplications.setPredicate(predicate);
     }
 

@@ -93,12 +93,11 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
 
-    /** Returns an unmodifiable view of the archive list */
-    ObservableList<Application> getArchiveList();
-
     /**
      * Updates the filter of the filtered application list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
+    void hideArchiveInFilteredApplicationList();
+    void showArchiveInFilteredApplicationList();
 }
