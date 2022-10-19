@@ -156,6 +156,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit Command
+
+#### Description
+
+In this section, we will describe how our edit commands are implemented. In NUScheduler, there are two variants of edit commands, namely the `EditProfileCommand` and the `EditEventCommand`. `EditProfileCommand` is used to edit details of existing `Profile`s, whereas `EditEventCommand` is used to edit details of existing `Event`s.  
+
+Since both `EditProfileCommand` and `EditEventCommands` are implemented in a similar manner, we will be using the `EditProfileCommand` to illustrate the implementation of edit commands. 
+
+The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute` method, to edit existing profiles when called.
+
+#### Implementation
+
+1. When the user inputs a command to edit a profile, the input is passed to `LogicManager` to be executed.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse` is then called, and return a new `EditProfileCommandParser`.
+4. The method `EditProfileCommandParser#parse` will then return a new `EditProfileCommand`, if the user has entered the correct inputs.
+5. The `LogicManager` will call `Command#execute` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `EditProfileCommand#setProfile` method.
+6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+
+The following sequence diagram shows how the `EditProfileCommand` works.   
+
+![EditProfileCommandSequenceDiagram](images/commands/EditProfileCommandSequenceDiagram.png)
+
+The following activity diagram shows the process when a user calls the `EditProfileCommand`.
+
+![EditProfileCommandActivityDiagram](images/commands/EditProfileCommandActivityDiagram.png)
+
+#### Design Considerations
+
+- **Alternative 1 (Current Design)**: Separate the `EditProfileCommand` and the `EditEventCommand` as separate classes.
+  - Pros: More flexibility in the parsing and order of the commands.
+  - Cons: Additional classes are implemented, and thus higher complexity.
+- **Alternative 2**: Have one single `EditCommand` class.
+  - Pros: Less classes to implement.
+  - Cons: Prevents us from using separate command words for editing profiles and editing events.
+
 ### Profiles
 
 #### Add Profile Command
@@ -170,18 +206,6 @@ The `AddProfileCommand` allows the user to add new profiles to NUScheduler.
 
 ![AddProfileCommandSequenceDiagram](images/commands/AddProfileCommandSequenceDiagram.png)
 
-#### Edit Profile Command
-
-##### Description
-
-The `EditProfileCommand` allows the user to edit existing profiles in NUScheduler.
-
-##### Implementation
-
-`EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute()` method, to edit existing profiles when called.
-
-![EditProfileCommandSequenceDiagram](images/commands/EditProfileCommandSequenceDiagram.png)
-
 ### Events
 
 #### Add Event Command
@@ -195,18 +219,6 @@ The `AddEventCommand` allows the user to add new events to NUScheduler.
 `AddEventCommand` extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddEventCommand` overrides the `Command#execute()` method, which will add events when called.
 
 ![AddEventCommandSequenceDiagram](images/commands/AddEventCommandSequenceDiagram.png)
-
-#### Edit Event Command
-
-##### Description
-
-The `EditEventCommand` allows the user to edit existing events in NUScheduler.
-
-##### Implementation
-
-`EditEventCommand` extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `EditEventCommand` overrides the `Command#execute()` method, to edit events when called.
-
-![EditEventCommandSequenceDiagram](images/commands/EditEventCommandSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
