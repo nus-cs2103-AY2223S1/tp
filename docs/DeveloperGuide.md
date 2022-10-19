@@ -300,6 +300,45 @@ Figure No. Sequence diagram for PictureUploadCommand
 - Pros: Clearer instruction and prevents error from user.
 - Cons: User will have to be more familiar with more commands.
 
+### Add/delete Task feature
+The add/delete `Task` feature allows users to create and remove tasks. This feature uses the following commands:
+* `task` t/TITLE d/DESCRIPTION
+* `remove-task` INDEX
+
+which invokes the `TaskCommand` and the `RemoveTaskCommand` respectively.
+These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
+
+#### About Task
+Each `Task` has non-optional title and description fields. Future iterations may introduce new types of `Task`, including `Deadline` and `Assignment`.
+Currently, task information is stored in a different file from student information as they are two separate (and unrelated) data types.
+
+The following is a more detailed explanation on how the `TaskCommand` works.
+1. If the title or description fields are missing or invalid, a 'ParserException' will be thrown and the new `Task` will not be added.
+2. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created.
+3. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
+4. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+//Insert sequence diagram for TaskCommand
+
+//Insert activity diagram for TaskCommand
+
+The following is a more detailed explanation on how the `RemoveTaskCommand` works.
+1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
+2. After the successful parsing of user input into `RemoveTaskCommandParser`, the `RemoveTaskCommand` object is created.
+3. Following which, `RemoveTaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#remove(Task toRemove)` method, removing the specified `Task` object from the internal list.
+4. Next, similar to `TaskCommand`, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+#### Design considerations:
+
+**Aspect: Storage for `TaskBook`**
+- Current implementation: A totally new storage class, serializer class and data file specifically for `Task`
+- Pros: Easy to distinguish different classes handling different types of data (`Student` vs `Task`)
+- Cons: Some classes and methods are similar across `AddressBook` and `TaskBook`
+- Alternatives considered: We considered integrating `TaskBook` into the given `AddressBook` infrastructure, meaning that we will be storing `Task` data together with `Student` data into `addressbook.json`
+- Pros: Easier to implement, less code to write
+- Cons: Higher coupling, since any change in `TaskBook` could potentially affect `AddressBookStorage`
 
 ### \[Proposed\] Undo/redo feature
 
