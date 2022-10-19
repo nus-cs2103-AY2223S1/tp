@@ -25,6 +25,8 @@ import seedu.phu.logic.commands.ExitCommand;
 import seedu.phu.logic.commands.FindCommand;
 import seedu.phu.logic.commands.HelpCommand;
 import seedu.phu.logic.commands.ListCommand;
+import seedu.phu.logic.commands.RedoCommand;
+import seedu.phu.logic.commands.UndoCommand;
 import seedu.phu.logic.parser.exceptions.ParseException;
 import seedu.phu.model.internship.ContainsKeywordsPredicate;
 import seedu.phu.model.internship.FindableCategory;
@@ -100,6 +102,18 @@ public class InternshipBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " c/n true") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
     }
 
     @Test

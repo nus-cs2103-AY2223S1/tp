@@ -15,6 +15,8 @@ import seedu.phu.logic.commands.ExitCommand;
 import seedu.phu.logic.commands.FindCommand;
 import seedu.phu.logic.commands.HelpCommand;
 import seedu.phu.logic.commands.ListCommand;
+import seedu.phu.logic.commands.RedoCommand;
+import seedu.phu.logic.commands.UndoCommand;
 import seedu.phu.logic.commands.ViewCommand;
 import seedu.phu.logic.parser.exceptions.ParseException;
 
@@ -71,6 +73,12 @@ public class InternshipBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

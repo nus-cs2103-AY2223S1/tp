@@ -19,6 +19,7 @@ import seedu.phu.testutil.InternshipBuilder;
 public class AddCommandIntegrationTest {
 
     private Model model;
+    private CommandHistory commandHistory = new CommandHistory();
 
     @BeforeEach
     public void setUp() {
@@ -31,15 +32,17 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.addInternship(validInternship);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(new AddCommand(validInternship), model,
+        assertCommandSuccess(new AddCommand(validInternship), model, commandHistory,
                 String.format(AddCommand.MESSAGE_SUCCESS, validInternship), expectedModel);
     }
 
     @Test
     public void execute_duplicateInternship_throwsCommandException() {
         Internship internshipInList = model.getInternshipBook().getInternshipList().get(0);
-        assertCommandFailure(new AddCommand(internshipInList), model, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP);
+        assertCommandFailure(new AddCommand(internshipInList), model, commandHistory,
+                AddCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
 }

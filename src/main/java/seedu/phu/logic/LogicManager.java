@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.phu.commons.core.GuiSettings;
 import seedu.phu.commons.core.LogsCenter;
 import seedu.phu.logic.commands.Command;
+import seedu.phu.logic.commands.CommandHistory;
 import seedu.phu.logic.commands.CommandResult;
 import seedu.phu.logic.commands.exceptions.CommandException;
 import seedu.phu.logic.parser.InternshipBookParser;
@@ -27,6 +28,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final InternshipBookParser internshipBookParser;
+    private CommandHistory commandHistory;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +37,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         internshipBookParser = new InternshipBookParser();
+        commandHistory = new CommandHistory();
     }
 
     @Override
@@ -42,8 +45,9 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+        commandHistory.addCommand(commandText);
         Command command = internshipBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, commandHistory);
 
         try {
             storage.saveInternshipBook(model.getInternshipBook());

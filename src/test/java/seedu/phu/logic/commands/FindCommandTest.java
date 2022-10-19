@@ -31,6 +31,7 @@ import seedu.phu.model.internship.FindableCategory;
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void equals() {
@@ -89,7 +90,7 @@ public class FindCommandTest {
                 preparePredicate(FindableCategory.COMPANY_NAME, "Kurz", "Elle", "Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());
     }
 
@@ -100,7 +101,7 @@ public class FindCommandTest {
                 preparePredicate(FindableCategory.APPLICATION_PROCESS, "interview", "assessment");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredInternshipList());
     }
 
@@ -111,7 +112,7 @@ public class FindCommandTest {
                 preparePredicate(FindableCategory.POSITION, "engin");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA), model.getFilteredInternshipList());
     }
 
@@ -122,7 +123,7 @@ public class FindCommandTest {
                 preparePredicate(FindableCategory.DATE, "11-12-2022", "12-10-2022");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredInternshipList());
     }
 
@@ -133,7 +134,7 @@ public class FindCommandTest {
                 preparePredicate(FindableCategory.TAGS, "owes", "random", "sugiyem");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON), model.getFilteredInternshipList());
     }
 
