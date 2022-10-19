@@ -104,15 +104,16 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        final DateOfBirth modelDob;
+        if (dob == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                     DateOfBirth.class.getSimpleName()));
+        }
+
         if (!DateOfBirth.isValidDateOfBirth(dob)) {
             throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
-        if (dob == null) { //check if DateOfBirth is empty
-            modelDob = DateOfBirth.getEmptyDateOfBirth(); //create empty DateOfBirth object
-        } else {
-            modelDob = new DateOfBirth(dob);
-        }
+
+        final DateOfBirth modelDob = new DateOfBirth(dob);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));

@@ -43,12 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } // gender prefix not checked since it's optional
-        DateOfBirth dob;
-        if (arePrefixesPresent(argMultimap, PREFIX_DOB)) { //As dob is an optional field, need check if present
-            dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
-        } else {
-            dob = DateOfBirth.getEmptyDateOfBirth();
-        }
+        DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

@@ -27,16 +27,6 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
 
 
     public final LocalDate date;
-    private boolean isEmpty;
-
-
-    /**
-     * Constructs an empty {@code DateOfBirth}.
-     */
-    private DateOfBirth() {
-        this.date = null;
-        this.isEmpty = true;
-    }
 
     /**
      * Constructs an {@code DateOfBirth}.
@@ -47,22 +37,6 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
         requireNonNull(date);
         checkArgument(isValidDateOfBirth(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
-        this.isEmpty = false;
-    }
-
-    /**
-     * Returns true if DateOfBirth is empty, false otherwise.
-     * @return boolean
-     */
-    public boolean isEmpty() {
-        return this.isEmpty;
-    }
-
-    /**
-     * Constructs an empty {@code DateOfBirth}.
-     */
-    public static DateOfBirth getEmptyDateOfBirth() {
-        return new DateOfBirth();
     }
 
     /**
@@ -94,17 +68,11 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
      * @return String
      */
     public String toLogFormat() {
-        if (this.isEmpty()) {
-            return null;
-        }
         return this.date.format(logFormatter);
     }
 
     @Override
     public String toString() {
-        if (this.isEmpty()) {
-            return "";
-        }
         return this.date.format(outputFormatter);
     }
 
@@ -123,8 +91,7 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
         // state check
         DateOfBirth d = (DateOfBirth) other;
 
-        return this.date.equals(d.date)
-            && this.isEmpty() == d.isEmpty();
+        return this.date.equals(d.date);
     }
 
     @Override
