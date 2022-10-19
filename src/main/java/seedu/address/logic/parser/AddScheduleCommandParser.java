@@ -73,7 +73,10 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
                 throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
             }
             System.out.println("2");
-            if (startMin != 0 && startMin != 30 && endMin != 0 && endMin != 30) {
+            if (startMin != 0 && startMin != 30) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            if (endMin != 0 && endMin != 30) {
                 throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
             }
             System.out.println("3");
@@ -85,7 +88,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
                 throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
             }
 
-            if ((startHour > endHour) || ((startHour == endHour) && (startMin > endMin))) {
+            if ((startHour > endHour) || ((startHour == endHour) && (startMin >= endMin))) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT);
             }
 
@@ -93,7 +96,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
 
 
         } catch (Exception e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddScheduleCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
 
     }
