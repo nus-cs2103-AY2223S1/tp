@@ -34,26 +34,6 @@ public class TeachingAssistant extends Person {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof TeachingAssistant)) {
-            return false;
-        }
-
-        TeachingAssistant otherPerson = (TeachingAssistant) other;
-        return super.equals(other) && otherPerson.getModuleCode().equals(getModuleCode());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleCode, super.hashCode());
-    }
-
-    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
@@ -96,6 +76,35 @@ public class TeachingAssistant extends Person {
                     .compareTo(((TeachingAssistant) person).getModuleCode().toString());
         }
         return 1;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
+                getUsername(), moduleCode, rating);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TeachingAssistant)) {
+            return false;
+        }
+
+        TeachingAssistant otherPerson = (TeachingAssistant) other;
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getLocation().equals(getLocation())
+                && otherPerson.getUsername().equals(getUsername())
+                && otherPerson.getModuleCode().equals(getModuleCode())
+                && otherPerson.getRating().equals(getRating());
     }
 
 }

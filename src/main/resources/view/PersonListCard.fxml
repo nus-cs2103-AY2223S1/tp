@@ -18,6 +18,8 @@
          <VBox alignment="CENTER">
             <children>
                <Label fx:id="title" text="Label" />
+               <Label fx:id="year" text="Label" />
+               <Label fx:id="specialisation" text="Label" wrapText="true" />
                <HBox id="stars" fx:id="stars" prefHeight="30.0" prefWidth="100.0" />
             </children>
             <padding>

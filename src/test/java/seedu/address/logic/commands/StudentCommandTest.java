@@ -160,6 +160,12 @@ public class StudentCommandTest {
         public void sort(Order order, boolean hasName, boolean hasModuleCode) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void openGithub(Person target) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

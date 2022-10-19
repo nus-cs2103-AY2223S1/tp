@@ -13,8 +13,10 @@ import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -59,6 +61,10 @@ public class PersonCard extends UiPart<Region> {
     private Label locationAt;
     @FXML
     private Label githubUsername;
+    @FXML
+    private Label year;
+    @FXML
+    private Label specialisation;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -77,22 +83,48 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (person instanceof Professor) {
-            Professor professor = (Professor) person;
-            moduleCodes.getChildren().add(new Label(((Professor) person).getModuleCode().value));
+            Professor prof = (Professor) person;
+            moduleCodes.getChildren().add(new Label(prof.getModuleCode().value));
             title.setText("Professor");
-            renderRating(professor.getRating());
+            renderRating(prof.getRating());
+            year.setManaged(false);
+            setSpecialisation(prof);
         }
         if (person instanceof TeachingAssistant) {
             TeachingAssistant ta = (TeachingAssistant) person;
             moduleCodes.getChildren().add(new Label(((TeachingAssistant) person).getModuleCode().value));
             title.setText("Teaching\nAssistant");
             renderRating(ta.getRating());
+            year.setManaged(false);
+            specialisation.setManaged(false);
         }
         if (person instanceof Student) {
             Student student = (Student) person;
             student.getModuleCodes().stream()
                     .forEach(moduleCode -> moduleCodes.getChildren().add(new Label(moduleCode.value)));
             title.setText("Student");
+            setYear(student);
+            specialisation.setManaged(false);
+        }
+    }
+
+    private void setYear(Student student) {
+        String studentYear = student.getYear().value;
+        if (!studentYear.equals(Year.EMPTY_YEAR)) {
+            year.setManaged(true);
+            year.setText("Year: " + studentYear);
+        } else {
+            year.setManaged(false);
+        }
+    }
+
+    private void setSpecialisation(Professor professor) {
+        String profSpecialisation = professor.getSpecialisation().value;
+        if (!profSpecialisation.equals(Specialisation.EMPTY_SPECIALISATION)) {
+            specialisation.setManaged(true);
+            specialisation.setText(profSpecialisation);
+        } else {
+            specialisation.setManaged(false);
         }
     }
 
