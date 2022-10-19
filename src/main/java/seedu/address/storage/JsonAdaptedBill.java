@@ -56,7 +56,7 @@ class JsonAdaptedBill {
         doctor = source.getAppointment().getDoctor().doctorName;
         medicalTest = source.getAppointment().getMedicalTest().medicalTestName;
         amount = source.getAmount().toString();
-        billDate = source.toString();
+        billDate = source.getBillDate().toString();
         paymentStatus = source.getPaymentStatus().toString();
     }
 
