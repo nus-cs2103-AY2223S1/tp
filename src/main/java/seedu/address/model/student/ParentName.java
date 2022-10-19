@@ -12,7 +12,6 @@ public class ParentName {
     public static final String MESSAGE_CONSTRAINTS =
             "Parent name should only contain alphanumeric characters and spaces. It can be blank.";
 
-
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]*$";
 
     public final String fullName;

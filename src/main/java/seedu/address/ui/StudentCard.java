@@ -55,9 +55,21 @@ public class StudentCard extends UiPart<Region> {
         studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
         className.setText(student.getClassName().className);
-        parentName.setText(student.getParentName().fullName);
-        phone.setText(student.getPhone().value);
-        email.setText(student.getEmail().value);
+        if(student.getParentName().fullName == "") {
+            parentName.setText("-");
+        } else {
+            parentName.setText(student.getParentName().fullName);
+        }
+        if(student.getPhone().value == "") {
+            phone.setText("-");
+        } else {
+            phone.setText(student.getPhone().value);
+        }
+        if(student.getEmail().value == "") {
+            email.setText("-");
+        } else {
+            email.setText(student.getEmail().value);
+        }
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -28,7 +28,7 @@ public class StudentBuilder {
     private Name studentName;
     private Id id;
     private Class className;
-    private Name parentName;
+    private ParentName parentName;
     private Phone phone;
     private Email email;
     private Set<Tag> tags;
@@ -40,7 +40,7 @@ public class StudentBuilder {
         studentName = new Name(DEFAULT_STUDENT_NAME);
         id = new Id(DEFAULT_ID);
         className = new Class(DEFAULT_CLASS);
-        parentName = new Name(DEFAULT_PARENT_NAME);
+        parentName = new ParentName(DEFAULT_PARENT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();

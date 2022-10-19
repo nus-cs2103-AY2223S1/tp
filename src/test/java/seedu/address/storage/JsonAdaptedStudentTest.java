@@ -16,6 +16,7 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.ParentName;
 import seedu.address.model.student.Phone;
 
 public class JsonAdaptedStudentTest {
@@ -65,7 +66,7 @@ public class JsonAdaptedStudentTest {
         JsonAdaptedStudent person =
                 new JsonAdaptedStudent(VALID_STUDENT_NAME, VALID_ID, VALID_CLASS,
                         INVALID_PARENT_NAME, VALID_PHONE, VALID_EMAIL, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = ParentName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

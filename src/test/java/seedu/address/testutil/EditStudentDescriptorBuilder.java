@@ -9,6 +9,7 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.ParentName;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -59,10 +60,10 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the parent {@code Name} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the parent {@code ParentName} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withParentName(String name) {
-        descriptor.setParentName(new Name(name));
+        descriptor.setParentName(new ParentName(name));
         return this;
     }
 
