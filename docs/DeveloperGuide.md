@@ -394,7 +394,48 @@ The task unmark command follows a similar sequence diagram.
 * **Alternative 2:** Mutable isDone field in the Task object.
     * Pros: Less overhead as it will only involve changing the isDone field in the object.
     * Cons: Mutable field may result in regression with other components such as Storage and UI.
-    
+
+### \[Proposed\] Tagging/Untagging tasks
+
+#### Proposed Implementation
+
+The tag and untag task mechanism is facilitated by `TaskTagCommand`, which extends from `Command`.
+
+It implements the following operations:
+
+* `TaskTagCommand#execute()` — Executes and coordinates the necessary objects and methods to tag a task.
+* `TaskTagCommandParser#parse()` — Parses user input from UI and initializes a TaskTagCommand object.
+
+Cases such as where the index from the user input is out of bounds, are handled by the methods.
+
+Given below is an example usage scenario for how the `TaskTagCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2: The user adds a task.
+
+Step 3. The user tags their task with the command `task tag i/1 t/work`. 
+
+The following sequence diagram shows how the `TaskTagCommand` works:
+
+![TagTaskSequenceDiagram](images/TagTaskSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Untagging tasks:**
+
+* **Current choice:** Use the same command to untag a task but without the `t/` modifier, i.e. `task tag i/1`.
+    * Rationale: Reduce unnecessary number of commands for both user and developer's mental health.
+
+**Aspect: Saving empty tags:**
+
+* **Current choice:** Empty tags are not saved.
+    * Rationale: Does not unnecessarily clutter the number of tags saved to a task.
+  
+**Aspect: How many tags can be saved:**
+
+* **Current choice:** A maximum of 5 tags can be saved.
+    * Rationale: Reduce clutter of tags saved to a task. Too many tags would defeat the purpose of a tag itself.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
