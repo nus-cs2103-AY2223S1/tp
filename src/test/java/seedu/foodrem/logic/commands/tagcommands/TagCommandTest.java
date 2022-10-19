@@ -63,7 +63,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void execute_tagItemWithoutExistingTag_throwsCommandException() {
+    public void execute_tagItemWithoutExistingTagInModel_throwsCommandException() {
 
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
