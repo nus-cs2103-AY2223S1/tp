@@ -95,4 +95,18 @@ public class TaskListTest {
         TaskList expectedTaskList = new TaskList();
         assertEquals(expectedTaskList, taskList);
     }
+
+    @Test
+    public void swapTasks_nullTasks_swapsTasks() {
+        assertThrows(NullPointerException.class, () -> taskList.swapTasks(null, null));
+    }
+
+    @Test
+    public void swapTasks_existingTasks_swapsTasks() {
+        Index indexZero = Index.fromZeroBased(0);
+        Index indexOne = Index.fromZeroBased(1);
+        taskList.swapTasks(indexZero, indexOne);
+        TaskList expectedTaskList =
+                new TaskList(Arrays.asList(TASK_B, TASK_A, TASK_C));
+        assertEquals(expectedTaskList, taskList);    }
 }
