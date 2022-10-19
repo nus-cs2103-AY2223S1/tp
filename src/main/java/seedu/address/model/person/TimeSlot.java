@@ -12,6 +12,13 @@ public class TimeSlot implements Comparable<TimeSlot> {
         this.person = person;
     }
 
+    public Session getSession() {
+        return session;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
     @Override
     public String toString() {
         return "";
