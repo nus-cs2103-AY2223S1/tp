@@ -185,8 +185,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
-    /**
-     * Returns true if a policy with the same identity as {@code Policy} exists in the address book.
-     */
+
 
 }

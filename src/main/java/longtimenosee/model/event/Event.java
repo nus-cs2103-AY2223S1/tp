@@ -1,9 +1,9 @@
 package longtimenosee.model.event;
 
+import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Comparator;
 import java.util.List;
-
-import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents an Event in the address book.

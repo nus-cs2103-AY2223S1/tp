@@ -78,13 +78,6 @@ public class LogicManager implements Logic {
         return model.getFilteredEventList();
     }
 
-    /**
-    @Override
-    public ObservableList<Event> getFilteredEventList() {
-        return model.getFilteredEventList();
-    } //TODO: For GUI you might need this
-     */
-
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();

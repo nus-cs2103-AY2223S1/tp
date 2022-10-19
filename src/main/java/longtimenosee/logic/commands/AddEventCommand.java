@@ -7,14 +7,14 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_START_TIME;
 
-import longtimenosee.logic.commands.exceptions.CommandException;
+import java.util.List;
 
+import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.event.exceptions.OverlapEventException;
 import longtimenosee.model.person.exceptions.PersonNotFoundException;
 
-import java.util.List;
 
 /**
  * Adds an Event to the address book.

@@ -211,6 +211,10 @@ public class ModelManager implements Model {
         addressBook.addEvent(e);
     }
 
+    /**
+     * Updates the filtered event list
+     * @param predicate predicate to filter the list by
+     */
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
