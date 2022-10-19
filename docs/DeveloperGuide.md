@@ -430,38 +430,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to filter contacts of a certain tag and/or name.
-2. Rapportbook shows a list of contacts that matches his filter query.  
+2. Rapportbook shows a list of contacts that contains the tag **and** name specified in the filter query.
+    
    Use case ends.
 
 **Extensions**
 
-* 1a. The tag specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-* 1b. The name specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
+* 1a. Some filters specified contains a tag that does not exist.
+	* 1a1. Rapportbook filters shows a list of contacts that contains the tag (excluding the non-existent ones) **and** name specified in the filter query.
+	* 1a2. Rapportbook shows a message containing the list of non-existent tag that the user specified.
+	* Use case ends
 
-	Use case ends.
 
 #### Use case: Clearing filters
 
 **MSS**
 
-1. User requests to clear a filter that was applied.
-2. Rapportbook shows a list of contacts that without the filter applied.  
+1. User requests to clear filters that were originally applied.
+2. Rapportbook shows a list of contacts that without the filters applied.  
+
    Use case ends.
 
 **Extensions**
 
-* 1a. The tag specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-* 1b. The name specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
+* 1a. Some filters specified were not previously applied.
+	* 1a1. Rapportbook clears the filters that were applied.
+	* 1a2. Rapportbook shows a message containing the list of filters that were not previously applied.
+	* Use case ends.
 
-	Use case ends.
 
 #### Use case: Show contact
 
