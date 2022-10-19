@@ -19,6 +19,8 @@ import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
 
+    public static final String EDITED_PHONE = "90008000";
+
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
@@ -52,7 +54,7 @@ public class PersonTest {
         assertTrue(BOB.isSamePerson(editedBob));
 
         // different phone number -> returns false
-        editedBob = new PersonBuilder(BOB).withPhone("90008000").build();
+        editedBob = new PersonBuilder(BOB).withPhone(EDITED_PHONE).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
 

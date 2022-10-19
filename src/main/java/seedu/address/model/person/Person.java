@@ -216,6 +216,15 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Checks if class is empty.
+     *
+     * @return true if class is empty.
+     */
+    public boolean hasEmptyClass() {
+        return getAClass().isEmpty();
+    }
+
     public int compareTo(Person person) {
         return this.aClass.startTime.compareTo(person.aClass.startTime);
     }

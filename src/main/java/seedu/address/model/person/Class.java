@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Person's class date in the address book.
  * Guarantees: immutable;
- * is valid as declared in {@link #isValidClassString(String)}, {@link #isValidFlexibleClassString(String)}
+ * is valid as declared in {@link #isValidClassString(String)}, {@link #isValidFlexibleClassString(String)},
+ * {@link #isValidDuration(LocalTime, LocalTime)}.
  */
 public class Class {
 
@@ -31,8 +32,8 @@ public class Class {
     public final LocalDate date;
     public final LocalTime startTime;
     public final LocalTime endTime;
-
-    public final String classDateTime; //User input eg. 2022-05-05 1200-1500
+    // yyyy-MM-dd eg. 2022-05-05 1200-1500
+    public final String classDateTime;
 
     /**
      * Constructs a {@code Class}.
@@ -57,6 +58,15 @@ public class Class {
         this.startTime = startTime;
         this.endTime = endTime;
         this.classDateTime = classDateTime;
+    }
+
+    /**
+     * Checks if class is empty.
+     *
+     * @return True if class is empty.
+     */
+    public boolean isEmpty() {
+        return this.classDateTime.equals("");
     }
 
     /**
