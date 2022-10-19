@@ -44,6 +44,19 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         }
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
+
+        parseArguments(editItemDescriptor, argMultimap);
+
+        if (!editItemDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditItemCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditItemCommand(index, editItemDescriptor);
+    }
+
+
+    public void parseArguments(EditItemDescriptor editItemDescriptor, ArgumentMultimap argMultimap)
+            throws ParseException {
         if (argMultimap.getValue(CliSyntax.PREFIX_ITEM).isPresent()) {
             editItemDescriptor.setItemName(ParserUtil.parseItemName(argMultimap.getValue(CliSyntax.PREFIX_ITEM).get()));
         }
@@ -57,12 +70,6 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         }
 
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editItemDescriptor::setTags);
-
-        if (!editItemDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditItemCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditItemCommand(index, editItemDescriptor);
     }
 
     /**
