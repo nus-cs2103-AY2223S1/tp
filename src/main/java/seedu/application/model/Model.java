@@ -85,4 +85,29 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
+
+    /**
+     * Saves the current {@code ApplicationBook} state in its history.
+     */
+    void commitAddressBook();
+
+    /**
+     * Returns true if the model has previous {@code ApplicationBook} states to restore.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Returns true if the model has previously undone {@code ApplicationBook} states to redo.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Restores the model's previous {@code ApplicationBook} state from its history.
+     */
+    void undoAddressBook();
+
+    /**
+     * Restores the model's previously undone {@code ApplicationBook} state from its history.
+     */
+    void redoAddressBook();
 }

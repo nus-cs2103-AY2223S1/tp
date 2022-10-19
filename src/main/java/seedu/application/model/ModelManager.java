@@ -19,21 +19,21 @@ import seedu.application.model.application.Application;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ApplicationBook applicationBook;
+    private final VersionedApplicationBook versionedApplicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
 
     /**
-     * Initializes a ModelManager with the given applicationBook and userPrefs.
+     * Initializes a ModelManager with the given versionedApplicationBook and userPrefs.
      */
     public ModelManager(ReadOnlyApplicationBook applicationBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(applicationBook, userPrefs);
 
         logger.fine("Initializing with application book: " + applicationBook + " and user prefs " + userPrefs);
 
-        this.applicationBook = new ApplicationBook(applicationBook);
+        versionedApplicationBook = new VersionedApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredApplications = new FilteredList<>(this.applicationBook.getApplicationList());
+        filteredApplications = new FilteredList<>(versionedApplicationBook.getApplicationList());
     }
 
     public ModelManager() {
@@ -79,28 +79,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setApplicationBook(ReadOnlyApplicationBook applicationBook) {
-        this.applicationBook.resetData(applicationBook);
+        versionedApplicationBook.resetData(applicationBook);
     }
 
     @Override
     public ReadOnlyApplicationBook getApplicationBook() {
-        return applicationBook;
+        return versionedApplicationBook;
     }
 
     @Override
     public boolean hasApplication(Application application) {
         requireNonNull(application);
-        return applicationBook.hasApplication(application);
+        return versionedApplicationBook.hasApplication(application);
     }
 
     @Override
     public void deleteApplication(Application target) {
-        applicationBook.removeApplication(target);
+        versionedApplicationBook.removeApplication(target);
     }
 
     @Override
     public void addApplication(Application application) {
-        applicationBook.addApplication(application);
+        versionedApplicationBook.addApplication(application);
         updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setApplication(Application target, Application editedApplication) {
         requireAllNonNull(target, editedApplication);
 
-        applicationBook.setApplication(target, editedApplication);
+        versionedApplicationBook.setApplication(target, editedApplication);
     }
 
     //=========== Filtered Application List Accessors =============================================================
@@ -128,6 +128,32 @@ public class ModelManager implements Model {
         filteredApplications.setPredicate(predicate);
     }
 
+    //=========== Undo & Redo =====================================================================================
+    @Override
+    public void commitAddressBook() {
+        versionedApplicationBook.commit();
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedApplicationBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedApplicationBook.canRedo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        versionedApplicationBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        versionedApplicationBook.redo();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -142,7 +168,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return applicationBook.equals(other.applicationBook)
+        return versionedApplicationBook.equals(other.versionedApplicationBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredApplications.equals(other.filteredApplications);
     }
