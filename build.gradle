@@ -19,6 +19,9 @@ repositories {
 checkstyle {
     toolVersion = '10.2'
 }
+run {
+    enableAssertions = true
+}
 
 run {
     enableAssertions = true
