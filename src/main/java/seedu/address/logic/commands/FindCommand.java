@@ -16,26 +16,28 @@ public class FindCommand extends Command {
     public static final String COMMAND_TYPE = "find";
     public static final String COMMAND_WORD = COMMAND_TYPE;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all Modules and Persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all Modules and Persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2100 cs ";
 
-    private final NameContainsKeywordsPredicate name_predicate;
-    private final ModuleCodeContainsKeywordsPredicate module_predicate;
+    private final NameContainsKeywordsPredicate namePredicate;
+    private final ModuleCodeContainsKeywordsPredicate modulePredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate person_predicate, ModuleCodeContainsKeywordsPredicate module_predicate) {
-        this.name_predicate = person_predicate;
-        this.module_predicate = module_predicate;
+    public FindCommand(NameContainsKeywordsPredicate person_predicate,
+                       ModuleCodeContainsKeywordsPredicate modulePredicate) {
+        this.namePredicate = person_predicate;
+        this.modulePredicate = modulePredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(name_predicate);
-        model.updateFilteredModuleList(module_predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
+        model.updateFilteredPersonList(namePredicate);
+        model.updateFilteredModuleList(modulePredicate);
+        return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size())
                         + " "
                         + String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
     }
@@ -44,7 +46,7 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && name_predicate.equals(((FindCommand) other).name_predicate)
-                && module_predicate.equals(((FindCommand) other).module_predicate)); // state check
+                && namePredicate.equals(((FindCommand) other).namePredicate)
+                && modulePredicate.equals(((FindCommand) other).modulePredicate)); // state check
     }
 }
