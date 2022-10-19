@@ -48,7 +48,23 @@ public class SavedModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getUserModuleCode());
         tutorial.setText(module.getTutorial());
         lecture.setText(module.getLecture());
-        ayData.getChildren().add(new Pill(module.getSelectedSemester(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));
+        ayData.getChildren().add(createSemesterPill(module.getSelectedSemester()));
+    }
+
+    private Pill createSemesterPill(String semesterInfo) {
+        String semesterText;
+        switch (semesterInfo) {
+        case "Semester 3":
+            semesterText = "Special Term I";
+            break;
+        case "Semester 4":
+            semesterText = "Special Term II";
+            break;
+        default:
+            semesterText = semesterInfo;
+        }
+
+        return new Pill(semesterText, AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR);
     }
 
     @Override
