@@ -42,6 +42,10 @@ public class GameType {
         return this.preferredGameType;
     }
 
+    public String getGameTypeName() {
+        return preferredGameType;
+    }
+
     public static String getMessageConstraints() {
         return MESSAGE_CONSTRAINTS;
     }
