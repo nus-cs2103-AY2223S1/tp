@@ -30,7 +30,7 @@
         <Label fx:id="studentName" prefWidth="200.0" styleClass="cell_big_label" text="\$studentName" />
          <Label fx:id="studentId" styleClass="cell_big_label" text="\$studentId">
                <graphic>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="ID: " />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="ID:" />
                </graphic>
                <padding>
                   <Insets left="10.0" />
@@ -38,44 +38,48 @@
             </Label>
       </HBox>
       <FlowPane fx:id="tags" prefWidth="130.0" />
-      <Label fx:id="className" styleClass="cell_big_label" text="\$className">
+      <Label fx:id="className" alignment="CENTER" styleClass="cell_big_label" text="\$className">
             <graphic>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="Class: " />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="Class:" />
             </graphic>
             <VBox.margin>
                <Insets />
-            </VBox.margin></Label>
+            </VBox.margin>
+         </Label>
          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Grades" underline="true">
             <VBox.margin>
-               <Insets top="10.0" />
+               <Insets top="5.0" />
             </VBox.margin>
          </Text>
-         <HBox>
+         <HBox alignment="CENTER_LEFT">
             <children>
-               <Label fx:id="ca1" styleClass="cell_small_label" text="\$ca1">
+               <Label fx:id="ca1" alignment="CENTER" styleClass="cell_small_label" text="\$ca1">
                   <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="CA1: " />
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="CA1:" />
                   </graphic></Label>
-                <Label fx:id="sa1" styleClass="cell_small_label" text="\$sa1">
+                <Label fx:id="sa1" alignment="CENTER" styleClass="cell_small_label" text="\$sa1">
                   <graphic>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="SA1:" />
                   </graphic>
                   <padding>
-                     <Insets left="25.0" />
+                     <Insets left="35.0" />
                   </padding></Label>
-                <Label fx:id="ca2" styleClass="cell_small_label" text="\$ca2">
+                <Label fx:id="ca2" alignment="CENTER" styleClass="cell_small_label" text="\$ca2">
                   <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="CA2: " />
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="CA2:" />
                   </graphic>
                   <padding>
-                     <Insets left="25.0" />
+                     <Insets left="35.0" />
                   </padding></Label>
-                <Label fx:id="sa2" styleClass="cell_small_label" text="\$sa2">
+                <Label fx:id="sa2" alignment="CENTER" styleClass="cell_small_label" text="\$sa2">
                   <graphic>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="SA2:" />
                   </graphic>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
                   <padding>
-                     <Insets left="25.0" />
+                     <Insets left="35.0" />
                   </padding></Label>
             </children>
             <VBox.margin>
@@ -88,20 +92,21 @@
          <VBox>
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Parent Details" underline="true" />
-            <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName">
+            <Label fx:id="parentName" alignment="CENTER" styleClass="cell_small_label" text="\$parentName">
                   <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Name: " />
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Name:" />
                   </graphic>
                </Label>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
+            <Label fx:id="phone" alignment="CENTER" styleClass="cell_small_label" text="\$phone">
                   <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Phone: " />
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Phone:" />
                   </graphic>
                </Label>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+            <Label fx:id="email" alignment="CENTER" styleClass="cell_small_label" text="\$email">
                   <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Email: " />
-                  </graphic></Label>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Email:" />
+                  </graphic>
+               </Label>
             </children>
             <VBox.margin>
                <Insets top="10.0" />
