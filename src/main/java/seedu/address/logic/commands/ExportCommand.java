@@ -1,2 +1,45 @@
-package seedu.address.logic.commands;public class ExportCommand {
+package seedu.address.logic.commands;
+
+import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.storage.Storage;
+
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Exports the shown list to a JSON file.
+ */
+public class ExportCommand extends Command{
+
+    public static final String COMMAND_WORD = "export";
+
+    public static final String MESSAGE_SUCCESS = "Shown list exported to %1$s";
+
+    private final String exportDirectory = "data/export/";
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss_SSS");
+        LocalDateTime currDateTime = LocalDateTime.now();
+        String currDateTimeString = currDateTime.format(formatter);
+        String filePath = exportDirectory + currDateTimeString + ".json";
+
+        ObservableList<Person> shownList = model.getFilteredPersonList();
+
+        try {
+            Storage.saveShownList(shownList, filePath);
+        } catch (IOException ioe) {
+            throw new CommandException("An error has occurred during exporting. Please try again.");
+        }
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
+    }
 }
