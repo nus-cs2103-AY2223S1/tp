@@ -57,7 +57,7 @@ class JsonAdaptedPerson {
             this.meetingDate = "";
         }
         if (meetingLocation != null) {
-            this.meetingLocation = meetingDate;
+            this.meetingLocation = meetingLocation;
         } else {
             this.meetingLocation = "";
         }
