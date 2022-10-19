@@ -58,7 +58,7 @@ public class ListTasksCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         hideAllTasks(model);
         assertCommandSuccess(
-                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS,Optional.empty(), new HashSet<>()),
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.empty(), new HashSet<>()),
                 model,
                 String.format(ListTasksCommand.MESSAGE_SUCCESS, expectedModel.getFilteredTaskList().size(), "", ""),
                 expectedModel
@@ -75,7 +75,7 @@ public class ListTasksCommandTest {
 
         Set<Index> personIndexes = new HashSet<>(Arrays.asList(outOfBoundIndex));
         ListTasksCommand c =
-                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS,Optional.empty(), personIndexes);
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.empty(), personIndexes);
 
         assertCommandFailure(c, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
