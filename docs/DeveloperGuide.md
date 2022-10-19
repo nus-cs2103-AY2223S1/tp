@@ -239,6 +239,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+
 ### \[Proposed\] Sort feature
 
 #### Proposed Implementation
@@ -250,6 +251,39 @@ _{To add activity diagram}_
 #### Design considerations:
 
 **Aspect: How sort command is implemented:**
+
+_{To add other design considerations}_
+
+
+### \[Proposed\] Alias feature
+
+#### Proposed Implementation
+
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `UniqueAliasList`, while
+in-built command names (e.g. add, delete) will be stored in a constant `reservedCommandList`.
+
+Given below is an example usage scenario and how the alias mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager` 
+with an empty `UniqueAliasList`.
+
+Step 2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command 
+will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
+are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
+`Model#addAlias(Alias toadd)`.
+
+Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that 
+the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in 
+`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand` 
+is then executed.
+
+_{To add sequence diagram}_
+
+_{To add activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How alias command is implemented:**
 
 _{To add other design considerations}_
 
