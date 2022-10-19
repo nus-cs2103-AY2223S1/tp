@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.phu.commons.core.GuiSettings;
@@ -20,7 +21,12 @@ import seedu.phu.testutil.InternshipBookBuilder;
 
 public class ModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
+    private ModelManager modelManager;
+
+    @BeforeEach
+    public void setUp() {
+        modelManager = new ModelManager();
+    }
 
     @Test
     public void constructor() {
@@ -91,6 +97,48 @@ public class ModelManagerTest {
     @Test
     public void getFilteredInternshipList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredInternshipList().remove(0));
+    }
+
+    @Test
+    public void canUndo_internshipBookIsNotUndoable_returnsFalse() {
+        assertFalse(modelManager.canUndoInternshipBook());
+    }
+
+    @Test
+    public void canUndo_internshipBookIsUndoable_returnsTrue() {
+        modelManager.addInternship(ALICE);
+        modelManager.commitInternshipBookChange();
+        assertTrue(modelManager.canUndoInternshipBook());
+    }
+
+    @Test
+    public void undo_internshipBookIsUndoable_success() {
+        modelManager.addInternship(ALICE);
+        modelManager.commitInternshipBookChange();
+        modelManager.undoInternshipBook();
+        assertFalse(modelManager.hasInternship(ALICE));
+    }
+
+    @Test
+    public void canRedo_internshipBookIsNotRedoable_returnsFalse() {
+        assertFalse(modelManager.canRedoInternshipBook());
+    }
+
+    @Test
+    public void canRedo_internshipBookIsRedoable_returnsTrue() {
+        modelManager.addInternship(ALICE);
+        modelManager.commitInternshipBookChange();
+        modelManager.undoInternshipBook();
+        assertTrue(modelManager.canRedoInternshipBook());
+    }
+
+    @Test
+    public void redo_internshipBookIsRedoable_success() {
+        modelManager.addInternship(ALICE);
+        modelManager.commitInternshipBookChange();
+        modelManager.undoInternshipBook();
+        modelManager.redoInternshipBook();
+        assertTrue(modelManager.hasInternship(ALICE));
     }
 
     @Test

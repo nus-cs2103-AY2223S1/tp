@@ -15,9 +15,12 @@ public class ClearCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.setInternshipBook(new InternshipBook());
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -25,7 +25,7 @@ import seedu.phu.model.internship.NameContainsKeywordsPredicate;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final InternshipBook internshipBook;
+    private final VersionedInternshipBook versionedInternshipBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
     private final FilteredList<Internship> viewItem;
@@ -38,10 +38,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with internship book: " + internshipBook + " and user prefs " + userPrefs);
 
-        this.internshipBook = new InternshipBook(internshipBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredInternships = new FilteredList<>(this.internshipBook.getInternshipList());
-        viewItem = new FilteredList<>(this.internshipBook.getInternshipList());
+        versionedInternshipBook = new VersionedInternshipBook(internshipBook);
+        filteredInternships = new FilteredList<>(versionedInternshipBook.getInternshipList());
+        viewItem = new FilteredList<>(versionedInternshipBook.getInternshipList());
         updateViewItem(new NameContainsKeywordsPredicate(new ArrayList<>()));
     }
 
@@ -88,28 +88,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setInternshipBook(ReadOnlyInternshipBook internshipBook) {
-        this.internshipBook.resetData(internshipBook);
+        versionedInternshipBook.resetData(internshipBook);
     }
 
     @Override
     public ReadOnlyInternshipBook getInternshipBook() {
-        return internshipBook;
+        return versionedInternshipBook;
     }
 
     @Override
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
-        return internshipBook.hasInternship(internship);
+        return versionedInternshipBook.hasInternship(internship);
     }
 
     @Override
     public void deleteInternship(Internship target) {
-        internshipBook.removeInternship(target);
+        versionedInternshipBook.removeInternship(target);
     }
 
     @Override
     public void addInternship(Internship internship) {
-        internshipBook.addInternship(internship);
+        versionedInternshipBook.addInternship(internship);
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
@@ -117,7 +117,7 @@ public class ModelManager implements Model {
     public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
 
-        internshipBook.setInternship(target, editedInternship);
+        versionedInternshipBook.setInternship(target, editedInternship);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class ModelManager implements Model {
     public void sortList(ComparableCategory category) {
         requireNonNull(category);
 
-        internshipBook.sortInternshipList(new Comparator<Internship>() {
+        versionedInternshipBook.sortInternshipList(new Comparator<Internship>() {
             @Override
             public int compare(Internship p1, Internship p2) {
                 return p1.compareTo(p2, category);
@@ -170,7 +170,34 @@ public class ModelManager implements Model {
 
     @Override
     public void reverseList() {
-        internshipBook.reverseList();
+        versionedInternshipBook.reverseList();
+    }
+
+    //=========== Handle undo and redo commands =============================================================
+
+    @Override
+    public boolean canUndoInternshipBook() {
+        return versionedInternshipBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoInternshipBook() {
+        return versionedInternshipBook.canRedo();
+    }
+
+    @Override
+    public void undoInternshipBook() {
+        versionedInternshipBook.undo();
+    }
+
+    @Override
+    public void redoInternshipBook() {
+        versionedInternshipBook.redo();
+    }
+
+    @Override
+    public void commitInternshipBookChange() {
+        versionedInternshipBook.commitChange();
     }
 
     @Override
@@ -187,7 +214,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return internshipBook.equals(other.internshipBook)
+        return versionedInternshipBook.equals(other.versionedInternshipBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredInternships.equals(other.filteredInternships);
     }
