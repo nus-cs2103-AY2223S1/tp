@@ -93,6 +93,7 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
+
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();

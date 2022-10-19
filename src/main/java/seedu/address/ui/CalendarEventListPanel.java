@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static javafx.scene.paint.Color.WHITE;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
@@ -26,7 +28,7 @@ public class CalendarEventListPanel extends VBox {
 
     }
     public VBox getCalendarEventList(int currentDay) {
-        Text tDate = new Text(" " + String.valueOf(currentDay));
+        Text tDate = getTextDate(currentDay);
 
         calendarEventList.getChildren().add(tDate);
         calendarDayEvents.stream()
@@ -34,4 +36,11 @@ public class CalendarEventListPanel extends VBox {
                         .add(new EventButton(x.toString()).getAppointmentButton()));
         return calendarEventList;
     }
+
+    public Text getTextDate(int currentDay) {
+        Text tDate = new Text(" " + String.valueOf(currentDay));
+        tDate.setFill(WHITE);
+        return tDate;
+    }
+
 }
