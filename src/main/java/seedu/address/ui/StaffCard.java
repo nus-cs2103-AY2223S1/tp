@@ -54,11 +54,11 @@ public class StaffCard extends UiPart<Region> {
         staffTitle.setText("Title : " + staff.getStaffTitle().toString());
         staffDepartment.setText("Department : " + staff.getStaffDepartment().toString());
         staffContact.setText("Phone Number : " + staff.getStaffContact());
-        boolean isInsured = staff.getStaffLeave().staffLeave.equals("true");
-        if (isInsured) {
-            staffLeave.getChildren().add(new Label("Insured"));
+        boolean isOnLeave = staff.getStaffLeave().staffLeave.equals("true");
+        if (isOnLeave) {
+            staffLeave.getChildren().add(new Label("On Leave"));
         } else {
-            staffLeave.getChildren().add(new Label("Not insured"));
+            staffLeave.getChildren().add(new Label("Available"));
         }
 
 
