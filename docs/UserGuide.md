@@ -74,7 +74,7 @@ Format: `help`.
 
 Adds a hobby activity to HobbyList.
 
-Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]...`
+Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]`
 
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
@@ -117,7 +117,7 @@ Example:
 
 Edits a specified activity from HobbyList.
 
-Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]...`
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`
 
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -191,14 +191,14 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 ## Command summary
 
-| Action     | Format                                                                                                                                                |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]...` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                | 
-| **Clear**  | `clear`                                                                                                                                               |
-| **Delete** | `delete INDEX`                                                                                                                                        |
-| **Edit**   | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]...`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
-| **Exit**   | `exit`                                                                                                                                                |
-| **Find**   | `find KEYWORDS`                                                                                                                                       |
-| **Filter** | `filter KEYWORD`                                                                                                                                      |
-| **List**   | `list`                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                |
+| Action     | Format                                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                | 
+| **Clear**  | `clear`                                                                                                                                            |
+| **Delete** | `delete INDEX`                                                                                                                                     |
+| **Edit**   | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
+| **Exit**   | `exit`                                                                                                                                             |
+| **Find**   | `find KEYWORDS`                                                                                                                                    |
+| **Filter** | `filter KEYWORD`                                                                                                                                   |
+| **List**   | `list`                                                                                                                                             |
+| **Help**   | `help`                                                                                                                                             |
