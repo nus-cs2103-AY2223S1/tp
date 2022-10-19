@@ -110,7 +110,8 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Returns the trimmed scholarship of the argument in the arguments string specified by {@code currentPrefixPosition}.
+     * Returns the trimmed scholarship of the argument in the arguments string
+     * specified by {@code currentPrefixPosition}.
      * The end position of the scholarship is determined by {@code nextPrefixPosition}.
      */
     private static String extractArgumentValue(String argsString,

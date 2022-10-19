@@ -118,7 +118,8 @@ public class ArgumentTokenizerTest {
     @Test
     public void tokenize_multipleArgumentsWithRepeats() {
         // Two arguments repeated, some have empty values
-        String argsString = "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT scholarship p/ pSlash scholarship -t";
+        String argsString =
+                "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT scholarship p/ pSlash scholarship -t";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreamblePresent(argMultimap, "SomePreambleString");
         assertArgumentPresent(argMultimap, pSlash, "pSlash scholarship");

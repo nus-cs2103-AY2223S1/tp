@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Applicant's Scholarship name in TrackAScholar.
  * Guarantees: immutable; is valid as declared in {@link #isValidScholarship(String)}
  */
-public class Scholarship implements Comparable<Scholarship>{
+public class Scholarship implements Comparable<Scholarship> {
 
     public static final String MESSAGE_CONSTRAINTS = "Scholarship can take any values, and it should not be blank";
 
