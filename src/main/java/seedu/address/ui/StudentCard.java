@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -63,14 +61,14 @@ public class StudentCard extends UiPart<Region> {
         contactInfo.setText("Phone: " + student.getPhone().value + " Telegram: " + student.getTelegramHandle());
         for (ModuleCode code: student.getStudentModuleInfo()) {
             Label temp = new Label(code.fullCode);
-            temp.setStyle("-fx-text-fill: white; -fx-background-color: #de3163;-fx-padding: 1 3 1 3; " +
-                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #de3163;-fx-padding: 1 3 1 3; "
+                    + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
             studentInfo.getChildren().add(temp);
         }
         for (Tag tag: student.getTags()) {
             Label temp = new Label(tag.tagName);
-            temp.setStyle("-fx-text-fill: white; -fx-background-color: #3e7b91;-fx-padding: 1 3 1 3; " +
-                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #3e7b91;-fx-padding: 1 3 1 3; "
+                    + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
             studentInfo.getChildren().add(temp);
         }
     }

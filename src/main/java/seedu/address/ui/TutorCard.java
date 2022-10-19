@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -58,14 +56,14 @@ public class TutorCard extends UiPart<Region> {
         studentID.setText("(" + tutor.getId() + ")");
         for (ModuleCode code: tutor.getTeachingAssistantInfo()) {
             Label temp = new Label(code.fullCode);
-            temp.setStyle("-fx-text-fill: white; -fx-background-color: #097969;-fx-padding: 1 3 1 3; " +
-                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #097969;-fx-padding: 1 3 1 3; "
+                    + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
             studentInfo.getChildren().add(temp);
         }
         for (Tag tag: tutor.getTags()) {
             Label temp = new Label(tag.tagName);
-            temp.setStyle("-fx-text-fill: white; -fx-background-color: #3e7b91;-fx-padding: 1 3 1 3; " +
-                    "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #3e7b91;-fx-padding: 1 3 1 3; "
+                    + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
             studentInfo.getChildren().add(temp);
         }
     }
