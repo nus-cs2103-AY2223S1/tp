@@ -71,14 +71,12 @@ public class UniqueEventList implements Iterable<Event> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.equals(editedEvent)) {
-            throw new DuplicatePersonException();
+        if (target.equals(editedEvent)) {
+            throw new DuplicatePersonException(); //TODO: change to duplicate Event exception.
         }
 
         internalList.set(index, editedEvent);
     }
-
-    //TODO: add method for editing Event at specified index here
 
     /**
      * Deletes an event from the internal list
