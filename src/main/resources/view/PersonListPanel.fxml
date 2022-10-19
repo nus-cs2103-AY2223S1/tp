@@ -3,6 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="personListViewBackground" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" style="-fx-background-color: #13315C;" VBox.vgrow="ALWAYS" />
+<VBox fx:id="personListViewBackground" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
 </VBox>

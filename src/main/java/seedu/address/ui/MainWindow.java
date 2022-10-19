@@ -1,14 +1,25 @@
 package seedu.address.ui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -22,7 +33,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> {
+public class MainWindow extends UiPart<Stage> implements Initializable {
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -37,10 +48,19 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
+    private Scene parent;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuBar menuBar;
+
+    @FXML
+    private HBox hbox;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -53,6 +73,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Label totalClient;
+
+    @FXML
+    private Button btnChangeTheme;
+
+    @FXML
+    private ImageView imageTheme;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -70,6 +96,49 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
         getTotalClient();
         helpWindow = new HelpWindow();
+
+        HBox.setHgrow(menuBar, Priority.ALWAYS);
+        HBox.setHgrow(btnChangeTheme, Priority.NEVER);
+
+        Preferences pref = Preferences.userRoot().node(this.getClass().getName());
+        initializeTheme(pref);
+        btnChangeTheme.setOnMouseClicked(event -> {
+            int mode = pref.getInt("mode", 0);
+            if (mode == 0) { //dark change to light
+                setLightTheme(pref);
+            } else { //light change to dark
+                setDarkTheme(pref);
+            }
+        });
+    }
+
+    void initializeTheme(Preferences pref) {
+        int mode = pref.getInt("mode", 0);
+        if (mode == 0) { //dark mode
+            parent.getStylesheets().add("view/DarkTheme.css");
+            Image image = new Image("images/moon.png");
+            imageTheme.setImage(image);
+        } else { //light mode
+            parent.getStylesheets().add("view/LightTheme.css");
+            Image image = new Image("images/sun.png");
+            imageTheme.setImage(image);
+        }
+    }
+
+    void setLightTheme(Preferences pref) {
+        parent.getStylesheets().add("view/LightTheme.css");
+        parent.getStylesheets().remove("view/DarkTheme.css");
+        pref.putInt("mode", 1);
+        Image image = new Image("images/sun.png");
+        imageTheme.setImage(image);
+    }
+
+    void setDarkTheme(Preferences pref) {
+        parent.getStylesheets().add("view/DarkTheme.css");
+        parent.getStylesheets().remove("view/LightTheme.css");
+        pref.putInt("mode", 0);
+        Image image = new Image("images/moon.png");
+        imageTheme.setImage(image);
     }
 
     public Stage getPrimaryStage() {
@@ -201,5 +270,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
