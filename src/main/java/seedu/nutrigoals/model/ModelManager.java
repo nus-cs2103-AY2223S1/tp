@@ -26,7 +26,6 @@ public class ModelManager implements Model {
     private final NutriGoals nutriGoals;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
-    private User user;
 
     private IsFoodAddedOnThisDatePredicate currentDatePredicate;
 
@@ -189,6 +188,11 @@ public class ModelManager implements Model {
         return nutriGoals.getUser();
     }
 
+    @Override
+    public Calorie calculateSuggestedCalorie() {
+        return nutriGoals.calculateSuggestedCalorie();
+    }
+
     /**
      * Checks if a profile has been created
      * @return True if a profile has been created, false otherwise
@@ -196,6 +200,23 @@ public class ModelManager implements Model {
     @Override
     public boolean isUserCreated() {
         return getUserDetails().isUserCreated();
+    }
+
+    @Override
+    public int getCalorieDifference() {
+        Calorie target = nutriGoals.getCalorieTarget();
+        Calorie actual = filteredFoods.stream()
+                .map(food -> food.getCalorie())
+                .reduce(new Calorie("0"), (prev, curr) -> prev.addCalorie(curr));
+        return target.calculateDifference(actual);
+    }
+
+    @Override
+    public Calorie getTotalCalorie() {
+        Calorie total = filteredFoods.stream()
+                .map(food -> food.getCalorie())
+                .reduce(new Calorie("0"), (prev, curr) -> prev.addCalorie(curr));
+        return total;
     }
 
     @Override

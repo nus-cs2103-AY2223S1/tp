@@ -42,11 +42,31 @@ public class JsonAdaptedFoodTest {
 
     @Test
     public void toModelType_invalidTag_throwsIllegalValueException() {
-        // List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        // invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedFood food =
                 new JsonAdaptedFood(VALID_NAME, VALID_CALORIE, INVALID_TAG, VALID_DATE);
         assertThrows(IllegalValueException.class, food::toModelType);
     }
 
+    @Test
+    public void toModelType_nullTag_throwsIllegalValueException() {
+        JsonAdaptedFood food = new JsonAdaptedFood(VALID_NAME, VALID_CALORIE, null, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidCalorie_throwsIllegalValueException() {
+        // negative calorie
+        JsonAdaptedFood food = new JsonAdaptedFood(VALID_NAME, "-200", VALID_TAG, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+
+        // non-integer values
+        food = new JsonAdaptedFood(VALID_NAME, "abc", VALID_TAG, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+        food = new JsonAdaptedFood(VALID_NAME, "10.4", VALID_TAG, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+
+        // null calorie
+        food = new JsonAdaptedFood(VALID_NAME, null, VALID_TAG, VALID_DATE);
+        assertThrows(NullPointerException.class, food::toModelType);
+    }
 }

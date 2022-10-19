@@ -2,11 +2,8 @@ package seedu.nutrigoals.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.meal.DateTime;
-import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 
 /**
@@ -30,20 +27,15 @@ public class ReviewCommand extends Command {
         requireNonNull(model);
         DateTime today = new DateTime();
         model.updateFilteredFoodList(new IsFoodAddedOnThisDatePredicate(today));
-        List<Food> listOfFoodsToday = model.getFilteredFoodList();
-
-        int calorieCount = 0;
-        for (Food food : listOfFoodsToday) {
-            calorieCount += food.getCalorie().getCalorieValue();
-        }
+        int calorieCount = model.getTotalCalorie().getCalorieValue();
+        int difference = model.getCalorieDifference();
         int calorieTarget = model.getCalorieTarget().getCalorieValue();
-        int calorieDifference = calorieTarget - calorieCount;
 
         String calorieStatus;
-        if (calorieDifference > 0) {
-            calorieStatus = String.format(MESSAGE_CALORIE_DEFICIENCY, calorieDifference);
-        } else if (calorieDifference < 0) {
-            calorieStatus = String.format(MESSAGE_CALORIE_EXCESS, -calorieDifference);
+        if (difference > 0) {
+            calorieStatus = String.format(MESSAGE_CALORIE_DEFICIENCY, difference);
+        } else if (difference < 0) {
+            calorieStatus = String.format(MESSAGE_CALORIE_EXCESS, -difference);
         } else {
             calorieStatus = MESSAGE_CALORIE_SUFFICIENCY;
         }

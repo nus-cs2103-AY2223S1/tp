@@ -123,6 +123,10 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         return user;
     }
 
+    public Calorie calculateSuggestedCalorie() {
+        return user.calculateSuggestedCalorieIntake();
+    }
+
     public void setNusGymsLocations(List<Location> nusGymsLocations) {
         requireNonNull(nusGymsLocations);
         this.nusGymsLocations.clear();

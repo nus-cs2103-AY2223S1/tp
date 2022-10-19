@@ -170,15 +170,31 @@ public class SetupCommandTest {
         }
 
         @Override
+        public Calorie calculateSuggestedCalorie() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        /**
+         * @return
+         */
         public List<Location> getNusGymLocations() {
             throw new AssertionError("This method should not be called");
         }
+
         @Override
         public boolean isUserCreated() {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public int getCalorieDifference() {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public Calorie getTotalCalorie() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 

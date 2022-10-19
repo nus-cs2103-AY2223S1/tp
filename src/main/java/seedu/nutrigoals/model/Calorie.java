@@ -50,6 +50,32 @@ public class Calorie {
         return Integer.parseInt(value);
     }
 
+    /**
+     * Calculates the caloric difference
+     * @param other Calorie to subtract
+     * @return Caloric difference
+     */
+    public int calculateDifference(Calorie other) {
+        int operand1 = this.getCalorieValue();
+        int operand2 = other.getCalorieValue();
+        int diff = operand1 - operand2;
+
+        return diff;
+    }
+
+    /**
+     * Adds up two calorie
+     * @param other Calorie to add
+     * @return Sum of two calorie
+     */
+    public Calorie addCalorie(Calorie other) {
+        int operand1 = this.getCalorieValue();
+        int operand2 = other.getCalorieValue();
+        int sum = operand1 + operand2;
+
+        return new Calorie(Integer.toString(sum));
+    }
+
     @Override
     public String toString() {
         return value + " calories";

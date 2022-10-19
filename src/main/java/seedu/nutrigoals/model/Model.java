@@ -116,6 +116,13 @@ public interface Model {
     /** Returns true if the filtered food list has no food items */
     boolean isFilteredFoodListEmpty();
 
+    Calorie calculateSuggestedCalorie();
+
     List<Location> getNusGymLocations();
+
     boolean isUserCreated();
+
+    int getCalorieDifference();
+
+    Calorie getTotalCalorie();
 }

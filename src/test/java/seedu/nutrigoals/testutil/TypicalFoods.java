@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.meal.Food;
 
@@ -35,6 +36,8 @@ public class TypicalFoods {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    public static final Calorie TARGET_CALORIE = new Calorie();
+
     private TypicalFoods() {} // prevents instantiation
 
     /**
@@ -45,6 +48,8 @@ public class TypicalFoods {
         for (Food food : getTypicalFoods()) {
             ab.addFood(food);
         }
+
+        // ab.setCalorieTarget(TARGET_CALORIE);
         return ab;
     }
 
