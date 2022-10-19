@@ -2,19 +2,10 @@ package foodwhere.model.stall;
 
 import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import foodwhere.model.review.exceptions.ReviewNotFoundException;
 import org.junit.jupiter.api.Test;
 
-import foodwhere.logic.commands.CommandTestUtil;
-import foodwhere.testutil.TypicalReviews;
-import foodwhere.testutil.TypicalStalls;
-
-
-import foodwhere.logic.commands.CommandTestUtil;
-import foodwhere.model.review.Review;
+import foodwhere.model.review.exceptions.ReviewNotFoundException;
 import foodwhere.testutil.TypicalReviews;
 import foodwhere.testutil.TypicalStalls;
 

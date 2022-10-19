@@ -1,5 +1,7 @@
 package foodwhere.model.stall;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,8 +11,6 @@ import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.exceptions.ReviewNotFoundException;
 import foodwhere.model.util.SampleDataUtil;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * A utility class to help with building Stall objects.
