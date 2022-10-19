@@ -238,6 +238,29 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Mark Task as Done Feature
+#### Implementation
+
+The mark feature allows users to mark a specific task as done. 
+
+The following is an example usage scenario of how a task is marked as done:
+
+Precondition: Task index provided is valid.
+
+1. User keys in mark command with the specific index of the task. (eg. mark 1)
+2. The first task in the task list is marked as done.
+
+If any of the following occurs:
+
+1. Index given is negative
+2. Index given is out of range (i.e. There are fewer tasks than the specified index)
+3. Task has already been marked as done
+
+Then, an appropriate exception will be thrown and the respective error message will be
+shown to the user.
+
+The following activity diagram summarises the action taken when markCommand is executed:
+
 
 --------------------------------------------------------------------------------------------------------------------
 
