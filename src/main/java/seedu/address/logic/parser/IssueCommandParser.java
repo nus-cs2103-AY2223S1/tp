@@ -123,6 +123,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ISSUE_ID, PREFIX_DESCRIPTION,
                         PREFIX_DEADLINE, PREFIX_PRIORITY);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_ISSUE_ID) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditIssueCommand.MESSAGE_USAGE));

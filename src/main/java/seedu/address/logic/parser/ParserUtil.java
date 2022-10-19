@@ -258,7 +258,7 @@ public class ParserUtil {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();
         if (!ProjectId.isValidProjectId(trimmedId)) {
-            throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ProjectId.MESSAGE_INVALID);
         }
         int trimmedIdInt = Integer.parseInt(trimmedId);
         return new Project(new Name("default"), new Repository("default/default"),
@@ -277,7 +277,7 @@ public class ParserUtil {
         requireNonNull(issueId);
         String trimmedId = issueId.trim();
         if (!IssueId.isValidIssueId(trimmedId)) {
-            throw new ParseException(IssueId.MESSAGE_CONSTRAINTS);
+            throw new ParseException(IssueId.MESSAGE_INVALID);
         }
         int trimmedIdInt = Integer.parseInt(trimmedId);
 

@@ -48,7 +48,7 @@ public class EditIssueCommand extends IssueCommand {
      * Creates an EditIssueCommand to edit the specified {@code Issue}
      */
     public EditIssueCommand(Description newDescription, Deadline newDeadline, Priority newPriority, IssueId issueId) {
-        requireAllNonNull(newDescription, newDeadline, newPriority, issueId);
+        // NULL values passed into constructor here represent absent optional inputs
         this.newDescription = newDescription;
         this.newDeadline = newDeadline;
         this.newPriority = newPriority;
