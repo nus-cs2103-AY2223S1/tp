@@ -77,11 +77,13 @@ public class SetCommand extends Command {
     private Person createUpdatedPerson(Person personToEdit,
                                        SetPersonDescriptor setPersonDescriptor) {
         assert personToEdit != null;
-        Name name = personToEdit.getName();
-        Address addr = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
-        Role role = personToEdit.getRole();
-        Timezone timezone = personToEdit.getTimezone();
+        Name name = setPersonDescriptor.getName().orElse(personToEdit.getName());
+        Address addr = setPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Tag> tags = setPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Role role = setPersonDescriptor.getRole().orElse(personToEdit.getRole());
+        Timezone timezone = setPersonDescriptor.getTimezone().orElse(personToEdit.getTimezone());
+
+        //TODO: add functionality to update user once the Person class is updated
 
         // get map of contacts from person
         Map<ContactType, Contact> oldContacts = personToEdit.getContacts();
