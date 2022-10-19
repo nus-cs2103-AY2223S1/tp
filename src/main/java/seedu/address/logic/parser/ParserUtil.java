@@ -19,6 +19,8 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -230,6 +232,42 @@ public class ParserUtil {
             throw new ParseException(GithubUsername.MESSAGE_CONSTRAINTS);
         }
         return new GithubUsername(trimmedUsername, true);
+    }
+
+    /**
+     * Parses a {@code String year} into an {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Year} is invalid.
+     */
+    public static Year parseYear(String year, Boolean isPresent) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!isPresent) {
+            return new Year(trimmedYear, false);
+        }
+        if (!Year.isValidYear(year)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(trimmedYear, true);
+    }
+
+    /**
+     * Parses a {@code String field} into an {@code Specialisation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Year} is invalid.
+     */
+    public static Specialisation parseSpecialisation(String field, Boolean isPresent) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!isPresent) {
+            return new Specialisation(trimmedField, false);
+        }
+        if (!Specialisation.isValidSpecialisation(field)) {
+            throw new ParseException(Specialisation.MESSAGE_CONSTRAINTS);
+        }
+        return new Specialisation(trimmedField, true);
     }
 
 }

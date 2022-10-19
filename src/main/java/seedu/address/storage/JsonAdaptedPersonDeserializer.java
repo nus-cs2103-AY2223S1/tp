@@ -19,15 +19,17 @@ public class JsonAdaptedPersonDeserializer extends JsonDeserializer<JsonAdaptedP
         Root root = p.readValueAs(Root.class);
         if (root.type.equals("p")) {
             return new JsonAdaptedProfessor(root.type, root.name, root.moduleCode, root.phone,
-                    root.email, root.gender, root.tagged, root.location, root.username, root.rating);
+                    root.email, root.gender, root.tagged, root.location, root.username, root.rating,
+                    root.specialisation);
         } else if (root.type.equals("s")) {
             return new JsonAdaptedStudent(root.type, root.name, "", root.moduleCodes, root.phone,
-                    root.email, root.gender, root.tagged, root.location, root.username, "");
+                    root.email, root.gender, root.tagged, root.location, root.username, root.year);
         } else if (root.type.equals("t")) {
             return new JsonAdaptedTeachingAssistant(root.type, root.name, root.moduleCode, root.phone,
-                    root.email, root.gender, root.tagged, root.location, root.username, root.rating);
+                    root.email, root.gender, root.tagged, root.location, root.username, root.rating,
+                    "");
         } else {
-            throw new IOException("Invalid type");
+            throw new IOException("Invalid type found in Json file!");
         }
 
     }
@@ -44,5 +46,7 @@ public class JsonAdaptedPersonDeserializer extends JsonDeserializer<JsonAdaptedP
         private String location;
         private String username;
         private String rating;
+        private String year;
+        private String specialisation;
     }
 }
