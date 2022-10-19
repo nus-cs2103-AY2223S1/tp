@@ -23,12 +23,14 @@
       "goods" : "Books",
       "price" : "12.30",
       "quantity" : "10",
-      "type" : "BUY"
+      "type" : "BUY",
+      "date" : "20/01/2000"
     }, {
       "goods" : "Toys",
       "price" : "150",
       "quantity" : "2",
-      "type" : "SELL"
+      "type" : "SELL",
+      "date" : "20/01/2000"
     } ]
   }, {
     "name" : "Carl Kurz",
