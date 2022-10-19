@@ -40,7 +40,12 @@ public interface Logic {
 
     ObservableList<Project> getFilteredProjectList();
 
+    ObservableList<Project> getFilteredSortedProjectList();
+
     ObservableList<Issue> getFilteredIssueList();
+
+    ObservableList<Issue> getFilteredSortedIssueList();
+
     ObservableList<Client> getFilteredClientList();
 
     /**
@@ -60,7 +65,6 @@ public interface Logic {
 
     void setUi(Ui ui);
 
-    ObservableList<Project> getFilteredSortedProjectList();
     DefaultView getDefaultView();
 
     void setDefaultView(DefaultView defaultView);

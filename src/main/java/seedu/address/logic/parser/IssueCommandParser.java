@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
@@ -18,6 +20,8 @@ import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
+import seedu.address.logic.commands.issue.SortIssueCommand;
+import seedu.address.logic.commands.project.SortProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
@@ -48,6 +52,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseEditIssueCommand(arguments);
         case DeleteIssueCommand.COMMAND_FLAG:
             return parseDeleteIssueCommand(arguments);
+        case SortIssueCommand.COMMAND_FLAG:
+            return parseSortIssueCommand(arguments);
         case ListIssueCommand.COMMAND_FLAG:
             return parseListIssueCommand(arguments);
         case SetIssueDefaultViewCommand.COMMAND_FLAG:
@@ -73,6 +79,18 @@ public class IssueCommandParser implements Parser<IssueCommand> {
      */
     private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+
+    /**
+     * Verifies only one valid user input argument
+     * Length of a valid command for sort key for issue by priority e.g.pr/1
+     *
+     * @param arguments user input for key for sort by deadline
+     * @return true if there is only one valid input
+     */
+    private boolean hasOneArgumentOfLengthFour(String arguments) {
+        return arguments.trim().length() != 4;
     }
 
     private AddIssueCommand parseAddIssueCommand(String arguments) throws ParseException {
@@ -147,6 +165,31 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteIssueCommand.MESSAGE_USAGE), pe);
         }
+    }
+
+    private SortIssueCommand parseSortIssueCommand(String arguments) throws ParseException {
+
+        Prefix sortPrefix = null;
+        int key = -1;
+
+        if (hasOneArgumentOfLengthFour(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortIssueCommand.MESSAGE_USAGE));
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_PRIORITY);
+
+        if (!anyPrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortIssueCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            sortPrefix = PREFIX_PRIORITY;
+            key = ParserUtil.parsePrioritySort(argMultimap.getValue(PREFIX_PRIORITY).get());
+        }
+
+        return new SortIssueCommand(sortPrefix, key);
     }
 
     private ListIssueCommand parseListIssueCommand(String arguments) {

@@ -152,7 +152,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
     }
 
-    void swapProjectSortedDeadlineListDisplay() {
+    void swapProjectSortedListDisplay() {
         projectListPanel = new ProjectListPanel(logic.getFilteredSortedProjectList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
@@ -160,6 +160,12 @@ public class MainWindow extends UiPart<Stage> {
 
     void swapIssueListDisplay() {
         issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
+    }
+
+    void swapIssueSortedListDisplay() {
+        issueListPanel = new IssueListPanel(logic.getFilteredSortedIssueList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
     }

@@ -17,4 +17,6 @@ public interface Ui {
     void showClients();
 
     void showSortedProjects();
+
+    void showSortedIssues();
 }

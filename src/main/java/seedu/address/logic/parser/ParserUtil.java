@@ -18,6 +18,7 @@ import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.project.Project;
@@ -324,6 +325,21 @@ public class ParserUtil {
         String trimmedKey = key.trim();
         if (!Project.isValidIssueCountSortKey(trimmedKey)) {
             throw new ParseException(Project.MESSAGE_INVALID_NAME_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user to sort by priority.
+     * @return Integer of 0 or 1 which specifies the priority order of sorting.
+     */
+    public static Integer parsePrioritySort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Issue.isValidPrioritySortKey(trimmedKey)) {
+            throw new ParseException(Issue.MESSAGE_INVALID_PRIORITY_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }

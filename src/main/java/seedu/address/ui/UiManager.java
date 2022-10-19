@@ -92,12 +92,17 @@ public class UiManager implements Ui {
 
     @Override
     public void showSortedProjects() {
-        mainWindow.swapProjectSortedDeadlineListDisplay();
+        mainWindow.swapProjectSortedListDisplay();
     }
 
     @Override
     public void showIssues() {
         mainWindow.swapIssueListDisplay();
+    }
+
+    @Override
+    public void showSortedIssues() {
+        mainWindow.swapIssueSortedListDisplay();
     }
 
     @Override

@@ -125,8 +125,23 @@ public class AddressBookTest {
         }
 
         @Override
+        public ObservableList<Issue> getModifiableIssueList() {
+            return issues;
+        }
+
+        @Override
         public ObservableList<Client> getClientList() {
             return clients;
+        }
+
+        @Override
+        public ObservableList<Project> getSortedProjectList() {
+            return projects;
+        }
+
+        @Override
+        public ObservableList<Issue> getSortedIssueList() {
+            return issues;
         }
 
         @Override

@@ -52,25 +52,25 @@ public class SortProjectCommand extends ProjectCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        String sortPrefixString = "";
+        String sortKeyString = "";
 
         if (sortKey.equals(PREFIX_DEADLINE)) {
             model.sortProjectsByDeadline(sortOrder);
-            sortPrefixString = "deadline.";
+            sortKeyString = "deadline.";
         }
 
         if (sortKey.equals(PREFIX_ISSUE_COUNT)) {
             model.sortProjectsByIssueCount(sortOrder);
-            sortPrefixString = "issue count.";
+            sortKeyString = "issue count.";
         }
 
         if (sortKey.equals(PREFIX_NAME)) {
             model.sortProjectsByName(sortOrder);
-            sortPrefixString = "names.";
+            sortKeyString = "names.";
         }
 
         ui.showSortedProjects();
         model.updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(MESSAGE_SUCCESS + " according to " + sortPrefixString);
+        return new CommandResult(MESSAGE_SUCCESS + " according to " + sortKeyString);
     }
 }

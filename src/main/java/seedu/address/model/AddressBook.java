@@ -29,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueEntityList<Person> persons;
     private final UniqueEntityList<Issue> issues;
     private final UniqueEntityList<Project> sortedProjects;
+    private final UniqueEntityList<Issue> sortedIssues;
 
     /**
      * Creates an empty addressbook
@@ -39,6 +40,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniqueEntityList<>();
         issues = new UniqueEntityList<>();
         sortedProjects = new UniqueEntityList<>();
+        sortedIssues = new UniqueEntityList<>();
     }
 
     /**
@@ -87,6 +89,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.sortedProjects.setList(projects);
     }
 
+    public void setSortedIssues(List<Issue> issues) {
+        this.sortedIssues.setList(issues);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -98,6 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setProjects(newData.getProjectList());
         setClients(newData.getClientList());
         setSortedProjects(newData.getProjectList());
+        setSortedIssues(newData.getIssueList());
     }
 
     //// client-level operations
@@ -330,6 +337,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         setSortedProjects(sortedProjectsByName);
     }
 
+    /**
+     * Sort issues in according to lowest or highest priority based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for lowest priority and one for highest priority
+     */
+    public void sortIssuesByPriority(int order) {
+        ObservableList<Issue> sortedIssuesByPriority;
+        if (order == 0) {
+            //sort according to the lowest priority
+            sortedIssuesByPriority =
+                    getModifiableIssueList().sorted(Comparator.comparing(Issue::getPriority));
+        } else {
+            //sort according to the highest priority
+            sortedIssuesByPriority = getModifiableIssueList().sorted((i1, i2) ->
+                    i2.getPriority().compareTo(i1.getPriority()));
+        }
+        setSortedIssues(sortedIssuesByPriority);
+    }
+
     //// util methods
 
     @Override
@@ -361,12 +387,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Issue> getModifiableIssueList() {
+        return issues.asModifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
 
+    @Override
     public ObservableList<Project> getSortedProjectList() {
         return sortedProjects.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Issue> getSortedIssueList() {
+        return sortedIssues.asUnmodifiableObservableList();
     }
 
     @Override

@@ -37,4 +37,9 @@ public class StubUiManager implements Ui {
     public void showSortedProjects() {
 
     }
+
+    @Override
+    public void showSortedIssues() {
+
+    }
 }

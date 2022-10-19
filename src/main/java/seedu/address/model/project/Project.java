@@ -16,10 +16,8 @@ import seedu.address.model.issue.Issue;
  */
 public class Project implements ComparableByName<Project>, HasIntegerIdentifier<Project> {
 
-
     public static final String MESSAGE_INVALID_DEADLINE_SORT_KEY =
             "Enter either a 0 to sort by chronological order or a 1 to sort by reverse chronological order";
-
 
     public static final String MESSAGE_INVALID_ISSUE_COUNT_SORT_KEY =
             "Enter either a 0 to sort by ascending order or a 1 to sort by descending order";

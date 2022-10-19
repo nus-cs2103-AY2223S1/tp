@@ -140,7 +140,11 @@ public interface Model {
 
     ObservableList<Project> getFilteredProjectList();
 
+    ObservableList<Project> getFilteredSortedProjectList();
+
     ObservableList<Issue> getFilteredIssueList();
+
+    ObservableList<Issue> getFilteredSortedIssueList();
 
     ObservableList<Client> getFilteredClientList();
 
@@ -151,6 +155,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updateFilteredProjectList(Predicate<Project> predicate);
+
+    void updateFilteredSortedIssueList(Predicate<Issue> predicate);
 
     void updateFilteredIssueList(Predicate<Issue> predicate);
 
@@ -164,6 +170,7 @@ public interface Model {
 
     void sortProjectsByName(int sortByNameKey);
 
-    ObservableList<Project> getFilteredSortedProjectList();
+    void sortIssuesByPriority(int sortIssuesByPriority);
+
     void setDefaultView(DefaultView defaultView);
 }

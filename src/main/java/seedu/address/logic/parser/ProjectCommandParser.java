@@ -83,7 +83,8 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
     }
 
     /**
-     * Verify that there is only one user input.
+     * Verifies only one valid user input argument
+     * Length of a valid command for sort key for project by deadline, issue count and name e.g.d/1
      *
      * @param arguments user input for key for sort by deadline
      * @return true if there is only one valid input
