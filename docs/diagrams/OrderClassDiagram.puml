@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor ORDER_MODEL_COLOR
+skinparam classBackgroundColor ORDER_MODEL_COLOR
+
+Class Order {
+
+}
+Class Name
+Class Phone
+Class Email
+Class Address
+Class LocalDateTime
+Class ItemQuantityPair
+
+Order *--> "1" Name: by >
+Order *--> "1" Phone: contacted at >
+Order *--> "1" Email: contacted at >
+Order *--> "1" Address: to deliver to >
+Order *--> "1" LocalDateTime: created at >
+Order *---> "1..*" ItemQuantityPair : consists of >
+
+@enduml

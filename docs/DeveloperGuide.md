@@ -164,13 +164,15 @@ to form the backbone of the application, allowing for efficient and reliable tra
 As per the Model diagram given [above](<ENSURE DIAGRAM CONSISTENCY HERE>), the application keeps track of one `OrderList`
 at any point in time. This `OrderList` instance represents the container that keeps track of all order data in the system.
 
-Currently, the application supports 5 main operations that interact directly with the `OrderList`. They are represented by
+Currently, the application features 5 main operations that interact directly with the `OrderList`. They are represented by
 the following commands:
 * `AddOrderCommand` - creates a new order to be added to the `OrderList`
 * `FindOrderCommand` - filters and display matching orders from the `OrderList` based on provided keywords
 * `ListOrderCommand` - display all order data from the `OrderList`
 * `EditOrderCommand` - edit the data of an order from the `OrderList`
 * `DeleteOrderCommand` - deletes an existing order from the `OrderList`
+
+The order management feature is supported by the `Order` class, represented by the class diagram below.
 
 #### Add Order Feature
 
