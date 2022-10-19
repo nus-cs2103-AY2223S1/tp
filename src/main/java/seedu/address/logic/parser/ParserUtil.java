@@ -244,7 +244,6 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code person} is invalid.
      */
-     
      public static String parseTemplate(String person) throws ParseException {
         requireNonNull(person);
         String trimmedPerson = person.trim();
@@ -252,7 +251,7 @@ public class ParserUtil {
         if (!TemplateCommand.isValidPerson(trimmedPerson)) {
             throw new ParseException(TemplateCommand.MESSAGE_CONSTRAINTS);
         }
-        return trimmedPerson; 
+        return trimmedPerson;
     }
 
     /**
