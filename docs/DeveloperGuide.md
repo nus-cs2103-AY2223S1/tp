@@ -313,8 +313,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
-#### Design Considerations
+This feature is facilitated by `ShowCommand`, which extends `Command` with an index, stored internally as `index`.
+It overwrites the following operations:
+* `ShowCommand#execute()` — Executes the command, displaying the details of the contact at the specified index.
+* `ShowCommand#equals(Object o)` — Checks if two objects are equal.
 
+Given below is an example usage scenario and how the displaying mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons with their `Positions`.
+
+![ShowDiagram1](images/ShowDiagram1.png)
+
+Step 2. The user executes `show 1` command to display the details of the first contact shown. The `show` keyowrd causes
+`AddressBookParser#parseCommand()` to call `ShowCommandParser#parse()`. This returns a `ShowCommand` containing the
+`index 1`.
+
+![ShowDiagram2](images/ShowDiagram2.png)
+
+Step 3. `Model` retrieves the `Person` object located at `index 1`. This returns a `CommandResult` containing the `Person`
+object.
+
+![ShowDiagram3](images/ShowDiagram3.png)
+
+Step 4. `MainWindow` from `UI` component will process the `CommandResult` and display the details found inside the
+included `Person` object.
+
+The following show diagram shows how the show operation works:
+
+![ShowSequenceDiagram](images/ShowSequenceDiagram.png)
+
+#### Design Considerations
+* **Alternative 1 (current choice):** Passing `Person` object to `MainWindow`
+    * Pros: Reduced coupling throughout the program
+    * Cons: Changing of many method signatures, unintuitive to implement at first.
+
+* **Alternative 2:** Passing `index` to `MainWindow` to retrieve details from `Model`
+    * Pros: More intuitive to implement in the sense that only `MainWindow` would be primarily modified.
+    * Cons: Increased coupling, violation of Law of Demeter.
 
 --------------------------------------------------------------------------------------------------------------------
 
