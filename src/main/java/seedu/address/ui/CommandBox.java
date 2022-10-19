@@ -10,12 +10,10 @@ import java.util.TreeSet;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
-import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.skin.ContextMenuSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -39,17 +37,13 @@ public class CommandBox extends UiPart<Region> {
     private int commandLogPointer;
     private String currentText;
 
-    // suggestions
-
+    // autocomplete
     // suggestions for address book commands (excludes task related commands)
     private final SortedSet<String> suggestionsAb;
     // suggestions for task related commands
     private final SortedSet<String> suggestionsTasks;
     // pop up used to select a suggestion
     private final ContextMenu suggestionsPopup;
-    private ContextMenuSkin skin;
-    private Node down;
-    private boolean isShown;
 
     @FXML
     private TextField commandTextField;
@@ -73,11 +67,17 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Collates all the events to be added to commandTextField.
+     * Add events to commandTextField.
      */
     private void addEvents() {
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
-        addPopupNavigationEvent();
+        // prevents the suggestions popup from disappearing when user presses tab.
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.TAB) {
+                handleTextChanged();
+                event.consume();
+            }
+        });
     }
 
     /**
@@ -101,36 +101,32 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    private void addPopupNavigationEvent() {
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.TAB) {
-                handleTextChanged();
-                if (suggestionsPopup.isShowing() && isShown) {
-                    skin.getNode().lookup(".menu-down-arrow").requestFocus();
-                }
-                event.consume();
-            }
-        });
-    }
-
     /**
      * Allows the user to navigate between previously entered commands with the UP and DOWN arrow keys.
      * If no more previous command and UP key is pressed, nothing happens.
      * If current text matches the latest command and DOWN key is pressed, nothing happens.
      */
     private void handleNavigationKeysPressed(KeyEvent event) {
+        // TODO: Update this comment
         if (suggestionsPopup.isShowing()) {
             suggestionsPopup.hide();
             return;
         }
 
+        // Guard: If there are no commands, nothing happens
+        if (commandLog.size() == 0) {
+            return;
+        }
+
         if (event.getCode() == KeyCode.UP) {
             event.consume();
-            // if text field shows the earliest command, nothing changes.
-            if (commandLogPointer == 0 || commandLog.size() == 0) {
+
+            // Guard: If the text field shows the earliest command, nothing changes
+            if (commandLogPointer == 0) {
                 return;
             }
 
+            // Text in the commandTextField should be saved, so the user does not need to type it in again
             if (commandLogPointer == commandLog.size()) {
                 currentText = commandTextField.getText();
             }
@@ -140,11 +136,7 @@ public class CommandBox extends UiPart<Region> {
             event.consume();
             commandLogPointer += 1;
 
-            if (commandLog.size() == 0) {
-                return;
-            }
-
-            // if text field shows the latest command, nothing changes.
+            // If text field shows the latest command, nothing changes
             if (commandLogPointer >= commandLog.size()) {
                 commandLogPointer = commandLog.size();
                 commandTextField.setText(currentText == null ? "" : currentText);
@@ -153,35 +145,38 @@ public class CommandBox extends UiPart<Region> {
 
             commandTextField.setText(commandLog.get(commandLogPointer));
         } else {
-            // do not do anything if any other key is pressed.
+            // do not do anything if any other key is pressed
             return;
         }
 
         commandTextField.positionCaret(commandTextField.getText().length());
     }
 
-    // suggestions: https://gist.github.com/floralvikings/10290131
-    // TODO: Update JavaDocs code
+    // Detects text changes in commandTextField to update suggestions popup
     @FXML
     private void handleTextChanged() {
         String currentText = commandTextField.getText();
 
+        // Guard: Stop if no text in command text field
         if (currentText.isEmpty()) {
             suggestionsPopup.hide();
             return;
         }
 
+        // Guard: If suggestions do not match text in command text field, stop
         if (suggestionsAb.size() == 0 || suggestionsTasks.size() == 0) {
             return;
         }
 
         List<String> searchResult;
 
+        // Populate suggestions popup with task related commands
         if (currentText.startsWith(TaskCommand.COMMAND_WORD + " ")
             || currentText.startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
             String resultFrom = currentText.substring(currentText.indexOf(" ")).stripLeading();
             searchResult = new LinkedList<>(suggestionsTasks
                 .subSet(resultFrom, resultFrom + Character.MAX_VALUE));
+            // Guard: If the text in command text field matches the only suggestion, hide the popup
             if (searchResult.size() == 1 && resultFrom.equalsIgnoreCase(searchResult.get(0))) {
                 return;
             }
@@ -192,12 +187,10 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
         }
-        populatePopup(searchResult);
 
+        populatePopup(searchResult);
         suggestionsPopup.show(
             getRoot(), Side.BOTTOM, 14 + currentText.length() * 7, -8);
-        skin = (ContextMenuSkin) suggestionsPopup.getSkin();
-        isShown = true;
     }
 
     /**
@@ -205,18 +198,23 @@ public class CommandBox extends UiPart<Region> {
      * @param searchResult set of matching strings
      */
     private void populatePopup(List<String> searchResult) {
+        String currentText = commandTextField.getText();
         List<CustomMenuItem> menuItems = new LinkedList<>();
         for (final String result : searchResult) {
             Label entryLabel = new Label(result);
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             item.setOnAction(actionEvent -> {
-                if (commandTextField.getText().startsWith(TaskCommand.COMMAND_WORD + " ")
-                    || commandTextField.getText().startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
-                    commandTextField.setText(commandTextField.getText().split(" ")[0] + " " + result);
+                // Checks if user is typing a task command
+                if (currentText.startsWith(TaskCommand.COMMAND_WORD + " ")
+                    || currentText.startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
+                    // Keep the front part (i.e. 'task or 't') the same
+                    commandTextField.setText(currentText.split(" ")[0] + " " + result);
                 } else {
+                    // Autocomplete the user's current command
                     commandTextField.setText(result);
                 }
-                commandTextField.positionCaret(commandTextField.getText().length());
+                commandTextField.positionCaret(currentText.length());
+                // Hide the popup once the autocomplete happens
                 suggestionsPopup.hide();
             });
             menuItems.add(item);
