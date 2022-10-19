@@ -178,7 +178,7 @@ The `AddProfileCommand` allows the user to add new profiles to NUScheduler.
 
 The `AddEventCommand` allows the user to add new events to NUScheduler.
 
-###### Implementation
+##### Implementation
 
 `AddEventCommand` extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddEventCommand` overrides the `Command#execute()` method, which will add events when called.
 
