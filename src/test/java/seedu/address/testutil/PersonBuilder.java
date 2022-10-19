@@ -23,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PRIORITY = "normal";
 
     private Name name;
     private Phone phone;
@@ -30,7 +31,7 @@ public class PersonBuilder {
     private Address address;
     private PriceRange priceRange;
     private Characteristics characteristics;
-    private Set<Priority> priorities;
+    private Priority priority;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,7 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         priceRange = null;
         characteristics = null;
-        priorities = new HashSet<>();
+        priority = new Priority(DEFAULT_PRIORITY);
     }
 
     /**
@@ -55,7 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         priceRange = personToCopy.getPriceRange().orElse(null);
         characteristics = personToCopy.getDesiredCharacteristics().orElse(null);
-        priorities = new HashSet<>(personToCopy.getTags());
+        priority = personToCopy.getPriority();
     }
 
     /**
@@ -63,14 +64,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.priorities = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -131,7 +124,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, priceRange, characteristics, priorities);
+        return new Person(name, phone, email, address, priceRange, characteristics, priority);
     }
 
 }

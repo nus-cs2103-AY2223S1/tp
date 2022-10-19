@@ -33,7 +33,7 @@ public class Priority {
     }
 
     /**
-     * Returns true if a given string is a valid  name.
+     * Returns true if a given string is a valid priority.
      */
     public static boolean isValidPriority(String test) {
         return test.equals(VALIDATION_HIGH)
@@ -57,7 +57,8 @@ public class Priority {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + specifiedPriority.toString() + ']';
+        //return '[' + specifiedPriority.toString() + ']';
+        return "HIGH";
     }
 
 }

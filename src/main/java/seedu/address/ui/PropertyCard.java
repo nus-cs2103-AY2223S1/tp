@@ -41,8 +41,7 @@ public class PropertyCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label description;
-    @FXML
-    private FlowPane tags;
+
     @FXML
     private Label seller;
 
@@ -61,9 +60,6 @@ public class PropertyCard extends UiPart<Region> {
         price.setText(property.getPrice().value);
         address.setText(property.getAddress().value);
         description.setText(property.getDescription().value);
-        property.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.specifiedPriority))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.specifiedPriority.toString())));
         seller.setText(property.getSeller());
         characteristics.setText("Characteristics: " + property
                 .getCharacteristics().map(Characteristics::toString)

@@ -61,7 +61,10 @@ public class EditBuyerCommandParser extends Parser<EditBuyerCommand> {
             editPersonDescriptor.setDesiredCharacteristics(ParserUtil
                     .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editPersonDescriptor.setPriority(ParserUtil
+                    .parsePriority(argMultimap.getValue(PREFIX_TAG).get()));
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditBuyerCommand.MESSAGE_NOT_EDITED);

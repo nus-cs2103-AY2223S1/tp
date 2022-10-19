@@ -27,7 +27,6 @@
         </Label>
         <Label fx:id="propertyName" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="priorities" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
       <Label fx:id="price" styleClass="cell_small_label" text="\$price" />

@@ -34,7 +34,7 @@ class JsonAdaptedPerson {
     // priceRange and desiredCharacteristics cannot be null; converted to "" for saving to storage if null
     private final String priceRange;
     private final String desiredCharacteristics;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String specifiedPriority;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -44,16 +44,14 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("priceRange") String priceRange,
          @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("priority") String specifiedPriority) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.priceRange = priceRange;
         this.desiredCharacteristics = desiredCharacteristics;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.specifiedPriority = specifiedPriority;
     }
 
     /**
@@ -68,9 +66,7 @@ class JsonAdaptedPerson {
         desiredCharacteristics = source.getDesiredCharacteristics()
                 .map(Characteristics::toString)
                 .orElse("");
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        specifiedPriority = source.getPriority().specifiedPriority.toString();
     }
 
     /**
@@ -79,10 +75,13 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Priority> personPriorities = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personPriorities.add(tag.toModelType());
+        if (specifiedPriority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
         }
+        if (!Priority.isValidPriority(specifiedPriority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        final Priority modelPriority = new Priority(specifiedPriority);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -137,8 +136,7 @@ class JsonAdaptedPerson {
                 ? null
                 : new Characteristics(desiredCharacteristics);
 
-        final Set<Priority> modelPriorities = new HashSet<>(personPriorities);
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelPriceRange, modelCharacteristics, modelPriorities);
+                modelPriceRange, modelCharacteristics, modelPriority);
     }
 }

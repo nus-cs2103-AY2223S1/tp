@@ -29,21 +29,21 @@ public class Person {
     private final Address address;
     private final Optional<PriceRange> priceRange;
     private final Optional<Characteristics> desiredCharacteristics;
-    private final Set<Priority> priorities = new HashSet<>();
+    private final Priority priority;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  PriceRange priceRange, Characteristics characteristics, Set<Priority> priorities) {
-        requireAllNonNull(name, phone, email, address, priorities);
+                  PriceRange priceRange, Characteristics characteristics, Priority priority) {
+        requireAllNonNull(name, phone, email, address, priority);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.priceRange = Optional.ofNullable(priceRange);
         this.desiredCharacteristics = Optional.ofNullable(characteristics);
-        this.priorities.addAll(priorities);
+        this.priority = priority;
     }
 
     public Name getName() {
@@ -74,8 +74,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Priority> getTags() {
-        return Collections.unmodifiableSet(priorities);
+    public Priority getPriority() {
+        return this.priority;
     }
 
     /**
@@ -112,13 +112,13 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getPriceRange().equals(getPriceRange())
                 && otherPerson.getDesiredCharacteristics().equals(getDesiredCharacteristics())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getPriority().equals(getPriority());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, priorities);
+        return Objects.hash(name, phone, email, address, priority);
     }
 
     @Override
@@ -137,11 +137,10 @@ public class Person {
                 .append(getDesiredCharacteristics()
                         .map(Characteristics::toString)
                         .orElse("Not Specified"));
-        Set<Priority> priorities = getTags();
-        if (!priorities.isEmpty()) {
-            builder.append(" Tags: ");
-            priorities.forEach(builder::append);
-        }
+
+        builder.append(" Priority: ")
+                .append(getPriority());
+
         return builder.toString();
     }
 

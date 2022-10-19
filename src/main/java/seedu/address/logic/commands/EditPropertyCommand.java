@@ -44,7 +44,6 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_DESCRIPTION + " DESC] "
-            + "[" + PREFIX_TAG + " TAG]..."
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + " 4 Room Heng Mui Keng Condo "
@@ -103,14 +102,13 @@ public class EditPropertyCommand extends Command {
         Price updatedPrice = descriptor.getPrice().orElse(propertyToEdit.getPrice());
         Address updatedAddress = descriptor.getAddress().orElse(propertyToEdit.getAddress());
         Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
-        Set<Priority> updatedPriorities = descriptor.getTags().orElse(propertyToEdit.getTags());
         String updatedSeller = descriptor.getSeller().orElse(propertyToEdit.getSeller());
         Characteristics updatedCharacteristics = descriptor
                 .getCharacteristics()
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
 
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
-                updatedPriorities, updatedSeller, updatedCharacteristics);
+                updatedSeller, updatedCharacteristics);
     }
 
     @Override

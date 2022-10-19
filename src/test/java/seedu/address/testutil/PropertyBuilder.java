@@ -28,7 +28,6 @@ public class PropertyBuilder {
     private Price price;
     private Address address;
     private Description description;
-    private Set<Priority> priorities;
     private String seller;
     private Characteristics characteristics;
 
@@ -40,7 +39,6 @@ public class PropertyBuilder {
         price = new Price(DEFAULT_PRICE);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
-        priorities = new HashSet<>();
         seller = DEFAULT_SELLER;
         characteristics = null;
     }
@@ -53,7 +51,6 @@ public class PropertyBuilder {
         price = propertyToCopy.getPrice();
         description = propertyToCopy.getDescription();
         address = propertyToCopy.getAddress();
-        priorities = new HashSet<>(propertyToCopy.getTags());
         seller = propertyToCopy.getSeller();
         characteristics = propertyToCopy.getCharacteristics().orElse(null);
     }
@@ -63,14 +60,6 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withName(String name) {
         this.name = new PropertyName(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Property} that we are building.
-     */
-    public PropertyBuilder withTags(String ... tags) {
-        this.priorities = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -123,6 +112,6 @@ public class PropertyBuilder {
     }
 
     public Property build() {
-        return new Property(name, price, address, description, priorities, seller, characteristics);
+        return new Property(name, price, address, description, seller, characteristics);
     }
 }

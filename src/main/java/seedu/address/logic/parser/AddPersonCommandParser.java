@@ -61,15 +61,12 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }
 
-        Set<Priority> priorityList =  new HashSet<>();
-        String defaultPriority = "normal";
+        Priority priority = new Priority("normal");
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
-            priorityList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        } else {
-            priorityList.add(new Priority(defaultPriority));
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_TAG).get());
         }
 
-        Person person = new Person(name, phone, email, address, priceRange, characteristics, priorityList);
+        Person person = new Person(name, phone, email, address, priceRange, characteristics, priority);
 
         return new AddPersonCommand(person);
     }

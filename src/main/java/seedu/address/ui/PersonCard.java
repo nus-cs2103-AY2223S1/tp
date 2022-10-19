@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane priority;
 
     // TODO: set the following labels as optional
     @FXML
@@ -60,9 +60,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.specifiedPriority))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.specifiedPriority.toString())));
+        priority.getChildren().add(new Label(person.getPriority().specifiedPriority.toString()));
         priceRange.setText("Budget: " + person.getPriceRange()
                 .map(PriceRange::toString).orElse("Not Specified"));
         desiredCharacteristics.setText("Desired Characteristics: " + person

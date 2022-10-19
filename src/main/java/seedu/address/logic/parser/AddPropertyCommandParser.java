@@ -34,7 +34,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
     public AddPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS,
-                        PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_SELLER, PREFIX_CHARACTERISTICS);
+                        PREFIX_DESCRIPTION, PREFIX_SELLER, PREFIX_CHARACTERISTICS);
 
         if (!arePrefixesPresent(
                 argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_SELLER)
@@ -46,7 +46,6 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Set<Priority> priorityList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String seller = ParserUtil.parseSellerName(argMultimap.getValue(PREFIX_SELLER).get());
 
         Characteristics characteristics = null;
@@ -54,7 +53,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }
 
-        Property property = new Property(propertyName, price, address, description, priorityList, seller, characteristics);
+        Property property = new Property(propertyName, price, address, description, seller, characteristics);
 
         return new AddPropertyCommand(property);
     }
