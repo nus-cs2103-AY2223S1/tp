@@ -102,13 +102,13 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
     public void removeApplicantByStatus(ApplicationStatus status) {
         applicants.removeByStatus(status);
     }
-    
-     * Removes the equivalent applicant from the list.
+
+    /** Removes the equivalent applicant from the list.
      * The applicant must exist in the list.
      */
     public void sortApplicants(Comparator<Applicant> comparator) {
         requireNonNull(comparator);
-        
+
         applicants.sort(comparator);
     }
 
