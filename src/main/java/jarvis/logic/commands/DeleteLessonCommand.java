@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class DeleteLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         List<Lesson> lastShownList = model.getFilteredLessonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
