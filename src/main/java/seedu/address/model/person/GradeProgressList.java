@@ -35,6 +35,10 @@ public class GradeProgressList {
         gradeProgressList.add(gradeProgress);
     }
 
+    /**
+     * Clears all stored grades of the Person
+     *
+     */
     public void clearList() {
         gradeProgressList.clear();
     }
