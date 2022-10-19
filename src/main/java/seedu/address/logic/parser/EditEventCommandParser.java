@@ -22,7 +22,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
     public EditEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENT_TITLE, PREFIX_DATE, PREFIX_TIME,
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENT_TITLE, PREFIX_START_DATE, PREFIX_START_TIME,
                         PREFIX_PURPOSE);
         Index index;
 
@@ -36,11 +36,11 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         if (argMultimap.getValue(PREFIX_EVENT_TITLE).isPresent()) {
             editEventDescriptor.setEventTitle(ParserUtil.parseEventTitle(argMultimap.getValue(PREFIX_EVENT_TITLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editEventDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+        if (argMultimap.getValue(PREFIX_START_DATE).isPresent()) {
+            editEventDescriptor.setDate(ParserUtil.parseStartDate(argMultimap.getValue(PREFIX_START_DATE).get()));
         }
-        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
-            editEventDescriptor.setTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get()));
+        if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
+            editEventDescriptor.setTime(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_PURPOSE).isPresent()) {
             editEventDescriptor.setPurpose(ParserUtil.parsePurpose(argMultimap.getValue(PREFIX_PURPOSE).get()));

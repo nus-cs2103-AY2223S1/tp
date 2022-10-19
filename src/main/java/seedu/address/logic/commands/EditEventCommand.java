@@ -1,20 +1,22 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
+import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 
 /**
  * Edits the details of an existing event in the application.
@@ -28,8 +30,8 @@ public class EditEventCommand extends Command {
             + "Existing values will be overwritten by the input values. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_EVENT_TITLE + "EVENT_TITLE]"
-            + "[" + PREFIX_DATE + "DATE]"
-            + "[" + PREFIX_TIME + "TIME]"
+            + "[" + PREFIX_START_DATE + "DATE]"
+            + "[" + PREFIX_START_TIME + "TIME]"
             + "[" + PREFIX_PURPOSE + "PURPOSE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EVENT_TITLE + "Banana Sale "
@@ -63,7 +65,7 @@ public class EditEventCommand extends Command {
         requireNonNull(model);
         List<Event> currentEventList = model.getFilteredEventList();
 
-        Integer zeroBased = index.getZeroBased();
+        int zeroBased = index.getZeroBased();
 
         if (zeroBased >= currentEventList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
@@ -72,7 +74,7 @@ public class EditEventCommand extends Command {
         Event eventToEdit = currentEventList.get(zeroBased);
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!eventToEdit.equals(editedEvent) && model.hasEvent(editedEvent)) {
+        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
@@ -89,8 +91,8 @@ public class EditEventCommand extends Command {
         assert eventToEdit != null;
 
         String updatedEventTitle = editEventDescriptor.getEventTitle().orElse(eventToEdit.getEventTitle());
-        String updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
-        String updatedTime = editEventDescriptor.getDate().orElse(eventToEdit.getTime());
+        StartDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getStartDate());
+        StartTime updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getStartTime());
         String updatedPurpose = editEventDescriptor.getPurpose().orElse(eventToEdit.getPurpose());
         return new Event(updatedEventTitle, updatedDate, updatedTime, updatedPurpose);
     }
@@ -116,8 +118,8 @@ public class EditEventCommand extends Command {
      */
     public static class EditEventDescriptor {
         private String eventTitle;
-        private String date;
-        private String time;
+        private StartDate date;
+        private StartTime time;
         private String purpose;
 
         public EditEventDescriptor() {}
@@ -147,19 +149,19 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(eventTitle);
         }
 
-        public void setDate(String date) {
+        public void setDate(StartDate date) {
             this.date = date;
         }
 
-        public Optional<String> getDate() {
+        public Optional<StartDate> getDate() {
             return Optional.ofNullable(date);
         }
 
-        public void setTime(String time) {
+        public void setTime(StartTime time) {
             this.time = time;
         }
 
-        public Optional<String> getTime() {
+        public Optional<StartTime> getTime() {
             return Optional.ofNullable(time);
         }
 
