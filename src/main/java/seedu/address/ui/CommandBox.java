@@ -10,10 +10,12 @@ import java.util.TreeSet;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.skin.ContextMenuSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -45,6 +47,9 @@ public class CommandBox extends UiPart<Region> {
     private final SortedSet<String> suggestionsTasks;
     // pop up used to select a suggestion
     private final ContextMenu suggestionsPopup;
+    private ContextMenuSkin skin;
+    private Node down;
+    private boolean isShown;
 
     @FXML
     private TextField commandTextField;
@@ -72,7 +77,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void addEvents() {
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleTabKeyPressed);
+        addPopupNavigationEvent();
     }
 
     /**
@@ -96,10 +101,16 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    private void handleTabKeyPressed(KeyEvent event) {
-        if (event.getCode() == KeyCode.TAB) {
-            event.consume();
-        }
+    private void addPopupNavigationEvent() {
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.TAB) {
+                handleTextChanged();
+                if (suggestionsPopup.isShowing() && isShown) {
+                    skin.getNode().lookup(".menu-down-arrow").requestFocus();
+                }
+                event.consume();
+            }
+        });
     }
 
     /**
@@ -116,7 +127,7 @@ public class CommandBox extends UiPart<Region> {
         if (event.getCode() == KeyCode.UP) {
             event.consume();
             // if text field shows the earliest command, nothing changes.
-            if (commandLogPointer == 0) {
+            if (commandLogPointer == 0 || commandLog.size() == 0) {
                 return;
             }
 
@@ -124,17 +135,19 @@ public class CommandBox extends UiPart<Region> {
                 currentText = commandTextField.getText();
             }
 
-            commandLogPointer -= 1;
-            commandTextField.setText(commandLog.get(commandLogPointer));
-
+            commandTextField.setText(commandLog.get(--commandLogPointer));
         } else if (event.getCode() == KeyCode.DOWN) {
             event.consume();
             commandLogPointer += 1;
 
+            if (commandLog.size() == 0) {
+                return;
+            }
+
             // if text field shows the latest command, nothing changes.
             if (commandLogPointer >= commandLog.size()) {
                 commandLogPointer = commandLog.size();
-                commandTextField.setText(currentText);
+                commandTextField.setText(currentText == null ? "" : currentText);
                 return;
             }
 
@@ -144,7 +157,7 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
 
-        commandTextField.positionCaret(commandTextField.getLength());
+        commandTextField.positionCaret(commandTextField.getText().length());
     }
 
     // suggestions: https://gist.github.com/floralvikings/10290131
@@ -183,6 +196,8 @@ public class CommandBox extends UiPart<Region> {
 
         suggestionsPopup.show(
             getRoot(), Side.BOTTOM, 14 + currentText.length() * 7, -8);
+        skin = (ContextMenuSkin) suggestionsPopup.getSkin();
+        isShown = true;
     }
 
     /**
@@ -195,8 +210,13 @@ public class CommandBox extends UiPart<Region> {
             Label entryLabel = new Label(result);
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             item.setOnAction(actionEvent -> {
-                commandTextField.setText(result);
-                commandTextField.positionCaret(result.length());
+                if (commandTextField.getText().startsWith(TaskCommand.COMMAND_WORD + " ")
+                    || commandTextField.getText().startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
+                    commandTextField.setText(commandTextField.getText().split(" ")[0] + " " + result);
+                } else {
+                    commandTextField.setText(result);
+                }
+                commandTextField.positionCaret(commandTextField.getText().length());
                 suggestionsPopup.hide();
             });
             menuItems.add(item);
