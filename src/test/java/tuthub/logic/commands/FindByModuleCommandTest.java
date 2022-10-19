@@ -32,7 +32,6 @@ public class FindByModuleCommandTest {
 
     @Test
     public void equals() {
-        System.out.println(getTestTaTuthub());
         ModuleContainsKeywordPredicate firstPredicate =
                 new ModuleContainsKeywordPredicate(Collections.singletonList("first"));
         ModuleContainsKeywordPredicate secondPredicate =

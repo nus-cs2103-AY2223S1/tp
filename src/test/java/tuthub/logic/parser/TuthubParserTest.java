@@ -19,13 +19,27 @@ import tuthub.logic.commands.DeleteCommand;
 import tuthub.logic.commands.EditCommand;
 import tuthub.logic.commands.EditCommand.EditTutorDescriptor;
 import tuthub.logic.commands.ExitCommand;
-import tuthub.logic.commands.FindCommand;
+import tuthub.logic.commands.FindByEmailCommand;
+import tuthub.logic.commands.FindByModuleCommand;
+import tuthub.logic.commands.FindByNameCommand;
+import tuthub.logic.commands.FindByPhoneCommand;
+import tuthub.logic.commands.FindByRatingCommand;
+import tuthub.logic.commands.FindByStudentIdCommand;
+import tuthub.logic.commands.FindByTeachingNominationCommand;
+import tuthub.logic.commands.FindByYearCommand;
 import tuthub.logic.commands.HelpCommand;
 import tuthub.logic.commands.ListCommand;
 import tuthub.logic.commands.ViewCommand;
 import tuthub.logic.parser.exceptions.ParseException;
+import tuthub.model.tutor.EmailContainsKeywordsPredicate;
+import tuthub.model.tutor.ModuleContainsKeywordPredicate;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
+import tuthub.model.tutor.PhoneContainsKeywordsPredicate;
+import tuthub.model.tutor.RatingContainsKeywordsPredicate;
+import tuthub.model.tutor.StudentIdContainsKeywordsPredicate;
+import tuthub.model.tutor.TeachingNominationContainKeywordsPredicate;
 import tuthub.model.tutor.Tutor;
+import tuthub.model.tutor.YearContainsKeywordsPredicate;
 import tuthub.testutil.EditTutorDescriptorBuilder;
 import tuthub.testutil.TutorBuilder;
 import tuthub.testutil.TutorUtil;
@@ -70,11 +84,69 @@ public class TuthubParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    public void parseCommand_findByName() throws Exception {
+        List<String> keywords = Arrays.asList("alex", "john", "baz");
+        FindByNameCommand command = (FindByNameCommand) parser.parseCommand(
+                FindByNameCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindByNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findByPhone() throws Exception {
+        List<String> keywords = Arrays.asList("98765432", "99999999");
+        FindByPhoneCommand command = (FindByPhoneCommand) parser.parseCommand((
+                FindByPhoneCommand.COMMAND_WORD + " p/" + keywords.stream().collect(Collectors.joining(" "))));
+        assertEquals(new FindByPhoneCommand(new PhoneContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findByEmail() throws Exception {
+        List<String> keywords = Arrays.asList("alice@example.com", "benson@example.com");
+        FindByEmailCommand command = (FindByEmailCommand) parser.parseCommand((
+                FindByEmailCommand.COMMAND_WORD + " e/" + keywords.stream().collect(Collectors.joining(" "))));
+        assertEquals(new FindByEmailCommand(new EmailContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findByModule() throws Exception {
+        List<String> keywords = Arrays.asList("cs2100", "cs2105");
+        FindByModuleCommand command = (FindByModuleCommand) parser.parseCommand((
+                FindByModuleCommand.COMMAND_WORD + " m/" + keywords.stream().collect(Collectors.joining(" "))));
+        assertEquals(new FindByModuleCommand(new ModuleContainsKeywordPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findByYear() throws Exception {
+        List<String> keywords = Arrays.asList("2", "3");
+        FindByYearCommand command = (FindByYearCommand) parser.parseCommand((
+                FindByYearCommand.COMMAND_WORD + " y/" + keywords.stream().collect(Collectors.joining(" "))));
+        assertEquals(new FindByYearCommand(new YearContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findByStudentId() throws Exception {
+        List<String> keywords = Arrays.asList("A0123456X", "A0123456Y");
+        FindByStudentIdCommand command = (FindByStudentIdCommand) parser.parseCommand((
+                FindByStudentIdCommand.COMMAND_WORD + " s/" + keywords.stream().collect(Collectors.joining(" "))));
+        assertEquals(new FindByStudentIdCommand(new StudentIdContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findByTeachingNomination() throws Exception {
+        List<String> keywords = Arrays.asList("1", "2");
+        FindByTeachingNominationCommand command = (FindByTeachingNominationCommand) parser.parseCommand((
+                FindByTeachingNominationCommand.COMMAND_WORD + " tn/"
+                        + keywords.stream().collect(Collectors.joining(" "))));
+        assertEquals(new FindByTeachingNominationCommand(
+                new TeachingNominationContainKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findByRating() throws Exception {
+        List<String> keywords = Arrays.asList("2.5", "3.0");
+        FindByRatingCommand command = (FindByRatingCommand) parser.parseCommand((
+                FindByRatingCommand.COMMAND_WORD + " r/" + keywords.stream().collect(Collectors.joining(" "))));
+        assertEquals(new FindByRatingCommand(new RatingContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

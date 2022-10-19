@@ -1,6 +1,7 @@
 package tuthub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import tuthub.commons.core.Messages;
 import tuthub.model.Model;
@@ -10,15 +11,13 @@ import tuthub.model.tutor.ModuleContainsKeywordPredicate;
  * Finds and list all TAs in TutHub who are teaching the module code being searched.
  * Keyword matching is case insensitive.
  */
-public class FindByModuleCommand extends Command {
-
-    public static final String COMMAND_WORD = "findbymodule";
+public class FindByModuleCommand extends FindByPrefixCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors who are teaching "
             + "the specified module code (case-insensitive) being searched"
             + " and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " CS2040";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040";
 
     private final ModuleContainsKeywordPredicate predicate;
 

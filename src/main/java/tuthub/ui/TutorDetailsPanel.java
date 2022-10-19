@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import tuthub.model.tutor.Tutor;
 
 /**
@@ -42,7 +45,7 @@ public class TutorDetailsPanel extends UiPart<Region> {
     @FXML
     private Label rating;
     @FXML
-    private Label comment;
+    private TextFlow comment;
     @FXML
     private FlowPane tags;
 
@@ -60,7 +63,11 @@ public class TutorDetailsPanel extends UiPart<Region> {
         email.setText("Email: " + tutor.getEmail().value);
         rating.setText("Student Feedback Points: " + tutor.getRating().value);
         teachingNomination.setText("Teaching Nominations: " + tutor.getTeachingNomination().value);
-        comment.setText("Additional Feedback:\n" + tutor.getComment().value);
+
+        Text tutorComment = new Text("- " + tutor.getComment().value);
+        tutorComment.setFill(Color.DIMGRAY);
+        comment.getChildren().add(tutorComment);
+
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

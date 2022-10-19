@@ -13,10 +13,10 @@ import tuthub.logic.commands.CommentCommand;
 import tuthub.logic.commands.DeleteCommand;
 import tuthub.logic.commands.EditCommand;
 import tuthub.logic.commands.ExitCommand;
-import tuthub.logic.commands.FindByModuleCommand;
-import tuthub.logic.commands.FindCommand;
+import tuthub.logic.commands.FindByPrefixCommand;
 import tuthub.logic.commands.HelpCommand;
 import tuthub.logic.commands.ListCommand;
+import tuthub.logic.commands.SortCommand;
 import tuthub.logic.commands.ViewCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 
@@ -62,14 +62,14 @@ public class TuthubParser {
         case CommentCommand.COMMAND_WORD:
             return new CommentCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case FindByModuleCommand.COMMAND_WORD:
-            return new FindByModuleCommandParser().parse(arguments);
+        case FindByPrefixCommand.COMMAND_WORD:
+            return new FindByPrefixCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);

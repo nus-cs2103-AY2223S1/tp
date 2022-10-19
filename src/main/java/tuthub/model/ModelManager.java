@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static tuthub.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import tuthub.commons.core.GuiSettings;
 import tuthub.commons.core.LogsCenter;
 import tuthub.model.tutor.Tutor;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final Tuthub tuthub;
     private final UserPrefs userPrefs;
     private final FilteredList<Tutor> filteredTutors;
+    private final SortedList<Tutor> sortedFilteredTutors;
     private Tutor tutorToView;
 
     /**
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.tuthub = new Tuthub(tuthub);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTutors = new FilteredList<>(this.tuthub.getTutorList());
+        sortedFilteredTutors = new SortedList<>(filteredTutors);
     }
 
     public ModelManager() {
@@ -131,13 +135,18 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Tutor> getFilteredTutorList() {
-        return filteredTutors;
+        return sortedFilteredTutors;
     }
 
     @Override
     public void updateFilteredTutorList(Predicate<Tutor> predicate) {
         requireNonNull(predicate);
         filteredTutors.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedTutorList(Comparator<Tutor> comparator) {
+        sortedFilteredTutors.setComparator(comparator);
     }
 
     @Override
