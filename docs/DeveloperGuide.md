@@ -239,6 +239,22 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+
+### \[Proposed\] Sort feature
+
+#### Proposed Implementation
+
+_{To add sequence diagram}_
+
+_{To add activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How sort command is implemented:**
+
+_{To add other design considerations}_
+
+
 ### \[Proposed\] Alias feature
 
 #### Proposed Implementation
@@ -270,7 +286,6 @@ _{To add activity diagram}_
 **Aspect: How alias command is implemented:**
 
 _{To add other design considerations}_
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -330,6 +345,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user              | edit the contact details of a specific student                    | update the student’s contact details                             |
 | `* *`    | user              | edit the information of a specific student                        | update the student’s details.                                    |
 | `* *`    | user              | edit previously added comments                                    | update my comments for a student.                                |
+| `* *`    | user              | sort my students by Mastery Check dates                           | easily see when is the next Mastery Check.                       |
+| `* *`    | user              | sort my students by consultation dates                            | easily see when is the next consultation.                        |
 | `* *`    | new user          | see the app populated with sample data                            | easily see how the app will look when it is in use               |
 | `* *`    | new user          | purge all current data                                            | get rid of sample/experimental data I used for exploring the app |
 | `* *`    | expert user       | create custom alias for my commands                               | enter commands more efficiently                                  |
@@ -509,6 +526,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Sort students**
+
+**MSS**
+
+1. User requests to sort students with a specific criteria and order
+2. FRIDAY displays the students in sorted order
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given criteria is invalid.
+
+    * 1a1. FRIDAY shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The given order is invalid.
+
+    * 1b1. FRIDAY shows an error message. 
+
+      Use case resumes at step 1.
+
+* 1c. More than one criterion is given. 
+
+    * 1c1. FRIDAY displays the students according to the first criteria. 
+
+      Use case ends.
 
 *{More to be added}*
 
