@@ -220,6 +220,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 | Action               | Format, Examples                                                                                                                                                                      |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/IS_ROOM_CLEAN ​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com dr/19/05/20 - 24/05/22 ng/3 rc/no` |
@@ -230,3 +231,4 @@ _Details coming soon ..._
 | **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                    |
 | **List**             | `list`                                                                                                                                                                                |
 | **Help**             | `help`                                                                                                                                                                                |
+
