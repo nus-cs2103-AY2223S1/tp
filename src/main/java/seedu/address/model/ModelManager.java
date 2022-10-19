@@ -27,6 +27,8 @@ public class ModelManager implements Model {
     private final FilteredList<Entry> filteredIncome;
 
 
+
+
     /**
      * Initializes a ModelManager with the given pennyWise and userPrefs.
      */
@@ -177,16 +179,6 @@ public class ModelManager implements Model {
     public void updateFilteredIncomeList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredIncome.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateExpensePieChart() {
-        this.getExpensePieChartData();
-    }
-
-    @Override
-    public void updateIncomePieChart() {
-        thi
     }
 
 

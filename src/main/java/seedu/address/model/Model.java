@@ -143,14 +143,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIncomeList(Predicate<Entry> predicate);
-
-    /**
-     * Updates expense pie chart
-     */
-    void updateExpensePieChart();
-
-    /**
-     * Updates income pie chart
-     */
-    void updateIncomePieChart();
 }
