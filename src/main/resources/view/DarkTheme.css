@@ -128,8 +128,20 @@
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-text-fill: #010504;
+}
+
+.cell_big_text {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-fill: white;
+}
+
+.cell_small_text {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-fill: white;
 }
 
 .stack-pane {

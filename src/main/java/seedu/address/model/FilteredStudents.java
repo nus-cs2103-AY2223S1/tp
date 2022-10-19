@@ -19,7 +19,7 @@ public class FilteredStudents {
      */
     public FilteredStudents(FilteredList<Student> filteredStudents) {
         this.filteredStudents = filteredStudents;
-        this.hasConciseInfo = true;
+        this.hasConciseInfo = false;
     }
 
     public ObservableList<Student> getFilteredStudentList() {
