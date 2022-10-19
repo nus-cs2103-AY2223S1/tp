@@ -2,11 +2,15 @@ package seedu.application.model.application;
 
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.exceptions.InvalidInterviewException;
+import seedu.application.model.tag.Tag;
 
 /**
  * Represents an Application in the Application book.
@@ -22,6 +26,9 @@ public class Application {
     private final Date date;
     private final Optional<Interview> interview;
 
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
+
     /**
      * Instantiate Application with empty Interview.
      *
@@ -31,13 +38,14 @@ public class Application {
      * @param position that the user applies to.
      * @param date of the user applies to this position.
      */
-    public Application(Company company, Contact contact, Email email, Position position, Date date) {
-        requireAllNonNull(company, contact, email, position, date);
+    public Application(Company company, Contact contact, Email email, Position position, Date date, Set<Tag> tags) {
+        requireAllNonNull(company, contact, email, position, date, tags);
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
+        this.tags.addAll(tags);
         this.interview = Optional.empty();
     }
 
@@ -53,6 +61,7 @@ public class Application {
         this.email = application.getEmail();
         this.position = application.getPosition();
         this.date = application.getDate();
+        this.tags.addAll(application.getTags());
         this.interview = Optional.empty();
     }
 
@@ -69,6 +78,7 @@ public class Application {
         this.email = application.getEmail();
         this.position = application.getPosition();
         this.date = application.getDate();
+        this.tags.addAll(application.getTags());
         interviewIsAfterApplication(interview, application);
         this.interview = Optional.of(interview);
     }
@@ -88,11 +98,20 @@ public class Application {
     public Position getPosition() {
         return position;
     }
+
     public Date getDate() {
         return date;
     }
     public Optional<Interview> getInterview() {
         return interview;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -135,13 +154,14 @@ public class Application {
                 && otherApplication.getEmail().equals(getEmail())
                 && otherApplication.getPosition().equals(getPosition())
                 && otherApplication.getDate().equals(getDate())
+                && otherApplication.getTags().equals(getTags())
                 && otherApplication.getInterview().equals((getInterview()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, contact, email, position, date, interview);
+        return Objects.hash(company, contact, email, position, date, tags, interview);
     }
 
     @Override
@@ -156,6 +176,12 @@ public class Application {
                 .append(getEmail())
                 .append("; Apply on: ")
                 .append(getDate());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         if (getInterview().isPresent()) {
             builder.append("; \nInterview: ")

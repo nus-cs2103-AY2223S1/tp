@@ -1,6 +1,8 @@
 package seedu.application.testutil;
 
 import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.application.model.application.Application;
 import seedu.application.model.application.Company;
@@ -9,6 +11,8 @@ import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
 import seedu.application.model.application.interview.Interview;
+import seedu.application.model.tag.Tag;
+import seedu.application.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Application objects.
@@ -26,6 +30,7 @@ public class ApplicationBuilder {
     private Date date;
     private Email email;
     private Position position;
+    private Set<Tag> tags;
     private Optional<Interview> interview;
 
     /**
@@ -37,6 +42,7 @@ public class ApplicationBuilder {
         date = new Date(DEFAULT_DATE);
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
+        tags = new HashSet<>();
         interview = Optional.empty();
     }
 
@@ -49,6 +55,7 @@ public class ApplicationBuilder {
         date = applicationToCopy.getDate();
         email = applicationToCopy.getEmail();
         position = applicationToCopy.getPosition();
+        tags = new HashSet<>(applicationToCopy.getTags());
         if (applicationToCopy.getInterview().isPresent()) {
             interview = applicationToCopy.getInterview();
         } else {
@@ -97,6 +104,14 @@ public class ApplicationBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
      * Sets the {@code Interview} of the {@code Application} that we are building.
      */
     public ApplicationBuilder withInterview(Interview interview) {
@@ -105,7 +120,7 @@ public class ApplicationBuilder {
     }
 
     public Application build() {
-        return new Application(company, contact, email, position, date);
+        return new Application(company, contact, email, position, date, tags);
     }
 
 }
