@@ -254,10 +254,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Task List
 
 #### Implementation
@@ -282,7 +278,46 @@ there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
 
+### \[Proposed\] Mark and unmark task
 
+#### Proposed Implementation
+For tasks, they can either be marked as being completed or not. The proposed implementation would 
+be to add a new field `TaskMark` into each `Task` object and `TaskMark` will only accept a `true` or 
+`false` value. 
+
+The `true` value would mean that the task is marked as completed and the `false` value 
+mean that the task is not yet done.
+
+The switching of `true` and `false` values for `TaskMark` will be facillitaed using `mark INDEX` and
+`unmark INDEX` commands.
+
+* `mark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as completed.
+* `unmark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as uncompleted.
+
+The following activity diagram summarizes how users are expected to use the commands.
+
+![](images/MarkAndUnmarkActivityDiagram.png)
+
+The following sequence diagram shows how the mark command will run throughout HR Pro Max++.
+
+![](images/MarkCommandSequenceDiagram.png)
+
+#### Design Consideration:
+
+* Users when done with a task might just delete it and thus the need to mark 
+task as complete or not is redundant. 
+  * Pros: Less memory since there is a need for task to have additional field and 2 extra commands
+  * Cons: Some users might like to record what they have done, so they would not delete completed tasks.
+  Having a way to mark task as completed or not will help them manage their task.
+
+
+### Delete Staff from a project
+
+#### Proposed Implementation
+
+
+
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
