@@ -234,7 +234,7 @@ The following activity diagrams summarizes what happens when a user enters an `e
 ### Find feature
 
 #### Implementation:
-* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `Name` contain any of the keywords. The keywords are case-insensitive as well, meaning typing 'Alice' is akin to typing 'aLiCE'.
+* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `Name` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
 
 The following activity diagram summarizes what happens when a user enters a `find` command.
 
