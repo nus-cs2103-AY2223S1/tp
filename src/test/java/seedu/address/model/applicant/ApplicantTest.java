@@ -8,7 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalApplicants.*;
+import static seedu.address.testutil.TypicalApplicants.ALICE;
+import static seedu.address.testutil.TypicalApplicants.BOB;
+import static seedu.address.testutil.TypicalApplicants.BENSON;
+import static seedu.address.testutil.TypicalApplicants.CARL;
+import static seedu.address.testutil.TypicalApplicants.DANIEL;
+import static seedu.address.testutil.TypicalApplicants.ELLE;
 
 import org.junit.jupiter.api.Test;
 
