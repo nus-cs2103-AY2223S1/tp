@@ -2,11 +2,14 @@ package seedu.uninurse.model.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.UninurseBook;
+import seedu.uninurse.model.condition.Condition;
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -21,15 +24,16 @@ import seedu.uninurse.model.task.TaskList;
  * Contains utility methods for populating {@code UninurseBook} with sample data.
  */
 public class SampleDataUtil {
+    public static final ConditionList EMPTY_CONDITION_LIST = new ConditionList();
     public static final TaskList EMPTY_TASK_LIST = new TaskList();
 
     public static Patient[] getSamplePersons() {
         return new Patient[] {
             new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_TASK_LIST,
+                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_CONDITION_LIST, EMPTY_TASK_LIST,
                 getTagSet("friends")),
             new Patient(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),getConditionList(new Condition(""))
                 getTaskList(new Task("Change dressing on right arm", new DateTime("16-10-2022 1015"))),
                 getTagSet("colleagues", "friends")),
             new Patient(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
@@ -57,11 +61,16 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    public static ConditionList getConditionList(Condition... conditionStrings) {
+        List<Condition> conditionList = Arrays.stream(conditionStrings).collect(Collectors.toList());
+        return new ConditionList(conditionList);
+    }
+
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
+    public static Set<Tag> getTagSet(String... tagStrings) {
+        return Arrays.stream(tagStrings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
