@@ -272,6 +272,8 @@ The proposed undo/redo mechanism is facilitated by `VersionedTaskBook`. It exten
 * `VersionedTaskBook#undo()` — Restores the previous task book state from its history.
 * `VersionedTaskBook#redo()` — Restores a previously undone task book state from its history.
 
+`VersionedTaskBook` can be instantiated with an optional capacity, the default is as explained in the design considerations below. When the size of the version history exceeds double the allocated capacity, the older half of the history is pruned.
+
 These operations are exposed in the `Model` interface as `Model#commitTaskBook()`, `Model#undoTaskBook()` and `Model#redoTaskBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
@@ -319,7 +321,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitTaskBook()`. Since the `currentStatePointer` is not pointing at the end of the `taskBookStateList`, all task book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `task delete i/1`, which calls `Model#commitTaskBook()`. Since the `currentStatePointer` is not pointing at the end of the `taskBookStateList`, all task book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
