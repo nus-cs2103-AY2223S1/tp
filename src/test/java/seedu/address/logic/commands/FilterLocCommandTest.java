@@ -18,10 +18,10 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalSuppliers;
-import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
 
 public class FilterLocCommandTest {
     private Model bModel = new ModelManager(TypicalBuyers.getTypicalBuyerAddressBook(), new UserPrefs());

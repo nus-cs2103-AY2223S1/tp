@@ -12,9 +12,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSuppliers.ALICE;
 import static seedu.address.testutil.TypicalSuppliers.BOB;
 
-//import java.util.ArrayList;
-//import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
