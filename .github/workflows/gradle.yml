@@ -35,8 +35,13 @@ jobs:
           java-version: '11'
           java-package: jdk+fx
 
-      - name: Build and check with Gradle
-        run: ./gradlew check coverage
+      - name: Build and check with Gradle (Linux)
+        if: runner.os == 'Linux'
+        run: ./gradlew headless check coverage guiTests
+
+      - name: Build and check with Gradle (macOS & Windows)
+        if: runner.os != 'Linux'
+        run: ./gradlew headless check coverage
 
       - uses: codecov/codecov-action@v2
         if: runner.os == 'Linux'

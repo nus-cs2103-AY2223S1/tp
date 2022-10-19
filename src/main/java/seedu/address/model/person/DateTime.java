@@ -29,6 +29,24 @@ public class DateTime implements Comparable<DateTime> {
         return new Time(localDateTime.toLocalTime());
     }
 
+    public String getTimeFormat() {
+        return localDateTime.format(java.time.format
+                .DateTimeFormatter.ofPattern("hh:mm a"));
+    }
+
+
+    public int getDay() {
+        return this.localDateTime.getDayOfMonth();
+    }
+
+    public int getMonth() {
+        return this.localDateTime.getMonthValue();
+    }
+
+    public int getYear() {
+        return this.localDateTime.getYear();
+    }
+
     @Override
     public String toString() {
         return localDateTime.format(java.time.format
