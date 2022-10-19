@@ -1,15 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.GameType;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Social;
-import seedu.address.model.server.Server;
-import seedu.address.model.tag.Tag;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
@@ -20,6 +10,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
+
+import java.util.Set;
+
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.GameType;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Social;
+import seedu.address.model.server.Server;
+import seedu.address.model.tag.Tag;
+
+
 
 /**
  * A utility class for Person.
