@@ -21,7 +21,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ModuleCodeParameter mcp = new ModuleCodeParameter(args);
         SemesterTypeParameter stp = new SemesterTypeParameter(args);
         String mc = mcp.getArgValue();
-        String st = stp.getArgValue();
+        String st = stp.getArgValue().toString();
         System.out.println(st);
         return new AddCommand(mc, st);
     }
