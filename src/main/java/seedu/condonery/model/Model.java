@@ -51,6 +51,11 @@ public interface Model {
      */
     void setPropertyDirectory(ReadOnlyPropertyDirectory propertyDirectory);
 
+    /**
+     * Resets the property directory data to be the initial data on startup.
+     */
+    void resetPropertyDirectory();
+
     /** Returns the PropertyDirectory */
     ReadOnlyPropertyDirectory getPropertyDirectory();
 
@@ -102,6 +107,11 @@ public interface Model {
      * Replaces client directory data with the data in {@code clientDirectory}.
      */
     void setClientDirectory(ReadOnlyClientDirectory clientDirectory);
+
+    /**
+     * Resets the client directory data to be the initial data on startup.
+     */
+    void resetClientDirectory();
 
     /** Returns the ClientDirectory */
     ReadOnlyClientDirectory getClientDirectory();

@@ -11,6 +11,7 @@ import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
+import seedu.condonery.logic.commands.UndoCommand;
 import seedu.condonery.logic.commands.client.AddClientCommand;
 import seedu.condonery.logic.commands.client.ListClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
@@ -87,6 +88,8 @@ public class CondoneryParser {
 
         case FilterPropertyCommand.COMMAND_WORD:
             return new FilterPropertyCommandParser().parse(arguments);
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

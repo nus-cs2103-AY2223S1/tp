@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.logic.commands.CommandResult;
+import seedu.condonery.logic.commands.UndoCommand;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.CondoneryParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
@@ -30,6 +32,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final CondoneryParser condoneryParser;
 
+    private final CommandQueue commandQueue;
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -37,6 +41,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         condoneryParser = new CondoneryParser();
+        commandQueue = new CommandQueue();
     }
 
     @Override
@@ -45,6 +50,14 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = condoneryParser.parseCommand(commandText);
+        if (command instanceof UndoCommand) {
+            //CHECKSTYLE.OFF: SeparatorWrap
+            ((UndoCommand) command).setCommandQueue(commandQueue);
+            //CHECKSTYLE.ON: SeparatorWrap
+        } else {
+            commandQueue.addCommand(command);
+        }
+
         commandResult = command.execute(model);
 
         try {

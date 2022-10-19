@@ -124,6 +124,11 @@ public class AddPropertyCommandTest {
         }
 
         @Override
+        public void resetPropertyDirectory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyPropertyDirectory getPropertyDirectory() {
             throw new AssertionError("This method should not be called.");
         }
@@ -170,6 +175,11 @@ public class AddPropertyCommandTest {
 
         @Override
         public void setClientDirectory(ReadOnlyClientDirectory newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetClientDirectory() {
             throw new AssertionError("This method should not be called.");
         }
 
