@@ -1,10 +1,16 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
@@ -19,6 +25,7 @@ public class JsonAdaptedTask {
     private final String moduleCode;
     private final String status;
     private final String priority;
+    private final String deadline;
 
     /**
      * Builds a {@code JsonAdaptedTask} with the description and module code.
@@ -28,11 +35,12 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(@JsonProperty("description") String description,
             @JsonProperty("modCode") String moduleCode, @JsonProperty("status") String status,
-            @JsonProperty("priority") String priority) {
+            @JsonProperty("priority") String priority, @JsonProperty("deadline") String deadline) {
         this.description = description;
         this.moduleCode = moduleCode;
         this.status = status;
         this.priority = priority;
+        this.deadline = deadline;
     }
 
     /**
@@ -44,8 +52,8 @@ public class JsonAdaptedTask {
         description = task.getDescription().description;
         moduleCode = task.getModule().getModuleCode().moduleCode;
         status = task.getStatus().status;
-
         priority = task.getPriorityTag() == null ? null : task.getPriorityTag().status;
+        deadline = task.getDeadlineTag() == null ? null : task.getDeadlineTag().toString();
     }
 
     /**
@@ -70,12 +78,29 @@ public class JsonAdaptedTask {
         if (!PriorityTag.isValidTag(priority)) {
             throw new IllegalValueException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
         }
+        final LocalDate date;
+        try {
+            if (deadline != null) {
+                //@@author dlimyy-reused
+                //Reused from https://stackoverflow.com/questions/32823368/
+                //with minor modifications.
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                        .withResolverStyle(ResolverStyle.STRICT);
+                //@@author
+                date = LocalDate.parse(deadline, dtf);
+            } else {
+                date = null;
+            }
+        } catch (DateTimeParseException dtp) {
+            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+        }
+        final DeadlineTag deadlineTag = date == null ? null : new DeadlineTag(date);
         final TaskDescription taskDescription = new TaskDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);
         final TaskStatus taskStatus = TaskStatus.of(status);
         final PriorityTag priorityTag = priority == null ? null : new PriorityTag(priority);
-        return new Task(module, taskDescription, taskStatus, priorityTag);
+        return new Task(module, taskDescription, taskStatus, priorityTag, deadlineTag);
     }
 
 }

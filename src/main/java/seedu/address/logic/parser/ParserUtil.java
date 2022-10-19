@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +19,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
@@ -158,6 +163,33 @@ public class ParserUtil {
             throw new ParseException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
         }
         return new PriorityTag(trimmedPriorityStatus);
+    }
+
+    /**
+     * Parses the deadline into a DeadlineTag.
+     *
+     * @param deadline The deadline which is added to the DeadlineTag.
+     * @return The deadlineTag containing the deadline status.
+     * @throws ParseException if the deadline is in an invalid format.
+     */
+    public static DeadlineTag parseDeadlineTag(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        final LocalDate date;
+        //@@author dlimyy-reused
+        //Reused from https://stackoverflow.com/questions/32823368/
+        //with minor modifications.
+        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
+        //@@author
+        try {
+            date = LocalDate.parse(deadline, dtf);
+        } catch (DateTimeParseException dtp) {
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+        }
+        if (!DeadlineTag.isValidDeadline(date)) {
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+        }
+        return new DeadlineTag(date);
     }
 
     /**

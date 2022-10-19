@@ -18,4 +18,6 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_PRIORITY_STATUS = new Prefix("p/");
 
+    public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
+
 }

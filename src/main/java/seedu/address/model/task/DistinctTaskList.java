@@ -37,7 +37,7 @@ public class DistinctTaskList implements Iterable<Task> {
      */
     public boolean containsModule(Module toCheck) {
         requireNonNull(toCheck);
-        return taskList.stream().map(Task::getModule).anyMatch(toCheck::isSameModuleCode);
+        return taskList.stream().map(Task::getModule).anyMatch(toCheck::isSameModule);
     }
 
     /**
