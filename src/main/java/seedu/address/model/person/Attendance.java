@@ -14,14 +14,17 @@ import java.time.format.ResolverStyle;
  */
 public class Attendance {
 
+    /**
+     * Feedback message to User is yyyy as it is more understandable as year than uuuu.
+     */
     public static final String MESSAGE_CONSTRAINTS =
-            "Attendance should only be in the format of yyyy-MM-dd."; //feedback as yyyy instead of uuuu for user understanding.
+            "Attendance should only be in the format of yyyy-MM-dd.";
 
     public static final String MESSAGE_INVALID_DATE =
             "Attendance should only be of valid dates!";
 
     /**
-     * The string input must match the format of yyyy-MM-dd.
+     * The string input must match the format of uuuu-MM-dd.
      */
     public static final String VALIDATION_REGEX = "^(\\d){4}-(\\d){2}-(\\d){2}$";
 
