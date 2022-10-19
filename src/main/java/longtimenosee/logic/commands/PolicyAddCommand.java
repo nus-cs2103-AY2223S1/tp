@@ -14,7 +14,7 @@ import longtimenosee.model.policy.Policy;
  * Adds a policy to the address book.
  */
 public class PolicyAddCommand extends Command {
-    public static final String COMMAND_WORD = "newPolicy";
+    public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the address book. "
             + "Parameters: "
