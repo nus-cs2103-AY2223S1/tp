@@ -2,6 +2,9 @@ package nus.climods.logic.parser.parameters;
 
 import nus.climods.logic.parser.ParserUtil;
 
+/**
+ * Represents a Semester Type parameter
+ */
 public class SemesterTypeParameter extends PositionalParameter<String> {
     public static final String INVALID_INPUT_MESSAGE = "Semester should not be empty!";
     public static final String PARSE_EXCEPTION_MESSAGE = "Invalid Semester: %s";
