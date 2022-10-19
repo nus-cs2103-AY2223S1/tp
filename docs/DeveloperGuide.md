@@ -240,28 +240,28 @@ _{more aspects and alternatives to be added}_
 
 The Fast Template Feature is facilitated by `TemplateCommand`. It extends 'Command' with a String`personChosen` class field that stores the chosen Person. The chosen Person refers to the Person that the User wants the template of, i.e. `prof / ta / student`. Additonally, it implements the following operations:
 - TemplateCommand#execute() - Executes the template command, whose command word is `tt`.
+- TemplateCommand#isValidPerson(String p) - Returns the boolean indicating whether the string p refers to a valid person. I.e. is a command word for a Person
 
 Given below is an example usage scenario and how the template operation mechanism behaves at each step.
 
 Step 1. The user types `tt prof` and presses enter.
 
-Step 2. The `github 1 ` will be parsed by `AddressBook#parseCommand()` which will return a `GithubCommandParser`.
+Step 2. The `tt prof ` will be parsed by `AddressBook#parseCommand()` which will return a `TemplateCommandParser`.
 
-Step 3. The `GithubCommandParser` will parse `1` using `parse()`. This will return a `GithubCommand`
+Step 3. The `TemplateCommandParser` will parse `prof` using `parse()`. This will return a `TemplateCommand` since `prof` is a valid command word for a Person, in this case Professor.
 
-Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()`.
+Step 4. The `TemplateCommand` will then be executed using `TemplateCommand#execute()`.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** executes() checks if the github username field of target person is empty. If it is empty an exception will be thrown.
-</div>
-
-Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** openGithub() checks if the url built is invalid. If url is invalid an exception would be thrown.
 </div>
 
-Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+Step 5. A `CommandResult` will be returned. It has the field `personTemplateString` that is set to `"prof"`.
+
+Step 6. The UI will call `hasPersonTemplate()` from the CommandResult.
+
+Step 7. If the previous step is true, the UI will update itself accordingly, i.e. paste the appropriate Person's template on the CLI, by calling `handleTemplate()`.
 
 The following sequence diagram shows how the github feature works.
 
