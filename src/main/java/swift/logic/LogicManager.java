@@ -15,6 +15,7 @@ import swift.logic.parser.exceptions.ParseException;
 import swift.model.Model;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.person.Person;
+import swift.model.task.Task;
 import swift.storage.Storage;
 
 /**
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
     }
 
     @Override
