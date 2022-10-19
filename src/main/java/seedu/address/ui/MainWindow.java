@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
         assert(mainPane != null) : "Main pane is not initialized yet.";
         ObservableList<Node> childrens = mainPane.getChildren();
         // gosh it took me more than an hour to find out how to do this
-        for(Node node : childrens) {
+        for (Node node : childrens) {
             if (node.getStyleClass().contains("secondary-pane")) {
                 logger.info("Removing secondary pane");
                 mainPane.getChildren().remove(node);
