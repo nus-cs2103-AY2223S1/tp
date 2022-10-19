@@ -2,6 +2,8 @@ package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
@@ -19,12 +21,12 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in your list of modules";
 
     private final String toAdd;
-    private final String semester;
+    private final SemestersEnum semester;
 
     /**
      * Creates an AddCommand to add the specified {@code Module}
      */
-    public AddCommand(String moduleCode, String semester) {
+    public AddCommand(String moduleCode, SemestersEnum semester) {
         requireNonNull(moduleCode);
         this.toAdd = moduleCode;
         this.semester = semester;

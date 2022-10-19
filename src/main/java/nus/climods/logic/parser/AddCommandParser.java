@@ -1,5 +1,7 @@
 package nus.climods.logic.parser;
 
+import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+
 import nus.climods.logic.commands.AddCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
@@ -21,7 +23,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ModuleCodeParameter mcp = new ModuleCodeParameter(args);
         SemesterTypeParameter stp = new SemesterTypeParameter(args);
         String mc = mcp.getArgValue();
-        String st = stp.getArgValue().toString();
+        SemestersEnum st = (SemestersEnum) stp.getArgValue();
         System.out.println(st);
         return new AddCommand(mc, st);
     }
