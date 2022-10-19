@@ -119,18 +119,15 @@ public interface Model {
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
-     * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
-     */
-    void setTask(Task target, Task editedTask);
-
-    /**
-     * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in the task list.
+     * If {@code isSameTask} is true, the task identity of {@code editedTask} should be the same as {@code target}.
      *
-     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
-     *     in the list (other than {@code target}).
+     * @param target the task to be replaced.
+     * @param editedTask the edited task to replace {@code target}.
+     * @param isSameTask true if {@code target} has the same task identity as {@code editedTask}, false otherwise.
+     * @throws DuplicateTaskException if {@code isSameTask} is false but task identity of {@code editedTask}
+     *     is the same as another task in the list (other than {@code target}).
      */
-    void replaceTask(Task target, Task editedTask) throws DuplicateTaskException;
+    void replaceTask(Task target, Task editedTask, boolean isSameTask) throws DuplicateTaskException;
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();

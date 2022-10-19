@@ -41,7 +41,7 @@ public class UnmarkCommand extends Command {
 
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
         Task unmarkedTask = taskToUnmark.unmark();
-        model.setTask(taskToUnmark, unmarkedTask);
+        model.replaceTask(taskToUnmark, unmarkedTask, true);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }

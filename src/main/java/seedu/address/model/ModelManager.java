@@ -143,17 +143,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
+    public void replaceTask(Task target, Task editedTask, boolean isSameTask) {
+        requireAllNonNull(target, editedTask, isSameTask);
 
-        addressBook.setTask(target, editedTask);
-    }
-
-    @Override
-    public void replaceTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        addressBook.replaceTask(target, editedTask);
+        addressBook.replaceTask(target, editedTask, isSameTask);
     }
 
     @Override

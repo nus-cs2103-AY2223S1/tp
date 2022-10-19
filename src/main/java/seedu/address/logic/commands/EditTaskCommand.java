@@ -77,7 +77,7 @@ public class EditTaskCommand extends Command {
         }
 
         try {
-            model.replaceTask(taskToEdit, editedTask);
+            model.replaceTask(taskToEdit, editedTask, false);
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }

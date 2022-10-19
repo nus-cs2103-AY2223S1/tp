@@ -56,7 +56,7 @@ public class AddTagCommand extends Command {
             }
             taggedTask = currentTask.setPriorityTag(priorityTag);
         }
-        model.setTask(currentTask, taggedTask);
+        model.replaceTask(currentTask, taggedTask, true);
         return new CommandResult(TAG_ADDED_SUCCESS);
     }
 }
