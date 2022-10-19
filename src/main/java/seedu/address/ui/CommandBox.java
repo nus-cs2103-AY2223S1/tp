@@ -18,6 +18,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -43,7 +44,7 @@ public class CommandBox extends UiPart<Region> {
     // suggestions for task related commands
     private final SortedSet<String> suggestionsTasks;
     // pop up used to select a suggestion
-    private ContextMenu suggestionsPopup;
+    private final ContextMenu suggestionsPopup;
 
     @FXML
     private TextField commandTextField;
@@ -56,12 +57,22 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         commandLog = new ArrayList<>();
         suggestionsPopup = new ContextMenu();
-        suggestionsAb = new TreeSet<>(Arrays.asList("add", "delete", "edit", "exit"));
-        suggestionsTasks = new TreeSet<>();
+        suggestionsAb = new TreeSet<>(
+            Arrays.asList("add", "clear", "delete", "edit", "exit", "find", "help", "list", "task"));
+        suggestionsTasks = new TreeSet<>(
+            Arrays.asList("add", "assign", "deadline", "delete", "edit", "list", "mark", "unmark"));
 
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        addNavigateCommandsEvent();
+        addEvents();
+    }
+
+    /**
+     * Collates all the events to be added to commandTextField.
+     */
+    private void addEvents() {
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleTabKeyPressed);
     }
 
     /**
@@ -85,19 +96,23 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    /**
-     * Allows the user to navigate between previously entered commands with the UP and DOWN arrow keys.
-     * This function adds an event filter that checks whenever the user presses the UP and DOWN keys.
-     */
-    private void addNavigateCommandsEvent() {
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
+    private void handleTabKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.TAB) {
+            event.consume();
+        }
     }
 
     /**
+     * Allows the user to navigate between previously entered commands with the UP and DOWN arrow keys.
      * If no more previous command and UP key is pressed, nothing happens.
      * If current text matches the latest command and DOWN key is pressed, nothing happens.
      */
     private void handleNavigationKeysPressed(KeyEvent event) {
+        if (suggestionsPopup.isShowing()) {
+            suggestionsPopup.hide();
+            return;
+        }
+
         if (event.getCode() == KeyCode.UP) {
             event.consume();
             // if text field shows the earliest command, nothing changes.
@@ -136,28 +151,38 @@ public class CommandBox extends UiPart<Region> {
     // TODO: Update JavaDocs code
     @FXML
     private void handleTextChanged() {
-        commandTextField.textProperty().addListener((observable, oldText, newText) -> {
-            if (commandTextField.getText().isEmpty()) {
-                suggestionsPopup.hide();
+        String currentText = commandTextField.getText();
+
+        if (currentText.isEmpty()) {
+            suggestionsPopup.hide();
+            return;
+        }
+
+        if (suggestionsAb.size() == 0 || suggestionsTasks.size() == 0) {
+            return;
+        }
+
+        List<String> searchResult;
+
+        if (currentText.startsWith(TaskCommand.COMMAND_WORD + " ")
+            || currentText.startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
+            String resultFrom = currentText.substring(currentText.indexOf(" ")).stripLeading();
+            searchResult = new LinkedList<>(suggestionsTasks
+                .subSet(resultFrom, resultFrom + Character.MAX_VALUE));
+            if (searchResult.size() == 1 && resultFrom.equalsIgnoreCase(searchResult.get(0))) {
                 return;
             }
-
-            LinkedList<String> searchResult = new LinkedList<>(
-                suggestionsAb.subSet(commandTextField.getText(), commandTextField.getText() + Character.MAX_VALUE));
-
-            if (suggestionsAb.size() > 0) {
-                populatePopup(searchResult);
-
-                if (!suggestionsPopup.isShowing()) {
-                    suggestionsPopup.show(getRoot(), Side.BOTTOM, 0, 0);
-                } else {
-                    suggestionsPopup.hide();
-                }
+        } else {
+            searchResult = new LinkedList<>(suggestionsAb
+                .subSet(currentText, currentText + Character.MAX_VALUE));
+            if (searchResult.size() == 1 && currentText.equalsIgnoreCase(searchResult.get(0))) {
+                return;
             }
-        });
+        }
+        populatePopup(searchResult);
 
-        commandTextField.focusedProperty().addListener((observableValue, aBoolean, aBoolean2) ->
-            suggestionsPopup.hide());
+        suggestionsPopup.show(
+            getRoot(), Side.BOTTOM, 14 + currentText.length() * 7, -8);
     }
 
     /**
@@ -171,13 +196,13 @@ public class CommandBox extends UiPart<Region> {
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             item.setOnAction(actionEvent -> {
                 commandTextField.setText(result);
+                commandTextField.positionCaret(result.length());
                 suggestionsPopup.hide();
             });
             menuItems.add(item);
         }
         suggestionsPopup.getItems().clear();
         suggestionsPopup.getItems().addAll(menuItems);
-
     }
 
     /**
