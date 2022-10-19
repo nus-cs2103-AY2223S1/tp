@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalModules.MA2001;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.GoToCommand;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
 
 public class GoToCommandParserTest {
@@ -24,16 +25,19 @@ public class GoToCommandParserTest {
     @Test
     public void equals() {
         GoToCommand firstGoToCommand =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106),
+                        new ModuleCode(MODULE_CODE_STR_CS2106));
         GoToCommand secondGoToCommand =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_MA2001));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_MA2001),
+                        new ModuleCode(MODULE_CODE_STR_MA2001));
 
         // same object -> returns true
         assertTrue(firstGoToCommand.equals(firstGoToCommand));
 
         // same values -> returns true
         GoToCommand firstGoToCommandCopy =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106),
+                        new ModuleCode(MODULE_CODE_STR_CS2106));
         assertTrue(firstGoToCommand.equals(firstGoToCommandCopy));
 
         // different types -> returns false
@@ -53,9 +57,10 @@ public class GoToCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsGoToCommand() {
         GoToCommand expectedGoToCommand =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106),
+                        new ModuleCode(MODULE_CODE_STR_CS2106));
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, MODULE_CODE_STR_CS2106, expectedGoToCommand);
