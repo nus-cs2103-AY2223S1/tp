@@ -166,7 +166,7 @@ The implementation of the 'delete link' feature is highly similar to this, but w
 
 #### Implementation
 
-The add link mechanism is facilitated by `AddLinkCommandParser` and `AddLinkCommand`. 
+The add link mechanism is facilitated by `AddLinkCommandParser` and `AddLinkCommand`.
 `AddLinkCommandParser` implements the `Parser` interface to validate the `Module` and
 pair link URLs with their aliases from the user input.
 It then creates a `AddLinkCommand` object with the pairings for the specified `Module`.
@@ -177,8 +177,8 @@ Given below is an example usage scenario and how the add link mechanism behaves 
 **Step 1**: The user decides to add a link to a current module in Plannit using the following input:
 `add-link m/CS1231 l/<link URL> la/<link alias>`.
 
-**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the user input. 
-Then, the `LogicManager` calls the `AddressBookParser::parseCommand` method 
+**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the user input.
+Then, the `LogicManager` calls the `AddressBookParser::parseCommand` method
 with the user input `String` to create a `Command` object.
 
 **Step 3**: The `AddressBookParser` finds the command keyword `add-link` in the user input.
@@ -193,7 +193,7 @@ A new `AddLinkCommand` is created with the module code and `Link` object, which 
 This method will first obtain the `Module` object with the module code indicated by the user.
 A copy of the `Module`'s fields are then created and the `Link` object is added to the copied `TreeMap` of links.
 
-**Step 6**: A new `Module` is created with the modified and copied fields, which replaces 
+**Step 6**: A new `Module` is created with the modified and copied fields, which replaces
 the original `Module` object in Plannit using the `Model::setModule` method.
 
 The following sequence diagram shows how the 'add link' feature works:
@@ -205,48 +205,48 @@ The following activity diagram shows how the 'add link' feature works:
 #### Design considerations:
 **Aspect: Link Representation:**
 * **Alternative 1 (current choice)**: Link objects require alias and URL.
-    * Pros: 
+    * Pros:
         * Fast identification, access, and deletion of links from the user's perspective.
         * Improved sorted display of links (shorter and standardised format).
-    * Cons: 
+    * Cons:
         * Longer time for the user to type input.
 * **Alternative 2**: Link objects require URL only and its alias is an optional input.
-    * Pros: 
+    * Pros:
         * Greater flexibility for different user preferences.
-    * Cons: 
+    * Cons:
         * Inconsistent link display format
         * Slow identification, access, and deletion of links from the user's perspective.
 * **Alternative 3**: Link objects require URL only and its alias is an optional input with a default alias.
-    * Pros: 
+    * Pros:
         * Greater flexibility for different user preferences.
-    * Cons: 
+    * Cons:
         * Default alias may be confusing and/or undesirable.
         * Slow identification, access, and deletion of links from the user's perspective.
 * **Alternative 4**: Link objects require URL only with no alias.
-    * Pros: 
+    * Pros:
         * Easy to implement.
-    * Cons: 
+    * Cons:
         * Cluttered and unorganised display of links.
         * Slow identification, access, and deletion of links from the user's perspective.
 
 **Aspect: Link Storage:**
 * **Alternative 1 (current choice)**: Link objects stored in a `TreeMap` object within `Module`.
-    * Pros: 
+    * Pros:
         * Consistent display order of links in Plannit.
-    * Cons: 
+    * Cons:
         * Harder to implement.
 * **Alternative 2**: Link objects stored in a `ArrayList` object within `Module`.
-    * Pros: 
+    * Pros:
         * Easy to implement.
-    * Cons: 
+    * Cons:
         * No standardised display order of links across `Module` objects.
         * Slow performance when accessing and deleting links in terms of time.
 * **Alternative 3**: Link objects stored in a `HashSet` object within `Module`.
-    * Pros: 
+    * Pros:
         * Fast performance when accessing and deleting links in terms of time.
-    * Cons: 
+    * Cons:
         * Display order of links changes after each modification to the `HashSet` of links for a `Module`.
-        
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -508,7 +508,7 @@ Use case ends.
 
 **Main Success Scenario (MSS)**
 1. User requests to search for a task.
-2. Plannit displays to the user the list of tasks matching the user's search 
+2. Plannit displays to the user the list of tasks matching the user's search
    request.
 
 **Extensions**
@@ -569,19 +569,19 @@ Use case ends.
 
 **Extensions**
 * 3a. The contact is duplicate, i.e. name already exists.
-    * 3a1. Plannit displays an error message notifying the user that a 
+    * 3a1. Plannit displays an error message notifying the user that a
       duplicate contact exists.
 
   Use case ends.
 
 * 3b. The email address is invalid.
-    * 3b1. Plannit displays an error message notifying the user that the 
+    * 3b1. Plannit displays an error message notifying the user that the
       email address is invalid.
 
   Use case ends.
 
 * 3c. The phone number is invalid.
-    * 3c1. Plannit displays an error message notifying the user that the phone 
+    * 3c1. Plannit displays an error message notifying the user that the phone
       number is invalid.
 
   Use case ends.
@@ -591,7 +591,7 @@ Use case ends.
 1. User chooses to delete a contact.
 2. Plannit requests for the name of the contact.
 3. User enters the contact's name.
-4. Plannit searches for the contact and notifies user that the contact has been 
+4. Plannit searches for the contact and notifies user that the contact has been
    deleted.
 
 Use case ends.

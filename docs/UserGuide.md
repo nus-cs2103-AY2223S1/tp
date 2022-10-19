@@ -10,7 +10,7 @@ tediously navigate through multiple websites.
 This application is **optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 contains some sample data.<br>
    [image coming soon]
 
-5. Type the command in the command box and press Enter to execute it. e.g. 
+5. Type the command in the command box and press Enter to execute it. e.g.
    `add-module`. For more commands, you may refer to the [command summary](#11-command-summary)
 
 6. Refer to the [Features](#2-features) for details of each command.
@@ -62,8 +62,8 @@ contains some sample data.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
-to be present.  
-  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER` 
+to be present.
+  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
 * Parameters can be in any order.<br>
@@ -88,8 +88,8 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
-* You may optionally add a module title. If provided module title is empty, then Plannit 
-  interprets it as that there is no module title. 
+* You may optionally add a module title. If provided module title is empty, then Plannit
+  interprets it as that there is no module title.
 * You cannot add a duplicate module code.
 
 Examples:
@@ -145,28 +145,28 @@ Example:
 ```
 add-task m/CS2103T td/Complete tP tasks for W07
 ```
-In the above example, we are adding the task `Complete tP tasks for W07` to the 
+In the above example, we are adding the task `Complete tP tasks for W07` to the
 module with module code `CS2103T`.
 
 #### 2.2.2. Delete task
-You may delete a task belonging to a particular module using the 
+You may delete a task belonging to a particular module using the
 `delete-task` command.
 
 This command will require two flags:
-* `m/`: To be followed by the module code of the module which assigned the 
+* `m/`: To be followed by the module code of the module which assigned the
   task.
 * `tn/`: To be followed by the task number in the module.
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
-* You should provide a task number corresponding to that of an existing task in 
+* You should provide a task number corresponding to that of an existing task in
   the module.
 
 Example:
 ```
 delete-task m/CS2103T tn/3
 ```
-In the above example, we are deleting task number **3** from the module 
+In the above example, we are deleting task number **3** from the module
 with the module code `CS2103T`.
 
 #### 2.2.3. Finding tasks [coming soon]
@@ -190,7 +190,7 @@ Example:
 ```
 add-link 1 l/visualgo.net/en
 ```
-In the above example, we are adding the link with the URL `visualgo.net/en` 
+In the above example, we are adding the link with the URL `visualgo.net/en`
 to the module with the displayed index of `1`.
 
 ```
@@ -254,9 +254,9 @@ This command will require one flag:
 Format: `delete-contact n/NAME`
 * You cannot delete a non-existent contact.
 
-Example:  
+Example:
 ```
-delete-contact n/Dinosaur Lim  
+delete-contact n/Dinosaur Lim
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
@@ -280,7 +280,7 @@ edit-contact 1 n/Dinosaur Lim
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim` in Plannit.
 ```
-edit-contact 1 e/dinosaurlim@gmail.com 
+edit-contact 1 e/dinosaurlim@gmail.com
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the
 email `dinosaurlim@gmail.com`in Plannit.
@@ -327,17 +327,17 @@ manually.
 <br>
 
 ### 2.8. Loading The Data
-If saved data exists, data is automatically loaded when the program starts. There is no need to 
+If saved data exists, data is automatically loaded when the program starts. There is no need to
 load manually.
 
 <br>
 
 ### 2.9. Editing The Data File
-Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update 
+Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Plannit will discard 
+If your changes to the data file makes its format invalid, Plannit will discard
 all data and start with an empty data file at the next run.
 </div>
 
@@ -348,7 +348,7 @@ all data and start with an empty data file at the next run.
 --------------------------------------------------------------------------------------------------------------------
 ## 4. FAQ
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with
 the file that contains the data of your previous Plannit home folder.
 <br>
 <br>
