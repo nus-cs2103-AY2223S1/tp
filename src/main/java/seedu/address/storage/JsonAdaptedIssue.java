@@ -3,6 +3,7 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
@@ -14,7 +15,6 @@ import seedu.address.model.issue.Status;
 import seedu.address.model.list.NotFoundException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
-import seedu.address.model.tag.exceptions.IllegalValueException;
 
 /**
  * Jackson-friendly version of {@link Issue}.

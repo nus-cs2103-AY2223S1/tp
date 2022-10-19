@@ -58,7 +58,7 @@ public class DeleteProjectCommand extends ProjectCommand {
         if (!projectClient.isEmpty()) {
             projectClient.removeProject(projectToDelete);
             if (projectClient.getProjectListSize() == 0) {
-                model.getAddressBook().getClientList().remove(projectClient);
+                model.deleteClient(projectClient);
             }
         }
 

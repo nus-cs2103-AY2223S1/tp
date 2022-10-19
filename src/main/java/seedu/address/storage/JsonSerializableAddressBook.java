@@ -8,11 +8,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
-import seedu.address.model.tag.exceptions.IllegalValueException;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -27,7 +27,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook}.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("projects") List<JsonAdaptedProject> projects,

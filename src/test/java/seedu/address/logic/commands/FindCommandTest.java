@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
 

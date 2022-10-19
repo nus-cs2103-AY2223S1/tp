@@ -1,4 +1,4 @@
-package seedu.address.model.tag.exceptions;
+package seedu.address.commons.exceptions;
 
 /**
  * Signals that some given data does not fulfill some constraints.

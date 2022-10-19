@@ -16,7 +16,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.storage.Storage;
@@ -66,11 +65,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     @Override
