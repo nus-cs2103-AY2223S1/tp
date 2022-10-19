@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTITUTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXTOFKIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -72,7 +71,6 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_SCHOOL + "SCHOOL "
             + PREFIX_LEVEL + "LEVEL "
-            + PREFIX_NEXTOFKIN + "NEXTOFKIN "
             + "[" + PREFIX_TAG + "TAG]... OR\n"
             + "tutor "
             + PREFIX_NAME + "NAME "
@@ -97,7 +95,6 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_SCHOOL + "Keming Primary School "
             + PREFIX_LEVEL + "Primary3 "
-            + PREFIX_NEXTOFKIN + "Mom Doe "
             + PREFIX_TAG + "badBoy "
             + PREFIX_TAG + "owesMoney";
 

@@ -37,6 +37,5 @@ public class TypicalAddressBook {
             ab.addTuitionClass(tc);
         }
         return ab;
-
     }
 }
