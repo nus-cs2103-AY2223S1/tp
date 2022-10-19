@@ -249,6 +249,34 @@ We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least sig
 
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
 
+### Display  of person list
+Initially, there is only one `PersonListPanel` that displays the person list in the ui. However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`. 
+
+In addition, buyers, suppliers and deliverers have comprehensive details on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in obtaining information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
+
+In the implementation, we have a `personListPanelPlaceholder` in the `MainWindow`, which can be filled by one of the followings depending on the `Command` executed:
+* `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
+* `SupplierListPanel`: displays information about each `Supplier` using a `SupplierCard` in a `ListView`.
+* `DelivererListPanel`: displays information about each `Deliverer` using a `DelivererCard` in a `ListView`.
+* `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` n a `ListView`.
+
+By having a display panel for each of the three `Person` categories, as well as the panel that displays all, it will be easier to customise the display of different `Person` types if required by future features and ui improvements.
+
+In each `BuyerCard`, the buyer's `Name` will be shown together with an `Index` and a label indicating he or she is a `Buyer`.
+The left side displays the contact information of the `Buyer`, including `Phone`, `Email`, `Location`, and `Address`.
+The right side of the card is visually enhanced by adding a `ListView` of `OrderCard`, which displays the information of each of the `Order` that the `Buyer` makes with an index in a list.
+
+The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
+
+In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card. 
+Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each of the `Pet` that the `Supplier` sells with an index in a list.
+
+By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the height of each card within a reasonable range 
+(e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched vertically, potentially to an extent that the whole window can only show information of one single buyer).
+
+Given below is a scenario that shows how the new ui responds to a `ListCommand`.
+// TODO: add description here
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
