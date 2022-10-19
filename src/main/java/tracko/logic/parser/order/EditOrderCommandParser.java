@@ -9,13 +9,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import tracko.commons.core.index.Index;
+import tracko.logic.commands.item.EditItemCommand;
 import tracko.logic.commands.order.EditOrderCommand;
-import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
-import tracko.logic.parser.ArgumentMultimap;
-import tracko.logic.parser.ArgumentTokenizer;
-import tracko.logic.parser.CliSyntax;
-import tracko.logic.parser.Parser;
-import tracko.logic.parser.ParserUtil;
+import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
+import tracko.logic.parser.*;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.tag.Tag;
 
@@ -40,30 +37,19 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditOrderCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditOrderCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(
-                argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        EditOrderDescriptor editOrderDescriptor = new EditOrderDescriptor();
+        parseContacts(editOrderDescriptor, argMultimap);
+        parseItemQuantity(editOrderDescriptor, argMultimap);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
+        if (!editOrderDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditItemCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditOrderCommand(index, editPersonDescriptor);
+        return new EditOrderCommand(index, editOrderDescriptor);
     }
 
     /**
@@ -81,4 +67,43 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    public boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        return argumentMultimap.getValue(prefix).isPresent();
+    }
+
+    public void parseContacts(EditOrderDescriptor editOrderDescriptor, ArgumentMultimap argMultimap)
+            throws ParseException {
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)) {
+            editOrderDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
+        }
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_PHONE)) {
+            editOrderDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
+        }
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_EMAIL)) {
+            editOrderDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
+        }
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ADDRESS)) {
+            editOrderDescriptor.setAddress(ParserUtil.parseAddress(
+                    argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()));
+        }
+    }
+
+    public void parseItemQuantity(EditOrderDescriptor editOrderDescriptor, ArgumentMultimap argMultimap)
+            throws ParseException{
+
+        boolean isItemPrefixPresent = arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ITEM);
+        boolean isQuantityPrefixPresent = arePrefixesPresent(argMultimap, CliSyntax.PREFIX_QUANTITY);
+
+        if ((isItemPrefixPresent && !isQuantityPrefixPresent)
+                || (!isItemPrefixPresent && isQuantityPrefixPresent)) {
+            throw new ParseException("Item prefix should be accompanied with a quantity prefix, and vice versa.");
+        }
+
+        if (isItemPrefixPresent && isQuantityPrefixPresent) {
+            editOrderDescriptor.setAddress(ParserUtil.parseAddress(
+                    argMultimap.getValue(CliSyntax.PREFIX_ITEM).get()));
+            editOrderDescriptor.setAddress(ParserUtil.parseAddress(
+                    argMultimap.getValue(CliSyntax.PREFIX_ITEM).get()));
+        }
+    }
 }
