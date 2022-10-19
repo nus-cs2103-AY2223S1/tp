@@ -66,7 +66,6 @@ public class AddConsultCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         List<Student> lastShownList = model.getFilteredStudentList();
 
         Set<Student> studentSet = new HashSet<>();

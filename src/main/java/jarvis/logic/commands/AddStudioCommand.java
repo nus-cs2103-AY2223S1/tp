@@ -55,7 +55,6 @@ public class AddStudioCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         List<Student> lastShownStudentList = model.getFilteredStudentList();
 
         LessonAttendance studioAttendance = new LessonAttendance(lastShownStudentList);
