@@ -40,6 +40,7 @@ public class JsonAdaptedActivityTest {
         dateList.add(new JsonAdaptedDate(VALID_DATE));
         JsonAdaptedActivity activity =
                 new JsonAdaptedActivity(INVALID_NAME, VALID_DESCRIPTION, VALID_TAGS, dateList, 1, VALID_STATUS);
+
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
     }
