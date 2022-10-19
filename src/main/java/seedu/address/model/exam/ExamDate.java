@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.time.format.ResolverStyle;
 
 
 /**
@@ -14,7 +14,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class ExamDate {
     public static final String DATE_CONSTRAINTS =
-            "Exam Date should be in YYYY-MM-DD format and must be a valid date.";
+            "Exam Date should be in dd-mm-yyyy format and must be a valid date.";
+    public static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
     public final String examDate;
     public final String dateWithoutFormatting;
 
@@ -27,34 +29,41 @@ public class ExamDate {
     public ExamDate(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), DATE_CONSTRAINTS);
-        examDate = LocalDate.parse(date).format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        examDate = LocalDate.parse(date, DATE_TIME_FORMATTER).format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         dateWithoutFormatting = date;
-
     }
-
-
-
 
     /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String date) {
-        return date.length() >= 10 && isExistingDate(date);
+        return date.length() >= 10 && isExistingDate(date) && isNotAPastDate(date);
     }
 
     /**
-     * Returns true if date exists.
-     * @param date A String that represents a date that is in YYYY-MM-DD format.
+     * Returns true if date inputted exists.
+     * @param date A String that represents a date that is in dd-MM-yyyy format.
      * @return true if date exist, otherwise false.
      */
     public static boolean isExistingDate(String date) {
         try {
-            LocalDate.parse(date).format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+            LocalDate.parse(date, DATE_TIME_FORMATTER).format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
             return true;
         } catch (DateTimeException e) {
             return false;
         }
     }
+
+    /**
+     * Returns true if date inputted is not a date before the current date.
+     * @param date A String that represents a date that is in dd-MM-YYYY format.
+     * @return true if date is not a past date, otherwise false.
+     */
+    public static boolean isNotAPastDate(String date) {
+        LocalDate d = LocalDate.parse(date, DATE_TIME_FORMATTER);
+        return d.compareTo(LocalDate.now()) >= 0;
+    }
+
 
     @Override
     public String toString() {
