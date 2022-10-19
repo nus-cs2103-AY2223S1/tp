@@ -2,7 +2,9 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -45,9 +47,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane targetPersonPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -101,7 +100,6 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         targetPersonPanel = new TargetPersonPanel(logic.getTargetPersonList());
-        targetPersonPanelPlaceholder.getChildren().add(targetPersonPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -180,13 +178,16 @@ public class MainWindow extends UiPart<Stage> {
      * @param secondaryPaneState
      */
     public void setSecondaryPaneState(SecondaryPaneState secondaryPaneState) {
+        assert(mainPane != null) : "Main pane is not initialized yet.";
         resetSecondaryPane();
         switch(secondaryPaneState) {
         case WELCOME:
-            mainPane.add(new WelcomePanel().getRoot(), 1, 1);
+            mainPane.addColumn(1, welcomePanel.getRoot());
             break;
         case HELP:
         case TARGET_PERSON:
+            mainPane.addColumn(1, targetPersonPanel.getRoot());
+            break;
         case MESSAGE_TEMPLATES:
         default:
             break;
@@ -197,7 +198,16 @@ public class MainWindow extends UiPart<Stage> {
      * Removes the secondary pane from UI.
      */
     private void resetSecondaryPane() {
-        mainPane.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1);
+        assert(mainPane != null) : "Main pane is not initialized yet.";
+        ObservableList<Node> childrens = mainPane.getChildren();
+        // gosh it took me more than an hour to find out how to do this
+        for(Node node : childrens) {
+            if (node.getStyleClass().contains("secondary-pane")) {
+                logger.info("Removing secondary pane");
+                mainPane.getChildren().remove(node);
+                break;
+            }
+        }
     }
 
     /**
@@ -213,6 +223,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.getSecondaryPaneState() != null) {
+                setSecondaryPaneState(commandResult.getSecondaryPaneState());
             }
 
             if (commandResult.isExit()) {
