@@ -7,7 +7,7 @@ import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a module identified using ModuleCode input by user.
  */
 public class DeleteCommand extends Command {
 
