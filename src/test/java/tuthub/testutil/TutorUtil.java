@@ -37,7 +37,9 @@ public class TutorUtil {
         sb.append(PREFIX_NAME + tutor.getName().fullName + " ");
         sb.append(PREFIX_PHONE + tutor.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + tutor.getEmail().value + " ");
-        sb.append(PREFIX_MODULE + tutor.getModule().value + " ");
+        tutor.getModules().stream().forEach(
+            s -> sb.append(PREFIX_MODULE + s.value + " ")
+        );
         sb.append(PREFIX_YEAR + tutor.getYear().value + " ");
         sb.append(PREFIX_STUDENTID + tutor.getStudentId().value + " ");
         sb.append(PREFIX_TEACHINGNOMINATION + tutor.getTeachingNomination().value + " ");
@@ -56,7 +58,7 @@ public class TutorUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getModule().ifPresent(module -> sb.append(PREFIX_MODULE).append(module.value).append(" "));
+        descriptor.getModules().ifPresent(s -> s.forEach(m -> sb.append(PREFIX_MODULE).append(m.value).append(" ")));
         descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.value).append(" "));
         descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENTID)
                 .append(studentId.value).append(" "));
