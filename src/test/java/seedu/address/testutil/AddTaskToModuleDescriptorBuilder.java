@@ -14,10 +14,6 @@ public class AddTaskToModuleDescriptorBuilder {
 
     private AddTaskToModuleDescriptor descriptor;
 
-    public AddTaskToModuleDescriptorBuilder() {
-        descriptor = new AddTaskToModuleDescriptor();
-    }
-
     public AddTaskToModuleDescriptorBuilder(AddTaskToModuleDescriptor descriptor) {
         this.descriptor = new AddTaskToModuleDescriptor(descriptor);
     }
