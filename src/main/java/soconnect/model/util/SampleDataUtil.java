@@ -79,14 +79,16 @@ public class SampleDataUtil {
     }
 
     public static Tag[] getSampleTagList() {
-        return new Tag[]{
-                new Tag("friends"),
-                new Tag("colleagues"),
-                new Tag("neighbours"),
-                new Tag("family"),
-                new Tag("classmates")
+        return new Tag[] {
+            new Tag("friends"),
+            new Tag("colleagues"),
+            new Tag("neighbours"),
+            new Tag("family"),
+            new Tag("classmates")
         };
     }
+
+
 
     /**
      * Returns a tag set containing the list of strings given.
