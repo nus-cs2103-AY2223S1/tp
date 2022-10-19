@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'pleasehireus.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
