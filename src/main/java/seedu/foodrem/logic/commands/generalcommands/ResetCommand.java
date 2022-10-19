@@ -16,6 +16,7 @@ public class ResetCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        assert false;
         requireNonNull(model);
         model.setFoodRem(new FoodRem());
         return new CommandResult(MESSAGE_SUCCESS);

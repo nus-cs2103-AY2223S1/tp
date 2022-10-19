@@ -45,7 +45,7 @@ destroy TagCommandParser
 FoodRemParser --> LogicManager :
 deactivate FoodRemParser
 
-LogicManager -> TagCommand : execute()
+LogicManager -> TagCommand : execute(model)
 activate TagCommand
 
 TagCommand -> TagCommand : createTaggedItem(itemToTag, tag)
