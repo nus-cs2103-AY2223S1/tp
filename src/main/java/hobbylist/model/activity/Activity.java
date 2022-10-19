@@ -147,7 +147,7 @@ public class Activity {
         }
         builder.append("; Status: ")
                 .append(getStatus());
-        
+
         return builder.toString();
     }
 
