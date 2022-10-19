@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.logic.parser.exceptions.SocialNotFoundException;
-
 /**
  * Represents a Person's social media in the address book.
  */
@@ -20,7 +18,7 @@ public class Social {
     public static final String VALIDATION_REGEX = ".*@.*";
 
     private String handle;
-    private Platform platform;
+    private String platform;
 
     /**
      * Constructs a {@code Social}.
@@ -31,12 +29,9 @@ public class Social {
     public Social(String fullString) {
         requireNonNull(fullString);
         checkArgument(isValidSocial(fullString), MESSAGE_CONSTRAINTS);
-        this.handle = fullString.split("@")[0];
-        try {
-            this.platform = PlatformConverter.stringToPlatform(fullString.split("@")[1]);
-        } catch (SocialNotFoundException e) {
-            e.printStackTrace();
-        }
+        String[] fullStringArray = fullString.split("@");
+        this.handle = fullStringArray[0];
+        this.platform = fullStringArray[1];
     }
 
     /**
@@ -46,7 +41,7 @@ public class Social {
      * @param platform A valid social media platform
      */
 
-    public Social(String handle, Platform platform) {
+    public Social(String handle, String platform) {
         requireNonNull(handle);
         requireNonNull(platform);
         checkArgument(isValidSocial(handle + "@" + platform), MESSAGE_CONSTRAINTS);
