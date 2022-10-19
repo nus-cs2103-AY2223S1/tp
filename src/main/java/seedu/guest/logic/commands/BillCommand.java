@@ -66,7 +66,7 @@ public class BillCommand extends Command {
         Guest editedGuest = new Guest(
                 guestToEdit.getName(), guestToEdit.getPhone(), guestToEdit.getEmail(), guestToEdit.getRoom(),
                 guestToEdit.getDateRange(), guestToEdit.getNumberOfGuests(), guestToEdit.getIsRoomClean(),
-                editedBill
+                editedBill, guestToEdit.getRequest()
         );
 
         model.setGuest(guestToEdit, editedGuest);

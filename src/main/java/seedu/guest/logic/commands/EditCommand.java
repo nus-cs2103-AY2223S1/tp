@@ -26,6 +26,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 import seedu.guest.model.guest.Room;
 
 /**
@@ -107,8 +108,9 @@ public class EditCommand extends Command {
         IsRoomClean updatedIsRoomClean = editGuestDescriptor.getIsRoomClean().orElse(guestToEdit.getIsRoomClean());
 
         Bill updatedBill = guestToEdit.getBill();
+        Request updatedRequest = guestToEdit.getRequest();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
-                updatedNumberOfGuests, updatedIsRoomClean, updatedBill);
+                updatedNumberOfGuests, updatedIsRoomClean, updatedBill, updatedRequest);
     }
 
     @Override
