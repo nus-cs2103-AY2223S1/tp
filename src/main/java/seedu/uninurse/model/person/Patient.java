@@ -11,7 +11,7 @@ import seedu.uninurse.model.task.TaskList;
 
 
 /**
- * Represents a Patient in the UniNurse book.
+ * Represents a Patient in the Uninurse book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient extends Person {
