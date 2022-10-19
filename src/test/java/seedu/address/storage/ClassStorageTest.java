@@ -88,10 +88,12 @@ public class ClassStorageTest {
     public void execute_updatePerson() throws Exception {
         Person personToEdit = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
-                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("Remind student to submit homework").withRatesPerClass(40).build();
+                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("Remind student to submit homework")
+                .withRatesPerClass(40).build();
         Person editedPerson = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
-                .withMoneyOwed(20).withMoneyPaid(10).withAdditionalNotes("Remind student to submit homework").withRatesPerClass(40).build();
+                .withMoneyOwed(20).withMoneyPaid(10).withAdditionalNotes("Remind student to submit homework")
+                .withRatesPerClass(40).build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
