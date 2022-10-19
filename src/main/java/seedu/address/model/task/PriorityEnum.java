@@ -11,16 +11,21 @@ public enum PriorityEnum {
     MEDIUM("medium"),
     HIGH("high");
 
-    private String name;
+    private final String name;
 
     PriorityEnum(String name) {
         this.name = name;
     }
 
+    /**
+     * Returns String of valid task priorities as user input arguments
+     *
+     * @return String of valid task priorities
+     */
     public static String getValidPriorities() {
         StringBuilder str = new StringBuilder();
         for (PriorityEnum p : PriorityEnum.values()) {
-            str.append(" " + p.name);
+            str.append(" ").append(p.name);
         }
         return str.toString();
     }

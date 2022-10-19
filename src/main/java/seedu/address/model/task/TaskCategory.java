@@ -12,8 +12,8 @@ public class TaskCategory {
     public static final Integer TASK_CATEGORY_LEVEL_UPPER_BOUND = 5;
     public static final String MESSAGE_CONSTRAINTS =
             "Category name must be one of the following: " + TaskCategoryType.getValidTaskCategories()
-            + " and category level must be >= " + TASK_CATEGORY_LEVEL_LOWER_BOUND.toString()
-            + " and <= " + TASK_CATEGORY_LEVEL_UPPER_BOUND.toString();
+            + " and category level must be >= " + TASK_CATEGORY_LEVEL_LOWER_BOUND
+            + " and <= " + TASK_CATEGORY_LEVEL_UPPER_BOUND;
     private final Integer level;
     private final TaskCategoryType taskCategoryType;
 
