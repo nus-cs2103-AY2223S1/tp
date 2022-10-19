@@ -62,12 +62,12 @@ public class EditModuleCommand extends Command {
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
         Module editedModule = moduleToEdit.edit(editModuleDescriptor);
 
-        if (model.hasTaskWithModule(moduleToEdit)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK);
+        if (moduleToEdit.isSameModule(editedModule)) {
+            throw new CommandException(MESSAGE_MODULE_NOT_EDITED);
         }
 
-        if (moduleToEdit.isSameModuleCode(editedModule)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_EDITED);
+        if (model.hasTaskWithModule(moduleToEdit)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK);
         }
 
         try {
