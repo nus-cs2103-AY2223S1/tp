@@ -307,9 +307,24 @@ Adding and removing filters are exposed in the `Model` through the `Model#addNew
 
 Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
 
-**Given below is an example usage scenario of message generation**
+**Given below is an example usage scenario of filtering**
 
+Step 1. The user wants to filter the for he tagged as `rich` and `fun`.
+```
+filter t=rich,fun
+```
 
+Step 2: In the list returned, the user notices the names, `Bob`, `Alan`, which he has interests in. He can filter for them, so that they appear beside each other.
+
+```
+filter n=bob,alan
+```
+
+Step 3: After looking through their details, the user wants to look at other `rich` and `fun` clients in his contact. To do this, he can clear the name filters. 
+
+```
+filter clear n=bob,alan
+```
 
 #### Design considerations:
 
@@ -317,15 +332,17 @@ Predicates of each type of filter (name and tags) are stored in separate sets in
 
 * **Alternative 1 (current choice):** filters of the same type are reduced with `OR` and filters of different types are reduced with `AND`.
     * Pros: 
-      * 
+      * Simple to implement
+      * Follows the same filtering pattern used by most websites
     * Cons: 
-      * 
+      * It might be unintuitive for the user to see the list expanding after a new filter is applied.
 
 * **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commadns are reduced with `AND`.
     * Pros: 
-    	* 
+    	* Provides a lot of flexibility for the user
     * Cons: 
-      * 
+      * Difficult to test as there are many different cases
+      * Difficult to implement clearing of filters in a sensible and intuitive manner
 
 ### \[Proposed\] Show command
 
