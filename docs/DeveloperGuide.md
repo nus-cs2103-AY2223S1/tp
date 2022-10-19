@@ -240,7 +240,7 @@ _{more aspects and alternatives to be added}_
 
 #### Design considerations:
 
-### \[Proposed\] Remark field for entries
+### Remark field for entries
 
 #### Proposed Implementation
 
@@ -285,7 +285,7 @@ There are only 2 commands which can modify the Remark for a Person. These are th
         * `edit` command no longer agrees with its definition to edit entries.
 
 
-### \[Proposed\] Tag command
+### Tag command
 
 #### Proposed Implementation
 
