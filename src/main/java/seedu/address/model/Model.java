@@ -150,7 +150,7 @@ public interface Model {
 
     //// navigation-related methods
     /**
-     * Returns the status of Plannit.
+     * Returns true if Plannit is at the home page, false otherwise.
      */
     boolean getHomeStatus();
 

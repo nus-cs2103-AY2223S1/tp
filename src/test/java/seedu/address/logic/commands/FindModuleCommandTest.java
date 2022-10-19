@@ -51,7 +51,7 @@ public class FindModuleCommandTest {
         // null -> returns false
         assertFalse(findModuleFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different module -> returns false
         assertFalse(findModuleFirstCommand.equals(findModuleSecondCommand));
     }
 

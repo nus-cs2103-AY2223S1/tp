@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 public class ModuleCodeTest {
     private static final String MODULE_CODE_MIX_CASE = "mA2001";
+    private static final String MODULE_CODE_WITH_SPACES = "MA2 001";
     private static final String EMPTY_MODULE_CODE = "";
 
     @Test
@@ -24,6 +25,7 @@ public class ModuleCodeTest {
 
     @Test
     public void isValidModuleCode_inValidModuleCode_returnsFalse() {
+        assertFalse(isValidModuleCode(MODULE_CODE_WITH_SPACES));
         assertFalse(isValidModuleCode(INVALID_MODULE_CODE));
         assertFalse(isValidModuleCode(EMPTY_MODULE_CODE));
         assertFalse(isValidModuleCode(null));
