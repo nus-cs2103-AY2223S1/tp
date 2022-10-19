@@ -11,7 +11,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Attendance;
-import seedu.address.model.person.subject.Grade;
+import seedu.address.model.person.subject.Grades;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -41,7 +41,7 @@ public class PersonBuilder {
     private Set<Remark> remarks;
     private Attendance attendance;
     private SubjectHandler subjectHandler;
-    private Grade grade;
+    private Grades grades;
     private Set<Tag> tags;
 
     /**
