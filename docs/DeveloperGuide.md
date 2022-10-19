@@ -238,6 +238,29 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Task and Person display each other
+
+#### Proposed Implementation
+
+Currently, A person in the addressbook has no relation to the tasks assigned to that person. This feature will allow tasks and persons to be related to each other, and allow the UI to display which tasks are assigned to a person, and which person is in charge of a task.
+
+This will be implemented by modifying 3 already existing commands
+
+* `Add` — Whenever a person is added, any task that shares the same email as the new Person's email wil be updated to reflect the person's name.
+* `Delete` — Whenever a person is deleted, their tasks will be edited to reflect that they are not assigned to any person
+* `Edit` — Whenever a person is edited, their tasks will be edited to reflect the new changes
+
+Given below is an example usage scenario.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. A new person (John) is added, with an email of test@example.com
+
+Step 3. A new task is added, assigned to John.
+
+Step 4. John is edited to James via the Edit command. This will be reflected in the task that John/James is assigned to
+
+Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
 
 --------------------------------------------------------------------------------------------------------------------
 
