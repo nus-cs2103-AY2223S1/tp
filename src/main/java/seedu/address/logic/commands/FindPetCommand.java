@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all pets in address book whose name contains any of the argument keywords.

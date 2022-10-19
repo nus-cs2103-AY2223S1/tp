@@ -28,7 +28,7 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
-import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalPersonCategories;
 
 public class AddressBookParserTest {
