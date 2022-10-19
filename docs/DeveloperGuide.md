@@ -37,16 +37,16 @@ ClassStorage#saveClass() — Saves the new class into its storage.
 ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
 ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
 
-The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not positive integer, 
+The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer, 
 a `ParseException` will be thrown.
 If the index is valid, `ParserUtil` will then check that both the date and time are valid before creating an `EditCommand`.
 
 During the execution of `EditCommand`, if the given index is not within the range of the list, a `CommandException` will be thrown.
 Otherwise, the model will then obtain the student using getFilteredPersonList.
 
-Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new clas
+Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new class
 and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class 
-will be removed in order to free up the time slot. If there is no timing conflict, `ClassStorage` will proceed to 
+will be removed in order to free up the time slot. If there is no time conflict, `ClassStorage` will proceed to 
 save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
@@ -55,10 +55,9 @@ The following sequence diagram shows how the edit class operation works:
 
 The following activity diagram summarizes what happens when a teacher executes an edit class command:
 
-
+![EditClassActivityDiagram](images/EditClassActivityDiagram.png)
 
 #### Design Considerations:
-
 ##### Aspect: Input format for edit class:
 
 * **Alternative 1**: dt/yyyy-MM-dd 0000-2359
@@ -67,7 +66,10 @@ The following activity diagram summarizes what happens when a teacher executes a
 
 * **Alternative 2**: dt/Day-of-Week 0000-2359
   * Pros: More convenient and easier for tutor to type.
-  * Cons: Only can set the class to a date at most 1 week away.
+  * Cons: 
+    1. Harder to implement.
+    2. Only can set the class to a date at most 1 week away.
+  
 
   
 --------------------------------------------------------------------------------------------------------------------
