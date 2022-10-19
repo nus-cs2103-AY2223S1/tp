@@ -26,17 +26,19 @@ public class ShowCommandTest {
 
     @Test
     public void equals() {
-        DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
-        DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
+        String firstKeyword = "first";
+        String secondKeyword = "second";
+//        DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
+//        DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
 
-        ShowCommand showFirstCommand = new ShowCommand(firstPredicate);
-        ShowCommand showSecondCommand = new ShowCommand(secondPredicate);
+        ShowCommand showFirstCommand = new ShowCommand(firstKeyword);
+        ShowCommand showSecondCommand = new ShowCommand(secondKeyword);
 
         // same object -> returns true
         assertTrue(showFirstCommand.equals(showFirstCommand));
 
         // same values -> returns true
-        ShowCommand showFirstCommandCopy = new ShowCommand(firstPredicate);
+        ShowCommand showFirstCommandCopy = new ShowCommand(firstKeyword);
         assertTrue(showFirstCommand.equals(showFirstCommandCopy));
 
         // different types -> returns false
@@ -53,7 +55,7 @@ public class ShowCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0);
         DayIsKeywordPredicate predicate = new DayIsKeywordPredicate(" ");
-        ShowCommand command = new ShowCommand(predicate);
+        ShowCommand command = new ShowCommand(" ");
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());

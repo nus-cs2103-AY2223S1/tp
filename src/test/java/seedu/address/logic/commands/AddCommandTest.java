@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeSlot;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -159,6 +160,26 @@ public class AddCommandTest {
 
         @Override
         public boolean isFullView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateTimeSlots(String day) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<TimeSlot> getTimeSlots() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDayView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isDayView() {
             throw new AssertionError("This method should not be called.");
         }
 

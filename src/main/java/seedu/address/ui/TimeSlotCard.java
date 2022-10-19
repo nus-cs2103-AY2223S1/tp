@@ -2,27 +2,27 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
-import javax.swing.plaf.synth.Region;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeSlot;
 
 /**
  * A UI component that displays information of a {@code Session}.
  */
-public class SessionCard extends UiPart<Region> {
+public class TimeSlotCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml"; // to be changed
+    private static final String FXML = "TimeSlotCard.fxml";
 
     public final Person person;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label session;
+    private Label sessionTime;
     @FXML
     private Label name;
     @FXML
@@ -35,9 +35,10 @@ public class SessionCard extends UiPart<Region> {
     private FlowPane tags;
 
 
-    public SessionCard(Person person) {
+    public TimeSlotCard(TimeSlot timeSlot) {
         super(FXML);
-        this.person = person;
+        sessionTime.setText(timeSlot.getSession().time.toString());
+        this.person = timeSlot.getPerson();
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         lessonPlan.setText(person.getLessonPlan().value);
@@ -60,8 +61,8 @@ public class SessionCard extends UiPart<Region> {
         }
 
         // state check
-        SessionCard card = (SessionCard) other;
-        return session.getText().equals(card.session.getText())
+        TimeSlotCard card = (TimeSlotCard) other;
+        return sessionTime.getText().equals(card.sessionTime.getText())
                 && person.equals(card.person);
     }
 }

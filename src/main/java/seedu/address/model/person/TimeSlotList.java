@@ -14,4 +14,8 @@ public class TimeSlotList {
         timeSlots.add(timeSlot);
         timeSlots.sort(TimeSlot::compareTo);
     }
+
+    public List<TimeSlot> getTimeSlots() {
+        return timeSlots;
+    }
 }

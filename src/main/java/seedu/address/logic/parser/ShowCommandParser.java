@@ -40,6 +40,6 @@ public class ShowCommandParser implements Parser<ShowCommand> {
 
         String dayKeyword = trimmedArgs;
 
-        return new ShowCommand(new DayIsKeywordPredicate(dayKeyword));
+        return new ShowCommand(dayKeyword);
     }
 }

@@ -25,7 +25,7 @@ public class ShowCommandParserTest {
     public void parse_validArgs_returnsShowCommand() {
         // no leading and trailing whitespaces
         ShowCommand expectedShowCommand =
-                new ShowCommand(new DayIsKeywordPredicate("Mon"));
+                new ShowCommand("Mon");
         assertParseSuccess(parser, "Mon", expectedShowCommand);
 
         // multiple whitespaces between keywords

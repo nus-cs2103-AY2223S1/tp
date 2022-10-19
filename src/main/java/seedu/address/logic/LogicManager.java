@@ -15,6 +15,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeSlot;
+import seedu.address.model.person.TimeSlotList;
 import seedu.address.storage.Storage;
 
 /**
@@ -64,6 +66,15 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+    @Override
+    public ObservableList<TimeSlot> getTimeSlots() {
+        return model.getTimeSlots();
+    }
+
+    @Override
+    public boolean isDayView() {
+        return model.isDayView();
+    }
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();

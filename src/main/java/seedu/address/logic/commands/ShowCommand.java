@@ -20,15 +20,19 @@ public class ShowCommand extends Command {
             + "Example: " + COMMAND_WORD + " Mon";
 
     private final DayIsKeywordPredicate predicate;
+    private final String keyword;
 
-    public ShowCommand(DayIsKeywordPredicate predicate) {
-        this.predicate = predicate;
+    public ShowCommand(String keyword) {
+        predicate = new DayIsKeywordPredicate(keyword);
+        this.keyword = keyword;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.setDayView();
         model.updateFilteredPersonList(predicate);
+        model.updateTimeSlots(keyword);
         return new CommandResult(
                 // Assumption: Each student has only one session on that day.
                 String.format(Messages.MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, model.getFilteredPersonList().size()));
