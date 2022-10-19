@@ -195,9 +195,9 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortProjectCommand.MESSAGE_USAGE));
         }
@@ -210,6 +210,11 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_ISSUE_COUNT)) {
             sortPrefix = PREFIX_ISSUE_COUNT;
             key = ParserUtil.parseIssueCountSort(argMultimap.getValue(PREFIX_ISSUE_COUNT).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            sortPrefix = PREFIX_NAME;
+            key = ParserUtil.parseNameSort(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         return new SortProjectCommand(sortPrefix, key);

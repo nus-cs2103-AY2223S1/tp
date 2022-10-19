@@ -302,13 +302,28 @@ public class ParserUtil {
      * Parses a {@code String key} into an {@code Integer}.
      *
      * @param key is the value entered by the user for sort by issue count.
-     * @return Integer of 0 or 1 which specifies the chronology of sort
+     * @return Integer of 0 or 1 which specifies the numeric order of sorting.
      */
     public static Integer parseIssueCountSort(String key) throws ParseException {
         requireNonNull(key);
         String trimmedKey = key.trim();
         if (!Project.isValidIssueCountSortKey(trimmedKey)) {
             throw new ParseException(Project.MESSAGE_INVALID_ISSUE_COUNT_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by name.
+     * @return Integer of 0 or 1 which specifies the alphabetical order of sorting.
+     */
+    public static Integer parseNameSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Project.isValidIssueCountSortKey(trimmedKey)) {
+            throw new ParseException(Project.MESSAGE_INVALID_NAME_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }

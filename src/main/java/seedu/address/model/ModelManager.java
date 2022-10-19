@@ -345,4 +345,9 @@ public class ModelManager implements Model {
         updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
+    @Override
+    public void sortProjectsByName(int key) {
+        addressBook.sortProjectsByName(key);
+        updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
 }

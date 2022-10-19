@@ -283,11 +283,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         if (key == 0) {
             //sort according to chronological deadlines
             sortedProjectsByDeadline =
-                    getModifiableProjectList().sorted(Comparator.comparing(s -> s.getDeadline().getLocalDate()));
+                    getModifiableProjectList().sorted(Comparator.comparing(p -> p.getDeadline().getLocalDate()));
         } else {
             //sort according to descending deadlines
-            sortedProjectsByDeadline = getModifiableProjectList().sorted((s1, s2) ->
-                s2.getDeadline().getLocalDate().compareTo(s1.getDeadline().getLocalDate()));
+            sortedProjectsByDeadline = getModifiableProjectList().sorted((p1, p2) ->
+                p2.getDeadline().getLocalDate().compareTo(p1.getDeadline().getLocalDate()));
         }
         setSortedProjects(sortedProjectsByDeadline);
     }
@@ -302,13 +302,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         if (key == 0) {
             //sort according to ascending issue count
             sortedProjectsByIssueCount =
-                    getModifiableProjectList().sorted(Comparator.comparingInt(l -> l.getIssueList().size()));
+                    getModifiableProjectList().sorted(Comparator.comparingInt(p -> p.getIssueList().size()));
         } else {
             //sort according to descending issue count
-            sortedProjectsByIssueCount = getModifiableProjectList().sorted((l1, l2) ->
-                    l2.getIssueList().size() - l1.getIssueList().size());
+            sortedProjectsByIssueCount = getModifiableProjectList().sorted((p1, p2) ->
+                    p2.getIssueList().size() - p1.getIssueList().size());
         }
         setSortedProjects(sortedProjectsByIssueCount);
+    }
+
+    /**
+     * Sort projects in alphabetical or reverse alphabetical order of names based on key value of 0 or 1 respectively.
+     *
+     * @param key zero for alphabetical order and one for reverse alphabetical order
+     */
+    public void sortProjectsByName(int key) {
+        ObservableList<Project> sortedProjectsByName;
+        if (key == 0) {
+            //sort according to alphabetical order
+            sortedProjectsByName =
+                    getModifiableProjectList().sorted(Comparator.comparing(p -> p.getProjectName().toString()));
+        } else {
+            //sort according to reverse alphabetical order
+            sortedProjectsByName = getModifiableProjectList().sorted((p1, p2) ->
+                    p2.getProjectName().toString().compareTo(p1.getProjectName().toString()));
+        }
+        setSortedProjects(sortedProjectsByName);
     }
 
     //// util methods

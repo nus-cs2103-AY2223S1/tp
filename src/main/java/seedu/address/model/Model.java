@@ -162,6 +162,8 @@ public interface Model {
 
     void sortProjectsByIssueCount(int sortByIssueCountKey);
 
+    void sortProjectsByName(int sortByNameKey);
+
     ObservableList<Project> getFilteredSortedProjectList();
     void setDefaultView(DefaultView defaultView);
 }
