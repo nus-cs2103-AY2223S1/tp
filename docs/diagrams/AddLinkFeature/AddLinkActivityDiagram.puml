@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+!pragma useVerticalIf on
+start
+:User executes AddLinkCommand;
+:Validate AddLinkCommand keyword;
+if() then ([else])
+:show error message;
+stop
+else ([is valid keyword])
+:Validate module in AddLinkCommand;
+if() then ([else))
+:show error message;
+stop
+else ([is valid module])
+:Validate link URL and link alias in AddLinkCommand;
+if() then ([else))
+:show error message;
+stop
+else ([is valid link URL and link alias])
+:Check for duplicate link URL and link alias in module;
+if() then ([else))
+:show error message;
+stop
+else ([is unique link URL and link alias])
+:add new links to module;
+:Update Plannit with module;
+stop
+@enduml

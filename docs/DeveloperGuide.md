@@ -175,7 +175,7 @@ It then creates a `AddLinkCommand` object with the pairings for the specified `M
 Given below is an example usage scenario and how the add link mechanism behaves at each step.
 
 **Step 1**: The user decides to add a link to a current module in Plannit using the following input:
-`add-link m/CS1231 l/aikendueet.com la/Prof Aaron`.
+`add-link m/CS1231 l/<link URL> la/<link alias>`.
 
 **Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the user input. 
 Then, the `LogicManager` calls the `AddressBookParser::parseCommand` method 
@@ -197,8 +197,10 @@ A copy of the `Module`'s fields are then created and the `Link` object is added 
 the original `Module` object in Plannit using the `Model::setModule` method.
 
 The following sequence diagram shows how the 'add link' feature works:
+![AddLinkSequenceDiagram](images/AddLinkFeature/AddLinkSequenceDiagram.png)
 
 The following activity diagram shows how the 'add link' feature works:
+![AddLinkActivityDiagram](images/AddLinkFeature/AddLinkActivityDiagram.png)
 
 #### Design considerations:
 **Aspect: Link Representation:**
