@@ -5,9 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,6 +16,7 @@ import seedu.address.model.person.Role;
 import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
@@ -122,12 +121,43 @@ public class SetCommand extends Command {
      * Stores the data to update the Person's Contacts with.
      */
     public static class SetPersonDescriptor {
+        private Name name;
+        private Address address;
+        private Set<Tag> tags;
+        private Role role;
+        private Timezone timezone;
+        private User user;
         private Map<ContactType, Contact> contacts = new HashMap<>();
 
         /**
          * Instantiates a SetContactDescriptor object.
          */
         public SetPersonDescriptor() {}
+
+        public void updateName(Name name) {
+            this.name = name;
+        }
+
+        public void updateAddress(Address address) {
+            this.address = address;
+        }
+
+        public void updateTags(Set<Tag> tags) {
+            // Set tags to a defensive copy of the given set of Tags
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        public void updateRole(Role role) {
+            this.role = role;
+        }
+
+        public void updateTimezone(Timezone timezone) {
+            this.timezone = timezone;
+        }
+
+        public void updateUser(User user) {
+            this.user = user;
+        }
 
         /**
          * Updates the Contacts map.
@@ -137,6 +167,30 @@ public class SetCommand extends Command {
          */
         public void updateContacts(ContactType typeToSet, Contact contactToSet) {
             contacts.put(typeToSet, contactToSet);
+        }
+
+        public Optional<Name> getName() {
+            return Optional.ofNullable(this.name);
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(this.address);
+        }
+
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(this.role);
+        }
+
+        public Optional<Timezone> getTimezone() {
+            return Optional.ofNullable(this.timezone);
+        }
+
+        public Optional<User> getUser() {
+            return Optional.ofNullable(this.user);
         }
 
         /**
@@ -162,7 +216,13 @@ public class SetCommand extends Command {
 
             // state check
             SetPersonDescriptor s = (SetPersonDescriptor) other;
-            return this.contacts.equals(s.contacts);
+            return this.contacts.equals(s.contacts)
+                   && this.name.equals(s.name)
+                   && this.address.equals(s.address)
+                   && this.tags.equals(s.tags)
+                   && this.role.equals(s.role)
+                   && this.timezone.equals(s.timezone)
+                   && this.user.equals(s.user);
         }
     }
 }
