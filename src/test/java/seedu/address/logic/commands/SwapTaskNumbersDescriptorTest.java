@@ -30,12 +30,19 @@ public class SwapTaskNumbersDescriptorTest {
         // different types -> returns false
         assertFalse(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO.equals(5));
 
-        // different task number -> returns false
+        // both task numbers different -> returns false
         SwapTaskNumbersDescriptor descriptorWithDifferentTaskNumbers =
                 new SwapTaskNumbersDescriptorBuilder(CS2106,
                                                      Index.fromOneBased(2),
                                                      Index.fromOneBased(3)).build();
         assertFalse(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO.equals(descriptorWithDifferentTaskNumbers));
+
+        // one task number different -> returns false
+        SwapTaskNumbersDescriptor descriptorWithOneDifferentTaskNumber =
+                new SwapTaskNumbersDescriptorBuilder(CS2106,
+                        Index.fromOneBased(1),
+                        Index.fromOneBased(3)).build();
+        assertFalse(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO.equals(descriptorWithOneDifferentTaskNumber));
 
         // different module code -> returns false
         SwapTaskNumbersDescriptor descriptorWithDifferentModuleCode =
