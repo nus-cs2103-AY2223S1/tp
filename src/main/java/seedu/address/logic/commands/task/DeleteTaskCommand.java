@@ -49,7 +49,6 @@ public class DeleteTaskCommand extends TaskCommand {
 
         Task toDelete = taskList.get(targetIndex.getZeroBased());
         model.deleteTask(toDelete);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }

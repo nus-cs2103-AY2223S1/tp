@@ -84,7 +84,6 @@ public class AssignTaskCommand extends TaskCommand {
         );
 
         model.setTask(taskToAssignTo, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         if (personIndexes.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_RESET_SUCCESS, taskIndex.getOneBased()));

@@ -71,7 +71,6 @@ public class DeadlineTaskCommand extends TaskCommand {
         );
 
         model.setTask(taskToUpdate, updatedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedTask.getDeadline(), updatedTask.getTitle()));
     }
