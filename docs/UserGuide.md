@@ -187,8 +187,8 @@ Format: `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`
   specifying any tags after it.
 
 Examples:
-*  `editr 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
-*  `editr 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
+*  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
+*  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
 
 ### Locating persons by name: `find`
 
