@@ -157,7 +157,7 @@ Classes used by multiple components are in the `seedu.taassist.commons` package.
 
 
 ### Assigning students to a class
-<img src="images/AssignCommandSequenceDiagram.png" width="550" />
+<img src="images/AssignCommandSequenceDiagram.png" width="700" />
 
 DESCRIPTION TODO
 
@@ -181,7 +181,7 @@ The `Logic` component calls these methods in `Model` to execute commands that re
 
 For example, the following sequence diagram shows how the `focus` command activates focus mode with the `CS1101S` module class:
 
-<img src="images/FocusCommandSequenceDiagram.png" width="550" />
+<img src="images/FocusCommandSequenceDiagram.png" width="700" />
 
 On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
 
