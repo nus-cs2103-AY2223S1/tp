@@ -2,6 +2,8 @@ package nus.climods.ui.module;
 
 import java.util.stream.Collectors;
 
+import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -62,16 +64,7 @@ public class ModuleCard extends UiPart<Region> {
     }
     private Pill createSemesterPill(int semesterNum) {
         String semesterText;
-        switch (semesterNum) {
-        case 3:
-            semesterText = "Special Term I";
-            break;
-        case 4:
-            semesterText = "Special Term II";
-            break;
-        default:
-            semesterText = String.format("Semester %s", semesterNum);
-        }
+        semesterText = SemestersEnum.fromValue(semesterNum).toString();
 
         return new Pill(semesterText, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
             SEMESTER_FONT_SIZE);
