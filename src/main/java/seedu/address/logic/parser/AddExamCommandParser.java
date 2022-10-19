@@ -33,7 +33,7 @@ public class AddExamCommandParser implements Parser<AddExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExamCommand.MESSAGE_USAGE));
         }
 
-        Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+        Module module = new Module(ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
         ExamDescription description = ParserUtil.parseExamDescription(
                 argMultimap.getValue(PREFIX_EXAM_DESCRIPTION).get());
         ExamDate examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
