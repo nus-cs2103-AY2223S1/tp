@@ -41,7 +41,8 @@ public class UnassignCommandTest {
         try {
             UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, TUITIONCLASS2.getName());
             CommandResult commandResult = unassignCommand.execute(model);
-            assertEquals(commandResult.getFeedbackToUser(), String.format(UnassignCommand.MESSAGE_UNASSIGNED_STUDENT_SUCCESS, STUDENT4));
+            assertEquals(commandResult.getFeedbackToUser(),
+                    String.format(UnassignCommand.MESSAGE_UNASSIGNED_STUDENT_SUCCESS, STUDENT4));
             assertEquals(expectedTuitionClasses, STUDENT4.getTuitionClasses());
         } catch (CommandException e) {
             throw new AssertionError("Test should not fail");
@@ -58,7 +59,8 @@ public class UnassignCommandTest {
         try {
             UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, TUITIONCLASS1.getName());
             CommandResult commandResult = unassignCommand.execute(model);
-            assertEquals(commandResult.getFeedbackToUser(), String.format(UnassignCommand.MESSAGE_UNASSIGNED_TUTOR_SUCCESS, TUTOR4));
+            assertEquals(commandResult.getFeedbackToUser(),
+                    String.format(UnassignCommand.MESSAGE_UNASSIGNED_TUTOR_SUCCESS, TUTOR4));
             assertEquals(expectedTuitionClasses, TUTOR4.getTuitionClasses());
         } catch (CommandException e) {
             throw new AssertionError("Test should not fail");
