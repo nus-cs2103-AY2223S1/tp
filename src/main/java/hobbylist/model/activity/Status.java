@@ -4,11 +4,20 @@ import static hobbylist.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
+
+/**
+ * Represents a Status of an activity in HobbyList.
+ */
 public class Status {
     public static final String STATUS_UPCOMING = "UPCOMING";
     public static final String STATUS_ONGOING = "ONGOING";
     public static final String STATUS_COMPLETED = "COMPLETED";
-    public static final String MESSAGE_CONSTRAINT = "Completion status should be either UPCOMING, ONGOING or COMPLETED.";
+    public static final String MESSAGE_CONSTRAINT = "Completion status should be either UPCOMING" +
+            ", ONGOING or COMPLETED.";
+
+    /**
+     * Different status of an activity.
+     */
     public enum State {
         NONE, UPCOMING, ONGOING, COMPLETED
     }
@@ -19,17 +28,23 @@ public class Status {
         status = State.NONE;
     }
 
+    /**
+     * Constructs a {@code Status}.
+     * @param status
+     */
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINT);
         this.status = getState(status);
     }
 
-
+    /**
+     * Returns true if a given string is a valid status.
+     */
     public static boolean isValidStatus(String status) {
         String toCheck = status.toUpperCase();
-        return (toCheck.equals("NONE") || toCheck.equals("UPCOMING") ||
-                toCheck.equals("ONGOING") || toCheck.equals("COMPLETED"));
+        return (toCheck.equals("NONE") || toCheck.equals("UPCOMING")
+                || toCheck.equals("ONGOING") || toCheck.equals("COMPLETED"));
     }
 
     private static State getState(String status) {

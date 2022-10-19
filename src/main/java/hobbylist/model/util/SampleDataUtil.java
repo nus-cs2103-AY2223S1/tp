@@ -26,9 +26,8 @@ public class SampleDataUtil {
 
         List<Date> s = new ArrayList<>();
         return new Activity[] {
-                new Activity(new Name("And Then There Were None"),
-                new Description("Mystery novel by Agatha Christie"),
-                getTagSet("book"), s, new Status("ongoing")),
+            new Activity((new Name("And Then There Were None"), new Description("Mystery novel by Agatha Christie"),
+                    getTagSet("book"), s, new Status("ongoing")),
             new Activity(new Name("Battlefield 4"),
                 new Description("First person shooter by EA"),
                 getTagSet("video_game"), s, new Status("upcoming")),

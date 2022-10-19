@@ -1,8 +1,8 @@
 package hobbylist.logic.parser;
 
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static java.util.Objects.requireNonNull;
 import static hobbylist.logic.parser.CliSyntax.PREFIX_STATUS;
+import static java.util.Objects.requireNonNull;
 
 import hobbylist.commons.core.index.Index;
 import hobbylist.commons.exceptions.IllegalValueException;

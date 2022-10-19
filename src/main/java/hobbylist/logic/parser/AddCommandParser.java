@@ -1,7 +1,6 @@
 package hobbylist.logic.parser;
 
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static hobbylist.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.List;
 import java.util.Set;
@@ -30,7 +29,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         boolean isStatusPresent = args.matches(".*\\bs/.*");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME,
-                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_STATUS);
+                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_DATE
+                        , CliSyntax.PREFIX_STATUS);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {

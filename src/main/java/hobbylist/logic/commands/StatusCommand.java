@@ -33,6 +33,10 @@ public class StatusCommand extends Command {
     private final Index index;
     private final Status status;
 
+    /**
+     * @param index of the activity in the filtered activity list to change status
+     * @param status Status to be tagged to the activity
+     */
     public StatusCommand(Index index, Status status) {
         requireAllNonNull(index, status);
 
