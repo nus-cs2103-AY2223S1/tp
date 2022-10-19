@@ -1,29 +1,34 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 
+|#dee4e8|JsonAdaptedMod|
+|#c4c9cd|Mod|
+|#daf0fe|ParserUtil|
+
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+
+|JsonAdaptedMod|
 start
-:JsonAdaptedMod calls the constructor of Mod;
-:Mod checks if the arguments provided is valid;
-:Mod calls ParserUtil#parseModsToCategory(String modName);
-:ParserUtil#parseModsToCategory takes the first 2 characters from modName;
+:Calls the constructor of Mod;
+|Mod|
+:Checks if the arguments provided is valid;
+:Calls ParserUtil#parseModsToCategory(String modName);
+|ParserUtil|
+:Determines and returns a category <$rake>;
 
-if () then (["CS", "CP", "IS"])
-  :Return COMP category;
-elseif () then (["MA", "ST"])
-  :Return MATH category;
-elseif () then (["LS", "CM", "PC"])
-  :Return SCI category;
-elseif () then (["GE", "UT"])
-  :Return GE category;
-elseif () then (["ES"])
-  :Return COMMS category;
-else ()
-  :Return UE category;
-endif
-
-:Mod receives the category from ParserUtil;
-:Mod constructor assigns the category to this instance of Mod;
-:Mod constructor returns the instance to JsonAdaptedMod;
+|Mod|
+:The constructor assigns the category to this instance of Mod;
+:The constructor returns the instance to JsonAdaptedMod;
+|JsonAdaptedMod|
 stop
 
 @enduml

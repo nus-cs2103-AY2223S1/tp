@@ -207,6 +207,10 @@ assuming no errors occur.
 
 ![ModCategorisationActivityDiagram](images/ModCategorisationActivityDiagram.png)
 
+Activity: Determines and returns a category
+
+![ModCategorisationActivityDiagramRake](images/ModCategorisationActivityDiagramRake.png)
+
 #### Design considerations:
 
 **Aspect: How categorisation is handled:**
@@ -216,7 +220,7 @@ assuming no errors occur.
     * Cons: User is unable to edit the mod categories. Lowers performance.
 
 * **Alternative 2:** Categories of mods are saved into Storage.
-    * Pros: Users can edit mod categories with minor changes to the code base. Increased performance.
+    * Pros: Users can edit mod categories with less changes to the code base. Increased performance.
     * Cons: Increased complexity.
 
 
