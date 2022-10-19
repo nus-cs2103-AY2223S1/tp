@@ -21,6 +21,7 @@ import taskbook.model.person.Person;
 import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
+import taskbook.testutil.DeadlineBuilder;
 import taskbook.testutil.PersonBuilder;
 
 public class TaskDeadlineCommandTest {
@@ -63,7 +64,7 @@ public class TaskDeadlineCommandTest {
         Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
 
-        Deadline validTask = new Deadline(validPerson, ASSIGNMENT_FROM, DESCRIPTION_ONE, false, DATE_TWO);
+        Deadline validTask = new DeadlineBuilder().withPersonName(validPerson).withDeadlineDate(DATE_ONE).build();
         CommandResult commandResult = new TaskDeadlineCommand(validTask.getName(), validTask.getDescription(),
                 validTask.getAssignment(), validTask.getDate()).execute(modelStub);
 

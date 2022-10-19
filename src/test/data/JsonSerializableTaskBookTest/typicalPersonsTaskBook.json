@@ -51,22 +51,27 @@
   } ],
   "tasks": [
     {
+      "type": "Deadline",
       "name" : "Alice Pauline",
       "assignment" : "TO",
       "description" : "eat fruit",
-      "isDone" : true
+      "isDone" : true,
+      "deadlineDate": "2022-11-09"
     },
     {
+      "type": "Todo",
       "name" : "Benson Meier",
       "assignment" : "FROM",
       "description" : "sleep early",
       "isDone" : false
     },
     {
+      "type": "Event",
       "name" : "Carl Kurz",
       "assignment" : "TO",
       "description" : "party at kevin's house",
-      "isDone" : true
+      "isDone" : true,
+      "eventDate": "2022-10-11"
     }
   ]
 }

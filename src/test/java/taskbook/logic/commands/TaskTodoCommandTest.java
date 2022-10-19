@@ -18,11 +18,10 @@ import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
-import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.PersonBuilder;
-import taskbook.testutil.TaskBuilder;
-
+import taskbook.testutil.TodoBuilder;
 
 
 public class TaskTodoCommandTest {
@@ -54,7 +53,7 @@ public class TaskTodoCommandTest {
         Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
 
-        Task validTask = new TaskBuilder().withPerson(validPerson).build();
+        Todo validTask = new TodoBuilder().withPersonName(validPerson).build();
         CommandResult commandResult = new TaskTodoCommand(validTask.getName(), validTask.getDescription(),
                 validTask.getAssignment()).execute(modelStub);
 

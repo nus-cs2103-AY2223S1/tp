@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant "commandTextField:TextField" as TextField UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandHistoryManager" as CommandHistoryManager LOGIC_COLOR
+end box
+
+[-> TextField : key press("DOWN")
+activate TextField
+
+TextField -> LogicManager : getNextCommand()
+activate LogicManager
+
+LogicManager -> CommandHistoryManager : getNextCommand()
+activate CommandHistoryManager
+
+CommandHistoryManager --> LogicManager : command
+deactivate CommandHistoryManager
+
+LogicManager --> TextField : command
+deactivate LogicManager
+
+TextField -> TextField : setText(command)
+TextField -> TextField : positionCaret(command.length())
+[<-- TextField
+deactivate TextField
+
+@enduml

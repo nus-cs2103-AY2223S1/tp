@@ -40,7 +40,7 @@ public class TaskCategoryParser {
         case TaskListCommand.COMMAND_WORD:
             return new TaskListCommand();
         case TaskSortCommand.COMMAND_WORD:
-            return new TaskSortCommandParser().parse(arguments.trim());
+            return new TaskSortCommandParser().parse(arguments);
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

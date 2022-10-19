@@ -21,6 +21,7 @@ import taskbook.model.person.Person;
 import taskbook.model.task.Description;
 import taskbook.model.task.Event;
 import taskbook.model.task.enums.Assignment;
+import taskbook.testutil.EventBuilder;
 import taskbook.testutil.PersonBuilder;
 
 public class TaskEventCommandTest {
@@ -63,7 +64,7 @@ public class TaskEventCommandTest {
         Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
 
-        Event validTask = new Event(validPerson, ASSIGNMENT_FROM, DESCRIPTION_ONE, false, DATE_TWO);
+        Event validTask = new EventBuilder().withPersonName(validPerson).withEventDate(DATE_TWO).build();
         CommandResult commandResult = new TaskEventCommand(validTask.getName(), validTask.getDescription(),
                 validTask.getAssignment(), validTask.getDate()).execute(modelStub);
 

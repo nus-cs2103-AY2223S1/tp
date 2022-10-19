@@ -118,7 +118,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateFilteredTaskListPredicate(Predicate<Task> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Task> getSortedTaskList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSortedTaskList(Comparator<Task> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void resetSortedTaskList() {
         throw new AssertionError("This method should not be called.");
     }
 
