@@ -3,12 +3,11 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItems;
-import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItemsWithoutTags;
+import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
@@ -37,14 +36,14 @@ public class UntagCommandTest {
     @Test
     public void execute_untagItem_success() throws CommandException {
 
-        final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
+        final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
         // Creating a copy of first item of model (with tag removed)
         Item editedItem = new ItemBuilder(model.getFilteredItemList().get(0)).build();
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
         editedItem.removeItemTag(tag);
         //The initial model does not have the tag in its UniqueTagList
-        model.addTag(tag);
+        //model.addTag(tag);
 
         String expectedMessage = String.format(MESSAGE_SUCCESS);
 
@@ -77,11 +76,11 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagItemWithInvalidIndex_throwsCommandException() {
-        final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
+        final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        model.addTag(tag);
+        //model.addTag(tag);
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_THIRD_ITEM);
 
@@ -91,11 +90,12 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagItemWithoutExistingTagInItem_throwsCommandException() {
-        final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
+        final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        model.addTag(tag);
+        //Manually remove tag from typical FoodRem item
+        model.getFilteredItemList().get(0).removeItemTag(tag);
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
