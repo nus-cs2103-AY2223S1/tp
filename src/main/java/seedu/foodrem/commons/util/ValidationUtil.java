@@ -13,11 +13,11 @@ public class ValidationUtil {
     /**
      * Returns true if a string can be parsed into a double, false otherwise.
      *
-     * @param string a string to be parsed.
+     * @param doubleString a string to be parsed.
      */
-    public static boolean isParsableDouble(String string) {
+    public static boolean isParsableDouble(String doubleString) {
         try {
-            Double.parseDouble(string);
+            Double.parseDouble(doubleString);
         } catch (NumberFormatException e) {
             return false;
         }
