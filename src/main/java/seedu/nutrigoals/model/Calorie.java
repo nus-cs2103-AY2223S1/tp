@@ -7,7 +7,8 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  */
 public class Calorie {
     public static final String VALIDATION_REGEX = "\\d+";
-    public static final String MESSAGE_CONSTRAINTS = "Calorie must take on a positive number that is not too large.";
+    public static final String MESSAGE_CONSTRAINTS =
+        "Calorie must take on a non negative number that is not too large.";
     public final String value;
 
     /**

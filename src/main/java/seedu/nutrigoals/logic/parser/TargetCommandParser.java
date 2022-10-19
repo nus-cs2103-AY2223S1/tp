@@ -19,8 +19,8 @@ public class TargetCommandParser implements Parser<TargetCommand> {
     @Override
     public TargetCommand parse(String args) throws ParseException {
         try {
-            Calorie index = ParserUtil.parseCalorie(args);
-            return new TargetCommand(index);
+            Calorie calorie = ParserUtil.parseCalorie(args);
+            return new TargetCommand(calorie);
         } catch (ParseException pe) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, TargetCommand.MESSAGE_USAGE), pe);

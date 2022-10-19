@@ -3,13 +3,16 @@ package seedu.nutrigoals.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.nutrigoals.commons.core.index.Index;
 import seedu.nutrigoals.commons.util.StringUtil;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.Calorie;
+import seedu.nutrigoals.model.Location;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
@@ -93,6 +96,39 @@ public class ParserUtil {
             throw new ParseException(Calorie.MESSAGE_CONSTRAINTS);
         }
         return new Calorie(trimmedCalorie);
+    }
+
+    /**
+     * Parses {@code String locationName} into a {@code Location}
+     * @param locationName name of location
+     * @return Location
+     * @throws ParseException if the given {@code locationName} is invalid.
+     */
+    public static Location parseLocation(String locationName) throws ParseException {
+        requireNonNull(locationName);
+        String trimmedLocationName = locationName.trim().toUpperCase();
+        Map<String, Location> out = new HashMap<>();
+        // ANY UPDATES HERE SHOULD UPDATE LOCATE'S MESSAGE_USAGE SORRY FOR COUPLING
+        // https://goo.gl/maps/8a2h8ciNGcc2DUxs8
+        out.put("COM2", new Location("COM2", "1.2942815638814327, 103.77410024788284"));
+        // https://goo.gl/maps/TJQd8dfRYovJe8Va7
+        out.put("S13", new Location("S13", "1.2968733957422691, 103.7790094606027"));
+        // https://goo.gl/maps/MgTnNAnMCVqokPqx9
+        out.put("S17", new Location("S17", "1.2976996370988612, 103.78060787462833"));
+        // https://goo.gl/maps/2Zxpi6xsmfUNzU2h7
+        out.put("CLB", new Location("CLB", "1.296642317024345, 103.77322870790687"));
+        // https://goo.gl/maps/TBxRtewZLVCgkEdF6
+        out.put("USC", new Location("UHC", "1.2991034341416665, 103.77639982958577"));
+        // https://goo.gl/maps/bURCv14zruYzxxNV9
+        out.put("LT1", new Location("LT1", "1.299463315530677, 103.77114712647649"));
+        // https://goo.gl/maps/e8vnmt5FzS19NbNk8
+        out.put("LT9", new Location("LT9", "1.2952456082872508, 103.77221840699619"));
+        // https://goo.gl/maps/EEWy1fTuFcBkqxT97
+        out.put("AS6", new Location("AS6", "1.2955038493756006, 103.77324977312634"));
+        if (!out.containsKey(trimmedLocationName)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+        }
+        return out.get(trimmedLocationName);
     }
 
     /**

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -132,8 +133,11 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Food target, Food editedFood) {
         requireAllNonNull(target, editedFood);
-
         nutriGoals.setFood(target, editedFood);
+    }
+    @Override
+    public List<Location> getNusGymLocations() {
+        return this.nutriGoals.getGymLocations();
     }
 
     //=========== Filtered Person List Accessors =============================================================

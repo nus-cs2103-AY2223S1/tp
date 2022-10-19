@@ -1,6 +1,7 @@
 package seedu.nutrigoals.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -115,5 +116,6 @@ public interface Model {
     /** Returns true if the filtered food list has no food items */
     boolean isFilteredFoodListEmpty();
 
+    List<Location> getNusGymLocations();
     boolean isUserCreated();
 }
