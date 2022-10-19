@@ -22,7 +22,6 @@ import static seedu.workbook.logic.commands.CommandTestUtil.STAGE_DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.workbook.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -101,29 +100,24 @@ public class AddCommandParserTest {
 
         // missing company prefix
         assertParseFailure(parser,
-                VALID_COMPANY_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
+                VALID_COMPANY_BOB + ROLE_DESC_BOB + STAGE_DESC_BOB,
                 expectedMessage);
 
         // missing role prefix
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + VALID_ROLE_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
+                COMPANY_DESC_BOB + VALID_ROLE_BOB + STAGE_DESC_BOB,
                 expectedMessage);
 
-
-        // missing email prefix
-        assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + VALID_EMAIL_BOB + STAGE_DESC_BOB,
-                expectedMessage);
 
         // missing stage prefix
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB + VALID_STAGE_BOB,
+                COMPANY_DESC_BOB + ROLE_DESC_BOB + VALID_STAGE_BOB,
                 expectedMessage);
 
 
         // all prefixes missing
         assertParseFailure(parser,
-                VALID_COMPANY_BOB + VALID_ROLE_BOB + VALID_EMAIL_BOB + VALID_STAGE_BOB,
+                VALID_COMPANY_BOB + VALID_ROLE_BOB + VALID_STAGE_BOB,
                 expectedMessage);
     }
 
@@ -154,6 +148,7 @@ public class AddCommandParserTest {
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Stage.MESSAGE_CONSTRAINTS);
 
+        // invalid DateTime
         assertParseFailure(parser,
                 COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB
                         + INVALID_DATETIME_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
