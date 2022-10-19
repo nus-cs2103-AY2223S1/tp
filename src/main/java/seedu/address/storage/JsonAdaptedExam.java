@@ -9,7 +9,6 @@ import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
-
 /**
  * This class represents a Jackson friendly version of the Exam.
  */
@@ -71,6 +70,8 @@ public class JsonAdaptedExam {
         if (!ExamDate.isValidDate(date)) {
             throw new IllegalValueException(ExamDate.DATE_CONSTRAINTS);
         }
+
+
         final ExamDescription examDescription = new ExamDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);
