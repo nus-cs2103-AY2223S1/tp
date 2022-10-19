@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.application.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_REVERSE;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 
@@ -21,6 +23,8 @@ import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
 import seedu.application.logic.commands.HelpCommand;
 import seedu.application.logic.commands.ListCommand;
+import seedu.application.logic.commands.SortByPositionCommand;
+import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.CompanyContainsKeywordsPredicate;
@@ -76,6 +80,13 @@ public class ApplicationBookParserTest {
                 FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
         assertEquals(new FindCommand(new CompanyContainsKeywordsPredicate(keywords),
                 new PositionContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " " + PREFIX_ORDER + "position " + PREFIX_REVERSE);
+        assertEquals(new SortByPositionCommand(true), command);
     }
 
     @Test
