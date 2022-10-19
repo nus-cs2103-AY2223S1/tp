@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddBuyerCommand;
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -25,12 +23,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.LocationContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalPersonCategories;
 
 public class AddressBookParserTest {

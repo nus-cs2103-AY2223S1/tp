@@ -17,7 +17,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.LocationContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
 import seedu.address.model.person.Supplier;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
