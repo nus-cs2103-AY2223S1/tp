@@ -43,7 +43,7 @@ public class SetCommandParser implements Parser<SetCommand> {
                                                  PREFIX_ADDRESS, PREFIX_NAME, PREFIX_TAG, PREFIX_ROLE,
                                                  PREFIX_TIMEZONE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
+        if (!anyPrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
                                              PREFIX_ADDRESS, PREFIX_NAME, PREFIX_TAG, PREFIX_ROLE,
                                              PREFIX_TIMEZONE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCommand.MESSAGE_USAGE));
@@ -94,7 +94,7 @@ public class SetCommandParser implements Parser<SetCommand> {
      * Returns true if one of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
