@@ -40,16 +40,16 @@ public class BuyerTest {
         assertThrows(UnsupportedOperationException.class, () -> buyer.getTags().remove(0));
     }
 
-//    @Test
-//    public void addOrder() {
-//        Buyer buyer = new PersonBuilder().buildBuyer();
-//        Order order = new Order(buyer, new PriceRange(new Price(50), new Price(100)),
-//                new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
-//                        new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
-//                new Price(100));
-//        buyer.addOrder(order);
-//        assertTrue(buyer.getOrderIds().size() == 1);
-//        assertEquals(buyer.getOrderIds(), Arrays.asList(order));
+    //    @Test
+    //    public void addOrder() {
+    //        Buyer buyer = new PersonBuilder().buildBuyer();
+    //        Order order = new Order(buyer, new PriceRange(new Price(50), new Price(100)),
+    //                new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
+    //                        new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
+    //                new Price(100));
+    //        buyer.addOrder(order);
+    //        assertTrue(buyer.getOrderIds().size() == 1);
+    //        assertEquals(buyer.getOrderIds(), Arrays.asList(order));
     //    }
 
     @Test
@@ -118,22 +118,22 @@ public class BuyerTest {
         assertFalse(ALICE.equals(editedAlice));
     }
 
-//    @Test
-//    public void equals_differentOrders() {
-//        Buyer buyer1 = new PersonBuilder().buildBuyer();
-//        Buyer buyer2 = new PersonBuilder().buildBuyer();
-//        Order order1 = new Order(ALICE, new PriceRange(new Price(100), new Price(1000)),
-//                new Request(new Age(1), new Color("black"), new ColorPattern("black and white"),
-//                        new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
-//                new Price(100));
-//        Order order2 = new Order(ALICE, new PriceRange(new Price(1), new Price(100)),
-//                new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
-//                        new Species("cat")), new AdditionalRequests("pretty"), LocalDate.now(),
-//                new Price(100));
-//        buyer1.addOrder(order1);
-//        buyer2.addOrder(order2);
+    //    @Test
+    //    public void equals_differentOrders() {
+    //        Buyer buyer1 = new PersonBuilder().buildBuyer();
+    //        Buyer buyer2 = new PersonBuilder().buildBuyer();
+    //        Order order1 = new Order(ALICE, new PriceRange(new Price(100), new Price(1000)),
+    //                new Request(new Age(1), new Color("black"), new ColorPattern("black and white"),
+    //                        new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
+    //                new Price(100));
+    //        Order order2 = new Order(ALICE, new PriceRange(new Price(1), new Price(100)),
+    //                new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
+    //                        new Species("cat")), new AdditionalRequests("pretty"), LocalDate.now(),
+    //                new Price(100));
+    //        buyer1.addOrder(order1);
+    //        buyer2.addOrder(order2);
     //        assertNotEquals(order1, order2);
-//    }
+    //    }
 
     @Test
     public void hashCode_differentObjects() {
@@ -142,16 +142,16 @@ public class BuyerTest {
         assertEquals(buyer1.hashCode(), buyer2.hashCode());
     }
 
-//    @Test
-//    public void toString_differentSuppliers() {
-//        Buyer buyer1 = new PersonBuilder().buildBuyer();
-//        Buyer buyer2 = new PersonBuilder().buildBuyer();
-//        Order order = new Order(ALICE, new PriceRange(new Price(50), new Price(100)),
-//                new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
-//                        new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
-//                new Price(100));
-//        buyer1.addOrder(order);
-//        buyer2.addOrder(order);
+    //    @Test
+    //    public void toString_differentSuppliers() {
+    //        Buyer buyer1 = new PersonBuilder().buildBuyer();
+    //        Buyer buyer2 = new PersonBuilder().buildBuyer();
+    //        Order order = new Order(ALICE, new PriceRange(new Price(50), new Price(100)),
+    //                new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
+    //                        new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
+    //                new Price(100));
+    //        buyer1.addOrder(order);
+    //        buyer2.addOrder(order);
     //        assertEquals(buyer1.toString(), buyer2.toString());
-//    }
+    //    }
 }

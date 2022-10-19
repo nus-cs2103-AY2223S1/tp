@@ -37,17 +37,17 @@ public class UniquePetListTest {
         assertTrue(uniquePetList.contains(TypicalPets.DOJA));
     }
 
-//    @Test
-//    public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
-//        uniquePetList.add(TypicalPets.DOJA);
-//        Pet newDoja = new Pet(new Name("Doja"), TypicalBuyers.ALICE,
-//                new Color("white"),
-//                new ColorPattern("white and brown"),
-//                new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),
-//                new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
-//                new HashSet<>());
-//        assertTrue(uniquePetList.contains(newDoja));
-//    }
+    //    @Test
+    //    public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
+    //        uniquePetList.add(TypicalPets.DOJA);
+    //        Pet newDoja = new Pet(new Name("Doja"), TypicalBuyers.ALICE,
+    //                new Color("white"),
+    //                new ColorPattern("white and brown"),
+    //                new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),
+    //                new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+    //                new HashSet<>());
+    //        assertTrue(uniquePetList.contains(newDoja));
+    //    }
 
     @Test
     public void add_nullPet_throwsNullPointerException() {

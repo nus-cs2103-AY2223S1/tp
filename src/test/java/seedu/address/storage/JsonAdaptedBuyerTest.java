@@ -68,8 +68,8 @@ public class JsonAdaptedBuyerTest {
     //    @Test
     //    public void toModelType_invalidName_throwsIllegalValueException() {
     //        JsonAdaptedBuyer person =
-    //                new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-    //                        VALID_TAGS, VALID_ORDERS);
+    //                new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, INVALID_NAME, VALID_PHONE, VALID_EMAIL,
+    //                VALID_ADDRESS, VALID_TAGS, VALID_ORDERS);
     //        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
     //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     //    }
@@ -84,8 +84,8 @@ public class JsonAdaptedBuyerTest {
     //
     //    @Test
     //    public void toModelType_invalidPhone_throwsIllegalValueException() {
-    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, INVALID_PHONE, VALID_EMAIL,
-    //                VALID_ADDRESS, VALID_TAGS, VALID_ORDERS);
+    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, INVALID_PHONE,
+    //        VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_ORDERS);
     //        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
     //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     //    }
@@ -100,8 +100,8 @@ public class JsonAdaptedBuyerTest {
     //
     //    @Test
     //    public void toModelType_invalidEmail_throwsIllegalValueException() {
-    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE, INVALID_EMAIL,
-    //                VALID_ADDRESS, VALID_TAGS, VALID_ORDERS);
+    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
+    //        INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_ORDERS);
     //        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
     //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     //    }
@@ -125,8 +125,8 @@ public class JsonAdaptedBuyerTest {
     //
     //    @Test
     //    public void toModelType_nullAddress_throwsIllegalValueException() {
-    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE, VALID_EMAIL,
-    //                null, VALID_TAGS, VALID_ORDERS);
+    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
+    //        VALID_EMAIL, null, VALID_TAGS, VALID_ORDERS);
     //        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
     //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     //    }
@@ -135,8 +135,8 @@ public class JsonAdaptedBuyerTest {
     //    public void toModelType_invalidTags_throwsIllegalValueException() {
     //        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
     //        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE, VALID_EMAIL,
-    //                VALID_ADDRESS, invalidTags, VALID_ORDERS);
+    //        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
+    //        VALID_EMAIL, VALID_ADDRESS, invalidTags, VALID_ORDERS);
     //        assertThrows(IllegalValueException.class, person::toModelType);
     //    }
 }

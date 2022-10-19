@@ -50,8 +50,8 @@ public class JsonAdaptedSupplierTest {
     //    @Test
     //    public void toModelType_invalidPersonCategory_throwsIllegalValueException() {
     //        JsonAdaptedSupplier person =
-    //                new JsonAdaptedSupplier(INVALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-    //                        VALID_TAGS, VALID_PETS);
+    //                new JsonAdaptedSupplier(INVALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE, VALID_EMAIL,
+    //                VALID_ADDRESS, VALID_TAGS, VALID_PETS);
     //        String expectedMessage = PersonCategory.MESSAGE_CONSTRAINTS;
     //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     //    }
@@ -67,8 +67,8 @@ public class JsonAdaptedSupplierTest {
     //    @Test
     //    public void toModelType_invalidName_throwsIllegalValueException() {
     //        JsonAdaptedSupplier person =
-    //                new JsonAdaptedSupplier(VALID_PERSON_CATEGORY, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-    //                        VALID_TAGS, VALID_PETS);
+    //                new JsonAdaptedSupplier(VALID_PERSON_CATEGORY, INVALID_NAME, VALID_PHONE, VALID_EMAIL,
+    //                VALID_ADDRESS, VALID_TAGS, VALID_PETS);
     //        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
     //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     //    }
@@ -116,8 +116,8 @@ public class JsonAdaptedSupplierTest {
     //    @Test
     //    public void toModelType_invalidAddress_throwsIllegalValueException() {
     //        JsonAdaptedSupplier person =
-    //                new JsonAdaptedSupplier(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-    //                        VALID_TAGS, VALID_PETS);
+    //                new JsonAdaptedSupplier(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE, VALID_EMAIL,
+    //                INVALID_ADDRESS, VALID_TAGS, VALID_PETS);
     //        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
     //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     //    }
