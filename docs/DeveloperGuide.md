@@ -309,7 +309,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of entries
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -342,17 +342,36 @@ Priorities: High (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (un
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `user`, unless specified
-otherwise)
+(For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `User`, unless specified
+otherwise, for all **lists**, the `User` is able to select between the `expenditure` or `income` lists.)
 
-**Use case: Delete an entry**
+**Use case: UC1 - Add an entry**
+
+**MSS**
+
+1. User requests to add an entry
+2. PennyWise adds the entry to the specified list
+3. PennyWise shows updated list with new entry added
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given command has an invalid syntax.
+
+    * 1a1. PennyWise shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC2 - Delete an entry**
 
 **MSS**
 
 1. User requests to list entries
-2. PennyWise shows a list of entries
+2. PennyWise shows requested list of entries
 3. User requests to delete a specific entry in the list
 4. PennyWise deletes the entry
+5. PennyWise shows updated list
 
    Use case ends.
 
@@ -362,11 +381,100 @@ otherwise)
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given command has an invalid syntax.
 
     * 3a1. PennyWise shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
+**Use case: UC3 - Edit an entry**
+
+**MSS**
+
+1. User requests to list entries
+2. PennyWise shows requested list of entries
+3. User requests to edit a specific entry in the list
+4. PennyWise edits the entry
+5. PennyWise shows updated list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given command has an invalid syntax.
+
+    * 3a1. PennyWise shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC4 - Viewing a list**
+
+**MSS**
+
+1. User requests to list entries
+2. PennyWise shows requested list of entries
+3. PennyWise shows graphical overview of entries
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given command has an invalid syntax.
+
+    * 3a1. PennyWise shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC5 - Viewing the summary**
+
+**MSS**
+
+1. User requests to view summary
+2. PennyWise shows calculated summary of entries
+3. PennyWise shows graphical summary of entries
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC6 - Clearing the application**
+
+**MSS**
+
+1. User requests to clear entries in PennyWise
+2. PennyWise clears all entries from both lists
+
+   Use case ends.
+
+**Use case: UC7 - Exiting the application**
+
+**MSS**
+
+1. User requests to exit the application
+2. PennyWise exits
+
+   Use case ends.
+
+**Use case: UC8 - View help**
+
+**MSS**
+
+1. User requests to view help
+2. PennyWise displays a pop-up window with a link to the user guide
+
+   Use case ends.
 
 *{More to be added}*
 
