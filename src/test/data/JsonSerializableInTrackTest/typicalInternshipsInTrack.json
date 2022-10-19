@@ -7,7 +7,8 @@
     "email" : "alice@example.com",
     "status" : "Progress",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "remark" : ""
   }, {
     "name" : "Benson Meier",
     "position": "Data Analyst",
@@ -15,7 +16,8 @@
     "email" : "johnd@example.com",
     "status" : "Offered",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "remark" : ""
   }, {
     "name" : "Carl Kurz",
     "position": "Frontend Engineer",
@@ -23,7 +25,8 @@
     "email" : "heinz@example.com",
     "status" : "Offered",
     "address" : "wall street",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "remark" : ""
   }, {
     "name" : "Daniel Meier",
     "position": "Backend Engineer",
@@ -31,7 +34,8 @@
     "email" : "cornelia@example.com",
     "status" : "Offered",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "remark" : ""
   }, {
     "name" : "Elle Meyer",
     "position": "Full Stack Engineer",
@@ -39,7 +43,8 @@
     "email" : "werner@example.com",
     "status" : "Offered",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "remark" : ""
   }, {
     "name" : "Fiona Kunz",
     "position": "Cyber Security Analyst",
@@ -47,7 +52,8 @@
     "email" : "lydia@example.com",
     "status" : "Offered",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "remark" : ""
   }, {
     "name" : "George Best",
     "position": "Algorithm Engineer",
@@ -55,6 +61,7 @@
     "email" : "anna@example.com",
     "status" : "Offered",
     "address" : "4th street",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "remark" : ""
   } ]
 }

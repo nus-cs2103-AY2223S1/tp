@@ -9,6 +9,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 import seedu.intrack.model.util.SampleDataUtil;
@@ -24,6 +25,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STATUS = "Progress";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REMARK = "";
 
     private Name name;
     private Position position;
@@ -32,6 +34,7 @@ public class InternshipBuilder {
     private Status status;
     private Address address;
     private Set<Tag> tags;
+    private Remark remark;
 
     /**
      * Creates a {@code InternshipBuilder} with the default details.
@@ -44,6 +47,7 @@ public class InternshipBuilder {
         status = new Status(DEFAULT_STATUS);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -57,6 +61,7 @@ public class InternshipBuilder {
         status = internshipToCopy.getStatus();
         address = internshipToCopy.getAddress();
         tags = new HashSet<>(internshipToCopy.getTags());
+        remark = internshipToCopy.getRemark();
     }
 
     /**
@@ -115,8 +120,16 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Internship build() {
-        return new Internship(name, position, phone, email, status, address, tags);
+        return new Internship(name, position, phone, email, status, address, tags, remark);
     }
 
 }
