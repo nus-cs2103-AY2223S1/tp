@@ -39,6 +39,10 @@ public class DeleteTaskCommandParserTest {
         DeleteTaskCommand expectedCommand =
                 new DeleteTaskCommand(DESC_CS2106_DELETE_TASK_ONE);
 
+        assertParseSuccess(parser,
+                MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_NUMBER_ONE,
+                expectedCommand);
+
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_NUMBER_ONE,

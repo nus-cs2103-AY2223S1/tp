@@ -35,6 +35,10 @@ public class AddTaskCommandParserTest {
         AddTaskCommand expectedCommand =
                 new AddTaskCommand(DESC_CS2106_ADD_TASK_A);
 
+        assertParseSuccess(parser,
+                MODULE_CODE_DESC_CS2106 + MODULE_TASK_DESC_A,
+                expectedCommand);
+
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASK_DESC_A,

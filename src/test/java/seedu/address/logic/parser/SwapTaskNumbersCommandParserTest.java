@@ -42,6 +42,9 @@ public class SwapTaskNumbersCommandParserTest {
     public void parse_allFieldsPresent_success() {
         SwapTaskNumbersCommand expectedCommand =
                 new SwapTaskNumbersCommand(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO);
+        assertParseSuccess(parser,
+                MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO,
+                expectedCommand);
 
         // whitespace only preamble
         assertParseSuccess(parser,
