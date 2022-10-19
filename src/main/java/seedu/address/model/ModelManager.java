@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -28,9 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Entry> filteredExpenditure;
     private final FilteredList<Entry> filteredIncome;
-
-
-
+    private YearMonth monthForChart;
 
     /**
      * Initializes a ModelManager with the given pennyWise and userPrefs.
@@ -44,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenditure = new FilteredList<>(this.pennyWise.getExpenditureList());
         filteredIncome = new FilteredList<>(this.pennyWise.getIncomeList());
+        monthForChart = YearMonth.now();
     }
 
     public ModelManager() {
@@ -184,6 +184,11 @@ public class ModelManager implements Model {
         filteredIncome.setPredicate(predicate);
     }
 
+    @Override
+    public void setMonthForChart(YearMonth month) {
+        this.monthForChart = month;
+    }
+
     /**
      * Gets pie chart data of income entries
      *
@@ -282,11 +287,10 @@ public class ModelManager implements Model {
         return getLineChartData(filteredIncome);
     }
 
-    private static XYChart.Series<String, Number> getLineChartData(FilteredList<Entry> filteredEntryList) {
+    private XYChart.Series<String, Number> getLineChartData(FilteredList<Entry> filteredEntryList) {
         HashMap<LocalDate, Number> dateToExpenditureMap = new HashMap<>();
 
-        LocalDate date = LocalDate.of(2022, 1, 19);
-        date = date.withDayOfMonth(1);
+        LocalDate date = monthForChart.atDay(1);
         int daysInMonth = date.lengthOfMonth();
         for (int i = 0; i < daysInMonth; i++) {
             dateToExpenditureMap.put(date, 0);

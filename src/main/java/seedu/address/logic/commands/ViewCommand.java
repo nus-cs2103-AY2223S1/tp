@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.time.YearMonth;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entry.EntryType;
@@ -31,6 +33,8 @@ public class ViewCommand extends Command {
     private final Month month;
     private final GraphType graphType;
 
+    // private final YearMonth month;
+
     /**
      * Creates a ViewCommand to view the specified {@code entryType}.
      */
@@ -48,13 +52,15 @@ public class ViewCommand extends Command {
         requireNonNull(entryType);
         requireNonNull(month);
         this.entryType = entryType;
-        this.month = month;
         this.graphType = graphType;
+        this.month = month;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // model.setMonthForChart(month);
+
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             switch (graphType.getGraphType()) {

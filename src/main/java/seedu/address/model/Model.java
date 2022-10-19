@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -150,4 +151,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIncomeList(Predicate<Entry> predicate);
+
+    /**
+     * Updates the month for chart display.
+     *
+     * @param month
+     */
+    void setMonthForChart(YearMonth month);
 }
