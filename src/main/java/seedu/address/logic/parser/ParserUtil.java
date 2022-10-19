@@ -99,7 +99,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        if(phone.isBlank()) {
+        if (phone.isBlank()) {
             return new Phone(null);
         }
         String trimmedPhone = phone.trim();
@@ -117,7 +117,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        if(email.isBlank()) {
+        if (email.isBlank()) {
             return new Email(null);
         }
         String trimmedEmail = email.trim();
