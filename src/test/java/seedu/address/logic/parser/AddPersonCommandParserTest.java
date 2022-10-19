@@ -67,7 +67,8 @@ public class AddPersonCommandParserTest {
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + COMPANY_DESC_BOB, new AddPersonCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + COMPANY_DESC_BOB,
+                new AddPersonCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -88,7 +89,7 @@ public class AddPersonCommandParserTest {
 
         // zero email and phone
         Person expectedPersonEmailAndPhone = new PersonBuilder(AMY).withEmail(null).withPhone(null).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY+ COMPANY_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + COMPANY_DESC_AMY,
                 new AddPersonCommand(expectedPersonEmailAndPhone));
     }
 
