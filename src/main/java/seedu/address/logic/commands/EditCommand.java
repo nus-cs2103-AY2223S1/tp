@@ -103,10 +103,11 @@ public class EditCommand extends Command {
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        boolean isShowingParentDetails = editStudentDescriptor.isShowingParentDetails().orElse(studentToEdit.isShowingParentDetails());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,
-                updatedAddress, updatedTags);
+                updatedAddress, isShowingParentDetails, updatedTags);
     }
 
     @Override
@@ -138,6 +139,7 @@ public class EditCommand extends Command {
         private Name parentName;
         private Phone phone;
         private Address address;
+        private boolean isShowingParentDetails;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -153,6 +155,7 @@ public class EditCommand extends Command {
             setParentName(toCopy.parentName);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
+            setShowingParentDetails(toCopy.isShowingParentDetails);
             setTags(toCopy.tags);
         }
 
@@ -205,6 +208,14 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public void setShowingParentDetails(boolean isShowingParentDetails) {
+            this.isShowingParentDetails = isShowingParentDetails;
+        }
+
+        public Optional<Boolean> isShowingParentDetails() {
+            return Optional.ofNullable(isShowingParentDetails);
         }
 
         public Optional<Address> getAddress() {
