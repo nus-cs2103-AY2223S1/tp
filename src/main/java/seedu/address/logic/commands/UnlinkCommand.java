@@ -32,8 +32,10 @@ public class UnlinkCommand extends Command {
 
     // TODO: change
     public static final String MESSAGE_SUCCESS = "Person %1$s and Internship %2$s has been unlinked";
-    public static final String MESSAGE_UNLINKED_PERSON = "This internship does not have a contact person";
-    public static final String MESSAGE_UNLINKED_INTERNSHIP = "This person is not linked to any internship";
+    // when only 1 person/internship is provided and person/internship has no link
+    public static final String MESSAGE_UNLINKED_INTERNSHIP = "Internship %1$s does not have a contact person";
+    public static final String MESSAGE_UNLINKED_PERSON = "Person %1$s is not linked to any internship";
+    // when both person and internship is provided but incorrect link is given
     public static final String MESSAGE_INCORRECT_LINK_PERSON = "Person %1$s is not linked to Internship %2$s";
     public static final String MESSAGE_INCORRECT_LINK_INTERNSHIP = "Internship %2$s is not linked to Person %1$s";
 
@@ -41,12 +43,12 @@ public class UnlinkCommand extends Command {
     private final Index internshipIndex;
 
     /*
-    Not sure if LinkCommand(Person, Internship) is needed, hence commenting this for now
+    Not sure if UnlinkCommand(Person, Internship) is needed, hence commenting this for now
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an UnlinkCommand to link the specified {@code Person} {@code Internship}
      */
     /*
-    public LinkCommand(Person person, Internship internship) {
+    public unLinkCommand(Person person, Internship internship) {
     }
      */
 
@@ -93,17 +95,23 @@ public class UnlinkCommand extends Command {
                 : internshipToUnlink;
 
         if (personToUnlink == null) {
-            throw new CommandException(MESSAGE_UNLINKED_PERSON);
+            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getCompanyName()));
         } else if (internshipToUnlink == null) {
-            throw new CommandException(MESSAGE_UNLINKED_INTERNSHIP);
+            throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
         }
 
-        if (personToUnlink.getInternshipId() != internshipToUnlink.getInternshipId()) {
+        if (internshipToUnlink.getContactPersonId() == null) {
+            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getCompanyName()));
+        } else if (personToUnlink.getInternshipId() == null) {
+            throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
+        }
+
+        if (!personToUnlink.getInternshipId().equals(internshipToUnlink.getInternshipId())) {
             throw new CommandException(String.format(
                     MESSAGE_INCORRECT_LINK_PERSON,
                     personToUnlink.getName(),
                     internshipToUnlink.getCompanyName()));
-        } else if (internshipToUnlink.getContactPersonId() == personToUnlink.getPersonId()) {
+        } else if (!internshipToUnlink.getContactPersonId().equals(personToUnlink.getPersonId())) {
             throw new CommandException(String.format(
                     MESSAGE_INCORRECT_LINK_INTERNSHIP,
                     personToUnlink.getName(),
