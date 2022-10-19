@@ -12,6 +12,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 import seedu.guest.model.guest.Room;
 
 /**
@@ -152,5 +153,20 @@ public class ParserUtil {
             throw new ParseException(Bill.MESSAGE_CONSTRAINTS);
         }
         return new Bill(trimmedBill);
+    }
+
+    /**
+     * Parses a {@code String request} into a {@code Request}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code request} is invalid.
+     */
+    public static Request parseRequest(String request) throws ParseException {
+        requireNonNull(request);
+        String trimmedRequest = request.trim();
+        if (!Request.isValidRequest(trimmedRequest)) {
+            throw new ParseException(Request.MESSAGE_CONSTRAINTS);
+        }
+        return new Request(trimmedRequest);
     }
 }
