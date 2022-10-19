@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.TASK_A;
 
@@ -19,7 +20,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidTaskDescription_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask("");
+                new JsonAdaptedTask(EMPTY_STRING);
         String expectedMessage = Task.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage,
                 task::toModelType);

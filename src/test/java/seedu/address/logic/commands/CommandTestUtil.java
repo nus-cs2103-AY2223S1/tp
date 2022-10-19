@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBERS_TO_SWAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
@@ -37,6 +38,7 @@ import seedu.address.testutil.SwapTaskNumbersDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String EMPTY_STRING = "";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -78,7 +80,10 @@ public class CommandTestUtil {
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "2";
     public static final String MODULE_TASKLIST_DESC_NUMBER_THREE =
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "3";
-
+    public static final String MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1 2";
+    public static final String MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "2 3";
 
     public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
 

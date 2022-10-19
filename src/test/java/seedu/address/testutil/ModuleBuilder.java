@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +19,7 @@ import seedu.address.model.module.task.Task;
 public class ModuleBuilder {
 
     public static final String DEFAULT_MODULE_CODE = "CS2109S";
-    public static final String DEFAULT_MODULE_TITLE = "";
+    public static final String DEFAULT_MODULE_TITLE = EMPTY_STRING;
     public static final List<Task> DEFAULT_TASKS = new ArrayList<>();
     public static final Set<Link> DEFAULT_LINKS = new HashSet<>();
 
