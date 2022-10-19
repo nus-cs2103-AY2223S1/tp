@@ -70,7 +70,7 @@ public class PersistentUninurseBook extends UninurseBook {
         while (uninurseBookVersions.size() > currentVersion + 1) {
             uninurseBookVersions.remove(uninurseBookVersions.size() - 1);
         }
-        while (uninurseBookVersions.size() > Config.UNDO_LIMIT + 1) {
+        while (uninurseBookVersions.size() > Config.UNDO_LIMIT) {
             uninurseBookVersions.remove(0);
         }
         uninurseBookVersions.add(new UninurseBookSnapshot(this, commandResult));

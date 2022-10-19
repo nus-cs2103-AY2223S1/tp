@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
@@ -23,6 +24,7 @@ public class UndoCommand extends Command {
         }
 
         model.undo();
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
