@@ -62,7 +62,7 @@ public class MarkRoomsUncleanCommand extends Command {
         NumberOfGuests updatedNumberOfGuests = guestToEdit.getNumberOfGuests();
         IsRoomClean updatedIsRoomClean = new IsRoomClean("no");
         Bill updatedBill = guestToEdit.getBill();
-        return new Guest(updatedName, updatedPhone, updatedEmail,updatedRoom, updatedDateRange, 
+        return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
                 updatedNumberOfGuests, updatedIsRoomClean, updatedBill);
     }
 
