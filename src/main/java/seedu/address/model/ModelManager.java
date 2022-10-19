@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
 
 /**
  * Represents the in-memory model of the TrackAScholar tracker data.
@@ -97,6 +98,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteApplicant(Applicant target) {
         trackAScholar.removeApplicant(target);
+    }
+
+    @Override
+    public void removeApplicant(ApplicationStatus applicationStatus) {
+        trackAScholar.removeApplicantByStatus(applicationStatus);
     }
 
     @Override

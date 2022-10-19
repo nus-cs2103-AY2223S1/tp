@@ -81,6 +81,18 @@ public class UniqueApplicantList implements Iterable<Applicant> {
     }
 
     /**
+     * Removes all applicants with matching application status from the list.
+     */
+    public void removeByStatus(ApplicationStatus statusToRemove) {
+        requireNonNull(statusToRemove);
+        for (int index = internalList.size() - 1; index >= 0; index--) {
+            if (internalList.get(index).isMatchingApplicationStatus(statusToRemove)) {
+                internalList.remove(index);
+            }
+        }
+    }
+
+    /**
      * Removes the equivalent applicant from the list.
      * The applicant must exist in the list.
      */

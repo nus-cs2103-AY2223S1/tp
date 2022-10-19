@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
 
 /**
  * The API of the Model component.
@@ -63,6 +64,11 @@ public interface Model {
      * The applicant must exist in TrackAScholar.
      */
     void deleteApplicant(Applicant target);
+
+    /**
+     * Removes all applicants by completion status (accepted/pending).
+     */
+    void removeApplicant(ApplicationStatus applicationStatus);
 
     /**
      * Adds the given applicant.
