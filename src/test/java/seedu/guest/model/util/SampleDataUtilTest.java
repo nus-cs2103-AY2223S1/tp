@@ -45,7 +45,7 @@ public class SampleDataUtilTest {
             new Guest(new Name("Dave Balakrishnan"), new Phone("92821374"), new Email("daveb@example.com"),
                     new Room("07-55"), new DateRange("30/12/22 - 02/01/23"),
                     new NumberOfGuests("3"), new IsRoomClean("yes"), new Bill("1000.01"),
-                    new Request("Hello, the light is broken."))
+                    new Request("Fix television"))
             };
 
         assertNotEquals(SampleDataUtil.getSampleGuests(), testGuests);
