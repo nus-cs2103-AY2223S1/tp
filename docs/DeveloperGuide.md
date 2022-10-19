@@ -166,11 +166,11 @@ The result would be a list of all batchmates that are filtered out.
 
 The following (partial) class diagram shows how the different classes involved in the find interest operation interact with one another:
 
-![ModMarkClassDiagram](images/FindInterestClassDiagram.png)
+![FindInterestClassDiagram](images/FindInterestClassDiagram.png)
 
 The following activity diagram summarises what happens when a student enters a `findInt` command, assuming the command is valid and no error occurs:
 
-![ModMarkWithLoopActivityDiagram](images/FindInterestActivityDiagram.png)
+![FindInterestActivityDiagram](images/FindInterestActivityDiagram.png)
 
 #### Design considerations:
 
