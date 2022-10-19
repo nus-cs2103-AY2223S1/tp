@@ -80,7 +80,7 @@ public class ParserUtil {
         requireNonNull(timezone);
         String trimmedTimezone = timezone.trim();
         if (!Timezone.isValidTimezone(trimmedTimezone)) {
-            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Timezone.MESSAGE_CONSTRAINTS);
         }
         return new Timezone(trimmedTimezone);
     }
