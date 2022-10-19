@@ -46,6 +46,15 @@ public class TypicalTutors {
             .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
             .build();
 
+    public static final Tutor TUTOR3 = new TutorBuilder().withName("John Appleseed")
+            .withAddress("118, Changi Road, #03-45")
+            .withEmail("johnapple@example.com").withPhone("91235252")
+            .withTags("applefanboy")
+            .withQualification("Bachelor of Math")
+            .withInstitution("National University of Singapore")
+            .withTuitionClasses(TUITIONCLASS1)
+            .build();
+
     public static final Tutor AMY_TUTOR = new TutorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)

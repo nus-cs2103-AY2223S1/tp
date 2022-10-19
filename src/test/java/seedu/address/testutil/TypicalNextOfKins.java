@@ -40,6 +40,14 @@ public class TypicalNextOfKins {
             .withRelationship("Mother")
             .build();
 
+    public static final NextOfKin NEXTOFKIN3 = new NextOfKinBuilder().withName("Cassie Jack")
+            .withAddress("255, Pixel Ave 2, #05-10")
+            .withEmail("casjac@notgmail.com")
+            .withPhone("98554512")
+            .withTags("owesMoney")
+            .withRelationship("Guardian")
+            .build();
+
     public static final NextOfKin AMY_NEXTOFKIN = new NextOfKinBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)

@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -180,11 +181,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public TuitionClass getTuitionClass(Name name) {
+        return addressBook.getTuitionClass(name);
+    }
+
     public void setTuitionClass(TuitionClass target, TuitionClass editedTuitionClass) {
         requireAllNonNull(target, editedTuitionClass);
 
         addressBook.setTuitionClass(target, editedTuitionClass);
     }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

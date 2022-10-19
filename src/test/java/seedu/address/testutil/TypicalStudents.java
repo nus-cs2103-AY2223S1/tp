@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN1;
 import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN2;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN3;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 
@@ -48,6 +49,16 @@ public class TypicalStudents {
             .withLevel("SECONDARY2")
             .withNextOfKin(NEXTOFKIN2)
             .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
+            .build();
+
+    public static final Student STUDENT3 = new StudentBuilder().withName("John Appleseed")
+            .withAddress("118, Changi Road, #03-45")
+            .withEmail("johnapple@example.com").withPhone("91235252")
+            .withTags("applefanboy")
+            .withSchool("Apple Primary School")
+            .withLevel("PRIMARY6")
+            .withNextOfKin(NEXTOFKIN3)
+            .withTuitionClasses(TUITIONCLASS2)
             .build();
 
     public static final Student AMY_STUDENT = new StudentBuilder().withName(VALID_NAME_AMY)
