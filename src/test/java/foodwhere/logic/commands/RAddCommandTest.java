@@ -77,7 +77,6 @@ public class RAddCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.addReview(review);
 
-        System.out.println(expectedModel);
         assertCommandSuccess(rAddCommand, model, expectedMessage, expectedModel);
     }
 

@@ -28,8 +28,9 @@ public class REditCommandParser implements Parser<REditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        CliSyntax.PREFIX_NAME,
-                        CliSyntax.PREFIX_ADDRESS,
+                        CliSyntax.PREFIX_DATE,
+                        CliSyntax.PREFIX_CONTENT,
+                        CliSyntax.PREFIX_RATING,
                         CliSyntax.PREFIX_TAG);
 
         Index index;
