@@ -31,9 +31,9 @@ public class ImportantTag {
              */
             public String toString() {
                 if (isImportant) {
-                    return "[important]";
+                    return "Important";
                 } else {
-                    return "[not important]";
+                    return "Not important";
                 }
             }
         }

@@ -78,8 +78,9 @@ public class Question {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append("; Important Tag: ")
-                .append(getImportantTag());
+                .append("\n")
+                .append(getImportantTag())
+                .append(" question");
         return builder.toString();
     }
 
