@@ -43,4 +43,9 @@ public class Telegram extends Contact {
         return test.matches(VALIDATION_REGEX);
     }
 
+    @Override
+    public String getLink() {
+        // Exclude the @ from the link. Ex: t.me/username instead of t.me/@username
+        return TELEGRAM_LINK_PREFIX + getValue().substring(1);
+    }
 }
