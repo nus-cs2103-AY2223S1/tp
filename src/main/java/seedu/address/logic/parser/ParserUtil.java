@@ -55,7 +55,7 @@ public class ParserUtil {
      */
     public static Path parseFilePath(String filePath) throws ParseException {
         String trimmedPath = filePath.trim();
-        if (!FileUtil.isValidPath(trimmedPath)) {
+        if (!FileUtil.isValidPath(trimmedPath) || trimmedPath.equals("")) {
             throw new ParseException(MESSAGE_INVALID_FILE_PATH);
         }
         return Paths.get(trimmedPath);

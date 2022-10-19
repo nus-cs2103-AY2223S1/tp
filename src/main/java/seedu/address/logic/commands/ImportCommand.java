@@ -22,7 +22,7 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds one or more persons to the address book from an external json source. "
-            + "Parameters: FILE_PATH [MORE_FILE_PATHS]...\n"
+            + "Parameters: FILE_PATH\n"
             + "Example: " + COMMAND_WORD + " nus_students.json";
 
     public static final String MESSAGE_SUCCESS = "New persons imported";

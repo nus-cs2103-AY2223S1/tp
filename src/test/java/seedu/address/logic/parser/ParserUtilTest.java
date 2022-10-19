@@ -90,6 +90,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseFilePath_invalidFilePath_throwsParseException() {
+        // Empty string
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilePath(""));
+
+        // Invalid filename
         assertThrows(ParseException.class, () -> ParserUtil.parseFilePath(INVALID_FILE_PATH));
     }
 

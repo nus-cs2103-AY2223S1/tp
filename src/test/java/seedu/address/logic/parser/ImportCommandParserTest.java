@@ -32,6 +32,9 @@ public class ImportCommandParserTest {
     public void parse_invalidFilePath_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE);
 
+        // empty string
+        assertParseFailure(parser, PREAMBLE_WHITESPACE, expectedMessage);
+
         // invalid path
         assertParseFailure(parser, INVALID_PATH_JERRY, expectedMessage);
     }
