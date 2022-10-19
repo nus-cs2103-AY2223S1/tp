@@ -98,4 +98,34 @@ public class ConditionList implements GenericList<Condition> {
         // returns a copy of the internal list to prevent modification to original one
         return Collections.unmodifiableList(internalConditionList);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        internalConditionList.forEach(c -> {
+            int index = internalConditionList.indexOf(c);
+            if (index == 0) {
+                builder.append(index + 1)
+                        .append(". ")
+                        .append(c);
+            } else {
+                builder.append("\n")
+                        .append(index + 1)
+                        .append(c);
+            }
+        });
+        return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ConditionList // instanceof handles nulls
+                && internalConditionList.equals(((ConditionList) other).internalConditionList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalConditionList.hashCode();
+    }
 }
