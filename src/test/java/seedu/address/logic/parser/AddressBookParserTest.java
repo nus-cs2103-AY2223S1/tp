@@ -41,7 +41,7 @@ public class AddressBookParserTest {
 //        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(buyer));
 //        assertEquals(new AddBuyerCommand(buyer), command);
 //    }
-// Uncomment the test below when AddDelivererCommand is done
+    // Uncomment the test below when AddDelivererCommand is done
     /*
     @Test
     public void parseCommand_addDeliverer() throws Exception {
