@@ -2,9 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FilterPetCommand;
@@ -136,7 +134,7 @@ public class PredicateParser {
         String[] nameKeywords = input.trim().split("/", 2);
         if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
