@@ -21,6 +21,6 @@ public class ListAllCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(MESSAGE_SUCCESS, DisplayedList.ALL_LIST);
+        return new CommandResult(MESSAGE_SUCCESS, DisplayedList.DEFAULT_LIST);
     }
 }

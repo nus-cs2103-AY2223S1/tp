@@ -8,11 +8,7 @@ import java.time.format.DateTimeParseException;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.MasteryCheckStatus;
-import jarvis.model.MatricNum;
-import jarvis.model.StudentName;
-import jarvis.model.TaskDeadline;
-import jarvis.model.TaskDesc;
+import jarvis.model.*;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -99,11 +95,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String mcNum} into an {@code int} indicating the mastery check number.
+     * Parses a {@code String mcNum} into a {@code Assessment mc} corresponding to the specified mastery check.
      *
      * @throws ParseException if the given {@code mcNum} is invalid.
      */
-    public static int parseMcNum(String mcNum) throws ParseException {
+    public static Assessment parseMcNum(String mcNum) throws ParseException {
         String trimmedMcNum = mcNum.trim();
         int value;
         try {
@@ -115,7 +111,7 @@ public class ParserUtil {
         if (value != 1 && value != 2) {
             throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCNUM);
         }
-        return value;
+        return value == 1 ? Assessment.MC1 : Assessment.MC2;
     }
 
     /**

@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.MasteryCheckCommand;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Assessment;
 import jarvis.model.MasteryCheckResult;
 
 /**
@@ -29,19 +30,17 @@ public class MasteryCheckCommandParser implements Parser<MasteryCheckCommand> {
         }
 
         Index index;
-        MasteryCheckResult mcResult;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            int mcNumber = ParserUtil.parseMcNum(argMultimap.getValue(PREFIX_MC_NUM).get());
+            Assessment mc = ParserUtil.parseMcNum(argMultimap.getValue(PREFIX_MC_NUM).get());
             boolean isPass = ParserUtil.parseMcResult(argMultimap.getValue(PREFIX_MC_RES).get());
-            mcResult = new MasteryCheckResult(mcNumber, isPass);
+            return new MasteryCheckCommand(index, mc, isPass);
+
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MasteryCheckCommand.MESSAGE_USAGE),
                     pe);
         }
-
-        return new MasteryCheckCommand(index, mcResult);
     }
 
     /**

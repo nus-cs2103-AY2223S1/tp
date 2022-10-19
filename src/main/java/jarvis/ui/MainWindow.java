@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleList(DisplayedList displayedList) {
         hideAllList();
-        if (displayedList == DisplayedList.ALL_LIST) {
+        if (displayedList == DisplayedList.DEFAULT_LIST) {
             defaultList.setVisible(true);
         } else if (displayedList == DisplayedList.EXP_STUDENT_LIST) {
             expandedStudentList.setVisible(true);
@@ -241,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            defaultList.setVisible(true); // Default list is shown unless a list command is given
+            defaultList.setVisible(true);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

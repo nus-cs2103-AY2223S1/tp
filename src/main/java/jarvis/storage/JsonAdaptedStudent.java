@@ -4,11 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.MasteryCheckResult;
-import jarvis.model.MasteryCheckStatus;
-import jarvis.model.MatricNum;
-import jarvis.model.Student;
-import jarvis.model.StudentName;
+import jarvis.model.*;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -19,19 +15,15 @@ public class JsonAdaptedStudent {
 
     private final String name;
     private final String matricNum;
-    private final boolean passMc1;
-    private final boolean passMc2;
+
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("matricNum") String matricNum,
-                              @JsonProperty("passMc1") boolean passMc1, @JsonProperty("passMc2") boolean passMc2) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("matricNum") String matricNum) {
         this.name = name;
         this.matricNum = matricNum;
-        this.passMc1 = passMc1;
-        this.passMc2 = passMc2;
     }
 
     /**
@@ -40,9 +32,6 @@ public class JsonAdaptedStudent {
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         matricNum = source.getMatricNum().value;
-        MasteryCheckStatus mcStatus = source.getMcStatus();
-        passMc1 = mcStatus.didPassMc(1);
-        passMc2 = mcStatus.didPassMc(2);
     }
 
     /**
@@ -69,9 +58,7 @@ public class JsonAdaptedStudent {
         }
         final MatricNum modelMatricNum = new MatricNum(matricNum);
 
-        MasteryCheckResult resultMc1 = new MasteryCheckResult(1, passMc1);
-        MasteryCheckResult resultMc2 = new MasteryCheckResult(2, passMc2);
-        return new Student(modelStudentName, modelMatricNum, new MasteryCheckStatus(resultMc1, resultMc2));
+        return new Student(modelStudentName, modelMatricNum, new GradeProfile());
     }
 
 }

@@ -1,10 +1,19 @@
 package jarvis.ui;
 
+import jarvis.model.GradeProfile;
 import jarvis.model.Student;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * An UI component that displays the full information of a {@code Student}.
@@ -31,8 +40,26 @@ public class ExpandedStudentCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label matricNum;
+
+    // TableView to display grades
     @FXML
-    private Label mcResult;
+    private TableView gradeProfile;
+    @FXML
+    private TableColumn<GradeProfile, String> mc1;
+    @FXML
+    private TableColumn<GradeProfile, String> mc2;
+    @FXML
+    private TableColumn<GradeProfile, String> ra1;
+    @FXML
+    private TableColumn<GradeProfile, String> ra2;
+    @FXML
+    private TableColumn<GradeProfile, String> midterm;
+    @FXML
+    private TableColumn<GradeProfile, String> practicalAssessment;
+    @FXML
+    private TableColumn<GradeProfile, String> finalAssessment;
+    @FXML
+    private TableColumn<GradeProfile, String> studioAttendance;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -43,7 +70,18 @@ public class ExpandedStudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         studentName.setText(student.getName().fullName);
         matricNum.setText(student.getMatricNum().value);
-        mcResult.setText(student.getMcStatus().toString());
+
+        ObservableList<GradeProfile> list = FXCollections.observableArrayList(student.getGradeProfile());
+        mc1.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("mc1"));
+        mc2.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("mc2"));
+        ra1.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("ra1"));
+        ra2.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("ra2"));
+        midterm.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("midterm"));
+        practicalAssessment.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("practicalAssessment"));
+        finalAssessment.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("finalAssessment"));
+        studioAttendance.setCellValueFactory(new PropertyValueFactory<GradeProfile, String>("studioAttendance"));
+
+        gradeProfile.setItems(list);
     }
 
     @Override

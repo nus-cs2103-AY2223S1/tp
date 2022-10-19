@@ -30,7 +30,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.displayedList = DisplayedList.ALL_LIST;
+        this.displayedList = DisplayedList.DEFAULT_LIST;
     }
 
     /**
@@ -65,7 +65,7 @@ public class CommandResult {
     }
 
     public boolean isList() {
-        return displayedList != DisplayedList.ALL_LIST;
+        return displayedList != DisplayedList.DEFAULT_LIST;
     }
 
     public boolean isExit() {

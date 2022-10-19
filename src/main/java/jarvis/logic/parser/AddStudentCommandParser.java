@@ -8,10 +8,7 @@ import java.util.stream.Stream;
 
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.MasteryCheckStatus;
-import jarvis.model.MatricNum;
-import jarvis.model.Student;
-import jarvis.model.StudentName;
+import jarvis.model.*;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -33,7 +30,7 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         StudentName studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         MatricNum matricNum = ParserUtil.parseMatricNum(argMultimap.getValue(PREFIX_MATRIC_NUM).get());
 
-        Student student = new Student(studentName, matricNum, MasteryCheckStatus.getDefault());
+        Student student = new Student(studentName, matricNum, new GradeProfile());
 
         return new AddStudentCommand(student);
     }
