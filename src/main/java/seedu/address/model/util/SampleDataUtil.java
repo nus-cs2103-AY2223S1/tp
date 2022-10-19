@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
@@ -30,7 +31,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.PHONE, "87438807"),
                     new Pair<>(ContactType.EMAIL, "alexyeoh@example.com")
                 ),
-                new Role("Product Manager")
+                new Role("Product Manager"),
+                new Timezone("+8")
             ),
             new Person(new Name("Bernice Yu"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -39,7 +41,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.PHONE, "99272758"),
                     new Pair<>(ContactType.EMAIL, "berniceyu@example.com")
                 ),
-                new Role("Software Engineer")
+                new Role("Software Engineer"),
+                new Timezone("+8")
             ),
             new Person(new Name("Charlotte Oliveiro"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
@@ -48,7 +51,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.PHONE, "93210283"),
                     new Pair<>(ContactType.EMAIL, "charlotte@example.com")
                 ),
-                new Role("Developer")
+                new Role("Developer"),
+                new Timezone("+8")
             ),
             new Person(new Name("David Li"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
@@ -57,7 +61,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.PHONE, "91031282"),
                     new Pair<>(ContactType.EMAIL, "lidavid@example.com")
                 ),
-                new Role("Lead Developer")
+                new Role("Lead Developer"),
+                new Timezone("+8")
             ),
             new Person(new Name("Irfan Ibrahim"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
@@ -66,7 +71,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.PHONE, "92492021"),
                     new Pair<>(ContactType.EMAIL, "irfan@example.com")
                 ),
-                new Role("Senior Developer")
+                new Role("Senior Developer"),
+                new Timezone("+8")
             ),
             new Person(new Name("Roy Balakrishnan"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
@@ -75,7 +81,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.PHONE, "92624417"),
                     new Pair<>(ContactType.EMAIL, "royb@example.com")
                 ),
-                new Role("Consultant")
+                new Role("Consultant"),
+                new Timezone("+8")
             )
         };
     }

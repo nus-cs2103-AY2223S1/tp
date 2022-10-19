@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
@@ -73,7 +75,12 @@ public class AddCommandParser implements Parser<AddCommand> {
             contacts.put(ContactType.TELEGRAM, ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
 
-        Person person = new Person(name, address, tagList, contacts, role);
+        Timezone timezone = null;
+        if (argMultimap.getValue(PREFIX_TIMEZONE).isPresent()) {
+            timezone = ParserUtil.parseTimezone(argMultimap.getValue(PREFIX_TIMEZONE).get());
+        }
+
+        Person person = new Person(name, address, tagList, contacts, role, timezone);
 
         return new AddCommand(person);
     }
