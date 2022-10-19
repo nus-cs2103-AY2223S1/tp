@@ -54,6 +54,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(applicant.getPhone().value);
         scholarship.setText(applicant.getScholarship().scholarship);
         applicationStatus.setText(applicant.getApplicationStatus().applicationStatus);
+        setApplicationStatusStyling(applicant.getApplicationStatus().applicationStatus);
         email.setText(applicant.getEmail().value);
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -76,5 +77,15 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && applicant.equals(card.applicant);
+    }
+
+    public void setApplicationStatusStyling(String status) {
+        if (status.equals("accepted")) {
+            applicationStatus.getStyleClass().remove("cell_pending_label");
+            applicationStatus.getStyleClass().add("cell_accepted_label");
+        } else if (status.equals("rejected")) {
+            applicationStatus.getStyleClass().remove("cell_pending_label");
+            applicationStatus.getStyleClass().add("cell_rejected_label");
+        }
     }
 }
