@@ -6,15 +6,15 @@ skinparam ClassBorderColor #000000
 title After command "undo"
 
 package States <<rectangle>> {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab2:AddressBook__"
+    class State1 as "__pw0:PennyWise__" #FFF100
+    class State2 as "__pw1:PennyWise__" #FFF100
+    class State3 as "__pw2:PennyWise__" #FFF100
 }
 
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 
-class Pointer as "Current State" #FFFFF
+class Pointer as "Current State" #FFFFFF
 
 Pointer -up-> State2
 @end

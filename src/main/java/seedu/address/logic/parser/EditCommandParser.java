@@ -63,8 +63,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(PREFIX_TAG).get()).get());
         }
 
-
-
         if (!editEntryDescriptor.isAnyFieldEdited() || argMultimap.getValue(PREFIX_TYPE).isEmpty()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
