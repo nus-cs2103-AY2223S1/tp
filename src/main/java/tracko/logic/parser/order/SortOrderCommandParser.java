@@ -14,7 +14,7 @@ public class SortOrderCommandParser implements Parser<SortOrderCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortOrderCommand
-     * and returns a SortCommand object for execution.
+     * and returns a SortOrderCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortOrderCommand parse(String args) throws ParseException {

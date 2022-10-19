@@ -94,7 +94,7 @@ Examples:
 
 ### Sorting orders by time created: `sorto`
 
-Sort the displayed list of orders by the time at which they were created.
+Sorts the displayed list of orders by the time at which they were created.
 
 Format: `sorto new` or `sorto old`
 
@@ -102,7 +102,7 @@ Format: `sorto new` or `sorto old`
 * `sorto new` sorts the order list such that newest orders are at the top
 * `sorto old` sorts the order list such that oldest orders are at the top
 
-Exampels:
+Examples:
 * `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
 * `findo Chair` followed by `sorto new` sorts all orders found using `findo Chair` such that newest orders are at the 
 top

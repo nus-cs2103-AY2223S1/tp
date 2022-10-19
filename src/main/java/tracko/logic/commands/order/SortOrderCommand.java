@@ -9,7 +9,7 @@ import tracko.model.Model;
 import tracko.model.order.OrderDateTimeComparator;
 
 /**
- * Sorts all orders by its timeCreated based on the argument keyword.
+ * Sorts the displayed list of orders by its timeCreated based on the argument keyword.
  * Keyword matching is case insensitive.
  */
 public class SortOrderCommand extends Command {
