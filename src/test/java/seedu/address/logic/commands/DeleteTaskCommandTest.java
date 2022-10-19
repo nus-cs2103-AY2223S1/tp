@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -24,7 +23,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.testutil.DeleteTaskFromModuleDescriptorBuilder;
-import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.ModuleBuilder;
 
 /**
@@ -112,21 +110,4 @@ public class DeleteTaskCommandTest {
         assertFalse(standardCommand.equals(new DeleteTaskCommand(differentTaskDescriptionDescriptor)));
     }
 
-    /**
-     * A Model stub that contains a single module.
-     */
-    private class ModelStubWithModule extends ModelStub {
-        private final Module module;
-
-        ModelStubWithModule(Module module) {
-            requireNonNull(module);
-            this.module = module;
-        }
-
-        @Override
-        public boolean hasModule(Module module) {
-            requireNonNull(module);
-            return this.module.isSameModule(module);
-        }
-    }
 }
