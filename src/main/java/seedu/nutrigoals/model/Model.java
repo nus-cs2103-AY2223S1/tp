@@ -118,4 +118,8 @@ public interface Model {
     Calorie calculateSuggestedCalorie();
 
     boolean isUserCreated();
+
+    int getCalorieDifference();
+
+    Calorie getTotalCalorie();
 }

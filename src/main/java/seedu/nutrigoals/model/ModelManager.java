@@ -199,6 +199,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getCalorieDifference() {
+        Calorie target = nutriGoals.getCalorieTarget();
+        Calorie actual = filteredFoods.stream()
+                .map(food -> food.getCalorie())
+                .reduce(new Calorie("0"), (prev, curr) -> prev.addCalorie(curr));
+        return target.calculateDifference(actual);
+    }
+
+    @Override
+    public Calorie getTotalCalorie() {
+        Calorie total = filteredFoods.stream()
+                .map(food -> food.getCalorie())
+                .reduce(new Calorie("0"), (prev, curr) -> prev.addCalorie(curr));
+        return total;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

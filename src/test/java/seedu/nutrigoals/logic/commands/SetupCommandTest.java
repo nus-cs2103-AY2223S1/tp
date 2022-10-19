@@ -179,6 +179,16 @@ public class SetupCommandTest {
         public boolean isUserCreated() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getCalorieDifference() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Calorie getTotalCalorie() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 
