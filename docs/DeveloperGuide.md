@@ -401,13 +401,17 @@ This feature is mainly implemented by the `CustomiseOrderCommand` and `PersonCar
 
 Given below is an example usage scenario and how this feature behaves at each part of the mechanism.
 
-Step 1. The user launches the application. Under each contacts' name, the current order the user sees is: Tags, phone number, email and address (This is also the default order). The user wants to have each email right below each name instead.
+Step 1. The user launches the application. The user sees a list of contacts, each contact contains a name, a phone number, an email, an address and possibly some tags. Under each contacts' name, the current order the user sees is: `TAGS`, `PHONE`, `EMAIL` and `ADDRESS` (this is also the default order).
 
-Step 2. The user executes `customise order e/` to make the emails appear right below the name.
+Note:
 
-* Step 2a. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`
+* The name will always be at the top of each contact as it is the most crucial information of each contact.
+
+Step 2. The user executes `customise order e/` as the user wants the emails appear right below the name.
+
+* Step 2a. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`.
 * Step 2b. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
-* Step 2c. `CustomiseOrderCommandParser` processes the input and adds to a list of attributes with `EMAIL` and then fills in the rest of the attributes in the following default order `TAGS`, `PHONE` and lastly `ADDRESS`.
+* Step 2c. `CustomiseOrderCommandParser` processes the input into a list of attributes. In this case, the list of attributes only contains `EMAIL` and is missing the attributes `TAGS`, `PHONE` and `ADDRESS`. The missing attributes are added to the list according to the default order mentioned above. The list of attributes now contains `EMAIL`, `TAGS`, `PHONE` and `ADDRESS`.
 * Step 2d. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
 * Step 2e. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
 * Step 2f. `Logic` executes the `CustomiseOrderCommand`.
@@ -417,15 +421,15 @@ The following sequence diagram illustrates Steps 2a to 2g:
 
 ![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
 
-**Note:** 
+Note:
 
 * The lifeline for `CustomiseOrderCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 Step 3. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
 
-Step 4. The user closes the application.
+Note:
 
-Step 5. The user relaunches the application and the attributes are still in the same order that the user set previously.
+* If the user closes the application and relaunches the application, the attributes are still in the same order that the user set previously.
 
 #### Design consideration
 * **Alternative 1 (current choice):** Sets the order by using 4 placeholder JavaFX `FlowPane`.
