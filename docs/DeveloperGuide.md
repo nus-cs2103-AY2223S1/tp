@@ -170,6 +170,18 @@ The `AddProfileCommand` allows the user to add new profiles to NUScheduler.
 
 ![AddProfileCommandSequenceDiagram](images/commands/AddProfileCommandSequenceDiagram.png)
 
+#### Edit Profile Command
+
+##### Description
+
+The `EditProfileCommand` allows the user to edit existing profiles in NUScheduler.
+
+##### Implementation
+
+`EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute()` method, to edit existing profiles when called.
+
+![EditProfileCommandSequenceDiagram](images/commands/EditProfileCommandSequenceDiagram.png)
+
 ### Events
 
 #### Add Event Command
@@ -183,6 +195,18 @@ The `AddEventCommand` allows the user to add new events to NUScheduler.
 `AddEventCommand` extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddEventCommand` overrides the `Command#execute()` method, which will add events when called.
 
 ![AddEventCommandSequenceDiagram](images/commands/AddEventCommandSequenceDiagram.png)
+
+#### Edit Event Command
+
+##### Description
+
+The `EditEventCommand` allows the user to edit existing events in NUScheduler.
+
+##### Implementation
+
+`EditEventCommand` extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `EditEventCommand` overrides the `Command#execute()` method, to edit events when called.
+
+![EditEventCommandSequenceDiagram](images/commands/EditEventCommandSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

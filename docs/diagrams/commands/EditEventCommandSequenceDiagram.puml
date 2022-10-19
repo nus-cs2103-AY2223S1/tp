@@ -1,0 +1,49 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
+Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
+Participant ":EventCommandParser" as profileCommandParser LOGIC_COLOR_T3
+Participant ":EditEventCommandParser" as editEventCommandParser LOGIC_COLOR_T3
+Participant ":EditEventCommand" as editEventCommand LOGIC_COLOR_T3
+Participant ":CommandResult" as commandResult LOGIC_COLOR_T3
+endBox
+
+box Model MODEL_COLOR_T1
+Participant ":model" as model MODEL_COLOR_T3
+endBox
+
+-> logicManager ++: execute("event -e 1...")
+logicManager -> nuSchedulerParser ++: parseCommand("event -e 1...")
+
+create profileCommandParser
+nuSchedulerParser -> profileCommandParser ++
+return
+nuSchedulerParser -> profileCommandParser ++: parse(" -e 1...")
+
+create editEventCommandParser
+profileCommandParser -> editEventCommandParser ++
+return
+profileCommandParser -> editEventCommandParser ++: parse(" -e 1...")
+
+create editEventCommand
+editEventCommandParser -> editEventCommand ++
+return e
+return e
+return e
+return e
+
+logicManager -> editEventCommand ++: execute()
+editEventCommand -> model ++: setEvent()
+return
+editEventCommand -> model ++: updateFilteredEventList()
+return
+
+create commandResult
+editEventCommand -> commandResult++
+return
+return
+return
+
+@enduml
