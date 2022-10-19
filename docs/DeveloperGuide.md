@@ -155,8 +155,6 @@ Classes used by multiple components are in the `taskbookbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Command History Navigation
-
 ### Command History Navigation
 
 #### Implementation
@@ -175,6 +173,8 @@ The methods will handle cases where the command history is empty, full and when 
 
 * Set the `setOnKeyPressed` for the `commandTextField` to detect key presses `UP` and `DOWN` arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
 * Call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` when handling user input to save the user's input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
+
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
 Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
 
