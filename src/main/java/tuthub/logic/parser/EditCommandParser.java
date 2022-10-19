@@ -58,7 +58,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTutorDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            editTutorDescriptor.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
+            editTutorDescriptor.setModules(ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE)));
         }
         if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
             editTutorDescriptor.setYear(ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get()));

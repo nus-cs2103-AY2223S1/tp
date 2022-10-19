@@ -52,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+        Set<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
         TeachingNomination teachingNomination =
@@ -62,7 +62,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Comment comment = new Comment("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Tutor tutor = new Tutor(name, phone, email, module, year, studentId, comment, teachingNomination, rating,
+        Tutor tutor = new Tutor(name, phone, email, moduleList, year, studentId, comment, teachingNomination, rating,
                 tagList);
 
         return new AddCommand(tutor);

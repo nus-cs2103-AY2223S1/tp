@@ -31,7 +31,7 @@ public class TutorDetailsPanel extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label module;
+    private FlowPane modules;
     @FXML
     private Label year;
     @FXML
@@ -57,7 +57,9 @@ public class TutorDetailsPanel extends UiPart<Region> {
         this.tutor = tutor;
         studentId.setText("Student ID: " + tutor.getStudentId().value);
         name.setText(tutor.getName().fullName);
-        module.setText(tutor.getModule().value);
+        tutor.getModules().stream()
+            .sorted(Comparator.comparing(module -> module.value))
+            .forEach(module -> modules.getChildren().add(new Label(module.value)));
         year.setText("Year " + tutor.getYear().value);
         phone.setText("Phone: " + tutor.getPhone().value);
         email.setText("Email: " + tutor.getEmail().value);

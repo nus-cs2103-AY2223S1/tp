@@ -38,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_MODULE_AMY = "CS2103T";
     public static final String VALID_MODULE_BOB = "CS2100";
+    public static final String VALID_MODULE_BOB2 = "CS2105";
     public static final String VALID_YEAR_AMY = "3";
     public static final String VALID_YEAR_BOB = "4";
     public static final String VALID_STUDENTID_AMY = "A1234567X";
@@ -57,6 +58,7 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String MODULE_DESC_AMY = " " + PREFIX_MODULE + VALID_MODULE_AMY;
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
+    public static final String MODULE_DESC_BOB2 = " " + PREFIX_MODULE + VALID_MODULE_BOB2;
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
     public static final String STUDENTID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENTID_AMY;

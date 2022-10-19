@@ -32,7 +32,7 @@ class JsonAdaptedTutor {
     private final String name;
     private final String phone;
     private final String email;
-    private final String module;
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final String year;
     private final String studentId;
     private final String comment;
@@ -45,7 +45,7 @@ class JsonAdaptedTutor {
      */
     @JsonCreator
     public JsonAdaptedTutor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("module") String module,
+            @JsonProperty("email") String email, @JsonProperty("module") List<JsonAdaptedModule> module,
             @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
             @JsonProperty("comment") String comment,
             @JsonProperty("teaching nominations") String teachingNomination,
@@ -54,7 +54,9 @@ class JsonAdaptedTutor {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.module = module;
+        if (module != null) {
+            this.modules.addAll(module);
+        }
         this.year = year;
         this.studentId = studentId;
         this.rating = rating;
@@ -72,7 +74,9 @@ class JsonAdaptedTutor {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        module = source.getModule().value;
+        modules.addAll(source.getModules().stream()
+            .map(JsonAdaptedModule::new)
+            .collect(Collectors.toList()));
         year = source.getYear().value;
         studentId = source.getStudentId().value;
         comment = source.getComment().value;
@@ -92,6 +96,11 @@ class JsonAdaptedTutor {
         final List<Tag> tutorTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             tutorTags.add(tag.toModelType());
+        }
+
+        final List<Module> tutorModules = new ArrayList<>();
+        for (JsonAdaptedModule module : modules) {
+            tutorModules.add(module.toModelType());
         }
 
         if (name == null) {
@@ -118,13 +127,10 @@ class JsonAdaptedTutor {
         }
         final Email modelEmail = new Email(email);
 
-        if (module == null) {
+        if (modules.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
         }
-        if (!Module.isValidModule(module)) {
-            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
-        }
-        final Module modelModule = new Module(module);
+        final Set<Module> modelModule = new HashSet<>(tutorModules);
 
         if (year == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Year.class.getSimpleName()));
