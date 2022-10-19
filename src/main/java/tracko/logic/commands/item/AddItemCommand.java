@@ -29,7 +29,7 @@ public class AddItemCommand extends Command {
             + CliSyntax.PREFIX_QUANTITY + "1000 "
             + CliSyntax.PREFIX_DESCRIPTION + "White printing paper "
             + CliSyntax.PREFIX_TAG + "Limited "
-            + CliSyntax.PREFIX_TAG + "New"
+            + CliSyntax.PREFIX_TAG + "New "
             + CliSyntax.PREFIX_SELL_PRICE + "2.00 "
             + CliSyntax.PREFIX_COST_PRICE + "1.98";
 
