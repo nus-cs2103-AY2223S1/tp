@@ -106,7 +106,15 @@ public class EditCommand extends Command {
         }
 
         if (!personToEdit.getName().equals(editedPerson.getName())) {
-
+            for(Task task : model.getFilteredTaskList()){
+                if(task.getPersonName().equals(personToEdit.getName())){
+                    Task editedTask = task.copy();
+                    editedTask.setPersonEmailAddress(editedPerson.getEmail());
+                    editedTask.setPersonName(editedPerson.getName());
+                    model.deleteTask(task);
+                    model.addTask(editedTask);
+                }
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
