@@ -36,6 +36,9 @@ public class CommandTestUtil {
     public static final String VALID_SETS_BENCH_PRESS = "5";
     public static final String VALID_REPS_ARM_CURLS = "1";
     public static final String VALID_REPS_BENCH_PRESS = "2";
+    public static final String VALID_LEVEL_EASY = "EASY";
+    public static final String VALID_LEVEL_MEDIUM = "MEDIUM";
+    public static final String VALID_LEVEL_HARD = "HARD";
     public static final String VALID_DATE = "02/05/2022";
     public static final String VALID_DATE_2 = "12/01/2007";
 

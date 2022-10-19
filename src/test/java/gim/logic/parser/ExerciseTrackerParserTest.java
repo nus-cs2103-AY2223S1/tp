@@ -2,8 +2,11 @@ package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static gim.logic.commands.CommandTestUtil.VALID_LEVEL_EASY;
+import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
+import static gim.testutil.TypicalIndexes.INDEX_LIST_FIRST_SECOND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,6 +23,7 @@ import gim.logic.commands.EditCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.logic.commands.ExitCommand;
 import gim.logic.commands.FindCommand;
+import gim.logic.commands.GenerateCommand;
 import gim.logic.commands.HelpCommand;
 import gim.logic.commands.ListCommand;
 import gim.logic.parser.exceptions.ParseException;
@@ -86,6 +90,13 @@ public class ExerciseTrackerParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_generate() throws Exception {
+        GenerateCommand command = (GenerateCommand) parser.parseCommand(GenerateCommand.COMMAND_WORD + " "
+                + "1, 2 " + PREFIX_LEVEL + VALID_LEVEL_EASY);
+        assertEquals(new GenerateCommand(INDEX_LIST_FIRST_SECOND, VALID_LEVEL_EASY), command);
     }
 
     @Test

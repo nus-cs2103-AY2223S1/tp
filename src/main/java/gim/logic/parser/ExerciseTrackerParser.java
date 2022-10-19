@@ -70,7 +70,7 @@ public class ExerciseTrackerParser {
             return new HelpCommand();
 
         case GenerateCommand.COMMAND_WORD:
-            return new GenerateCommand();
+            return new GenerateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
