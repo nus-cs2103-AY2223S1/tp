@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
@@ -43,6 +44,9 @@ public class AddMasteryCheckCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New mastery check added: %1$s";
     public static final String MESSAGE_DUPLICATE_MASTERY_CHECK = "This mastery check already exists in JARVIS";
+    public static final String MESSAGE_TIME_PERIOD_CLASH = "This mastery check overlaps with another lesson in JARVIS";
+    public static final String MESSAGE_START_DATE_AFTER_END_DATE =
+            "This mastery check's end date time must be after start date time";
 
     private final LessonDesc masteryCheckDesc;
     private final TimePeriod masteryCheckPeriod;
@@ -54,9 +58,7 @@ public class AddMasteryCheckCommand extends Command {
      */
     public AddMasteryCheckCommand(LessonDesc masteryCheckDesc, TimePeriod masteryCheckPeriod,
                                   Set<Index> studentIndexSet) {
-        requireNonNull(masteryCheckDesc);
-        requireNonNull(masteryCheckPeriod);
-        requireNonNull(studentIndexSet);
+        requireAllNonNull(masteryCheckDesc, masteryCheckPeriod, studentIndexSet);
         this.masteryCheckDesc = masteryCheckDesc;
         this.masteryCheckPeriod = masteryCheckPeriod;
         this.studentIndexSet = studentIndexSet;
@@ -82,6 +84,8 @@ public class AddMasteryCheckCommand extends Command {
 
         if (model.hasLesson(masteryCheckToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MASTERY_CHECK);
+        } else if (model.hasPeriodClash(masteryCheckToAdd)) {
+            throw new CommandException(MESSAGE_TIME_PERIOD_CLASH);
         }
 
         model.addLesson(masteryCheckToAdd);
@@ -90,10 +94,18 @@ public class AddMasteryCheckCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddMasteryCheckCommand // instanceof handles nulls
-                && masteryCheckDesc.equals(((AddMasteryCheckCommand) other).masteryCheckDesc))
-                && masteryCheckPeriod.equals(((AddMasteryCheckCommand) other).masteryCheckPeriod)
-                && studentIndexSet.equals(((AddMasteryCheckCommand) other).studentIndexSet);
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof AddMasteryCheckCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        AddMasteryCheckCommand mc = (AddMasteryCheckCommand) other;
+
+        return masteryCheckDesc.equals(mc.masteryCheckDesc)
+                && masteryCheckPeriod.equals(mc.masteryCheckPeriod)
+                && studentIndexSet.equals(mc.studentIndexSet);
     }
 }

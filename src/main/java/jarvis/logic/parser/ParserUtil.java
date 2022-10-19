@@ -168,8 +168,7 @@ public class ParserUtil {
         requireNonNull(dateTime);
 
         try {
-            LocalDateTime actualDateTime = LocalDateTime.parse(dateTime);
-            return actualDateTime;
+            return LocalDateTime.parse(dateTime.trim());
         } catch (DateTimeParseException e) {
             throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS);
         }

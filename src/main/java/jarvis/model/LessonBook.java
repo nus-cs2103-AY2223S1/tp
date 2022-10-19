@@ -66,6 +66,14 @@ public class LessonBook implements ReadOnlyLessonBook {
     }
 
     /**
+     * Checks if lesson has a time period clash with existing lessons in lesson book.
+     */
+    public boolean hasPeriodClash(Lesson p) {
+        return lessons.hasPeriodClash(p);
+    }
+
+
+    /**
      * Replaces the given lesson {@code targetLesson} in the list with {@code editedLesson}.
      * {@code targetLesson} must exist in the lesson book.
      * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the lesson

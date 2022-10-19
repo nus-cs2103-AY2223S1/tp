@@ -8,6 +8,7 @@ import java.util.List;
 
 import jarvis.commons.core.index.Index;
 import jarvis.model.exceptions.DuplicateLessonException;
+import jarvis.model.exceptions.LessonClashException;
 import jarvis.model.exceptions.LessonNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,14 +39,29 @@ public class UniqueLessonList implements Iterable<Lesson> {
     }
 
     /**
+     * Returns true if the list contains a lesson that will have a clash in time slot with
+     * the lesson as given argument.
+     */
+    public boolean hasPeriodClash(Lesson toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::hasTimingConflict);
+    }
+
+    /**
      * Adds a lesson to the list.
      * The lesson must not already exist in the list.
+     * The time period must not clash with existing lessons as well.
      */
     public void add(Lesson toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateLessonException();
         }
+
+        if (hasPeriodClash(toAdd)) {
+            throw new LessonClashException();
+        }
+
         internalList.add(toAdd);
     }
 

@@ -237,6 +237,11 @@ public class ModelManager implements Model {
         lessonBook.setLesson(targetLesson, editedLesson);
     }
 
+    @Override
+    public boolean hasPeriodClash(Lesson lesson) {
+        requireNonNull(lesson);
+        return lessonBook.hasPeriodClash(lesson);
+    }
     //=========== Filtered Student List Accessors =============================================================
 
     /**

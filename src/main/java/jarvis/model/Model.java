@@ -195,4 +195,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredLessonList(Predicate<Lesson> predicate);
+
+    /**
+     * Returns true if {@lesson} has clashing time period with a lesson in the lesson book.
+     */
+    boolean hasPeriodClash(Lesson lesson);
 }

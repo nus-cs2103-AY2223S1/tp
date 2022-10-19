@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
@@ -43,6 +44,9 @@ public class AddConsultCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONSULT = "This consultation already exists in JARVIS";
+    public static final String MESSAGE_TIME_PERIOD_CLASH = "This consultation overlaps with another lesson in JARVIS";
+    public static final String MESSAGE_START_DATE_AFTER_END_DATE =
+            "This consultation's end date time must be after start date time";
 
     private final LessonDesc consultDesc;
     private final TimePeriod consultPeriod;
@@ -54,9 +58,7 @@ public class AddConsultCommand extends Command {
      */
     public AddConsultCommand(LessonDesc consultDesc, TimePeriod consultPeriod,
                                   Set<Index> studentIndexSet) {
-        requireNonNull(consultDesc);
-        requireNonNull(consultPeriod);
-        requireNonNull(studentIndexSet);
+        requireAllNonNull(consultDesc, consultPeriod, studentIndexSet);
         this.consultDesc = consultDesc;
         this.consultPeriod = consultPeriod;
         this.studentIndexSet = studentIndexSet;
@@ -81,6 +83,8 @@ public class AddConsultCommand extends Command {
 
         if (model.hasLesson(consultToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULT);
+        } else if (model.hasPeriodClash(consultToAdd)) {
+            throw new CommandException(MESSAGE_TIME_PERIOD_CLASH);
         }
 
         model.addLesson(consultToAdd);
@@ -89,10 +93,18 @@ public class AddConsultCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddConsultCommand // instanceof handles nulls
-                && consultDesc.equals(((AddConsultCommand) other).consultDesc))
-                && consultPeriod.equals(((AddConsultCommand) other).consultPeriod)
-                && studentIndexSet.equals(((AddConsultCommand) other).studentIndexSet);
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof AddConsultCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        AddConsultCommand ac = (AddConsultCommand) other;
+
+        return consultDesc.equals(ac.consultDesc)
+                && consultPeriod.equals(ac.consultPeriod)
+                && studentIndexSet.equals(ac.studentIndexSet);
     }
 }

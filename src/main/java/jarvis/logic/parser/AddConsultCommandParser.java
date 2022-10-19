@@ -39,6 +39,11 @@ public class AddConsultCommandParser {
         LessonDesc consultDesc = ParserUtil.parseLessonDesc(argMultimap.getValue(PREFIX_LESSON).get());
         LocalDateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get());
         LocalDateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get());
+
+        if (!startDateTime.isBefore(endDateTime)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddConsultCommand.MESSAGE_START_DATE_AFTER_END_DATE));
+        }
         TimePeriod consultPeriod = new TimePeriod(startDateTime, endDateTime);
 
         Set<Index> studentIndexSet =
