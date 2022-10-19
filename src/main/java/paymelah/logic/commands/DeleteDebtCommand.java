@@ -34,8 +34,9 @@ public class DeleteDebtCommand extends Command {
             + "used in the displayed person list. The debt is specified by the index number "
             + "of the debt displayed in the person's debt field. Multiple debts may be specified.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
-            + PREFIX_DEBT + "DEBT_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 " + PREFIX_DEBT + "3";
+            + PREFIX_DEBT + "DEBT_INDEX... (must be a positive integer. multiple indexes must "
+            + "be separated by a space)\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 3";
 
     public static final String MESSAGE_DELETE_DEBT_SUCCESS = "Deleted Debt(s) from: %1$s:\n";
 
