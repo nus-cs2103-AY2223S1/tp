@@ -355,6 +355,11 @@ public class CreateMeetingCommandTest {
         }
 
         @Override
+        public void setMeeting(Meeting meeting, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addMeeting(Meeting newMeeting) {
             this.addressBookStub.addMeeting(newMeeting);
         }

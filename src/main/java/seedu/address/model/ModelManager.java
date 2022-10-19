@@ -189,6 +189,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+
+        meetingList.setMeeting(target, editedMeeting);
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetingList.hasMeeting(meeting);
+    }
+
+    @Override
     public void setMeetingListFilePath(Path meetingListFilePath) {
         requireNonNull(meetingListFilePath);
         userPrefs.setMeetingListFilePath(meetingListFilePath);
@@ -204,12 +217,6 @@ public class ModelManager implements Model {
                                     String meetingDateAndTime, String meetingLocation)
             throws ParseException, java.text.ParseException {
         return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
-    }
-
-    @Override
-    public boolean hasMeeting(Meeting meeting) {
-        requireNonNull(meeting);
-        return meetingList.hasMeeting(meeting);
     }
 
     @Override
