@@ -191,6 +191,33 @@ This section describes some noteworthy details on how certain features are imple
 ### [Proposed] List
 
 ### [Proposed] Find
+#### Proposed Implementation
+
+The proposed find feature is faciliated by 
+It implements the following operations:
+* `asdasda#adada()` - 
+* `dassda#dasdas()` - 
+
+
+Given below is an example usage scenario and how the find function behaves at each step.
+
+Step 1. The user launches the application for the first time. The 
+
+
+Step 2. The user executes `find user alex` command to find the user 'ALEX' within the address book. The `find` command calls , 
+
+#### Design considerations
+Aspect: How to find users and books:
+- Alternative 1
+  - Pros:
+  - Cons:
+- Alternative 2
+  - Pros:
+  - Cons:
+
+(more aspects and alternatives to be added)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### [Proposed] Loan
 
