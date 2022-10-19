@@ -29,8 +29,7 @@ public class LinkCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PERSON + "0 "
             + PREFIX_INTERNSHIP + "0 ";
-
-    // TODO: change
+    
     public static final String MESSAGE_SUCCESS = "Person %1$s linked to Internship %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book";
