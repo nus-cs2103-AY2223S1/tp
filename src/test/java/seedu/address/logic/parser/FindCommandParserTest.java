@@ -34,7 +34,7 @@ public class FindCommandParserTest {
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
                         PersonCategory.BUYER);
-        assertParseSuccess(parser, "ng/Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "n/Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, "n/\n Alice Bob  \t", expectedFindCommand);

@@ -3,6 +3,7 @@ package seedu.address.model.pet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertFalse;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -50,23 +51,24 @@ public class PetTest {
     }
 
     @Test
-    public void equals_differentObjects() {
+    public void equals_differentObjects_false() {
         Name name = new Name("putu");
         Color color = new Color("brown");
         ColorPattern colorPattern = new ColorPattern("stripes");
         String dob = "2019-09-09";
         Species species = new Species("cat");
+        Price price = new Price(66.66);
         Weight weight = new Weight(5);
         Height height = new Height(100);
         Set<Tag> tags = new HashSet<>(Arrays.asList(new Tag("cat")));
         Set<PetCertificate> certs = new HashSet<>(Arrays.asList(new PetCertificate("AVA")));
 
         try {
-            Pet pet1 = new Pet(name, color, colorPattern, dob, species, weight, height, new Price(66.66),
+            Pet pet1 = new Pet(name, color, colorPattern, dob, species, weight, height, price,
                     tags, certs);
-            Pet pet2 = new Pet(name, color, colorPattern, dob, species, weight, height, new Price(66.66),
+            Pet pet2 = new Pet(name, color, colorPattern, dob, species, weight, height, price,
                     tags, certs);
-            assertEquals(pet1, pet2);
+            assertNotEquals(pet1, pet2);
         } catch (IllegalValueException e) {
             assert false;
         }
