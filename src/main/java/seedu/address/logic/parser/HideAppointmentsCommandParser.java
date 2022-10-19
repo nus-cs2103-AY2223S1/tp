@@ -44,7 +44,8 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
             val = argMultimap.getValue(PREFIX_TAG).orElse("");
             cond = HideAppointmentPredicate.hideBy.TAG;
         }
-        else if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+        else if (argMultimap.getValue(PREFIX_STATUS).isPresent()
+                && isValidStatusInput(argMultimap.getValue(PREFIX_STATUS).orElse(""))) {
             val = argMultimap.getValue(PREFIX_STATUS).orElse("");
             cond = HideAppointmentPredicate.hideBy.IS_MARKED;
         }
@@ -56,4 +57,7 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
         return new HideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 
+    public boolean isValidStatusInput(String status) {
+        return status.equals("um") || status.equals("m") || status.equals("marked") || status.equals("unmarked");
+    }
 }

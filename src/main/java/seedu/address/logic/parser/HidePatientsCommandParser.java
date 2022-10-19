@@ -8,7 +8,7 @@ import java.util.Arrays;
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 /**
@@ -32,7 +32,7 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
         String[] keywords = trimmedArgs.split("\\s+");
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HidePatientsCommand.MESSAGE_USAGE));
         }
         return new HidePatientsCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
     }

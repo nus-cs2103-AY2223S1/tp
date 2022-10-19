@@ -43,12 +43,13 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
 //            }
 //            break;
         case IS_MARKED:
-            passed = keywordsParts.get(0).equals("marked") ? !appt.isMarked() : appt.isMarked();
+            String kw = keywordsParts.get(0);
+            passed = kw.equals("marked") || kw.equals("m") ? appt.isMarked() : !appt.isMarked();
             break;
         default:
             assert false : condition; //should not reach here
         }
-        if (!passed) {
+        if (passed) {
             HiddenPredicateSingleton.addToHiddenApptList(appt);
         }
         return passed;

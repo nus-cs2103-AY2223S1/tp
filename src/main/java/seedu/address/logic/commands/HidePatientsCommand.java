@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
+import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.HiddenPredicateSingleton;
 import seedu.address.model.person.Person;
 
