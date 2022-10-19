@@ -7,6 +7,9 @@ import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 
+/**
+ * Contains utility methods used for parsing Reminder and related subclasses.
+ */
 public class ReminderParserUtil {
     /**
      * Parses a {@code String name} into a {@code ReminderName}.

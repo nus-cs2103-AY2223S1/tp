@@ -16,7 +16,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import java.util.Set;
 
 import seedu.address.logic.commands.student.AddCommand;
-import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.tutorial.TutorialParserUtil;
 import seedu.address.model.student.Attendance;

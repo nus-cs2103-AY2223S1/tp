@@ -3,9 +3,16 @@ package seedu.address.logic.parser.tutorial;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tutorial.*;
+import seedu.address.model.tutorial.TutorialDay;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
+import seedu.address.model.tutorial.TutorialTimeslot;
+import seedu.address.model.tutorial.TutorialVenue;
 
 
+/**
+ * Contains utility methods used for parsing Tutorial and related subclasses.
+ */
 public class TutorialParserUtil {
     /**
      * Parses a {@code String name} into a {@code TutorialName}.

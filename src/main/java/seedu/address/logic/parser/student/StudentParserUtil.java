@@ -6,10 +6,21 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Grade;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Participation;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.StudentId;
+import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 
 
+/**
+ * Contains utility methods used for parsing Student and related subclasses.
+ */
 public class StudentParserUtil {
     /**
      * Parses a {@code String name} into a {@code Name}.

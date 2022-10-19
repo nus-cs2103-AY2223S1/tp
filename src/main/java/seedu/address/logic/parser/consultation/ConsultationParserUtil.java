@@ -3,9 +3,16 @@ package seedu.address.logic.parser.consultation;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.consultation.*;
+import seedu.address.model.consultation.ConsultationDescription;
+import seedu.address.model.consultation.ConsultationModule;
+import seedu.address.model.consultation.ConsultationName;
+import seedu.address.model.consultation.ConsultationTimeslot;
+import seedu.address.model.consultation.ConsultationVenue;
 
 
+/**
+ * Contains utility methods used for parsing Consultation and related subclasses.
+ */
 public class ConsultationParserUtil {
     /**
      * Parses a {@code String name} into a {@code TutorialName}.
