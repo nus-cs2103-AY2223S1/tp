@@ -57,4 +57,12 @@ public class DateTest {
         assertEquals(new Date("2022-11-12").toString(), "Nov 12 2022");
         assertEquals(new Date("2020-02-29").toString(), "Feb 29 2020");
     }
+
+    @Test
+    public void compareTo() {
+        assertTrue(new Date("2021-08-01").compareTo(new Date("2026-05-31")) < 0);
+        assertTrue(new Date("2021-03-02").compareTo(new Date("2021-02-02")) > 0);
+        assertTrue(new Date("2022-02-01").compareTo(new Date("2022-02-02")) < 1);
+        assertEquals(0, new Date("2022-10-10").compareTo(new Date("2022-10-10")));
+    }
 }
