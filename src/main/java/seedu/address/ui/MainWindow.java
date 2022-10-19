@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private TutorialListPanel tutorialListPanel;
     private ReminderListPanel reminderListPanel;
     private ConsultationListPanel consultationListPanel;
+    private GradeChart gradeChart;
 
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -45,15 +46,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane tutorialListPanelPlaceholder;
-
-    @FXML
-    private StackPane consultationListPanelPlaceholder;
 
     @FXML
     private Label listHeader;
@@ -133,13 +125,16 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
+        gradeChart = new GradeChart();
 
         reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         // show the person list by default.
-        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        listHeader.setText("Student");
+//        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+//        listHeader.setText("Student");
+        modelListPanelPlaceholder.getChildren().add(gradeChart.getRoot());
+        listHeader.setText("Grade Chart");
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
