@@ -56,7 +56,7 @@ public class ItemQuantityPair {
      * Returns true if the given {@code ItemQuantityPair} has the same item.
      */
     public boolean hasSameItem(ItemQuantityPair otherPair) {
-        return item.equals(otherPair.item);
+        return item.isSameItem(otherPair.item);
     }
 
     /**
