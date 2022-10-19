@@ -202,12 +202,10 @@ Finds batchmates with modules matching all the specified modules.
 Format: `mod find MODULE [MORE_MODULES]...`
 
 * The search is case-insensitive. e.g `cs2100` will match `CS2100`.
-* Partial words will be matched e.g. `cs21` will match `CS2100` and `CS2101`.
 
 Examples:
-* `mod find cs21` returns batchmates who have taken `CS2100`, `CS2101` or `CS2103T`.
-* `mod find cs21 cs2030s` returns batchmates who have taken `CS2100` and `CS2030`, or `CS2103T` and `CS2030`, or `CS2103T` and `CS2030S`.
-* `mod find cs2101 cs2103t` returns batchmates who have taken `CS2101` and `CS2103T`.
+* `mod find cs2030s` returns batchmates who have taken `CS2030S`.
+* `mod find cs2101 cs2103t` returns batchmates who have taken both `CS2101` and `CS2103T`.
 
 ### Exiting the program : `exit`
 
