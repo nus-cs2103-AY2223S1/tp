@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,21 +24,21 @@ public class Person {
     // Data fields
     private final Address address;
     private final Income income;
-    private final MeetingDate meetingDate;
+    private final Meeting meeting;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Income income, MeetingDate meetingDate,
+    public Person(Name name, Phone phone, Email email, Address address, Income income, Meeting meeting,
                   Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, income, meetingDate, tags);
+        requireAllNonNull(name, phone, email, address, income, meeting, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.income = income;
-        this.meetingDate = meetingDate;
+        this.meeting = meeting;
         this.tags.addAll(tags);
     }
 
@@ -62,8 +62,8 @@ public class Person {
         return income;
     }
 
-    public MeetingDate getMeetingDate() {
-        return meetingDate;
+    public Meeting getMeeting() {
+        return meeting;
     }
 
     /**
@@ -84,7 +84,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -103,34 +103,37 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getIncome().equals(getIncome())
-                && otherPerson.getMeetingDate().equals(getMeetingDate())
-                && otherPerson.getTags().equals(getTags());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getIncome().equals(getIncome())
+            && otherPerson.getMeeting().equals(getMeeting())
+            && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, income, meetingDate, tags);
+        return Objects.hash(name, phone, email, address, income, meeting, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        Meeting meeting = getMeeting();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Income: ")
-                .append(getIncome())
-                .append("; MeetingDate: ")
-                .append(getMeetingDate());
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Address: ")
+            .append(getAddress())
+            .append("; Income: ")
+            .append(getIncome())
+            .append("; Meeting Date: ")
+            .append(meeting.getMeetingDate())
+            .append("; Meeting Location: ")
+            .append(meeting.getMeetingLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

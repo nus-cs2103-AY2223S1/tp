@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -64,7 +65,7 @@ public class MeetingLocation {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Objects.hash(value, isVirtual);
     }
 
     public String get() {

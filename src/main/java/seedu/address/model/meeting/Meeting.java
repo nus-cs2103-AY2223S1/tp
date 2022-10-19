@@ -1,5 +1,7 @@
 package seedu.address.model.meeting;
 
+import java.util.Objects;
+
 /**
  * Represents a meeting with a client in the FinBook.
  * Guarantees: details are immutable.
@@ -50,6 +52,11 @@ public class Meeting {
             .append(", Meeting Location: ")
             .append(getMeetingLocation());
         return meeting.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(meetingDate, meetingLocation);
     }
 }
 
