@@ -93,7 +93,9 @@ public class ListTasksCommand extends TaskCommand {
 
         // state check
         ListTasksCommand e = (ListTasksCommand) other;
-        return keywordFilter.equals(e.keywordFilter) && setIndexEquals(personIndexes, e.personIndexes);
+        return basePredicate.equals(e.basePredicate) &&
+                keywordFilter.equals(e.keywordFilter) &&
+                setIndexEquals(personIndexes, e.personIndexes);
     }
 
     private boolean setIndexEquals(Set<Index> firstSet, Set<Index> secondSet) {

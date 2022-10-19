@@ -13,21 +13,99 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.task.ListTasksCommand;
+import seedu.address.model.Model;
 
 public class ListTasksCommandParserTest {
 
     private ListTasksCommandParser parser = new ListTasksCommandParser();
 
     @Test
-    public void parse_validArgs_returnsAssignTaskCommand() {
-        assertParseSuccess(parser, "  ", new ListTasksCommand(Optional.empty(), new HashSet<>()));
-        assertParseSuccess(parser, " ti/hi", new ListTasksCommand(Optional.of("hi"), new HashSet<>()));
+    public void parse_validArgs_returnsListTasksCommand() {
+        assertParseSuccess(
+                parser,
+                "  ",
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.empty(), new HashSet<>())
+        );
+        assertParseSuccess(
+                parser,
+                " ti/hi",
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.of("hi"), new HashSet<>())
+        );
 
-        assertParseSuccess(parser, " c/1", new ListTasksCommand(Optional.empty(),
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON))));
+        assertParseSuccess(
+                parser,
+                " c/1",
+                new ListTasksCommand(
+                        Model.PREDICATE_INCOMPLETE_TASKS,
+                        Optional.empty(),
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON))
+                )
+        );
 
-        assertParseSuccess(parser, " ti/hi c/1 c/2", new ListTasksCommand(Optional.of("hi"),
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))));
+        assertParseSuccess(
+                parser,
+                " ti/hi c/1 c/2",
+                new ListTasksCommand(
+                        Model.PREDICATE_INCOMPLETE_TASKS,
+                        Optional.of("hi"),
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                )
+        );
+
+        assertParseSuccess(
+                parser,
+                " ti/hi c/1 c/2 -a",
+                new ListTasksCommand(
+                        Model.PREDICATE_SHOW_ALL_TASKS,
+                        Optional.of("hi"),
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                )
+        );
+    }
+
+    @Test
+    public void parse_validArgsWithFlags() {
+        assertParseSuccess(
+                parser,
+                " ti/hi c/1 c/2 -c",
+                new ListTasksCommand(
+                        Model.PREDICATE_COMPLETED_TASKS,
+                        Optional.of("hi"),
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                )
+        );
+        assertParseSuccess(
+                parser,
+                " ti/hi c/1 c/2 -a",
+                new ListTasksCommand(
+                        Model.PREDICATE_SHOW_ALL_TASKS,
+                        Optional.of("hi"),
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                )
+        );
+    }
+
+    @Test
+    public void parse_validArgsWithFlags_completedFlagTakesPrecedence() {
+        assertParseSuccess(
+                parser,
+                " ti/hi c/1 c/2 -a -c",
+                new ListTasksCommand(
+                        Model.PREDICATE_COMPLETED_TASKS,
+                        Optional.of("hi"),
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                )
+        );
+
+        assertParseSuccess(
+                parser,
+                " ti/hi c/1 c/2 -c -a",
+                new ListTasksCommand(
+                        Model.PREDICATE_COMPLETED_TASKS,
+                        Optional.of("hi"),
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                )
+        );
     }
 
     @Test

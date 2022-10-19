@@ -47,7 +47,7 @@ public class ListTasksCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(
-                new ListTasksCommand(Optional.empty(), new HashSet<>()),
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.empty(), new HashSet<>()),
                 model,
                 String.format(ListTasksCommand.MESSAGE_SUCCESS, expectedModel.getFilteredTaskList().size(), "", ""),
                 expectedModel
@@ -58,7 +58,7 @@ public class ListTasksCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         hideAllTasks(model);
         assertCommandSuccess(
-                new ListTasksCommand(Optional.empty(), new HashSet<>()),
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS,Optional.empty(), new HashSet<>()),
                 model,
                 String.format(ListTasksCommand.MESSAGE_SUCCESS, expectedModel.getFilteredTaskList().size(), "", ""),
                 expectedModel
@@ -74,7 +74,8 @@ public class ListTasksCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         Set<Index> personIndexes = new HashSet<>(Arrays.asList(outOfBoundIndex));
-        ListTasksCommand c = new ListTasksCommand(Optional.empty(), personIndexes);
+        ListTasksCommand c =
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS,Optional.empty(), personIndexes);
 
         assertCommandFailure(c, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -87,7 +88,7 @@ public class ListTasksCommandTest {
         expectedModel.updateFilteredTaskList(filter);
 
         assertCommandSuccess(
-                new ListTasksCommand(Optional.of("ass"), new HashSet<>()),
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.of("ass"), new HashSet<>()),
                 model,
                 String.format(ListTasksCommand.MESSAGE_SUCCESS, 1, "containing 'ass'", ""),
                 expectedModel
@@ -102,7 +103,7 @@ public class ListTasksCommandTest {
         expectedModel.updateFilteredTaskList(filter);
 
         assertCommandSuccess(
-                new ListTasksCommand(Optional.of("test"), new HashSet<>()),
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.of("test"), new HashSet<>()),
                 model,
                 String.format(ListTasksCommand.MESSAGE_SUCCESS, 0, "containing 'test'", ""),
                 expectedModel
@@ -121,7 +122,7 @@ public class ListTasksCommandTest {
         expectedModel.updateFilteredTaskList(keywordPredicate.and(assignedToContactsPredicate));
 
         assertCommandSuccess(
-                new ListTasksCommand(Optional.empty(), personIndexes),
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.empty(), personIndexes),
                 model,
                 String.format(
                         ListTasksCommand.MESSAGE_SUCCESS,
@@ -142,7 +143,7 @@ public class ListTasksCommandTest {
         expectedModel.updateFilteredTaskList(filter);
 
         assertCommandSuccess(
-                new ListTasksCommand(Optional.of("ass"), personIndexes),
+                new ListTasksCommand(Model.PREDICATE_INCOMPLETE_TASKS, Optional.of("ass"), personIndexes),
                 model,
                 String.format(
                         ListTasksCommand.MESSAGE_SUCCESS,
