@@ -8,7 +8,7 @@ import java.util.Locale;
 
 
 /**
- * Represents a Meeting in the FinBook.
+ * Represents a Meeting Date in the FinBook.
  * Guarantees: immutable; name is valid as declared in {@link #isValidMeetingDate(String)}
  */
 public class MeetingDate {
@@ -49,8 +49,8 @@ public class MeetingDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MeetingDate // instanceof handles nulls
-                && (value != null && value.equals(((MeetingDate) other).value))); // state check
+            || (other instanceof MeetingDate // instanceof handles nulls
+            && (value != null && value.equals(((MeetingDate) other).value))); // state check
     }
 
     @Override
