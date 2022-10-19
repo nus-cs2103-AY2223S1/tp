@@ -37,15 +37,15 @@ public class ExerciseTest {
         editedAlice = new ExerciseBuilder(ALICE).withName(VALID_NAME_BENCH_PRESS).build();
         assertFalse(ALICE.isSameExercise(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Exercise editedBenchPress =
                 new ExerciseBuilder(BENCH_PRESS).withName(VALID_NAME_BENCH_PRESS.toLowerCase()).build();
-        assertFalse(BENCH_PRESS.isSameExercise(editedBenchPress));
+        assertTrue(BENCH_PRESS.isSameExercise(editedBenchPress));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BENCH_PRESS + " ";
         editedBenchPress = new ExerciseBuilder(BENCH_PRESS).withName(nameWithTrailingSpaces).build();
-        assertFalse(BENCH_PRESS.isSameExercise(editedBenchPress));
+        assertTrue(BENCH_PRESS.isSameExercise(editedBenchPress));
     }
 
     @Test

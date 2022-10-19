@@ -19,8 +19,6 @@ import gim.model.exercise.Exercise;
 @JsonRootName(value = "exercisetracker")
 class JsonSerializableExerciseTracker {
 
-    public static final String MESSAGE_DUPLICATE_EXERCISE = "Exercises list contains duplicate exercise(s).";
-
     private final List<JsonAdaptedExercise> exercises = new ArrayList<>();
 
     /**
@@ -49,9 +47,6 @@ class JsonSerializableExerciseTracker {
         ExerciseTracker exerciseTracker = new ExerciseTracker();
         for (JsonAdaptedExercise jsonAdaptedExercise : exercises) {
             Exercise exercise = jsonAdaptedExercise.toModelType();
-            //            if (exerciseTracker.hasExercise(exercise)) {
-            //                throw new IllegalValueException(MESSAGE_DUPLICATE_EXERCISE);
-            //            }
             exerciseTracker.addExercise(exercise);
         }
         return exerciseTracker;

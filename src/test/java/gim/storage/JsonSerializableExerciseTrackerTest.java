@@ -19,8 +19,6 @@ public class JsonSerializableExerciseTrackerTest {
             "JsonSerializableExerciseTrackerTest");
     private static final Path TYPICAL_EXERCISES_FILE = TEST_DATA_FOLDER.resolve("typicalExercisesExerciseTracker.json");
     private static final Path INVALID_EXERCISE_FILE = TEST_DATA_FOLDER.resolve("invalidExerciseExerciseTracker.json");
-    private static final Path DUPLICATE_EXERCISE_FILE = TEST_DATA_FOLDER.resolve(
-            "duplicateExerciseExerciseTracker.json");
 
     @Test
     public void toModelType_typicalExercisesFile_success() throws Exception {
@@ -37,13 +35,5 @@ public class JsonSerializableExerciseTrackerTest {
                 JsonSerializableExerciseTracker.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-
-    //    @Test
-    //    public void toModelType_duplicateExercises_throwsIllegalValueException() throws Exception {
-    //        JsonSerializableExerciseTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EXERCISE_FILE,
-    //                JsonSerializableExerciseTracker.class).get();
-    //        assertThrows(IllegalValueException.class, JsonSerializableExerciseTracker.MESSAGE_DUPLICATE_EXERCISE,
-    //                dataFromFile::toModelType);
-    //    }
 
 }

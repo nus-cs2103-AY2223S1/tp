@@ -5,26 +5,23 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import gim.model.exercise.Exercise;
-import gim.model.exercise.UniqueExerciseList;
+import gim.model.exercise.ExerciseHashMap;
+import gim.model.exercise.ExerciseList;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameExercise comparison)
+ * Wraps all data at the exercise-tracker level.
+ *
+ * Duplicates are allowed.
  */
 public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
-    private final UniqueExerciseList exercises;
+    private final ExerciseList exerciseList;
+    private final ExerciseHashMap exerciseHashMap;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
     {
-        exercises = new UniqueExerciseList();
+        exerciseList = new ExerciseList();
+        exerciseHashMap = new ExerciseHashMap();
     }
 
     public ExerciseTracker() {}
@@ -40,11 +37,12 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the exercise list with {@code exercises}.
-     * {@code exercises} must not contain duplicate exercises.
+     * Replaces the contents of the ExerciseList with {@code exercises}.
+     * {@code exercises} can contain duplicate Exercises.
      */
     public void setExercises(List<Exercise> exercises) {
-        this.exercises.setExercises(exercises);
+        this.exerciseList.setExercises(exercises);
+        this.exerciseHashMap.setExercises(exercises);
     }
 
     /**
@@ -59,31 +57,33 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     //// exercise-level operations
 
     /**
-     * Returns true if an exercise with the same identity as {@code exercise} exists in the exercise tracker.
+     * Returns true if an Exercise with the same identity as {@code exercise} exists in the exercise tracker.
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
-        return exercises.contains(exercise);
+        return exerciseHashMap.contains(exercise);
     }
 
     /**
-     * Adds an exercise to the exercise tracker.
-     * The exercise must not already exist in the exercise tracker.
+     * Adds an Exercise to the exercise tracker.
+     * The Exercise can already exist in the exercise tracker.
      */
-    public void addExercise(Exercise p) {
-        exercises.add(p);
+    public Exercise addExercise(Exercise p) {
+        Exercise toAdd = exerciseHashMap.add(p);
+        exerciseList.add(toAdd);
+        return toAdd;
     }
 
     /**
-     * Replaces the given exercise {@code target} in the list with {@code editedExercise}.
+     * Replaces the given Exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the exercise tracker.
-     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise
+     * The Exercise identity of {@code editedExercise} can be the same as another existing Exercise
      * in the exercise tracker.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
 
-        exercises.setExercise(target, editedExercise);
+        exerciseList.setExercise(target, editedExercise);
     }
 
     /**
@@ -91,31 +91,32 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      * {@code key} must exist in the exercise tracker.
      */
     public void removeExercise(Exercise key) {
-        exercises.remove(key);
+        exerciseHashMap.remove(key);
+        exerciseList.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return exercises.asUnmodifiableObservableList().size() + " exercises";
+        return exerciseList.asUnmodifiableObservableList().size() + " exercises";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Exercise> getExerciseList() {
-        return exercises.asUnmodifiableObservableList();
+        return exerciseList.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExerciseTracker // instanceof handles nulls
-                && exercises.equals(((ExerciseTracker) other).exercises));
+                && exerciseList.equals(((ExerciseTracker) other).exerciseList));
     }
 
     @Override
     public int hashCode() {
-        return exercises.hashCode();
+        return exerciseList.hashCode();
     }
 }

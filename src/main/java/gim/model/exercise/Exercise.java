@@ -12,12 +12,9 @@ import gim.model.date.Date;
  */
 public class Exercise {
 
-    // Identity fields
     private final Name name;
     private final Weight weight;
     private final Sets sets;
-
-    // Data fields
     private final Reps reps;
     private final Date date;
 
@@ -50,7 +47,7 @@ public class Exercise {
     }
 
     /**
-     * Returns an immutable date object, which throws {@code UnsupportedOperationException}
+     * Returns an immutable Date object, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Date getDate() {
@@ -58,16 +55,18 @@ public class Exercise {
     }
 
     /**
-     * Returns the string representation of the date object.
-     * @return date string
+     * Returns the String representation of the date object.
+     * @return date String
      */
     public String getDateString() {
         return date.toString();
     }
 
     /**
-     * Returns true if both exercises have the same name.
-     * This defines a weaker notion of equality between two exercises.
+     * Returns true if both Exercises have the same Name.
+     * This defines a weaker notion of equality between two Exercises.
+     *
+     * Two Names are equal if, after removal of whitespaces and being set to lowercase, their String values are equal.
      */
     public boolean isSameExercise(Exercise otherExercise) {
         if (otherExercise == this) {
@@ -79,7 +78,7 @@ public class Exercise {
     }
 
     /**
-     * Returns true if both exercises have the same identity and data fields.
+     * Returns true if both Exercises have the same identity and data fields.
      * This defines a stronger notion of equality between two exercises.
      */
     @Override

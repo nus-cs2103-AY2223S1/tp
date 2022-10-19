@@ -20,9 +20,9 @@ public class Reps {
     public final String value;
 
     /**
-     * Constructs an {@code Reps}.
+     * Constructs {@code Reps}.
      *
-     * @param reps A valid Reps.
+     * @param reps A valid number of Reps.
      */
     public Reps(String reps) {
         requireNonNull(reps);
@@ -31,7 +31,7 @@ public class Reps {
     }
 
     /**
-     * Returns true if a given string is a valid Reps.
+     * Returns true if a given String is a valid number of Reps.
      */
     public static boolean isValidReps(String test) {
         return test.matches(VALIDATION_REGEX);
