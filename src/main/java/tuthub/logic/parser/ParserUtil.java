@@ -89,6 +89,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> modules} into a {@code Set<Module>}.
+     */
+    public static Set<Module> parseModules(Collection<String> modules) throws ParseException {
+        requireNonNull(modules);
+        final Set<Module> moduleSet = new HashSet<>();
+        for (String moduleName : modules) {
+            moduleSet.add(parseModule(moduleName));
+        }
+        return moduleSet;
+    }
+
+    /**
      * Parses a {@code String year} into an {@code Year}.
      * Leading and trailing whitespaces will be trimmed.
      *

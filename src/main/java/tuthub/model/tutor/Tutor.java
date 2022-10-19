@@ -22,7 +22,7 @@ public class Tutor {
     private final StudentId studentId;
 
     // Data fields
-    private final Module module;
+    private final Set<Module> modules = new HashSet<>();
     private final Year year;
     private final Comment comment;
     private final TeachingNomination teachingNomination;
@@ -32,14 +32,14 @@ public class Tutor {
     /**
      * Every field must be present and not null.
      */
-    public Tutor(Name name, Phone phone, Email email, Module module, Year year,
+    public Tutor(Name name, Phone phone, Email email, Set<Module> modules, Year year,
                     StudentId studentId, Comment comment, TeachingNomination teachingNomination, Rating rating,
                     Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, module, year, comment, tags);
+        requireAllNonNull(name, phone, email, modules, year, comment, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.module = module;
+        this.modules.addAll(modules);
         this.year = year;
         this.studentId = studentId;
         this.comment = comment;
@@ -60,8 +60,12 @@ public class Tutor {
         return email;
     }
 
-    public Module getModule() {
-        return module;
+    /**
+     * Returns an immutable module set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Module> getModules() {
+        return Collections.unmodifiableSet(modules);
     }
 
     public Year getYear() {
@@ -123,7 +127,7 @@ public class Tutor {
         return otherTutor.getName().equals(getName())
                 && otherTutor.getPhone().equals(getPhone())
                 && otherTutor.getEmail().equals(getEmail())
-                && otherTutor.getModule().equals(getModule())
+                && otherTutor.getModules().equals(getModules())
                 && otherTutor.getYear().equals(getYear())
                 && otherTutor.getStudentId().equals(getStudentId())
                 && otherTutor.getComment().equals(getComment())
@@ -135,7 +139,7 @@ public class Tutor {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, module, year, comment, teachingNomination, rating, tags);
+        return Objects.hash(name, phone, email, modules, year, comment, teachingNomination, rating, tags);
     }
 
     @Override
@@ -146,9 +150,10 @@ public class Tutor {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Module: ")
-                .append(getModule())
-                .append("; Year: ")
+                .append("; Module(s): ");
+        getModules().forEach(builder::append);
+
+        builder.append("; Year: ")
                 .append(getYear())
                 .append("; Student ID: ")
                 .append(getStudentId())
@@ -157,9 +162,7 @@ public class Tutor {
                 .append(" Rating: ")
                 .append(getRating())
                 .append(" Comment: ")
-                .append(getComment())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getComment());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -14,6 +14,7 @@ import static tuthub.logic.commands.CommandTestUtil.INVALID_TEACHINGNOMINATION_D
 import static tuthub.logic.commands.CommandTestUtil.INVALID_YEAR_DESC;
 import static tuthub.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
+import static tuthub.logic.commands.CommandTestUtil.MODULE_DESC_BOB2;
 import static tuthub.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static tuthub.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -30,6 +31,7 @@ import static tuthub.logic.commands.CommandTestUtil.TEACHINGNOMINATION_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.TEACHINGNOMINATION_DESC_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
+import static tuthub.logic.commands.CommandTestUtil.VALID_MODULE_BOB2;
 import static tuthub.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_RATING_BOB;
@@ -91,11 +93,14 @@ public class AddCommandParserTest {
                 + TAG_DESC_FRIEND,
                 new AddCommand(expectedTutor));
 
-        // multiple modules - last module accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_AMY
-                + MODULE_DESC_BOB + YEAR_DESC_BOB + STUDENTID_DESC_BOB + TEACHINGNOMINATION_DESC_BOB + RATING_DESC_BOB
+        // multiple modules - all modules accepted
+        Tutor expectedTutorMultipleModules = new TutorBuilder(expectedTutor)
+            .withModule(VALID_MODULE_BOB, VALID_MODULE_BOB2)
+            .build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_BOB
+                + MODULE_DESC_BOB2 + YEAR_DESC_BOB + STUDENTID_DESC_BOB + TEACHINGNOMINATION_DESC_BOB + RATING_DESC_BOB
                 + TAG_DESC_FRIEND,
-                new AddCommand(expectedTutor));
+                new AddCommand(expectedTutorMultipleModules));
 
         // multiple years - last year accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_BOB
@@ -116,12 +121,6 @@ public class AddCommandParserTest {
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + MODULE_DESC_BOB + YEAR_DESC_BOB + STUDENTID_DESC_BOB + TEACHINGNOMINATION_DESC_BOB + RATING_DESC_BOB
-                + TAG_DESC_FRIEND,
-                new AddCommand(expectedTutor));
-
-        // multiple modules - last module accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_AMY
                 + MODULE_DESC_BOB + YEAR_DESC_BOB + STUDENTID_DESC_BOB + TEACHINGNOMINATION_DESC_BOB + RATING_DESC_BOB
                 + TAG_DESC_FRIEND,
                 new AddCommand(expectedTutor));
