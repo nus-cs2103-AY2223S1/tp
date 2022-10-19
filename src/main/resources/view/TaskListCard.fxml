@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" prefHeight="90.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <Pane prefHeight="200.0" prefWidth="20.0" />
+   <Pane prefHeight="200.0" prefWidth="1.0">
+<!--      <children>-->
+<!--         <Circle layoutY="36.0" radius="3.0" styleClass="task_cell_deco_circle"/>-->
+<!--         <Line endY="90.0" styleClass="task_cell_deco_line" />-->
+<!--      </children>-->
+   </Pane>
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="90.0" prefHeight="90.0" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" prefHeight="18.0" spacing="5">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="taskName" prefHeight="17.0" prefWidth="529.0" styleClass="cell_big_label" text="\$first">
+                    <padding>
+                        <Insets right="10.0" />
+                    </padding></Label>
+            <Label fx:id="dueDate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="130.0" styleClass="due_date_label" textAlignment="RIGHT">
+               <padding>
+                  <Insets right="15.0" />
+               </padding></Label>
+            </HBox>
+            <HBox prefHeight="18.0" prefWidth="130.0">
+                <children>
+                   <FlowPane fx:id="contacts" alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="345.0" HBox.hgrow="ALWAYS">
+                       <padding>
+                           <Insets right="10.0" />
+                       </padding>
+                   </FlowPane>
+                </children>
+            </HBox>
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>
