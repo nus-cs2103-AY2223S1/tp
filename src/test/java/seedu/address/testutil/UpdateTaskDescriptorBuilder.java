@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -45,7 +46,7 @@ public class UpdateTaskDescriptorBuilder {
     /**
      * Sets the {@code Deadline} of the {@code UpdateTaskDescriptor} that we are building.
      */
-    public UpdateTaskDescriptorBuilder withDeadline(String deadline) {
+    public UpdateTaskDescriptorBuilder withDeadline(LocalDate deadline) {
         descriptor.setDeadline(deadline);
         return this;
     }

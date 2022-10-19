@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.DateUtil.getLocalDateString;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -47,7 +49,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle());
-        deadline.setText(task.getDeadline());
+        deadline.setText(getLocalDateString(task.getDeadline()));
         status.setText(task.getParsedStatus());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

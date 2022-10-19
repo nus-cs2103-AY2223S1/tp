@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.commons.util.DateUtil.getLocalDate;
+
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +15,11 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
     public static final String DEFAULT_TITLE = "Buy Fuel";
-    public static final String DEFAULT_DEADLINE = "29 Oct 2029";
+    public static final String DEFAULT_DEADLINE = "2029-10-29";
     public static final boolean DEFAULT_STATUS = false;
 
     private String title;
-    private String deadline;
+    private LocalDate deadline;
     private boolean status;
     private Set<Tag> tags;
 
@@ -25,7 +28,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         this.title = DEFAULT_TITLE;
-        this.deadline = DEFAULT_DEADLINE;
+        this.deadline = getLocalDate(DEFAULT_DEADLINE);
         this.status = DEFAULT_STATUS;
         this.tags = new HashSet<>();
     }
@@ -52,7 +55,7 @@ public class TaskBuilder {
     /**
      * Sets the deadline of the {@Task} that we are building.
      */
-    public TaskBuilder withDeadline(String deadline) {
+    public TaskBuilder withDeadline(LocalDate deadline) {
         this.deadline = deadline;
         return this;
     }

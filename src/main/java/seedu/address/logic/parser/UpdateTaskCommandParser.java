@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.UpdateTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
@@ -32,7 +33,6 @@ public class UpdateTaskCommandParser implements Parser<UpdateTaskCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_TAG);
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -45,7 +45,17 @@ public class UpdateTaskCommandParser implements Parser<UpdateTaskCommand> {
             updateTaskDescriptor.setTitle(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-            updateTaskDescriptor.setDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+            String deadlineValue = argMultimap.getValue(PREFIX_DEADLINE).get();
+
+            if (!DateUtil.isGenericLocalDateString(deadlineValue)) {
+                throw new ParseException("Date provided is invalid. Try again with yyyy-mm-dd !");
+            }
+
+            if (!DateUtil.isLocalDateString(deadlineValue)) {
+                throw new ParseException("Date provided is in the correct format, but has invalid values !");
+            }
+
+            updateTaskDescriptor.setDeadline(DateUtil.getLocalDate(deadlineValue));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(updateTaskDescriptor::setTags);
 

@@ -1,5 +1,10 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.util.DateUtil.getLocalDate;
+import static seedu.address.commons.util.DateUtil.getLocalDateString;
+import static seedu.address.commons.util.DateUtil.isLocalDateString;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +47,7 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle();
-        deadline = source.getDeadline();
+        deadline = getLocalDateString(source.getDeadline());
         status = source.getStatus();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -73,7 +78,11 @@ public class JsonAdaptedTask {
             throw new IllegalValueException("Deadline is missing !");
         }
 
-        final String modelDeadline = this.deadline;
+        if (!isLocalDateString(deadline)) {
+            throw new IllegalValueException("Incorrect LocalDate format !");
+        }
+
+        final LocalDate modelDeadline = getLocalDate(this.deadline);
 
         final boolean modelStatus = this.status;
 
