@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Student enters find interest command;
+:Mass Linkers reads and parses command;
+:Mass Linkers creates a predicate
+to test if entered interests
+match those of a batchmate;
+:Mass Linkers tests this predicate
+on every batchmate;
+if () then ([matches predicate])
+    :Mass Linkers retains
+    this batchmate in the list
+    of batchmates;
+else ([does not match predicate])
+    :Mass Linkers removes
+    this batchmate from the
+    list of batchmates;
+endif
+:Updated list of batchmates
+ is then displayed;
+stop
+
+@enduml
