@@ -2,6 +2,7 @@ package seedu.address.logic.parser.sort;
 
 import java.util.Comparator;
 
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,7 +37,12 @@ public class SortByName implements Comparator<Person> {
             return true;
         }
 
-        // handles null
-        return other instanceof SortByName;
+        if (other instanceof SortByName) {
+            SortByName s = (SortByName) other;
+            return this.order.equals(s.order);
+        }
+
+        // handles null and if object is not an instance of SortByName
+        return false;
     }
 }
