@@ -4,6 +4,7 @@ import static nus.climods.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
@@ -27,7 +28,7 @@ public class AddCommandTest {
     public void execute_add_success() throws CommandException {
         String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, "CS1010J");
 
-        AddCommand addCommand = new AddCommand("CS1010J", "1");
+        AddCommand addCommand = new AddCommand("CS1010J", SemestersEnum.NUMBER_1);
         CommandResult commandResult = addCommand.execute(model);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
@@ -39,7 +40,7 @@ public class AddCommandTest {
      */
     @Test
     public void execute_addModuleNotOfferedInSemester_throwsException() {
-        AddCommand addCommand = new AddCommand("CS1010J", "2");
+        AddCommand addCommand = new AddCommand("CS1010J", SemestersEnum.NUMBER_2);
 
         assertThrows(CommandException.class, () -> addCommand.execute(model));
     }
