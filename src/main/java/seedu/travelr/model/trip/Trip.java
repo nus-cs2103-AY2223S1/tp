@@ -46,18 +46,18 @@ public class Trip {
      * Used in JsonAdaptedTrips
      * Every field must be present and not null.
      */
-    public Trip(Title title, Description description, Set<Event> events, boolean markedAsDone, Location location) {
+    public Trip(Title title, Description description, Set<Event> events, boolean markedAsDone, Location location, DateField dateField) {
         requireAllNonNull(title, description, events);
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
         this.location = location;
         this.done = markedAsDone;
-        this.dateField = DateField.getDefaultDateField();
+        this.dateField = dateField;
     }
 
     /**
-     * Main constructor
+     * Main constructor, used in Add Command
      * Every field must be present and not null.
      */
     public Trip(Title title, Description description, Set<Event> events, Location location, DateField dateField) {

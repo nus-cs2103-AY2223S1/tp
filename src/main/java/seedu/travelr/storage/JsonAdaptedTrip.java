@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.travelr.commons.exceptions.IllegalValueException;
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
@@ -28,6 +29,7 @@ class JsonAdaptedTrip {
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
     private final boolean done;
     private final String location;
+    private final String dateField;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,11 +38,13 @@ class JsonAdaptedTrip {
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("description") String description,
                            @JsonProperty("done") boolean done,
                            @JsonProperty("location") String location,
+                           @JsonProperty("dateField") String dateField,
                            @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.title = title;
         this.description = description;
         this.done = done;
         this.location = location;
+        this.dateField = dateField;
         if (events != null) {
             this.events.addAll(events);
         }
@@ -54,6 +58,7 @@ class JsonAdaptedTrip {
         description = source.getDescription().value;
         done = source.isDone();
         location = source.getLocation().locationName;
+        dateField = source.getDateField().toString();
         events.addAll(source.getEvents().stream()
                 .map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
@@ -93,6 +98,14 @@ class JsonAdaptedTrip {
         if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
+        if (dateField == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateField.class.getSimpleName()));
+        }
+
+        if (!DateField.isValidDate(dateField)) {
+            throw new IllegalValueException(DateField.MESSAGE_CONSTRAINTS);
+        }
 
         final Title modelTitle = new Title(title);
 
@@ -103,8 +116,10 @@ class JsonAdaptedTrip {
         final boolean done = this.done;
 
         final Location location = new Location(this.location);
+        
+        final DateField dateField = new DateField(this.dateField);
 
-        return new Trip(modelTitle, modelDescription, modelEvents, done, location);
+        return new Trip(modelTitle, modelDescription, modelEvents, done, location, dateField);
     }
 
 }
