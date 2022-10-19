@@ -197,6 +197,7 @@ The student attendance feature keeps track of student's attendance. The feature 
 The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram.
 This is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
 
+
 The attendance commands when executed will use methods exposed by the ```Model``` interface and perform the related operations.
 
 **Common steps among the Attendance Commands**
@@ -226,7 +227,7 @@ The following is a more detailed explanation on how `AttendanceMarkCommand` work
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceMarkCommandParser``` to further separate user input.
 2. Following which, ```AttendanceMarkCommand#execute(Model model)``` method is called which validates the attendance list.
 3. If the student index, lesson number or attendance value specified is invalid, a ```ParserExeception``` will be thrown and attendance will not be marked.
-4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message. 
+4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message.
 
 **Delete Attendance command**
 Implementation:
@@ -256,6 +257,48 @@ Figure No. Sequence diagram for AttendanceDeleteCommand
 - Current Implementation: Max size of 12
 - Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
 - Cons: Less flexibility in size of attendance list.
+### Upload Student Picture Feature
+The address book is able to have profile pictures assigned to each student. The upload picture feature allows for tutors to add the profile picture corresponding to a student.
+This feature comprises a single ```UploadPictureCommand```
+
+The command when executed uses methods exposed by the ```Model``` interface and ```ImageStorage``` Class.
+
+The following is a more detailed explanation of how the `UploadPictureCommand` works.
+1. After the successful parsing of user input into ```UploadPictureCommandParser```, the ```UploadPictureCommand``` object is created.
+2. Following which, ```UploadPictureCommand#execute(Model model)``` method is called which calls ```ImageStorage#chooseImage()``` to open the file chooser.
+3. The user then selects the picture from their files, and it is checked by ```ImageStorage#isJpgFile()``` for being a file of valid format.
+4. The file is then uploaded via ```ImageStorage#uploadImage(Student student, File file)``` into the images folder in the current working directory which was created upon intialization of GREWZ.
+5. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
+
+![picture upload activity](images/PictureUploadActivityDiagram.png)
+Figure No. Activity diagram for PictureUploadCommand
+![picture upload sequence](images/PictureUploadSequenceDiagram.png)
+Figure No. Sequence diagram for PictureUploadCommand
+
+
+#### Design considerations:
+
+**Aspect: How to select an image**
+- Current implementation: A file chooser window is opened.
+- Pros: User can navigate visually through the files.
+- Cons: User will need to use a mouse instead of typing only.
+- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture. 
+- Pros: Users only needs to type.
+- Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out.
+
+**Aspect: Proccessing of Images**
+- Current Implementation: Handled by functions in the ImageStorage Class.
+- Pros: All operations regarding choosing, uploading and validating the picture is done in the same class.
+- Cons: The ImageStorage Class becomes just a class of static functions which cannot be tested.
+
+**Aspect: Changing an existing Image**
+- Current Implementation: User just uses ```upload-pic``` command for student they want to change the picture of and reselcts the picture.
+- Pros: Single command word to add and edit picture, convenient to use.
+- Cons: Users might accidentally upload the image for the wrong student and there is no way to undo the change.
+- Alternatives considered: We have considered having a separate ```update-pic``` command solely for changing an existing picture of a student.
+- Pros: Clearer instruction and prevents error from user.
+- Cons: User will have to be more familiar with more commands.
+
 
 ### \[Proposed\] Undo/redo feature
 
