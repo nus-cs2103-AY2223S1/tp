@@ -29,9 +29,7 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
                 && descriptor.getHouse().map(house -> resident.getHouse().contains(house)).orElse(true)
                 && descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().contains(matric))
                 .orElse(true) && resident.getTags().containsAll(descriptor.getTags().orElse(resident.getTags()));
-
     }
-
 
     @Override
     public boolean equals(Object other) {

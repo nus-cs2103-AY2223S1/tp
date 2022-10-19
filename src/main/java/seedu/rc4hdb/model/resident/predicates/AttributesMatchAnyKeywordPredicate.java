@@ -1,9 +1,12 @@
 package seedu.rc4hdb.model.resident.predicates;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -22,14 +25,15 @@ public class AttributesMatchAnyKeywordPredicate implements Predicate<Resident> {
 
     @Override
     public boolean test(Resident resident) {
-        return descriptor.getName().map(name -> name.equals(resident.getName())).orElse(false)
-                || descriptor.getPhone().map(phone -> phone.equals(resident.getPhone())).orElse(false)
-                || descriptor.getEmail().map(email -> email.equals(resident.getEmail())).orElse(false)
-                || descriptor.getRoom().map(room -> room.equals(resident.getRoom())).orElse(false)
-                || descriptor.getGender().map(gender -> gender.equals(resident.getGender())).orElse(false)
-                || descriptor.getHouse().map(house -> house.equals(resident.getHouse())).orElse(false)
-                || descriptor.getMatricNumber().map(matric -> matric.equals(resident.getMatricNumber())).orElse(false)
-                || descriptor.getTags().map(tags -> tags.equals(resident.getTags())).orElse(false);
+        return descriptor.getName().map(name -> resident.getName().contains(name)).orElse(false)
+                || descriptor.getPhone().map(phone -> resident.getPhone().contains(phone)).orElse(false)
+                || descriptor.getEmail().map(email -> resident.getEmail().contains(email)).orElse(false)
+                || descriptor.getRoom().map(room -> resident.getRoom().contains(room)).orElse(false)
+                || descriptor.getGender().map(gender -> resident.getGender().contains(gender)).orElse(false)
+                || descriptor.getHouse().map(house -> resident.getHouse().contains(house)).orElse(false)
+                || descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().contains(matric))
+                .orElse(false)
+                || !Collections.disjoint(resident.getTags(), descriptor.getTags().orElse(new HashSet<Tag>()));
     }
 
     @Override

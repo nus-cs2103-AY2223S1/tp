@@ -160,13 +160,13 @@ public class FilterCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredListForAny_success() {
-        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 4);
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 5);
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(new ResidentDescriptorBuilder(ALICE).build());
         FilterCommand command = new FilterCommand(new ResidentDescriptorBuilder(ALICE).build(), ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, DANIEL, ELLE, FIONA), model.getFilteredResidentList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA), model.getFilteredResidentList());
     }
 
     @Test
@@ -262,13 +262,13 @@ public class FilterCommandTest {
     public void execute_tagsSpecifiedUnfilteredListForAny_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
                 .withTags(ALICE.getTags()).build();
-        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(descriptor);
         FilterCommand command = new FilterCommand(descriptor, ANY_SPECIFIER);
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, DANIEL), model.getFilteredResidentList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredResidentList());
     }
 
     @Test
