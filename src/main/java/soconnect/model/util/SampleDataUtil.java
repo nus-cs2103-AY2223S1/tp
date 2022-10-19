@@ -84,7 +84,10 @@ public class SampleDataUtil {
             new Tag("colleagues"),
             new Tag("neighbours"),
             new Tag("family"),
-            new Tag("classmates")
+            new Tag("classmates"),
+            new Tag("math"),
+            new Tag("english"),
+            new Tag("chinese")
         };
     }
 

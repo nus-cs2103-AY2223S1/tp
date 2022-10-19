@@ -27,7 +27,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Todo> filteredTodos;
-    private final ObservableList<Tag> tags;
 
     /**
      * Initializes a ModelManager with the given {@code soConnect}, {@code todoList}, and {@code userPrefs}.
@@ -42,7 +41,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.soConnect.getPersonList());
         filteredTodos = new FilteredList<>(this.todoList.getTodoList());
-        this.tags = this.soConnect.getTagList();
     }
 
     public ModelManager() {
