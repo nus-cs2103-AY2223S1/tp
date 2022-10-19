@@ -162,7 +162,7 @@ The 'add link' feature allows for the user to add links with corresponding alias
 Links in Plannit are represented by the `Link` class. A `Link` object contains two required fields,
 a `String` URL and a `String` alias. For each Plannit `Module`, `Link` objects are stored in a `TreeMap`.
 
-The implementation of the 'delete link' feature is highly similar to this, but without a String URL input.
+The implementation of the 'delete link' feature is highly similar to this, but without a `String` URL input.
 
 #### Implementation
 
@@ -191,7 +191,7 @@ A new `AddLinkCommand` is created with the module code and `Link` object, which 
 
 **Step 5**: The `AddLinkCommand::execute` method is then called by the `LogicManager`.
 This method will first obtain the `Module` object with the module code indicated by the user.
-A copy of the `Module`'s fields are then created and the `Link` object is added to the copied `TreeMap` of links.
+A copy of the `Module`'s fields is then created and the `Link` object is added to the copied `TreeMap` of links.
 
 **Step 6**: A new `Module` is created with the modified and copied fields, which replaces
 the original `Module` object in Plannit using the `Model::setModule` method.

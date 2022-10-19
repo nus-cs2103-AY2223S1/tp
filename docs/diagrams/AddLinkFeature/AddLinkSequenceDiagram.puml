@@ -40,6 +40,7 @@ deactivate AddLinkCommand
 
 AddLinkCommandParser --> AddressBookParser
 deactivate AddLinkCommandParser
+destroy AddLinkCommandParser
 
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
@@ -74,6 +75,7 @@ deactivate Model
 
 AddLinkCommand --> LogicManager : commandResult
 deactivate AddLinkCommand
+destroy AddLinkCommand
 
 [<--LogicManager : commandResult
 deactivate LogicManager
