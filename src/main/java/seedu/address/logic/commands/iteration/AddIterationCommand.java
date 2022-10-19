@@ -74,16 +74,16 @@ public class AddIterationCommand extends Command {
             String src = toAdd.getImagePath().path;
             String dst = storage[0].saveIterationImage(src);
 
-            Iteration toAdd2 = new Iteration(
+            Iteration toActuallyAdd = new Iteration(
                     toAdd.getDate(),
                     toAdd.getDescription(),
                     new ImagePath(dst),
                     toAdd.getFeedback()
             );
 
-            activeCommission.addIteration(toAdd2);
+            activeCommission.addIteration(toActuallyAdd);
             model.selectTab(GuiTab.COMMISSION);
-            return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd2,
+            return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toActuallyAdd,
                     activeCommission.getTitle().toString()));
         } catch (IOException e) {
             throw new CommandException(FILE_OPS_CREATE_ERROR_MESSAGE + e, e);
