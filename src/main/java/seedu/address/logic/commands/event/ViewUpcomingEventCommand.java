@@ -17,7 +17,13 @@ public class ViewUpcomingEventCommand extends EventCommand {
     public static final String MESSAGE_INVALID_EVENT_UPCOMING_DAYS =
             "The days provided is invalid (must be a positive integer)\n%1$s";
     public static final String MESSAGE_MISSING_DAYS = "Days must be specified!\n%1$s";
-    public static final String MESSAGE_SUCCESS = "You have these upcoming events in the next %1$s days!\n";
+
+    public static final String MESSAGE_SUCCESS_MULTIPLE_EVENTS = "You have these upcoming events ";
+    public static final String MESSAGE_SUCCESS_SINGLE_EVENT = "You have 1 event ";
+    public static final String MESSAGE_SUCCESS_NO_EVENTS = "You have no upcoming events ";
+    public static final String MESSAGE_SUCCESS_TOMORROW = " tomorrow!\n";
+    public static final String MESSAGE_SUCCESS_UPCOMING_DAYS = "in the next %1$s days!";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
             + ": Lists the events that are occurring in the next specified days.\n"
             + "Parameters: DAYS (must be a positive integer)\n"
@@ -40,7 +46,25 @@ public class ViewUpcomingEventCommand extends EventCommand {
         requireNonNull(model);
 
         model.updateFilteredEventList(new StartDateWithinTimeFramePredicate(currentDate, endDate));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, days));
+
+        int numberOfEvents = model.getFilteredEventList().size();
+        String messageNumberOfEvents = MESSAGE_SUCCESS_NO_EVENTS;
+        String messageDay = MESSAGE_SUCCESS_TOMORROW;
+
+        if (numberOfEvents == 1) {
+            messageNumberOfEvents = MESSAGE_SUCCESS_SINGLE_EVENT;
+        }
+
+        if (numberOfEvents > 1) {
+            messageNumberOfEvents = MESSAGE_SUCCESS_MULTIPLE_EVENTS;
+        }
+
+        if (days > 1) {
+            messageDay = String.format(MESSAGE_SUCCESS_UPCOMING_DAYS, days);
+        }
+
+        String displayedMessage = messageNumberOfEvents + messageDay;
+        return new CommandResult(displayedMessage);
     }
 
     @Override
