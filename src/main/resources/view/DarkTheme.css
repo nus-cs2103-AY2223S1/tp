@@ -101,15 +101,17 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #fcfcfc;
+    -fx-background-color: #F3F4F6;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #fefefe;
+    -fx-background-color: #FEFEFE;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #F0ECFF;
+    -fx-border-width: 1px;
+    -fx-border-color: derive(#6D28D9, 20%);
+    -fx-background-color: #e7e4f9;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -120,15 +122,16 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Candara';
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
-    -fx-text-fill: black;
+    -fx-text-fill: #333333;
     -fx-background-color: transparent;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 12px;
     -fx-text-fill: #64748B;
     -fx-background-color: transparent;
 }
@@ -147,8 +150,28 @@
     -fx-background-color: #AFB4FF;
 }
 
-.circle_icon {
+.circle_icon_label {
     -fx-background-color: transparent;
+}
+
+.task_cell_deco_circle {
+    -fx-fill: #A1A1AA;
+    -fx-stroke: #A1A1AA;
+    -fx-stroke-type: "INSIDE";
+}
+
+.task_cell_deco_circle:selected {
+    -fx-fill: #6D28D9;
+}
+
+.task_cell_deco_line {
+    -fx-stroke: #A1A1AA;
+}
+
+.due_date_label {
+    -fx-background-color: transparent;
+    -fx-font-size: 12;
+    -fx-font-family: 'Tahoma';
 }
 
 .tags_pane .label {
