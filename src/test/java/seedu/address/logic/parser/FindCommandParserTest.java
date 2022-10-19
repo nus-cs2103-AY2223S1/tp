@@ -27,44 +27,17 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommandBuyer() {
+    public void parse_validArgs_returnsFind() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Alice Bob")),
                         PersonCategory.BUYER);
-        assertParseSuccess(parser, "b/Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "ng/Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "b/\n Alice Bob  \t", expectedFindCommand);
-    }
-
-    @Test
-    public void parse_validArgs_returnsFindCommandDeliverer() {
-        // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie Bob")),
-                        PersonCategory.DELIVERER);
-        assertParseSuccess(parser, "d/Charlie Bob", expectedFindCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, "d/ \n Charlie Bob  \t", expectedFindCommand);
-    }
-
-    @Test
-    public void parse_validArgs_returnsFindCommandSupplier() {
-        // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Charlie Bob")),
-                        PersonCategory.SUPPLIER);
-        assertParseSuccess(parser, "s/Charlie Bob", expectedFindCommand);
-
-        assertParseSuccess(parser, "s/ \n Charlie Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "n/\n Alice Bob  \t", expectedFindCommand);
     }
 
 }
