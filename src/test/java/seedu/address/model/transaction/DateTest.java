@@ -39,9 +39,12 @@ class DateTest {
         assertFalse(Date.isValidDate("39/10/2000")); // invalid day
         assertFalse(Date.isValidDate("-11/11/2000")); // negative integers
         assertFalse(Date.isValidDate("11.223/09/2000.0")); // non-integer values
+        assertFalse(Date.isValidDate("31/02/2000")); // Invalid day in february
+        assertFalse(Date.isValidDate("31/11/2022")); // Invalid day in november
 
         // valid date
         assertTrue(Date.isValidDate("11/09/2000")); // integers only
+        assertTrue(Date.isValidDate("29/02/2004")); // leap year
     }
 
     @Test
