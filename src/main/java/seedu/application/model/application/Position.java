@@ -56,6 +56,6 @@ public class Position implements Comparable<Position> {
 
     @Override
     public int compareTo(Position other) {
-        return value.compareTo(other.value);
+        return value.toLowerCase().compareTo(other.value.toLowerCase());
     }
 }
