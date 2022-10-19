@@ -296,11 +296,11 @@ The switching of `true` and `false` values for `TaskMark` will be facillitaed us
 
 The following activity diagram summarizes how users are expected to use the commands.
 
-![](images/MarkAndUnmarkActivityDiagram.png)
+![Expected mark and unmark command usage](images/MarkAndUnmarkActivityDiagram.png)
 
 The following sequence diagram shows how the mark command will run throughout HR Pro Max++.
 
-![](images/MarkCommandSequenceDiagram.png)
+![mark command](images/MarkCommandSequenceDiagram.png)
 
 #### Design Consideration:
 
@@ -313,11 +313,49 @@ task as complete or not is redundant.
 
 ### Delete Staff from a project
 
-#### Proposed Implementation
+#### Implementation
 
+For each project, there is a unique staff list and removing staff object from this list
+will remove staff that are part of the project. This can be done using a delete command 
+specifically for staff called `delstaff`. This `Staff` is then deleted.
 
+As the `AddressBook` contains a unique `UniqueProjectList`, we would look through and find for 
+the project with the specified `PROJECT_NAME`. Then from that project we would look through its 
+`UniqueStaffList` to find the staff with the specified `STAFF_NAME`.
 
+If there is no project with the `PROJECT_NAME` or staff with the `STAFF_NAME`, exception is thrown.
+
+* `delstaff pn/PROJECT_NAME sn/STAFF_NAME` : deletes the staff with specified staff name from 
+the project with the specified project name
+
+The activity diagram below shows how the `delstaff` command propagates through HR Pro Max++ to delete the staff.
+
+![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
+
+#### Design Consideration:
+
+The `delstaff` command could be implemented in the form `delstaff INDEX sn/STAFF_NAME`. 
+* The `INDEX` would then refer to the project at that specific index of the projects displayed in the UI.
+* The `STAFF_NAME` would then be the keyword used to find a staff with a similar `STAFF_NAME` from
+the project with the specified index. This staff would then be deleted.
+
+Example: 
+```
+Filtered project list : 
+1) CS2103T TP
+2) CS2102 project
+3) Orbital
+```
+
+Index 2 in this case would refer to CS2102 project and then we would find the staff
+within CS2102 project staff list.
+
+Pros: Format similar to the delete command for project and task so would be easy to implement and spot bugs.
+
+Cons: Troublesome to delete since you might have to use multiple commands like list then find the `INDEX` before deleting.
+If you already know the `PROJECT_NAME` and `STAFF_NAME`, current implementation helps you to delete staff faster.
     
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
