@@ -142,12 +142,14 @@ public class CommandBox extends UiPart<Region> {
                 history.add("");
             }
             currentPointer = history.size() - 1;
+            assert 1 <= history.size() && history.size() <= Config.HISTORY_SIZE_LIMIT + 1;
         }
 
         /**
          * Handles the Up Key Button Pressed event.
          */
         public Optional<String> handleUpKey() {
+            assert 0 <= currentPointer && currentPointer <= history.size() - 1;
             if (currentPointer == 0) {
                 return Optional.empty();
             }
@@ -159,6 +161,7 @@ public class CommandBox extends UiPart<Region> {
          * Handles the Down Key Button Pressed event.
          */
         public Optional<String> handleDownKey() {
+            assert 0 <= currentPointer && currentPointer <= history.size() - 1;
             if (currentPointer + 1 == history.size()) {
                 return Optional.empty();
             }
@@ -170,6 +173,7 @@ public class CommandBox extends UiPart<Region> {
          * Returns the command currently pointed to in the history list.
          */
         private String get() {
+            assert 0 <= currentPointer && currentPointer <= history.size() - 1;
             return history.get(currentPointer);
         }
     }
