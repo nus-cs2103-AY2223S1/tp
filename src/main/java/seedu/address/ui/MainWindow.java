@@ -148,7 +148,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         netTransactionBox = new NetTransactionBox(logic.calculateTotalTransaction());
-        menuPlaceholder.setAlignment(Pos.TOP_RIGHT);
         menuPlaceholder.getChildren().add(netTransactionBox.getRoot());
     }
 
