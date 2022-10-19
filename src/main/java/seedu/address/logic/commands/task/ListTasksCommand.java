@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -38,6 +39,7 @@ public class ListTasksCommand extends TaskCommand {
 
     public static final String MESSAGE_SUCCESS = "Found %1$s tasks %2$s %3$s";
 
+    private final Predicate<Task> basePredicate;
     private final Optional<String> keywordFilter;
     private final Set<Index> personIndexes = new HashSet<>();
 
@@ -46,8 +48,9 @@ public class ListTasksCommand extends TaskCommand {
      * @param keywordFilter an optional keyword to filter by the task title
      * @param personsIndexes a set of indexes to view only tasks assigned to the corresponding contacts
      */
-    public ListTasksCommand(Optional<String> keywordFilter, Set<Index> personsIndexes) {
-        requireNonNull(personsIndexes);
+    public ListTasksCommand(Predicate<Task> basePredicate, Optional<String> keywordFilter, Set<Index> personsIndexes) {
+        requireAllNonNull(basePredicate, personsIndexes);
+        this.basePredicate = basePredicate;
         this.keywordFilter = keywordFilter;
         this.personIndexes.addAll(personsIndexes);
     }
@@ -62,7 +65,7 @@ public class ListTasksCommand extends TaskCommand {
 
         AssignedToContactsPredicate contactsPredicate = new AssignedToContactsPredicate(model, personIndexes);
 
-        model.updateFilteredTaskList(titlePredicate.and(contactsPredicate));
+        model.updateFilteredTaskList(basePredicate.and(titlePredicate).and(contactsPredicate));
 
         return new CommandResult(
                 String.format(
