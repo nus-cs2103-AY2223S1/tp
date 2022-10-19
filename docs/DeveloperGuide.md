@@ -156,6 +156,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Profiles
+
+#### Add Profile Command
+
+##### Description
+
+The `AddProfileCommand` allows the user to add new profiles to NUScheduler.
+
+##### Implementation
+
+`AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute()` method, which will add profiles when called.
+
+![AddProfileCommandSequenceDiagram](images/commands/AddProfileCommandSequenceDiagram.png)
+
+### Events
+
+#### Add Event Command
+
+##### Description
+
+The `AddEventCommand` allows the user to add new events to NUScheduler.
+
+###### Implementation
+
+`AddEventCommand` extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddEventCommand` overrides the `Command#execute()` method, which will add events when called.
+
+![AddEventCommandSequenceDiagram](images/commands/AddEventCommandSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
