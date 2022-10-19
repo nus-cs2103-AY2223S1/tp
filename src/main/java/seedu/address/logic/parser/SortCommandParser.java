@@ -25,29 +25,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         String trimmedArgs = args.toLowerCase().trim();
         switch (trimmedArgs) {
         case "name":
-            return new SortCommand(new Comparator<Applicant>() {
-                @Override
-                public int compare(Applicant a1, Applicant a2) {
-                    Name n1 = a1.getName();
-                    Name n2 = a2.getName();
-                    return n1.compareTo(n2);
-                }
-            });
+            return new SortCommand(Applicant.sortByName());
         case "scholarship":
-            return new SortCommand(new Comparator<Applicant>() {
-                @Override
-                public int compare(Applicant a1, Applicant a2) {
-                    Scholarship s1 = a1.getScholarship();
-                    Scholarship s2 = a2.getScholarship();
-                    int result = s1.compareTo(s2);
-                    if (result == 0) {
-                        Name n1 = a1.getName();
-                        Name n2 = a2.getName();
-                        return n1.compareTo(n2);
-                    }
-                    return result;
-                }
-            });
+            return new SortCommand(Applicant.sortByScholarship());
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
