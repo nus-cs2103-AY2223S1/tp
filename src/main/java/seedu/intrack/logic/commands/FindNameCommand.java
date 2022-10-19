@@ -10,7 +10,7 @@ import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
  * Finds and lists all internships in the internship tracker whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindNCommand extends Command {
+public class FindNameCommand extends Command {
 
     public static final String COMMAND_WORD = "findn";
 
@@ -21,7 +21,7 @@ public class FindNCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindNCommand(NameContainsKeywordsPredicate predicate) {
+    public FindNameCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,8 +36,8 @@ public class FindNCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindNCommand // instanceof handles nulls
-                && predicate.equals(((FindNCommand) other).predicate)); // state check
+                || (other instanceof FindNameCommand // instanceof handles nulls
+                && predicate.equals(((FindNameCommand) other).predicate)); // state check
     }
 
 }

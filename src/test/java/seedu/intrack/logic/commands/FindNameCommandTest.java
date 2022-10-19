@@ -21,9 +21,9 @@ import seedu.intrack.model.UserPrefs;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindNCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindNameCommand}.
  */
-public class FindNCommandTest {
+public class FindNameCommandTest {
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalInTrack(), new UserPrefs());
 
@@ -34,14 +34,14 @@ public class FindNCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindNCommand findFirstCommand = new FindNCommand(firstPredicate);
-        FindNCommand findSecondCommand = new FindNCommand(secondPredicate);
+        FindNameCommand findFirstCommand = new FindNameCommand(firstPredicate);
+        FindNameCommand findSecondCommand = new FindNameCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindNCommand findFirstCommandCopy = new FindNCommand(firstPredicate);
+        FindNameCommand findFirstCommandCopy = new FindNameCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -58,7 +58,7 @@ public class FindNCommandTest {
     public void execute_zeroKeywords_noInternshipFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindNCommand command = new FindNCommand(predicate);
+        FindNameCommand command = new FindNameCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredInternshipList());
@@ -68,7 +68,7 @@ public class FindNCommandTest {
     public void execute_multipleKeywords_multipleInternshipsFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindNCommand command = new FindNCommand(predicate);
+        FindNameCommand command = new FindNameCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());
