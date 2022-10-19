@@ -1,0 +1,30 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "persons" : [ {
+    "name" : "Hoon Meier",
+    "phone" : "8482424",
+    "email" : "stefan@example.com",
+    "address" : "little india",
+    "gender": "Male",
+    "graduationDate": "05-2025",
+    "cap": "2.46/4.00",
+    "university": "UI",
+    "major": "Food and Nutrition",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
+    "tagged" : [ ]
+  }, {
+    "name" : "Ida Mueller",
+    "phone" : "8482131",
+    "email" : "hans@example.com",
+    "address" : "chicago ave",
+    "gender": "Female",
+    "graduationDate": "05-2024",
+    "cap": "4.39/5.0",
+    "university": "SUTD",
+    "major": "Food and Nutrition",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
+    "tagged" : [ ]
+  } ]
+}

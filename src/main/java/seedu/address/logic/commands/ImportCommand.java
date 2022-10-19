@@ -30,9 +30,9 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_PATH_IS_DIRECTORY = "The specified path must be a file, not a directory";
     public static final String MESSAGE_FILE_UNREADABLE =
             "The specified file cannot be accessed due to insufficient privileges";
-    private static final String MESSAGE_DUPLICATE_PERSON =
+    public static final String MESSAGE_DUPLICATE_PERSON =
             "The specified file has persons duplicate to the address book";
-    private static final String MESSAGE_CONSTRAINTS_UNSATISFIED =
+    public static final String MESSAGE_CONSTRAINTS_UNSATISFIED =
             "Data constraints and formats are violated in the specified file";
 
     private final Path filePath;
@@ -48,8 +48,8 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        checkValidFilePath(filePath);
-        AddressBook toAppend = createAppendableAddressBook(filePath);
+        checkValidFilePath();
+        AddressBook toAppend = createAppendableAddressBook();
         if (model.hasPersons(toAppend)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
@@ -61,10 +61,9 @@ public class ImportCommand extends Command {
     /**
      * Checks if the provided filePath is a valid and readable.
      *
-     * @param filePath to check.
      * @throws CommandException if the file path is invalid or unreadable.
      */
-    private void checkValidFilePath(Path filePath) throws CommandException {
+    private void checkValidFilePath() throws CommandException {
         if (FileUtil.isDirectory(filePath)) {
             throw new CommandException(MESSAGE_PATH_IS_DIRECTORY);
         }
@@ -81,7 +80,7 @@ public class ImportCommand extends Command {
      *
      * @throws CommandException if the data content or structure does not conform to the constraints.
      */
-    private AddressBook createAppendableAddressBook(Path filePath) throws CommandException {
+    private AddressBook createAppendableAddressBook() throws CommandException {
         JsonAddressBookStorage appendableJsonStorage = new JsonAddressBookStorage(filePath);
         Optional<ReadOnlyAddressBook> importedJsonNewPersons;
         try {
@@ -90,10 +89,6 @@ public class ImportCommand extends Command {
             //createTemplate(String.format(NOT_JSON_FORMAT_WITH_EXAMPLE, filePath.getFileName()));
             throw new CommandException(MESSAGE_CONSTRAINTS_UNSATISFIED);
         }
-
-        //if (!importedJsonNewPersons.isPresent()) {
-        //    throw new CommandException("The specified file cannot be found");
-        //}
 
         AddressBook appendableAddressBook = new AddressBook(importedJsonNewPersons.get());
         return appendableAddressBook;
