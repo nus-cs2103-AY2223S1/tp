@@ -19,4 +19,11 @@ public class SortByDateCommand extends SortCommand {
         model.sortApplicationListByDate(shouldReverse());
         return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse() ? " reverse" : ""));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortByDateCommand // instanceof handles nulls
+                && shouldReverse() == ((SortByDateCommand) other).shouldReverse()); // state check
+    }
 }

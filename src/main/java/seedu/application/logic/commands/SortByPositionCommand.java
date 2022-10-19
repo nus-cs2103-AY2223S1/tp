@@ -19,4 +19,11 @@ public class SortByPositionCommand extends SortCommand {
         model.sortApplicationListByPosition(shouldReverse());
         return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse() ? " reverse" : ""));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortByPositionCommand // instanceof handles nulls
+                && shouldReverse() == ((SortByPositionCommand) other).shouldReverse()); // state check
+    }
 }
