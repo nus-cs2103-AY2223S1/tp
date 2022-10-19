@@ -39,8 +39,6 @@ public class AddCommandTest {
      */
     @Test
     public void execute_addModuleNotOfferedInSemester_throwsException() {
-        String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, "CS1010J");
-
         AddCommand addCommand = new AddCommand("CS1010J", "2");
 
         assertThrows(CommandException.class, () -> addCommand.execute(model));
