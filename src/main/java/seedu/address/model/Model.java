@@ -136,8 +136,11 @@ public interface Model {
     /** Returns the target {@code Person} */
     Person getTargetPerson();
 
-    /** Returns an unmodifiable view of the list of target person */
+    /** Returns an unmodifiable view of the list of reminders */
     ObservableList<Reminder> getReminderListAsObservableList();
+
+    /** Returns an unmodifiable view of the list of reminders for target person */
+    ObservableList<Reminder> getTargetPersonReminderListAsObservableList();
 
     /**
      * Deletes the given reminder.
@@ -151,4 +154,8 @@ public interface Model {
      */
     void addReminder(Reminder reminder);
 
+    /**
+     * Clears the current reminder list.
+     */
+    void clearCurrentReminderList();
 }

@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 
 /**
  * A list of all reminders.
@@ -68,6 +71,13 @@ public class ReminderList implements ReadOnlyReminderList {
     }
 
     /**
+     * Clears the reminder list.
+     */
+    public void clear() {
+        internalList.clear();
+    }
+
+    /**
      * Returns true if the list contains an equivalent reminder as the given argument.
      */
     public boolean contains(Reminder toCheck) {
@@ -82,16 +92,36 @@ public class ReminderList implements ReadOnlyReminderList {
                 && internalList.equals(((ReminderList) other).internalList));
     }
 
+    public List<Reminder> getRemindersWithNameAndPhone(Name name, Phone phone) {
+        return internalUnmodifiableList.stream()
+                .filter(reminder -> reminder.getName().equals(name.fullName)
+                        && reminder.getPhone().equals(phone.value)).collect(Collectors.toList());
+    }
+
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * Updates the existing reminders with {@code oldName} and {@code oldPhone}
+     * with {@code newName} and {@code newPhone}.
      */
-    public ObservableList<Reminder> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+    public void updateRemindersWithNewNameAndPhone(Name oldName, Phone oldPhone,
+                                                   Name newName, Phone newPhone) {
+        for (Reminder reminder : internalList) {
+            if (reminder.matchesNameAndPhone(oldName, oldPhone)) {
+                reminder.setNameAndPhone(newName, newPhone);
+            }
+        }
+    }
+
+    /**
+     * Deletes reminders with {@code name} and {@code phone}
+     */
+    public void deleteRemindersWithNameAndPhone(Name name, Phone phone) {
+        internalUnmodifiableList.removeIf(reminder -> reminder.getName().equals(name.fullName)
+                        && reminder.getPhone().equals(phone.value));
     }
 
     @Override
     public ObservableList<Reminder> getAllReminders() {
-        return asUnmodifiableObservableList();
+        return internalUnmodifiableList;
     }
 
     @Override

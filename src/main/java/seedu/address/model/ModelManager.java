@@ -30,6 +30,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final ReminderList reminderList;
+    private final ReminderList targetPersonReminderList;
     private final Set<Predicate<Person>> personPredicates;
     private final FilteredList<Person> filteredPersons;
     private final TargetPerson targetPerson;
@@ -47,6 +48,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.reminderList = new ReminderList(reminderList);
+        this.targetPersonReminderList = new ReminderList();
         this.personPredicates = new HashSet<>();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         targetPerson = new TargetPerson();
@@ -113,6 +115,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        reminderList.deleteRemindersWithNameAndPhone(target.getName(), target.getPhone());
 
         if (isTargetPerson(target)) {
             clearTargetPerson();
@@ -129,6 +132,8 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+        reminderList.updateRemindersWithNewNameAndPhone(target.getName(), target.getPhone(),
+                editedPerson.getName(), editedPerson.getPhone());
 
         if (isTargetPerson(target)) {
             setTargetPerson(editedPerson);
@@ -221,11 +226,14 @@ public class ModelManager implements Model {
     @Override
     public void setTargetPerson(Person person) {
         targetPerson.set(person);
+        targetPersonReminderList.setReminders(
+                reminderList.getRemindersWithNameAndPhone(person.getName(), person.getPhone()));
     }
 
     @Override
     public void clearTargetPerson() {
         targetPerson.clear();
+        targetPersonReminderList.clear();
     }
 
     @Override
@@ -246,7 +254,12 @@ public class ModelManager implements Model {
     // =========== Reminder ====================================================================
     @Override
     public ObservableList<Reminder> getReminderListAsObservableList() {
-        return reminderList.asUnmodifiableObservableList();
+        return reminderList.getAllReminders();
+    }
+
+    @Override
+    public ObservableList<Reminder> getTargetPersonReminderListAsObservableList() {
+        return targetPersonReminderList.getAllReminders();
     }
 
     @Override
@@ -257,5 +270,14 @@ public class ModelManager implements Model {
     @Override
     public void addReminder(Reminder reminder) {
         reminderList.add(reminder);
+    }
+
+    @Override
+    public void clearCurrentReminderList() {
+        if (targetPerson.isPresent()) {
+            targetPersonReminderList.clear();
+        } else {
+            reminderList.clear();
+        }
     }
 }

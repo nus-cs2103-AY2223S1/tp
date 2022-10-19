@@ -1,8 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.logic.commands.ReminderClearCommand;
 import seedu.address.logic.commands.ReminderCommandGroup;
+import seedu.address.logic.commands.ReminderCreateCommand;
+import seedu.address.logic.commands.ReminderDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -10,6 +14,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * in the ReminderCommandGroup, as indicated by the commandSpecifier.
  */
 public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> {
+    private static String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s",
+                    ReminderCreateCommand.MESSAGE_USAGE,
+                    ReminderDeleteCommand.MESSAGE_USAGE,
+                    ReminderClearCommand.MESSAGE_USAGE);
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -20,22 +28,28 @@ public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> 
         requireNonNull(args);
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            /*
-            String errorMessage = String.format("%s\n\n%s\n\n%s",
-                    CreateTagCommand.MESSAGE_USAGE,
-                    TagCommand.MESSAGE_USAGE,
-                    RemoveTagCommand.MESSAGE_USAGE);
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, errorMessage));
-             */
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
-        String[] argArray = trimmedArgs.split("\\s+");
+        String[] argArray = trimmedArgs.split("\\s+", 2);
         String commandSpecifier = argArray[0];
 
         switch (commandSpecifier) {
+        case ReminderClearCommand.COMMAND_SPECIFIER:
+            return new ReminderClearCommand();
+        case ReminderDeleteCommand.COMMAND_SPECIFIER:
+            if (argArray.length < 2) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            }
+            return new ReminderDeleteCommandParser().parse(argArray[1]);
         default:
-            return new ReminderCreateCommandParser().parse(trimmedArgs);
+            if (argArray.length < 2) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            }
+            return new ReminderCreateCommandParser().parse(argArray[1]);
         }
     }
 }

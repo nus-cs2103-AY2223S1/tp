@@ -41,6 +41,16 @@ public class Reminder {
         return phone.map(phone -> phone.value).orElse("");
     }
 
+    /**
+     * Returns true if current name and phone matches the name and phone provided.
+     */
+    public boolean matchesNameAndPhone(Name name, Phone phone) {
+        if (name == null || phone == null) {
+            return false;
+        }
+        return getName().equals(name.fullName) && getPhone().equals(phone.value);
+    }
+
     public void setNameAndPhone(Name name, Phone phone) {
         this.name = Optional.of(name);
         this.phone = Optional.of(phone);

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,14 +21,15 @@ import seedu.address.model.reminder.Reminder;
  *  Creates a tag in the address book.
  */
 public class ReminderCreateCommand extends ReminderCommandGroup {
+    public static final String COMMAND_WORD = COMMAND_GROUP;
 
-    public static final String COMMAND_SPECIFIER = "create";
-    public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates tags with the names given. "
-            + "Parameters: "
-            + "[TAG1] [TAG2] ... \n"
-            + "Example: " + COMMAND_WORD + " tag1 tag2 tag3";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates reminders for a person "
+            + "with the specified description and time."
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DATETIME + "DATETIME "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DESCRIPTION + "Meeting" + " " + PREFIX_DATETIME + "2022-12-12 11:00";
 
     public static final String MESSAGE_SUCCESS = "New reminder created: %1$s";
 
@@ -78,6 +81,7 @@ public class ReminderCreateCommand extends ReminderCommandGroup {
         Name name = person.getName();
         Phone phone = person.getPhone();
         Reminder reminder = new Reminder(description, dateTime, name, phone);
+        model.addReminder(reminder);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, reminder));
     }
