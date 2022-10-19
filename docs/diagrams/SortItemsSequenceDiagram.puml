@@ -61,7 +61,7 @@ destroy SortCommandParser
 FoodRemParser --> LogicManager :
 deactivate FoodRemParser
 
-LogicManager -> SortCommand : execute()
+LogicManager -> SortCommand : execute(model)
 activate SortCommand
 
 SortCommand -> Model : updateSortedItemList()
