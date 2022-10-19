@@ -3,8 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -187,5 +191,42 @@ public class ParserUtil {
         }
 
         return medicationSet;
+    }
+
+    /**
+     * Parses {@code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static List<String> parseKeywords(String keywords) {
+        // currently does not throw error when empty field eg. r/ or m/
+        String trimmedArgs = keywords.trim();
+
+        if (trimmedArgs.isBlank()) {
+            return new ArrayList<>();
+        } else {
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            return Arrays.asList(nameKeywords);
+        }
+    }
+
+    /**
+     * Parses a {@code List<String> dateToParse} into a {@code Optional<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given inputs is invalid.
+     */
+    public static Optional<String> parseDateKeyword(List<String> dateToParse) throws ParseException {
+        if (dateToParse.isEmpty()) {
+            return Optional.empty();
+        }
+
+        String date = dateToParse.get(0);
+        Boolean matcher = date.matches("^(?=(?:[^-]*-){1}[^-]*$)(?=(?:\\D*\\d){6}\\D*$).*$");
+
+        if (dateToParse.size() == 1 && matcher) {
+            return Optional.of(date);
+        } else {
+            throw new ParseException(Messages.MESSAGE_INVALID_FIND_DATE_FORMAT);
+        }
     }
 }

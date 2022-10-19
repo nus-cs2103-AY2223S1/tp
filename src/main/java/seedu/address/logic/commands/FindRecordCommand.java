@@ -1,11 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
+
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.record.RecordContainsKeywordsPredicate;
+
+
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -14,11 +21,19 @@ import seedu.address.model.record.RecordContainsKeywordsPredicate;
 public class FindRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "rfind";
+    public static final DateTimeFormatter FIND_DATE_FORMAT = DateTimeFormatter.ofPattern("MM-yyyy");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all records whose content contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " suffers from common cold";
+            + "Parameters: "
+            + "[" + PREFIX_DATE + "Record Date] "
+            + "[" + PREFIX_RECORD + "Record Content] "
+            + "[" + PREFIX_MEDICATION + "Medication] "
+            + "(at least 1 field must be specified)\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DATE + "10-2011 (must be formatted in MM-yyyy) "
+            + PREFIX_RECORD + "suffers from common cold "
+            + PREFIX_MEDICATION + "Paracetamol";
 
     private final RecordContainsKeywordsPredicate predicate;
 
