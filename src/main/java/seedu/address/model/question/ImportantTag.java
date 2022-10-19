@@ -12,28 +12,28 @@ public class ImportantTag {
      * Constructs a {@code ImportantTag}.
      */
     public ImportantTag(boolean bool) {
-            this.isImportant = bool;
-        }
+        this.isImportant = bool;
+    }
 
-        @Override
-        public boolean equals(Object other) {
-            return other == this // short circuit if same object
-                    || (other instanceof ImportantTag // instanceof handles nulls
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ImportantTag // instanceof handles nulls
                 && isImportant == ((ImportantTag) other).isImportant); // state check
-        }
+    }
 
-            public boolean getBool() {
-                return isImportant;
-            }
+    public boolean getBool() {
+        return isImportant;
+    }
 
-            /**
-             * Format state as text for viewing.
-             */
-            public String toString() {
-                if (isImportant) {
-                    return "Important";
-                } else {
-                    return "Not important";
-                }
-            }
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        if (isImportant) {
+            return "Important";
+        } else {
+            return "Not important";
         }
+    }
+}
