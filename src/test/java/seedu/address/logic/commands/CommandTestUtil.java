@@ -11,6 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_LEAVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_MARK;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -34,6 +37,28 @@ public class CommandTestUtil {
     public static final String VALID_TASKDESCRIPTION_BRAVO = "Submit 2100 assignment";
     public static final String VALID_TASKDEADLINE_ALPHA = "2022-01-01";
     public static final String VALID_TASKDEADLINE_BRAVO = "2023-02-21";
+    public static final String VALID_TASKMARK_ALPHA = "false";
+    public static final String VALID_TASKMARK_BRAVO = "true";
+
+    public static final String TASKDESCRIPTION_DESC_ALPHA =
+            " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_ALPHA;
+    public static final String TASKDESCRIPTION_DESC_BRAVO =
+            " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_BRAVO;
+    public static final String TASKDEADLINE_DESC_ALPHA =
+            " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_ALPHA;
+    public static final String TASKDEALINE_DESC_BRAVO =
+            " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_BRAVO;
+    public static final String TASKMARK_DESC_ALPHA =
+            " " + PREFIX_TASK_MARK + VALID_TASKMARK_ALPHA;
+    public static final String TASKMARK_DESC_BRAVO =
+            " " + PREFIX_TASK_MARK + VALID_TASKMARK_BRAVO;
+
+    public static final String INVALID_TASKDESCRIPTION_DESC =
+            " " + PREFIX_TASK_DESCRIPTION + "Doing?????";
+    public static final String INVALID_TASKDEADLINE_DESC =
+            " " + PREFIX_TASK_DEADLINE + "yesterday";
+    public static final String INVALID_TASKMARK_DESC =
+            " " + PREFIX_TASK_MARK + "not sure";
 
     public static final String VALID_STAFFNAME_ANDY = "Andy Lee";
     public static final String VALID_STAFFNAME_JAY = "Jayden Yap";

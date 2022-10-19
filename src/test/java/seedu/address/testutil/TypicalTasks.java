@@ -4,6 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_AL
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_BRAVO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_ALPHA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_BRAVO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKMARK_ALPHA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKMARK_BRAVO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,9 +36,9 @@ public class TypicalTasks {
     // Manually added - Staff's details found in {@code CommandTestUtil}
 
     public static final Task TASK_ALPHA = new TaskBuilder().withDescription(VALID_TASKDESCRIPTION_ALPHA)
-            .withDeadline(VALID_TASKDEADLINE_ALPHA).build();
+            .withDeadline(VALID_TASKDEADLINE_ALPHA).withMark(VALID_TASKMARK_ALPHA).build();
     public static final Task TASK_BRAVO = new TaskBuilder().withDescription(VALID_TASKDESCRIPTION_BRAVO)
-            .withDeadline(VALID_TASKDEADLINE_BRAVO).build();
+            .withDeadline(VALID_TASKDEADLINE_BRAVO).withMark(VALID_TASKMARK_BRAVO).build();
 
     private TypicalTasks() {
     } // prevents instantiation
