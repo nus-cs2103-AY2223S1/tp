@@ -56,18 +56,34 @@ public class CommandResultTest {
     public void isShowUserGuide() {
         CommandResult firstCommandResult = new CommandResult("feedback");
         CommandResult secondCommandResult = new CommandResult("feedback", true, false);
+        CommandResult thirdCommandResult = new CommandResult("feedback", false, false, true);
 
         assertEquals(firstCommandResult.isShowUserGuide(), false);
         assertEquals(secondCommandResult.isShowUserGuide(), true);
+        assertEquals(thirdCommandResult.isShowUserGuide(), false);
     }
+
+    @Test
+    public void isFilterTransactions() {
+        CommandResult firstCommandResult = new CommandResult("feedback");
+        CommandResult secondCommandResult = new CommandResult("feedback", true, false);
+        CommandResult thirdCommandResult = new CommandResult("feedback", false, false, true);
+
+        assertEquals(firstCommandResult.isFilterTransactions(), false);
+        assertEquals(secondCommandResult.isFilterTransactions(), false);
+        assertEquals(thirdCommandResult.isFilterTransactions(), true);
+    }
+
 
     @Test
     public void isExit() {
         CommandResult firstCommandResult = new CommandResult("feedback");
         CommandResult secondCommandResult = new CommandResult("feedback", false, true);
+        CommandResult thirdCommandResult = new CommandResult("feedback", false, false, true);
 
         assertEquals(firstCommandResult.isExit(), false);
         assertEquals(secondCommandResult.isExit(), true);
+        assertEquals(thirdCommandResult.isExit(), false);
     }
 
     @Test
