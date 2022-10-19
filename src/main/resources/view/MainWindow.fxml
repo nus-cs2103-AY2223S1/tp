@@ -42,12 +42,6 @@
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border">
         </StackPane>
 
-        <VBox fx:id="profileList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="profileListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
         <HBox VBox.vgrow="ALWAYS" >
           <VBox fx:id="profileList" styleClass="pane-with-border" minWidth="300" HBox.hgrow="ALWAYS">
             <padding>
