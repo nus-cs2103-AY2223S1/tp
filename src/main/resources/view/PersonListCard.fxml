@@ -44,7 +44,7 @@
                      <Insets right="10.0" />
                   </padding>
                   <graphic>
-                     <Label>
+                     <Label styleClass="circle_icon">
                         <graphic>
                            <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
                         </graphic>
@@ -56,16 +56,16 @@
                      <Insets right="10.0" />
                   </padding>
                   <graphic>
-                     <Label>
+                     <Label styleClass="circle_icon">
                         <graphic>
-                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
+                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE"/>
                         </graphic>
                      </Label>
                   </graphic>
                </Label>
             <Label fx:id="address" styleClass="cell_small_label" text="\$address">
                   <graphic>
-                     <Label>
+                     <Label styleClass="circle_icon">
                         <graphic>
                            <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
                         </graphic>
