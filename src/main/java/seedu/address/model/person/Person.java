@@ -32,7 +32,6 @@ public class Person {
 
     /**
      * Every field must be present and not null.
-     * TODO: Add contacts map into constructor
      */
     public Person(Name name, Address address, Set<Tag> tags,
                   Map<ContactType, Contact> contacts, Role role) {

@@ -4,6 +4,16 @@
     {
       "name": "Alice Pauline",
       "address": "123, Jurong West Ave 6, #08-111",
+      "contacts": [
+        {
+          "contactType": "TELEGRAM",
+          "contactValue": "@alice"
+        },
+        {
+          "contactType": "EMAIL",
+          "contactValue": "alice@gmail.com"
+        }
+      ],
       "role": "Software Engineer",
       "tagged": [
         "friends"
@@ -13,6 +23,16 @@
       "name": "Benson Meier",
       "address": "311, Clementi Ave 2, #02-25",
       "role": "Software Engineer",
+      "contacts": [
+        {
+          "contactType": "TELEGRAM",
+          "contactValue": "@benson"
+        },
+        {
+          "contactType": "EMAIL",
+          "contactValue": "benson@gmail.com"
+        }
+      ],
       "tagged": [
         "owesMoney",
         "friends"

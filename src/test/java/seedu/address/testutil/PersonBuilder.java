@@ -46,6 +46,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        contacts = new HashMap<>(personToCopy.getContacts());
         role = personToCopy.getRole();
     }
 
@@ -95,8 +96,7 @@ public class PersonBuilder {
      * @return a Person
      */
     public Person build() {
-        // Todo: add contact to person builder
-        return new Person(name, address, tags, new HashMap<>(), role);
+        return new Person(name, address, tags, contacts, role);
     }
 
 }
