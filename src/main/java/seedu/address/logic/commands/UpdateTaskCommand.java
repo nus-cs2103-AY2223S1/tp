@@ -22,7 +22,7 @@ import seedu.address.model.task.Task;
  * Updates a task to the taskList at the specified index with specified details.
  */
 public class UpdateTaskCommand extends Command {
-    public static final String COMMAND_WORD = "updateTask";
+    public static final String COMMAND_WORD = "editTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Updates a task in the taskList\n"
