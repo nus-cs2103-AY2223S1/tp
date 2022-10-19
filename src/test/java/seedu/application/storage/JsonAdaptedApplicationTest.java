@@ -35,10 +35,14 @@ public class JsonAdaptedApplicationTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    private static final String VALID_ROUND = SHOPEE.getInterview().get().getRound().value;
-    private static final String VALID_INTERVIEW_DATE = SHOPEE.getInterview().get().getInterviewDate().value.toString();
-    private static final String VALID_INTERVIEW_TIME = SHOPEE.getInterview().get().getInterviewTime().toCommandString();
-    private static final String VALID_LOCATION = SHOPEE.getInterview().get().getLocation().value;
+    private static final String VALID_ROUND = "Technical interview 1";
+    //SHOPEE.getInterview().get().getRound().value;
+    private static final String VALID_INTERVIEW_DATE = "2024-01-15";
+    //SHOPEE.getInterview().get().getInterviewDate().value.toString();
+    private static final String VALID_INTERVIEW_TIME = "1900";
+    //SHOPEE.getInterview().get().getInterviewTime().toCommandString();
+    private static final String VALID_LOCATION = "Zoom";
+    //SHOPEE.getInterview().get().getLocation().value;
 
 
 

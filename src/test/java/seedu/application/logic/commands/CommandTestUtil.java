@@ -60,7 +60,7 @@ public class CommandTestUtil {
 
     //Interview fields
     public static final String VALID_ROUND_GOOGLE = "Technical interview";
-    public static final String VALID_INTERVIEW_DATE_GOOGLE = "2022-10-12";
+    public static final String VALID_INTERVIEW_DATE_GOOGLE = "2024-10-12";
     public static final String VALID_INTERVIEW_TIME_GOOGLE = "1100";
     public static final String VALID_LOCATION_GOOGLE = "11, Kallang Way 6, 118436";
     public static final String ROUND_DESC_GOOGLE = " " + PREFIX_ROUND + VALID_ROUND_GOOGLE;

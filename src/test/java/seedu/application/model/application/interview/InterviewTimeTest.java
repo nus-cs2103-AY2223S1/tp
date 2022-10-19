@@ -57,7 +57,7 @@ public class InterviewTimeTest {
     }
     @Test
     public void interviewTime() {
-        assertEquals(new InterviewTime("2359").toString(), "23:59:00");
-        assertEquals(new InterviewTime("0900").toString(), "09:00:00");
+        assertEquals(new InterviewTime("2359").toString(), "23:59");
+        assertEquals(new InterviewTime("0900").toString(), "09:00");
     }
 }

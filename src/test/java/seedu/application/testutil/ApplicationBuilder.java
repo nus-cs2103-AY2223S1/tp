@@ -1,7 +1,7 @@
 package seedu.application.testutil;
 
-import java.util.Optional;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.application.model.application.Application;
@@ -119,8 +119,16 @@ public class ApplicationBuilder {
         return this;
     }
 
+    /**
+     * Create Application with its fields.
+     * @return created Application.
+     */
     public Application build() {
-        return new Application(company, contact, email, position, date, tags);
+        if (this.interview.isPresent()) {
+            return new Application(new Application(company, contact, email, position, date, tags), interview.get());
+        } else {
+            return new Application(company, contact, email, position, date, tags);
+        }
     }
 
 }

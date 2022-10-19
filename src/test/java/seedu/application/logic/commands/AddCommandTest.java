@@ -208,6 +208,23 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameInterviewTime(Application application) {
+            requireNonNull(application);
+            if (application.getInterview().isEmpty()) {
+                return false;
+            }
+            for (int i = 0; i < applicationsAdded.size() - 1; i++) {
+                if (applicationsAdded.get(i).getInterview().isEmpty()) {
+                    continue;
+                }
+                if (applicationsAdded.get(i).getInterview().get().isOnSameTime(application.getInterview().get())) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
         public void addApplication(Application application) {
             requireNonNull(application);
             applicationsAdded.add(application);
