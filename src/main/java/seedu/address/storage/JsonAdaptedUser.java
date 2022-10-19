@@ -36,16 +36,20 @@ class JsonAdaptedUser {
     private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
     private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
     private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
+    private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedUser} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
-                             @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
-                             @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
+    public JsonAdaptedUser(@JsonProperty("name") String name,
+                           @JsonProperty("phone") String phone,
+                           @JsonProperty("email") String email,
+                           @JsonProperty("address") String address,
+                           @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
+                           @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
+                           @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules,
+                           @JsonProperty("lessons") List<JsonAdaptedLesson> lesson) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -58,6 +62,9 @@ class JsonAdaptedUser {
         }
         if (planModules != null) {
             this.planModules.addAll(planModules);
+        }
+        if (lesson != null) {
+            this.lessons.addAll(lesson);
         }
     }
 
@@ -85,6 +92,9 @@ class JsonAdaptedUser {
                     .collect(Collectors.toList()));
             planModules.addAll(user.getPlanModules().stream()
                     .map(JsonAdaptedPlannedModule::new)
+                    .collect(Collectors.toList()));
+            lessons.addAll(user.getLessons().stream()
+                    .map(JsonAdaptedLesson::new)
                     .collect(Collectors.toList()));
         }
     }
@@ -153,8 +163,12 @@ class JsonAdaptedUser {
 
         final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
 
-        return new ExistingUser(modelName, modelPhone, modelEmail, modelAddress,
+        User user = new ExistingUser(modelName, modelPhone, modelEmail, modelAddress,
                 modelCurrModules, modelPrevModules, modelPlanModules);
+        for (JsonAdaptedLesson lesson : lessons) {
+            user.addLesson(lesson.toModelType());
+        }
+        return user;
     }
 
 }

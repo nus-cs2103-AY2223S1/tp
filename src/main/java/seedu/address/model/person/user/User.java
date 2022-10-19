@@ -44,4 +44,6 @@ public abstract class User {
 
     public abstract void addLesson(Lesson lesson);
 
+    public abstract Set<Lesson> getLessons();
+
 }

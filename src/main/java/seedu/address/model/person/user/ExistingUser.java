@@ -93,6 +93,10 @@ public class ExistingUser extends User {
         lessons.add(lesson);
     }
 
+    public Set<Lesson> getLessons() {
+        return Collections.unmodifiableSet(lessons);
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

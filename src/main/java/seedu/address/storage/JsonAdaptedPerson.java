@@ -35,6 +35,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
     private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
     private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
+    private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
 
 
     /**
@@ -63,6 +64,9 @@ class JsonAdaptedPerson {
         if (planModules != null) {
             this.planModules.addAll(planModules);
         }
+        if (lessons != null) {
+            this.lessons.addAll(lessons);
+        }
     }
 
     /**
@@ -84,6 +88,9 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         planModules.addAll(source.getPlanModules().stream()
                 .map(JsonAdaptedPlannedModule::new)
+                .collect(Collectors.toList()));
+        lessons.addAll(source.getLessons().stream()
+                .map(JsonAdaptedLesson::new)
                 .collect(Collectors.toList()));
     }
 
@@ -153,8 +160,12 @@ class JsonAdaptedPerson {
 
         final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress,
                 modelTags, modelCurrModules, modelPrevModules, modelPlanModules);
+        for (JsonAdaptedLesson lesson : lessons) {
+            person.addLesson(lesson.toModelType());
+        }
+        return person;
     }
 
 }

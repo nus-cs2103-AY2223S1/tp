@@ -93,4 +93,9 @@ public class EmptyUser extends User {
     public void addLesson(Lesson lesson) {
 
     }
+
+    @Override
+    public Set<Lesson> getLessons() {
+        return null;
+    }
 }
