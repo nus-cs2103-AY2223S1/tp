@@ -14,7 +14,8 @@ import seedu.address.model.patient.Patient;
  * Select the given patient and filter appointment list by given patient.
  */
 public class SelectPatientCommand extends Command {
-    public static final CommandWord COMMAND_WORD = new CommandWord("select", "sel");
+    public static final CommandWord COMMAND_WORD =
+            new CommandWord("selectpatient", "slp");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the indicated patient and filter "
             + "the appointments list only containing selected patient\n"
