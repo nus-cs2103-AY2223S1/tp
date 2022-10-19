@@ -34,7 +34,8 @@ public class CalendarDisplay extends UiPart<Region> {
         "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
     private static final String SWITCH_BUTTON_STYLE = "-fx-border-color: grey; -fx-border-radius: 5;";
-    private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; -fx-background-color: #fff";
+    private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; "
+            + "-fx-background-color: #fff";
 
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
@@ -116,7 +117,7 @@ public class CalendarDisplay extends UiPart<Region> {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
         Text header = new Text(monthString + ", " + yearString);
-        header.setStyle("-fx-font-size: 15pt; -fx-text-fill: white; -fx-background-color: #fff");
+        header.setStyle(TEXT_HEADER_STYLE);
         header.setFill(WHITE);
         return header;
     }
@@ -127,7 +128,7 @@ public class CalendarDisplay extends UiPart<Region> {
             prevButton.setOnAction(e -> previous());
             prevButton.setStyle(SWITCH_BUTTON_STYLE);
             return prevButton;
-        } else if (text.equals("Next")){
+        } else if (text.equals("Next")) {
             Button nextButton = new Button(text);
             nextButton.setOnAction(e -> next());
             nextButton.setStyle(SWITCH_BUTTON_STYLE);
@@ -194,7 +195,7 @@ public class CalendarDisplay extends UiPart<Region> {
         topCalendar.getChildren().clear();
         Node node = calendarDisplay.getChildren().get(0);
         calendarDisplay.getChildren().clear();
-        calendarDisplay.getChildren().add(0,node);
+        calendarDisplay.getChildren().add(0, node);
     }
 
 
