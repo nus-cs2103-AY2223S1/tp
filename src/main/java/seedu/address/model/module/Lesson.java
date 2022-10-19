@@ -1,19 +1,30 @@
 package seedu.address.model.module;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
+/**
+ * Parent class for lessons to show timetable.
+ */
 public abstract class Lesson {
 
     public static final String MESSAGE_CONSTRAINTS = "Module names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public String module;
-    public LocalTime startTime;
-    public LocalTime endTime;
-    public int day;
+    private String module;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private int day;
 
+    /**
+     * Constructs new Lesson
+     *
+     * @param module name
+     * @param day day of week i.e. monday 1, sunday 7
+     * @param startTime time lesson starts
+     * @param endTime time lesson ends
+     */
     public Lesson(String module, int day, LocalTime startTime, LocalTime endTime) {
         this.module = module;
         this.day = day;
@@ -65,6 +76,6 @@ public abstract class Lesson {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + module + day + startTime + endTime + ']';
+        return module + day + startTime + endTime;
     }
 }

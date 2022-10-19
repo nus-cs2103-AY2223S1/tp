@@ -1,18 +1,25 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
+
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.LessonCommand;
+import seedu.address.logic.commands.LessonIndexCommand;
+import seedu.address.logic.commands.LessonUserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Lesson;
 
-import java.time.LocalTime;
-import java.util.Locale;
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Parses commands to add lessons.
+ */
 public class LessonCommandParser implements Parser<LessonCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the LessonCommand

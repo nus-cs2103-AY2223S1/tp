@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,17 +11,21 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Commands that add lessons to a contact
+ */
 public class LessonIndexCommand extends LessonCommand {
+    public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson for Person: %1$s";
+
     private Lesson lesson;
     private Index index;
 
-    public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson for Person: %1$s";
-
-
+    /**
+     * constructor for new instance.
+     *
+     * @param lesson to be added to the contact.
+     * @param index of contact to add lesson to.
+     */
     public LessonIndexCommand(Lesson lesson, Index index) {
         super();
         requireNonNull(lesson);

@@ -1,11 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Command to add lesson.
+ */
 public class LessonCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
 
@@ -27,8 +34,8 @@ public class LessonCommand extends Command {
 
     public static final String MESSAGE_INVALID_TIME = "Format of time is invalid! Use HH:mm";
 
-    public static final String MESSAGE_INVALID_DAY = "Format of day is invalid! Use 1 to 7, " +
-            "where 1 is Monday and 7 is Sunday!";
+    public static final String MESSAGE_INVALID_DAY = "Format of day is invalid! Use 1 to 7, "
+            + "where 1 is Monday and 7 is Sunday!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

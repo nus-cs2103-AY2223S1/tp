@@ -13,8 +13,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.*;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lab;
+import seedu.address.model.module.Lecture;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
+import seedu.address.model.module.Recitation;
+import seedu.address.model.module.Tutorial;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -249,7 +256,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code day} is invalid.
      */
-    public static Lesson parseLesson(String type, String module, String day, String startTime, String endTime) throws ParseException {
+    public static Lesson parseLesson(String type, String module, String day,
+                                     String startTime, String endTime) throws ParseException {
         requireNonNull(type);
         requireNonNull(module);
         String typeTrim = type.trim();
