@@ -42,7 +42,7 @@ public class JsonSerializableStudentAddressBookTest {
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicateStudents_throwsIllegalValueException() throws Exception {
         JsonSerializableStudentAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENT_FILE,
                 JsonSerializableStudentAddressBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableStudentAddressBook.MESSAGE_DUPLICATE_STUDENT,
@@ -54,7 +54,6 @@ public class JsonSerializableStudentAddressBookTest {
         JsonSerializableStudentAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
                 JsonSerializableStudentAddressBook.class).get();
         List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1, TypicalStudents.STUDENT2));
-        List<Student> list = dataFromFile.getStudentsList();
         assertEquals(studentList, dataFromFile.getStudentsList());
     }
 

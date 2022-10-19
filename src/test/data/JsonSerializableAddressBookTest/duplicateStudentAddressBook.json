@@ -5,15 +5,13 @@
     "email" : "somewhere@gmail.com",
     "address" : "treehouse",
     "school" : "River Valley High School",
-    "level" : "SECONDARY2",
-    "nextOfKin" : "Janice Lam"
+    "level" : "SECONDARY2"
   }, {
     "name" : "rick",
     "phone" : "90183747",
     "email" : "somewhere@gmail.com",
     "address" : "treehouse",
     "school" : "River Valley High School",
-    "level" : "SECONDARY2",
-    "nextOfKin" : "Janice Lam"
+    "level" : "SECONDARY2"
   } ]
 }

@@ -22,7 +22,6 @@ public class CliSyntax {
 
     /* Prefix definitions for Students*/
     public static final Prefix PREFIX_SCHOOL = new Prefix("sch/");
-    public static final Prefix PREFIX_NEXTOFKIN = new Prefix("nok/");
 
     /* Prefix definitions shared by Students and Classes*/
     public static final Prefix PREFIX_LEVEL = new Prefix("l/");

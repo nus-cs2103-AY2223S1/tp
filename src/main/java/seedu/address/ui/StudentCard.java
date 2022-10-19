@@ -23,8 +23,9 @@ public class StudentCard extends PersonCard {
     public final Student student;
     @FXML
     protected Label level;
-    @FXML
-    protected Label nextOfKin;
+    // TO BE CHANGED
+    //@FXML
+    //protected Label nextOfKin;
     @FXML
     protected Label school;
 
@@ -35,7 +36,7 @@ public class StudentCard extends PersonCard {
         super(student, displayedIndex, FXML);
         this.student = student;
         level.setText("Level: " + student.getLevel().level);
-        nextOfKin.setText("Next of Kin: " + student.getNextOfKin().nextOfKin);
+        //nextOfKin.setText("Next of Kin: " + student.getNextOfKin().getName());
         school.setText("School: " + student.getSchool().school);
     }
 

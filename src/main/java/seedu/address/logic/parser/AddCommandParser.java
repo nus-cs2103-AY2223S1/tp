@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTITUTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXTOFKIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -26,7 +25,6 @@ import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Institution;
@@ -51,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SCHOOL, PREFIX_NEXTOFKIN,
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SCHOOL,
                         PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION);
 
         if (argMultimap.getPreamble().isEmpty()) {
@@ -80,7 +78,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
     private Student extractFromMapForStudent(ArgumentMultimap argMultimap) throws ParseException {
         if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SCHOOL,
-                PREFIX_LEVEL, PREFIX_NEXTOFKIN))
+                PREFIX_LEVEL))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
                 PREFIX_DAY, PREFIX_TIME))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -91,16 +89,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
         Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
-        NextOfKin nextOfKin = ParserUtil.parseNextOfKin(argMultimap.getValue(PREFIX_NEXTOFKIN).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new Student(name, phone, email, address, tagList, school, level, nextOfKin);
+        return new Student(name, phone, email, address, tagList, school, level, null);
     }
 
     private Tutor extractFromMapForTutor(ArgumentMultimap argMultimap) throws ParseException {
         if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_QUALIFICATION, PREFIX_INSTITUTION))
-                || (areAnyPrefixesPresent(argMultimap, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_NEXTOFKIN, PREFIX_SUBJECT,
+                || (areAnyPrefixesPresent(argMultimap, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_SUBJECT,
                 PREFIX_DAY, PREFIX_TIME))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -118,7 +115,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private TuitionClass extractFromMapForClass(ArgumentMultimap argMultimap) throws ParseException {
         if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUBJECT, PREFIX_LEVEL, PREFIX_DAY, PREFIX_TIME))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SCHOOL,
-                PREFIX_NEXTOFKIN, PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
+                PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         seedu.address.model.tuitionclass.Name name = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get());

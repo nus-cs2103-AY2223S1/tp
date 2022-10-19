@@ -64,13 +64,23 @@ public class TypicalTutors {
             .withTuitionClasses(TUITIONCLASS1)
             .build();
 
-    public static final Tutor AMY_TUTOR = new TutorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withQualification(VALID_QUALIFICATION_AMY)
-            .withInstitution(VALID_INSTITUTION_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Tutor AMY_TUTOR = new TutorBuilder().withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withEmail(VALID_EMAIL_AMY)
+            .withAddress(VALID_ADDRESS_AMY)
+            .withQualification(VALID_QUALIFICATION_AMY)
+            .withInstitution(VALID_INSTITUTION_AMY)
+            .withTags(VALID_TAG_FRIEND)
+            .build();
 
-    public static final Tutor BOB_TUTOR = new TutorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withQualification(VALID_QUALIFICATION_BOB)
-            .withInstitution(VALID_INSTITUTION_BOB).withTags(VALID_TAG_FRIEND).build();
+    public static final Tutor BOB_TUTOR = new TutorBuilder().withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withQualification(VALID_QUALIFICATION_BOB)
+            .withInstitution(VALID_INSTITUTION_BOB)
+            .withTags(VALID_TAG_FRIEND)
+            .build();
 
     private TypicalTutors() {} // prevents instantiation
 

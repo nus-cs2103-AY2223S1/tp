@@ -64,10 +64,6 @@ public class StudentTest {
         editedStudent1 = new StudentBuilder(STUDENT1).withLevel("SECONDARY1").build();
         assertFalse(STUDENT1.equals(editedStudent1));
 
-        // different next of kin -> returns false
-        editedStudent1 = new StudentBuilder(STUDENT1).withNextOfKin("Jean Zin").build();
-        assertFalse(STUDENT1.equals(editedStudent1));
-
         // different tuition classes -> returns false
         editedStudent1 = new StudentBuilder(STUDENT1).withTuitionClasses(TUITIONCLASS1).build();
         assertFalse(STUDENT1.equals(editedStudent1));
@@ -80,7 +76,6 @@ public class StudentTest {
                 + "; Tags: " + "[friends]"
                 + "; School: " + "Keming Primary School"
                 + "; Level: " + "Primary 3"
-                + "; Next of kin: " + "Teresa Lim"
                 + "; Tags: " + "[friends]";
         assertEquals(str, STUDENT1.toString());
     }
