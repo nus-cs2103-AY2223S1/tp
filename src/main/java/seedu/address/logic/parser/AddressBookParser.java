@@ -7,21 +7,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.AddBillCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.DeleteBillCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterNameCommand;
-import seedu.address.logic.commands.FilterTagCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
-import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortAppointmentCommand;
+import seedu.address.logic.commands.SortBillCommand;
+import seedu.address.logic.commands.SortPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -50,12 +53,18 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        if (SortCommand.COMMAND_WORD.matches(commandWord)) {
-            return new SortCommandParser().parse(arguments);
+        if (SortPatientCommand.COMMAND_WORD.matches(commandWord)) {
+            return new SortPatientCommandParser().parse(arguments);
+        } else if (SortAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
+            return new SortAppointmentCommandParser().parse(arguments);
+        } else if (SortBillCommand.COMMAND_WORD.matches(commandWord)) {
+            return new SortBillCommandParser().parse(arguments);
         } else if (AddPatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new AddPatientCommandParser().parse(arguments);
         } else if (AddAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new AddAppointmentCommandParser().parse(arguments);
+        } else if (AddBillCommand.COMMAND_WORD.matches(commandWord)) {
+            return new AddBillCommandParser().parse(arguments);
         } else if (EditAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditAppointmentCommandParser().parse(arguments);
         } else if (EditPatientCommand.COMMAND_WORD.matches(commandWord)) {
@@ -64,12 +73,12 @@ public class AddressBookParser {
             return new DeleteAppointmentCommandParser().parse(arguments);
         } else if (DeletePatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeletePatientCommandParser().parse(arguments);
+        } else if (DeleteBillCommand.COMMAND_WORD.matches(commandWord)) {
+            return new DeleteBillCommandParser().parse(arguments);
         } else if (ClearCommand.COMMAND_WORD.matches(commandWord)) {
             return new ClearCommand();
-        } else if (FilterNameCommand.COMMAND_WORD.matches(commandWord)) {
-            return new FilterNameCommandParser().parse(arguments);
-        } else if (FilterTagCommand.COMMAND_WORD.matches(commandWord)) {
-            return new FilterTagCommandParser().parse(arguments);
+        } else if (FindPatientCommand.COMMAND_WORD.matches(commandWord)) {
+            return new FindPatientCommandParser().parse(arguments);
         } else if (RemarkCommand.COMMAND_WORD.matches(commandWord)) {
             return new RemarkCommandParser().parse(arguments);
         } else if (ListCommand.COMMAND_WORD.matches(commandWord)) {

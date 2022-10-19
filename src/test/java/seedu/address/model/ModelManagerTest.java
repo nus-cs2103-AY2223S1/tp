@@ -17,7 +17,6 @@ import static seedu.address.testutil.TypicalPatients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -159,8 +158,14 @@ public class ModelManagerTest {
 
         // different filteredPatientList -> returns false
         String[] patientKeywords = ALICE.getName().fullName.split("\\s+");
+
+        String predicateName = patientKeywords[0];
+        for (int i = 1; i < patientKeywords.length; i++) {
+            predicateName += " " + patientKeywords[i];
+        }
+
         modelManager.updateFilteredPatientList(
-                new NameContainsKeywordsPredicatePatient(Arrays.asList(patientKeywords)));
+                new NameContainsKeywordsPredicatePatient(predicateName));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // different filteredAppointmentList -> returns false TODO

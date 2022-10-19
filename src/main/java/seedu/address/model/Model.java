@@ -179,5 +179,17 @@ public interface Model {
      * Sorts the namelist by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void sort(Comparator<Patient> comparator);
+    void sortPatients(Comparator<Patient> comparator, boolean isAscending);
+
+    /**
+     * Sorts the appointments by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortAppointments(Comparator<Appointment> comparator, boolean isAscending);
+
+    /**
+     * Sorts the bills by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortBills(Comparator<Bill> comparator, boolean isAscending);
 }

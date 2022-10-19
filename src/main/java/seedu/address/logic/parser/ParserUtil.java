@@ -12,6 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
+import seedu.address.model.bill.Amount;
+import seedu.address.model.bill.BillDate;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -181,5 +183,36 @@ public class ParserUtil {
             throw new ParseException(Slot.MESSAGE_CONSTRAINTS);
         }
         return new Slot(dateTime);
+    }
+
+
+    /**
+     * Parses a {@code String date} into a {@code BillDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static BillDate parseBillDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!BillDate.isValidDate(trimmedDate)) {
+            throw new ParseException(BillDate.MESSAGE_CONSTRAINTS);
+        }
+        return new BillDate(date);
+    }
+
+    /**
+     * Parses a {@code String amount} into a {@code Amount}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code amount} is invalid.
+     */
+    public static Amount parseAmount(String amount) throws ParseException {
+        requireNonNull(amount);
+        String trimmedDate = amount.trim();
+        if (!Amount.isValidAmount(trimmedDate)) {
+            throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
+        }
+        return new Amount(amount);
     }
 }
