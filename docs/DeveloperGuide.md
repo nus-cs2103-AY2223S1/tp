@@ -291,11 +291,41 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 
 #### Design considerations:
 
-### \[Proposed\] Filter command
+### Filter Command
 
-#### Proposed Implementation
+#### Implementation
+
+The `filter`command provides a way for users to search for clients in Rapportbook. It extends from the `Command` class and results in an update of the `FilteredList<Person>` filtered list of the model.
+
+The following commands are provided:
+
+* `filter [n=NAME,...] [t=TAG,...]`  — Filter for clients with the specified names and tags
+
+* `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags 
+
+Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters. 
+
+Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
+
+**Given below is an example usage scenario of message generation**
+
+
 
 #### Design considerations:
+
+**Aspect: How filters are reduced:**
+
+* **Alternative 1 (current choice):** filters of the same type are reduced with `OR` and filters of different types are reduced with `AND`.
+    * Pros: 
+      * 
+    * Cons: 
+      * 
+
+* **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commadns are reduced with `AND`.
+    * Pros: 
+    	* 
+    * Cons: 
+      * 
 
 ### \[Proposed\] Show command
 
@@ -437,9 +467,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Some filters specified contains a tag that does not exist.
-	* 1a1. Rapportbook filters shows a list of contacts that contains the tag (excluding the non-existent ones) **and** name specified in the filter query.
-	* 1a2. Rapportbook shows a message containing the list of non-existent tag that the user specified.
-	* Use case ends
+* 1a1. Rapportbook filters shows a list of contacts that contains the tag (excluding the non-existent ones) **and** name specified in the filter query.
+* 1a2. Rapportbook shows a message containing the list of non-existent tag that the user specified.
+* Use case ends
 
 
 #### Use case: Clearing filters
@@ -454,9 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Some filters specified were not previously applied.
-	* 1a1. Rapportbook clears the filters that were applied.
-	* 1a2. Rapportbook shows a message containing the list of filters that were not previously applied.
-	* Use case ends.
+* 1a1. Rapportbook clears the filters that were applied.
+* 1a2. Rapportbook shows a message containing the list of filters that were not previously applied.
+* Use case ends.
 
 
 #### Use case: Show contact
