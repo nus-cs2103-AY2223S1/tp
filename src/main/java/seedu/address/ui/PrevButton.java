@@ -4,6 +4,7 @@ package seedu.address.ui;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import seedu.address.logic.CalendarLogic;
 
 /**
  * A button that displays the previous month's CalendarEvents
@@ -11,25 +12,25 @@ import javafx.scene.input.KeyEvent;
  */
 public class PrevButton extends Button {
     private static final String switchButtonStyle = "-fx-border-color: grey; -fx-border-radius: 5;";
-    private CalendarDisplay calendarDisplay;
+    private CalendarLogic calendarLogic;
 
     /**
-     * Creates a {@code PrevButton} with the given {@code String} and {@code CalendarDisplay}.
+     * Creates a {@code PrevButton} with the given {@code String} and {@code CalendarLogic}.
      */
-    public PrevButton(String content, CalendarDisplay calendarDisplay) {
+    public PrevButton(String content, CalendarLogic calendarLogic) {
         super(content);
-        this.calendarDisplay = calendarDisplay;
+        this.calendarLogic = calendarLogic;
         setStyle(switchButtonStyle);
-        setOnAction(e -> calendarDisplay.previous());
+        setOnAction(e -> calendarLogic.previous());
         setOnKeyPressed(e -> previousMonth(e));
     }
 
     private void previousMonth(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER) || event.getCode().equals(KeyCode.B)) {
-            calendarDisplay.previous();
+            calendarLogic.previous();
             this.requestFocus();
         } else if (event.getCode().equals(KeyCode.N)) {
-            calendarDisplay.next();
+            calendarLogic.next();
             this.requestFocus();
         }
     }
