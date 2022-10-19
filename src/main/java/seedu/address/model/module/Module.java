@@ -92,7 +92,7 @@ public class Module {
         if (totalNumOfTasks == 0) {
             return MESSAGE_NO_TASKS_FOR_MODULE;
         } else {
-            return numOfCompletedTasks + " / " + totalNumOfTasks + " tasks completed";
+            return numOfCompletedTasks + " / " + totalNumOfTasks + " task(s) completed";
         }
     }
 

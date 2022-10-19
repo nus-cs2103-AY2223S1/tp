@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -22,6 +24,10 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Exam> PREDICATE_SHOW_ALL_EXAMS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -93,7 +99,6 @@ public interface Model {
 
     ObservableList<Module> getFilteredModuleList();
 
-
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -119,18 +124,15 @@ public interface Model {
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
-     * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
-     */
-    void setTask(Task target, Task editedTask);
-
-    /**
-     * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in the task list.
+     * If {@code isSameTask} is true, the task identity of {@code editedTask} should be the same as {@code target}.
      *
-     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
-     *     in the list (other than {@code target}).
+     * @param target the task to be replaced.
+     * @param editedTask the edited task to replace {@code target}.
+     * @param isSameTask true if {@code target} has the same task identity as {@code editedTask}, false otherwise.
+     * @throws DuplicateTaskException if {@code isSameTask} is false but task identity of {@code editedTask}
+     *     is the same as another task in the list (other than {@code target}).
      */
-    void replaceTask(Task target, Task editedTask) throws DuplicateTaskException;
+    void replaceTask(Task target, Task editedTask, boolean isSameTask) throws DuplicateTaskException;
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
@@ -156,5 +158,46 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Returns true if a exam with the same description and module and exam date
+     * as {@code exam} exists in the exam list.
+     */
+    boolean hasExam(Exam exam);
+
+    void deleteExam(Exam target);
+
+    boolean hasExamWithModule(Module module);
+
+    /**
+     * Adds the given exam.
+     * {@code exam} must not already exist in the exam list.
+     */
+    void addExam(Exam exam);
+
+    /**
+     * Replaces the given exam {@code target} with {@code editedExam}.
+     * {@code target} must exist in the exam list.
+     * The task identity of {@code editedExam} must be the same as exam identity of {@code target}.
+     */
+    void setExam(Exam target, Exam editedExam);
+
+    /**
+     * Replaces the given exam {@code target} with {@code editedExam}.
+     * {@code target} must exist in the exam list.
+     *
+     * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
+     *     in the list (other than {@code target}).
+     */
+    void replaceExam(Exam target, Exam editedExam) throws DuplicateExamException;
+
+    /** Returns an unmodifiable view of the filtered exam list */
+    ObservableList<Exam> getFilteredExamList();
+
+    /**
+     * Updates the filter of the filtered exam list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredExamList(Predicate<Exam>predicate);
 
 }
