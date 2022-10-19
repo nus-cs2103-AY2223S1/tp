@@ -22,7 +22,7 @@ public class DeleteClientCommand extends ClientCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Deletes the client identified by the issue id. \n"
+            + ": Deletes the client identified by the project id it is tied to. \n"
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + "" + COMMAND_FLAG + " 1";
 
