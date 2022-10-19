@@ -3,7 +3,23 @@ package seedu.address.model.module;
 import java.time.LocalTime;
 
 public class Tutorial extends Lesson {
-    public Tutorial(String day, LocalTime startTime, LocalTime endTime) {
-        super(day, startTime, endTime);
+
+    private static String type = "tut";
+
+    public Tutorial(String module, int day, LocalTime startTime, LocalTime endTime) {
+        super(module, day, startTime, endTime);
     }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return type + module + day + startTime + endTime;
+    }
+
 }
