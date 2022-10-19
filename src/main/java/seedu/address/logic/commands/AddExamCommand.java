@@ -19,10 +19,12 @@ public class AddExamCommand extends Command {
     public static final String COMMAND_WORD = "addexam";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to the exam list. "
+            + "\n"
             + "Parameters: "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_EXAM_DESCRIPTION + "EXAMDESCRIPTION "
             + PREFIX_EXAM_DATE + "EXAMDATE "
+            + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_EXAM_DESCRIPTION + "Midterms "

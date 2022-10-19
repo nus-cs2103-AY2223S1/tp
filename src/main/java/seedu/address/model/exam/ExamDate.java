@@ -44,7 +44,7 @@ public class ExamDate {
 
     /**
      * Returns true if date inputted exists.
-     * @param date A String that represents a date that is in dd-MM-yyyy format.
+     * @param date A String that represents a date that is in the dd-mm-yyyy format.
      * @return true if date exist, otherwise false.
      */
     public static boolean isExistingDate(String date) {
@@ -58,7 +58,7 @@ public class ExamDate {
 
     /**
      * Returns true if date inputted is not a date before the current date.
-     * @param date A String that represents a date that is in dd-MM-YYYY format.
+     * @param date A String that represents a date that is in the dd-mm-yyyy format.
      * @return true if date is not a past date, otherwise false.
      */
     public static boolean isNotAPastDate(String date) {
