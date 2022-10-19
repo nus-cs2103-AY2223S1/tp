@@ -26,7 +26,7 @@ public class AddExamCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_EXAM_DESCRIPTION + "Midterms "
-            + PREFIX_EXAM_DATE + "2022-09-20";
+            + PREFIX_EXAM_DATE + "20-12-2022";
 
     public static final String MESSAGE_SUCCESS = "New exam added: %1$s";
 
