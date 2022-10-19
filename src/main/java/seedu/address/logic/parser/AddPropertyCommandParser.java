@@ -5,14 +5,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
 
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.property.Description;
+import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -30,10 +37,11 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
     public AddPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS,
-                        PREFIX_DESCRIPTION, PREFIX_SELLER, PREFIX_CHARACTERISTICS);
+                        PREFIX_DESCRIPTION, PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME, PREFIX_PHONE);
 
         if (!arePrefixesPresent(
-                argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_SELLER)
+                argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION,
+                PREFIX_OWNER_NAME, PREFIX_PHONE)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
         }
@@ -42,7 +50,10 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        String seller = ParserUtil.parseSellerName(argMultimap.getValue(PREFIX_SELLER).get());
+
+        Name ownerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_OWNER_NAME).get());
+        Phone ownerPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Owner newOwner = new Owner(ownerName, ownerPhone);
 
         // TODO: Consider allowing multiple -c instead of separated by ; in one -c
         Characteristics characteristics = null;
@@ -50,7 +61,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }
 
-        Property property = new Property(propertyName, price, address, description, seller, characteristics);
+        Property property = new Property(propertyName, price, address, description, characteristics, newOwner);
 
         return new AddPropertyCommand(property);
     }

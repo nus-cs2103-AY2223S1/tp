@@ -8,6 +8,9 @@ import java.util.Optional;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Property in the address book.
@@ -26,25 +29,23 @@ public class Property {
     private final Address address;
     private final Description description;
     private final Optional<Characteristics> characteristics;
-
-    // private final Seller seller;
-    private final String seller; // TODO: change to Seller object
+    private final Owner owner;
 
     /**
      * Every field must be present and not null.
      */
-    public Property(PropertyName propertyName, Price price, Address address, Description description,
-                    String seller, Characteristics characteristics) {
-        requireAllNonNull(propertyName, price, address, description, seller);
+    public Property(PropertyName propertyName, Price price, Address address, Description description
+            , Characteristics characteristics, Owner owner) {
+        requireAllNonNull(propertyName, price, address, description, owner);
         this.propertyName = propertyName;
         this.price = price;
         this.address = address;
         this.description = description;
-        this.seller = seller;
         this.characteristics = Optional.ofNullable(characteristics);
+        this.owner = owner;
     }
 
-    public PropertyName getName() {
+    public PropertyName getPropertyName() {
         return propertyName;
     }
 
@@ -60,8 +61,16 @@ public class Property {
         return description;
     }
 
-    public String getSeller() {
-        return seller;
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public Name getOwnerName() {
+        return owner.getName();
+    }
+
+    public Phone getOwnerPhone() {
+        return owner.getPhone();
     }
 
     public Optional<Characteristics> getCharacteristics() {
@@ -78,7 +87,7 @@ public class Property {
         }
 
         return otherProperty != null
-                && otherProperty.getName().equals(getName())
+                && otherProperty.getPropertyName().equals(getPropertyName())
                 && otherProperty.getPrice().equals(getPrice());
     }
 
@@ -97,37 +106,38 @@ public class Property {
         }
 
         Property otherProperty = (Property) other;
-        return otherProperty.getName().equals(getName())
+        return otherProperty.getPropertyName().equals(getPropertyName())
                 && otherProperty.getPrice().equals(getPrice())
                 && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getDescription().equals(getDescription())
-                && otherProperty.getSeller().equals(getSeller())
-                && otherProperty.getCharacteristics().equals(getCharacteristics());
+                && otherProperty.getCharacteristics().equals(getCharacteristics())
+                && otherProperty.getOwner().equals(getOwner());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(propertyName, price, address, description, seller);
+        return Objects.hash(propertyName, price, address, description, characteristics, owner);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getPropertyName())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Price: ")
                 .append(getPrice())
                 .append("; Description: ")
-                .append(getDescription())
-                .append("; Seller: ")
-                .append(getSeller());
+                .append(getDescription());
 
         builder.append("; Characteristics: ")
                 .append(getCharacteristics()
                         .map(Characteristics::toString)
                         .orElse("Not Specified"));
+
+        builder.append("; Owner: ")
+                .append(getOwner());
         return builder.toString();
     }
 
