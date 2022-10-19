@@ -73,8 +73,9 @@ public class PersonCard extends UiPart<Region> {
         int listSize = appointmentList.size();
         for (int i = 0; i < listSize; i++) {
             AppointmentFlowPane appointmentFlowPane = new AppointmentFlowPane(
-                    i + 1 + DOT, appointmentList.get(i).getDate().toString(),
-                    appointmentList.get(i).getTime().toString()
+                    (i + 1) + DOT, appointmentList.get(i).getDate().toString(),
+                    appointmentList.get(i).getTime().toString(),
+                    appointmentList.get(i).getLocation().toString()
             );
             appointments.getChildren().add(appointmentFlowPane);
         }

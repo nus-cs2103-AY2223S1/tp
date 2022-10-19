@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-    public static final int MAXIMUM_APPOINTMENTS = 3;
+    public static final int MAXIMUM_NUM_OF_APPOINTMENTS = 3;
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -30,7 +30,7 @@ public class Person {
     private final Set<Tag> specialTags = new HashSet<>();
 
     private final Set<Tag> tags = new HashSet<>();
-    private MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+    private MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
 
     /**
      * Every field must be present and not null.
@@ -53,7 +53,6 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-
     public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel, Monthly monthly,
                   RiskTag riskTag, Set<Tag> tags, MaximumSortedList<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -184,4 +183,3 @@ public class Person {
     }
 
 }
-

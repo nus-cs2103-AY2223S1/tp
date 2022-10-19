@@ -1,18 +1,12 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
@@ -21,7 +15,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -36,7 +29,6 @@ public class EditPersonDescriptor {
     private Monthly monthly;
     private RiskTag riskTag;
     private Set<Tag> tags;
-    private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
 
     /**
@@ -52,14 +44,13 @@ public class EditPersonDescriptor {
         setMonthly(toCopy.monthly);
         setRiskTag(toCopy.riskTag);
         setTags(toCopy.tags);
-        setAppointments(toCopy.appointments);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, tags);
     }
 
     public void setName(Name name) {
@@ -100,18 +91,6 @@ public class EditPersonDescriptor {
 
     public Optional<RiskTag> getRiskTag() {
         return Optional.ofNullable(riskTag);
-    }
-
-    /**
-     * Sets {@code appointments} to this object's {@code appointments}.
-     * A defensive copy of {@code appointments} is used internally.
-     */
-    public void setAppointments(MaximumSortedList<Appointment> appointments) {
-        this.appointments = (appointments != null) ? new MaximumSortedList<>(appointments) : null;
-    }
-
-    public Optional<MaximumSortedList<Appointment>> getAppointments() {
-        return Optional.ofNullable(appointments);
     }
 
     public void setIncome(IncomeLevel income) {
@@ -163,66 +142,6 @@ public class EditPersonDescriptor {
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
                 updateMonthly, updatedRiskTag, updatedTags);
     }
-
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with appointments added from {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPersonByAddingAppointments(
-            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws ParseException {
-        assert personToEdit != null;
-
-        MaximumSortedList<Appointment> updatedAppointments = personToEdit.getAppointments();
-
-        Optional<Boolean> hasAppointment = editPersonDescriptor.appointments.stream()
-                .map(updatedAppointments::contains).reduce((x, y) -> x || y);
-        Optional<Boolean> isAppointmentsEdited = editPersonDescriptor.appointments.stream()
-                .map(updatedAppointments::add).reduce((x, y) -> x || y);
-
-        if (hasAppointment.isEmpty() || hasAppointment.get()) {
-            throw new ParseException(MESSAGE_DUPLICATE_APPOINTMENT);
-        }
-
-        if (isAppointmentsEdited.isEmpty() || !isAppointmentsEdited.get()) {
-            throw new ParseException(MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS);
-        }
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
-        Monthly monthly = personToEdit.getMonthly();
-        RiskTag risktag = personToEdit.getRiskTag();
-        IncomeLevel income = personToEdit.getIncome();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, risktag, tags, updatedAppointments);
-
-        return newPerson;
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * overwritten with appointments from {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
-                                                                   EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Monthly monthly = personToEdit.getMonthly();
-        RiskTag riskTag = personToEdit.getRiskTag();
-        Set<Tag> tags = personToEdit.getTags();
-        IncomeLevel income = personToEdit.getIncome();
-        MaximumSortedList<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, riskTag, tags, newAppointmentsOnly);
-
-        return newPerson;
-    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -244,7 +163,6 @@ public class EditPersonDescriptor {
                 && getAddress().equals(e.getAddress())
                 && getRiskTag().equals(e.getRiskTag())
                 && getMonthly().equals(e.getMonthly())
-                && getTags().equals(e.getTags())
-                && getAppointments().equals(e.getAppointments());
+                && getTags().equals(e.getTags());
     }
 }
