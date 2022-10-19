@@ -238,7 +238,7 @@ public class ParserUtil {
         return new GithubUsername(trimmedUsername, true);
     }
 
-     /**
+    /**
      * Parses a {@code String person} into an {@code string}.
      * Leading and trailing whitespaces will be trimmed.
      *
