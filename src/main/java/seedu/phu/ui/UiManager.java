@@ -38,7 +38,6 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
-//        primaryStage.setResizable(false);
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
