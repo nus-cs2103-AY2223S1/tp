@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Created Milestones and Issue Labels
-  * Added user stories
+  * Added user stories and tasks in Github Issues
 
 * **Enhancements to existing features**:
   * Refactored code to improve maintainability and readability, and fixed ordering and naming of imports to pass checkstyle [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/80), [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
@@ -32,10 +32,13 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the `edit` and `remark` features
+    * Added documentation for the `edit` feature
+    * Added documentation for the `remark` feature [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
     * Reformatted Command Summary
   * Developer Guide:
     * Added Non-functional requirements
+    * Refactored names to be updated for Friday [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
+    * Updated UML Diagrams
   * README:
     * Designed and added UI Mockup for FRIDAY
 
