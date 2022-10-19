@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipId;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -38,13 +40,15 @@ public class AddPersonCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_LINK_INDEX + "LINK INDEX]\n"
+            + "[" + PREFIX_LINK_INDEX + "LINK INDEX] "
+            + "[" + PREFIX_COMPANY + "COMPANY]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_TAG + "HR "
-            + PREFIX_LINK_INDEX + "1 ";
+            + PREFIX_LINK_INDEX + "1 "
+            + PREFIX_COMPANY + "Meta";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -55,6 +59,7 @@ public class AddPersonCommand extends Command {
     private final InternshipId internshipId;
     private final Set<Tag> tags = new HashSet<>();
     private final Index linkIndex;
+    private final Company company;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -67,6 +72,7 @@ public class AddPersonCommand extends Command {
         this.internshipId = person.getInternshipId();
         this.tags.addAll(person.getTags());
         this.linkIndex = null;
+        this.company = person.getCompany();
     }
 
     /**
@@ -79,7 +85,8 @@ public class AddPersonCommand extends Command {
             Email email,
             Phone phone,
             Set<Tag> tags,
-            Index linkIndex) {
+            Index linkIndex,
+            Company company) {
         requireAllNonNull(name, tags);
         this.name = name;
         this.phone = phone;
@@ -87,6 +94,7 @@ public class AddPersonCommand extends Command {
         this.internshipId = null;
         this.tags.addAll(tags);
         this.linkIndex = linkIndex;
+        this.company = company;
     }
 
     @Override
@@ -109,7 +117,8 @@ public class AddPersonCommand extends Command {
                 email,
                 phone,
                 idToLink,
-                tags
+                tags,
+                company
         );
 
         if (model.hasPerson(toAdd)) {
@@ -135,6 +144,7 @@ public class AddPersonCommand extends Command {
                 && Objects.equals(phone, otherCommand.phone)
                 && Objects.equals(email, otherCommand.email)
                 && Objects.equals(internshipId, otherCommand.internshipId)
-                && tags.equals(otherCommand.tags);
+                && tags.equals(otherCommand.tags)
+                && Objects.equals(company, otherCommand.company);
     }
 }

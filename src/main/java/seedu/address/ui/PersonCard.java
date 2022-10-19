@@ -17,8 +17,9 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
     private static final String NO_INTERNSHIP = "No internship linked.";
-    private static final String NO_PHONE = null;
-    private static final String NO_EMAIL = null;
+    private static final String NO_PHONE = "No phone number";
+    private static final String NO_EMAIL = "No email";
+    private static final String NO_COMPANY = "No company";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -44,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label internship;
+    @FXML
+    private Label company;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -62,6 +65,11 @@ public class PersonCard extends UiPart<Region> {
             email.setText(NO_EMAIL);
         } else {
             email.setText(person.getEmail().value);
+        }
+        if (person.getCompany() == null) {
+            email.setText(NO_COMPANY);
+        } else {
+            email.setText(person.getCompany().fullName);
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

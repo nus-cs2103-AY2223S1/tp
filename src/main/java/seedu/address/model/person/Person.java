@@ -22,6 +22,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final InternshipId internshipId;
+    private final Company company;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -35,7 +36,8 @@ public class Person {
             Email email,
             Phone phone,
             InternshipId internshipId,
-            Set<Tag> tags) {
+            Set<Tag> tags,
+            Company company) {
         requireAllNonNull(name, tags);
         this.personId = personId;
         this.name = name;
@@ -43,6 +45,7 @@ public class Person {
         this.email = email;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
+        this.company = company;
     }
 
     public PersonId getPersonId() {
@@ -63,6 +66,10 @@ public class Person {
 
     public InternshipId getInternshipId() {
         return internshipId;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     /**
@@ -112,7 +119,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, tags, company);
     }
 
     @Override
@@ -121,16 +128,20 @@ public class Person {
         builder.append(getName());
         Email email = getEmail();
         if (email != null) {
-            builder.append(("; Email: "));
+            builder.append(("; Email: ")).append(getEmail());
         }
         Phone phone = getPhone();
         if (phone != null) {
-            builder.append(("; Phone: "));
+            builder.append(("; Phone: ")).append(getPhone());
         }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        Company company = getCompany();
+        if (company != null) {
+            builder.append(("; Company: ")).append(getCompany());
         }
         return builder.toString();
     }
