@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.travelr.model.trip.exceptions.DuplicateTripException;
 import seedu.travelr.model.trip.exceptions.TripNotFoundException;
 import seedu.travelr.testutil.TripBuilder;
@@ -42,9 +43,9 @@ public class UniqueTripListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTripList.add(JAPAN);
-        Trip editedJAPAN = new TripBuilder(JAPAN).withTitle(VALID_TITLE_JAPAN).withEvents(VALID_EVENT_SIGHTSEEING)
+        Trip editedJapanTrip = new TripBuilder(JAPAN).withTitle(VALID_TITLE_JAPAN).withEvents(VALID_EVENT_SIGHTSEEING)
                 .build();
-        assertTrue(uniqueTripList.contains(editedJAPAN));
+        assertTrue(uniqueTripList.contains(editedJapanTrip));
     }
 
     @Test
@@ -85,11 +86,11 @@ public class UniqueTripListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueTripList.add(JAPAN);
-        Trip editedJAPAN = new TripBuilder(JAPAN).withTitle(VALID_TITLE_GERMANY).withEvents(VALID_EVENT_SIGHTSEEING)
+        Trip editedJapanTrip = new TripBuilder(JAPAN).withTitle(VALID_TITLE_GERMANY).withEvents(VALID_EVENT_SIGHTSEEING)
                 .build();
-        uniqueTripList.setTrip(JAPAN, editedJAPAN);
+        uniqueTripList.setTrip(JAPAN, editedJapanTrip);
         UniqueTripList expectedUniquePersonList = new UniqueTripList();
-        expectedUniquePersonList.add(editedJAPAN);
+        expectedUniquePersonList.add(editedJapanTrip);
         assertEquals(expectedUniquePersonList, uniqueTripList);
     }
 

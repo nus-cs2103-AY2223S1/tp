@@ -28,11 +28,11 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_GERMANY = "Germany trip";
     public static final String VALID_TITLE_ANTARCTICA = "Antarctic trip";
     public static final String VALID_TITLE_JAPAN = "Japan Trip";
-    
+
     public static final String VALID_DESCRIPTION_GERMANY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_ANTARCTICA = "Block 123, Bobby Street 3";
     public static final String VALID_DESCRIPTION_JAPAN = "Going around Japan";
-    
+
     public static final String VALID_EVENT_EATING = "Eating";
     public static final String VALID_EVENT_SIGHTSEEING = "Sightseeing";
 
@@ -68,7 +68,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -83,7 +83,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -104,6 +104,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredTripList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the trip at the given {@code targetIndex} in the
      * {@code model}'s address book.
