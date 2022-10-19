@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
+import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -18,8 +20,11 @@ public class Deadline {
     public static final String UNSPECIFIED_DEADLINE_IDENTIFIER = "UNSPECIFIED";
 
     public static final String MESSAGE_CONSTRAINTS = "Deadline should be in DD-MM-YYYY format";
+    public static final DateTimeFormatter READABLE_FORMATTER_WITH_YEAR =
+            DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
+    public static final DateTimeFormatter READABLE_FORMATTER_WITHOUT_YEAR =
+            DateTimeFormatter.ofPattern("EEE, dd MMM");
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
     private final LocalDate date;
 
     private Deadline(LocalDate date) {
@@ -69,16 +74,33 @@ public class Deadline {
     public boolean isUnspecified() {
         return this == Deadline.UNSPECIFIED;
     }
+
     @Override
     public String toString() {
-        if (this.isUnspecified()) {
+        if (isUnspecified()) {
             return UNSPECIFIED_DEADLINE_IDENTIFIER;
         }
-        return this.date.format(formatter);
+        return date.format(formatter);
+    }
+
+    /**
+     * Formats the Deadline into a more readable format.
+     * @return
+     */
+    public String formatForUi() {
+        LocalDate startOfYear = LocalDate.now().with(firstDayOfYear());
+        LocalDate endOfYear = LocalDate.now().with(lastDayOfYear());
+
+        if (isUnspecified()) {
+            return UNSPECIFIED_DEADLINE_IDENTIFIER;
+        } else if (date.isBefore(endOfYear) && date.isAfter(startOfYear)) {
+            return date.format(READABLE_FORMATTER_WITHOUT_YEAR);
+        }
+        return date.format(READABLE_FORMATTER_WITH_YEAR);
     }
 
     public LocalDate getDate() {
-        return this.date;
+        return date;
     }
 
 }
