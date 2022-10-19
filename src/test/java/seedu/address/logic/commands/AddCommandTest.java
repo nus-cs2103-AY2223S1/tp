@@ -9,8 +9,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -23,8 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
-
-
+import seedu.address.testutil.TypicalTasks;
 
 
 public class AddCommandTest {
@@ -188,16 +189,40 @@ public class AddCommandTest {
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
+        private final List<Task> taskList;
 
         ModelStubWithPerson(Person person) {
             requireNonNull(person);
             this.person = person;
+            this.taskList = TypicalTasks.getTypicalTasks();
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            requireNonNull(person);
+            return FXCollections.observableList(taskList);
+        }
+
+        @Override
+        public void addTask(Task task) {
+            requireNonNull(task);
+            this.taskList.add(task);
+        }
+
+        @Override
+        public void deleteTask(Task task) {
+            requireNonNull(person);
+            for(Task taskInList : taskList){
+                if(task.equals(taskInList)){
+                    taskList.remove(task);
+                }
+            }
         }
     }
 
@@ -206,7 +231,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
-
+        private final List<Task> taskList =  TypicalTasks.getTypicalTasks();;
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
@@ -220,9 +245,31 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            return FXCollections.observableList(taskList);
+        }
+
+        @Override
+        public void addTask(Task task) {
+            requireNonNull(task);
+            this.taskList.add(task);
+        }
+
+        @Override
+        public void deleteTask(Task task) {
+            for(Task taskInList : taskList){
+                if(task.equals(taskInList)){
+                    taskList.remove(task);
+                }
+            }
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+
     }
 
 }

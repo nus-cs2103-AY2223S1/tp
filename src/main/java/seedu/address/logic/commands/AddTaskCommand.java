@@ -1,9 +1,6 @@
 package seedu.address.logic.commands;
 
 
-
-
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
@@ -15,9 +12,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
-import seedu.address.model.task.Task;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+
+
+
 /**
  * Adds a task to the address book.
  */
@@ -66,7 +66,7 @@ public class AddTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         Name name = NO_PERSON_ASSIGNED;
-        for (Person person: model.getFilteredPersonList()) {
+        for (Person person : model.getFilteredPersonList()) {
             if (person.getEmail().equals(personEmailAddress)) {
                 name = person.getName();
             }

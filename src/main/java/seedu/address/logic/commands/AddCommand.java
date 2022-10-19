@@ -12,6 +12,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
+
+
 /**
  * Adds a person to the address book.
  */
@@ -55,8 +57,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        for(Task task : model.getFilteredTaskList()){
-            if(task.getPersonEmailAddress().equals(toAdd.getEmail())){
+        for (Task task : model.getFilteredTaskList()) {
+            if (task.getPersonEmailAddress().equals(toAdd.getEmail())) {
                 Task editedTask = task.copy();
                 editedTask.setPersonEmailAddress(toAdd.getEmail());
                 editedTask.setPersonName(toAdd.getName());

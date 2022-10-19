@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+
+
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -43,11 +46,10 @@ public class DeleteCommand extends Command {
         }
 
 
-
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        for(Task task : lastShownTaskList){
-            if(task.getPersonEmailAddress().equals(personToDelete.getEmail())){
+        for (Task task : lastShownTaskList) {
+            if (task.getPersonEmailAddress().equals(personToDelete.getEmail())) {
                 Task editedTask = task.copy();
                 editedTask.setPersonName(new Name("The person assigned to this task has been deleted"));
                 model.deleteTask(task);
