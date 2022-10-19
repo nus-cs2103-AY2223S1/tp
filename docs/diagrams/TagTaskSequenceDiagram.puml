@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant ":TaskTagCommandParser" as TaskTagCommandParser LOGIC_COLOR
+participant "t:TaskTagCommand" as TaskTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("task tag i/1 t/work")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("task tag i/1 t/work")
+activate TaskBookParser
+
+create TaskTagCommandParser
+TaskBookParser -> TaskTagCommandParser
+activate TaskTagCommandParser
+
+TaskTagCommandParser --> TaskBookParser
+deactivate TaskTagCommandParser
+
+TaskBookParser -> TaskTagCommandParser : parse("1")
+activate TaskTagCommandParser
+
+create TaskTagCommand
+TaskTagCommandParser -> TaskTagCommand
+activate TaskTagCommand
+
+TaskTagCommand --> TaskTagCommandParser : t
+deactivate TaskTagCommand
+
+TaskTagCommandParser --> TaskBookParser : t
+deactivate TaskTagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TaskTagCommandParser -[hidden]-> TaskBookParser
+destroy TaskTagCommandParser
+
+TaskBookParser --> LogicManager : t
+deactivate TaskBookParser
+
+LogicManager -> TaskTagCommand : execute()
+activate TaskTagCommand
+
+TaskTagCommand -> Model : tagTask(1)
+activate Model
+
+Model --> TaskTagCommand
+deactivate Model
+
+create CommandResult
+TaskTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TaskTagCommand
+deactivate CommandResult
+
+TaskTagCommand --> LogicManager : result
+deactivate TaskTagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
