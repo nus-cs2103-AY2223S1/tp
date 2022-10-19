@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
 /**
@@ -12,6 +13,7 @@ import seedu.address.model.calendar.CalendarEvent;
 public class CalendarEventListPanel extends VBox {
 
     private ObservableList<CalendarEvent> calendarDayEvents;
+    private Stage primaryStage;
 
     @FXML
     private VBox calendarEventList;
@@ -19,11 +21,11 @@ public class CalendarEventListPanel extends VBox {
     /**
      * Creates a {@code CalendarEventListPanel} with the given {@code ObservableList}.
      */
-    public CalendarEventListPanel(ObservableList<CalendarEvent> calendarDayEvents) {
-
+    public CalendarEventListPanel(ObservableList<CalendarEvent> calendarDayEvents,
+                                  Stage primaryStage) {
         this.calendarDayEvents = calendarDayEvents;
         this.calendarEventList = new VBox();
-
+        this.primaryStage = primaryStage;
     }
     public VBox getCalendarEventList(int currentDay) {
         Text tDate = new Text(" " + String.valueOf(currentDay));
@@ -31,7 +33,7 @@ public class CalendarEventListPanel extends VBox {
         calendarEventList.getChildren().add(tDate);
         calendarDayEvents.stream()
                 .forEach(x -> calendarEventList.getChildren()
-                        .add(new EventButton(x.toString()).getAppointmentButton()));
+                        .add(new CalendarButton(x.getName(), x.getTimeFormat(), x.getLocation(), primaryStage)));
         return calendarEventList;
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
 
@@ -33,6 +34,7 @@ public class CalendarDisplay extends UiPart<Region> {
     private static final String switchButtonStyle = "-fx-border-color: grey; -fx-border-radius: 5;";
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
+    private Stage primaryStage;
 
     @FXML
     private GridPane calendarDisplay;
@@ -42,9 +44,10 @@ public class CalendarDisplay extends UiPart<Region> {
     /**
      * Creates a Calendar with the given list of CalendarEvents.
      */
-    public CalendarDisplay(ObservableList<CalendarEvent> calendarEventObservableList) {
+    public CalendarDisplay(ObservableList<CalendarEvent> calendarEventObservableList, Stage primaryStage) {
         super(FXML);
         this.calendarMonth = new CalendarMonth(calendarEventObservableList);
+        this.primaryStage = primaryStage;
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
         drawCalendar();
@@ -85,7 +88,8 @@ public class CalendarDisplay extends UiPart<Region> {
                     .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1,
                             currentMonth.get(Calendar.YEAR));
 
-            CalendarEventListPanel calendarEventListPanel = new CalendarEventListPanel(calendarEventsInDayOfMonth);
+            CalendarEventListPanel calendarEventListPanel = new CalendarEventListPanel(calendarEventsInDayOfMonth,
+                    primaryStage);
             VBox calendarEventList = calendarEventListPanel.getCalendarEventList(currentDay);
             calendarDisplay.add(calendarEventList, dayOfWeek - 1, row);
             currentDay++;
