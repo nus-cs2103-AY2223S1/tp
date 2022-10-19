@@ -18,4 +18,14 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> MoneyOwed
+Person *--> MoneyPaid
+Person *--> RatesPerClass
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+Name -[hidden]down-> MoneyOwed
+MoneyOwed -[hidden]right-> MoneyPaid
+MoneyPaid -[hidden]right-> RatesPerClass
 @enduml
