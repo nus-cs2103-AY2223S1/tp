@@ -6,8 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.event.ViewUpcomingEventCommand;
+import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.profile.AddProfileCommandParser;
 
 /**
  * Parses input arguments and creates a new EventCommand object
@@ -45,6 +48,8 @@ public class EventCommandParser implements Parser<EventCommand> {
         String eventOption = eventCommandMatcher.group("eventOption");
 
         switch (eventOption) {
+        case ViewUpcomingEventCommand.COMMAND_OPTION:
+            return new ViewUpcomingEventCommandParser().parse(args);
         default:
             throw new ParseException(EventCommand.OPTION_UNKNOWN);
         }
