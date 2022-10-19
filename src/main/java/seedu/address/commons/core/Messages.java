@@ -11,5 +11,6 @@ public class Messages {
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects listed!";
     public static final String MESSAGE_INVALID_PROJECT = "The project %s does not exist currently in HR Pro Max++";
     public static final String MESSAGE_INVALID_STAFF = "Staff %s not found in specified project ";
+    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
 
 }
