@@ -16,7 +16,6 @@ import hobbylist.model.activity.Name;
 import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
-import javafx.scene.layout.Priority;
 
 /**
  * Jackson-friendly version of {@link Activity}.
@@ -42,6 +41,7 @@ class JsonAdaptedActivity {
                                @JsonProperty("date") List<JsonAdaptedDate> date,
                                @JsonProperty("rating") int rating,
                                @JsonProperty("status") String status){
+
 
         this.name = name;
         this.description = description;
