@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  * Represents the Date that the user applied to the Position of the Company.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format of yyyy-mm-dd with proper month and leap year support";
@@ -73,4 +73,8 @@ public class Date {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Date other) {
+        return value.compareTo(other.value);
+    }
 }

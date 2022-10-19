@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.commons.core.LogsCenter;
 import seedu.application.model.application.Application;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final ApplicationBook applicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
+    private final SortedList<Application> sortedFilteredApplications;
 
     /**
      * Initializes a ModelManager with the given applicationBook and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.applicationBook = new ApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = new FilteredList<>(this.applicationBook.getApplicationList());
+        sortedFilteredApplications = new SortedList<>(filteredApplications);
     }
 
     public ModelManager() {
@@ -111,7 +115,7 @@ public class ModelManager implements Model {
         applicationBook.setApplication(target, editedApplication);
     }
 
-    //=========== Filtered Application List Accessors =============================================================
+    //=========== Sorted, Filtered Application List Accessors ======================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Application} backed by the internal list of
@@ -119,13 +123,40 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Application> getFilteredApplicationList() {
-        return filteredApplications;
+        return sortedFilteredApplications;
     }
 
     @Override
     public void updateFilteredApplicationList(Predicate<Application> predicate) {
         requireNonNull(predicate);
         filteredApplications.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortApplicationListByCompany(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getCompany);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
+    @Override
+    public void sortApplicationListByPosition(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getPosition);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
+    @Override
+    public void sortApplicationListByDate(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getDate);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
     }
 
     @Override
@@ -144,7 +175,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return applicationBook.equals(other.applicationBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredApplications.equals(other.filteredApplications);
+                && sortedFilteredApplications.equals(other.sortedFilteredApplications);
     }
 
 }
