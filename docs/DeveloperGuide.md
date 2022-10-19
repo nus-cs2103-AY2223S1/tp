@@ -350,6 +350,16 @@ Use case ends.
 
 Use case ends.
 
+**Use case: UC04 - Find a Buyer, Supplier or Deliverer**
+
+**MSS**
+1. User specifies whether he or she is searching for a Buyer, Supplier or Deliverer, or all.
+2. User specifies the target attribute.
+3. PetCode searches for all Buyers, Suppliers or Deliverers with that target attribute, depending on what the user has specified.
+5. PetCode outputs these Buyers, Suppliers, Deliverers or all threee.
+
+Use case ends.
+
 **Extensions**
 
 2a. The tag does not exist
