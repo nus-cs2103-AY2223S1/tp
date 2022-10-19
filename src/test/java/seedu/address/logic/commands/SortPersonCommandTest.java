@@ -27,11 +27,6 @@ public class SortPersonCommandTest {
     }
 
     @Test
-    public void execute_listIsNotSorted_showsSameList() {
-        assertCommandSuccess(new SortPersonCommand(null), model, SortPersonCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
     public void execute_listIsSorted_showsFiltered() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);

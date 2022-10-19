@@ -34,6 +34,7 @@ public class SortPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        assert (criteria != null);
         if (criteria == Criteria.NAME) {
             model.sortPersonList(Comparator.comparing(Person::getName));
         } else if (criteria == Criteria.COMPANY_NAME) {
