@@ -170,6 +170,8 @@ public interface Model {
 
     void sortProjectsByName(int sortByNameKey);
 
+    void sortIssuesByDeadline(int sortIssuesByDeadline);
+
     void sortIssuesByPriority(int sortIssuesByPriority);
 
     void setDefaultView(DefaultView defaultView);

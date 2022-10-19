@@ -290,7 +290,7 @@ public class ParserUtil {
      * @param key is the value entered by the user for sort by deadline.
      * @return Integer of 0 or 1 which specifies the chronology of sort
      */
-    public static Integer parseDeadlineSort(String key) throws ParseException {
+    public static Integer parseDeadlineSortForProject(String key) throws ParseException {
         requireNonNull(key);
         String trimmedKey = key.trim();
         if (!Project.isValidDeadlineSortKey(trimmedKey)) {
@@ -323,7 +323,7 @@ public class ParserUtil {
     public static Integer parseNameSort(String key) throws ParseException {
         requireNonNull(key);
         String trimmedKey = key.trim();
-        if (!Project.isValidIssueCountSortKey(trimmedKey)) {
+        if (!Project.isValidNameSortKey(trimmedKey)) {
             throw new ParseException(Project.MESSAGE_INVALID_NAME_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
@@ -340,6 +340,22 @@ public class ParserUtil {
         String trimmedKey = key.trim();
         if (!Issue.isValidPrioritySortKey(trimmedKey)) {
             throw new ParseException(Issue.MESSAGE_INVALID_PRIORITY_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by deadline.
+     * @return Integer of 0 or 1 which specifies the chronology of sort
+     */
+    public static Integer parseDeadlineSortForIssue(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Issue.isValidDeadlineSortKey(trimmedKey)) {
+            throw new ParseException(Issue.MESSAGE_INVALID_DEADLINE_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }

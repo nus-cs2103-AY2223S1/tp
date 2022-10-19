@@ -174,7 +174,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
      * @param num input param to validate
      * @return true if input is a 0 or 1
      */
-    public static boolean isValidNameKey(String num) {
+    public static boolean isValidNameSortKey(String num) {
         try {
             int number = Integer.parseInt(num);
             return number == 0 | number == 1;

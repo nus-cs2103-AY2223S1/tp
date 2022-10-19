@@ -292,7 +292,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             sortedProjectsByDeadline =
                     getModifiableProjectList().sorted(Comparator.comparing(p -> p.getDeadline().getLocalDate()));
         } else {
-            //sort according to descending deadlines
+            //sort according to reverse chronological deadlines
             sortedProjectsByDeadline = getModifiableProjectList().sorted((p1, p2) ->
                 p2.getDeadline().getLocalDate().compareTo(p1.getDeadline().getLocalDate()));
         }
@@ -335,6 +335,25 @@ public class AddressBook implements ReadOnlyAddressBook {
                     p2.getProjectName().toString().compareTo(p1.getProjectName().toString()));
         }
         setSortedProjects(sortedProjectsByName);
+    }
+
+    /**
+     * Sort issues in chronological order or reverse chronological order based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for chronological order and one for reverse chronological order
+     */
+    public void sortIssuesByDeadline(int order) {
+        ObservableList<Issue> sortedIssuesByDeadline;
+        if (order == 0) {
+            //sort according to chronological deadlines
+            sortedIssuesByDeadline =
+                    getModifiableIssueList().sorted(Comparator.comparing(i -> i.getDeadline().getLocalDate()));
+        } else {
+            //sort according to reverse chronological deadlines
+            sortedIssuesByDeadline = getModifiableIssueList().sorted((i1, i2) ->
+                    i2.getDeadline().getLocalDate().compareTo(i1.getDeadline().getLocalDate()));
+        }
+        setSortedIssues(sortedIssuesByDeadline);
     }
 
     /**

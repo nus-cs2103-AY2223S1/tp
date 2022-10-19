@@ -90,7 +90,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
      * @return true if there is only one valid input
      */
     private boolean hasOneArgumentOfLengthThree(String arguments) {
-        return arguments.trim().length() != 3;
+        return arguments.trim().length() == 3;
     }
 
     private AddProjectCommand parseAddProjectCommand(String arguments) throws ParseException {
@@ -190,7 +190,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         Prefix sortPrefix = null;
         int key = -1;
 
-        if (hasOneArgumentOfLengthThree(arguments)) {
+        if (!hasOneArgumentOfLengthThree(arguments)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortProjectCommand.MESSAGE_USAGE));
         }
@@ -205,7 +205,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
             sortPrefix = PREFIX_DEADLINE;
-            key = ParserUtil.parseDeadlineSort(argMultimap.getValue(PREFIX_DEADLINE).get());
+            key = ParserUtil.parseDeadlineSortForProject(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_ISSUE_COUNT)) {

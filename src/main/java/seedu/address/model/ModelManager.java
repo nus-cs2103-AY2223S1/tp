@@ -367,6 +367,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortIssuesByDeadline(int key) {
+        addressBook.sortIssuesByDeadline(key);
+        updateFilteredSortedIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    @Override
     public void sortIssuesByPriority(int key) {
         addressBook.sortIssuesByPriority(key);
         updateFilteredSortedIssueList(PREDICATE_SHOW_ALL_ISSUES);

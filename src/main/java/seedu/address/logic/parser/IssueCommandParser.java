@@ -61,7 +61,6 @@ public class IssueCommandParser implements Parser<IssueCommand> {
     }
 
 
-
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -81,13 +80,13 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
     /**
      * Verifies only one valid user input argument
-     * Length of a valid command for sort key for issue by priority e.g.pr/1
+     * Length of a valid command for sort key for issue by priority e.g.d/1
      *
      * @param arguments user input for key for sort by deadline
      * @return true if there is only one valid input
      */
-    private boolean hasOneArgumentOfLengthFour(String arguments) {
-        return arguments.trim().length() != 4;
+    private boolean hasOneArgumentOfLengthThree(String arguments) {
+        return arguments.trim().length() == 3;
     }
 
     private AddIssueCommand parseAddIssueCommand(String arguments) throws ParseException {
@@ -169,16 +168,22 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         Prefix sortPrefix = null;
         int key = -1;
 
-        if (hasOneArgumentOfLengthFour(arguments)) {
+        if (!hasOneArgumentOfLengthThree(arguments)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortIssueCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_PRIORITY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_PRIORITY,
+                PREFIX_DEADLINE);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_PRIORITY, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortIssueCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            sortPrefix = PREFIX_DEADLINE;
+            key = ParserUtil.parseDeadlineSortForIssue(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
