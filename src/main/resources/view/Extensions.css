@@ -18,3 +18,7 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.hyperlink {
+    -fx-text-fill: #1496BB;
+}
