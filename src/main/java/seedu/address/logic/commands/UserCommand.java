@@ -29,10 +29,11 @@ public class UserCommand extends Command {
             + PREFIX_PHONE + "92345678 "
             + PREFIX_EMAIL + "usertan@example.com "
             + PREFIX_ADDRESS + "888, Woodlands Ave 4, #05-06 "
-            + PREFIX_CURRENTMOD + "CS2103T"
-            + PREFIX_CURRENTMOD + "CS2100"
-            + PREFIX_PREVIOUSMOD + "CS1231S"
-            + PREFIX_PLANNEDMOD + "CS3230";
+            + PREFIX_GITHUB + "Tan-u5er "
+            + PREFIX_CURRENTMOD + "CS2103T "
+            + PREFIX_CURRENTMOD + "CS2100 "
+            + PREFIX_PREVIOUSMOD + "CS1231S "
+            + PREFIX_PLANNEDMOD + "CS3230 ";
 
 
     public static final String MESSAGE_SUCCESS = "New user added: %1$s";

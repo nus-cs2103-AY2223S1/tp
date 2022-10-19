@@ -80,6 +80,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setGithub(toCopy.github);
             setTags(toCopy.tags);
             setCurrModules(toCopy.currModules);
             setPrevModules(toCopy.prevModules);
@@ -194,6 +195,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getGithub().equals(e.getGithub())
                     && getTags().equals(e.getTags());
         }
     }
