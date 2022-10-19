@@ -216,6 +216,10 @@
    -fx-background-color: #0e1011;
 }
 
+.tab-pane:focused>.tab-header-area>.headers-region>.tab:selected .focus-indicator {
+   -fx-border-color: orange;
+}
+
 .tab-label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;

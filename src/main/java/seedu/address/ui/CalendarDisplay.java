@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -66,10 +67,12 @@ public class CalendarDisplay extends UiPart<Region> {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         Button prevButtonHeader = getButtonHeader("Prev");
+
         Button nextButtonHeader = getButtonHeader("Next");
         Button refreshButtonHeader = getButtonHeader("Refresh");
 
         topCalendar.getChildren().addAll(textHeader, prevButtonHeader, nextButtonHeader, refreshButtonHeader);
+        topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
     private void drawBody() {
