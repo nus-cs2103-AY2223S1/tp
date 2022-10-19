@@ -34,14 +34,21 @@ public class FilterPetCommand extends Command {
         this.vsPredicate = vsPredicate;
     }
 
+    public Predicate<Pet> generatePredicate() {
+        return new Predicate<Pet>() {
+            @Override
+            public boolean test(Pet pet) {
+                return cPredicate.test(pet) && nPredicate.test(pet) && pPredicate.test(pet) && sPredicate.test(pet)
+                        && vsPredicate.test(pet);
+            }
+        };
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPetList(cPredicate);
-        model.updateFilteredPetList(nPredicate);
-        model.updateFilteredPetList(pPredicate);
-        model.updateFilteredPetList(sPredicate);
-        model.updateFilteredPetList(vsPredicate);
+        Predicate<Pet> finalPredicate = generatePredicate();
+        model.updateFilteredPetList(finalPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPetList().size()));
     }
