@@ -49,7 +49,8 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
         Path filePath = Paths.get(filePathString);
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(displayedList.stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()), filePath);
+        JsonUtil.saveJsonFile(displayedList.stream().map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()), filePath);
     };
 
 }
