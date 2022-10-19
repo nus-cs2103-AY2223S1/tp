@@ -42,7 +42,7 @@ public class DistinctExamList implements Iterable<Exam> {
     public boolean containsModule(Module toCheck) {
         requireNonNull(toCheck);
 
-        return examList.stream().map(Exam::getModule).anyMatch(toCheck::isSameModuleCode);
+        return examList.stream().map(Exam::getModule).anyMatch(toCheck::isSameModule);
     }
 
     /**
