@@ -48,7 +48,7 @@ public class GradeComponent {
         case MC2:
             return marks == 1 ? "PASSED" : "FAILED";
         default:
-            return "marks" + "/" + "totalMarks";
+            return String.format("%d/%d (%.2f%%)", marks, totalMarks, 100.0 * marks / totalMarks);
         }
     }
 

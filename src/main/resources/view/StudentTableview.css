@@ -9,7 +9,7 @@
 }
 
 .table-row-cell:disabled {
-    -fx-font-size: 15pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: white;
     -fx-cell-size: 50px;
     -fx-alignment: center-right;
