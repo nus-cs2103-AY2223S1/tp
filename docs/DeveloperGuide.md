@@ -437,11 +437,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User searches for guest 
-2. Guest is not found in list of guests 
+1. User searches for guest
+2. Guest is not found in list of guests
 3. User requests to add a guest to the list
 4. GuestBook adds the guest
-    
+
     Use case ends.
 
 **Extensions**
@@ -452,9 +452,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The input data is invalid
 
   * 3a1. GuestBook shows an error message.
-  
+
     Use case resumes at step 2.
-  
+
 **Use case: Delete a guest**
 
 **MSS**

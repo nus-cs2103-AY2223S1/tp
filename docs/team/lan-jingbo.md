@@ -5,9 +5,9 @@ title: Lan Jingbo's Project Portfolio Page
 
 ### Project: GuestBook
 
-GuestBook is a one stop access to get all the necessary guest data. 
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
-It is written in Java, and has about 10 kLoC. 
+GuestBook is a one stop access to get all the necessary guest data.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 10 kLoC.
 This project is based off AddressBook - Level 3.
 
 Given below are my contributions to the project.
