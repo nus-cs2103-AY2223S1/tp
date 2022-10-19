@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+
+start
+:User inputs\n delstaff command;
+:Parse input;
+if () then ([valid input])
+    :Get PROJECT_NAME \ninputted;
+    if () then ([Valid PROJECT_NAME])
+        :Get project with\n PROJECT_NAME;
+        :Get STAFF_NAME \ninputted;
+        if () then ([Valid STAFF_NAME])
+            : Get staff with\n STAFF_NAME from project;
+            : Remove staff\n from project;
+            : Update staff\n list UI;
+            : Return success\n message;
+        else ([else])
+            : Throw exception for\n missing staff;
+        endif
+    else ([else])
+        : Throw exception for\n missing project;
+    endif
+else ([else])
+: Throw parseException;
+endif
+stop
+@enduml

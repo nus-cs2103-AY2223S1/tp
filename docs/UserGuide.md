@@ -196,31 +196,36 @@ Project data is saved in the hard disk automatically after any command that chan
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                 |
-|---------------------|--------------------------------------------------------------------------------------------------|
-| **Add project**     | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/DUKE pd/2022-10-25 pb/10000 t/funz`          |
-| **Add staff**       | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/DUKE sn/DEXTER sl/true sd/HR` |
-| **Delete staff**    | `delstaff pn/PROJECT_NAME sn/STAFF_NAME` <br> e.g., `delstaff pn/DUKE sn/DEXTER`                 |
-| **Clear**           | `clear`                                                                                          |
-| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                              |
-| **Edit**            | `edit INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`edit 2 pn/ROOFUS pb/1350000`    |
-| **Find**            | `find pn/PROJECT_NAME`<br> e.g., `find DUKE`                                                     |
-| **List**            | `list`                                                                                           |
-| **View staff list** | `view INDEX` <br> e.g., `view 1`                                                                 |
-| **Help**            | `help`                                                                                           |
+
+| Action              | Format, Examples                                                                                                           |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------|
+| **Add project**     | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/DUKE pd/2022-10-25 pb/10000 t/funz`                                    |
+| **Add staff**       | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/DUKE sn/DEXTER sl/true sd/HR st/HR manager sp/98019345` |
+| **Delete staff**    | `delstaff pn/PROJECT_NAME sn/STAFF_NAME` <br> e.g., `delstaff pn/DUKE sn/DEXTER`                                           |
+| **Clear**           | `clear`                                                                                                                    |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                        |
+| **Edit**            | `edit INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`edit 2 pn/ROOFUS pb/1350000`                              |
+| **Find**            | `find pn/PROJECT_NAME`<br> e.g., `find DUKE`                                                                               |
+| **List**            | `list`                                                                                                                     |
+| **View staff list** | `view INDEX` <br> e.g., `view 1`                                                                                           |
+| **Help**            | `help`                                                                                                                     |
 
 ## Prefix Summary
 Prefixes that start with `s` are for project staff member details.
 Prefixes without the prefix `s` are meant for project details.
 
-| Prefix  | Meaning               | Format/ Examples      |
-|---------|-----------------------|-----------------------|
-| **pb/** | Project budget        | pb/PROJECT_BUDGET     |
-| **pd/** | Project deadline      | pd/PROJECT_DEADLINE   |
-| **pn/** | Project name          | pn/PROJECT_NAME       |
-| **sc/** | Staff Contact         | sc/STAFF_CONTACT      |
-| **sd/** | Staff department      | sd/STAFF_DEPARTMENT   |
-| **sl/** | Staff leave status    | sl/LEAVE_STATUS       |
-| **sn/** | Staff name            | sn/STAFF_NAME         |
-| **st/** | Staff title           | st/STAFF_TITLE        | 
+
+| Prefix     | Meaning            | Format/ Examples       |
+|------------|--------------------|------------------------|
+| **pb/**    | Project budget     | pb/PROJECT_BUDGET      |
+| **pd/**    | Project deadline   | pd/PROJECT_DEADLINE    |
+| **pn/**    | Project name       | pn/PROJECT_NAME        |
+| **sc/**    | Staff Contact      | sc/STAFF_CONTACT       |
+| **sd/**    | Staff department   | sd/STAFF_DEPARTMENT    |
+| **sl/**    | Staff leave status | si/LEAVE_STATUS        |
+| **sn/**    | Staff name         | sn/STAFF_NAME          |
+| **st/**    | Staff title        | st/STAFF_TITLE         |
+| **td/**    | Task deadline      | td/TASK_DEADLINE       |
+| **tdesc/** | Task description   | tdesc/TASK_DESCRIPTION |
+| **tm/**    | Task mark          | tm/TASK_MARK           |
 

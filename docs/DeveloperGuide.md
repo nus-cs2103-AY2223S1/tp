@@ -84,10 +84,10 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Current implementation 
-The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++. 
+### Current implementation
+The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
 There are 2 main columns, with the left column reflecting the `Project` and `Task` objects that are residing in the Model, and the right column reflecting the `Staff` objects that are residing in the Model.
-Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively. 
+Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively.
 Each of the `ProjectCard`, `StaffCard` and `TaskCard` would display the fields under the corresponding `Project`, `Staff` and `Task` objects as discussed under [Model Component](#model-component).
 
 
@@ -254,10 +254,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Task List
 
 #### Implementation
@@ -275,13 +271,89 @@ regarding the description and deadline of a task.
 
 #### Design considerations
 
-* A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done 
+* A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
 are well-defined.
-* By making sure all added tasks are checked using `Task.isSameTask`, we can be sure that 
+* By making sure all added tasks are checked using `Task.isSameTask`, we can be sure that
 there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
 
+### \[Proposed\] Mark and unmark task
+
+#### Proposed Implementation
+For tasks, they can either be marked as being completed or not. The proposed implementation would
+be to add a new field `TaskMark` into each `Task` object and `TaskMark` will only accept a `true` or
+`false` value.
+
+The `true` value would mean that the task is marked as completed and the `false` value
+mean that the task is not yet done.
+
+The switching of `true` and `false` values for `TaskMark` will be facillitaed using `mark INDEX` and
+`unmark INDEX` commands.
+
+* `mark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as completed.
+* `unmark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as uncompleted.
+
+The following activity diagram summarizes how users are expected to use the commands.
+
+![Expected mark and unmark command usage](images/MarkAndUnmarkActivityDiagram.png)
+
+The following sequence diagram shows how the mark command will run throughout HR Pro Max++.
+
+![mark command](images/MarkCommandSequenceDiagram.png)
+
+#### Design Consideration:
+
+* Users when done with a task might just delete it and thus the need to mark
+task as complete or not is redundant.
+  * Pros: Less memory since there is a need for task to have additional field and 2 extra commands
+  * Cons: Some users might like to record what they have done, so they would not delete completed tasks.
+  Having a way to mark task as completed or not will help them manage their task.
+
+
+### Delete Staff from a project
+
+#### Implementation
+
+For each project, there is a unique staff list and removing staff object from this list
+will remove staff that are part of the project. This can be done using a delete command
+specifically for staff called `delstaff`. This `Staff` is then deleted.
+
+As the `AddressBook` contains a unique `UniqueProjectList`, we would look through and find for
+the project with the specified `PROJECT_NAME`. Then from that project we would look through its
+`UniqueStaffList` to find the staff with the specified `STAFF_NAME`.
+
+If there is no project with the `PROJECT_NAME` or staff with the `STAFF_NAME`, exception is thrown.
+
+* `delstaff pn/PROJECT_NAME sn/STAFF_NAME` : deletes the staff with specified staff name from
+the project with the specified project name
+
+The activity diagram below shows how the `delstaff` command propagates through HR Pro Max++ to delete the staff.
+
+![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
+
+#### Design Consideration:
+
+The `delstaff` command could be implemented in the form `delstaff INDEX sn/STAFF_NAME`.
+* The `INDEX` would then refer to the project at that specific index of the projects displayed in the UI.
+* The `STAFF_NAME` would then be the keyword used to find a staff with a similar `STAFF_NAME` from
+the project with the specified index. This staff would then be deleted.
+
+Example:
+```
+Filtered project list :
+1) CS2103T TP
+2) CS2102 project
+3) Orbital
+```
+
+Index 2 in this case would refer to CS2102 project and then we would find the staff
+within CS2102 project staff list.
+
+Pros: Format similar to the delete command for project and task so would be easy to implement and spot bugs.
+
+Cons: Troublesome to delete since you might have to use multiple commands like list then find the `INDEX` before deleting.
+If you already know the `PROJECT_NAME` and `STAFF_NAME`, current implementation helps you to delete staff faster.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -470,7 +542,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     
 ### Non-Functional Requirements
-
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
