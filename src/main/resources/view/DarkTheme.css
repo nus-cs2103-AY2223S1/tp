@@ -142,6 +142,11 @@
      -fx-border-top-width: 1px;
 }
 
+.gridStyle Line {
+  -fx-stroke: red;
+}
+
+
 .status-bar {
     -fx-background-color: derive(#0e1011, 10%);
 }

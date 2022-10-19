@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -127,14 +128,18 @@ public class CalendarDisplay extends UiPart<Region> {
 
     private void previous() {
         topCalendar.getChildren().clear();
+        Node node = calendarDisplay.getChildren().get(0);
         calendarDisplay.getChildren().clear();
+        calendarDisplay.getChildren().add(0,node);
         currentMonth = getPreviousMonth(currentMonth);
         drawCalendar();
     }
 
     private void next() {
         topCalendar.getChildren().clear();
+        Node node = calendarDisplay.getChildren().get(0);
         calendarDisplay.getChildren().clear();
+        calendarDisplay.getChildren().add(0,node);
         currentMonth = getNextMonth(currentMonth);
         drawCalendar();
     }

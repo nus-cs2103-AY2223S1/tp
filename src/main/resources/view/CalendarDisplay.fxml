@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="topCalendar" />
@@ -17,7 +16,7 @@
          <content>
             <AnchorPane>
                <children>
-                  <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" gridLinesVisible="true" styleClass="gridStyle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <columnConstraints>
                           <ColumnConstraints hgrow="ALWAYS" />
                           <ColumnConstraints hgrow="ALWAYS" />
