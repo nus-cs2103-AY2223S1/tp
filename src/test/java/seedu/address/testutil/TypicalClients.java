@@ -63,11 +63,11 @@ public class TypicalClients {
      * Returns an {@code MyInsuRec} with all the typical clients.
      */
     public static MyInsuRec getTypicalMyInsuRec() {
-        MyInsuRec cb = new MyInsuRec();
+        MyInsuRec myInsuRec = new MyInsuRec();
         for (Client client : getTypicalClients()) {
-            cb.addClient(client);
+            myInsuRec.addClient(client);
         }
-        return cb;
+        return myInsuRec;
     }
 
     public static List<Client> getTypicalClients() {

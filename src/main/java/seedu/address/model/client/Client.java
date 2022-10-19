@@ -2,8 +2,10 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,11 +22,12 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private Meeting meeting;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Meeting> meetings;
+
 
     /**
      * Every field must be present and not null.
@@ -36,19 +39,20 @@ public class Client {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.meetings = new ArrayList<>();
     }
 
     /**
      * Construct a client with meetings
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Meeting> meetings) {
+        requireAllNonNull(name, phone, email, address, tags, meetings);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.meeting = meeting;
+        this.meetings = meetings;
     }
 
     public Name getName() {
@@ -68,15 +72,27 @@ public class Client {
     }
 
     public boolean hasMeeting() {
-        return meeting != null;
+        return !meetings.isEmpty();
     }
 
-    public Meeting getMeeting() {
-        return meeting;
+    public List<Meeting> getMeetings() {
+        return Collections.unmodifiableList(meetings);
     }
 
-    public void setMeeting(Meeting meeting) {
-        this.meeting = meeting;
+    /**
+     * Adds a meeting to the client's meeting list.
+     * @param meeting the meeting to be added
+     */
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
+    }
+
+    /**
+     * Removes a meeting from client's meeting list.
+     * @param meeting the meeting to be removed
+     */
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
     }
 
     /**
