@@ -27,6 +27,7 @@ public class Person {
     private final Address address;
     private final User gitHubUser;
     private final Role role;
+    private final Timezone timezone;
     private final Set<Tag> tags = new HashSet<>();
     private final Map<ContactType, Contact> contacts = new HashMap<>();
 
@@ -34,7 +35,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Address address, Set<Tag> tags,
-                  Map<ContactType, Contact> contacts, Role role) {
+                  Map<ContactType, Contact> contacts, Role role, Timezone timezone) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
@@ -42,6 +43,7 @@ public class Person {
         // Todo: Add githubUser to constructor
         this.gitHubUser = new User("");
         this.role = role;
+        this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
     }
@@ -60,6 +62,10 @@ public class Person {
 
     public Role getRole() {
         return role;
+    }
+
+    public Timezone getTimezone() {
+        return timezone;
     }
 
     /**

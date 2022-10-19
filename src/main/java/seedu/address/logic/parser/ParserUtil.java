@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Email;
 import seedu.address.model.person.contact.Phone;
 import seedu.address.model.person.contact.Slack;
@@ -67,6 +68,21 @@ public class ParserUtil {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(trimmedRole);
+    }
+
+    /**
+     * Parses a {@code String timezone} into a {@code Timezone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timezone} is invalid.
+     */
+    public static Timezone parseTimezone(String timezone) throws ParseException {
+        requireNonNull(timezone);
+        String trimmedTimezone = timezone.trim();
+        if (!Timezone.isValidTimezone(trimmedTimezone)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        }
+        return new Timezone(trimmedTimezone);
     }
 
     /**

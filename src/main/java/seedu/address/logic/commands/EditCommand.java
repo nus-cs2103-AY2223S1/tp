@@ -18,10 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Role;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
@@ -69,9 +66,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
+        Timezone updatedTimezone = editPersonDescriptor.getTimezone().orElse(personToEdit.getTimezone());
 
         // Todo: Integrate contact into cli. ex: stack, telegram argument
-        return new Person(updatedName, updatedAddress, updatedTags, new HashMap<>(), updatedRole);
+        return new Person(updatedName, updatedAddress, updatedTags, new HashMap<>(), updatedRole, updatedTimezone);
     }
 
     @Override
@@ -126,6 +124,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Role role;
+        private Timezone timezone;
 
         public EditPersonDescriptor() {}
 
@@ -138,6 +137,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setRole(toCopy.role);
+            setTimezone(toCopy.timezone);
         }
 
         /**
@@ -169,6 +169,12 @@ public class EditCommand extends Command {
 
         public void setRole(Role role) {
             this.role = role;
+        }
+
+        public Optional<Timezone> getTimezone() { return Optional.ofNullable(timezone); }
+
+        public void setTimezone(Timezone timezone) {
+            this.timezone = timezone;
         }
 
         /**
@@ -204,7 +210,8 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName()) && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
+                && getTags().equals(e.getTags()) && getRole().equals(e.getRole())
+                && getTimezone().equals(getTimezone());
         }
     }
 }

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
@@ -81,6 +83,7 @@ public class SetCommand extends Command {
         Address addr = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
         Role role = personToEdit.getRole();
+        Timezone timezone = personToEdit.getTimezone();
 
         // get map of contacts from person
         Map<ContactType, Contact> oldContacts = personToEdit.getContacts();
@@ -91,7 +94,7 @@ public class SetCommand extends Command {
             }
         }
 
-        return new Person(name, addr, tags, newContacts, role);
+        return new Person(name, addr, tags, newContacts, role, timezone);
     }
 
     @Override

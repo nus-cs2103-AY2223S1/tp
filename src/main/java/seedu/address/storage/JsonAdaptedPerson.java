@@ -16,6 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String address;
     private final String role;
+    private final String timezone;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedContact> contacts = new ArrayList<>();
 
@@ -40,10 +42,12 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("contacts") List<JsonAdaptedContact> contacts,
-                             @JsonProperty("role") String role) {
+                             @JsonProperty("role") String role, @JsonProperty("timezone") String timezone) {
         this.name = name;
         this.address = address;
         this.role = role;
+        this.timezone = timezone;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +64,13 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         address = source.getAddress().value;
         role = source.getRole().role; //TODO: Check for null using an Optional
+
+        if (source.getTimezone() != null) {
+            timezone = source.getTimezone().timezone;
+        } else {
+            timezone = null;
+        }
+
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -113,7 +124,17 @@ class JsonAdaptedPerson {
 
         final Role modelRole = new Role(role);
 
-        return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole);
+        if (timezone != null && !Timezone.isValidTimezone(timezone)) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+        }
+
+        if (timezone == null) {
+            return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole, null);
+        }
+
+        final Timezone modelTimezone = new Timezone(timezone);
+
+        return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole, modelTimezone);
     }
 
 }
