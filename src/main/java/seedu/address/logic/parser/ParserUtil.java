@@ -17,8 +17,6 @@ import seedu.address.model.person.Keyword;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Platform;
-import seedu.address.model.person.PlatformConverter;
 import seedu.address.model.person.Social;
 import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
@@ -177,13 +175,10 @@ public class ParserUtil {
         if (!Social.isValidSocial(socialStr)) {
             throw new ParseException(Social.MESSAGE_CONSTRAINTS);
         }
-
         String[] strArray = socialStr.split("@");
-        Platform platform = PlatformConverter.stringToPlatform(strArray[0]);
+        String platform = strArray[0];
         String handle = strArray[1];
-
         return new Social(handle, platform);
-
     }
 
     /**
