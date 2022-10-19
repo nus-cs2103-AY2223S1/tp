@@ -1,8 +1,6 @@
 package paymelah.model.debt;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static paymelah.testutil.TypicalDebts.CHICKEN_RICE;
 import static paymelah.testutil.TypicalDebts.MCDONALDS;
 
@@ -36,13 +34,36 @@ public class DebtTest {
         // different money -> returns false
         editedMcdonalds = new DebtBuilder(MCDONALDS).withMoney("120.40").build();
         assertFalse(MCDONALDS.equals(editedMcdonalds));
+
+        // different date -> returns false
+        editedMcdonalds = new DebtBuilder(MCDONALDS).withDate("2011-10-12").build();
+        assertFalse(MCDONALDS.equals(editedMcdonalds));
+
+        // different time -> returns false
+        editedMcdonalds = new DebtBuilder(MCDONALDS).withTime("01:23").build();
+        assertFalse(MCDONALDS.equals(editedMcdonalds));
     }
 
     @Test
-    public void makeDebt() {
-        Debt fromDebtBuilder = new DebtBuilder().withDescription("Gift cards").withMoney("50").build();
-        Debt fromMakeDebt = Debt.makeDebt("Gift cards", "50");
+    public void makeDebt_success() {
+        Debt fromDebtBuilder = new DebtBuilder().withDescription("Gift cards").withMoney("50")
+                .withDate("2022-10-12").withTime("12:34").build();
+        Debt fromMakeDebt = Debt.makeDebt("Gift cards", "50", "2022-10-12", "12:34");
 
         assertEquals(fromDebtBuilder, fromMakeDebt);
+    }
+
+    @Test
+    public void makeDebt_invalidDate() {
+        AssertionError e = assertThrows(AssertionError.class,
+                () -> Debt.makeDebt("Gift cards", "50", "2022-13-12", "12:34"));
+        assertEquals("makeDebt called with erroneous date format.", e.getMessage());
+    }
+
+    @Test
+    public void makeDebt_invalidTime() {
+        AssertionError e = assertThrows(AssertionError.class,
+                () -> Debt.makeDebt("Gift cards", "50", "2022-12-12", "25:34"));
+        assertEquals("makeDebt called with erroneous time format.", e.getMessage());
     }
 }

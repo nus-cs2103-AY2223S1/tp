@@ -11,6 +11,8 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
 import static paymelah.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,18 +44,30 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_DEBT_KOI_DESC = "koi";
-    public static final String VALID_DEBT_KOI_AMOUNT = "4.0";
+
+    public static final String VALID_DEBT_KOI_DESCRIPTION = "koi";
+    public static final String VALID_DEBT_KOI_MONEY = "4.0";
+    public static final String VALID_DEBT_KOI_DATE = "2022-10-12";
+    public static final String VALID_DEBT_KOI_TIME = "12:34";
     public static final Debt VALID_DEBT_KOI =
-            new Debt(new Description(VALID_DEBT_KOI_DESC), new Money(VALID_DEBT_KOI_AMOUNT));
-    public static final String VALID_DEBT_PIZZA_DESC = "pizza";
-    public static final String VALID_DEBT_PIZZA_AMOUNT = "$5";
+            new Debt(new Description(VALID_DEBT_KOI_DESCRIPTION), new Money(VALID_DEBT_KOI_MONEY),
+                    LocalDate.parse(VALID_DEBT_KOI_DATE), LocalTime.parse(VALID_DEBT_KOI_TIME));
+
+    public static final String VALID_DEBT_PIZZA_DESCRIPTION = "pizza";
+    public static final String VALID_DEBT_PIZZA_MONEY = "$5";
+    public static final String VALID_DEBT_PIZZA_DATE = "2022-09-12";
+    public static final String VALID_DEBT_PIZZA_TIME = "00:00";
     public static final Debt VALID_DEBT_PIZZA =
-            new Debt(new Description(VALID_DEBT_PIZZA_DESC), new Money(VALID_DEBT_PIZZA_AMOUNT));
-    public static final String VALID_DEBT_KARAOKE_DESC = "karaoke";
-    public static final String VALID_DEBT_KARAOKE_AMOUNT = "7";
+            new Debt(new Description(VALID_DEBT_PIZZA_DESCRIPTION), new Money(VALID_DEBT_PIZZA_MONEY),
+                    LocalDate.parse(VALID_DEBT_PIZZA_DATE), LocalTime.parse(VALID_DEBT_PIZZA_TIME));
+
+    public static final String VALID_DEBT_KARAOKE_DESCRIPTION = "karaoke";
+    public static final String VALID_DEBT_KARAOKE_MONEY = "7";
+    public static final String VALID_DEBT_KARAOKE_DATE = "2022-08-10";
+    public static final String VALID_DEBT_KARAOKE_TIME = "10:24";
     public static final Debt VALID_DEBT_KARAOKE =
-            new Debt(new Description(VALID_DEBT_KARAOKE_DESC), new Money(VALID_DEBT_KARAOKE_AMOUNT));
+            new Debt(new Description(VALID_DEBT_KARAOKE_DESCRIPTION), new Money(VALID_DEBT_KARAOKE_MONEY),
+                    LocalDate.parse(VALID_DEBT_KARAOKE_DATE), LocalTime.parse(VALID_DEBT_KARAOKE_TIME));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

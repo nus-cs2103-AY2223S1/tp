@@ -12,10 +12,17 @@ import paymelah.model.debt.Debt;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * Parses input arguments and creates a new AddDebtCommand object
  */
 public class AddDebtCommandParser implements Parser<AddDebtCommand> {
+    // DEFAULT_DATE will be deleted when AddDebtCommand is reworked
+    public static LocalDate DEFAULT_DATE = LocalDate.parse("2022-10-12");
+    public static LocalTime DEFAULT_TIME = LocalTime.MIDNIGHT;
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddDebtCommand
      * and returns an AddDebtCommand object for execution.
@@ -42,7 +49,7 @@ public class AddDebtCommandParser implements Parser<AddDebtCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Money money = ParserUtil.parseMoney(argMultimap.getValue(PREFIX_MONEY).get());
 
-        Debt debt = new Debt(description, money);
+        Debt debt = new Debt(description, money, DEFAULT_DATE, DEFAULT_TIME);
 
         return new AddDebtCommand(index, debt);
     }
