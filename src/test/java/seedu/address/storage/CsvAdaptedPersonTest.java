@@ -18,6 +18,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.tag.Tag;
 
 
@@ -30,6 +31,7 @@ public class CsvAdaptedPersonTest {
     private static final String INVALID_MEETING_DATE = "@2 Jan 2022";
     private static final String INVALID_TAG = "#friend";
 
+    private static final Portfolio portfolio = BENSON.getPortfolio();
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
@@ -37,8 +39,8 @@ public class CsvAdaptedPersonTest {
     private static final String VALID_INCOME = BENSON.getIncome().toString();
     private static final String VALID_MEETING_DATE = BENSON.getMeetingDate().toString();
     private static final List<Tag> VALID_TAGS = new ArrayList<>(BENSON.getTags());
-    private static final String VALID_RISK = BENSON.getRisk().toString();
-    private static final List<Plan> VALID_PLANS = new ArrayList<>(BENSON.getPlans());
+    private static final String VALID_RISK = portfolio.toString();
+    private static final List<Plan> VALID_PLANS = new ArrayList<>(portfolio.getPlans());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

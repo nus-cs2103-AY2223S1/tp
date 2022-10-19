@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
@@ -28,8 +29,7 @@ public class Person {
     private final Income income;
     private final MeetingDate meetingDate;
     private final Set<Tag> tags = new HashSet<>();
-    private final Risk risk;
-    private final Set<Plan> plans = new HashSet<>();
+    private final Portfolio portfolio;
 
     /**
      * Every field must be present and not null.
@@ -44,8 +44,7 @@ public class Person {
         this.income = income;
         this.meetingDate = meetingDate;
         this.tags.addAll(tags);
-        this.risk = risk;
-        this.plans.addAll(plan);
+        this.portfolio = new Portfolio(risk, plan);
     }
 
     public Name getName() {
@@ -72,13 +71,10 @@ public class Person {
         return meetingDate;
     }
 
-    public Risk getRisk() {
-        return risk;
+    public Portfolio getPortfolio() {
+        return portfolio;
     }
 
-    public Set<Plan> getPlans() {
-        return Collections.unmodifiableSet(plans);
-    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -122,14 +118,14 @@ public class Person {
                 && otherPerson.getIncome().equals(getIncome())
                 && otherPerson.getMeetingDate().equals(getMeetingDate())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getRisk().equals(getRisk())
-                && otherPerson.getPlans().equals(getPlans());
+                && otherPerson.getPortfolio().getRisk().equals(getPortfolio().getRisk())
+                && otherPerson.getPortfolio().getPlans().equals(getPortfolio().getPlans());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, income, meetingDate, tags, risk, plans);
+        return Objects.hash(name, phone, email, address, income, meetingDate, tags, portfolio);
     }
 
     @Override
@@ -153,9 +149,9 @@ public class Person {
             tags.forEach(builder::append);
         }
         builder.append("; Risk: ")
-                .append(getRisk());
+                .append(getPortfolio().getRisk());
 
-        Set<Plan> plans = getPlans();
+        Set<Plan> plans = getPortfolio().getPlans();
         if (!plans.isEmpty()) {
             builder.append("; Plans: ");
             plans.forEach(builder::append);

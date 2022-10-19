@@ -11,6 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -57,6 +58,7 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        Portfolio portfolio = personToCopy.getPortfolio();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -64,8 +66,8 @@ public class PersonBuilder {
         income = personToCopy.getIncome();
         meetingDate = personToCopy.getMeetingDate();
         tags = new HashSet<>(personToCopy.getTags());
-        risk = personToCopy.getRisk();
-        plans = new HashSet<>(personToCopy.getPlans());
+        risk = portfolio.getRisk();
+        plans = new HashSet<>(portfolio.getPlans());
     }
 
     /**

@@ -16,6 +16,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +35,7 @@ public class PersonUtil {
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPersonDetails(Person person) {
+        Portfolio portfolio = person.getPortfolio();
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
@@ -44,8 +46,8 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        sb.append(PREFIX_RISK + person.getRisk().value + " ");
-        person.getPlans().stream().forEach(
+        sb.append(PREFIX_RISK + portfolio.getRisk().value + " ");
+        portfolio.getPlans().stream().forEach(
                 s -> sb.append(PREFIX_PLAN + s.value + " ")
         );
         return sb.toString();

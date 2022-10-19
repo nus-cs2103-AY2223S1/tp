@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.portfolio.Portfolio;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -24,9 +25,8 @@ public class PortfolioWindow extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
     public final int id;
-
+    public final Portfolio portfolio;
 
     @FXML
     private Label risk;
@@ -38,32 +38,15 @@ public class PortfolioWindow extends UiPart<Region> {
      */
     public PortfolioWindow(Person person, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.portfolio = person.getPortfolio();
         id = displayedIndex;
-        if (person.getRisk().value != null && person.getRisk().value != "") {
-            risk.setText(person.getRisk().value);
+        if (portfolio.getRisk().value != null && portfolio.getRisk().value != "") {
+            risk.setText(portfolio.getRisk().value);
         } else {
             risk.setText("no risk assessment yet");
         }
-        person.getPlans().stream()
+        portfolio.getPlans().stream()
                 .sorted(Comparator.comparing(plan -> plan.value))
                 .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
-            return false;
-        }
-
-        // state check
-        PersonCard card = (PersonCard) other;
-        return person.equals(card.person);
     }
 }

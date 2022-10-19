@@ -18,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Portfolio;
 
 
 public class JsonAdaptedPersonTest {
@@ -29,6 +30,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_MEETING_DATE = "@2 Jan 2022";
     private static final String INVALID_TAG = "#friend";
 
+    private static final Portfolio portfolio = BENSON.getPortfolio();
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
@@ -38,8 +40,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_RISK = BENSON.getRisk().toString();
-    private static final List<JsonAdaptedPlan> VALID_PLAN = BENSON.getPlans().stream()
+    private static final String VALID_RISK = portfolio.getRisk().toString();
+    private static final List<JsonAdaptedPlan> VALID_PLAN = portfolio.getPlans().stream()
             .map(JsonAdaptedPlan::new)
             .collect(Collectors.toList());
 

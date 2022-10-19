@@ -31,6 +31,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
@@ -104,7 +105,7 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-
+        Portfolio portfolio = personToEdit.getPortfolio();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
@@ -112,8 +113,8 @@ public class EditCommand extends Command {
         Income updatedIncome = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         MeetingDate updatedMeetingDate = editPersonDescriptor.getMeetingDate().orElse(personToEdit.getMeetingDate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Risk risk = editPersonDescriptor.getRisk().orElse(personToEdit.getRisk());
-        Set<Plan> plans = editPersonDescriptor.getPlans().orElse(personToEdit.getPlans());
+        Risk risk = editPersonDescriptor.getRisk().orElse(portfolio.getRisk());
+        Set<Plan> plans = editPersonDescriptor.getPlans().orElse(portfolio.getPlans());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
                 updatedMeetingDate, updatedTags, risk, plans);

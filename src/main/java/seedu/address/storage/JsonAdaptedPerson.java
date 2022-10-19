@@ -18,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
@@ -76,6 +77,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        Portfolio portfolio = source.getPortfolio();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -85,8 +87,8 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        risk = source.getRisk().value;
-        planned.addAll(source.getPlans().stream()
+        risk = portfolio.getRisk().value;
+        planned.addAll(portfolio.getPlans().stream()
                 .map(JsonAdaptedPlan::new)
                 .collect(Collectors.toList()));
     }

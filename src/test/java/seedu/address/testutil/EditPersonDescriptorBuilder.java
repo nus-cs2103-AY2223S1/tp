@@ -13,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
@@ -22,6 +23,7 @@ import seedu.address.model.tag.Tag;
 public class EditPersonDescriptorBuilder {
 
     private EditPersonDescriptor descriptor;
+    private Portfolio portfolio;
 
     public EditPersonDescriptorBuilder() {
         descriptor = new EditPersonDescriptor();
@@ -35,6 +37,7 @@ public class EditPersonDescriptorBuilder {
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
+        this.portfolio = person.getPortfolio();
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
@@ -43,8 +46,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setIncome(person.getIncome());
         descriptor.setMeetingDate(person.getMeetingDate());
         descriptor.setTags(person.getTags());
-        descriptor.setRisk(person.getRisk());
-        descriptor.setPlans(person.getPlans());
+        descriptor.setRisk(portfolio.getRisk());
+        descriptor.setPlans(portfolio.getPlans());
     }
 
     /**
