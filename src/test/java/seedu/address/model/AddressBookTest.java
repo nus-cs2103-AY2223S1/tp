@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
@@ -53,7 +55,8 @@ public class AddressBookTest {
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         Set<Tag> tags = new HashSet<>();
-        AddressBookStub newData = new AddressBookStub(newPersons, tags);
+        List<Message> messages = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(newPersons, tags, messages);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -93,20 +96,26 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final Set<Tag> tags = new HashSet<>();
+        private final List<Message> messages = new ArrayList<>();
 
-        AddressBookStub(Collection<Person> persons, Collection<Tag> tags) {
+        AddressBookStub(Collection<Person> persons, Collection<Tag> tags, List<Message> messages) {
             this.persons.setAll(persons);
             this.tags.addAll(tags);
+            this.messages.addAll(messages);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-
         @Override
         public Set<Tag> getTags() {
             return tags;
+        }
+
+        @Override
+        public List<Message> getMessageTemplates() {
+            return messages;
         }
     }
 
