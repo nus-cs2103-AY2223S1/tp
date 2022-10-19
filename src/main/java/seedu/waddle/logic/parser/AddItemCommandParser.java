@@ -1,13 +1,17 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.stream.Stream;
 
 import seedu.waddle.logic.commands.AddItemCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
+import seedu.waddle.model.item.Cost;
+import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 
@@ -22,7 +26,8 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
      */
     public AddItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
+                                           PREFIX_COST, PREFIX_DURATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -37,7 +42,21 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
             priority = ParserUtil.parsePriority("1");
         }
 
-        Item item = new Item(description, priority);
+        Cost cost;
+        if (arePrefixesPresent(argMultimap, PREFIX_COST)) {
+            cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
+        } else {
+            cost = ParserUtil.parseCost("0");
+        }
+
+        Duration duration;
+        if (arePrefixesPresent(argMultimap, PREFIX_DURATION)) {
+            duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
+        } else {
+            duration = null;
+        }
+
+        Item item = new Item(description, priority, cost, duration);
 
         return new AddItemCommand(item);
     }

@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.waddle.model.itinerary.exceptions.DuplicateItemException;
-import seedu.waddle.model.itinerary.exceptions.ItemNotFoundException;
+import seedu.waddle.model.item.exceptions.DuplicateItemException;
+import seedu.waddle.model.item.exceptions.ItemNotFoundException;
 
 /**
  * Represents the list of items in an itinerary.

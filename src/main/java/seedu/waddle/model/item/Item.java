@@ -8,16 +8,20 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 public class Item {
     private String description;
     private Priority priority;
+    private Cost cost;
+    private Duration duration;
     // private Category category;
 
     /**
      * Constructor for an item.
      * @param description description of the item
      */
-    public Item(String description, Priority priority) {
+    public Item(String description, Priority priority, Cost cost, Duration duration) {
         requireAllNonNull(description, priority);
         this.description = description;
         this.priority = priority;
+        this.cost = cost;
+        this.duration = duration;
     }
 
     public String getDescription() {
@@ -28,11 +32,13 @@ public class Item {
         return priority;
     }
 
-    /*
-    public String getCategory() {
-        return category;
+    public Cost getCost() {
+        return cost;
     }
-    */
+
+    public Duration getDuration() {
+        return duration;
+    }
 
     /**
      * Returns true if both items have the same description.
@@ -53,7 +59,10 @@ public class Item {
         builder.append(getDescription())
                 .append("; Priority: ")
                 .append(getPriority())
-                .append("; Category: ");
+                .append("; Cost: ")
+                .append(getCost())
+                .append("; Duration: ")
+                .append(getDuration());
         return builder.toString();
     }
 }
