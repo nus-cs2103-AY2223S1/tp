@@ -25,7 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.SortField;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddPersonCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
