@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
@@ -298,6 +299,11 @@ public class AddCommandTest {
 
         @Override
         public void addTuitionClass(TuitionClass tuitionClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public TuitionClass getTuitionClass(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 

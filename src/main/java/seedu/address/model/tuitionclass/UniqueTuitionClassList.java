@@ -100,6 +100,26 @@ public class UniqueTuitionClassList implements Iterable<TuitionClass> {
     }
 
     /**
+     * Returns the tuition class from the tuition class list if the tuition class name
+     * matches the specified {@code name}.
+     * @return the tuition class that has the same name as the specified {@code name}.
+     */
+    public TuitionClass getTuitionClass(Name name) {
+        requireNonNull(name);
+        TuitionClass toBeReturned = null;
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).hasSameTuitionName(name)) {
+                toBeReturned = internalList.get(i);
+                break;
+            }
+        }
+        if (toBeReturned == null) {
+            throw new TuitionClassNotFoundException();
+        }
+        return toBeReturned;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<TuitionClass> asUnmodifiableObservableList() {
