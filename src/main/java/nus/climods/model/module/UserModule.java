@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
@@ -17,7 +19,7 @@ public class UserModule {
 
     // Identity fields
     private final Module listModule;
-    private final String semester;
+    private final SemestersEnum semester;
 
     //TODO: Remove when implement tutorial/lecture support
     private String tutorial = "Tutorial: Monday, 1400-1500";
@@ -36,7 +38,8 @@ public class UserModule {
         }
 
         listModule = optionalModule.get();
-        this.semester = "Semester 1";
+        //default put semester 1
+        this.semester = SemestersEnum.NUMBER_1;
     }
 
     /**
@@ -45,7 +48,7 @@ public class UserModule {
      * @throws CommandException if module code is not a valid module in current NUS curriculum or module is not
      *      offered in specified semester.
      */
-    public UserModule(String moduleCode, String semester, Model model) throws CommandException {
+    public UserModule(String moduleCode, SemestersEnum semester, Model model) throws CommandException {
         Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
 
         if (optionalModule.isEmpty()) {
@@ -54,12 +57,11 @@ public class UserModule {
 
         listModule = optionalModule.get();
 
-        if (!listModule.getSemesters().contains(Integer.parseInt(semester))) {
+        if (!listModule.getSemesters().contains(semester.getValue().intValue())) {
             throw new CommandException(MESSAGE_MODULE_NOT_OFFERED);
         }
 
-        String temp = "Semester " + semester;
-        this.semester = temp;
+        this.semester = semester;
     }
 
     /**
@@ -112,10 +114,8 @@ public class UserModule {
         return listModule.getSemesters();
     }
 
-    // TODO: update with user's selected semester
-    public String getSelectedSemester() {
+    public SemestersEnum getSelectedSemester() {
         return this.semester;
-        //return getAvailableSemesters().contains(1) ? "Semester 1" : "Semester 2";
     }
 
     /**
