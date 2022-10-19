@@ -1,8 +1,13 @@
 package seedu.phu.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -45,7 +50,7 @@ public class ViewCommandCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
-    private Label website;
+    private Hyperlink website;
     @FXML
     private FlowPane tags;
 
@@ -57,18 +62,39 @@ public class ViewCommandCard extends UiPart<Region> {
         this.internship = internship;
         name.setText(internship.getName().fullName);
         phone.setText(internship.getPhone().value);
-        remark.setText(internship.getRemark().value);
         email.setText(internship.getEmail().value);
         position.setText(internship.getPosition().positionName);
+        date.setText(internship.getDate().toDisplayFormat());
+        website.setText(internship.getWebsite().value);
 
         String stateStyleClass = "application_process-" + internship.getApplicationProcess().toString();
         applicationProcess.getStyleClass().add(stateStyleClass);
         applicationProcess.setText(internship.getApplicationProcess().toString());
-        date.setText(internship.getDate().toDisplayFormat());
-        website.setText(internship.getWebsite().value);
+
+        // adds newline to remark
+        StringBuilder sb = new StringBuilder();
+        sb.append('\n');
+        sb.append(internship.getRemark().value);
+        remark.setText(sb.toString());
+
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @FXML
+    private void handleWebsite() {
+        assert (Desktop.isDesktopSupported());
+        try {
+            String text = website.getText();
+            if (text.equals("NA")) {
+                return;
+            }
+            URI uri = new URI(text);
+            Desktop.getDesktop().browse(uri);
+        } catch (URISyntaxException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
