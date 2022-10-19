@@ -20,9 +20,9 @@ import seedu.foodrem.testutil.TagBuilder;
 
 public class TagCommandParserTest {
 
-    private final TagCommandParser parser = new TagCommandParser();
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.getUsage());
+    private final TagCommandParser parser = new TagCommandParser();
 
     @Test
     public void parse_tagThenIndex_success() {
@@ -77,11 +77,11 @@ public class TagCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // Number preamble
-        assertParseFailure(parser, "0 " +VALID_DESC_TAG_NAME_FRUITS
+        assertParseFailure(parser, "0 " + VALID_DESC_TAG_NAME_FRUITS
                 + VALID_DESC_ID_FIRST, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "some random string  "+ VALID_DESC_TAG_NAME_FRUITS
+        assertParseFailure(parser, "some random string  " + VALID_DESC_TAG_NAME_FRUITS
                 + VALID_DESC_ID_FIRST, MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble

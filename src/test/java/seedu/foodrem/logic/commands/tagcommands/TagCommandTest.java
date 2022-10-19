@@ -111,14 +111,14 @@ public class TagCommandTest {
         Tag fruitsTag = TypicalTags.FRUITS;
 
         TagCommand tagItemWithVegetableCommand = new TagCommand(vegetableTag.getName(), INDEX_FIRST_ITEM);
-        TagCommand tagItemWithFruitsCommand = new TagCommand(fruitsTag.getName(),INDEX_FIRST_ITEM);
+        TagCommand tagItemWithFruitsCommand = new TagCommand(fruitsTag.getName(), INDEX_FIRST_ITEM);
 
         // same object -> returns true
         assertEquals(tagItemWithVegetableCommand, tagItemWithVegetableCommand);
 
         // same values -> returns true
         Tag vegetableTagCopy = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
-        TagCommand tagItemWithVegetableCommandCopy = new TagCommand(vegetableTagCopy.getName(),INDEX_FIRST_ITEM);
+        TagCommand tagItemWithVegetableCommandCopy = new TagCommand(vegetableTagCopy.getName(), INDEX_FIRST_ITEM);
         assertEquals(tagItemWithVegetableCommand, tagItemWithVegetableCommandCopy);
 
         // different types -> returns false

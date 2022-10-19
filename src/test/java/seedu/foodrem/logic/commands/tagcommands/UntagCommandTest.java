@@ -109,14 +109,14 @@ public class UntagCommandTest {
         Tag fruitsTag = TypicalTags.FRUITS;
 
         UntagCommand untagItemWithVegetableCommand = new UntagCommand(vegetableTag.getName(), INDEX_FIRST_ITEM);
-        UntagCommand untagItemWithFruitsCommand = new UntagCommand(fruitsTag.getName(),INDEX_FIRST_ITEM);
+        UntagCommand untagItemWithFruitsCommand = new UntagCommand(fruitsTag.getName(), INDEX_FIRST_ITEM);
 
         // same object -> returns true
         assertEquals(untagItemWithVegetableCommand, untagItemWithVegetableCommand);
 
         // same values -> returns true
         Tag vegetableTagCopy = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
-        UntagCommand untagItemWithVegetableCommandCopy = new UntagCommand(vegetableTagCopy.getName(),INDEX_FIRST_ITEM);
+        UntagCommand untagItemWithVegetableCommandCopy = new UntagCommand(vegetableTagCopy.getName(), INDEX_FIRST_ITEM);
         assertEquals(untagItemWithVegetableCommand, untagItemWithVegetableCommandCopy);
 
         // different types -> returns false

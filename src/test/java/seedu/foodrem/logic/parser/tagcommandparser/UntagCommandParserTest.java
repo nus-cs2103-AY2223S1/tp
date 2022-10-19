@@ -12,7 +12,6 @@ import static seedu.foodrem.testutil.TypicalTags.FRUITS;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.model.tag.Tag;
@@ -20,9 +19,10 @@ import seedu.foodrem.model.tag.TagName;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class UntagCommandParserTest {
-    private final UntagCommandParser parser = new UntagCommandParser();
+
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagCommand.getUsage());
+    private final UntagCommandParser parser = new UntagCommandParser();
 
     @Test
     public void parse_tagThenIndex_success() {
@@ -77,11 +77,11 @@ public class UntagCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // Number preamble
-        assertParseFailure(parser, "0 " +VALID_DESC_TAG_NAME_FRUITS
+        assertParseFailure(parser, "0 " + VALID_DESC_TAG_NAME_FRUITS
                 + VALID_DESC_ID_FIRST, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "some random string  "+ VALID_DESC_TAG_NAME_FRUITS
+        assertParseFailure(parser, "some random string  " + VALID_DESC_TAG_NAME_FRUITS
                 + VALID_DESC_ID_FIRST, MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
