@@ -1,6 +1,5 @@
 package seedu.nutrigoals.model.meal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_APPLE_NAME;
@@ -51,21 +50,6 @@ public class FoodTest {
         String nameWithTrailingSpaces = VALID_APPLE_NAME + " ";
         editedApple = new FoodBuilder(APPLE).withName(nameWithTrailingSpaces).build();
         assertFalse(APPLE.isSameFood(editedApple));
-    }
-
-    @Test
-    public void getEarliestMealTag() {
-        // breakfast
-        Food editedGrapes = new FoodBuilder(GRAPES).withTag("breakfast").build();
-        assertEquals("B", editedGrapes.getEarliestMealTag());
-
-        // lunch
-        editedGrapes = new FoodBuilder(GRAPES).withTag("lunch").build();
-        assertEquals("L", editedGrapes.getEarliestMealTag());
-
-        // dinner
-        editedGrapes = new FoodBuilder(GRAPES).withTag("dinner").build();
-        assertEquals("D", editedGrapes.getEarliestMealTag());
     }
 
     @Test

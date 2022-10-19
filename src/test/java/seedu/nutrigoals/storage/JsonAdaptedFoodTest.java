@@ -15,7 +15,7 @@ public class JsonAdaptedFoodTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BREAD.getName().toString();
-    private static final String VALID_TAG = BREAD.getTag().tagName;
+    private static final String VALID_TAG = BREAD.getTag().getTagName();
     private static final String VALID_CALORIE = "200";
     private static final String VALID_DATE = "2022-10-05T05:38:22.902190";
 
@@ -42,11 +42,31 @@ public class JsonAdaptedFoodTest {
 
     @Test
     public void toModelType_invalidTag_throwsIllegalValueException() {
-        // List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        // invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedFood food =
                 new JsonAdaptedFood(VALID_NAME, VALID_CALORIE, INVALID_TAG, VALID_DATE);
         assertThrows(IllegalValueException.class, food::toModelType);
     }
 
+    @Test
+    public void toModelType_nullTag_throwsIllegalValueException() {
+        JsonAdaptedFood food = new JsonAdaptedFood(VALID_NAME, VALID_CALORIE, null, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidCalorie_throwsIllegalValueException() {
+        // negative calorie
+        JsonAdaptedFood food = new JsonAdaptedFood(VALID_NAME, "-200", VALID_TAG, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+
+        // non-integer values
+        food = new JsonAdaptedFood(VALID_NAME, "abc", VALID_TAG, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+        food = new JsonAdaptedFood(VALID_NAME, "10.4", VALID_TAG, VALID_DATE);
+        assertThrows(IllegalValueException.class, food::toModelType);
+
+        // null calorie
+        food = new JsonAdaptedFood(VALID_NAME, null, VALID_TAG, VALID_DATE);
+        assertThrows(NullPointerException.class, food::toModelType);
+    }
 }

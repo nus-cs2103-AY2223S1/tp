@@ -86,14 +86,15 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/
+-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `NutriGoalsParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a food).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `NutriGoalsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `NutriGoalsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -141,18 +142,89 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `NutriGoalskStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.nutrigoals.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
+### Edit feature
+
+#### Implementation
+
+The edit mechanism is facilitated by `EditCommand`, which extends `Command`. It overrides the following operation:
+
+* `EditCommand#execute()`: Edits the food name, meal type or calories associated with the food at the specified index.
+
+Given below is an example usage scenario and how edit mechanism behaves at each step.
+
+Step 1. The user launches the application today. Suppose the foods added for the day are:
+
+1. bread: 100 calories, breakfast
+2. milk tea: 300 calories, lunch
+3. sushi: 500 calories, lunch
+
+Step 2. The user executes `edit 2 n/honey milk tea c/310`, which calls `LogicManager#execute()`. 
+`NutriGoals#parseCommand()` is called subsequently, which then creates an `EditCommandParser` object.
+`EditCommandParser#parse()` is then called to make sense of the arguments supplied by the user.
+
+Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute()`.
+
+Step 4. `EditCommand#excecute()` calls the following methods from `Model`:
+
+* `setFood(foodToEdit, editedFood)`
+* `updateFilteredFoodList()`
+
+Step 5. `EditCommand#execute()` returns a `CommandResult` with the following result
+displayed:
+
+Edited Food: honey milk tea; Calories: 310 calories; Tag[lunch]
+
+The following diagram illustrates how the edit operation works:
+
+![EditSequenceDiagram](./images/EditSequenceDiagram.png)
+
 This section describes some noteworthy details on how certain features are implemented.
+
+### Review feature
+
+#### Implementation
+
+The review mechanism is facilitated by `ReviewCommand`, which extends `Command`. It overrides the following operation:
+
+* `ReviewCommand#execute()`: Calculates the total calories, the calorie target and the deficient or excess amount of calories for the day.
+
+Given below is an example usage scenario and how the review mechanism behaves at each step.
+
+Step 1. The user launches the application on 19 October 2022. Suppose the user has set a calorie target of 2000 kcal and the foods added for the day are:
+
+1. bubble tea: 232 kcal
+2. chicken rice: 702 kcal
+3. wanton noodles: 409 kcal
+
+Step 2. The user executes `review` command, which calls `ReviewCommand#execute()`. This first creates a `IsFoodAddedOnThisDatePredicate` with 19 October 2022 as the date. 
+`Model#updateFilteredFoodList()` is then called with this predicate, causing the food list to be filtered for foods that were added on 19 October 2022.
+
+Step 3. `ReviewCommand#execute()` calls the following methods from `Model`:
+
+* `Model#getTotalCalorie()` calculates the total calories of all foods in the food list
+* `Model#getCalorieDifference()` calculates the difference in total calories with respect to the calorie target
+* `Model#getCalorieTarget()` returns the calorie target
+
+Step 4. `ReviewCommand#execute()` returns a `CommandResult` with the following information to be displayed to the user:
+
+* total calories: 1343 kcal
+* calorie target: 2000 kcal
+* deficient amount of calories: 657 kcal
+
+The following sequence diagram illustrates how the review operation works:
+
+![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -268,14 +340,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                 | So that I can…​                            |
-| -------- |-----------------|----------------------------------------------|--------------------------------------------|
-| `* * *`  | careless user   | delete a wrongly added meal                  | fix my food records easily                 |
-| `* * *`  | user            | add my daily calorie intake                  | know how much I am eating                  |
-| `* * *`  | food enthusiast | calculate my daily calorie intake            | know how nutrient dense my food is         |
-| `* * *`  | careless user   | edit a meal wrongly recorded                 | change my food records easily              |
-| `* *`    | user            | key in the calorie intake for each type of food | know how much calories a particular food contains |
-| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess    | know if I should consume more / less calories                   |
+| Priority | As a            | I want to                                                         | So that I can…                                                        |
+|----------|-----------------|-------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | careless user   | delete a wrongly added meal                                       | fix my food records easily                                            |
+| `* * *`  | user            | add my daily calorie intake                                       | know how much I am eating                                             |
+| `* * *`  | food enthusiast | calculate my daily calorie intake                                 | know how nutrient dense my food is                                    |
+| `* * *`  | careless user   | edit a meal wrongly recorded                                      | change my food records easily                                         |
+| `* * *`  | forgetful user  | find my list of foods consumed for any day                        | get a better understanding of my eating habits                        |
+| `* *`    | user            | key in the calorie intake for each type of food                   | know how much calories a particular food contains                     |
+| `* *`    | user            | specify my body composition                                       | find out how much calories is should be consuming based on my profile |
+| `* *`    | user            | calculate my BMI                                                  | know if my current weight is in a healthy range                       |
+| `* *`    | sedentary user  | get information on healthy lifestyle habits                       | adopt a more active lifestyle                                         |
+| `* *`    | nus student     | find the nearest gym in school based on where I am at             | know where to go if I want to exercise                                |
+| `* *`    | user            | get a suggested daily calorie intake based on my body composition | know what would be a reasonable calorie target                        |
+| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess            | know if I should consume more / less calories                         |
 
 *{More to be added}*
 
@@ -283,19 +361,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC-1 Summarise daily calorie intake**
+**Use case: UC-1 List food items**
 
 **MSS**
 
-1. User requests to summarise his / her daily calorie intake
-2. NutriGoals shows the total calorie intake and the list of meals
+1. User requests to list the food items consumed.
+2. NutriGoals shows the list of food items consumed.
 
    Use case ends.
 
 **Extension**
 
-* 1a. No food item recorded
-    * 1a1. NutriGoals displays a default message
+* 1a. No food item recorded.
+    * 1a1. NutriGoals displays a default message.
 
       Use case ends.
 
@@ -304,15 +382,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User enters the command to add a food item
-2. NutriGoals shows the new list of meals
+1. User enters the command to add a food item.
+2. NutriGoals shows the new list of food items.
 
    Use case ends.
 
 **Extension**
 
-* 1a. The information provided is invalid
-  * 1a1. NutriGoals shows an error message
+* 1a. The information provided is invalid.
+  * 1a1. NutriGoals shows an error message.
 
     Use case ends.
 
@@ -320,10 +398,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to <ins>list the meals recorded (UC-1)</ins>
-2. NutriGoals shows a list of meals
-3. User requests to delete a specific meal in the list
-4. NutriGoals deletes the meal
+1. User requests to <ins>list the meals recorded (UC-1)</ins>.
+2. NutriGoals shows a list of meals.
+3. User requests to delete a specific meal in the list.
+4. NutriGoals deletes the meal.
 
     Use case ends.
 
@@ -333,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given food item is invalid.
+* 3a. The specified food item is invalid.
 
     * 3a1. NutriGoals shows an error message.
 
@@ -343,32 +421,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to <ins>list all the meals recorded (UC-1)</ins>
-2. NutriGoals shows a list of meals
-3. User requests to edit a specific meal in the list
-4. NutriGoals edits the meal
+1. User requests to <ins>list all the meals recorded (UC-1)</ins>.
+2. NutriGoals shows a list of meals.
+3. User requests to edit a specific meal in the list.
+4. NutriGoals edits the meal.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
   
   Use case ends.
 
-* 3a. The given food item is invalid
+* 3a. The edited food item is invalid.
 
-  * 3a1. NutriGoals show an error message
+  * 3a1. NutriGoals shows an error message.
     
     Use case resumes at step 2.
 
+**Use case: UC-5 Set up a profile**
+
+**MSS**
+
+1. User requests to set up his / her profile.
+2. NutriGoals creates and saves the user's profile.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The information provided is invalid.
+
+  * 1a1. NutriGoals shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC-6 View the profile created**
+
+**MSS**
+
+1. User requests to view his / her profile.
+2. NutriGoals shows the user's profile.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User profile is not created.
+
+    * 1a1. NutriGoals requests the user to set up a profile.
+
+    * 1a2. User requests to <ins>set up his / her profile (UC-5)</ins>.
+
+      Use case resumes at step 1.
+
+**Use case: UC-7 View a summary of the daily calorie intake**
+
+**MSS**
+
+1. User requests to view a summary of the daily calorie intake.
+2. NutriGoals shows the user's total calories consumed, the calorie target and the deficient or excess amount of calories for the day.
+
+   Use case ends.
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 foods without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The system should respond to a command within two seconds.
-5.  Project scope:
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 foods without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond to a command within two seconds.
+5. Project scope:
     * The system only handles information regarding the calorie intake of a food and no other nutrients.
 
 *{More to be added}*

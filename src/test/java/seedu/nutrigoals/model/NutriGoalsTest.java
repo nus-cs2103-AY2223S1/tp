@@ -8,9 +8,11 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -102,9 +104,13 @@ public class NutriGoalsTest {
         }
 
         @Override
+        public List<Location> getGymLocations() {
+            return new ArrayList<>();
+        }
+
+        @Override
         public Map<String, Calorie> getFoodCaloriesList() {
             return new HashMap<>();
         }
     }
-
 }

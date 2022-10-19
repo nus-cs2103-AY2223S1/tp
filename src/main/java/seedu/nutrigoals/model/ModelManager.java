@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -26,7 +27,6 @@ public class ModelManager implements Model {
     private final NutriGoals nutriGoals;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
-    private User user;
 
     private IsFoodAddedOnThisDatePredicate currentDatePredicate;
 
@@ -133,8 +133,12 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Food target, Food editedFood) {
         requireAllNonNull(target, editedFood);
-
         nutriGoals.setFood(target, editedFood);
+    }
+
+    @Override
+    public List<Location> getNusGymLocations() {
+        return this.nutriGoals.getGymLocations();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -186,6 +190,11 @@ public class ModelManager implements Model {
         return nutriGoals.getUser();
     }
 
+    @Override
+    public Calorie calculateSuggestedCalorie() {
+        return nutriGoals.calculateSuggestedCalorie();
+    }
+
     /**
      * Checks if a profile has been created
      * @return True if a profile has been created, false otherwise
@@ -198,6 +207,22 @@ public class ModelManager implements Model {
     @Override
     public Map<String, Calorie> getFoodCaloriesList() {
         return nutriGoals.getFoodCaloriesList();
+    }
+
+    @Override
+    public int getCalorieDifference() {
+        Calorie target = nutriGoals.getCalorieTarget();
+        Calorie actual = filteredFoods.stream()
+                .map(Food::getCalorie)
+                .reduce(new Calorie("0"), Calorie::addCalorie);
+        return target.calculateDifference(actual);
+    }
+
+    @Override
+    public Calorie getTotalCalorie() {
+        return filteredFoods.stream()
+                .map(Food::getCalorie)
+                .reduce(new Calorie("0"), Calorie::addCalorie);
     }
 
     @Override
@@ -214,11 +239,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        boolean isEqual = nutriGoals.equals(other.nutriGoals)
+        return nutriGoals.equals(other.nutriGoals)
             && userPrefs.equals(other.userPrefs)
             && filteredFoods.equals(other.filteredFoods)
             && currentDatePredicate.equals(other.currentDatePredicate);
-        return isEqual;
     }
-
 }

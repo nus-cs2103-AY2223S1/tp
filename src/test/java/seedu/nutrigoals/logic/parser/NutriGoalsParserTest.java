@@ -21,6 +21,7 @@ import seedu.nutrigoals.logic.commands.ListCommand;
 import seedu.nutrigoals.logic.commands.ProfileCommand;
 import seedu.nutrigoals.logic.commands.ReviewCommand;
 import seedu.nutrigoals.logic.commands.SetupCommand;
+import seedu.nutrigoals.logic.commands.SuggestCommand;
 import seedu.nutrigoals.logic.commands.TargetCommand;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.meal.Food;
@@ -104,7 +105,7 @@ public class NutriGoalsParserTest {
 
     @Test
     public void parseCommand_setup() throws Exception {
-        assertTrue(parser.parseCommand(SetupCommand.COMMAND_WORD + " h/150 w/50 i/60 g/M"
+        assertTrue(parser.parseCommand(SetupCommand.COMMAND_WORD + " h/150 w/50 i/60 g/M a/20"
         ) instanceof SetupCommand);
     }
 
@@ -112,6 +113,12 @@ public class NutriGoalsParserTest {
     public void parseCommand_target() throws Exception {
         assertTrue(parser.parseCommand(TargetCommand.COMMAND_WORD + " 1000") instanceof TargetCommand);
         assertThrows(ParseException.class, () -> parser.parseCommand(TargetCommand.COMMAND_WORD + "av"));
+    }
+
+    @Test
+    public void parseCommand_suggest() throws Exception {
+        assertTrue(parser.parseCommand(SuggestCommand.COMMAND_WORD) instanceof SuggestCommand);
+        assertThrows(ParseException.class, () -> parser.parseCommand(SuggestCommand.COMMAND_WORD + "blah"));
     }
 
     @Test

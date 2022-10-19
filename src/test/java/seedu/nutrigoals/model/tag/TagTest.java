@@ -63,4 +63,18 @@ public class TagTest {
         assertTrue(Tag.isValidTagName(dinner));
     }
 
+    @Test
+    public void getTagName_caseInsensitiveTagName_success() {
+        String breakfast = "BrEakFast";
+        String lunch = "LUNCH";
+        String dinner = "Dinner";
+
+        Tag breakfastTag = new Tag(breakfast);
+        Tag lunchTag = new Tag(lunch);
+        Tag dinnerTag = new Tag(dinner);
+
+        assertEquals("breakfast", breakfastTag.getTagName());
+        assertEquals("lunch", lunchTag.getTagName());
+        assertEquals("dinner", dinnerTag.getTagName());
+    }
 }

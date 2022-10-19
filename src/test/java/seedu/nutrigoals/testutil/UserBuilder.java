@@ -1,5 +1,6 @@
 package seedu.nutrigoals.testutil;
 
+import seedu.nutrigoals.model.user.Age;
 import seedu.nutrigoals.model.user.Gender;
 import seedu.nutrigoals.model.user.Height;
 import seedu.nutrigoals.model.user.User;
@@ -14,11 +15,13 @@ public class UserBuilder {
     public static final String DEFAULT_IDEAL = "60";
     public static final String DEFAULT_GENDER = "M";
     public static final String DEFAULT_HEIGHT = "170";
+    public static final String DEFAULT_AGE = "20";
 
     private Weight weight;
     private Height height;
     private Weight ideal;
     private Gender gender;
+    private Age age;
 
     /**
      * Default constructer initialises values to default values
@@ -28,6 +31,7 @@ public class UserBuilder {
         this.weight = new Weight(DEFAULT_WEIGHT);
         this.ideal = new Weight(DEFAULT_IDEAL);
         this.height = new Height(DEFAULT_HEIGHT);
+        this.age = new Age(DEFAULT_AGE);
     }
 
     /**
@@ -39,6 +43,7 @@ public class UserBuilder {
         this.weight = userCopy.getWeight();
         this.ideal = userCopy.getIdealWeight();
         this.gender = userCopy.getGender();
+        this.age = userCopy.getAge();
     }
 
     /**
@@ -74,9 +79,17 @@ public class UserBuilder {
     }
 
     /**
+     * Sets the {@code Age} of the {@code User} that we are building.
+     */
+    public UserBuilder withAge(String age) {
+        this.age = new Age(age);
+        return this;
+    }
+
+    /**
      * Builds user as per user builder
      */
     public User build() {
-        return new User(gender, height, weight, ideal);
+        return new User(gender, height, weight, ideal, age);
     }
 }

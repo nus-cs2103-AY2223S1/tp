@@ -1,5 +1,6 @@
 package seedu.nutrigoals.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
@@ -21,7 +22,6 @@ public class ReviewCommandTest {
     private static final Calorie EXACT_CALORIE_TARGET = new Calorie(String.valueOf(ACTUAL_CALORIE_COUNT));
     private static final Calorie LOWER_CALORIE_TARGET = new Calorie(String.valueOf(LOWER_CALORIE_COUNT));
     private static final Calorie HIGHER_CALORIE_TARGET = new Calorie(String.valueOf(HIGHER_CALORIE_COUNT));
-
     private Model model;
     private Model expectedModel;
 
@@ -52,6 +52,7 @@ public class ReviewCommandTest {
 
         model.setCalorieTarget(LOWER_CALORIE_TARGET);
         expectedModel.setCalorieTarget(LOWER_CALORIE_TARGET);
+        assertEquals(expectedModel, model);
         assertCommandSuccess(reviewCommand, model, expectedMessage, expectedModel);
     }
 

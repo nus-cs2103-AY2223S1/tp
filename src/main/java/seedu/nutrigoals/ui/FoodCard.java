@@ -44,7 +44,7 @@ public class FoodCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(food.getName().fullName);
         calorie.setText(food.getCalorie().value);
-        tags.getChildren().add(new Label(food.getTag().tagName));
+        tags.getChildren().add(new Label(food.getTag().getTagName()));
     }
 
     @Override

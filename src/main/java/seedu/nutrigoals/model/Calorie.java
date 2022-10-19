@@ -7,7 +7,8 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  */
 public class Calorie {
     public static final String VALIDATION_REGEX = "\\d+";
-    public static final String MESSAGE_CONSTRAINTS = "Calorie must take on a positive number that is not too large.";
+    public static final String MESSAGE_CONSTRAINTS =
+        "Calorie must take on a non negative number that is not too large.";
     public final String value;
 
     /**
@@ -47,6 +48,32 @@ public class Calorie {
      */
     public int getCalorieValue() {
         return Integer.parseInt(value);
+    }
+
+    /**
+     * Calculates the caloric difference
+     * @param other Calorie to subtract
+     * @return Caloric difference
+     */
+    public int calculateDifference(Calorie other) {
+        int operand1 = this.getCalorieValue();
+        int operand2 = other.getCalorieValue();
+        int diff = operand1 - operand2;
+
+        return diff;
+    }
+
+    /**
+     * Adds up two calorie
+     * @param other Calorie to add
+     * @return Sum of two calorie
+     */
+    public Calorie addCalorie(Calorie other) {
+        int operand1 = this.getCalorieValue();
+        int operand2 = other.getCalorieValue();
+        int sum = operand1 + operand2;
+
+        return new Calorie(Integer.toString(sum));
     }
 
     @Override
