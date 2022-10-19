@@ -3,170 +3,168 @@ package seedu.travelr.model.trip;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_GERMANY;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_JAPAN;
+import static seedu.travelr.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.TypicalTrips.GERMANY;
+import static seedu.travelr.testutil.TypicalTrips.JAPAN;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.travelr.model.trip.exceptions.DuplicateTripException;
+import seedu.travelr.model.trip.exceptions.TripNotFoundException;
+import seedu.travelr.testutil.TripBuilder;
 
 public class UniqueTripListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueTripList uniqueTripList = new UniqueTripList();
 
     @Test
     public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueTripList.contains(null));
     }
 
     @Test
     public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+        assertFalse(uniqueTripList.contains(JAPAN));
     }
 
     @Test
     public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+        uniqueTripList.add(JAPAN);
+        assertTrue(uniqueTripList.contains(JAPAN));
     }
 
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueTripList.add(JAPAN);
+        Trip editedJAPAN = new TripBuilder(JAPAN).withTitle(VALID_TITLE_JAPAN).withEvents(VALID_EVENT_SIGHTSEEING)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniqueTripList.contains(editedJAPAN));
     }
 
     @Test
     public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+        assertThrows(NullPointerException.class, () -> uniqueTripList.add(null));
     }
 
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+        uniqueTripList.add(JAPAN);
+        assertThrows(DuplicateTripException.class, () -> uniqueTripList.add(JAPAN));
     }
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueTripList.setTrip(null, JAPAN));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueTripList.setTrip(JAPAN, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(TripNotFoundException.class, () -> uniqueTripList.setTrip(JAPAN, JAPAN));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTripList.add(JAPAN);
+        uniqueTripList.setTrip(JAPAN, JAPAN);
+        UniqueTripList expectedUniquePersonList = new UniqueTripList();
+        expectedUniquePersonList.add(JAPAN);
+        assertEquals(expectedUniquePersonList, uniqueTripList);
     }
 
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueTripList.add(JAPAN);
+        Trip editedJAPAN = new TripBuilder(JAPAN).withTitle(VALID_TITLE_GERMANY).withEvents(VALID_EVENT_SIGHTSEEING)
                 .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTripList.setTrip(JAPAN, editedJAPAN);
+        UniqueTripList expectedUniquePersonList = new UniqueTripList();
+        expectedUniquePersonList.add(editedJAPAN);
+        assertEquals(expectedUniquePersonList, uniqueTripList);
     }
 
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTripList.add(JAPAN);
+        uniqueTripList.setTrip(JAPAN, GERMANY);
+        UniqueTripList expectedUniquePersonList = new UniqueTripList();
+        expectedUniquePersonList.add(GERMANY);
+        assertEquals(expectedUniquePersonList, uniqueTripList);
     }
 
     @Test
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+        uniqueTripList.add(JAPAN);
+        uniqueTripList.add(GERMANY);
+        assertThrows(DuplicateTripException.class, () -> uniqueTripList.setTrip(JAPAN, GERMANY));
     }
 
     @Test
     public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueTripList.remove(null));
     }
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(TripNotFoundException.class, () -> uniqueTripList.remove(JAPAN));
     }
 
     @Test
     public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTripList.add(JAPAN);
+        uniqueTripList.remove(JAPAN);
+        UniqueTripList expectedUniquePersonList = new UniqueTripList();
+        assertEquals(expectedUniquePersonList, uniqueTripList);
     }
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+        assertThrows(NullPointerException.class, () -> uniqueTripList.setTrips((UniqueTripList) null));
     }
 
     @Test
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTripList.add(JAPAN);
+        UniqueTripList expectedUniquePersonList = new UniqueTripList();
+        expectedUniquePersonList.add(GERMANY);
+        uniqueTripList.setTrips(expectedUniquePersonList);
+        assertEquals(expectedUniquePersonList, uniqueTripList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+        assertThrows(NullPointerException.class, () -> uniqueTripList.setTrips((List<Trip>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTripList.add(JAPAN);
+        List<Trip> personList = Collections.singletonList(GERMANY);
+        uniqueTripList.setTrips(personList);
+        UniqueTripList expectedUniquePersonList = new UniqueTripList();
+        expectedUniquePersonList.add(GERMANY);
+        assertEquals(expectedUniquePersonList, uniqueTripList);
     }
 
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+        List<Trip> listWithDuplicatePersons = Arrays.asList(JAPAN, JAPAN);
+        assertThrows(DuplicateTripException.class, () -> uniqueTripList.setTrips(listWithDuplicatePersons));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+                -> uniqueTripList.asUnmodifiableObservableList().remove(0));
     }
 }

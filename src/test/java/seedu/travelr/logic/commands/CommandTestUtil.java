@@ -27,8 +27,12 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_GERMANY = "Germany trip";
     public static final String VALID_TITLE_ANTARCTICA = "Antarctic trip";
+    public static final String VALID_TITLE_JAPAN = "Japan Trip";
+    
     public static final String VALID_DESCRIPTION_GERMANY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_ANTARCTICA = "Block 123, Bobby Street 3";
+    public static final String VALID_DESCRIPTION_JAPAN = "Going around Japan";
+    
     public static final String VALID_EVENT_EATING = "Eating";
     public static final String VALID_EVENT_SIGHTSEEING = "Sightseeing";
 
