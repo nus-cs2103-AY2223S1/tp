@@ -5,17 +5,15 @@ title: Developer Guide
 # Developer Guide
 
 ## Table of contents
-* [Target User Profile](#target-user-profile)
-* [Value Proposition](#value-proposition)
-* [User Stories](#user-stories)
-* [Use Case](#use-case)
-    * [Use case: **Delete a student**](#use-case-delete-a-student)
-    * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
-    * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
-    * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
-    * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
+* [Implementation](#implementation)
+  * [[Proposed] Sort-by](#proposed-sort-by-feature)
+* [Appendix](#appendix-requirement)
+    * [Target User Profile](#target-user-profile)
+    * [Value Proposition](#value-proposition)
+    * [User Stories](#user-stories)
+    * [Use Case](#use-case)
 * [Non-Functional Requirement](#non-functional-requirement)
-* [Glossary](#glossary)
+  * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Design
@@ -146,6 +144,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### [Proposed] Sort-by feature
+
+This feature allows the user(teacher) to sort the students from Teacher's Pet by one of the specified keywords.
+
+#### Proposed Implementation
+
+The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
+list of person as per usual. Additionally, it implements the following operation:
+- `TeachersPet#SortBy(ComparatorM<Person>)` -- Updates the `FilteredPersonList` by reordering the list with the given `Comparator`
+
+The following diagram illustrates how the operation works:
+
+![SortBySequenceDiagram](images/DG-images/SortBySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 ## Appendix: Requirement
 
