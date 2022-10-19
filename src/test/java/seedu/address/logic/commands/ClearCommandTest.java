@@ -32,7 +32,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void cancelClear_trackAScholar_failure() {
+    public void cancelClear_trackAScholar_success() {
         ClearCommand clearCommand = new ClearCommand();
         CommandResult commandResult = clearCommand.cancelClear();
         CommandResult terminationResult = new CommandResult(ClearCommand.MESSAGE_TERMINATION);
