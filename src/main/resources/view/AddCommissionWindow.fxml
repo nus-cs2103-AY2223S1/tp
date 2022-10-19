@@ -13,6 +13,8 @@
 <?import javafx.scene.control.TextField?>
 
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.FlowPane?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
          xmlns:fx="http://javafx.com/fxml/1" width="720" height="480" onCloseRequest="#handleCloseAddCommissionWindow">
     <scene>
@@ -43,7 +45,7 @@
                                     <Insets top ="10" right="82.0"/>
                                 </HBox.margin>
                             </Label>
-                            <TextField fx:id="title"  styleClass="addCommissionTextField" minWidth="500"/>
+                            <TextField fx:id="title" styleClass="addCommissionTextField" minWidth="500"/>
                         </HBox>
 
                         <HBox>
@@ -52,7 +54,11 @@
                                     <Insets right="78.0"/>
                                 </HBox.margin>
                             </Label>
-                            <TextField fx:id="tags" styleClass="addCommissionTextField" minWidth="500"/>
+                            <VBox minWidth="500" maxWidth="500">
+                                <FlowPane fx:id="tags" styleClass="commissionTags" maxWidth="500"/>
+                                <TextField fx:id="tagField" promptText="To create a tag, key in the tag name and press enter"
+                                           styleClass="addCommissionTextField" minWidth="500" maxWidth="500"/>
+                            </VBox>
                         </HBox>
 
                         <HBox spacing="36">
@@ -71,7 +77,7 @@
                                         <Insets right="20.0"/>
                                     </HBox.margin>
                                 </Label>
-                                <TextField fx:id="fee"  styleClass="addCommissionTextField"/>
+                                <TextField fx:id="fee" styleClass="addCommissionTextField"/>
                             </HBox>
                         </HBox>
 

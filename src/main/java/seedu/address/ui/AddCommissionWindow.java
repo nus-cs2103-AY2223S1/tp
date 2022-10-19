@@ -15,11 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Controller for to add a Commission by the GUI.
@@ -28,6 +31,12 @@ public class AddCommissionWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(AddCommissionWindow.class);
     private static final String FXML = "AddCommissionWindow.fxml";
+    private static final int LIMIT_NUMBER_OF_TAGS = 10;
+    private static final String ERROR_LIMIT_TAG_NAME_LENGTH =
+            "Truncated tag name (tag name should be less than 25 chars)!";
+    private static final String ERROR_LIMIT_NUMBER_OF_TAGS = "Number of tags should not exceed 10!";
+    private static final String ERROR_BLANK_TAG_NAME = "Tag name should not be blank!";
+
     private final Stage windowStage;
     private final HashSet<String> uniqueTags;
     private final CommandBox.CommandExecutor commandExecutor;
@@ -38,7 +47,9 @@ public class AddCommissionWindow extends UiPart<Stage> {
     @FXML
     private TextField title;
     @FXML
-    private TextField tags;
+    private TextField tagField;
+    @FXML
+    private FlowPane tags;
     @FXML
     private TextField deadline;
     @FXML
@@ -57,8 +68,13 @@ public class AddCommissionWindow extends UiPart<Stage> {
         super(FXML, stage);
         windowStage = stage;
         mainWindow.addChildWindow(this);
-        uniqueTags = new HashSet<>();
+        uniqueTags = new HashSet<>(10);
         this.commandExecutor = commandExecutor;
+        tagField.setOnKeyPressed(keyPressed -> {
+            if (keyPressed.getCode() == KeyCode.ENTER) {
+                handleAddTag();
+            }
+        });
     }
 
     /**
@@ -71,7 +87,7 @@ public class AddCommissionWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the AddCommissionWindow window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
@@ -85,14 +101,14 @@ public class AddCommissionWindow extends UiPart<Stage> {
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the add commission window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Tries to create a commission with the given user inputs.
      */
     @FXML
     private void addCommission() {
@@ -112,15 +128,16 @@ public class AddCommissionWindow extends UiPart<Stage> {
             handleCloseAddCommissionWindow();
             windowStage.close();
         } catch (CommandException | ParseException e) {
-            errorMessagePlaceholder.getChildren().clear(); // clear previous error message
-            errorMessagePlaceholder.getChildren().add(getErrorLabel(e.getMessage()));
+            setErrorLabel(e.getMessage());
         }
     }
 
     @FXML
     private void handleCloseAddCommissionWindow() {
         title.clear();
-        tags.clear();
+        tagField.clear();
+        tags.getChildren().clear();
+        uniqueTags.clear();
         deadline.clear();
         fee.clear();
         completed.clear();
@@ -128,11 +145,45 @@ public class AddCommissionWindow extends UiPart<Stage> {
         errorMessagePlaceholder.getChildren().clear();
     }
 
-    private Label getErrorLabel(String errorMessage) {
+    private void setErrorLabel(String errorMessage) {
         Label errorLabel = new Label(errorMessage);
         errorLabel.getStyleClass().add("commandWindowErrorMessage");
         errorLabel.setWrapText(true);
         errorLabel.setPrefWidth(688);
-        return errorLabel;
+        errorMessagePlaceholder.getChildren().clear(); // clear previous error message
+        errorMessagePlaceholder.getChildren().add(errorLabel);
+    }
+
+    private void handleAddTag() {
+        if (uniqueTags.size() >= LIMIT_NUMBER_OF_TAGS) {
+            setErrorLabel(ERROR_LIMIT_NUMBER_OF_TAGS);
+            return;
+        }
+
+        String tagName = tagField.getText().trim();
+        tagField.clear();
+
+        if (tagName.length() > 25) {
+            tagName = tagName.substring(0, 25);
+            setErrorLabel(ERROR_LIMIT_TAG_NAME_LENGTH);
+        } else {
+            errorMessagePlaceholder.getChildren().clear(); // clear previous error message
+        }
+
+        if (tagName.isEmpty()) {
+            setErrorLabel(ERROR_BLANK_TAG_NAME);
+            return;
+        }
+
+        if (!Tag.isValidTagName(tagName)) {
+            setErrorLabel(Tag.MESSAGE_CONSTRAINTS);
+            return;
+        }
+
+        if (uniqueTags.add(tagName)) {
+            Label newTag = new Label(tagName);
+            newTag.setMaxWidth(80);
+            tags.getChildren().add(newTag);
+        }
     }
 }
