@@ -297,11 +297,52 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 
 #### Design considerations:
 
-### \[Proposed\] Show command
+### Show command
 
-#### Proposed Implementation
+#### Implementation
+The `show` command allows the user to target a single client so that details about that client can be changed easily.
+
+To facilitate the `show` command, a `TargetPerson` class is created to store the target `Person`. Methods to store and retrieve the `TargetPerson` are exposed in the `Model`interface. Storing the `Person` object of interest in a separate class allows it to be retrieved easily for later use.
+
+The following class diagram shows how the `TargetPerson` is implemented:
+![TargetPerson0](images/TargetPersonClassDiagram.png)
+
+Commands that integrates with the `show` command includes:
+- `edit`
+- `tag`
+
+**Given below is an example usage scenario of show command**
+
+Step 1. The user types "show 1" to target the client at index 1 of the current list.
+
+```
+show 1
+```
+
+Step 2: The user edits the current target details, without the need to specify an index.
+
+```
+edit n=Alexis Yeoh
+```
+
+Step 3: The user tags the current target with the tag `friends`, without the need to specify an index.
+
+```
+tag friends
+```
 
 #### Design considerations:
+- **Aspect: How to access the `TargetPerson`.**
+  - Alternative 1 (current choice): Allow the index to not be specified
+      - Pros: 
+        - The user does not have to provide an index (less to type).
+      - Cons:
+        - Implementation will have to account for no index provided for the various commands.
+  - Alternative 2: Index 0 to denote `TargetPerson`
+      - Pros:
+        - (Slightly) Easier to implement.
+      - Cons: 
+        - User has to provide an index (more to type).
 
 --------------------------------------------------------------------------------------------------------------------
 
