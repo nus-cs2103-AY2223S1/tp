@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskMark;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -16,15 +17,18 @@ public class JsonAdaptedTask {
 
     private final String taskDeadline;
     private final String taskDescription;
+    private final String taskMark;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskDeadline") String taskDeadline,
-                            @JsonProperty("taskDescription") String taskDescription) {
+                            @JsonProperty("taskDescription") String taskDescription,
+                           @JsonProperty("taskMark") String taskMark) {
         this.taskDeadline = taskDeadline;
         this.taskDescription = taskDescription;
+        this.taskMark = taskMark;
     }
 
     /**
@@ -33,6 +37,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         taskDeadline = source.getTaskDeadline().taskDeadLine;
         taskDescription = source.getTaskDescription().taskDescription;
+        taskMark = source.getTaskMark().taskMark;
     }
 
     /**
@@ -59,7 +64,16 @@ public class JsonAdaptedTask {
         }
         final TaskDescription modelTaskDescription = new TaskDescription(taskDescription);
 
-        return new Task(modelTaskDeadline, modelTaskDescription);
+        if (taskMark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskMark.class.getSimpleName()));
+        }
+        if (!TaskMark.isValidTaskMark(taskMark)) {
+            throw new IllegalValueException(TaskMark.MESSAGE_CONSTRAINTS);
+        }
+        final TaskMark modelTaskMark = new TaskMark(taskMark);
+
+        return new Task(modelTaskDeadline, modelTaskDescription, modelTaskMark);
     }
 
 }

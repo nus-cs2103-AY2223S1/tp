@@ -33,10 +33,12 @@ public class TaskDeadlineTest {
         assertFalse(TaskDeadline.isValidTaskDeadline("12-20")); // missing year part
 
         // invalid parts
-        // invalid month
-        // invalid day
+        assertFalse(TaskDeadline.isValidTaskDeadline("2022-12-32")); // invalid day
+        assertFalse(TaskDeadline.isValidTaskDeadline("2012-20-10")); // invalid month
+        assertFalse(TaskDeadline.isValidTaskDeadline("2023-02-29")); //Invalid leap year
 
         // valid deadline
         assertTrue(TaskDeadline.isValidTaskDeadline("2022-12-31")); // underscore in local part
+        assertTrue(TaskDeadline.isValidTaskDeadline("2024-02-29")); //valid leap year
     }
 }

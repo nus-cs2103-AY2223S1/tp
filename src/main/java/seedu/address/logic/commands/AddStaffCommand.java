@@ -22,10 +22,11 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 
 /**
- * Adds a staff to the address book.
+ * Adds a staff to HR Pro Max++.
  */
 public class AddStaffCommand extends Command {
     public static final String COMMAND_WORD = "addstaff";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to a selected project. "
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "

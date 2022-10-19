@@ -13,14 +13,16 @@ public class Task {
     // Identity fields
     private final TaskDeadline deadline;
     private final TaskDescription description;
+    private final TaskMark mark;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(TaskDeadline deadline, TaskDescription description) {
+    public Task(TaskDeadline deadline, TaskDescription description, TaskMark mark) {
         requireAllNonNull(deadline, description);
         this.deadline = deadline;
         this.description = description;
+        this.mark = mark;
     }
 
     public TaskDeadline getTaskDeadline() {
@@ -29,6 +31,10 @@ public class Task {
 
     public TaskDescription getTaskDescription() {
         return description;
+    }
+
+    public TaskMark getTaskMark() {
+        return mark;
     }
 
     /**
@@ -60,7 +66,8 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTaskDescription().equals(getTaskDescription())
-                && otherTask.getTaskDeadline().equals(getTaskDeadline());
+                && otherTask.getTaskDeadline().equals(getTaskDeadline())
+                && otherTask.getTaskMark().equals(getTaskMark());
     }
 
     @Override
@@ -75,7 +82,8 @@ public class Task {
         builder.append(getTaskDescription())
                 .append("; Task Deadline: ")
                 .append(getTaskDeadline())
-                .append(";");
+                .append("; Task Completed: ")
+                .append(getTaskMark());
 
         return builder.toString();
     }

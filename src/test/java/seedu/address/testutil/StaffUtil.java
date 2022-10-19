@@ -15,15 +15,14 @@ import seedu.address.model.staff.Staff;
  */
 public class StaffUtil {
     /**
-     * Returns an add command string for adding the {@code project}.
+     * Returns an add staff command string for adding the {@code staff}.
      */
     public static String getAddCommand(Staff staff) {
-        //todo
         return AddStaffCommand.COMMAND_WORD + " pn/CS2103T TP " + getStaffDetails(staff);
     }
 
     /**
-     * Returns the part of command string for the given {@code project}'s details.
+     * Returns the part of command string for the given {@code staff}'s details.
      */
     public static String getStaffDetails(Staff staff) {
         StringBuilder sb = new StringBuilder();

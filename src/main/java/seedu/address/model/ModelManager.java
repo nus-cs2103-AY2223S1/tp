@@ -161,6 +161,7 @@ public class ModelManager implements Model {
         addressBook.setTask(target, editedTask);
     }
 
+    // TODO: 19/10/2022 might not need this??
     @Override
     public void setTargetTask(Task target) {
         requireNonNull(target);

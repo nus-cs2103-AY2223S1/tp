@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStaffCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteStaffCommand;
@@ -32,11 +33,14 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StaffUtil;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TaskUtil;
 
 public class AddressBookParserTest {
 
@@ -54,6 +58,13 @@ public class AddressBookParserTest {
         Staff staff = new StaffBuilder().build();
         AddStaffCommand command = (AddStaffCommand) parser.parseCommand(StaffUtil.getAddCommand(staff));
         assertEquals(new AddStaffCommand(staff, new ProjectName("CS2103T TP")), command);
+    }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        Task task = new TaskBuilder().build();
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
+        assertEquals(new AddTaskCommand(task), command);
     }
 
     @Test

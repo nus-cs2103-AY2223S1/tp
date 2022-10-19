@@ -18,6 +18,8 @@ import seedu.address.model.staff.StaffLeave;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -165,9 +167,33 @@ public class ParserUtil {
     public static StaffTitle parseStaffTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        if (!StaffTitle.isValidStaffTitle(title)) {
+        if (!StaffTitle.isValidStaffTitle(trimmedTitle)) {
             throw new ParseException(StaffTitle.MESSAGE_CONSTRAINTS);
         }
         return new StaffTitle(trimmedTitle);
+    }
+
+    /**
+     * Parses {@code String deadline} into a {@code TaskDeadline}
+     */
+    public static TaskDeadline parseTaskDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!TaskDeadline.isValidTaskDeadline(trimmedDeadline)) {
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDeadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses {@code String description} into a {@code TaskDescription}
+     */
+    public static TaskDescription parseTaskDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!TaskDescription.isValidTaskDescription(trimmedDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDescription(trimmedDescription);
     }
 }
