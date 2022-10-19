@@ -6,6 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+/**
+ * Shows a list of all Events in the Scheduler
+ */
 public class ViewEventsCommand extends EventCommand {
     public static final String COMMAND_OPTION = "v";
 
