@@ -301,6 +301,129 @@ in the Object Oriented Domain Model diagram below:
 
 ![ModulePersonObjectOrientedDomainModel](images/ModulePersonObjectOrientedDomainModel.png)
 
+### Add/delete/swap task feature
+
+#### Implementation
+
+The add/delete/swap task mechanism is facilitated by a `TaskList` data. Each
+`Module` within the `UniqueModuleList` stores a `TaskList` instance, which
+in turn stores a list of `Task` objects. Each `Module` is instantiated with
+an empty `TaskList`.
+
+![TaskListClassDiagram](images/AddDeleteSwapTaskFeature/TaskListClassDiagram.png)
+
+Similar to `UniqueModuleList` and `UniquePersonList`, a `TaskList` contains the following:
+* `internaList` - An `ObservableList<>` containing the tasks
+  of a module. This list is used for the adding and removing of objects in
+  the data structure.
+* `internaUnmodifiableList` - An `ObservableList<>` that is
+  an **unmodifiable** copy of `internalList`. This list is used when external
+  objects requests a copy of the current list of objects.
+
+However, there exists two key differences:
+1. `TaskList` is used to store `Task` objects as opposed to the storage of
+   `Module` in `UniqueModuleList` and `Person` in `UniquePersonList`.
+2. A different `TaskList` instance exists in each `Module` object, meaning
+   multiple instances of the `TaskList` object can exist within an
+   `AddressBook` instance. On the other hand, there will always be only one
+   `UniqueModuleList` instance and one `UniquePersonList` instance in the
+   `AddressBook` instance.
+
+Here's a (partial) object diagram of an `AddressBook` instance:
+![AddressBookObjectDiagram](images/AddDeleteSwapTaskFeature/AddressBookObjectDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Notice that there is only one instance of `UniquePersonList` (in purple) and 
+`UniqueModuleList` (in blue). However, there are two instances of `TaskList`
+(in orange), corresponding to the number of modules.
+</div>
+
+We have implemented the following `Command` classes:
+- `AddTaskCommand` allows the user to add a task to a specified `Module` in
+  Plannit.
+- `DeleteTaskCommand` allows the user to delete a task from a specified
+  `Module` in Plannit.
+- `SwapTaskCommand` allows the user to swap the order of `Task`s within a
+  specified `Module` in Plannit.
+
+Given below is an example usage scenario and how the mechanism
+behaves when a user adds a new `Task`. The behavior for the deleting and
+swapping of tasks is highly similar.
+
+**Step 1**. The user requests to add a task into a module present in Plannit by
+inputting the `add-task` command followed by the `m/` flag to indicate the
+module code argument and the `td/` flag indicate the task description argument.
+<br>
+E.g.:
+```
+add-task m/CS1231 td/Submit the weekly assignment
+```
+
+**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the
+user input `String`.
+
+**Step 3**: The `LogicManager::execute` method first parses the user input
+`String` using the `AddressBookParser::parseCommand` method.
+
+**Step 4**: The command word, `add-task`, is extracted from the user input and
+a new `AddTaskCommandParser` is instantiated to parse the arguments.
+
+**Step 5**: The `AddTaskCommandParser::parse` method is then called to
+parse the arguments. After validating the arguments provided by the user, a
+new `Task` is instantiated with the provided description.
+
+**Step 6**: An `AddTaskToModuleDescriptor` object is then instantiated to
+contain the new `Task` and `ModuleCode` of the module to add the `Task` to.
+
+**Step 7**: This `AddTaskToModuleDescriptor` is then used to instantiate an
+`AddTaskCommand` object that is returned to the `LogicManager`.
+
+**Step 8**: The `AddTaskCommand::execute` method is then called by the
+`LogicManager`. This method will first obtain the `Module` with the
+`ModuleCode` indicated by the user by calling `Model::getModule`. A copy of
+the `Module`'s fields are then created.
+
+**Step 9**: A new `Task` is then added to the copied `TaskList` field.
+
+**Step 10**: A new `Module` is then created using the copied fields along
+with the updated `TaskList` field.
+
+**Step 11**: The `Module` currently existing in the `Model` is then
+replaced with this new updated `Module` using the `Model::setModule` method.
+
+The following sequence diagram summarizes what happens when a user executes
+the `add-task` command:
+
+![AddTaskSequenceDiagram](images/AddDeleteSwapTaskFeature/AddTaskSequenceDiagram.png)
+
+#### Design considerations:
+**Aspect: Data structure to store `Task`:**
+
+* **Alternative 1 (current choice): Define a new `TaskList` class**
+    * Pros: Methods handling the adding, deleting and maintaining of `Task`s
+      can be abstracted away into the `TaskList`.
+    * Cons: Additional complexities brought about by implementing a new class.
+
+* **Alternative 2:** Store `Task` as an `ArrayList` field in `Module`.
+    * Pros: `Module` can directly handle the adding, deleting and
+      maintaining of its `Task`s.
+    * Cons: Poor adherence to [SOLID](https://nus-cs2103-ay2223s1.github.io/website/se-book-adapted/chapters/principles.html#solid-principles)
+      design principles.
+
+**Aspect: Manner of handing arguments to `AddTaskCommand` constructor:**
+
+* **Alternative 1 (current choice):** Pass arguments as a single
+  `AddTaskToModuleDescriptor` object.
+    * Pros: Neater to store all arguments in a single data structure.
+      Will be highly beneficial when more fields are added to a `Task`
+      in the future.
+    * Cons: Additional complexities brought about by implementing a new class.
+
+* **Alternative 2:** , Pass arguments directly into the `AddTaskCommand`
+  constructor
+    * Pros: Simpler to implement.
+    * Cons: Number of arguments taken in by the constructor will
+      increase when more fields are added to a Task in the future.
+
 ### Goto module feature
 
 #### Implementation
@@ -570,7 +693,7 @@ Use case ends.
 
 **Main Success Scenario (MSS)**
 1. User requests to search for a task.
-2. Plannit displays to the user the list of tasks matching the user's search
+2. Plannit displays to the user the list of tasks matching the user's search 
    request.
 
 **Extensions**
@@ -631,19 +754,19 @@ Use case ends.
 
 **Extensions**
 * 3a. The contact is duplicate, i.e. name already exists.
-    * 3a1. Plannit displays an error message notifying the user that a
+    * 3a1. Plannit displays an error message notifying the user that a 
       duplicate contact exists.
 
   Use case ends.
 
 * 3b. The email address is invalid.
-    * 3b1. Plannit displays an error message notifying the user that the
+    * 3b1. Plannit displays an error message notifying the user that the 
       email address is invalid.
 
   Use case ends.
 
 * 3c. The phone number is invalid.
-    * 3c1. Plannit displays an error message notifying the user that the phone
+    * 3c1. Plannit displays an error message notifying the user that the phone 
       number is invalid.
 
   Use case ends.
@@ -653,7 +776,7 @@ Use case ends.
 1. User chooses to delete a contact.
 2. Plannit requests for the name of the contact.
 3. User enters the contact's name.
-4. Plannit searches for the contact and notifies user that the contact has been
+4. Plannit searches for the contact and notifies user that the contact has been 
    deleted.
 
 Use case ends.
