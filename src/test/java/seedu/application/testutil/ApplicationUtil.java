@@ -5,10 +5,14 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
 
 import seedu.application.logic.commands.AddCommand;
 import seedu.application.logic.commands.EditCommand.EditApplicationDescriptor;
 import seedu.application.model.application.Application;
+import seedu.application.model.tag.Tag;
 
 /**
  * A utility class for Application.
@@ -26,11 +30,16 @@ public class ApplicationUtil {
      * Returns the part of command string for the given {@code application}'s details.
      */
     public static String getApplicationDetails(Application application) {
-        return PREFIX_COMPANY + application.getCompany().company + " "
-                + PREFIX_CONTACT + application.getContact().value + " "
-                + PREFIX_EMAIL + application.getEmail().value + " "
-                + PREFIX_POSITION + application.getPosition().value + " "
-                + PREFIX_DATE + application.getDate().toCommandString();
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_COMPANY + application.getCompany().company + " ");
+        sb.append(PREFIX_CONTACT + application.getContact().value + " ");
+        sb.append(PREFIX_EMAIL + application.getEmail().value + " ");
+        sb.append(PREFIX_POSITION + application.getPosition().value + " ");
+        sb.append(PREFIX_DATE + application.getDate().toCommandString() + " ");
+        application.getTags().stream().forEach(
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        );
+        return sb.toString();
     }
 
     /**
@@ -43,6 +52,14 @@ public class ApplicationUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getPosition().ifPresent(position -> sb.append(PREFIX_POSITION).append(position.value).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.toCommandString()).append(" "));
+        if (descriptor.getTags().isPresent()) {
+            Set<Tag> tags = descriptor.getTags().get();
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_TAG);
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
         return sb.toString();
     }
 }

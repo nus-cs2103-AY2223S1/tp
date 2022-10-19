@@ -1,7 +1,10 @@
 package seedu.application.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.application.model.application.Application;
@@ -35,6 +38,8 @@ public class ApplicationCard extends UiPart<Region> {
     private Label email;
     @FXML
     private Label date;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates an {@code ApplicationCard} with the given {@code Application} and index to display.
@@ -48,6 +53,9 @@ public class ApplicationCard extends UiPart<Region> {
         position.setText(application.getPosition().value);
         email.setText(application.getEmail().value);
         date.setText(application.getDate().toString());
+        application.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

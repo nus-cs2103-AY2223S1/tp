@@ -1,11 +1,16 @@
 package seedu.application.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.application.model.application.Application;
 import seedu.application.model.application.Company;
 import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.tag.Tag;
+import seedu.application.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Application objects.
@@ -23,6 +28,7 @@ public class ApplicationBuilder {
     private Date date;
     private Email email;
     private Position position;
+    private Set<Tag> tags;
 
     /**
      * Creates an {@code ApplicationBuilder} with the default details.
@@ -33,6 +39,7 @@ public class ApplicationBuilder {
         date = new Date(DEFAULT_DATE);
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
+        tags = new HashSet<>();
     }
 
     /**
@@ -44,6 +51,7 @@ public class ApplicationBuilder {
         date = applicationToCopy.getDate();
         email = applicationToCopy.getEmail();
         position = applicationToCopy.getPosition();
+        tags = new HashSet<>(applicationToCopy.getTags());
     }
 
     /**
@@ -86,8 +94,16 @@ public class ApplicationBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
     public Application build() {
-        return new Application(company, contact, email, position, date);
+        return new Application(company, contact, email, position, date, tags);
     }
 
 }
