@@ -224,6 +224,74 @@ The following activity diagram summarizes what happens in AddressBookParser when
 * **Alternative 2:** Creates a new Address Book.
     * Pros: Does not modify the master address book.
     * Cons: May have performance issues in terms of memory usage.
+  
+### \[Proposed\] Add Assignments feature
+
+#### Proposed Implementation
+
+The proposed Add Assignments feature is facilitated by `AddAssignmentsCommand` and `AddAssignmentsCommandParser`.
+
+This feature allows assignments with weightages to be added to each `Student` in TAB. Weightages are separated from the assignment name with the prefix: `w/`
+
+The `AddAssignmentsCommandParser` parses the user input to check the validity of the Assignment. Then, every `Student` currently listed in TAB will be assigned these Assignments. This is done with the help of the following methods:
+
+* `Student#addAssignment` Adds a single Assignment into the `ArrayList<Assignment>`
+* `Student#setAssignments` Adds every Assignment in the user input into `ArrayList<Assignment>`
+
+Listed below are the possible scenarios as well as the behavior of the feature in each scenario.
+
+Scenario 1: User inputs assignments with weightage that does not add up to 100% 
+
+e.g. `assignments assignments/ Assignment 1 w/50, Finals w/40`
+
+It will be detected that the weightage of the assignments does not add up to 100 and a `CommandException` is thrown
+
+Scenario 2: User inputs assignments with negative weightage
+
+e.g. `assignments assignments/ Assignment 1 w/-50, Midterms w/50, Finals w/100`
+
+It will be detected that a particular assignment has a negative weightage and a `CommandException` is thrown
+
+Given below is an example usage scenario and how the Add Assignments mechanism behaves at each step.
+
+Step 1. The user launches the application. `TAB` will initially display all Persons
+
+![AddAssignmentsDiagram1](images/AddAssignmentsDiagram1.png)
+
+Step 2. The user executes `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/20, Finals w/50`. The `assignments` keyword
+causes `AddressBookParser#parseCommand()` to call `AddAssignmentsCommandParser#parse()`. This returns a `AddAssignmentsCommand`
+
+Step 3. The internals of `AddAssignmentCommand` loops through all the people in the list, checking if they have the position of student
+
+![AddAssignmentsDiagram2](images/AddAssignmentsDiagram2.png)
+
+Step 4. `Assignment` objects will be created according to the user input and added to the `assignmentsList` field in `Student`
+
+The following sequence diagram shows how the AddAssignments operation works:
+
+![AddAssignmentsDiagram3](images/AddAssignmentsDiagram3.png)
+
+The following activity diagram summarizes what happens in AddressBookParser when a user executes a AddAssignment command:
+
+![AddAssignmentsDiagram4](images/AddAssignmentsDiagram4.png)
+
+Design considerations:
+
+Aspect: How AddAssignments executes:
+* Alternative 1: Only adds assignments to indexed student
+  * Pros: Each student can have different assignments
+  * Cons: Will be tedious when there is a large number of students in `TAB`
+* Alternative 2: Save Assignments in a json file to be read so every student added after will be automatically instanciated with those assignments
+  * Pros: Eliminates the need to run AddAssignments command for new students
+  * Cons: Difficulty in implementation
+
+
+
+
+
+
+
+
 
 ### \[Proposed\] Undo/redo feature
 

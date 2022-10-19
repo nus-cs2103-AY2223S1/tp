@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Parse inputs;
+    :Iterates TAB for Students;
+    :Creates Assignment objects and add them to an
+    ArrayList encapsulated in Student;
+else ([else])
+    :Display error;
+endif
+stop
+@enduml
