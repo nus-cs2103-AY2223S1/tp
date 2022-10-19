@@ -44,8 +44,8 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean containsSome(List<Person> toCheck) {
         requireNonNull(toCheck);
-        for (Person person : toCheck) {
-            if (contains(person)) {
+        for (Person personToCheck : toCheck) {
+            if (contains(personToCheck)) {
                 return true;
             }
         }
