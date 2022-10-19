@@ -97,9 +97,9 @@ public class UntagCommandTest {
 
         model.addTag(tag);
 
-        UntagCommand tagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
+        UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
-        assertCommandFailure(tagItemCommand, model, ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
+        assertCommandFailure(untagItemCommand, model, ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
 
     }
 
