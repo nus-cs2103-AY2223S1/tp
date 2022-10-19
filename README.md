@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/AY2223S1-CS2103T-F11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-F11-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-F11-3/tp/branch/master/graph/badge.svg?token=NP1449TKJ1)](https://codecov.io/gh/AY2223S1-CS2103T-F11-3/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/updatedUi.png)
 
 # FinBook
 
