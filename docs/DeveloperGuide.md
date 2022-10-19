@@ -253,7 +253,7 @@ The Add Interest mechanism is facilitated by ```AddInterestCommand```, which ext
     * Cons: Less abstraction as the logic of getting the list and adding to the list has to be handled by ```Person```.
 - **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniquePersonList```)
   * Pros: Greater abstraction as the low-level details of adding, removing and checking the interests are abstracted. Adhering to Single Responsibility Responsibility as the list of interests are handled by the ```UniqueInterestList``` class.
-  * Cons: List of ```Interest``` is often moderately few so the implementation details for Alternative 2 could be result in unnecessary implementation overhead details.
+  * Cons: List of ```Interest``` is often moderately few so Alternative 2 could result in unnecessary implementation overhead complexity.
 
 ### \[Proposed\] Undo/redo feature
 
