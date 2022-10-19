@@ -27,7 +27,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Leave> leaves = new HashSet<>();
     private final int totalNumberOfLeaves;
-    private int leavesLeft;
+    private int leavesLeft = 0;
 
     /**
      * Every field must be present and not null.
@@ -78,6 +78,18 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void addLeave(Leave toAdd) {
+        this.leaves.add(toAdd);
+    }
+
+    public void deleteLeave(Leave toDelete) {
+        this.leaves.remove(toDelete);
+    }
+
+    public Set<Leave> getLeaves() {
+        return Collections.unmodifiableSet(leaves);
+    }
+
     public int getTotalNumberOfLeaves() {
         return this.totalNumberOfLeaves;
     }
@@ -86,7 +98,7 @@ public class Person {
         return this.leavesLeft;
     }
 
-    public void setLeavesLeft(int leavesLeft){
+    public void setLeavesLeft(int leavesLeft) {
         this.leavesLeft = leavesLeft;
     }
     /**
@@ -124,6 +136,7 @@ public class Person {
                 && otherPerson.getPosition().equals(getPosition())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
+                && otherPerson.getLeaves().equals(getLeaves())
                 && otherPerson.getTotalNumberOfLeaves() == getTotalNumberOfLeaves()
                 && otherPerson.getLeavesLeft() == getLeavesLeft();
     }
@@ -131,7 +144,8 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, employeeId, phone, email, position, address, tags, totalNumberOfLeaves);
+        return Objects.hash(name, employeeId, phone, email, position, address, tags,
+                leaves, totalNumberOfLeaves, leavesLeft);
     }
 
     @Override
@@ -158,6 +172,13 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Set<Leave> leaves = getLeaves();
+        if (!leaves.isEmpty()) {
+            builder.append("; Leaves: ");
+            leaves.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

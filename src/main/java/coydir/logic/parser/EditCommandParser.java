@@ -3,6 +3,7 @@ package coydir.logic.parser;
 import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static coydir.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
@@ -34,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_POSITION, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_POSITION, PREFIX_ADDRESS, PREFIX_LEAVE, PREFIX_TAG);
 
         Index index;
 
@@ -55,10 +56,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
-            editPersonDescriptor.setPosition(ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get()));
+            editPersonDescriptor.setPosition(ParserUtil.parsePosition(
+                    argMultimap.getValue(PREFIX_POSITION).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LEAVE).isPresent()) {
+            editPersonDescriptor.setLeaves(Integer.valueOf(ParserUtil.parseId(
+                    argMultimap.getValue(PREFIX_LEAVE).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

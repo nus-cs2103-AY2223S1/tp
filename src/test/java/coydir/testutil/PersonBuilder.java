@@ -143,7 +143,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, employeeId, phone, email, position, address, tags);
+        return new Person(name, employeeId, phone, email, position, address, tags, 14);
     }
 
 }

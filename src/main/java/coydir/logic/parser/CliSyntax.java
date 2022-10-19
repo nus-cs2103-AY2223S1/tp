@@ -12,6 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_POSITION = new Prefix("j/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_LEAVE = new Prefix("l/");
 
     public static final Prefix[] PREFIX_LIST = {
         PREFIX_NAME,
@@ -19,6 +20,7 @@ public class CliSyntax {
         PREFIX_EMAIL,
         PREFIX_POSITION,
         PREFIX_ADDRESS,
+        PREFIX_LEAVE,
         PREFIX_TAG
     };
 }

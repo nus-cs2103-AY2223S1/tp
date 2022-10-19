@@ -103,10 +103,12 @@ public class EditCommand extends Command {
         Position updatedPosition = editPersonDescriptor.getPosition().orElse(personToEdit.getPosition());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        int updatedLeaves = editPersonDescriptor.getLeaves().orElse(personToEdit.getTotalNumberOfLeaves());
         EmployeeId employeeId = personToEdit.getEmployeeId();
 
         return new Person(
-                updatedName, employeeId, updatedPhone, updatedEmail, updatedPosition, updatedAddress, updatedTags);
+                updatedName, employeeId, updatedPhone, updatedEmail,
+                updatedPosition, updatedAddress, updatedTags, updatedLeaves);
     }
 
     @Override
@@ -137,6 +139,7 @@ public class EditCommand extends Command {
         private Email email;
         private Position position;
         private Address address;
+        private int totalNumberofLeaves;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -199,6 +202,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setLeaves(int leaves) {
+            this.totalNumberofLeaves = leaves;
+        }
+
+        public Optional<Integer> getLeaves() {
+            return Optional.ofNullable(totalNumberofLeaves);
         }
 
         /**
