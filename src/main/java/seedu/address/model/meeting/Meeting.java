@@ -101,25 +101,6 @@ public class Meeting implements Comparable<Meeting> {
         this.meetingLocation = location;
     }
 
-    /**
-     * modifies the description of the meeting
-     *
-     * @param description of the meeting
-     */
-    public void editMeetingDescription(String description) {
-        this.meetingDescription = description;
-    }
-
-    // might want to check for parseException earlier tho
-    /**
-     * modifies the date and time of the meeting
-     *
-     * @param dateAndTime of the meeting
-     * @throws ParseException when the dateAndTime is in the wrong format
-     */
-    public void editMeetingDateAndTime(String dateAndTime) throws ParseException, java.text.ParseException {
-        this.meetingDateAndTime = validator.processDateTime(dateAndTime);
-    }
 
     /**
      * Adds the array of persons to the unique persons list
@@ -157,6 +138,10 @@ public class Meeting implements Comparable<Meeting> {
 
     public String getDateAndTime() {
         return this.meetingDateAndTime;
+    }
+
+    public String getNonProcessedDateAndTime() {
+        return DateTimeConverter.processFullDateToLocalDatetime(this.meetingDateAndTime);
     }
 
     public String getDescription() {
