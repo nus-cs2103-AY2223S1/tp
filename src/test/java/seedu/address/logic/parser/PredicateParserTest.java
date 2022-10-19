@@ -11,11 +11,15 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.person.predicates.*;
+import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
 
 public class PredicateParserTest {
     @Test
-    public void parseBuyer_a_addressContainsKeywordsPredicate() {
+    public void parseBuyer_address_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Buyer> expected = new AddressContainsKeywordsPredicate<>(
                 Arrays.asList("Wall Street"));
         try {
@@ -29,7 +33,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseBuyer_e_emailContainsKeywordsPredicate() {
+    public void parseBuyer_email_emailContainsKeywordsPredicate() {
         EmailContainsKeywordsPredicate<Buyer> expected = new EmailContainsKeywordsPredicate<>(
                 Arrays.asList("jane@gmail.com"));
         try {
@@ -43,7 +47,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseBuyer_l_locationContainsKeywordsPredicate() {
+    public void parseBuyer_location_locationContainsKeywordsPredicate() {
         LocationContainsKeywordsPredicate<Buyer> expected = new LocationContainsKeywordsPredicate<>(
                 Arrays.asList("New York"));
         try {
@@ -57,7 +61,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseBuyer_n_nameContainsKeywordsPredicate() {
+    public void parseBuyer_name_nameContainsKeywordsPredicate() {
         NameContainsKeywordsPredicate<Buyer> expected = new NameContainsKeywordsPredicate<>(
                 Arrays.asList("Liz"));
         try {
@@ -71,7 +75,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseBuyer_p_phoneContainsKeywordsPredicate() {
+    public void parseBuyer_phone_phoneContainsKeywordsPredicate() {
         PhoneContainsKeywordsPredicate<Buyer> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
@@ -85,7 +89,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseDeliverer_a_addressContainsKeywordsPredicate() {
+    public void parseDeliverer_addresss_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Deliverer> expected = new AddressContainsKeywordsPredicate<>(
                 Arrays.asList("Wall Street"));
         try {
@@ -99,7 +103,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseDeliverer_e_emailContainsKeywordsPredicate() {
+    public void parseDeliverer_email_emailContainsKeywordsPredicate() {
         EmailContainsKeywordsPredicate<Deliverer> expected = new EmailContainsKeywordsPredicate<>(
                 Arrays.asList("jane@gmail.com"));
         try {
@@ -113,7 +117,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseDeliverer_l_locationContainsKeywordsPredicate() {
+    public void parseDeliverer_location_locationContainsKeywordsPredicate() {
         LocationContainsKeywordsPredicate<Deliverer> expected = new LocationContainsKeywordsPredicate<>(
                 Arrays.asList("New York"));
         try {
@@ -127,7 +131,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseDeliverer_n_nameContainsKeywordsPredicate() {
+    public void parseDeliverer_name_nameContainsKeywordsPredicate() {
         NameContainsKeywordsPredicate<Deliverer> expected = new NameContainsKeywordsPredicate<>(
                 Arrays.asList("Liz"));
         try {
@@ -141,7 +145,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseDeliverer_p_phoneContainsKeywordsPredicate() {
+    public void parseDeliverer_phone_phoneContainsKeywordsPredicate() {
         PhoneContainsKeywordsPredicate<Deliverer> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
@@ -155,7 +159,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseSupplier_a_addressContainsKeywordsPredicate() {
+    public void parseSupplier_address_addressContainsKeywordsPredicate() {
         AddressContainsKeywordsPredicate<Supplier> expected = new AddressContainsKeywordsPredicate<>(
                 Arrays.asList("Wall Street"));
         try {
@@ -169,7 +173,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseSupplier_e_emailContainsKeywordsPredicate() {
+    public void parseSupplier_email_emailContainsKeywordsPredicate() {
         EmailContainsKeywordsPredicate<Supplier> expected = new EmailContainsKeywordsPredicate<>(
                 Arrays.asList("jane@gmail.com"));
         try {
@@ -183,7 +187,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseSupplier_l_locationContainsKeywordsPredicate() {
+    public void parseSupplier_location_locationContainsKeywordsPredicate() {
         LocationContainsKeywordsPredicate<Supplier> expected = new LocationContainsKeywordsPredicate<>(
                 Arrays.asList("New York"));
         try {
@@ -197,7 +201,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseSupplier_n_nameContainsKeywordsPredicate() {
+    public void parseSupplier_name_nameContainsKeywordsPredicate() {
         NameContainsKeywordsPredicate<Supplier> expected = new NameContainsKeywordsPredicate<>(
                 Arrays.asList("Liz"));
         try {
@@ -211,7 +215,7 @@ public class PredicateParserTest {
     }
 
     @Test
-    public void parseSupplier_p_phoneContainsKeywordsPredicate() {
+    public void parseSupplier_phone_phoneContainsKeywordsPredicate() {
         PhoneContainsKeywordsPredicate<Supplier> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {

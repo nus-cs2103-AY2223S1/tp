@@ -1,14 +1,15 @@
 package seedu.address.model.person.predicates;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class AddressContainsKeywordsPredicateTest {
     @Test
@@ -16,8 +17,8 @@ public class AddressContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        AddressContainsKeywordsPredicate firstPredicate = new AddressContainsKeywordsPredicate
-                (firstPredicateKeywordList);
+        AddressContainsKeywordsPredicate firstPredicate = new AddressContainsKeywordsPredicate(
+                firstPredicateKeywordList);
         AddressContainsKeywordsPredicate secondPredicate = new AddressContainsKeywordsPredicate(
                 secondPredicateKeywordList);
 

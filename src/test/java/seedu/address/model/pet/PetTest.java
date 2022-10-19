@@ -1,13 +1,13 @@
 package seedu.address.model.pet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static org.junit.jupiter.api.Assertions.assertFalse;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Objects;
+//import java.util.Objects;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+//import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPets;
 
 public class PetTest {

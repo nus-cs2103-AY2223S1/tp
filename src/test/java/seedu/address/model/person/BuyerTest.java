@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+//import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -13,11 +13,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBuyers.ALICE;
 import static seedu.address.testutil.TypicalBuyers.BOB;
 
-import java.time.LocalDate;
-import java.util.Arrays;
+//import java.time.LocalDate;
+//import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+/*
 import seedu.address.model.order.AdditionalRequests;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Price;
@@ -27,6 +28,7 @@ import seedu.address.model.pet.Age;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
+ */
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 

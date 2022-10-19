@@ -21,14 +21,13 @@ import seedu.address.logic.commands.FilterLocCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindPetCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+//import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalPersonCategories;
 
@@ -42,8 +41,7 @@ public class AddressBookParserTest {
 //        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(buyer));
 //        assertEquals(new AddBuyerCommand(buyer), command);
 //    }
-
-    //Uncomment the test below when AddDelivererCommand is done
+// Uncomment the test below when AddDelivererCommand is done
     /*
     @Test
     public void parseCommand_addDeliverer() throws Exception {
