@@ -3,6 +3,8 @@ package seedu.uninurse.model.condition;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import seedu.uninurse.model.GenericList;
 import seedu.uninurse.model.condition.exceptions.ConditionNotFoundException;
@@ -92,8 +94,20 @@ public class ConditionList implements GenericList<Condition> {
     }
 
     @Override
-    public ArrayList<Condition> getInternalList() {
-        // returns a copy of the internal list to prevent modification to original one
-        return new ArrayList<>(internalConditionList);
+    public List<Condition> getInternalList() {
+        // returns an immutable condition list
+        return Collections.unmodifiableList(internalConditionList);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ConditionList // instanceof handles nulls
+                && internalConditionList.equals(((ConditionList) other).internalConditionList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalConditionList.hashCode();
     }
 }

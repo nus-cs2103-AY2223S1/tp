@@ -4,10 +4,15 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
+import java.util.List;
+
+import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.condition.Condition;
+import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.person.Patient;
 
 /**
  * Add a medical condition to an existing patient in the patient list.
@@ -41,7 +46,23 @@ public class AddConditionCommand extends AddGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        return null;
+        List<Patient> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Patient patientToEdit = lastShownList.get(index.getZeroBased());
+        ConditionList updatedConditionList = patientToEdit.getConditions().add(condition);
+        Patient editedPatient = new Patient(
+                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
+                patientToEdit.getAddress(), patientToEdit.getTasks(), patientToEdit.getTags(),
+                updatedConditionList);
+
+        model.setPerson(patientToEdit, editedPatient);
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition));
     }
 
     @Override

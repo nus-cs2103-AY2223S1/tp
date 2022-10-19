@@ -5,6 +5,7 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.task.TaskList;
 
@@ -16,18 +17,24 @@ import seedu.uninurse.model.task.TaskList;
 public class Patient extends Person {
     // Data fields
     private final TaskList tasks;
+    private final ConditionList conditions;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, TaskList tasks, Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Address address, TaskList tasks, Set<Tag> tags, ConditionList conditions) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(name, phone, email, address, tasks, tags);
+        requireAllNonNull(name, phone, email, address, tasks, tags, conditions);
         this.tasks = tasks;
+        this.conditions = conditions;
     }
 
     public TaskList getTasks() {
         return tasks;
+    }
+
+    public ConditionList getConditions() {
+        return conditions;
     }
 
     /**
@@ -63,13 +70,14 @@ public class Patient extends Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTasks().equals(getTasks())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getConditions().equals(getConditions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(super.hashCode(), tasks);
+        return Objects.hash(super.hashCode(), tasks, conditions);
     }
 
     @Override
