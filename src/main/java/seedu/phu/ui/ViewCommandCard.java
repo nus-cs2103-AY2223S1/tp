@@ -65,7 +65,7 @@ public class ViewCommandCard extends UiPart<Region> {
         email.setText("email: " + internship.getEmail().value);
         position.setText("position: " + internship.getPosition().positionName);
         date.setText("date: " + internship.getDate().toDisplayFormat());
-        website.setText("website: " + internship.getWebsite().value);
+        website.setText(internship.getWebsite().value);
 
         String stateStyleClass = "application_process-" + internship.getApplicationProcess().toString();
         applicationProcess.getStyleClass().add(stateStyleClass);

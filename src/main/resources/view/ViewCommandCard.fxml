@@ -44,11 +44,15 @@
             <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            <Hyperlink fx:id="website" styleClass="cell_small_label" text="\$website" onMouseClicked="#handleWebsite" >
-                <padding>
-                    <Insets bottom="0" left="-1" right="0" top="-1"/>
-                </padding>
-            </Hyperlink>
+            <HBox>
+                <Label fx:id="websiteLabel" styleClass="cell_small_label" text="website: " />
+                <Hyperlink fx:id="website" styleClass="cell_small_label" text="\$website" onMouseClicked="#handleWebsite" >
+                    <padding>
+                        <Insets bottom="0" left="-1" right="0" top="-1"/>
+                    </padding>
+                </Hyperlink>
+            </HBox>
+
             <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
         </VBox>
     </GridPane>
