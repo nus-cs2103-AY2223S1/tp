@@ -33,7 +33,7 @@ class DeleteMessageCommandTest {
     public void execute_messageExist_success() throws Exception {
         DeleteMessageCommandTest.ModelStubAcceptingMessagesAddedAndDeleted
                 modelStub = new DeleteMessageCommandTest.ModelStubAcceptingMessagesAddedAndDeleted();
-        modelStub.addMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
+        modelStub.createMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
 
         List<Message> messagesToRemove = new ArrayList<>();
         messagesToRemove.add(VALID_MESSAGE_HAPPY_BIRTHDAY);
@@ -71,7 +71,7 @@ class DeleteMessageCommandTest {
         }
 
         @Override
-        public void addMessage(Message message) {
+        public void createMessage(Message message) {
             messagesAdded.add(message);
         }
 

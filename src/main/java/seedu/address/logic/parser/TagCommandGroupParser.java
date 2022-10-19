@@ -44,10 +44,14 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
 
         switch (commandSpecifier) {
         case CreateTagCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case CreateTagCommand.COMMAND_SPECIFIER_ALIAS:
             return new CreateTagCommand(parseArgs(argsToPass));
         case DeleteTagCommand.COMMAND_SPECIFIER:
             return new DeleteTagCommand(parseArgs(argsToPass));
         case RemoveTagCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case RemoveTagCommand.COMMAND_SPECIFIER_ALIAS:
             return new RemoveTagCommandParser().parse(String.join(" ", argsToPass));
         default:
             return new TagCommandParser().parse(trimmedArgs);

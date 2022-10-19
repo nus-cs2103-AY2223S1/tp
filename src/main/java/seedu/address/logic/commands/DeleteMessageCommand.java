@@ -17,6 +17,7 @@ import seedu.address.model.message.Message;
 public class DeleteMessageCommand extends MessageCommandGroup {
 
     public static final String COMMAND_SPECIFIER = "delete";
+    public static final String COMMAND_SPECIFIER_ALIAS = "d";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the message. "

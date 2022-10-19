@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 public class FilterClearCommand extends FilterCommand {
 
     public static final String COMMAND_SPECIFIER = "clear";
+    public static final String COMMAND_SPECIFIER_ALIAS = "c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_SPECIFIER
             + ": Removes filter of the specified name and tags (both case-insensitive) \n"

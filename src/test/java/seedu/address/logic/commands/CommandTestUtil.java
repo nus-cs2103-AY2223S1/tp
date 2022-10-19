@@ -278,7 +278,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void addMessage(Message message) {
+        public void createMessage(Message message) {
             throw new AssertionError("This method should not be called.");
         }
 
