@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_NON_EXISTENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,17 +30,20 @@ import seedu.address.testutil.PersonBuilder;
 public class CancelCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
     @Test
     public void execute_validIndexCancel_success() {
-        Person personWithAppt = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personWithAppt).withAppointmentList(new ArrayList<>()).build();
+        Person person = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personWithNoBooking = new PersonBuilder(person).withAppointmentList(new ArrayList<>()).build();
 
-        String expectedCancelMessage = CancelCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS + personWithAppt.getName();
+        CancelCommand cancelCommand = new CancelCommand(INDEX_SECOND_APPOINTMENT);
+        String expectedCancelMessage = String.format(CancelCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
+                INDEX_FIRST_APPOINTMENT.getOneBased())
+                + personWithNoBooking.getName();
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setPerson(personWithAppt, editedPerson);
-        expectedModel.deleteAppointments(personWithAppt.getAppointments());
-        CancelCommand cancelCommand = new CancelCommand(INDEX_SECOND_PERSON, Index.fromOneBased(1));
+        ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.deleteAppointment(expectedModel.getFilteredAppointmentList().get(1));
+
         assertCommandSuccess(cancelCommand, model, expectedCancelMessage, expectedModel);
     }
 
@@ -51,12 +57,8 @@ public class CancelCommandTest {
 
     @Test
     public void execute_invalidAppointmentCancelling_throwsCommandException() {
-        Person personWithoutAppt = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personWithoutAppt).withAppointmentList(new ArrayList<>()).build();
+        CancelCommand cancelCommand = new CancelCommand(INDEX_NON_EXISTENT);
 
-        model.setPerson(personWithoutAppt, editedPerson);
-
-        CancelCommand cancelCommand = new CancelCommand(INDEX_FIRST_PERSON, Index.fromOneBased(1));
         assertCommandFailure(cancelCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
