@@ -57,4 +57,23 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Returns the size of argMultimap.
+     * @return size of argMultimap.
+     */
+    public int getArgMultimapSize() {
+        return argMultimap.size();
+    }
+
+    @Override
+    public String toString() {
+        String string = "";
+        for (Prefix prefix : argMultimap.keySet()) {
+            String key = prefix.toString();
+            String value = argMultimap.get(prefix).toString();
+            string += key + " " + value + "\n";
+        }
+        return string;
+    }
 }
