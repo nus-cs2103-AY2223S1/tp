@@ -86,14 +86,15 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/
+-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `NutriGoalsParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a food).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `NutriGoalsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `NutriGoalsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -141,16 +142,53 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `NutriGoalskStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.nutrigoals.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+
+### Edit feature
+
+#### Implementation
+
+The edit mechanism is facilitated by `EditCommand`, which extends `Command`. It overrides the following operation:
+
+* `EditCommand#execute`: Edits the food name, meal type or calories associated with the food at the specified index.
+
+Given below is an example usage scenario and how edit mechanism behaves at each step.
+
+Step 1. The user launches the application on 19 October 2022. Suppose the food added into the list on 
+19 October 2022 are:
+
+1. bread: 100 calories, breakfast
+2. milk tea: 300 calories, lunch
+2. sushi: 500 calories, lunch
+
+Step 2. The user executes `edit 2 n/honey milk tea c/310`, which calls `LogicManager#execute`. 
+`NutriGoals#parseCommand` is called subsequently, which then creates an `EditCommandParser` object.
+`EditCommandParser#parse` is then called to make sense of the arguments supplied by the user.
+
+Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute`.
+
+Step 4. The `edit` command calls the following methods from `Model`:
+
+1. `setFood(foodToEdit, editedFood)`
+2. `updateFilteredFoodList()`
+
+Step 5. `EditCommand#execute` returns a `CommandResult` with the following result
+displayed:
+
+Edited Food: honey milk tea; Calories: 310 calories; Tag[lunch]
+
+The following diagram illustrates how the edit operation works:
+
+![EditSequenceDiagram](./images/EditSequenceDiagram.png)
 
 This section describes some noteworthy details on how certain features are implemented.
 
