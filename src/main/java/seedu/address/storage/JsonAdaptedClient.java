@@ -17,7 +17,6 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
 import seedu.address.model.tag.Tag;
 
@@ -65,15 +64,15 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
-        if (source.getMeeting() != null) {
-            meetings.add(new JsonAdaptedMeeting(source.getMeeting(), this));
-        }
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        meetings.addAll(source.getMeetings().stream()
+                .map(meeting -> new JsonAdaptedMeeting(meeting, this))
                 .collect(Collectors.toList()));
         products.addAll(source.getProducts().stream()
                 .map(JsonAdaptedProduct::new)
@@ -98,7 +97,7 @@ class JsonAdaptedClient {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Client} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
@@ -107,11 +106,13 @@ class JsonAdaptedClient {
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
         }
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
 
         final List<Product> clientProducts = new ArrayList<>();
         for (JsonAdaptedProduct product : products) {
             clientProducts.add(product.toModelType());
         }
+        final Set<Product> modelProducts = new HashSet<>(clientProducts);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -144,16 +145,15 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        final Set<Tag> modelTags = new HashSet<>(clientTags);
-        final Set<Product> modelProducts = new HashSet<>(clientProducts);
-        if (!meetings.isEmpty()) {
-            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProducts);
-            final Meeting meeting = meetings.get(0).toModelType(client);
-            client.setMeeting(meeting);
-            return client;
-        } else {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProducts);
-        }
-    }
 
+        Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProducts);
+
+        if (meetings.isEmpty()) {
+            return client;
+        }
+        for (JsonAdaptedMeeting meeting : meetings) {
+            client.addMeeting(meeting.toModelType(client));
+        }
+        return client;
+    }
 }
