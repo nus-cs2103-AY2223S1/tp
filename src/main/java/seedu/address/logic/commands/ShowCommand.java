@@ -17,20 +17,20 @@ import seedu.address.model.tuitionclass.TuitionClass;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class ShowCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "show";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the entity identified by the index number used in the displayed current list.\n"
+            + ": Shows the entity identified by the index number used in the displayed current list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ENTITY_SUCCESS = "Deleted Entity: %1$s";
+    public static final String MESSAGE_DELETE_ENTITY_SUCCESS = "Showing Entity: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public ShowCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -48,22 +48,19 @@ public class DeleteCommand extends Command {
             switch (type) {
             case STUDENT_LIST:
                 lastShownStudentList = model.getFilteredStudentList();
-                Student studentToDelete = lastShownStudentList.get(targetIndex.getZeroBased());
-                model.deletePerson(studentToDelete);
-                entityInformation = studentToDelete.toString();
+                Student studentToShow = lastShownStudentList.get(targetIndex.getZeroBased());
+                entityInformation = studentToShow.toString();
                 break;
             case TUTOR_LIST:
                 lastShownTutorList = model.getFilteredTutorList();
-                Tutor tutorToDelete = lastShownTutorList.get(targetIndex.getZeroBased());
-                model.deletePerson(tutorToDelete);
-                entityInformation = tutorToDelete.toString();
+                Tutor tutorToShow = lastShownTutorList.get(targetIndex.getZeroBased());
+                entityInformation = tutorToShow.toString();
                 break;
             default:
                 assert (type == ListType.TUITIONCLASS_LIST);
                 lastShownTuitionClassList = model.getFilteredTuitionClassList();
-                TuitionClass tuitionClassToDelete = lastShownTuitionClassList.get(targetIndex.getZeroBased());
-                model.deleteTuitionClass(tuitionClassToDelete);
-                entityInformation = tuitionClassToDelete.toString();
+                TuitionClass tuitionClassToShow = lastShownTuitionClassList.get(targetIndex.getZeroBased());
+                entityInformation = tuitionClassToShow.toString();
                 break;
             }
         } catch (IndexOutOfBoundsException e) {
@@ -76,7 +73,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof ShowCommand // instanceof handles nulls
+                && targetIndex.equals(((ShowCommand) other).targetIndex)); // state check
     }
 }

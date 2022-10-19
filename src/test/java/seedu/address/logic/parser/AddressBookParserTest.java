@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
+import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -70,6 +71,13 @@ public class AddressBookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), listType);
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_show() throws Exception {
+        ShowCommand command = (ShowCommand) parser.parseCommand(
+                ShowCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), listType);
+        assertEquals(new ShowCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
