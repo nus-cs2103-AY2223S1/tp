@@ -8,6 +8,7 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.workbook.model.internship.DateTime.EMPTY_DATETIME;
+import static seedu.workbook.model.internship.Email.EMPTY_EMAIL;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -37,14 +38,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_ROLE,
                 PREFIX_EMAIL, PREFIX_STAGE, PREFIX_DATETIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_EMAIL, PREFIX_STAGE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_STAGE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Email email = argMultimap.getValue(PREFIX_EMAIL).isPresent()
+                ? ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())
+                : EMPTY_EMAIL;
         Stage stage = ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get());
         // todo extract method out to parse optional and parse mandatory
         DateTime dateTime = argMultimap.getValue(PREFIX_DATETIME).isPresent()
