@@ -51,8 +51,8 @@ The `help` feature provides a user with instructions of how to use certain comma
 #### How the `help` command works
 1. The user specifies a specific command that they need help with. This is done using the word needed to execute a particular command in FoodRem.
 2. If this is not provided, a general help message will be shown.
-4. The provided command is cross-referenced with all available commands in FoodRem. If the command that the user needs help with does not exist, an error would be thrown. This informs the user that the command does not exist. A general help is also shown to the user.
-5. The help is shown in a new window that will open upon successful execution of the command.
+3. The provided command is cross-referenced with all available commands in FoodRem. If the command that the user needs help with does not exist, an error would be thrown. This informs the user that the command does not exist. A general help is also shown to the user.
+4. The help is shown in a new window that will open upon successful execution of the command.
 
 #### Why it is implemented this way
 When the `HelpCommand` is executed we want users to receive help immediately instead of searching for it the user guide.
