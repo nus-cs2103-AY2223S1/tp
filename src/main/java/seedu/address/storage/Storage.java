@@ -39,17 +39,17 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
     /**
      * Saves the given {@link ObservableList} as a JSON file to the storage at filePathString.
-     * @param shownList cannot be null.
+     * @param displayedList cannot be null.
      * @param filePathString cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    static void saveShownList(ObservableList<Person> shownList, String filePathString) throws IOException {
-        requireNonNull(shownList);
+    static void saveDisplayedList(ObservableList<Person> displayedList, String filePathString) throws IOException {
+        requireNonNull(displayedList);
         requireNonNull(filePathString);
 
         Path filePath = Paths.get(filePathString);
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(shownList.stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()), filePath);
+        JsonUtil.saveJsonFile(displayedList.stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()), filePath);
     };
 
 }

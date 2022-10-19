@@ -12,14 +12,14 @@ import seedu.address.model.UserPrefs;
 public class ExportCommandTest {
 
     @Test
-    public void execute_emptyShownList_success() {
+    public void execute_emptyDisplayedList_success() {
         Model model = new ModelManager();
 
         assertDoesNotThrow(() -> new ExportCommand().execute(model));
     }
 
     @Test
-    public void execute_nonEmptyShownList_success() {
+    public void execute_nonEmptyDisplayedList_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
         assertDoesNotThrow(() -> new ExportCommand().execute(model));

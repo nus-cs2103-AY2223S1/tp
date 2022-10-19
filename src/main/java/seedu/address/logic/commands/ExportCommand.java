@@ -13,13 +13,13 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
- * Exports the shown list to a JSON file.
+ * Exports the displayed list to a JSON file.
  */
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_SUCCESS = "Shown list exported to %1$s";
+    public static final String MESSAGE_SUCCESS = "Displayed list exported to %1$s";
 
     private final String exportDirectory = "data/export/";
 
@@ -32,10 +32,10 @@ public class ExportCommand extends Command {
         String currDateTimeString = currDateTime.format(formatter);
         String filePath = exportDirectory + currDateTimeString + ".json";
 
-        ObservableList<Person> shownList = model.getFilteredPersonList();
+        ObservableList<Person> displayedList = model.getFilteredPersonList();
 
         try {
-            Storage.saveShownList(shownList, filePath);
+            Storage.saveDisplayedList(displayedList, filePath);
         } catch (IOException ioe) {
             throw new CommandException("An error has occurred during exporting. Please try again.");
         }
