@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -66,7 +66,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         priceRange = source.getPriceRange().map(PriceRange::toString).orElse("");
         desiredCharacteristics = source.getDesiredCharacteristics()
-                .map(DesiredCharacteristics::toString)
+                .map(Characteristics::toString)
                 .orElse("");
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -127,18 +127,18 @@ class JsonAdaptedPerson {
 
         if (desiredCharacteristics == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DesiredCharacteristics.class.getSimpleName()));
+                    Characteristics.class.getSimpleName()));
         }
         if (!desiredCharacteristics.isEmpty()
-                && !DesiredCharacteristics.isValidDesiredCharacteristics(desiredCharacteristics)) {
-            throw new IllegalValueException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
+                && !Characteristics.isValidCharacteristics(desiredCharacteristics)) {
+            throw new IllegalValueException(Characteristics.MESSAGE_CONSTRAINTS);
         }
-        final DesiredCharacteristics modelDesiredCharacteristics = desiredCharacteristics.isEmpty()
+        final Characteristics modelCharacteristics = desiredCharacteristics.isEmpty()
                 ? null
-                : new DesiredCharacteristics(desiredCharacteristics);
+                : new Characteristics(desiredCharacteristics);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelPriceRange, modelDesiredCharacteristics, modelTags);
+                modelPriceRange, modelCharacteristics, modelTags);
     }
 }

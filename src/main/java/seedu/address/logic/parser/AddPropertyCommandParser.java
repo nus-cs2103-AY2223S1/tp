@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -13,6 +14,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
@@ -32,7 +34,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
     public AddPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS,
-                        PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_SELLER);
+                        PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_SELLER, PREFIX_CHARACTERISTICS);
 
         if (!arePrefixesPresent(
                 argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_SELLER)
@@ -47,7 +49,12 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String seller = ParserUtil.parseSellerName(argMultimap.getValue(PREFIX_SELLER).get());
 
-        Property property = new Property(propertyName, price, address, description, tagList, seller);
+        Characteristics characteristics = null;
+        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
+            characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
+        }
+
+        Property property = new Property(propertyName, price, address, description, tagList, seller, characteristics);
 
         return new AddPropertyCommand(property);
     }

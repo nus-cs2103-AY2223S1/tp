@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -87,7 +87,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code DesiredCharacteristics} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withDesiredCharacteristics(String desiredCharacteristics) {
-        descriptor.setDesiredCharacteristics(new DesiredCharacteristics(desiredCharacteristics));
+        descriptor.setDesiredCharacteristics(new Characteristics(desiredCharacteristics));
         return this;
     }
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 
 /**
  * Tests that a given {@code Person}'s {@code DesiredCharacteristics} contains the given characteristic.
@@ -30,7 +30,7 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
         if (p.getDesiredCharacteristics().isEmpty()) {
             return true;
         }
-        DesiredCharacteristics dc = p.getDesiredCharacteristics().get();
+        Characteristics dc = p.getDesiredCharacteristics().get();
         return Arrays.stream(givenCharacteristics).anyMatch(dc::containsCharacteristic);
     }
 

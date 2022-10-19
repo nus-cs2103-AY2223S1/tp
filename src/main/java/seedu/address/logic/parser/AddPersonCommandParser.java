@@ -14,7 +14,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -55,7 +55,7 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
             priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
         }
 
-        DesiredCharacteristics characteristics = null;
+        Characteristics characteristics = null;
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }

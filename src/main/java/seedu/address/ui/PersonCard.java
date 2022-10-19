@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Person;
 import seedu.address.model.pricerange.PriceRange;
 
@@ -66,8 +66,8 @@ public class PersonCard extends UiPart<Region> {
         priceRange.setText("Budget: " + person.getPriceRange()
                 .map(PriceRange::toString).orElse("Not Specified"));
         desiredCharacteristics.setText("Desired Characteristics: " + person
-                .getDesiredCharacteristics().map(DesiredCharacteristics::toString)
-                .orElse("Desired Characteristics: Not Specified"));
+                .getDesiredCharacteristics().map(Characteristics::toString)
+                .orElse("Not Specified"));
     }
 
     @Override

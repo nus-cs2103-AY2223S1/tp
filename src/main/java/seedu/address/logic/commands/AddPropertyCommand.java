@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -25,7 +26,9 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + " PRICE "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
-            + "[" + PREFIX_TAG + " TAG]...\n"
+            + PREFIX_SELLER + " SELLER "
+            + "[" + PREFIX_TAG + " TAG]..."
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Clementi Ave 2 Second Floor Flat "
             + PREFIX_PRICE + " 500000 "
@@ -33,7 +36,8 @@ public class AddPropertyCommand extends Command {
             + PREFIX_DESCRIPTION + " ready to be bought "
             + PREFIX_SELLER + " John "
             + PREFIX_TAG + " condo "
-            + PREFIX_TAG + " lowfloor ";
+            + PREFIX_TAG + " lowfloor "
+            + PREFIX_CHARACTERISTICS + " 5-Room; Near School";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book";

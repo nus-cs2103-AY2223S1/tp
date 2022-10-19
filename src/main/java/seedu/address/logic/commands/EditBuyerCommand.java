@@ -22,7 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -106,13 +106,13 @@ public class EditBuyerCommand extends Command {
         PriceRange updatedPriceRange = editPersonDescriptor
                 .getPriceRange()
                 .orElse(personToEdit.getPriceRange().orElse(null));
-        DesiredCharacteristics updatedDesiredCharacteristics = editPersonDescriptor
+        Characteristics updatedCharacteristics = editPersonDescriptor
                 .getDesiredCharacteristics()
                 .orElse(personToEdit.getDesiredCharacteristics().orElse(null));
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedPriceRange, updatedDesiredCharacteristics, updatedTags);
+                updatedPriceRange, updatedCharacteristics, updatedTags);
 
         return newPerson;
     }
@@ -145,7 +145,7 @@ public class EditBuyerCommand extends Command {
         private Email email;
         private Address address;
         private PriceRange priceRange;
-        private DesiredCharacteristics desiredCharacteristics;
+        private Characteristics characteristics;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -160,7 +160,7 @@ public class EditBuyerCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setPriceRange(toCopy.priceRange);
-            setDesiredCharacteristics(toCopy.desiredCharacteristics);
+            setDesiredCharacteristics(toCopy.characteristics);
             setTags(toCopy.tags);
         }
 
@@ -168,7 +168,7 @@ public class EditBuyerCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, priceRange, desiredCharacteristics, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, priceRange, characteristics, tags);
         }
 
         public void setName(Name name) {
@@ -211,12 +211,12 @@ public class EditBuyerCommand extends Command {
             return Optional.ofNullable(priceRange);
         }
 
-        public void setDesiredCharacteristics(DesiredCharacteristics desiredCharacteristics) {
-            this.desiredCharacteristics = desiredCharacteristics;
+        public void setDesiredCharacteristics(Characteristics characteristics) {
+            this.characteristics = characteristics;
         }
 
-        public Optional<DesiredCharacteristics> getDesiredCharacteristics() {
-            return Optional.ofNullable(desiredCharacteristics);
+        public Optional<Characteristics> getDesiredCharacteristics() {
+            return Optional.ofNullable(characteristics);
         }
 
         /**

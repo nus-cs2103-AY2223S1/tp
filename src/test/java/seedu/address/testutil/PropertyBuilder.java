@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
@@ -29,6 +30,7 @@ public class PropertyBuilder {
     private Description description;
     private Set<Tag> tags;
     private String seller;
+    private Characteristics characteristics;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PropertyBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         seller = DEFAULT_SELLER;
+        characteristics = null;
     }
 
     /**
@@ -52,6 +55,7 @@ public class PropertyBuilder {
         address = propertyToCopy.getAddress();
         tags = new HashSet<>(propertyToCopy.getTags());
         seller = propertyToCopy.getSeller();
+        characteristics = propertyToCopy.getCharacteristics().orElse(null);
     }
 
     /**
@@ -102,7 +106,23 @@ public class PropertyBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code characteristics} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withCharacteristics(String characteristics) {
+        this.characteristics = new Characteristics(characteristics);
+        return this;
+    }
+
+    /**
+     * Removes the {@code characteristics} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withNoCharacteristics() {
+        this.characteristics = null;
+        return this;
+    }
+
     public Property build() {
-        return new Property(name, price, address, description, tags, seller);
+        return new Property(name, price, address, description, tags, seller, characteristics);
     }
 }

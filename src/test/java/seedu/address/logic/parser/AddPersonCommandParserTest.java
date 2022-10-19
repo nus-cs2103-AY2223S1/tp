@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.model.address.Address;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -163,7 +163,7 @@ public class AddPersonCommandParserTest {
         // invalid desired characteristics
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + PRICE_RANGE_DESC_BOB + INVALID_DESIRED_CHARACTERISTICS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, DesiredCharacteristics.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Characteristics.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
