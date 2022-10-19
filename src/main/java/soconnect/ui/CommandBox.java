@@ -79,23 +79,15 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                String searchValue = commandTextField.getText();
+                String commandText = commandTextField.getText();
 
-                // Only show autocomplete field for find command.
-                if (!searchValue.startsWith(autocomplete.AUTOCOMPLETE_COMMAND_WORD)) {
+                List<String> autocompleteEntries = autocomplete.getAutocompleteEntries(commandText);
+                if (autocompleteEntries.isEmpty()) {
                     autocompletePopup.hide();
                 } else {
-                    String namePrefix = searchValue.substring(autocomplete.AUTOCOMPLETE_COMMAND_WORD.length());
-                    // Get the list of names that matches the namePrefix.
-                    List<String> searchResult = autocomplete.getAutocompleteEntries(namePrefix);
-                    if (searchResult.size() == 0) {
-                        autocompletePopup.hide();
-                    }
-                    // Build the autocomplete dropdown menu
-                    populatePopup(searchResult);
+                    populatePopup(autocompleteEntries);
                     if (!autocompletePopup.isShowing()) {
                         autocompletePopup.show(commandTextField, Side.BOTTOM, 0, 0);
-
                     }
                 }
             }
@@ -103,22 +95,22 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Generates a list of autocomplete entries with the given search result.
+     * Generates a list of autocomplete entries in the {@code contextMenu}.
      * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
      *
-     * @param searchResult The list of matching strings.
+     * @param autocompleteEntries The list of matching strings.
      */
-    private void populatePopup(List<String> searchResult) {
+    private void populatePopup(List<String> autocompleteEntries) {
         List<CustomMenuItem> menuItems = new LinkedList<>();
-        for (int i = 0; i < searchResult.size(); i++) {
-            final String result = autocomplete.AUTOCOMPLETE_COMMAND_WORD + searchResult.get(i);
-            Label entryLabel = new Label(result);
+        for (String autocompleteEntry : autocompleteEntries) {
+            System.out.println("entry: " + autocompleteEntry);
+            Label entryLabel = new Label(autocompleteEntry);
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             // Whenever an item is selected, set text field to the selected text, execute the command and close pop up.
             item.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    commandTextField.setText(result);
+                    commandTextField.setText(autocompleteEntry);
                     handleCommandEntered();
                     autocompletePopup.hide();
                 }

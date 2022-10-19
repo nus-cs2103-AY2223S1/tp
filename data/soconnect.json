@@ -35,6 +35,12 @@
     "email" : "royb@example.com",
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "tagged" : [ "colleagues" ]
+  }, {
+    "name" : "aaa",
+    "phone" : "12345678",
+    "email" : "aaa@gmail.com",
+    "address" : "asdas",
+    "tagged" : [ ]
   } ],
   "tags" : [ "colleagues", "friends", "classmates", "family" ]
 }

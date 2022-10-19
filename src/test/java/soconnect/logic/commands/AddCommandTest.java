@@ -202,11 +202,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public TreeSet<String> getUniqueNames() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addTodo(Todo todo) {
             throw new AssertionError("This method should not be called.");
         }

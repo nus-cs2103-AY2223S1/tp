@@ -103,6 +103,25 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} starts with the give {@code subString}, this ignores case.
+     *   <br>examples:<pre>
+     *       containsWordIgnoreCase("ABc def", "ab") == true
+     *       containsWordIgnoreCase("ABc def", "Bc") == false
+     *       containsWordIgnoreCase("ABc def", "de") == false
+     *       </pre>
+     *
+     * @param sentence Cannot be null.
+     * @param subString Cannot be null, cannot be empty.
+     */
+    public static boolean startWithIgnoreCase(String sentence, String subString) {
+        requireAllNonNull(sentence, subString);
+
+        String preppedSubString = subString.trim();
+        checkArgument(!subString.isEmpty());
+        return sentence.toLowerCase().startsWith(preppedSubString);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
