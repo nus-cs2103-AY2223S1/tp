@@ -3,6 +3,7 @@ package seedu.uninurse.model.medication;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.uninurse.model.GenericList;
@@ -92,7 +93,36 @@ public class MedicationList implements GenericList<Medication> {
 
     @Override
     public List<Medication> getInternalList() {
-        // returns a copy of the internal list to prevent modification to original one
-        return new ArrayList<>(internalMedicationList);
+        return Collections.unmodifiableList(internalMedicationList);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        internalMedicationList.forEach(m -> {
+            int index = internalMedicationList.indexOf(m);
+            if (index == 0) {
+                builder.append(index + 1)
+                        .append(". ")
+                        .append(m);
+            } else {
+                builder.append("\n")
+                        .append(index + 1)
+                        .append(m);
+            }
+        });
+        return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MedicationList // instanceof handles nulls
+                && internalMedicationList.equals(((MedicationList) other).internalMedicationList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalMedicationList.hashCode();
     }
 }
