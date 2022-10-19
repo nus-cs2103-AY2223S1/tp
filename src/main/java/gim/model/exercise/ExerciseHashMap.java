@@ -39,24 +39,14 @@ public class ExerciseHashMap {
      */
     public Exercise add(Exercise toAdd) {
         requireNonNull(toAdd);
-        Name storedName = toAdd.getName();
+        Name toStoreName = toAdd.getName();
         if (!contains(toAdd)) {
             exerciseHashMap.put(toAdd.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
         } else {
-            for (Name key : exerciseHashMap.keySet()) { // Store exercise with name of first exercise instance
-                if (storedName.equals(key)) {
-                    storedName = key;
-                    break;
-                }
-            }
+            toStoreName = getHashmapKey(toStoreName);
         }
-        toAdd = new Exercise(storedName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
-        exerciseHashMap.get(storedName).add(toAdd); // add Exercise to arraylist
-        //        for (Name name: exerciseHashMap.keySet()) {
-        //            String key = name.toString();
-        //            String value = exerciseHashMap.get(name).toString();
-        //            System.out.println(key + " " + value);
-        //        }
+        toAdd = new Exercise(toStoreName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
+        exerciseHashMap.get(toStoreName).add(toAdd); // add Exercise to arraylist
         return toAdd;
     }
 
@@ -76,32 +66,39 @@ public class ExerciseHashMap {
         }
     }
 
-    //    public void setExercises(ExerciseList replacement) {
-    //        requireNonNull(replacement);
-    //        exerciseHashMap = replacement.getHashMap();
-    //    }
-
     /**
      * Replaces the contents of this List and exerciseHashMap with {@code exercises}.
      */
     public void setExercises(List<Exercise> exercises) {
         requireAllNonNull(exercises);
-        //        exerciseHashMap = new HashMap<>();
-        for (Exercise e : exercises) {
-            Name storedName = e.getName();
-            if (!contains(e)) {
-                exerciseHashMap.put(e.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
+        for (Exercise exercise : exercises) {
+            Name toStoreName = exercise.getName();
+            if (!contains(exercise)) {
+                exerciseHashMap.put(exercise.getName(),
+                        new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
             } else {
-                for (Name key : exerciseHashMap.keySet()) { // Store exercise with name of first exercise instance
-                    if (storedName.equals(key)) {
-                        storedName = key;
-                        break;
-                    }
-                }
+                toStoreName = getHashmapKey(toStoreName);
             }
-            e = new Exercise(storedName, e.getWeight(), e.getSets(), e.getReps(), e.getDate());
-            exerciseHashMap.get(storedName).add(e); // add Exercise to arraylist
+            exercise = new Exercise(toStoreName, exercise.getWeight(), exercise.getSets(),
+                    exercise.getReps(), exercise.getDate());
+            exerciseHashMap.get(toStoreName).add(exercise); // add Exercise to arraylist
         }
+    }
+
+    /**
+     * Retrieve Name of first Exercise instance (Key of exerciseHashMap)
+     * @param toStoreName Name of current Exercise
+     * @return Returns the Name of the first Exercise instance
+     */
+    public Name getHashmapKey(Name toStoreName) {
+        Name returnName = toStoreName;
+        for (Name key: exerciseHashMap.keySet()) {
+            if (toStoreName.equals(key)) {
+                returnName = key;
+                break;
+            }
+        }
+        return returnName;
     }
 
     @Override
