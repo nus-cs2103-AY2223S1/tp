@@ -240,18 +240,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Creating a buyer
 
-The Person class represents a Buyer with buyer-specific fields. Price Range and Characteristics denote his budget and requirements for the property respectively. 
+The `Person` class represents a buyer with buyer-specific fields. `Price Range` and `Characteristics` denote his budget and requirements for the property respectively. 
 
-These two fields are both optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the priceRange and desiredCharacteristics field of a buyer may be null. Hence, they have both been implemented using Optional<>. 
+These two fields are both optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`. 
 
-This is the class diagram of a Person. 
+This is the class diagram of a `Person`. 
 
 ![PersonClassDiagram](images/PersonClassDiagram.png)
 
-The structure for executing an addbuyer command follows the flow as mentioned in the “Logic component” section of this guide. 
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide. 
 
 Design considerations: 
 No duplicate persons can be added to the list. This means that no two persons with the same name can exist. We considered using not only name but also contact number to identify a person, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
