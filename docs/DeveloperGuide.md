@@ -154,6 +154,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Proposed Implementation
+The proposed find mechanism is implemented mainly using the help of `ContainsKeywordPredicate`
+It implements `Predicate<Internship>` where the test method checks if the data in a certain category
+of the Internship matches any of the specified keywords.
+
+The predicate is used in the Model interface on the `updateFilteredInternshipList` method
+
+The following sequence diagram shows how the find command works.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+#### Design Considerations
+**How to filter the Internships**:
+* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current))
+  * Pros: Simple, Better cohesion, more maintainability
+  * Cons: More code to write
+
+**How to keep track of the list of `Keyword`**:
+* **Alternative 1**: Use a new class called `KeywordList` (current)
+  * Pros: Improved flexibility and maintability
+  * Cons: More methods to implement
+
+* **Alternative 2** Use `java.util.Set`:
+  * Pros: Easier to implement
+  * Cons: Lower maintainability
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
