@@ -91,13 +91,11 @@ public class EditCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        boolean isEditingClass = !editPersonDescriptor.getAClass().get().classDateTime.equals("");
 
-        ClassStorage.saveClass(editedPerson, index.getOneBased());
-        if (isEditingClass) {
+        if (!editPersonDescriptor.hasEmptyClass()) {
+            ClassStorage.saveClass(editedPerson, index.getOneBased());
             ClassStorage.removeExistingClass(personToEdit);
-        }
-        if (!isEditingClass && !personToEdit.getAClass().classDateTime.equals("")) {
+        } else if (!personToEdit.hasEmptyClass()) {
             editedPerson.setClass(personToEdit.getAClass());
             editedPerson.setDisplayClass(personToEdit.getDisplayedClass());
         }
@@ -252,6 +250,7 @@ public class EditCommand extends Command {
         public Optional<Class> getAClass() {
             return Optional.ofNullable(aClass);
         }
+
         public void setMoneyOwed(Money moneyOwed) {
             this.moneyOwed = moneyOwed;
         }
@@ -295,10 +294,19 @@ public class EditCommand extends Command {
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * @return {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Checks if class is empty.
+         *
+         * @return true if class is empty.
+         */
+        public boolean hasEmptyClass() {
+            return getAClass().get().isEmpty();
         }
 
         @Override

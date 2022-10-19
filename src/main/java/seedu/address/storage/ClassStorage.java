@@ -9,18 +9,18 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.TeachersPet;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
 
 /**
- * Manages storage of AddressBook class data.
+ * Manages storage of TeachersPet class data.
  */
 public class ClassStorage {
 
     private static HashMap<LocalDate, List<Person>> classes;
-    private static AddressBook addressBook;
+    private static TeachersPet teachersPet;
     private static Model model;
 
     /**
@@ -30,7 +30,7 @@ public class ClassStorage {
      */
     public ClassStorage(Model model) {
         this.model = model;
-        this.addressBook = (AddressBook) model.getAddressBook();
+        this.teachersPet = (TeachersPet) model.getTeachersPet();
         this.classes = initialiseClass();
     }
 
@@ -41,10 +41,10 @@ public class ClassStorage {
      */
     public HashMap<LocalDate, List<Person>> initialiseClass() {
         HashMap<LocalDate, List<Person>> map = new HashMap<>();
-        ObservableList<Person> listOfPersons = addressBook.getPersonList();
+        ObservableList<Person> listOfPersons = teachersPet.getPersonList();
         for (Person person : listOfPersons) {
             Class classOfPerson = person.getAClass();
-            if (!classOfPerson.classDateTime.equals("")) {
+            if (!classOfPerson.isEmpty()) {
                 if (!map.containsKey(classOfPerson.date)) {
                     List<Person> newListOfPersons = new ArrayList<>();
                     newListOfPersons.add(person);
@@ -114,7 +114,7 @@ public class ClassStorage {
      * @param personToEdit Person object.
      */
     public static void removeExistingClass(Person personToEdit) {
-        if (!personToEdit.getAClass().classDateTime.equals("")) {
+        if (!personToEdit.hasEmptyClass()) {
             LocalDate date = personToEdit.getAClass().date;
             // Removes the pre-existing class from storage to prevent future conflicts
             ClassStorage.classes.get(date).remove(personToEdit);

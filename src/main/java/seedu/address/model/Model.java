@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTeachersPetFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTeachersPetFilePath(Path teachersPetFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces teacher's pet data with the data in {@code teachersPet}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTeachersPet(ReadOnlyTeachersPet teachersPet);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TeachersPet */
+    ReadOnlyTeachersPet getTeachersPet();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
