@@ -1,7 +1,11 @@
 package tracko.storage;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +16,7 @@ import tracko.model.items.Item;
 import tracko.model.items.ItemName;
 import tracko.model.items.Price;
 import tracko.model.items.Quantity;
+import tracko.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -24,6 +29,7 @@ public class JsonAdaptedItem {
     private final String description;
     private final BigDecimal sellPrice;
     private final BigDecimal costPrice;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
@@ -32,12 +38,16 @@ public class JsonAdaptedItem {
     public JsonAdaptedItem(@JsonProperty("itemName") String itemName, @JsonProperty("quantity") Integer quantity,
                            @JsonProperty("description") String description,
                            @JsonProperty("sellPrice") BigDecimal sellPrice,
-                           @JsonProperty("costPrice") BigDecimal costPrice) {
+                           @JsonProperty("costPrice") BigDecimal costPrice,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.description = description;
         this.sellPrice = sellPrice;
         this.costPrice = costPrice;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -49,6 +59,9 @@ public class JsonAdaptedItem {
         description = source.getDescription().value;
         sellPrice = source.getSellPrice().price;
         costPrice = source.getCostPrice().price;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -57,6 +70,10 @@ public class JsonAdaptedItem {
      * @throws IllegalValueException if there were any data constraints violated in the adapted item.
      */
     public Item toModelType() throws IllegalValueException {
+        final List<Tag> itemTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            itemTags.add(tag.toModelType());
+        }
 
         // item name checks
         if (itemName == null) {
@@ -108,7 +125,9 @@ public class JsonAdaptedItem {
         }
         final Price modelCostPrice = new Price(costPrice);
 
-        return new Item(modelItemName, modelDescription, modelQuantity, new HashSet<>(),
+        final Set<Tag> modelTags = new HashSet<>(itemTags);
+
+        return new Item(modelItemName, modelDescription, modelQuantity, modelTags,
                 modelSellPrice, modelCostPrice);
     }
 }
