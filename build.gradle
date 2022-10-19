@@ -67,6 +67,10 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.5.1"
+    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
 }
 
 shadowJar {
