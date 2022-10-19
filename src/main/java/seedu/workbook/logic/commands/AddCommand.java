@@ -23,16 +23,16 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_COMPANY + "COMPANY "
             + PREFIX_ROLE + "ROLE "
-            + PREFIX_EMAIL + "EMAIL "
             + PREFIX_STAGE + "STAGE "
             + "[" + PREFIX_DATETIME + "DATE AND TIME] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "Meta "
             + PREFIX_ROLE + "Software Engineer "
-            + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_STAGE + "Interview "
             + PREFIX_DATETIME + "10-Dec-2022 12:10 "
+            + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

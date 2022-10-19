@@ -41,9 +41,9 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_ROLE + "ROLE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STAGE + "STAGE] "
             + "[" + PREFIX_DATETIME + "DATE AND TIME] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com";

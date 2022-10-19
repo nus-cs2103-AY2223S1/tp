@@ -15,8 +15,9 @@ import seedu.workbook.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String ADD_COMMAND = "add c/COMPANY r/ROLE d/YYYY-MM-DD e/EMAIL [t/TAG]…";
-    public static final String EDIT_COMMAND = "edit INDEX [c/COMPANY] [r/ROLE] [d/YYYY-MM-DD] [e/EMAIL] [t/TAG]";
+    public static final String ADD_COMMAND = "add c/COMPANY r/ROLE s/STAGE [d/YYYY-MMM-DD] [e/EMAIL] [t/TAG]…";
+    public static final String EDIT_COMMAND = "edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/YYYY-MMM-DD] [e/EMAIL] "
+            + "[t/TAG]";
     public static final String DELETE_COMMAND = "delete INDEX";
     public static final String CLEAR_COMMAND = "clear";
     public static final String EXIT_COMMAND = "exit";
