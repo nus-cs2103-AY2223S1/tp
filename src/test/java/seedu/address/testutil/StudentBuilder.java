@@ -7,7 +7,6 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.ParentName;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -28,7 +27,7 @@ public class StudentBuilder {
     private Name studentName;
     private Id id;
     private Class className;
-    private ParentName parentName;
+    private Name parentName;
     private Phone phone;
     private Email email;
     private Set<Tag> tags;
@@ -40,7 +39,7 @@ public class StudentBuilder {
         studentName = new Name(DEFAULT_STUDENT_NAME);
         id = new Id(DEFAULT_ID);
         className = new Class(DEFAULT_CLASS);
-        parentName = new ParentName(DEFAULT_PARENT_NAME);
+        parentName = new Name(DEFAULT_PARENT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
@@ -60,7 +59,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the parent {@code Name} of the {@code Student} that we are building.
+     * Sets the student name {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withStudentName(String name) {
         this.studentName = new Name(name);
@@ -68,10 +67,14 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the student {@code Name} of the {@code Student} that we are building.
+     * Sets the parent name {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withParentName(String name) {
-        this.parentName = new ParentName(name);
+        if (name == "") {
+            this.parentName = new Name();
+        } else {
+            this.parentName = new Name(name);
+        }
         return this;
     }
 
@@ -87,7 +90,11 @@ public class StudentBuilder {
      * Sets the {@code Email} of the {@code Student} that we are building.
      */
     public StudentBuilder withEmail(String email) {
-        this.email = new Email(email);
+        if (email == "") {
+            this.email = new Email();
+        } else {
+            this.email = new Email(email);
+        }
         return this;
     }
 
@@ -95,7 +102,11 @@ public class StudentBuilder {
      * Sets the {@code Phone} of the {@code Student} that we are building.
      */
     public StudentBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        if (phone == "") {
+            this.phone = new Phone();
+        } else {
+            this.phone = new Phone(phone);
+        }
         return this;
     }
 

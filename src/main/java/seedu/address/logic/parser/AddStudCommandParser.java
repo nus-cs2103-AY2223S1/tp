@@ -48,17 +48,17 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
         Phone phone;
         Name parentName;
         Email email;
-        if(argMultimap.getValue(PREFIX_PHONE).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_PHONE).isEmpty()) {
             phone = new Phone();
         } else {
             phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         }
-        if(argMultimap.getValue(PREFIX_PARENT_NAME).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_PARENT_NAME).isEmpty()) {
             parentName = new Name();
         } else {
             parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).orElse(""));
         }
-        if(argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
             email = new Email();
         } else {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));

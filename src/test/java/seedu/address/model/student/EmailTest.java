@@ -21,12 +21,18 @@ public class EmailTest {
     }
 
     @Test
+    public void constructor_noParam_storeEmptyString() {
+        Email email = new Email();
+        assertEquals(email.value, "");
+    }
+
+    @Test
     public void isValidEmail() {
         // null email
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));
 
         // blank email
-        assertTrue(Email.isValidEmail("")); // empty string
+        assertFalse(Email.isValidEmail("")); // empty string
         assertFalse(Email.isValidEmail(" ")); // spaces only
 
         // missing parts
