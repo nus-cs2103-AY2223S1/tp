@@ -55,17 +55,17 @@ public class StudentCard extends UiPart<Region> {
         studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
         className.setText(student.getClassName().className);
-        if(student.getParentName().fullName == "") {
+        if (student.getParentName().fullName == "") {
             parentName.setText("-");
         } else {
             parentName.setText(student.getParentName().fullName);
         }
-        if(student.getPhone().value == "") {
+        if (student.getPhone().value == "") {
             phone.setText("-");
         } else {
             phone.setText(student.getPhone().value);
         }
-        if(student.getEmail().value == "") {
+        if (student.getEmail().value == "") {
             email.setText("-");
         } else {
             email.setText(student.getEmail().value);

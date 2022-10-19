@@ -1,8 +1,36 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.CLASS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PARENT_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STUDENT_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PARENT_NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PARENT_NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STUDENT_NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.STUDENT_NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalStudents.AMY;
@@ -90,8 +118,8 @@ public class AddStudCommandParserTest {
                 .withEmail("")
                 .withPhone("")
                 .withTags().build();
-        assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
-                , new AddStudCommand(expectedPersonWithoutOptional));
+        assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY,
+                new AddStudCommand(expectedPersonWithoutOptional));
     }
 
     @Test
