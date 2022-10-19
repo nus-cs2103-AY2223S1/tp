@@ -24,7 +24,7 @@ Order *--> "1" Phone: contacted at >
 Order *--> "1" Email: contacted at >
 Order *--> "1" Address: to deliver to >
 Order *--> "1" LocalDateTime: created at >
-Order *---> "1..*" ItemQuantityPair : consists of >
+Order *---> "*" ItemQuantityPair : consists of >
 ItemQuantityPair --> "1" Item
 ItemQuantityPair --> "1" Quantity
 

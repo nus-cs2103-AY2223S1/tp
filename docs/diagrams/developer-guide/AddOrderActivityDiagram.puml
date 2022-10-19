@@ -1,0 +1,24 @@
+@startuml
+skinparam conditionStyle diamond
+
+start
+:User initiates an add order command with customer data;
+note :Valid Input Format: \n"addo n/<NAME> p/<PHONE>\ne/<EMAIL> a/<ADDRESS>"
+:UI prompts user for item name and quantity input;
+repeat
+    :User inputs item name and quantity data;
+    note right: Valid Input Format:\n"i/<ITEM> q/QUANTITY"
+    :System checks for existence of item in inventory;
+        if () then ([item with name exists in inventory])
+            :Add item and quantity pair \nto current order's item list;
+        else([item with name does not exist in inventory])
+            :UI prompts user to re-enter input again;
+        endif
+repeat while ([user has more items to add to current order])
+-> [user has finished inputting all item data];
+:User ends the command;
+note: User enters "done"
+:Order is added to the system;
+stop
+
+@enduml
