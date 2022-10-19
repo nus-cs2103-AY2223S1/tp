@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Priority {
 
-    public enum priority {
+    private enum PriorityName {
         HIGH, NORMAL, LOW;
     }
 
@@ -18,7 +18,7 @@ public class Priority {
     public static final String VALIDATION_NORMAL = "NORMAL";
     public static final String VALIDATION_LOW = "LOW";
 
-    public final priority specifiedPriority;
+    public final PriorityName specifiedPriority;
 
     /**
      * Constructs a {@code Priority}.
@@ -29,7 +29,7 @@ public class Priority {
         requireNonNull(specifiedPriority);
         specifiedPriority = specifiedPriority.toUpperCase();
         checkArgument(isValidPriority(specifiedPriority), MESSAGE_CONSTRAINTS);
-        this.specifiedPriority = priority.valueOf(specifiedPriority);
+        this.specifiedPriority = PriorityName.valueOf(specifiedPriority);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Priority {
      */
     public String toString() {
         //return '[' + specifiedPriority.toString() + ']';
-        return "HIGH";
+        return specifiedPriority.toString();
     }
 
 }

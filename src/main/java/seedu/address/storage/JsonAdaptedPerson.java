@@ -1,11 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,8 +10,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.person.Priority;
+import seedu.address.model.pricerange.PriceRange;
 
 
 /**
@@ -66,7 +60,7 @@ class JsonAdaptedPerson {
         desiredCharacteristics = source.getDesiredCharacteristics()
                 .map(Characteristics::toString)
                 .orElse("");
-        specifiedPriority = source.getPriority().specifiedPriority.toString();
+        specifiedPriority = source.getPriority().toString();
     }
 
     /**
@@ -76,7 +70,8 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         if (specifiedPriority == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
         }
         if (!Priority.isValidPriority(specifiedPriority)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);

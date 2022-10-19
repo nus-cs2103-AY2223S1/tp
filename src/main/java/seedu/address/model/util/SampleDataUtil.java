@@ -1,9 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import seedu.address.model.PersonBook;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyPersonBook;
@@ -14,8 +10,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.person.Priority;
+import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
