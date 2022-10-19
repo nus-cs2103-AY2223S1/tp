@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,9 +16,12 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
  * Represents the tasklist.
  */
 public class TaskList implements Iterable<Task> {
+    private static final Comparator<Task> DATE_COMPARATOR = Comparator.comparing(Task::getDeadlineDate);
+
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private Boolean isSortedByDeadline = false;
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -36,6 +40,10 @@ public class TaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(task);
+
+        if (isSortedByDeadline) {
+            sortByDeadline();
+        }
     }
 
     /**
@@ -67,11 +75,19 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.set(index, editedTask);
+
+        if (isSortedByDeadline) {
+            sortByDeadline();
+        }
     }
 
     public void setTasks(TaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+
+        if (isSortedByDeadline) {
+            sortByDeadline();
+        }
     }
 
     /**
@@ -85,6 +101,22 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
+
+        if (isSortedByDeadline) {
+            sortByDeadline();
+        }
+    }
+
+    /**
+     * Sorts the task list by deadline
+     */
+    public void sortByDeadline() {
+        isSortedByDeadline = true;
+        internalList.sort(DATE_COMPARATOR);
+    }
+
+    public Boolean isSortedByDeadline() {
+        return isSortedByDeadline;
     }
 
     @Override

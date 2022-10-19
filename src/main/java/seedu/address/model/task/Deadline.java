@@ -48,6 +48,15 @@ public class Deadline {
         return true;
     }
 
+    /**
+     * Returns {@code Deadline} as a date.
+     *
+     * @return Date representation of {@code Deadline}.
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return date.format(DATE_TIME_FORMATTER);

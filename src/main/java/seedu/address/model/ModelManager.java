@@ -181,6 +181,11 @@ public class ModelManager implements Model {
         addressBook.setTask(target, editedTask);
     }
 
+    @Override
+    public void sortByDeadline() {
+        addressBook.sortByDeadline();
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**

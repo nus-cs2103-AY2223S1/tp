@@ -183,6 +183,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void sortByDeadline() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Tag> getTagList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -123,6 +123,9 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
+    /** Sorts the task list by deadline */
+    void sortByDeadline();
+
     /** Returns an unmodifiable view of the filtered tag list */
     ObservableList<Tag> getTagList();
 }

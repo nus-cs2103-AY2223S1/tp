@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -46,6 +47,14 @@ public class Task {
      */
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    /**
+     * Returns the date representation of the deadline of task.
+     * @return Date representation of the deadline of task.
+     */
+    public LocalDate getDeadlineDate() {
+        return deadline.getDate();
     }
 
     /**
