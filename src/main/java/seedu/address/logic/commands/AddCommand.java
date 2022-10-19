@@ -26,8 +26,8 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_GENDER + "GENDER "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_GENDER + "GENDER]"
             + "[" + PREFIX_DOB + "DATE OF BIRTH] ... \n"
             // add gender field in add command usage
             + "Example: " + COMMAND_WORD + " "
@@ -35,9 +35,9 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_GENDER + "male"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_GENDER + "male"
             + PREFIX_DOB + "03/04/2002 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
