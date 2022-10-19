@@ -39,7 +39,7 @@ public class StaffCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private FlowPane staffInsurance;
+    private FlowPane staffLeave;
     @FXML
     private FlowPane tags;
 
@@ -54,11 +54,11 @@ public class StaffCard extends UiPart<Region> {
         staffTitle.setText("Title : " + staff.getStaffTitle().toString());
         staffDepartment.setText("Department : " + staff.getStaffDepartment().toString());
         staffContact.setText("Phone Number : " + staff.getStaffContact());
-        boolean isInsured = staff.getStaffInsurance().staffInsurance.equals("true");
+        boolean isInsured = staff.getStaffLeave().staffLeave.equals("true");
         if (isInsured) {
-            staffInsurance.getChildren().add(new Label("Insured"));
+            staffLeave.getChildren().add(new Label("Insured"));
         } else {
-            staffInsurance.getChildren().add(new Label("Not insured"));
+            staffLeave.getChildren().add(new Label("Not insured"));
         }
 
 
