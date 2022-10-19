@@ -274,6 +274,15 @@ public class ModelManager implements Model {
 
     @Override
     public XYChart.Series<String, Number> getExpenseLineChartData() {
+        return getLineChartData(filteredExpenditure);
+    }
+
+    @Override
+    public XYChart.Series<String, Number> getIncomeLineChartData() {
+        return getLineChartData(filteredIncome);
+    }
+
+    private static XYChart.Series<String, Number> getLineChartData(FilteredList<Entry> filteredEntryList) {
         HashMap<LocalDate, Number> dateToExpenditureMap = new HashMap<>();
 
         LocalDate date = LocalDate.of(2022, 1, 19);
@@ -286,7 +295,7 @@ public class ModelManager implements Model {
 
         ObservableList<XYChart.Data<String, Number>> expenseSeries = FXCollections.observableArrayList();
 
-        filteredExpenditure.forEach(entry -> dateToExpenditureMap.computeIfPresent(
+        filteredEntryList.forEach(entry -> dateToExpenditureMap.computeIfPresent(
                 entry.getDate().getLocalDate(), (key, val) -> val.doubleValue() + entry.getAmount().getValue()));
 
         for (HashMap.Entry<LocalDate, Number> entry : dateToExpenditureMap.entrySet()) {

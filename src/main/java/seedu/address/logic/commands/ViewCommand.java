@@ -55,16 +55,13 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        System.out.println("graph type in execute: " + graphType.getGraphType().toString());
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-                System.out.println("[ViewCommand] Show all exp by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_CATEGORY), false,
                                          false, true);
             case MONTH:
-                System.out.println("[ViewCommand] Show all exp by month");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_MONTH), false,
                         false, true);
             default:
@@ -75,12 +72,11 @@ public class ViewCommand extends Command {
         case INCOME:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-                System.out.println("[ViewCommand] Show all income by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_CATEGORY), false, false,
                                          true);
             case MONTH:
-                // TODO: Add month
-                return null;
+                return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_MONTH), false, false,
+                        true);
             default:
                 //should never reach here
                 return null;

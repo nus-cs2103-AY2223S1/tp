@@ -217,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case INCOME:
                 GraphPanel incomeGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_INCOME),
-                        logic.getIncomePieChartData());
+                        logic.getIncomeLineChartData());
                 graphPanelPlaceholder.getChildren().add(incomeGraphPanel.getRoot());
                 break;
             default:

@@ -78,7 +78,6 @@ public class ParserUtil {
         if (!GraphType.isValidGraphType(trimmedGraphType)) {
             throw new ParseException(GraphType.MESSAGE_CONSTRAINTS);
         }
-        System.out.println("graph type: " + trimmedGraphType);
         return new GraphType(trimmedGraphType);
     }
 

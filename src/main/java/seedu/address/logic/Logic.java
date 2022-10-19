@@ -59,6 +59,11 @@ public interface Logic {
     XYChart.Series<String, Number> getExpenseLineChartData();
 
     /**
+     * Returns an unmodifiable list of line chart data for income
+     */
+    XYChart.Series<String, Number> getIncomeLineChartData();
+
+    /**
      * Returns the user prefs' penny wise file path.
      */
     Path getPennyWiseFilePath();

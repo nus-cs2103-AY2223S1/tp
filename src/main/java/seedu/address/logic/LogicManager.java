@@ -92,6 +92,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public XYChart.Series<String, Number> getIncomeLineChartData() {
+        return model.getIncomeLineChartData();
+    }
+
+    @Override
     public Path getPennyWiseFilePath() {
         return model.getPennyWiseFilePath();
     }
