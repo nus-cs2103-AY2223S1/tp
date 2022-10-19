@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
  */
 public class ListRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "listR";
+    public static final String COMMAND_WORD = "rlist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a list of all records for the specific patient in the records database.\n"

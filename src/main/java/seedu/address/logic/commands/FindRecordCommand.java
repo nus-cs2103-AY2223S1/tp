@@ -13,7 +13,7 @@ import seedu.address.model.record.RecordContainsKeywordsPredicate;
  */
 public class FindRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "findR";
+    public static final String COMMAND_WORD = "rfind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all records whose content contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

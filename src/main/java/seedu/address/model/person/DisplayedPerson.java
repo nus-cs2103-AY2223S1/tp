@@ -11,7 +11,6 @@ import seedu.address.model.record.Record;
  * Represents person whose records are being displayed.
  */
 public class DisplayedPerson {
-
     /** Person to be displayed */
     private Person person;
 
@@ -72,6 +71,13 @@ public class DisplayedPerson {
      */
     public void clearRecords() {
         person.clearRecords();
+    }
+
+    /**
+     * Sets the target record to the new edited record.
+     */
+    public void setRecord(Record target, Record editedRecord) {
+        person.setRecord(target, editedRecord);
     }
 
     /**

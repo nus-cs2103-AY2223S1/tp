@@ -102,6 +102,23 @@ public class Record implements Comparable<Record> {
         return Collections.unmodifiableSet(medications);
     }
 
+    /**
+     * Returns true if both record have the same record data and date.
+     * This defines a weaker notion of equality between two record.
+     */
+    public boolean isSameRecord(Record otherRecord) {
+        if (otherRecord == this) {
+            return true;
+        }
+
+        boolean sameRecordData = otherRecord != null
+                && otherRecord.getRecordData().equals(getRecordData());
+        boolean sameRecordDate = otherRecord != null
+                && otherRecord.getRecordDate().equals(getRecordDate());
+
+        return sameRecordData && sameRecordDate;
+    }
+
     @Override
     public int compareTo(Record record) {
         return this.recordDate.compareTo(record.recordDate);
