@@ -19,9 +19,9 @@ public class NetTransactionBox extends UiPart<Region> {
     private TextField netTransaction;
 
     /**
-     * Creates a new NetTransactionBox
+     * Creates a new NetTransactionBox.
      *
-     * @param amount to be stored as the calculated total amount
+     * @param amount to be stored as the calculated total amount.
      */
     public NetTransactionBox(double amount) {
         super(FXML);
@@ -32,7 +32,7 @@ public class NetTransactionBox extends UiPart<Region> {
     /**
      * Sets the updated net transaction amount.
      *
-     * @param netTransactionAmount
+     * @param netTransactionAmount double value to be used to update the box.
      */
     public void setNetTransaction(double netTransactionAmount) {
         this.netTransactionAmount = netTransactionAmount;

@@ -49,7 +49,7 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the net amount transacted by all clients in the current list
+     * Returns the net amount transacted by all clients in the current list.
      */
     double calculateTotalTransaction(ObservableList<Client> filteredClientList);
 }

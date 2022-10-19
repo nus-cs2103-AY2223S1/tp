@@ -149,10 +149,10 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Calculate the total transactions made with clients in the given filtered Client list.
+     * Calculate the total transactions made with clients in the given filtered client list.
      *
-     * @param filteredClientList list of Clients
-     * @return double value of total transactions
+     * @param filteredClientList list of clients.
+     * @return double value of total transactions.
      */
     public double calculateTotalTransaction(ObservableList<Client> filteredClientList) {
         UniqueClientList filteredList = new UniqueClientList();
