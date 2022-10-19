@@ -51,7 +51,7 @@ public class EditPropertyCommand extends Command {
             + PREFIX_PRICE + " 500000 "
             + PREFIX_ADDRESS + " Heng Mui Keng Terrace 22 "
             + PREFIX_DESCRIPTION + " 4 Room Condo with 2 bathrooms "
-            + PREFIX_CHARACTERISTICS + " 5-Room; Near School";;
+            + PREFIX_CHARACTERISTICS + " 5-Room; Near School";
 
     public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

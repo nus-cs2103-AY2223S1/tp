@@ -135,17 +135,17 @@ public class Property {
                 .append("; Description: ")
                 .append(getDescription())
                 .append("; Seller: ")
-                .append(getSeller())
-                .append("; Characteristics: ")
-                .append(getCharacteristics()
-                        .map(Characteristics::toString)
-                        .orElse("Not Specified"));
+                .append(getSeller());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Characteristics: ")
+                .append(getCharacteristics()
+                        .map(Characteristics::toString)
+                        .orElse("Not Specified"));
         return builder.toString();
     }
 
