@@ -23,7 +23,7 @@ public class GuestBuilder {
     public static final String DEFAULT_NUMBER_OF_GUESTS = "1";
     public static final String DEFAULT_IS_ROOM_CLEAN = "yes";
     public static final String DEFAULT_BILL = "0.00";
-    public static final String DEFAULT_REQUEST = "Nothing";
+    public static final String DEFAULT_REQUEST = "-";
 
     private Name name;
     private Phone phone;

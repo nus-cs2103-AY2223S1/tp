@@ -14,7 +14,7 @@ public class Request {
      * The constructor with no specific request.
      */
     public Request() {
-        value = "Nothing";
+        value = "-";
     }
 
     /**

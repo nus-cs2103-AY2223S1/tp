@@ -46,7 +46,7 @@ public class TypicalGuests {
     public static final Guest DANIEL = new GuestBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withRoom("04-03").withDateRange("29/05/23 - 03/06/23")
             .withNumberOfGuests("4").withIsRoomClean("yes").withBill("50")
-            .withRequest("Nothing")
+            .withRequest("-")
             .build();
     public static final Guest ELLE = new GuestBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withRoom("03-25").withDateRange("08/04/23 - 22/04/23")
