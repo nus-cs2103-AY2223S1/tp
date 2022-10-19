@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.applicant.ApplicationStatusPredicate;
 
 /**
- * Filters all applicants in TrackAScholar whose status matches the keyword
+ * Filters all applicants in TrackAScholar whose status matches the keyword.
  * Keyword matching is case-insensitive.
  */
 public class FilterCommand extends Command {

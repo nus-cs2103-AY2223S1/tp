@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -92,6 +93,16 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
      */
     public void removeApplicant(Applicant key) {
         applicants.remove(key);
+    }
+
+    /**
+     * Removes the equivalent applicant from the list.
+     * The applicant must exist in the list.
+     */
+    public void sortApplicants(Comparator<Applicant> comparator) {
+        requireNonNull(comparator);
+
+        applicants.sort(comparator);
     }
 
     //// util methods

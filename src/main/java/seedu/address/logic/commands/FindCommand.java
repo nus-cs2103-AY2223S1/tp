@@ -8,7 +8,7 @@ import seedu.address.model.applicant.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all applicants in TrackAScholar whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
