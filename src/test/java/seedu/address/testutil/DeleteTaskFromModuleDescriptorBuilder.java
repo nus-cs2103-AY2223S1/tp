@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalModules.CS2103T;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.model.module.Module;
