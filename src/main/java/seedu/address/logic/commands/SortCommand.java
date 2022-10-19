@@ -18,9 +18,9 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all applicants by the specified "
-            + "application status (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: pending/accepted/rejected\n"
-            + "Example: " + COMMAND_WORD + " pending";
+            + "input (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: name/scholarship\n"
+            + "Example: " + COMMAND_WORD + " name";
 
     private final Comparator<Applicant> comparator;
 
