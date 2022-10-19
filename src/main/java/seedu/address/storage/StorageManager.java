@@ -79,7 +79,7 @@ public class StorageManager implements Storage, ImageStorage {
     }
 
     @Override
-    public String saveIterationImage(String src) {
+    public String saveIterationImage(String src) throws IOException {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
@@ -92,12 +92,8 @@ public class StorageManager implements Storage, ImageStorage {
                 .toString();
 
         String dst = ImageStorage.IMAGE_STORAGE_PATH + randomName + ".png";
-
-        try {
-            Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Files.createDirectories(Path.of(System.getProperty("user.dir") + ImageStorage.IMAGE_STORAGE_PATH));
+        Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
 
         return dst;
     }

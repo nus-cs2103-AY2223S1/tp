@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.io.IOException;
+
 /**
  * Represents a storage for images used by the application.
  */
@@ -11,5 +13,5 @@ public interface ImageStorage {
      * @param src Path to the source image
      * @return Path to the local copy of the source image.
      */
-    String saveIterationImage(String src);
+    String saveIterationImage(String src) throws IOException;
 }

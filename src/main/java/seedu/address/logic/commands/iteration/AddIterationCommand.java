@@ -1,10 +1,13 @@
 package seedu.address.logic.commands.iteration;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.LogicManager.FILE_OPS_CREATE_ERROR_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
+
+import java.io.IOException;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -34,6 +37,7 @@ public class AddIterationCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITERATION_DATE + "2022-10-10 "
             + PREFIX_ITERATION_DESCRIPTION + "Changed the colour scheme. "
+            + PREFIX_ITERATION_IMAGEPATH + "/Users/john/Downloads/Draft 1.png "
             + PREFIX_ITERATION_FEEDBACK + "Updated colour scheme is much better.";
 
     public static final String MESSAGE_ADD_ITERATION_SUCCESS = "New iteration with attributes\n%1$s\n"
@@ -66,20 +70,24 @@ public class AddIterationCommand extends Command {
                     activeCommission.getTitle().toString()));
         }
 
-        String src = toAdd.getImagePath().path;
-        String dst = storage[0].saveIterationImage(src);
+        try {
+            String src = toAdd.getImagePath().path;
+            String dst = storage[0].saveIterationImage(src);
 
-        Iteration toAdd2 = new Iteration(
-                toAdd.getDate(),
-                toAdd.getDescription(),
-                new ImagePath(dst),
-                toAdd.getFeedback()
-        );
+            Iteration toActuallyAdd = new Iteration(
+                    toAdd.getDate(),
+                    toAdd.getDescription(),
+                    new ImagePath(dst),
+                    toAdd.getFeedback()
+            );
 
-        activeCommission.addIteration(toAdd2);
-        model.selectTab(GuiTab.COMMISSION);
-        return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd2,
-                activeCommission.getTitle().toString()));
+            activeCommission.addIteration(toActuallyAdd);
+            model.selectTab(GuiTab.COMMISSION);
+            return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toActuallyAdd,
+                    activeCommission.getTitle().toString()));
+        } catch (IOException e) {
+            throw new CommandException(FILE_OPS_CREATE_ERROR_MESSAGE + e, e);
+        }
     }
 
     @Override
