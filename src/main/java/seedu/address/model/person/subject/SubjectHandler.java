@@ -16,6 +16,10 @@ public class SubjectHandler {
         subjectsTaken = new HashMap<>();
     }
 
+    public HashMap<String, Subject> getSubjectsTaken() {
+        return subjectsTaken;
+    }
+
     /**
      * Adds a subject to the list of subjects taken by the student
      *
