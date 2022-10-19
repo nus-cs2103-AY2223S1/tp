@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.phu.commons.core.LogsCenter;
 
@@ -15,9 +16,35 @@ import seedu.phu.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
+    public static final String WELCOME_MESSAGE = "Welcome to PleaseHireUs!\n"
+            + "Refer to the following table for a quick guide on how to use this app.";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
+    public static final String HELP_MESSAGE = "For more details refer to the user guide: " + USERGUIDE_URL;
+    public static final String COMMAND_SUMMARY =
+            "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Action                   | Format                                                             |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Add an internship        | add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE]    |\n"
+            + "|                          | [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…            |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Clear all entries        | clear                                                              |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Delete an internship     | delete INDEX...                                                    |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| View internship details  | view INDEX                                                         |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Edit internship details  | edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS]  |\n"
+            + "|                          | [d/DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...  |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Find internship(s)       | find [c/CATEGORY] KEYWORDS...                                      |\n"
+            + "| containing keyword(s)    |                                                                    |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| List all internship(s)   | list [c/CATEGORY [DESCENDING]]                                     |\n"
+            + "| in specified order       |                                                                    |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| List available commands  | help                                                               |\n"
+            + "| and link to User Guide   |                                                                    |\n"
+            + "+--------------------------+--------------------------------------------------------------------+";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -25,7 +52,13 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
+    private Label welcomeMessage;
+
+    @FXML
     private Label helpMessage;
+
+    @FXML
+    private Label commandSummary;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +67,10 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        welcomeMessage.setText(WELCOME_MESSAGE);
         helpMessage.setText(HELP_MESSAGE);
+        commandSummary.setText(COMMAND_SUMMARY);
+        commandSummary.setFont(Font.font("Monospaced", 12));
     }
 
     /**

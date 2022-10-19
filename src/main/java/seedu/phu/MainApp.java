@@ -39,6 +39,7 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(1, 2, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static boolean isExistingUser = true;
 
     protected Ui ui;
     protected Logic logic;
@@ -81,6 +82,8 @@ public class MainApp extends Application {
             internshipBookOptional = storage.readInternshipBook();
             if (!internshipBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample InternshipBook");
+                logger.info("Data file not found. Starting as a new user.");
+                isExistingUser = false;
             }
             initialData = internshipBookOptional.orElseGet(SampleDataUtil::getSampleInternshipBook);
         } catch (DataConversionException e) {
@@ -90,7 +93,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty InternshipBook");
             initialData = new InternshipBook();
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 
@@ -169,7 +171,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting InternshipBook " + MainApp.VERSION);
-        ui.start(primaryStage);
+        ui.start(primaryStage, isExistingUser);
     }
 
     @Override
