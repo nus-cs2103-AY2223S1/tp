@@ -158,8 +158,15 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The grade progress feature is facilitated by `GradeProgressCommand` class. It extends `Command` abstract class that has 
-abstract method, `execute()`.
+The grade progress feature is facilitated by `GradeProgressCommand`, `GradeProgressList` and `GradeProgressList` classes.
+`GradeProgressCommand` extends `Command` abstract class that has  abstract method, `execute()`.
+`GradeProgress` deals with the actual grade progress inputs while the
+`GradeProgressList` deals with the list of `GradeProgress`. 
+The `GradeProgressList` is the object that is displayed in the `AddressBook`.
+Additionally, the classes implement the following operations:
+- `GradeProgressList#addGradeProgress(GradeProgress)` - Adds grade progress to the grade progress list.
+- `GradeProgressList#clearList()` - Clears all stored grades of the Person
+- `GradeProgressList#editAtIndex(index)` - Edits the grade at the given index with the new given grade.
 
 Given below is an example usage scenario and how the grade progress feature behaves at each step.
 
@@ -199,7 +206,7 @@ Aspect: Data Structure of `GradeProgressList`
   - Pros: Insertion and deletion are easier in the linked list. There is no need to shift elements after the insertion or deletion of any element only the address present in the next pointer needs to be updated.
   - Cons: More memory is required in the linked list as compared to an array.
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagram shows how the grade progress command operation works:
 
 ![GradeProgressSequenceDiagram](images/GradeProgressSequenceDiagram.png)
 
