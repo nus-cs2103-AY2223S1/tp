@@ -6,12 +6,10 @@ import static seedu.address.ui.SpecialTagLabel.HIGH_KEYWORD;
 import static seedu.address.ui.SpecialTagLabel.LOW_KEYWORD;
 import static seedu.address.ui.SpecialTagLabel.MEDIUM_KEYWORD;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.testfx.framework.junit5.ApplicationExtension;
 
-@ExtendWith(ApplicationExtension.class)
-public class SpecialTagLabelTest {
+public class SpecialTagLabelTest extends GuiUnitTest {
     private static final String LOW_STYLE = "-fx-text-fill: white;-fx-background-color: "
             + "green;-fx-padding: 1 3 1 3;-fx-border-radius: 2;-fx-background-radius: 2;-fx-font-size: 11;";
     private static final String MEDIUM_STYLE = "-fx-text-fill: white;-fx-background-color: "
@@ -20,6 +18,7 @@ public class SpecialTagLabelTest {
             + "red;-fx-padding: 1 3 1 3;-fx-border-radius: 2;-fx-background-radius: 2;-fx-font-size: 11;";
     private static final String DEFAULT_STYLE = "-fx-text-fill: white;-fx-background-color: "
             + "#3e7b91;-fx-padding: 1 3 1 3;-fx-border-radius: 2;-fx-background-radius: 2;-fx-font-size: 11;";
+
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new SpecialTagLabel(null));
