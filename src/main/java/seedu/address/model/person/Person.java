@@ -140,6 +140,7 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Date of birth: ")
                 .append(getDob());
 
         Set<Tag> tags = getTags();
