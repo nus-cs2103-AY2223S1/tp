@@ -1,5 +1,6 @@
 package nus.climods.logic.parser;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -88,4 +89,20 @@ public class ParserUtil {
         return Optional.of(input);
     }
 
+    /**
+     * Parse semester details according to user input
+     * @param input Input string from user containing semester details
+     * @return
+     */
+    public static Optional<String> parseSemesterType(String input) {
+        List<String> acceptedSemesterType = Arrays.asList("S1", "S2", "ST1", "ST2");
+        String toCheck = input.trim().toUpperCase();
+
+        if (!acceptedSemesterType.contains(toCheck)) {
+            return Optional.empty();
+        }
+
+        String index = String.valueOf(acceptedSemesterType.indexOf(toCheck) + 1);
+        return Optional.of(index);
+    }
 }
