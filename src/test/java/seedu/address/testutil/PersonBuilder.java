@@ -46,6 +46,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        role = personToCopy.getRole();
     }
 
     /**

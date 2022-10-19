@@ -137,6 +137,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setRole(toCopy.role);
         }
 
         /**
@@ -162,6 +163,14 @@ public class EditCommand extends Command {
             this.address = address;
         }
 
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
@@ -169,15 +178,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Returns an unmodifiable Role, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code role} is null.
-         */
-        public Optional<Role> getRole() {
-            return (tags != null) ? Optional.of(role) : Optional.empty();
         }
 
         /**
