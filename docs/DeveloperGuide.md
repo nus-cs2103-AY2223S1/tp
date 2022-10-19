@@ -267,6 +267,10 @@ The following sequence diagram shows how the github feature works.
 
 ![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a new Github command:
+
+![GithubSequenceDiagram](images/GithubCommandActivityDiagram.png)
+
 #### Design considerations:
 
 **Aspect: How open github profile page feature executes:**
