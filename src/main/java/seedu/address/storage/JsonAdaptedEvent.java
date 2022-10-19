@@ -20,18 +20,18 @@ public class JsonAdaptedEvent {
 
     private final String eventTitle;
 
-    private final String date;
+    private final String startDate;
 
-    private final String time;
+    private final String startTime;
 
     private final String purpose;
     private final List<JsonAdaptedUid> uids = new ArrayList<>();
 
     /**
-     * Constructs a JsonAdaptedEvent with the given Event information
+     * Constructs a JsonAdaptedEvent with the given event details.
      * @param eventTitle
-     * @param date
-     * @param time
+     * @param startDate
+     * @param startTime
      * @param purpose
      */
     @JsonCreator
@@ -39,8 +39,8 @@ public class JsonAdaptedEvent {
                             @JsonProperty("time") String time, @JsonProperty("purpose") String purpose,
                             @JsonProperty("uids") List<JsonAdaptedUid> uids) {
         this.eventTitle = eventTitle;
-        this.date = date;
-        this.time = time;
+        this.startDate = startDate;
+        this.startTime = startTime;
         this.purpose = purpose;
         if (uids != null) {
             this.uids.addAll(uids);
@@ -52,8 +52,8 @@ public class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event event) {
         this.eventTitle = event.getEventTitle();
-        this.date = event.getDate();
-        this.time = event.getTime();
+        this.startDate = event.getStartDate().toLogFormat();
+        this.startTime = event.getStartTime().toLogFormat();
         this.purpose = event.getPurpose();
         Iterator<Uid> iter = event.getUids().iterator();
         while (iter.hasNext()) {
@@ -62,20 +62,31 @@ public class JsonAdaptedEvent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted event object into the model's Event object
+     * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
-     * @throws IllegalValueException if any data constraints were violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
         if (this.eventTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Event Title"));
         }
-        if (this.date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date"));
+
+        if (this.startDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date"));
         }
-        if (this.time == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Time"));
+        if (!StartDate.isValidStartDate(startDate)) {
+            throw new IllegalValueException(StartDate.MESSAGE_CONSTRAINTS);
         }
+        final StartDate modelStartDate = new StartDate(startDate);
+
+        if (this.startTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Time"));
+        }
+        if (!StartTime.isValidStartTime(startTime)) {
+            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        final StartTime modelStartTime = new StartTime(startTime);
+
         if (this.purpose == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Purpose"));
         }
@@ -85,5 +96,4 @@ public class JsonAdaptedEvent {
         }
         return new Event(this.eventTitle, this.date, this.time, this.purpose, eventUids);
     }
-
 }
