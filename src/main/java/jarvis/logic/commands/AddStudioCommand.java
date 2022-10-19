@@ -3,6 +3,7 @@ package jarvis.logic.commands;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -31,8 +32,8 @@ public class AddStudioCommand extends Command {
             + PREFIX_END_DATE_TIME + "END_DATE_TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_LESSON + "Studio 3 "
-            + PREFIX_START_DATE_TIME + "2022-10-12 14:00 "
-            + PREFIX_END_DATE_TIME + "2022-10-12 16:00 ";
+            + PREFIX_START_DATE_TIME + "2022-10-12T14:00 "
+            + PREFIX_END_DATE_TIME + "2022-10-12T16:00 ";
 
     public static final String MESSAGE_SUCCESS = "New studio added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDIO = "This studio already exists in JARVIS";
@@ -54,6 +55,7 @@ public class AddStudioCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         List<Student> lastShownStudentList = model.getFilteredStudentList();
 
         LessonAttendance studioAttendance = new LessonAttendance(lastShownStudentList);

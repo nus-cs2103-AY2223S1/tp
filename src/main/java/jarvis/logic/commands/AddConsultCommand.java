@@ -4,6 +4,7 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
@@ -36,8 +37,8 @@ public class AddConsultCommand extends Command {
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_LESSON + "Consultation on recursion "
-            + PREFIX_START_DATE_TIME + "2022-10-14 20:00 "
-            + PREFIX_END_DATE_TIME + "2022-10-14 21:00 "
+            + PREFIX_START_DATE_TIME + "2022-10-14T20:00 "
+            + PREFIX_END_DATE_TIME + "2022-10-14T21:00 "
             + PREFIX_STUDENT_INDEX + "3 "
             + PREFIX_STUDENT_INDEX + "4";
 
@@ -65,6 +66,7 @@ public class AddConsultCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         List<Student> lastShownList = model.getFilteredStudentList();
 
         Set<Student> studentSet = new HashSet<>();

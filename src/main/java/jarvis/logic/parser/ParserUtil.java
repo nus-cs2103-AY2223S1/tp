@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,7 +14,6 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.MasteryCheckStatus;
 import jarvis.model.MatricNum;
@@ -169,8 +169,8 @@ public class ParserUtil {
         requireNonNull(dateTime);
 
         try {
-            LocalDateTime trimmedDateTime = LocalDateTime.parse(dateTime.trim());
-            return trimmedDateTime;
+            LocalDateTime actualDateTime = LocalDateTime.parse(dateTime);
+            return actualDateTime;
         } catch (DateTimeParseException e) {
             throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS);
         }
@@ -196,6 +196,5 @@ public class ParserUtil {
         }
         return studentIndexSet;
     }
-
 
 }
