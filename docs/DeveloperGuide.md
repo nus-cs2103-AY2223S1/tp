@@ -4,17 +4,22 @@ title: Developer Guide
 ---
 
 ## Table of contents
-* [Target User Profile](#target-user-profile)
-* [Value Proposition](#value-proposition)
-* [User Stories](#user-stories)
-* [Use Case](#use-case)
+* [Implementation](#implementation)
+  * [Edit Class Feature](#edit-class-feature)
+    * [Implementation details](#implementation-details)
+    * [Design Considerations](#design-considerations)
+* [Appendix](#appendix-requirements)
+  * [Target User Profile](#target-user-profile)
+  * [Value Proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Use Case](#use-case)
     * [Use case: **Delete a student**](#use-case-delete-a-student)
     * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
     * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
     * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
     * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
-* [Non-Functional Requirement](#non-functional-requirement)
-* [Glossary](#glossary)
+  * [Non-Functional Requirement](#non-functional-requirement)
+  * [Glossary](#glossary)
 
 -------------------------------------------------------------------------------------------------------------------
 ## Implementation
@@ -34,7 +39,9 @@ The edit class mechanism is facilitated by ClassStorage. It stores the date of t
 Additionally, it implements the following operations:
 
 ClassStorage#saveClass() — Saves the new class into its storage.
+
 ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
+
 ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
 
 The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer, 
@@ -64,16 +71,17 @@ The following activity diagram summarizes what happens when a teacher executes a
   * Pros: Easy to implement.
   * Cons: The tutor has to fully match the date format and order, which is much more cumbersome.
 
-* **Alternative 2**: dt/Day-of-Week 0000-2359
+* **Alternative 2**: dt/Day-of-Week 0000-2359 (case-insensitive)
   * Pros: More convenient and easier for tutor to type.
   * Cons: 
     1. Harder to implement.
     2. Only can set the class to a date at most 1 week away.
   
-
-  
+    
 --------------------------------------------------------------------------------------------------------------------
-## Target User Profile
+## Appendix: Requirements
+
+### Target User Profile
 
 - a private tutor who teaches 1-1 classes and needs to manage the students’ details
 - prefer desktop apps over other types
@@ -81,11 +89,11 @@ The following activity diagram summarizes what happens when a teacher executes a
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-## Value Proposition
+### Value Proposition
 
 Manage contacts and schedule of students faster than a typical mouse/GUI driven app
 
-## User Stories
+### User Stories
 
 | S/N | As a/an ...                                                                  | I can ...                                                                           | So that...                                                              | Priority   |
 |-----|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------|------------|
@@ -121,11 +129,11 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 | 30  | Tutor who loves money                                                        | Know the total money unpaid by all students                                         | Know the total money unpaid by students                                 | LOW        |
 | 31  | Tutor who wants to keep track of expenses                                    | Check the total amount of money paid by all students                                | I can check the total amount I have earned                              | LOW        |
 
-## Use Case
+### Use Cases
 
 (For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `Teacher`, unless specified otherwise)
 
-### Use case: **Delete a student**
+#### Use case: **Delete a student**
 
 **MSS**
 
@@ -149,7 +157,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
       Use case resumes at step 2.
 
 [](#use-case-edit-a-student-contact-detail)
-### Use case: **Edit a student contact detail**
+#### Use case: **Edit a student contact detail**
 
 **MSS**
 
@@ -170,7 +178,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
   Use case ends.
 
-### Use case: **Find student contact details**
+#### Use case: **Find student contact details**
 
 **MSS**
 
@@ -191,7 +199,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case ends.
 
-### Use case: **Mark student as present for class**
+#### Use case: **Mark student as present for class**
 
 **MSS**
 
@@ -220,7 +228,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
         Use case resumes at step 2.
 
-### Use case: **Allocate a slot for future class**
+#### Use case: **Allocate a slot for future class**
 
 **MSS**
 
@@ -235,7 +243,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
     Use case resumes at step 3.
 
-## Non-Functional Requirement
+### Non-Functional Requirement
 
 1. Should work on any *mainstream OS* as long as it has Java`11` or above installed.
 2. Should be able to hold up to 50 students without a noticeable sluggishness in performance for typical usage.
@@ -246,7 +254,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
    opened.
 6. The UI page should load when first launched within 2 seconds.
 
-## Glossary
+### Glossary
 
 | Terms         | Definition                              |
 |---------------|-----------------------------------------|
