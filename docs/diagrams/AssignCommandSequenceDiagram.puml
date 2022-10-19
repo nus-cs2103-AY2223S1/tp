@@ -48,6 +48,11 @@ deactivate TaAssistParser
 LogicManager -> AssignCommand: execute()
 activate AssignCommand
 
+AssignCommand -> Model: getFilteredStudentList()
+activate Model
+Model --> AssignCommand: List<Students>
+deactivate Model
+
 loop for each student to assign
     create Student
     AssignCommand -> Student
