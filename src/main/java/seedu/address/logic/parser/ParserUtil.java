@@ -13,7 +13,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -23,7 +22,6 @@ import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskModule;
 import seedu.address.model.task.TaskStatus;
 
 /**
@@ -190,21 +188,6 @@ public class ParserUtil {
             throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
         }
         return new DeadlineTag(date);
-    }
-
-    /**
-     * Parses a {@code String module} into a {@code Module}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code module} is invalid.
-     */
-    public static Module parseModule(String module) throws ParseException {
-        requireNonNull(module);
-        String trimmedModule = module.trim();
-        if (!TaskModule.isValidModule(trimmedModule)) {
-            throw new ParseException(TaskModule.MESSAGE_CONSTRAINTS);
-        }
-        return new Module(new ModuleCode(trimmedModule));
     }
 
     /**
