@@ -8,7 +8,11 @@ import java.time.format.DateTimeParseException;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.*;
+import jarvis.model.Assessment;
+import jarvis.model.MatricNum;
+import jarvis.model.StudentName;
+import jarvis.model.TaskDeadline;
+import jarvis.model.TaskDesc;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -16,6 +20,8 @@ import jarvis.model.*;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
+    public static final String MESSAGE_INVALID_MCRESULT = "Mastery check result has to be \"PASS\" or \"FAIL\"";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -105,11 +111,11 @@ public class ParserUtil {
         try {
             value = Integer.parseInt(trimmedMcNum);
         } catch (NumberFormatException nfe) {
-            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCNUM);
+            throw new ParseException(MESSAGE_INVALID_MCNUM);
         }
 
         if (value != 1 && value != 2) {
-            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCNUM);
+            throw new ParseException(MESSAGE_INVALID_MCNUM);
         }
         return value == 1 ? Assessment.MC1 : Assessment.MC2;
     }
@@ -128,7 +134,7 @@ public class ParserUtil {
         } else if (trimmedMcResult.equals("fail")) {
             return false;
         } else {
-            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCRESULT);
+            throw new ParseException(MESSAGE_INVALID_MCRESULT);
         }
     }
 }

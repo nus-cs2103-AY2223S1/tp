@@ -2,24 +2,388 @@
   "_comment": "StudentBook save file which contains the same Student values as in TypicalStudents#getTypicalStudentBook()",
   "students": [ {
     "name": "Alice Pauline",
-    "matricNum": "A0000000F"
+    "matricNum": "A0000000F",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   }, {
     "name": "Benson Meier",
-    "matricNum": "A0345385G"
+    "matricNum": "A0345385G",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   }, {
     "name": "Carl Kurz",
-    "matricNum": "A0532453D"
+    "matricNum": "A0532453D",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   }, {
     "name": "Daniel Meier",
-    "matricNum": "A9353548C"
+    "matricNum": "A9353548C",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   }, {
     "name": "Elle Meyer",
-    "matricNum": "A0573537F"
+    "matricNum": "A0573537F",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   }, {
     "name": "Fiona Kunz",
-    "matricNum": "A0385938L"
+    "matricNum": "A0385938L",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   }, {
     "name": "George Best",
-    "matricNum": "A0395839D"
+    "matricNum": "A0395839D",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   } ]
 }

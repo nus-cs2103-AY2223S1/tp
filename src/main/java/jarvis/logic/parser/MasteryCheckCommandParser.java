@@ -10,7 +10,6 @@ import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.MasteryCheckCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Assessment;
-import jarvis.model.MasteryCheckResult;
 
 /**
  * Parses input arguments and creates a new MasteryCheckCommand object

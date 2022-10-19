@@ -12,9 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 /**
  * An UI component that displays the full information of a {@code Student}.
  */
@@ -43,7 +40,7 @@ public class ExpandedStudentCard extends UiPart<Region> {
 
     // TableView to display grades
     @FXML
-    private TableView gradeProfile;
+    private TableView<GradeProfile> gradeProfile;
     @FXML
     private TableColumn<GradeProfile, String> mc1;
     @FXML

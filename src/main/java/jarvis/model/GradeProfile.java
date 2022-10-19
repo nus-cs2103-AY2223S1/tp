@@ -2,6 +2,9 @@ package jarvis.model;
 
 import java.util.EnumMap;
 
+/**
+ * A class to encapsulate a student's grades for all assessments.
+ */
 public class GradeProfile {
     private final EnumMap<Assessment, GradeComponent> grades;
 

@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.*;
+import jarvis.model.GradeProfile;
+import jarvis.model.MatricNum;
+import jarvis.model.Student;
+import jarvis.model.StudentName;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -15,15 +18,17 @@ public class JsonAdaptedStudent {
 
     private final String name;
     private final String matricNum;
-
+    private final GradeProfile gradeProfile;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("matricNum") String matricNum) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("matricNum") String matricNum,
+                              @JsonProperty("gradeProfile") GradeProfile gradeProfile) {
         this.name = name;
         this.matricNum = matricNum;
+        this.gradeProfile = gradeProfile;
     }
 
     /**
@@ -32,6 +37,7 @@ public class JsonAdaptedStudent {
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         matricNum = source.getMatricNum().value;
+        gradeProfile = source.getGradeProfile();
     }
 
     /**
@@ -58,7 +64,7 @@ public class JsonAdaptedStudent {
         }
         final MatricNum modelMatricNum = new MatricNum(matricNum);
 
-        return new Student(modelStudentName, modelMatricNum, new GradeProfile());
+        return new Student(modelStudentName, modelMatricNum, gradeProfile);
     }
 
 }

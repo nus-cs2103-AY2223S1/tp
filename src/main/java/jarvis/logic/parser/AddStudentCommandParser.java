@@ -8,7 +8,10 @@ import java.util.stream.Stream;
 
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.*;
+import jarvis.model.GradeProfile;
+import jarvis.model.MatricNum;
+import jarvis.model.Student;
+import jarvis.model.StudentName;
 
 /**
  * Parses input arguments and creates a new AddCommand object

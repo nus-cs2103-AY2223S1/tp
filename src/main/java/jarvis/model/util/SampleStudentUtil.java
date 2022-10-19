@@ -1,6 +1,12 @@
 package jarvis.model.util;
 
-import jarvis.model.*;
+import jarvis.model.GradeProfile;
+import jarvis.model.MatricNum;
+import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.Student;
+import jarvis.model.StudentBook;
+import jarvis.model.StudentName;
+
 
 /**
  * Contains utility methods for populating {@code StudentBook} with sample data.

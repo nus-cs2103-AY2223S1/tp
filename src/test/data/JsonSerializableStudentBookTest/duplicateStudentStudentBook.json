@@ -1,9 +1,113 @@
 {
   "students": [ {
     "name": "Alice Pauline",
-    "matricNum": "A0000000F"
+    "matricNum": "A0000000F",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   }, {
     "name": "Alice Pauline",
-    "matricNum": "A0000000F"
+    "matricNum": "A0000000F",
+    "gradeProfile" : {
+      "grades" : {
+        "MC1" : {
+          "assessment" : "MC1",
+          "isGraded" : true,
+          "marks" : 0,
+          "totalMarks" : 1
+        },
+        "MC2" : {
+          "assessment" : "MC2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA1" : {
+          "assessment" : "RA1",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "RA2" : {
+          "assessment" : "RA2",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "MIDTERM" : {
+          "assessment" : "MIDTERM",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "PRACTICAL_ASSESSMENT" : {
+          "assessment" : "PRACTICAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "FINAL_ASSESSMENT" : {
+          "assessment" : "FINAL_ASSESSMENT",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        },
+        "STUDIO_ATTENDANCE" : {
+          "assessment" : "STUDIO_ATTENDANCE",
+          "isGraded" : false,
+          "marks" : 0,
+          "totalMarks" : 0
+        }
+      }
+    }
   } ]
 }

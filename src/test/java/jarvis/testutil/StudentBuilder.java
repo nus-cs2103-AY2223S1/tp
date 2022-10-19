@@ -1,6 +1,6 @@
 package jarvis.testutil;
 
-import jarvis.model.MasteryCheckStatus;
+import jarvis.model.GradeProfile;
 import jarvis.model.MatricNum;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
@@ -49,7 +49,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(studentName, matricNum, MasteryCheckStatus.getDefault());
+        return new Student(studentName, matricNum, new GradeProfile());
     }
 
 }
