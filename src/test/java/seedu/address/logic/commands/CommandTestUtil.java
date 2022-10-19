@@ -22,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -263,6 +264,26 @@ public class CommandTestUtil {
 
         @Override
         public Person getTargetPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Message> getMessages() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void createMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMessage(Message message) {
             throw new AssertionError("This method should not be called.");
         }
     }
