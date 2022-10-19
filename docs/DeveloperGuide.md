@@ -182,6 +182,48 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: Easier to find the batchmate by directly entering the name.
     * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name especially for long and complicated names.
 
+### Module Categorisation
+
+#### Implementation
+
+Module categorisation is handled by `ParserUtil#parseModsToCategory(String modName)`.
+A category is assigned to every mod upon creating it through its constructor.
+This categorisation is not saved in Storage.
+The module categories can be viewed [here](UserGuide.md#module-categorisation)
+
+Upon calling the constructor of `Mod` to create a new instance, the constructor
+will then call `ParserUtil#parseModsToCategory(String modName)` which returns a `ModCategory`
+corresponding to the `modName`.
+A new `Mod` instance with its `modName` and `modCategory` is created.
+This `modCategory` will later be used to colour code mods in the UI.
+
+The (partial) sequence diagram below shows the categorisation of a new mod when
+its constructor is called in `JsonAdaptedMod`.
+
+![ModCategorisationSequenceDiagram](images/ModCategorisationSequenceDiagram.png)
+
+The (partial) activity diagram below summarises what happens when a new mod is created in `JsonAdaptedMod`
+assuming no errors occur.
+
+![ModCategorisationActivityDiagram](images/ModCategorisationActivityDiagram.png)
+
+Activity: Determines and returns a category
+
+![ModCategorisationActivityDiagramRake](images/ModCategorisationActivityDiagramRake.png)
+
+#### Design considerations:
+
+**Aspect: How categorisation is handled:**
+
+* **Alternative 1 (current choice):** All categorisation is handled upon creation of a `Mod` instance.
+    * Pros: Easier to implement. Less bug-prone. No need to save mod categorisation.
+    * Cons: User is unable to edit the mod categories. Lowers performance.
+
+* **Alternative 2:** Categories of mods are saved into Storage.
+    * Pros: Users can edit mod categories with less changes to the code base. Increased performance.
+    * Cons: Increased complexity.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
