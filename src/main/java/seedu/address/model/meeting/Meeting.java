@@ -11,6 +11,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateMeetingCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -78,6 +79,7 @@ public class Meeting {
             ObservableList<Person> listOfPeople = model.getFilteredPersonList();
 
             if (listOfPeople.isEmpty()) {
+                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new PersonNotFoundException();
             } else { // get the first person in the address book whose name matches
                 output.add(listOfPeople.get(0));
