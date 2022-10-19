@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.list.Itineraries;
@@ -20,6 +21,7 @@ public class Trip {
     // Identity fields
     private final Title title;
     private final Description description;
+    private final Location location;
     private boolean done;
 
     // Data fields
@@ -33,10 +35,12 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
+        this.location = Location.getDefaultLocation();
         this.done = false;
     }
 
     /**
+     * Used in JsonAdaptedTrips
      * Every field must be present and not null.
      */
     public Trip(Title title, Description description, Set<Event> events, boolean markedAsDone) {
@@ -44,7 +48,21 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
+        this.location = Location.getDefaultLocation();
         this.done = markedAsDone;
+    }
+
+    /**
+     * Main constructor
+     * Every field must be present and not null.
+     */
+    public Trip(Title title, Description description, Set<Event> events, Location location) {
+        requireAllNonNull(title, description, events, location);
+        this.title = title;
+        this.description = description;
+        this.events.setInternalList(events);
+        this.location = location;
+        this.done = false;
     }
 
     public void addEvent(Event event) {
@@ -81,6 +99,10 @@ public class Trip {
 
     public Description getDescription() {
         return description;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -149,6 +171,12 @@ public class Trip {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        
+        if (getLocation() != Location.getDefaultLocation()) {
+            builder.append("; Location: ");
+            builder.append(getLocation());    
+        }
+        
         return builder.toString();
     }
 
