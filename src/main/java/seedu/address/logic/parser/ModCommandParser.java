@@ -19,10 +19,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
 import seedu.address.logic.commands.ModDeleteCommand;
+import seedu.address.logic.commands.ModFindCommand;
 import seedu.address.logic.commands.ModMarkCommand;
 import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Mod;
+import seedu.address.model.person.ModContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ModCommand object.
@@ -61,6 +63,8 @@ public class ModCommandParser implements Parser<ModCommand> {
             return parseAddCommand(arguments);
         case ModDeleteCommand.COMMAND_WORD:
             return parseDeleteCommand(arguments);
+        case ModFindCommand.COMMAND_WORD:
+            return parseFindCommand(arguments);
         case ModMarkCommand.COMMAND_WORD:
             return parseMarkCommand(arguments);
         case ModUnmarkCommand.COMMAND_WORD:
@@ -118,6 +122,17 @@ public class ModCommandParser implements Parser<ModCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModDeleteCommand.MESSAGE_USAGE), pe);
         }
         return new ModDeleteCommand(index, mods.get());
+    }
+
+    private ModFindCommand parseFindCommand(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
     /**
