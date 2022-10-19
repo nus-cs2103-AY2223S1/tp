@@ -13,9 +13,11 @@ import nus.climods.model.Model;
  */
 public class UserModule {
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module not in current NUS curriculum";
+    public static final String MESSAGE_MODULE_NOT_OFFERED = "Module not offered in chosen semester";
 
     // Identity fields
     private final Module listModule;
+    private final String semester;
 
     //TODO: Remove when implement tutorial/lecture support
     private String tutorial = "Tutorial: Monday, 1400-1500";
@@ -34,6 +36,29 @@ public class UserModule {
         }
 
         listModule = optionalModule.get();
+        this.semester = "Semester 1";
+    }
+
+    /**
+     * Creates a UserModule with Semester details
+     * @param moduleCode String for the module code
+     * @throws ParseException if module code is not a valid module in current NUS curriculum
+     */
+    public UserModule(String moduleCode, String semester, Model model) throws CommandException {
+        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
+
+        if (optionalModule.isEmpty()) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
+
+        listModule = optionalModule.get();
+
+        if (!listModule.getSemesters().contains(Integer.parseInt(semester))) {
+            throw new CommandException(MESSAGE_MODULE_NOT_OFFERED);
+        }
+
+        String temp = "Semester " + semester;
+        this.semester = temp;
     }
 
     /**
@@ -41,6 +66,7 @@ public class UserModule {
      */
     protected UserModule() {
         this.listModule = null;
+        this.semester = null;
     }
 
     public Module getApiModule() {
@@ -87,7 +113,8 @@ public class UserModule {
 
     // TODO: update with user's selected semester
     public String getSelectedSemester() {
-        return getAvailableSemesters().contains(1) ? "Semester 1" : "Semester 2";
+        return this.semester;
+        //return getAvailableSemesters().contains(1) ? "Semester 1" : "Semester 2";
     }
 
     /**
