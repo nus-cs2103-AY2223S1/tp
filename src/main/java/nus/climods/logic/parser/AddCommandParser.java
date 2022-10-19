@@ -24,7 +24,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         SemesterTypeParameter stp = new SemesterTypeParameter(args);
         String mc = mcp.getArgValue();
         SemestersEnum st = (SemestersEnum) stp.getArgValue();
-        System.out.println(st);
         return new AddCommand(mc, st);
     }
 

@@ -54,19 +54,7 @@ public class SavedModuleCard extends UiPart<Region> {
     }
 
     private Pill createSemesterPill(SemestersEnum semesterInfo) {
-        String semesterText;
-        switch (semesterInfo) {
-        case NUMBER_3:
-            semesterText = "Special Term 1";
-            break;
-        case NUMBER_4:
-            semesterText = "Special Term 2";
-            break;
-        default:
-            semesterText = "Semester" + semesterInfo.getValue();
-        }
-
-        return new Pill(semesterText, AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR);
+        return new Pill(semesterInfo.toString(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package nus.climods.logic.parser;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -106,7 +105,8 @@ public class ParserUtil {
             return Optional.empty();
         }
 
-        BigDecimal index = new BigDecimal(acceptedSemesterType.indexOf(toCheck) + 1);
+        int index = acceptedSemesterType.indexOf(toCheck) + 1;
+
         return Optional.of(SemestersEnum.fromValue(index));
     }
 }
