@@ -23,8 +23,8 @@ public class ViewUpcomingEventsCommandParser implements Parser<ViewUpcomingEvent
         String daysInput = argMultimap.getOptionArgs();
 
         if (daysInput.isEmpty()) {
-            throw new ParseException(
-                    String.format(ViewUpcomingEventsCommand.MESSAGE_MISSING_DAYS, ViewUpcomingEventsCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(ViewUpcomingEventsCommand.MESSAGE_MISSING_DAYS,
+                    ViewUpcomingEventsCommand.MESSAGE_USAGE));
         }
 
         try {

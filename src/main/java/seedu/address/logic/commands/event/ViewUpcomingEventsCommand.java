@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.StartDateWithinTimeFramePredicate;
 
+/**
+ * Shows a list of all Events in the scheduler that occur in the next specified days.
+ */
 public class ViewUpcomingEventsCommand extends EventCommand {
     public static final String COMMAND_OPTION = "u";
 
@@ -34,6 +37,9 @@ public class ViewUpcomingEventsCommand extends EventCommand {
     private final LocalDate currentDate;
     private final LocalDate endDate;
 
+    /**
+     * Constructor for ViewUpcomingEventsCommand
+     */
     public ViewUpcomingEventsCommand(int days) {
         this.days = days;
         this.currentDate = java.time.LocalDate.now();

@@ -10,6 +10,9 @@ public class StartDateWithinTimeFramePredicate implements Predicate<Event> {
     private final LocalDate startDate;
     private final LocalDate endDate;
 
+    /**
+     * Constructor for StartDateWithinTimeFramePredicate
+     */
     public StartDateWithinTimeFramePredicate(LocalDate startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
