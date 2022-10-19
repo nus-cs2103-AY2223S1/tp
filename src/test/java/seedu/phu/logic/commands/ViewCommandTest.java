@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.phu.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.phu.logic.commands.ViewCommand.MESSAGE_SUCCESS;
 import static seedu.phu.testutil.TypicalIndexes.INDEXES_FIRST_INTERNSHIP;
 import static seedu.phu.testutil.TypicalIndexes.INDEXES_SECOND_INTERNSHIP;
 import static seedu.phu.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
@@ -59,6 +60,13 @@ public class ViewCommandTest {
         // different target index -> returns false
         assertFalse(firstViewCommand.equals(secondViewCommand));
     }
+
+    @Test
+    public void execute_validMessage_success() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS);
+        assertCommandSuccess(new ViewCommand(INDEXES_FIRST_INTERNSHIP), model, expectedCommandResult, expectedModel);
+    }
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
@@ -72,7 +80,7 @@ public class ViewCommandTest {
         UniqueInternshipList listOfInternshipsToView = new UniqueInternshipList();
         listOfInternshipsToView.add(internshipToView);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
                 listOfInternshipsToView);
         expectedModel.viewInternship(internshipToView);
 
@@ -102,7 +110,7 @@ public class ViewCommandTest {
         UniqueInternshipList listOfInternshipsToView = new UniqueInternshipList();
         listOfInternshipsToView.add(firstInternship);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
                 listOfInternshipsToView);
         expectedModel.viewInternship(firstInternship);
 
