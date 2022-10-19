@@ -35,7 +35,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortByDateCommand(shouldReverse);
         }
 
-        switch (orderKeyword.get()) {
+        switch (orderKeyword.get().toLowerCase()) {
         case SortCommand.ORDER_COMPANY_WORD:
             return new SortByCompanyCommand(shouldReverse);
 
