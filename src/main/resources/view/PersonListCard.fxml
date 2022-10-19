@@ -43,6 +43,11 @@
                <Insets top="2.0" />
             </VBox.margin>
          </FlowPane>
+        <FlowPane fx:id="gameTypes" styleClass="tagged">
+            <VBox.margin>
+                <Insets top="2.0" />
+            </VBox.margin>
+        </FlowPane>
          <Label fx:id="information" text="Label" wrapText="true">
             <VBox.margin>
                <Insets top="2.0" />

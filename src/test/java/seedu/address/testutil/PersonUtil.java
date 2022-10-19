@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,10 +15,13 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.GameType;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Social;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
+
+
 
 /**
  * A utility class for Person.
@@ -50,6 +54,9 @@ public class PersonUtil {
                 s -> sb.append(PREFIX_MINECRAFT_SERVER + s.getServerName() + " ")
         );
         sb.append(PREFIX_TIMEZONE + person.getTimeZone().getOffsetInString() + " ");
+        person.getGameType().stream().forEach(
+                s -> sb.append(PREFIX_GAME_TYPE + s.getGameTypeName() + " ")
+        );
         return sb.toString();
     }
 
@@ -90,6 +97,14 @@ public class PersonUtil {
         }
         descriptor.getTimeZone().ifPresent(timeZone -> sb.append(PREFIX_TIMEZONE)
                 .append(timeZone.getOffsetInString()).append(" "));
+        if (descriptor.getGameTypes().isPresent()) {
+            Set<GameType> gameTypes = descriptor.getGameTypes().get();
+            if (gameTypes.isEmpty()) {
+                sb.append(PREFIX_GAME_TYPE).append(" ");
+            } else {
+                gameTypes.forEach(s -> sb.append(PREFIX_GAME_TYPE).append(s.getGameTypeName()).append(" "));
+            }
+        }
         return sb.toString();
     }
 }

@@ -356,3 +356,7 @@
 #servers .label {
     -fx-background-color: #11ad24;
 }
+
+#gameTypes .label {
+    -fx-background-color: #ad8911;
+}

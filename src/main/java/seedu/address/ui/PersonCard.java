@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane socials;
     @FXML
     private FlowPane servers;
+    @FXML
+    private FlowPane gameTypes;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -65,6 +67,9 @@ public class PersonCard extends UiPart<Region> {
 
         person.getServers().stream()
                 .forEach(ser -> servers.getChildren().add(new Label(ser.toString())));
+
+        person.getGameType().stream()
+                .forEach(gam -> gameTypes.getChildren().add(new Label(gam.toString())));
     }
 
     @Override
