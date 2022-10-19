@@ -26,14 +26,17 @@
               <VBox.margin>
                 <Insets right="5.0" left="10" bottom="10" top="10"/>
               </VBox.margin>
+              <font>
+                <Font size="14.0" />
+              </font>
             </Label>
             <Label fx:id="helpMessageBody" text="Label" textFill="WHITE" style="-fx-background-color: #545454#545454; -fx-background-radius: 10;">
               <VBox.margin>
                 <Insets right="5.0" left="10" bottom="10"/>
               </VBox.margin>
-                     <font>
-                        <Font name="Space Mono" size="12.0" />
-                     </font>
+              <font>
+                <Font name="Courier New" size="14.0" />
+              </font>
             </Label>
           </VBox>
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
