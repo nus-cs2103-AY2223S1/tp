@@ -27,7 +27,6 @@ import seedu.address.model.transaction.Transaction;
  */
 public class BuyCommandParser implements Parser<BuyCommand> {
 
-
     /**
      * Parses the given {@code String} of arguments in the context of the {@code BuyCommand}
      * and returns a {@code BuyCommand} object for execution.
@@ -37,7 +36,6 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
                 PREFIX_DATE);
-        boolean isDateEmpty = argMultimap.getValue(PREFIX_DATE).isEmpty();
 
         Index index;
         try {
@@ -45,7 +43,6 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     BuyCommand.MESSAGE_USAGE), ive);
-
         }
 
         if (argMultimap.getValue(PREFIX_GOODS).isEmpty() || argMultimap.getValue(PREFIX_PRICE).isEmpty()
@@ -57,18 +54,18 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         Goods goods = ParserUtil.parseGoods(argMultimap.getValue(PREFIX_GOODS).orElse(""));
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).orElse(""));
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
-        Date date;
-        if (isDateEmpty) {
+
+        boolean isEmptyDate = argMultimap.getValue(PREFIX_DATE).isEmpty();
+        if (isEmptyDate) {
             LocalDate now = LocalDate.now();
             LocalDate datetime = LocalDate.parse(now.toString(), DEFAULT_PATTERN);
             String output = datetime.format(NEW_PATTERN);
-            date = new Date(output);
-        } else {
-            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
+
+            Transaction newTransaction = new BuyTransaction(goods, price, quantity, new Date(output));
+            return new BuyCommand(index, newTransaction);
         }
 
-        Transaction transaction = new BuyTransaction(goods, price, quantity, date);
-
-        return new BuyCommand(index, transaction);
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
+        return new BuyCommand(index, new BuyTransaction(goods, price, quantity, date));
     }
 }

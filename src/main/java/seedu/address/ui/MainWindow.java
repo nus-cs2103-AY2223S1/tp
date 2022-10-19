@@ -146,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        netTransactionBox = new NetTransactionBox(logic.calculateTotalTransaction());
+        netTransactionBox = new NetTransactionBox(logic.calculateTotalTransaction(logic.getFilteredClientList()));
         menuPlaceholder.getChildren().add(netTransactionBox.getRoot());
     }
 
@@ -196,17 +196,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleClientDetailsUpdate(CommandResult commandResult) {
         ObservableList<Client> clientList = logic.getFilteredClientList();
-
+        double updatedNetTransaction = logic.calculateTotalTransaction(clientList);
         if (clientList.size() != 1) {
             // Empty company list panel.
             companyListPanel.setCompanyList(FXCollections.observableArrayList());
             transactionListPanel.setTransactionList(FXCollections.observableArrayList());
+            netTransactionBox.setNetTransaction(updatedNetTransaction);
             return;
         }
         Client client = clientList.get(0);
         ObservableList<Company> companies = client.getCompanies().asUnmodifiableObservableList();
         ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
-        double updatedNetTransaction = logic.calculateTotalTransaction();
         companyListPanel.setCompanyList(companies);
         transactionListPanel.setTransactionList(transactions);
         netTransactionBox.setNetTransaction(updatedNetTransaction);

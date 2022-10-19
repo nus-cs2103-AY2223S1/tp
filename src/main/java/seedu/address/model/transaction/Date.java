@@ -21,16 +21,18 @@ public class Date {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
     public final String date;
+    private final String unformattedDate;
 
     /**
      * Constructs a {@code Date}.
      *
-     * @param dateTime A valid goods name.
+     * @param date A valid date.
      */
-    public Date(String dateTime) {
-        requireNonNull(dateTime);
-        checkArgument(isValidDate(dateTime), MESSAGE_CONSTRAINTS);
-        this.date = LocalDate.parse(dateTime, dtf).toString();
+    public Date(String date) {
+        requireNonNull(date);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        this.unformattedDate = date;
+        this.date = LocalDate.parse(date, dtf).toString();
     }
 
     /**
@@ -64,6 +66,10 @@ public class Date {
     @Override
     public String toString() {
         return date;
+    }
+
+    public String getUnformattedDate() {
+        return unformattedDate;
     }
 
     @Override
