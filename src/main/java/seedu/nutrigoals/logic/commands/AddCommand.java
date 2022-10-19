@@ -27,7 +27,6 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "breakfast";
 
     public static final String MESSAGE_SUCCESS = "New food added: %1$s";
-    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the nutrition tracker.";
 
     private final Food toAdd;
 
@@ -42,10 +41,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasFood(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FOOD);
-        }
 
         model.addFood(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

@@ -36,7 +36,7 @@ public class LocateGymCommand extends Command {
         List<Location> nusGymLocations = model.getNusGymLocations();
         nusGymLocations.sort((l1, l2) -> l1.distTo(currentLocation).compareTo(l2.distTo(currentLocation)));
         StringBuilder sortedGyms = new StringBuilder();
-        for (int i = 0; i < Math.min(nusGymLocations.size(), 3); i++) {
+        for (int i = 0; i < Math.min(nusGymLocations.size(), 10); i++) {
             sortedGyms.append(i + 1).append(": ").append(nusGymLocations.get(i).toString()).append("\n");
         }
         return new CommandResult(String.format(MESSAGE_LOCATE_SUCCESS, sortedGyms));

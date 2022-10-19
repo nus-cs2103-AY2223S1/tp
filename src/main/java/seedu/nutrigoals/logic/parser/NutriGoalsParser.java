@@ -16,6 +16,7 @@ import seedu.nutrigoals.logic.commands.FindCommand;
 import seedu.nutrigoals.logic.commands.HelpCommand;
 import seedu.nutrigoals.logic.commands.ListCommand;
 import seedu.nutrigoals.logic.commands.LocateGymCommand;
+import seedu.nutrigoals.logic.commands.ProfileCommand;
 import seedu.nutrigoals.logic.commands.ReviewCommand;
 import seedu.nutrigoals.logic.commands.SetupCommand;
 import seedu.nutrigoals.logic.commands.TargetCommand;
@@ -71,6 +72,8 @@ public class NutriGoalsParser {
             return new ReviewCommand();
         case LocateGymCommand.COMMAND_WORD:
             return new LocateGymCommandParser().parse(arguments);
+        case ProfileCommand.COMMAND_WORD:
+            return new ProfileCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

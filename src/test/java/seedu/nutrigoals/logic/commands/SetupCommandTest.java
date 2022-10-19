@@ -173,6 +173,10 @@ public class SetupCommandTest {
         public List<Location> getNusGymLocations() {
             throw new AssertionError("This method should not be called");
         }
+        @Override
+        public boolean isUserCreated() {
+            throw new AssertionError("This method should not be called.");
+        }
 
 
     }

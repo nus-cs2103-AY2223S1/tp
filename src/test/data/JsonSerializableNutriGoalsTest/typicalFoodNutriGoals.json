@@ -48,6 +48,18 @@
     "name" : "USC",
     "latitude" : 1.2998680145010344,
     "longitude" : 103.77528575803385
+  }, {
+    "name" : "EUSOFF HALL",
+    "latitude" : 1.2937696692719094,
+    "longitude" : 103.77043696074193
+  }, {
+    "name" : "TEMASEK HALL",
+    "latitude" : 1.2930639982706684,
+    "longitude" : 103.77084097639103
+  }, {
+    "name" : "KENT RIDGE HALL",
+    "latitude" : 1.2918512226940035,
+    "longitude" : 103.77477995285786
   } ],
   "calorieTarget" : {
     "value" : "2000"

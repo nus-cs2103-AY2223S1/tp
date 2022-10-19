@@ -2,13 +2,9 @@ package seedu.nutrigoals.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.nutrigoals.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -16,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
+import seedu.nutrigoals.logic.commands.exceptions.CommandException;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Location;
 import seedu.nutrigoals.model.Model;
@@ -25,55 +22,43 @@ import seedu.nutrigoals.model.ReadOnlyUserPrefs;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.user.User;
-import seedu.nutrigoals.testutil.FoodBuilder;
+import seedu.nutrigoals.testutil.UserBuilder;
 
-public class AddCommandTest {
+public class ProfileCommandTest {
 
     @Test
-    public void constructor_nullFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void execute_validUser_success() throws CommandException {
+        Model model = new ModelStubWithUser();
+        User validMaleUser = new UserBuilder().build();
+
+        // male user
+        new SetupCommandStub(validMaleUser).execute(model); // set up the profile
+        CommandResult actualCommandResult = new ProfileCommand().execute(model);
+        String expectedMessage = "Here are your details: \n" + validMaleUser;
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertEquals(expectedCommandResult, actualCommandResult);
+
+        // female user
+        User validFemaleUser = new UserBuilder().withGender("F")
+                .withHeight("165")
+                .withWeight("50")
+                .withIdeal("50")
+                .build();
+        new SetupCommandStub(validFemaleUser).execute(model);
+        actualCommandResult = new ProfileCommand().execute(model);
+        expectedMessage = "Here are your details: \n" + validFemaleUser;
+        expectedCommandResult = new CommandResult(expectedMessage);
+        assertEquals(actualCommandResult, expectedCommandResult);
     }
 
     @Test
-    public void execute_foodAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
-        Food validFood = new FoodBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validFood).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validFood), modelStub.foodsAdded);
+    public void execute_profileNotCreated_exceptionThrown() {
+        ModelStubWithUser model = new ModelStubWithUser();
+        assertThrows(CommandException.class, () -> new ProfileCommand().execute(model));
     }
 
+    private static class ModelStub implements Model {
 
-    @Test
-    public void equals() {
-        Food alice = new FoodBuilder().withName("Alice").build();
-        Food bob = new FoodBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
-
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
-    }
-
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -105,12 +90,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addFood(Food food) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setNutriGoals(ReadOnlyNutriGoals newData) {
+        public void setNutriGoals(ReadOnlyNutriGoals nutriGoals) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -119,17 +99,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * @param calorieTarget Sets the user's calorie target
-         */
         @Override
         public void setCalorieTarget(Calorie calorieTarget) {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * @return Calorie User's calorie target
-         */
         @Override
         public Calorie getCalorieTarget() {
             throw new AssertionError("This method should not be called.");
@@ -142,6 +116,11 @@ public class AddCommandTest {
 
         @Override
         public void deleteFood(Food target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addFood(Food food) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,14 +141,15 @@ public class AddCommandTest {
 
         @Override
         public void setUserDetails(User user) {
-            throw new AssertionError("This method should not be called");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public User getUserDetails() {
-            throw new AssertionError("This method should not be called");
+            throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public IsFoodAddedOnThisDatePredicate getDatePredicate() {
             throw new AssertionError("This method should not be called.");
         }
@@ -190,46 +170,48 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single food.
-     */
-    private class ModelStubWithFood extends ModelStub {
-        private final Food food;
+    private static class ModelStubWithUser extends ModelStub {
+        private User user = new User();
 
-        ModelStubWithFood(Food food) {
-            requireNonNull(food);
-            this.food = food;
+        @Override
+        public User getUserDetails() {
+            return this.user;
         }
 
         @Override
-        public boolean hasFood(Food food) {
-            requireNonNull(food);
-            return this.food.isSameFood(food);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the food being added.
-     */
-    private class ModelStubAcceptingFoodAdded extends ModelStub {
-        final ArrayList<Food> foodsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasFood(Food food) {
-            requireNonNull(food);
-            return foodsAdded.stream().anyMatch(food::isSameFood);
-        }
-
-        @Override
-        public void addFood(Food food) {
-            requireNonNull(food);
-            foodsAdded.add(food);
+        public void setUserDetails(User newUser) {
+            this.user = newUser;
         }
 
         @Override
         public ReadOnlyNutriGoals getNutriGoals() {
             return new NutriGoals();
         }
+
+        @Override
+        public boolean isUserCreated() {
+            return user.isUserCreated();
+        }
     }
 
+    private static class SetupCommandStub extends SetupCommand {
+
+        private final User user;
+        /**
+         * Creates a SetupCommandStub for the user
+         *
+         * @param user User profile to set up
+         */
+        public SetupCommandStub(User user) {
+            super(user);
+            this.user = user;
+        }
+
+        @Override
+        public CommandResult execute(Model model) {
+            requireNonNull(model);
+            model.setUserDetails(user);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, model.getUserDetails()));
+        }
+    }
 }

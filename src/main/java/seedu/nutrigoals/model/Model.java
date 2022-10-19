@@ -83,7 +83,7 @@ public interface Model {
 
     /**
      * Adds the given food.
-     * {@code food} must not already exist in the food list
+     * {@code food} food to be added
      * .
      */
     void addFood(Food food);
@@ -117,4 +117,5 @@ public interface Model {
     boolean isFilteredFoodListEmpty();
 
     List<Location> getNusGymLocations();
+    boolean isUserCreated();
 }

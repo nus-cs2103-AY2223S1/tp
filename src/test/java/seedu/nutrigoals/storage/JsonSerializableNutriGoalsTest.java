@@ -19,7 +19,6 @@ public class JsonSerializableNutriGoalsTest {
             "test", "data", "JsonSerializableNutriGoalsTest");
     private static final Path TYPICAL_FOOD_FILE = TEST_DATA_FOLDER.resolve("typicalFoodNutriGoals.json");
     private static final Path INVALID_FOOD_FILE = TEST_DATA_FOLDER.resolve("invalidFoodNutriGoals.json");
-    private static final Path DUPLICATE_FOOD_FILE = TEST_DATA_FOLDER.resolve("duplicateFoodNutriGoals.json");
 
     @Test
     public void toModelType_typicalFoodFile_success() throws Exception {
@@ -36,13 +35,4 @@ public class JsonSerializableNutriGoalsTest {
                 JsonSerializableNutriGoals.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-
-    @Test
-    public void toModelType_duplicateFoods_throwsIllegalValueException() throws Exception {
-        JsonSerializableNutriGoals dataFromFile = JsonUtil.readJsonFile(DUPLICATE_FOOD_FILE,
-                JsonSerializableNutriGoals.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableNutriGoals.MESSAGE_DUPLICATE_FOOD,
-                dataFromFile::toModelType);
-    }
-
 }

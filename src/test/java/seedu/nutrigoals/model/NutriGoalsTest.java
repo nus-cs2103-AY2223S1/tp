@@ -4,13 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.exceptions.DuplicateMealException;
 import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.FoodBuilder;
 
@@ -43,16 +40,6 @@ public class NutriGoalsTest {
         NutriGoals newData = getTypicalNutriGoals();
         nutriGoals.resetData(newData);
         assertEquals(newData, nutriGoals);
-    }
-
-    @Test
-    public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
-        // Two foods with the same identity fields
-        Food editedApple = new FoodBuilder(APPLE).withTag(VALID_TAG_LUNCH).build();
-        List<Food> newFoods = Arrays.asList(APPLE, editedApple);
-        NutriGoalsStub newData = new NutriGoalsStub(newFoods);
-
-        assertThrows(DuplicateMealException.class, () -> nutriGoals.resetData(newData));
     }
 
     @Test
