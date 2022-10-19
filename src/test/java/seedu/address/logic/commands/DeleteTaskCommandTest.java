@@ -75,7 +75,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);
 
         assertThrows(CommandException.class,
-                DeleteTaskCommand.MESSAGE_TASK_NUMBER_DOES_NOT_EXIST, () ->
+                Messages.MESSAGE_NO_SUCH_TASK_NUMBER, () ->
                 deleteTaskCommand.execute(model));
     }
 

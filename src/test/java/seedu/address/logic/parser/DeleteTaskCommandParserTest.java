@@ -3,6 +3,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2106_DELETE_TASK_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER_DESC_NEGATIVE;
@@ -19,7 +20,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.DeleteTaskCommandParser.MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER;
 
 import org.junit.jupiter.api.Test;
 
@@ -79,15 +79,15 @@ public class DeleteTaskCommandParserTest {
                 ModuleCode.MESSAGE_CONSTRAINTS);
         // invalid task number - non-numeric
         assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBER_DESC_NON_NUMERIC,
-                MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER);
+                MESSAGE_INVALID_TASK_NUMBER);
         // invalid task number - negative
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBER_DESC_NEGATIVE,
-                MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER);
+                MESSAGE_INVALID_TASK_NUMBER);
         // invalid task number - ZERO
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBER_DESC_ZERO,
-                MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER);
+                MESSAGE_INVALID_TASK_NUMBER);
         // both module code and task description are invalid - only
         // invalid module code is reported.
         assertParseFailure(parser, INVALID_TASK_NUMBER_DESC_NON_NUMERIC + INVALID_MODULE_CODE_DESC,
