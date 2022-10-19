@@ -1,13 +1,16 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.FilterPetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pet.Pet;
 
-import java.util.function.Predicate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+/**
+ * Parses input arguments and creates a new FilterPetCommand object.
+ */
 public class FilterPetCommandParser implements Parser<FilterPetCommand> {
     public static final char COLOR_PREFIX = 'c';
     public static final char PET_NAME_PREFIX = 'n';
@@ -15,7 +18,7 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
     public static final char SPECIES_PREFIX = 's';
     public static final char VACCINATION_PREFIX = 'v';
 
-    public static Predicate<Pet> defaultPredicate = new Predicate<Pet>() {
+    private static Predicate<Pet> defaultPredicate = new Predicate<Pet>() {
         @Override
         public boolean test(Pet pet) {
             return true;
@@ -47,24 +50,24 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
         for (String arg: nameKeywords) {
             arg = arg.trim();
             switch (arg.charAt(0)) {
-                case COLOR_PREFIX:
-                    cPredicate = PredicateParser.parsePet(arg);
-                    break;
-                case PET_NAME_PREFIX:
-                    nPredicate = PredicateParser.parsePet(arg);
-                    break;
-                case PRICE_PREFIX:
-                    pPredicate = PredicateParser.parsePet(arg);
-                    break;
-                case SPECIES_PREFIX:
-                    sPredicate = PredicateParser.parsePet(arg);
-                    break;
-                case VACCINATION_PREFIX:
-                    vsPredicate = PredicateParser.parsePet(arg);
-                    break;
-                default:
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+            case COLOR_PREFIX:
+                cPredicate = PredicateParser.parsePet(arg);
+                break;
+            case PET_NAME_PREFIX:
+                nPredicate = PredicateParser.parsePet(arg);
+                break;
+            case PRICE_PREFIX:
+                pPredicate = PredicateParser.parsePet(arg);
+                break;
+            case SPECIES_PREFIX:
+                sPredicate = PredicateParser.parsePet(arg);
+                break;
+            case VACCINATION_PREFIX:
+                vsPredicate = PredicateParser.parsePet(arg);
+                break;
+            default:
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
             }
         }
         return new FilterPetCommand(cPredicate, nPredicate, pPredicate, sPredicate, vsPredicate);

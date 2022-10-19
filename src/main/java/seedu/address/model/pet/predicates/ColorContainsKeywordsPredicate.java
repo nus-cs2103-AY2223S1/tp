@@ -1,14 +1,20 @@
 package seedu.address.model.pet.predicates;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.pet.Pet;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.pet.Pet;
+
+/**
+ * Tests that a {@code Pet}'s {@code Color} matches any of the keywords given.
+ */
 public class ColorContainsKeywordsPredicate<T extends Pet> implements Predicate<T> {
     private final List<String> keywords;
 
+    /**
+     * Creates a {@code ColorContainsKeywordsPredicate} based on keywords given.
+     */
     public ColorContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

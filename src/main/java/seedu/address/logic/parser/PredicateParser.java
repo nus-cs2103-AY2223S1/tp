@@ -17,8 +17,11 @@ import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.predicates.*;
-
+import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 
 /**
  * Parses input arguments and creates a new Predicate.
@@ -138,19 +141,19 @@ public class PredicateParser {
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
-            case COLOR_PREFIX:
-                return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
-            case PET_NAME_PREFIX:
-                return new PetNameContainsKeywordsPredicate<>(Arrays.asList(query));
-            case PRICE_PREFIX:
-                return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(query)));
-            case SPECIES_PREFIX:
-                return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
-            case VACCINATION_PREFIX:
-                return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+        case COLOR_PREFIX:
+            return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
+        case PET_NAME_PREFIX:
+            return new PetNameContainsKeywordsPredicate<>(Arrays.asList(query));
+        case PRICE_PREFIX:
+            return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(query)));
+        case SPECIES_PREFIX:
+            return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
+        case VACCINATION_PREFIX:
+            return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
     }
 }

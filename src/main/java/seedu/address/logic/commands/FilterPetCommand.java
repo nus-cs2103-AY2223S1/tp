@@ -2,12 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
-import java.util.function.Predicate;
-
+/**
+ * Filters and lists all pets in address book whose attributes match the argument keywords.
+ * Keyword matching is case-insensitive.
+ */
 public class FilterPetCommand extends Command {
     public static final String COMMAND_WORD = "filter-p";
 
@@ -34,6 +38,9 @@ public class FilterPetCommand extends Command {
         this.vsPredicate = vsPredicate;
     }
 
+    /**
+     * Creates a Predicate to filter the specified {@code Pet}.
+     */
     public Predicate<Pet> generatePredicate() {
         return new Predicate<Pet>() {
             @Override
