@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.beans.property.ObjectProperty;
@@ -47,6 +46,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
+    /**
+     * Initialises a new Addressbook with a default team.
+     */
     public static AddressBook createNewAddressBook() {
         Team defaultTeam = Team.createDefaultTeam();
         AddressBook ab = new AddressBook();

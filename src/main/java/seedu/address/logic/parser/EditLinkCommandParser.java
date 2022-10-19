@@ -31,7 +31,7 @@ public class EditLinkCommandParser implements Parser<EditLinkCommand> {
      * Creates an EditLinkCommandParser with default options.
      */
     public EditLinkCommandParser() {
-        Options options =  new Options();
+        Options options = new Options();
         options.addOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of link");
         options.addOption(FLAG_URL_STR, FLAG_URL_STR_LONG, true, "URL of link");
         this.options = options;
@@ -59,7 +59,8 @@ public class EditLinkCommandParser implements Parser<EditLinkCommand> {
             try {
                 index = ParserUtil.parseIndex(cmd.getArgs()[0]);
             } catch (ParseException | IndexOutOfBoundsException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditLinkCommand.MESSAGE_USAGE), e);
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditLinkCommand.MESSAGE_USAGE), e);
             }
 
             if (cmd.hasOption(FLAG_NAME_STR)) {
@@ -77,7 +78,7 @@ public class EditLinkCommandParser implements Parser<EditLinkCommand> {
             }
 
 
-            return new EditLinkCommand(index,editLinkDescriptor);
+            return new EditLinkCommand(index, editLinkDescriptor);
         } catch (MissingArgumentException e) {
             Option opt = e.getOption();
             switch (opt.getOpt()) {

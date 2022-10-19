@@ -24,7 +24,7 @@ public class EditLinkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a current link TODO";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LINK= "This link already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
 
     private final Index index;
     private final EditLinkDescriptor editLinkDescriptor;
@@ -48,7 +48,7 @@ public class EditLinkCommand extends Command {
         assert editLinkDescriptor != null;
 
         Name updatedName = editLinkDescriptor.getName().orElse(linkToEdit.getDisplayedName());
-        Url updatedUrl =  editLinkDescriptor.getUrl().orElse(linkToEdit.getUrl());
+        Url updatedUrl = editLinkDescriptor.getUrl().orElse(linkToEdit.getUrl());
 
         return new Link(updatedName, updatedUrl);
     }
@@ -104,6 +104,9 @@ public class EditLinkCommand extends Command {
 
         public EditLinkDescriptor() {};
 
+        /**
+         * Copy constructor.
+         */
         public EditLinkDescriptor(EditLinkDescriptor toCopy) {
             setName(toCopy.name);
             setUrl(toCopy.url);

@@ -23,14 +23,13 @@ import seedu.address.model.team.Url;
  * Parses input arguments and creates a new AddLinkCommandParser object.
  */
 public class AddLinkCommandParser implements Parser<AddLinkCommand> {
-
     private final Options options;
 
     /**
      * Creates an AddLinkCommandParser object.
      */
     public AddLinkCommandParser() {
-        Options options =  new Options();
+        Options options = new Options();
         options.addRequiredOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of link");
         options.addRequiredOption(FLAG_URL_STR, FLAG_URL_STR_LONG, true, "URL of link");
         this.options = options;

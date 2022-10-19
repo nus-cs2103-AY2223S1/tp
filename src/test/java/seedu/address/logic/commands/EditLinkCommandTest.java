@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -39,7 +39,8 @@ class EditLinkCommandTest {
     void testEquals() {
         EditLinkCommand standardCommand = new EditLinkCommand(INDEX_FIRST_PERSON, DESC_GOOGLE);
 
-        EditLinkCommand commandWithSameValues = new EditLinkCommand(INDEX_FIRST_PERSON, new EditLinkDescriptor(DESC_GOOGLE));
+        EditLinkCommand commandWithSameValues = new EditLinkCommand(INDEX_FIRST_PERSON,
+                new EditLinkDescriptor(DESC_GOOGLE));
         EditLinkCommand commandWithDifferentIndex = new EditLinkCommand(INDEX_SECOND_PERSON, DESC_GOOGLE);
         EditLinkCommand commandWithDifferentDescriptor = new EditLinkCommand(INDEX_FIRST_PERSON, DESC_FACEBOOK);
 

@@ -2,9 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +14,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.team.Link;
 import seedu.address.model.team.Url;
 
 /**
@@ -130,7 +126,7 @@ public class ParserUtil {
     /**
      * Parses {@code String url} into a {@code Url}
      */
-    public static Url parseUrl(String url)  throws ParseException {
+    public static Url parseUrl(String url) throws ParseException {
         requireNonNull(url);
         String trimmedUrl = url.trim();
 

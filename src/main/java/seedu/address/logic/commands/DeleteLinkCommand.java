@@ -9,7 +9,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Link;
-
+/**
+ * Deletes an existing link from the addressbook.
+ */
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete_link";
 

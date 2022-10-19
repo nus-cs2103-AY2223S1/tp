@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class UrlTest {
-
     @Test
     public void isValidUrl() {
         assertTrue(Url.isValidUrl("https://google.com"));
@@ -16,6 +15,4 @@ class UrlTest {
         assertFalse(Url.isValidUrl("google.com"));
         assertFalse(Url.isValidUrl("https://google"));
     }
-
-
 }

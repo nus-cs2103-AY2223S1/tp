@@ -7,7 +7,6 @@ import static seedu.address.testutil.TypicalLinks.LINK_FACEBOOK;
 import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
 import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE_DUPLICATED;
 
-
 import org.junit.jupiter.api.Test;
 
 class LinkTest {

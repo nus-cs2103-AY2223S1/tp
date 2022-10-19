@@ -2,11 +2,9 @@ package seedu.address.model.team;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.URL;
 import java.util.Objects;
 
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 
 /**
  * Represents a link that is tracked in each team.

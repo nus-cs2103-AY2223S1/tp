@@ -1,3 +1,6 @@
 package seedu.address.model.team.exceptions;
 
-public class LinkNotFoundException  extends  RuntimeException {}
+/**
+ * Signals that the target link is not found.
+ */
+public class LinkNotFoundException extends RuntimeException {}
