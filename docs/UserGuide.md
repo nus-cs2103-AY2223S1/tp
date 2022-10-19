@@ -265,6 +265,36 @@ Format: `listEvents`
 Examples:
 * `listEvents`
 
+### Tag persons to an event : `tagEvent`
+
+Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [PERSON_INDEX] ...`
+
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* The `PERSON_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
+* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
+
+Example:
+* `tagEvent 1 p/2` tags the 2nd person to the 1st event
+* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to the 2nd event
+
+### Untag persons from an event : `untagEvent`
+
+Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [PERSON_INDEX] ...`
+
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* The `PERSON_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
+* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
+
+Example:
+* `untagEvent 1 p/2` untags the 2nd person from the 1st event
+* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person from the 2nd event
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the application.
