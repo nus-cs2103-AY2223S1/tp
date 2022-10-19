@@ -10,18 +10,9 @@ import seedu.address.model.module.Module;
  * A utility class to help with building {@code DeleteTaskFromModuleDescriptor} objects.
  */
 public class DeleteTaskFromModuleDescriptorBuilder {
-    public static final Module DEFAULT_MODULE = CS2103T;
     public static final Index TASK_INDEX_ONE = Index.fromOneBased(1);
 
     private DeleteTaskFromModuleDescriptor descriptor;
-
-    public DeleteTaskFromModuleDescriptorBuilder() {
-        descriptor = new DeleteTaskFromModuleDescriptor();
-    }
-
-    public DeleteTaskFromModuleDescriptorBuilder(DeleteTaskFromModuleDescriptor descriptor) {
-        this.descriptor = new DeleteTaskFromModuleDescriptor(descriptor);
-    }
 
     /**
      * Returns a {@code DeleteTaskFromModuleDescriptor} with fields containing
