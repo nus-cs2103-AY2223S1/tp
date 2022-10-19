@@ -27,7 +27,7 @@ import seedu.address.model.applicant.Applicant;
 public class SortCommandTest {
 
     private Comparator<Applicant> compareName = Applicant.sortByName();
-    private Comparator<Applicant> compareScholarship =  Applicant.sortByScholarship();
+    private Comparator<Applicant> compareScholarship = Applicant.sortByScholarship();
     private Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
 

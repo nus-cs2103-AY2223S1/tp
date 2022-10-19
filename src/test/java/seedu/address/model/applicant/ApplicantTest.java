@@ -9,8 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalApplicants.ALICE;
-import static seedu.address.testutil.TypicalApplicants.BOB;
 import static seedu.address.testutil.TypicalApplicants.BENSON;
+import static seedu.address.testutil.TypicalApplicants.BOB;
 import static seedu.address.testutil.TypicalApplicants.CARL;
 import static seedu.address.testutil.TypicalApplicants.DANIEL;
 import static seedu.address.testutil.TypicalApplicants.ELLE;
@@ -55,19 +55,19 @@ public class ApplicantTest {
     }
 
     @Test
-    public void sortByName_DifferentNames_NegativeOne() {
+    public void sortByName_differentNames_negativeOne() {
         int result = Applicant.sortByName().compare(ALICE, BENSON);
         assertTrue(result == -1);
     }
 
     @Test
-    public void sortByName_DifferentNames_One() {
+    public void sortByName_differentNames_one() {
         int result = Applicant.sortByName().compare(CARL, BENSON);
         assertTrue(result == 1);
     }
 
     @Test
-    public void sortByScholarship_SameScholarshipDifferentNames_Four() {
+    public void sortByScholarship_sameScholarshipDifferentNames_four() {
         int result = Applicant.sortByScholarship().compare(ELLE, ALICE);
         // returns 18 which is the result of comparing Alice and Elle's names
         // both Alice and Elle have the same Scholarships and thus names are used as a tiebreaker
@@ -75,7 +75,7 @@ public class ApplicantTest {
     }
 
     @Test
-    public void sortByScholarship_DifferentScholarship_Eighteen() {
+    public void sortByScholarship_differentScholarship_eighteen() {
         int result = Applicant.sortByScholarship().compare(CARL, DANIEL);
         // returns 18 which is the result of comparing Arts and Sports Scholarships
         assertTrue(result == 18);
