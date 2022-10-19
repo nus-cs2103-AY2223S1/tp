@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.taassist.testutil.Assert.assertThrows;
+import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.BOB;
 
@@ -26,10 +27,9 @@ class AssignCommandTest {
     @Test
     public void execute_noModuleClass_throwsCommandException() {
         ModelStubWithNoModuleClasses modelStub = new ModelStubWithNoModuleClasses();
-        ModuleClass moduleClass = new ModuleClass("GEN1000");
         List<Index> indices = new ArrayList<>();
 
-        AssignCommand assignCommand = new AssignCommand(indices, moduleClass);
+        AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
         String expectedMessage = String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                 modelStub.getModuleClassList());
 
@@ -39,13 +39,12 @@ class AssignCommandTest {
     @Test
     public void execute_indexOutOfRange_throwsCommandException() {
         ModelStubWithOneStudent modelStub = new ModelStubWithOneStudent();
-        ModuleClass moduleClass = new ModuleClass("GEN1000");
 
         List<Index> indices = new ArrayList<>();
         indices.add(Index.fromOneBased(1));
         indices.add(Index.fromOneBased(2));
 
-        AssignCommand assignCommand = new AssignCommand(indices, moduleClass);
+        AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
         String expectedMessage = Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 
         assertThrows(CommandException.class, expectedMessage, () -> assignCommand.execute(modelStub));
@@ -54,14 +53,13 @@ class AssignCommandTest {
     @Test
     public void execute_assignOneStudent_success() throws CommandException {
         ModelStubWithOneStudent modelStub = new ModelStubWithOneStudent();
-        ModuleClass moduleClass = new ModuleClass("GEN1000");
 
         List<Index> indices = new ArrayList<>();
         indices.add(Index.fromOneBased(1));
 
-        AssignCommand assignCommand = new AssignCommand(indices, moduleClass);
-        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, "index", indices, moduleClass);
-        Student expectedStudent = new StudentBuilder(ALICE).withModuleClasses(moduleClass.getClassName()).build();
+        AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
+        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, "index", indices, CS1101S);
+        Student expectedStudent = new StudentBuilder(ALICE).withModuleClasses(CS1101S).build();
 
         assertEquals(expectedMessage, assignCommand.execute(modelStub).getFeedbackToUser());
         assertEquals(expectedStudent, modelStub.student);
@@ -70,16 +68,15 @@ class AssignCommandTest {
     @Test
     void execute_assignMultipleStudents_success() throws CommandException {
         ModelStubWithMultipleStudents modelStub = new ModelStubWithMultipleStudents();
-        ModuleClass moduleClass = new ModuleClass("GEN1000");
 
         List<Index> indices = new ArrayList<>();
         indices.add(Index.fromOneBased(1));
         indices.add(Index.fromOneBased(2));
 
-        AssignCommand assignCommand = new AssignCommand(indices, moduleClass);
-        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, "indices", indices, moduleClass);
-        Student expectedStudent1 = new StudentBuilder(ALICE).withModuleClasses(moduleClass.getClassName()).build();
-        Student expectedStudent2 = new StudentBuilder(BOB).withModuleClasses(moduleClass.getClassName()).build();
+        AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
+        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, "indices", indices, CS1101S);
+        Student expectedStudent1 = new StudentBuilder(ALICE).withModuleClasses(CS1101S).build();
+        Student expectedStudent2 = new StudentBuilder(BOB).withModuleClasses(CS1101S).build();
 
         assertEquals(expectedMessage, assignCommand.execute(modelStub).getFeedbackToUser());
         assertEquals(expectedStudent1, modelStub.students.get(0));
@@ -88,16 +85,14 @@ class AssignCommandTest {
 
     @Test
     public void equals() {
-        ModuleClass moduleClass = new ModuleClass("GEN1000");
-
-        AssignCommand assignFirstCommand = new AssignCommand(List.of(Index.fromOneBased(1)), moduleClass);
-        AssignCommand assignSecondCommand = new AssignCommand(List.of(Index.fromOneBased(2)), moduleClass);
+        AssignCommand assignFirstCommand = new AssignCommand(List.of(Index.fromOneBased(1)), CS1101S);
+        AssignCommand assignSecondCommand = new AssignCommand(List.of(Index.fromOneBased(2)), CS1101S);
 
         // same object -> returns true
         assertEquals(assignFirstCommand, assignFirstCommand);
 
         // same values -> returns true
-        AssignCommand assignFirstCommandCopy = new AssignCommand(List.of(Index.fromOneBased(1)), moduleClass);
+        AssignCommand assignFirstCommandCopy = new AssignCommand(List.of(Index.fromOneBased(1)), CS1101S);
         assertEquals(assignFirstCommand, assignFirstCommandCopy);
 
         // different types -> returns false

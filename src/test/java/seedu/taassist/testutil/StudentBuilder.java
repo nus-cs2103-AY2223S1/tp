@@ -3,6 +3,7 @@ package seedu.taassist.testutil;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
@@ -58,10 +59,9 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code moduleClasses} into a {@code Set<ModuleClass>} and
-     * set it to the {@code Student} that we are building.
+     * Set the {@code moduleClasses} to the {@code Student} that we are building.
      */
-    public StudentBuilder withModuleClasses(String ... moduleClasses) {
+    public StudentBuilder withModuleClasses(ModuleClass... moduleClasses) {
         this.moduleData = SampleDataUtil.getModuleDataList(moduleClasses);
         return this;
     }
