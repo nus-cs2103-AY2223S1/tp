@@ -248,92 +248,98 @@ in the Object Oriented Domain Model diagram below:
 
 ![ModulePersonObjectOrientedDomainModel](images/ModulePersonObjectOrientedDomainModel.png)
 
-(More details coming soon...)
+### Goto module feature
 
-### \[Proposed\] Undo/redo feature
+#### Implementation
 
-#### Proposed Implementation
+Goto module mechanism is facilitated by `GoToCommand`, `ModuleCodeMatchesKeywordPredicate` and `GoToCommandParser`.
+It allows users to navigate to a specific module given their respective module code. <br>
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+It uses the following methods provided by `ModelManager` which implements the `Model` interface.
+* `ModelManager::updateFilteredModuleList`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `ModelManager::setHomeStatus`: Sets the home status of Plannit.
 
-* `VersionedAddressBook#commit()`—Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`—Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`—Restores a previously undone address book state from its history.
+Given below is an example usage scenario and how the mechanism
+behaves when a user navigates to a module in Plannit.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**Step 1**. The user requests to navigate to a module present in the Plannit
+by inputting the `goto` command followed by the module code of the module.
+E.g.:
+```
+goto CS1231
+```
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the
+user input `String`.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 3**: The `LogicManager::execute` method first parses the user input
+`String` into a `Command` object using the `AddressBookParser::parseCommand`
+method.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+**Step 4**: The command word, `goto`, is extracted from the user input and
+a new `GoToCommandParser` is instantiated to parse the arguments.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+**Step 5**: The `GoToCommandParser::parse` method is then called to
+parse the arguments. After validating the arguments provided by the user, a
+new `ModuleCodeMatchesKeywordPredicate` is instantiated with the provided module code.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+**Step 6**: The `ModuleCodeMatchesKeywordPredicate` object is then used to instantiate
+a `GoToCommand` object that is returned to the `LogicManager`.
 
-Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 7**: The `GoToCommand::execute` method is then called by the
+`LogicManager`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+**Step 8**: The current module list via `ModelManager::updateFilteredModuleList`,
+filtering the module list according to the predicate object instantiated in **Step 5**.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Step 9**: The home status is set to false via `ModelManager::SetHomeStatus`.
 
+**Step 10**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `goto` command:
+
+![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+<div style="page-break-after: always;"></div>
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The following activity diagram summarizes what happens when a user executes a `GoToCommand`:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+![GoToActivityDiagram](images/GoToActivityDiagram.png)
 
-</div>
+#### Design consideration:
 
-The following sequence diagram shows how the undo operation works:
+##### Aspect: How find executes
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+* **Alternative 1 (current choice):** Navigate to a single module by module code and updating home status.
+    * Pros:
+        * Provides an intuitive and more versatile way for users to navigate between modules.
+        * Provides an intuitive usage of commands by limiting the scope of possible commands usable
+          when out of the home page.
+    * Cons: Unable to search for multiple persons with different attributes.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* **Alternative 2:** Navigate to a single module by module code.
+    * Pros: Provides an intuitive and more versatile way for users to navigate between modules.
+    * Cons: Might result in confusion when some commands are usable out of the home page.
 
-</div>
+* **Alternative 3:** Navigate to module by index.
+    * Pros: Allows for quicker input as compared to typing out the entire module code
+    * Cons: Require user to navigate back to home page before going to another module which might be unintuitive for users.
 
-The `redo` command does the opposite—it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+##### Rationale behind current choice:
+* Alternative 1 was chosen as it provides a more intuitive way for prospective users.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+* The following commands`list-module`, `find-module` are implemented to allow users to filter
+  the module list via module code prefix and reset the filtered module list while in home page. <br>
+  It is not meant to be used in tandem with `goto` command. Instead, `home` command should be used to navigate back to the home page
+  after usage of the `goto` command.
 
-</div>
+Hence, to prevent confusion we chose Alternative 1.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -511,7 +517,7 @@ Use case ends.
 
 **Main Success Scenario (MSS)**
 1. User requests to search for a task.
-2. Plannit displays to the user the list of tasks matching the user's search 
+2. Plannit displays to the user the list of tasks matching the user's search
    request.
 
 **Extensions**
@@ -572,19 +578,19 @@ Use case ends.
 
 **Extensions**
 * 3a. The contact is duplicate, i.e. name already exists.
-    * 3a1. Plannit displays an error message notifying the user that a 
+    * 3a1. Plannit displays an error message notifying the user that a
       duplicate contact exists.
 
   Use case ends.
 
 * 3b. The email address is invalid.
-    * 3b1. Plannit displays an error message notifying the user that the 
+    * 3b1. Plannit displays an error message notifying the user that the
       email address is invalid.
 
   Use case ends.
 
 * 3c. The phone number is invalid.
-    * 3c1. Plannit displays an error message notifying the user that the phone 
+    * 3c1. Plannit displays an error message notifying the user that the phone
       number is invalid.
 
   Use case ends.
@@ -594,7 +600,7 @@ Use case ends.
 1. User chooses to delete a contact.
 2. Plannit requests for the name of the contact.
 3. User enters the contact's name.
-4. Plannit searches for the contact and notifies user that the contact has been 
+4. Plannit searches for the contact and notifies user that the contact has been
    deleted.
 
 Use case ends.
