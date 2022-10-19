@@ -35,7 +35,7 @@ class GenerateMessageCommandTest {
         GenerateMessageCommandTest.ModelStubMessagesGenerating
                 modelStub = new GenerateMessageCommandTest.ModelStubMessagesGenerating();
         Index index = Index.fromZeroBased(0);
-        modelStub.addMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
+        modelStub.createMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
         assertThrows(CommandException.class, () -> new GenerateMessageCommand(index, index).execute(modelStub));
     }
 
@@ -55,7 +55,7 @@ class GenerateMessageCommandTest {
 
         Index index = Index.fromZeroBased(0);
         modelStub.addPerson(ALICE);
-        modelStub.addMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
+        modelStub.createMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
 
         CommandResult commandResult =
                 new GenerateMessageCommand(index, index).execute(modelStub);
@@ -124,7 +124,7 @@ class GenerateMessageCommandTest {
         }
 
         @Override
-        public void addMessage(Message message) {
+        public void createMessage(Message message) {
             messagesAdded.add(message);
         }
 

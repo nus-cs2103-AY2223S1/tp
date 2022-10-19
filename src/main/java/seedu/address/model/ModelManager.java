@@ -157,7 +157,7 @@ public class ModelManager implements Model {
     // =========== Message Templates ===========================================================
 
     @Override
-    public void addMessage(Message message) {
+    public void createMessage(Message message) {
         requireNonNull(message);
         addressBook.createMessage(message);
     }

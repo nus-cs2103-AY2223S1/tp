@@ -30,8 +30,8 @@ class ListMessageCommandTest {
         ListMessageCommandTest.ModelStubListCommand
                 modelStub = new ListMessageCommandTest.ModelStubListCommand();
 
-        modelStub.addMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
-        modelStub.addMessage(VALID_MESSAGE_RECOMMEND_PRODUCT);
+        modelStub.createMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
+        modelStub.createMessage(VALID_MESSAGE_RECOMMEND_PRODUCT);
 
         CommandResult commandResult = new ListMessageCommand().execute(modelStub);
 
@@ -60,7 +60,7 @@ class ListMessageCommandTest {
         private List<Message> messagesAdded = new ArrayList<>();
 
         @Override
-        public void addMessage(Message message) {
+        public void createMessage(Message message) {
             messagesAdded.add(message);
         }
 

@@ -40,7 +40,7 @@ class CreateMessageCommandTest {
     public void execute_duplicateTags_userNotified() throws Exception {
         CreateMessageCommandTest.ModelStubAcceptingMessagesAdded
                 modelStub = new CreateMessageCommandTest.ModelStubAcceptingMessagesAdded();
-        modelStub.addMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
+        modelStub.createMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
 
         List<Message> messagesToAdd = new ArrayList<>();
         messagesToAdd.add(VALID_MESSAGE_HAPPY_BIRTHDAY);
@@ -84,7 +84,7 @@ class CreateMessageCommandTest {
         }
 
         @Override
-        public void addMessage(Message message) {
+        public void createMessage(Message message) {
             messagesAdded.add(message);
         }
     }
