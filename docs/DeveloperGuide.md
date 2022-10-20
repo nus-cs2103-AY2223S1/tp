@@ -154,6 +154,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### addNote feature
+
+#### Implementation
+
+The addNote mechanism is facilitated by `AddNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `AddNoteCommand#execute()` : adds the specified note with its associated title and content into the list of notes to be kept track of.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to keep track of a note with the following attributes :
+1. Title : Club meeting
+2. Content : 3rd October 9pm, brief everybody on upcoming events.
+
+Step 2. The user executes `addNote n_t/Meeting n_c/3rd October 9pm`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `AddNoteCommandParser` object and call `AddNoteCommandParser#parse()`. This method will take the user's input and make sense of it to create a `Note` object.
+
+Step 3. An `AddNoteCommand` will be created and `AddNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `AddNoteCommand#execute()` will call the following method from `Model` :
+- `addNote(toAdd)`
+
+Step 5. `AddNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> New note added: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
