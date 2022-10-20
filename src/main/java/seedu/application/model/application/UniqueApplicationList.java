@@ -48,7 +48,7 @@ public class UniqueApplicationList implements Iterable<Application> {
             return false;
         }
         for (int i = 0; i < internalList.size() - 1; i++) {
-            if (internalList.get(i).getInterview().isEmpty()) {
+            if (internalList.get(i).getInterview().isEmpty() || internalList.get(i).isSameApplication(toCheck)) {
                 continue;
             }
             if (internalList.get(i).getInterview().get().isOnSameTime(toCheck.getInterview().get())) {
