@@ -8,8 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
 
 import seedu.address.logic.commands.FilterPropsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.person.FilterBuyerByCharacteristicsPredicate;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.AbstractFilterPropsPredicate;
+import seedu.address.model.property.FilterPropsByCharacteristicsPredicate;
 import seedu.address.model.property.FilterPropsByPricePredicate;
 
 
@@ -40,6 +43,12 @@ public class FilterPropsCommandParser extends Parser<FilterPropsCommand> {
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             PriceRange priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
             predicate = new FilterPropsByPricePredicate(priceRange);
+        }
+
+        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
+            Characteristics characteristics = ParserUtil.parseCharacteristics(
+                    argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
+            predicate = new FilterPropsByCharacteristicsPredicate(characteristics);
         }
 
         // TODO: Consider allowing filtering by multiple characteristics at once

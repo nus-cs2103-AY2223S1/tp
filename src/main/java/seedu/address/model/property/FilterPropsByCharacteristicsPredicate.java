@@ -1,13 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.characteristics.Characteristics;
 
 /**
- * Tests that a given {@code Person}'s {@code DesiredCharacteristics} contains the given characteristic.
+ * Tests that a given {@code Property}'s {@code DesiredCharacteristics} contains the given characteristic.
  */
-public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPredicate {
+public class FilterPropsByCharacteristicsPredicate extends AbstractFilterPropsPredicate {
 
     private static final String CHARACTERISTIC_DELIMITER = ";";
 
@@ -16,25 +16,25 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
     /**
      * Standard constructor for the predicate.
      */
-    public FilterBuyerByCharacteristicsPredicate(Characteristics characteristics) {
+    public FilterPropsByCharacteristicsPredicate(Characteristics characteristics) {
         requireNonNull(characteristics);
         this.givenCharacteristics = characteristics;
     }
 
     @Override
-    public boolean test(Person p) {
-        // N.B.: Returns true if the target person does not have a DesiredCharacteristics object in their attributes.
-        if (p.getDesiredCharacteristics().isEmpty()) {
+    public boolean test(Property p) {
+        // N.B.: Returns true if the target property does not have a Characteristics object in their attributes.
+        if (p.getCharacteristics().isEmpty()) {
             return true;
         }
-        return p.getDesiredCharacteristics().get().containsCharacteristics(givenCharacteristics);
+        return p.getCharacteristics().get().containsCharacteristics(givenCharacteristics);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterBuyerByCharacteristicsPredicate // instanceof handles nulls
+                || (other instanceof FilterPropsByCharacteristicsPredicate // instanceof handles nulls
                 && givenCharacteristics.equals((
-                        (FilterBuyerByCharacteristicsPredicate) other).givenCharacteristics)); // state check
+                        (FilterPropsByCharacteristicsPredicate) other).givenCharacteristics)); // state check
     }
 }
