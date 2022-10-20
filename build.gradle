@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'swift+.jar'
 }
 
 defaultTasks 'clean', 'test'
