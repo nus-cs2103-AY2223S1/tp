@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.SortCommand.SortBy;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.student.Student;
@@ -153,9 +154,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         if (key instanceof Student) {
-            students.remove((Student) key);
+            Student student = (Student) key;
+            student.minusId();
+            students.remove(student);
         } else if (key instanceof Tutor) {
-            tutors.remove((Tutor) key);
+            Tutor tutor = (Tutor) key;
+            tutor.minusId();
+            tutors.remove(tutor);
         } else {
             // To be removed
             persons.remove(key);
@@ -197,6 +202,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTuitionClass(TuitionClass key) {
+        key.minusId();
         tuitionClasses.remove(key);
     }
 
@@ -237,6 +243,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<TuitionClass> getTuitionClassList() {
         return tuitionClasses.asUnmodifiableObservableList();
+    }
+
+    public void sortStudentList(SortBy method) {
+        students.sort(method);
+    }
+
+    public void sortTutorList(SortBy method) {
+        tutors.sort(method);
+    }
+
+    public void sortTuitionClassList(SortBy method) {
+        tuitionClasses.sort(method);
     }
 
     @Override

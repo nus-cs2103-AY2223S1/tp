@@ -21,10 +21,11 @@ import seedu.address.model.tuitionclass.exceptions.TuitionClassNotAssignedExcept
  * Represents a Tutor in the address book.
  */
 public class Tutor extends Person {
-
+    private static int id = 0;
     private final Qualification qualification;
     private final Institution institution;
     private final List<TuitionClass> tuitionClasses = new ArrayList<>();
+    private final String uniqueId;
 
 
     /**
@@ -34,8 +35,10 @@ public class Tutor extends Person {
                  Qualification qualification, Institution institution) {
         super(name, phone, email, address, tags);
         requireAllNonNull(qualification, institution);
+        id++;
         this.qualification = qualification;
         this.institution = institution;
+        this.uniqueId = id + "tutor";
     }
 
     /**
@@ -47,9 +50,11 @@ public class Tutor extends Person {
                  Qualification qualification, Institution institution, List<TuitionClass> tuitionClasses) {
         super(name, phone, email, address, tags);
         requireAllNonNull(qualification, institution);
+        id++;
         this.qualification = qualification;
         this.institution = institution;
         this.tuitionClasses.addAll(tuitionClasses);
+        this.uniqueId = id + "tutor";
     }
 
     public Qualification getQualification() {
@@ -62,6 +67,14 @@ public class Tutor extends Person {
 
     public List<TuitionClass> getTuitionClasses() {
         return tuitionClasses;
+    }
+
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public void minusId() {
+        id--;
     }
 
     /**

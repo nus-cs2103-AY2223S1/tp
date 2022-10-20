@@ -11,18 +11,18 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-
     /** the index of the entity being shown if the command is show **/
     private int indexOfShownEntity;
 
     private final CommandType type;
 
-    public enum CommandType { LIST, SHOW, HELP, EXIT, OTHER }
+    /** Types of command which are passed to the Ui to determine actions to take for each type **/
+    public enum CommandType { LIST, SHOW, HELP, EXIT, ASSIGN, UNASSIGN, EDIT, OTHER }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      * This should not be called by ShowCommand as it does not pass
-     * the index of the entity shwon to the Ui.
+     * the index of the entity shown to the Ui.
      */
     public CommandResult(String feedbackToUser, CommandType type) {
         assert(type != CommandType.SHOW);
@@ -70,6 +70,16 @@ public class CommandResult {
         return this.type == CommandType.SHOW;
     }
 
+    public boolean isUpdateListView() {
+        return this.type == CommandType.ASSIGN || this.type == CommandType.UNASSIGN;
+    }
+
+    public boolean isUpdateDescription() {
+        return this.type == CommandType.ASSIGN
+                || this.type == CommandType.UNASSIGN
+                || this.type == CommandType.EDIT;
+    }
+
     public int getIndex() {
         assert(this.type == CommandType.SHOW);
 
@@ -95,7 +105,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, type);
+        return Objects.hash(feedbackToUser, indexOfShownEntity, type);
     }
 
 }

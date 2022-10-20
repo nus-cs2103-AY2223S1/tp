@@ -14,7 +14,6 @@ import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
@@ -83,20 +82,6 @@ public class ParserUtil {
             throw new ParseException(Level.MESSAGE_CONSTRAINTS);
         }
         return Level.createLevel(trimmedLevel);
-    }
-
-    /**
-     * Parses {@code String nextOfKin} into an {@code NextOfKin} and returns it. Leading and trailing whitespaces will
-     * be trimmed.
-     * @throws ParseException if the given {@code nextOfKin} is invalid.
-     */
-    public static NextOfKin parseNextOfKin(String nextOfKin) throws ParseException {
-        requireNonNull(nextOfKin);
-        String trimmedNextOfKin = nextOfKin.trim();
-        if (!NextOfKin.isValidNextOfKin(trimmedNextOfKin)) {
-            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
-        }
-        return new NextOfKin(trimmedNextOfKin);
     }
 
     /**

@@ -15,7 +15,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INSTITUTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LEVEL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEXTOFKIN_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUALIFICATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SCHOOL_DESC;
@@ -31,8 +30,6 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CLASS2;
-import static seedu.address.logic.commands.CommandTestUtil.NEXTOFKIN_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NEXTOFKIN_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_AMY;
@@ -62,8 +59,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXTOFKIN_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXTOFKIN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUALIFICATION_AMY;
@@ -94,7 +89,6 @@ import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
@@ -217,9 +211,6 @@ public class EditCommandParserTest {
 
         assertParseFailure(parserWhenStudent, "1" + INVALID_LEVEL_DESC, Level.MESSAGE_CONSTRAINTS); // invalid level
 
-        assertParseFailure(parserWhenStudent,
-                "1" + INVALID_NEXTOFKIN_DESC, NextOfKin.MESSAGE_CONSTRAINTS); // invalid nextofkin
-
         // tutor stuff
         assertParseFailure(parserWhenTutor,
                 "1" + INVALID_QUALIFICATION_DESC, Qualification.MESSAGE_CONSTRAINTS); // invalid qualification
@@ -257,8 +248,7 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parserWhenStudent,
                 "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY + VALID_SCHOOL_AMY
-                        + INVALID_LEVEL_DESC + VALID_NEXTOFKIN_AMY,
-                seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
+                        + INVALID_LEVEL_DESC, seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         assertParseFailure(parserWhenTutor,
                 "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY
                         + INVALID_QUALIFICATION_DESC + VALID_INSTITUTION_AMY,
@@ -277,12 +267,12 @@ public class EditCommandParserTest {
 
         // student
         userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + NAME_DESC_AMY + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB;
+                + NAME_DESC_AMY + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB;
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withSchool(VALID_SCHOOL_BOB).withLevel(VALID_LEVEL_BOB)
-                .withNextOfKin(VALID_NEXTOFKIN_BOB).build();
+                .build();
         expectedCommand = new EditCommand(targetIndex, editStudentDescriptor);
 
         assertParseSuccess(parserWhenStudent, userInput, expectedCommand);
@@ -436,13 +426,6 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parserWhenClass, userInput, expectedCommand);
 
-        // next of kin
-        userInput = targetIndex.getOneBased() + NEXTOFKIN_DESC_AMY;
-        editStudentDescriptor = new EditStudentDescriptorBuilder().withNextOfKin(VALID_NEXTOFKIN_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, editStudentDescriptor);
-
-        assertParseSuccess(parserWhenStudent, userInput, expectedCommand);
-
         // qualification
         userInput = targetIndex.getOneBased() + QUALIFICATION_DESC_BOB;
         editTutorDescriptor = new EditTutorDescriptorBuilder().withQualification(VALID_QUALIFICATION_BOB).build();
@@ -508,13 +491,12 @@ public class EditCommandParserTest {
         // student
 
         userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + NAME_DESC_AMY + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB
-                + PHONE_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB + SCHOOL_DESC_AMY + LEVEL_DESC_AMY
-                + NEXTOFKIN_DESC_AMY;
+                + NAME_DESC_AMY + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
+                + PHONE_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB + SCHOOL_DESC_AMY + LEVEL_DESC_AMY;
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withName(VALID_NAME_BOB)
-                .withSchool(VALID_SCHOOL_AMY).withLevel(VALID_LEVEL_AMY).withNextOfKin(VALID_NEXTOFKIN_AMY).build();
+                .withSchool(VALID_SCHOOL_AMY).withLevel(VALID_LEVEL_AMY).build();
         expectedCommand = new EditCommand(targetIndex, editStudentDescriptor);
 
         assertParseSuccess(parserWhenStudent, userInput, expectedCommand);

@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,8 +40,8 @@ class JsonSerializableTuitionClassAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableTuitionClassAddressBook(ReadOnlyAddressBook source) {
-        tuitionClasses.addAll(source.getTuitionClassList().stream()
-                .map(JsonAdaptedTuitionClass::new).collect(Collectors.toList()));
+        tuitionClasses.addAll(source.getTuitionClassList().sorted(Comparator.comparing(TuitionClass::getUniqueId))
+                .stream().map(JsonAdaptedTuitionClass::new).collect(Collectors.toList()));
     }
 
     /**

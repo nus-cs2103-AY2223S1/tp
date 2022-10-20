@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.ASSIGN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -69,7 +70,7 @@ public class AssignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeAssigned = model.getTuitionClass(className);
                 studentToAssign.assignClassToStudent(tuitionClassToBeAssigned);
-                return new CommandResult(String.format(MESSAGE_ASSIGN_STUDENT_SUCCESS, studentToAssign));
+                return new CommandResult(String.format(MESSAGE_ASSIGN_STUDENT_SUCCESS, studentToAssign), ASSIGN);
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (DuplicateTuitionClassException e) {
@@ -84,7 +85,7 @@ public class AssignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeAssignedTo = model.getTuitionClass(className);
                 tutorToAssign.assignClassToTutor(tuitionClassToBeAssignedTo);
-                return new CommandResult(String.format(MESSAGE_ASSIGN_TUTOR_SUCCESS, tutorToAssign));
+                return new CommandResult(String.format(MESSAGE_ASSIGN_TUTOR_SUCCESS, tutorToAssign), ASSIGN);
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (DuplicateTuitionClassException e) {

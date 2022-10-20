@@ -14,25 +14,28 @@ import seedu.address.model.tag.Tag;
  * Represents a TuitionClass in the address book.
  */
 public class TuitionClass {
-
+    private static int id = 0;
     private final Name name;
     private final Subject subject;
     private final Level level;
     private final Day day;
     private final Time time;
     private final Set<Tag> tags = new HashSet<>();
+    private final String uniqueId;
 
     /**
      * Every field must be present and not null.
      */
     public TuitionClass(Name name, Subject subject, Level level, Day day, Time time, Set<Tag> tags) {
         requireAllNonNull(name, subject, day, time, tags);
+        id++;
         this.name = name;
         this.subject = subject;
         this.level = level;
         this.day = day;
         this.time = time;
         this.tags.addAll(tags);
+        this.uniqueId = id + "tuitionClass";
     }
 
     public Name getName() {
@@ -61,6 +64,14 @@ public class TuitionClass {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public String getUniqueId() {
+        return this.uniqueId;
+    }
+
+    public void minusId() {
+        id--;
     }
 
     /**

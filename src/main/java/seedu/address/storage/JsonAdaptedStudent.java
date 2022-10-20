@@ -15,7 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
@@ -34,7 +34,7 @@ class JsonAdaptedStudent {
     private final String address;
     private final String school;
     private final String level;
-    private final String nextOfKin;
+    private final JsonAdaptedNextOfKin nextOfKin;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedTuitionClass> tuitionClasses = new ArrayList<>();
 
@@ -46,7 +46,7 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("school") String school, @JsonProperty("level") String level,
-                              @JsonProperty("nextOfKin") String nextOfKin,
+                              @JsonProperty("nextOfKin") JsonAdaptedNextOfKin nextOfKin,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses) {
         this.name = name;
@@ -74,7 +74,14 @@ class JsonAdaptedStudent {
         address = source.getAddress().value;
         school = source.getSchool().school;
         level = source.getLevel().name();
-        nextOfKin = source.getNextOfKin().nextOfKin;
+
+        NextOfKin nok = source.getNextOfKin();
+        if (nok != null) {
+            nextOfKin = new JsonAdaptedNextOfKin(nok);
+        } else {
+            nextOfKin = null;
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -142,14 +149,13 @@ class JsonAdaptedStudent {
         }
         final Level modelLevel = Level.createLevel(level);
 
+        final NextOfKin modelNextOfKin;
+
         if (nextOfKin == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    NextOfKin.class.getSimpleName()));
+            modelNextOfKin = null;
+        } else {
+            modelNextOfKin = nextOfKin.toModelType();
         }
-        if (!NextOfKin.isValidNextOfKin(nextOfKin)) {
-            throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
-        }
-        final NextOfKin modelNextOfKin = new NextOfKin(nextOfKin);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 

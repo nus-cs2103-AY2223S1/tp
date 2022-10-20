@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_S
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -15,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -55,6 +57,10 @@ public class MainWindow extends UiPart<Stage> {
     private TuitionClassDescription tuitionClassDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private Model.ListType descriptionEntityType;
+
+    private int descriptionEntityIndex;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -197,14 +203,20 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        pause.setOnFinished(event -> {
+            helpWindow.hide();
+            primaryStage.hide();
+        });
+        pause.play();
     }
 
     /** Shows the specified entity **/
     private void handleShow(int index) {
         Model.ListType type = logic.getCurrentListType();
         entityDescriptionPlaceholder.getChildren().clear();
+        descriptionEntityType = type;
+        descriptionEntityIndex = index;
         switch(type) {
         case STUDENT_LIST:
             studentDescription = new StudentDescription(
@@ -212,7 +224,8 @@ public class MainWindow extends UiPart<Stage> {
             entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
             break;
         case TUTOR_LIST:
-            tutorDescription = new TutorDescription(logic.getFilteredTutorList().get(index), index + 1);
+            tutorDescription = new TutorDescription(
+                    logic.getFilteredTutorList().get(index), index + 1);
             entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
             break;
         case TUITIONCLASS_LIST:
@@ -320,7 +333,7 @@ public class MainWindow extends UiPart<Stage> {
      * This is needed as ObservableList does not keep track of the
      * changes in the elements of the list but only changes in the list itself.
      */
-    private void updateList() {
+    private void updateListView() {
         Model.ListType type = logic.getCurrentListType();
         switch(type) {
         case STUDENT_LIST:
@@ -368,7 +381,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleShow(commandResult.getIndex());
             }
 
-            updateList();
+            if (commandResult.isUpdateListView()) {
+                updateListView();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
