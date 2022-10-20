@@ -6,16 +6,13 @@ import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
-// import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
-// import java.util.Set;
 
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
-// import tracko.model.tag.Tag;
 
 /**
  * A utility class for Order.
