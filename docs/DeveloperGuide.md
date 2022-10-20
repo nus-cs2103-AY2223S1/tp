@@ -73,7 +73,9 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible _GUI_.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CenterPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible _GUI_.
+
+The `CenterPanel` comprises two different panels within it, namely `PersonListPanel` and `ReminderListPanel`, with each of them displaying any number of `PersonCard` and `ReminderCard` respectively.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +84,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model` in the `PersonCard` as well as the `ReminderCard`.
 
 ### Logic component
 
@@ -237,6 +239,48 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+
+### Delete feature
+
+#### Implementation
+
+The delete mechanism is facilitated by `DeleteCommand` and `DeleteCommandParser`. It allows users to delete a contact from their contact list by either `INDEX` or `NAME`.
+
+#### Example Usage
+
+Step 1: The user inputs `delete 2` to delete the 2nd person in the displayed contact list.
+
+Step 2: `LogicManager` calls `AddressBookParser#parseCommand` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `DeleteCommandParser` and call its function `parse` with the index as the arguments.
+
+Step 4: The `DeleteCommandParser#parse` will then parse the index and create a new `DeleteCommand` object.
+
+Step 5: The `LogicManager` then calls `DeleteCommand#execute`.
+
+Step 6: The `DeleteCommand` communicates with the `Model` to delete the person by calling `Model#deletePerson`.
+
+Step 7: `DeleteCommand` then returns a new `CommandResult` with the result of the execution.
+
+![Sequence diagram for the Delete Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes the delete command:
+
+![Activity diagram for the Delete Command](images/DeleteActivityDiagram.png)
+
+### Remind feature
+
+#### Implementation
+
+To be added: Reminder implementation
+
+The `Reminder` objects for each `Person` is stored in the `Person` object as a `SortedList` where the predicate for sorting is based on the `date` attribute in `Reminder`.
+
+The `UI` component then displays all the `Reminder` for all `Person` objects in `AddressBook.persons` in the `ReminderListPanel`.
 
 
 --------------------------------------------------------------------------------------------------------------------
