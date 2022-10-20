@@ -10,13 +10,18 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.order.Order;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.TemplateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +35,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -43,12 +49,14 @@ public class ParserUtil {
     /**
      * Parses {@code order} into an {@code Order} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws IllegalArgumentException if the specified order is invalid.
      */
     public static Order parseOrder(String order) throws IllegalArgumentException {
         String trimmedOrder = order.trim();
         return Order.lexicographicalOrder(trimmedOrder);
     }
+
     /**
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}
      */
@@ -123,6 +131,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> moduleCodes} into a {@code Set<moduleCodes>}.
+     */
+    public static Set<ModuleCode> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
+        requireNonNull(moduleCodes);
+        final Set<ModuleCode> moduleCodeSet = new HashSet<>();
+        for (String moduleCode : moduleCodes) {
+            moduleCodeSet.add(parseModuleCode(moduleCode));
+        }
+        return moduleCodeSet;
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -172,7 +192,7 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
-        if (location == DEFAULT_LOC_STRING) {
+        if (location.equals(DEFAULT_LOC_STRING)) {
             return new Location("NUS");
         }
         String trimmedLocation = location.trim();
@@ -180,6 +200,94 @@ public class ParserUtil {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);
+    }
+
+    /**
+     * Parses a {@code String rating} into an {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Rating} is invalid.
+     */
+    public static Rating parseRating(String rating, Boolean isPresent) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!isPresent) {
+            return new Rating(trimmedRating, false);
+        }
+        if (!Rating.isValidRating(rating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating, true);
+    }
+
+    /**
+     * Parses a {@code String username} into an {@code GithubUsername}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code GithubUsername} is invalid.
+     */
+    public static GithubUsername parseGitHubUsername(String username, Boolean isPresent) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!isPresent) {
+            return new GithubUsername(trimmedUsername, false);
+        }
+        if (!GithubUsername.isValidUsername(username)) {
+            throw new ParseException(GithubUsername.MESSAGE_CONSTRAINTS);
+        }
+        return new GithubUsername(trimmedUsername, true);
+    }
+
+    /**
+     * Parses a {@code String person} into an {@code string}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code person} is invalid.
+     */
+    public static String parseTemplate(String person) throws ParseException {
+        requireNonNull(person);
+        String trimmedPerson = person.trim();
+
+        if (!TemplateCommand.isValidPerson(trimmedPerson)) {
+            throw new ParseException(TemplateCommand.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedPerson;
+    }
+
+    /**
+     * Parses a {@code String year} into an {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Year} is invalid.
+     */
+    public static Year parseYear(String year, Boolean isPresent) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!isPresent) {
+            return new Year(trimmedYear, false);
+        }
+        if (!Year.isValidYear(year)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(trimmedYear, true);
+    }
+
+    /**
+     * Parses a {@code String field} into an {@code Specialisation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Year} is invalid.
+     */
+    public static Specialisation parseSpecialisation(String field, Boolean isPresent) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!isPresent) {
+            return new Specialisation(trimmedField, false);
+        }
+        if (!Specialisation.isValidSpecialisation(field)) {
+            throw new ParseException(Specialisation.MESSAGE_CONSTRAINTS);
+        }
+        return new Specialisation(trimmedField, true);
     }
 
 }

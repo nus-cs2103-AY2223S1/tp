@@ -6,6 +6,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -23,6 +24,7 @@ public abstract class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_LOCATION = "NUS";
+    public static final String DEFAULT_USERNAME = "amyb";
 
 
     private Name name;
@@ -31,6 +33,7 @@ public abstract class PersonBuilder {
     private Gender gender;
     private Set<Tag> tags;
     private Location location;
+    private GithubUsername githubUsername;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,6 +45,7 @@ public abstract class PersonBuilder {
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
         location = new Location(DEFAULT_LOCATION);
+        githubUsername = new GithubUsername(DEFAULT_USERNAME, true);
     }
 
     /**
@@ -54,6 +58,7 @@ public abstract class PersonBuilder {
         gender = personToCopy.getGender();
         tags = new HashSet<>(personToCopy.getTags());
         location = new Location(DEFAULT_LOCATION);
+        githubUsername = personToCopy.getUsername();
     }
 
     /**
@@ -104,6 +109,18 @@ public abstract class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code GithubUsername} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGithubUsername(String username) {
+        if (username.equals(GithubUsername.DEFAULT_USERNAME)) {
+            this.githubUsername = new GithubUsername(username, false);
+        } else {
+            this.githubUsername = new GithubUsername(username, true);
+        }
+        return this;
+    }
+
     public Name getName() {
         return name;
     }
@@ -126,6 +143,10 @@ public abstract class PersonBuilder {
 
     public Location getLocation() {
         return location;
+    }
+
+    public GithubUsername getGithubUsername() {
+        return githubUsername;
     }
 
     public abstract Person build();

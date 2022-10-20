@@ -13,37 +13,24 @@ public class TeachingAssistant extends Person {
 
     private final ModuleCode moduleCode;
 
+    private final Rating rating;
+
     /**
      * Every field must be present and not null.
      */
     public TeachingAssistant(Name name, ModuleCode moduleCode, Phone phone, Email email, Gender gender, Set<Tag> tags,
-                             Location location) {
-        super(name, phone, email, gender, tags, location);
+                             Location location, GithubUsername username, Rating rating) {
+        super(name, phone, email, gender, tags, location, username);
         this.moduleCode = moduleCode;
+        this.rating = rating;
     }
 
     public ModuleCode getModuleCode() {
         return moduleCode;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof TeachingAssistant)) {
-            return false;
-        }
-
-        TeachingAssistant otherPerson = (TeachingAssistant) other;
-        return super.equals(other) && otherPerson.getModuleCode().equals(getModuleCode());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleCode, super.hashCode());
+    public Rating getRating() {
+        return this.rating;
     }
 
     @Override
@@ -59,9 +46,17 @@ public class TeachingAssistant extends Person {
             .append("; Email: ")
             .append(getEmail())
             .append("; Gender: ")
-            .append(getGender())
-            .append("; Location: ")
-            .append(getLocation());
+            .append(getGender());
+
+        if (!getUsername().value.equals(GithubUsername.DEFAULT_USERNAME)) {
+            builder.append("; Github Username: ")
+                    .append(getUsername());
+        }
+
+        builder.append("; Location: ")
+                .append(getLocation())
+                .append("; Rating: ")
+                .append(getRating());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -81,6 +76,35 @@ public class TeachingAssistant extends Person {
                     .compareTo(((TeachingAssistant) person).getModuleCode().toString());
         }
         return 1;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
+                getUsername(), moduleCode, rating);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TeachingAssistant)) {
+            return false;
+        }
+
+        TeachingAssistant otherPerson = (TeachingAssistant) other;
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getLocation().equals(getLocation())
+                && otherPerson.getUsername().equals(getUsername())
+                && otherPerson.getModuleCode().equals(getModuleCode())
+                && otherPerson.getRating().equals(getRating());
     }
 
 }

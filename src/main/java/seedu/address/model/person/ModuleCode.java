@@ -12,7 +12,7 @@ public class ModuleCode {
     public static final String MESSAGE_CONSTRAINTS = "Module Code can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the module code must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -39,7 +39,7 @@ public class ModuleCode {
 
     @Override
     public String toString() {
-        return value;
+        return '[' + value + ']';
     }
 
     @Override
@@ -47,6 +47,13 @@ public class ModuleCode {
         return other == this // short circuit if same object
                 || (other instanceof ModuleCode // instanceof handles nulls
                 && value.equals(((ModuleCode) other).value)); // state check
+    }
+
+    /**
+     * Returns true if a given string is a valid moduleCode name.
+     */
+    public static boolean isValidModuleCodeName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -30,6 +30,10 @@ abstract class JsonAdaptedPerson {
     private final String gender;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String location;
+    private final String username;
+    private final String rating;
+    private final String year;
+    private final String specialisation;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +43,9 @@ abstract class JsonAdaptedPerson {
                              @JsonProperty("moduleCode") String moduleCode, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("location") String location) {
+                             @JsonProperty("location") String location, @JsonProperty("username") String username,
+                             @JsonProperty("rating") String rating, @JsonProperty("year") String year,
+                             @JsonProperty("specialisation") String specialisation) {
         this.type = type;
         this.name = name;
         this.moduleCode = moduleCode;
@@ -50,6 +56,10 @@ abstract class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.location = location;
+        this.username = username;
+        this.rating = rating;
+        this.year = year;
+        this.specialisation = specialisation;
     }
 
     /**
@@ -57,19 +67,32 @@ abstract class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         if (source instanceof Student) {
+            Student student = (Student) source;
             type = "s";
             moduleCode = "";
+            rating = "";
+            year = student.getYear().value;
+            specialisation = "";
         } else if (source instanceof Professor) {
             type = "p";
             Professor prof = (Professor) source;
             moduleCode = prof.getModuleCode().value;
+            rating = prof.getRating().value;
+            year = "";
+            specialisation = prof.getSpecialisation().value;
         } else if (source instanceof TeachingAssistant) {
             type = "t";
             TeachingAssistant ta = (TeachingAssistant) source;
             moduleCode = ta.getModuleCode().value;
+            rating = ta.getRating().value;
+            year = "";
+            specialisation = "";
         } else {
             type = "invalid";
             moduleCode = "invalid";
+            rating = "invalid";
+            year = "invalid";
+            specialisation = "invalid";
         }
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -79,6 +102,7 @@ abstract class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         location = source.getLocation().value;
+        username = source.getUsername().value;
     }
 
     public String getType() {
@@ -99,13 +123,24 @@ abstract class JsonAdaptedPerson {
     public String getModuleCode() {
         return this.moduleCode;
     }
-
     public List<JsonAdaptedTag> getTagged() {
         return this.tagged;
     }
 
     public String getLocation() {
         return location;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public String getRating() {
+        return rating;
+    }
+    public String getYear() {
+        return year;
+    }
+    public String getSpecialisation() {
+        return specialisation;
     }
 
     public abstract Person toModelType() throws IllegalValueException;

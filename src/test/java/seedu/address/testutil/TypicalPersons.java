@@ -32,8 +32,6 @@ import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 
-
-
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -43,18 +41,17 @@ public class TypicalPersons {
 
     public static final Person AARON = new StudentBuilder().withName("Aaron Tan")
             .withEmail("aaron@example.com").withGender("M")
-            .withPhone("85877235").withTags("friends").build();
-
+            .withPhone("85877235").withTags("friends").withGithubUsername("").build();
     public static final Person ALEX = new StudentBuilder().withName("Alex Jones")
             .withEmail("alex@example.com").withGender("M")
             .withPhone("85237238").withTags("friends").build();
     public static final Person ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withGender("F")
-            .withPhone("94351253").withTags("friends").build();
+            .withPhone("94351253").withTags("friends").withGithubUsername("").build();
     public static final Person BENSON = new StudentBuilder().withName("Benson Meier")
             .withGender("M")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withEmail("Benm@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").withGithubUsername("ben10").build();
     public static final Person CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withGender("M").build();
     public static final Person DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -140,9 +137,9 @@ public class TypicalPersons {
 
     /**
      * Returns an {@code AddressBook} with
-     * persons in sorted order lexicographically.
+     * persons in sorted order lexicographically ascending.
      */
-    public static AddressBook getSortedAddressBook() {
+    public static AddressBook getSortedAddressBookAscending() {
         AddressBook ab = new AddressBook();
         ab.addPerson(AARON);
         ab.addPerson(ALEX);
@@ -158,9 +155,27 @@ public class TypicalPersons {
     }
     /**
      * Returns an {@code AddressBook} with
-     * Professors in sorted order lexicographically.
+     * persons in sorted order lexicographically descending.
      */
-    public static AddressBook getSortedProfessors() {
+    public static AddressBook getSortedAddressBookDescending() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(HOON);
+        ab.addPerson(GEORGE);
+        ab.addPerson(FIONA);
+        ab.addPerson(DANIEL);
+        ab.addPerson(CABE);
+        ab.addPerson(BOB);
+        ab.addPerson(AMY);
+        ab.addPerson(ALICE);
+        ab.addPerson(ALEX);
+        ab.addPerson(AARON);
+        return ab;
+    }
+    /**
+     * Returns an {@code AddressBook} with
+     * Professors in sorted order lexicographically ascending.
+     */
+    public static AddressBook getSortedProfessorsAscending() {
         AddressBook ab = new AddressBook();
         ab.addPerson(ANDERSON);
         ab.addPerson(BEN);
@@ -183,9 +198,9 @@ public class TypicalPersons {
     }
     /**
      * Returns an {@code AddressBook} with
-     * Students in sorted order lexicographically.
+     * Students in sorted order lexicographically ascending.
      */
-    public static AddressBook getSortedStudents() {
+    public static AddressBook getSortedStudentsAscending() {
         AddressBook ab = new AddressBook();
         ab.addPerson(AARON);
         ab.addPerson(ALEX);

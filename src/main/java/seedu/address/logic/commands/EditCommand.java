@@ -2,10 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,14 +27,18 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,13 +53,20 @@ public class EditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_YEAR + "YEAR] "
+        + "[" + PREFIX_SPECIALISATION + "SPECIALISATION] "
+        + "[" + PREFIX_MODULE_CODE + "MODULE_CODE] "
         + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_GENDER + "GENDER] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_TAG + "TAG]..."
         + "[" + PREFIX_LOCATION + "LOCATION] "
+        + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME]"
+        + "[" + PREFIX_RATING + "RATING]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
+
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -59,7 +76,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the Student with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -110,12 +127,18 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Set<ModuleCode> updatedModuleCodes = editPersonDescriptor
+                .getModuleCodes().orElse(personToEdit.getModuleCodes());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation);
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation,
+                updatedUsername, updatedModuleCodes, updatedYear);
     }
 
     /**
@@ -132,9 +155,13 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
+        Specialisation updatedSpecialisation = editPersonDescriptor.getSpecialisation()
+                .orElse(personToEdit.getSpecialisation());
 
         return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
-            updatedLocation);
+            updatedLocation, updatedUsername, updatedRating, updatedSpecialisation);
     }
 
     /**
@@ -152,9 +179,10 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
-
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
         return new TeachingAssistant(updatedName, updatedModuleCode, updatedPhone,
-            updatedEmail, updatedGender, updatedTags, updatedLocation);
+            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername, updatedRating);
     }
 
 
@@ -183,11 +211,17 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private ModuleCode moduleCode;
+
+        private Set<ModuleCode> moduleCodes;
         private Phone phone;
         private Email email;
         private Gender gender;
         private Set<Tag> tags;
         private Location location;
+        private GithubUsername githubUsername;
+        private Rating rating;
+        private Year year;
+        private Specialisation specialisation;
 
         public EditPersonDescriptor() {
         }
@@ -198,19 +232,25 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setModuleCodes(toCopy.moduleCodes);
             setModuleCode(toCopy.moduleCode);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setGender(toCopy.gender);
             setTags(toCopy.tags);
             setLocation(toCopy.location);
+            setGithubUsername(toCopy.githubUsername);
+            setRating(toCopy.rating);
+            setYear(toCopy.year);
+            setSpecialisation(toCopy.specialisation);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating,
+                    year, specialisation);
         }
 
         public void setName(Name name) {
@@ -245,6 +285,23 @@ public class EditCommand extends Command {
             return Optional.ofNullable(gender);
         }
 
+        /**
+         * Sets {@code moduleCodes} to this object's { @code moduleCodes }.
+         * A defensive copy of { @code moduleCodes } is used internally.
+         */
+        public void setModuleCodes(Set<ModuleCode> moduleCodes) {
+            this.moduleCodes = (moduleCodes != null) ? new HashSet<>(moduleCodes) : null;
+        }
+
+        /**
+         * Returns an unmodifiable moduleCode set, which throws { @code UnsupportedOperationException }
+         * if modification is attempted.
+         * Returns { @code Optional#empty() } if { @code moduleCode } is null.
+         */
+        public Optional<Set<ModuleCode>> getModuleCodes() {
+            return (moduleCodes != null) ? Optional.of(Collections.unmodifiableSet(moduleCodes)) : Optional.empty();
+        }
+
         public void setModuleCode(ModuleCode moduleCode) {
             this.moduleCode = moduleCode;
         }
@@ -259,6 +316,38 @@ public class EditCommand extends Command {
 
         public void setLocation(Location location) {
             this.location = location;
+        }
+
+        public Optional<GithubUsername> getGithubUsername() {
+            return Optional.ofNullable(githubUsername);
+        }
+
+        public void setGithubUsername(GithubUsername username) {
+            this.githubUsername = username;
+        }
+
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
+        }
+
+        public void setYear(Year year) {
+            this.year = year;
+        }
+
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
+        }
+
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
+        public Optional<Specialisation> getSpecialisation() {
+            return Optional.ofNullable(specialisation);
+        }
+
+        public void setSpecialisation(Specialisation specialisation) {
+            this.specialisation = specialisation;
         }
 
         /**
@@ -295,10 +384,16 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
+                && getModuleCode().equals(e.getModuleCode())
+                && getModuleCodes().equals(e.getModuleCodes())
                 && getEmail().equals(e.getEmail())
                 && getGender().equals(e.getGender())
                 && getTags().equals(e.getTags())
-                && getLocation().equals(e.getLocation());
+                && getLocation().equals(e.getLocation())
+                && getGithubUsername().equals(e.getGithubUsername())
+                && getRating().equals(e.getRating())
+                && getYear().equals(e.getYear())
+                && getSpecialisation().equals(e.getSpecialisation());
         }
 
     }

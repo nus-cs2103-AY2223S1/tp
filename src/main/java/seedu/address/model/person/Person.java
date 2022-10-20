@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -23,12 +22,14 @@ public abstract class Person {
 
     // Data fields
     private final Location location;
+    private final GithubUsername username;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags, Location location) {
+    public Person(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags,
+                  Location location, GithubUsername username) {
         requireAllNonNull(name, phone, email, gender, tags, location);
         this.name = name;
         this.phone = phone;
@@ -36,6 +37,7 @@ public abstract class Person {
         this.gender = gender;
         this.tags.addAll(tags);
         this.location = location;
+        this.username = username;
     }
 
     public Name getName() {
@@ -58,6 +60,10 @@ public abstract class Person {
         return location;
     }
 
+    public GithubUsername getUsername() {
+        return username;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -77,32 +83,6 @@ public abstract class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Person)) {
-            return false;
-        }
-
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getGender().equals(getGender())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getLocation().equals(getLocation());
-    }
-
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, gender, tags, location);
     }
 
     /**

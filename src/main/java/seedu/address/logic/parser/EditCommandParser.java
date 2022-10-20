@@ -4,11 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,6 +23,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +44,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION);
+                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING, PREFIX_YEAR,
+                        PREFIX_SPECIALISATION);
 
         Index index;
 
@@ -65,6 +74,42 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editPersonDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent()) {
+            String usernameInput = argMultimap.getValue(PREFIX_GITHUBUSERNAME).orElse(GithubUsername.DEFAULT_USERNAME);
+            if (usernameInput.equals(GithubUsername.DEFAULT_USERNAME)) {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(usernameInput, false));
+            } else {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(usernameInput, true));
+            }
+        }
+        if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
+            String ratingInput = argMultimap.getValue(PREFIX_RATING).orElse(Rating.EMPTY_RATING);
+            if (ratingInput.equals(Rating.EMPTY_RATING)) {
+                editPersonDescriptor.setRating(ParserUtil.parseRating(ratingInput, false));
+            } else {
+                editPersonDescriptor.setRating(ParserUtil.parseRating(ratingInput, true));
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
+            String yearInput = argMultimap.getValue(PREFIX_YEAR).orElse(Year.EMPTY_YEAR);
+
+            if (yearInput.equals(Year.EMPTY_YEAR)) {
+                editPersonDescriptor.setYear(ParserUtil.parseYear(yearInput, false));
+            } else {
+                editPersonDescriptor.setYear(ParserUtil.parseYear(yearInput, true));
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_SPECIALISATION).isPresent()) {
+            String specialisationInput = argMultimap.getValue(PREFIX_SPECIALISATION)
+                                                    .orElse(Specialisation.EMPTY_SPECIALISATION);
+            if (specialisationInput.equals(Specialisation.EMPTY_SPECIALISATION)) {
+                editPersonDescriptor.setSpecialisation(ParserUtil.parseSpecialisation(specialisationInput, false));
+            } else {
+                editPersonDescriptor.setSpecialisation(ParserUtil.parseSpecialisation(specialisationInput, true));
+            }
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
