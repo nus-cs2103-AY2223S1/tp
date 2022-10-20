@@ -31,16 +31,6 @@ public class CommandResult {
         this.commandType = commandType;
     }
 
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    /*public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
-    }
-
-     */
-
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -67,6 +57,10 @@ public class CommandResult {
 
     public boolean isDeletePatient() {
         return this.commandType == CommandType.DELETE_PATIENT;
+    }
+
+    public boolean isSchedule() {
+        return this.commandType == CommandType.SCHEDULE;
     }
 
 

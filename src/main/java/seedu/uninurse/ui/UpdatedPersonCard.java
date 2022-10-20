@@ -41,6 +41,14 @@ public class UpdatedPersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label header;
+    @FXML
+    private Label conditions;
+    @FXML
+    private Label medications;
+    @FXML
+    private Label taskheader;
+    @FXML
+    private Label tasklist;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Patient}.
@@ -60,6 +68,10 @@ public class UpdatedPersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         header.setText(headerString);
+        conditions.setText("Conditions:" + "\n" + "1. small syndrome"); //dummy values
+        medications.setText("Medications:" + "\n" + "1. enlarger"); //dummy values
+        taskheader.setText("Tasks:");
+        tasklist.setText(person.getTasks().toString());
 
     }
 
