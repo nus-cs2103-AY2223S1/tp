@@ -25,4 +25,5 @@ else ([else])
 endif
 
 stop
+
 @enduml
