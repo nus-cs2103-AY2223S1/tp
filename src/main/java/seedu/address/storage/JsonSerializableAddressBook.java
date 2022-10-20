@@ -74,7 +74,10 @@ class JsonSerializableAddressBook {
 
         if (taskList.isSortByDeadline()) {
             addressBook.sortByDeadline();
+        } else {
+            addressBook.sortById();
         }
+
         return addressBook;
     }
 

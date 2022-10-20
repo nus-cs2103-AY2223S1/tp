@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
@@ -81,8 +82,10 @@ public class UnmarkTaskCommand extends Command {
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        // Id cannot be updated
+        Id id = taskToEdit.getId();
 
-        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags);
+        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags, id);
     }
 
     @Override

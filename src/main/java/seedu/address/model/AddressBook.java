@@ -72,8 +72,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
+
         if (newData.isSortByDeadline()) {
             sortByDeadline();
+        } else {
+            sortById();
         }
     }
 

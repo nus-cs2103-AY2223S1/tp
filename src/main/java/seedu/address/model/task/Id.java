@@ -6,16 +6,53 @@ import static java.util.Objects.hash;
  * Represents the id of a task in the task list.
  */
 public class Id implements Comparable<Id> {
-    private static int idCount = 0;
+    private static int availableId;
+    private static boolean hasAvailableIdBeenInitialized = false;
+    private static int largestExistingId = 0;
+
     public final int value;
 
     /**
-     * Constructs a new {@code Id}.
+     * Constructs a new {@code Id} with a new id value.
      */
     public Id() {
-        value = idCount;
-        idCount++;
+        if (!hasAvailableIdBeenInitialized) {
+            resetAvailableId();
+        }
+        value = availableId;
+        availableId++;
     }
+
+    /**
+     * Constructs a new {@code Id} with an existing id value.
+     *
+     * @param id existing id.
+     */
+    public Id(int id) {
+        value = id;
+        if (id > largestExistingId) {
+            largestExistingId = id;
+        }
+    }
+
+    /**
+     * Resets available id to the largest existing id + 1.
+     * This is needed as information about available ids are not stored.
+     */
+    private static void resetAvailableId() {
+        availableId = largestExistingId + 1;
+        hasAvailableIdBeenInitialized = true;
+    }
+
+    /**
+     * Returns an id that has not been used yet.
+     *
+     * @return Available id.
+     */
+    public static int getAvailableId() {
+        return availableId;
+    }
+
 
     @Override
     public int compareTo(Id otherId) {
