@@ -162,5 +162,10 @@ public class DeleteCompanyCommandTest {
         public void updateFilteredClientList(Predicate<Client> predicate) {
             // method body is left empty intentionally
         }
+
+        @Override
+        public double calculateTotalTransaction(ObservableList<Client> filteredClientList) {
+            throw new AssertionError("This methods should not be called.");
+        }
     }
 }
