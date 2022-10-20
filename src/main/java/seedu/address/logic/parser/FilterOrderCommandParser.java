@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FilterOrderCommand;
-import seedu.address.logic.commands.FilterPetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 
@@ -36,7 +35,7 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
@@ -44,8 +43,10 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
         Predicate<Order> orderStatusPredicate = defaultPredicate;
         Predicate<Order> priceRangePredicate = defaultPredicate;
 
-        for (String arg: nameKeywords) {
+        for (int i = 1; i < nameKeywords.length; i++) {
+            String arg = nameKeywords[i];
             arg = arg.trim();
+
             switch (arg.substring(0, 2)) {
             case ADDITIONAL_REQUEST_PREFIX:
                 additionalRequestPredicate = PredicateParser.parseOrder(arg);
@@ -60,8 +61,6 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
             }
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
         return new FilterOrderCommand(additionalRequestPredicate, orderStatusPredicate, priceRangePredicate);
     }

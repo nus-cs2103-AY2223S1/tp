@@ -178,7 +178,7 @@ public class PredicateParser {
         String[] nameKeywords = input.trim().split("/", 2);
         if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
@@ -189,7 +189,16 @@ public class PredicateParser {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
             }
-            return new OrderStatusPredicate<>(OrderStatus.valueOf(query));
+            if (query.equals(OrderStatus.DELIVERING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
+            } else if (query.equals(OrderStatus.NEGOTIATING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.NEGOTIATING);
+            } else if (query.equals(OrderStatus.PENDING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.PENDING);
+            }
+
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         case PRICE_RANGE_PREFIX:
             String[] prices = query.split("-");
             Price lowerBound = new Price(Double.parseDouble(prices[0]));
@@ -199,7 +208,6 @@ public class PredicateParser {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
             }
-
             return new PriceRangePredicate<>(lowerBound, upperBound);
         default:
             throw new ParseException(
