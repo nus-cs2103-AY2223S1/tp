@@ -9,8 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.project.Budget;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
@@ -18,7 +18,6 @@ import seedu.address.model.staff.StaffLeave;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 
 /**
@@ -176,13 +175,13 @@ public class ParserUtil {
     /**
      * Parses {@code String deadline} into a {@code TaskDeadline}
      */
-    public static TaskDeadline parseTaskDeadline(String deadline) throws ParseException {
+    public static Deadline parseTaskDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        if (!TaskDeadline.isValidTaskDeadline(trimmedDeadline)) {
-            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return new TaskDeadline(trimmedDeadline);
+        return new Deadline(trimmedDeadline);
     }
 
     /**

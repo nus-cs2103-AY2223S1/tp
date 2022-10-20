@@ -18,8 +18,8 @@ import static seedu.address.testutil.TypicalTasks.TASK_ALPHA;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.testutil.TaskBuilder;
 
@@ -58,7 +58,7 @@ public class AddTaskCommandParserTest {
     public void parse_invalidFields_failure() {
         // Invalid task deadline
         assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDESCRIPTION_DESC_ALPHA
-                + INVALID_TASKDEADLINE_DESC, TaskDeadline.MESSAGE_CONSTRAINTS);
+                + INVALID_TASKDEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
 
         // Invalid task description
         assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEALINE_DESC_BRAVO
