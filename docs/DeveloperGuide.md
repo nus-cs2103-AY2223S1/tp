@@ -154,6 +154,74 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Range feature [Zacchaeus]
+
+The range feature allows the user to filter properties by a price range in Condonery. 
+
+The feature is activated by the command pattern `range -p l/[lower] u/[upper]`.
+
+**Parsing of command within the `Logic` component**
+
+Much like the other core features, we introduced an intermediate between `CondoneryParser` and the range command parser,
+that is the `RangePropertyCommandParser`.
+
+These are the steps that will be taken when parsing a range command:
+
+1. The `CondoneryParser` checks if the user command is a range command. Then it creates a `RangePropertyCommandParser`.
+2. The `RangePropertyCommandParser` which implements the `Parser` interface, parses the command via `Parser#parse`.
+3. If the user command is valid, the parser creates the corresponding `Command` object for execution.
+
+Given below is a sequence diagram for interactions inside the Logic component for the `execute(range -p l/100 u/200` 
+API call.
+
+[Diagram to be added]
+
+**Execution of command within the `Logic` component**
+
+When a `RangePropertyCommand` is created by the `RangePropertyCommandParser`, it is executed with `model` passed in 
+as the parameter.
+
+Firstly, the `updateFilteredPropertyList` is called to get the list of properties within the specified price range.
+
+Next, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+[Diagram to be added]
+
+**Error handling within the `Logic` component**
+
+The below activity diagram shows the overall process of execution of `execute(range -p l/100 u/200`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+
+- Incorrect command format is used (i.e. missing price as argument)
+- Missing prefixes
+
+[Diagram to be added]
+
+**Design consideration**
+
+Aspect: How to filter properties by prices
+
+- **Alternative 1** (current choice): Add a lower and upper prefix to command phrase to indicate lower and upper bound.
+    - Pros:
+      - Less time-consuming to implement.
+      - Easier to parse price range. 
+    - Cons:
+      - Imposes strict requirement on use of lower and upper prefixes.
+- **Alternative 2**: Allow user to key in two separate integers in command.
+  - Pros:
+    - Easy and fairly intuitive user input system
+  - Cons:
+    - More time-consuming to implement.
+    - Need extra checking to correctly parse two separate integers and identify lower and upper bounds.
+    - More prone to manual user entry error.
+
+Alternative 1 was chosen to enable more efficient parsing of commands.
+
+`PropertyPriceWithinRangePredicate` 
+
+Firstly, 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
