@@ -10,11 +10,11 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be added soon
+* **New Feature**: Integrated the `ModuleClass` class to the project. Implemented features that enables users to add class, delete class, list all classes, assign and unassign students from classes in TA assist. Implemented features to allow users to delete sessions from classes.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Bubbl3T&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-* **Project management**: To be added soon
+* **Project management**: Created and maintained project milestones.
 * **Enhancements to existing features**: To be added soon
-* **Documentation**: To be added soon
+* **Documentation**: Added documentation in Developer Guide regarding implementation of add class, delete class, and assigning students to classes.
 * **Community**: To be added soon
 * **Tools**: To be added soon
 
