@@ -152,6 +152,15 @@ Classes used by multiple components are in the `jarvis.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Mark Task as done / not done
+In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
+
+<img src="images/MarkTaskSequenceDiagram.png" width="550"/>
+
+1. First, the list of tasks is obtained and the index is matched to the corresponding task.
+2. This task is then marked as done.
+3. The list of tasks of the model is then updated in order to display the updated task in the UI.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
