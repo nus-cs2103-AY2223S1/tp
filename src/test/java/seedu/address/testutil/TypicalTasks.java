@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task TASK_1 = new TaskBuilder().withDescription("Todo 2101")
+    public static final Task TASK_1 = new TaskBuilder().withDescription("Assignment 2101")
             .withDeadline("2022-07-11").withMark("false").build();
     public static final Task TASK_2 = new TaskBuilder().withDescription("Todo 2102")
             .withDeadline("2022-06-12").withMark("true").build();

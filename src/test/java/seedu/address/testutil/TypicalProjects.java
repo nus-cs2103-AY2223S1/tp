@@ -59,7 +59,7 @@ public class TypicalProjects {
     /**
      * Returns an {@code AddressBook} with all the typical projects.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookWithProjectOnly() {
         AddressBook ab = new AddressBook();
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
