@@ -19,30 +19,28 @@ public class Student {
     private final Name studentName;
     private final Id id;
 
-    // Class
+    // Academic fields
     private final Class className;
+    private final Set<Exam> exams = new HashSet<>();
 
     // Parent fields
     private final Name parentName;
     private final Phone phone;
     private final Email email;
 
-    // Additional fields - may not be implemented
-    private final Set<Exam> tags = new HashSet<>();
-
     /**
      * Every field must be present and not null.
      */
     public Student(Name studentName, Id id, Class className, Name parentName, Phone phone,
-                   Email email, Set<Exam> tags) {
-        requireAllNonNull(studentName, id, className, parentName, phone, email, tags);
+                   Email email, Set<Exam> exams) {
+        requireAllNonNull(studentName, id, className, parentName, phone, email, exams);
         this.studentName = studentName;
         this.id = id;
         this.className = className;
         this.parentName = parentName;
         this.phone = phone;
         this.email = email;
-        this.tags.addAll(tags);
+        this.exams.addAll(exams);
     }
 
     public Name getStudentName() {
@@ -70,11 +68,11 @@ public class Student {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable exam set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Exam> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Exam> getExams() {
+        return Collections.unmodifiableSet(exams);
     }
 
     /**
@@ -112,13 +110,13 @@ public class Student {
                 && otherStudent.getParentName().equals(getParentName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getExams().equals(getExams());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(studentName, id, className, parentName, phone, email, tags);
+        return Objects.hash(studentName, id, className, parentName, phone, email, exams);
     }
 
     @Override
@@ -136,10 +134,10 @@ public class Student {
                 .append("; Parent Email: ")
                 .append(getEmail());
 
-        Set<Exam> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Exam> examSet = getExams();
+        if (!examSet.isEmpty()) {
+            builder.append("; Exams: ");
+            examSet.forEach(builder::append);
         }
         return builder.toString();
     }

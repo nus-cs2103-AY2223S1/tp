@@ -55,7 +55,7 @@ public class StudentBuilder {
         parentName = studentToCopy.getParentName();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
-        tags = new HashSet<>(studentToCopy.getTags());
+        tags = new HashSet<>(studentToCopy.getExams());
     }
 
     /**

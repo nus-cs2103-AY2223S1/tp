@@ -70,7 +70,7 @@ public class StudentCard extends UiPart<Region> {
         } else {
             email.setText(student.getEmail().value);
         }
-        student.getTags().stream()
+        student.getExams().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (conciseInfo) {

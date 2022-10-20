@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getExams());
 
         return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,
                 updatedEmail, updatedTags);

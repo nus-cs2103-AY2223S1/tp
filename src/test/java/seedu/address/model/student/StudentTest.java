@@ -23,7 +23,7 @@ public class StudentTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Student student = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> student.getExams().remove(0));
     }
 
     @Test

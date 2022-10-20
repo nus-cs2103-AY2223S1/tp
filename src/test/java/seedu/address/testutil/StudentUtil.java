@@ -38,7 +38,7 @@ public class StudentUtil {
         sb.append(PREFIX_PARENT_NAME + student.getParentName().fullName + " ");
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
-        student.getTags().stream().forEach(
+        student.getExams().stream().forEach(
             s -> sb.append(PREFIX_EXAM + s.tagName + " ")
         );
         return sb.toString();
