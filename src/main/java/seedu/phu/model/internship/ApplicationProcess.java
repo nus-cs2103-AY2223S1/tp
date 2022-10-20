@@ -22,6 +22,11 @@ public class ApplicationProcess extends ComparableModel {
             return Arrays.stream(ApplicationProcessState.values()).anyMatch(stage -> stage.name().equals(test));
         }
 
+        /**
+         * Returns the names of all the possible states.
+         *
+         * @return a String array.
+         */
         public static String[] names() {
             ApplicationProcessState[] states = values();
             String[] names = new String[states.length];

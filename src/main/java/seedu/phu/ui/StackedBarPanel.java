@@ -15,6 +15,9 @@ import seedu.phu.model.internship.ApplicationProcess;
 import seedu.phu.model.internship.Internship;
 import seedu.phu.model.internship.Statistic;
 
+/**
+ * A UI component that displays a stacked bar chart regarding the {@code Internship}.
+ */
 public class StackedBarPanel extends UiPart<Node> {
     private static final String NO_DATA_MESSAGE = "No Data Found";
     private static final String FXML = "StackedBarPanel.fxml";
@@ -65,6 +68,12 @@ public class StackedBarPanel extends UiPart<Node> {
     @FXML
     private Label noDataLabel;
 
+    /**
+     * Constructs a new StackedBarPanel representing the list
+     * of internships.
+     *
+     * @param list an ObservableList.
+     */
     public StackedBarPanel(ObservableList<Internship> list) {
         super(FXML);
         requireNonNull(list);
