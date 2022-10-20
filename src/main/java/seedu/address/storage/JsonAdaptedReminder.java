@@ -8,6 +8,7 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderPriority;
 
 /**
  * Jackson-friendly version of {@link Reminder}.
@@ -18,16 +19,19 @@ class JsonAdaptedReminder {
     private final String name;
     private final String deadline;
     private final String description;
+    private final String priority;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given reminder details.
+     * Constructs a {@code JsonAdaptedReminder} with the given reminder details.
      */
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-                               @JsonProperty("description") String description) {
+                               @JsonProperty("description") String description,
+                               @JsonProperty("priority") String priority) {
         this.name = name;
         this.deadline = deadline;
         this.description = description;
+        this.priority = priority;
     }
 
     /**
@@ -37,6 +41,7 @@ class JsonAdaptedReminder {
         name = source.getName().fullName;
         deadline = source.getDeadline().deadline;
         description = source.getDescription().description;
+        priority = source.getPriority().priority;
     }
 
     /**
@@ -63,8 +68,13 @@ class JsonAdaptedReminder {
         }
         final ReminderDeadline modelDeadline = new ReminderDeadline(deadline);
 
+        if (!ReminderPriority.isValidPriority(priority)) {
+            throw new IllegalValueException(ReminderPriority.MESSAGE_CONSTRAINTS);
+        }
+        final ReminderPriority modelPriority = new ReminderPriority(priority);
+
         final ReminderDescription modelDescription = new ReminderDescription(description);
 
-        return new Reminder(modelName, modelDeadline, modelDescription);
+        return new Reminder(modelName, modelDeadline, modelDescription, modelPriority);
     }
 }
