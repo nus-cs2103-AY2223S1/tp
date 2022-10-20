@@ -57,7 +57,7 @@ public class Team {
      * Returns an immutable team set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Person> getTeamMembers() {
+    public ObservableList<Person> getTeamMembers() {
         return teamMembers.asUnmodifiableObservableList();
     }
 

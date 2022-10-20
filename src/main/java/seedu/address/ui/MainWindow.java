@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private TaskListPanel taskListPanel;
+    private MemberListPanel memberListPanel;
     private HelpWindow helpWindow;
 
     private TeamDetailsPanel teamDetailsPanel;
@@ -63,6 +64,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane teamDetailsCardPlaceHolder;
+
+    @FXML
+    private StackPane memberListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -130,14 +134,22 @@ public class MainWindow extends UiPart<Stage> {
         teamDetailsPanel = new TeamDetailsPanel(logic.getTeamAsProperty());
         teamDetailsCardPlaceHolder.getChildren().add(teamDetailsPanel.getRoot());
 
+//        taskListPanel = new TaskListPanel(logic.getCurrentTeam().getTaskList());
+//        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+//
+//        memberListPanel = new MemberListPanel(logic.getCurrentTeam().getTeamMembers());
+//        memberListPanelPlaceholder.getChildren().add(memberListPanel.getRoot());
+
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        ObservableList<Task> tasks = logic.getAddressBook().getTeam().getTaskList();
-        if (tasks.size() > 0) {
-            taskListPanel = new TaskListPanel(tasks);
-            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-        }
+//
+//        ObservableList<Task> tasks = logic.getCurrentTeam().getTaskList();
+//        if (tasks.size() > 0) {
+//            taskListPanel = new TaskListPanel(tasks);
+//            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+//        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

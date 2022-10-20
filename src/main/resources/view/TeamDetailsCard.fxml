@@ -7,14 +7,28 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.geometry.Insets?>
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <VBox>
         <HBox spacing="0" alignment="TOP_LEFT">
             <Label styleClass="label-bright-padding" text="Selected Team: " StackPane.alignment="TOP_LEFT"/>
-        </HBox>
-        <HBox spacing="0" alignment="TOP_LEFT">
             <Label fx:id="teamNameDisplay" styleClass="label-bright-padding" text="\$teamNameDisplay"
                    StackPane.alignment="TOP_LEFT"/>
+        </HBox>
+        <HBox>
+            <VBox>
+                <ListView fx:id="memberListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+                <padding>
+                    <Insets left="10" right="10"/>
+                </padding>
+            </VBox>
+            <VBox>
+                <padding>
+                    <Insets left="10" right="10"/>
+                </padding>
+                <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+            </VBox>
         </HBox>
     </VBox>
 </StackPane>

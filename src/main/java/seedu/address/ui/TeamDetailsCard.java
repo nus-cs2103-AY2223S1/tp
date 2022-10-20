@@ -1,10 +1,19 @@
 package seedu.address.ui;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
+
+import java.util.List;
+
 /**
  * A UI Component that displays the full information of a {@code Team}.
  */
@@ -18,6 +27,10 @@ public class TeamDetailsCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label teamNameDisplay;
+    @FXML
+    private ListView<Person> memberListView;
+    @FXML
+    private ListView<Task> taskListView;
 
     /**
      * Creates a {@code TeamDetailsCard} with the given {@code Team}.
@@ -25,6 +38,15 @@ public class TeamDetailsCard extends UiPart<Region> {
     public TeamDetailsCard(Team team) {
         super(FXML);
         teamNameDisplay.setText(team.getTeamName());
+        memberListView.setItems(team.getTeamMembers());
+
+//        MemberListPanel members = new MemberListPanel(team.getTeamMembers());
+//        memberListView.getChildren().add(members.getRoot());
+//
+//        TaskListPanel tasks = new TaskListPanel(team.getTaskList());
+//        taskListView.getChildren().add(tasks.getRoot());
+
+        taskListView.setItems(team.getTaskList());
         teamNameDisplay.setWrapText(true);
     }
 }
