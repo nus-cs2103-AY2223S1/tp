@@ -72,6 +72,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
+
+        if (newData.isSortByDeadline()) {
+            sortByDeadline();
+        } else {
+            sortById();
+        }
     }
 
     //// person-level operations
@@ -189,6 +195,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedTask);
 
         tasks.setTask(target, editedTask);
+    }
+
+    /**
+     * Sorts the task list by deadline.
+     */
+    public void sortByDeadline() {
+        tasks.sortByDeadline();
+    }
+
+    @Override
+    public Boolean isSortByDeadline() {
+        return tasks.isSortByDeadline();
+    }
+
+    /**
+     * Sorts the task list by id.
+     */
+    public void sortById() {
+        tasks.sortById();
     }
 
     @Override

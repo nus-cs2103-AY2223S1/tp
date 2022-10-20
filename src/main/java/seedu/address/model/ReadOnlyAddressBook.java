@@ -25,4 +25,9 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the tags list.
      */
     ObservableList<Tag> getTagList();
+
+    /**
+     * Returns the sort by deadline status of the task list.
+     */
+    Boolean isSortByDeadline();
 }
