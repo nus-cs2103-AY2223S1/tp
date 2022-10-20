@@ -221,13 +221,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Implementation**
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1. Module Features
+### Module Features
 
-### 3.1.1. Add module
+### Add module
 
 In this section, the functionality of `add` module feature, expected execution path, and the interactions between
 `AddCommand`, `AddCommandParser`, and other objects will be discussed.
@@ -290,7 +290,7 @@ obtaining the module code, the argument would be passed to static method `Module
 the module details from NUSMods and return a `Module`. The module would be used to instantiate an `AddCommand`. When the
 `AddCommand` is executed, the `Model` would add the module to the `ModuleList`.
 
-### 3.1.2. Remove Module
+### Remove Module
 
 In this section, the functionality of `remove` module feature, expected execution path, and the interactions between the
 `RemoveCommand`, `RemoveCommandParser`, and other objects will be discussed.
