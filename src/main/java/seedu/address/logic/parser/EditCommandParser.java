@@ -51,6 +51,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        if (argMultimap.getPrefixCount() <= 2) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }

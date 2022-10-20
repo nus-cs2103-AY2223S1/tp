@@ -26,6 +26,7 @@ public class ArgumentMultimap {
 
     private boolean phoneIdentifier = false;
     private boolean emailIdentifier = false;
+    private int prefixCount = 0;
 
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
@@ -46,6 +47,7 @@ public class ArgumentMultimap {
         List<String> argValues = getAllValues(prefix);
         argValues.add(argValue);
         argMultimap.put(prefix, argValues);
+        prefixCount++;
     }
 
     /**
@@ -111,5 +113,14 @@ public class ArgumentMultimap {
      */
     public boolean getEmailIdentifier() {
         return emailIdentifier;
+    }
+
+    /**
+     * Returns number of prefixes found in the command.
+     *
+     * @return number of prefixes found in the command.
+     */
+    public int getPrefixCount() {
+        return this.prefixCount;
     }
 }

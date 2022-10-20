@@ -51,27 +51,32 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
-
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
-
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
-
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_AMY
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
-
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_MEMBER, VALID_TAG_GOLD)
             .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_BOB
             + TAG_DESC_GOLD + TAG_DESC_MEMBER, new AddCommand(expectedPersonMultipleTags));
+    }
+
+    @Test
+    public void parse_multipleUniqueFields_failure() {
+        String message = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+
+        // multiple names - rejected
+        assertParseFailure(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+
+        // multiple phones - rejected
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+
+        // multiple emails - rejected
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
+            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+
+        // multiple rewards - rejected
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_AMY
+            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
     }
 
     @Test
