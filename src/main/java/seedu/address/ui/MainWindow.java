@@ -218,9 +218,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleFilterTransaction(CommandResult result) {
         ObservableList<Client> clientList = logic.getFilteredClientList();
-        System.out.println("================ENTER COMMAND");
         companyListPanel.setCompanyList(FXCollections.observableArrayList());
-
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         Iterator<Client> itr = clientList.listIterator();
         while (itr.hasNext()) {
@@ -231,9 +229,7 @@ public class MainWindow extends UiPart<Stage> {
                 transactions.addAll(client.getSellTransactionList());
             }
         }
-        System.out.println(transactions);
         transactionListPanel.setTransactionList(transactions);
-        System.out.println("DONE");
     }
 
     private boolean isBuyFilter(CommandResult result) {
