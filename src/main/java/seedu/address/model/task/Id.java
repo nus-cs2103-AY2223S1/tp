@@ -53,7 +53,6 @@ public class Id implements Comparable<Id> {
         return availableId;
     }
 
-
     @Override
     public int compareTo(Id otherId) {
         return value - otherId.value;
