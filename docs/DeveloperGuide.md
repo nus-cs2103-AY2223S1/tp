@@ -238,6 +238,43 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Delete Module feature
+
+#### Implementation
+
+The DeleteModule commands extends `Command`, and takes in an Index to be deleted. Additionally, it implements the following operation:
+
+* `DeleteModuleCommand#execute()` — Deletes the corresponding item in the given model according to the given index.
+
+This operation is exposed in the `Model` interface as `Model#deleteModule()`.
+
+Given below is an example usage scenario and how the DeleteModule mechanism behaves at each step.
+
+Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `deletem 1` command to delete the 1st module in the address book. The `deletem` command calls `Model#deleteModule()`, which deletes the module corresponding to the number parsed in the model object.
+
+The following sequence diagram shows how the DeleteModule operation works:
+
+![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteModuleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How DeleteModule executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
