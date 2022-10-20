@@ -262,7 +262,6 @@ However, users could forget to input spaces when inputting indexes of multiple t
 marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time 
 most of the time, so a mass mark/unmark feature is a nice-to-have one.
 
-### \[Proposed\] Undo/redo feature
 ### \[Proposed\] Edit task feature
 
 #### About 
@@ -282,7 +281,7 @@ Outline of how components work together when the user enters a `edit` task comma
 5. That `EditTaskCommand` object will execute and a new `Task` will be created with the new fields
 6. The `model` will then be updated accordingly with the new Edited Task.
 
-####Activity Diagram
+#### Activity Diagram
 
 ![Activity Diagram](images/EditTaskActivityDiagram.png)
 
@@ -291,9 +290,6 @@ Outline of how components work together when the user enters a `edit` task comma
 Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as 
 a task object does not have that many fields to begin with. However, we felt that implementing it will still
 make it a lot easier in the event that a user want to have multiple changes to a task.
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -50,7 +50,7 @@ deactivate AddressBookParser
 LogicManager -> UnmarkTaskCommand : execute()
 activate UnmarkTaskCommand
 
-UnmarkTaskCommand -> Task : withCompletion(false)
+UnmarkTaskCommand -> Task : withStatus(false)
 activate Task
 
 create Task1
@@ -59,6 +59,9 @@ activate Task1
 
 Task1 --> Task
 deactivate Task1
+
+Task --> UnmarkTaskCommand
+deactivate Task
 
 UnmarkTaskCommand -> Model : setTask(toUnmark, unmarked)
 activate Model
