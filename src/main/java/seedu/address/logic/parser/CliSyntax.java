@@ -15,6 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MONEY_PAID = new Prefix("paid/");
     public static final Prefix PREFIX_RATES_PER_CLASS = new Prefix("rate/");
     public static final Prefix PREFIX_ADDITIONAL_NOTES = new Prefix("nt/");
+    public static final Prefix PREFIX_ADDITIONAL_NOTES_APPEND = new Prefix("nt-a/");
     public static final Prefix PREFIX_CLASS_DATE_TIME = new Prefix("dt/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
