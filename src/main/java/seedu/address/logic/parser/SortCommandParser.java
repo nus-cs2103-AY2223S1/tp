@@ -29,6 +29,8 @@ public class SortCommandParser implements Parser<SortCommand> {
                 return new SortCommand(Applicant.sortByName().reversed());
             case "scholarship":
                 return new SortCommand(Applicant.sortByScholarship().reversed());
+            case "status":
+                return new SortCommand(Applicant.sortByStatus().reversed());
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
@@ -40,6 +42,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand(Applicant.sortByName());
         case "scholarship":
             return new SortCommand(Applicant.sortByScholarship());
+        case "status":
+            return new SortCommand(Applicant.sortByStatus());
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
