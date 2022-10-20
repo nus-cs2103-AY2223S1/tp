@@ -50,7 +50,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // TODO: Refactor
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane tripListPanelPlaceholder;
 
     @FXML
     private StackPane eventListPanelPlaceholder;
@@ -125,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip());
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
-        personListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
+        tripListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

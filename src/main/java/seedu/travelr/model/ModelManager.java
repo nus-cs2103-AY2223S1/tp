@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
-    private ObservableTrip selectedTrip;
+    private final ObservableTrip selectedTrip;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> bucketList;
 
