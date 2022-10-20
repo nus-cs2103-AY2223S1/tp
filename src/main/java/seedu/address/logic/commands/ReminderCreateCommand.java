@@ -27,9 +27,9 @@ public class ReminderCreateCommand extends ReminderCommandGroup {
             + "with the specified description and time.\n"
             + "Parameters: [INDEX] "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_DATETIME + "DATETIME "
+            + PREFIX_DATETIME + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "Meeting" + " " + PREFIX_DATETIME + "2022-12-12 11:00";
+            + PREFIX_DESCRIPTION + "Meeting" + " " + PREFIX_DATETIME + "2022-12-28 11:00";
 
     public static final String MESSAGE_SUCCESS = "New reminder created: \n%1$s";
 

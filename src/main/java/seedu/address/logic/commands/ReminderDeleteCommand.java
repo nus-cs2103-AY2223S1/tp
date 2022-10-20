@@ -19,11 +19,11 @@ public class ReminderDeleteCommand extends ReminderCommandGroup {
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a reminder from the reminder list using its index"
+            + ": Deletes a reminder from the currently displayed reminder list using its index.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + COMMAND_SPECIFIER + " 1 ";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_SUCCESS = "Reminder deleted: %1$s";
+    public static final String MESSAGE_SUCCESS = "Reminder deleted:\n%1$s";
 
     private final Index index;
 

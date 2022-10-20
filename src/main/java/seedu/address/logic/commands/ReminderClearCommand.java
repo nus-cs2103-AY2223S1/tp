@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.TargetPerson;
 
 
 /**
@@ -14,10 +15,10 @@ public class ReminderClearCommand extends ReminderCommandGroup {
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears the reminder list displayed";
+            + ": Clears the currently displayed reminders";
 
-    public static final String MESSAGE_SUCCESS = "Reminder list cleared.";
-    public static final String MESSAGE_SUCCESS_TARGET_PERSON_LIST = "Reminder list cleared.";
+    public static final String MESSAGE_SUCCESS = "Reminders cleared.";
+    public static final String MESSAGE_SUCCESS_TARGET_PERSON_LIST = "Reminders cleared for %1$s.";
 
     public ReminderClearCommand() {}
 
@@ -25,7 +26,10 @@ public class ReminderClearCommand extends ReminderCommandGroup {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.clearCurrentReminderList();
+        String successMessage = model.hasTargetPerson() ?
+                String.format(MESSAGE_SUCCESS_TARGET_PERSON_LIST, model.getTargetPerson().getName().fullName)
+                : MESSAGE_SUCCESS;
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(successMessage);
     }
 }

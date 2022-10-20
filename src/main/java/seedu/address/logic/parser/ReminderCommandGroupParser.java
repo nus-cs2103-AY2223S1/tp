@@ -46,7 +46,7 @@ public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> 
         default:
             if (argArray.length < 2) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCreateCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
             return new ReminderCreateCommandParser().parse(args);
         }
