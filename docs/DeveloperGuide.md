@@ -443,7 +443,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. The data should be stored in a human editable text file
 8. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
 9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
-10. Each contact person can only link to one internship and each internship is only link to one contact person
+10. Each contact person can only link to one internship and each internship is only linked to one contact person
 
 
 *{More to be added}*
