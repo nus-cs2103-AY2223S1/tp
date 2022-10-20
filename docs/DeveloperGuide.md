@@ -168,6 +168,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find module details by module code feature
+
+#### Implementation
+
+The find module details mechanism is facilitated by `ModuleViewCommand` and `ModuleViewCommandParser`. It allows users to search for modules based on module code.
+It uses `ModelManager#updateFilteredModuleList(Predicate<Module> predicate)` which is exposed in the Model interface as `Model#updateFilteredModuleList(Predicate<Module> predicate)`.
+The method updates the student and tutor list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
+
+The following sequence diagram shows how the find module by module code operation works:
+![ViewModuleSequenceDiagram](./images/ViewModuleSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a findmod command:
+
+![ViewModuleActivityDiagram](./images/ViewModuleActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How mview executes
+
+|                                             | Pros                                                     | Cons                                    |
+| ------------------------------------------- | -------------------------------------------------------- | --------------------------------------- |
+| **Option 1** <br/> Searching by module code | Allows module with different codes to have the same name | User might not remember the module code |
+| **Option 2** <br/> Searching by module name | Easier for user to search for the module                 | Modules cannot have the same name       |
+
+Reason for choosing option 1:
+Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
+This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
+
 ### [Proposed] AddSchedule feature
 
 #### Proposed Implementation
