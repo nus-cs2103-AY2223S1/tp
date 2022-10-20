@@ -10,5 +10,5 @@
     },
     "attributeOrder" : "ADDRESS>TAGS>PHONE>EMAIL"
   },
-  "addressBookFilePath" : "addressbook.json"
+  "soConnectFilePath" : "soconnect.json"
 }
