@@ -22,15 +22,18 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <HBox spacing="8">
-        <Label fx:id="module" styleClass="cell_module_label" text="\$module">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
+      <VBox spacing="3">
+        <FlowPane fx:id="modules"/>
+        <minWidth>
+          <!-- Ensures that the label text is never truncated -->
+          <Region fx:constant="USE_PREF_SIZE" />
+        </minWidth>
         <FlowPane fx:id="tags" />
-      </HBox>
+          <minWidth>
+              <!-- Ensures that the label text is never truncated -->
+              <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+      </VBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
