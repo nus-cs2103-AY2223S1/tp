@@ -5,16 +5,19 @@ skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
-Class "<<interface>>\nUi" as Ui
+Interface Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class ModuleListPanel
-Class ModuleCard
-Class StatusBarFooter
+Class ProfileSidePanel
+Class TaskListPanel
+Class StatusBar
 Class CommandBox
+Class ModuleCard
+Class ModuleListPanel
+Class TaskCard
 }
 
 package Model <<Rectangle>> {
@@ -29,32 +32,35 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
+UiManager -down-> MainWindow
+MainWindow *-down-> "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
+MainWindow *-down-> "1" StatusBar
+MainWindow *-down-> "1" ProfileSidePanel
+MainWindow *-down-> "1" TaskListPanel
 MainWindow *-down-> "1" ModuleListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
 
-ModuleListPanel -down-> "*" ModuleCard
-
+ModuleListPanel o-down-> "*" ModuleCard
+TaskListPanel o-down-> "*" TaskCard
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 ModuleListPanel --|> UiPart
 ModuleCard --|> UiPart
-StatusBarFooter --|> UiPart
+StatusBar --|> UiPart
+ProfileSidePanel --|> UiPart
+TaskListPanel --|> UiPart
+TaskCard --|> UiPart
 HelpWindow --|> UiPart
 
-ModuleCard ..> Model
-UiManager -right-> Logic
+UiManager -right-> "1" Logic
+UiManager -left-> Model
+MainWindow ..> Model
 MainWindow -left-> Logic
 
-ModuleListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- StatusBar
 
 MainWindow -[hidden]-|> UiPart
 @enduml
