@@ -17,6 +17,7 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.venues.Venue;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -168,5 +169,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String venue} into a {@code Venue}.
+     */
+    public static Venue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!Venue.isValidVenue(trimmedVenue)) {
+            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
+        }
+        return Venue.MEETING_ROOM;
     }
 }

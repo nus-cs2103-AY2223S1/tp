@@ -2,6 +2,7 @@ package seedu.rc4hdb.model.venues;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import seedu.rc4hdb.model.resident.Resident;
 
@@ -18,9 +19,9 @@ public class AdHocBooking extends Booking {
      * @param startTime The start time of the booking.
      * @param endTime The end time of the booking.
      */
-    public AdHocBooking(Resident resident, String date, String startTime, String endTime) {
-        super(resident, startTime, endTime);
-        this.date = LocalDate.parse(date);
+    public AdHocBooking(Resident resident, LocalDate date, LocalTime startTime, LocalTime endTime, Venue venue) {
+        super(resident, startTime, endTime, venue);
+        this.date = date;
         setDayOfWeek(this.date.getDayOfWeek());
     }
 
@@ -42,6 +43,9 @@ public class AdHocBooking extends Booking {
      */
     @Override
     public boolean clashesWith(Booking booking) {
+        if (!booking.venue.equals(this.venue)) {
+            return false;
+        }
         if (booking instanceof RecurrentBooking) {
             return booking.clashesWith(this);
         }

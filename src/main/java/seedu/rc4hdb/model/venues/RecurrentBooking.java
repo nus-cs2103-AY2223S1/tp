@@ -1,6 +1,7 @@
 package seedu.rc4hdb.model.venues;
 
 import java.time.DayOfWeek;
+import java.time.LocalTime;
 
 import seedu.rc4hdb.model.resident.Resident;
 
@@ -16,9 +17,9 @@ public class RecurrentBooking extends Booking {
      * @param startTime The start time of the booking.
      * @param endTime The end time of the booking.
      */
-    public RecurrentBooking(Resident resident, String dayOfWeek, String startTime, String endTime) {
-        super(resident, startTime, endTime);
-        setDayOfWeek(DayOfWeek.valueOf(dayOfWeek));
+    public RecurrentBooking(Resident resident, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime, Venue venue) {
+        super(resident, startTime, endTime, venue);
+        setDayOfWeek(dayOfWeek);
     }
 
     /**
@@ -38,6 +39,9 @@ public class RecurrentBooking extends Booking {
     @Override
     public boolean clashesWith(Booking booking) {
         if (!booking.dayOfWeek.equals(this.dayOfWeek)) {
+            return false;
+        }
+        if (!booking.venue.equals(this.venue)) {
             return false;
         }
         boolean isOverlappingOrSubset = this.startTime.isAfter(booking.startTime)

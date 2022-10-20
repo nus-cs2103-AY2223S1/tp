@@ -11,6 +11,7 @@ import seedu.rc4hdb.model.resident.Resident;
 public abstract class Booking {
     protected static int counter;
 
+    protected Venue venue;
     protected Resident resident;
     protected LocalTime startTime;
     protected LocalTime endTime;
@@ -23,12 +24,18 @@ public abstract class Booking {
      * @param resident The resident trying to book the venue.
      * @param startTime The start time of the booking.
      * @param endTime The end time of the booking.
+     * @param venue The venue of the booking.
      */
-    public Booking(Resident resident, String startTime, String endTime) {
+    public Booking(Resident resident, LocalTime startTime, LocalTime endTime, Venue venue) {
         this.resident = resident;
-        this.startTime = LocalTime.parse(startTime);
-        this.endTime = LocalTime.parse(endTime);
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.venue = venue;
         this.id = counter++;
+    }
+
+    public Venue getVenue() {
+        return this.venue;
     }
 
     protected void setDayOfWeek(DayOfWeek dayOfWeek) {
