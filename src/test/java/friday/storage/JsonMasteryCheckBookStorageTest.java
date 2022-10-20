@@ -28,7 +28,7 @@ public class JsonMasteryCheckBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyFriday> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonFridayStorage(Paths.get(filePath)).readFriday(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -63,24 +63,24 @@ public class JsonMasteryCheckBookStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         Friday original = TypicalStudents.getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonFridayStorage jsonFridayStorage = new JsonFridayStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyFriday readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonFridayStorage.saveFriday(original, filePath);
+        ReadOnlyFriday readBack = jsonFridayStorage.readFriday(filePath).get();
         assertEquals(original, new Friday(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(TypicalStudents.HOON);
         original.removePerson(TypicalStudents.ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonFridayStorage.saveFriday(original, filePath);
+        readBack = jsonFridayStorage.readFriday(filePath).get();
         assertEquals(original, new Friday(readBack));
 
         // Save and read without specifying file path
         original.addPerson(TypicalStudents.IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonFridayStorage.saveFriday(original); // file path not specified
+        readBack = jsonFridayStorage.readFriday().get(); // file path not specified
         assertEquals(original, new Friday(readBack));
 
     }
@@ -95,8 +95,8 @@ public class JsonMasteryCheckBookStorageTest {
      */
     private void saveAddressBook(ReadOnlyFriday addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonFridayStorage(Paths.get(filePath))
+                    .saveFriday(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

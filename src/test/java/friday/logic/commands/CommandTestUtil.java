@@ -20,7 +20,7 @@ import friday.model.Friday;
 import friday.model.Model;
 import friday.model.student.NameContainsKeywordsPredicate;
 import friday.model.student.Student;
-import friday.testutil.EditPersonDescriptorBuilder;
+import friday.testutil.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -60,14 +60,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditStudentDescriptor DESC_AMY;
+    public static final EditCommand.EditStudentDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_TELEGRAMHANDLE_AMY).withConsultation(VALID_CONSULTATION_AMY)
                 .withMasteryCheck(VALID_MASTERYCHECK_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_TELEGRAMHANDLE_BOB).withConsultation(VALID_CONSULTATION_BOB)
                 .withMasteryCheck(VALID_MASTERYCHECK_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }

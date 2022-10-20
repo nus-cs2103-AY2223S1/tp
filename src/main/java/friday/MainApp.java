@@ -20,8 +20,8 @@ import friday.model.ReadOnlyFriday;
 import friday.model.ReadOnlyUserPrefs;
 import friday.model.UserPrefs;
 import friday.model.util.SampleDataUtil;
-import friday.storage.AddressBookStorage;
-import friday.storage.JsonAddressBookStorage;
+import friday.storage.FridayStorage;
+import friday.storage.JsonFridayStorage;
 import friday.storage.JsonUserPrefsStorage;
 import friday.storage.Storage;
 import friday.storage.StorageManager;
@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        FridayStorage fridayStorage = new JsonFridayStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(fridayStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,7 +77,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyFriday> addressBookOptional;
         ReadOnlyFriday initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readFriday();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }

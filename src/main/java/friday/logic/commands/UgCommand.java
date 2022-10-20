@@ -12,7 +12,7 @@ public class UgCommand extends Command {
             + "accessed by copying and pasting this link into a browser.\n"
             + "Parameters: none\n"
             + "Example: " + COMMAND_WORD;
-    private String ugLink = "https://ay2223s1-cs2103t-w15-4.github.io/tp/UserGuide.html";
+    private static final String ugLink = "https://ay2223s1-cs2103t-w15-4.github.io/tp/UserGuide.html";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

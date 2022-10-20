@@ -9,7 +9,7 @@ import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 import java.util.Set;
 
 import friday.logic.commands.AddCommand;
-import friday.logic.commands.EditCommand.EditPersonDescriptor;
+import friday.logic.commands.EditCommand.EditStudentDescriptor;
 import friday.model.student.Student;
 import friday.model.tag.Tag;
 
@@ -41,9 +41,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getTelegramHandle().ifPresent(phone -> sb.append(PREFIX_TELEGRAMHANDLE).append(phone.value)

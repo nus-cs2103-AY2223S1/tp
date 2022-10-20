@@ -14,20 +14,25 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jorrdansoh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=jorrdansoh&tabRepo=AY2223S1-CS2103T-W15-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
+  * Created GitHub issues representing user stories
+  * Released trial JAR on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the ability to add students with optional details
-  * Updated the ability to delete students
-  * Wrote additional tests for existing features
+  * Updated the `add` command to add students with optional details [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
+  * Updated the `delete` command to delete students
+  * Wrote additional tests for existing features [\#92](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/92)
+  * Refactored code to fit project name and purpose
 
 * **Documentation**:
   * User Guide:
-    * Wrote documentation for the features `add` and `delete` [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
+    * Updated documentation for the features `add` and `delete` [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
+    * Wrote documentation for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
   * Developer Guide:
-    * Added target user profile and acknowledgements
+    * Added target user profile and acknowledgements [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59)
+    * Added user stories and use case for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):
+  * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93)
 
 * **Tools**:
   * Updated site-wide settings (Jekyll) for the project [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
