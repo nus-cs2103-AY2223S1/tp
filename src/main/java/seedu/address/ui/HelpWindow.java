@@ -143,7 +143,7 @@ public class HelpWindow extends UiPart<Stage> {
         descriptionCol.setSortable(false);
 
         commandCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.13));
-        descriptionCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.84));
+        descriptionCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.80));
 
         tableView.getColumns().addAll(commandCol, descriptionCol);
     }

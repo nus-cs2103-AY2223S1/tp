@@ -21,6 +21,7 @@
     <Scene>
       <stylesheets>
         <URL value="@HelpWindow.css" />
+        <URL value="@DarkTheme.css" />
       </stylesheets>
 
       <VBox prefWidth="750" VBox.vgrow="ALWAYS" fx:id="helpContainer">
