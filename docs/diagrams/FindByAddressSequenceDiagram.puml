@@ -35,11 +35,11 @@ deactivate FindCommandParser
 [->FindCommand : execute\n(model)
 activate FindCommand
 
-FindCommand -> Model : updateFilteredTaskList\n(predicate)
+FindCommand -> Model : updateFilteredStudentList\n(predicate)
 activate Model
 
 create CommandResult
-FindCommand -> CommandResult : new \nCommandResult\n(feedBackToUser)
+FindCommand -> CommandResult : new \nCommandResult\n (feedBackToUser)
 activate CommandResult
 
 CommandResult --> FindCommand : result
