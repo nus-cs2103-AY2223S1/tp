@@ -10,7 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import longtimenosee.commons.exceptions.IllegalValueException;
-import longtimenosee.model.policy.*;
+import longtimenosee.model.policy.Commission;
+import longtimenosee.model.policy.Company;
+import longtimenosee.model.policy.Coverage;
+import longtimenosee.model.policy.Policy;
+import longtimenosee.model.policy.Title;
 
 /**
  * Jackson-friendly version of {@link Policy}.

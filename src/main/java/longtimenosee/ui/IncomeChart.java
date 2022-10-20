@@ -44,8 +44,10 @@ public class IncomeChart extends UiPart<Region> {
         } else {
             LocalDate targetYear = income.getYear();
             series.getData().add(new XYChart.Data<>(String.valueOf(targetYear.getYear()), income.getFirstYearIncome()));
-            series.getData().add(new XYChart.Data<>(String.valueOf(targetYear.plusYears(1).getYear()), income.getSecondYearIncome()));
-            series.getData().add(new XYChart.Data<>(String.valueOf(targetYear.plusYears(2).getYear()), income.getThirdYearIncome()));
+            series.getData().add(new XYChart.Data<>(String.valueOf(targetYear.plusYears(1).getYear()),
+                    income.getSecondYearIncome()));
+            series.getData().add(new XYChart.Data<>(String.valueOf(targetYear.plusYears(2).getYear()),
+                    income.getThirdYearIncome()));
         }
         lineChart.getData().add(series);
         lineChart.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
