@@ -243,7 +243,8 @@ determine the object's identity and `Value` for its satellite values.
 ### Managing Sessions within a Class
 
 As `ModuleClass` is immutable, there exists no methods to add/delete/modify the `Session`-s associated with a `ModuleClass`. 
-The only way to do so is by constructing new `ModuleClass` instances.
+The only way to do so is by constructing new `ModuleClass` instances, then replacing the new instance over the old one by
+calling `Model#setModuleClass(ModuleClass target, ModuleClass newModuleClass)`.
 
 For example, the following sequence diagram shows how the command `session s/Lab1`
 creates a `Session` named "Lab1" and adds it inside the focused class.
