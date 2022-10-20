@@ -182,6 +182,18 @@ The following sequence diagram shows how the addNote operation works:
 
 ![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
 
+#### Design considerations
+
+**Aspect: How Title and Content are represented:**
+
+* **Alternative 1 (current choice):** Title and Content as separate objects.
+    * Pros: Easy to validate Title/Content. (In the respective classes)
+    * Cons: May have performance issues in terms of memory usage(Many objects might be created).
+
+* **Alternative 2:** Title and Content as fields of Note
+    * Pros: Will use less memory (Fewer objects created).
+    * Cons: Harder to validate Title/Content. Better OOP(Object-oriented programming) design.
+
 ### deleteNote feature
 
 #### Proposed implementation
@@ -212,6 +224,18 @@ Step 5. `DeleteNoteCommand#execute()` will return a `CommandResult` object which
 The following sequence diagram shows how the addNote operation works:
 
 ![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How the note to be deleted is specified:**
+
+* **Alternative 1 (current choice):** Note is specified by index.
+    * Pros: Easy to implement.
+    * Cons: Would need to use listNote command or gui to allow easy identification of index of note.
+
+* **Alternative 2:** Note is specified by Title.
+    * Pros: Would be more precise (Title of notes are unique).
+    * Cons: Long command would be needed to delete a note with a long Title.
 
 ### \[Proposed\] Undo/redo feature
 
