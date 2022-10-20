@@ -11,6 +11,7 @@ if () then ([input is valid])
     :Update UI with new ProfileList;
     :Display success message to user;
 else ([else])
+    :Display error message to user;
 endif
 stop
 @enduml
