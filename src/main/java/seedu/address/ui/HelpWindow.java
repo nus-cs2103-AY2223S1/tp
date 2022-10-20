@@ -28,7 +28,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final int MIN_ROW_HEIGHT = 60;
     private static final int MIN_COMMAND_WIDTH = 75;
     private static final int MIN_DESCRIPTION_WIDTH = 200;
-    private static final double MIN_TABLE_WIDTH = 600;
+    private static final double MIN_TABLE_WIDTH = 450;
     private static final double MIN_TABLE_HEIGHT = 300;
     private static Application hostServicesApp = new Application() {
         @Override

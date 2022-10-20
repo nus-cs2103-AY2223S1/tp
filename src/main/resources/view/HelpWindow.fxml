@@ -12,7 +12,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
          xmlns:fx="http://javafx.com/fxml/1" minHeight="80" minWidth="650">
   <icons>
     <Image url="@/images/help_icon.png" />
