@@ -1,16 +1,16 @@
-package seedu.address.logic.commands;
+package seedu.classify.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudents.getTypicalStudentRecord;
+import static seedu.classify.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.classify.testutil.TypicalStudents.getTypicalStudentRecord;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.classify.logic.commands.exceptions.CommandException;
+import seedu.classify.model.Model;
+import seedu.classify.model.ModelManager;
+import seedu.classify.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ViewAll Command.
