@@ -1,4 +1,4 @@
-package seedu.address.model.project;
+package seedu.address.model.deadline;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Deadline(null));
@@ -34,10 +33,12 @@ public class DeadlineTest {
         assertFalse(Deadline.isValidDeadline("12-20")); // missing year part
 
         // invalid parts
-        // invalid month
-        // invalid day
+        assertFalse(Deadline.isValidDeadline("2022-12-32")); // invalid day
+        assertFalse(Deadline.isValidDeadline("2012-20-10")); // invalid month
+        assertFalse(Deadline.isValidDeadline("2023-02-29")); //Invalid leap year
 
-        // valid email
+        // valid deadline
         assertTrue(Deadline.isValidDeadline("2022-12-31")); // underscore in local part
+        assertTrue(Deadline.isValidDeadline("2024-02-29")); //valid leap year
     }
 }

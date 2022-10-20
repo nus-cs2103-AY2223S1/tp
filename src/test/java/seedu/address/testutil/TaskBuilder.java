@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskMark;
 
@@ -15,14 +15,14 @@ public class TaskBuilder {
     public static final String DEFAULT_TASK_MARK = "false";
 
     private TaskDescription taskDescription;
-    private TaskDeadline taskDeadline;
+    private Deadline taskDeadline;
     private TaskMark taskMark;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
-        taskDeadline = new TaskDeadline(DEFAULT_TASK_DEADLINE);
+        taskDeadline = new Deadline(DEFAULT_TASK_DEADLINE);
         taskDescription = new TaskDescription(DEFAULT_TASK_DESCRIPTION);
         taskMark = new TaskMark(DEFAULT_TASK_MARK);
     }
@@ -48,7 +48,7 @@ public class TaskBuilder {
      * Sets the {@code TaskDeadline} of the {@code Task} that we are building.
      */
     public TaskBuilder withDeadline(String deadline) {
-        this.taskDeadline = new TaskDeadline(deadline);
+        this.taskDeadline = new Deadline(deadline);
         return this;
     }
 

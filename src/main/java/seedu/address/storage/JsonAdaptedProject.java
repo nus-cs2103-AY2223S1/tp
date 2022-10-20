@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.project.Budget;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
@@ -53,7 +53,7 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().fullName;
         budget = source.getBudget().value;
-        deadline = source.getDeadline().deadline.toString();
+        deadline = source.getDeadline().deadline;
         staffList.addAll(source.getStaffList().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedStaff::new)
                 .collect(Collectors.toList()));
