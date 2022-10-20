@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS = "Grades should be in percentages, excluding the % sign.";
-    public static final String VALIDATION_REGEX = "^((100)|(\\d{1,2}(\\.\\d*)?))%$";
+    public static final String VALIDATION_REGEX = "^((100)|(\\d{1,2}(\\.\\d*)?))$";
 
     public final String examName;
     public final String score;

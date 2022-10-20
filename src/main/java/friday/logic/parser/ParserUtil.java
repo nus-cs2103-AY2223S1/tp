@@ -10,6 +10,7 @@ import java.util.Set;
 import friday.commons.core.index.Index;
 import friday.commons.util.StringUtil;
 import friday.logic.parser.exceptions.ParseException;
+import friday.model.grades.Grade;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -123,5 +124,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String grade} into a {@code Grade}.
+     *
+     * @param examName the name of the exam
+     * @param grade the score of the exam by the student
+     * @return the new Grade for that exam by that student
+     * @throws ParseException if the given {@code grade} is invalid.
+     */
+    public static Grade parseGrade(String examName, String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        if (!Grade.isValidScore(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return new Grade(examName, grade);
     }
 }

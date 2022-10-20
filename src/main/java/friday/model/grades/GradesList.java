@@ -18,6 +18,11 @@ public class GradesList {
         }
     }
 
+    public static void editGrade(GradesList gradesList, Grade newGrade) {
+        String key = newGrade.examName;
+        gradesList.gradesMap.put(key, newGrade);
+    }
+
     @Override
     public String toString() {
         return gradesMap.toString();

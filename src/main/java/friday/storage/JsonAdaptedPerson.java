@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import friday.commons.exceptions.IllegalValueException;
+import friday.model.grades.GradesList;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -134,8 +135,9 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Student(modelName, modelTelegramHandle, modelConsultation, modelMasteryCheck, modelRemark,
-                modelTags);
+                modelTags, new GradesList());
     }
 
 }

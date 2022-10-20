@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.parser.exceptions.ParseException;
+import friday.model.grades.GradesList;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -60,7 +61,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             consultation = Consultation.EMPTY_CONSULTATION;
         }
 
-
         if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
             masteryCheck = ParserUtil.parseMasteryCheck(argMultimap.getValue(PREFIX_MASTERYCHECK).get());
         } else {
@@ -71,7 +71,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, telegramHandle, consultation, masteryCheck, remark, tagList);
+        GradesList gradesList = new GradesList();
+
+        Student student = new Student(name, telegramHandle, consultation, masteryCheck, remark, tagList, gradesList);
 
         return new AddCommand(student);
     }

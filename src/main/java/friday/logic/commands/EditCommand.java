@@ -19,6 +19,7 @@ import friday.commons.core.index.Index;
 import friday.commons.util.CollectionUtil;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
+import friday.model.grades.GradesList;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -106,9 +107,10 @@ public class EditCommand extends Command {
                 .orElse(studentToEdit.getMasteryCheck());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        GradesList updatedGradesList = studentToEdit.getGradesList();
 
         return new Student(updatedName, updatedTelegramHandle, updatedConsultation, updatedMasteryCheck, updatedRemark,
-                updatedTags);
+                updatedTags, updatedGradesList);
     }
 
     @Override
