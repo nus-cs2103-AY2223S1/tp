@@ -2,8 +2,6 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
-
 import seedu.address.model.characteristics.Characteristics;
 
 /**
@@ -11,17 +9,14 @@ import seedu.address.model.characteristics.Characteristics;
  */
 public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPredicate {
 
-    private static final String CHARACTERISTIC_DELIMITER = ";";
-
-    private final String[] givenCharacteristics;
+    private final Characteristics givenCharacteristics;
 
     /**
-     * Standard constructor for the predicate. characteristics must be delimited
-     * by semicolons.
+     * Standard constructor for the predicate.
      */
-    public FilterBuyerByCharacteristicsPredicate(String characteristics) {
+    public FilterBuyerByCharacteristicsPredicate(Characteristics characteristics) {
         requireNonNull(characteristics);
-        this.givenCharacteristics = characteristics.split(CHARACTERISTIC_DELIMITER);
+        this.givenCharacteristics = characteristics;
     }
 
     @Override
@@ -30,15 +25,14 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
         if (p.getDesiredCharacteristics().isEmpty()) {
             return true;
         }
-        Characteristics dc = p.getDesiredCharacteristics().get();
-        return Arrays.stream(givenCharacteristics).anyMatch(dc::containsCharacteristic);
+        return p.getDesiredCharacteristics().get().containsAnyGivenCharacteristics(givenCharacteristics);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FilterBuyerByCharacteristicsPredicate // instanceof handles nulls
-                && Arrays.equals(givenCharacteristics, (
+                && givenCharacteristics.equals((
                         (FilterBuyerByCharacteristicsPredicate) other).givenCharacteristics)); // state check
     }
 }

@@ -13,7 +13,6 @@ import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 
-
 /**
  * Jackson-friendly version of {@link Property}.
  */

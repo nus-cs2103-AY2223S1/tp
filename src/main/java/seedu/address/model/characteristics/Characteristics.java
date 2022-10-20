@@ -38,6 +38,13 @@ public class Characteristics {
     }
 
     /**
+     * Returns the characteristics array represented by {@code Characteristics}.
+     */
+    public String[] getCharacteristicsArr() {
+        return characteristicsArr;
+    }
+
+    /**
      * Returns true if a given user-input string is valid to be used in desired characteristics.
      */
     public static boolean isValidCharacteristics(String test) {
@@ -45,12 +52,21 @@ public class Characteristics {
     }
 
     /**
-     * Returns true if a given characteristic is contained in the
+     * Returns true if a given string is contained in the
      * characteristics array.
      */
     public boolean containsCharacteristic(String characteristic) {
         return Arrays.stream(characteristicsArr)
-                .anyMatch(c -> c.contains(characteristic));
+                .anyMatch(c -> c.toLowerCase().contains(characteristic));
+    }
+
+    /**
+     * Returns true if a given {@code Characteristic} contains a characteristic that
+     * is also found in this {@code Characteristic}
+     */
+    public boolean containsAnyGivenCharacteristics(Characteristics other) {
+        return Arrays.stream(other.getCharacteristicsArr())
+                .anyMatch(c -> containsCharacteristic(c));
     }
 
     @Override

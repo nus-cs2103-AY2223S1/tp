@@ -9,7 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
 
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.AbstractFilterBuyerPredicate;
+import seedu.address.model.person.FilterBuyerByCharacteristicsPredicate;
 import seedu.address.model.person.FilterBuyerByPricePredicate;
 import seedu.address.model.property.Price;
 
@@ -41,6 +43,12 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
             predicate = new FilterBuyerByPricePredicate(price);
+        }
+
+        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
+            Characteristics characteristics = ParserUtil.parseCharacteristics(
+                    argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
+            predicate = new FilterBuyerByCharacteristicsPredicate(characteristics);
         }
 
         // TODO: Consider allowing filtering by multiple characteristics and tags at once
