@@ -3,10 +3,10 @@ package seedu.phu.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
 
 import java.util.Arrays;
@@ -48,10 +48,10 @@ public class InternshipBookTest {
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
-        Internship editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+        Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
-        List<Internship> newInternships = Arrays.asList(ALICE, editedAlice);
+        List<Internship> newInternships = Arrays.asList(AMAZON, editedAmazon);
         InternshipBookStub newData = new InternshipBookStub(newInternships);
 
         assertThrows(DuplicateInternshipException.class, () -> internshipBook.resetData(newData));
@@ -64,22 +64,22 @@ public class InternshipBookTest {
 
     @Test
     public void hasInternship_internshipNotInInternshipBook_returnsFalse() {
-        assertFalse(internshipBook.hasInternship(ALICE));
+        assertFalse(internshipBook.hasInternship(AMAZON));
     }
 
     @Test
     public void hasInternship_internshipInInternshipBook_returnsTrue() {
-        internshipBook.addInternship(ALICE);
-        assertTrue(internshipBook.hasInternship(ALICE));
+        internshipBook.addInternship(AMAZON);
+        assertTrue(internshipBook.hasInternship(AMAZON));
     }
 
     @Test
     public void hasInternship_internshipWithSameIdentityFieldsInInternshipBook_returnsTrue() {
-        internshipBook.addInternship(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+        internshipBook.addInternship(AMAZON);
+        Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
-        assertTrue(internshipBook.hasInternship(editedAlice));
+        assertTrue(internshipBook.hasInternship(editedAmazon));
     }
 
     @Test

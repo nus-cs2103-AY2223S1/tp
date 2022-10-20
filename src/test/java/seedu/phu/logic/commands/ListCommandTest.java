@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.phu.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.phu.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
-import static seedu.phu.testutil.TypicalInternships.BENSON;
-import static seedu.phu.testutil.TypicalInternships.CARL;
-import static seedu.phu.testutil.TypicalInternships.DANIEL;
-import static seedu.phu.testutil.TypicalInternships.ELLE;
-import static seedu.phu.testutil.TypicalInternships.FIONA;
-import static seedu.phu.testutil.TypicalInternships.GEORGE;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
+import static seedu.phu.testutil.TypicalInternships.BYTEDANCE;
+import static seedu.phu.testutil.TypicalInternships.CITADEL;
+import static seedu.phu.testutil.TypicalInternships.DSTA;
+import static seedu.phu.testutil.TypicalInternships.EBAY;
+import static seedu.phu.testutil.TypicalInternships.FASTLY;
+import static seedu.phu.testutil.TypicalInternships.GOOGLE;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -85,13 +85,13 @@ public class ListCommandTest {
     @Test
     public void execute_listByCompanyNameAscending_success() {
         InternshipBook expectedInternship = new InternshipBook();
-        expectedInternship.addInternship(ALICE);
-        expectedInternship.addInternship(BENSON);
-        expectedInternship.addInternship(CARL);
-        expectedInternship.addInternship(DANIEL);
-        expectedInternship.addInternship(ELLE);
-        expectedInternship.addInternship(FIONA);
-        expectedInternship.addInternship(GEORGE);
+        expectedInternship.addInternship(AMAZON);
+        expectedInternship.addInternship(BYTEDANCE);
+        expectedInternship.addInternship(CITADEL);
+        expectedInternship.addInternship(DSTA);
+        expectedInternship.addInternship(EBAY);
+        expectedInternship.addInternship(FASTLY);
+        expectedInternship.addInternship(GOOGLE);
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 
         assertCommandSuccess(new ListCommand(ComparableCategory.NAME, false), model, commandHistory,
@@ -101,13 +101,13 @@ public class ListCommandTest {
     @Test
     public void execute_listByCompanyNameDescending_success() {
         InternshipBook expectedInternship = new InternshipBook();
-        expectedInternship.addInternship(GEORGE);
-        expectedInternship.addInternship(FIONA);
-        expectedInternship.addInternship(ELLE);
-        expectedInternship.addInternship(DANIEL);
-        expectedInternship.addInternship(CARL);
-        expectedInternship.addInternship(BENSON);
-        expectedInternship.addInternship(ALICE);
+        expectedInternship.addInternship(GOOGLE);
+        expectedInternship.addInternship(FASTLY);
+        expectedInternship.addInternship(EBAY);
+        expectedInternship.addInternship(DSTA);
+        expectedInternship.addInternship(CITADEL);
+        expectedInternship.addInternship(BYTEDANCE);
+        expectedInternship.addInternship(AMAZON);
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 
         assertCommandSuccess(new ListCommand(ComparableCategory.NAME, true), model, commandHistory,
@@ -117,13 +117,13 @@ public class ListCommandTest {
     @Test
     public void execute_listByPositionAscending_success() {
         InternshipBook expectedInternship = new InternshipBook();
-        expectedInternship.addInternship(FIONA); //AI engineer
-        expectedInternship.addInternship(ALICE); //Backend Intern
-        expectedInternship.addInternship(GEORGE); //Data analyst
-        expectedInternship.addInternship(CARL); //backend engineer
-        expectedInternship.addInternship(ELLE); //data engineer
-        expectedInternship.addInternship(DANIEL); //frontend engineer
-        expectedInternship.addInternship(BENSON); //software engineer
+        expectedInternship.addInternship(FASTLY); //AI engineer
+        expectedInternship.addInternship(AMAZON); //Backend Intern
+        expectedInternship.addInternship(GOOGLE); //Data analyst
+        expectedInternship.addInternship(CITADEL); //backend engineer
+        expectedInternship.addInternship(EBAY); //data engineer
+        expectedInternship.addInternship(DSTA); //frontend engineer
+        expectedInternship.addInternship(BYTEDANCE); //software engineer
 
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 
@@ -134,13 +134,13 @@ public class ListCommandTest {
     @Test
     public void execute_listByDateAscending_success() {
         InternshipBook expectedInternship = new InternshipBook();
-        expectedInternship.addInternship(DANIEL); //14-09-2022
-        expectedInternship.addInternship(BENSON); //24-09-2022
-        expectedInternship.addInternship(CARL); //24-09-2022
-        expectedInternship.addInternship(ELLE); //24-09-2022
-        expectedInternship.addInternship(FIONA); //24-09-2022
-        expectedInternship.addInternship(GEORGE); //24-09-2022
-        expectedInternship.addInternship(ALICE); //11-12-2022
+        expectedInternship.addInternship(DSTA); //14-09-2022
+        expectedInternship.addInternship(BYTEDANCE); //24-09-2022
+        expectedInternship.addInternship(CITADEL); //24-09-2022
+        expectedInternship.addInternship(EBAY); //24-09-2022
+        expectedInternship.addInternship(FASTLY); //24-09-2022
+        expectedInternship.addInternship(GOOGLE); //24-09-2022
+        expectedInternship.addInternship(AMAZON); //11-12-2022
 
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 

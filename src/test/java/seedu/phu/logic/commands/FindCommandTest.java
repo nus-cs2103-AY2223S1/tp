@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.commons.core.Messages.MESSAGE_INTERNSHIPS_LISTED_OVERVIEW;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
-import static seedu.phu.testutil.TypicalInternships.BENSON;
-import static seedu.phu.testutil.TypicalInternships.CARL;
-import static seedu.phu.testutil.TypicalInternships.DANIEL;
-import static seedu.phu.testutil.TypicalInternships.ELLE;
-import static seedu.phu.testutil.TypicalInternships.FIONA;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
+import static seedu.phu.testutil.TypicalInternships.BYTEDANCE;
+import static seedu.phu.testutil.TypicalInternships.CITADEL;
+import static seedu.phu.testutil.TypicalInternships.DSTA;
+import static seedu.phu.testutil.TypicalInternships.EBAY;
+import static seedu.phu.testutil.TypicalInternships.FASTLY;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
 
 import java.util.Arrays;
@@ -87,11 +87,11 @@ public class FindCommandTest {
     public void execute_companyNameCategory_multipleMatches() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 3);
         ContainsKeywordsPredicate predicate =
-                preparePredicate(FindableCategory.COMPANY_NAME, "Kurz", "Elle", "Kunz");
+                preparePredicate(FindableCategory.COMPANY_NAME, "Citadel", "Ebay", "Fastly");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());
+        assertEquals(Arrays.asList(CITADEL, EBAY, FASTLY), model.getFilteredInternshipList());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredInternshipList());
+        assertEquals(Arrays.asList(BYTEDANCE, DSTA), model.getFilteredInternshipList());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA), model.getFilteredInternshipList());
+        assertEquals(Arrays.asList(BYTEDANCE, CITADEL, DSTA, EBAY, FASTLY), model.getFilteredInternshipList());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE), model.getFilteredInternshipList());
+        assertEquals(Arrays.asList(AMAZON), model.getFilteredInternshipList());
     }
 
     @Test
@@ -135,7 +135,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON), model.getFilteredInternshipList());
+        assertEquals(Arrays.asList(BYTEDANCE), model.getFilteredInternshipList());
     }
 
     /**
