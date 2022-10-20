@@ -156,6 +156,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Command
+
+#### Description
+
+In this section, we will describe how our add commands are implemented. In NUScheduler, there are two variants of add commands, namely the `AddProfileCommand` and the `AddEventCommand`. `AddProfileCommand` is used to add a new `Profile`, whereas `AddEventCommand` is used to add a new `Event`s.
+
+Since both `AddProfileCommand` and `AddEventCommands` are implemented in a similar manner, we will be using the `AddProfileCommand` to illustrate the implementation of add commands.
+
+The `AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute` method, to add new profiles when called.
+
+#### Implementation
+
+1. When the user inputs a command to add a profile, the input is passed to `LogicManager` to be executed.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse` is then called, and return a new `AddProfileCommandParser`.
+4. The method `AddProfileCommandParser#parse` will then return a new `AddProfileCommand`, if the user has entered the correct inputs.
+5. The `LogicManager` will call `Command#execute` method of the `AddProfileCommand`, which will then create a new `Profile` using the `AddProfileCommand#setProfile` method.
+6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+
+The following sequence diagram shows how the `AddProfileCommand` works.
+
+![AddProfileCommandSequenceDiagram](images/commands/AddProfileCommandSequenceDiagram.png)
+
+The following activity diagram shows the process when a user calls the `AddProfileCommand`.
+
+![AddProfileCommandActivityDiagram](images/commands/AddProfileCommandActivityDiagram.png)
+
+#### Design Considerations
+
+- **Alternative 1 (Current Design)**: Separate the `AddProfileCommand` and the `AddEventCommand` as separate classes.
+    - Pros: More flexibility in the parsing and order of the commands.
+    - Cons: Additional classes are implemented, and thus higher complexity.
+- **Alternative 2**: Have one single `AddCommand` class.
+    - Pros: Less classes to implement.
+    - Cons: Prevents us from using separate command words for adding profiles and adding events.
+
 ### Edit Command
 
 #### Description
@@ -191,34 +227,6 @@ The following activity diagram shows the process when a user calls the `EditProf
 - **Alternative 2**: Have one single `EditCommand` class.
   - Pros: Less classes to implement.
   - Cons: Prevents us from using separate command words for editing profiles and editing events.
-
-### Profiles
-
-#### Add Profile Command
-
-##### Description
-
-The `AddProfileCommand` allows the user to add new profiles to NUScheduler.
-
-##### Implementation
-
-`AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute()` method, which will add profiles when called.
-
-![AddProfileCommandSequenceDiagram](images/commands/AddProfileCommandSequenceDiagram.png)
-
-### Events
-
-#### Add Event Command
-
-##### Description
-
-The `AddEventCommand` allows the user to add new events to NUScheduler.
-
-##### Implementation
-
-`AddEventCommand` extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddEventCommand` overrides the `Command#execute()` method, which will add events when called.
-
-![AddEventCommandSequenceDiagram](images/commands/AddEventCommandSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
