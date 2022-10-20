@@ -4,9 +4,9 @@ import soconnect.model.SoConnect;
 import soconnect.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building SoConnect person objects.
  * Example usage: <br>
- *     {@code SoConnect ab = new SoConnectBuilder().withPerson("John", "Doe").build();}
+ *     {@code SoConnect sc = new SoConnectBuilder().withPerson("John", "Doe").build();}
  */
 public class SoConnectBuilder {
 

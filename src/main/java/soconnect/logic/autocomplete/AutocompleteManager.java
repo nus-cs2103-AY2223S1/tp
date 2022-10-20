@@ -44,9 +44,9 @@ public class AutocompleteManager implements Autocomplete {
     // will show a maximum of AUTOCOMPLETE_ENTRIES_LIMIT + 1 autocomplete entries
     private static final int AUTOCOMPLETE_ENTRIES_LIMIT = 10;
 
-    private static final String INVALID_SEARCH_COMMAND_ARGUMENT = "";
+    public static final String INVALID_SEARCH_COMMAND_ARGUMENT = "";
 
-    private static final String INVALID_PREFIX_ARGUMENT = "";
+    public static final String INVALID_PREFIX_ARGUMENT = "";
 
     private ReadOnlySoConnect soConnect;
 
@@ -69,7 +69,6 @@ public class AutocompleteManager implements Autocomplete {
 
     @Override
     public List<String> getAutocompleteEntries(String userInput) {
-        userInput = userInput.trim();
         String searchCommandArguments = this.getSearchCommandArguments(userInput);
         if (searchCommandArguments.equals(INVALID_SEARCH_COMMAND_ARGUMENT)) {
             return new ArrayList<>();
@@ -91,7 +90,8 @@ public class AutocompleteManager implements Autocomplete {
 
     @Override
     public String getSearchCommandArguments(String userInput) {
-        Matcher matcher = SEARCH_COMMAND_FORMAT.matcher(userInput);
+        String trimmedUserInput = userInput.trim();
+        Matcher matcher = SEARCH_COMMAND_FORMAT.matcher(trimmedUserInput);
         if (!matcher.matches()) {
             return INVALID_SEARCH_COMMAND_ARGUMENT;
         }
