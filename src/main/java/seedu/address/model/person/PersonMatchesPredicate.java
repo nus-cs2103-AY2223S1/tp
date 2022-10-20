@@ -15,63 +15,39 @@ import seedu.address.commons.util.StringUtil;
  */
 public class PersonMatchesPredicate implements Predicate<Person> {
 
-    private List<String> namesList;
-    private Set<String> modulesSet;
-    private List<String> phonesList;
-    private List<String> emailsList;
-    private List<String> gendersList;
-    private Set<String> tagsSet;
-    private List<String> locationsList;
-    private List<String> typesList;
-    private List<String> userNamesList;
+    private List<String> namesList = new ArrayList<>();
+    private List<String> phonesList = new ArrayList<>();
+    private List<String> emailsList = new ArrayList<>();
+    private List<String> gendersList = new ArrayList<>();
+    private List<String> locationsList = new ArrayList<>();
+    private List<String> typesList = new ArrayList<>();
+    private List<String> userNamesList = new ArrayList<>();
+    private List<String> ratingsList = new ArrayList<>();
+    private List<String> yearsList = new ArrayList<>();
+    private List<String> specList = new ArrayList<>();
 
-    private boolean hasNamesList;
+    private Set<String> tagsSet = new HashSet<>();
+    private Set<String> modulesSet = new HashSet<>();
 
-    private boolean hasModulesList;
-    private boolean needsAllModules;
 
-    private boolean hasPhonesList;
-    private boolean hasEmailsList;
-    private boolean hasGendersList;
+    private boolean hasNamesList = false;
 
-    private boolean hasTagsList;
-    private boolean needsAllTags;
+    private boolean hasModulesList = false;
+    private boolean needsAllModules = false;
 
-    private boolean hasLocationsList;
-    private boolean hasTypesList;
-    private boolean hasUserNamesList;
+    private boolean hasPhonesList = false;
+    private boolean hasEmailsList = false;
+    private boolean hasGendersList = false;
 
-    /**
-     * Creates a PersonMatchesPredicate object and initialises
-     * the required variables.
-     */
-    public PersonMatchesPredicate() {
-        namesList = new ArrayList<>();
-        modulesSet = new HashSet<>();
-        phonesList = new ArrayList<>();
-        emailsList = new ArrayList<>();
-        gendersList = new ArrayList<>();
-        tagsSet = new HashSet<>();
-        locationsList = new ArrayList<>();
-        typesList = new ArrayList<>();
-        userNamesList = new ArrayList<>();
+    private boolean hasTagsList = false;
+    private boolean needsAllTags = false;
 
-        hasNamesList = false;
-
-        hasModulesList = false;
-        needsAllModules = false;
-
-        hasPhonesList = false;
-        hasEmailsList = false;
-        hasGendersList = false;
-
-        hasTagsList = false;
-        needsAllTags = false;
-
-        hasLocationsList = false;
-        hasTypesList = false;
-        hasUserNamesList = false;
-    }
+    private boolean hasLocationsList = false;
+    private boolean hasTypesList = false;
+    private boolean hasUserNamesList = false;
+    private boolean hasRatingsList = false;
+    private boolean hasYearsList = false;
+    private boolean hasSpecList = false;
 
     @Override
     public boolean test(Person person) {
@@ -79,7 +55,9 @@ public class PersonMatchesPredicate implements Predicate<Person> {
                 && moduleMatches(person) && phoneMatches(person)
                 && emailMatches(person) && genderMatches(person)
                 && tagMatches(person) && locationMatches(person)
-                && typeMatches(person) && userNameMatches(person);
+                && typeMatches(person) && userNameMatches(person)
+                && ratingMatches(person) && yearMatches(person)
+                && specialisationMatches(person);
     }
 
     /**
@@ -228,6 +206,51 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if the person's rating matches any of the provided ratings.
+     * Returns true if no ratings have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified ratings.
+     * @return true if a match is found or if no ratings were provided.
+     */
+    public boolean ratingMatches(Person person) {
+        if (!hasRatingsList) {
+            return true;
+        } else {
+            return person.doesRatingMatch(ratingsList);
+        }
+    }
+
+    /**
+     * Checks if the person's year matches any of the provided years.
+     * Returns true if no years have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified year.
+     * @return true if a match is found or if no years were provided.
+     */
+    public boolean yearMatches(Person person) {
+        if (!hasYearsList) {
+            return true;
+        } else {
+            return person.doesYearMatch(yearsList);
+        }
+    }
+
+    /**
+     * Checks if the person's specialisation matches any of the provided specialisations.
+     * Returns true if no specialisation have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified specialisations.
+     * @return true if a match is found or if no specialisations were provided.
+     */
+    public boolean specialisationMatches(Person person) {
+        if (!hasSpecList) {
+            return true;
+        } else {
+            return person.doesSpecialisationMatch(specList);
+        }
+    }
+
     public void setNamesList(List<String> otherList) {
         this.namesList = otherList;
         hasNamesList = true;
@@ -273,6 +296,21 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     public void setUserNamesList(List<String> userNamesList) {
         this.userNamesList = userNamesList;
         hasUserNamesList = true;
+    }
+
+    public void setRatingsList(List<String> ratingsList) {
+        this.ratingsList = ratingsList;
+        hasRatingsList = true;
+    }
+
+    public void setYearsList(List<String> yearsList) {
+        this.yearsList = yearsList;
+        hasYearsList = true;
+    }
+
+    public void setSpecList(List<String> specList) {
+        this.specList = specList;
+        hasSpecList = true;
     }
 
     //get methods are for tests. some have not been used yet
@@ -352,6 +390,9 @@ public class PersonMatchesPredicate implements Predicate<Person> {
                 && tagsSet.equals(((PersonMatchesPredicate) other).tagsSet)
                 && locationsList.equals(((PersonMatchesPredicate) other).locationsList)
                 && typesList.equals(((PersonMatchesPredicate) other).typesList)
+                && ratingsList.equals(((PersonMatchesPredicate) other).ratingsList)
+                && yearsList.equals(((PersonMatchesPredicate) other).yearsList)
+                && specList.equals(((PersonMatchesPredicate) other).specList)
                 && needsAllTags == ((PersonMatchesPredicate) other).needsAllTags
                 && needsAllModules == ((PersonMatchesPredicate) other).needsAllModules); // state check
     }

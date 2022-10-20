@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -126,5 +127,19 @@ public class TeachingAssistant extends Person {
                 && otherPerson.getRating().equals(getRating());
     }
 
+    @Override
+    public boolean doesRatingMatch(List<String> ratingList) {
+        return ratingList.stream().anyMatch(rating -> rating.equals(this.rating.value));
+    }
+
+    @Override
+    public boolean doesYearMatch(List<String> yearList) {
+        return false;
+    }
+
+    @Override
+    public boolean doesSpecialisationMatch(List<String> specList) {
+        return false;
+    }
 
 }

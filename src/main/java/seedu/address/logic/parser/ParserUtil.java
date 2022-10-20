@@ -327,4 +327,5 @@ public class ParserUtil {
                 + endTime.format(TIME_FORMATTER);
         return new OfficeHour(formattedOfficeHour);
     }
+
 }
