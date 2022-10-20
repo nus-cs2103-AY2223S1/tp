@@ -26,14 +26,12 @@ class FilterTransCommandTest {
 
     @Test
     public void execute_buyFilteredList_success() {
-
         assertCommandSuccess(new FilterTransCommand(true), model,
                 String.format(FilterTransCommand.MESSAGE_SUCCESS, "buy"), expectedModel);
     }
 
     @Test
     public void execute_sellFilteredList_success() {
-
         assertCommandSuccess(new FilterTransCommand(false), model,
                 String.format(FilterTransCommand.MESSAGE_SUCCESS, "sell"), expectedModel);
     }
@@ -42,6 +40,11 @@ class FilterTransCommandTest {
     public void equals() {
         final FilterTransCommand command = new FilterTransCommand(true);
 
+        // same object
+        assertTrue(command.equals(command));
+
+        // another object
+        assertFalse(command.equals(new EditCommandTest()));
         // same values -> returns true
         assertTrue(command.equals(new FilterTransCommand(true)));
 
