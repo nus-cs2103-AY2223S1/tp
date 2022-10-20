@@ -1,6 +1,7 @@
 package soconnect.logic.autocomplete;
 
 import java.util.List;
+
 import soconnect.logic.parser.Prefix;
 import soconnect.model.ReadOnlySoConnect;
 

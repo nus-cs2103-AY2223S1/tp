@@ -3,8 +3,14 @@ package soconnect.logic.autocomplete;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static soconnect.logic.parser.CliSyntax.*;
-import static soconnect.testutil.TypicalPersons.*;
+import static soconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static soconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static soconnect.testutil.TypicalPersons.ALICE;
+import static soconnect.testutil.TypicalPersons.BENSON;
+import static soconnect.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +19,7 @@ import soconnect.testutil.SoConnectBuilder;
 
 public class AutocompleteManagerTest {
 
-    SoConnect soConnect = new SoConnectBuilder().withPerson(ALICE).build();
+    private SoConnect soConnect = new SoConnectBuilder().withPerson(ALICE).build();
 
     private AutocompleteManager autocompleteManager = new AutocompleteManager(soConnect);
 

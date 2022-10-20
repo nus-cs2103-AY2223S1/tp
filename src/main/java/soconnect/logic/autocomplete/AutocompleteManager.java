@@ -38,15 +38,15 @@ import soconnect.model.person.search.ContactContainsAllKeywordsPredicate;
  * Manager of the autocomplete component.
  */
 public class AutocompleteManager implements Autocomplete {
+    public static final String INVALID_SEARCH_COMMAND_ARGUMENT = "";
+
+    public static final String INVALID_PREFIX_ARGUMENT = "";
+
     private static final Pattern SEARCH_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     // In the autocomplete display box, it will include the original search hence it
     // will show a maximum of AUTOCOMPLETE_ENTRIES_LIMIT + 1 autocomplete entries
     private static final int AUTOCOMPLETE_ENTRIES_LIMIT = 10;
-
-    public static final String INVALID_SEARCH_COMMAND_ARGUMENT = "";
-
-    public static final String INVALID_PREFIX_ARGUMENT = "";
 
     private ReadOnlySoConnect soConnect;
 
@@ -80,8 +80,8 @@ public class AutocompleteManager implements Autocomplete {
             return new ArrayList<>();
         }
 
-        String argsWithoutLastPrefixArgument = searchCommandArguments.substring(0, searchCommandArguments.length() -
-                lastPrefixArgument.length());
+        String argsWithoutLastPrefixArgument = searchCommandArguments.substring(0, searchCommandArguments.length()
+                - lastPrefixArgument.length());
 
         updateFilteredPersonList(argsWithoutLastPrefixArgument);
 
@@ -97,11 +97,12 @@ public class AutocompleteManager implements Autocomplete {
         }
 
         String commandWord = matcher.group("commandWord");
-        String SearchCommandArguments = matcher.group("arguments");
+        String searchCommandArguments = matcher.group("arguments");
         return commandWord.equals(SearchCommand.COMMAND_WORD)
-                ? SearchCommandArguments : INVALID_SEARCH_COMMAND_ARGUMENT;
+                ? searchCommandArguments : INVALID_SEARCH_COMMAND_ARGUMENT;
     }
 
+    @Override
     public String getLastPrefixArgument(String argsString, Prefix... prefixes) {
         List<PrefixArgument> argsList = tokenizeToList(argsString, prefixes);
         assert argsList.size() >= 1;
@@ -128,6 +129,7 @@ public class AutocompleteManager implements Autocomplete {
         }
     }
 
+    @Override
     public void updateFilteredPersonList(String argsString) {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(argsString, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
@@ -148,6 +150,7 @@ public class AutocompleteManager implements Autocomplete {
 
     }
 
+    @Override
     public List<String> generateAutocompleteEntries(String argsWithoutLastPrefixArgument,
                                                     String lastPrefixArgument) {
         String autocompleteString = SearchCommand.COMMAND_WORD + argsWithoutLastPrefixArgument;

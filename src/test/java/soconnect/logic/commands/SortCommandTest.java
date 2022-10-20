@@ -8,7 +8,6 @@ import static soconnect.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.TreeSet;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;

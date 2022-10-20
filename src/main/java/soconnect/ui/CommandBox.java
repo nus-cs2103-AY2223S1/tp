@@ -93,7 +93,7 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()){
+                switch (event.getCode()) {
                 case UP:
                 case DOWN:
                 case LEFT:
