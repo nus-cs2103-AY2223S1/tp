@@ -87,11 +87,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
-        model.setApplication(applicationToEdit, editedApplication);
         Optional<Interview> interview = applicationToEdit.getInterview();
         if (interview.isPresent()) {
             Application editedApplicationWithInterview = new Application(editedApplication, interview.get());
-            model.setApplication(editedApplication, editedApplicationWithInterview);
+            model.setApplication(applicationToEdit, editedApplicationWithInterview);
+        } else {
+            model.setApplication(applicationToEdit, editedApplication);
         }
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.updateApplicationListWithInterview();
