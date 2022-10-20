@@ -30,11 +30,11 @@
 
       <VBox>
         <AnchorPane focusTraversable="true" style="-fx-background-color: #5BD8FF;">
-          <Button alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="976.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleExit" style="-fx-font-size: 25; -fx-border-radius: 100; -fx-background-color: #383838#383838; -fx-background-radius: 100;" text="X" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="17.0" />
-          <Label fx:id="appHeader" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="11.0" prefHeight="56.0" prefWidth="216.0" style="-fx-font-size: 45; -fx-font-weight: 900; -fx-font-family: Roboto;" styleClass="cell_big_label" text="SETA" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+          <Label fx:id="appHeader" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="7.0" prefHeight="56.0" prefWidth="216.0" style="-fx-font-size: 45; -fx-font-weight: 900; -fx-font-family: Roboto;" styleClass="cell_big_label" text="SETA" textAlignment="CENTER" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="-4.0">
             <font>
               <Font name="Helvetica" size="100.0" />
             </font></Label>
+          <Button alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="1005.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleExit" style="-fx-font-size: 25; -fx-border-radius: 120; -fx-background-color: #383838#383838; -fx-background-radius: 120;" text="X" AnchorPane.rightAnchor="17.5" AnchorPane.topAnchor="10.0" />
         </AnchorPane>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <!--<Menu mnemonicParsing="false" text="File">
@@ -62,7 +62,7 @@
           </padding>
         </StackPane>
 
-        <SplitPane dividerPositions="0.33333,0.66666" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.33333, 0.66666" VBox.vgrow="ALWAYS">
           <items>
 
             <VBox fx:id="studentList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
