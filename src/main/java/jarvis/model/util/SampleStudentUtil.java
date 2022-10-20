@@ -1,10 +1,7 @@
 package jarvis.model.util;
 
-import jarvis.model.Lesson;
-import jarvis.model.LessonBook;
 import jarvis.model.MasteryCheckStatus;
 import jarvis.model.MatricNum;
-import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Student;
 import jarvis.model.StudentBook;

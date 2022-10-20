@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.Lesson;
 import jarvis.model.LessonBook;
+import jarvis.model.ReadOnlyLessonBook;
 
 
 /**

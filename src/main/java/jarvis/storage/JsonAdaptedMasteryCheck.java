@@ -3,7 +3,6 @@ package jarvis.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.Consult;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
@@ -16,8 +15,12 @@ import jarvis.model.TimePeriod;
 public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Consult's %s field is missing!";
 
+    /**
+     * Constructs a {@code JsonAdaptedMasteryCheck} with the given lesson details.
+     */
     @JsonCreator
-    public JsonAdaptedMasteryCheck(String lessonType, String lessonDesc, TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes, boolean isCompleted) {
+    public JsonAdaptedMasteryCheck(String lessonType, String lessonDesc, TimePeriod timePeriod,
+                                   LessonAttendance attendance, LessonNotes notes, boolean isCompleted) {
         super(lessonType, lessonDesc, timePeriod, attendance, notes, isCompleted);
     }
 

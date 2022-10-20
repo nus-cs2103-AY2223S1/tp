@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import jarvis.commons.exceptions.DataConversionException;
-import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.LessonBook;
+import jarvis.model.ReadOnlyLessonBook;
 
 /**
  * Represents a storage for {@link LessonBook}.

@@ -4,7 +4,6 @@ import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import jarvis.storage.JsonAdaptedConsult;
 import jarvis.storage.JsonAdaptedStudio;
 
 /**

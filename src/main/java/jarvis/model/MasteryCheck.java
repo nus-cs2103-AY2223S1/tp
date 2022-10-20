@@ -2,7 +2,6 @@ package jarvis.model;
 
 import java.util.Objects;
 
-import jarvis.storage.JsonAdaptedConsult;
 import jarvis.storage.JsonAdaptedMasteryCheck;
 
 /**
@@ -55,7 +54,7 @@ public class MasteryCheck extends Lesson {
 
     @Override
     public JsonAdaptedMasteryCheck toJson() {
-        return new JsonAdaptedMasteryCheck("mastery check", this.getDesc().lessonDesc, this.getTimePeriod(), this.getAttendance(),
-                this.getNotes(), this.isCompleted());
+        return new JsonAdaptedMasteryCheck("mastery check", this.getDesc().lessonDesc, this.getTimePeriod(),
+                this.getAttendance(), this.getNotes(), this.isCompleted());
     }
 }

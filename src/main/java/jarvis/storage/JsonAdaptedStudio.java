@@ -6,7 +6,6 @@ import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
-import jarvis.model.MasteryCheck;
 import jarvis.model.Studio;
 import jarvis.model.StudioParticipation;
 import jarvis.model.TimePeriod;
@@ -19,6 +18,9 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
 
     private StudioParticipation studioParticipation;
 
+    /**
+     * Constructs a {@code JsonAdaptedStudio} with the given lesson details.
+     */
     @JsonCreator
     public JsonAdaptedStudio(String lessonType, String lessonDesc, TimePeriod timePeriod, LessonAttendance attendance,
                              LessonNotes notes, boolean isCompleted, StudioParticipation studioParticipation) {

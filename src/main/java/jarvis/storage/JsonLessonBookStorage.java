@@ -60,8 +60,8 @@ public class JsonLessonBookStorage implements LessonBookStorage {
     }
 
     @Override
-    public void saveLessonBook(ReadOnlyLessonBook LessonBook) throws IOException {
-        saveLessonBook(LessonBook, filePath);
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook) throws IOException {
+        saveLessonBook(lessonBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonLessonBookStorage implements LessonBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveLessonBook(ReadOnlyLessonBook LessonBook, Path filePath) throws IOException {
-        requireNonNull(LessonBook);
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook, Path filePath) throws IOException {
+        requireNonNull(lessonBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableLessonBook(LessonBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableLessonBook(lessonBook), filePath);
     }
 
 }
