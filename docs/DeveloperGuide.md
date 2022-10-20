@@ -180,7 +180,7 @@ The following sequence diagram shows how the find module by module code operatio
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a findmod command:
+The following activity diagram summarizes what happens when a user executes a `mview` command:
 
 ![ViewModuleActivityDiagram](./images/ViewModuleActivityDiagram.png)
 
