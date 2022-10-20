@@ -18,6 +18,8 @@ public class PriorityConverter implements IStringConverter<Task.Priority> {
             return Task.Priority.MEDIUM;
         case "low":
             return Task.Priority.LOW;
+        case "none":
+            return Task.Priority.NONE;
         default:
             throw new ParameterException(String.format("The priority %s does not exist.", value));
         }

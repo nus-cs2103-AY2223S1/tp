@@ -12,6 +12,19 @@ public class Deadline extends Task {
     private final LocalDate dueDate;
 
     /**
+     * Constructor for an instance of Deadline with a priority.
+     *
+     * @param description description of task
+     * @param module      module code of note's module
+     * @param isArchived  true if task is completed/archived
+     * @param priority    priority of task
+     */
+    public Deadline(Description description, ModCode module, LocalDate dueDate, boolean isArchived, Priority priority) {
+        super(description, module, isArchived, priority);
+        this.dueDate = dueDate;
+    }
+
+    /**
      * Constructor for deadline object.
      *
      * @param description description of task

@@ -27,7 +27,7 @@ public class Task {
      * @param isArchived  true if task is completed/archived
      * @param priority    priority of task
      */
-    public Task(ModCode module, Description description, boolean isArchived, Priority priority) {
+    public Task(Description description, ModCode module, boolean isArchived, Priority priority) {
         this.module = module;
         this.description = description;
         this.isArchived = isArchived;
@@ -42,7 +42,7 @@ public class Task {
      * @param isArchived  true if task is completed/archived
      */
     public Task(Description description, ModCode module, boolean isArchived) {
-        this(module, description, isArchived, Priority.NONE);
+        this(description, module, isArchived, Priority.NONE);
     }
 
     /**
@@ -72,7 +72,7 @@ public class Task {
     }
 
     public Task setPriority(Priority priority) {
-        return new Task(module, description, isArchived, priority);
+        return new Task(description, module, isArchived, priority);
     }
 
     public Task archive() {
