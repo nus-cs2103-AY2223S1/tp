@@ -63,13 +63,6 @@ public interface Model {
      */
     void deletePerson(Person target);
 
-    /*
-     * Deletes a list of person that matches the given predicate
-     *
-     * @param predicate
-     */
-    String deletePersons(Predicate<Person> predicate);
-
     /**
      * Adds the given person. {@code person} must not already exist in the address
      * book.

@@ -10,8 +10,8 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Person in the address book. Guarantees: details are present and
+ * not null, field values are validated, immutable.
  */
 public class Person {
 
@@ -32,12 +32,9 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  Gender gender, Birthdate birthdate, Race race,
-                  Religion religion, Set<Survey> surveys, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address,
-                gender, birthdate, race,
-                religion, surveys, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Birthdate birthdate, Race race,
+            Religion religion, Set<Survey> surveys, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, gender, birthdate, race, religion, surveys, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -83,44 +80,43 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable survey set, which throws
+     * {@code UnsupportedOperationException} if modification is attempted.
      */
     public Set<Survey> getSurveys() {
         return Collections.unmodifiableSet(surveys);
     }
 
+    public boolean hasMultipleSurveys() {
+        return surveys.size() > 1;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException} if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
     /**
-     * Returns true if the following fields between both persons are equal (case-sensitive):
-     * 1. Name
-     * 2. Phone number
-     * 3. Email
-     * 4. Survey
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if the following fields between both persons are equal
+     * (case-sensitive): 1. Name 2. Phone number 3. Email 4. Survey This defines a
+     * weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
+        return otherPerson != null && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone()) && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getSurveys().equals(getSurveys());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both persons have the same identity and data fields. This
+     * defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -133,43 +129,26 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getGender().equals(getGender())
-                && otherPerson.getBirthdate().equals(getBirthdate())
-                && otherPerson.getRace().equals(getRace())
-                && otherPerson.getReligion().equals(getReligion())
-                && otherPerson.getSurveys().equals(getSurveys())
-                && otherPerson.getTags().equals(getTags());
+        return otherPerson.getName().equals(getName()) && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail()) && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGender().equals(getGender()) && otherPerson.getBirthdate().equals(getBirthdate())
+                && otherPerson.getRace().equals(getRace()) && otherPerson.getReligion().equals(getReligion())
+                && otherPerson.getSurveys().equals(getSurveys()) && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, gender,
-                birthdate, race, religion, surveys, tags);
+        return Objects.hash(name, phone, email, address, gender, birthdate, race, religion, surveys, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Gender: ")
-                .append(getGender())
-                .append("; Birthdate: ")
-                .append(getBirthdate())
-                .append("; Race: ")
-                .append(getRace())
-                .append("; Religion: ")
-                .append(getReligion());
+        builder.append(getName()).append("; Phone: ").append(getPhone()).append("; Email: ").append(getEmail())
+                .append("; Address: ").append(getAddress()).append("; Gender: ").append(getGender())
+                .append("; Birthdate: ").append(getBirthdate()).append("; Race: ").append(getRace())
+                .append("; Religion: ").append(getReligion());
 
         Set<Survey> surveys = getSurveys();
         if (!surveys.isEmpty()) {

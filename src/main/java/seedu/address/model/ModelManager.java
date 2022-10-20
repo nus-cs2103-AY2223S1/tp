@@ -4,11 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -101,16 +98,6 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
-    }
-
-    @Override
-    public String deletePersons(Predicate<Person> predicate) {
-        filteredPersons.setPredicate(predicate);
-        int size = filteredPersons.size();
-        String result = filteredPersons.toString();
-        List<Person> list = IntStream.range(0, size).mapToObj(x -> filteredPersons.get(x)).collect(Collectors.toList());
-        addressBook.removePersons(list);
-        return result;
     }
 
     @Override

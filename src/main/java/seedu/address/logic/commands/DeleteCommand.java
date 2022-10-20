@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -72,9 +75,27 @@ public class DeleteCommand extends Command {
                 && x.getReligion().equals(religion.orElse(x.getReligion()))
                 && x.getSurveys().contains(survey.orElse(x.getSurveys().iterator().next()));
 
-        String str = model.deletePersons(predicate);
+        model.updateFilteredPersonList(predicate);
+        List<Person> personList = new ArrayList<>();
+        personList.addAll(model.getFilteredPersonList());
+
+        for (Person p : personList) {
+            if (p.hasMultipleSurveys()) {
+                Set<Survey> surveys = p.getSurveys();
+                Set<Survey> editedSurvey = new HashSet<>();
+                editedSurvey.addAll(surveys);
+                editedSurvey.remove(survey.orElseThrow());
+
+                Person editedPerson = new Person(p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), p.getGender(),
+                        p.getBirthdate(), p.getRace(), p.getReligion(), editedSurvey, p.getTags());
+                model.setPerson(p, editedPerson);
+            } else {
+                model.deletePerson(p);
+            }
+        }
+
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, str));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personList.toString()));
     }
 
     @Override

@@ -10,8 +10,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -95,7 +97,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personList.toString());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePersons(p -> p.getRace() == race);
+        deletePersons(expectedModel, p -> p.getRace() == race);
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -133,5 +135,14 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+    private void deletePersons(Model model, Predicate<Person> predicate) {
+        model.updateFilteredPersonList(predicate);
+        List<Person> personList = new ArrayList<>();
+        personList.addAll(model.getFilteredPersonList());
+        for (Person p : personList) {
+            model.deletePerson(p);
+        }
     }
 }
