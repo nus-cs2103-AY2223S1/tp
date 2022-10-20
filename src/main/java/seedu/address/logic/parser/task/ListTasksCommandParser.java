@@ -64,16 +64,17 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
         Optional<Deadline> before = Optional.empty();;
         Optional<Deadline> after = Optional.empty();;
 
+
+        if (beforeArgs.isPresent()) {
+            before = Optional.ofNullable(DeadlineTaskCommandParser.parseDeadline(beforeArgs.get()));
+        }
+
+        if (afterArgs.isPresent()) {
+            after = Optional.ofNullable(DeadlineTaskCommandParser.parseDeadline(afterArgs.get()));
+        }
+
         try {
             personsIndexes = TaskParserUtil.parseIndexes(contactFilters);
-
-            if (beforeArgs.isPresent()) {
-                before = Optional.ofNullable(DeadlineTaskCommandParser.parseDeadline(beforeArgs.get()));
-            }
-
-            if (afterArgs.isPresent()) {
-                after = Optional.ofNullable(DeadlineTaskCommandParser.parseDeadline(afterArgs.get()));
-            }
 
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
