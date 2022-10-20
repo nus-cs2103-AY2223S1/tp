@@ -167,6 +167,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Social Media feature
+
+#### Proposed Implementation
+
+The proposed social media feature is facilitated by a new class `SocialMedia`, which will be a new field of the `Person` class. Additionally, it implements the following features:
+
+* `SocialMedia#addWhatsapp()` - Adds a link to the Person object's Whatsapp account.
+* `SocialMedia#addTelegram()` - Adds a link to the Person object's Telegram account.
+* `SocialMedia#addInstagram()` - Adds a link to the Person object's Instagram account.
+* `SocialMedia#addEmail()` - Adds a link to the Person object's Email account.
+* `SocialMedia#prefer()` - Sets one of the added social media account to be the preferred mode of communication.
+* `SocialMedia#delete()` - Deletes one of the added social media account.
+
+Given below is an example usage scenario and how the Social Media feature behaves at each step.
+
+Step 1. The user executes `include 1 \TELEGRAM #t.me/JohnDoe123` to add the Telegram link `t.me/JohnDoe123` to the Telegram social media of the first person in the list.
+        The `AddressBookParser` then calls `IncludeCommand.addTelegram(1, t.me/JohnDoe123)` to add the command to the queue.
+
+Step 2. The user executes `include 1 \WHATSAPP #wa.me/12345678` to add the Whatsapp link `wa.me/12345678` to the Whatsapp social media of the first person in the list.
+        The `AddressBookParser` then calls `IncludeCommand.addWhatsapp(1, wa.me/12345678)` to add the command to the queue. 
+
+Step 3. The user executes `prefer 1 \TELEGRAM` to set the preferred mode of communication of the first person in the list to the Telegram social media account.
+        The `AddressBookParser` then calls `PreferCommand.prefer(1, TELEGRAM)` to add the command to the queue.
+
+Step 4. The user realises that the added Telegram link was wrong. The user executes `include 1 \TELEGRAM #t.me/JohnDoe321` to set the Telegram link `t.me/JohnDoe321` to be the latest Telegram social media of the first person in the list.
+        The `AddressBookParser` then calls `IncludeCommand.addTelegram(1, t.me/JohnDoe321)` to add the command to the queue.
+
+Step 5. The user realises that the preferred mode of communication of the first person in the list is actually Whatsapp. The user executes `prefer 1 \WHATSAPP` to set the preferred mode of communication of the first person in the list to the Whatsapp social media account.
+        The `AddressBookParser` then calls `PreferCommand.prefer(1, WHATSAPP)` to add the command to the queue.
+
+Step 6. The user realises that the first person in the contact list does not have a Telegram account. THe user executes `exclude 1 \TELEGRAM` to delete the Telegram social media account of the first person in the contact list.
+        The `AddressBookParser` then calls `ExcludeCommand.exclude(1, TELEGRAM)` to add the command to the queue.
+
+The following sequence diagram shows how the `addTelegram()` command works:
+
+![CreateGroupSequenceDiagram](images/SocialMediaAddSequenceDiagram.png)
+
 ### \[Proposed\] History feature
 
 #### Proposed Implementation
