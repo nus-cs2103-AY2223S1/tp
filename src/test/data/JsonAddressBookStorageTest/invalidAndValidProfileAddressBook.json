@@ -2,10 +2,13 @@
   "profiles": [ {
     "name": "Valid Profile",
     "phone": "9482424",
-    "email": "hans@example.com"
+    "email": "hans@u.nus.edu"
   }, {
     "name": "Profile With Invalid Phone Field",
     "phone": "948asdf2424",
-    "email": "hans@example.com"
-  } ]
+    "email": "hans@u.nus.edu"
+  } ],
+  "events": [
+
+  ]
 }

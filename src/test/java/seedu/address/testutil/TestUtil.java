@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -35,15 +36,29 @@ public class TestUtil {
     /**
      * Returns the middle index of the profile in the {@code model}'s profile list.
      */
-    public static Index getMidIndex(Model model) {
+    public static Index getProfileMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredProfileList().size() / 2);
+    }
+
+    /**
+     * Returns the middle index of the event in the {@code model}'s event list.
+     */
+    public static Index getEventMidIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredEventList().size() / 2);
     }
 
     /**
      * Returns the last index of the profile in the {@code model}'s profile list.
      */
-    public static Index getLastIndex(Model model) {
+    public static Index getProfileLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredProfileList().size());
+    }
+
+    /**
+     * Returns the last index of the event in the {@code model}'s event list.
+     */
+    public static Index getEventLastIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredEventList().size());
     }
 
     /**
@@ -52,4 +67,12 @@ public class TestUtil {
     public static Profile getProfile(Model model, Index index) {
         return model.getFilteredProfileList().get(index.getZeroBased());
     }
+
+    /**
+     * Returns the event in the {@code model}'s event list at {@code index}.
+     */
+    public static Event getEvent(Model model, Index index) {
+        return model.getFilteredEventList().get(index.getZeroBased());
+    }
+
 }
