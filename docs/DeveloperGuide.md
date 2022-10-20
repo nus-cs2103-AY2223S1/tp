@@ -188,11 +188,21 @@ This section describes some noteworthy details on how certain features are imple
 
 *To be updated*
 
-#### 4.2.5 ViewStats command
+#### 4.2.5 ViewAll command
 
 *To be updated*
 
-#### 4.2.6 \[Proposed\] Undo/redo feature
+#### 4.2.6 ViewClass command
+
+
+
+*To be further updated*
+
+#### 4.2.7 ViewStats command
+
+*To be updated*
+
+#### 4.2.8 \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
