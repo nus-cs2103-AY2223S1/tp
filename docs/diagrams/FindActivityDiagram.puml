@@ -1,37 +1,23 @@
 @startuml
-'https://plantuml.com/activity-diagram-beta
-
 start
-:ClickServlet.handleRequest();
-:new page;
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
-    endif
+:User executes find command;
 
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
+if () then ([valid find command])
+
+    if () then ([blank or white space
+    only parameter])
+        :Display invalid command
+                format message;
+
+        else ([else])
+          :Find tasks with matching keywords;
+            :Update model with new filtered task list;
+            :Display list of matching task(s) if any;
+        endif
+
+else ([else])
+    :Display unknown
+    command message;
 endif
-
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
-endif
-
 stop
-
 @enduml
