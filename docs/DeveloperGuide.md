@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save address book data, task list data  and user preference data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as any one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,6 +153,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Marking and unmarking of tasks
+
+#### About
+
+CodeConnect has features that allow you to mark and unmark your tasks as complete and incomplete respectively. 
+
+Examples of command use:
+* `mark 1`: marks the task at index 1 as complete
+* `unmark 1`: unmarks the task at index 1 as incomplete
+    
+#### Implementation flow
+Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
+
+![Activity diagram for execution of a mark command](images/MarkTaskActivityDiagram.png)
+ <div style="text-align: center">Activity diagram of findc command execution</div>
+
+![Interactions Inside the Logic Component for the `unmark 1` Command](images/UnmarkTaskSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of unmark command execution</div>
+
+#### Design considerations
+
+* One design consideration involoved multiple tasks to be marked/unmarked by adding a space before inputting the index of another task
+to be marked or unmarked. However, it could result in users forgetting to input spaces when inputting indexes of multiple 
+tasks, leading to unintended tasks being marked/unmarked.
 
 ### \[Proposed\] Undo/redo feature
 
