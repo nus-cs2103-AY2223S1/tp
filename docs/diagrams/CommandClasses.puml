@@ -1,0 +1,114 @@
+@startuml
+'!include style.puml
+'skinparam arrowThickness 1.1
+'skinparam arrowColor UI_COLOR_T4
+'skinparam classBackgroundColor UI_COLOR
+skinparam classAttributeIconSize 0
+hide circle
+hide empty method
+hide empty attribute
+
+skinparam activityBorderThickness 1.5
+skinparam class {
+    BorderColor #7F5539
+    BackgroundColor #EDE0D4
+    arrowColor #7F5539
+}
+
+abstract "{abstract}\nCommand" as Command {
+    {abstract} +execute(model: Model): CommandResult
+}
+
+package Commands <<Rectangle>>{
+    Class EditCommand
+    Class AddCommand
+    Class DeleteCommand
+    Class FindCommand
+    Class ListCommand
+    Class ExitCommand
+    Class HelpCommand
+    Class ClearCommand
+}
+
+package Parsers <<Rectangle>> {
+    Class AddCommandParser
+    Class EditCommandParser
+    Class DeleteCommandParser
+    Class FindCommandParser
+}
+
+package Model/Person <<Rectangle>> {
+    Class MultiSearchPredicate
+    Class AllInfoContainsKeywordsPredicate
+    Class NameSoundsSimilarPredicate
+}
+class EditCommand {
+    -editCommandDescriptor
+    -index
+}
+
+class DeleteCommand {
+    -deleteCommandDescriptor
+    -targetIndex
+}
+
+class FindCommand {
+    -predicate: Predicate<Person>
+    -findPersonDescriptor
+}
+
+class AllInfoContainsKeywordsPredicate {
+    -keyWords: List<String>
+    +test(person: Person): boolean
+}
+
+class NameSoundsSimilarPredicate {
+    {static} -soundexMapping: List<List<String>>
+    -keyWords: List<String>
+    {static} -dropHwy(name: String): String
+    {static} -applySoundexMapping(strippedName: String): String
+    {static} -combineAdjacentDigits(code: String): String
+    {static} -trimSoundexCode(code: String): String
+    -hasMatch(name: String): boolean
+    +test(person: Person): boolean
+}
+
+class CommandResult {
+    -feedbackToUser: String
+}
+
+AddCommand --> "1 toAdd" Person
+
+
+AddressBookParser ..|> EditCommandParser: creates >
+AddressBookParser ..|> AddCommandParser: creates >
+AddressBookParser ..|> DeleteCommandParser: creates >
+AddressBookParser ..|> FindCommandParser: creates >
+
+AddressBookParser ..|> ListCommand: creates >
+AddressBookParser ..|> ClearCommand: creates >
+AddressBookParser ..|> HelpCommand: creates >
+AddressBookParser ..|> ExitCommand: creates >
+
+
+FindCommandParser .....|> FindCommand : creates >
+EditCommandParser ....|> EditCommand: creates >
+DeleteCommandParser ....|> DeleteCommand: creates >
+AddCommandParser ....|> AddCommand: creates >
+
+FindCommandParser ..|> MultiSearchPredicate : uses >
+MultiSearchPredicate --> "0..1 matchPredicate" AllInfoContainsKeywordsPredicate
+MultiSearchPredicate --> "0..1 fuzzyPredicate" NameSoundsSimilarPredicate
+
+AddCommand --|> Command
+EditCommand --|> Command
+DeleteCommand --|> Command
+FindCommand --|> Command
+ListCommand --|> Command
+ClearCommand --|> Command
+HelpCommand --|> Command
+ExitCommand --|> Command
+
+Command ..|> CommandResult: returns >
+
+@enduml
