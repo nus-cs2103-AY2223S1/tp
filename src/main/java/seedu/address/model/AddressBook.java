@@ -28,11 +28,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final MessageList messages;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid
+     * duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid
+     * duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
@@ -64,7 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the tag set with {@code tags}
      */
     public void setTags(Set<Tag> tags) {
-        for (Tag tag: tags) {
+        for (Tag tag : tags) {
             this.tags.add(tag);
         }
     }
@@ -74,7 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code messages} must not contain duplicate messages.
      */
     public void setMessageTemplates(List<Message> messages) {
-        for (Message message: messages) {
+        for (Message message : messages) {
             this.messages.add(message);
         }
     }
@@ -127,6 +129,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// tag operations
+
     /**
      * Removes the given tags from the person
      * {@code tagsToRemove} must already be tagged to the person.
@@ -142,8 +146,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, untaggedPerson);
         return untaggedPerson;
     }
-
-    //// tag operations
 
     /**
      * Returns true if the address book contains the given tag.
@@ -161,6 +163,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         tags.add(tag);
     }
 
+    /**
+     * Delete tags from address book.
+     */
+    public Set<Tag> deleteTags(Set<Tag> tagsToDelete) {
+        Set<Tag> deletedTags = tags.remove(tagsToDelete);
+        persons.asUnmodifiableObservableList()
+                .forEach(person -> removeTags(person, deletedTags));
+        return deletedTags;
+    }
     //// message template operations
 
     /**
@@ -220,12 +231,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return messages.asUnmodifiableList();
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons))
-                && tags.equals(((AddressBook) other).tags);
+                        && persons.equals(((AddressBook) other).persons))
+                        && tags.equals(((AddressBook) other).tags);
     }
 
     @Override

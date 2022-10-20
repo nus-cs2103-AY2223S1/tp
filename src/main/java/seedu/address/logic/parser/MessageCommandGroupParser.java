@@ -42,15 +42,23 @@ public class MessageCommandGroupParser implements Parser<MessageCommandGroup> {
 
         switch (commandSpecifier) {
         case CreateMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case CreateMessageCommand.COMMAND_SPECIFIER_ALIAS:
             String[] argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new CreateMessageCommandParser().parse(String.join(" ", argsToPass));
         case DeleteMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case DeleteMessageCommand.COMMAND_SPECIFIER_ALIAS:
             argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new DeleteMessageCommandParser().parse(String.join(" ", argsToPass));
         case GenerateMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case GenerateMessageCommand.COMMAND_SPECIFIER_ALIAS:
             argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new GenerateMessageCommandParser().parse(String.join(" ", argsToPass));
         case ListMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case ListMessageCommand.COMMAND_SPECIFIER_ALIAS:
             return new ListMessageCommandParser().parse("");
         default:
             throw new ParseException(

@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class GenerateMessageCommand extends MessageCommandGroup {
     public static final String COMMAND_SPECIFIER = "generate";
+    public static final String COMMAND_SPECIFIER_ALIAS = "g";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates a customised message for the person. "
