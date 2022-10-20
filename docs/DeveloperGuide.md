@@ -459,18 +459,20 @@ Note:
 
 **Target user profile**: NUS SoC Student
 
-* has a need to manage a significant number of contacts (from NUS modules and co-curricular activities)
-* prefer desktop apps over other types (easy access to laptop for NUS/SoC modules)
-* can type fast (from SoC coding modules)
-* prefers typing to mouse interactions (from SoC coding modules)
-* is reasonably comfortable using CLI apps (from SoC coding modules)
+* Has a need to manage a significant number of contacts (from NUS modules and co-curricular activities).
+* Has a need to manage a significant number of tasks (from NUS modules and co-curricular activities).
+* Prefer desktop apps over other types (easy access to laptop for NUS/SoC modules).
+* Can type fast (from coding in SoC coding modules).
+* Prefers typing to mouse/touch interactions (from coding in SoC coding modules).
+* Is reasonably comfortable using CLI apps (familiarity from SoC coding modules).
 
 **Value proposition**:
 
-* manage contacts faster than a typical mouse/GUI driven app
-* organise and separate their school contacts from personal contacts
-* practice and train their typing speed
-* increase their familiarity with using CLI tools
+* Manage contacts and tasks faster than a typical mouse/GUI driven equivalent app.
+* Organise and separate their school contacts from personal contacts.
+* Organise their tasks.
+* Practice and train their typing speed.
+* Increase their familiarity with using CLI tools.
 
 
 ### User stories
@@ -663,15 +665,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CLI**: A text-based user interface used to run programs
-* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator
-* **JavaFX**: A Java library used to develop client applications
-* **kLoC**: Stands for thousands of lines of code
-* **NUS**: National University of Singapore
-* **SoC**: School of Computing, a computing school in NUS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **CLI**: A text-based user interface used to run programs.
+* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
+* **JavaFX**: A Java library used to develop client applications.
+* **kLoC**: Stands for thousands of lines of code.
+* **NUS**: National University of Singapore.
+* **SoC**: School of Computing, a computing school in NUS.
+* **Private Contact Detail**: A contact detail that is not meant to be shared with others.
+* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
+* **Todo**: A task that the user needs to complete.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -690,7 +693,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and todos. The window size may not be optimum.
 
 1. Saving window preferences
 
