@@ -135,30 +135,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<PieChart.Data> getStudentGradeChartData() {
-        int[] gradeArr = new int[5];
-
-        for (Student student : filteredStudents) {
-            String grade = student.getGrade().value;
-            switch (grade) {
-            case "A":
-                gradeArr[0]++;
-                break;
-            case "B":
-                gradeArr[1]++;
-                break;
-            case "C":
-                gradeArr[2]++;
-                break;
-            case "D":
-                gradeArr[3]++;
-                break;
-            case "F":
-                gradeArr[4]++;
-                break;
-            default:
-                break;
-            }
-        }
+        int[] gradeArr = addressBook.getGradeData();
         ObservableList<PieChart.Data> gradeChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Grade A: " + gradeArr[0], gradeArr[0]),
                 new PieChart.Data("Grade B: " + gradeArr[1], gradeArr[1]),
