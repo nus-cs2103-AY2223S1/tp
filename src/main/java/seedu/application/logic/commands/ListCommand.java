@@ -6,7 +6,7 @@ import seedu.application.model.HideArchiveFromListPredicate;
 import seedu.application.model.Model;
 
 /**
- * Lists all applications in CinternS except the archived applications to the user.
+ * Lists all applications except the archived applications in CinternS  to the user.
  */
 public class ListCommand extends Command {
 
