@@ -52,7 +52,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
                 ? ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
                 : new Address("");
         Optional<Birthday> birthday = argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()
-                ? Optional.of(new Birthday(ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get()) ))
+                ? Optional.of(new Birthday(ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get())))
                 : Optional.empty();
         Set<Product> product = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
         Client client = new Client(name, phone, email, address, birthday, product);

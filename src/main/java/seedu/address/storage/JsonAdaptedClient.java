@@ -72,7 +72,7 @@ class JsonAdaptedClient {
         Optional<Birthday> sourceBirthday = source.getBirthday();
         birthday = sourceBirthday.isEmpty()
             ? ""
-            : sourceBirthday.toString();
+            : sourceBirthday.get().toString();
         meetings.addAll(source.getMeetings().stream()
                 .map(meeting -> new JsonAdaptedMeeting(meeting, this))
                 .collect(Collectors.toList()));
