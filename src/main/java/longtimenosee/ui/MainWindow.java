@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PolicyListPanel policyListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private IncomeChart incomeChart;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
     @FXML
-    private StackPane lineGraph;
+    private StackPane lineChart;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -65,6 +66,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -138,9 +140,14 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().removeAll();
 
+        incomeChart = new IncomeChart(logic.getIncome());
+
         switch (tab) {
         case "policy":
             personListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+            break;
+        case "income":
+            personListPanelPlaceholder.getChildren().add(incomeChart.lineChart);
             break;
         default:
             //Default case is to display clients
@@ -219,6 +226,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowPolicy()) {
                 updateInnerContent("policy");
+            }
+
+            if (commandResult.isShowIncome()) {
+                updateInnerContent("income");
             }
 
             return commandResult;

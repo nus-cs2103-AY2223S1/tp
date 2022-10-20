@@ -116,6 +116,10 @@
     -fx-background-color: transparent;
 }
 
+.graph {
+    -fx-background-color: white;
+}
+
 /*.list-cell:filled:selected #cardPane {*/
 /*    !* when selected, what's the color *!*/
 /*    -fx-background-color: #FFFFE0;*/

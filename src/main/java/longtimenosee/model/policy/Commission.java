@@ -49,9 +49,11 @@ public class Commission {
      */
     public static float[] parseCommission(String indicator) {
         String[] commissions = indicator.split("%");
-        float[] percentages = new float[commissions.length - 1];
-        for (int i = 0; i < commissions.length - 1; i++) {
+        float[] percentages = new float[commissions.length];
+        for (int i = 0; i < commissions.length; i++) {
             percentages[i] = Float.valueOf(commissions[i]);
+            System.out.println(i + "commission: " + percentages[i]);
+            //todo fix this part as array out of bounds
         }
         return percentages;
     }
@@ -59,6 +61,17 @@ public class Commission {
     @Override
     public String toString() {
         return value;
+    }
+    /**
+     * Gets commission of the policy based on the year
+     * @param year to get the targeted year, 1 for first year, 2 for second...
+     * @return % commission of that year
+     */
+    public float getCommission(int year) {
+        if (year > 1) {
+            return percentages[2] / 100f;
+        }
+        return percentages[year] / 100f;
     }
 
     @Override

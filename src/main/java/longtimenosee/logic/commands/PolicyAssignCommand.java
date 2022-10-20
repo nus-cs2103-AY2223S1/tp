@@ -81,7 +81,7 @@ public class PolicyAssignCommand extends Command {
         //model.deletePerson(personToPin); optional because we don't alter the list
         return new CommandResult(String.format(success
                 ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_PERSON_DUPLICATE, policyToAdd, personToAddTo),
-                false, true);
+                false, true, false);
     }
 
 }

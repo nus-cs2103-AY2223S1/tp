@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead and Developer
 * Responsibilities: UI/UX of LTNS, Wireframing/Figma diagram, Main reviewer for Damien
-* In-charge of features: Ui, LTNS main UI/UX, pin function
+* In-charge of features: Ui, LTNS main UI/UX, pin, viewPin and viewIncome
 
 ### Damien Koh
 

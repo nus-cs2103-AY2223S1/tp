@@ -8,7 +8,7 @@ import longtimenosee.logic.commands.PinCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new PinCommand object
  */
 public class PinCommandParser implements Parser<PinCommand> {
 

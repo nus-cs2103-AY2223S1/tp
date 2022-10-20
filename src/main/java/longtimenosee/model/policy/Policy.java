@@ -40,7 +40,6 @@ public class Policy {
     public Company getCompany() {
         return company;
     }
-
     public Commission getCommission() {
         return commission;
     }

@@ -9,6 +9,7 @@ import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 
 /**
@@ -42,6 +43,7 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+    FinancialAdvisorIncome getIncome();
 
     /**
      * Returns the user prefs' GUI settings.

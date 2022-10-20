@@ -154,6 +154,67 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### pin and viewPin feature
+
+#### Implementation
+
+Each person object has a boolean attribute known as pinned. When the user pins the person using the index. This attribute will be set to true. When the user pins that same person again, this attribute will be set to false.
+
+
+* `pin <Index>` — Sets the boolean pinned attribute to a value of true.
+* `pin <Index>` — If the boolean pinned attribute was previously set true, calling the command again will set it to false.
+* `viewPin` — Uses the predicate PinnedPersonPredicate to sort the full list of existing clients to display only clients with pinned attribute of true.
+
+The following sequence diagram summarizes how pin works:
+
+![PinSequenceDiagram](images/PinSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Pin activity dragram:
+<img src="images/PinActivityDiagram.png" width="250" />
+
+#### View Pin Activity diagram:
+<img src="images/ViewPinActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How pin and viewPin executes:**
+
+* **Alternative 1 (current choice):** Uses a predicate to sort through pinned clients.
+    * Pros: Easy to implement.
+    * Cons: Hard for additional extensions given that this method uses a boolean attribute.
+
+* **Alternative 2:** Saves the entire address book of clients pinned.
+  * Pros: More potential for further extensions.
+  * Cons: May result in performance issues in terms of memory usage.
+
+### viewIncome feature
+
+#### Implementation
+
+This feature builds on the new policy class created. Where each client has a set of policies assigned to them. In this case, a financial advisor’s income is treated as a class by itself. Where inside the class there are methods of retrieving the income based on different factors stated below.
+
+The main calculation done in class FinancialAdvisorIncome is a function called calculateIncome. This function iterates through a list of clients and for each client, it iterates through the list of policies they have. For each of the policies, LocalDate and Period are used to determine which commission (out of the 3 year differing rates) the assigned policy of the current person is in. Subsequently, all commissions are multiplied by policy premium with the duration of the policy (relative from start date to given date) and summed to give income for a particular year.
+
+* `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
+
+Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
+
+#### Design considerations:
+
+**Aspect: How viewIncome executes:**
+
+* **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
+    * Pros: By assigning FinanicialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
+    * Cons: Might pose a problem for retrival of values from class.
+
+* **Alternative 2:** Saves the entire address book of clients pinned.
+    * Pros: More potential for further extensions.
+    * Cons: May result in performance issues in terms of memory usage.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -3,6 +3,8 @@ package longtimenosee.model.policy;
 import static longtimenosee.commons.util.AppUtil.checkArgument;
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 /**
@@ -39,6 +41,14 @@ public class AssignedPolicy {
      */
     public static boolean isChronological(PolicyDate startDate, PolicyDate endDate) {
         return startDate.getDate().isBefore(endDate.getDate());
+    }
+    /**
+     * Returns the duration between start date and end date.
+     */
+    public Period getDuration(LocalDate date) {
+        Period diff = Period.between(LocalDate.parse(startDate.getDate().toString()),
+                LocalDate.parse(date.toString()));
+        return diff;
     }
 
     public Policy getPolicy() {
