@@ -51,6 +51,14 @@ public class TransactionLog {
         transactionList.add(transaction);
     }
 
+    public Transaction deleteTransaction(int index) {
+        return transactionList.remove(index);
+    }
+
+    public int size() {
+        return transactionList.size();
+    }
+
     /**
      * Checks if the transaction list is empty.
      * @return the boolean value true if the list is empty.
