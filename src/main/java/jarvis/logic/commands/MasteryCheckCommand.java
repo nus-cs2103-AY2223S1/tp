@@ -34,6 +34,9 @@ public class MasteryCheckCommand extends Command {
      * Constructor for a MasteryCheckCommand object.
      */
     public MasteryCheckCommand(Index index, Assessment assessment, boolean isPass) {
+        requireNonNull(index);
+        requireNonNull(assessment);
+        requireNonNull(isPass);
         this.index = index;
         this.assessment = assessment;
         this.isPass = isPass;
@@ -49,7 +52,7 @@ public class MasteryCheckCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        studentToEdit.updateMc(assessment, isPass);
+        studentToEdit.updateMark(assessment, isPass ? 1 : 0);
         model.setStudent(studentToEdit, studentToEdit);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format("Updated " + assessment + " for " + studentToEdit));

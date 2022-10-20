@@ -10,8 +10,7 @@ public class GradeComponent {
 
     private Assessment assessment;
     private boolean isGraded;
-    private int marks;
-    private int totalMarks;
+    private double marks;
 
     /**
      * Creates an ungraded GradeComponent object with the specified assessment.
@@ -21,7 +20,6 @@ public class GradeComponent {
         this.assessment = assessment;
         isGraded = false;
         marks = 0;
-        totalMarks = 0;
     }
 
     /**
@@ -30,14 +28,13 @@ public class GradeComponent {
     @JsonCreator
     public GradeComponent(@JsonProperty("assessment") Assessment assessment,
                           @JsonProperty("isGraded") boolean isGraded,
-                          @JsonProperty("marks") int marks, @JsonProperty("totalMarks") int totalMarks) {
+                          @JsonProperty("marks") int marks) {
         this.assessment = assessment;
         this.isGraded = isGraded;
         this.marks = marks;
-        this.totalMarks = totalMarks;
     }
 
-    public String getGrade() {
+    public String getGradeString() {
         if (!isGraded) {
             return "-";
         }
@@ -48,14 +45,53 @@ public class GradeComponent {
         case MC2:
             return marks == 1 ? "PASSED" : "FAILED";
         default:
-            return String.format("%d/%d (%.2f%%)", marks, totalMarks, 100.0 * marks / totalMarks);
+            int totalMarks = assessment.getTotalMarks();
+            return String.format("%.1f/%d (%.2f%%)", marks, totalMarks, 100 * marks / totalMarks);
         }
     }
 
-    public void setGrade(int marks, int totalMarks) {
+    public void setGrade(double marks) {
         isGraded = true;
         this.marks = marks;
-        this.totalMarks = totalMarks;
     }
+
+    public boolean isGraded() {
+        return isGraded;
+    }
+
+    public double getMarks() {
+        return marks;
+    }
+    /*
+    public Assessment getAssessment() {
+        return assessment;
+    }
+
+    public boolean getIsGraded() {
+        return isGraded;
+    }
+
+    public double getMarks() {
+        return marks;
+    }
+
+    /**
+     * Returns true if both GradeComponents have the same fields.
+     */
+    /*
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof GradeComponent)) {
+            return false;
+        }
+
+        GradeComponent otherGc = (GradeComponent) other;
+        return otherGc.getAssessment().equals(assessment) && otherGc.getIsGraded() == isGraded
+                && otherGc.getMarks() == marks;
+    }*/
 }
 

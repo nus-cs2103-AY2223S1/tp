@@ -38,11 +38,14 @@ public class Student {
     }
 
     /**
-     * Updates the student's result for the given mastery check.
+     * Updates the student's result for the given assessment.
      */
-    public void updateMc(Assessment mc, boolean isPass) {
-        int marks = isPass ? 1 : 0;
-        gradeProfile.grade(mc, marks, 1);
+    public void updateMark(Assessment assessment, int marks) {
+        gradeProfile.grade(assessment, marks);
+    }
+
+    public void updateGrades(GradeProfile gp) {
+        gradeProfile.updateGrades(gp);
     }
 
     /**

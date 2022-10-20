@@ -14,6 +14,7 @@ import jarvis.logic.commands.DeleteStudentCommand;
 import jarvis.logic.commands.DeleteTaskCommand;
 import jarvis.logic.commands.EditStudentCommand;
 import jarvis.logic.commands.ExitCommand;
+import jarvis.logic.commands.GradeCommand;
 import jarvis.logic.commands.FindStudentCommand;
 import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.ListAllCommand;
@@ -68,6 +69,9 @@ public class JarvisParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        case GradeCommand.COMMAND_WORD:
+            return new GradeCommandParser().parse(arguments);
 
         case FindStudentCommand.COMMAND_WORD:
             return new FindStudentCommandParser().parse(arguments);

@@ -20,6 +20,7 @@ import jarvis.model.TaskDesc;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_MARK = "Mark has to be a non-negative number.";
     public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
     public static final String MESSAGE_INVALID_MCRESULT = "Mastery check result has to be \"PASS\" or \"FAIL\"";
 
@@ -136,5 +137,21 @@ public class ParserUtil {
         } else {
             throw new ParseException(MESSAGE_INVALID_MCRESULT);
         }
+    }
+
+    public static double parseMarks(String marks) throws ParseException {
+        requireNonNull(marks);
+        String trimmedMarks = marks.trim();
+        double value;
+        try {
+            value = Double.parseDouble(trimmedMarks);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_INVALID_MARK);
+        }
+
+        if (value < 0) {
+            throw new ParseException(MESSAGE_INVALID_MARK);
+        }
+        return value;
     }
 }
