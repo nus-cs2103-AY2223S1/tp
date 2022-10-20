@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddTagsToListingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteListingCommand;
+import seedu.address.logic.commands.DeleteOfferCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.commands.EditListingCommand;
 import seedu.address.logic.commands.EditOfferCommand;
@@ -24,7 +25,6 @@ import seedu.address.logic.commands.ViewListingClientsCommand;
 import seedu.address.logic.commands.ViewListingOffersCommand;
 import seedu.address.logic.commands.ViewListingsCommand;
 import seedu.address.logic.commands.ViewPersonListCommand;
-import seedu.address.logic.commands.DeleteOfferCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
