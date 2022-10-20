@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -158,7 +158,12 @@ This section describes some noteworthy details on how certain features are imple
 
 #### About
 
-CodeConnect has features that allow you to search for tasks and contacts.
+CodeConnect has features that allow you to search for tasks and contacts. The finding features use the following commands:
+
+* `find n/` —  Finds tasks in the TaskList by their description(name)
+* `find m/` —  Finds tasks in the TaskList by their module
+* `findc n/` —  Finds contacts in the AddressBook by their name
+* `findc m/` —  Finds contacts in the AddressBook by their module
 
 Examples of command use:
 - `find n/ quiz` - Find all tasks containing the word "quiz"
@@ -172,9 +177,9 @@ Examples of command use:
 
 Outline of how components work together when the user enters a find command:
 1. User enters `findc m/ CS1101S` into the command prompt box
-2. User input `findc m/ CS1101S` is sent to the `FindContactCommandParser`
+2. User input `m/ CS1101S` is sent to the `FindContactCommandParser`
 3. `FindContactCommandParser` determines the user's input to be valid
-4. `FindContactCommandParser` creates a `ModuleTakenPredicate` 
+4. `FindContactCommandParser` creates a `ModuleTakenPredicate`
    - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
 5. A `FindContactCommand` command created and executed by the `Model`
 6. The result of the find command is displayed to the user
@@ -182,8 +187,10 @@ Outline of how components work together when the user enters a find command:
 ![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
 <div style="text-align: center">Activity diagram of findc command execution</div>
 
-![Interactions Inside the Logic Component for the `findc m/ CS1101S` Command](images/FindContactSequenceDiagram.png)
-<div style="text-align: center">Sequence diagram of findc command execution</div>
+![Interactions Inside the Logic Component for the `find n/ Lab 2` Command](images/FindTasksSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of find command execution</div>
+<p></p>
+<div style="text-align: center">Note: The implementation flow and the activity and sequence diagrams are similar for both the find and findc commands</div>
 
 #### Design Considerations
 
@@ -196,89 +203,11 @@ Consider the following situation:
 
 As a user in this situation, the last thing you would want is for the app to _exclude_ contacts taking both MOD_X and MOD_Y. Those would be the first people you want to ask for help!
 
-### \[Proposed\] Undo/redo feature
+Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively.
 
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+This was done so that it would be easy for the user to remember what command to use when finding either contacts or tasks.
+- The only difference when finding contacts is that there is a c after the find for contacts
+- Both use the same prefixes
 
 
 --------------------------------------------------------------------------------------------------------------------
