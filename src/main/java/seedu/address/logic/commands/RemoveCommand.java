@@ -19,9 +19,7 @@ public class RemoveCommand extends Command {
             + "Example: " + COMMAND_WORD + " accepted";
 
     public static final String MESSAGE_REMOVE_APPLICANTS_SUCCESS = "Applicants have been removed";
-
     public static final String MESSAGE_REMOVE_APPLICANTS_TERMINATION = "Removal of selected applicants is cancelled!";
-
     public static final String MESSAGE_REMOVE_APPLICANTS_CONFIRMATION =
             "Are you sure that you want to remove selected applicants from TrackAScholar?";
 
@@ -72,7 +70,6 @@ public class RemoveCommand extends Command {
      * After cancellation from user, all data from TrackAScholar remains intact.
      */
     public CommandResult cancelRemove() {
-
         return new CommandResult(MESSAGE_REMOVE_APPLICANTS_TERMINATION);
     }
 }

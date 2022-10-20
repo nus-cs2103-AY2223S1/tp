@@ -7,6 +7,12 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Legend**
+
+:information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -25,6 +31,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Architecture
 
@@ -67,6 +75,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -83,6 +93,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Applicant` object residing in the `Model`.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Logic component
 
@@ -113,6 +125,8 @@ How the parsing works:
 * When called upon to parse a user command, the `TrackAScholarParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TrackAScholarParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -132,6 +146,7 @@ The `Model` component,
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Storage component
 
@@ -261,6 +276,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value Proposition**: <br>
 Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a GUI.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### User stories
 
