@@ -32,8 +32,8 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + ORDER_ASCENDING;
 
-    public static final String MESSAGE_TOO_MANY_CONDITIONS =
-            "Too many sorting conditions provided. Please provide only one.";
+    public static final String MESSAGE_TOO_MANY_CRITERIA =
+            "Too many sorting criteria. Only one criterion should be provided";
 
     public static final String MESSAGE_SUCCESS = "Sorted all students";
 

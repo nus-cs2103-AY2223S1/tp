@@ -11,7 +11,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to sort students.
+* **New Feature**: Added the ability to sort students [\#109](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/109)
   * What it does: Allows the user to sort students by different criteria (such as name or consultation date), in ascending or descending order.
   * Justification: This feature improves the product because a user can choose how they want to view the students, and see if they have any upcoming consultations or Mastery Checks.  
 
@@ -23,7 +23,6 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated the `add` command to add students with optional details [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
-  * Updated the `delete` command to delete students
   * Wrote additional tests for existing features [\#92](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/92)
   * Refactored code to fit project name and purpose
 
@@ -34,9 +33,10 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added target user profile and acknowledgements [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59)
     * Added user stories and use case for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
+    * Added implementation details and design considerations for the `sort` feature [\#109](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/109)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93)
+  * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93), [\#110](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/110)
 
 * **Tools**:
   * Updated site-wide settings (Jekyll) for the project [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)

@@ -36,7 +36,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         if (argMultimap.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortCommand.MESSAGE_TOO_MANY_CONDITIONS));
+                    SortCommand.MESSAGE_TOO_MANY_CRITERIA));
         }
 
         Comparator<Student> comparator = null;

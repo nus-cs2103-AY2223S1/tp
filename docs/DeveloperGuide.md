@@ -240,9 +240,28 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
-### \[Proposed\] Sort feature
+### Sort feature
 
-#### Proposed Implementation
+#### Implementation
+
+The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to 
+parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents` 
+in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`, 
+`Consultation`, and `MasteryCheck` implement the `Comparable` interface, where the natural ordering of `String` and `LocalDate`
+are used to implement the `compareTo` method. 
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList` 
+named `sortedStudents` according to the data file. 
+
+Step 2. The user executes `sort n/asc` command to sort the students by name in ascending order. `SortCommandParser` will
+check that the command is valid, and pass a `comparator` that orders the student names alphabetically to `SortCommand`.
+
+Step 3. `SortCommand` will call `Model#updateSortedStudentList(Comparator<Student> comparator)` to update `sortedStudents`
+with the given `comparator`. The list `students` is then set to `sortedStudents`, and 
+`StudentListPanel#setList(ObservableList<Student> studentList)` is called to refresh the UI `ListView` with the new
+`students` list.
 
 _{To add sequence diagram}_
 
@@ -250,9 +269,28 @@ _{To add activity diagram}_
 
 #### Design considerations:
 
-**Aspect: How sort command is implemented:**
+**Aspect: How to display the sorted list**
 
-_{To add other design considerations}_
+* Refreshes the list of students in the UI whenever a command is executed
+    * Pros: Easy to implement.
+    * Cons: May have performance issues with large number of students.
+
+**Aspect: How many criteria should the sort command accept**
+
+* **Alternative 1 (current choice):** Accept only one criterion
+    * Pros: Clear to the user, and easy to implement.
+    * Cons: Unable to further sort details with a secondary criteria when the first criteria of some students match.
+
+* **Alternative 2:** Accept multiple criteria and sort in the order they are given
+    * Pros: More precise sorting when many students have matching details, e.g. same Mastery Check dates.
+    * Cons: Sorting becomes confusing for the user and difficult to implement if many criteria are given.
+
+**Aspect: How to sort empty details**
+
+* Students with empty details are sorted last in ascending order, and first in descending order
+    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter. 
+            Users can sort a detail in descending order to see which students have the detail empty. 
+    * Cons: Top of the list may be cluttered with empty details when sorted in descending order. 
 
 
 ### \[Proposed\] Alias feature
@@ -551,9 +589,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. More than one criterion is given. 
 
-    * 1c1. FRIDAY displays the students according to the first criteria. 
+    * 1c1. FRIDAY shows an error message. 
 
-      Use case ends.
+      Use case resumes at step 1.
 
 *{More to be added}*
 
