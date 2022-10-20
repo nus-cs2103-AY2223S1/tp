@@ -1,15 +1,15 @@
 package seedu.condonery.testutil;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_EMAIL_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_EMAIL_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_PHONE_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_PHONE_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,11 +48,19 @@ public class TypicalPersons {
         .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-        .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-        .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-        .build();
+    public static final Person AMY =
+            new PersonBuilder().withName(CLIENT_VALID_NAME_AMY)
+                    .withPhone(CLIENT_VALID_PHONE_AMY)
+                    .withEmail(CLIENT_VALID_EMAIL_AMY)
+                    .withAddress(CLIENT_VALID_ADDRESS_AMY)
+                    .withTags(CLIENT_VALID_TAG_FRIEND).build();
+    public static final Person BOB =
+            new PersonBuilder().withName(CLIENT_VALID_NAME_BOB)
+                    .withPhone(CLIENT_VALID_PHONE_BOB)
+                    .withEmail(CLIENT_VALID_EMAIL_BOB)
+                    .withAddress(CLIENT_VALID_ADDRESS_BOB)
+                    .withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND)
+                    .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

@@ -3,8 +3,8 @@ package seedu.condonery.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
 import static seedu.condonery.testutil.Assert.assertThrows;
 import static seedu.condonery.testutil.TypicalProperties.PINNACLE;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
@@ -47,7 +47,7 @@ public class PropertyDirectoryTest {
     public void resetData_withDuplicateProperties_throwsDuplicatePropertyException() {
         // Two persons with the same identity fields
         Property editedPinnacle = new PropertyBuilder(PINNACLE)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withAddress(CLIENT_VALID_ADDRESS_BOB).withTags(CLIENT_VALID_TAG_HUSBAND)
             .build();
         List<Property> newProperties = Arrays.asList(PINNACLE, editedPinnacle);
         PropertyDirectoryStub newData = new PropertyDirectoryStub(newProperties);
@@ -75,7 +75,7 @@ public class PropertyDirectoryTest {
     public void hasPerson_personWithSameIdentityFieldsInPropertyDirectory_returnsTrue() {
         propertyDirectory.addProperty(PINNACLE);
         Property editedPinnacle = new PropertyBuilder(PINNACLE)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withAddress(CLIENT_VALID_ADDRESS_BOB).withTags(CLIENT_VALID_TAG_HUSBAND)
             .build();
         assertTrue(propertyDirectory.hasProperty(editedPinnacle));
     }

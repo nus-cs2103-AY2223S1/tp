@@ -32,6 +32,8 @@ public class SampleDataUtil {
     public static Client[] getSampleClients() {
         // TODO: add sample client data
         return new Client[] {
+            new Client(new Name("Amy"), new Address("Blk 998 Clementi St 22"), getTagSet("HDB")),
+            new Client(new Name("Amy"), new Address("Blk 998 Clementi St 22"), getTagSet("HDB"))
         };
     }
 
