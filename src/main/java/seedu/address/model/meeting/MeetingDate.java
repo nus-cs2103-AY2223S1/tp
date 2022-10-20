@@ -34,4 +34,8 @@ public class MeetingDate {
                 || (other instanceof MeetingDate
                 && date.equals(((MeetingDate) other).date));
     }
+
+    public int compareTo(MeetingDate other) {
+        return date.compareTo(other.date);
+    }
 }

@@ -76,6 +76,10 @@ public class Meeting {
         return isSameClient && isSameDescription && isSameMeetingDate && isSameMeetingTime;
     }
 
+    public boolean isBeforeDate(MeetingDate other) {
+        return meetingDate.compareTo(other) <= 0;
+    }
+
     /**
      * Returns true if both meetings have the same date and time and conflicts.
      * Null inputs are considered to conflict with all meetings.
