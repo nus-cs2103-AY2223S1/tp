@@ -271,17 +271,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                                                           | So that I can…​                                                                            |
-|----------|-------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | financial advisor | add new client                                                         | keep track of the client's profile                                                         |
-| `* * *`  | financial advisor | delete a client                                                        | remove entries that are no longer needed                                                   |
-| `* * *`  | financial advisor | edit a client's profile                                                | update relevant and up-to-date information of the client                                   |
-| `* * *`  | financial advisor | search clients by name                                                 | retrieve information of clients without having to go through the entire list               |
-| `* * *`  | financial advisor | sort clients by alphabetical order                                     | have an organised list of contacts                                                         |
+| Priority | As a …​           | I want to …​                                                           | So that I can…​                                                                    |
+|----------|-------------------|------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| `* * *`  | financial advisor | add new client                                                         | keep track of the client's profile                                                 |
+| `* * *`  | financial advisor | delete a client                                                        | remove entries that are no longer needed                                           |
+| `* * *`  | financial advisor | edit a client's profile                                                | update relevant and up-to-date information of the client                           |
+| `* * *`  | financial advisor | search clients by name                                                 | retrieve information of clients without having to go through the entire list       |
+| `* * *`  | financial advisor | sort clients by alphabetical order                                     | have an organised list of contacts                                                 |
 | `* * *`  | financial advisor | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
-| `* * `   | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                       |
-| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                     |
-| `* *`    | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                           |
+| `* * *`  | financial advisor | store upcoming appointments for each client                            | keep track of all my upcoming appointments                                         |
+| `* * `   | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                               |
+| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                             |
+| `* *`    | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                   |
 
 *{More to be added}*
 
