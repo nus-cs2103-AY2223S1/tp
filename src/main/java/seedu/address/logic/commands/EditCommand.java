@@ -27,6 +27,7 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.tag.Exam;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PARENT_NAME + "PARENT NAME] "
             + "[" + PREFIX_PHONE + "PARENT PHONE NUMBER] "
             + "[" + PREFIX_EMAIL + "PARENT EMAIL] "
-            + "[" + PREFIX_EXAM + "TAG]...\n"
+            + "[" + PREFIX_EXAM + "NAME SCORE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
@@ -103,10 +104,18 @@ public class EditCommand extends Command {
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getExams());
+        Set<Exam> updatedExams = studentToEdit.getExams();
+        editStudentDescriptor.getExams().ifPresent(examSet -> {
+            examSet.forEach(exam -> {
+                if (updatedExams.contains(exam)) {
+                    updatedExams.remove(exam); // Remove duplicate exam
+                    updatedExams.add(exam); // Update exam scores
+                }
+            });
+        });
 
         return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,
-                updatedEmail, updatedTags);
+                updatedEmail, updatedExams);
     }
 
     @Override
@@ -138,7 +147,7 @@ public class EditCommand extends Command {
         private Name parentName;
         private Phone phone;
         private Email email;
-        private Set<Tag> tags;
+        private Set<Exam> exams;
 
         public EditStudentDescriptor() {}
 
@@ -153,14 +162,14 @@ public class EditCommand extends Command {
             setParentName(toCopy.parentName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setTags(toCopy.tags);
+            setExams(toCopy.exams);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentName, id, className, parentName, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(studentName, id, className, parentName, phone, email, exams);
         }
 
         public void setStudentName(Name studentName) {
@@ -212,20 +221,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code exams} to this object's {@code exams}.
+         * A defensive copy of {@code exams} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setExams(Set<Exam> exams) {
+            this.exams = (exams != null) ? new HashSet<>(exams) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable exam set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code exams} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Exam>> getExams() {
+            return (exams != null) ? Optional.of(Collections.unmodifiableSet(exams)) : Optional.empty();
         }
 
         @Override
@@ -249,7 +258,7 @@ public class EditCommand extends Command {
                     && getParentName().equals(e.getParentName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+                    && getExams().equals(e.getExams());
         }
     }
 }

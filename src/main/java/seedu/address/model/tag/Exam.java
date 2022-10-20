@@ -1,7 +1,7 @@
 package seedu.address.model.tag;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents an Exam that a student has.
@@ -19,11 +19,14 @@ public class Exam {
     /**
      * Constructs a {@code Exam}.
      *
-     * @param name Name of exam.
-     * @param score Score of exam.
+     * @param exam
      */
-    public Exam(String name, String score) {
-        requireAllNonNull(name, score);
+    public Exam(String exam) {
+        requireNonNull(exam);
+        checkArgument(isValidFormat(exam), MESSAGE_CONSTRAINTS);
+        String[] args = exam.split("\\s+");
+        String name = args[0];
+        String score = args[1];
         checkArgument(isValidName(name.toUpperCase()), MESSAGE_NAME_CONSTRAINTS);
         checkArgument(isValidScore(score), MESSAGE_SCORE_CONSTRAINTS);
         this.name = name.toUpperCase();

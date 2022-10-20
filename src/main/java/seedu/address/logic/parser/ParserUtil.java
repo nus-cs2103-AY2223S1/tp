@@ -132,7 +132,7 @@ public class ParserUtil {
         if (!Exam.isValidScore(score)) {
             throw new ParseException(Exam.MESSAGE_SCORE_CONSTRAINTS);
         }
-        return new Exam(name, score);
+        return new Exam(exam);
     }
 
     /**

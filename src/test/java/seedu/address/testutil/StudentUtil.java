@@ -55,8 +55,8 @@ public class StudentUtil {
         descriptor.getParentName().ifPresent(name -> sb.append(PREFIX_PARENT_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
+        if (descriptor.getExams().isPresent()) {
+            Set<Tag> tags = descriptor.getExams().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_EXAM);
             } else {

@@ -11,7 +11,7 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Exam;
 
 /**
  * A utility class to help with building EditStudentDescriptor objects.
@@ -39,7 +39,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setId(student.getId());
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
-        descriptor.setTags(student.getExams());
+        descriptor.setExams(student.getExams());
     }
 
     /**
@@ -91,12 +91,12 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
+     * Parses the {@code exams} into a {@code Set<Exam>} and set it to the {@code EditStudentDescriptor}
      * that we are building.
      */
-    public EditStudentDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditStudentDescriptorBuilder withExams(String... exams) {
+        Set<Exam> examSet = Stream.of(exams).map(Exam::new).collect(Collectors.toSet());
+        descriptor.setExams(examSet);
         return this;
     }
 

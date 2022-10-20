@@ -81,14 +81,14 @@ public class CommandTestUtil {
                 .withParentName(VALID_PARENT_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withExams(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStudentDescriptorBuilder()
                 .withStudentName(VALID_STUDENT_NAME_BOB)
                 .withId(VALID_ID_BOB)
                 .withParentName(VALID_PARENT_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withExams(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
