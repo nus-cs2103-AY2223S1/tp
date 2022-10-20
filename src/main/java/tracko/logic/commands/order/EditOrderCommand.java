@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.util.Pair;
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.CollectionUtil;
@@ -16,11 +17,8 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.items.Description;
-import tracko.model.items.Item;
-import tracko.model.items.ItemName;
-import tracko.model.items.Price;
-import tracko.model.items.Quantity;
+import tracko.model.item.Item;
+import tracko.model.item.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.ItemQuantityPair;
@@ -94,6 +92,11 @@ public class EditOrderCommand extends Command {
             throws CommandException {
         assert orderToEdit != null;
 
+        if (!editOrderDescriptor.getItemToEdit().equals(Optional.empty())) {
+            editOrderDescriptor.setModel(model);
+            editOrderDescriptor.setItemToEdit();
+        }
+
         Name updatedName = editOrderDescriptor.getName().orElse(orderToEdit.getName());
         Phone updatedPhone = editOrderDescriptor.getPhone().orElse(orderToEdit.getPhone());
         Email updatedEmail = editOrderDescriptor.getEmail().orElse(orderToEdit.getEmail());
@@ -102,22 +105,14 @@ public class EditOrderCommand extends Command {
         // Run checks on whether the item is in the inventory list
         Optional<ItemQuantityPair> itemToEdit = editOrderDescriptor.getItemToEdit();
         if (!itemToEdit.equals(Optional.empty())) {
-            boolean doesItemExistInList = false;
             List<Item> items = model.getFilteredItemList();
-            Item itemToEditPlaceholder = new Item(new ItemName(itemToEdit.get().getItem()),
-                    new Description("Dummy description"), new Quantity(itemToEdit.get().getValue()),
-                    new HashSet<>(), new Price(new BigDecimal(0)), new Price(new BigDecimal(0)));
-
-            for (int i = 0; i < items.size(); i++) {
-                if (items.get(i).isSameItem(itemToEditPlaceholder)) {
-                    editOrderDescriptor.updateItemList(orderToEdit, itemToEdit.get());
-                    doesItemExistInList = true;
-                    break;
-                }
-            }
+            Item itemToCompare = itemToEdit.get().getItem();
+            boolean doesItemExistInList = items.contains(itemToCompare);
 
             if (!doesItemExistInList) {
                 throw new CommandException("The item that is being added does not exist in the inventory list.");
+            } else {
+                editOrderDescriptor.updateItemList(orderToEdit, itemToEdit.get());
             }
         }
 
@@ -157,7 +152,9 @@ public class EditOrderCommand extends Command {
         private Email email;
         private Address address;
         private List<ItemQuantityPair> itemList;
+        private Pair<String, Integer> itemUnlinkedToInventory;
         private ItemQuantityPair itemToEdit;
+        private Model model;
 
         public EditOrderDescriptor() {}
 
@@ -171,7 +168,7 @@ public class EditOrderCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setItemList(toCopy.itemList);
-            setItemToEdit(toCopy.itemToEdit);
+            setUnlinkedItemToEdit(toCopy.itemUnlinkedToInventory);
         }
 
 
@@ -223,7 +220,12 @@ public class EditOrderCommand extends Command {
             return Optional.ofNullable(itemToEdit);
         }
 
-        public void setItemToEdit(ItemQuantityPair itemToEdit) {
+        public void setItemToEdit() {
+            assert itemUnlinkedToInventory != null;
+
+            Item itemToCompare = model.getItem(itemUnlinkedToInventory.getKey());
+            ItemQuantityPair itemToEdit = new ItemQuantityPair(itemToCompare,
+                    new Quantity(itemUnlinkedToInventory.getValue()));
             this.itemToEdit = itemToEdit;
         }
 
@@ -248,9 +250,9 @@ public class EditOrderCommand extends Command {
                 ItemQuantityPair itemInList = orderedItems.get(i);
 
                 // Check whether the item is in the customer's order list.
-                boolean isItemInList = itemInList.getItem().equalsIgnoreCase(itemToEdit.getItem());
-                boolean isUpdatedQuantityZero = itemToEdit.getValue() == 0;
-                boolean shouldQuantityBeUpdated = itemInList.getValue() != itemToEdit.getValue();
+                boolean isItemInList = itemInList.getItemName().equalsIgnoreCase(itemToEdit.getItemName());
+                boolean isUpdatedQuantityZero = itemToEdit.getQuantityValue() == 0;
+                boolean shouldQuantityBeUpdated = itemInList.getQuantityValue() != itemToEdit.getQuantityValue();
                 boolean doesOrderedListContainOneItem = orderedItems.size() == 1;
 
                 if (isItemInList && isUpdatedQuantityZero) {
@@ -261,18 +263,30 @@ public class EditOrderCommand extends Command {
                     orderedItems.remove(i);
                     hasItemBeenUpdated = true;
                 } else if (isItemInList && shouldQuantityBeUpdated) {
-                    ItemQuantityPair updatedItem = new ItemQuantityPair(itemInList.getKey(), itemToEdit.getValue());
+                    ItemQuantityPair updatedItem = new ItemQuantityPair(itemInList.getItem(), itemToEdit.getQuantity());
                     orderedItems.set(i, updatedItem);
                     hasItemBeenUpdated = true;
                 }
             }
 
             // if the item does not exist in the list and the value is not 0
-            if (!hasItemBeenUpdated && itemToEdit.getValue() != 0) {
+            if (!hasItemBeenUpdated && itemToEdit.getQuantityValue() != 0) {
                 orderedItems.add(itemToEdit);
             }
 
             this.itemList = orderedItems;
+        }
+
+        public void setUnlinkedItemToEdit(Pair<String, Integer> itemUnlinkedToInventory) {
+            this.itemUnlinkedToInventory = itemUnlinkedToInventory;
+        }
+
+        public Optional<Pair<String, Integer>> getUnlinkedItemToEdit() {
+            return Optional.ofNullable(itemUnlinkedToInventory);
+        }
+
+        public void setModel(Model model) {
+            this.model = model;
         }
 
         @Override

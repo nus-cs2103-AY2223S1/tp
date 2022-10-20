@@ -10,8 +10,8 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.util.Pair;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.item.EditItemCommand;
 import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.logic.parser.ArgumentMultimap;
@@ -54,25 +54,10 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         parseItemQuantity(editOrderDescriptor, argMultimap);
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditItemCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditOrderCommand(index, editOrderDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
     public boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
@@ -126,7 +111,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         if (isItemPrefixPresent && isQuantityPrefixPresent) {
             String item = argMultimap.getValue(PREFIX_ITEM).get();
             Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
-            editOrderDescriptor.setItemToEdit(new ItemQuantityPair(item, quantity));
+            editOrderDescriptor.setUnlinkedItemToEdit(new Pair<String, Integer>(item, quantity));
         }
     }
 }

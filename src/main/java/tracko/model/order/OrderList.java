@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tracko.model.items.exceptions.ItemNotFoundException;
+import tracko.model.item.exceptions.ItemNotFoundException;
 
 /**
  * A list of orders.
