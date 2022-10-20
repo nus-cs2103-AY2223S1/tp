@@ -481,13 +481,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
-
-* 1a. Some filters specified contains a tag that does not exist.
-* 1a1. Rapportbook filters shows a list of contacts that contains the tag (excluding the non-existent ones) **and** name specified in the filter query.
-* 1a2. Rapportbook shows a message containing the list of non-existent tag that the user specified.
-* Use case ends
-
 
 #### Use case: Clearing filters
 
@@ -501,9 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Some filters specified were not previously applied.
-* 1a1. Rapportbook clears the filters that were applied.
-* 1a2. Rapportbook shows a message containing the list of filters that were not previously applied.
-* Use case ends.
+* 1a1. Rapportbook only clears the filters that were applied.
 
 
 #### Use case: Show contact
