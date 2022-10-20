@@ -12,10 +12,6 @@ case (  [key press is "DOWN"])
     :getNextCommand();
 case (  [else])
     stop
-    note right
-        Treat the 2 end nodes
-        as 1 end node.
-    end note
 endswitch
 
 :textField:setText(command);
