@@ -14,6 +14,12 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="ProfNUS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -73,19 +79,27 @@
 
           <Tab text="Module">
             <content>
-              <HBox>
-                <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="550" prefWidth="550" VBox.vgrow="ALWAYS">
+              <HBox VBox.vgrow="ALWAYS">
+                <children>
+                <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
+                  <TextFlow textAlignment="CENTER">
+                    <Text styleClass="studentHeader" text="Students" ></Text>
+                  </TextFlow>
                   <StackPane fx:id="moduleInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
-                <VBox fx:id="tutorInfo" styleClass="pane-with-border" minWidth="550" prefWidth="550" VBox.vgrow="ALWAYS">
+                <VBox fx:id="tutorInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
+                  <TextFlow textAlignment="CENTER">
+                    <Text styleClass="studentHeader" text="Teaching Assistants" ></Text>
+                  </TextFlow>
                   <StackPane fx:id="tutorListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
+                </children>
               </HBox>
             </content>
           </Tab>
