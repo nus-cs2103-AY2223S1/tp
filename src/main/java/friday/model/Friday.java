@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import friday.model.student.Student;
-import friday.model.student.UniquePersonList;
+import friday.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
 
 /**
@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
  */
 public class Friday implements ReadOnlyFriday {
 
-    private final UniquePersonList persons;
+    private final UniqueStudentList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class Friday implements ReadOnlyFriday {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueStudentList();
     }
 
     public Friday() {}

@@ -22,7 +22,7 @@ import friday.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -34,14 +34,14 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
-                             @JsonProperty("consultation") LocalDate consultation,
-                             @JsonProperty("masteryCheck") LocalDate masteryCheck,
-                             @JsonProperty("remark") String remark,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
+                              @JsonProperty("consultation") LocalDate consultation,
+                              @JsonProperty("masteryCheck") LocalDate masteryCheck,
+                              @JsonProperty("remark") String remark,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.masteryCheck = masteryCheck;
@@ -55,7 +55,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Student source) {
+    public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         telegramHandle = source.getTelegramHandle().value;
         masteryCheck = source.getMasteryCheck().getValue();
