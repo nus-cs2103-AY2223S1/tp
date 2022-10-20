@@ -35,8 +35,16 @@ public class GradeComponent {
     }
 
     public String getGradeString() {
+        int totalMarks = assessment.getTotalMarks();
         if (!isGraded) {
-            return "-";
+            switch(assessment) {
+            case MC1:
+                // FALLTHROUGH
+            case MC2:
+                return "-";
+            default:
+                return String.format("-/%d", totalMarks);
+            }
         }
 
         switch(assessment) {
@@ -45,7 +53,6 @@ public class GradeComponent {
         case MC2:
             return marks == 1 ? "PASSED" : "FAILED";
         default:
-            int totalMarks = assessment.getTotalMarks();
             return String.format("%.1f/%d (%.2f%%)", marks, totalMarks, 100 * marks / totalMarks);
         }
     }
@@ -62,36 +69,5 @@ public class GradeComponent {
     public double getMarks() {
         return marks;
     }
-    /*
-    public Assessment getAssessment() {
-        return assessment;
-    }
-
-    public boolean getIsGraded() {
-        return isGraded;
-    }
-
-    public double getMarks() {
-        return marks;
-    }
-
-    /**
-     * Returns true if both GradeComponents have the same fields.
-     */
-    /*
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof GradeComponent)) {
-            return false;
-        }
-
-        GradeComponent otherGc = (GradeComponent) other;
-        return otherGc.getAssessment().equals(assessment) && otherGc.getIsGraded() == isGraded
-                && otherGc.getMarks() == marks;
-    }*/
 }
 

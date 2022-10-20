@@ -11,7 +11,7 @@ public enum Assessment {
     MIDTERM("midterm"),
     PRACTICAL_ASSESSMENT("pa"),
     FINAL_ASSESSMENT("final"),
-    STUDIO_ATTENDANCE("studio");
+    STUDIO_ATTENDANCE("sa");
 
     private static int totalMarksMc1 = 1;
     private static int totalMarksMc2 = 1;
@@ -20,6 +20,7 @@ public enum Assessment {
     private static int totalMarksMidterm = 65;
     private static int totalMarksPracticalAssessment = 40;
     private static int totalMarksFinalAssessment = 100;
+    private static int totalMarksStudioAttendance = 12;
 
     private String name;
 
@@ -43,6 +44,8 @@ public enum Assessment {
             return totalMarksPracticalAssessment;
         case "final":
             return totalMarksFinalAssessment;
+        case "sa":
+            return totalMarksStudioAttendance;
         default:
             return 0;
         }
