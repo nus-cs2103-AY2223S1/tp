@@ -37,9 +37,10 @@ public class PropertyCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label description;
-
     @FXML
-    private Label seller;
+    private Label ownerName;
+    @FXML
+    private Label ownerPhone;
 
     // TODO: set the following label as optional
     @FXML
@@ -52,14 +53,15 @@ public class PropertyCard extends UiPart<Region> {
         super(FXML);
         this.property = property;
         id.setText(displayedIndex + ". ");
-        propertyName.setText(property.getName().fullName);
+        propertyName.setText(property.getPropertyName().fullName);
         price.setText(property.getPrice().value);
         address.setText(property.getAddress().value);
         description.setText(property.getDescription().value);
-        seller.setText(property.getSeller());
         characteristics.setText("Characteristics: " + property
                 .getCharacteristics().map(Characteristics::toString)
                 .orElse("Not Specified"));
+        ownerName.setText("Owner Name: " + property.getOwnerName());
+        ownerPhone.setText("Owner Phone: " + property.getOwnerPhone());
     }
 
     @Override

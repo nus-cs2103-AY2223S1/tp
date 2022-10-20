@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
@@ -20,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
+import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -39,13 +42,17 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_DESCRIPTION + " DESC] "
-            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]"
+            + "[" + PREFIX_OWNER_NAME + " OWNER NAME] "
+            + "[" + PREFIX_PHONE + " OWNER PHONE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + " 4 Room Heng Mui Keng Condo "
             + PREFIX_PRICE + " 500000 "
             + PREFIX_ADDRESS + " Heng Mui Keng Terrace 22 "
             + PREFIX_DESCRIPTION + " 4 Room Condo with 2 bathrooms "
-            + PREFIX_CHARACTERISTICS + " 5-Room; Near School";
+            + PREFIX_CHARACTERISTICS + " 5-Room; Near School "
+            + PREFIX_OWNER_NAME + " John Doe "
+            + PREFIX_PHONE + " 8000 1000\n";
 
     public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -93,17 +100,17 @@ public class EditPropertyCommand extends Command {
     private static Property createEditedProperty(Property propertyToEdit, EditPropertyDescriptor descriptor) {
         assert propertyToEdit != null;
 
-        PropertyName updatedPropertyName = descriptor.getName().orElse(propertyToEdit.getName());
+        PropertyName updatedPropertyName = descriptor.getName().orElse(propertyToEdit.getPropertyName());
         Price updatedPrice = descriptor.getPrice().orElse(propertyToEdit.getPrice());
         Address updatedAddress = descriptor.getAddress().orElse(propertyToEdit.getAddress());
         Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
-        String updatedSeller = descriptor.getSeller().orElse(propertyToEdit.getSeller());
         Characteristics updatedCharacteristics = descriptor
                 .getCharacteristics()
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
+        Owner updatedOwner = descriptor.getOwner().orElse(propertyToEdit.getOwner());
 
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
-                updatedSeller, updatedCharacteristics);
+                updatedCharacteristics, updatedOwner);
     }
 
     @Override
@@ -133,8 +140,8 @@ public class EditPropertyCommand extends Command {
         private Price price;
         private Address address;
         private Description description;
-        private String seller;
         private Characteristics characteristics;
+        private Owner owner;
 
         public EditPropertyDescriptor() {}
 
@@ -147,8 +154,8 @@ public class EditPropertyCommand extends Command {
             setPrice(toCopy.price);
             setDescription(toCopy.description);
             setAddress(toCopy.address);
-            setSeller(toCopy.seller);
             setCharacteristics(toCopy.characteristics);
+            setOwner(toCopy.owner);
         }
 
         /**
@@ -190,12 +197,11 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSeller(String seller) {
-            this.seller = seller;
+        public void setOwner(Owner owner) {
+            this.owner = owner;
         }
-
-        public Optional<String> getSeller() {
-            return Optional.ofNullable(seller);
+        public Optional<Owner> getOwner() {
+            return Optional.ofNullable(owner);
         }
 
         public void setCharacteristics(Characteristics characteristics) {
@@ -225,8 +231,8 @@ public class EditPropertyCommand extends Command {
                     && getPrice().equals(e.getPrice())
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
-                    && getSeller().equals(e.getSeller())
-                    && getCharacteristics().equals(e.getCharacteristics());
+                    && getCharacteristics().equals(e.getCharacteristics())
+                    && getOwner().equals(e.getOwner());
         }
     }
 }

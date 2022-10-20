@@ -13,6 +13,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.Description;
+import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -48,25 +49,35 @@ public class SampleDataUtil {
                 new PriceRange("100000 - 150000"), new Characteristics("Toa Payoh; Kid-Friendly"),
                 new Priority("low"))
         };
+    }
 
+    public static Owner[] getSampleOwners() {
+        return new Owner[] {
+            new Owner(new Name("Alex Yeoh"), new Phone("87438807")),
+            new Owner(new Name("Bernice Yu"), new Phone("99272758")),
+            new Owner(new Name("Charlotte Oliveiro"), new Phone("93210283")),
+            new Owner(new Name("David Li"), new Phone("91031282")),
+            new Owner(new Name("Irfan Ibrahim"), new Phone("92492021")),
+            new Owner(new Name("Roy Balakrishnan"), new Phone("92624417"))
+        };
     }
 
     public static Property[] getSampleProperties() {
         return new Property[]{
             new Property(new PropertyName("Residential College 4"), new Price("50000"),
                 new Address("6 College Avenue East"), new Description("A place for NUS students to stay."),
-                         "Ian", new Characteristics("Bright; Sunny")),
+                    new Characteristics("Bright; Sunny"), getSampleOwners()[0]),
             new Property(new PropertyName("Tembusu College"), new Price("9999"),
                         new Address("26 College Avenue East"), new Description("A place for NUS students to stay."),
-                        "Andre", new Characteristics("Near MRT")),
+                        new Characteristics("Near MRT"), getSampleOwners()[1]),
             new Property(new PropertyName("Peak Residence"), new Price("10000000"),
                         new Address("333 Thompson Road"),
                         new Description("latest freehold luxurious exclusive condominium."),
-                        "Duke", new Characteristics("Near School")),
+                        new Characteristics("Near School"), getSampleOwners()[2]),
             new Property(new PropertyName("Hut"), new Price("25000"),
                         new Address("25 Regent Road"),
                         new Description("new 3-room HDB flat"),
-                        "Heidi", new Characteristics("Kid-Friendly"))
+                        new Characteristics("Kid-Friendly"), getSampleOwners()[3]),
         };
     }
 
