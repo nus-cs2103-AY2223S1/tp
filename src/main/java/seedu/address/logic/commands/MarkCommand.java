@@ -35,6 +35,10 @@ public class MarkCommand extends Command {
             + "Parameters: INDEX (must be positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SUCCESS = "Student has been marked as present";
+
+    public static final String MESSAGE_MARKED_PREVIOUSLY = "Student has been marked previously";
+
     private final Index targetIndex;
 
     public MarkCommand(Index targetIndex) {
@@ -54,7 +58,7 @@ public class MarkCommand extends Command {
         Person markedPerson = createMarkedPerson(personToMark);
 
         if (markedPerson.equals(personToMark)) {
-            throw new CommandException("Person has been marked previously");
+            throw new CommandException(MESSAGE_MARKED_PREVIOUSLY);
         }
 
         ClassStorage.saveClass(markedPerson, this.targetIndex.getZeroBased());
@@ -65,7 +69,7 @@ public class MarkCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(MESSAGE_USAGE);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     /**
