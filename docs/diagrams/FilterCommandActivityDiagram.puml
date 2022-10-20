@@ -1,0 +1,18 @@
+@startuml
+start
+:User enters Filter command;
+
+
+switch ()
+case ( [pending] )
+  :TrackAScholar displays \napplicants with \npending scholarship \nand its total count;
+case ( [accepted] )
+  :TrackAScholar displays \napplicants with \naccepted scholarship \nand its total count;
+case ( [rejected])
+  :TrackAScholar displays \napplicants with \nrejected scholarship \nand its total count;
+case ( [else] )
+  :TrackAScholar shows \nan error message \nindicating that input \nis invalid;
+
+endswitch
+stop
+@enduml
