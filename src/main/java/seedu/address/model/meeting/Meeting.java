@@ -76,6 +76,11 @@ public class Meeting {
         return isSameClient && isSameDescription && isSameMeetingDate && isSameMeetingTime;
     }
 
+    /**
+     * Returns true if and only if this meeting has a date before the given {@code MeetingDate}.
+     * @param other
+     * @return
+     */
     public boolean isBeforeDate(MeetingDate other) {
         return meetingDate.compareTo(other) <= 0;
     }
