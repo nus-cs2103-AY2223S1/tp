@@ -280,6 +280,38 @@ a foreign key this way, a change in person object is reflected in the task assoc
 to this is to keep a person object in a task object but this will prevent the change in the person object that is
 supposed to be associated with the task object from being displayed in the task as they are two separate objects.
 
+### \[Proposed\] Filtering of tasks by Task Category
+
+#### Proposed Implementation
+
+The proposed filter mechanism allows A `Task` to be filtered based on its `Task Category`. 
+The command is executed using the `FilterTaskCategoryCommand`class which extends the `Command` class and the category is determined from the `FilterTaskCategoryParser` class which parses the user input. The `TaskContainsCategoryPredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with an empty tasklist.
+
+Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 pe/2` to add a task to the tasklist.
+
+Step 3. The user repeats step 2 to add more tasks to the tasklist.
+
+step 4. The user decides that he only wants to see the tasks that are backend related. The user executes `filter c/backend` to filter the tasks that are backend related. After this, only tasks that have TaskCategory:backend are displayed onto the application.
+
+The following sequence diagram shows how the filter operation works:
+
+Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
+
+** Design considerations **
+
+** Aspect: How flter executes**
+- ** Alterantive 1 (current choice): ** Filters the entire tasklist.
+  Pros:
+  Cons:
+
+- ** Alternative 2:
+  Pros:
+  Cons:
+
 
 --------------------------------------------------------------------------------------------------------------------
 
