@@ -11,7 +11,10 @@ public enum Level {
     SECONDARY4("Secondary 4");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Academic levels should only be either a primary or secondary level\n";
+            "Academic level should be one of the valid academic levels.\n"
+                    + "The valid academic levels are:\n"
+                    + "1. Primary 1 to 6\n"
+                    + "2. Secondary 1 to 4\n";
     public static final String MESSAGE_DID_YOU_MEAN_PRIMARY = "Did you mean \"primary\"? ";
     public static final String MESSAGE_DID_YOU_MEAN_SECONDARY = "Did you mean \"secondary\"? ";
     public static final String VALIDATION_REGEX = "(?i)(primary|pri|p)\\s*[1-6]|(secondary|sec|s)\\s*[1-4]";

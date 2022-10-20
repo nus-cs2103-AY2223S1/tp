@@ -11,7 +11,7 @@ public enum Day {
     MONDAY("monday"), TUESDAY("tuesday"), WEDNESDAY("wednesday"), THURSDAY("thursday"), FRIDAY("friday"),
     SATURDAY("saturday"), SUNDAY("sunday");
 
-    public static final String MESSAGE_CONSTRAINTS = "Day should only be a valid day of the week\n";
+    public static final String MESSAGE_CONSTRAINTS = "Day should be a valid day of the week.\n";
     public static final String MESSAGE_DID_YOU_MEAN_MONDAY =
             "Did you mean \"monday\"? ";
     public static final String MESSAGE_DID_YOU_MEAN_TUESDAY =

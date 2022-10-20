@@ -9,7 +9,14 @@ public enum Subject {
     ENGLISH("English"), MATHEMATICS("Mathematics"), PHYSICS("Physics"), CHEMISTRY("Chemistry"), BIOLOGY("Biology");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Subject name should only contain letters, and should be spelt out in full.";
+            "Subject should only contain alphabetical characters, "
+                    + "and should be one of the valid subjects spelt out in full.\n"
+                    + "The valid subjects are:\n"
+                    + "1. English\n"
+                    + "2. Mathematics\n"
+                    + "3. Physics\n"
+                    + "4. Chemistry\n"
+                    + "5. Biology\n";
     public static final String VALIDATION_REGEX = "(?i)english|mathematics|physics|chemistry|biology";
     public final String subject;
 

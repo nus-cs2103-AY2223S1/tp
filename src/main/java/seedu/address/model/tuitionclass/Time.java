@@ -11,8 +11,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class Time {
     public static final String MESSAGE_CONSTRAINTS =
-            "Timings should only be in 12-hour or 24-hour formats separated by a dash, a space or \"to\" "
-                    + "and is chronologically sound";
+            "Timings should be separated by a dash, a space or \"to\", and adhere to the following constraints:\n "
+                    + "1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, "
+                    + "AM/PM must be specified. The minutes (12-hour format only), colon and initial zero may be "
+                    + "omitted.\n"
+                    + "2. Start and end timings specified must respect chronology. The end time cannot occur before "
+                    + "the start time.\n"
+                    + "Some valid examples are:\n"
+                    + "    - 12pm - 3pm\n"
+                    + "    - 1:00pm 2:00pm\n"
+                    + "    - 2200 to 2330\n";
 
     public static final String VALIDATION_REGEX =
             "((\\p{Digit}{1,2}(am|pm))|"

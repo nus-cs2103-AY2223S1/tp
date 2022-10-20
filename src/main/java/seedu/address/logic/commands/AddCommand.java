@@ -35,10 +35,15 @@ public class AddCommand extends Command {
         TUTOR,
         CLASS;
 
-        public static final String MESSAGE_CONSTRAINTS = "Entity type should only be either a student, tutor or class\n";
-        public static final String MESSAGE_DID_YOU_MEAN_STUDENT = "Did you mean \"student\"? ";
-        public static final String MESSAGE_DID_YOU_MEAN_TUTOR = "Did you mean \"tutor\"? ";
-        public static final String MESSAGE_DID_YOU_MEAN_CLASS = "Did you mean \"class\"? ";
+        public static final String MESSAGE_CONSTRAINTS =
+                "Entity type should be one of the valid entity types that can be added to the database.\n"
+                        + "The valid entity types are:\n"
+                        + "1. Student\n"
+                        + "2. Tutor\n "
+                        + "3. Class\n";
+        public static final String MESSAGE_DID_YOU_MEAN_STUDENT = "Did you mean \"student\"?";
+        public static final String MESSAGE_DID_YOU_MEAN_TUTOR = "Did you mean \"tutor\"?";
+        public static final String MESSAGE_DID_YOU_MEAN_CLASS = "Did you mean \"class\"?";
 
         public static final String VALIDATION_REGEX = "(?i)s|t|c|student|tutor|class";
 
