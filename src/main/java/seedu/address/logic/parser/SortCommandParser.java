@@ -24,10 +24,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REVERSE);
 
-        if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        }
-
         String trimmedArgs = argMultimap.getPreamble().toLowerCase().trim();
         if (isPrefixPresent(argMultimap, PREFIX_REVERSE)) {
             switch (trimmedArgs) {
@@ -36,7 +32,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             case "scholarship":
                 return new SortCommand(Applicant.sortByScholarship().reversed());
             default:
-                throw new ParseException(
+                throw new ParseException("with r/ " +
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
             }
         }
