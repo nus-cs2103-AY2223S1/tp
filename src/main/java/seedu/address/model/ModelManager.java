@@ -21,25 +21,25 @@ import seedu.address.model.team.Team;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TruthTable truthTable;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTruthTable addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.truthTable = new TruthTable(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.truthTable.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TruthTable(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -67,42 +67,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTruthTableFilePath() {
+        return userPrefs.getTruthTableFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setTruthTableFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setTruthTableFilePath(addressBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTruthTable(ReadOnlyTruthTable truthTable) {
+        this.truthTable.resetData(truthTable);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTruthTable getTruthTable() {
+        return truthTable;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return truthTable.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        truthTable.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        truthTable.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -110,37 +110,37 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        truthTable.setPerson(target, editedPerson);
     }
 
     //========== Team Accessors ===============================================================================
     @Override
     public Team getTeam() {
-        return addressBook.getTeam();
+        return truthTable.getTeam();
     }
     @Override
     public ObjectProperty<Team> getTeamAsProperty() {
-        return addressBook.getTeamAsProperty();
+        return truthTable.getTeamAsProperty();
     }
 
     @Override
     public void setTeam(Team teamToSet) {
-        addressBook.setTeam(teamToSet);
+        truthTable.setTeam(teamToSet);
     }
 
     @Override
     public void addTeam(Team teamToAdd) {
-        addressBook.addTeam(teamToAdd);
+        truthTable.addTeam(teamToAdd);
     }
 
     @Override
     public void deleteTeam(Team teamToDelete) {
-        addressBook.deleteTeam(teamToDelete);
+        truthTable.deleteTeam(teamToDelete);
     }
 
     @Override
     public ObservableList<Team> getTeamList() {
-        return addressBook.getTeamList();
+        return truthTable.getTeamList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -174,7 +174,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return truthTable.equals(other.truthTable)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

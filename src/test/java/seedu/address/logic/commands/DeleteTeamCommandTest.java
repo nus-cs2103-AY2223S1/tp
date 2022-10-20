@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ import seedu.address.model.team.Team;
 
 class DeleteTeamCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     @Test
     void execute_deleteTeamNotExist_throwsCommandException() {

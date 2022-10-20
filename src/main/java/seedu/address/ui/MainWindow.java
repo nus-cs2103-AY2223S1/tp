@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        ObservableList<Task> tasks = logic.getAddressBook().getTeam().getTaskList();
+        ObservableList<Task> tasks = logic.getTruthTable().getTeam().getTaskList();
         if (tasks.size() > 0) {
             taskListPanel = new TaskListPanel(tasks);
             taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
@@ -142,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTruthTableFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

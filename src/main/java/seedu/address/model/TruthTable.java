@@ -16,7 +16,7 @@ import seedu.address.model.team.UniqueTeamList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TruthTable implements ReadOnlyTruthTable {
 
     private final UniquePersonList persons;
     private final UniqueTeamList teams;
@@ -34,13 +34,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams = new UniqueTeamList();
     }
 
-    public AddressBook() {
+    public TruthTable() {
     }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TruthTable(ReadOnlyTruthTable toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -58,7 +58,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTruthTable newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setTeams(newData.getTeamList());
@@ -153,8 +153,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons)
+            || (other instanceof TruthTable // instanceof handles nulls
+            && persons.equals(((TruthTable) other).persons)
             );
     }
 

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,11 +21,11 @@ import seedu.address.model.UserPrefs;
  */
 public class AddMemberCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getTruthTable().getPersonList().size() + 1);
         AddMemberCommand addMemberCommand = new AddMemberCommand(outOfBoundIndex);
 
         assertCommandFailure(addMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
