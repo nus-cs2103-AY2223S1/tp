@@ -86,6 +86,7 @@ public class FilterCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL), model.getFilteredApplicantList());
     }
+
     /**
      * Parses {@code userInput} into a {@code StatusContainsKeywordPredicate}.
      */
