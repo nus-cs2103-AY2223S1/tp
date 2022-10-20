@@ -10,7 +10,6 @@ import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
 import modtrekt.logic.parser.ModtrektParser;
 import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.logic.parser.tasks.PrioritizeTaskCommandParser;
 import modtrekt.model.task.Task;
 
 public class PrioritizeTaskCommandTest {
@@ -128,7 +127,7 @@ public class PrioritizeTaskCommandTest {
 
     @Test
     public void testParser_missingIndex_throwsParseException() {
-        assertThrows(ParseException.class, () -> new PrioritizeTaskCommandParser().parse("prioritize -t -p high"));
-        assertThrows(ParseException.class, () -> new PrioritizeTaskCommandParser().parse("prioritize -p high"));
+        assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("prioritize -t -p high"));
+        assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("prioritize -p high"));
     }
 }
