@@ -154,6 +154,22 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### List Meeting feature
+
+Syntax: `listMeeting`
+
+Purpose: View all `Meeting` from the Meeting List in `Model`.
+
+#### Implementation
+
+Usage Scenario of `listMeeting`:
+
+1) User inputs `listMeeting` to view the current meetings in the `Model`.
+
+Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
+
+![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
