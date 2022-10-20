@@ -243,10 +243,18 @@ How the individual operations work:
   
   ![StatisticsCalculatorGetAmountPaidSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountPaidSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a command:
+#### Design Considerations:
+##### Aspect: Implementing the statistics function:
 
-![StatisticsWindowActivityDiagram](images/DG-images/StatisticsWindowActivityDiagram.png)
+* **Alternative 1 (current choice)**: Call three different statistics functions (getSize(), getAmountOwed(), getAmountPaid()) 
+    * Pros: Each function obeys Single Responsibility Principle (SRP).
+    * Cons: More code must be typed.
 
+* **Alternative 2**: Call a single statistics function which returns an array of statistical values
+    * Pros: 
+        1. Fewer repetition of code.
+        2. More optimised solution as `ObservableList<Person>` needs to be iterated only once. 
+    * Cons: Violates Single Responsibility Principle (SRP) as the function would have multiple responsibilities.
 
 ### [Proposed] Sort-by feature
 
