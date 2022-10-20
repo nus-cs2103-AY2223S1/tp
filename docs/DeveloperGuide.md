@@ -118,19 +118,22 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the following address book data 
+  * all `Person` objects (which are contained in a `UniquePersonList` object)
+  * all `Policy` objects (which are contained in a `UniquePolicyList` object)
+  <img src="images/UniquePolicyListClassDiagram.png" width="300" />
+* stores the currently 'selected' `XYZ` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person or Policy
 
 <img src="images/ModelEventClassDiagram.png"  width="500"/>
 
@@ -165,7 +168,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `longtimenosee.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -409,6 +412,62 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### `Find` feature
+
+#### Implementation
+
+The find mechanism is facilitated by `FilteredList` from the JavaFx library, by using `FilteredList#setPredicate()` to update the list of contacts being displayed based on the specified metrics.
+
+Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+
+Step 1. The user executes a `find` command to find any contacts matching the given metrics. The `find` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindCommandParser#parse()` with the obtained results
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the arguments to the command is invalid, the execution will stop at this step.
+</div>
+
+Step 2. `FindCommandParser#parse()` goes through the arguments and check which prefixes are present and creates a `FindCommand` object with the corresponding predicates.
+
+Step 3. `LogicManager` executes the `FindCommand` using the combined predicates, which calls `Model#updateFilteredPersonList()` and updates the list of contacts displayed
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindXYZCommandParser` and `FindXYZCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindSequenceDiagram](images/FindActivityDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: How `find` executes:**
+
+* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the address book by making use of the JavaFx filteredList library.
+    * Pros: 
+      * Easy extension for additional predicates, by adding predicate classes
+      * Lesser user implementation
+    * Cons: 
+      * If there are too many predicates, there could be an excessive number of classes to manage
+      * Lesser control over lower level details of predicate testing
+
+* **Alternative 2:** Take in user conditions and test for each person in the address book
+    * Pros: 
+      * More control over lower level details.
+      * More efficient algorithms can be used for searching which can improve the overall runtime
+    * Cons: 
+      * Testing required to ensure that the predicate testing algorithms are implemented correctly
+      * Larger overhead in writing code
+
+Alternative 1 was preferred over alternative 2 due to the following reasons:
+  * We could make use of the existing JavaFx library and reduce the amount of additional code that is required.
+  * In addition, there is also a greater guarantee on the correctness of the code as compared to if we were to implement our own algorithms
+  * Lesser testing overhead, which meant that we can focus more testing on the features implementation and reduce more potential bugs
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A similar execution path can be observed for other find related operations like findPolicy and findEvent.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
