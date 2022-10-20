@@ -32,6 +32,7 @@ public class UiManager implements Ui {
         this.logic = logic;
     }
 
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");

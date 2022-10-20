@@ -23,8 +23,10 @@ import longtimenosee.logic.commands.PolicyCommand;
 import longtimenosee.logic.commands.PolicyDeleteCommand;
 import longtimenosee.logic.commands.PolicyListCommand;
 import longtimenosee.logic.commands.SortCommand;
+import longtimenosee.logic.commands.ViewIncomeCommand;
 import longtimenosee.logic.commands.ViewPinCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -79,6 +81,9 @@ public class AddressBookParser {
 
         case ViewPinCommand.COMMAND_WORD: //for pinning, creates PinCommandParser object
             return new ViewPinCommandParser().parse(arguments);
+
+        case ViewIncomeCommand.COMMAND_WORD:
+            return new ViewIncomeCommandParser().parse(arguments);
 
         case PinCommand.COMMAND_WORD:
             return new PinCommandParser().parse(arguments);

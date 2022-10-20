@@ -55,7 +55,7 @@ public class PolicyAddCommand extends Command {
         }
 
         model.addPolicy(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true, false, false);
     }
 
     @Override

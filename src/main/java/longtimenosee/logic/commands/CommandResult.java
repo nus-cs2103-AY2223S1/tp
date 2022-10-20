@@ -23,24 +23,27 @@ public class CommandResult {
     /** The application should display clients. */
     private final boolean showClients;
 
+    private final boolean showIncome;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showPolicy, boolean showClient) {
+                         boolean showPolicy, boolean showClient, boolean showIncome) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showPolicy = showPolicy;
         this.showClients = showClient;
+        this.showIncome = showIncome;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean showPolicy, boolean showClients) {
-        this(feedbackToUser, false, false, showPolicy, showClients);
+    public CommandResult(String feedbackToUser, boolean showPolicy, boolean showClients, boolean showIncome) {
+        this(feedbackToUser, false, false, showPolicy, showClients, showIncome);
     }
 
     public String getFeedbackToUser() {
@@ -61,6 +64,9 @@ public class CommandResult {
 
     public boolean isShowClient() {
         return showClients;
+    }
+    public boolean isShowIncome() {
+        return showIncome;
     }
 
     @Override

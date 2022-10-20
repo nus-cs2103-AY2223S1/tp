@@ -9,15 +9,36 @@ Long Time No See (LTNS) is a desktop task tracking app made for student financia
 
 Given below are my contributions to the project.
 
-* **New Feature**: Figma mockup for the project.
+* **New Feature**: Figma mockup for the project. 🖼️
     * Justification: This feature is to revamp the current AB3 to give our project GUI uniqueness
     * Highlights:  It provides a general flow for various functionalities and how they piece together into one application
     * Weblink: https://www.figma.com/file/KloccQRiEV5ow9oQta9jhy/LTNS?node-id=0%3A1
     * Credits: *NIL*
 
-* **New Feature**: Major Ui changes (upcoming)
+* **New Feature**: Major Ui changes
+  * Justification: This feature is to revamp the current AB3 to give our project GUI uniqueness
+  * Highlights:  It gives the GUI a whole new look
+  * Sample GUI: 
+  * <img src="..\images\sampleGUI.png">
+  * Credits: *NIL*
 
-* **New Feature**: Added pin feature (upcoming)
+* **New Feature**: Added pin feature 📌
+  * Justification: This feature for financial advisors to mark and view important clients
+  * Highlights: `pin <Index>` allows users to pin and `viewPin` allows viewing of these clients at an instant!
+  * Screenshot:
+  * <img src="..\images\viewPin.png">
+  * Credits: *NIL*
+
+* **New Feature**: Added viewIncome feature 📈
+    * Justification: This feature for financial advisors to mark and view important clients
+    * Highlights 1: Calculates income based on these changing factors:
+      * Assigned policies
+      * Start and end date for clients' assigned policies
+      * Yearly commissions
+    * Highlights 2: Plots a graph based off the user specified year to calculate current income and predict future income
+      * Screenshot:
+      * <img src="..\images\viewIncome.png">
+    * Credits: *NIL*
 
 * **Code contributed**: [RepoSense link]()
 
@@ -31,9 +52,14 @@ Given below are my contributions to the project.
     * User Guide:
         * Inserted the Ui components and figma link to the docs
         * Designed and inserted project logo
-        * TODO
+        * Inserted documentation for pin feature
+        * Inserted documentation for viewPin feature
+        * Inserted documentation for viewIncome feature
     * Developer Guide:
         * Focused on writing the MSS for pin feature
+        * Inserted documentation for pin feature
+        * Inserted documentation for viewPin feature
+        * Inserted documentation for viewIncome feature
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): Mainly Damien's PR (following the Circle review principle)
@@ -44,4 +70,5 @@ Given below are my contributions to the project.
     * Figma (for mockup creation)
     * Javafx (for altering Ui changes)
     * Canva (for icon and logo design)
+    * CSS for altering GUI looks
 
