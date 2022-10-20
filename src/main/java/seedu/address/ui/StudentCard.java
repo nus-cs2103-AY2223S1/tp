@@ -41,7 +41,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label email;
     @FXML
     private FlowPane tags;
 
@@ -55,9 +55,21 @@ public class StudentCard extends UiPart<Region> {
         studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
         className.setText(student.getClassName().className);
-        parentName.setText(student.getParentName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
+        if (student.getParentName().fullName == "") {
+            parentName.setText("-");
+        } else {
+            parentName.setText(student.getParentName().fullName);
+        }
+        if (student.getPhone().value == "") {
+            phone.setText("-");
+        } else {
+            phone.setText(student.getPhone().value);
+        }
+        if (student.getEmail().value == "") {
+            email.setText("-");
+        } else {
+            email.setText(student.getEmail().value);
+        }
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -78,8 +90,8 @@ public class StudentCard extends UiPart<Region> {
         parentName.setVisible(true);
         phone.setManaged(true);
         phone.setVisible(true);
-        address.setManaged(true);
-        address.setVisible(true);
+        email.setManaged(true);
+        email.setVisible(true);
         tags.setManaged(true);
         tags.setVisible(true);
     }
@@ -94,8 +106,8 @@ public class StudentCard extends UiPart<Region> {
         parentName.setVisible(false);
         phone.setManaged(false);
         phone.setVisible(false);
-        address.setManaged(false);
-        address.setVisible(false);
+        email.setManaged(false);
+        email.setVisible(false);
         tags.setManaged(false);
         tags.setVisible(false);
     }

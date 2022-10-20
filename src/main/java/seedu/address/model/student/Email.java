@@ -34,14 +34,22 @@ public class Email {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Email} and checks for validity.
      *
      * @param email A valid email address.
      */
     public Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+        value = email.toUpperCase();
+    }
+
+    /**
+     * Constructs an {@code Email} with empty value.
+     *
+     */
+    public Email() {
+        value = "";
     }
 
     /**

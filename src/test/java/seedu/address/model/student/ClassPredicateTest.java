@@ -60,6 +60,6 @@ public class ClassPredicateTest {
         // Part of keyword matches
         predicate = new ClassPredicate(new Class("17S68"));
         assertFalse(predicate.test(new StudentBuilder().withStudentName("Alice").withPhone("12345")
-                .withId("901B").withAddress("Main Street").withClassName("17S").build()));
+                .withId("901B").withEmail("alice@gmail.com").withClassName("17S").build()));
     }
 }

@@ -16,8 +16,14 @@ public class EmailTest {
 
     @Test
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
+        String invalidEmail = "@@";
         assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
+    }
+
+    @Test
+    public void constructor_noParam_storeEmptyString() {
+        Email email = new Email();
+        assertEquals(email.value, "");
     }
 
     @Test
@@ -71,7 +77,7 @@ public class EmailTest {
     public void getStringValue() {
         String emailString = "johndoe@example.com";
         Email email = new Email(emailString);
-        assertEquals(email.toString(), emailString);
+        assertEquals(email.toString(), emailString.toUpperCase());
     }
 
 }
