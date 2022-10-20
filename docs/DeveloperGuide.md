@@ -179,7 +179,7 @@ Outline of how components work together when the user enters a find command:
 1. User enters `findc m/ CS1101S` into the command prompt box
 2. User input `m/ CS1101S` is sent to the `FindContactCommandParser`
 3. `FindContactCommandParser` determines the user's input to be valid
-4. `FindContactCommandParser` creates a `ModuleTakenPredicate` 
+4. `FindContactCommandParser` creates a `ModuleTakenPredicate`
    - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
 5. A `FindContactCommand` command created and executed by the `Model`
 6. The result of the find command is displayed to the user
@@ -203,7 +203,7 @@ Consider the following situation:
 
 As a user in this situation, the last thing you would want is for the app to _exclude_ contacts taking both MOD_X and MOD_Y. Those would be the first people you want to ask for help!
 
-Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively. 
+Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively.
 
 This was done so that it would be easy for the user to remember what command to use when finding either contacts or tasks.
 - The only difference when finding contacts is that there is a c after the find for contacts
