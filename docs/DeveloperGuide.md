@@ -231,9 +231,8 @@ the gender is not of valid format; Invalid person exception is thrown if the per
 contact list. Error message is displayed on the GUI subsequently. 
 </div>
 
+### \[Proposed\] Undo/redo feature
 #### Proposed Implementation
-
-### undo/redo
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
