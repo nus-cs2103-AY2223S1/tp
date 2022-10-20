@@ -403,6 +403,36 @@ Use case ends.
 
 Use case ends.
 
+**Use case: UC06 - Filter for a Pet**
+
+**MSS**
+1. User specifies the target attributes he or she is searching for in a Pet.
+2. PetCode searches for all Pets with that target attributes, depending on what the user has specified.
+3. PetCode outputs all Pets that match the target attributes.
+
+Use case ends.
+
+**Extensions**
+
+1a. The arguments are empty or invalid.
+
+Use case ends.
+
+**Use case: UC07 - Filter for an Order**
+
+**MSS**
+1. User specifies the target attributes he or she is searching for in an Order.
+2. PetCode searches for all Orders with the target attributes, depending on what the user has specified.
+3. PetCode outputs all Orders that match the target attributes.
+
+Use case ends.
+
+**Extensions**
+
+1a. The arguments are empty or invalid.
+
+Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
