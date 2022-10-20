@@ -9,7 +9,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.*;
+import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.OfficeHour;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 
 /**
  * An UI component that displays information of a {@code Person}.
