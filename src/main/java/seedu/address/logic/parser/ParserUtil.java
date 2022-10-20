@@ -332,6 +332,7 @@ public class ParserUtil {
         if (!matcher.find()) {
             throw new ParseException(Schedule.MESSAGE_CLASS_TIME_CONSTRAINT);
         }
+
         return matcher.group().split("-")[0];
     }
 

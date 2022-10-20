@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
@@ -184,6 +186,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearSchedules(ArrayList<ModuleCode> modulesToClear) {
+        addressBook.clearSchedules(modulesToClear);
+        updateFilteredScheduleList((PREDICATE_SHOW_ALL_SCHEDULES));
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
@@ -213,6 +221,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Person> getAllPersonList() {
+        return new FilteredList<>(this.addressBook.getPersonList());
     }
 
     @Override
@@ -259,6 +272,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Module> getAllModuleList() {
+        return new FilteredList<>(this.addressBook.getModuleList());
+    }
+
+    @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
@@ -279,10 +297,9 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-        // filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
+        filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
         requireNonNull(predicate);
         filteredSchedule.setPredicate(predicate);
-        // filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
     }
 
     @Override
