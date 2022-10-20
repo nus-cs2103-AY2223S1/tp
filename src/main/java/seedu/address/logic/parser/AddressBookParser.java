@@ -40,7 +40,6 @@ public class AddressBookParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
@@ -61,6 +60,7 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_SHORTCUT:
+            assert false;
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
