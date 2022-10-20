@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
-import java.util.prefs.*;
+import java.util.prefs.Preferences;
 
 import javafx.fxml.FXML;
-import javafx.scene.*;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
