@@ -179,8 +179,8 @@ Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute(
 
 Step 4. `EditCommand#excecute()` calls the following methods from `Model`:
 
-* `setFood(foodToEdit, editedFood)`
-* `updateFilteredFoodList()`
+* `Model#setFood(foodToEdit, editedFood)` replaces `foodToEdit` to `editedFood`.
+* `Model#updateFilteredFoodList(predicate)` filters the food list based on the given predicate
 
 Step 5. `EditCommand#execute()` returns a `CommandResult` with the following result
 displayed:
@@ -211,12 +211,12 @@ Step 3. The `ProfileCommand` created is executed by `ProfileCommand#execute()`.
 
 Step 4. `ProfileCommand#execute()` calls the following methods from `Model`:
 
-* `isUserCreated()`
-* `getUserDetails()`
+* `Model#isUserCreated()`
+* `Model#getUserDetails()`
 
 Step 5. `ProfileCommand#execute()` returns a `CommandResult` which displays the user's information.
 
-The following activity diagram outlines the process when the user uses the `ProfileCommand`.
+The following activity diagram outlines the process when the user executes the `ProfileCommand`.
 
 ![ProfileCommandActivityDiagram](./images/ProfileCommandActivityDiagram.png)
 
