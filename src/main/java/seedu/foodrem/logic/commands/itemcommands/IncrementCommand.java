@@ -55,7 +55,8 @@ public class IncrementCommand extends Command {
                 incrementedQuantity,
                 itemToIncrement.getUnit(),
                 itemToIncrement.getBoughtDate(),
-                itemToIncrement.getExpiryDate());
+                itemToIncrement.getExpiryDate(),
+                itemToIncrement.getPrice());
     }
 
     @Override

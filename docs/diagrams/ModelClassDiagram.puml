@@ -13,14 +13,15 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueItemList
+Class UniqueTagList
 Class Item
-Class Unit
-Class BoughtDate
-Class ExpiryDate
-Class Name
-Class Quantity
-Class Price
+Class ItemName
+Class ItemQuantity
+Class ItemUnit
+Class ItemBoughtDate
+Class ItemExpiryDate
 Class Tag
+Class TagName
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,18 +37,24 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 FoodRem *--> "1" UniqueItemList
+FoodRem *--> "1" UniqueTagList
 UniqueItemList --> "~* all" Item
-Item *--> Name
-Item *--> Quantity
-Item *--> BoughtDate
-Item *--> ExpiryDate
-Item *--> Unit
-Item *--> Price
+Item *--> ItemUnit
+Item *--> ItemBoughtDate
+Item *--> ItemExpiryDate
+Item *--> ItemQuantity
+Item *--> ItemName
+Item *--> ItemName
 Item *--> "*" Tag
+Tag *--> TagName
 
-Name -[hidden]right-> Quantity
-Quantity -[hidden]right-> Unit
-Unit -[hidden]right-> BoughtDate
+UniqueTagList --> "~* all" Tag
+
+ItemUnit -[hidden]right-> ItemBoughtDate
+ItemBoughtDate -[hidden]right-> ItemName
+ItemName -[hidden]right-> ItemQuantity
 
 ModelManager -->"~* filtered" Item
+ModelManager -->"~* filtered" Tag
+
 @enduml

@@ -37,4 +37,8 @@ public class TagBuilder {
     public Tag build() {
         return new Tag(name.toString());
     }
+
+    public String getTagBuilderName() {
+        return name.toString();
+    }
 }

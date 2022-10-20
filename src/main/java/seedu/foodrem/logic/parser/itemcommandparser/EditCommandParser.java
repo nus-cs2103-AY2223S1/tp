@@ -32,7 +32,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                         CliSyntax.PREFIX_ITEM_QUANTITY,
                         CliSyntax.PREFIX_ITEM_UNIT,
                         CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
-                        CliSyntax.PREFIX_ITEM_EXPIRY_DATE);
+                        CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
+                        CliSyntax.PREFIX_ITEM_PRICE);
         Index index;
 
         try {
@@ -61,6 +62,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_EXPIRY_DATE)) {
             editItemDescriptor.setItemExpiryDate(
                     ParserUtil.parseExpiryDate(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_EXPIRY_DATE)));
+        }
+        if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_PRICE)) {
+            editItemDescriptor.setItemPrice(
+                    ParserUtil.parsePrice(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_PRICE)));
         }
 
         if (!editItemDescriptor.isAnyFieldEdited()) {
