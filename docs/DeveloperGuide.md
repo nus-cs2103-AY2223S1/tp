@@ -161,6 +161,8 @@ In order to mark a task as completed, the user keys in a valid command (e.g. `ma
 2. This task is then marked as done.
 3. The list of tasks of the model is then updated in order to display the updated task in the UI.
 
+The implementation for marking a task as not done is similar.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
