@@ -167,6 +167,7 @@ Classes used by multiple components are in the `seedu.taassist.commons` package.
 
 ## **Implementation**
 
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Assigning students to a class
 <img src="images/AssignCommandSequenceDiagram.png" width="700" />
@@ -175,7 +176,7 @@ DESCRIPTION TODO
 
 ### Tracking the state of focus mode
 The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)).
-When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModuleManager` returns the state of the focus mode via the following methods:
+When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModelManager` returns the state of the focus mode via the following methods:
 * `ModelManager#isInFocusMode()` - Checks whether focus mode is active.
 * `ModelManager#getFocusedClass()` - Returns the current `ModuleClass` in focus.
 
@@ -196,6 +197,47 @@ For example, the following sequence diagram shows how the `focus` command activa
 <img src="images/FocusCommandSequenceDiagram.png" width="700" />
 
 On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
+
+### Immutability of Session, ModuleClass, and Student
+
+In the implementation of the `Session`, `ModuleClass` and `Student` classes, it was decided to implement them in an immutable manner. 
+This is done mainly for three reasons:
+- Java passes its values by-reference, this can cause quite the confusion if objects returned by `Model` are mutated.
+- Simplifies loading data from `Storage` as we do not need to ensure contents of data in one object has is referencing the same object as another.
+- Reduces the possibility of an unobserved mutation as data in `Model` is commonly observed by `UI` through an `ObservableList`.
+
+As such, if the codebase is to be extended to store additional classes within `Model`, it is recommended to implement them
+in an immutable manner unless there's good reason not to do so.
+
+### Identity: A weaker notion of equality
+
+Since any modifications to an immutable object in `Model` would require constructing new objects, we'll need a method to identify
+objects with the same identities, i.e. two `ModuleClass`-s have the same identity if their module codes are equal.
+
+For instance, consider the following hypothetical scenario:
+
+Assume the current state of `TaAssist` is as follows:
+
+<img src="images/ImpleIdentityObjectDiagram.png" width="600" />
+
+Now, let's say the user wants to add a `Quiz2` session to IS1103. However, since `ModuleClass` is immutable, we'll have
+to construct a new `IS1103` ModuleClass instance instead. Call this new instance `NewIS1103`. Hence, the state of 
+`TaAssist` will now look like the one below:
+
+<img src="images/ImpleIdentityObjectDiagram2.png" width="700" />
+
+Now, notice that `AlexIS1103Data` is no longer referencing the same object. In addition, since their contents
+are different, we can't check with the `equals` method, as the `equals` method in our codebase should perform a strict
+equality check, i.e. all contents of the two objects must be equal for `equals` to return `True`. Hence, there's no way
+to identify whether `IS1103` and `NewIS1103` are *inherently* the same module or not.
+
+To handle this issue, `Session`, `ModuleClass`, and `Student` classes implement the interface `Identity<T>` which contains a method
+`isSame(T obj)` used to compare whether two objects have equivalent identities, i.e. `ModuleClass`-es have equal identity if their
+module code are then same.
+
+This `Identity` construct is similar to a `<Key, Value>` pair  in a HashMap implementation, where we use the `Key` to 
+determine the object's identity and `Value` for its satellite values.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
