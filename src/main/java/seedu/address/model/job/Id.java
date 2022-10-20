@@ -9,10 +9,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Id {
 
+    public static final int LENGTH_LIMIT = 10;
+
+    public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
+            "replacing multiple spaces with a single space, " +
+            "Job IDs can only be of size max " + LENGTH_LIMIT;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Job ID should be alphanumeric";
+
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+
     public final String value;
 
     /**

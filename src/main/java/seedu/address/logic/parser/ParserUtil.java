@@ -47,6 +47,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
@@ -69,6 +70,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
@@ -91,6 +93,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
@@ -113,6 +116,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
@@ -188,6 +192,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String university} into an {@code University}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code university} is invalid.
      */
@@ -210,6 +215,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String major} into an {@code Major}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code major} is invalid.
      */
@@ -232,6 +238,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String id} into an {@code Id}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code id} is invalid.
      */
@@ -254,6 +261,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String title} into an {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code title} is invalid.
      */
@@ -276,6 +284,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */

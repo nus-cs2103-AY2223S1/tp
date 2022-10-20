@@ -9,6 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
+    public static final int LENGTH_LIMIT = 100;
+
+    public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
+            "replacing multiple spaces with a single space, " +
+            "Addresses can only be of size max " + LENGTH_LIMIT;
+
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*

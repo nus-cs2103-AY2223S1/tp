@@ -9,11 +9,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Title {
 
+    public static final int LENGTH_LIMIT = 50;
+
+    public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
+            "replacing multiple spaces with a single space, " +
+            "Job titles can only be of size max " + LENGTH_LIMIT;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Job title should be alphanumeric or spaces or some allowed punctuations "
             + "- # , : & ( ) \" ' / [ ]";
+
     public static final String VALIDATION_REGEX = "[A-Za-z0-9 \\-#,:&()\"'/\\[\\]]+";
+
     public final String value;
 
     /**
