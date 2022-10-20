@@ -18,7 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -64,7 +64,7 @@ public class DeleteTaskCommandParserTest {
                 DeleteTaskCommand.MESSAGE_USAGE);
 
         // missing task number prefix
-        assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
+        assertParseFailure(parser, VALID_CS2106_MODULE_CODE, expectedMessage);
 
         // missing module code prefix
         assertParseFailure(parser, MODULE_TASKLIST_DESC_NUMBER_TWO, expectedMessage);

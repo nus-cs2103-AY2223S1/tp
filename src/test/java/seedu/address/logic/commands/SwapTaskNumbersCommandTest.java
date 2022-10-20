@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -56,8 +56,8 @@ public class SwapTaskNumbersCommandTest {
         List<Task> expectedTaskList = getTypicalTasks();
         Collections.swap(expectedTaskList, 0, 1);
         Module expectedModule =
-                new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE)
-                                   .withModuleTitle(VALID_CS_MODULE_TITLE)
+                new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE)
+                                   .withModuleTitle(VALID_CS2106_MODULE_TITLE)
                                    .withTasks(expectedTaskList).build();
         String expectedMessage = String.format(SwapTaskNumbersCommand.MESSAGE_SWAP_TASK_NUMBERS_SUCCESS,
                 expectedModule);

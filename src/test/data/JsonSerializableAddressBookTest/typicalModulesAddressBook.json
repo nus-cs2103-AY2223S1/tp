@@ -4,19 +4,23 @@
   "modules" : [ {
     "moduleCode": "CS2103T",
     "moduleTitle": "Software Engineering",
-    "tasks" : [ ]
+    "tasks" : [ ],
+    "persons" : [ ]
   }, {
     "moduleCode": "CS2106",
     "moduleTitle": "Introduction to Operating Systems",
-    "tasks" : [ ]
+    "tasks" : [ ],
+    "persons" : [ ]
   }, {
     "moduleCode": "MA2001",
     "moduleTitle": "Linear Algebra I",
-    "tasks" : [ ]
+    "tasks" : [ ],
+    "persons" : [ ]
   }, {
     "moduleCode": "GE3238",
     "moduleTitle": "GIS Design and Practices",
     "tasks" : [ ],
-    "linked" : ["qgis.org", "www.arcgis.com"]
+    "linked" : ["qgis.org", "www.arcgis.com"],
+    "persons" : [ ]
   }]
 }

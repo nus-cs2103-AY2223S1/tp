@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Module in the address book.
@@ -29,23 +30,26 @@ public class Module {
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
     private final Set<Link> links = new HashSet<>();
+    private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
                   List<Task> tasks,
-                  Set<Link> links) {
+                  Set<Link> links,
+                  Set<Person> persons) {
         requireAllNonNull(moduleCode, moduleTitle, tasks, links);
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
         this.links.addAll(links);
+        this.persons.addAll(persons);
     }
 
     /**
      * Adds a {@code Module} with module code, title and links but without
-     * any tasks.
+     * any tasks and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
                   Set<Link> links) {
@@ -58,7 +62,7 @@ public class Module {
 
     /**
      * Adds a {@code Module} with module code, without module title and without any
-     * associated tasks and links.
+     * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode) {
         this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>());
@@ -66,7 +70,7 @@ public class Module {
 
     /**
      * Adds a {@code Module} with module code and module title but without any
-     * associated tasks and links.
+     * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
         this(moduleCode, moduleTitle, new HashSet<>());
@@ -106,7 +110,7 @@ public class Module {
      * Returns a copied links set
      */
     public Set<Link> copyLinks() {
-        return new HashSet<Link>(links);
+        return new HashSet<>(links);
     }
 
     /**
@@ -125,6 +129,13 @@ public class Module {
         return tasks.containsDuplicate();
     }
 
+    /**
+     * Returns an immutable person set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Person> getPersons() {
+        return Collections.unmodifiableSet(persons);
+    }
 
     /**
      * Returns true if both modules have the same moduleCode.
@@ -157,13 +168,14 @@ public class Module {
         return otherModule.getModuleCode().equals(getModuleCode())
                 && otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getLinks().equals(getLinks())
-                && otherModule.getTasks().equals(getTasks());
+                && otherModule.getTasks().equals(getTasks())
+                && otherModule.getPersons().equals(getPersons());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleCode, links, tasks);
+        return Objects.hash(moduleCode, links, tasks, persons);
     }
 
     @Override

@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_TASK_NUMBER;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -13,7 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -60,8 +61,8 @@ public class DeleteTaskCommandTest {
                 new DeleteTaskFromModuleDescriptorBuilder(nonExistentModule).build();
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);
 
-        assertThrows(CommandException.class,
-                Messages.MESSAGE_NO_SUCH_MODULE, () ->
+        assertThrows(CommandException.class, String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                        nonExistentModule.getModuleCodeAsUpperCaseString()), () ->
                         deleteTaskCommand.execute(model));
     }
     @Test
@@ -73,7 +74,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_NO_SUCH_TASK_NUMBER, () ->
+                MESSAGE_NO_SUCH_TASK_NUMBER, () ->
                 deleteTaskCommand.execute(model));
     }
 

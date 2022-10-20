@@ -20,6 +20,7 @@ import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
+import seedu.address.model.person.Person;
 
 /**
  * Swaps the task numbers of two tasks from an existing module in Plannit.
@@ -102,6 +103,7 @@ public class SwapTaskNumbersCommand extends Command {
         ModuleCode moduleCode = moduleToSwapTaskNumbers.getModuleCode();
         ModuleTitle moduleTitle = moduleToSwapTaskNumbers.getModuleTitle();
         Set<Link> moduleLinks = moduleToSwapTaskNumbers.getLinks();
+        Set<Person> modulePersons = moduleToSwapTaskNumbers.getPersons();
         ObservableList<Task> moduleTasks = moduleToSwapTaskNumbers.getTasks();
         TaskList updatedTasks = new TaskList(moduleTasks);
         // Swap tasks in the list.
@@ -111,7 +113,8 @@ public class SwapTaskNumbersCommand extends Command {
                 taskIndexesToSwap.get(1));
         List<Task> updatedTasksAsList =
                 updatedTasks.asUnmodifiableObservableList();
-        return new Module(moduleCode, moduleTitle, updatedTasksAsList, moduleLinks);
+        return new Module(moduleCode, moduleTitle, updatedTasksAsList,
+                moduleLinks, modulePersons);
     }
 
     @Override

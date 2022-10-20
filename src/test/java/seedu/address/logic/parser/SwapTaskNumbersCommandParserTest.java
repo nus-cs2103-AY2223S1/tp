@@ -22,7 +22,6 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -67,7 +66,7 @@ public class SwapTaskNumbersCommandParserTest {
                 SwapTaskNumbersCommand.MESSAGE_USAGE);
 
         // missing task number prefix
-        assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
+        assertParseFailure(parser, MODULE_CODE_DESC_CS2106, expectedMessage);
 
         // missing module code prefix
         assertParseFailure(parser, MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE, expectedMessage);

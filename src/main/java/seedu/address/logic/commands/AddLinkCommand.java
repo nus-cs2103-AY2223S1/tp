@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
@@ -18,6 +17,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a link to an existing module in Plannit.
@@ -69,7 +69,6 @@ public class AddLinkCommand extends Command {
         }
 
         model.setModule(moduleToEdit, editedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_ADD_LINK_SUCCESS, editedModule));
     }
 
@@ -83,9 +82,10 @@ public class AddLinkCommand extends Command {
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
         Set<Link> updatedLinks = moduleToEdit.copyLinks();
         updatedLinks.addAll(linksToAdd);
-        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks);
+        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks, modulePersons);
     }
 
     @Override

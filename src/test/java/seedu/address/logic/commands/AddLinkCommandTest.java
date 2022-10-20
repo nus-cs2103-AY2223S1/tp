@@ -27,6 +27,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddLinkCommand.
@@ -42,10 +43,12 @@ public class AddLinkCommandTest {
         Module moduleToEdit = expectedModel.getFilteredModuleList().get(0);
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
         List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<Link> moduleLinks = moduleToEdit.copyLinks();
         moduleLinks.addAll(linksToAdd);
-        Module moduleToAddLink = new Module(moduleCode, moduleTitle, moduleTasks, moduleLinks);
+        Module moduleToAddLink = new Module(moduleCode, moduleTitle,
+                moduleTasks, moduleLinks, modulePersons);
 
         AddLinkCommand addLinkCommand = new AddLinkCommand(INDEX_FIRST_MODULE, linksToAdd);
         expectedModel.setModule(moduleToEdit, moduleToAddLink);

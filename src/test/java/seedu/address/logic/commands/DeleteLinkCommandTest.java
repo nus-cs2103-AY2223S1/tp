@@ -27,6 +27,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteLinkCommand.
@@ -43,9 +44,11 @@ public class DeleteLinkCommandTest {
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
         Set<Link> moduleLinksToDelete = moduleToEdit.copyLinks();
         Set<Link> moduleLinksEmpty = new HashSet<Link>();
-        Module moduleToDeleteLink = new Module(moduleCode, moduleTitle, moduleTasks, moduleLinksEmpty);
+        Module moduleToDeleteLink = new Module(moduleCode, moduleTitle,
+                moduleTasks, moduleLinksEmpty, modulePersons);
 
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(
                 Index.fromZeroBased(MODULE_INDEX_WITH_LINK_ZERO_BASED), moduleLinksToDelete);

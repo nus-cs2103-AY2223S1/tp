@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
@@ -18,6 +17,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes a link to an existing module in Plannit.
@@ -64,7 +64,6 @@ public class DeleteLinkCommand extends Command {
         Module editedModule = createEditedModule(moduleToEdit, links, index);
 
         model.setModule(moduleToEdit, editedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS, editedModule));
     }
 
@@ -79,9 +78,10 @@ public class DeleteLinkCommand extends Command {
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
         Set<Link> originalLinksCopy = moduleToEdit.copyLinks();
         Set<Link> updatedLinks = removeLinksFromSet(originalLinksCopy, linksToRemove, index);
-        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks);
+        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks, modulePersons);
     }
 
     //Partial deletion of links is not supported

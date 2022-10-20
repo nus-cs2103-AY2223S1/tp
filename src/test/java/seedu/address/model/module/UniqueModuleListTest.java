@@ -3,8 +3,8 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2106;
 import static seedu.address.testutil.TypicalModules.MA2001;
@@ -43,7 +43,7 @@ public class UniqueModuleListTest {
     public void contains_moduleWithSameIdentityFieldsInList_returnsTrue() {
         uniqueModuleList.add(CS2106);
         Module editedCs2106 =
-                new ModuleBuilder(CS2106).withModuleTitle(VALID_MA_MODULE_TITLE)
+                new ModuleBuilder(CS2106).withModuleTitle(VALID_MA2001_MODULE_TITLE)
                 .build();
         assertTrue(uniqueModuleList.contains(editedCs2106));
     }
@@ -87,7 +87,7 @@ public class UniqueModuleListTest {
     public void setModule_editedModuleHasSameIdentity_success() {
         uniqueModuleList.add(CS2106);
         Module editedCs2106 =
-                new ModuleBuilder(CS2106).withModuleTitle(VALID_MA_MODULE_TITLE)
+                new ModuleBuilder(CS2106).withModuleTitle(VALID_MA2001_MODULE_TITLE)
                 .build();
         uniqueModuleList.setModule(CS2106, editedCs2106);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
@@ -188,7 +188,7 @@ public class UniqueModuleListTest {
         uniqueModuleList.add(CS2106);
 
         Module moduleWithDifferentFields =
-                new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE).build();
+                new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).build();
         Module retrievedModule = uniqueModuleList.getModule(moduleWithDifferentFields);
         assertEquals(expectedModule, retrievedModule);
     }
