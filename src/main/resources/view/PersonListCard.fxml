@@ -44,7 +44,7 @@
                      <Insets right="10.0" />
                   </padding>
                   <graphic>
-                     <Label styleClass="circle_icon">
+                     <Label styleClass="circle_icon_label">
                         <graphic>
                            <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
                         </graphic>
