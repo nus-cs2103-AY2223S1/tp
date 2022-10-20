@@ -77,14 +77,14 @@ Format: `help`
 
 Adds a person to Friendnancial.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [a/Address] [b/BIRTHDAY] [i/INSURANCE]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [a/Address] [b/BIRTHDAY] …​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18 August 2000`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
@@ -162,7 +162,7 @@ Format: `clear`
 
 ### Getting reminders : `remind`
 
-Reminds the user of the upcoming birthdays of all contacts stored in Friendnancial.
+Reminds the user of the upcoming birthdays of all the users contacts stored in Friendnancial.
 
 Format: `remind`
 
@@ -193,7 +193,7 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 | Action     | Format, Examples                                                                                                                                         |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] [a/ADDRESS] [b/BIRTHDAY] [i/INSURANCE]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] [a/ADDRESS] [b/BIRTHDAY]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18 August 2000` |
 | **Clear**  | `clear`                                                                                                                                                  |
 | **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                                   |
 | **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                        |

@@ -19,7 +19,7 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
@@ -41,32 +41,47 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_NAME).get();
+            checkEmptyField(noPrefixArgs);
             String[] nameKeywords = noPrefixArgs.split("\\s+");
             return new FindCommand(
                     new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_PHONE).get();
+            checkEmptyField(noPrefixArgs);
             String[] phoneKeywords = noPrefixArgs.split("\\s+");
             return new FindCommand(
                     new PhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
         } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_ADDRESS).get();
+            checkEmptyField(noPrefixArgs);
             String[] addressKeywords = noPrefixArgs.split("\\s+");
             return new FindCommand(
                     new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
         } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_EMAIL).get();
+            checkEmptyField(noPrefixArgs);
             String[] emailKeywords = noPrefixArgs.split("\\s+");
             return new FindCommand(
                     new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_TAG).get();
+            checkEmptyField(noPrefixArgs);
             String[] tagKeywords = noPrefixArgs.split("\\s+");
             return new FindCommand(
                     new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Checks the given {@code String} of arguments.
+     * @throws ParseException if the user input is empty
+     */
+    public static void checkEmptyField(String args) throws ParseException {
+        if (args.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
