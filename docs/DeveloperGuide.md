@@ -224,9 +224,9 @@ Activity: Determines and returns a category
     * Cons: Increased complexity.
 
 ### Add Interest Feature
-The ```addInt``` command allows users to add an interest or a list of interests by indicating the index of the student to be modified and the list of interests to add.
+The ```addInt``` command allows users to add an interest or a list of interests by indicating the index of the student to be modified and the list of interests to be added.
 
-The arguments of the command are:
+The command takes in:
 - ```Index```
 - ```Set<Interest>```
 
@@ -234,30 +234,34 @@ The arguments of the command are:
 Each ```Person``` has a ```Set``` of ```Interest``` and adding an ```Interest``` would add the specified ```Interest``` into this set.
 
 The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
-```Parser```. ```AddInterestCommandParser``` serves to check the syntax of the command, while ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
+```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
 
 ####Steps:
 1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```AddressBookParser``` to parse the command.
 2. A new ```AddInterestCommandParser``` object is constructed.
-3. ```AddInterestCommandParser#parse``` checks the command syntax and returns a list of Interests specified in the command arguments. A new ```AddInterestCommand``` is constructed.
+3. ```AddInterestCommandParser#parse``` parses the command arguments and returns a set of Interests. A new ```AddInterestCommand``` is constructed.
 4. ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
-5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Person``` marked by the ```Index```.
-6. ```Person``` is updated with the added interests, and ```ModelManager``` will also be updated with the changes.
+5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Person``` marked by ```Index```.
+6. ```Person``` is updated with the added interests. ```ModelManager``` will also be updated with the changes.
 
 The sequence diagram for the command ```addInt 1 anime``` is as follows.
+
 ![AddInterestSequenceDiagram](images/AddInterestSequenceDiagram.png)
+
 In addition, the below sequence diagram illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers. 
+
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
+
 ####Design considerations:
 1. Usefulness of ```AddInterestCommand```
-- Current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` provides a quick way to add new interests.
+- The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Person```.
 2. Managing the List of Interests
 - **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Person``` class.
-    * Pros: Easy to implement and the use of ```HashSet``` to prevent duplicates.
-    * Cons: Less abstraction as the logic of getting the list and adding to the list has to be handled by ```Person```.
+    * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
+    * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Person```.
 - **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniquePersonList```)
-  * Pros: Greater abstraction as the low-level details of adding, removing and checking the interests are abstracted. Adhering to Single Responsibility Responsibility as the list of interests are handled by the ```UniqueInterestList``` class.
-  * Cons: List of ```Interest``` is often moderately few so Alternative 2 could result in unnecessary implementation overhead complexity.
+  * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
+  * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead complexity.
 
 ### \[Proposed\] Undo/redo feature
 
