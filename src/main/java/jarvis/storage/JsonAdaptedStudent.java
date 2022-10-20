@@ -73,5 +73,4 @@ public class JsonAdaptedStudent {
         MasteryCheckResult resultMc2 = new MasteryCheckResult(2, passMc2);
         return new Student(modelStudentName, modelMatricNum, new MasteryCheckStatus(resultMc1, resultMc2));
     }
-
 }

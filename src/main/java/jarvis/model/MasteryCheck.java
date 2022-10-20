@@ -2,6 +2,9 @@ package jarvis.model;
 
 import java.util.Objects;
 
+import jarvis.storage.JsonAdaptedConsult;
+import jarvis.storage.JsonAdaptedMasteryCheck;
+
 /**
  * Represents a Mastery Check in JARVIS.
  * Guarantees: details are present and not null.
@@ -43,5 +46,16 @@ public class MasteryCheck extends Lesson {
     @Override
     public String toString() {
         return "Mastery Check at " + getTimePeriod();
+    }
+
+    @Override
+    public String getType() {
+        return "mastery check";
+    }
+
+    @Override
+    public JsonAdaptedMasteryCheck toJson() {
+        return new JsonAdaptedMasteryCheck("mastery check", this.getDesc().lessonDesc, this.getTimePeriod(), this.getAttendance(),
+                this.getNotes(), this.isCompleted());
     }
 }

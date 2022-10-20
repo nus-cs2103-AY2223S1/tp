@@ -15,17 +15,17 @@ import jarvis.model.StudentBook;
 
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable StudentBook that is serializable to JSON format.
  */
 @JsonRootName(value = "studentbook")
 public class JsonSerializableStudentBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given students.
+     * Constructs a {@code JsonSerializableStudentBook} with the given students.
      */
     @JsonCreator
     public JsonSerializableStudentBook(@JsonProperty("students") List<JsonAdaptedStudent> students) {
@@ -51,7 +51,7 @@ public class JsonSerializableStudentBook {
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (studentBook.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
             studentBook.addStudent(student);
         }

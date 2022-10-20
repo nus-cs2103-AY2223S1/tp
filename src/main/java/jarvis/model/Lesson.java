@@ -5,6 +5,8 @@ import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jarvis.storage.JsonAdaptedLesson;
+
 /**
  * Represents a Lesson in JARVIS.
  * Guarantees: details are present and not null.
@@ -81,4 +83,12 @@ public abstract class Lesson {
     public LessonAttendance getAttendance() {
         return attendance;
     }
+
+    public LessonNotes getNotes() {
+        return notes;
+    }
+
+    public abstract String getType();
+
+    public abstract JsonAdaptedLesson toJson();
 }

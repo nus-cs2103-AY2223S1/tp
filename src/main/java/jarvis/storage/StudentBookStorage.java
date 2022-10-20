@@ -33,14 +33,14 @@ public interface StudentBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyStudentBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param studentBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveStudentBook(ReadOnlyStudentBook addressBook) throws IOException;
+    void saveStudentBook(ReadOnlyStudentBook studentBook) throws IOException;
 
     /**
      * @see #saveStudentBook(ReadOnlyStudentBook)
      */
-    void saveStudentBook(ReadOnlyStudentBook addressBook, Path filePath) throws IOException;
+    void saveStudentBook(ReadOnlyStudentBook studentBook, Path filePath) throws IOException;
 
 }

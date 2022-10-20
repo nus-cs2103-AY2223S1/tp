@@ -11,7 +11,7 @@ public class TimePeriod {
 
     public static final String MESSAGE_CONSTRAINTS = "Date Time should be in yyyy-MM-ddTHH:mm format";
 
-    public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
     private final LocalDateTime start;
     private final LocalDateTime end;
 

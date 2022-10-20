@@ -4,6 +4,9 @@ import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import jarvis.storage.JsonAdaptedConsult;
+import jarvis.storage.JsonAdaptedStudio;
+
 /**
  * Represents a Studio in JARVIS.
  * Guarantees: details are present and not null.
@@ -64,5 +67,16 @@ public class Studio extends Lesson {
     @Override
     public String toString() {
         return "Studio at " + getTimePeriod();
+    }
+
+    @Override
+    public String getType() {
+        return "studio";
+    }
+
+    @Override
+    public JsonAdaptedStudio toJson() {
+        return new JsonAdaptedStudio("studio", this.getDesc().lessonDesc, this.getTimePeriod(), this.getAttendance(),
+                this.getNotes(), this.isCompleted(), this.getParticipation());
     }
 }

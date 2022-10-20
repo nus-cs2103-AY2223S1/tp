@@ -2,6 +2,8 @@ package jarvis.model;
 
 import java.util.Objects;
 
+import jarvis.storage.JsonAdaptedConsult;
+
 /**
  * Represents a Consult in JARVIS.
  * Guarantees: details are present and not null.
@@ -43,5 +45,16 @@ public class Consult extends Lesson {
     @Override
     public String toString() {
         return "Consult at " + getTimePeriod();
+    }
+
+    @Override
+    public String getType() {
+        return "consult";
+    }
+
+    @Override
+    public JsonAdaptedConsult toJson() {
+        return new JsonAdaptedConsult("consult", this.getDesc().lessonDesc, this.getTimePeriod(),
+                this.getAttendance(), this.getNotes(), this.isCompleted());
     }
 }

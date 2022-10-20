@@ -1,7 +1,10 @@
 package jarvis.model.util;
 
+import jarvis.model.Lesson;
+import jarvis.model.LessonBook;
 import jarvis.model.MasteryCheckStatus;
 import jarvis.model.MatricNum;
+import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Student;
 import jarvis.model.StudentBook;
@@ -11,7 +14,7 @@ import jarvis.model.StudentName;
  * Contains utility methods for populating {@code StudentBook} with sample data.
  */
 public class SampleStudentUtil {
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new StudentName("Alex Yeoh"), new MatricNum("A0123456A"), MasteryCheckStatus.getDefault()),
             new Student(new StudentName("Bernice Yu"), new MatricNum("A0000000D"), MasteryCheckStatus.getDefault()),
@@ -26,7 +29,7 @@ public class SampleStudentUtil {
 
     public static ReadOnlyStudentBook getSampleStudentBook() {
         StudentBook sampleStudentBook = new StudentBook();
-        for (Student sampleStudent : getSamplePersons()) {
+        for (Student sampleStudent : getSampleStudents()) {
             sampleStudentBook.addStudent(sampleStudent);
         }
         return sampleStudentBook;

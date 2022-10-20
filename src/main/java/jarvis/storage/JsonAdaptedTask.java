@@ -15,7 +15,7 @@ import jarvis.model.TaskDesc;
  */
 class JsonAdaptedTask {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tasks's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String taskDesc;
     private final LocalDate deadline;
