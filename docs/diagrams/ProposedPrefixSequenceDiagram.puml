@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+Participant ":AddClientCommandParser" as accp LOGIC_COLOR
+Participant ":ArgumentTokenizer" as at LOGIC_COLOR
+Participant ":Prefix" as prefix LOGIC_COLOR
+
+
+accp -[LOGIC_COLOR]> at : tokenize("addClient ... d/12122000")
+activate accp LOGIC_COLOR
+activate at LOGIC_COLOR
+
+
+at -[LOGIC_COLOR]> at : findAllPrefixPositions()
+activate at LOGIC_COLOR
+
+loop has next prefix
+at -[LOGIC_COLOR]> prefix : getPrefix()
+activate prefix LOGIC_COLOR
+prefix --[LOGIC_COLOR]> at : Pattern
+deactivate prefix
+
+            at -[LOGIC_COLOR]> at: findPrefixPosition()
+            activate at LOGIC_COLOR
+                   alt pattern matches
+
+            at --[LOGIC_COLOR]> at : int
+            deactivate at
+            end
+            end
+
+at --[LOGIC_COLOR]> at :
+deactivate at
+
+at --[LOGIC_COLOR]> accp : argMultimap
+
+deactivate at
+deactivate accp
+<[LOGIC_COLOR]-- accp :  AddClientCommand
+@enduml

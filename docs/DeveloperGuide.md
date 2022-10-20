@@ -155,6 +155,45 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+Usage of `editClient` and `editMeeting`:
+
+`editClient` and `editMeeting` execute in a similar manner to each other.
+Let the term entity refer to either a client or a meeting.
+Every entity is uniquely identified by a UUID in storage, so essentially all fields in an entity can be edited without loss of uniqueness of the entity.
+
+[Proposed] Multiple possible prefixes per command feature
+
+In this proposed feature, the user is provided with  multiple possible prefixes for defining fields in a command.
+For example, currently we can define a client's birthday using the `\b` prefix.
+However, since a birthday is essentially a date, a user may prefer to reuse the `\d` prefix instead (see `addMeeting` command).
+
+Proposed implementation 
+
+AddClientCommandParser depends on multiple Prefix objects such as PREFIX_BIRTHDAY, and PREFIX_DATE to identify each field in an AddClientCommand.
+Currently, Prefix class stores the required prefix word as a String.
+Consider changing the prefix word to a Pattern which can be matched against using Matcher. 
+For all prefixes we are looking for, we first get the matching pattern using getPrefix().
+Then, findPrefixPosition()  validates the presence of a field and also obtain the index of its first occurrence.
+From then on, the AddClientCommand can be built as expected.
+
+<img src="images/ProposedPrefixSequenceDiagram.png" width="550" />
+
+
+#### Design considerations
+
+Alternatives for storing prefixes:
+
+**Alternative 1:** Store each possible prefix as a String in a List.
+
+- Pros:
+
+No need to import handle Pattern, and Matcher classes.
+String matches are easier to understand than regexes.
+- Cons:
+
+Do not offer as much flexibility as regexes.
+List of String returned by getPrefix() cumbersome to use.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -225,7 +264,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User inputs incomplete or duplicate client data.
+* 1a. User inputs incomplete client data.
 
     * 1a1. System shows an error message.
 
@@ -248,6 +287,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+#### Use case: UC3 - List all clients
+
+**MSS**
+
+1. User requests for a list of all clients.
+2. System shows a list of all clients.
+
+   Use case ends.
+
 #### Use case: UC4 - List all meetings
 
 **MSS**
@@ -258,6 +306,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
    Use case ends.
 
 #### Use case: UC5 - Delete a meeting
+
+**MSS**
+
+1. User requests for a [list of all meetings (UC4)](#use-case-uc4---list-all-meetings).
+2. System shows a list of all meetings.
+3. User requests to delete one meeting from the list.
+4. System deletes the meeting specified by the user.
+5. System informs user that the specified meeting is deleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User deletes a meeting that was not shown in the list.
+
+    * 3a1. System shows an error message.
+
+      Use case ends.
+
 
 **MSS**
 
