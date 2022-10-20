@@ -232,17 +232,30 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}
+### Add Task Feature
+
+#### Implementation
+
+The add task feature adds a task into a team and this change is reflected in the Graphical User Interface.
+The user may specify a deadline to be associated with the task (i.e. deadline is optional).
+The deadline is implemented using `Optional<LocalDate>`. Thus, the deadline can be passed into other methods without knowing whether the deadline exists or not. The `Task` objects are stored in a `UniqueTaskList`.
+
+Given below is an example usage scenario.
+
+Step 1. The user creates the task using the `taskadd` command, executing `taskadd t/1 n/Create Feature A d/12-12-2022` to add the task "Create Feature A" to team 1, with 12th December 2022 as the deadline.
+
+The following sequence diagram shows how the add task operation works:
+![TaskAddSequenceDiagram](images/TaskAddSequenceDiagram.png)
 
 ### Mark Task Feature
 
-#### Implementation 
+#### Implementation
 
-The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface. 
+The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface.
 
-Given below is an example usage scenario 
+Given below is an example usage scenario
 
-Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false. 
+Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false.
 
 Step 2. After the task is completed, the user want to mark the task as done. The user then executes `taskmark t/1 task/3` to mark the 3rd task in the 1st team as completed. The task which is contained in team 1 would be marked as completed and this would be reflected in the gui.
 
@@ -251,6 +264,8 @@ Step 3. The user realised that there is some error in the task and wants to unma
 
 The following sequence diagram shows how the mark task operation works:
 ![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
+
+_{more aspects and alternatives to be added}
 
 
 ### \[Proposed\] Data archiving
