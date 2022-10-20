@@ -66,12 +66,6 @@ deactivate TrackAScholarParser
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : hasApplicant(applicant)
-activate Model
-
-Model --> AddCommand
-deactivate
-
 AddCommand -> Model : addApplicant(applicant)
 activate Model
 

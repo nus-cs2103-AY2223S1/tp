@@ -22,7 +22,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         case "pending":
         case "accepted":
         case "rejected":
-            return new FilterCommand(new ApplicationStatusPredicate(trimmedArgs));
+            ApplicationStatusPredicate predicate = new ApplicationStatusPredicate(trimmedArgs);
+            return new FilterCommand(predicate);
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
