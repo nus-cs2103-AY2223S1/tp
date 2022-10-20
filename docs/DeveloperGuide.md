@@ -249,14 +249,13 @@ Below is a sequence diagram and explanation of how `add` is executed.
 
 Step 1. The user enters the command `add n/Jon j/janitor`.
 
-Step 2. User input is parsed by `AddCommandParser` which creates the`AddCommand` object, then the method LogicManager#execute is called to create the AddCommand object.
+Step 2. User input is parsed by `AddCommandParser` which creates the`AddCommand` object, then the method `LogicManager#execute` is called to create the AddCommand object.
 
 Step 3. The `execute` method of AddCommand is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This adds the `person` from the list from the model. The employeeID is set and if there already exist a `person` object with the same field data, a `CommandException` will be thrown and a message indicating duplicate person will be shown. If the `person` object does not exist, then using model#addPerson(), the `person` object is added to the `database`.
+Step 4. This adds the `person` from the list from the model. The `employeeID` is set and if there already exist a `person` object with the same field data, a `CommandException` will be thrown and a message indicating duplicate person will be shown. If the `person` object does not exist, then using `model#addPerson()`, the `person` object is added to the `database`.
 
-Step 5. storage#saveDatabase is then called on the current `database`, updates the database to contain the new `person`.
-
+Step 5. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new `person`.
 
 ### Delete feature
 
