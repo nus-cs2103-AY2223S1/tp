@@ -57,7 +57,6 @@ class JsonAdaptedApplication {
         this.email = email;
         this.position = position;
         this.date = date;
-<<<<<<< HEAD
 
         this.round = "";
         this.interviewDate = "";

@@ -7,16 +7,20 @@ import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalApplications.FACEBOOK;
 import static seedu.application.testutil.TypicalApplications.SHOPEE;
+import static seedu.application.testutil.TypicalApplications.getTypicalApplicationBook;
+import static seedu.application.testutil.TypicalApplications.getTypicalApplications;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.application.commons.core.GuiSettings;
+import seedu.application.model.application.Application;
 import seedu.application.model.application.CompanyContainsKeywordsPredicate;
 import seedu.application.model.application.PositionContainsKeywordsPredicate;
 import seedu.application.testutil.ApplicationBookBuilder;
@@ -95,6 +99,69 @@ public class ModelManagerTest {
     public void getFilteredApplicationList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredApplicationList()
                 .remove(0));
+    }
+
+    @Test
+    public void sortApplicationListByCompany_emptyList_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.sortApplicationListByCompany(false);
+        modelManager.sortApplicationListByCompany(true);
+    }
+
+    @Test
+    public void sortApplicationListByCompany_nonemptyList_applicationsCorrectOrder() {
+        ModelManager modelManager = new ModelManager(getTypicalApplicationBook(), new UserPrefs());
+        List<Application> applications = getTypicalApplications();
+
+        modelManager.sortApplicationListByCompany(false);
+        applications.sort(Comparator.comparing(Application::getCompany));
+        assertEquals(modelManager.getFilteredApplicationList(), applications);
+
+        modelManager.sortApplicationListByCompany(true);
+        applications.sort(Comparator.comparing(Application::getCompany).reversed());
+        assertEquals(modelManager.getFilteredApplicationList(), applications);
+    }
+
+    @Test
+    public void sortApplicationListByPosition_emptyList_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.sortApplicationListByPosition(false);
+        modelManager.sortApplicationListByPosition(true);
+    }
+
+    @Test
+    public void sortApplicationListByPosition_nonemptyList_applicationsCorrectOrder() {
+        ModelManager modelManager = new ModelManager(getTypicalApplicationBook(), new UserPrefs());
+        List<Application> applications = getTypicalApplications();
+
+        modelManager.sortApplicationListByPosition(false);
+        applications.sort(Comparator.comparing(Application::getPosition));
+        assertEquals(modelManager.getFilteredApplicationList(), applications);
+
+        modelManager.sortApplicationListByPosition(true);
+        applications.sort(Comparator.comparing(Application::getPosition).reversed());
+        assertEquals(modelManager.getFilteredApplicationList(), applications);
+    }
+
+    @Test
+    public void sortApplicationListByDate_emptyList_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.sortApplicationListByDate(false);
+        modelManager.sortApplicationListByDate(true);
+    }
+
+    @Test
+    public void sortApplicationListByDate_nonemptyList_applicationsCorrectOrder() {
+        ModelManager modelManager = new ModelManager(getTypicalApplicationBook(), new UserPrefs());
+        List<Application> applications = getTypicalApplications();
+
+        modelManager.sortApplicationListByDate(false);
+        applications.sort(Comparator.comparing(Application::getDate));
+        assertEquals(modelManager.getFilteredApplicationList(), applications);
+
+        modelManager.sortApplicationListByDate(true);
+        applications.sort(Comparator.comparing(Application::getDate).reversed());
+        assertEquals(modelManager.getFilteredApplicationList(), applications);
     }
 
     @Test
