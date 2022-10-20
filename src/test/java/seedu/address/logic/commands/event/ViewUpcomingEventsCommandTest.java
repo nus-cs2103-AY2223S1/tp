@@ -29,4 +29,19 @@ public class ViewUpcomingEventsCommandTest {
         // different value -> returns false
         assertFalse(viewUpcomingFirstCommand.equals(viewUpcomingSecondCommand));
     }
+
+    @Test
+    public void execute_noEventsFound() {
+
+    }
+
+    @Test
+    public void execute_singleEventFound() {
+
+    }
+
+    @Test
+    public void execute_multipleEventsFound() {
+
+    }
 }
