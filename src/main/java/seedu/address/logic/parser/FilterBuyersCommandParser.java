@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,7 +26,7 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CHARACTERISTICS, PREFIX_PRICE,
-                PREFIX_TAG);
+                PREFIX_PRIORITY);
 
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             try {

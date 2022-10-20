@@ -9,11 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +19,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Priority;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
@@ -137,7 +133,6 @@ public class EditPropertyCommand extends Command {
         private Price price;
         private Address address;
         private Description description;
-        private Set<Priority> priorities;
         private String seller;
         private Characteristics characteristics;
 
@@ -152,7 +147,6 @@ public class EditPropertyCommand extends Command {
             setPrice(toCopy.price);
             setDescription(toCopy.description);
             setAddress(toCopy.address);
-            setTags(toCopy.priorities);
             setSeller(toCopy.seller);
             setCharacteristics(toCopy.characteristics);
         }
@@ -161,7 +155,7 @@ public class EditPropertyCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, price, address, description, priorities);
+            return CollectionUtil.isAnyNonNull(name, price, address, description);
         }
 
         public void setName(PropertyName propertyName) {
@@ -194,23 +188,6 @@ public class EditPropertyCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Priority> priorities) {
-            this.priorities = (priorities != null) ? new HashSet<>(priorities) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Priority>> getTags() {
-            return (priorities != null) ? Optional.of(Collections.unmodifiableSet(priorities)) : Optional.empty();
         }
 
         public void setSeller(String seller) {
@@ -248,7 +225,6 @@ public class EditPropertyCommand extends Command {
                     && getPrice().equals(e.getPrice())
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
                     && getSeller().equals(e.getSeller())
                     && getCharacteristics().equals(e.getCharacteristics());
         }

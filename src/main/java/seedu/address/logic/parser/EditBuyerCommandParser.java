@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditBuyerCommand;
@@ -29,7 +29,7 @@ public class EditBuyerCommandParser extends Parser<EditBuyerCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_TAG);
+                        PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY);
 
         Index index;
 
@@ -60,9 +60,9 @@ public class EditBuyerCommandParser extends Parser<EditBuyerCommand> {
             editPersonDescriptor.setDesiredCharacteristics(ParserUtil
                     .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
         }
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             editPersonDescriptor.setPriority(ParserUtil
-                    .parsePriority(argMultimap.getValue(PREFIX_TAG).get()));
+                    .parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

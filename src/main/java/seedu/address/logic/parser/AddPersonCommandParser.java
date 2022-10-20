@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,7 +33,7 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
     public AddPersonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_TAG);
+                        PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -57,8 +57,8 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
         }
 
         Priority priority = new Priority("normal");
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_TAG).get());
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
 
         Person person = new Person(name, phone, email, address, priceRange, characteristics, priority);

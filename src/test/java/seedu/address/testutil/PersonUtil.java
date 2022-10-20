@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
@@ -39,7 +39,7 @@ public class PersonUtil {
         if (person.getDesiredCharacteristics().isPresent()) {
             sb.append(PREFIX_CHARACTERISTICS + person.getDesiredCharacteristics().get().toString());
         }
-        sb.append(PREFIX_TAG + person.getPriority().toString() + " ");
+        sb.append(PREFIX_PRIORITY + person.getPriority().toString() + " ");
         return sb.toString();
     }
 
@@ -56,7 +56,7 @@ public class PersonUtil {
                 .append(priceRange).append(" "));
         descriptor.getDesiredCharacteristics().ifPresent(desiredCharacteristics -> sb.append(PREFIX_CHARACTERISTICS)
                 .append(desiredCharacteristics).append(" "));
-        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_TAG)
+        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_PRIORITY)
                 .append(priority.specifiedPriority).append(" "));
         return sb.toString();
     }

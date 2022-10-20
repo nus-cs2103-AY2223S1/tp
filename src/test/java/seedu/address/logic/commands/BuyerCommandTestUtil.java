@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -49,8 +49,6 @@ public class BuyerCommandTestUtil {
     public static final String VALID_ADDRESS_HOME = "25 College Avenue East";
     public static final String VALID_PRICE_HOME = "0";
     public static final String VALID_DESCRIPTION_HOME = "Tembu";
-    public static final String VALID_TAG_DORM = "dorm";
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -65,8 +63,8 @@ public class BuyerCommandTestUtil {
             + VALID_DESIRED_CHARACTERISTICS_AMY;
     public static final String DESIRED_CHARACTERISTICS_DESC_BOB = " " + PREFIX_CHARACTERISTICS
             + VALID_DESIRED_CHARACTERISTICS_BOB;
-    public static final String TAG_DESC_PRIORITY_HIGH = " " + PREFIX_TAG + VALID_PRIORITY_HIGH;
-    public static final String TAG_DESC_PRIORITY_LOW = " " + PREFIX_TAG + VALID_PRIORITY_LOW;
+    public static final String TAG_DESC_PRIORITY_HIGH = " " + PREFIX_PRIORITY + VALID_PRIORITY_HIGH;
+    public static final String TAG_DESC_PRIORITY_LOW = " " + PREFIX_PRIORITY + VALID_PRIORITY_LOW;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -75,9 +73,7 @@ public class BuyerCommandTestUtil {
     public static final String INVALID_PRICE_RANGE_DESC = " " + PREFIX_PRICE_RANGE + "200"; // missing upper end value
     public static final String INVALID_DESIRED_CHARACTERISTICS_DESC = " " + PREFIX_CHARACTERISTICS;
     // empty string not allowed for desired characteristics
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
-    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_TAG + "zzz";
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "zzz";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

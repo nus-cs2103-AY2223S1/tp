@@ -29,7 +29,8 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_LOW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
@@ -52,7 +53,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditBuyerCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String TAG_EMPTY = " " + PREFIX_PRIORITY;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBuyerCommand.MESSAGE_USAGE);
@@ -177,6 +178,21 @@ public class EditBuyerCommandParserTest {
         userInput = targetIndex.getOneBased() + TAG_DESC_PRIORITY_HIGH;
         descriptor = new EditPersonDescriptorBuilder().withPriority(VALID_PRIORITY_HIGH).build();
         expectedCommand = new EditBuyerCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleRepeatedFields_acceptsLast() {
+        Index targetIndex = INDEX_FIRST_ITEM;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+                + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_PRIORITY_HIGH
+                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_PRIORITY_LOW;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withPriority(VALID_PRIORITY_LOW)
+                .build();
+        EditBuyerCommand expectedCommand = new EditBuyerCommand(targetIndex, descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
