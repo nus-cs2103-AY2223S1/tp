@@ -349,7 +349,7 @@ The relevant commands are:
 
 #### Design Considerations
 
-The syntax and command word were aspects that we took into consideration in the design process. 
+The syntax and command word were aspects that we took into consideration in the design process.
 
 1. **Using the shorthand word `cd` and similar syntax e.g. `cd ..` (Current Implementation)**
   * Pro: Users who are familiar with CLI applications will be able to use similar syntax for navigation inside the application
@@ -371,7 +371,7 @@ The following activity diagram shows the execution and control flow for the `cd`
 
 <img src="images/CdActivityDiagram.png" width="1000" />
 
-As seen from the diagram, when the user enters the command `cd ..` to exit from the currently selected module, a check is performed to determine whether there *is* a current module. 
+As seen from the diagram, when the user enters the command `cd ..` to exit from the currently selected module, a check is performed to determine whether there *is* a current module.
 
 In the case where there is no current module, i.e. the user is already at the 'root' (and all modules/tasks are listed), an error message is shown to the user alerting them of this fact. This improves the user experience as it prevents the case of a user repeatedly entering the `cd ..` command and wondering why the display never changes.
 
