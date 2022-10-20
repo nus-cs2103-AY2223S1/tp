@@ -125,7 +125,7 @@ The diagram also includes some new classes involved. For example, the `find` com
 
 <img src="images/CommandClasses.png" width="1200"/>
 
-### Model component
+## Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
