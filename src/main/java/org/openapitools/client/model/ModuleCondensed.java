@@ -13,7 +13,6 @@
 
 package org.openapitools.client.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -175,45 +174,79 @@ public class ModuleCondensed {
      * Gets or Sets semesters
      */
     public enum SemestersEnum {
-        NUMBER_1(1),
+        S1("S1"),
 
-        NUMBER_2(2),
+        S2("S2"),
 
-        NUMBER_3(3),
+        ST1("ST1"),
 
-        NUMBER_4(4);
+        ST2("ST2");
 
-        private int value;
+        private String value;
 
-        SemestersEnum(int value) {
+        SemestersEnum(String value) {
             this.value = value;
         }
 
         @JsonCreator
-        public static SemestersEnum fromValue(int value) {
+        public static SemestersEnum fromValue(String value) {
             for (SemestersEnum b : SemestersEnum.values()) {
-                if (b.value == value) {
+                if (b.value.equals(value)) {
                     return b;
                 }
             }
             throw new IllegalArgumentException("Unexpected value '" + value + "'");
         }
 
+        /**
+         * Overload method that takes in integer as value (original implementation) and returns correct sem details.
+         * @param value
+         * @return
+         */
+        @JsonCreator
+        public static SemestersEnum fromValue(int value) {
+            switch (value) {
+                case 1:
+                    return S1;
+                case 2:
+                    return S2;
+                case 3:
+                    return ST1;
+                case 4:
+                    return ST2;
+                default:
+                    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+            }
+        }
+
+        /**
+         * Method that returns integer value instead of string value based on original implementation.
+         * @return
+         */
         @JsonValue
         public int getValue() {
-            return value;
+            switch (value) {
+                case "S1":
+                    return 1;
+                case "S2":
+                    return 2;
+                case "ST1":
+                    return 3;
+                default:
+                    return 4;
+            }
         }
 
         @Override
         public String toString() {
             switch (value) {
-            case 1:
+            case "S1":
                 return "Semester 1";
-            case 2:
+            case "S2":
                 return "Semester 2";
-            case 3:
+            case "ST1":
                 return "Special Term 1";
-            case 4:
+            case "ST2":
                 return "Special Term 2";
             default:
                 return "Invalid semester!";
