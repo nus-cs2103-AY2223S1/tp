@@ -92,8 +92,8 @@ public class OrderCard extends UiPart<Region> {
         items.setStyle("-fx-background-insets: 5 0 5 0;");
         items.getStyleClass().add("ordered-items-container");
         order.getItemList().stream()
-                .forEach(item -> items.getChildren().add(
-                        constructItemLabel("\u2022 " + item.getQuantity() + " * " + item.getItem())));
+                .forEach(pair -> items.getChildren().add(
+                        constructItemLabel(pair.toString())));
     }
 
     /**

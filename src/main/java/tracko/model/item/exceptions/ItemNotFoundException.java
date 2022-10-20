@@ -1,4 +1,4 @@
-package tracko.model.items.exceptions;
+package tracko.model.item.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified person.

@@ -1,4 +1,4 @@
-package tracko.model.items;
+package tracko.model.item;
 
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.AppUtil.checkArgument;

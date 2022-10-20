@@ -5,11 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import tracko.model.items.InventoryList;
-import tracko.model.items.Item;
+import tracko.model.item.InventoryList;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
-
 
 /**
  * Wraps all data at the root level
@@ -34,14 +33,6 @@ public class TrackO implements ReadOnlyTrackO {
         resetData(toBeCopied);
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders.setOrders(orders);
-    }
-
-    public void setItems(List<Item> items) {
-        this.items.setItems(items);
-    }
-
     /**
      * Resets the existing data of this {@code TrackO} with {@code newData}.
      */
@@ -49,6 +40,12 @@ public class TrackO implements ReadOnlyTrackO {
         requireNonNull(newData);
         setItems(newData.getInventoryList());
         setOrders(newData.getOrderList());
+    }
+
+    // ORDER METHODS =======================================================================
+
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
     }
 
     /**
@@ -67,12 +64,35 @@ public class TrackO implements ReadOnlyTrackO {
         orders.delete(order);
     }
 
+    @Override
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
+    }
+
+    // ITEM METHODS =======================================================================
+
+    public void setItems(List<Item> items) {
+        this.items.setItems(items);
+    }
+
+    public void setItems(InventoryList inventoryList) {
+        this.items.setItems(inventoryList);
+    }
+
     /**
      * Adds an item to be tracked.
      * @param item The item to be added
      */
     public void addItem(Item item) {
         items.add(item);
+    }
+
+    /**
+     * Returns an item that has the given item name.
+     * @param itemName The given item name
+     */
+    public Item getItem(String itemName) {
+        return items.get(itemName);
     }
 
     /**
@@ -98,13 +118,7 @@ public class TrackO implements ReadOnlyTrackO {
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
-
         items.setItem(target, editedItem);
-    }
-
-    @Override
-    public ObservableList<Order> getOrderList() {
-        return orders.asUnmodifiableObservableList();
     }
 
     @Override
@@ -112,10 +126,19 @@ public class TrackO implements ReadOnlyTrackO {
         return items.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns the inventory list object of the model.
+     * @return The inventory list object of the model.
+     */
+    public InventoryList getInventoryReference() {
+        return items;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof TrackO)
+                && items.equals(((TrackO) other).items)
                 && orders.equals(((TrackO) other).orders);
     }
 

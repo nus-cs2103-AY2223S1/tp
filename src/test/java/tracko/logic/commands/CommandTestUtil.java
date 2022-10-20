@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static tracko.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static tracko.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -16,8 +18,8 @@ import tracko.commons.core.index.Index;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
 import tracko.model.TrackO;
-import tracko.model.items.Item;
-import tracko.model.items.ItemContainsKeywordsPredicate;
+import tracko.model.item.Item;
+import tracko.model.item.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
 import tracko.model.order.OrderContainsKeywordsPredicate;
 
@@ -48,10 +50,17 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
 
+    public static final String ITEM_NAME_AMY = " " + PREFIX_ITEM + VALID_NAME_AMY;
+    public static final String QUANTITY_AMY = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_AMY;
+    public static final String ITEM_NAME_BOB = " " + PREFIX_ITEM + VALID_ITEM_NAME_BOB;
+    public static final String QUANTITY_BOB = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_BOB;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ITEM_NAME_DESC = " " + PREFIX_ITEM;
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-3";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -118,8 +127,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
 
         Order order = model.getOrderList().get(targetIndex.getZeroBased());
-        // Index is at 1 because at 0, every person is initialized to have a keychain.
-        final String[] splitName = order.getItemList().get(1).getItem().split("\\s+");
+        // Index is at 1 because at 0, every order is initialized to have a keychain.
+        final String[] splitName = order.getItemList().get(1).getItemName().split("\\s+");
         model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredOrderList().size());

@@ -1,4 +1,4 @@
-package tracko.model.items;
+package tracko.model.item;
 
 import static tracko.commons.util.AppUtil.checkArgument;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
@@ -60,6 +60,8 @@ public class Price {
         }
 
         Price otherPrice = (Price) other;
-        return this.price.equals(otherPrice.getPrice());
+        // return this.price.equals(otherPrice.getPrice());
+        // TODO: Reimplement the equals method
+        return true;
     }
 }
