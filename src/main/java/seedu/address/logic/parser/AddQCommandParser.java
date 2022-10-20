@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.AddQCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.question.Description;
+import seedu.address.model.question.ImportantTag;
 import seedu.address.model.question.Question;
 
 /**
@@ -20,7 +21,8 @@ public class AddQCommandParser implements Parser<AddQCommand> {
     public AddQCommand parse(String args) throws ParseException {
         try {
             Description description = ParserUtil.parseDescription(args);
-            Question question = new Question(description);
+            ImportantTag importantTag = new ImportantTag(false);
+            Question question = new Question(description, importantTag);
             return new AddQCommand(question);
         } catch (ParseException pe) {
             throw new ParseException(

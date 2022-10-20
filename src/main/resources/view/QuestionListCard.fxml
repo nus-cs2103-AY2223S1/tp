@@ -27,7 +27,7 @@
                 </Label>
                 <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
             </HBox>
-<!--            insert mark like tags  -->
+            <Label fx:id="importantTag" styleClass="cell_small_label" text="\$importantTag" />
         </VBox>
     </GridPane>
 </HBox>
