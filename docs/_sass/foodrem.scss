@@ -6,14 +6,6 @@ html {
   }
 }
 
-body {
-  background-color: #fdf9f0;
-}
-
-.site-header {
-  background-color: white;
-}
-
 .post-content {
   margin-bottom: 2rem;
 
@@ -41,10 +33,6 @@ body {
   flex-direction: row-reverse;
   overflow-x: clip;
 
-  @media print {
-    padding: 0;
-  }
-
   .sticky-toc {
     width: 25%;
     align-self: flex-start;
@@ -52,8 +40,6 @@ body {
 
   .wrapper {
     width: 75%;
-    background-color: white;
-    padding: 2rem;
 
     @media print {
       width: 100%;
