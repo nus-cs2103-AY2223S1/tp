@@ -20,6 +20,7 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PersonBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyPersonBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -27,7 +28,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PropertyBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -60,7 +63,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getPersonBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
+        storage = new StorageManager(addressBookStorage, propertyBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -79,7 +83,8 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPersonBook> personModelOptional;
         ReadOnlyPersonBook personModel;
-        ReadOnlyPropertyBook emptyPropertyModel = getSamplePropertyModel(); // TODO: read property model from storage
+        Optional<ReadOnlyPropertyBook> propertyBookOptional;
+        ReadOnlyPropertyBook propertyBook;
 
         try {
             personModelOptional = storage.readAddressBook();
@@ -95,7 +100,21 @@ public class MainApp extends Application {
             personModel = new PersonBook();
         }
 
-        return new ModelManager(personModel, emptyPropertyModel, userPrefs);
+        try {
+            propertyBookOptional = storage.readPropertyBook();
+            if (!propertyBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample PropertyBook");
+            }
+            propertyBook = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyModel);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty PropertyBook");
+            propertyBook = new PropertyBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty PropertyBook");
+            propertyBook = new PropertyBook();
+        }
+
+        return new ModelManager(personModel, propertyBook, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.PRICE_RANGE_DESC_AMY;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.TAG_DESC_PRIORITY_HIGH;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -30,6 +31,7 @@ import seedu.address.model.ReadOnlyPersonBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -48,7 +50,9 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(
+                temporaryFolder.resolve("propertyBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, propertyBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,13 +81,16 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonPropertyBookStorage propertyBookStorage =
+                new JsonPropertyBookStorage(temporaryFolder.resolve("ioExceptionPropertyBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, propertyBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand = AddPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + PRICE_RANGE_DESC_AMY + DESIRED_CHARACTERISTICS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+                + ADDRESS_DESC_AMY + PRICE_RANGE_DESC_AMY + DESIRED_CHARACTERISTICS_DESC_AMY
+                + TAG_DESC_PRIORITY_HIGH;
+        Person expectedPerson = new PersonBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

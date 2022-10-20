@@ -12,8 +12,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +33,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withPriceRange("200 - 500")
             .withDesiredCharacteristics("Bright")
-            .withTags("friends").build();
+            .withPriority("normal").build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
@@ -42,33 +41,37 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withPriceRange("300 - 600")
             .withDesiredCharacteristics("Near MRT")
-            .withTags("owesMoney", "friends").build();
+            .withPriority("high").build();
     public static final Person CARL = new PersonBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .withPriceRange("300 - 600")
-            .withDesiredCharacteristics("Near School").build();
+            .withDesiredCharacteristics("Near School")
+            .withPriority("low").build();
     // Daniel has not specified his price range nor desired characteristics
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
-            .withTags("friends").build();
+            .withPriority("low").build();
     // Elle has not specified her price range nor desired characteristics
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
-            .withAddress("michegan ave").build();
+            .withAddress("michegan ave")
+            .withPriority("normal")
+            .build();
     // Fiona has not specified her desired characteristics
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
+            .withPriority("high")
             .withPriceRange("500 - 700").build();
     // George has not specified his price range
     public static final Person GEORGE = new PersonBuilder()
@@ -76,6 +79,7 @@ public class TypicalPersons {
             .withPhone("9482442")
             .withEmail("anna@example.com")
             .withAddress("4th street")
+            .withPriority("normal")
             .withDesiredCharacteristics("Cooling").build();
 
     // Manually added
@@ -102,7 +106,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_AMY)
             .withPriceRange(VALID_PRICE_RANGE_AMY)
             .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withPriority(VALID_PRIORITY_HIGH).build();
     public static final Person BOB = new PersonBuilder()
             .withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
@@ -110,7 +114,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_BOB)
             .withPriceRange(VALID_PRICE_RANGE_BOB)
             .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withPriority(VALID_PRIORITY_HIGH)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

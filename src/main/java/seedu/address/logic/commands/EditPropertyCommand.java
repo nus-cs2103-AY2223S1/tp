@@ -7,14 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -27,7 +23,6 @@ import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing property in the address book.
@@ -44,7 +39,6 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_DESCRIPTION + " DESC] "
-            + "[" + PREFIX_TAG + " TAG]..."
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + " 4 Room Heng Mui Keng Condo "
@@ -103,14 +97,13 @@ public class EditPropertyCommand extends Command {
         Price updatedPrice = descriptor.getPrice().orElse(propertyToEdit.getPrice());
         Address updatedAddress = descriptor.getAddress().orElse(propertyToEdit.getAddress());
         Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
-        Set<Tag> updatedTags = descriptor.getTags().orElse(propertyToEdit.getTags());
         String updatedSeller = descriptor.getSeller().orElse(propertyToEdit.getSeller());
         Characteristics updatedCharacteristics = descriptor
                 .getCharacteristics()
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
 
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
-                updatedTags, updatedSeller, updatedCharacteristics);
+                updatedSeller, updatedCharacteristics);
     }
 
     @Override
@@ -140,7 +133,6 @@ public class EditPropertyCommand extends Command {
         private Price price;
         private Address address;
         private Description description;
-        private Set<Tag> tags;
         private String seller;
         private Characteristics characteristics;
 
@@ -155,7 +147,6 @@ public class EditPropertyCommand extends Command {
             setPrice(toCopy.price);
             setDescription(toCopy.description);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
             setSeller(toCopy.seller);
             setCharacteristics(toCopy.characteristics);
         }
@@ -164,7 +155,7 @@ public class EditPropertyCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, price, address, description, tags);
+            return CollectionUtil.isAnyNonNull(name, price, address, description);
         }
 
         public void setName(PropertyName propertyName) {
@@ -197,23 +188,6 @@ public class EditPropertyCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         public void setSeller(String seller) {
@@ -251,7 +225,6 @@ public class EditPropertyCommand extends Command {
                     && getPrice().equals(e.getPrice())
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
                     && getSeller().equals(e.getSeller())
                     && getCharacteristics().equals(e.getCharacteristics());
         }

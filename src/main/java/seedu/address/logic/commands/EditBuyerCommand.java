@@ -7,14 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -27,8 +24,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -47,7 +44,7 @@ public class EditBuyerCommand extends Command {
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PRIORITY + "high]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -109,10 +106,10 @@ public class EditBuyerCommand extends Command {
         Characteristics updatedCharacteristics = editPersonDescriptor
                 .getDesiredCharacteristics()
                 .orElse(personToEdit.getDesiredCharacteristics().orElse(null));
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
 
         Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedPriceRange, updatedCharacteristics, updatedTags);
+                updatedPriceRange, updatedCharacteristics, updatedPriority);
 
         return newPerson;
     }
@@ -146,7 +143,7 @@ public class EditBuyerCommand extends Command {
         private Address address;
         private PriceRange priceRange;
         private Characteristics characteristics;
-        private Set<Tag> tags;
+        private Priority priority;
 
         public EditPersonDescriptor() {}
 
@@ -161,14 +158,14 @@ public class EditBuyerCommand extends Command {
             setAddress(toCopy.address);
             setPriceRange(toCopy.priceRange);
             setDesiredCharacteristics(toCopy.characteristics);
-            setTags(toCopy.tags);
+            setPriority(toCopy.priority);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, priceRange, characteristics, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, priceRange, characteristics, priority);
         }
 
         public void setName(Name name) {
@@ -223,8 +220,8 @@ public class EditBuyerCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setPriority(Priority priority) {
+            this.priority = priority;
         }
 
         /**
@@ -232,8 +229,8 @@ public class EditBuyerCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
         }
 
         @Override
@@ -257,7 +254,7 @@ public class EditBuyerCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getPriceRange().equals(e.getPriceRange())
                     && getDesiredCharacteristics().equals(e.getDesiredCharacteristics())
-                    && getTags().equals(e.getTags());
+                    && getPriority().equals(e.getPriority());
         }
     }
 }

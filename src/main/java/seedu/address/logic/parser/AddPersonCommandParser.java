@@ -7,9 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,10 +17,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.tag.Tag;
-
-
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -37,7 +33,7 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
     public AddPersonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_TAG);
+                        PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -61,9 +57,12 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }
 
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Priority priority = new Priority("normal");
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        }
 
-        Person person = new Person(name, phone, email, address, priceRange, characteristics, tagList);
+        Person person = new Person(name, phone, email, address, priceRange, characteristics, priority);
 
         return new AddPersonCommand(person);
     }

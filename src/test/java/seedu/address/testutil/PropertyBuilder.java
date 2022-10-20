@@ -1,16 +1,11 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Property objects.
@@ -28,7 +23,6 @@ public class PropertyBuilder {
     private Price price;
     private Address address;
     private Description description;
-    private Set<Tag> tags;
     private String seller;
     private Characteristics characteristics;
 
@@ -40,7 +34,6 @@ public class PropertyBuilder {
         price = new Price(DEFAULT_PRICE);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
         seller = DEFAULT_SELLER;
         characteristics = null;
     }
@@ -53,7 +46,6 @@ public class PropertyBuilder {
         price = propertyToCopy.getPrice();
         description = propertyToCopy.getDescription();
         address = propertyToCopy.getAddress();
-        tags = new HashSet<>(propertyToCopy.getTags());
         seller = propertyToCopy.getSeller();
         characteristics = propertyToCopy.getCharacteristics().orElse(null);
     }
@@ -63,14 +55,6 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withName(String name) {
         this.name = new PropertyName(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Property} that we are building.
-     */
-    public PropertyBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -123,6 +107,6 @@ public class PropertyBuilder {
     }
 
     public Property build() {
-        return new Property(name, price, address, description, tags, seller, characteristics);
+        return new Property(name, price, address, description, seller, characteristics);
     }
 }
