@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+-> LogicManager: execute("find n/ Lab2 ")
+activate LogicManager
+LogicManager -> AddressBookParser: parseCommand("find n/ Lab 2")
+activate AddressBookParser
+create FindTaskCommandParser
+AddressBookParser -> FindTaskCommandParser
+activate FindTaskCommandParser
+FindTaskCommandParser -> AddressBookParser: FindTaskCommandParser
+deactivate FindTaskCommandParser
+AddressBookParser -> FindTaskCommandParser: parse("n/ Lab 2")
+activate FindTaskCommandParser
+create TaskContainsKeywordsPredicate
+FindTaskCommandParser -> TaskContainsKeywordsPredicate
+activate TaskContainsKeywordsPredicate
+TaskContainsKeywordsPredicate -> FindTaskCommandParser: TaskContainsKeywordsPredicate
+deactivate TaskContainsKeywordsPredicate
+create FindTaskCommand
+FindTaskCommandParser -> FindTaskCommand
+activate FindTaskCommand
+FindTaskCommand -> FindTaskCommandParser: FindTaskCommand
+deactivate FindTaskCommand
+FindTaskCommandParser -> AddressBookParser: FindTaskCommand
+deactivate FindTaskCommandParser
+AddressBookParser -> LogicManager: FindTaskCommand
+deactivate AddressBookParser
+LogicManager -> FindTaskCommand: execute()
+activate FindTaskCommand
+FindTaskCommand -> Model: updateFilteredTaskList()
+activate Model
+Model -> FindTaskCommand
+deactivate Model
+create CommandResult
+FindTaskCommand -> CommandResult
+activate CommandResult
+CommandResult -> FindTaskCommand: CommandResult
+deactivate CommandResult
+FindTaskCommand -> LogicManager: CommandResult
+@enduml
