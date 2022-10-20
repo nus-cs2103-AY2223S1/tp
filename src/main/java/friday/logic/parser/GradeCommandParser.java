@@ -12,13 +12,15 @@ import friday.commons.core.index.Index;
 import friday.commons.exceptions.IllegalValueException;
 import friday.logic.commands.GradeCommand;
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.grades.Grade;
-import friday.model.grades.GradesList;
 
+/**
+ * Parses input arguments and creates a new GradeCommand object
+ */
 public class GradeCommandParser {
+
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
-     * and returns a {@code RemarkCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code GradeCommand}
+     * and returns a {@code GradeCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public GradeCommand parse(String args) throws ParseException {

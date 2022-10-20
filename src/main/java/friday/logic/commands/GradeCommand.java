@@ -1,7 +1,11 @@
 package friday.logic.commands;
 
 import static friday.commons.util.CollectionUtil.requireAllNonNull;
-import static friday.logic.parser.CliSyntax.PREFIX_REMARK;
+import static friday.logic.parser.CliSyntax.PREFIX_FINALS;
+import static friday.logic.parser.CliSyntax.PREFIX_MIDTERM;
+import static friday.logic.parser.CliSyntax.PREFIX_PRACTICAL;
+import static friday.logic.parser.CliSyntax.PREFIX_RA1;
+import static friday.logic.parser.CliSyntax.PREFIX_RA2;
 import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -16,10 +20,28 @@ import friday.model.grades.Grade;
 import friday.model.grades.GradesList;
 import friday.model.student.Student;
 
+/**
+ * Grades an assessment for a student identified using it's displayed index from FRIDAY.
+ */
 public class GradeCommand extends Command {
+
     public static final String COMMAND_WORD = "grade";
-    // NEED TO EDIT THIS
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the grades of the student identified "
+            + "by the index number used in the displayed list of students. \n"
+            + "Existing grades will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_RA1 + "RA1_SCORE] "
+            + "[" + PREFIX_RA2 + "RA2_SCORE] "
+            + "[" + PREFIX_PRACTICAL + "PRACTICAL_SCORE] "
+            + "[" + PREFIX_MIDTERM + "MID_TERM_SCORE] "
+            + "[" + PREFIX_FINALS + "FINALS_SCORE] \n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_RA1 + "69.90 "
+            + PREFIX_RA2 + "90"
+            + PREFIX_PRACTICAL + "100"
+            + PREFIX_MIDTERM + "99.99"
+            + PREFIX_FINALS + "75.74";
 
     public static final String MESSAGE_EDIT_GRADE_SUCCESS = "Updated grade for Student: %1$s";
 
@@ -57,6 +79,14 @@ public class GradeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_GRADE_SUCCESS, studentToEdit));
     }
 
+    /**
+     * Creates and returns a {@code GradesList} with the details of {@code studentToEdit}
+     * edited with {@code editGradeDescriptor}
+     *
+     * @param studentToEdit the student to update the grades of
+     * @param editGradeDescriptor the details of the grades to update
+     * @return the updated GradesList
+     */
     private static GradesList createEditedGradesList(Student studentToEdit, EditGradeDescriptor editGradeDescriptor) {
         assert studentToEdit != null;
         GradesList gradesList = studentToEdit.getGradesList();
@@ -87,8 +117,8 @@ public class GradeCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the grades of a student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
     public static class EditGradeDescriptor {
         private Grade ra1;

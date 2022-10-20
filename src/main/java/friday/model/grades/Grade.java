@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+/**
+ * Represents a Grade of an assessment or examination in the GradesList.
+ */
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS = "Grades should be in percentages, excluding the % sign.";
