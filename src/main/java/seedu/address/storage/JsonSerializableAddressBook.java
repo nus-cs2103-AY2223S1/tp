@@ -25,15 +25,18 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final JsonAdaptedTaskList taskList = new JsonAdaptedTaskList();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons and tasks.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                       @JsonProperty("taskList") JsonAdaptedTaskList taskList) {
         this.persons.addAll(persons);
         this.tasks.addAll(tasks);
+        this.taskList.setSortByDeadline(taskList.isSortByDeadline());
     }
 
     /**
@@ -44,6 +47,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        taskList.setSortByDeadline(source.isSortByDeadline());
     }
 
     /**
@@ -67,6 +71,13 @@ class JsonSerializableAddressBook {
             }
             addressBook.addTask(task);
         }
+
+        if (taskList.isSortByDeadline()) {
+            addressBook.sortByDeadline();
+        } else {
+            addressBook.sortById();
+        }
+
         return addressBook;
     }
 

@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,6 +26,7 @@ public class JsonAdaptedTask {
     private final String deadline;
     private final Boolean isDone;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String id;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -32,13 +34,14 @@ public class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("deadline") String deadline,
                             @JsonProperty("isDone") Boolean isDone,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("id") String id) {
         this.description = description;
         this.deadline = deadline;
         this.isDone = isDone;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.id = id;
     }
 
     /**
@@ -51,6 +54,7 @@ public class JsonAdaptedTask {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        id = source.getId().toString();
     }
 
     /**
@@ -88,7 +92,13 @@ public class JsonAdaptedTask {
         }
         final Boolean modelIsDone = isDone;
 
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Id.class.getSimpleName()));
+        }
+        final Id modelId = new Id(Integer.parseInt(id));
+
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelDescription, modelDeadline, modelIsDone, modelTags);
+        return new Task(modelDescription, modelDeadline, modelIsDone, modelTags, modelId);
     }
 }

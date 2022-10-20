@@ -25,6 +25,8 @@ import seedu.address.logic.commands.task.FilterTaskCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.MarkTaskCommand;
+import seedu.address.logic.commands.task.SortByDeadlineCommand;
+import seedu.address.logic.commands.task.SortByIdCommand;
 import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.contact.AddContactCommandParser;
 import seedu.address.logic.parser.contact.DeleteContactCommandParser;
@@ -125,6 +127,12 @@ public class AddressBookParser {
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
+
+        case SortByDeadlineCommand.COMMAND_WORD:
+            return new SortByDeadlineCommand();
+
+        case SortByIdCommand.COMMAND_WORD:
+            return new SortByIdCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
