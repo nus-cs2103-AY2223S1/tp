@@ -28,6 +28,11 @@ public class DeleteDebtCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     //TODO Add more tests
+    // valid index, filtered list/unfiltered list, valid set (single, triple)
+    // invalid index, filtered list/unfilterd list, valid set (single)
+    // valid index filtered/unfiltered list, invalid set (single not there, triple middle third not there)
+    // Let parser test handle for nulls, non numeric, stuffs
+
 
 
     @Test
