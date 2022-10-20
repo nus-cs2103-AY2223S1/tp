@@ -10,6 +10,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building {@code Module} objects.
@@ -20,11 +21,13 @@ public class ModuleBuilder {
     public static final String DEFAULT_MODULE_TITLE = "";
     public static final List<Task> DEFAULT_TASKS = new ArrayList<>();
     public static final Set<Link> DEFAULT_LINKS = new HashSet<>();
+    public static final Set<Person> DEFAULT_PERSONS = new HashSet<>();
 
     private ModuleCode moduleCode;
     private ModuleTitle moduleTitle;
     private List<Task> tasks;
     private Set<Link> links;
+    private Set<Person> persons;
     /**
      * Creates a {@code ModuleBuilder} with the default details.
      */
@@ -33,6 +36,7 @@ public class ModuleBuilder {
         moduleTitle = new ModuleTitle(DEFAULT_MODULE_TITLE);
         tasks = DEFAULT_TASKS;
         links = DEFAULT_LINKS;
+        persons = DEFAULT_PERSONS;
     }
 
     /**
@@ -43,6 +47,7 @@ public class ModuleBuilder {
         moduleTitle = moduleToCopy.getModuleTitle();
         tasks = new ArrayList<>(moduleToCopy.getTasks());
         links = moduleToCopy.getLinks();
+        persons = moduleToCopy.getPersons();
     }
 
     /**
@@ -79,11 +84,19 @@ public class ModuleBuilder {
     }
 
     /**
+     * Sets the set of {@code Person} objects of the {@code Module} that we are building.
+     */
+    public ModuleBuilder withPersons(Set<Person> persons) {
+        this.persons = persons;
+        return this;
+    }
+
+    /**
      * Builds a new {@code Module}.
      * @return new {@code Module} that was built.
      */
     public Module build() {
-        return new Module(moduleCode, moduleTitle, tasks, links);
+        return new Module(moduleCode, moduleTitle, tasks, links, persons);
     }
 
 }

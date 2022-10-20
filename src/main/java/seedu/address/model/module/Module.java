@@ -30,12 +30,30 @@ public class Module {
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
     private final Set<Link> links = new HashSet<>();
-    private final Set<Person> persons = new HashSet<>();
+    private final Set<Person> persons;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Module} with module code, title, tasks, links, and persons.
      */
-    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
+    public Module(ModuleCode moduleCode,
+                  ModuleTitle moduleTitle,
+                  List<Task> tasks,
+                  Set<Link> links,
+                  Set<Person> persons) {
+        requireAllNonNull(moduleCode, moduleTitle, tasks, links, persons);
+        this.moduleCode = moduleCode;
+        this.moduleTitle = moduleTitle;
+        this.tasks = new TaskList(tasks);
+        this.links.addAll(links);
+        this.persons = persons;
+    }
+
+    /**
+     * Constructs a {@code Module} with module code, title, tasks and links, but without
+     * persons.
+     */
+    public Module(ModuleCode moduleCode,
+                  ModuleTitle moduleTitle,
                   List<Task> tasks,
                   Set<Link> links) {
         requireAllNonNull(moduleCode, moduleTitle, tasks, links);
@@ -43,32 +61,33 @@ public class Module {
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
         this.links.addAll(links);
+        this.persons = new HashSet<>();
     }
 
     /**
-     * Adds a {@code Module} with module code, title and links but without
-     * any tasks.
+     * Constructs a {@code Module} with module code, title and links but without
+     * any tasks and persons.
      */
-    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
-                  Set<Link> links) {
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle, Set<Link> links) {
         requireAllNonNull(moduleCode, moduleTitle, links);
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList();
         this.links.addAll(links);
+        this.persons = new HashSet<>();
     }
 
     /**
-     * Adds a {@code Module} with module code, without module title and without any
-     * associated tasks and links.
+     * Constructs a {@code Module} with module code, but without
+     * module title, tasks, links, and persons.
      */
     public Module(ModuleCode moduleCode) {
         this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>());
     }
 
     /**
-     * Adds a {@code Module} with module code and module title but without any
-     * associated tasks and links.
+     * Constructs a {@code Module} with module code and module title, but without
+     * tasks, links, and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
         this(moduleCode, moduleTitle, new HashSet<>());
