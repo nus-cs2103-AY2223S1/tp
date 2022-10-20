@@ -205,7 +205,7 @@ CodeConnect has features that allow you to add and track your tasks and annotate
 The following describes the implementation planned for v1.3.
 
 Examples of command use:
-- `add Lab2 by/2022-02-02 23:59 mod/CS2030S`
+- `add Lab2 by/2022-02-02 23:59 m/CS2030S`
 - `add Add error handling by/next thursday m/CS2103T`
 
 #### Implementation flow
@@ -220,6 +220,8 @@ The `add` command follows the [general command implementation flow](#logic-compo
 * A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered. The risk of confusion between multiple date formats (including `DD/MM/YY` vs `MM/DD/YY`) is alleviated by the fact that the user's locale will in most cases give a correct parsing.
 * The existing architecture requires fields to support separately validating user input and interpreting user input. The deadline input is validated by attempting to parse it and checking for errors, as there is no cheaper method in this case.
 * The natural parser we are using does not support parsing time. We decided that this is an acceptable tradeoff as the benefit of being able to enter the date in the format most intuitive to the user outweighs the small and rarely used benefit of being able to track the time of the deadline.
+* The `add` command shares the `m/` prefix for modules with the other commands.
+  * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 
 ### \[Proposed\] Undo/redo feature
 
