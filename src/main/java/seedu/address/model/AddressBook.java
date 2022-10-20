@@ -10,10 +10,7 @@ import seedu.address.model.listing.ListingID;
 import seedu.address.model.listing.UniqueListingList;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.UniqueOfferList;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.*;
 
 /**
  * Wraps all data at the address-book level
@@ -21,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final UniqueClientList clients;
     private final UniquePersonList persons;
     private final UniqueListingList listings;
     private final UniqueOfferList offers;
@@ -34,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        clients = new UniqueClientList();
         listings = new UniqueListingList();
         offers = new UniqueOfferList();
     }
@@ -58,6 +57,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+
+    /**
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
+    }
+
     /**
      * Replaces the contents of the listing list with {@code listings}.
      * {@code listings} must not contain duplicate listings.
@@ -68,7 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the offer list with {@code offers}.
-     * {@code persons} must not contain duplicate offers.
+     * {@code clients} must not contain duplicate offers.
      */
     public void setOffers(List<Offer> offers) {
         this.offers.setOffers(offers);
@@ -80,6 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setOffers(newData.getOfferList());
+        setClients(newData.getClientList());
         setPersons(newData.getPersonList());
         setListings(newData.getListingList());
     }
@@ -128,6 +137,53 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+
+    //// client-level operations
+
+    /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     */
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return clients.contains(client);
+    }
+
+    /**
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
+     */
+    public void addClient(Client p) {
+        clients.add(p);
+    }
+
+    /**
+     * Gets the vn with the given name {@code name}.
+     * @param name name of the client
+     * @return client with given name
+     */
+    public Client getClient(Name name) {
+        return clients.getClient(name);
+    }
+
+    /**
+     * Replaces the given client {@code target} in the list with {@code editedClient}.
+     * {@code target} must exist in the address book.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
+     */
+    public void setClient(Client target, Client editedClient) {
+        requireNonNull(editedClient);
+
+        clients.setClient(target, editedClient);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeClient(Client key) {
+        clients.remove(key);
     }
 
     //// listing-level operations
@@ -227,11 +283,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
+        int clientListSize = clients.asUnmodifiableObservableList().size();
         int personListSize = persons.asUnmodifiableObservableList().size();
         int listingListSize = listings.asUnmodifiableObservableList().size();
         int offerListSize = offers.asUnmodifiableObservableList().size();
-        return String.format("%d persons, %d listings, %d offers", personListSize, listingListSize, offerListSize);
+        return String.format("%d clients, %d listings, %d offers", clientListSize, listingListSize, offerListSize);
         // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override
@@ -253,14 +315,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook) // instanceof handles nulls
-                && (persons.equals(((AddressBook) other).persons))
+                && (clients.equals(((AddressBook) other).clients))
                 && (listings.equals(((AddressBook) other).listings))
                 && (offers.equals(((AddressBook) other).offers));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return clients.hashCode();
     }
 
 }

@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.ClientNotFoundException;
 import seedu.address.model.person.exceptions.DuplicateClientException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of clients that enforces uniqueness between its elements and does not allow nulls.
@@ -45,11 +48,24 @@ public class UniqueClientList implements Iterable<Client> {
         if (contains(toAdd)) {
             throw new DuplicateClientException();
         }
-        int index = 0;
-        while (toAdd.compareTo(internalList.get(index)) > 0) {
-            index += 1;
+        internalList.add(toAdd);
+        Collections.sort(internalList);
+    }
+
+
+    /**
+     * Gets the client with the given name {@code name}.
+     * @param name name of the client
+     * @return client with given name
+     */
+    public Client getClient(Name name) {
+        requireNonNull(name);
+        for (Client client : internalList) {
+            if (client.getName().equals(name)) {
+                return client;
+            }
         }
-        internalList.add(index, toAdd);
+        throw new ClientNotFoundException();
     }
 
     /**
