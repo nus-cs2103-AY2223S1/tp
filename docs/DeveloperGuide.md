@@ -240,9 +240,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Creating a buyer
 
-The `Person` class represents a buyer with buyer-specific fields. `Price Range` and `Characteristics` denote his budget and requirements for the property respectively. 
+The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority` denote his budget, requirements for the property, and buyer priority respectively. 
 
-These two fields are both optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`. 
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`. 
+When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
 
 This is the class diagram of a `Person`. 
 
@@ -251,7 +252,20 @@ This is the class diagram of a `Person`.
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide. 
 
 Design considerations: 
-No duplicate persons can be added to the list. This means that no two persons with the same name can exist. We considered using not only name but also contact number to identify a person, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+No duplicate persons can be added to the buyer list. This means that no two persons with the same name can exist. We considered using not only name but also contact number to identify a person, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+
+### Creating a property
+
+The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
+
+The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+
+This is the class diagram of a `Property`.
+
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
+
+Design considerations:
+No duplicate properties can be added to the property list. This means that no two properties with the same name and price can exist. We considered using only name to identify a property, but later decided against it since in real life different units under the same property name can be listed at the same time. In the future, we might allow two properties with same name and price but different characteristics to be added to the property list because this can also be a possible scenario in real life.
 
 ### Filtering properties by price range
 
