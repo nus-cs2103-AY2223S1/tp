@@ -13,21 +13,29 @@ public class Question {
 
     // Identity fields
     private final Description description;
+    private final ImportantTag importantTag;
 
 
     /**
      * Every field must be present and not null.
      */
-    public Question(Description description) {
+    public Question(Description description, ImportantTag importantTag) {
         requireAllNonNull(description);
         this.description = description;
+        this.importantTag = importantTag;
     }
 
     public Description getDescription() {
         return description;
     }
 
+    public ImportantTag getImportantTag() {
+        return importantTag;
+    }
 
+    public boolean isImportant() {
+        return importantTag.getBool();
+    }
 
     /**
      * Returns true if both Questions have the same description.
@@ -69,7 +77,10 @@ public class Question {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription());
+        builder.append(getDescription())
+                .append("\n")
+                .append(getImportantTag())
+                .append(" question");
         return builder.toString();
     }
 
