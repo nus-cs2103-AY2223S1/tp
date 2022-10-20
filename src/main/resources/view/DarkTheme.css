@@ -379,3 +379,10 @@
     -fx-font-size: 25px;
     -fx-font-style: italic;
 }
+
+.student-cardPane {
+    -fx-background-color: 	#556784;
+    -fx-opacity: 0.8;
+    -fx-effect: innershadow(ONE_PASS_BOX, #55417b, 10, 0, 0, 0);
+}
+
