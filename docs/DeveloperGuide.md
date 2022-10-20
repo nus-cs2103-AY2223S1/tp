@@ -327,6 +327,26 @@ Step 3: The user realises his first attempt at a pitch isn't working well, so th
 message delete 1
 ```
 
+#### Design considerations:
+
+- **Aspect: Allow editing**
+  
+  - Alternative 1 (current choice): Don't allow editing
+    
+    - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
+    
+    - Cons: Less convenient when user actually wants to edit message templates
+  
+  - Alternative 2: Allow editing
+    
+    - Pros: (Slightly) more convenient
+    
+    - Cons: More complicated command set
+
+### Tag command
+
+#### Proposed Implementation
+
 The proposed implementation for Tags is similar to that of other details of Person.
 However, it is important to note that a tag needs to be created before it can be used.
 Firstly we include a `tag` package under `seedu/address/model`.
@@ -345,20 +365,23 @@ We can also remove tags from a user using the `tag remove` command. For example,
 
 #### Design considerations:
 
-- **Aspect: Allow editing**
-  
-  - Alternative 1 (current choice): Don't allow editing
-    
-    - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
-    
-    - Cons: Less convenient when user actually wants to edit message templates
-  
-  - Alternative 2: Allow editing
-    
-    - Pros: (Slightly) more convenient
-    
-    - Cons: More complicated command set
+**Aspect: How tags can be implemented:**
 
+* **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
+    * Pros:
+        * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
+    * Cons:
+        * Forces the creation of a few unique commands. Not user-friendly as the user is expected
+          to memorise all commands.
+
+* **Alternative 2:** Building on top of the `add` and `edit` commands.
+    * Pros:
+        * It allows a more concise set of operations.
+    * Cons:
+        * `add` and `edit` commands will be slightly messier and may contain ambiguities.
+        * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
+          wish to add or edit one of the many tags the client possesses.
+        
 ### \[Proposed\] Filter command
 =======
 ### Filter Command
