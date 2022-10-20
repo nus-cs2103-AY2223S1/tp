@@ -1,11 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,7 +11,6 @@ import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.tag.Tag;
 
 
 /**
@@ -34,7 +27,7 @@ class JsonAdaptedProperty {
     // characteristics cannot be null; converted to "" for saving to storage if null
     private final String characteristics;
     private final String seller; // TODO: change to JsonAdaptedSeller
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
@@ -43,17 +36,13 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("price") String price,
                              @JsonProperty("address") String address, @JsonProperty("description") String description,
                              @JsonProperty("characteristics") String characteristics,
-                             @JsonProperty("seller") String seller,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("seller") String seller) {
         this.name = name;
         this.price = price;
         this.address = address;
         this.description = description;
         this.characteristics = characteristics;
         this.seller = seller;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
     }
 
     /**
@@ -68,9 +57,6 @@ class JsonAdaptedProperty {
                 .map(Characteristics::toString)
                 .orElse("");
         seller = source.getSeller();
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
     }
 
     /**
@@ -136,13 +122,8 @@ class JsonAdaptedProperty {
         // }
         final String modelSeller = seller;
 
-        final List<Tag> propertyTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            propertyTags.add(tag.toModelType());
-        }
-        final Set<Tag> modelTags = new HashSet<>(propertyTags);
 
-        return new Property(modelName, modelPrice, modelAddress, modelDescription, modelTags,
+        return new Property(modelName, modelPrice, modelAddress, modelDescription,
                 modelSeller, modelCharacteristics);
     }
 }
