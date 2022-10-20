@@ -11,7 +11,7 @@ import seedu.uninurse.model.person.Patient;
 /**
  * Clears the uninurse book.
  */
-public class ClearCommand extends Command {
+public class ClearCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Listed patients have been cleared!";

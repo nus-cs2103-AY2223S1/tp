@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
+import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -20,7 +21,8 @@ import seedu.uninurse.model.person.Patient;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final UninurseBook uninurseBook;
+    private final PersistentUninurseBook persistentUninurseBook;
+
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPersons;
 
@@ -34,11 +36,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with uninurse book: " + uninurseBook + " and user prefs " + userPrefs);
 
-        this.uninurseBook = new UninurseBook(uninurseBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.uninurseBook.getPersonList());
-
-        taskListFlag = false;
+        this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
+        this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
+        this.taskListFlag = false;
     }
 
     public ModelManager() {
@@ -48,14 +49,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -83,29 +84,29 @@ public class ModelManager implements Model {
     //=========== UninurseBook ================================================================================
 
     @Override
-    public void setUninurseBook(ReadOnlyUninurseBook uninurseBook) {
-        this.uninurseBook.resetData(uninurseBook);
+    public ReadOnlyUninurseBook getUninurseBook() {
+        return persistentUninurseBook.getWorkingCopy();
     }
 
     @Override
-    public ReadOnlyUninurseBook getUninurseBook() {
-        return uninurseBook;
+    public void setUninurseBook(ReadOnlyUninurseBook uninurseBook) {
+        this.persistentUninurseBook.getWorkingCopy().resetData(uninurseBook);
     }
 
     @Override
     public boolean hasPerson(Patient person) {
         requireNonNull(person);
-        return uninurseBook.hasPerson(person);
+        return persistentUninurseBook.getWorkingCopy().hasPerson(person);
     }
 
     @Override
     public void deletePerson(Patient target) {
-        uninurseBook.removePerson(target);
+        persistentUninurseBook.getWorkingCopy().removePerson(target);
     }
 
     @Override
     public void addPerson(Patient person) {
-        uninurseBook.addPerson(person);
+        persistentUninurseBook.getWorkingCopy().addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -113,7 +114,7 @@ public class ModelManager implements Model {
     public void setPerson(Patient target, Patient editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        uninurseBook.setPerson(target, editedPerson);
+        persistentUninurseBook.getWorkingCopy().setPerson(target, editedPerson);
     }
 
     //=========== Filtered Patient List Accessors =============================================================
@@ -141,6 +142,33 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Undo and Redo =============================================================
+
+    @Override
+    public boolean canUndo() {
+        return persistentUninurseBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedo() {
+        return persistentUninurseBook.canRedo();
+    }
+
+    @Override
+    public void undo() {
+        persistentUninurseBook.undo();
+    }
+
+    @Override
+    public void redo() {
+        persistentUninurseBook.redo();
+    }
+
+    @Override
+    public void makeSnapshot(CommandResult commandResult) {
+        persistentUninurseBook.makeSnapshot(commandResult);
+    }
+
     //=========== Other Accessors =============================================================
 
     @Override
@@ -162,7 +190,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return uninurseBook.equals(other.uninurseBook)
+        return persistentUninurseBook.equals(other.persistentUninurseBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

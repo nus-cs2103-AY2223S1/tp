@@ -17,4 +17,10 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    /**
+     * Returns whether the command is undo-able.
+     */
+    public boolean isUndoable() {
+        return false;
+    }
 }
