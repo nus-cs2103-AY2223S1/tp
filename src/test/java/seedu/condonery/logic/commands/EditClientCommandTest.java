@@ -38,7 +38,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+        Model expectedModel = new ModelManager(new PropertyDirectory(),
                 new ClientDirectory(model.getClientDirectory()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
@@ -62,7 +62,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+        Model expectedModel = new ModelManager(new PropertyDirectory(),
                 new ClientDirectory(model.getClientDirectory()), new UserPrefs());
         expectedModel.setClient(lastClient, editedPerson);
 
@@ -76,7 +76,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+        Model expectedModel = new ModelManager(new PropertyDirectory(),
                 new ClientDirectory(model.getClientDirectory()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -94,7 +94,7 @@ public class EditClientCommandTest {
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+        Model expectedModel = new ModelManager(new PropertyDirectory(),
                 new ClientDirectory(model.getClientDirectory()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedPerson);
 
