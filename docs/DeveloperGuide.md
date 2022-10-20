@@ -668,4 +668,43 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a guest
 
-   1. 
+   1. Prerequisites: 
+      the name of the adding guest should not in the guest book
+      Every part of guest information should be valid
+   
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 
+                  dr/13/09/22 - 15/09/22 ng/1 rc/yes rq/Apply for room service `<br>
+      Expected: add successfully
+   
+   3. Test case: `add n/John Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the adding name is already in guest book. Status bar remains the same.
+   
+   4. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the name is invalid. Status bar remains the same.
+   
+   5. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the phone number is invalid. Status bar remains the same.
+   
+   6. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the E-mail address is invalid. Status bar remains the same.
+
+   7. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/!06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the room number is invalid. Status bar remains the same.
+
+   8. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 13/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the date range is invalid. Status bar remains the same.
+
+   9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/5 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the number of guest is invalid, because the number of guest
+                cannot exceed 4. Status bar remains the same.
+
+   10. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+                   dr/13/09/22 - 15/09/23 ng/1 rc/hi rq/Kill the insect `<br>
+       Expected: No guest is added, because the is_room_clean is invalid. Status bar remains the same.
