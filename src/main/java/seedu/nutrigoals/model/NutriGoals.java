@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.UniqueFoodList;
+import seedu.nutrigoals.model.meal.FoodCalorieList;
+import seedu.nutrigoals.model.meal.FoodList;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 
 /**
@@ -15,7 +18,8 @@ import seedu.nutrigoals.model.user.User;
  */
 public class NutriGoals implements ReadOnlyNutriGoals {
 
-    private final UniqueFoodList foods;
+    private final FoodList foods;
+    private final FoodCalorieList foodCalorieList;
     private User user = new User();
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
@@ -29,7 +33,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
      *   among constructors.
      */
     {
-        foods = new UniqueFoodList();
+        foods = new FoodList();
         nusGymsLocations = new ArrayList<>(List.of(
             new Location("MPSH", "1.3007599674153045, 103.77578206094384"),
             new Location("STEPHEN RIADY CENTRE", "1.304511666901411, 103.77205745840185"),
@@ -39,9 +43,9 @@ public class NutriGoals implements ReadOnlyNutriGoals {
             // https://goo.gl/maps/5xx4jyh87QDcd83M8
             new Location("TEMASEK HALL", "1.2930639982706684, 103.77084097639103"),
             // https://goo.gl/maps/h4oQXbtMLyQeuPwM7
-            new Location("KENT RIDGE HALL", "1.2918512226940035, 103.77477995285786")
-        )
+            new Location("KENT RIDGE HALL", "1.2918512226940035, 103.77477995285786"))
         );
+        foodCalorieList = new FoodCalorieList();
     }
 
     public NutriGoals() {
@@ -73,6 +77,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         setFoods(newData.getFoodList());
         setUser(newData.getUser());
         setNusGymsLocations(newData.getGymLocations());
+        setFoodCaloriesList(newData.getFoodCalorieList());
     }
 
     //// food-level operations
@@ -119,8 +124,14 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         this.user = user;
     }
 
-    public User getUser() {
-        return user;
+    public void setFoodCaloriesList(Map<Name, Calorie> foodCaloriesList) {
+        requireNonNull(foodCaloriesList);
+        this.foodCalorieList.setFoodCalorieMapping(foodCaloriesList);
+    }
+
+    @Override
+    public ObservableList<Food> getFoodList() {
+        return foods.asUnmodifiableObservableList();
     }
 
     public Calorie calculateSuggestedCalorie() {
@@ -146,6 +157,15 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         return this.calorieTarget;
     }
 
+    @Override
+    public User getUser() {
+        return user;
+    }
+
+    @Override
+    public Map<Name, Calorie> getFoodCalorieList() {
+        return foodCalorieList.asUnmodifiableMap();
+    }
 
     //// util methods
 
@@ -156,18 +176,13 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     }
 
     @Override
-    public ObservableList<Food> getFoodList() {
-        return foods.asUnmodifiableObservableList();
-    }
-
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof NutriGoals // instanceof handles nulls
             && foods.equals(((NutriGoals) other).foods)
             && this.calorieTarget.equals(((NutriGoals) other).calorieTarget)
-            && this.user.equals(((NutriGoals) other).user));
+            && this.user.equals(((NutriGoals) other).user)
+            && this.foodCalorieList.equals(((NutriGoals) other).foodCalorieList));
     }
 
     @Override

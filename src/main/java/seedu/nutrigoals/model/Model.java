@@ -2,12 +2,14 @@ package seedu.nutrigoals.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 
 /**
@@ -69,31 +71,26 @@ public interface Model {
     Calorie getCalorieTarget();
 
     /**
-     * Returns true if a food with the same identity as {@code food} exists in the food list
-     * .
+     * Returns true if a food with the same identity as {@code food} exists in the food list.
      */
     boolean hasFood(Food food);
 
     /**
      * Deletes the given food.
-     * The food must exist in the food list
-     * .
+     * The food must exist in the food list.
      */
     void deleteFood(Food target);
 
     /**
      * Adds the given food.
-     * {@code food} food to be added
-     * .
+     * {@code food} food to be added.
      */
     void addFood(Food food);
 
     /**
      * Replaces the given food {@code target} with {@code editedfood}.
-     * {@code target} must exist in the food list
-     * .
-     * The food identity of {@code editedfood} must not be the same as another existing food in the food list
-     * .
+     * {@code target} must exist in the food list.
+     * The food identity of {@code editedfood} must not be the same as another existing food in the food list.
      */
     void setFood(Food target, Food editedFood);
 
@@ -125,4 +122,7 @@ public interface Model {
     int getCalorieDifference();
 
     Calorie getTotalCalorie();
+
+    /** Returns the {@code Map} of food items and their calorie content */
+    Map<Name, Calorie> getFoodCalorieList();
 }

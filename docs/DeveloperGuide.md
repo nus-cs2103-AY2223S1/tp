@@ -102,12 +102,11 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Food` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/
--level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -116,10 +115,10 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `NutriGoalsParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a food).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a food).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
@@ -146,7 +145,6 @@ How the parsing works:
 
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
-
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
@@ -161,7 +159,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `NutriGoals`, which `Food` references. This allows `NutriGoals` to only require one `Tag` object per unique tag, instead of each `Food` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -190,6 +188,7 @@ Classes used by multiple components are in the `seedu.nutrigoals.commons` packag
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Set Daily Calorie Target feature
 
@@ -230,9 +229,9 @@ The edit mechanism is facilitated by `EditCommand`, which extends `Command`. It 
 
 * `EditCommand#execute()`: Edits the food name, meal type or calories associated with the food at the specified index.
 
-Given below is an example usage scenario and how edit mechanism behaves at each step.
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
-Step 1. The user launches the application today. Suppose the foods added for the day are:
+Step 1. The user launches the application on 19 October 2022. Suppose the foods added for the day are:
 
 1. bread: 100 calories, breakfast
 2. milk tea: 300 calories, lunch
@@ -246,8 +245,8 @@ Step 3. The `EditCommand` is created, and then executed by `EditCommand#execute(
 
 Step 4. `EditCommand#execute()` calls the following methods from `Model`:
 
-* `setFood(foodToEdit, editedFood)`
-* `updateFilteredFoodList()`
+* `Model#setFood(foodToEdit, editedFood)` replaces `foodToEdit` to `editedFood`.
+* `Model#updateFilteredFoodList(predicate)` filters the food list based on the given predicate
 
 Step 5. `EditCommand#execute()` returns a `CommandResult` with the following result displayed:
 
@@ -257,7 +256,34 @@ The following diagram illustrates how the edit operation works:
 
 ![EditSequenceDiagram](./images/EditSequenceDiagram.png)
 
-This section describes some noteworthy details on how certain features are implemented.
+### Profile feature
+
+#### Implementation
+
+The profile mechanism is facilitated by `ProfileCommand`, which extends `Command`. It overrides the
+following operation:
+
+* `ProfileCommand#execute()`: Retrieves and displays the user's information.
+
+Given below is an example usage scenario and how the profile mechanism behaves at each step.
+
+Step 1. The user launches the application on 19 October 2022.
+
+Step 2. The user executes `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
+subsequently, which then creates an `ProfileCommand` object.
+
+Step 3. The `ProfileCommand` created is executed by `ProfileCommand#execute()`.
+
+Step 4. `ProfileCommand#execute()` calls the following methods from `Model`:
+
+* `Model#isUserCreated()`
+* `Model#getUserDetails()`
+
+Step 5. `ProfileCommand#execute()` returns a `CommandResult` which displays the user's information.
+
+The following activity diagram outlines the process when the user executes the `ProfileCommand`.
+
+![ProfileCommandActivityDiagram](./images/ProfileCommandActivityDiagram.png)
 
 ### Review feature
 

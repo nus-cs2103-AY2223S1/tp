@@ -5,19 +5,18 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyNutriGoals" as ReadOnlyNutriGoals
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class NutriGoals
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class FoodList
+Class Food
+Class DateTime
 Class Name
-Class Phone
+Class Calorie
 Class Tag
 
 }
@@ -25,26 +24,25 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+NutriGoals .up.|> ReadOnlyNutriGoals
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyNutriGoals
+ModelManager -left-> "1" NutriGoals
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+NutriGoals *--> "1" FoodList
+FoodList -right-> "~* all" Food
+Food *--> Name
+Food *--> Calorie
+Food *--> DateTime
+Food *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Calorie
+Calorie -[hidden]right-> DateTime
+DateTime -[hidden]right-> Tag
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Food
 @enduml

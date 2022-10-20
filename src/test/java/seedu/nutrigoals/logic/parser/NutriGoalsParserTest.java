@@ -7,10 +7,6 @@ import static seedu.nutrigoals.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.TypicalIndexes.INDEX_FIRST_MEAL;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.nutrigoals.logic.commands.AddCommand;
@@ -29,7 +25,7 @@ import seedu.nutrigoals.logic.commands.SuggestCommand;
 import seedu.nutrigoals.logic.commands.TargetCommand;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.testutil.EditFoodDescriptorBuilder;
 import seedu.nutrigoals.testutil.FoodBuilder;
 import seedu.nutrigoals.testutil.FoodUtil;
@@ -75,10 +71,8 @@ public class NutriGoalsParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD + " rice");
+        assertEquals(new FindCommand(new Name("rice")), command);
     }
 
     @Test

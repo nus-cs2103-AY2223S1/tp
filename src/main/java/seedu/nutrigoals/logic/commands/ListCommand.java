@@ -18,7 +18,7 @@ public class ListCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2022-10-11";
 
     public static final String MESSAGE_SUCCESS = "Listed all foods on %s";
-    public static final String EMPTY_FOOD_LIST = "No food recorded on %s";
+    public static final String MESSAGE_EMPTY_FOOD_LIST = "No food recorded on %s";
 
     private final IsFoodAddedOnThisDatePredicate predicate;
 
@@ -35,7 +35,7 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFoodList(predicate);
         if (model.isFilteredFoodListEmpty()) {
-            return new CommandResult(String.format(EMPTY_FOOD_LIST, predicate.getDate()));
+            return new CommandResult(String.format(MESSAGE_EMPTY_FOOD_LIST, predicate.getDate()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, predicate.getDate()));
     }

@@ -90,19 +90,17 @@ Example:
 * `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10
 to sushi.
 
-### Finding a food item: `find`
+### Finding the calorie content of a food item: `find`
 
-Finds all the food items containing at least one of the keywords specified.
+Finds the calorie content of a food item for 1 serving in kcal.
 
-Format: `find KEYWORD [KEYWORDS]`
+Format: `find FOOD`
 
-* Finds all the food items in the list displayed which contain at least one of the specified keywords.
+* Only the calorie contents of some common food items are included.
 
 Example:
 
-* `find bread` finds all food containing bread.
-* `find bread water` finds all food containing bread or water.
-* `list 2022-10-10` followed by `find sushi` will return all foods recorded on 2022-10-10 that contains sushi.
+* `find chicken rice` finds and displays the calorie content of 1 plate of chicken rice.
 
 ### Setting a target daily calorie intake: `target`
 
@@ -213,7 +211,7 @@ _Details coming soon ..._
 | **Add**     | `add n/FOOD c/CALORIE t/MEAL_TYPE`                      | `add n/donut c/1000 t/breakfast` |
 | **Delete**  | `delete INDEX`                                          | `delete 1`                       |
 | **Edit**    | `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`      | `edit 2 n/rice c/300 t/dinner`   |
-| **Find**    | `find KEYWORD [KEYWORDS]`                               | `find bread`                     |
+| **Find**    | `find FOOD`                                             | `find chicken rice`              |
 | **Target**  | `target`                                                | `target 2000`                    |
 | **Review**  | `review`                                                | `review`                         |
 | **List**    | `list [DATE]`                                           | `list`                           |
