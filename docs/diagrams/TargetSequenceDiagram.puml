@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+!$userInput = ("target 2103")
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":NutriGoalsParser" as NutriGoalsParser LOGIC_COLOR
+participant ":TargetCommandParser" as TargetCommandParser LOGIC_COLOR
+participant "t:TargetCommand" as TargetCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("$userInput")
+activate LogicManager
+
+LogicManager -> NutriGoalsParser : parseCommand("$userInput")
+activate NutriGoalsParser
+
+create TargetCommandParser
+NutriGoalsParser -> TargetCommandParser
+activate TargetCommandParser
+
+TargetCommandParser --> NutriGoalsParser
+deactivate TargetCommandParser
+
+NutriGoalsParser -> TargetCommandParser : parse("$userInput")
+activate TargetCommandParser
+
+create TargetCommand
+TargetCommandParser -> TargetCommand
+activate TargetCommand
+
+TargetCommand --> TargetCommandParser : t
+deactivate TargetCommand
+
+TargetCommandParser --> NutriGoalsParser : t
+deactivate TargetCommandParser
+TargetCommandParser -[hidden]-> NutriGoalsParser
+destroy TargetCommandParser
+
+NutriGoalsParser --> LogicManager : t
+deactivate NutriGoalsParser
+
+LogicManager -> TargetCommand : execute()
+activate TargetCommand
+
+TargetCommand -> Model : setCalorieTarget(calorieTarget)
+activate Model
+
+Model --> TargetCommand
+deactivate Model
+
+TargetCommand -> Model : getCalorieTarget()
+activate Model
+
+Model --> TargetCommand
+deactivate Model
+
+create CommandResult
+TargetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TargetCommand
+deactivate CommandResult
+
+TargetCommand --> LogicManager : result
+deactivate TargetCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
