@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonMatchesPredicate;
+import seedu.address.testutil.PersonMatchesPredicateBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -31,21 +32,24 @@ public class FindCommandTest {
     public void equals() {
         PersonMatchesPredicate firstPredicate = new PersonMatchesPredicate();
         firstPredicate.setNamesList(Collections.singletonList("firstNamesList"));
-        firstPredicate.setModuleList(Collections.singletonList("firstModulesList"));
+        firstPredicate.setModulesList(Collections.singleton("firstModulesSet"), false);
 
         PersonMatchesPredicate secondPredicate = new PersonMatchesPredicate();
         secondPredicate.setNamesList(Collections.singletonList("secondNamesList"));
-        secondPredicate.setModuleList(Collections.singletonList("secondModulesList"));
+        secondPredicate.setModulesList(Collections.singleton("secondModulesSet"), false);
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findSecondCommand.equals(findSecondCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findSecondCommandCopy = new FindCommand(secondPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertTrue(findSecondCommand.equals(findSecondCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
@@ -60,7 +64,8 @@ public class FindCommandTest {
     @Test
     public void execute_zeroNames_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonMatchesPredicate predicate = preparePredicateWithNames(" ");
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withNames(" ").build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -70,19 +75,13 @@ public class FindCommandTest {
     @Test
     public void execute_multipleNames_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonMatchesPredicate predicate = preparePredicateWithNames("Kurz Elle Kunz");
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withNames("Kurz Elle Kunz").build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private PersonMatchesPredicate preparePredicateWithNames(String userInput) {
-        PersonMatchesPredicate predicate = new PersonMatchesPredicate();
-        predicate.setNamesList(Arrays.asList(userInput.split("\\s+")));
-        return predicate;
-    }
+
 }

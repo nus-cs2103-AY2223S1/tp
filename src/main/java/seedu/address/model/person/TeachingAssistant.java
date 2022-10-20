@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,6 +80,24 @@ public class TeachingAssistant extends Person {
     }
 
     @Override
+
+    public String getTypeString() {
+        return "ta";
+    }
+
+    @Override
+    public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
+        if (modulesSet.size() > 1 && needsAllModules) {
+            return false;
+        }
+        return modulesSet.stream()
+                .anyMatch(module -> StringUtil.containsWordIgnoreCase(this.moduleCode.value, module));
+    }
+
+    /**
+     * Computes a unique hashcode based on this TeachingAssistant's fields.
+     * @return the computed hashcode.
+     */
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
@@ -106,5 +125,6 @@ public class TeachingAssistant extends Person {
                 && otherPerson.getModuleCode().equals(getModuleCode())
                 && otherPerson.getRating().equals(getRating());
     }
+
 
 }
