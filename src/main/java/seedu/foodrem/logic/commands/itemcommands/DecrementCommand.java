@@ -55,7 +55,8 @@ public class DecrementCommand extends Command {
                 decrementedQuantity,
                 itemToDecrement.getUnit(),
                 itemToDecrement.getBoughtDate(),
-                itemToDecrement.getExpiryDate());
+                itemToDecrement.getExpiryDate(),
+                itemToDecrement.getPrice());
     }
 
     @Override

@@ -10,6 +10,7 @@ import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
+import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.TagName;
@@ -48,7 +49,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String quantity} into a {@link ItemQuantity}.
+     * Parses a {@code String quantity} into an {@link ItemQuantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws IllegalArgumentException if the given {@code quantity} is invalid.
@@ -60,7 +61,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String unit} into a {@link ItemUnit}.
+     * Parses a {@code String unit} into an {@link ItemUnit}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws IllegalArgumentException if the given {@code unit} is invalid.
@@ -72,7 +73,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String boughtDate} into a {@link ItemBoughtDate}.
+     * Parses a {@code String boughtDate} into an {@link ItemBoughtDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws IllegalArgumentException if the given {@code boughtDate} is invalid.
@@ -84,7 +85,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String expiryDate} into a {@link ItemExpiryDate}.
+     * Parses a {@code String expiryDate} into an {@link ItemExpiryDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws IllegalArgumentException if the given {@code expiryDate} is invalid.
@@ -93,6 +94,18 @@ public class ParserUtil {
         requireNonNull(expiryDate);
         String trimmedExpiryDate = expiryDate.trim();
         return new ItemExpiryDate(trimmedExpiryDate);
+    }
+
+    /**
+     * Parses a {@code String price} into an {@link ItemPrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalArgumentException if the given {@code price} is invalid.
+     */
+    public static ItemPrice parsePrice(String price) throws IllegalArgumentException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        return new ItemPrice(trimmedPrice);
     }
 
     /**
