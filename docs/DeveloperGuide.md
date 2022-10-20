@@ -190,7 +190,7 @@ The `ModCommandParser` implements the operation `ModCommandParser#parseFindComma
 
 During execution, the user inputs of module codes are passed into a `List` to `ModContainsKeywordsPredicate`.
 
-For simplicity, we will call this `List` of module codes `keywords`. `ModContainsKeywordsPredicate#test(Person person)` returns `true` for a particular `person` only if every elements in `keywords` is in the `Mod`s of this `person` (stored as `ObservableList<Mod>`). 
+For simplicity, we will call this `List` of module codes `keywords`. `ModContainsKeywordsPredicate#test(Person person)` returns `true` for a particular `person` only if every elements in `keywords` is in the `Mod`s of this `person` (stored as `ObservableList<Mod>`).
 
 Checking of whether the elements in the `keywords` and the `Mod`s match is done by the `StringUtil#containsWordIgnoreCase(String sentence, String word)`.
 
@@ -454,7 +454,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-    
+
 **Use case 4: Add an interest to a batchmate**
 
 **MSS**
