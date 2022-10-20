@@ -1,11 +1,11 @@
 package jarvis.model;
 
-import jarvis.commons.core.index.Index;
-
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+
+import jarvis.commons.core.index.Index;
 
 /**
  * Represents a Lesson in JARVIS.

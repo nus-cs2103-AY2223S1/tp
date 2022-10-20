@@ -93,9 +93,6 @@ public class LessonNotes {
             deleteStartIndex += notesSplit[i].length() + 1;
         }
         int deleteEndIndex = deleteStartIndex + notesSplit[index].length() + 1;
-        System.out.println(studentStringBuilder.toString());
-        System.out.println(deleteStartIndex);
-        System.out.println(deleteEndIndex);
         String deletedNote = studentStringBuilder.substring(deleteStartIndex, deleteEndIndex);
         StringBuilder editedStudentStringBuilder = studentStringBuilder.delete(deleteStartIndex, deleteEndIndex);
         studentNotes.put(student, editedStudentStringBuilder);

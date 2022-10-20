@@ -34,11 +34,12 @@ public class TaskDeadline {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDeadline // instanceof handles nulls
+                && deadline != null && ((TaskDeadline) other).deadline != null
                 && deadline.equals(((TaskDeadline) other).deadline)); // state check
     }
 
     @Override
     public int hashCode() {
-        return deadline.hashCode();
+        return deadlineExists() ? deadline.hashCode() : 0;
     }
 }

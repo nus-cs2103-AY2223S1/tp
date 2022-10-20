@@ -1,7 +1,6 @@
 package jarvis.logic.commands;
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
-import static jarvis.logic.parser.CliSyntax.PREFIX_NOTES;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NOTES_INDEX;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_LESSONS;
