@@ -154,6 +154,65 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Update internship application status feature
+
+#### About this feature
+
+The update internship application status feature allows users to quickly update the status of an internship application
+in the tracker via the command `status INDEX STATUS`, where `INDEX` must be a positive integer within the list and 
+`STATUS` must be either `o` (for **O**ffered), `p` (for in **P**rogress) or `r` (for **R**ejected).
+
+#### How it is implemented
+
+The `status` command is facilitated by the `StatusCommand` and the `StatusCommandParser`. It uses the `List#get(int index)`
+on the list of internship applications returned from the `Model#getFilteredInternshipList()` to get the target `Internship` 
+object to be updated. A new `Internship` object is then created with the new status. The 
+`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the `Model` interface as 
+`Model#setInternship(Internship target, Internship editedInternship)` is called to replace the target `Internship` object
+with the updated one.
+
+#### Parsing user input
+
+1. The user inputs the `status` command.
+2. The `InTrackParser` processes the input and creates a new `StatusCommandParser`.
+3. The `StatusCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of INDEX. 
+If `INDEX` is absent or invalid, a `ParseException` would be thrown.
+4. The `StatusCommandParser` then checks for the validity of STATUS. If `STATUS` is absent or invalid, a `ParseException` 
+would be thrown.
+5. The `StatusCommandParser` then creates the `StatusCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `StatusCommand`.
+2. The `StatusCommand` calls the `Model#getFilteredPersonList()` and `List#get(int index)` to get the target `Internship` 
+object to be updated based on the provided `INDEX`.
+3. The `StatusCommand` then creates a new `Internship` object with the same variables as the target one except with the 
+new status.
+4. The `StatusCommand` then calls `InTrack#setInternship(Internship target, Internship editedInternship)` to replace the 
+target `Internship` object with the updated one.
+
+#### Displaying of result
+
+1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `Logic Manager` 
+to complete the command execution. The GUI would also be updated with the change of status.
+
+The following sequence diagram shows how the `status` command works:
+
+![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `status` command:
+
+![StatusActivityDiagram](images/StatusActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: Command to update status of an internship application**
+Most internship applications added by users would still be in progress, so a default "Progress" status is provided for 
+each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for 
+a prefix for the `Status` field and the `edit` command will not work in this case. Having a separate `status` command 
+allows for the format to be kept short and simple which further increases the ease of updating the status of internship
+applications.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
