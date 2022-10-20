@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.SortCommand.SortBy;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
@@ -147,6 +148,8 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void sortList(ListType type, SortBy method);
+
     /**
      * Returns an unmodifiable view of the filtered person list
      */
@@ -211,7 +214,7 @@ public interface Model {
     FilteredList<?> getCurrentList();
 
     /**
-     * the type of the current list
+     * The type of the current list.
      **/
     enum ListType { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST, PERSON_LIST }
 }

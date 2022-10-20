@@ -19,7 +19,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENTITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INSTITUTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LEVEL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEXTOFKIN_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUALIFICATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SCHOOL_DESC;
@@ -35,8 +34,6 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CLASS2;
-import static seedu.address.logic.commands.CommandTestUtil.NEXTOFKIN_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NEXTOFKIN_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_AMY;
@@ -53,7 +50,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXTOFKIN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -74,7 +70,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Institution;
@@ -98,29 +93,27 @@ public class AddCommandParserTest {
 
         // 1 of each field
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB,
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
                 AddCommand.of(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB,
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
                 AddCommand.of(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB,
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
                 AddCommand.of(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, AddCommand.of(expectedStudent));
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                AddCommand.of(expectedStudent));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB,
+                + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
                 AddCommand.of(expectedStudent));
 
         // multiple tags - all accepted
@@ -128,24 +121,18 @@ public class AddCommandParserTest {
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
 
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, AddCommand.of(expectedStudentMultipleTags));
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                AddCommand.of(expectedStudentMultipleTags));
 
         // multiple schools - last school accepted
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_AMY + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, AddCommand.of(expectedStudent));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_AMY + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                AddCommand.of(expectedStudent));
 
         // multiple levels - last level accepted
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_AMY + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, AddCommand.of(expectedStudent));
-
-        // multiple nextofkins - last nextofkin accepted
-        assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_AMY
-                + NEXTOFKIN_DESC_BOB, AddCommand.of(expectedStudent));
-
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_AMY + LEVEL_DESC_BOB,
+                AddCommand.of(expectedStudent));
 
         Tutor expectedTutor = new TutorBuilder(BOB_TUTOR).withTags(VALID_TAG_FRIEND).build();
 
@@ -236,7 +223,7 @@ public class AddCommandParserTest {
         // zero tags student
         Student expectedStudent = new StudentBuilder(AMY_STUDENT).withTags().build();
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + SCHOOL_DESC_AMY + LEVEL_DESC_AMY + NEXTOFKIN_DESC_AMY,
+                + ADDRESS_DESC_AMY + SCHOOL_DESC_AMY + LEVEL_DESC_AMY,
                 AddCommand.of(expectedStudent));
 
         // zero tags tutor
@@ -257,45 +244,44 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, ENTITY_DESC_STUDENT + PHONE_DESC_BOB + " " + VALID_NAME_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB, expectedMessage);
+                + ADDRESS_DESC_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB, expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + " " + VALID_PHONE_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB, expectedMessage);
+                + ADDRESS_DESC_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB, expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + " " + VALID_EMAIL_BOB
-                + ADDRESS_DESC_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB, expectedMessage);
+                + ADDRESS_DESC_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB, expectedMessage);
 
         // missing address prefix
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + " "
-                + VALID_ADDRESS_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB, expectedMessage);
+                + VALID_ADDRESS_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // empty preamble
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         // all prefixes missing so invalid preamble
         assertParseFailure(parser, ENTITY_DESC_STUDENT + " " + VALID_NAME_BOB + " " + VALID_PHONE_BOB + " "
-                + VALID_EMAIL_BOB + " " + VALID_ADDRESS_BOB + " " + VALID_SCHOOL_BOB + " " + VALID_LEVEL_BOB + " "
-                + VALID_NEXTOFKIN_BOB,
+                + VALID_EMAIL_BOB + " " + VALID_ADDRESS_BOB + " " + VALID_SCHOOL_BOB + " " + VALID_LEVEL_BOB + " ",
                 AddCommand.Entity.MESSAGE_CONSTRAINTS + AddCommand.Entity.MESSAGE_DID_YOU_MEAN_STUDENT);
 
         // invalid preamble
         assertParseFailure(parser, INVALID_ENTITY_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, AddCommand.Entity.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                AddCommand.Entity.MESSAGE_CONSTRAINTS);
 
 
         // invalid name
         // student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
 
         // tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -310,8 +296,8 @@ public class AddCommandParserTest {
         // invalid phone
         // student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
@@ -321,8 +307,8 @@ public class AddCommandParserTest {
         // invalid email
         // student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS);
 
         // tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
@@ -333,8 +319,8 @@ public class AddCommandParserTest {
         // invalid address
         // student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_ADDRESS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
+                + INVALID_ADDRESS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                Address.MESSAGE_CONSTRAINTS);
 
         // tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -344,8 +330,8 @@ public class AddCommandParserTest {
         // invalid tag
         // student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                Tag.MESSAGE_CONSTRAINTS);
 
         // tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -358,18 +344,13 @@ public class AddCommandParserTest {
 
         // invalid school
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_SCHOOL_DESC + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, School.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_SCHOOL_DESC + LEVEL_DESC_BOB,
+                School.MESSAGE_CONSTRAINTS);
 
         // invalid level
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + INVALID_LEVEL_DESC
-                + NEXTOFKIN_DESC_BOB, Level.MESSAGE_CONSTRAINTS);
-
-        // invalid next of kin
-        assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + INVALID_NEXTOFKIN_DESC, NextOfKin.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + INVALID_LEVEL_DESC,
+                Level.MESSAGE_CONSTRAINTS);
 
         // invalid qualification
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -404,9 +385,8 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, ENTITY_DESC_STUDENT + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_ADDRESS_DESC + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB,
-                seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
-
+                + INVALID_ADDRESS_DESC + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -415,27 +395,27 @@ public class AddCommandParserTest {
         // student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB + QUALIFICATION_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                + QUALIFICATION_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB + INSTITUTION_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                + INSTITUTION_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB + SUBJECT_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                + SUBJECT_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB + DAY_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                + DAY_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB + TIME_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                + TIME_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
 
         //tutor
@@ -446,10 +426,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
                 + LEVEL_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-
-        assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + NEXTOFKIN_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
@@ -485,10 +461,6 @@ public class AddCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
-                        + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + NEXTOFKIN_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-
-        assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                         + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
@@ -500,7 +472,7 @@ public class AddCommandParserTest {
         //student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
-                + NEXTOFKIN_DESC_BOB + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB,
+                + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         //tutor

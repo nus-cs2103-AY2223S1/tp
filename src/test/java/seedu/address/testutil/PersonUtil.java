@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTITUTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXTOFKIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -60,7 +59,6 @@ public class PersonUtil {
         if (person instanceof Student) {
             sb.append(PREFIX_SCHOOL + ((Student) person).getSchool().school + " ");
             sb.append(PREFIX_LEVEL + ((Student) person).getLevel().level + " ");
-            sb.append(PREFIX_NEXTOFKIN + ((Student) person).getNextOfKin().nextOfKin + " ");
         } else if (person instanceof Tutor) {
             sb.append(PREFIX_QUALIFICATION + ((Tutor) person).getQualification().qualification + " ");
             sb.append(PREFIX_INSTITUTION + ((Tutor) person).getInstitution().institution + " ");

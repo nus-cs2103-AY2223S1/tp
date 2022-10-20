@@ -6,7 +6,8 @@ import seedu.address.model.tuitionclass.exceptions.InvalidSubjectException;
  * Represents the subject of the tuition class.
  */
 public enum Subject {
-    ENGLISH("English"), MATHEMATICS("Mathematics"), PHYSICS("Physics"), CHEMISTRY("Chemistry"), BIOLOGY("Biology");
+    ENGLISH("english"), MATHEMATICS("mathematics"), PHYSICS("physics"), CHEMISTRY("chemistry"), BIOLOGY("biology"),
+    EMATH("emath"), AMATH("amath");
 
     public static final String MESSAGE_CONSTRAINTS =
             "Subject should only contain alphabetical characters, "
@@ -17,7 +18,8 @@ public enum Subject {
                     + "3. Physics\n"
                     + "4. Chemistry\n"
                     + "5. Biology\n";
-    public static final String VALIDATION_REGEX = "(?i)english|mathematics|physics|chemistry|biology";
+    public static final String VALIDATION_REGEX = "(?i)english|mathematics|physics|chemistry|biology|emath|amath";
+
     public final String subject;
 
     Subject(String subject) {
