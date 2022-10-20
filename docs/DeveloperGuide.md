@@ -240,11 +240,50 @@ _{more aspects and alternatives to be added}_
 
 #### Design considerations:
 
-### \[Proposed\] Remark field for entries
+### Remark field for entries
 
 #### Proposed Implementation
 
+The proposed implementation for Remark is similar to that of other details of Person.
+Firstly we include a Remark class under `seedu/address/model/person`.
+This class will contain all details about a remark, namely its Regex requirements and
+the string which is the remark itself.
+
+Note that a Remark field is optional when adding a Person entry into the AddressBook.
+Hence, the default value for a Remark is an empty String.
+
+There are only 2 commands which can modify the Remark for a Person. These are the
+`add` command and the `edit` command.
+
+1. `add` Command (upon instantiating)
+    1. If the remark field is specified when instantiating a Person, for example:
+       `add n=JohnDoe p=98765432 e=JohnDoe@gmail.com a=Clementi r=REMARK`, their remark
+       will be REMARK.
+    2. If not specified, it will be an empty String.
+2. `edit` Command (after instantiating)
+    1. If the remark field is specified when editing a Person, for example:
+       `edit 1 r=Change Remark`, their remark will be changed to ChangeRemark.
+    2. If not specified, it will remain unchanged.
+
 #### Design considerations:
+
+**Aspect: How remark can be modified:**
+
+* **Alternative 1 (current choice):** Only at `add` and `edit` command.
+    * Pros:
+        * Reduces cluttering of commands.
+        * More intuitive design as it agrees with the definition of `add` and `edit`.
+    * Cons:
+        * Extra typing (`r=New Remark`) to modify the Remark field.
+
+* **Alternative 2:** Create a `remark` command just to modify remarks.
+    * Pros:
+        * Slightly less typing when editing Remark.
+    * Cons:
+        * Remark is just like any other field, just like name and address.
+          Hence, it is by no mean special and does not deserve its own command.
+        * `edit` command no longer agrees with its definition to edit entries.
+
 
 ### Message command
 
@@ -288,8 +327,25 @@ Step 3: The user realises his first attempt at a pitch isn't working well, so th
 message delete 1
 ```
 
+The proposed implementation for Tags is similar to that of other details of Person.
+However, it is important to note that a tag needs to be created before it can be used.
+Firstly we include a `tag` package under `seedu/address/model`.
+This package will contain a tag class with all details about a tag, namely its Regex requirements and
+the string which is the remark itself. The package also contains a TagSet class which stores all
+tags created under a set.
+
+Note that a Tag field is optional when adding a Person entry into the AddressBook.
+Hence, the default value for a Tag is an empty String.
+
+We can create tags using the `tag create` command. For example, `tag create friends`.
+
+Now that we have created a tag, we can tag a client using the `tag` command. For example, `tag 1 friends`.
+
+We can also remove tags from a user using the `tag remove` command. For example, `tag remove 1 friends`.
+
 #### Design considerations:
 
+<<<<<<< HEAD
 - **Aspect: Allow edting**
   
   - Alternative 1 (current choice): Don't allow editing
@@ -305,16 +361,123 @@ message delete 1
     - Cons: More complicated command set
 
 ### \[Proposed\] Filter command
+=======
+### Filter Command
+**Aspect: How tags can be implemented:**
+>>>>>>> ad384bb8de0efdc505c9ded5adb05374915a7164
 
-#### Proposed Implementation
+* **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
+    * Pros:
+        * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
+    * Cons:
+        * Forces the creation of a few unique commands. Not user-friendly as the user is expected
+          to memorise all commands.
+
+* **Alternative 2:** Building on top of the `add` and `edit` commands.
+    * Pros:
+        * It allows a more concise set of operations.
+    * Cons:
+        * `add` and `edit` commands will be slightly messier and may contain ambiguities.
+        * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
+          wish to add or edit one of the many tags the client possesses.
+
+#### Implementation
+
+The `filter`command provides a way for users to search for clients in Rapportbook. It extends from the `Command` class and results in an update of the `FilteredList<Person>` filtered list of the model.
+
+The following commands are provided:
+
+* `filter [n=NAME,...] [t=TAG,...]`  — Filter for clients with the specified names and tags
+
+* `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
+
+Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
+
+Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
+
+**Given below is an example usage scenario of filtering**
+
+Step 1: The user wants to filter the for he tagged as `rich` and `fun`.
+```
+filter t=rich,fun
+```
+
+Step 2: In the list returned, the user notices the names, `Bob`, `Alan`, which he has interests in. He can filter for them, so that they appear beside each other.
+
+```
+filter n=bob,alan
+```
+
+Step 3: After looking through their details, the user wants to look at other `rich` and `fun` clients in his contact. To do this, he can clear the name filters.
+
+```
+filter clear n=bob,alan
+```
 
 #### Design considerations:
 
-### \[Proposed\] Show command
+**Aspect: How filters are reduced:**
 
-#### Proposed Implementation
+* **Alternative 1 (current choice):** filters of the same type are reduced with `OR` and filters of different types are reduced with `AND`.
+    * Pros:
+      * Simple to implement
+      * Follows the same filtering pattern used by most websites
+    * Cons:
+      * It might be unintuitive for the user to see the list expanding after a new filter is applied.
+
+* **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commadns are reduced with `AND`.
+    * Pros:
+    	* Provides a lot of flexibility for the user
+    * Cons:
+      * Difficult to test as there are many different cases
+      * Difficult to implement clearing of filters in a sensible and intuitive manner
+
+### Show command
+
+#### Implementation
+The `show` command allows the user to target a single client so that details about that client can be changed easily.
+
+To facilitate the `show` command, a `TargetPerson` class is created to store the target `Person`. Methods to store and retrieve the `TargetPerson` are exposed in the `Model`interface. Storing the `Person` object of interest in a separate class allows it to be retrieved easily for later use.
+
+The following class diagram shows how the `TargetPerson` is implemented:
+![TargetPerson0](images/TargetPersonClassDiagram.png)
+
+Commands that integrates with the `show` command includes:
+- `edit`
+- `tag`
+
+**Given below is an example usage scenario of show command**
+
+Step 1. The user types "show 1" to target the client at index 1 of the current list.
+
+```
+show 1
+```
+
+Step 2: The user edits the current target details, without the need to specify an index.
+
+```
+edit n=Alexis Yeoh
+```
+
+Step 3: The user tags the current target with the tag `friends`, without the need to specify an index.
+
+```
+tag friends
+```
 
 #### Design considerations:
+- **Aspect: How to access the `TargetPerson`.**
+  - Alternative 1 (current choice): Allow the index to not be specified
+      - Pros: 
+        - The user does not have to provide an index (less to type).
+      - Cons:
+        - Implementation will have to account for no index provided for the various commands.
+  - Alternative 2: Index 0 to denote `TargetPerson`
+      - Pros:
+        - (Slightly) Easier to implement.
+      - Cons: 
+        - User has to provide an index (more to type).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -344,7 +507,7 @@ message delete 1
 * prefers to have minimal traveling expenses
 * likes motivational quotes
 
-**Value proposition**: 
+**Value proposition**:
 
 * manage contacts faster than a typical mouse/GUI driven app
 * keep track of the user's contacts and meeting schedule easily, but communication with contacts is not covered.
@@ -367,6 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user     | get things done fast with minimal typing                | save time                                                              |
 | `* *`    | user     | remember details that clients tell me about their lives | use them to form an emotional connection with clients                  |
 | `* *`    | user     | keep track of my client's phone number and address      | contact them easily                                                    |
+| `* *`    | user     | leave remarks of my clients                             | remember important details unique to each client                       |
 | `*`      | user     | sort clients by name                                    | locate a client easily                                                 |
 
 
@@ -374,7 +538,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Rapportbook` and the **Actor** is the `user`, unless specified otherwise)
 #### Use case: List contacts
 1. User requests to list contacts.
-2. Rapportbook shows a list of contacts.  
+2. Rapportbook shows a list of contacts.
    Use case ends.
 
 #### Use case: Add a contact
@@ -382,7 +546,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a contact and provides details of contacts.
-2. Rapportbook indicates that contact has been added.  
+2. Rapportbook indicates that contact has been added.
    Use case ends.
 
 **Extensions**
@@ -396,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to delete a specific contact in the list.
-3. Rapportbook deletes the contact.  
+3. Rapportbook deletes the contact.
    Use case ends.
 
 **Extensions**
@@ -414,22 +578,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to edit a specific contact in the list by specifying fields and their updated values.
-3. Rapportbook edits the contact based on what the user specified.  
+3. Rapportbook edits the contact based on what the user specified. 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.  
+* 1a. The list is empty.
   Use case ends.
 
 * 2a. The given index is invalid.
-    * 2a1. Rapportbook shows an error message. 
+    * 2a1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2b. No fields were specified
-    * 2b1. Rapportbook shows an error message. 
+    * 2b1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2c. Updated values is not in the right format.
-    * 2c1. Rapportbook shows an error message. 
+    * 2c1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2d. No index was specified but there is a [contact shown](#use-case-show-contact).
     * Use case resumes at step 3.
@@ -442,38 +606,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to filter contacts of a certain tag and/or name.
-2. Rapportbook shows a list of contacts that matches his filter query.  
+2. Rapportbook shows a list of contacts that contains the tag **and** name specified in the filter query.
+
    Use case ends.
 
-**Extensions**
-
-* 1a. The tag specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-* 1b. The name specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-
-	Use case ends.
 
 #### Use case: Clearing filters
 
 **MSS**
 
-1. User requests to clear a filter that was applied.
-2. Rapportbook shows a list of contacts that without the filter applied.  
+1. User requests to clear filters that were originally applied.
+2. Rapportbook shows a list of contacts that without the filters applied.
+
    Use case ends.
 
 **Extensions**
 
-* 1a. The tag specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-* 1b. The name specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
+* 1a. Some filters specified were not previously applied.
+* 1a1. Rapportbook only clears the filters that were applied.
 
-	Use case ends.
 
 #### Use case: Show contact
 
@@ -481,8 +632,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to show a specific contact in the list.
-3. Rapportbook displays the contact in a separate panel for the user.  
-   Use case ends. 
+3. Rapportbook displays the contact in a separate panel for the user.
+   Use case ends.
 
 **Extensions**
 
@@ -515,12 +666,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User [lists contacts](#use-case-list-contacts).
 2.  User requests to tag a specific contact in the list with certain tag(s).
-3.  Rapportbook shows success message.  
+3.  Rapportbook shows success message.
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.  
+* 1a. The list is empty.
   Use case ends.
 
 * 2a. The given index is invalid.
@@ -531,10 +682,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case resumes at step 2.
 * 2c. Contact already tagged with certain tag(s) specified but not all the tag(s) specified.
     * 2c1. Rapportbook tags the contact with the missing tag(s).
-    * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.  
+    * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.
       Use case ends.
 * 2d. Contact already tagged with all tag(s) specified.
-    * 2d1. Rapportbook shows a message indicating that no tags were added.  
+    * 2d1. Rapportbook shows a message indicating that no tags were added.
       Use case ends.
 
 #### Use case: Remove tag(s) from contact
@@ -543,12 +694,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User [lists contacts](#use-case-list-contacts).
 2.  User requests to remove certain tag(s) from a specific contact in the list.
-3.  Rapportbook shows success message.  
+3.  Rapportbook shows success message.
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.  
+* 1a. The list is empty.
   Use case ends.
 
 * 2a. The given index is invalid.
@@ -558,17 +709,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2c. Contact already has at least one of the tag(s) specified.
-    * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.  
+    * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
     * Use case resumes at step 2.
 
 #### Use case: Request help manual
 1. User requests help for application usage.
-2. Rapportbook opens another window that contains a link to the help manual.  
+2. Rapportbook opens another window that contains a link to the help manual.
    Use case ends.
 
 #### Use case: Exit application
 1. User requests to exit the application.
-2. Rapportbook closes all windows and exits gracefully.  
+2. Rapportbook closes all windows and exits gracefully.
    Use case ends.
 
 
@@ -602,9 +753,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. Rapportbook code should follow the Object-oriented paradigm primarily.
 
 **Quality requirements**
-1. A user with above average typing speed should be able to accomplish most tasks faster using commands than using the 
-mouse. 
-2. Rapportbook GUI should work well for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 
+1. A user with above average typing speed should be able to accomplish most tasks faster using commands than using the
+mouse.
+2. Rapportbook GUI should work well for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and
 125%.
 3. Rapportbook GUI should be usable for screen resolutions 1280x720 and higher, and, for screen scales 150%.
 

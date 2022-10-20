@@ -15,6 +15,7 @@ import seedu.address.model.message.Message;
 public class ListMessageCommand extends MessageCommandGroup {
 
     public static final String COMMAND_SPECIFIER = "list";
+    public static final String COMMAND_SPECIFIER_ALIAS = "l";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all messages. ";

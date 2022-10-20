@@ -145,6 +145,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Set<Tag> deleteTags(Set<Tag> tags) {
+        requireNonNull(tags);
+        Set<Tag> deletedTags = addressBook.deleteTags(tags);
+        return deletedTags;
+    }
+
+    @Override
     public void removeTags(Person target, Collection<Tag> tags) {
         Person untaggedPerson = addressBook.removeTags(target, tags);
         clearFiltersInFilteredPersonList();
@@ -157,7 +164,7 @@ public class ModelManager implements Model {
     // =========== Message Templates ===========================================================
 
     @Override
-    public void addMessage(Message message) {
+    public void createMessage(Message message) {
         requireNonNull(message);
         addressBook.createMessage(message);
     }
@@ -243,6 +250,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setTargetPerson(Person person) {
+        requireNonNull(person);
         targetPerson.set(person);
     }
 

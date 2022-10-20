@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -96,9 +97,14 @@ public interface Model {
     void addTag(Tag tag);
 
     /**
+     * Deletes the tags from the address book and returns the set of deleted tags.
+     */
+    Set<Tag> deleteTags(Set<Tag> tag);
+
+    /**
      * Adds the message to the address book.
      */
-    void addMessage(Message message);
+    void createMessage(Message message);
 
     /**
      * Deletes the message from the address book.

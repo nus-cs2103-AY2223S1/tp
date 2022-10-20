@@ -12,6 +12,7 @@ import seedu.address.model.message.Message;
 public class CreateMessageCommand extends MessageCommandGroup {
 
     public static final String COMMAND_SPECIFIER = "create";
+    public static final String COMMAND_SPECIFIER_ALIAS = "c";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates the message. "
@@ -40,7 +41,7 @@ public class CreateMessageCommand extends MessageCommandGroup {
             return new CommandResult(String.format(MESSAGE_DUPLICATE_MESSAGE, toCreate));
         }
 
-        model.addMessage(toCreate);
+        model.createMessage(toCreate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }
 
