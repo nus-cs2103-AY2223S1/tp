@@ -339,6 +339,41 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
   * Pros: Less of a workaround. More accurate backstage representation of user input.
   * Cons: Harder to implement. Have to concatenate `DayOfWeek` and `LocalDateTime` in `toString` method, which may affect performance with a large `SessionList`.
 
+
+### Remove feature
+
+####Implementation
+
+The remove feature allows the user to remove a specified detail from the homework, session, attendance, or grade progress lists. It can only be used when the user is in the 'view' state of the student.
+
+Remove is facilitated by the `RemoveCommand` in the Logic component.
+
+Given below is an example usage scenario and how the Remove mechanism behaves at each step.
+
+**Assumption: There are `Person` instances of the name Benson Meier and Alice Pauline `Person` list.**
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the sample data and
+each person in the `AddressBook` contains details for each `GradeProgress`, `Session`, `Attendance` or `Homework` object.
+Step 2. The user executes `view Benson Meier`,bringing the user to the `view state` of Benson Meier
+Step 3. The user executes a `remove a/3` command which removes the instance of `attendance` in index 3 of the `attendanceList` of the `Person` displayed in the view state.
+
+The following activity diagram summarises what happens when a user executes the Remove command:
+
+(insert activity diagram here)
+
+#### Design Consideration
+
+**Aspect: Where to implement Remove function
+
+***Alternative 1 (current choice):** Have a dedicated function for removing specified details of a Person from the various lists in their details. 
+  * Pros: Easier to implement
+  * Cons: Less intuitive, users must know difference between `edit` and `remove` functions
+
+***Alternative 2:** Integrate remove function into edit function.
+  * Pros: More intuitive as removing a feature is also instinctively understood as editing details. 
+  * Cons: Harder to implement, can lead to potential errors if user means to edit as opposed to remove 
+  
+
 ### Schedule feature
 
 _{to be added}_
