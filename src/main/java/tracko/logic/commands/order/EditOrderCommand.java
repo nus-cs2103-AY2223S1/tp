@@ -83,6 +83,7 @@ public class EditOrderCommand extends Command {
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 
         model.setOrder(orderToEdit, editedOrder);
+        model.refreshData();
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
     }
@@ -103,7 +104,7 @@ public class EditOrderCommand extends Command {
         // Run checks on whether the item is in the inventory list
         Optional<Pair<String, Integer>> unlinkedItem = editOrderDescriptor.getUnlinkedItemToEdit();
         if (!unlinkedItem.equals(Optional.empty())) {
-            Pair<String,Integer> itemToCompare = unlinkedItem.get();
+            Pair<String, Integer> itemToCompare = unlinkedItem.get();
             Item item;
 
             try {

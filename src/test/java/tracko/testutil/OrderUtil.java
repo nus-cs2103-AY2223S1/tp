@@ -7,12 +7,11 @@ import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-import tracko.logic.commands.order.AddOrderCommand;
-import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import tracko.logic.commands.order.AddOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 
@@ -63,8 +62,8 @@ public class OrderUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getItemToEdit().ifPresent(itemToEdit -> sb.append(PREFIX_ITEM).append(itemToEdit.getItemName())
-                .append(PREFIX_QUANTITY).append(itemToEdit.getQuantity()));
+        descriptor.getUnlinkedItemToEdit().ifPresent(itemToEdit -> sb.append(PREFIX_ITEM).append(itemToEdit.getKey())
+                .append(PREFIX_QUANTITY).append(itemToEdit.getValue()));
         return sb.toString();
     }
 }

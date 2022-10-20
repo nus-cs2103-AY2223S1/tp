@@ -94,6 +94,7 @@ public class OrderCard extends UiPart<Region> {
         order.getItemList().stream()
                 .forEach(pair -> items.getChildren().add(
                         constructItemLabel(pair.toString())));
+
     }
 
     /**

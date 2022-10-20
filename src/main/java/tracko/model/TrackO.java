@@ -152,4 +152,13 @@ public class TrackO implements ReadOnlyTrackO {
 
         orders.setOrder(orderToEdit, editedOrder);
     }
+
+    public void refreshInventoryData() {
+        items.refreshData();
+    }
+
+
+    public void refreshOrderData() {
+        orders.refreshData();
+    }
 }

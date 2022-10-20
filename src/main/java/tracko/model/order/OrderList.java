@@ -56,6 +56,16 @@ public class OrderList implements Iterable<Order> {
         return internalUnmodifiableList;
     }
 
+
+    /**
+     * Refreshes the data to reflect the updated data in the GUI.
+     */
+    public void refreshData() {
+        for (int i = 0; i < internalList.size(); i++) {
+            internalList.set(i, internalList.get(i));
+        }
+    }
+
     @Override
     public Iterator<Order> iterator() {
         return internalList.iterator();

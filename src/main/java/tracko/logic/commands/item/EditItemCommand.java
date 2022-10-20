@@ -82,6 +82,7 @@ public class EditItemCommand extends Command {
         }
 
         model.setItem(itemToEdit, editedItem);
+        model.refreshData();
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }

@@ -5,11 +5,6 @@ import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import javafx.util.Pair;
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.order.EditOrderCommand;
@@ -21,8 +16,6 @@ import tracko.logic.parser.Parser;
 import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.order.ItemQuantityPair;
-import tracko.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object.

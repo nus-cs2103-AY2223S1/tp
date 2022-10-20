@@ -202,4 +202,12 @@ public class ModelManager implements Model {
         return trackO.equals(other.trackO)
             && userPrefs.equals(other.userPrefs);
     }
+
+    // UI DATA REFRESHER ======================================================================
+
+    @Override
+    public void refreshData() {
+        trackO.refreshInventoryData();
+        trackO.refreshOrderData();
+    }
 }
