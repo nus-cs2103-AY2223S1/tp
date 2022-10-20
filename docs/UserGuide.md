@@ -205,22 +205,20 @@ Coming Soon!
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Employee Add** | `employee add n/NAME` <br> e.g. `employee add n/John Doe`
-**Employee Delete** | `employee delete n/NAME` <br> e.g. `employee delete n/John Doe`
-**Employee Edit** | `employee edit n/NAME e/EMAIL c/CONTACT-NUMBER` <br> e.g.`employee edit n/John Doe e/johndoe1@example.com c/12345678`
-**Help** | `help`
-**Task Add** | `task add t/TASK-DESCRIPTION` <br> e.g. `task add t/Create GUI for the Duke app`
-**Task Assign** | `task assign t/TASK-DESCRIPTION n/TEAM-NAME` <br> e.g. `task assign t/Create GUI for the Duke app n/UIDevelopers`
-**Task Deadline** | `task deadline t/TASK-DESCRIPTION d/DEADLINE` <br> e.g. `task deadline t/Implement a payment system d/12/12/2023`
-**Task Delete** | `task delete t/TASK-DESCRIPTION` <br> e.g. `task delete t/Create GUI for the Duke app`
-**Task Mark** | `task mark t/TASK-DESCRIPTION` <br> e.g. `task mark t/Create GUI for the Duke app`
-**Task Update** | `task update o/OLD-TASK-DESCRIPTION n/NEW-TASK-DESCRIPTION` <br> e.g. `task update o/Implement an authentication system n/Implement an authentication system with encryption`
-**Team Add** | `team add t/TEAM-NAME` <br> e.g. `team add t/UIDevelopers`
-**Team Delete** | `team delete t/TEAM-NAME` <br> e.g. `team delete t/UIDevelopers`
-**Team Delink** | `team delink t/TEAM-NAME m/TEAM-MEMBER...` <br> e.g. `team delink t/UIDevelopers m/John m/Jane`
-**Team Link** | `team link t/TEAM-NAME m/TEAM-MEMBER...` <br> e.g. `team link t/UIDevelopers m/John m/Jane`
-**Team Rename** | `team rename o/TEAM-NAME n/NEW-TEAM-NAME` <br> e.g. `team rename o/UIDevelopers n/UnitTesters`
-**View** | `view t/TEAM-NAME` <br> e.g.,`view t/UIDevelopers`
-**View All** | `view all`
+| Action              | Format, Examples                                                                                                                                            |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Member Add**      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG` <br> e.g. `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` |
+| **Member Delete**   | `delete p/GLOBAL-PERSON-INDEX` <br> e.g. `delete p/1`                                                                                                       |
+| **Member Edit**     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]` <br> e.g.`edit 1 n/Johny p/91234567 e/johndoe@example.com`                                    |
+| **Member assign**   | `assign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`assign m/1 t/1`                                                                                              |
+| **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`unassign m/1 t/1`                                                                                          |
+| **Member List**     | `userlist`                                                                                                                                                  |
+| **Help**            | `help`                                                                                                                                                      |
+| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/YYYY-MM-DD]` <br> e.g. `taskadd t/1 n/Finish project d/2023-12-24`                                                     |
+| **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                 |
+| **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                     |
+| **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                 |
+| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME` <br> e.g. `taskedit t/1 task/1 n/Finish assignment`                                                 |
+| **Team Add**        | `createteam n/TEAM-NAME` <br> e.g. `createteam n/TEAM1`                                                                                                     |
+| **Team Delete**     | `deleteteam t/TEAM-INDEX` <br> e.g. `deleteteam t/1`                                                                                                        |
+| **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                  |

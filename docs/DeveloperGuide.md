@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` `TeamListPanel`, `TaskListPanel` , `DisplayUserWindow` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Team` object residing in the `Model`.
 
 ### Logic component
 
@@ -232,7 +232,26 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}
+
+### Mark Task Feature
+
+#### Implementation 
+
+The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface. 
+
+Given below is an example usage scenario 
+
+Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false. 
+
+Step 2. After the task is completed, the user want to mark the task as done. The user then executes `taskmark t/1 task/3` to mark the 3rd task in the 1st team as completed. The task which is contained in team 1 would be marked as completed and this would be reflected in the gui.
+
+Step 3. The user realised that there is some error in the task and wants to unmark it. The user then executes `taskummark t/1 task/3` to unmark the 3rd task in the 1st team.
+
+
+The following sequence diagram shows how the mark task operation works:
+![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
+
 
 ### \[Proposed\] Data archiving
 
@@ -355,7 +374,7 @@ Step 1 and 2 is repeated until all members have been added
 * 1a. Team Lead enter wrong command
 
     * 1a1. EZLead display error message
-    * 
+
       Use case ends
 
 * 1b. Team does not exist in EZLead’s Database
@@ -363,7 +382,7 @@ Step 1 and 2 is repeated until all members have been added
     * 1b1. EZLead informs Team Lead that the team does not exist
 
       Use case ends
-    
+
 
 **Use case: UC4 - Renaming a team's name**
 

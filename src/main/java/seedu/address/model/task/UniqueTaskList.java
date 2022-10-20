@@ -145,6 +145,16 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Edit a task from this {@code TaskList}.
+     *
+     * @param index The {@code task} of the task to be edited.
+     * @param newName The new name of the task.
+     */
+    public void edit(int index, Name newName) {
+        internalList.get(index).editName(newName);
+    }
+
+    /**
      * Deletes a task from this {@code TaskList}.
      *
      * @param index The index of the {@code task} to be deleted.

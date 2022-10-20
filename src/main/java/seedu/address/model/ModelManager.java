@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -130,6 +131,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTeamName(Index targetIndex, Name newTeamName) {
+        requireAllNonNull(targetIndex, newTeamName);
+        addressBook.setTeamName(targetIndex, newTeamName);
+        updateFilteredTeamList(unused -> false);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
+    }
+
+    @Override
     public void deleteTeam(Team team) {
         addressBook.removeTeam(team);
     }
@@ -154,12 +163,22 @@ public class ModelManager implements Model {
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
+    }
+
+    @Override
+    public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName) {
+        requireAllNonNull(teamIndex, taskIndex, newName);
+        addressBook.editTask(teamIndex, taskIndex, newName);
+        updateFilteredTeamList(unused -> false);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     @Override
     public void markTask(Index teamIndex, Index taskIndex) {
         requireAllNonNull(teamIndex, taskIndex);
         addressBook.markTask(teamIndex, taskIndex);
+        updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
@@ -167,6 +186,7 @@ public class ModelManager implements Model {
     public void unmarkTask(Index teamIndex, Index taskIndex) {
         requireAllNonNull(teamIndex, taskIndex);
         addressBook.unmarkTask(teamIndex, taskIndex);
+        updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
@@ -306,25 +326,26 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Return Team Object that the given person is a member in.
+     * Return list of all teams in which the given person is a member in.
      * @param p Person object.
-     * @return Team object.
+     * @return List of teams.
      */
     @Override
-    public Team hasMember(Person p) {
+    public List<Team> teamsWithMember(Person p) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(p);
+        List<Team> teamsWithMember = new ArrayList<>();
         ObservableList<Person> memberList = null;
         for (int i = 0; i < teams.size(); i++) {
             Team team = teams.get(i);
             memberList = team.getMemberList();
             for (int j = 0; j < memberList.size(); j++) {
                 if (memberList.contains(p)) {
-                    return team;
+                    teamsWithMember.add(team);
                 }
             }
         }
-        return null;
+        return teamsWithMember;
     }
 
     // todo implementation of updateFilteredTeamList

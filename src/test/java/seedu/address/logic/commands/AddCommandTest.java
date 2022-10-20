@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -158,6 +159,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTeamName(Index targetIndex, seedu.address.model.team.Name newTeamName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPersonToTeam(Person person, Team team) {
             throw new AssertionError("This method should not be called.");
         }
@@ -228,7 +234,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Team hasMember(Person p) {
+        public List<Team> teamsWithMember(Person p) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -249,6 +255,11 @@ public class AddCommandTest {
 
         @Override
         public void deleteTask(Index teamIndex, Index taskIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName) {
             throw new AssertionError("This method should not be called.");
         }
     }

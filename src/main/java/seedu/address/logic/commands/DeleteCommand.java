@@ -48,11 +48,12 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        if (model.hasMember(personToDelete) != null) {
-            Team t = model.hasMember(personToDelete);
+        List<Team> teamsWithMember = model.teamsWithMember(personToDelete);
+
+        for (int i = 0; i < teamsWithMember.size(); i++) {
+            Team t = teamsWithMember.get(i);
             model.removePersonFromTeam(personToDelete, t);
         }
-
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

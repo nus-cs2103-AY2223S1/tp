@@ -11,7 +11,6 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
-
 /**
  * Represents a Team in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -19,7 +18,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class Team {
 
     // Identity fields
-    private final Name name;
+    private Name name;
     private UniquePersonList members = new UniquePersonList();
     private UniqueTaskList tasks = new UniqueTaskList();
 
@@ -45,6 +44,10 @@ public class Team {
 
     public Name getName() {
         return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
     }
 
     public UniqueTaskList getTasks() {
@@ -135,6 +138,15 @@ public class Team {
      */
     public void deleteTask(int index) {
         tasks.delete(index);
+    }
+
+    /**
+     * Edits a task of the team.
+     * @param index The index of the {@code task} to be deleted.
+     * @param newName The new name of the task.
+     */
+    public void editTask(int index, seedu.address.model.task.Name newName) {
+        tasks.edit(index, newName);
     }
 
     /**
