@@ -93,6 +93,8 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //=========== Projects ================================================================================
+
     @Override
     public boolean hasProject(Project project) {
         requireNonNull(project);
@@ -136,6 +138,8 @@ public class ModelManager implements Model {
     public ArrayList<Project> getTargetProject() {
         return targetProject;
     }
+
+    //=========== Tasks ================================================================================
 
     @Override
     public boolean hasTask(Task task) {

@@ -13,7 +13,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -73,10 +72,6 @@ public class AddStaffCommand extends Command {
         }
 
         Index index = Index.fromZeroBased(projectIndex);
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
 
         ProjectName projectName = lastShownList.get(index.getZeroBased()).getProjectName();
         if (!projectName.equals(addTo)) {
