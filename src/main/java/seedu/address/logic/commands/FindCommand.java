@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all students in student list whose details contain any of the argument keywords/number in a prefix.
