@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
@@ -157,6 +158,14 @@ public class Team {
      */
     public String getTasksAsString() {
         return taskList.toString();
+    }
+
+    /**
+     * Returns a map representing the number of tasks assigned to each person.
+     * @return Map of person to number of tasks assigned
+     */
+    public Map<Person, Integer> getTasksPerPerson() {
+        return taskList.getTasksPerPerson();
     }
 
     /**

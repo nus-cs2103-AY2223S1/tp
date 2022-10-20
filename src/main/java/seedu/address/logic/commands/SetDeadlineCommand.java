@@ -46,7 +46,7 @@ public class SetDeadlineCommand extends Command {
         }
         taskList.get(taskIndex).setDeadline(deadline);
         return new CommandResult(String.format(MESSAGE_SET_DEADLINE_SUCCESS,
-                taskList.get(taskIndex).getName(), taskList.get(taskIndex).getDeadline()));
+                taskList.get(taskIndex).getName(), taskList.get(taskIndex).getDeadlineAsString()));
     }
 
     @Override
