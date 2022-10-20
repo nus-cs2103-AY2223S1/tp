@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.student.AddCommand;
@@ -144,6 +145,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Student> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<PieChart.Data> getStudentGradeChartData() {
             throw new AssertionError("This method should not be called.");
         }
 
