@@ -89,10 +89,17 @@ public interface Model {
     void setPatient(Patient target, Patient editedPatient);
 
     /**
-     * Updates the FilteredAppointmentList so that it includes the given patient's appointments only.
+     * Updates the FilteredAppointmentList and FilteredBillList
+     * so that it includes the given patient's appointments and bills only.
      * @param patient The given patient.
      */
     void selectPatient(Patient patient);
+
+    /**
+     * Updates the FilteredBillList so that it includes the given appointments' bill only.
+     * @param appointment The given patient.
+     */
+    void selectAppointment(Appointment appointment);
 
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();
@@ -179,5 +186,17 @@ public interface Model {
      * Sorts the namelist by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void sort(Comparator<Patient> comparator);
+    void sortPatients(Comparator<Patient> comparator, boolean isAscending);
+
+    /**
+     * Sorts the appointments by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortAppointments(Comparator<Appointment> comparator, boolean isAscending);
+
+    /**
+     * Sorts the bills by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortBills(Comparator<Bill> comparator, boolean isAscending);
 }

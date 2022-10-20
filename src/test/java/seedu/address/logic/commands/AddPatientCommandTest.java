@@ -124,6 +124,11 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public void selectAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -194,7 +199,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void sort(Comparator<Patient> comparator) {
+        public void sortPatients(Comparator<Patient> comparator, boolean isAscending) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortBills(Comparator<Bill> comparator, boolean isAscending) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -12,7 +12,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
-
+    public static final String MESSAGE_INVALID_BILL_DISPLAYED_INDEX = "The bill index provided is invalid";
+    public static final String MESSAGE_BILL_LISTED_OVERVIEW = "%1$d bill listed!";
 
     public static final String MESSAGE_INVALID_SORT_CRITERIA = "Sort criteria is invalid";
 }

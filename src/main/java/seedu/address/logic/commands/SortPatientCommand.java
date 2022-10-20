@@ -11,12 +11,12 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
- * Sorts data in Address Book.
+ * Sorts Patient data in Address Book.
  */
-public class SortCommand extends Command {
-    public static final CommandWord COMMAND_WORD = new CommandWord("sort");
+public class SortPatientCommand extends Command {
+    public static final CommandWord COMMAND_WORD = new CommandWord("sortpatient");
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts the list of people according to the specified field."
+            COMMAND_WORD + ": Sorts the list of patients according to the specified field."
             + "by alphabetical order.\n"
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: FIELD (must not be empty) "
@@ -25,13 +25,15 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";
 
     private final String criteria;
+    private final boolean isAscending;
 
     /**
      * @param criteria to be sorted by
      */
-    public SortCommand(String criteria) {
+    public SortPatientCommand(String criteria, boolean isAscending) {
         requireAllNonNull(criteria);
         this.criteria = criteria;
+        this.isAscending = isAscending;
     }
 
     @Override
@@ -39,16 +41,16 @@ public class SortCommand extends Command {
         requireNonNull(model);
         if (this.criteria.toLowerCase().equals("name")) {
             NameComparator nameComparator = new NameComparator();
-            model.sort(nameComparator);
+            model.sortPatients(nameComparator, this.isAscending);
         } else if (this.criteria.toLowerCase().equals("phone")) {
             PhoneComparator phoneComparator = new PhoneComparator();
-            model.sort(phoneComparator);
+            model.sortPatients(phoneComparator, this.isAscending);
         } else if (this.criteria.toLowerCase().equals("email")) {
             EmailComparator emailComparator = new EmailComparator();
-            model.sort(emailComparator);
+            model.sortPatients(emailComparator, this.isAscending);
         } else if (this.criteria.toLowerCase().equals("address")) {
             AddressComparator addressComparator = new AddressComparator();
-            model.sort(addressComparator);
+            model.sortPatients(addressComparator, this.isAscending);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_SORT_CRITERIA);
         }

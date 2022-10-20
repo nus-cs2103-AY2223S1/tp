@@ -1,31 +1,27 @@
 package seedu.address.model.patient;
 
-import java.util.List;
 import java.util.function.Predicate;
-
-import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Patient}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicatePatient implements Predicate<Patient> {
-    private final List<String> keywords;
+    private final String predicateName;
 
-    public NameContainsKeywordsPredicatePatient(List<String> keywords) {
-        this.keywords = keywords;
+    public NameContainsKeywordsPredicatePatient(String predicateName) {
+        this.predicateName = predicateName;
     }
 
     @Override
     public boolean test(Patient patient) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getName().fullName, keyword));
+        return patient.getName().fullName.toLowerCase().contains(predicateName.toLowerCase());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicatePatient // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicatePatient) other).keywords)); // state check
+                && predicateName.equals(((NameContainsKeywordsPredicatePatient) other).predicateName)); // state check
     }
 
 }
