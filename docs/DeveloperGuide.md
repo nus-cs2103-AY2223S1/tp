@@ -247,7 +247,7 @@ Below is a sequence diagram and explanation of how `add` is executed.
 
 <img src="images/AddCommandUML.png" width="550" />
 
-Step 1. The user enters the command `add n/Jon j/janitor`
+Step 1. The user enters the command `add n/Jon j/janitor`.
 
 Step 2. User input is parsed by `AddCommandParser` which creates the`AddCommand` object, then the method LogicManager#execute is called to create the AddCommand object.
 
