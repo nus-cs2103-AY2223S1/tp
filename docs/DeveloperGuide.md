@@ -288,6 +288,56 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+###\[Developed\] Assigning clients a policy
+
+Users can assign existing policies to a client, whilst providing uptake details
+such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
+and `PolicyAssignCommandParser` classes.
+
+The `PolicyAssignCommandParser` parses the input from the user and identifies which policy has to be assigned to
+which client. The appropriate AssignedPolicy object is created with details given in the input 
+and is then assigned to the respective client in `PolicyAssignCommand`.
+
+* `Person#addPolicy(assignedPolicy)` - Attempts to add an assigned policy to a set of assigned policies stored within
+the person object. It also returns a boolean describing if the assigned policy already exists in the set.
+
+Given below is an example usage scenario and how an `assign` command is executed.
+
+The interactions between the components during the usage scenario is shown in the *Sequence Diagram* below.
+
+<p align="center" >
+  <img src="diagrams/AssignPolicySequenceDiagram.png" width="700"/>
+</p>
+
+Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
+to the first person. The policy has a yearly premium of $200 and lasts for 2 years, from 2020 to 2022.
+
+Step 2: The `PolicyAssignCommandParser` parses the input and confirm that the indices are valid. 
+A `PolicyAssignCommand` object with all parameters is constructed. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Policy and Person indices that are not found in the `UniquePersonList` and `UniquePolicyList` respectively
+would be regarded as invalid indices. 
+</div>
+
+Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and the 
+if not already assigned, the policy is assigned to the person.
+
+#### Design considerations
+
+**Aspect: Whether to allow users to assign policies to persons using names:**
+
+* **Alternative 1:** Allows assignment using policy/persons names.
+  * Pros: More flexible and quicker assigning if user knows exactly who and which policy they want to assign.
+  * Cons: More-bug prone, and would require the user to accurately provide the exact name of the policy/person. 
+  Hard to get used to for new users, and complicated for established users with lots of contacts and policies.
+
+* **Alternative 2: (Current implementation)** Allow assignment using policy/person indices.
+  * Pros: Easy to implement and avoids confusion for new users.
+  * Cons: Would require the user to check out the list and find out the indices of their target person/policy.
+  This is overcome by the functionality of the `find` command, which allows users to filter the lists for specific 
+  persons/policies.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
