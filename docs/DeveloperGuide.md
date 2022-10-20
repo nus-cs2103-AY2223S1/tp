@@ -420,13 +420,13 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 **Aspect: How to implement tag edit:**
 
-* **Alternative 1 (current choice):** Creates a new tag and replace the old tag with the new one.
+* **Alternative 1 (current choice):** Creates a new tag and replaces the old tag with the new one.
     * Pros: Prevents direct access into the information of a tag.
     * Cons: Tedious. Necessary to manually change the old tag in every person and every task.
 
-* **Alternative 2:** Change the tag's name .
+* **Alternative 2:** Change the tag's name.
     * Pros: Easy to implement.
-    * Cons: Easy to access into a tag. Could cause accidental bugs.
+    * Cons: Can potentially introduce bugs due to direct access into the tag's implementation.
 
 _{Explain here how the data archiving feature will be implemented}_
 
