@@ -154,6 +154,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Mark/unmark task feature
+
+#### Implementation
+
+The mark/unmark task mechanism is facilitated by `TaskList` and updates a task's completion status to done and undone respectively. 
+The task completion status is stored internally in each `Task` object as a boolean variable `isDone`.
+
+The mark/unmark mechanism makes use of the following operations: 
+- `TaskList#setTask(Task target, Task editedTask)` — Replaces task in the list with edited task.
+
+This operation is exposed in the `Model` interface as `Model#setTask(Task target, Task editedTask)`.
+
+Given below is an example usage scenario and how the mark mechanism behaves at each step.
+
+Step 1. The user launches the application, which already has some tasks listed. The tasks' current completion status is as currently
+stored in the boolean `isDone`.
+
+Step 2. The user executes `markT 1` command to mark the 1st task in the address book's task list as done. The `markT` command
+calls `Model#setTask(Task target, Task editedTask)`, updating the 1st task's boolean variable `isDone` as true.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The above command will fail if the task list is empty or the index given by the user is invalid.
+
+</div>
+
+The following sequence diagram shows how the mark task operation works:
+
+![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkTaskCommandParser` and `MarkTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `unmarkT` command indicates a task as not done, and is executed similarly to the above sequence diagram, although with `UnmarkTaskCommandParser` and `UnmarkTaskCommand` instead of
+`MarkTaskCommandParser` and `MarkTaskCommand` respectively.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/MarkUnmarkTaskActivityDiagram.png" width="250" />
+
+### Design considerations:
+
+**Aspect: How mark & unmark task executes:**
+
+* **Alternative 1 (current choice):** Replaces task in tasklist.
+    * Pros: Reflects change in GUI immediately.
+    * Cons: May have performance issues in terms of creating unnecessary new `Task` objects and numerous method calls to change the TaskList instead of just changing the Task.
+
+* **Alternative 2:** Change the boolean variable of `Task` object directly.
+    * Pros: Will be more efficient without needing to create new `Task` object and only needing to update the `isDone` variable of `Task` object.
+    * Cons: GUI only reflects the change after the task list is update by another command.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -341,37 +392,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case ends.
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  YellowBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. YellowBook shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Add a task**
-
-**MSS**
-
-1.  User requests to list tasks
-2.  YellowBook shows a list of tasks
-3.  User requests to delete a specific task in the list
-4.  YellowBook deletes the task
+1.  User requests to list contacts
+2.  YellowBook shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  YellowBook deletes the contact
 
     Use case ends.
 
