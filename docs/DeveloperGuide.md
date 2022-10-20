@@ -153,6 +153,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### List debtors feature
+
+#### Implementation
+
+This feature is facilitated by `ListDebtorsCommandParser` and `ListDebtorsCommand` in the `Logic` component. It also utilises `DebtGreaterEqualAmountPredicate` which implements Java's in-built `Predicate` interface. The command parser and the command itself work similarly to the others, and will not be explained in detail here. Please refer to the Logic component above for more details.
+
+The `DebtGreaterEqualAmountPredicate` constructor takes in a `Money` object, and returns a `Predicate<Person>` that tests whether a `Person`'s total amount owed is greater than or equal to the `Money` parameter. When a user requests to list debtors who owe over a certain amount of money, `ListDebtorsCommandParser` will create a `DebtGreaterEqualAmountPredicate` using the amount provided. The resulting `ListDebtorsCommand` will use this predicate to communicate to the Model which Persons to display: the ones that pass the predicate's test. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
+
+As an example, suppose the user requests to list debtors who owe more than $10. The object diagram below shows the relationships between the noteworthy objects.
+
+**(Insert object diagram here)**
+
+To cater to a common use case where the user might want to simply list all debtors regardless of the amount they owe, `ListDebtorsCommandParser` can also handle requests without an amount specified. In such a case, it will create a predicate that simply checks whether a Person's DebtList is empty.
+
+The activity diagram below details the behaviour of PayMeLah when a user requests to list debtors. Note the difference in behaviour depending on whether the user specifies an amount.
+
+**(Insert activity diagram here)**
+
+* **Alternative for listing all debtors:** use a `DebtGreaterEqualAmountPredicate` with $0 as the amount
+    * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
+    * Cons: May not work properly with possible future extensions (e.g. Debts extended to be able to take negative values to indicate user owing the person money)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
