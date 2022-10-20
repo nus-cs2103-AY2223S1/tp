@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import longtimenosee.commons.core.GuiSettings;
 import longtimenosee.commons.core.LogsCenter;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 
 /**
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Policy> filteredPolicies;
+    private final FinancialAdvisorIncome income;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredPolicies = new FilteredList<>(this.addressBook.getPolicyList());
+        this.income = new FinancialAdvisorIncome();
 
     }
 
@@ -114,7 +117,9 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-
+    public FinancialAdvisorIncome getIncome() {
+        return income;
+    }
 
     @Override
     public void sort(Comparator<Person> comparator) {

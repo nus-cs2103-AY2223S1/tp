@@ -19,6 +19,6 @@ public class PolicyListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPolicyList(PREDICATE_SHOW_ALL_POLICIES);
-        return new CommandResult(MESSAGE_SUCCESS, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, true, false, false);
     }
 }
