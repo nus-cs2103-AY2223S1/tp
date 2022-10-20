@@ -182,7 +182,36 @@ The following sequence diagram shows how the addNote operation works:
 
 ![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
 
+### deleteNote feature
 
+#### Proposed implementation
+
+The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `DeleteNoteCommand#execute()` : deletes the note at the specified index from the note list.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to delete a note that no longer needs to be kept track of. The user lists the current notes:
+1. Title: Meeting, Content: 3rd October 9pm 
+2. Title: Event, Content: Remind club members to attend.
+
+The user has decided to delete note 1.
+
+Step 2. The user executes `deleteNote 1`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `DeleteNoteCommandParser` object and call `DeleteNoteCommandParser#parse()`. This method will take the user's input and make sense of it to get the index of note to be deleted.
+
+Step 3. A `DeleteNoteCommand` object will be created and `DeleteNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `DeleteNoteCommand#execute()` will call the following method from `Model` :
+- `getAddressBook()`
+- `deleteNote(noteToDelete)`
+
+Step 5. `DeleteNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> Deleted Note: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
