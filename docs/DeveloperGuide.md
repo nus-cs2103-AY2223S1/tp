@@ -205,6 +205,37 @@ The following sequence diagram shows how the add tag operation works:
     * Pros: Requires no additional code.
     * Cons: Increases coupling. Will fail if the associated classes stop working.
 
+### Find contact feature
+
+#### Implementation
+
+The sort mechanism is facilitated by `PersonContainsKeywordsPredicate`. It implements `Predicate<Person>`, which means it is a functional interface that tests a person object against a condition. The `test` method returns true if the person object contains all the keywords given by the user.
+
+Step 1. The user enters with findC command with one or more of the contact's fields as parameters (e.g. name, address, phone, email)
+
+Step 2. The `FindCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters. 
+
+Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()` method with the predicate object as the parameter. 
+
+Step 4. The `Model` class then updates the filtered list of contacts in the `AddressBook` class.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+![FindContactSequenceDiagram](images/FindContactSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How the paramters supplied are matched to contact fields:**
+
+* **Alternative 1 (current choice):** Matches individual words in the parameter to the contact fields (case insensitive)
+    * Pros: Users are able to make more generic searches as only one word needs to match.
+    * Cons: Results are less precise as users are unable to search multi-word strings.
+
+* **Alternative 2:** Allow users to specify which keywords are to be matched individually/multi-word strings
+    * Pros: Allow more precise searches.
+    * Cons: User needs to remember additional syntax.
+    * Cons: More complex implementation.
+
 ### Mark/unmark task feature
 
 #### Implementation
