@@ -123,6 +123,7 @@ The `Model` component,
 
 * stores the art buddy data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object).
 * stores all `Commission` objects within the active `Customer` (which are contained in a `UniqueCommissionList` object).
+* stores all `Iteration` objects within their respective `Commission` object (which are contained in a `UniqueIterationList` object).
 * stores the currently 'selected' `Customer` as an `ObservableObject<Customer>` which lets us listen to changes to the selected customer for performing UI updates.
 * stores the current 'filtered' `Customer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the current list of `Commission` objects belonging to the selected `Customer` (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Commission>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
@@ -156,6 +157,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Iterations
+Iterations help users keep track of the progress of their commissions. Each commission iteration
+essentially represents a version of the commissioned artwork.
+
+Iterations contain a `Date`, `IterationDescription`, `ImagePath `, and `Feedback`. Since
+an iteration must be tied to a commission, this composition is captured by storing the
+iterations in a `UniqueIterationList` inside the associated commission object.
+
+<!-- TODO insert iteration class diagram here -->
+
+#### Adding an Iteration (`additer`)
+Creates an iteration based on the user input, and adds the iteration to the active commission.
+<!-- TODO Users may either add an iteration via the command line or the GUI as described in the activity
+diagram below. -->
+
+<!-- TODO insert addIteration activity diagram here -->
+
+##### Implementation
+Support for the add iteration command is integrated with the `AddIterationParser`,
+which enables ArtBuddy to parse user input into an `AddIterationCommand`. The
+`AddIterationCommand` stores the iteration created from the user inputs. This
+iteration is added to the active commission's `UniqueIterationList` when the
+`AddIterationCommand` is executed by the `LogicManager`.
+
+Note that if there is no presently active commission, the iteration will not be added.
+
+The sequence diagram below shows the interactions within the Logic component when
+the user inputs `additer d/2022-10-10 n/Changed the colour scheme. p//Users/john/Downloads/Draft 1.png
+f/Updated colour scheme is much better`;
+
+<!-- TODO insert addIteration sequence diagram here -->
 
 ### \[Proposed\] Undo/redo feature
 
