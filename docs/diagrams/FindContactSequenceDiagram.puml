@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindContactCommandParser" as FindContactCommandParser LOGIC_COLOR
+participant ":FindContactCommand" as FindContactCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(findC)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(findC)
+activate AddressBookParser
+
+create FindContactCommandParser
+AddressBookParser -> FindContactCommandParser
+activate FindContactCommandParser
+
+AddressBookParser -> FindContactCommandParser : parse(arguments)
+
+create FindContactCommand
+FindContactCommandParser -> FindContactCommand
+activate FindContactCommand
+
+FindContactCommand --> FindContactCommandParser
+deactivate FindContactCommand
+
+FindContactCommandParser --> AddressBookParser
+deactivate FindContactCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> FindContactCommand : execute()
+activate FindContactCommand
+
+FindContactCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> FindContactCommand
+deactivate Model
+
+FindContactCommand --> LogicManager : result
+deactivate FindContactCommand
+FindContactCommand -[hidden]-> LogicManager : result
+destroy FindContactCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
