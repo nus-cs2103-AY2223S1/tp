@@ -241,7 +241,7 @@ public class EditOrderCommand extends Command {
          * @param orderToEdit The order whose ordered items list is going to be edited.
          * @param itemToEdit The item that is going to be added, removed or have its quantity edited.
          */
-        public void updateItemList(Order orderToEdit, ItemQuantityPair itemToEdit) {
+        public void updateItemList(Order orderToEdit, ItemQuantityPair itemToEdit) throws CommandException {
             List<ItemQuantityPair> orderedItems = orderToEdit.getItemList();
             boolean hasItemBeenUpdated = false;
             for (int i = 0; i < orderedItems.size(); i++) {
@@ -251,8 +251,13 @@ public class EditOrderCommand extends Command {
                 boolean isItemInList = itemInList.getItem().equalsIgnoreCase(itemToEdit.getItem());
                 boolean isUpdatedQuantityZero = itemToEdit.getValue() == 0;
                 boolean shouldQuantityBeUpdated = itemInList.getValue() != itemToEdit.getValue();
+                boolean doesOrderedListContainOneItem = orderedItems.size() == 1;
 
                 if (isItemInList && isUpdatedQuantityZero) {
+                    if (doesOrderedListContainOneItem) {
+                        throw new CommandException("There is only one item ordered. Perhaps "
+                                + "you want to delete the order instead?");
+                    }
                     orderedItems.remove(i);
                     hasItemBeenUpdated = true;
                 } else if (isItemInList && shouldQuantityBeUpdated) {
