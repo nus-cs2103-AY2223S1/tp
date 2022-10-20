@@ -298,6 +298,7 @@ Additionally, it implements the following operations:
 * `Session#hashCode()` - Provides the hashcode of the `Session` Object instance.
 
 Below is the Activity diagram showing how a `Session` instance is created upon the `Session` class constructor being called.
+
 ![How a `Session` instance is called upon `Session` constructor being called](images/SessionActivity.png)
 
 These operations are exposed in the `Command` interface through the `SessionCommand` class, the `EditPersonDescriptor` class and `SessionList` class.
