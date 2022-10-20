@@ -212,7 +212,7 @@ After the ProfNUS receives the instruction to add a new `Scheudule`, it will fin
 
 During the execution, the following validity checks will be conducted:
 
-- Module existance check — The model will check if it can find the module indicated by the new schedule. If no module is found, then a `CommandException` will be thrown.
+- Module existence check — The model will check if it can find the module indicated by the new schedule. If no module is found, then a `CommandException` will be thrown.
 - Schedule conflict check — The model will check if the new schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.
@@ -223,7 +223,7 @@ During the execution, the following validity checks will be conducted:
 
 The proposed edit schedule functionality is accomplished by `EditScheduleCommand` which extends the `Command` class. The `EditScheduleCommand` overrides the following method:
 
-- `EditScheduleCommand#execute(Model model)` — Executes the command and edit the target schedule with new information
+- `EditScheduleCommand#execute(Model model)` — Executes the command and edits the target schedule with new information
 
 The following sequence diagram shows how add schedule operation works
 
@@ -238,6 +238,21 @@ During the execution, the following validity checks will be conducted:
 - Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.
+
+
+### [Proposed] ViewSchedule feature
+
+#### Proposed Implementation
+
+The proposed view schedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
+
+- `ViewScheduleCommand#execute(Model model)` — Executes the command and displays the selected schedules / all schedules
+
+The following sequence diagram shows how view schedule operation works :
+
+![EditScheduleSequence](/Users/mr.yueng/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/2022_fall_sem_NUS/CS2103T Software Engineering/tp/docs/images/ViewScheduleSequenceDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
