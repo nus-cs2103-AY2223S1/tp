@@ -1,14 +1,20 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.order.*;
-import seedu.address.model.person.Name;
-import seedu.address.model.pet.*;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.AddressBook;
+import seedu.address.model.order.AdditionalRequests;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.Price;
+import seedu.address.model.order.PriceRange;
+import seedu.address.model.order.Request;
+import seedu.address.model.pet.Age;
+import seedu.address.model.pet.Color;
+import seedu.address.model.pet.ColorPattern;
+import seedu.address.model.pet.Species;
 
 /**
  * A utility class containing a list of {@code Orders} objects to be used in tests.
