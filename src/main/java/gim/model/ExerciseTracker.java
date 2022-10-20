@@ -119,4 +119,9 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     public int hashCode() {
         return exerciseList.hashCode();
     }
+
+    public ExerciseHashMap getExerciseHashMap() {
+        return exerciseHashMap;
+    }
+
 }
