@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* This product is adapted from [SoConnect Level-3](https://nus-cs2103-ay2223s1.github.io/tp/).
+* This product is adapted from [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/).
 * Libraries used: [JavaFX](https://openjfx.io/), 
 [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 
