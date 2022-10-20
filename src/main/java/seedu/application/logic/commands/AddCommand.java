@@ -54,6 +54,7 @@ public class AddCommand extends Command {
         }
 
         model.addApplication(toAdd);
+        model.commitApplicationBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

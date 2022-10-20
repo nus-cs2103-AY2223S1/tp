@@ -3,11 +3,18 @@ package seedu.application.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Saves a history of previous ApplicationBook states available for undo/redo.
+ */
 public class VersionedApplicationBook extends ApplicationBook {
-    
+
     private List<ReadOnlyApplicationBook> applicationBookStateList;
     private int currentStatePointer;
 
+    /**
+     * Creates a {@code VersionedApplicationBook} using the Applications in the {@code initialState} and
+     * saves a copy of the {@code initialState}.
+     */
     public VersionedApplicationBook(ReadOnlyApplicationBook initialState) {
         super(initialState);
 

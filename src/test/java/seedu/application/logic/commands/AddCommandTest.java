@@ -148,6 +148,31 @@ public class AddCommandTest {
         public void updateFilteredApplicationList(Predicate<Application> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
