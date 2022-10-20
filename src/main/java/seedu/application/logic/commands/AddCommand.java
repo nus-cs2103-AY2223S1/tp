@@ -38,6 +38,9 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New application added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in CinternS";
+    public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview has clashed with another interview "
+            + "exists in CinternS";
+
 
     private final Application toAdd;
 
@@ -55,6 +58,8 @@ public class AddCommand extends Command {
 
         if (model.hasApplication(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
+        } else if (model.hasSameInterviewTime(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
 
         model.addApplication(toAdd);
