@@ -66,4 +66,5 @@ deactivate DeleteModuleCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml
