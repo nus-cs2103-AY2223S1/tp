@@ -13,7 +13,7 @@ public class Email {
 
     public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
             "replacing multiple spaces with a single space, " +
-            "Emails can only be of size max " + LENGTH_LIMIT;
+            "Emails can only be of length max " + LENGTH_LIMIT;
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
 

@@ -13,7 +13,7 @@ public class Major {
 
     public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
             "replacing multiple spaces with a single space, " +
-            "Majors can only be of size max " + LENGTH_LIMIT;
+            "Majors can only be of length max " + LENGTH_LIMIT;
 
     public static final String MESSAGE_CONSTRAINTS =
         "Major should only contain alphabetical characters and spaces, and it should not be blank";

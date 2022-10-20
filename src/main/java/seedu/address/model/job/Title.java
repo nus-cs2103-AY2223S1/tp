@@ -13,7 +13,7 @@ public class Title {
 
     public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
             "replacing multiple spaces with a single space, " +
-            "Job titles can only be of size max " + LENGTH_LIMIT;
+            "Job titles can only be of length max " + LENGTH_LIMIT;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Job title should be alphanumeric or spaces or some allowed punctuations "

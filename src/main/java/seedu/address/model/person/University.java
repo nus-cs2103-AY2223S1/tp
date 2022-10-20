@@ -13,7 +13,7 @@ public class University {
 
     public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
             "replacing multiple spaces with a single space, " +
-            "Universities can only be of size max " + LENGTH_LIMIT;
+            "Universities can only be of length max " + LENGTH_LIMIT;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Universities should only contain alphanumeric characters and spaces, and it should not be blank";
