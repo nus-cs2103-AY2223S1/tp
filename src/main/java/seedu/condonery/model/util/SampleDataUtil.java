@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientDirectory;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;

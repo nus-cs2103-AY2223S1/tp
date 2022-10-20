@@ -76,8 +76,8 @@ public class Property {
      * if modification is attempted.
      */
     public Set<String> getInterestedClientNames() {
-        HashSet<String> stringInterestedClients = new HashSet<>(client.size());
-        interestedClients.forEach(interestedClient -> stringInterestedClients.add(interestedClient.getName()));
+        HashSet<String> stringInterestedClients = new HashSet<>(interestedClients.size());
+        interestedClients.forEach(interestedClient -> stringInterestedClients.add(interestedClient.getName().toString()));
         return Collections.unmodifiableSet(stringInterestedClients);
     }
 

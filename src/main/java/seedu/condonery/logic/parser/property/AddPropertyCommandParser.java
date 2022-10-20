@@ -4,6 +4,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -16,6 +17,7 @@ import seedu.condonery.logic.parser.Parser;
 import seedu.condonery.logic.parser.ParserUtil;
 import seedu.condonery.logic.parser.Prefix;
 import seedu.condonery.logic.parser.exceptions.ParseException;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
@@ -43,7 +45,7 @@ public class AddPropertyCommandParser implements Parser<Command> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Client> interestedClientList = ParserUtil.parseInterestedClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS));
+        Set<Client> interestedClientList = ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS));
 
         Property property = new Property(name, address, tagList, interestedClientList);
 

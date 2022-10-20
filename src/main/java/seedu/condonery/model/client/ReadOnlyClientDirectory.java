@@ -1,4 +1,4 @@
-package seedu.condonery.model;
+package seedu.condonery.model.client;
 
 import javafx.collections.ObservableList;
 import seedu.condonery.model.client.Client;

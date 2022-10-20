@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.condonery.commons.exceptions.IllegalValueException;
-import seedu.condonery.model.ClientDirectory;
-import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientDirectory;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 
 /**
  * An Immutable ClientDirectory that is serializable to JSON format.

@@ -19,6 +19,7 @@ import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
@@ -94,8 +95,9 @@ public class EditPropertyCommand extends Command {
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
+        Set<Client> updatedInterestedClients = editPropertyDescriptor.getInterestedClients().orElse(propertyToEdit.getInterestedClients());
 
-        return new Property(updatedName, updatedAddress, updatedTags);
+        return new Property(updatedName, updatedAddress, updatedTags, updatedInterestedClients);
     }
 
     @Override
@@ -127,17 +129,19 @@ public class EditPropertyCommand extends Command {
         private Name name;
         private Address address;
         private Set<Tag> tags;
+        private Set<Client> interestedClients;
 
         public EditPropertyDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tags} and {@code interestedClients} is used internally.
          */
         public EditPropertyDescriptor(EditPropertyDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setInterestedClients(toCopy.interestedClients);
         }
 
         /**
@@ -180,6 +184,23 @@ public class EditPropertyCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code interestedClients} to this object's {@code interestedClients}.
+         * A defensive copy of {@code interestedClients} is used internally.
+         */
+        public void setInterestedClients(Set<Client> interestedClients) {
+            this.interestedClients = (interestedClients != null) ? new HashSet<>(interestedClients) : null;
+        }
+
+        /**
+         * Returns an unmodifiable client set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code interestedClients} is null.
+         */
+        public Optional<Set<Client>> getInterestedClients() {
+            return (interestedClients != null) ? Optional.of(Collections.unmodifiableSet(interestedClients)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -197,7 +218,8 @@ public class EditPropertyCommand extends Command {
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getInterestedClients().equals(e.getInterestedClients());
         }
 
         @Override
@@ -206,6 +228,7 @@ public class EditPropertyCommand extends Command {
                     + "name=" + name
                     + ", address=" + address
                     + ", tags=" + tags
+                    + ", interested clients=" + interestedClients
                     + '}';
         }
     }

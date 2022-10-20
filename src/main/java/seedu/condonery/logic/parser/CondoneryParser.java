@@ -25,8 +25,6 @@ import seedu.condonery.logic.parser.property.DeletePropertyCommandParser;
 import seedu.condonery.logic.parser.property.EditPropertyCommandParser;
 import seedu.condonery.logic.parser.property.FilterPropertyCommandParser;
 
-
-
 /**
  * Parses user input.
  */
@@ -53,6 +51,7 @@ public class CondoneryParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
         //CHECKSTYLE.ON: Regexp
         case AddPropertyCommand.COMMAND_WORD:
