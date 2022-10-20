@@ -182,13 +182,13 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: Easier to find the batchmate by directly entering the name.
     * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name especially for long and complicated names.
 
-### Mod find feature 
+### Mod find feature
 
-### Implementation 
+### Implementation
 
 The `ModCommandParser` implements the operation `ModCommandParser#parseFindCommand(String args)` to read inputs entered by the student for execution in `ModFindCommand`. `ModFindCommand` extends `ModCommand` to execute the `mod find` command.
 
-During execution, the user inputs of module codes are passed into a `List` to `ModContainsKeywordsPredicate`. 
+During execution, the user inputs of module codes are passed into a `List` to `ModContainsKeywordsPredicate`.
 
 For simplicity, we will call this `List` of module codes `keywords`. `ModContainsKeywordsPredicate#test(Person person)` returns `true` for a particular `person` only if every elements in `keywords` is in the `Mod`s of this `person` (stored as `ObservableList<Mod>`). 
 
@@ -209,7 +209,7 @@ The following activity diagram summarises what happens when a student enters a `
 * **Alternative 1 (current choice):** Modules will be identified only if user inputs fully matches the module code. For instance, `mod find cs1231` does not return `person` has taken or is taking the module `CS1231S` (lacking an "S").
     * Pros: Reduces confusion. Requiring exact module code will display `persons` that are tailored to the specifications, reducing the need to manually filter through the `persons`. Imagine that if the system allows partial matching of module codes, typing `mod find cs` yields those who are taking or have taken modules with code "CS", regardless of whether he/she has "CS1231S".
     * Cons: If the desired module code is so unique that partial matching can suffice to pinpoint the module, requiring a fully matching input would cause some inconvenience to the user.
-  
+
 * **Alternative 2:** Modules can be identified by partially matching inputs of module codes. For instance, `mod find 123` will return `person` has taken or is taking the module `CS1231S`.
     * Pros: Shorter commands to enter and grants greater convenience to the users.
     * Cons: If many module codes share the partial module code that user inputs, many `persons` will be returned, rendering the `mod find` function ineffective as users still need to manually search for the `persons` with the desired module.
