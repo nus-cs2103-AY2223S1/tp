@@ -297,18 +297,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `GithubContact` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC-01 - Find a person by name or GitHub username**
+**Use case: UC-01 - Find a person by any given keyword**
 
 **MSS:**
-1. User searches for person by their name or GitHub username.
-2. System shows a list of person related to the name or GitHub username.
+1. User searches for person by any of their attributes (name/email/timezone/slack/twitter/telegram)
+2. System shows a list of person with the matching keyword.
 
-   Use case ends.
+Use case ends.
 
 **Extensions:**
-- 2a. The list is empty
-
-  Use case ends
+* 2a. The list is empty
+    * 2a1. System shows an error message
+      Use case resumes at step 1.
 
 **Use case: UC-02 - Add a new person**
 
@@ -406,7 +406,8 @@ Use Case ends.
 4. Should be able to load the contact list within 2 seconds.
 5. Without noticeable delay, should be able to add and update contact information.
 6. Without noticeable delay, should be able to delete contact information. 
-7. Must be able to cache github repository list for future use. 
+7. Must be able to cache github repository list for future use.
+8. Must be able to display search results for find function within 3 seconds.
 
 *{More to be added}*
 
