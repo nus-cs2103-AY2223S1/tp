@@ -42,7 +42,7 @@ public class ShowCommand extends Command {
         }
 
         Person personToShow = lastShownList.get(targetIndex.getZeroBased());
-        assert(personToShow != null) : "Person to show should not be null";
+        requireNonNull(personToShow);
         model.setTargetPerson(personToShow);
         return new CommandResult(
                 String.format(MESSAGE_SHOW_PERSON_SUCCESS, personToShow), SecondaryPaneState.TARGET_PERSON);
