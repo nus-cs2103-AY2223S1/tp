@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The feature open and add PDF file was reused with minimal changes from a code from stackoverflow [Open PDF file on the fly](https://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -234,10 +235,31 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Opening of Person specific PDF files
 
-_{Explain here how the data archiving feature will be implemented}_
+### Implementation
 
+The opening mechanism is facilitated by `OpenPersonFileCommand` and `FileUtil`.
+
+`OpenPersonFileCommand` extends from `Command` and implements its own execute method.
+
+`OpenPersonFileCommand` stores the target index of the list of persons, whose PDF will be opened.
+
+`FileUtil` implements `FileUtil#openPdfFile(String)` — If PDF file in from the String exists, 
+the PDF will be opened.
+It's exposed in the `OpenPersonFileCommand` as `OpenPersonFileCommand#execute(Model)`
+
+Given below is an example usage scenario and how the open file mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `file 2` command to open the file of the 2nd person in the address book.
+
+Step 3. The parser will parse the input command `file` and target index `2` and store the target index in the
+newly created `OpenPersonFileCommand`.
+
+Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager while in turn calls 
+`FileUtil#openPdfFile(String)` and the PDF file stored in the file path will be opened on the Users default PDF viewer.
 
 --------------------------------------------------------------------------------------------------------------------
 
