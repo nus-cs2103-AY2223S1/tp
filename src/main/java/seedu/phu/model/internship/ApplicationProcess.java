@@ -12,7 +12,7 @@ public class ApplicationProcess extends ComparableModel {
     /**
      * Represents the possible state of application process of an internship.
      */
-    enum ApplicationProcessState {
+    public enum ApplicationProcessState {
         APPLY, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED;
 
         /**
@@ -20,6 +20,17 @@ public class ApplicationProcess extends ComparableModel {
          */
         public static boolean isInApplicationProcessState(String test) {
             return Arrays.stream(ApplicationProcessState.values()).anyMatch(stage -> stage.name().equals(test));
+        }
+
+        public static String[] names() {
+            ApplicationProcessState[] states = values();
+            String[] names = new String[states.length];
+
+            for (int i = 0; i < states.length; i++) {
+                names[i] = states[i].name();
+            }
+
+            return names;
         }
     }
 

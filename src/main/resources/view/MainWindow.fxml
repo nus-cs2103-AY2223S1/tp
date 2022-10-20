@@ -6,6 +6,7 @@
 
 <?import javafx.scene.Scene?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,6 +16,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.image.Image?>
 
+<?import javafx.scene.control.Label?>
 <fx:root minHeight="650" minWidth="920" onCloseRequest="#handleExit" title="PleaseHireUs"
          type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
@@ -67,12 +69,82 @@
             <StackPane fx:id="viewCommandPanelPlaceholder" alignment="TOP_RIGHT"/>
           </VBox>
 
-          <VBox fx:id="statistics" maxHeight="Infinity" minWidth="450.0" prefHeight="250.0" style="-fx-background-color: white;"
-                styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+          <VBox fx:id="statistics" maxHeight="Infinity" minWidth="450.0" prefHeight="250.0"
+                styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER" VBox.vgrow="ALWAYS">
             <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
+              <Insets bottom="30" left="10" right="10" top="10" />
             </padding>
-            <StackPane fx:id="statisticsPlaceholder" alignment="BOTTOM_RIGHT"/>
+            <StackPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" fx:id="statisticsPlaceholder" alignment="CENTER"/>
+            <GridPane HBox.hgrow="ALWAYS" minHeight="20" maxHeight="20" >
+              <VBox alignment="CENTER" GridPane.columnIndex="0" VBox.vgrow="ALWAYS" minHeight="50">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #7ED957; -fx-background-radius:20px;">
+                  <Label>
+                    Applied
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER" GridPane.columnIndex="1" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #004AAD;-fx-background-radius:20px;">
+                  <Label>
+                    Assessment
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="2" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #FF66C4;-fx-background-radius:20px;">
+                  <Label>
+                    Interview
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="3" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #FF914D;-fx-background-radius:20px;">
+                  <Label>
+                    Offer
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="4" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #008037;-fx-background-radius:20px;">
+                  <Label>
+                    Accepted
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="5" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #FF1616;-fx-background-radius:20px;">
+                  <Label>
+                    Rejected
+                  </Label>
+                </VBox>
+              </VBox>
+              <columnConstraints>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+              </columnConstraints>
+            </GridPane>
           </VBox>
 
           <columnConstraints>
