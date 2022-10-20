@@ -1,0 +1,76 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant "a:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit -t 1 -c CS2103T -ds Assignment 2")
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand("edit -t 1 -c CS2103T -ds Assignment 2")
+activate ModtrektParser
+
+create EditTaskCommandParser
+ModtrektParser -> EditTaskCommandParser
+activate EditTaskCommandParser
+
+EditTaskCommandParser --> ModtrektParser
+
+ModtrektParser -> EditTaskCommandParser : parse("-t 1 -c CS2103T -ds Assignment 2")
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommandParser : a
+deactivate EditTaskCommand
+
+EditTaskCommandParser --> ModtrektParser : a
+deactivate EditTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditTaskCommandParser -[hidden]-> ModtrektParser
+destroy EditTaskCommandParser
+
+ModtrektParser --> LogicManager : a
+deactivate ModtrektParser
+
+LogicManager -> EditTaskCommand : execute()
+activate EditTaskCommand
+
+EditTaskCommand -> Model : deleteTask(task)
+activate Model
+
+deactivate Model
+Model --> EditTaskCommand
+deactivate Model
+
+EditTaskCommand -> Model : addTask(newTask)
+activate Model
+
+
+Model --> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand
+deactivate CommandResult
+
+EditTaskCommand --> LogicManager : result
+deactivate EditTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

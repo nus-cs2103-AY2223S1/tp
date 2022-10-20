@@ -442,6 +442,51 @@ obtaining the index, it would be used to instantiate a `RemoveTaskCommand`. When
 first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. Using the saved
 `Task` it would then reduce the task count of the `Module` whose code is equal to that of the removed `Task`.
 
+### 3.1.3. Edit Task
+
+In this section, the functionality of `edit` task feature, expected execution path, and the interactions between the
+`EditTaskCommand`, `EditTaskCommandParser`, and other objects will be discussed.
+
+### What is the edit task feature
+
+The `edit` task features allows users to edit a task/deadline that they have erroneously added.
+This allows them to update details of the task, such as the due date, description and module code.
+
+Editing a task has no effect on the task count of a module, as it is a replacement of an existing task.
+
+### Design considerations
+
+**Aspect 1: Whether editing tasks should be allowed:**
+
+* **Alternative 1 (current choice):** Allow editing of tasks.
+    * Pros: Allows users to change partial details in the event of a small error.
+    * Cons: Have to parse a varying amount of optional arguments.
+
+* **Alternative 2:** No edit command, user would have to delete and re-add their task.
+    * Pros: Convenient for development, less bug-prone.
+    * Cons: Inconvenient and troublesome for the user.
+
+We decided to go with the alternative 1 to give our users the best experience possible.
+
+### Current implementation
+
+The diagram below showcases the path execution for when edit a task
+
+<img src="images/TaskPUMLs/EditTask/TaskEditPathExecution.png" width="800" />
+
+The diagram below shows how the remove command work with input `edit -t 1 -c CS2103T -ds Assignmet 2`
+
+Note that the sequence diagram has been kept simple, as the logic flow for `addTask(t)` and
+`removeTask(t)`have been covered in greater detail in the earlier diagrams. 
+
+<img src="images/TaskPUMLs/EditTask/TaskEditSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `EditTaskCommandParser`. After
+obtaining the index, it would be used to instantiate a `EditTaskCommand`. When the `EditTaskCommand` is executed, it would
+first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. It would also create a new Task
+with the information specified by the user.  The `TaskList` is subsequently updated and the user can now see the updated
+task details in the list.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
