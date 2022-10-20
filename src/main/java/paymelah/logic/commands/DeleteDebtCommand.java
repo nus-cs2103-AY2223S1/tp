@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -68,7 +68,7 @@ public class DeleteDebtCommand extends Command {
 
         Person debtorToUpdate = lastShownList.get(debtorIndex.getZeroBased());
         List<Debt> initialDebts = debtorToUpdate.getDebts().asList();
-        Set<Debt> debtsToDelete = new HashSet<>();
+        List<Debt> debtsToDelete = new ArrayList<>();
 
         for (Index debtIndex : debtIndexes) {
             requireNonNull(debtIndex);
@@ -105,7 +105,7 @@ public class DeleteDebtCommand extends Command {
      * @param debtsToDelete Set of {@code Debt}s to delete from the {@code debtorToReduce}.
      * @return Person with a reduced {@code DebtList}.
      */
-    private static Person createReducedDebtor(Person debtorToReduce, Set<Debt> debtsToDelete) {
+    private static Person createReducedDebtor(Person debtorToReduce, List<Debt> debtsToDelete) {
         requireNonNull(debtorToReduce);
         requireNonNull(debtsToDelete);
 
