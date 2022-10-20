@@ -18,7 +18,6 @@ public class SavedExerciseListWindow extends UiPart<Region> {
      * Creates a {@code SavedExerciseListWindow}.
      */
     public SavedExerciseListWindow() {
-        super(FXML);
-    }
+        super(FXML); }
 
 }
