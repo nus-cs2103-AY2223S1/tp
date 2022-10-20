@@ -1,0 +1,16 @@
+@startuml
+
+object indexOfStudent
+object indexOfAssignment
+
+
+map GradeCommand {
+ indexOfStudent *-> indexOfStudent
+ indexOfAssignment *-> indexOfAssignment
+ grade => 86/100
+}
+
+indexOfAssignment : zeroBasedIndex = 0
+indexOfStudent : zeroBasedIndex = 0
+
+@enduml

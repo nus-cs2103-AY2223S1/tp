@@ -1,0 +1,24 @@
+@startuml
+object "__alpha:Person__" as alpha {
+role = Student
+}
+
+object "__bravo:Person__" as bravo {
+role = Student
+}
+
+object "__charlie:Person__" as charlie {
+role = Professor
+}
+
+object "__delta:Person__" as delta {
+role = TA
+}
+
+map "__:TAB__" as Tab {
+ <u> :Person1 *-> alpha
+ <u> :Person2 *--> bravo
+ <u> :Person3 *---> charlie
+ <u> :Person4 *----> delta
+}
+@enduml

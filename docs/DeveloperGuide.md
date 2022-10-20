@@ -225,6 +225,55 @@ The following activity diagram summarizes what happens in AddressBookParser when
     * Pros: Does not modify the master address book.
     * Cons: May have performance issues in terms of memory usage.
 
+### \[Proposed\] Add grade feature
+
+#### Proposed Implementation
+
+The proposed add grade feature is facilitated by `GradeCommand` which extends `Command` with an index of the student, an index of the assignment, and a grade to be stored.
+It overwrites the following operations:
+* `GradeCommand#execute()` - Executes the command, storing the given grade of an assignment of a specified student.
+* `GradeCommand#equals(Object o)` - Checks if two objects are equal.
+
+A `GradeCommandParser` facilitates the parsing of the user input. It implements `Parser<GradeCommand>.` 
+
+After the command is parsed, the given grade is stored inside the `Assignment` of the specified `Student`. This is done with the help of the following methods:
+* `Student#updateOverallGrade(Index indexOfAssignment, Sting Grade)` - Calls `setAssignmentGrade()` with the given index and grade, and update the overall grade of the `Student`.
+* `Student#setAssignmentGrade(Index indexOfAssignment, String grade)` - Checks whether the index of the assignment is valid. If so, calls `setGrade()` of the corresponding `Assignment` with the given grade.
+* `Assignment#setGrade(String grade)` - Stores the given grade inside the `Assignment`.
+
+Given below is an example usage scenario and how the add grade feature behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons with their `Positions`.
+
+![AddGradeDiagram0](images/AddGradeDiagram0.png)
+
+Step 2. The user executes `grade 1 assignment/1 grade/86/100`. The `grade` keyword causes `AddressBookParser#parseCommand()` to call `GradeCommandParser#parse()`. This returns a `GradeCommand`.
+
+![AddGradeDiagram1](images/AddGradeDiagram1.png)
+
+Step 3. The grade of the specified `Assignment` is added.
+
+![AddGradeDiagram2](images/AddGradeDiagram2.png)
+
+Step 4. The internals if `GradeCommand` creates a new `Student` with the updated `overallGrade` and `assignmentList`.
+
+Step 5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+
+Step 6. The `AddressBook` displays the updated list of `Person`.
+
+The following sequence diagram shows how the add grade operation works:
+
+![AddGradeSequenceDiagram](images/AddGradeSequenceDiagram.png)
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** `Student#updateOverallGrade()` calls `Student#setAssignmentGrade()` and returns the updated overall grade of the student 
+    * Pros: The updated `overallGrade` can be easily used to create the new `Student` object.
+    * Cons: Can be confusing as in whether the `assignmentsList` of the `Student` is updated as well.
+* **Alternative 2:** `Student#updateOverallGrade()` does not return a value and only handle the calculation of the overall grade with the updated `assignmentsList` provided
+    * Pros: Separates the operations done on the `overallGrade` and the `assignmentsList`.
+    * Cons: The updated `overallGrade` and `assignmentsList` are not available for creating new `Student` object.
+
 ### \[Proposed\] Add Assignments feature
 
 #### Proposed Implementation
@@ -284,14 +333,6 @@ Aspect: How AddAssignments executes:
 * Alternative 2: Save Assignments in a json file to be read so every student added after will be automatically instanciated with those assignments
   * Pros: Eliminates the need to run AddAssignments command for new students
   * Cons: Difficulty in implementation
-
-
-
-
-
-
-
-
 
 ### \[Proposed\] Undo/redo feature
 
