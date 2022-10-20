@@ -109,7 +109,6 @@ public class DeleteDebtCommandTest {
     @Test
     public void execute_validIndexFollowedByValidDebtsOnFilteredList_success() {
         showDebtors(model);
-
         Person debtor = model.getFilteredPersonList().get(INDEX_FIFTH_PERSON.getZeroBased());
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_SECOND_DEBT, INDEX_FIRST_DEBT));
         DeleteDebtCommand deleteDebtCommand = new DeleteDebtCommand(INDEX_FIFTH_PERSON, debtIndexSet);
