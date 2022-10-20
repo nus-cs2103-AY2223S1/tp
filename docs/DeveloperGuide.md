@@ -161,9 +161,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implemented by: Sun Yu Ting
 
-The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class facilitates the storing of various information related to a student's module that he/she is currently taking. 
+The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class facilitates the storing of various information related to a student's module that he/she is currently taking.
 
-A `Module` Class contains 
+A `Module` Class contains
 
 * A `ModuleCode`
 * `TutorialDetails`
@@ -175,7 +175,7 @@ All the commands associated with the `Module` Class would have the keyword "Modu
 
 All the `Module` objects are contained in a `UniqueModuleList` object which ensures that no duplicate `Module` objects can exist in the `UniqueModuleList` object, where the `UniqueModuleList` was implemented by Ying Ming. This is because in NUS, there are no two modules with the same module code. Thus, the notion of equality is defined by default to be two `Module` objects containing the same `ModuleCode` object.
 
-All the classes contained within the `Module` Class all have a regex that checks for whether the user input for the specific field is valid. 
+All the classes contained within the `Module` Class all have a regex that checks for whether the user input for the specific field is valid.
 
 For the five classes,
 
