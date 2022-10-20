@@ -232,7 +232,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}_
 
 ### \[Implemented\] Assign/unassign feature
 
@@ -282,8 +282,6 @@ tuition classes in the student/tutor.
   keeping a list of students and tutors it has. 
   * Pros: Makes searching process easier in the future.
   * Cons: Hard and tedious to implement the storing of information in Json. 
-  
-_
 
 
 ### \[Proposed\] Find by fields feature
@@ -317,9 +315,9 @@ A more specific list of students is then shown.
 _{more aspects and alternatives to be added}_
 
 
-### List type feature
+### \[Implemented\] List type feature
 
-### Implementation
+#### Implementation
 
 The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST` (PERSON_LIST is to be removed in future version). 
 
