@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
+import nus.climods.storage.Storage;
+import nus.climods.storage.exceptions.StorageException;
 
 /**
  * Adds a person to the address book.
@@ -39,7 +41,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException, StorageException {
         requireNonNull(model);
 
         UserModule moduleToAdd = new UserModule(model.getModule(toAdd));
@@ -50,12 +52,7 @@ public class AddCommand extends Command {
 
         model.addUserModule(moduleToAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public String getCommandWord() {
-        return COMMAND_WORD;
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_WORD, storage, model);
     }
 
     @Override

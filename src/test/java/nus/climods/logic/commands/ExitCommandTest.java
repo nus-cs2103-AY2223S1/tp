@@ -21,7 +21,7 @@ public class ExitCommandTest {
         String expectedMessage = MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
         ExitCommand exitCommand = new ExitCommand();
-        CommandResult commandResult = exitCommand.execute(model);
+        CommandResult commandResult = exitCommand.execute(model, null);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
     }

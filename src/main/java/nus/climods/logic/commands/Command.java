@@ -2,6 +2,8 @@ package nus.climods.logic.commands;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
+import nus.climods.storage.Storage;
+import nus.climods.storage.exceptions.StorageException;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
@@ -15,9 +17,5 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException;
-
-    public String getCommandWord() {
-        return null;
-    }
+    public abstract CommandResult execute(Model model, Storage storage) throws CommandException, StorageException;
 }

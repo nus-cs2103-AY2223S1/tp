@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
+import nus.climods.storage.Storage;
+import nus.climods.storage.exceptions.StorageException;
 
 
 /**
@@ -32,21 +34,17 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException, StorageException {
         requireNonNull(model);
 
         UserModule toDelete = new UserModule(model.getModule(targetCode));
         if (!model.filteredListhasUserModule(toDelete)) {
-            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode));
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode),
+                    COMMAND_WORD, storage, model);
         }
 
         model.deleteUserModule(toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetCode));
-    }
-
-    @Override
-    public String getCommandWord() {
-        return COMMAND_WORD;
+        return new CommandResult(MESSAGE_DELETE_MODULE_SUCCESS, COMMAND_WORD, storage, model);
     }
 
     @Override

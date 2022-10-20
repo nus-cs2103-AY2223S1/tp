@@ -3,6 +3,7 @@ package nus.climods.logic.commands;
 import static nus.climods.commons.core.Messages.MESSAGE_SHOW_HELP;
 
 import nus.climods.model.Model;
+import nus.climods.storage.Storage;
 
 /**
  * Format full help instructions for every command for display.
@@ -16,13 +17,8 @@ public class HelpCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Storage storage) {
         return new CommandResult(MESSAGE_SHOW_HELP, true, false);
-    }
-
-    @Override
-    public String getCommandWord() {
-        return COMMAND_WORD;
     }
 
     @Override

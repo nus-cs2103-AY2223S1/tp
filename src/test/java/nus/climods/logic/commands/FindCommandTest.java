@@ -17,7 +17,7 @@ import nus.climods.model.UserPrefs;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
-
+import nus.climods.storage.exceptions.StorageException;
 
 class FindCommandTest {
 
@@ -26,22 +26,22 @@ class FindCommandTest {
             new UserPrefs());
 
     @Test
-    public void execute_zeroKeywords_noModulesFound() {
+    public void execute_zeroKeywords_noModulesFound() throws StorageException {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
 
         FindCommand command = new FindCommand(Collections.emptyList());
-        CommandResult commandResult = command.execute(model);
+        CommandResult commandResult = command.execute(model, null);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
     }
 
     @Test
-    public void execute_multipleKeywords_multipleModulesFound() {
+    public void execute_multipleKeywords_multipleModulesFound() throws StorageException {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 3);
 
         FindCommand command = new FindCommand(prepareSearchRegexes("CS2103"));
-        CommandResult commandResult = command.execute(model);
+        CommandResult commandResult = command.execute(model, null);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
         assertEquals(model.getFilteredModuleList().stream().map(Module::getCode).collect(Collectors.toList()),
@@ -49,11 +49,11 @@ class FindCommandTest {
     }
 
     @Test
-    public void execute_regexKeywords_multipleModulesFound() {
+    public void execute_regexKeywords_multipleModulesFound() throws StorageException {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 4);
 
         FindCommand command = new FindCommand(prepareSearchRegexes("^CS210[0-3]$"));
-        CommandResult commandResult = command.execute(model);
+        CommandResult commandResult = command.execute(model, null);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
         assertEquals(model.getFilteredModuleList().stream().map(Module::getCode).collect(Collectors.toList()),

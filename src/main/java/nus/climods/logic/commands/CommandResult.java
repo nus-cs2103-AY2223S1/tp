@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import nus.climods.model.Model;
+import nus.climods.storage.Storage;
+import nus.climods.storage.exceptions.StorageException;
+
 /**
  * Represents the result of a command execution.
  */
@@ -33,8 +37,18 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, and other fields set to their
      * default value.
      */
-    public CommandResult(String feedbackToUser) {
+    public CommandResult(String feedbackToUser, String commandWord,
+                         Storage storage, Model model) throws StorageException {
         this(feedbackToUser, false, false);
+
+        switch (commandWord) {
+        case (AddCommand.COMMAND_WORD):
+
+        case (DeleteCommand.COMMAND_WORD):
+            storage.saveUserModuleList(model.getUserModuleList());
+            break;
+        default:
+        }
     }
 
     public String getFeedbackToUser() {
