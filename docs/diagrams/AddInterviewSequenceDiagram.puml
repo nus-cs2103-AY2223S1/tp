@@ -63,7 +63,6 @@ activate Model
 Model -> ApplicationBook : setApplication(e)
 activate ApplicationBook
 
-ApplicationBook -> ApplicationBook : setApplication(e)
 ApplicationBook --> Model :
 deactivate ApplicationBook
 
@@ -81,6 +80,8 @@ AddInterviewCommand --> LogicManager : r
 deactivate AddInterviewCommand
 AddInterviewCommand -[hidden]-> LogicManager : r
 destroy AddInterviewCommand
+AddInterviewCommandParser -[hidden]-> LogicManager : r
+destroy AddInterviewCommandParser
 
 [<--LogicManager
 deactivate LogicManager

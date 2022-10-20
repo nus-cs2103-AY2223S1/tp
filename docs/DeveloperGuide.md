@@ -253,23 +253,23 @@ New commands are added to facilitate the operations of `Interview`.
 - `AddInterviewCommand` : Utilising `ApplicationBook#setApplication()` to assign new `Interview` to `Application`.
 - `DeleteInterviewCommand` : Utilising `ApplicationBook#setApplication()` to reset `Interview` to empty in an `Application`.
 
-1. The user enter the `interview 2 ir/Technical interview id/2022-10-12 it/1400 il/Zoom` to assign new Interview to the labelled "2" Application in the application list. The execution prompts the `LogicManager` to parse the command to the `AplicationBookParser`.
+1. The user enters `interview 2 ir/Technical interview id/2022-10-12 it/1400 il/Zoom` to assign a new Interview to the Application at index 2 in the application list. The execution prompts the `LogicManager` to call the `ApplicationBookParser#parseCommand(String)` method.
 2. The ApplicationBookParser then identifies the corresponding `AddInterviewCommandParser` to create. Then, the corresponding interview sub-fields are used to instantiate new `Interview`, which in turn is used to create new `AddInterviewCommand`.
-3. The LogicManager executes the returned `AddInterviewCommand`. In here, the target application is retrieved from the `ApplicationBook` to create another new `Application` with the `Interview`.
-4. Now, we replace the old `Application` with the newly created `Application`. But before that, the `ApplicationBook#setApplication()` goes through checks to ensure the `ApplicationBook` does not contain duplicated `Interview`.
-5. Once the check is passed, the `ApplicationBook` successfully replaces the `Application`, hence it now contains the `Application` with `Interview`.
-6. The `DeleteInterview` operation with command `remove-i 3` has the similar implementation as the `AddInterview` operation, but new `Application` with empty `Interview` is used to replace the old `Application` instead.
+3. The LogicManager executes the returned `AddInterviewCommand` object. In here, the target application is retrieved from the `ApplicationBook` to create another new `Application` with the corresponding `Interview`.
+4. Now, we replace the old `Application` object with the newly created `Application` object. But before that, the `ApplicationBook#setApplication()` goes through checks to ensure the `ApplicationBook` does not contain duplicated `Interview`. (The meaning of `duplicated Interview` is discussed in the **Constraints of Interview** section below.)
+5. Once the check is passed, the `ApplicationBook` successfully replaces the old `Application` object, hence it now contains the updated `Application` object with `Interview`.
+6. The `DeleteInterview` operation with command `remove-i 3` has a similar implementation as the `AddInterview` operation, but a new `Application` object with empty `Interview` is used to replace the old `Application` object instead.
 
 The sequence diagram is as follows:
 ![AddInterviewSequenceDiagram](images/AddInterviewSequenceDiagram.png)
 
 #### Constraints of Interview:
 
-In order to have the Interview fields to make sense, several constraints are added:
+In order for the Interview fields to make sense, several constraints are added:
 1. `InterviewDate` must be after the `Application` applied `Date`, else `InvalidInterviewException` will be thrown.
 2. `Interview` duration is set to be one hour long for each `Interview`.
 3. Two Interviews are considered duplicates if they have the same `InterviewDate` and overlapping `InterviewTime`, then `DuplicateInterviewException` will be thrown.
-4. New `Interview` is allowed to override the current `Interview` that is already assigned to an `Application`, this can be considered as `EditInterview` feature, but we did not explicitly write out this feature, the `AddInterviewCommand` can be reused here instead.
+4. New `Interview` is allowed to overwrite the current `Interview` that is already assigned to an `Application`. This can be considered as an `EditInterview` feature, but we did not explicitly write out this feature as the `AddInterviewCommand` can be reused here instead.
 
 #### Design considerations:
 
