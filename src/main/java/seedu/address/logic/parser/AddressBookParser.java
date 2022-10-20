@@ -16,9 +16,6 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListStudentCommand;
-import seedu.address.logic.commands.ListTuitionClassCommand;
-import seedu.address.logic.commands.ListTutorCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -70,16 +67,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ListStudentCommand.COMMAND_WORD:
-            return new ListStudentCommand();
-
-        case ListTutorCommand.COMMAND_WORD:
-            return new ListTutorCommand();
-
-        case ListTuitionClassCommand.COMMAND_WORD:
-            return new ListTuitionClassCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
