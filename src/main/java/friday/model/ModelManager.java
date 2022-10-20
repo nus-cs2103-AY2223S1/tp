@@ -4,6 +4,7 @@ import static friday.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import friday.commons.core.LogsCenter;
 import friday.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 
 /**
  * Represents the in-memory model of FRIDAY's data.
@@ -22,6 +24,8 @@ public class ModelManager implements Model {
     private final Friday friday;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final SortedList<Student> sortedStudents;
+    private ObservableList<Student> students;
 
     /**
      * Initializes a ModelManager with the given FRIDAY and userPrefs.
@@ -33,7 +37,9 @@ public class ModelManager implements Model {
 
         this.friday = new Friday(friday);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.friday.getStudentList());
+        this.filteredStudents = new FilteredList<>(this.friday.getStudentList());
+        this.sortedStudents = new SortedList<>(this.friday.getStudentList());
+        this.students = this.friday.getStudentList();
     }
 
     public ModelManager() {
@@ -115,14 +121,22 @@ public class ModelManager implements Model {
      * {@code versionedFRIDAY}
      */
     @Override
-    public ObservableList<Student> getFilteredStudentList() {
-        return filteredStudents;
+    public ObservableList<Student> getStudentList() {
+        return students;
     }
 
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+        students = filteredStudents;
+    }
+
+    @Override
+    public void updateSortedStudentList(Comparator<Student> comparator) {
+        requireNonNull(comparator);
+        sortedStudents.setComparator(comparator);
+        students = sortedStudents;
     }
 
     @Override

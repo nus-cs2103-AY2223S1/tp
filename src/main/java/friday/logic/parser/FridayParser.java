@@ -16,6 +16,7 @@ import friday.logic.commands.FindCommand;
 import friday.logic.commands.HelpCommand;
 import friday.logic.commands.ListCommand;
 import friday.logic.commands.RemarkCommand;
+import friday.logic.commands.SortCommand;
 import friday.logic.commands.UgCommand;
 import friday.logic.parser.exceptions.ParseException;
 
@@ -66,6 +67,9 @@ public class FridayParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

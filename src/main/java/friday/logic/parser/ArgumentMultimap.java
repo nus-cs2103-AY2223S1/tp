@@ -40,6 +40,14 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the number of prefixes in this map.
+     */
+    public int size() {
+        argMultimap.remove(new Prefix(""));
+        return argMultimap.size();
+    }
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 /**
  * Represents a Student's desired date for their Mastery Check.
  */
-public class MasteryCheck {
+public class MasteryCheck implements Comparable<MasteryCheck> {
 
     public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Check should be in the format:"
             + "YYYY-MM-DD";
@@ -49,7 +49,7 @@ public class MasteryCheck {
      *
      * Only to be used when converting JSON to Student in JsonAdaptedStudent.
      */
-    public static boolean isValidOrEmpty(String test) {
+    public static boolean isValidOrEmptyJson(String test) {
         return test.matches(VALIDATION_REGEX) || test.equals("0001-01-01");
     }
 
@@ -85,6 +85,18 @@ public class MasteryCheck {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(MasteryCheck masteryCheck) {
+        if (this.equals(masteryCheck)) {
+            return 0;
+        } else if (this.isEmpty()) {
+            return 1;
+        } else if (masteryCheck.isEmpty()) {
+            return -1;
+        }
+        return this.value.compareTo(masteryCheck.value);
     }
 
 }

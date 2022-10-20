@@ -1,6 +1,7 @@
 package friday.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import friday.commons.core.GuiSettings;
@@ -77,11 +78,17 @@ public interface Model {
     void setStudent(Student target, Student editedStudent);
 
     /** Returns an unmodifiable view of the filtered student list */
-    ObservableList<Student> getFilteredStudentList();
+    ObservableList<Student> getStudentList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Updates the comparator of the sorted student list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedStudentList(Comparator<Student> comparator);
 }

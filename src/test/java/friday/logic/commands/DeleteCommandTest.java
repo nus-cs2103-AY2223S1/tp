@@ -28,7 +28,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student studentToDelete = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
@@ -41,7 +41,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getStudentList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -51,7 +51,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student studentToDelete = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
@@ -104,6 +104,6 @@ public class DeleteCommandTest {
     private void showNoStudent(Model model) {
         model.updateFilteredStudentList(p -> false);
 
-        assertTrue(model.getFilteredStudentList().isEmpty());
+        assertTrue(model.getStudentList().isEmpty());
     }
 }

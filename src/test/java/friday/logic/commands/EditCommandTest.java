@@ -43,7 +43,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
-        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
+        expectedModel.setStudent(model.getStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -51,8 +51,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
-        Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
+        Index indexLastStudent = Index.fromOneBased(model.getStudentList().size());
+        Student lastStudent = model.getStudentList().get(indexLastStudent.getZeroBased());
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
         Student editedStudent = studentInList.withName(VALID_NAME_BOB).withTelegramHandle(VALID_TELEGRAMHANDLE_BOB)
@@ -73,7 +73,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, new EditStudentDescriptor());
-        Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
@@ -86,7 +86,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student studentInFilteredList = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -94,14 +94,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new Friday(model.getFriday()), new UserPrefs());
-        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
+        expectedModel.setStudent(model.getStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateStudentUnfilteredList_failure() {
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student firstStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
 
@@ -122,7 +122,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getStudentList().size() + 1);
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
                 .withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);

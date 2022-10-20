@@ -11,6 +11,10 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
+* **New Feature**: Added the ability to sort students.
+  * What it does: Allows the user to sort students by different criteria (such as name or consultation date), in ascending or descending order.
+  * Justification: This feature improves the product because a user can choose how they want to view the students, and see if they have any upcoming consultations or Mastery Checks.  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jorrdansoh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=jorrdansoh&tabRepo=AY2223S1-CS2103T-W15-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:

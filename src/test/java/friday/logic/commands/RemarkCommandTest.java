@@ -34,7 +34,7 @@ public class RemarkCommandTest {
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student firstStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(firstStudent).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
@@ -50,7 +50,7 @@ public class RemarkCommandTest {
 
     @Test
     public void execute_deleteRemarkUnfilteredList_success() {
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student firstStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(firstStudent).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
@@ -68,8 +68,8 @@ public class RemarkCommandTest {
     public void execute_filteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder(model.getFilteredStudentList()
+        Student firstStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = new StudentBuilder(model.getStudentList()
                 .get(INDEX_FIRST_STUDENT.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
@@ -86,7 +86,7 @@ public class RemarkCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getStudentList().size() + 1);
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

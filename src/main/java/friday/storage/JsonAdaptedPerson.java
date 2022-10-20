@@ -89,7 +89,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
         }
-        if (!TelegramHandle.isValidOrEmpty(telegramHandle)) {
+        if (!TelegramHandle.isValidOrEmptyJson(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
         final TelegramHandle modelTelegramHandle;
@@ -103,7 +103,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Consultation.class.getSimpleName()));
         }
-        if (!Consultation.isValidOrEmpty(consultation.toString())) {
+        if (!Consultation.isValidOrEmptyJson(consultation.toString())) {
             throw new IllegalValueException(Consultation.MESSAGE_CONSTRAINTS);
         }
         final Consultation modelConsultation;
@@ -117,7 +117,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MasteryCheck.class.getSimpleName()));
         }
-        if (!MasteryCheck.isValidOrEmpty(masteryCheck.toString())) {
+        if (!MasteryCheck.isValidOrEmptyJson(masteryCheck.toString())) {
             throw new IllegalValueException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
         final MasteryCheck modelMasteryCheck;

@@ -30,6 +30,13 @@ public class StudentListPanel extends UiPart<Region> {
     }
 
     /**
+     * Sets the {@code ListView} of this {@code StudentListPanel} to the given {@code ObservableList}.
+     */
+    public void setList(ObservableList<Student> studentList) {
+        studentListView.setItems(studentList);
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {
