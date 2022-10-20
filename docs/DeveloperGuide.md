@@ -224,7 +224,7 @@ Activity: Determines and returns a category
     * Cons: Increased complexity.
 
 ### Add Interest Feature
-The ```addInt``` command allows users to add an interest or a list of interests by indicating the index of the student to be modified and the list of interests to be added.
+The ```addInt``` command allows users to add one or more interests to a student by indicating the index of the student and the list of interests to be added.
 
 The command takes in:
 - ```Index```
