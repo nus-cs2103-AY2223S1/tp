@@ -447,7 +447,7 @@ Commands that integrates with the `show` command includes:
 
 **Given below is an example usage scenario of show command**
 
-Step 1. The user types "show 1" to target the client at index 1 of the current list.
+Step 1: The user types "show 1" to target the client at index 1 of the current list.
 
 ```
 show 1
