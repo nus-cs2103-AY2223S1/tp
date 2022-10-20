@@ -323,20 +323,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I can  …​                              | So that I can…​                                    |
-|----------|-----------|----------------------------------------|----------------------------------------------------|
-| `* * *`  | tech lead | change the team structure              | manage the teams (EPIC)                            |
-| `* * *`  | tech lead | create a new team                      |                                                    |
-| `* * *`  | tech lead | edit the name of the team              | keep the team information up to date               |
-| `* * *`  | tech lead | add members to a team                  | update the team when a new member joins            |
-| `* * *`  | tech lead | remove members from a team             | keep the team information up to date               |
-| `* * *`  | tech lead | edit the information of members        | update their information when there is a change    |
-| `* * *`  | tech lead | manage the tasks for the company       | have an overview of the task in the company (EPIC) |
-| `* * *`  | tech lead | create a task                          |                                                    |
-| `* * *`  | tech lead | delete a task                          | unwanted tasks can be removed                      |
-| `* * *`  | tech lead | update a task name                     | respond to changes in the requirements             |
-| `* *  `  | tech lead | set the status of the task to complete | know which task is completed and which task is not |
-| `* *  `  | tech lead | set a deadline for the task            | know when the task should be completed             |
+| Priority | As a …​   | I can  …​                                  | So that I can…​                                    |
+|----------|-----------|--------------------------------------------|----------------------------------------------------|
+| `* * *`  | tech lead | change the team structure                  | manage the teams (EPIC)                            |
+| `* * *`  | tech lead | create a new team                          |                                                    |
+| `* * *`  | tech lead | delete a team                              | remove unwanted teams                              |
+| `* * *`  | tech lead | edit the name of the team                  | keep the team information up to date               |
+| `* * *`  | tech lead | add members to a team                      | update the team when a new member joins            |
+| `* * *`  | tech lead | remove members from a team                 | keep the team information up to date               |
+| `* * *`  | tech lead | edit the information of members            | update their information when there is a change    |
+| `* * *`  | tech lead | manage the tasks for the company           | have an overview of the task in the company (EPIC) |
+| `* * *`  | tech lead | create a task                              |                                                    |
+| `* * *`  | tech lead | delete a task                              | remove unwanted tasks                              |
+| `* * *`  | tech lead | update a task name                         | respond to changes in the requirements             |
+| `* *  `  | tech lead | set the status of the task to complete     | know which task is completed                       |
+| `* *  `  | tech lead | set the status of the task to not complete | know which task is not completed                   |
+| `* *  `  | tech lead | set a deadline for the task                | know when the task should be completed             |
+| `* *  `  | tech lead | see the progress of the team               | know the actively performing teams                 |
 
 *{More to be added}*
 
