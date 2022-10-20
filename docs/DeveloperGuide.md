@@ -191,6 +191,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Add Attendance feature
+
+#### Proposed Implementation
+
+The proposed add attendance mechanism is facilitated by `UniqueStudentList`.
+It is stored internally as an `Attendance` along with other attributes of a `Student`.
+It is first initialized upon creation of a `Student` object and set as `0`.
+
+Given below is an example usage scenario and how the attendance machanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `UniqueStudentList` will be initialized with the 
+initial Json data stored.
+
+Step 2. The user executes `attendance 1` command to increment the attendance of the 1st student in the one-indexed 
+`UniqueStudentList`. The `attendance` command calls `AttendanceCommandParser#parse()`).
+
+***NOTE:***
+1. If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user.
+2. If the resulting attendance is not a valid number (ie, out of bounds or negative), it will return an error to the 
+user.
+
+Step 3. `AttendanceCommandParser` returns and `AttendanceCommand` with the newly created `Attendance` as a parameter.
+
+Step 4. `AttendanceCommand` calls `Model#setStudent` and `Model#updateFilteredStudentList` to edit the attendance
+attribute of the `Student`.
+
+Step 5. After successfully editing the attendance attribute, `AttendanceCommand` will return thr `CommandResult` to the `Ui`.
+
+The following sequence diagram shows how the attendance feature is executed.
+
+The following sequence diagram shows the reference sequence diagram for creating `Attendance attendance`.
+
+#### Design Considerations
+
+**Aspect: How Attendance executes:**
+
+- **Alternative 1** Only the attendance value recorded
+  - Pros: Easy to implement
+  - Cons: No check on 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -405,8 +445,8 @@ otherwise)
 
 1. User requests to list students.
 2. SETA shows a list of students.
-3. User requests to add attendance to a specific student in the list.
-4. SETA adds attendance to the student.
+3. User requests to increment to a specific student's attendance in the list.
+4. SETA increment the student's attendance by 1.
 
    Use case ends.
 
