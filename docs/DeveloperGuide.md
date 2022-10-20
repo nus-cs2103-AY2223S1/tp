@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `UserProfile` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -121,16 +121,27 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) as well as the `User` .
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. Similarly, there is a `CurrentModule`, `PlannedModule` and `PreviousModule` lists and each unique instance has its own object. <br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+#### Module Class
+`CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
+
+![Module Class Diagram](images/ModuleClassDiagram.png)
+
+All implementations of `Module`s have a name.
+
+`CurrentModule` has additional fields, which are implementations of `Lesson`s. These are `Tutorial`, `Recitation`, `Lab`, and `Lecture`.
+
+All implementations of `Lesson`s have a `StartTime` and `EndTime`.
 
 
 ### Storage component
@@ -245,7 +256,6 @@ The following class diagram illustrates the class diagram of the `Lesson` class 
 
 ![LessonClassDiagram](images/LessonClassDiagram-0.png)
 
-
 The command has the prefix `lesson` and has the parameters 
 `user / INDEX (must be a positive integer) [l/TYPE] [m/MODULE] [d/DAY] [start/START TIME] [end/END TIME]`
 
@@ -258,7 +268,6 @@ Given below are some examples of a user command to add a `Lesson`
 
 3. Example 3 : Command to add a `Lecture` for the module CS2109S that starts at 10am and ends at 12pm every Friday to the fifth contact
 - `lesson 5 l/lec m/cs2109s d/5 start/10:00 end/12:00`
-
 
 Given below is a sequence diagram to illustrate how the timetable mechanism behaves after the user attempts to add a tutorial.
 
@@ -275,6 +284,80 @@ are many links to keep track off.
 
 2. Allow User to sort his/her classes from all modules in chronological order or by modules depending on the User's
 preference to view his/her timetable
+
+Given below are the proposed Classes to implement:
+
+* `VersionedAddressBook`
+  * Extends `AddressBook` with an Undo/Redo history
+  * Uses `addressBookStateList` (List of `AddressBook`s) and `currentStatePointer` (int Index of current `AddressBook` state)
+  * `VersionedAddressBook#commit()`
+    * Adds current `AddressBook` into `addressBookStateList`
+    * Called after each change in `AddressBook` state
+  * `VersionedAddressBook#undo()`
+    * Calls `Model#canUndoAddressBook()` to check if there is a previous state
+    * Shifts `currentStatePointer` back by one
+    * Called after user inputs `undo` command
+  * `VersionedAddressBook#redo()`
+    * Calls `Model#canRedoAddressBook()` to check if there is a next state
+    * Shifts `currentStatePointer` forward by one
+    * Called after user inputs `redo` command
+
+Given below are the proposed Methods to implement:
+* `Model`
+  * `Model#canUndoAddressBook()` - Checks if there is a previous `AddressBook` state
+  * `Model#canRedoAddressBook()` - Checks if there is a forward `AddressBook` state
+  * `Model#undoAddressBook()` - Changes the current Model to read from the previous `AddressBook` state
+  * `Model#redoAddressBook()` - Changes the current Model to read from the next `AddressBook` state
+  * `Model#commitAddressBook()` - Saves current `AddressBook` state into `addressBookStateList`
+
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+The proposed feature enables users to filter contacts by tags or modules. It is facilitated by `Command`, with the PersonCards being sorted according to tags instead of the order in which they were added to the app. This will be stored as an `ObservableList<Person>`. Additionally, it implements the following operations:
+
+* `FilterByTagCommand#execute(Model model)` — Filters the `FilteredPersonList` according to tag.
+* `FilterByCurrModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Current Modules.
+* `FilterByPrevModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Previous Modules.
+* `FilterByPlanModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Planned Modules.
+
+These operations are exposed in the Model interface as `Model#updateFilteredPersonList`.
+
+Given below is an example of the usage scenario and how the filtering mechanism behaves at each step.
+
+Step 1. The User wants to filter their contacts according to tag. The `FilterByTagCommand#execute()` will update `Model#filteredPersons` with `Model#updateFilteredPersonList(Predicate<Person> predicate)`.
+
+![FilterState0](images/UndoRedoState0.png)
+
+Step 2. The `PersonListPanel` Ui will then only display `PersonCard`s of contacts that have the tag specified by the User.
+
+The following activity diagram summarizes what happens when a user executes a filterByTag command:
+
+Reason for implementation: All filter methods could have been implemented as one class instead of multiple subclasses. However as the different filtering specifications would have to access different classes to filter the contact list, each filter command has been abstracted out as a different class.
+
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+The proposed feature enables the user to move the CurrentModules in both the User and their contacts into PreviousModules. It is facilitated by `ShiftCommand`, where each `CurrentModule` in User's and Peron's Set<CurrentModule> will be deleted and changed into a `PreviousModule` and added into the User and each Person's `Set<PreviousModule>`. Additionally, it implemented the following operations:
+
+* `Person#updatePrevMods` — Adds the `Modules` in `Set<CurrentModule>` into `Set<PreviousModule>`.
+* `User#updatePrevMods` — Adds the `Modules` in `Set<CurrentModule>` into `Set<PreviousModule>`.
+
+These operations are exposed in the Model interface as `Model#getPerson` and `Model#getUser` respectively.
+
+Given below is an example of the usage scenario and how the User's PreviousModule's are updated.
+
+Step 1. The User wants to update his ConnnectNUS app details as a new AY has started. He inputs the `shift` command.
+
+Step 2. The LogicManager will parse the User's input and execute a `ShiftCommand`.
+
+Step 3. When `ShiftCommand` is called, it will call on `Person#updatePrevMods` and `User#updatePrevMods`, updating both the User and all the Person's in the User's contact list.
+
+Step 4. The changes will be reflected in the PersonCard and UserProfile Uis.
+
+The following activity diagram summarizes what happens when a user executes a shift command:
+
 
 #### Design considerations:
 
@@ -513,6 +596,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
   Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC9 - Show User's Timetable**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to show own Timetable.
+2. ConnectNUS the Timetable of CS Student's current modules.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 1b. No user, or no current modules for user, or no lessons for current modules.
+    * 1b1. ConnectNUS informs user of missing data.
+    * Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC10 - Show contact's Timetable**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to show contact's Timetable.
+2. ConnectNUS the Timetable of CS Student's contact's current modules.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format or index out of bounds.
+    * 1a1. ConnectNUS requests for the correct format or index.
+    * User enters a new command in the correct format or index.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 1b. No current modules for contact, or no lessons for current modules.
+    * 1b1. ConnectNUS informs user of missing data.
+    * Use case ends.
 
 *{More to be added}*
 

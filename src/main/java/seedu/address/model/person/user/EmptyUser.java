@@ -3,6 +3,7 @@ package seedu.address.model.person.user;
 import java.util.Set;
 
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -86,5 +87,10 @@ public class EmptyUser extends User {
     @Override
     public Set<PlannedModule> getPlanModules() {
         return null;
+    }
+
+    @Override
+    public void addLesson(Lesson lesson) {
+
     }
 }

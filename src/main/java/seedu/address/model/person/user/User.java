@@ -3,6 +3,7 @@ package seedu.address.model.person.user;
 import java.util.Set;
 
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -40,5 +41,7 @@ public abstract class User {
      * if modification is attempted.
      */
     public abstract Set<PlannedModule> getPlanModules();
+
+    public abstract void addLesson(Lesson lesson);
 
 }
