@@ -90,7 +90,7 @@ a `ScheduleListPanel` under `UI` had to be created along with a `ScheduleListCar
 
 Correspondingly, `PersonListCard.fxml` and `PersonListPanel.fxml` had to be created too.
 
-Since the `UI` depends on the `Model`, there was a need to update hte model to now include a `UniqueScheduleList`.
+Since the `UI` depends on the `Model`, there was a need to update the model to now include a `UniqueScheduleList`.
 This `UniqueScheduleList` would store the filtered version of the original `AddressBook`, based on the current date.
 
 #### Design Considerations
