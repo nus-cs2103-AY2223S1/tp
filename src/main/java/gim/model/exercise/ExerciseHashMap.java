@@ -4,8 +4,10 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 
@@ -111,6 +113,24 @@ public class ExerciseHashMap {
     @Override
     public int hashCode() {
         return exerciseHashMap.hashCode();
+    }
+
+
+    /**
+     * Returns an alphabetically sorted ArrayList of all key values in ExerciseHashMap
+     * @return Returns the Name of the first Exercise instance
+     */
+    public ArrayList<String> getAllKeys() {
+        Set<Name> keySet = exerciseHashMap.keySet();
+        ArrayList<String> toReturn = new ArrayList<>();
+        if (keySet.isEmpty()) {
+            return toReturn;
+        }
+        for (Name keyName: keySet) {
+            toReturn.add(keyName.toString());
+        }
+        Collections.sort(toReturn);
+        return toReturn;
     }
 
 }
