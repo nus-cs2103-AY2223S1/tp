@@ -206,16 +206,16 @@ public class ModuleCondensed {
         @JsonCreator
         public static SemestersEnum fromValue(int value) {
             switch (value) {
-                case 1:
-                    return S1;
-                case 2:
-                    return S2;
-                case 3:
-                    return ST1;
-                case 4:
-                    return ST2;
-                default:
-                    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+            case 1:
+                return S1;
+            case 2:
+                return S2;
+            case 3:
+                return ST1;
+            case 4:
+                return ST2;
+            default:
+                throw new IllegalArgumentException("Unexpected value '" + value + "'");
             }
         }
 
@@ -226,14 +226,14 @@ public class ModuleCondensed {
         @JsonValue
         public int getValue() {
             switch (value) {
-                case "S1":
-                    return 1;
-                case "S2":
-                    return 2;
-                case "ST1":
-                    return 3;
-                default:
-                    return 4;
+            case "S1":
+                return 1;
+            case "S2":
+                return 2;
+            case "ST1":
+                return 3;
+            default:
+                return 4;
             }
         }
 
