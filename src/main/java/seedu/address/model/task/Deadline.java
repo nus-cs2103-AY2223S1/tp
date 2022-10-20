@@ -59,6 +59,26 @@ public class Deadline {
         return new Deadline(date);
     }
 
+    /**
+     * Returns true if the deadline set for the task is before {@code date}.
+     */
+    public boolean isBefore(Deadline deadline) {
+        if (isUnspecified() || deadline.isUnspecified()) {
+            return true;
+        }
+        return date.isBefore(deadline.date);
+    }
+
+    /**
+     * Returns true if the deadline set for the task is after {@code date}.
+     */
+    public boolean isAfter(Deadline deadline) {
+        if (isUnspecified() || deadline.isUnspecified()) {
+            return true;
+        }
+        return date.isAfter(deadline.date);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -75,10 +95,6 @@ public class Deadline {
             return UNSPECIFIED_DEADLINE_IDENTIFIER;
         }
         return this.date.format(formatter);
-    }
-
-    public LocalDate getDate() {
-        return this.date;
     }
 
 }
