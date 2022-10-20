@@ -13,8 +13,8 @@ public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes applicants whose application process"
-            + " is completed (accepted/rejected) from the applicant list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes applicants whose application process "
+            + "is completed, i.e. accepted/rejected (case-insensitive), from the applicant list.\n"
             + "Parameters: accepted/rejected\n"
             + "Example: " + COMMAND_WORD + " accepted";
 

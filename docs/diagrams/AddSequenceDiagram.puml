@@ -4,7 +4,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":LinkedoutParser" as LinkedoutParser LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
 
 participant ":AddCommand" as AddCommand LOGIC_COLOR
@@ -19,20 +19,20 @@ end box
 [-> LogicManager : execute(add n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
 activate LogicManager
 
-LogicManager -> LinkedoutParser : parseCommand(args)
-activate LinkedoutParser
+LogicManager -> TrackAScholarParser : parseCommand(args)
+activate TrackAScholarParser
 
 create AddCommandParser
-LinkedoutParser -> AddCommandParser : AddCommandParser()
+TrackAScholarParser -> AddCommandParser : AddCommandParser()
 activate AddCommandParser
 
-AddCommandParser --> LinkedoutParser
+AddCommandParser --> TrackAScholarParser
 deactivate AddCommandParser
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> LinkedoutParser: BUFFER_MESSAGE
+AddCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
 
-LinkedoutParser -> AddCommandParser : parse(add n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
+TrackAScholarParser -> AddCommandParser : parse(n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
 activate AddCommandParser
 
 
@@ -54,14 +54,14 @@ activate AddCommand
 AddCommand --> AddCommandParser
 deactivate
 
-AddCommandParser --> LinkedoutParser
+AddCommandParser --> TrackAScholarParser
 deactivate
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> LinkedoutParser
+AddCommandParser -[hidden]-> TrackAScholarParser
 destroy AddCommandParser
 
-LinkedoutParser --> LogicManager
-deactivate LinkedoutParser
+TrackAScholarParser --> LogicManager
+deactivate TrackAScholarParser
 
 LogicManager -> AddCommand : execute()
 activate AddCommand
