@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.transaction.BuyTransaction;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
@@ -15,12 +16,14 @@ public class TransactionBuilder {
     public static final String DEFAULT_GOODS = "Apples";
     public static final String DEFAULT_PRICE = "5.00";
     public static final String DEFAULT_QUANTITY = "2103";
+    public static final String DEFAULT_DATE = "17/05/2000";
     public static final String TRANSACTION_TYPE_BUY = "buy";
     public static final String TRANSACTION_TYPE_SELL = "sell";
     private String transactionType;
     private Goods goods;
     private Price price;
     private Quantity quantity;
+    private Date date;
 
     /**
      * Creates a {@code TransactionBuilder} with the default details.
@@ -29,6 +32,7 @@ public class TransactionBuilder {
         goods = new Goods(DEFAULT_GOODS);
         quantity = new Quantity(DEFAULT_QUANTITY);
         price = new Price(DEFAULT_PRICE);
+        date = new Date(DEFAULT_DATE);
         transactionType = TRANSACTION_TYPE_BUY;
     }
 
@@ -39,6 +43,7 @@ public class TransactionBuilder {
         goods = transactionToCopy.getGoods();
         quantity = transactionToCopy.getQuantity();
         price = transactionToCopy.getPrice();
+        date = transactionToCopy.getDate();
     }
 
     /**
@@ -66,6 +71,14 @@ public class TransactionBuilder {
     }
 
     /**
+     * Sets the {@code Date} of the {@code Transaction} that we are building.
+     */
+    public TransactionBuilder withDate(String date) {
+        this.date = new Date(date);
+        return this;
+    }
+
+    /**
      * Sets the {@code TransactionType} of the {@code Transaction} that we are building.
      */
     public TransactionBuilder withTransactionType(String type) {
@@ -82,9 +95,9 @@ public class TransactionBuilder {
      */
     public Transaction build() {
         if (this.transactionType.equals(TRANSACTION_TYPE_BUY)) {
-            return new BuyTransaction(goods, price, quantity);
+            return new BuyTransaction(goods, price, quantity, date);
         }
-        return new SellTransaction(goods, price, quantity);
+        return new SellTransaction(goods, price, quantity, date);
     }
 
 }

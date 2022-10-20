@@ -10,12 +10,14 @@ public abstract class Transaction {
     protected final Goods goods;
     protected final Price price;
     protected final Quantity quantity;
+    protected final Date date;
 
-    Transaction(Goods goods, Price price, Quantity quantity) {
-        requireAllNonNull(goods, price, quantity);
+    Transaction(Goods goods, Price price, Quantity quantity, Date date) {
+        requireAllNonNull(goods, price, quantity, date);
         this.goods = goods;
         this.price = price;
         this.quantity = quantity;
+        this.date = date;
     }
 
     /**
@@ -27,12 +29,17 @@ public abstract class Transaction {
     public Goods getGoods() {
         return goods;
     }
+
     public Price getPrice() {
         return price;
     }
 
     public Quantity getQuantity() {
         return quantity;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
 }
