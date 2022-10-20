@@ -152,6 +152,7 @@ public class ParserUtil {
     public static LectureDetails parseLectureDetails(String lecture) throws ParseException {
         requireNonNull(lecture);
         String trimmedLecture = lecture.trim();
+        assert LectureDetails.areValidLectureDetails(trimmedLecture);
         if (!LectureDetails.areValidLectureDetails(trimmedLecture)) {
             throw new ParseException(LectureDetails.MESSAGE_CONSTRAINTS);
         }
@@ -167,6 +168,7 @@ public class ParserUtil {
     public static TutorialDetails parseTutorialDetails(String tutorial) throws ParseException {
         requireNonNull(tutorial);
         String trimmedTutorial = tutorial.trim();
+        assert TutorialDetails.areValidTutorialDetails(trimmedTutorial);
         if (!TutorialDetails.areValidTutorialDetails(trimmedTutorial)) {
             throw new ParseException(TutorialDetails.MESSAGE_CONSTRAINTS);
         }
@@ -182,7 +184,7 @@ public class ParserUtil {
     public static ZoomLink parseZoomLink(String zoom) throws ParseException {
         requireNonNull(zoom);
         String trimmedZoom = zoom.trim();
-        if (!ZoomLink.isValidUrl(trimmedZoom)) {
+        if (!ZoomLink.isValidZoomLink(trimmedZoom)) {
             throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         return new ZoomLink(trimmedZoom);

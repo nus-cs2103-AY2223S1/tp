@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class LectureDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "Lecture Details can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Lecture Details can take any values";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -34,7 +34,7 @@ public class LectureDetails {
      * Returns true if a given string is a valid lecture detail.
      */
     public static boolean areValidLectureDetails(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return true;
     }
 
     @Override

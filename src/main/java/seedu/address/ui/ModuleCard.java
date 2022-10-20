@@ -56,8 +56,8 @@ public class ModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getModuleCode().moduleCode);
         lectureDetails.setText(module.getLectureDetails().value);
         tutorialDetails.setText(module.getTutorialDetails().value);
-        lectureZoomLink.setText(module.getLectureZoomLink().zoomLink);
-        tutorialZoomLink.setText(module.getTutorialZoomLink().zoomLink);
+        lectureZoomLink.setText(module.getLectureZoomLink().zoomLink.orElse(""));
+        tutorialZoomLink.setText(module.getTutorialZoomLink().zoomLink.orElse(""));
         module.getAssignmentDetails().stream()
             .sorted(Comparator.comparing(assignment -> assignment.assignmentDetails))
             .forEach(assignment -> assignmentDetails.getChildren().add(new Label(assignment.assignmentDetails)));

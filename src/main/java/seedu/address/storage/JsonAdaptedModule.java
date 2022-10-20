@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -57,8 +58,8 @@ public class JsonAdaptedModule {
         moduleCode = source.getModuleCode().moduleCode;
         lectureDetails = source.getLectureDetails().value;
         tutorialDetails = source.getTutorialDetails().value;
-        lectureZoomLink = source.getLectureZoomLink().zoomLink;
-        tutorialZoomLink = source.getTutorialZoomLink().zoomLink;
+        lectureZoomLink = source.getLectureZoomLink().zoomLink.orElse("");
+        tutorialZoomLink = source.getTutorialZoomLink().zoomLink.orElse("");
         assignmentDetails.addAll(source.getAssignmentDetails().stream()
                 .map(JsonAdaptedAssignmentDetails::new)
                 .collect(Collectors.toList()));
@@ -105,7 +106,7 @@ public class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ZoomLink.class.getSimpleName()));
         }
-        if (!ZoomLink.isValidUrl(lectureZoomLink)) {
+        if (!ZoomLink.isValidZoomLink(lectureZoomLink)) {
             throw new IllegalValueException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         final ZoomLink modelLectureZoomLink = new ZoomLink(lectureZoomLink);
@@ -114,7 +115,7 @@ public class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ZoomLink.class.getSimpleName()));
         }
-        if (!ZoomLink.isValidUrl(tutorialZoomLink)) {
+        if (!ZoomLink.isValidZoomLink(tutorialZoomLink)) {
             throw new IllegalValueException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         final ZoomLink modelTutorialZoomLink = new ZoomLink(lectureZoomLink);

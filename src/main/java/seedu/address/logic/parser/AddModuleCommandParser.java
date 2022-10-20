@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -38,18 +39,17 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
                 PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL,
                     PREFIX_LECTURE_ZOOM, PREFIX_TUTORIAL_ZOOM, PREFIX_ASSIGNMENT);
 
-        if (!arePrefixesPresent(argMultimap,
-            //can remove zoom here to make optional
-            PREFIX_MODULE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
-        LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).get());
-        TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get());
-        ZoomLink lectureZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).get());
-        ZoomLink tutorialZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).get());
+        LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).orElse(""));
+        TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL)
+                .orElse(""));
+        ZoomLink lectureZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).orElse(""));
+        ZoomLink tutorialZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).orElse(""));
         Set<AssignmentDetails> assignmentList =
             ParserUtil.parseAssignmentDetails(argMultimap.getAllValues(PREFIX_ASSIGNMENT));
 
