@@ -31,6 +31,10 @@ public class ReminderCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label birthday;
+    @FXML
+    private Label reminderTask;
+    @FXML
+    private Label reminderDate;
     /**
      * Creates a {@code ReminderCard} with the given {@code Person} and index to display.
      */
@@ -38,7 +42,9 @@ public class ReminderCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         name.setText(person.getName().fullName);
-        birthday.setText(person.getBirthday().value);
+        // birthday.setText(person.getBirthday().value);
+        reminderTask.setText(person.getReminders().task);
+        reminderDate.setText(person.getReminders().date);
     }
 
     @Override

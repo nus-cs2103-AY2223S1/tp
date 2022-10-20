@@ -70,7 +70,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case ReminderCommand.COMMAND_WORD:
-            return new ReminderCommand();
+            return new ReminderCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

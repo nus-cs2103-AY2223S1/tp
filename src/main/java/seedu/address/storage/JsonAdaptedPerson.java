@@ -16,6 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String birthday;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String reminders;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +41,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("birthday") String birthday,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("reminders") String reminders) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,6 +51,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.reminders = reminders;
     }
 
     /**
@@ -62,6 +66,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        reminders = source.getReminders().task;
     }
 
     /**
@@ -110,7 +115,10 @@ class JsonAdaptedPerson {
         final Birthday modelBirthday = new Birthday(birthday);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
+
+        final Reminder modelReminder = new Reminder(reminders);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelReminder);
     }
 
 }
