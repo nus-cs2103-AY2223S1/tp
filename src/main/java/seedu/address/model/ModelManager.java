@@ -18,6 +18,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TargetPerson;
+import seedu.address.model.quote.Quote;
+import seedu.address.model.quote.QuoteList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -272,5 +274,11 @@ public class ModelManager implements Model {
     @Override
     public Person getTargetPerson() {
         return targetPerson.get();
+    }
+
+    // =========== Motivational Quotes =================================================================
+    @Override
+    public Quote getQuote() {
+        return QuoteList.getRandomQuote();
     }
 }

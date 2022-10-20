@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Class representing a quote.
  */
-class Quote {
+public class Quote {
     private String message;
     private String quotee;
 

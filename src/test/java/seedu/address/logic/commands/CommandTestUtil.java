@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.quote.Quote;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -289,6 +290,11 @@ public class CommandTestUtil {
 
         @Override
         public boolean hasMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Quote getQuote() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.quote.Quote;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -163,4 +164,7 @@ public interface Model {
 
     /** Returns the target {@code Person} */
     Person getTargetPerson();
+
+    /** Returns a random quote for the current session.*/
+    Quote getQuote();
 }
