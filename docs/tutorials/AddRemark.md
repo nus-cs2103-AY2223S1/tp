@@ -5,7 +5,7 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remark to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remarks of an existing person in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -65,9 +65,9 @@ Following the convention in other commands, we add relevant messages as constant
 
 ``` java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
+            + ": Edits the remarks of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + "Existing remarks will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -140,7 +140,7 @@ Your code should look something like [this](https://github.com/se-edu/addressboo
 
 ### Parse user input
 
-Now let’s move on to writing a parser that will extract the index and remark from the input provided by the user.
+Now let’s move on to writing a parser that will extract the index and remarks from the input provided by the user.
 
 Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
 
@@ -225,7 +225,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remark added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
 
 ### Add a new `Remark` class
 
