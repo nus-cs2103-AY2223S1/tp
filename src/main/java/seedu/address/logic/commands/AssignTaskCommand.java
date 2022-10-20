@@ -30,6 +30,7 @@ public class AssignTaskCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This person already has this task.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
     public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specified group.";
     public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
@@ -80,6 +81,10 @@ public class AssignTaskCommand extends Command {
             listOfAssignment = assignments.get(group);
         } else {
             listOfAssignment = new ArrayList<>();
+        }
+
+        if (listOfAssignment.contains(task)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         listOfAssignment.add(task);
