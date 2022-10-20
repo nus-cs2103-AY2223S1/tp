@@ -77,6 +77,25 @@ html {
     li {
       list-style-type: none;
       padding-left: 12px;
+      transition: all ease-in-out 0.2s;
+      border-left: 1px solid transparent;
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+
+      &.active-parent {
+        border-left: 1px solid lightgray;
+      }
+
+      &.active {
+        border-left: 5px solid black;
+
+        > a {
+          color: black;
+          font-weight: bold;
+        }
+      }
 
       a {
         color: gray;
