@@ -15,6 +15,9 @@ public class Messages {
             + " entries! Please delete by index instead or enter their full name.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
+    /**
+     * Generates a default happy birthday message for each Person.
+     */
     public static String generateHappyBirthdayMessage(Name name) {
         return "Wish " + name + " Happy Birthday!";
     }

@@ -9,19 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import javafx.util.Pair;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Reminder;
-import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Reminder}.
  */
 class JsonAdaptedReminder {
 
     private final Pair<String, LocalDate> stringLocalDatePair;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedReminder} with the given {@code reminderTask} and {@code reminderDate}.
      */
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("key") String reminderTask, @JsonProperty("value") String reminderDate) {
@@ -35,7 +33,7 @@ class JsonAdaptedReminder {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Reminder} into this class for Jackson use.
      */
     public JsonAdaptedReminder(Reminder source) {
         this.stringLocalDatePair = new Pair<>(source.task, source.date);
@@ -47,11 +45,9 @@ class JsonAdaptedReminder {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * Converts this Jackson-friendly adapted reminder object into the model's {@code Reminder} object.
      */
-    public Reminder toModelType() throws IllegalValueException {
+    public Reminder toModelType() {
         return new Reminder(stringLocalDatePair.getKey(),
                 stringLocalDatePair.getValue().format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
     }

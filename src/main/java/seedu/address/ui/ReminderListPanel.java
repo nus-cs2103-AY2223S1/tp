@@ -64,7 +64,8 @@ public class ReminderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code ReminderCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Pair<Person, Reminder>}
+     * using a {@code ReminderCard}.
      */
     class ReminderListViewCell extends ListCell<Pair<Person, Reminder>> {
         @Override

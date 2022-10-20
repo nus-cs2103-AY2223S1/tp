@@ -27,7 +27,7 @@ public class ReminderCommand extends Command {
     private final Reminder reminder;
 
     /**
-     * @param index    of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param reminder to associate with the person
      */
     public ReminderCommand(Index index, Reminder reminder) {
