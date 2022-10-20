@@ -96,7 +96,6 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>
-      
                                       <StackPane fx:id="resultDisplayPlaceholder" prefHeight="122.0" prefWidth="300.0" GridPane.rowIndex="2">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
