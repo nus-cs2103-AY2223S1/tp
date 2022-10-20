@@ -91,14 +91,13 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case ClearScheduleCommand.COMMAND_WORD:
-            return new ClearScheduleCommand();
+            return new ClearScheduleCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ViewScheduleCommand.COMMAND_WORD:
             return new ViewScheduleCommandParser().parse(arguments);
-            // return new ViewScheduleCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

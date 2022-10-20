@@ -41,7 +41,9 @@ public class EditScheduleCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEEKDAY + " Wednesday "
             + PREFIX_CLASS_TIME + " 08:00-10:00 "
-            + PREFIX_CLASS_VENUE + " LT31 ";
+            + PREFIX_CLASS_VENUE + " LT31 \n"
+            + "Reminder: the INDEX is the latest schedule list. \n"
+            + "You can type in \"view\" command or click Schedules button to view schedule list.";
 
     public static final String MESSAGE_SUCCESS = "Schedule edited: %1$s";
     public static final String MESSAGE_SCHEDULE_NOT_EXIST = "The schedule doesn't exist";

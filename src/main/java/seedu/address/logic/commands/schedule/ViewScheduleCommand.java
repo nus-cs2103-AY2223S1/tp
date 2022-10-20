@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 
 /**
- * Views all slots in the schedule which satisfies selection requirements
+ * Views all schedules which satisfies selection requirements.
  */
 public class ViewScheduleCommand extends Command {
 

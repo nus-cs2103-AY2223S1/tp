@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
@@ -184,8 +186,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearSchedules() {
-        addressBook.clearSchedules();
+    public void clearSchedules(ArrayList<ModuleCode> modulesToClear) {
+        addressBook.clearSchedules(modulesToClear);
         updateFilteredScheduleList((PREDICATE_SHOW_ALL_SCHEDULES));
     }
 
