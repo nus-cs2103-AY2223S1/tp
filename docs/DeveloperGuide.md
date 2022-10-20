@@ -290,7 +290,7 @@ message delete 1
 
 #### Design considerations:
 
-- **Aspect: Allow edting**
+- **Aspect: Allow editing**
   
   - Alternative 1 (current choice): Don't allow editing
     
