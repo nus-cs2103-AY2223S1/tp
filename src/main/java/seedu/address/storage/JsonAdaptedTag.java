@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link NormalTag}.
+ * Jackson-friendly version of {@link Tag}.
  */
 class JsonAdaptedTag {
 
@@ -39,11 +38,11 @@ class JsonAdaptedTag {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public NormalTag toModelType() throws IllegalValueException {
-        if (!NormalTag.isValidNormalTagName(tagName)) {
-            throw new IllegalValueException(NormalTag.MESSAGE_CONSTRAINTS);
+    public Tag toModelType() throws IllegalValueException {
+        if (!Tag.isValidTagName(tagName)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new NormalTag(tagName);
+        return new Tag(tagName);
     }
 
 }

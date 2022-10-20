@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MONTHLY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PLANTAG_DESC_SAVINGS;
 import static seedu.address.logic.commands.CommandTestUtil.RISKTAG_DESC_LOW;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -84,7 +83,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + INCOME_DESC_AMY + MONTHLY_DESC_AMY + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS;
+                + ADDRESS_DESC_AMY + INCOME_DESC_AMY + MONTHLY_DESC_AMY + RISKTAG_DESC_LOW;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
@@ -96,6 +95,8 @@ public class LogicManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
+
+
 
     /**
      * Executes the command and confirms that
