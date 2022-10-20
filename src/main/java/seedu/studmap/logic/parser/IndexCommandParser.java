@@ -3,6 +3,7 @@ package seedu.studmap.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.studmap.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.studmap.logic.parser.ParserUtil.separatePreamble;
 
 import java.util.List;
 
@@ -53,10 +54,17 @@ public interface IndexCommandParser<T extends Command> extends Parser<T> {
 
         Index index;
         try {
-            if (argMultimap.getPreamble().equalsIgnoreCase(ALL_INDEX)) {
+            String preamble = argMultimap.getPreamble();
+            String[] preambleArgs = separatePreamble(preamble);
+
+            validatePreamble(preamble);
+
+            if (preambleArgs[0].equalsIgnoreCase(ALL_INDEX)) {
                 return getIndexCommand(argMultimap, new AllIndexGenerator());
             }
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
+            index = ParserUtil.parseIndex(preambleArgs[0]);
+
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, getUsageMessage()), pe);
         }
@@ -74,5 +82,12 @@ public interface IndexCommandParser<T extends Command> extends Parser<T> {
      */
     T getIndexCommand(ArgumentMultimap argMultimap,
                       IndexListGenerator indexListGenerator) throws ParseException;
+
+    /**
+     * Validates a given preamble.
+     *
+     * @throws ParseException if preamble is invalid.
+     */
+    void validatePreamble(String preamble) throws ParseException;
 
 }

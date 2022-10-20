@@ -10,6 +10,7 @@ import java.util.function.Function;
 
 import seedu.studmap.commons.core.Messages;
 import seedu.studmap.commons.core.index.Index;
+import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.logic.commands.commons.StudentEditor;
 import seedu.studmap.logic.commands.exceptions.CommandException;
 import seedu.studmap.model.Model;
@@ -27,12 +28,12 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
     protected Function<Model, List<Index>> indicesToEdit;
 
     /**
-     * @param indicesGenerator Function that produces list of indices of students
+     * @param indexListGenerator Function that produces list of indices of students
      *                         in the filtered student list to edit
      * @param studentEditor    details to edit the student(s) with
      */
-    protected EditStudentCommand(Function<Model, List<Index>> indicesGenerator, T studentEditor) {
-        this.indicesToEdit = indicesGenerator;
+    protected EditStudentCommand(IndexListGenerator indexListGenerator, T studentEditor) {
+        this.indicesToEdit = indexListGenerator;
         this.studentEditor = studentEditor;
     }
 

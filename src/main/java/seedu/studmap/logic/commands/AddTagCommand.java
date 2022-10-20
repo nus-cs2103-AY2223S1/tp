@@ -7,14 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.logging.Logger;
 
 import seedu.studmap.MainApp;
 import seedu.studmap.commons.core.LogsCenter;
-import seedu.studmap.commons.core.index.Index;
+import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.logic.commands.commons.StudentEditor;
-import seedu.studmap.model.Model;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
 import seedu.studmap.model.tag.Tag;
@@ -47,12 +45,12 @@ public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagComman
 
     public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
 
-    public AddTagCommand(Function<Model, List<Index>> indicesGenerator, AddTagCommandStudentEditor editor) {
-        super(indicesGenerator, editor);
+    public AddTagCommand(IndexListGenerator indexListGenerator, AddTagCommandStudentEditor editor) {
+        super(indexListGenerator, editor);
     }
 
     /**
-     * Formats the tag set to be more user friendly string.
+     * Formats the tag set to be more user-friendly string.
      *
      * @param tags set to be formatted.
      * @return the fomatted list of tags/

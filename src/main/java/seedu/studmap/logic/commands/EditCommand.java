@@ -12,9 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
 
-import seedu.studmap.commons.core.index.Index;
+import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.commons.util.CollectionUtil;
 import seedu.studmap.logic.commands.commons.StudentEditor;
 import seedu.studmap.logic.commands.exceptions.CommandException;
@@ -51,8 +50,8 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
     public static final String MESSAGE_EDIT_MULTIPLE_STUDENTS_SUCCESS = "Edited %1$d students.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public EditCommand(Function<Model, List<Index>> indicesGenerator, EditCommandStudentEditor studentEditor) {
-        super(indicesGenerator, studentEditor);
+    public EditCommand(IndexListGenerator indexListGenerator, EditCommandStudentEditor studentEditor) {
+        super(indexListGenerator, studentEditor);
     }
 
     @Override

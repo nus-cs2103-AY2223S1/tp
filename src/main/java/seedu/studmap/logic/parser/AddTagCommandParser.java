@@ -40,8 +40,8 @@ public class AddTagCommandParser extends EditStudentCommandParser<AddTagCommand.
     }
 
     @Override
-    public EditStudentCommand<AddTagCommand.AddTagCommandStudentEditor>
-            getIndexCommand(ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator)
+    public EditStudentCommand<AddTagCommand.AddTagCommandStudentEditor> getIndexCommand(
+            ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator)
             throws ParseException {
 
         Set<Tag> tags;

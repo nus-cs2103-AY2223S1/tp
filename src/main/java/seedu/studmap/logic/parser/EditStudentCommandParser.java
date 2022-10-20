@@ -1,5 +1,8 @@
 package seedu.studmap.logic.parser;
 
+import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.studmap.logic.parser.ParserUtil.separatePreamble;
+
 import seedu.studmap.logic.commands.EditStudentCommand;
 import seedu.studmap.logic.commands.commons.StudentEditor;
 import seedu.studmap.logic.parser.exceptions.ParseException;
@@ -19,5 +22,12 @@ public abstract class EditStudentCommandParser<S extends StudentEditor>
             throw new ParseException(command.getNoEditMessage());
         }
         return command;
+    }
+
+    @Override
+    public void validatePreamble(String preamble) throws ParseException {
+        if (separatePreamble(preamble).length != 1) {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
     }
 }
