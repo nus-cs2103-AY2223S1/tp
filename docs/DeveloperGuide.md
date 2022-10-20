@@ -2,14 +2,27 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
+## **uNivUSal Developer Guide**
+
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [Implementation](#implementation)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* uNivUSal is adapted based on the [**se-education.org**](https://se-education.org) initiative, [`AddressBook Level 3`](https://se-education.org/addressbook-level3).
 
 --------------------------------------------------------------------------------------------------------------------
 
