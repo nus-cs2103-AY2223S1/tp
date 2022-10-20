@@ -203,7 +203,7 @@ The following is a use case for changing command names.
 * **Alternative 2:** Use a list of commands and dynamically generate the fields in `EditAliasesWindow` and store the changed command names using a `HashMap`.
   * Pros: Easy to extend.
   * Cons: Harder to implement.
-  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -310,8 +310,8 @@ _{more aspects and alternatives to be added}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Provide a place for our users to store all the activities that are done, 
-ongoing or todo and organises it for them so it will be easier to trace back using specific activities. 
+**Value proposition**: Provide a place for our users to store all the activities that are done,
+ongoing or todo and organises it for them so it will be easier to trace back using specific activities.
 Mainly CLI with many shortcuts to benefit people who type fast.
 
 
@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | new user        | clear all activities              | quickly clear the sample data           |
 | `* *`    | new user        | see sample data                   | get to know how the app works           |
 | `* *`    | user            | tag an activity with a type       | know what type of activity it is        |
-| `* *`    | user            | add an activity description       | know what the activity is about         | 
+| `* *`    | user            | add an activity description       | know what the activity is about         |
 | `*`      | long time user  | use shortcuts for commands        | enter commands faster                   |
 | `*`      | food enthusiast | review restaurants                | note down my opinions of the restaurant |
 | `*`      | food enthusiast | rate restaurants                  | note down my opinions of the restaurant |
