@@ -195,6 +195,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isToggleView()) {
+                assert !commandResult.isShowHelp() && !commandResult.isExit();
                 handleToggleView();
             }
 
