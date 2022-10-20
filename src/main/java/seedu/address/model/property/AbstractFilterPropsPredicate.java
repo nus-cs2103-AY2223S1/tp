@@ -9,5 +9,6 @@ import java.util.function.Predicate;
  * after which each individual predicate's behaviour is determined through polymorphism.
  */
 public abstract class AbstractFilterPropsPredicate implements Predicate<Property> {
-
+    @Override
+    public abstract boolean test(Property property);
 }

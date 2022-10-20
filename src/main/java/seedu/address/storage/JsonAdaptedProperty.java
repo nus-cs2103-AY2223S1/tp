@@ -20,7 +20,7 @@ class JsonAdaptedProperty {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Property's %s field is missing!";
 
-    private final String name;
+    private final String propertyName;
     private final String price;
     private final String address;
     private final String description;
@@ -32,11 +32,11 @@ class JsonAdaptedProperty {
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
      */
     @JsonCreator
-    public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("price") String price,
-                             @JsonProperty("address") String address, @JsonProperty("description") String description,
-                             @JsonProperty("characteristics") String characteristics,
+    public JsonAdaptedProperty(@JsonProperty("name") String propertyName, @JsonProperty("price") String price,
+                               @JsonProperty("address") String address, @JsonProperty("description") String description,
+                               @JsonProperty("characteristics") String characteristics,
                                @JsonProperty("owner") JsonAdaptedOwner owner) {
-        this.name = name;
+        this.propertyName = propertyName;
         this.price = price;
         this.address = address;
         this.description = description;
@@ -48,7 +48,7 @@ class JsonAdaptedProperty {
      * Converts a given {@code Property} into this class for Jackson use.
      */
     public JsonAdaptedProperty(Property source) {
-        name = source.getPropertyName().fullName;
+        propertyName = source.getPropertyName().fullName;
         price = source.getPrice().value;
         address = source.getAddress().value;
         description = source.getDescription().value;
@@ -64,14 +64,14 @@ class JsonAdaptedProperty {
      * @throws IllegalValueException if there were any data constraints violated in the adapted property.
      */
     public Property toModelType() throws IllegalValueException {
-        if (name == null) {
+        if (propertyName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PropertyName.class.getSimpleName()));
         }
-        if (!PropertyName.isValidPropertyName(name)) {
+        if (!PropertyName.isValidPropertyName(propertyName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final PropertyName modelPropertyName = new PropertyName(name);
+        final PropertyName modelPropertyName = new PropertyName(propertyName);
 
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -97,7 +97,7 @@ class JsonAdaptedProperty {
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(name);
+        final Description modelDescription = new Description(propertyName);
 
         if (characteristics == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

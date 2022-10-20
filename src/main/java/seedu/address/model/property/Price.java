@@ -9,13 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Price {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers and an optional exponent. For example: 123.45";
-    public static final String VALIDATION_REGEX = "^[0-9]*\\.*[0-9]+$";
-    public static final double EPSILON = 0.01d;
+    private static final String VALIDATION_REGEX = "^[0-9]*\\.*[0-9]+$";
+    private static final double EPSILON = 0.01d;
     public final String value;
-    public final double numericalValue;
+    private final double numericalValue;
 
     /**
      * Constructs a {@code Price}.
