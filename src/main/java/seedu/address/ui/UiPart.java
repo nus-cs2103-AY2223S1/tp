@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import seedu.address.MainApp;
 
 /**
@@ -83,6 +85,34 @@ public abstract class UiPart<T> {
         String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
         URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
         return requireNonNull(fxmlFileUrl);
+    }
+
+    private void goToNextFieldWithEnter(TextInputControl currentField, TextInputControl nextField) {
+        // Solution below adapted from http://www.shorturl.at/aHLX7
+        currentField.setOnKeyPressed(event ->{
+            if(event.getCode().equals(KeyCode.ENTER)){
+                nextField.requestFocus();
+            }
+        });
+    }
+
+    public void generateInputSequence(TextInputControl... textInputFields) {
+        TextInputControl currentField = null;
+        for (TextInputControl nextField : textInputFields) {
+            if (currentField != null) {
+                goToNextFieldWithEnter(currentField, nextField);
+            }
+            currentField = nextField;
+        }
+    }
+
+    public boolean givenFieldsAllFilled(TextInputControl... textInputFields) {
+        for (TextInputControl textInputField : textInputFields) {
+            if (textInputField.getText().equals("")) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

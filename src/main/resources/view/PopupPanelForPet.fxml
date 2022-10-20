@@ -40,7 +40,7 @@
                         <Insets />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="colorrField" promptText="Color" style="-fx-background-radius: 30px;">
+                  <TextField fx:id="colorField" promptText="Color" style="-fx-background-radius: 30px;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></TextField>
