@@ -197,6 +197,9 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setOwner(Owner owner) {
+            this.owner = owner;
+        }
         public Optional<Owner> getOwner() {
             return Optional.ofNullable(owner);
         }

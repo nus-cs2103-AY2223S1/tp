@@ -10,7 +10,6 @@ import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Property in the address book.
@@ -34,8 +33,8 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(PropertyName propertyName, Price price, Address address, Description description
-            , Characteristics characteristics, Owner owner) {
+    public Property(PropertyName propertyName, Price price, Address address, Description description,
+            Characteristics characteristics, Owner owner) {
         requireAllNonNull(propertyName, price, address, description, owner);
         this.propertyName = propertyName;
         this.price = price;

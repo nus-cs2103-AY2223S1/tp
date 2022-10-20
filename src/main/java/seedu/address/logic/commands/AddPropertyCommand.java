@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -27,7 +26,6 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + " PRICE "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
-            + "[" + PREFIX_TAG + " TAG]..."
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + PREFIX_OWNER_NAME + " OWNER NAME "
             + PREFIX_PHONE + " PHONE "
@@ -36,8 +34,6 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + " 500000 "
             + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
             + PREFIX_DESCRIPTION + " ready to be bought "
-            + PREFIX_TAG + " condo "
-            + PREFIX_TAG + " lowfloor "
             + PREFIX_CHARACTERISTICS + " 5-Room; Near School"
             + PREFIX_OWNER_NAME + " John Doe "
             + PREFIX_PHONE + " 8000 1000 ";
