@@ -14,6 +14,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_RECORD_DATA_FORMAT = "Record data cannot be empty!";
     public static final String MESSAGE_INVALID_DATE_FORMAT =
             "Invalid date format! \n Please use the format dd-MM-yyyy HHmm!";
+    public static final String MESSAGE_INVALID_FIND_DATE_FORMAT =
+            "Invalid find date format! \n Please use the format MM-yyyy!";
 
 
 }
