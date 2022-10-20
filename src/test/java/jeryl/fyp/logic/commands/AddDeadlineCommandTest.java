@@ -63,26 +63,28 @@ public class AddDeadlineCommandTest {
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withStudentName("Alice").build();
-        Student bob = new StudentBuilder().withStudentName("Bob").build();
-        AddStudentCommand addAliceCommand = new AddStudentCommand(alice);
-        AddStudentCommand addBobCommand = new AddStudentCommand(bob);
+        Student alice = new StudentBuilder().withStudentId("A1111111U").build();
+        Student bob = new StudentBuilder().withStudentId("A1111112U").build();
+        Deadline aliceDeadline = SampleDataUtil.getDeadline("Task 1", "1970-01-01 00:00");
+        Deadline bobDeadline = SampleDataUtil.getDeadline("Task 2", "1970-01-01 00:00");
+        AddDeadlineCommand addAliceTaskCommand = new AddDeadlineCommand(aliceDeadline, alice.getStudentId());
+        AddDeadlineCommand addBobTaskCommand = new AddDeadlineCommand(bobDeadline, bob.getStudentId());
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAliceTaskCommand.equals(addAliceTaskCommand));
 
         // same values -> returns true
-        AddStudentCommand addAliceCommandCopy = new AddStudentCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddDeadlineCommand addAliceTaskCommandCopy = new AddDeadlineCommand(aliceDeadline, alice.getStudentId());
+        assertTrue(addAliceTaskCommand.equals(addAliceTaskCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAliceTaskCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAliceTaskCommand.equals(null));
 
         // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAliceTaskCommand.equals(addBobTaskCommand));
     }
     /**
      * A default DeadlineList stub that have all of the methods failing.

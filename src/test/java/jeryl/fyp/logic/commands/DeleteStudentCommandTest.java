@@ -21,9 +21,9 @@ import jeryl.fyp.model.student.StudentId;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteStudentCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
