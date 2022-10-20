@@ -154,30 +154,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Finding tasks feature
+### Finding Feature
 
-#### About this feature
+#### About
 
-The finding mechanism for the TaskList uses the following two commands:
+CodeConnect has features that allow you to search for tasks and contacts. The finding features use the following commands:
 
 * `find n/` —  Finds tasks in the TaskList by their description(name)
 * `find m/` —  Finds tasks in the TaskList by their module
-  
-### Flow of finding a task 
+* `findc n/` —  Finds contacts in the AddressBook by their name
+* `findc m/` —  Finds contacts in the AddressBook by their module
 
-1. User input (e.g. find n/ Lab 2) will be sent to `AddressBookParser`.
-2. `AddressBookParser` will filter out the command and send the input accordingly to `FindTaskCommandParser`.
-3. `FindTaskCommandParser` will extract out the prefix 'n/' and parse the input accordingly by creating a new `TaskContainsKeywordsPredicate` object with the keywords to be used to find the tasks.
-4. That object will then be used as the argument for the new `FindTaskCommand` object that will be returned by the parser.
-5. When the `FindTaskCommand` executes, the model will be updated using that predicate in the argument, which will be sent to the ModelManager to filter the TaskList.
+Examples of command use:
+- `find n/ quiz` - Find all tasks containing the word "quiz"
+- `find m/ CS1101S` - Find all tasks belonging to CS1101S
+- `findc n/ Tan` - Find all contacts with names containing "Tan"
+- `findc m/ CS1101S` - Find all contacts taking CS1101S
 
-### Activity Diagram for finding tasks
+![Sample result of a find command](images/FindContactExample.png)
 
-![Activity Diagram for finding tasks](images/FindTasksActivityDiagram.png)
+#### Implementation Flow
 
-### Sequence Diagram for finding tasks
+Outline of how components work together when the user enters a find command:
+1. User enters `findc m/ CS1101S` into the command prompt box
+2. User input `m/ CS1101S` is sent to the `FindContactCommandParser`
+3. `FindContactCommandParser` determines the user's input to be valid
+4. `FindContactCommandParser` creates a `ModuleTakenPredicate` 
+   - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
+5. A `FindContactCommand` command created and executed by the `Model`
+6. The result of the find command is displayed to the user
 
-![Sequence Diagram for finding tasks]()
+![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
+<div style="text-align: center">Activity diagram of findc command execution</div>
+
+![Interactions Inside the Logic Component for the `find n/ Lab 2` Command](images/FindTasksSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of find command execution</div>
+<p></p>
+<div style="text-align: center">Note: The implementation flow and the activity and sequence diagrams are similar for both the find and findc commands</div>
+
+#### Design Considerations
+
+One design consideration was if the user should be allowed to find contacts matching more than one module. For example, the input `findc m/ CS1101S MA1521` will return all contacts taking CS1101S, MA1521, or both. The reason why we decided to use additive search condition is as follows:
+
+Consider the following situation:
+- You have two assignments due tomorrow, from two different modules: MOD_X and MOD_Y.
+- Feeling stuck, you decide to use CodeConnect to search for help, to see if there's anybody you might have forgot.
+- You enter the command `findc m/ MOD_X MOD_Y`
+
+As a user in this situation, the last thing you would want is for the app to _exclude_ contacts taking both MOD_X and MOD_Y. Those would be the first people you want to ask for help!
+
+Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively. 
+
+This was done so that it would be easy for the user to remember what command to use when finding either contacts or tasks.
+- The only difference when finding contacts is that there is a c after the find for contacts
+- Both use the same prefixes
+
 
 --------------------------------------------------------------------------------------------------------------------
 
