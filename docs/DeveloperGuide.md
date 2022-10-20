@@ -158,6 +158,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort task by deadline feature
+
+#### Implementation
+
+The sort task by deadline mechanism will be implemented without the need to enter additional commands.
+
+Additionally, its feature is exposed in the `List` interface by calling its `sort` method.
+
+Given below is an example usage scenario of adding a new task and how the task sorted by deadline mechanism behaves.
+
+Step 1. The user launches the application and enters the respective `taskAdd` command.
+
+Step 2. If the command is successful, a `task` object is created and will eventually be passed to `UniqueTaskList`.
+
+Step 3. `UniqueTaskList` will add the `Task` object to an object of type `ObservableList<Task>`
+
+Step 4. `UniqueTaskList` will then call its own method `sortByDeadline`
+
+Step 5. `sortByDeadline` will call the `sort` method of the same object of type `ObservableList<Task>` from Step 5.
+
+Step 6. The `sort` method takes in an object of type Comparator which compares two different `Task` objects' based on its deadline variable.
+
+Step 7. The `sort` method then iterate the object of type `ObservableList<Task>` and arrange them according to their deadline in ascending order.
+
+#### Design considerations:
+
+**Aspect: How sorting task by deadline executes:**
+
+- **Alternative 1 (current choice):** sort tasks by default.
+
+    - Pros: Easy to implement.
+    - Cons: Might not be ideal if users do not want it to be sorted.
+
+- **Alternative 2:** Individual command to sort tasks.
+    - Pros: User has a choice whether they want their list to be sorted.
+    - Cons: More classes to implement e.g. taskSortCommand.java and taskSortCommandParser.java.
+
 ### Tutorial group feature
 
 #### Implementation
@@ -289,6 +326,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
