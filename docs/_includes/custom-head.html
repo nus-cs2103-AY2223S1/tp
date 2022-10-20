@@ -1,6 +1,12 @@
-{% comment %}
-  Placeholder to allow defining custom head, in principle, you can add anything here, e.g. favicons:
-
-  1. Head over to https://realfavicongenerator.net/ to add your own favicons.
-  2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
-{% endcomment %}
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe@5.1.1/dist/gumshoe.polyfills.min.js"></script>
+<script defer>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementsByClassName("site-header")[0];
+    const spy = new Gumshoe(".sticky-toc li a", {
+      nested: true,
+      nestedClass: "active-parent",
+      reflow: true,
+    });
+    spy.setup();
+  });
+</script>
