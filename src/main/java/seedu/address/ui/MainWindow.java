@@ -114,16 +114,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-//        if (logic.isDayView()) {
-//            timeSlotListPanel = new TimeSlotListPanel(logic.getTimeSlots());
-//            timeSlotListPanelPlaceholder.getChildren().add(timeSlotListPanel.getRoot());
-//        } else {
-//            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-//            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-//        }
-        timeSlotListPanel = new TimeSlotListPanel(logic.getTimeSlots());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        timeSlotListPanel = new TimeSlotListPanel(logic.getTimeSlots());
+        timeSlotListPanelPlaceholder.getChildren().add(timeSlotListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 

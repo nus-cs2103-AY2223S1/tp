@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ShowCommand;
-import seedu.address.model.person.DayIsKeywordPredicate;
 
 public class ShowCommandParserTest {
 

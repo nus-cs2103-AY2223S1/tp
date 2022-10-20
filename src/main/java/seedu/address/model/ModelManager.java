@@ -46,6 +46,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        timeSlots = FXCollections.observableArrayList(new ArrayList<>());
         fullView = false;
         isDayView = false;
     }
@@ -145,18 +146,18 @@ public class ModelManager implements Model {
 
     @Override
     public void updateTimeSlots(String day) {
-        TimeSlotList timeSlotList = new TimeSlotList();
+        timeSlots.clear();
         for (int i = 0; i < filteredPersons.size(); i++) {
             Person person = filteredPersons.get(i);
             SessionList sessions = person.getSessionList();
             for (int j = 0; j < sessions.sessionList.size(); j++) {
                 Session session = sessions.sessionList.get(j);
                 if (session.day.equalsIgnoreCase(day)) {
-                    timeSlotList.add(new TimeSlot(session, person));
+                    timeSlots.add(new TimeSlot(session, person));
                 }
             }
         }
-        this.timeSlots = FXCollections.observableArrayList(timeSlotList.getTimeSlots());
+        timeSlots.sort(TimeSlot::compareTo);
     }
 
     @Override

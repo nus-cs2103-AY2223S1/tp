@@ -20,7 +20,7 @@ public class TimeSlotCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
+    private HBox timeCardPane;
     @FXML
     private Label sessionTime;
     @FXML

@@ -28,8 +28,8 @@ public class ShowCommandTest {
     public void equals() {
         String firstKeyword = "first";
         String secondKeyword = "second";
-//        DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
-//        DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
+//      DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
+//      DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
 
         ShowCommand showFirstCommand = new ShowCommand(firstKeyword);
         ShowCommand showSecondCommand = new ShowCommand(secondKeyword);
