@@ -11,14 +11,14 @@ public class CommandFeatures {
 
     private static final CommandFeatures ADDPERSON_COMMAND_FEATURES = new CommandFeatures(
             "addperson",
-            "Shows a list of all persons in the address book.",
+            "Adds a person to the address book.",
             "addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]",
             "addperson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01"
             );
 
     private static final CommandFeatures LISTPERSONS_COMMAND_FEATURES = new CommandFeatures(
             "listpersons",
-            "Adds a person to the address book.",
+            "Shows a list of all persons in the address book.",
             "listpersons",
             "listpersons"
     );
