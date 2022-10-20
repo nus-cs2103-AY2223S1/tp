@@ -224,13 +224,22 @@ The following sequence diagram shows how the find command works.
   * Cons: More code to write
 
 **How to keep track of the list of `Keyword`**:
-* **Alternative 1**: Use a new class called `KeywordList` (current)
+* **Alternative 1 (current choice)**: Use a new class called `KeywordList`
   * Pros: Improved flexibility and maintability
   * Cons: More methods to implement
 
 * **Alternative 2** Use `java.util.Set`:
   * Pros: Easier to implement
   * Cons: Lower maintainability
+
+**Parameters for find command**:
+* **Alternative 1 (current choice)**: `CATEGORY` parameter is optional
+    * Pros: Improved quality of life for the user
+    * Cons: Need to have conditional checks in Parser class
+
+* **Alternative 2** Users have to input all parameters
+    * Pros: Easier to implement
+    * Cons: Command is longer and more cumbersome to type
 
 ### \[Proposed\] Undo/redo feature
 
