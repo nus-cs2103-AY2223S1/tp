@@ -65,14 +65,18 @@ public class Task {
 
     @Override
     public String toString() {
-        return name + getAssignees() + getDeadline();
+        return name + getAssigneesAsString() + getDeadline();
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAssignees() {
+    public List<Person> getAssignees() {
+        return assignees;
+    }
+
+    public String getAssigneesAsString() {
         if (assignees.isEmpty()) {
             return " (Not assigned to any member yet)";
         } else {
