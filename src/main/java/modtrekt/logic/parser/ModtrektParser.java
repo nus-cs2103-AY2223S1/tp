@@ -16,10 +16,12 @@ import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveCommand;
 import modtrekt.logic.commands.tasks.ArchiveTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
+import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
 import modtrekt.logic.commands.tasks.UnarchiveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.logic.parser.tasks.ArchiveTaskCommandParser;
 import modtrekt.logic.parser.tasks.ListTasksCommandParser;
+import modtrekt.logic.parser.tasks.PrioritizeTaskCommandParser;
 import modtrekt.logic.parser.tasks.UnarchiveTaskCommandParser;
 
 /**
@@ -69,6 +71,8 @@ public class ModtrektParser {
             return new HelpCommand();
         case CdModuleCommand.COMMAND_WORD:
             return new CdCommandParser().parse(arguments);
+        case PrioritizeTaskCommand.COMMAND_WORD:
+            return new PrioritizeTaskCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
