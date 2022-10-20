@@ -3,7 +3,9 @@ package seedu.condonery.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.condonery.logic.commands.CommandTestUtil.*;
+import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
 import static seedu.condonery.testutil.Assert.assertThrows;
 import static seedu.condonery.testutil.TypicalProperties.AMY;
 

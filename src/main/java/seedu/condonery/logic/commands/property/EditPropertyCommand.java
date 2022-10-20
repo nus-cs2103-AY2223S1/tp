@@ -1,7 +1,10 @@
 package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.condonery.logic.parser.CliSyntax.*;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.util.Collections;

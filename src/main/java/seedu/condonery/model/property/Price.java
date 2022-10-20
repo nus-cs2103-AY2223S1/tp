@@ -1,7 +1,5 @@
 package seedu.condonery.model.property;
 
-import seedu.condonery.model.fields.Address;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.commons.util.AppUtil.checkArgument;
 
@@ -21,6 +19,8 @@ public class Price {
 
     public final String value;
 
+    public final Integer amount;
+
     /**
      * Constructs an {@code Address}.
      *
@@ -30,6 +30,7 @@ public class Price {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
         value = price.replaceAll(",", "");
+        amount = Integer.parseInt(value);
     }
 
     /**

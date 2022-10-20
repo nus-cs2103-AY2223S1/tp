@@ -105,4 +105,12 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String val} into a {@code int}.
+     */
+    public static Integer parseNumber(String val) throws ParseException {
+        requireNonNull(val);
+        return Integer.parseInt(val.replaceAll(",", ""));
+    }
 }

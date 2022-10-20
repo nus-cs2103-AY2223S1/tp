@@ -1,13 +1,20 @@
 package seedu.condonery.testutil;
 
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.property.Property;
-
-import static seedu.condonery.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -26,8 +33,8 @@ public class TypicalProperties {
             .withPrice("1,000,000")
             .withAddress("wall street").build();
     public static final Property DANIEL = new PropertyBuilder().withName("Daniel Meier")
-            .withAddress("10th street").
-            withPrice("1,000,000")
+            .withAddress("10th street")
+            .withPrice("1,000,000")
             .withTags("friends").build();
     public static final Property ELLE = new PropertyBuilder().withName("Elle Meyer")
             .withAddress("michegan ave")
