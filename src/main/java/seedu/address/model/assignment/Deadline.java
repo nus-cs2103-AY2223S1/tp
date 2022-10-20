@@ -9,6 +9,9 @@ import seedu.address.logic.parser.DateTimeParser;
  */
 public class Deadline {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Date must be in the form of yyyy-MM-dd or yyyy-MM-dd HH:mm";
+
     private LocalDateTime dateTime;
 
     /**
@@ -31,8 +34,5 @@ public class Deadline {
     public String getDeadlineString() {
         return DateTimeParser.getDateTimeString(dateTime);
     }
-
-    public final static String MESSAGE_CONSTRAINTS =
-            "Date must be in the form of yyyy-MM-dd or yyyy-MM-dd HH:mm";
 
 }
