@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -148,5 +149,21 @@ public class Professor extends Person {
 
         return modulesSet.stream()
                 .anyMatch(module -> StringUtil.containsWordIgnoreCase(this.moduleCode.value, module));
+    }
+
+    @Override
+    public boolean doesRatingMatch(List<String> ratingList) {
+        return ratingList.stream().anyMatch(rating -> rating.equals(this.rating.value));
+    }
+
+    @Override
+    public boolean doesYearMatch(List<String> yearList) {
+        return false;
+    }
+
+    @Override
+    public boolean doesSpecialisationMatch(List<String> specList) {
+        return specList.stream().anyMatch(specialisation
+                -> specialisation.equals(this.getSpecialisation().value.toLowerCase()));
     }
 }
