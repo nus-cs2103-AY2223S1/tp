@@ -123,11 +123,11 @@ public class Internship {
         Internship otherInternship = (Internship) other;
         return otherInternship.getName().equals(getName())
                 && otherInternship.getPosition().equals(getPosition())
-                // && otherInternship.getStatus().equals(getStatus())
+                && otherInternship.getStatus().equals(getStatus())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getAddress().equals(getAddress())
-                // && otherInternship.getTasks().equals(getTasks())
+                && otherInternship.getTasks().equals(getTasks())
                 && otherInternship.getTags().equals(getTags());
     }
 
