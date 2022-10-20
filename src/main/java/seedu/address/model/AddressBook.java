@@ -121,10 +121,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    /**
+     * Returns the index of the person with the same phone number.
+     *
+     * @param phone Phone number to search
+     * @return index of the person with the same phone number
+     * @throws PersonNotFoundException if no person with corresponding phone number found
+     */
     public int findNum(Phone phone) throws PersonNotFoundException {
         return persons.findNum(phone);
     }
 
+    /**
+     * Returns the index of the person with the same email.
+     *
+     * @param email Email to search
+     * @return index of the person with the same email
+     * @throws PersonNotFoundException if no person with corresponding email found
+     */
     public int findEmail(Email email) throws PersonNotFoundException {
         return persons.findEmail(email);
     }

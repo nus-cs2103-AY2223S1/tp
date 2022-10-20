@@ -98,9 +98,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete p/1234567")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete p/1234567` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -192,6 +192,38 @@ The following activity diagram summarizes the flow of when a user enters an edit
 
 * **Future Extension:** bobaBot can support multiple editing so user do not have to edit customers one by one.
 
+
+### \[Insert Numbering\] Delete feature
+
+The delete feature enables the user to remove a customer from bobaBot. The user's input is first retrieved by the `MainWindow` class. It is then passed to the `LogicManager` through the `execute` method. `LogicManager` will call the `parseCommand` method of `AddressBookParser` which upon parsing the input, creates a temporary `DeleteCommandParser` object. The `DeleteCommandParser` object then further parses the user's input and returns a `DeleteCommand`.  The command is executed in the `LogicManager`, returning a `CommandResult` object which will then be returned as feedback to the user.
+
+The sequence diagram below shows how the `delete` feature parsing an input `p/12345678` behaves at each step.
+
+<img src="images/DeleteSequenceDiagram.png" width="600" />
+
+The activity diagram below illustrates how the `delete` operation works.
+
+<img src="images/DeleteActivityDiagram.png" width="600" />
+
+#### \[Insert Numbering\] Design Considerations
+
+**Aspect: How `delete` is executed**
+* **Alternative 1 (current choice):** User can delete a customer via either `PHONE_NUMBER` or `EMAIL`.
+
+  | Pros/Cons | Description                                                                          | Examples                                                                                                                               |
+  |-----------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user more flexibility in choosing the inputs as identifiers for deletion      | The user can delete any customer as long as they have details of either their `PHONE_NUMBER` or `EMAIL`.                               |
+  | Pros      | The user does not need to know the specific position of the customer within the list | The user can use either identifier `PHONE_NUMBER` or `EMAIL` to delete customers without a need for their index/position.              |
+  | Cons      | The length of the command is longer with the new identifiers                         | The user has to type `delete p/12345678` or `delete e/test@gmail.com` to delete a user which is longer compared to deleting via index. |
+
+* **Alternative 2:** User can delete a customer via `index`.
+
+  | Pros/Cons | Description                                                                                               | Examples                                                                                                                                                                                                                                                    |
+  |-----------|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Short commands enable fast deletion                                                                       | The user can delete any customer as long as they have details of the `index` of the customer, e.g. `delete 1`.                                                                                                                                              |
+  | Cons      | Identifying the customer via `index` might be slow especially when there are customers with similar names | The user has to find out the `index` of the customer to delete before typing the command. Supposed that we want to delete Alex and there exists an Alex and alex, identifying the correct customer takes time and thus delay the execution of the command.  |
+
+* **Future Extension:** bobaBot can support multiple deletions so user do not have to delete customers one by one.
 
 ### \[Proposed\] Undo/redo feature
 
