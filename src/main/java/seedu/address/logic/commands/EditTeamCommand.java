@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_NAME;
 
 import java.util.List;
 
@@ -21,8 +23,10 @@ public class EditTeamCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the team details identified by the index number of the required team.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: "
+            +  PREFIX_TEAM_INDEX + "TEAM INDEX "
+            +  PREFIX_TEAM_NAME + "TEAM NAME \n"
+            + "Example: " + COMMAND_WORD + " t/1 n/TeamNew";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited Team: %1$s";
 

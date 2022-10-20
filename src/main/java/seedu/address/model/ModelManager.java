@@ -348,6 +348,20 @@ public class ModelManager implements Model {
         return teamsWithMember;
     }
 
+    public boolean teamHasMember(Index p, Index t) {
+        List<Team> teams = getFilteredTeamList();
+        requireNonNull(p);
+        ObservableList<Person> memberList = null;
+        Team team = teams.get(t.getOneBased());
+        memberList = team.getMemberList();
+        for (int j = 0; j < memberList.size(); j++) {
+            if (memberList.contains(p)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // todo implementation of updateFilteredTeamList
 
     @Override
