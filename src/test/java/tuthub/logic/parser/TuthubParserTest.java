@@ -32,7 +32,7 @@ import tuthub.logic.commands.ListCommand;
 import tuthub.logic.commands.ViewCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tutor.EmailContainsKeywordsPredicate;
-import tuthub.model.tutor.ModuleContainsKeywordPredicate;
+import tuthub.model.tutor.ModuleContainsKeywordsPredicate;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.PhoneContainsKeywordsPredicate;
 import tuthub.model.tutor.RatingContainsKeywordsPredicate;
@@ -112,7 +112,7 @@ public class TuthubParserTest {
         List<String> keywords = Arrays.asList("cs2100", "cs2105");
         FindByModuleCommand command = (FindByModuleCommand) parser.parseCommand((
                 FindByModuleCommand.COMMAND_WORD + " m/" + keywords.stream().collect(Collectors.joining(" "))));
-        assertEquals(new FindByModuleCommand(new ModuleContainsKeywordPredicate(keywords)), command);
+        assertEquals(new FindByModuleCommand(new ModuleContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

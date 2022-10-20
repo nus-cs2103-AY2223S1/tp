@@ -18,7 +18,8 @@ public class TeachingNominationContainKeywordsPredicate implements Predicate<Tut
     @Override
     public boolean test(Tutor tutor) {
         return keywords.stream()
-                .anyMatch((keyword -> StringUtil.containsWordIgnoreCase(tutor.getTeachingNomination().value, keyword)));
+                .anyMatch((keyword ->
+                        StringUtil.containsWordIgnoreCasePartialMatch(tutor.getTeachingNomination().value, keyword)));
     }
 
     @Override

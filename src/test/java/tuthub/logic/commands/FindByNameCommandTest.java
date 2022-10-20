@@ -74,6 +74,16 @@ public class FindByNameCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTutorList());
     }
 
+    @Test
+    public void execute_multiplePartialKeywords_multipleTutorsFound() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 3);
+        NameContainsKeywordsPredicate predicate = preparePredicate("urz lle unz");
+        FindByNameCommand command = new FindByNameCommand(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTutorList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */

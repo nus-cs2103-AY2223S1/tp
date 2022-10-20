@@ -9,10 +9,10 @@ import tuthub.commons.util.StringUtil;
 /**
  * Tests that a {@code Tutor}'s {@code Module} matches any of the keywords given.
  */
-public class ModuleContainsKeywordPredicate implements Predicate<Tutor> {
+public class ModuleContainsKeywordsPredicate implements Predicate<Tutor> {
     private final List<String> keywords;
 
-    public ModuleContainsKeywordPredicate(List<String> keywords) {
+    public ModuleContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -21,7 +21,7 @@ public class ModuleContainsKeywordPredicate implements Predicate<Tutor> {
         Set<Module> moduleSet = tutor.getModules();
         for (Module module : moduleSet) {
             if (keywords.stream()
-                .anyMatch((keyword -> StringUtil.containsWordIgnoreCase(module.value, keyword)))) {
+                .anyMatch((keyword -> StringUtil.containsWordIgnoreCasePartialMatch(module.value, keyword)))) {
                 return true;
             }
         }
@@ -31,7 +31,7 @@ public class ModuleContainsKeywordPredicate implements Predicate<Tutor> {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof ModuleContainsKeywordPredicate
-                && keywords.equals(((ModuleContainsKeywordPredicate) other).keywords));
+                || (other instanceof ModuleContainsKeywordsPredicate
+                && keywords.equals(((ModuleContainsKeywordsPredicate) other).keywords));
     }
 }

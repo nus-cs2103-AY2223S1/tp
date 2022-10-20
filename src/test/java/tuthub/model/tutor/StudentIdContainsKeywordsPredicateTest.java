@@ -47,6 +47,10 @@ public class StudentIdContainsKeywordsPredicateTest {
         StudentIdContainsKeywordsPredicate predicate =
                 new StudentIdContainsKeywordsPredicate(Collections.singletonList("A0000000X"));
         assertTrue(predicate.test(new TutorBuilder().withStudentId("A0000000X").build()));
+
+        // Partial keywords
+        predicate = new StudentIdContainsKeywordsPredicate(Collections.singletonList("a0"));
+        assertTrue(predicate.test(new TutorBuilder().withStudentId("A0000000X").build()));
     }
 
     @Test
