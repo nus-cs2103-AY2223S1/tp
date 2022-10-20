@@ -120,6 +120,31 @@
     -fx-text-fill: white;
 }
 
+.circle_low {
+    -fx-fill: #e74c3c;
+}
+
+.circle_medium {
+    -fx-fill: #f39c12;
+}
+
+.circle_high {
+    -fx-fill: #2ecc71;
+}
+
+.status_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-underline: true;
+}
+
+.stats_big_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
 .cell_big_label_stock {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 18px;

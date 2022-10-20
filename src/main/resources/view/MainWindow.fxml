@@ -40,9 +40,13 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-        <VBox minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <TextField alignment="CENTER" disable="true" text="Stats" />
-          <StackPane fx:id="statsPanelPlaceHolder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="statsPanelPlaceholder" VBox.vgrow="NEVER">
+            <padding>
+              <Insets bottom="5" left="10" right="10" top="5" />
+            </padding>
+          </StackPane>
         </VBox>
         </SplitPane>
 
