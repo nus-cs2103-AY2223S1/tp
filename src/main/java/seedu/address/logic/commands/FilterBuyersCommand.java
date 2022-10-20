@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -24,7 +24,7 @@ public class FilterBuyersCommand extends Command {
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             // TODO change this from tag to priority after andre's refactor
-            + "[" + PREFIX_TAG + " <HIGH/LOW>]\n"
+            + "[" + PREFIX_PRIORITY + " <HIGH/LOW>]\n"
             + "Example: " + COMMAND_WORD + " -c bright; sunny";
 
     private final AbstractFilterBuyerPredicate predicate;

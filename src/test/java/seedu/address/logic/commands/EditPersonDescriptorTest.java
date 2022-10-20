@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_LOW;
 
 import org.junit.jupiter.api.Test;
 
@@ -63,7 +63,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPriority(VALID_PRIORITY_LOW).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

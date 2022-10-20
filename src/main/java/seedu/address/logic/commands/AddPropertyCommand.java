@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -27,7 +26,6 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
             + PREFIX_SELLER + " SELLER "
-            + "[" + PREFIX_TAG + " TAG]..."
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Clementi Ave 2 Second Floor Flat "
@@ -35,8 +33,6 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
             + PREFIX_DESCRIPTION + " ready to be bought "
             + PREFIX_SELLER + " John "
-            + PREFIX_TAG + " condo "
-            + PREFIX_TAG + " lowfloor "
             + PREFIX_CHARACTERISTICS + " 5-Room; Near School";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
