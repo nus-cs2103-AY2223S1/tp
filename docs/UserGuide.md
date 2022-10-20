@@ -7,11 +7,12 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 
 - [`Quick start`](#quick-start)
 - [`Features`](#features)
-  - Adding a person: [`addpeson`](#adding-a-person-adduser)
-  - Listing all persons: [`listpersons`](#listing-all-persons--list)
-  - Edit a person: [`editperson`](#editing-a-person--edituser)
-  - Locating persons by name: [`findperson`](#locating-persons-by-name-finduser)
-  - Deleting a person : [`deleteperson`](#deleting-a-person--deleteuser)
+  - Viewing help: [`help`](#viewing-help--help)
+  - Adding a person: [`addperson`](#adding-a-person-addperson)
+  - Listing all persons: [`listpersons`](#listing-all-persons--listpersons)
+  - Edit a person: [`editperson`](#editing-a-person--editperson)
+  - Locating persons by name: [`findperson`](#locating-persons-by-name-findperson)
+  - Deleting a person : [`deleteperson`](#deleting-a-person--deleteperson)
   - Adding a group: [`addgroup`](#creating-a-group--addgroup)
   - Add member to  group: [`addmember`](#adding-a-member--addmember)
   - Assign member a task: [`assigntask`](#assigning-a-task-to-a-person-assigntask)
@@ -63,6 +64,13 @@ Note how the app contains some sample data.
   e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
 </div>
+
+### Viewing help : help
+Shows a message explaining how to access the help page.
+
+![Help Example](Help.png)
+
+Format: help
 
 ### Adding a person: `addperson`
 
