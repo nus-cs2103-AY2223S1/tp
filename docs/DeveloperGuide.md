@@ -170,6 +170,103 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### TableView
+
+#### Changes in Data Representation
+In `AddressBook`, the Graphical User Interface (GUI) for displaying results from a command was implemented using
+`PersonListPanel` and `PersonCard`. 
+
+<img src="images/UiClassDiagram.png" width="550" />
+
+Graphically, the `PersonListPanel` is a single-column list, with each row corresponding to a `PersonCard`. The 
+`PersonCard` represents a `Person`, and contains all fields which belongs to that `Person`. These fields include,
+`Name`, `Phone`, `Email`, and `Tags`.
+
+In `RC4HDB`,`PersonListPanel` and `PersonCard` is replaced by `ResidentTableView` which reworks the entire layout
+for displaying results. 
+
+<!-- CREATE NEW UICLASSDIAGRAM AND INSERT HERE -->
+
+As opposed to the prior implementation, `ResidentTableView` is a Table. Each row in the Table corresponds to a 
+`Resident`, and each column corresponds to a Field in `Resident`.
+
+`ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Collectively, the `ResidentTableView` is a 
+single component, but it is logically separated into two distinct units. The first unit being the first column which 
+is the `IndexColumn` and the second unit being all other columns, also known as `FieldColumns`.
+
+The main reason for this distinction is *how the values are obtained in relation to its dependence on `Resident`*. 
+- The indices in the `IndexColumn` are generated independently to the `FieldColumns` as the fields within 
+  `Resident` do not affect its position within the Table. The same `Resident` displayed could have different indices
+  in the results of two commands.
+    
+- In contrast, in the generation of values for each cell in a `FieldColumn`, the values are obtained by iterating 
+through the list of `Residents` and setting each cell to it. This process does not modify the ordering of `Residents`
+  in the list, and the same method can be used for other `FieldColumns`. 
+
+As a result, the fields of a `Resident` will always collectively be together in the same row, though it may appear in
+two different indices in the results of two different commands.
+
+<br>
+
+#### Obtaining `Resident` fields
+
+From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a 
+`TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to 
+`setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically. 
+
+In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of 
+`PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching* [functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html). 
+
+By constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`, the "name" string is 
+used as a reference to an assumed `Resident::getName`. By fitting an appropriate parameter, we were able to get the 
+fields with little effort.
+
+
+<br>
+
+#### Differences in Updating Data
+Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in handling updates to a 
+`Resident`. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit 
+invocation of a method to update the Ui. This design was possible as `TableView` automatically adds an observer
+to the returned value from `setCellValueFactory` which was used to obtain the `Resident` fields as mentioned in the 
+[section above](#obtaining-resident-fields). As a result, any updates to `ObservableList<Resident>` would be reflected 
+immediately in all cells of the Table.
+
+The caveat to this is that in the implementation of `Resident` fields, we have to ensure the presence of a 
+`Resident::getXXX` to enable method matching between the `PropertyValueFactory` and the `Resident` class.
+
+<br>
+
+### Show/hide feature for resident fields
+
+**Challenges faced with UI:**
+
+The original UI represented a `Person` field as a nested FXML `Label` within a `PersonCard`, which was used to populate the `ListView` panel. Calling `setVisible` on a `Label` resulted in blank gaps in the panel because the `Label` was ultimately still intact, just *invisible*. Hence, there was a need to find another method to hide and collapse rows/columns.
+
+**Gaps in** `ListView` **panel:**
+
+![ListViewMissingField](images/ListViewMissingField.png)
+
+To achieve this, we modified our UI to use a `TableView`, where using `setVisible` on a `TableColumn` allowed us to remove the specified columns as intended. One possible reason as to why this works is that `TableColumn` does not extend from `Node`, unlike `Label`. As suggested in this [thread](https://stackoverflow.com/questions/28558165/javafx-setvisible-hides-the-element-but-doesnt-rearrange-adjacent-nodes), `setVisible` in `TableColumn` probably has a different implementation from that in `Node`.
+
+<br>
+
+**Challenges faced with linking components:**
+
+The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
+
+![MainWindowRelationships](images/MainWindowRelationships.png)
+
+The final design involved using a `ListChangeListener` to cascade the updates from one list to the other. Since `LogicManager` held a reference to a `ModelManager`, and `MainWindow` held a reference to both a `LogicManager` and the `ResidentTableView` class, I used a listener in `MainWindow` to track changes in the `Model` field list and updated the `ResidentTableView` field list accordingly. Finally, one more listener was used within `ResidentTableView` to update the column visibilities whenever the field list changed.
+
+<br>
+
+**Further improvements:**
+
+Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
+
+<br>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
