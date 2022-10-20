@@ -139,7 +139,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
         final MeetingTime modelMeetingTime = new MeetingTime(meetingTime);
-        
+
         if (filePath == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, FilePath.class.getSimpleName()));

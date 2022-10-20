@@ -132,7 +132,7 @@ public class PersonBuilder {
         this.meetingTime = new MeetingTime(meetingTime);
         return this;
     }
-    
+
     /**
      * Sets the {@code filePath} of the {@code Person} that we are building.
      */

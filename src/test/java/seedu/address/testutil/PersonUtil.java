@@ -57,6 +57,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_NETWORTH + person.getNetWorth().value + " ");
+        sb.append(PREFIX_MEETING_TIME + person.getMeetingTime().value + " ");
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

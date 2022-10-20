@@ -141,9 +141,8 @@ public class ParserUtil {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
         return new MeetingTime(trimmedMeetingTime);
-        
-     }
-     
+    }
+
     /**
      * Parses a {@code String filePath} into a {@code FilePath}.
      * Leading and trailing whitespaces will be trimmed.

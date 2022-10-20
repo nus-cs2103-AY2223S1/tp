@@ -44,8 +44,7 @@ public class Person {
         this.filePath = filePath;
         this.tags.addAll(tags);
     }
-    
-<<<<<
+
     /**
      * Constructor with no remark, for CreateCommand only.
      */
@@ -108,7 +107,7 @@ public class Person {
     public MeetingTime getMeetingTime() {
         return meetingTime;
     }
-    
+
     public FilePath getFilePath() {
         return filePath;
     }
@@ -164,7 +163,7 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
                 && otherPerson.getNetWorth().equals(getNetWorth())
-                && otherPerson.getMeetingTime().equals(getMeetingTime());
+                && otherPerson.getMeetingTime().equals(getMeetingTime())
                 && otherPerson.getFilePath().equals(getFilePath());
     }
 

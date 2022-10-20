@@ -129,7 +129,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_REMARK, INVALID_NETWORTH, VALID_MEETING_TIME, VALID_FILEPATH, VALID_TAGS);
-                        
+
         String expectedMessage = NetWorth.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -149,6 +149,7 @@ public class JsonAdaptedPersonTest {
                 VALID_REMARK, VALID_NETWORTH, INVALID_MEETING_TIME, VALID_FILEPATH, VALID_TAGS);
         String expectedMessage = MeetingTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 
     @Test
     public void toModelType_invalidFilePath_throwsIllegalValueException() {
@@ -172,8 +173,7 @@ public class JsonAdaptedPersonTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_REMARK, VALID_NETWORTH, VALID_MEETING_TIME, VALID_FILEPATH invalidTags);
+                        VALID_REMARK, VALID_NETWORTH, VALID_MEETING_TIME, VALID_FILEPATH, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
-
 }
