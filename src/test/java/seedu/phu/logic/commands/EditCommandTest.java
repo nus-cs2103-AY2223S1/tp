@@ -6,7 +6,7 @@ import static seedu.phu.logic.commands.CommandTestUtil.DESC_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.DESC_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.phu.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.phu.logic.commands.CommandTestUtil.showInternshipAtIndex;
@@ -57,10 +57,10 @@ public class EditCommandTest {
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
         Internship editedInternship = internshipInList.withName(VALID_NAME_BLACKROCK).withPhone(VALID_PHONE_BLACKROCK)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_TRANSPORT).build();
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_BLACKROCK)
-                .withPhone(VALID_PHONE_BLACKROCK).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BLACKROCK).withTags(VALID_TAG_TRANSPORT).build();
         EditCommand editCommand = new EditCommand(indexLastInternship, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);

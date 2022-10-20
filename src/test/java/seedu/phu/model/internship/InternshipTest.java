@@ -6,7 +6,7 @@ import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.testutil.Assert.assertThrows;
 import static seedu.phu.testutil.TypicalInternships.AMAZON;
 import static seedu.phu.testutil.TypicalInternships.BLACKROCK;
@@ -34,7 +34,7 @@ public class InternshipTest {
         // same name, all other attributes different -> returns true
         Internship editedAmazon = new InternshipBuilder(AMAZON).withPhone(VALID_PHONE_BLACKROCK)
                 .withEmail(VALID_EMAIL_BLACKROCK).withRemark(VALID_REMARK_BLACKROCK)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_TRANSPORT).build();
         assertTrue(AMAZON.isSameInternship(editedAmazon));
 
         // different name, all other attributes same -> returns false
@@ -87,7 +87,7 @@ public class InternshipTest {
         assertFalse(AMAZON.equals(editedAmazon));
 
         // different tags -> returns false
-        editedAmazon = new InternshipBuilder(AMAZON).withTags(VALID_TAG_HUSBAND).build();
+        editedAmazon = new InternshipBuilder(AMAZON).withTags(VALID_TAG_TRANSPORT).build();
         assertFalse(AMAZON.equals(editedAmazon));
     }
 }

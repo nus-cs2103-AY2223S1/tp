@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.testutil.Assert.assertThrows;
 import static seedu.phu.testutil.TypicalInternships.AMAZON;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
@@ -49,7 +49,7 @@ public class InternshipBookTest {
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
         Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
-                .withTags(VALID_TAG_HUSBAND)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
         List<Internship> newInternships = Arrays.asList(AMAZON, editedAmazon);
         InternshipBookStub newData = new InternshipBookStub(newInternships);
@@ -77,7 +77,7 @@ public class InternshipBookTest {
     public void hasInternship_internshipWithSameIdentityFieldsInInternshipBook_returnsTrue() {
         internshipBook.addInternship(AMAZON);
         Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
-                .withTags(VALID_TAG_HUSBAND)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
         assertTrue(internshipBook.hasInternship(editedAmazon));
     }

@@ -15,8 +15,8 @@ import static seedu.phu.logic.commands.CommandTestUtil.PHONE_DESC_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.POSITION_DESC_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.REMARK_DESC_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.REMARK_DESC_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_STOCK;
+import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_TRANSPORT;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_DATE_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_APPLE;
@@ -27,8 +27,8 @@ import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_STOCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.WEBSITE_DESC_BLACKROCK;
 import static seedu.phu.logic.parser.CliSyntax.PREFIX_TAG;
@@ -101,9 +101,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Internship} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_STOCK + TAG_DESC_TRANSPORT + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_STOCK + TAG_EMPTY + TAG_DESC_TRANSPORT, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_STOCK + TAG_DESC_TRANSPORT, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
@@ -113,14 +113,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BLACKROCK + TAG_DESC_HUSBAND
-                + EMAIL_DESC_APPLE + REMARK_DESC_APPLE + NAME_DESC_APPLE + TAG_DESC_FRIEND
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BLACKROCK + TAG_DESC_TRANSPORT
+                + EMAIL_DESC_APPLE + REMARK_DESC_APPLE + NAME_DESC_APPLE + TAG_DESC_STOCK
                 + POSITION_DESC_APPLE + APPLICATION_PROCESS_DESC_BLACKROCK + DATE_DESC_BLACKROCK
                 + WEBSITE_DESC_BLACKROCK;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_APPLE)
                 .withPhone(VALID_PHONE_BLACKROCK).withEmail(VALID_EMAIL_APPLE).withRemark(VALID_REMARK_APPLE)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withPosition(VALID_POSITION_APPLE)
+                .withTags(VALID_TAG_TRANSPORT, VALID_TAG_STOCK).withPosition(VALID_POSITION_APPLE)
                 .withApplicationProcess(VALID_APPLICATION_PROCESS_BLACKROCK).withDate(VALID_DATE_BLACKROCK)
                 .withWebsite(VALID_WEBSITE_BLACKROCK).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -168,8 +168,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditInternshipDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_STOCK;
+        descriptor = new EditInternshipDescriptorBuilder().withTags(VALID_TAG_STOCK).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -203,12 +203,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_APPLE + REMARK_DESC_APPLE + EMAIL_DESC_APPLE
-                + TAG_DESC_FRIEND + PHONE_DESC_APPLE + REMARK_DESC_APPLE + EMAIL_DESC_APPLE + TAG_DESC_FRIEND
-                + PHONE_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK + TAG_DESC_HUSBAND;
+                + TAG_DESC_STOCK + PHONE_DESC_APPLE + REMARK_DESC_APPLE + EMAIL_DESC_APPLE + TAG_DESC_STOCK
+                + PHONE_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK + TAG_DESC_TRANSPORT;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_BLACKROCK)
                 .withEmail(VALID_EMAIL_BLACKROCK).withRemark(VALID_REMARK_BLACKROCK)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_STOCK, VALID_TAG_TRANSPORT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

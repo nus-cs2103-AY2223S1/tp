@@ -25,12 +25,12 @@ import static seedu.phu.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.phu.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.phu.logic.commands.CommandTestUtil.REMARK_DESC_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.REMARK_DESC_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_STOCK;
+import static seedu.phu.logic.commands.CommandTestUtil.TAG_DESC_TRANSPORT;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_STOCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.logic.commands.CommandTestUtil.WEBSITE_DESC_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.WEBSITE_DESC_BLACKROCK;
 import static seedu.phu.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -60,67 +60,67 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Internship expectedInternship = new InternshipBuilder(BLACKROCK).withTags(VALID_TAG_FRIEND).build();
+        Internship expectedInternship = new InternshipBuilder(BLACKROCK).withTags(VALID_TAG_STOCK).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK
-                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND + POSITION_DESC_BLACKROCK
+                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK + POSITION_DESC_BLACKROCK
                 + APPLICATION_PROCESS_DESC_BLACKROCK + DATE_DESC_BLACKROCK
                 + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_APPLE + NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK
-                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_APPLE + PHONE_DESC_BLACKROCK
-                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_APPLE
-                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple remarks - last remark accepted
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_APPLE + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_APPLE + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple positions - last position accepted
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND + POSITION_DESC_APPLE
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK + POSITION_DESC_APPLE
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple application processes - last application process accepted
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND + POSITION_DESC_BLACKROCK
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK + POSITION_DESC_BLACKROCK
                 + APPLICATION_PROCESS_DESC_APPLE + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple dates - last date accepted
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND + POSITION_DESC_BLACKROCK
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK + POSITION_DESC_BLACKROCK
                 + APPLICATION_PROCESS_DESC_BLACKROCK + DATE_DESC_APPLE
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple websites - last website accepted
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND + POSITION_DESC_BLACKROCK
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK + POSITION_DESC_BLACKROCK
                 + APPLICATION_PROCESS_DESC_BLACKROCK + DATE_DESC_BLACKROCK
                 + WEBSITE_DESC_APPLE + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags = new InternshipBuilder(BLACKROCK)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_STOCK, VALID_TAG_TRANSPORT).build();
         assertParseSuccess(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_TRANSPORT + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, new AddCommand(expectedInternshipMultipleTags));
     }
@@ -136,39 +136,39 @@ public class AddCommandParserTest {
         // no application process
         Internship expectedInternship1 = new InternshipBuilder(APPLE).withApplicationProcess("apply").build();
         assertParseSuccess(parser, NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE + REMARK_DESC_APPLE
-                        + POSITION_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_FRIEND,
+                        + POSITION_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_STOCK,
                 new AddCommand(expectedInternship1));
 
         // no date
         Internship expectedInternship2 = new InternshipBuilder(APPLE)
                 .withDate(LocalDate.now().format(Date.DEFAULT_FORMATTER)).build();
         assertParseSuccess(parser, NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE + REMARK_DESC_APPLE
-                        + POSITION_DESC_APPLE + APPLICATION_PROCESS_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_FRIEND,
+                        + POSITION_DESC_APPLE + APPLICATION_PROCESS_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_STOCK,
                 new AddCommand(expectedInternship2));
 
         // no phone
         Internship expectedInternship3 = new InternshipBuilder(APPLE).withPhone(Phone.DEFAULT_VALUE).build();
         assertParseSuccess(parser, NAME_DESC_APPLE + EMAIL_DESC_APPLE + REMARK_DESC_APPLE + POSITION_DESC_APPLE
-                        + APPLICATION_PROCESS_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_FRIEND,
+                        + APPLICATION_PROCESS_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_STOCK,
                 new AddCommand(expectedInternship3));
 
         // no email
         Internship expectedInternship4 = new InternshipBuilder(APPLE).withEmail(Email.DEFAULT_VALUE).build();
         assertParseSuccess(parser, NAME_DESC_APPLE + PHONE_DESC_APPLE + REMARK_DESC_APPLE + POSITION_DESC_APPLE
-                        + APPLICATION_PROCESS_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_FRIEND,
+                        + APPLICATION_PROCESS_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_STOCK,
                 new AddCommand(expectedInternship4));
 
         // no website
         Internship expectedInternship5 = new InternshipBuilder(APPLE).withWebsite(Website.DEFAULT_VALUE).build();
         assertParseSuccess(parser, NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE
                         + REMARK_DESC_APPLE + POSITION_DESC_APPLE + APPLICATION_PROCESS_DESC_APPLE + DATE_DESC_APPLE
-                        + TAG_DESC_FRIEND,
+                        + TAG_DESC_STOCK,
                 new AddCommand(expectedInternship5));
 
         // no remark
         Internship expectedInternship6 = new InternshipBuilder(APPLE).withRemark(Remark.DEFAULT_VALUE).build();
         assertParseSuccess(parser, NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE + POSITION_DESC_APPLE
-                        + APPLICATION_PROCESS_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_FRIEND,
+                        + APPLICATION_PROCESS_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_STOCK,
                 new AddCommand(expectedInternship6));
     }
 
@@ -190,49 +190,49 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BLACKROCK + INVALID_PHONE_DESC + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + INVALID_EMAIL_DESC
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, Email.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + INVALID_TAG_DESC + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + INVALID_TAG_DESC + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid position
         assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + INVALID_POSITION_DESC + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, Position.MESSAGE_CONSTRAINTS);
 
         // invalid application process
         assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + INVALID_APPLICATION_PROCESS_DESC
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, ApplicationProcess.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + INVALID_DATE_DESC + WEBSITE_DESC_BLACKROCK, Date.MESSAGE_CONSTRAINTS);
 
         // invalid website
         assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
-                + REMARK_DESC_BLACKROCK + TAG_DESC_FRIEND
+                + REMARK_DESC_BLACKROCK + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + INVALID_WEBSITE_DESC, Website.MESSAGE_CONSTRAINTS);
 
@@ -243,7 +243,7 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK
                         + EMAIL_DESC_BLACKROCK + REMARK_DESC_BLACKROCK
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + POSITION_DESC_BLACKROCK,
+                        + TAG_DESC_TRANSPORT + TAG_DESC_STOCK + POSITION_DESC_BLACKROCK,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

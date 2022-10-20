@@ -22,7 +22,7 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_INTERNSHIP = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = "#stock";
     private static final String INVALID_POSITION = "intern @Google";
     private static final String INVALID_DATE = "12/12/12";
     private static final String INVALID_APPLICATION_PROCESS = "application";

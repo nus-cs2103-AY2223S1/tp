@@ -46,8 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BLACKROCK = "05-12-2022";
     public static final String VALID_WEBSITE_APPLE = "https://www.apple.website.com/careers";
     public static final String VALID_WEBSITE_BLACKROCK = "https://www.blackrockwebsite.com/careers";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_TRANSPORT = "transport";
+    public static final String VALID_TAG_STOCK = "stock";
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BLACKROCK = " " + PREFIX_NAME + VALID_NAME_BLACKROCK;
@@ -67,8 +67,8 @@ public class CommandTestUtil {
     public static final String DATE_DESC_BLACKROCK = " " + PREFIX_DATE + VALID_DATE_BLACKROCK;
     public static final String WEBSITE_DESC_APPLE = " " + PREFIX_WEBSITE + VALID_WEBSITE_APPLE;
     public static final String WEBSITE_DESC_BLACKROCK = " " + PREFIX_WEBSITE + VALID_WEBSITE_BLACKROCK;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_STOCK = " " + PREFIX_TAG + VALID_TAG_STOCK;
+    public static final String TAG_DESC_TRANSPORT = " " + PREFIX_TAG + VALID_TAG_TRANSPORT;
 
     public static final String INVALID_APPLICATION_PROCESS_DESC = " " + PREFIX_APPLICATION_PROCESS + "Test";
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -89,12 +89,12 @@ public class CommandTestUtil {
     static {
         DESC_APPLE = new EditInternshipDescriptorBuilder().withName(VALID_NAME_APPLE)
                 .withPhone(VALID_PHONE_APPLE).withEmail(VALID_EMAIL_APPLE).withRemark(VALID_REMARK_APPLE)
-                .withPosition(VALID_POSITION_APPLE).withTags(VALID_TAG_FRIEND).build();
+                .withPosition(VALID_POSITION_APPLE).withTags(VALID_TAG_STOCK).build();
         DESC_BLACKROCK = new EditInternshipDescriptorBuilder().withName(VALID_NAME_BLACKROCK)
                 .withPhone(VALID_PHONE_BLACKROCK).withEmail(VALID_EMAIL_BLACKROCK).withRemark(VALID_REMARK_BLACKROCK)
                 .withPosition(VALID_POSITION_BLACKROCK).withApplicationProcess(VALID_APPLICATION_PROCESS_BLACKROCK)
                 .withDate(VALID_DATE_BLACKROCK).withWebsite(VALID_WEBSITE_BLACKROCK)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_TRANSPORT, VALID_TAG_STOCK).build();
     }
 
     /**

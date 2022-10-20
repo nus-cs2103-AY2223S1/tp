@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.testutil.Assert.assertThrows;
 import static seedu.phu.testutil.TypicalInternships.AMAZON;
 import static seedu.phu.testutil.TypicalInternships.BLACKROCK;
@@ -43,7 +43,7 @@ public class UniqueInternshipListTest {
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
         uniqueInternshipList.add(AMAZON);
         Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
-                .withTags(VALID_TAG_HUSBAND)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
         assertTrue(uniqueInternshipList.contains(editedAmazon));
     }
@@ -87,7 +87,7 @@ public class UniqueInternshipListTest {
     public void setInternship_editedInternshipHasSameIdentity_success() {
         uniqueInternshipList.add(AMAZON);
         Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
-                .withTags(VALID_TAG_HUSBAND)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
         uniqueInternshipList.setInternship(AMAZON, editedAmazon);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();

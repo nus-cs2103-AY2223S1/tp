@@ -11,7 +11,7 @@ import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_BLACKROCK;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_BLACKROCK;
 
 import org.junit.jupiter.api.Test;
@@ -74,7 +74,7 @@ public class EditInternshipDescriptorTest {
         assertFalse(DESC_APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedApple = new EditInternshipDescriptorBuilder(DESC_APPLE).withTags(VALID_TAG_HUSBAND).build();
+        editedApple = new EditInternshipDescriptorBuilder(DESC_APPLE).withTags(VALID_TAG_TRANSPORT).build();
         assertFalse(DESC_APPLE.equals(editedApple));
     }
 }
