@@ -31,6 +31,10 @@ public class TimeSlot implements Comparable<TimeSlot> {
         return person;
     }
 
+    public String getTimeString() {
+        return session.time.toLocalTime().toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

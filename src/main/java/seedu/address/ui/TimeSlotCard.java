@@ -47,7 +47,7 @@ public class TimeSlotCard extends UiPart<Region> {
      */
     public TimeSlotCard(TimeSlot timeSlot) {
         super(FXML);
-        sessionTime.setText(timeSlot.getSession().time.toString());
+        sessionTime.setText(timeSlot.getTimeString());
         this.person = timeSlot.getPerson();
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
