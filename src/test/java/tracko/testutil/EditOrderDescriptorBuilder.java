@@ -1,14 +1,14 @@
 package tracko.testutil;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
-import tracko.model.order.*;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.ItemQuantityPair;
+import tracko.model.order.Name;
 import tracko.model.order.Order;
-import tracko.model.tag.Tag;
+import tracko.model.order.Phone;
 
 /**
  * A utility class to help with building EditOrderDescriptor objects.
@@ -69,6 +69,9 @@ public class EditOrderDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code List<ItemQuantityPair>} of the {@code EditOrderDescriptor} that we are building.
+     */
     public EditOrderDescriptorBuilder withItemList(List<ItemQuantityPair> itemList) {
         descriptor.setItemList(itemList);
         return this;

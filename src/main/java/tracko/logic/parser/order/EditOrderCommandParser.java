@@ -14,7 +14,12 @@ import tracko.commons.core.index.Index;
 import tracko.logic.commands.item.EditItemCommand;
 import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
-import tracko.logic.parser.*;
+import tracko.logic.parser.ArgumentMultimap;
+import tracko.logic.parser.ArgumentTokenizer;
+import tracko.logic.parser.CliSyntax;
+import tracko.logic.parser.Parser;
+import tracko.logic.parser.ParserUtil;
+import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.order.ItemQuantityPair;
 import tracko.model.tag.Tag;
@@ -74,6 +79,14 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         return argumentMultimap.getValue(prefix).isPresent();
     }
 
+    /**
+     * Detects whether {@code argMultimap} contains prefixes of the customer's details and stores
+     * the updated data into an {@code editOrderDescriptor}.
+     *
+     * @param editOrderDescriptor The descriptor to store the updated data.
+     * @param argMultimap The map that stores the prefixes inputted by the user.
+     * @throws ParseException Exception that is thrown when the user inputs the wrong prefixes.
+     */
     public void parseContacts(EditOrderDescriptor editOrderDescriptor, ArgumentMultimap argMultimap)
             throws ParseException {
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)) {
@@ -91,8 +104,16 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         }
     }
 
+    /**
+     * Detects whether {@code argMultimap} contains item and quantity prefixes and stores
+     * the data into an {@code editOrderDescriptor}.
+     *
+     * @param editOrderDescriptor The descriptor to store the updated data.
+     * @param argMultimap The map that stores the prefixes inputted by the user.
+     * @throws ParseException Exception that is thrown when the user inputs one prefix without the other.
+     */
     public void parseItemQuantity(EditOrderDescriptor editOrderDescriptor, ArgumentMultimap argMultimap)
-            throws ParseException{
+            throws ParseException {
 
         boolean isItemPrefixPresent = arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ITEM);
         boolean isQuantityPrefixPresent = arePrefixesPresent(argMultimap, CliSyntax.PREFIX_QUANTITY);

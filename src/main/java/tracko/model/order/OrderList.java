@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tracko.model.items.exceptions.DuplicateItemException;
 import tracko.model.items.exceptions.ItemNotFoundException;
 
 /**
@@ -80,7 +79,7 @@ public class OrderList implements Iterable<Order> {
 
         internalList.set(index, editedOrder);
     }
-    
+
     @Override
     public int hashCode() {
         return internalList.hashCode();

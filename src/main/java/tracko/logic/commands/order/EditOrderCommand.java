@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static tracko.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
@@ -14,9 +16,17 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.items.*;
-import tracko.model.items.exceptions.ItemNotFoundException;
-import tracko.model.order.*;
+import tracko.model.items.Description;
+import tracko.model.items.Item;
+import tracko.model.items.ItemName;
+import tracko.model.items.Price;
+import tracko.model.items.Quantity;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.ItemQuantityPair;
+import tracko.model.order.Name;
+import tracko.model.order.Order;
+import tracko.model.order.Phone;
 
 /**
  * Edits the details of an existing Order in the address book.
@@ -61,19 +71,19 @@ public class EditOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-         requireNonNull(model);
-         List<Order> lastShownList = model.getFilteredOrderList();
+        requireNonNull(model);
+        List<Order> lastShownList = model.getFilteredOrderList();
 
-         if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-         }
+        }
 
-         Order orderToEdit = lastShownList.get(index.getZeroBased());
-         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
+        Order orderToEdit = lastShownList.get(index.getZeroBased());
+        Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 
-         model.setOrder(orderToEdit, editedOrder);
-         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
+        model.setOrder(orderToEdit, editedOrder);
+        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
     }
 
     /**
@@ -81,7 +91,7 @@ public class EditOrderCommand extends Command {
      * edited with {@code EditOrderDescriptor}.
      */
     private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor, Model model)
-        throws CommandException {
+            throws CommandException {
         assert orderToEdit != null;
 
         Name updatedName = editOrderDescriptor.getName().orElse(orderToEdit.getName());
@@ -106,7 +116,7 @@ public class EditOrderCommand extends Command {
                 }
             }
 
-            if(!doesItemExistInList) {
+            if (!doesItemExistInList) {
                 throw new CommandException("The item that is being added does not exist in the inventory list.");
             }
         }
@@ -115,7 +125,7 @@ public class EditOrderCommand extends Command {
         boolean isPaid = orderToEdit.getPaidStatus();
         boolean isDelivered = orderToEdit.getDeliveryStatus();
 
-        return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress, 
+        return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedItemList, isPaid, isDelivered);
     }
 
@@ -221,6 +231,16 @@ public class EditOrderCommand extends Command {
             this.itemList = itemList;
         }
 
+        /**
+         * Updates the item list. This method checks whether the item that is going to be updated is
+         * in the customer's ordered items list; if it is, then it will check whether the values are different
+         * from the original or 0. If the value is zero, the item will be removed from the order list, else
+         * its quantity will be updated. If the item is not in the item list, then the item will be added to
+         * the customer's ordered items list.
+         *
+         * @param orderToEdit The order whose ordered items list is going to be edited.
+         * @param itemToEdit The item that is going to be added, removed or have its quantity edited.
+         */
         public void updateItemList(Order orderToEdit, ItemQuantityPair itemToEdit) {
             List<ItemQuantityPair> orderedItems = orderToEdit.getItemList();
             boolean hasItemBeenUpdated = false;

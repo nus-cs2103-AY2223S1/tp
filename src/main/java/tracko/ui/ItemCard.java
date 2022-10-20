@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
 import tracko.model.items.Item;
-import tracko.model.tag.Tag;
 
 /**
  * A UI component that displays information of an {@code Item}.

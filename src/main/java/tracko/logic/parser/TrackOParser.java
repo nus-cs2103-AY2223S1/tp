@@ -15,7 +15,11 @@ import tracko.logic.commands.item.DeleteItemCommand;
 import tracko.logic.commands.item.EditItemCommand;
 import tracko.logic.commands.item.FindItemCommand;
 import tracko.logic.commands.item.ListItemsCommand;
-import tracko.logic.commands.order.*;
+import tracko.logic.commands.order.AddOrderCommand;
+import tracko.logic.commands.order.DeleteOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand;
+import tracko.logic.commands.order.FindOrderCommand;
+import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.logic.parser.item.AddItemCommandParser;
 import tracko.logic.parser.item.DeleteItemCommandParser;
@@ -79,9 +83,9 @@ public class TrackOParser {
         // (commands kept for reference)
         // case AddCommand.COMMAND_WORD:
         //     return new AddCommandParser().parse(arguments);
-        //
-         case EditOrderCommand.COMMAND_WORD:
-             return new EditOrderCommandParser().parse(arguments);
+
+        case EditOrderCommand.COMMAND_WORD:
+            return new EditOrderCommandParser().parse(arguments);
 
         case DeleteOrderCommand.COMMAND_WORD:
             return new DeleteOrderCommandParser().parse(arguments);
