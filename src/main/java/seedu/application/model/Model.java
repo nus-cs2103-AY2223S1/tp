@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.interview.Interview;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,8 @@ import seedu.application.model.application.Application;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Application> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
+
+    Predicate<Application> PREDICATE_SHOW_APPLICATION_WITH_INTERVIEW = i -> i.getInterview().isPresent();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,6 +61,24 @@ public interface Model {
     boolean hasApplication(Application application);
 
     /**
+     * Returns true if {@code application} has an interview date and time clashes with another application exists in the
+     * application book.
+     */
+    boolean hasSameInterviewTime(Application application);
+
+    /**
+     * Returns true if {@code interview} has an interview date and time clashes with another application exists in the
+     * application book.
+     */
+    boolean hasSameInterviewTime(Interview interview);
+
+    /**
+     * Returns true if {@code interview} has an interview date and time clashes with another application exists in the
+     * application book, excluding the {@code application}. This enables the edit of the interview.
+     */
+    boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application);
+
+    /**
      * Deletes the given application.
      * The application must exist in the application book.
      */
@@ -79,6 +100,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
+
+    /** Returns an unmodifiable view of the filtered application list with existing interview*/
+    ObservableList<Application> getApplicationListWithInterview();
 
     /**
      * Updates the filter of the filtered application list to filter by the given {@code predicate}.
@@ -110,4 +134,10 @@ public interface Model {
      * Restores the model's previously undone {@code ApplicationBook} state from the history.
      */
     void redoApplicationBook();
+
+    /**
+     * Updates the application list with interview when a new interview is added.
+     */
+    void updateApplicationListWithInterview();
+
 }

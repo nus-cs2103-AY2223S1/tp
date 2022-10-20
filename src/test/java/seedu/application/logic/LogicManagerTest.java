@@ -82,7 +82,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
                 + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE;
-        Application expectedApplication = new ApplicationBuilder(GOOGLE).build();
+        Application expectedApplication = new ApplicationBuilder(GOOGLE).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addApplication(expectedApplication);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

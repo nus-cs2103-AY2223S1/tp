@@ -7,6 +7,7 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_FAC
 import static seedu.application.logic.commands.CommandTestUtil.VALID_DATE_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalApplications.BYTEDANCE;
 import static seedu.application.testutil.TypicalApplications.getTypicalApplicationBook;
@@ -49,7 +50,7 @@ public class ApplicationBookTest {
     public void resetData_withDuplicateApplications_throwsDuplicateApplicationException() {
         // Two Applications with the same identity fields
         Application editedBytedance = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE)
-                .withDate(VALID_DATE_FACEBOOK).build();
+                .withDate(VALID_DATE_FACEBOOK).withTags(VALID_TAG_PREFERRED).build();
         List<Application> newApplications = Arrays.asList(BYTEDANCE, editedBytedance);
         ApplicationBookStub newData = new ApplicationBookStub(newApplications);
 
@@ -76,7 +77,7 @@ public class ApplicationBookTest {
     public void hasApplication_applicationWithSameIdentityFieldsInApplicationBook_returnsTrue() {
         applicationBook.addApplication(BYTEDANCE);
         Application editedBytedance = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE)
-                .withDate(VALID_DATE_FACEBOOK).build();
+                .withDate(VALID_DATE_FACEBOOK).withTags(VALID_TAG_PREFERRED).build();
         assertTrue(applicationBook.hasApplication(editedBytedance));
     }
 

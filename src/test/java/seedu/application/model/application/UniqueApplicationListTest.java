@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalApplications.BYTEDANCE;
 import static seedu.application.testutil.TypicalApplications.GOOGLE;
@@ -43,7 +44,7 @@ public class UniqueApplicationListTest {
     public void contains_applicationWithSameIdentityFieldsInList_returnsTrue() {
         uniqueApplicationList.add(BYTEDANCE);
         Application editedBytedance = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE)
-                .withContact(VALID_CONTACT_FACEBOOK).build();
+                .withContact(VALID_CONTACT_FACEBOOK).withTags(VALID_TAG_PREFERRED).build();
         assertTrue(uniqueApplicationList.contains(editedBytedance));
     }
 
@@ -88,7 +89,7 @@ public class UniqueApplicationListTest {
     public void setApplication_editedApplicationHasSameIdentity_success() {
         uniqueApplicationList.add(BYTEDANCE);
         Application editedBytedance = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE)
-                .withContact(VALID_CONTACT_FACEBOOK).build();
+                .withContact(VALID_CONTACT_FACEBOOK).withTags(VALID_TAG_PREFERRED).build();
         uniqueApplicationList.setApplication(BYTEDANCE, editedBytedance);
         UniqueApplicationList expectedUniqueApplicationList = new UniqueApplicationList();
         expectedUniqueApplicationList.add(editedBytedance);
