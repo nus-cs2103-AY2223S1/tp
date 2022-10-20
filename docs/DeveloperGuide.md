@@ -153,6 +153,8 @@ Classes used by multiple components are in the `seedu.nutrigoals.commons` packag
 
 ## **Implementation**
 
+This section describes some noteworthy details on how certain features are implemented.
+
 ### Edit feature
 
 #### Implementation
@@ -161,9 +163,9 @@ The edit mechanism is facilitated by `EditCommand`, which extends `Command`. It 
 
 * `EditCommand#execute()`: Edits the food name, meal type or calories associated with the food at the specified index.
 
-Given below is an example usage scenario and how edit mechanism behaves at each step.
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
-Step 1. The user launches the application today. Suppose the foods added for the day are:
+Step 1. The user launches the application on 19 October 2022. Suppose the foods added for the day are:
 
 1. bread: 100 calories, breakfast
 2. milk tea: 300 calories, lunch
@@ -189,7 +191,34 @@ The following diagram illustrates how the edit operation works:
 
 ![EditSequenceDiagram](./images/EditSequenceDiagram.png)
 
-This section describes some noteworthy details on how certain features are implemented.
+### Profile feature
+
+#### Implementation
+
+The profile mechanism is facilitated by `ProfileCommand`, which extends `Command`. It overrides the
+following operation:
+
+* `ProfileCommand#execute()`: Retrieves and displays the user's information.
+
+Given below is an example usage scenario and how the profile mechanism behaves at each step.
+
+Step 1. The user launches the application on 19 October 2022.
+
+Step 2. The user executes `profile`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
+subsequently, which then creates an `ProfileCommand` object.
+
+Step 3. The `ProfileCommand` created is executed by `ProfileCommand#execute()`.
+
+Step 4. `ProfileCommand#execute()` calls the following methods from `Model`:
+
+* `isUserCreated()`
+* `getUserDetails()`
+
+Step 5. `ProfileCommand#execute()` returns a `CommandResult` which displays the user's information.
+
+The following activity diagram outlines the process when the user uses the `ProfileCommand`.
+
+![ProfileCommandActivityDiagram](./images/ProfileCommandActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
