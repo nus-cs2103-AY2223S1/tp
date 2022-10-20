@@ -3,11 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.item.SupplyItem;
+import seedu.address.model.person.Person;
 
 /**
  * Wraps all data at the Inventory level.
@@ -67,6 +69,37 @@ public class Inventory implements ReadOnlyInventory {
     public boolean hasSupplyItem(SupplyItem item) {
         requireNonNull(item);
         return this.supplyItems.contains(item);
+    }
+
+    /**
+     * Checks whether {@item} is a duplicate in Inventory excluding {@excludedItem} from the check.
+     */
+    public boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem) {
+        requireNonNull(item);
+        requireNonNull(excludedItem);
+        return this.supplyItems.stream()
+                .filter(listItem -> !listItem.equals(excludedItem))
+                .anyMatch(item::isSameItem);
+    }
+
+    /**
+     * Returns the SupplyItem that is supplied by {@code supplier}, if any.
+     * @param supplier the supplier to check for supply items supplied by
+     * @return an Optional encapsulating the SupplyItem supplied by {@code supplier}
+     */
+    public Optional<SupplyItem> supplyItemSuppliedBy(Person supplier) {
+        requireNonNull(supplier);
+        return this.supplyItems.stream()
+                .filter(listItem -> listItem.getSupplier().isSamePerson(supplier))
+                .findFirst();
+    }
+
+    /**
+     * Checks whether {@supplier} is a supplier for any SupplyItem in the inventory.
+     */
+    public boolean hasSupplyItemSuppliedBy(Person supplier) {
+        return this.supplyItems.stream()
+                .anyMatch(listItem -> listItem.getSupplier().isSamePerson(supplier));
     }
 
     /**
