@@ -218,6 +218,10 @@ Step 5. `TargetCommand#execute()` returns a `CommandResult` with the following r
 
 Your calorie target set: 2103 calories
 
+The following diagram illustrates how the set calorie target operation works:
+
+![TargetSequenceDiagram](./images/TargetSequenceDiagram.png)
+
 ### Edit feature
 
 #### Implementation
