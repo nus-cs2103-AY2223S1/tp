@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Person's attendance in the address book.
@@ -12,15 +14,21 @@ import java.time.format.DateTimeFormatter;
  */
 public class Attendance {
 
+    /**
+     * Feedback message to User is yyyy as it is more understandable as year than uuuu.
+     */
     public static final String MESSAGE_CONSTRAINTS =
             "Attendance should only be in the format of yyyy-MM-dd.";
 
+    public static final String MESSAGE_INVALID_DATE =
+            "Attendance should only be of valid dates!";
+
     /**
-     * The string input must match the format of yyyy-MM-dd.
+     * The string input must match the format of uuuu-MM-dd.
      */
     public static final String VALIDATION_REGEX = "^(\\d){4}-(\\d){2}-(\\d){2}$";
 
-    protected static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    protected static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     public final LocalDate time;
 
     /**
@@ -31,7 +39,11 @@ public class Attendance {
     public Attendance(String attendance) {
         requireNonNull(attendance);
         checkArgument(isValidAttendance(attendance), MESSAGE_CONSTRAINTS);
-        this.time = LocalDate.parse(attendance, DTF);
+        try {
+            this.time = LocalDate.parse(attendance, DTF.withResolverStyle(ResolverStyle.STRICT));
+        } catch (DateTimeParseException dpe) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_DATE);
+        }
     }
 
     /**

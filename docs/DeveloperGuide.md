@@ -154,12 +154,84 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Lesson plan feature
+
+#### Implementation
+
+The lesson plan feature allows the user to keep track of a lesson plan for a student. It is a required parameter when a new person is added, through `AddCommandParser`.
+
+It can also be added independently, and is facilitated by `LessonPlanCommand` in the Logic component. It extends `Commmand` with a `LessonPlan` object stored internally.
+`LessonPlanCommand` is created by `LessonPlanCommandParser` which implements `Parser<LessonPlanCommand>`.
+Each `Person` has a `LessonPlan` object which contains a string value with the Lesson Plan.
+
+Given below is an example usage scenario and how the lesson plan feature behaves at each step.
+
+Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
+
+Step 2. The user executes `lessonplan 1 lp/Biology` to overwrite the lesson plan of the first person in the address book.
+
+The functionality and sequence is implemented as described in the Logic component.
+
+### Homework Feature
+
+#### Implementation
+
+The homework feature is facilitated by `HomeworkList` and `Homework`.
+Each `Person` has a `HomeworkList` which contains multiple `Homework` objects. Below is a partial class diagram of the relationship:
+
+![HomeworkClassDiagram](images/HomeworkClassDiagram.png)
+
+`HomeworkList` implements the following operations:
+
+* `HomeworkList#addHomework(Homework)` — Adds a homework task to the homework list.
+* `HomeworkList#editAtIndex(Index)` — Replaces the homework at the given index with a new homework.
+* `HomeworkList#clearList()` — Deletes all items in the homework list.
+
+These operations are exposed in command executions such as `HomeworkCommand#execute()` and `EditCommand#createEditedPerson()`.
+`HomeworkList#clearList()` is used for testing purposes only.
+
+Given below is an example usage scenario and how the adding homework mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
+
+Step 2. The user executes `homework 1 h/Maths worksheet` to add homework to the first person in the address book.
+The `homework` command calls `HomeworkList#addHomework(Homework)` and adds the task to the list.
+
+The following sequence shows how adding homework works:
+
+![HomeworkSequenceDiagram](images/HomeworkSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HomeworkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Step 3. The user decides to edit the homework to Science instead of Maths.
+They go into full view mode with the `view` command and execute `edit 1 h/Science worksheet`, which calls `HomeworkList#editAtIndex()` and replaces the old description with the new one.
+
+#### Design considerations:
+
+**Aspect: Format of homework command:**
+
+* **Alternative 1 (current choice):** Command prefix required.
+    * Pros: Easy to implement. Consistent with formats of other commands.
+    * Cons: May seem redundant to type as it can only add one item.
+
+* **Alternative 2:** Command prefix not required.
+    * Pros: Saves time for users during input.
+    * Cons: May be harder to implement. Inconsistent with formats of other commands.
+
 ### Grade Progress Feature
 
 #### Implementation
 
-The grade progress feature is facilitated by `GradeProgressCommand` class. It extends `Command` abstract class that has 
-abstract method, `execute()`.
+The grade progress feature is facilitated by `GradeProgressCommand`, `GradeProgressList` and `GradeProgressList` classes.
+`GradeProgressCommand` extends `Command` abstract class that has  abstract method, `execute()`.
+`GradeProgress` deals with the actual grade progress inputs while the
+`GradeProgressList` deals with the list of `GradeProgress`. 
+The `GradeProgressList` is the object that is displayed in the `AddressBook`.
+Additionally, the classes implement the following operations:
+- `GradeProgressList#addGradeProgress(GradeProgress)` - Adds grade progress to the grade progress list.
+- `GradeProgressList#clearList()` - Clears all stored grades of the Person
+- `GradeProgressList#editAtIndex(index)` - Edits the grade at the given index with the new given grade.
 
 Given below is an example usage scenario and how the grade progress feature behaves at each step.
 
@@ -199,9 +271,77 @@ Aspect: Data Structure of `GradeProgressList`
   - Pros: Insertion and deletion are easier in the linked list. There is no need to shift elements after the insertion or deletion of any element only the address present in the next pointer needs to be updated.
   - Cons: More memory is required in the linked list as compared to an array.
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagram shows how the grade progress command operation works:
 
 ![GradeProgressSequenceDiagram](images/GradeProgressSequenceDiagram.png)
+
+### Session feature
+
+#### Implementation
+
+The Session feature allows users of Pupilist to keep track of the session day and start timing of their students represented by the Person class. The Sessions of each student is implemented such that they are stored internally as a `Session List` specific to each Person.
+
+The `Session` class implements the `Session` Objects to be stored in the `SessionList` and implements the `Comparator<Session>` Java interface to allow for comparison between `Session instances`.
+It encapsulates the exact string input by the user that is to be used by the `Session` class to create the instance of `Session`. It also uses `LocalDateTime` class to encapsulate the `time` attribute 
+associated to each instance of the class. The `Session` class uses the format `EEE HH:mm` for the `LocalDateTimeFormatter` to be used to format the string input to instantiate the `time` attribute.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to `LocalDateTimeFormatter` requiring enough information to create a `LocalDateTime` instance, the implementation of `Session` is such that the `LocalDateTimeFormatter` will default to its `ChronoField.YEAR` to be 2000, its `ChronoField.MONTH` be 1 and `ChronoField.ALIGNED_WEEK_OF_MONTH` be 1, as a workaround around this issue.
+
+</div>
+
+Additionally, it implements the following operations:
+* `Session#isValidSession(String test)` - Checks whether the string passed by the user is in the valid format to create a `Session` Object.
+* `Session#isValidDay(String test)` - Checks whether the day component of the string passed by the user is a valid day of the `LocalDateTime` class. It is a helper method for `isValidSession(String test)`
+* `Session#toString()` - The specific String representation for the `Session` Object.
+* `Session#equals(Object other)` - Compares a `Session` object to an object, only returning true when the other Object is an instance of `Session` with the specified equality checks with the 'this' `Session` object.
+* `Session#compareTo(Session other)` - Compares two instance of the `Session` class for the sorting of `Session` objects in the `SessionList`.
+* `Session#hashCode()` - Provides the hashcode of the `Session` Object instance.
+
+Below is the Activity diagram showing how a `Session` instance is created upon the `Session` class constructor being called.
+
+![How a `Session` instance is called upon `Session` constructor being called](images/SessionActivity.png)
+
+These operations are exposed in the `Command` interface through the `SessionCommand` class, the `EditPersonDescriptor` class and `SessionList` class.
+
+Below is the partial class diagram aimed at showing the dependencies of the `Session` class with other classes of the Pupilist code base.
+
+![Dependencies of the `Session` class with other classes](images/SessionDependency.png)
+
+Given below is an example usage scenario and how the Session class behaves at each step.
+
+**Assumption: There are `Person` instances of the name Benson Meier and Alice Pauline `Person` list.**
+
+
+Step 1. The user executes a `view benson meier` command which puts the `Person` with the name Benson Meier in view mode. Assume that the Person has a `SessionList` of size >= 3.
+
+Step 2. The user executes an `edit s/1 Mon 08:30` command which edits the index 0 of the `SessionList` displayed on the GUI. This creates a new Session instance with the string input of the format `EEE HH:mm`.
+		The `Session` instances in the `SessionList` of the `Person` is immediately sorted using the `Session` class `compareTo` implementation.
+
+Step 3. The user executes a `list` command which puts the `Pupilist` application into list view, displaying multiple Persons to the user.
+
+Step 4. The user executes an `add 1 s/ Tue 09:00` command which creates a new instance of `Session` with the string input of the format `EEE HH:mm` and adds it to the `SessionList` of the `Person` of the first Person Card shown in the GUI.
+	The `Session` instances in the modified `SessionList` of the `Person` is immediately sorted using the `Session` class `compareTo` implementation.
+	
+Step 5. The user executes a `view Alice Pauline` command which puts the `Person` with the name Alice Pauline in view mode.
+
+Step 6. The user executes a `remove s/3` command which removes the instance of `Session` in index 2 of the `SessionList` of the `Person` displayed in the GUI in view mode. The Session 
+	instances in the `SessionList` of the `Person` in view are then immediately sorted using the `Session` class `compareTo` implementation.
+		
+#### Design considerations:
+
+**Aspect: How to encapsulate user input in Session**
+
+***Alternative 1 (current choice):** Use defaulting of `LocalDateTimeFormatter` as formatter for `LocalDateTime`.
+  * Pros: Easier to implement, uses only one imported Java class `LocalDateTime` for encapsulating user input.
+  * Cons: Have to default to a *Black Box* year, month and week which is a workaround. 
+
+***Alternative 2:** Use of extra `DayOfWeek` class alongside `LocalDateTime`.
+  * Pros: Less of a workaround. More accurate backstage representation of user input.
+  * Cons: Harder to implement. Have to concatenate `DayOfWeek` and `LocalDateTime` in `toString` method, which may affect performance with a large `SessionList`.
+
+### Schedule feature
+
+_{to be added}_
 
 ### \[Proposed\] Undo/redo feature
 

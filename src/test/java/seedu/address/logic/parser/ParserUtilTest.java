@@ -30,6 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_SESSION = "Tues 09:30";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_INDEXED_EDIT = "Science workbook";
+    private static final String INVALID_ATTENDANCE_DATE = "2022-02-29";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -241,5 +242,10 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseAttendance_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendance(INVALID_ATTENDANCE));
     }
 }

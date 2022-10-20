@@ -35,4 +35,14 @@ public class AttendanceTest {
         assertTrue(Attendance.isValidAttendance("2021-07-12")); // valid yyyy-MM-dd format.
         assertTrue(Attendance.isValidAttendance("2021-08-27")); // valid yyyy-MM-dd format.
     }
+
+    @Test
+    public void constructor_invalidDate_throwsIllegalArgumentException() {
+        String invalidDate = "2022-02-29";
+        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidDate));
+
+        String invalidMonth = "2022-13-12";
+        assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidMonth));
+    }
+
 }

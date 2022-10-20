@@ -120,7 +120,11 @@ public class ParserUtil {
         if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Attendance(trimmedAttendance);
+        try {
+            return new Attendance(trimmedAttendance);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(Attendance.MESSAGE_INVALID_DATE);
+        }
     }
 
     /**
