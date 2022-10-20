@@ -25,7 +25,7 @@ import tracko.model.order.ItemQuantityPair;
 import tracko.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditCommand object.
  */
 public class EditOrderCommandParser implements Parser<EditOrderCommand> {
 
