@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+*The project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by
+  [se-education.org](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -110,8 +111,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `MyInsuRecParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MyInsuRecParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `MyInsuRecParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MyInsuRecParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -190,18 +191,24 @@ This section describes some noteworthy details on how certain features are imple
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
-| Priority | As a(n) …​      | I want to …​            | So that I can…​                             |
-|----------|-----------------|-------------------------|---------------------------------------------|
-| `* * *`  | insurance agent | add client meetings     | keep track of when to meet clients          |
-| `* * *`  | insurance agent | add client details      | keep track of my client's details           |
-| `* * *`  | insurance agent | delete clients' details | remove clients whom I am no longer serving. |
-| `* * *`  | insurance agent | view all my clients     | see who I am providing services to          |
-| `* * *`  | insurance agent | delete client meetings  | remove meetings that are canceled           |
-| `* * *`  | insurance agent | view client meetings    | see when I have meetings                    |
+| Priority | As an …​        | I want to …​                                                      | So that I can…​                                                                   | Conditions                                                             |
+|----------|-----------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | insurance agent | add client details                                                | keep track of my client's details                                                 |                                                                        |
+| `* * *`  | insurance agent | view all my clients                                               | see who I am providing services to                                                |                                                                        |
+| `* * *`  | insurance agent | delete clients' details                                           | remove clients whom I am no longer serving                                        |                                                                        |
+| `* * * ` | insurance agent | I can update my clients details                                   | I have the latest contact details to keep in touch with my clients.               | All fields that uniquely identify a client should be uneditable        |
+| `* * *`  | insurance agent | add client meetings                                               | keep track of when to meet clients                                                | Meetings with timing conflict are not allowed                          |
+| `* * *`  | insurance agent | view all client meetings                                          | see when I have meetings                                                          |                                                                        |
+| `* * *`  | insurance agent | I can see an overview of today’s client meetings                  | I know what my schedule looks like for the day                                    |                                                                        |
+| `* * *`  | insurance agent | delete client meetings                                            | remove meetings that are canceled                                                 |                                                                        |
+| `* *`    | insurance agent | I can add and edit a list of the products a client bought         | I can better track which products might interest them                             | Product are created by the agent before being associated with a client |
+| `* *`    | insurance agent | I need to know which products my clients have bought              | I can gauge the popularity of each product                                        | Clients can be filtered according to the product they bought           |
+| `* *`    | insurance agent | I can see the birthdays of my clients for the upcoming week/month | I can send my clients a thank you/birthday gift and maintain a close relationship |                                                                        |
+| `* *`    | insurance agent | I can set the default views in my app to light mode and dark mode |                                                                                   |                                                                        |
 
-*{More to be added}*
+
 
 ### Use cases
 
@@ -218,7 +225,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User inputs incomplete client data.
+* 1a. User inputs incomplete or duplicate client data.
 
     * 1a1. System shows an error message.
 
@@ -240,15 +247,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
 
       Use case ends.
-
-#### Use case: UC3 - List all clients
-
-**MSS**
-
-1. User requests for a list of all clients.
-2. System shows a list of all clients.
-
-   Use case ends.
 
 #### Use case: UC4 - List all meetings
 
@@ -278,9 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
 
       Use case ends.
-
-
-*{More to be added}*
+    
 
 ### Non-Functional Requirements
 
@@ -295,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, MacOS, Unix
 * **Meeting**: An event that the user with the client at a specific date and time.
-
+* **Timing conflict**: Time periods that overlap. e.g. meetings should not have any timing conflict.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
