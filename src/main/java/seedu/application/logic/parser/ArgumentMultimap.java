@@ -32,6 +32,16 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns whether this map contains {@code prefix} as a key.
+     *
+     * @param prefix The {@code Prefix} to check for in this map
+     * @return whether this map contains {@code prefix} as a key.
+     */
+    public boolean hasPrefix(Prefix prefix) {
+        return argMultimap.containsKey(prefix);
+    }
+
+    /**
      * Returns the last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {

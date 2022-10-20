@@ -78,6 +78,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
 
         Model expectedModel = new ModelManager(new ApplicationBook(model.getApplicationBook()), new UserPrefs());
+        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

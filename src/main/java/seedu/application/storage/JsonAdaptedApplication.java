@@ -60,11 +60,14 @@ class JsonAdaptedApplication {
         this.email = email;
         this.position = position;
         this.date = date;
+<<<<<<< HEAD
         this.isArchived = isArchived;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
 <<<<<<< HEAD
+=======
+>>>>>>> master
 
         this.round = "";
         this.interviewDate = "";
