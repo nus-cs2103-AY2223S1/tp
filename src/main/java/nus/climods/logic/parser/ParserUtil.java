@@ -98,15 +98,13 @@ public class ParserUtil {
      *      semester.
      */
     public static Optional<SemestersEnum> parseSemesterType(String input) {
-        List<String> acceptedSemesterType = Arrays.asList("S1", "S2", "ST1", "ST2");
         String toCheck = input.trim().toUpperCase();
 
-        if (!acceptedSemesterType.contains(toCheck)) {
+        try {
+            SemestersEnum s1 = SemestersEnum.fromValue(toCheck);
+            return Optional.of(s1);
+        } catch (IllegalArgumentException e) {
             return Optional.empty();
         }
-
-        int index = acceptedSemesterType.indexOf(toCheck) + 1;
-
-        return Optional.of(SemestersEnum.fromValue(index));
     }
 }

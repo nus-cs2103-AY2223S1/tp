@@ -39,7 +39,7 @@ public class UserModule {
 
         listModule = optionalModule.get();
         //default put semester 1
-        this.semester = SemestersEnum.NUMBER_1;
+        this.semester = SemestersEnum.S1;
     }
 
     /**
