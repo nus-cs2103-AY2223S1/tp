@@ -452,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC04: Delete a person**
+**UC05: Delete a person**
 
 **MSS**
 
@@ -475,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC03: Delete debts**
+**UC06: Delete debts**
 
 **MSS**
 
@@ -498,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC05: Clear debts**
+**UC07: Clear debts**
 
 **MSS**
 
@@ -516,7 +516,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**UC06: List persons with debts**
+**UC08: List persons with debts**
 
 **MSS**
 
@@ -531,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**UC07: Find a person by name**
+**UC09: Find a person by name**
 
 **MSS**
 
@@ -547,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC08: Find a person by debt description**
+**UC10: Find a person by debt description**
 
 **MSS**
 
@@ -563,7 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC09: Get debt overview**
+**UC11: Get debt overview**
 
 **MSS**
 
