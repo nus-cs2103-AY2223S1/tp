@@ -5,11 +5,11 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command is valid])
-    :CodeConnect parses the command;
-    :CodeConnect replaces the specified
-    Task with a new Task with edited fields;
+if () then ([invalid arguments])
+    :Display error message;
 else ([else])
+    : CodeConnect edits the task;
 endif
+
 stop
 @enduml

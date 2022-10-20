@@ -158,14 +158,14 @@ This section describes some noteworthy details on how certain features are imple
 
 #### About 
 
-The proposed Edit task mechanism is facilitated by `TaskList`. It allows the user to edit an existing task in the task list.
+CodeConnect will allow the user to edit an existing task in the task list.
 
-The format of the command is:
-* edit {task_index} {field prefix + field description}
+Example of command use:
+- `edit 1 m/CS1101S`
 
 #### Proposed Implementation flow
 
-When the user enters the `edit` command:
+Outline of how components work together when the user enters a `edit` task command:
 1. The user input will be sent to `CodeConnectParser`
 2. `CodeConnectParser` will take note of the command word and argument of the user input and create a `EditTaskComanndParser` instance.
 3. The `EditTaskCommandParser` will call its `parse` method to get the index and create a `EditTaskDescriptor` instance that stores the edited field
@@ -175,9 +175,14 @@ When the user enters the `edit` command:
 
 ####Activity Diagram
 
+![Activity Diagram](images/EditTaskActivityDiagram.png)
+
 
 #### Design Considerations
 
+Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as 
+a task object does not have that many fields to begin with. However, we felt that implementing it will still
+make it a lot easier in the event that a user want to have multiple changes to a task.
 
 
 --------------------------------------------------------------------------------------------------------------------
