@@ -1,15 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -62,11 +61,13 @@ public class DeleteTaskCommand extends Command {
         ModuleCode moduleCodeOfTaskToDeleteTaskFrom =
                 deleteTaskFromModuleDescriptor.moduleCodeOfModuleWithTaskToDelete;
         Module moduleToDeleteTaskFrom = null;
+
         try {
             moduleToDeleteTaskFrom =
                     model.getModuleUsingModuleCode(moduleCodeOfTaskToDeleteTaskFrom, true);
         } catch (ModuleNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
+            throw new CommandException(String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                    moduleCodeOfTaskToDeleteTaskFrom.getModuleCodeAsUpperCaseString()));
         }
         assert moduleToDeleteTaskFrom != null;
         int indexOfTaskToDelete = deleteTaskFromModuleDescriptor
@@ -79,7 +80,6 @@ public class DeleteTaskCommand extends Command {
                 moduleToDeleteTaskFrom, deleteTaskFromModuleDescriptor);
 
         model.setModule(moduleToDeleteTaskFrom, moduleWithTaskDeleted);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
                 moduleWithTaskDeleted));
     }
