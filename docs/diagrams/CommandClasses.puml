@@ -4,6 +4,9 @@
 'skinparam arrowColor UI_COLOR_T4
 'skinparam classBackgroundColor UI_COLOR
 skinparam classAttributeIconSize 0
+hide circle
+hide empty method
+hide empty attribute
 
 abstract "{abstract}\nCommand" as Command {
     {abstract} +execute(model: Model): CommandResult
@@ -81,7 +84,7 @@ AddressBookParser ..|> HelpCommand: creates >
 AddressBookParser ..|> ExitCommand: creates >
 
 
-FindCommandParser ....|> FindCommand : creates >
+FindCommandParser .....|> FindCommand : creates >
 EditCommandParser ....|> EditCommand: creates >
 DeleteCommandParser ....|> DeleteCommand: creates >
 AddCommandParser ....|> AddCommand: creates >

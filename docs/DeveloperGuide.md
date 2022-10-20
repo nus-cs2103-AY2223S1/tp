@@ -115,6 +115,15 @@ How the parsing works:
 
 ### Command Classes
 
+The UML below expands the Command and Parser part in the Logic component above, showing the details of how commands are parsed and created
+
+Simple commands without arguments including `clear` `list` `exit` `help` are created directly by `AddressBookParser`<br/>
+To parse complex commands with arguments, including `add` `find` `edit` `delete`, `AddressBookParser` will create customized parser corresponding to the command. <br/>
+Then the customized parser parse the arguments and create the command
+
+The diagram also included some new classes involved, like the `find` commands depends on new predicates to allow all-info and fuzzy search (more detail in the `find` command description)
+
+<img src="images/CommandClasses.png" width="1200"/>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
