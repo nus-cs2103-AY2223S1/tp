@@ -121,8 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` or `Module` objects (which are contained in a `UniquePersonList` or a `UniqueModuleList` object respectively).
+* stores the currently 'selected' `Person` or `Module` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -148,11 +148,46 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Module Class
+
+#### Implementation
+
+#### Implemented by: Sun Yu Ting
+
+The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class facilitates the storing of various information related to a student's module that he/she is currently taking. 
+
+A `Module` Class contains 
+
+* A `ModuleCode`
+* `TutorialDetails`
+* `LectureDetails`
+* A `ZoomLink`
+* `AssignementDetails`
+
+All the commands associated with the `Module` Class would have the keyword "Module" in their class name. For example, the command to add a `Module` is referred to as a `AddModuleCommand`.
+
+All the `Module` objects are contained in a `UniqueModuleList` object which ensures that no duplicate `Module` objects can exist in the `UniqueModuleList` object. This is because in NUS, there are no two modules with the same module code. Thus, the notion of equality is defined by default to be two `Module` objects containing the same `ModuleCode` object. (Implemented by Ying Ming)
+
+All the classes contained within the `Module` Class all have a regex that checks for whether the user input for the specific field is valid. 
+
+For the five classes,
+
+* The `ModuleCode` should only contain alphanumeric characters and spaces, and it should not be blank.
+* `TutorialDetails` can take any values, and it should not be blank.
+* `LectureDetails` can take any values, and it should not be blank.
+* The `ZoomLink` should be a valid URL.
+* `AssignmentDetails` should only contain alphanumeric characters and spaces, and it should not be blank.
+
+In a future, among these five classes, only the `ModuleCode` will be a compulsory field, while the other fields will all be optional. The user would be able to add on more information to these existing `Modules` using the edit command.
+
+<img src="images/ModuleClassDiagram.png" width="450" />
 
 ### \[Proposed\] Undo/redo feature
 
