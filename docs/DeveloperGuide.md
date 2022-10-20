@@ -283,7 +283,21 @@ For the `DeleteCommand` class, the idea is rather straightforward where we make 
 
 ![NewDeleteSequenceDiagram](images/NewDeleteSequenceDiagram.png)
 
----
+### `ViewCommand` feature
+
+This feature allows users to view `Person` objects with specified attributes. This is achieved in the `ViewCommand` and `ViewCommandParser` classes.
+
+In `ViewCommandParser`, we make use of `ArugmenetMultimap` to parse the user input and interprets them to get the values of the suffixes input by the user.
+
+Note that there is a possibility that the values to said suffixes are `null`, but this is handled by wrapping them in an `Optional` by `ArgumentMultimap`.
+
+The lists of values of each suffix is used to create a predicate `PersonContainsAttributePredicate` object, which returns true whenever a person contains all attributes as specified by the list of values, and returns false otherwise.
+
+The `PersonContainsAttributePredicate` object is then passed into `ViewCommand`, where we call `updateFilteredPersonList` in the `ModelManager` class to get a filtered list of people satisfying the predicate.
+
+The sequence diagram below shows how the process works:
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
