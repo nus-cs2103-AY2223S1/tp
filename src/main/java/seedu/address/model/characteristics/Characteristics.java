@@ -45,12 +45,21 @@ public class Characteristics {
     }
 
     /**
-     * Returns true if a given characteristic is contained in the
+     * Returns true if a given string is contained in the
      * characteristics array.
      */
     public boolean containsCharacteristic(String characteristic) {
         return Arrays.stream(characteristicsArr)
-                .anyMatch(c -> c.contains(characteristic));
+                .anyMatch(c -> c.equalsIgnoreCase(characteristic));
+    }
+
+    /**
+     * Returns true if a given {@code Characteristic} contains a characteristic that
+     * is also found in this {@code Characteristic}
+     */
+    public boolean containsCharacteristics(Characteristics other) {
+        return Arrays.stream(other.characteristicsArr)
+                .anyMatch(c -> containsCharacteristic(c));
     }
 
     @Override
