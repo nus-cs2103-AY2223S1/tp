@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStudentCommand;
@@ -17,6 +19,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         AddCommand.Entity entity = ParserUtil.parseEntity(args);
         switch (entity) {
         case STUDENT:
