@@ -8,7 +8,6 @@ import seedu.address.model.pet.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -36,7 +35,7 @@ public class TypicalOrders {
     /**
      * Returns an {@code AddressBook} with all the typical orders.
      */
-    public static AddressBook getTypicalPetsAddressBook() {
+    public static AddressBook getTypicalOrdersAddressBook() {
         AddressBook ab = new AddressBook();
         for (Order order : getTypicalOrders()) {
             ab.addOrder(order);
