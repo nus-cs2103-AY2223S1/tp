@@ -127,7 +127,7 @@ public class Person {
         }
         Set<Module> modules = getModules();
         if (!modules.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Modules: ");
             modules.forEach(builder::append);
         }
         return builder.toString();

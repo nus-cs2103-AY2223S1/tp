@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -154,16 +154,98 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Finding Feature
+
+#### About
+
+CodeConnect has features that allow you to search for tasks and contacts. The finding features use the following commands:
+
+* `find n/` —  Finds tasks in the TaskList by their description(name)
+* `find m/` —  Finds tasks in the TaskList by their module
+* `findc n/` —  Finds contacts in the AddressBook by their name
+* `findc m/` —  Finds contacts in the AddressBook by their module
+
+Examples of command use:
+- `find n/ quiz` - Find all tasks containing the word "quiz"
+- `find m/ CS1101S` - Find all tasks belonging to CS1101S
+- `findc n/ Tan` - Find all contacts with names containing "Tan"
+- `findc m/ CS1101S` - Find all contacts taking CS1101S
+
+![Sample result of a find command](images/FindContactExample.png)
+
+#### Implementation Flow
+
+Outline of how components work together when the user enters a find command:
+1. User enters `findc m/ CS1101S` into the command prompt box
+2. User input `m/ CS1101S` is sent to the `FindContactCommandParser`
+3. `FindContactCommandParser` determines the user's input to be valid
+4. `FindContactCommandParser` creates a `ModuleTakenPredicate`
+   - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
+5. A `FindContactCommand` command created and executed by the `Model`
+6. The result of the find command is displayed to the user
+
+![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
+<div style="text-align: center">Activity diagram of findc command execution</div>
+
+![Interactions Inside the Logic Component for the `find n/ Lab 2` Command](images/FindTasksSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of find command execution</div>
+<p></p>
+<div style="text-align: center">Note: The implementation flow and the activity and sequence diagrams are similar for both the find and findc commands</div>
+
+#### Design Considerations
+
+One design consideration was if the user should be allowed to find contacts matching more than one module. For example, the input `findc m/ CS1101S MA1521` will return all contacts taking CS1101S, MA1521, or both. The reason why we decided to use additive search condition is as follows:
+
+Consider the following situation:
+- You have two assignments due tomorrow, from two different modules: MOD_X and MOD_Y.
+- Feeling stuck, you decide to use CodeConnect to search for help, to see if there's anybody you might have forgot.
+- You enter the command `findc m/ MOD_X MOD_Y`
+
+As a user in this situation, the last thing you would want is for the app to _exclude_ contacts taking both MOD_X and MOD_Y. Those would be the first people you want to ask for help!
+
+Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively.
+
+This was done so that it would be easy for the user to remember what command to use when finding either contacts or tasks.
+- The only difference when finding contacts is that there is a c after the find for contacts
+- Both use the same prefixes
+
+### Adding tasks
+
+#### About
+
+CodeConnect has features that allow you to add and track your tasks and annotate them with modules, so that you can search for matching people. The `add` command, implemented in [`AddTaskCommand`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/AddTaskCommand.java) and [`AddTaskCommandParser`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/AddTaskCommandParser.java), is how you add new tasks.
+
+The following describes the implementation planned for v1.3.
+
+Examples of command use:
+- `add Lab2 by/2022-02-02 23:59 m/CS2030S`
+- `add Add error handling by/next thursday m/CS2103T`
+
+#### Implementation flow
+
+The `add` command follows the [general command implementation flow](#logic-component). The `AddTaskCommandParser` uses `NaturalDateParser`, a thin wrapper over [`JChronic`](https://github.com/samtingleff/jchronic0), to parse the given deadline.
+
+![Interactions Inside the Logic Component for the `add Add error handling by/next thursday m/CS2103T` Command](images/AddTaskCommandSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of add command execution</div>
+
+#### Design Considerations
+
+* A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered. The risk of confusion between multiple date formats (including `DD/MM/YY` vs `MM/DD/YY`) is alleviated by the fact that the user's locale will in most cases give a correct parsing.
+* The existing architecture requires fields to support separately validating user input and interpreting user input. The deadline input is validated by attempting to parse it and checking for errors, as there is no cheaper method in this case.
+* The natural parser we are using does not support parsing time. We decided that this is an acceptable tradeoff as the benefit of being able to enter the date in the format most intuitive to the user outweighs the small and rarely used benefit of being able to track the time of the deadline.
+* The `add` command shares the `m/` prefix for modules with the other commands.
+  * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
+
 ### Marking and unmarking of tasks
 
 #### About
 
-CodeConnect has features that allow you to mark and unmark your tasks as complete and incomplete respectively. 
+CodeConnect has features that allow you to mark and unmark your tasks as complete and incomplete respectively.
 
 Examples of command use:
 * `mark 1`: marks the task at index 1 as complete
 * `unmark 1`: unmarks the task at index 1 as incomplete
-    
+
 #### Implementation flow
 Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
 
@@ -176,8 +258,8 @@ Both the `mark` and `unmark` commands follow [general command implementation flo
 #### Design considerations
 
 * One design consideration involoved multiple tasks to be marked/unmarked by adding a space before inputting the index of another task
-to be marked or unmarked. However, it could result in users forgetting to input spaces when inputting indexes of multiple 
-tasks, leading to unintended tasks being marked/unmarked.
+  to be marked or unmarked. However, it could result in users forgetting to input spaces when inputting indexes of multiple
+  tasks, leading to unintended tasks being marked/unmarked.
 
 ### \[Proposed\] Undo/redo feature
 

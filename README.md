@@ -23,7 +23,7 @@ CodeConnect allows you to quickly manage your tasks and contacts through a text 
 
 ### Finding tasks: `find`
 
-Finds tasks from your task list via keywords, or via module. 
+Finds tasks from your task list via keywords, or via module.
 
 Format:
 `find /t {task}`, `find /m {module}`
@@ -102,6 +102,15 @@ Format: `delc {contact_index}`
 
 Example:
 * `delc 2` deletes the contact at index 2 in the contact list.
+
+### Editing a contact : `editc`
+
+Edits the specified contact from the contact list.
+
+Format: `editc {contact_index} {field prefix + field description}`
+
+Examples:
+* `editc 2 n/ John Wong` edits the name of the contact at index 2 in the contact list to `John Wong`.
 
 ### Finding contacts: `findc`
 
