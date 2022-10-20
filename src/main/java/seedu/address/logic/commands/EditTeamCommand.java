@@ -24,8 +24,8 @@ public class EditTeamCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the team details identified by the index number of the required team.\n"
             + "Parameters: "
-            +  PREFIX_TEAM_INDEX + "TEAM INDEX "
-            +  PREFIX_TEAM_NAME + "TEAM NAME \n"
+            + PREFIX_TEAM_INDEX + "TEAM INDEX "
+            + PREFIX_TEAM_NAME + "TEAM NAME \n"
             + "Example: " + COMMAND_WORD + " t/1 n/TeamNew";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited Team: %1$s";

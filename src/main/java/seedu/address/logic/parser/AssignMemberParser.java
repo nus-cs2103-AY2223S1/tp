@@ -35,7 +35,8 @@ public class AssignMemberParser {
             memberIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MEMBER_INDEX).get());
             teamIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TEAM_INDEX).get());
         } catch (ParseException p) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignMemberCommand.MESSAGE_USAGE), p);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignMemberCommand.MESSAGE_USAGE), p);
         }
 
         return new AssignMemberCommand(memberIndex, teamIndex);

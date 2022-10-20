@@ -348,6 +348,12 @@ public class ModelManager implements Model {
         return teamsWithMember;
     }
 
+    /**
+     * Returns true if person is a member in the given team
+     * @param p index of person
+     * @param t index of team
+     * @return true if team has member
+     */
     public boolean teamHasMember(Index p, Index t) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(p);
