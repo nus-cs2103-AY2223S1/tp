@@ -51,6 +51,7 @@ ModelManager --> "1" TaskList
 ModelManager --> "1" UserPrefs
 
 AddressBook *--> "1" UniquePersonList
+' The *all and *filtered labels are defined on the opposite lines because PlantUML is unable to lay out the labels properly. Hopefully we can find a fix for this.
 UniquePersonList --> "          ~* filtered" Person
 Person *--> Name
 Person *--> Phone
@@ -68,7 +69,7 @@ ModelManager -->"~* all       " Person
 TaskList *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
 Task *--> TaskName
-Task --> "1" Module
+Task *--> "1" Module
 Task *--> Deadline
 Task *--> Status
 
