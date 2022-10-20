@@ -7,19 +7,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AssignTaskAllCommand;
+import seedu.address.logic.commands.DeleteTaskAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
 
-
-public class AssignTaskAllCommandParser {
+public class DeleteTaskAllCommandParser {
     /**
-     * Parses the given {@code Sting} of arguments in the context of a {@code AssignTaskAllCommand}
-     * and returns a {@code AssignTaskAllCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of a {@code DeleteTaskAllCommand}
+     * and returns a {@code DeleteTaskAllCommand} object for execution
      * @throws ParseException if the user input does not conform to the expected format.
      */
-    public AssignTaskAllCommand parse(String args) throws ParseException {
+    public DeleteTaskAllCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASK);
 
@@ -27,7 +27,7 @@ public class AssignTaskAllCommandParser {
         Assignment inputTask;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskAllCommand.MESSAGE_USAGE));
         }
 
         try {
@@ -39,7 +39,7 @@ public class AssignTaskAllCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
 
-        return new AssignTaskAllCommand(inputGroup, inputTask);
+        return new DeleteTaskAllCommand(inputGroup, inputTask);
     }
 
     /**
