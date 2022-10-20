@@ -1,4 +1,5 @@
 package seedu.address.logic.parser;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Patient;
@@ -48,7 +50,8 @@ public class AddressBookParserTest {
     public void parseCommand_editPatient() throws Exception {
         Patient patient = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
-        EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
+        EditPatientCommand command =
+                (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
         assertEquals(new EditPatientCommand(INDEX_FIRST_PATIENT, descriptor), command);
     }
@@ -79,6 +82,12 @@ public class AddressBookParserTest {
         SelectPatientCommand command = (SelectPatientCommand) parser.parseCommand(
                 SelectPatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
         assertEquals(new SelectPatientCommand(INDEX_FIRST_PATIENT), command);
+    }
+    @Test
+    public void parseCommand_selectAppointment() throws Exception {
+        SelectAppointmentCommand command = (SelectAppointmentCommand) parser.parseCommand(
+                SelectAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new SelectAppointmentCommand(INDEX_FIRST_PATIENT), command);
     }
 
     @Test
