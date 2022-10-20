@@ -299,7 +299,7 @@ The following commands are provided:
 
 `generate`  — Using the specified message template and client, generate a message for client. 
 
-Creation and deletion are exposed in the `Model` interface as `Model#addMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
+Creation and deletion are exposed in the `Model` interface as `Model#createMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
 
 The following class diagram shows how messages are implemented:
 
@@ -345,8 +345,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
 
 #### Design considerations:
 
-<<<<<<< HEAD
-- **Aspect: Allow edting**
+- **Aspect: Allow editing**
   
   - Alternative 1 (current choice): Don't allow editing
     
