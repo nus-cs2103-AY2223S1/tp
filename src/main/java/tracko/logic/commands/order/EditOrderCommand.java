@@ -3,8 +3,6 @@ package tracko.logic.commands.order;
 import static java.util.Objects.requireNonNull;
 import static tracko.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +17,7 @@ import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.item.Item;
 import tracko.model.item.Quantity;
+import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.ItemQuantityPair;
@@ -51,6 +50,10 @@ public class EditOrderCommand extends Command {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NONEXISTENT_ITEM = "The item that is being added does "
+            + "not exist in the inventory list.";
+    public static final String MESSAGE_ONE_ORDERED_ITEM = "The item that is being added does "
+            + "not exist in the inventory list.";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -92,28 +95,25 @@ public class EditOrderCommand extends Command {
             throws CommandException {
         assert orderToEdit != null;
 
-        if (!editOrderDescriptor.getItemToEdit().equals(Optional.empty())) {
-            editOrderDescriptor.setModel(model);
-            editOrderDescriptor.setItemToEdit();
-        }
-
         Name updatedName = editOrderDescriptor.getName().orElse(orderToEdit.getName());
         Phone updatedPhone = editOrderDescriptor.getPhone().orElse(orderToEdit.getPhone());
         Email updatedEmail = editOrderDescriptor.getEmail().orElse(orderToEdit.getEmail());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
 
         // Run checks on whether the item is in the inventory list
-        Optional<ItemQuantityPair> itemToEdit = editOrderDescriptor.getItemToEdit();
-        if (!itemToEdit.equals(Optional.empty())) {
-            List<Item> items = model.getFilteredItemList();
-            Item itemToCompare = itemToEdit.get().getItem();
-            boolean doesItemExistInList = items.contains(itemToCompare);
+        Optional<Pair<String, Integer>> unlinkedItem = editOrderDescriptor.getUnlinkedItemToEdit();
+        if (!unlinkedItem.equals(Optional.empty())) {
+            Pair<String,Integer> itemToCompare = unlinkedItem.get();
+            Item item;
 
-            if (!doesItemExistInList) {
-                throw new CommandException("The item that is being added does not exist in the inventory list.");
-            } else {
-                editOrderDescriptor.updateItemList(orderToEdit, itemToEdit.get());
+            try {
+                item = model.getItem(itemToCompare.getKey());
+            } catch (ItemNotFoundException e) {
+                throw new CommandException(MESSAGE_NONEXISTENT_ITEM);
             }
+
+            ItemQuantityPair itemToEdit = new ItemQuantityPair(item, new Quantity(itemToCompare.getValue()));
+            editOrderDescriptor.updateItemList(orderToEdit, itemToEdit);
         }
 
         List<ItemQuantityPair> updatedItemList = editOrderDescriptor.getItemList().orElse(orderToEdit.getItemList());
@@ -153,8 +153,6 @@ public class EditOrderCommand extends Command {
         private Address address;
         private List<ItemQuantityPair> itemList;
         private Pair<String, Integer> itemUnlinkedToInventory;
-        private ItemQuantityPair itemToEdit;
-        private Model model;
 
         public EditOrderDescriptor() {}
 
@@ -177,7 +175,7 @@ public class EditOrderCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, itemToEdit);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, itemUnlinkedToInventory);
         }
 
         public void setName(Name name) {
@@ -216,19 +214,6 @@ public class EditOrderCommand extends Command {
             return Optional.ofNullable(itemList);
         }
 
-        public Optional<ItemQuantityPair> getItemToEdit() {
-            return Optional.ofNullable(itemToEdit);
-        }
-
-        public void setItemToEdit() {
-            assert itemUnlinkedToInventory != null;
-
-            Item itemToCompare = model.getItem(itemUnlinkedToInventory.getKey());
-            ItemQuantityPair itemToEdit = new ItemQuantityPair(itemToCompare,
-                    new Quantity(itemUnlinkedToInventory.getValue()));
-            this.itemToEdit = itemToEdit;
-        }
-
         public void setItemList(List<ItemQuantityPair> itemList) {
             this.itemList = itemList;
         }
@@ -257,8 +242,7 @@ public class EditOrderCommand extends Command {
 
                 if (isItemInList && isUpdatedQuantityZero) {
                     if (doesOrderedListContainOneItem) {
-                        throw new CommandException("There is only one item ordered. Perhaps "
-                                + "you want to delete the order instead?");
+                        throw new CommandException(MESSAGE_ONE_ORDERED_ITEM);
                     }
                     orderedItems.remove(i);
                     hasItemBeenUpdated = true;
@@ -283,10 +267,6 @@ public class EditOrderCommand extends Command {
 
         public Optional<Pair<String, Integer>> getUnlinkedItemToEdit() {
             return Optional.ofNullable(itemUnlinkedToInventory);
-        }
-
-        public void setModel(Model model) {
-            this.model = model;
         }
 
         @Override

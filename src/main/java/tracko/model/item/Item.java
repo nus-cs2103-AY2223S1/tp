@@ -79,7 +79,7 @@ public class Item {
      * Returns true if given item name is the same name.
      */
     public boolean nameMatches(String itemName) {
-        return itemName.equals(this.itemName.toString());
+        return itemName.equalsIgnoreCase(this.itemName.toString());
     }
 
     /**
@@ -92,7 +92,7 @@ public class Item {
         }
 
         return otherItem != null
-                && otherItem.getItemName().toString().equalsIgnoreCase(getItemName().toString());
+                && otherItem.getItemName().equals(getItemName());
     }
 
     /**
