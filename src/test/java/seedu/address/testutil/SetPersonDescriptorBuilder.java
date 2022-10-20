@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,8 +10,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Timezone;
-import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.contact.Email;
+import seedu.address.model.person.contact.Phone;
+import seedu.address.model.person.contact.Slack;
+import seedu.address.model.person.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -83,12 +85,38 @@ public class SetPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the timezone of the SetPersonDescriptor we are building.
+     * Sets the telegram Contact of the SetPersonDescriptor we are building.
      */
-    public SetPersonDescriptorBuilder withContact(Map<ContactType, Contact> contacts) {
-        for (ContactType key : contacts.keySet()) {
-            this.descriptor.setContacts(key, contacts.get(key));
-        }
+    public SetPersonDescriptorBuilder withTelegram(String telegram) {
+        Telegram newTelegram = new Telegram(telegram);
+        this.descriptor.setContacts(ContactType.TELEGRAM, newTelegram);
+        return this;
+    }
+
+    /**
+     * Sets the email Contact of the SetPersonDescriptor we are building.
+     */
+    public SetPersonDescriptorBuilder withEmail(String email) {
+        Email newEmail = new Email(email);
+        this.descriptor.setContacts(ContactType.EMAIL, newEmail);
+        return this;
+    }
+
+    /**
+     * Sets the phone Contact of the SetPersonDescriptor we are building.
+     */
+    public SetPersonDescriptorBuilder withPhone(String phone) {
+        Phone newPhone = new Phone(phone);
+        this.descriptor.setContacts(ContactType.PHONE, newPhone);
+        return this;
+    }
+
+    /**
+     * Sets the slack Contact of the SetPersonDescriptor we are building.
+     */
+    public SetPersonDescriptorBuilder withSlack(String slack) {
+        Slack newSlack = new Slack(slack);
+        this.descriptor.setContacts(ContactType.SLACK, newSlack);
         return this;
     }
 
