@@ -77,6 +77,19 @@ public class SupplyItem {
         return tags;
     }
 
+    /**
+     * Returns true if both items have the same name.
+     */
+    public boolean isSameItem(SupplyItem otherItem) {
+        if (otherItem == this) {
+            return true;
+        }
+
+        return otherItem != null
+                && (otherItem.getName().equals(getName())
+                || otherItem.getSupplier().equals(getSupplier()));
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
