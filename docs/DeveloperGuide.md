@@ -164,6 +164,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -220,13 +221,25 @@ Additionally, it will also contain these fields:
   * Cons:
     * NUS has many students, and it is inevitable that some of them will share the exact same name
 
+### The edit student feature
+
+#### Implementation
+
+The edit student mechanism is facilitated by `EditStuCommand`, `EditStuCommandParser` and `EditStudentDescriptor` 
+classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a 
+`EditStudentDescriptor` and returns a `EditStuCommand`. When the `EditStuCommand` is executed, it modifies the student
+at the index provided by the user.
+
+The following sequence diagram shows how the `editstu` command works:
 
 
-         
+
+
 
 
 
 ### Find module details by module code feature
+
 #### Implementation
 
 The find module details mechanism is facilitated by `ModuleViewCommand` and `ModuleViewCommandParser`. It allows users to search for modules based on module code.
@@ -238,7 +251,7 @@ The following sequence diagram shows how the find module by module code operatio
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a findmod command:
+The following activity diagram summarizes what happens when a user executes a mview command:
 
 ![ViewModuleActivityDiagram](./images/ViewModuleActivityDiagram.png)
 
