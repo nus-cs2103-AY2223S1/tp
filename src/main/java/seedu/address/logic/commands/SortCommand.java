@@ -24,8 +24,15 @@ public class SortCommand extends Command {
 
     private final Comparator<Applicant> comparator;
 
-    public SortCommand(Comparator<Applicant> comparator) {
-        this.comparator = comparator;
+    /**
+     * Creates a SortCommand with the given comparator based on user input.
+     */
+    public SortCommand(Comparator<Applicant> comparator, boolean isReversed) {
+        if (isReversed) {
+            this.comparator = comparator.reversed();
+        } else {
+            this.comparator = comparator;
+        }
     }
 
     @Override
