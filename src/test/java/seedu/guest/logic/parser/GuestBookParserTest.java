@@ -21,6 +21,7 @@ import seedu.guest.logic.commands.ExitCommand;
 import seedu.guest.logic.commands.FindCommand;
 import seedu.guest.logic.commands.HelpCommand;
 import seedu.guest.logic.commands.ListCommand;
+import seedu.guest.logic.commands.MarkRoomsUncleanCommand;
 import seedu.guest.logic.parser.exceptions.ParseException;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.NameContainsKeywordsPredicate;
@@ -88,6 +89,13 @@ public class GuestBookParserTest {
     }
 
     @Test
+    public void parseCommand_resetRoomClean() throws Exception {
+        assertTrue(parser.parseCommand(MarkRoomsUncleanCommand.COMMAND_WORD) instanceof MarkRoomsUncleanCommand);
+        assertTrue(parser.parseCommand(MarkRoomsUncleanCommand.COMMAND_WORD + " 3")
+                instanceof MarkRoomsUncleanCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
@@ -95,6 +103,7 @@ public class GuestBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }
