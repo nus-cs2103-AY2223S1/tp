@@ -30,7 +30,7 @@ public class ModelManager implements Model {
 
     private ObservableList<TimeSlot> timeSlots;
     private boolean isDayView;
-    private boolean fullView;
+    private boolean isFullView;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -45,7 +45,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         timeSlots = FXCollections.observableArrayList(new ArrayList<>());
         timeSlots.clear();
-        fullView = false;
+        isFullView = false;
         isDayView = false;
     }
 
@@ -126,20 +126,20 @@ public class ModelManager implements Model {
 
     @Override
     public void setFullView() {
-        fullView = true;
+        isFullView = true;
         isDayView = false;
     }
 
     @Override
     public void setListView() {
-        fullView = false;
+        isFullView = false;
         isDayView = false;
         addressBook.setAllToListView();
     }
 
     @Override
     public boolean isFullView() {
-        return fullView;
+        return isFullView;
     }
 
     @Override
@@ -166,7 +166,7 @@ public class ModelManager implements Model {
     @Override
     public void setDayView() {
         isDayView = true;
-        fullView = false;
+        isFullView = false;
     }
 
     @Override
