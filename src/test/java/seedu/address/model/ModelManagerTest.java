@@ -129,4 +129,11 @@ public class ModelManagerTest {
         differentUserPrefs.setJeeqTrackerFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(jeeqTracker, differentUserPrefs)));
     }
+
+    @Test
+    public void calculateTotalTransactions() {
+        modelManager.addClient(ALICE);
+        modelManager.addClient(BENSON);
+        assertEquals(modelManager.calculateTotalTransaction(modelManager.getFilteredClientList()), -423);
+    }
 }
