@@ -124,7 +124,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String mcResult} into a {@code boolean}.
      *
-     * @return True if the mastery check result is a pass
+     * @return True if the mastery check result is a pass.
      * @throws ParseException if the given {@code mcResult} is invalid.
      */
     public static boolean parseMcResult(String mcResult) throws ParseException {
@@ -139,6 +139,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String marks} into the corresponding double that indicates the mark.
+     *
+     * @return A double representing the mark.
+     * @throws ParseException If the given {@code String mark} is invalid.
+     */
     public static double parseMarks(String marks) throws ParseException {
         requireNonNull(marks);
         String trimmedMarks = marks.trim();

@@ -13,15 +13,15 @@ public enum Assessment {
     FINAL_ASSESSMENT("final"),
     STUDIO_ATTENDANCE("studio");
 
-    private String name;
+    private static int totalMarksMc1 = 1;
+    private static int totalMarksMc2 = 1;
+    private static int totalMarksRa1 = 18;
+    private static int totalMarksRa2 = 18;
+    private static int totalMarksMidterm = 65;
+    private static int totalMarksPracticalAssessment = 40;
+    private static int totalMarksFinalAssessment = 100;
 
-    public static int mc1_total_marks = 1;
-    public static int mc2_total_marks = 1;
-    public static int ra1_total_marks = 18;
-    public static int ra2_total_marks = 18;
-    public static int midterm_total_marks = 65;
-    public static int practical_assessment_total_marks = 40;
-    public static int final_assessment_total_marks = 100;
+    private String name;
 
     Assessment(String name) {
         this.name = name;
@@ -30,19 +30,19 @@ public enum Assessment {
     public int getTotalMarks() {
         switch(name) {
         case "mc1":
-            return mc1_total_marks;
+            return totalMarksMc1;
         case "mc2":
-            return mc2_total_marks;
+            return totalMarksMc2;
         case "ra1":
-            return ra1_total_marks;
+            return totalMarksRa1;
         case "ra2":
-            return ra2_total_marks;
+            return totalMarksRa2;
         case "midterm":
-            return midterm_total_marks;
+            return totalMarksMidterm;
         case "pa":
-            return practical_assessment_total_marks;
+            return totalMarksPracticalAssessment;
         case "final":
-            return final_assessment_total_marks;
+            return totalMarksFinalAssessment;
         default:
             return 0;
         }

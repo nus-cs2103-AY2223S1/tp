@@ -1,19 +1,25 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_FINAL_ASST;
+import static jarvis.logic.parser.CliSyntax.PREFIX_MIDTERM;
+import static jarvis.logic.parser.CliSyntax.PREFIX_PRACTICAL_ASST;
+import static jarvis.logic.parser.CliSyntax.PREFIX_RA1;
+import static jarvis.logic.parser.CliSyntax.PREFIX_RA2;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.Assessment;
 import jarvis.model.GradeProfile;
 import jarvis.model.Model;
 import jarvis.model.Student;
 
-import java.util.List;
-
-import static jarvis.logic.parser.CliSyntax.*;
-import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Records the grade for 1 or more Assessments for a particular student.
+ */
 public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
@@ -32,6 +38,11 @@ public class GradeCommand extends Command {
     private final Index index;
     private final GradeProfile gradeProfile;
 
+    /**
+     * Creates a GradeCommand object to record the grade for the student specified at {@code Index}
+     * @param index The index of the student
+     * @param gradeProfile Grade profile containing the updated grades.
+     */
     public GradeCommand(Index index, GradeProfile gradeProfile) {
         requireNonNull(index);
         requireNonNull(gradeProfile);

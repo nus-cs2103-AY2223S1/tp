@@ -1,7 +1,11 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jarvis.logic.parser.CliSyntax.*;
+import static jarvis.logic.parser.CliSyntax.PREFIX_FINAL_ASST;
+import static jarvis.logic.parser.CliSyntax.PREFIX_MIDTERM;
+import static jarvis.logic.parser.CliSyntax.PREFIX_PRACTICAL_ASST;
+import static jarvis.logic.parser.CliSyntax.PREFIX_RA1;
+import static jarvis.logic.parser.CliSyntax.PREFIX_RA2;
 import static java.util.Objects.requireNonNull;
 
 import java.util.stream.Stream;
