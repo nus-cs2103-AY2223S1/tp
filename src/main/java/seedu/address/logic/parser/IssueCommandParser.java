@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
 import java.util.stream.Stream;
 
@@ -18,6 +20,11 @@ import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
+import seedu.address.logic.commands.issue.find.FindIssueByDescriptionCommand;
+import seedu.address.logic.commands.issue.find.FindIssueByPriorityCommand;
+import seedu.address.logic.commands.issue.find.FindIssueByProjectCommand;
+import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
+import seedu.address.logic.commands.issue.find.FindIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
@@ -25,6 +32,10 @@ import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
+import seedu.address.model.issue.predicates.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.issue.predicates.PriorityMatchesKeywordsPredicate;
+import seedu.address.model.issue.predicates.ProjectContainsKeywordsPredicate;
+import seedu.address.model.issue.predicates.StatusMatchesKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -52,6 +63,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseListIssueCommand(arguments);
         case SetIssueDefaultViewCommand.COMMAND_FLAG:
             return parseSetIssueDefaultViewCommand(arguments);
+        case FindIssueCommand.COMMAND_FLAG:
+            return parseFindIssueCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -137,6 +150,51 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         return new EditIssueCommand(newDescription, newDeadline, newPriority, newIssueId);
+    }
+
+    private FindIssueCommand parseFindIssueCommand(String arguments) throws ParseException {
+        try {
+
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(arguments, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
+                            PREFIX_STATUS, PREFIX_PROJECT_NAME);
+
+            String trimmedArgs = arguments.trim();
+
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE));
+            }
+
+
+            if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+                return new FindIssueByDescriptionCommand(new DescriptionContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_DESCRIPTION)));
+            }
+
+            if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
+                return new FindIssueByStatusCommand(new StatusMatchesKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_STATUS)));
+            }
+
+            if (arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME)) {
+                return new FindIssueByProjectCommand(new ProjectContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_PROJECT_NAME)));
+            }
+
+            //implies arePrefixesPresent(argMultimap, PREFIX_STATUS) is true
+            return new FindIssueByPriorityCommand(new PriorityMatchesKeywordsPredicate(
+                    argMultimap.getAllValues(PREFIX_PRIORITY)));
+
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE), pe);
+        }
+
+    }
+
+    private FindIssueCommand parseFindIssueCommand(String flag, String arguments) throws ParseException {
+        return parseFindIssueCommand(arguments);
     }
 
     private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {
