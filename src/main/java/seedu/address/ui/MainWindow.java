@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         customerListPanel = new CustomerListPanel(logic.getSortedFilteredCustomerList(), logic::selectCustomer,
-                logic.getSelectedCustomer());
+                logic.getSelectedCustomer(), this::addChildWindow, this::executeCommand);
         customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

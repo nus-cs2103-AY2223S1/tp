@@ -25,10 +25,6 @@ public class CommissionListPanelControlBar extends UiPart<Region> {
         addCommissionWindow = new AddCommissionWindow(mainStage, commandExecutor, new Stage());
     }
 
-    public AddCommissionWindow getAddCommissionWindow() {
-        return addCommissionWindow;
-    }
-
     /**
      * Opens the add commission window or focuses on it if it's already opened.
      */
