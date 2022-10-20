@@ -11,9 +11,9 @@ public class Phone {
 
     public static final int LENGTH_LIMIT = 20;
 
-    public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and " +
-            "replacing multiple spaces with a single space, " +
-            "Phone numbers can only be of length max " + LENGTH_LIMIT;
+    public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and "
+            + "replacing multiple spaces with a single space, "
+            + "Phone numbers can only be of length max " + LENGTH_LIMIT;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";

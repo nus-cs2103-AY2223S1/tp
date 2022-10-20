@@ -292,13 +292,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseGraduationDate_validValueWithoutLeadingTrailingWhitespace_returnsGraduationDate() throws Exception {
+    public void parseGraduationDate_validValueWithoutLeadingTrailingWhitespace_returnsGraduationDate()
+            throws Exception {
         GraduationDate expectedGraduationDate = new GraduationDate(VALID_GRADUATION_DATE);
         assertEquals(expectedGraduationDate, ParserUtil.parseGraduationDate(VALID_GRADUATION_DATE));
     }
 
     @Test
-    public void parseGraduationDate_validValueWithLeadingTrailingWhitespace_returnsCleanedGraduationDate() throws Exception {
+    public void parseGraduationDate_validValueWithLeadingTrailingWhitespace_returnsCleanedGraduationDate()
+            throws Exception {
         String graduationDateWithWhitespace = WHITESPACE + VALID_GRADUATION_DATE + WHITESPACE;
         GraduationDate expectedGraduationDate = new GraduationDate(VALID_GRADUATION_DATE);
         assertEquals(expectedGraduationDate, ParserUtil.parseGraduationDate(graduationDateWithWhitespace));
