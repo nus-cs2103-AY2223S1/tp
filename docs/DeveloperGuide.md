@@ -248,12 +248,11 @@ Below is a sequence diagram and explanation of how `delete` is executed.
 
 Step 1. The user enters the command `delete 1`
 
-Step 2. User input is parsed by `DeleteCommandParser`, then the method LogicManager#execute is called to create the DeleteCommand object.
+Step 2. User input is parsed by `DeleteCommandParser` which creates the`DeleteCommand` object, then the method LogicManager#execute is called to create the DeleteCommand object.
 
-Step 3. The `execute` method of DeleteCommand is then called on the object.
+Step 3. The `execute` method of DeleteCommand is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This finds the `person` from the list from model#getFilteredPersonList by its employee ID which is `1` in this case, and 
-then using model#deletePerson(), the `person` object is deleted from the `database`.
+Step 4. This finds the `person` from the list from model#getFilteredPersonList by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using model#deletePerson(), the `person` object is deleted from the `database`.
 
 Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`
 
