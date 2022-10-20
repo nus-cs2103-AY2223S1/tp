@@ -129,8 +129,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setStudentListInfoConcise(boolean b) {
-        this.filteredStudents.setConciseInfo(b);
+    public void toggleStudentListInfoConcise() {
+        this.filteredStudents.toggleConciseInfo();
     }
 
     @Override

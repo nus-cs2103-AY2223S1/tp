@@ -151,7 +151,7 @@ public class AddStudCommandTest {
         }
 
         @Override
-        public void setStudentListInfoConcise(boolean b) {
+        public void toggleStudentListInfoConcise() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -1,6 +1,7 @@
 package seedu.classify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.classify.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import seedu.classify.model.Model;
 
@@ -17,8 +18,7 @@ public class ViewAllCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setStudentListInfoConcise(true);
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

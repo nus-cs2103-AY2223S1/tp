@@ -152,6 +152,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Toggle between showing and hiding students' parent details
+     */
+    public void handleToggleView() {
+        logger.info("Toggling view");
+        studentListPanel.updateListView();
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -184,6 +192,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isToggleView()) {
+                assert !commandResult.isShowHelp() && !commandResult.isExit();
+                handleToggleView();
             }
 
             return commandResult;

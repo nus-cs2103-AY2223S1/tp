@@ -21,14 +21,14 @@ class FilteredStudentsTest {
     private FilteredStudents filteredStudents = new FilteredStudents(new FilteredList<>(emptyList));
 
     @Test
-    public void hasConciseInfo_initial_returnsTrue() {
-        assertTrue(filteredStudents.hasConciseInfo());
+    public void hasConciseInfo_initial_returnsFalse() {
+        assertFalse(filteredStudents.hasConciseInfo());
     }
 
     @Test
-    public void setConciseInfo_setFalse() {
-        filteredStudents.setConciseInfo(false);
-        assertFalse(filteredStudents.hasConciseInfo());
+    public void toggleConciseInfo_toggleTrue() {
+        filteredStudents.toggleConciseInfo();
+        assertTrue(filteredStudents.hasConciseInfo());
     }
 
     @Test

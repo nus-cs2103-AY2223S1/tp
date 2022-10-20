@@ -88,9 +88,9 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
-     * Sets the filtered student list to only concise information - the student's name and ID, or all information
+     * Toggles between showing all students' information and hiding students' parent details
      */
-    void setStudentListInfoConcise(boolean b);
+    void toggleStudentListInfoConcise();
 
     /**
      * Returns true if the filtered student list should only show the student's name and ID

@@ -100,14 +100,14 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void isStudentListInfoConcise_initial_returnsTrue() {
-        assertTrue(modelManager.isStudentListInfoConcise());
+    public void isStudentListInfoConcise_initial_returnsFalse() {
+        assertFalse(modelManager.isStudentListInfoConcise());
     }
 
     @Test
-    public void setStudentListInfoConcise_setFalse() {
-        modelManager.setStudentListInfoConcise(false);
-        assertFalse(modelManager.isStudentListInfoConcise());
+    public void toggleStudentListInfoConcise_toggleTrue() {
+        modelManager.toggleStudentListInfoConcise();
+        assertTrue(modelManager.isStudentListInfoConcise());
     }
 
     @Test

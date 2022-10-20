@@ -19,7 +19,7 @@ public class FilteredStudents {
      */
     public FilteredStudents(FilteredList<Student> filteredStudents) {
         this.filteredStudents = filteredStudents;
-        this.hasConciseInfo = true;
+        this.hasConciseInfo = false;
     }
 
     public ObservableList<Student> getFilteredStudentList() {
@@ -38,10 +38,11 @@ public class FilteredStudents {
     }
 
     /**
-     * Sets the filtered student list to only concise information - the student's name and ID, or all information.
+     * Toggles the filtered student list between showing all information and concise information.
+     * Concise information hides the parent's details
      */
-    public void setConciseInfo(boolean b) {
-        this.hasConciseInfo = b;
+    public void toggleConciseInfo() {
+        this.hasConciseInfo = !hasConciseInfo;
     }
 
     @Override
