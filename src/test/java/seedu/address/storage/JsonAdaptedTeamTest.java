@@ -18,7 +18,7 @@ class JsonAdaptedTeamTest {
 
     @Test
     void toModelType_invalidTeam_throwsException() throws IllegalValueException {
-        JsonAdaptedTeam team = new JsonAdaptedTeam(null, null, null);
+        JsonAdaptedTeam team = new JsonAdaptedTeam(null, null, null, null);
         assertThrows(IllegalValueException.class, () -> team.toModelType());
     }
 }

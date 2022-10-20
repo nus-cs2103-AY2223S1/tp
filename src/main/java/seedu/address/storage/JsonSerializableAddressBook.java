@@ -51,7 +51,7 @@ class JsonSerializableAddressBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+        AddressBook addressBook = AddressBook.createNewAddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
@@ -63,21 +63,17 @@ class JsonSerializableAddressBook {
         int counter = 0;
         for (JsonAdaptedTeam jsonAdaptedTeam : teams) {
             Team team = jsonAdaptedTeam.toModelType();
+            if (counter == 0) {
+                Team defaultTeam = Team.createDefaultTeam();
+                addressBook.deleteTeam(defaultTeam);
+                addressBook.setTeam(team);
+            }
             if (addressBook.getTeamList().contains(team)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TEAMS);
             }
-            addressBook.addTeam(team);
 
-            if (counter == 0) {
-                addressBook.setTeam(team);
-            }
+            addressBook.addTeam(team);
             counter++;
-        }
-
-        if (counter == 0) {
-            Team team = new Team("default", new ArrayList<>(), new ArrayList<>());
-            addressBook.addTeam(team);
-            addressBook.setTeam(team);
         }
         return addressBook;
     }
