@@ -238,6 +238,33 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Compactable and expandable PersonCard
+
+This feature is accomplished by recording the current state of the `PersonCard` with a boolean variable called `isExpanded`. `isExpanded` is true if `PersonCard` is expanded and false if `PersonCard` is compacted. `isExpanded` is set to `false` by default so that the application starts with all `PersonCard` compacted.
+
+There is also a listener that listens to mouse clicks on each `PersonCard`. Clicking on a `PersonCard` calls one of two methods depending on its `isExpanded` value. If `isExpanded` is `true`, it calls `hideLabels()`. If `isExpanded` is `false`, it calls `showLabels()`.
+
+`showLabels()` calls `setManaged(true)` and `setVisible(true)` on all elements that should be shown and managed for when expanding a `PersonCard`. `hideLabels()` likewise calls `setManage(false)` and `setVisible(false)` on all elements that should be hidden and not managed for when compacting a `PersonCard`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** It is required to `setManaged(true)` or `setManaged(false)` when showing or hiding respectively, if not `PersonCard` will not account for space for the shown elements or will account for space for hidden elements.
+
+</div>
+
+The sequence diagram below shows how the process works:
+
+![PersonCardCompactExpandSequenceDiagram](images/CompactExpandSequenceDiagram.png)
+
+Due to the way the `updateItem` method works in the `ListCell` class. There were some undesirable effects in the UI. Whenever the user clicks on a `PersonCard`, two things would happen, `handleeMouseClicked` and `updateItem` would be called. `updateItem` would create a new `PersonCard` to replace the old `PersonCard`. This is good if there was an update to the `PersonCard` but in this case there was no update. This results in the `handeMouseClicked` call to be useless since it was called in the `PersonCard` that was replaced. The newly created `PersonCard` would default to its original state of being compacted and effectively nothing would happen from the click the user made.
+
+The sequence diagram below demonstrates the problem:
+
+![CompactExpandProblemSequenceDiagram](images/CompactExpandProblemSequenceDiagram.png)
+
+To stop this from happening, `updateItem` has to create a new `PersonCard` only if the `PersonCard` to be created is not the same as the current `PersonCard`. Now even if `updateItem` is called, no new `PersonCard` is created unless it is a different `PersonCard`. This results in the expected behavior of resetting the state of a `PersonCard` to its default state if it changes and keeping its state, since it is not replaced, if it is the same `PersonCard`.
+
+The activity diagram below explains what happens when the user clicks on a `PersonCard`:
+
+![CompactExpandActivityDiagram](images/CompactExpandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
