@@ -167,9 +167,9 @@ Precondition: Task name is valid (it cannot be empty).
 
 If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
-The following sequence diagram summarises the action taken when `addTaskCommand` is executed:
+The following activity diagram summarises the action taken when `addTaskCommand` is executed:
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
-## ENTER Sequence DIAGRAM
 
 #### Design considerations:
 
@@ -181,9 +181,6 @@ The following sequence diagram summarises the action taken when `addTaskCommand`
   * Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs to multiple teams since there multiple task lists.
 
 We decided to use alternative 2 because it scales better as the number of teams increase.
-
-A class diagram depicting the relationship between classes is as follows:
-
 
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png) 
