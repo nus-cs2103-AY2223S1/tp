@@ -326,16 +326,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​    | I can …​                                                           | So that …​                                                 |
-|----------|------------|--------------------------------------------------------------------|---------------------------------------------------------------------|
-| `* * *`  | user       | save persons and their contact details                             | I do not need to remember these details                             |
-| `* * *`  | user       | keep track of debts                                                | I know who owes me money and for what                               |
-| `* * *`  | user       | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
-| `* * *`  | user       | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
-| `* * *`  | user       | close the application                                              |                                                                     |
-| `* *`    | user       | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
-| `* *`    | user       | search for a person’s contact                                      | I can easily access his contact details                             |
-| `* *`    | user       | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
+| Priority | As a …​ | I can …​                                                           | So that …​                                                          |
+|----------|---------|--------------------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user    | save persons and their contact details                             | I do not need to remember these details                             |
+| `* * *`  | user    | keep track of debts                                                | I know who owes me money and for what                               |
+| `* * *`  | user    | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
+| `* * *`  | user    | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
+| `* * *`  | user    | split a debt fairly among several people                           | I do not need to manually divide the amount that each person owes   |
+| `* * *`  | user    | close the application                                              |                                                                     |
+| `* *`    | user    | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
+| `* *`    | user    | search for a person’s contact                                      | I can easily access his contact details                             |
+| `* *`    | user    | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
 
 *{More to be added}*
 
@@ -385,7 +386,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC03: Delete a person**
+**UC03: Split a debt**
+
+**MSS**
+
+1.  User requests to list persons
+1.  PayMeLah shows a list of persons
+1.  User requests to split a debt among several persons in the list
+1.  PayMeLah adds the split debt to the persons
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. PayMeLah shows an error message.
+
+      Use case ends.
+
+* 3a. The given input is invalid.
+
+    * 3a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
+
+
+**UC04: Delete a person**
 
 **MSS**
 
@@ -431,7 +458,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC04: Clear debts**
+**UC05: Clear debts**
 
 **MSS**
 
@@ -449,7 +476,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**UC05: List persons with debts**
+**UC06: List persons with debts**
 
 **MSS**
 
@@ -464,7 +491,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**UC06: Find a person by name**
+**UC07: Find a person by name**
 
 **MSS**
 
@@ -480,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC07: Find a person by debt description**
+**UC08: Find a person by debt description**
 
 **MSS**
 
@@ -496,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC08: Get debt overview**
+**UC09: Get debt overview**
 
 **MSS**
 
