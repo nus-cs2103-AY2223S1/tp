@@ -10,6 +10,9 @@ import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
+/**
+ * A utility class to help with building EditTaskDescriptor objects.
+ */
 public class EditTaskDescriptorBuilder {
     private EditTaskDescriptor descriptor;
 

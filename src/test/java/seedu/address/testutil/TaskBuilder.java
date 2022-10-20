@@ -9,6 +9,9 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
+/**
+ * A utility class to help with building Task objects.
+ */
 public class TaskBuilder {
     public static final String DEFAULT_DESCRIPTION = "read book";
     public static final String DEFAULT_DEADLINE = "12-09-2022";
