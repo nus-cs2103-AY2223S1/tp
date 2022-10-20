@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's phone number in the record.
+ * Represents a Parent's phone number in the record.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
@@ -15,7 +15,7 @@ public class Phone {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Phone} and checks for validity.
      *
      * @param phone A valid phone number.
      */
@@ -23,6 +23,13 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
+    }
+
+    /**
+     * Constructs a {@code Phone} with empty value.
+     */
+    public Phone() {
+        value = "";
     }
 
     /**

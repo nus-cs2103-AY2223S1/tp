@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,8 +21,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Address;
 import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -44,8 +44,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_CLASS + "CLASS] "
             + "[" + PREFIX_PARENT_NAME + "PARENT NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PHONE + "PARENT PHONE NUMBER] "
+            + "[" + PREFIX_EMAIL + "PARENT EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
@@ -102,11 +102,11 @@ public class EditCommand extends Command {
         Class updatedClassName = editStudentDescriptor.getClassName().orElse(studentToEdit.getClassName());
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
-        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,
-                updatedAddress, updatedTags);
+                updatedEmail, updatedTags);
     }
 
     @Override
@@ -137,8 +137,7 @@ public class EditCommand extends Command {
         private Class className;
         private Name parentName;
         private Phone phone;
-        private Address address;
-        private boolean isShowingParentDetails;
+        private Email email;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -153,8 +152,7 @@ public class EditCommand extends Command {
             setClassName(toCopy.className);
             setParentName(toCopy.parentName);
             setPhone(toCopy.phone);
-            setAddress(toCopy.address);
-            setShowingParentDetails(toCopy.isShowingParentDetails);
+            setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
 
@@ -162,7 +160,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentName, id, className, parentName, phone, address, tags);
+            return CollectionUtil.isAnyNonNull(studentName, id, className, parentName, phone, email, tags);
         }
 
         public void setStudentName(Name studentName) {
@@ -205,20 +203,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
-        public void setShowingParentDetails(boolean isShowingParentDetails) {
-            this.isShowingParentDetails = isShowingParentDetails;
-        }
-
-        public Optional<Boolean> isShowingParentDetails() {
-            return Optional.ofNullable(isShowingParentDetails);
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         /**
@@ -258,7 +248,7 @@ public class EditCommand extends Command {
                     && getClassName().equals((e.getClassName()))
                     && getParentName().equals(e.getParentName())
                     && getPhone().equals(e.getPhone())
-                    && getAddress().equals(e.getAddress())
+                    && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags());
         }
     }
