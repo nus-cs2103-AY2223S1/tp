@@ -14,7 +14,7 @@ public class Schedule {
 
 
     public static final String MESSAGE_TIMESLOT_CONSTRAINT = "The time slot of a class should follow the 24:00-format"
-            + " : HH:MM-HH:MM" + "\n"
+            + " : HH:MM-HH:MM" + " (space not allowed)\n"
             + "HH denotes hour : from 00 to 23 \n"
             + "MM denotes minute : only 00 or 30 \n";
 

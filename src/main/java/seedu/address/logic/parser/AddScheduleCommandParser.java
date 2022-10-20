@@ -41,9 +41,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         ClassType classType = ParserUtil.parseClassType(argMultimap.getValue(PREFIX_CLASS_CATEGORY).get());
         Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_CLASS_VENUE).get());
 
-        System.out.println("1");
-        if (isValidTimeSlot(startTime, endTime)) {
-            System.out.println("10");
+        // if (isValidTimeSlot(startTime, endTime)) {
+        if (true) {
             Schedule newSchedule = new Schedule(module, venue, weekday, startTime, endTime, classType);
             return new AddScheduleCommand(newSchedule);
         } else {
@@ -72,18 +71,15 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
             if (startHour >= 24 || endHour >= 24 || startHour < 0 || endHour < 0) {
                 throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
             }
-            System.out.println("2");
             if (startMin != 0 && startMin != 30) {
                 throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
             }
             if (endMin != 0 && endMin != 30) {
                 throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
             }
-            System.out.println("3");
             if (startHour < 7) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
             }
-            System.out.println("4");
             if (endHour >= 22 && endMin > 0 ) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
             }

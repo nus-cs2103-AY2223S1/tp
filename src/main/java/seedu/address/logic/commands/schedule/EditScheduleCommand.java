@@ -36,10 +36,10 @@ public class EditScheduleCommand extends Command {
             + "[" + PREFIX_CLASS_TIME + "TIME PERIOD]"
             + "[" + PREFIX_CLASS_CATEGORY + "CLASS TYPE]"
             + "[" + PREFIX_CLASS_VENUE + "CLASS VENUE] \n"
-            + "Example: " + COMMAND_WORD + "1"
-            + PREFIX_WEEKDAY + "Wednesday"
-            + PREFIX_CLASS_TIME + "08:00-10:00 "
-            + PREFIX_CLASS_VENUE + "LT31 ";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_WEEKDAY + " Wednesday "
+            + PREFIX_CLASS_TIME + " 08:00-10:00 "
+            + PREFIX_CLASS_VENUE + " LT31 ";
 
     public static final String MESSAGE_SUCCESS = "Schedule edited: %1$s";
     public static final String MESSAGE_SCHEDULE_NOT_EXIST = "The schedule doesn't exist";

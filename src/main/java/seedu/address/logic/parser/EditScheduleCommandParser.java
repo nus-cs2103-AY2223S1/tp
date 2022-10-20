@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.schedule.EditScheduleCommand;
 import seedu.address.logic.commands.schedule.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.schedule.Schedule;
 
 /**
  * Parses input arguments and creates an EditScheduleCommand.
@@ -41,10 +42,12 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
                     .get()));
         }
         if (argMultimap.getValue(PREFIX_CLASS_TIME).isPresent()) {
-            editScheduleDescriptor.setStartTime(ParserUtil.parseClassStartTime(argMultimap.getValue(PREFIX_CLASS_TIME)
-                    .get()));
-            editScheduleDescriptor.setEndTime(ParserUtil.parseClassEndTime(argMultimap.getValue(PREFIX_CLASS_TIME)
-                    .get()));
+            String startTime = ParserUtil.parseClassStartTime(argMultimap.getValue(PREFIX_CLASS_TIME).get());
+            String endTime = ParserUtil.parseClassEndTime(argMultimap.getValue(PREFIX_CLASS_TIME).get());
+            if (isValidTimeSlot(startTime, endTime)) {
+                editScheduleDescriptor.setStartTime(startTime);
+                editScheduleDescriptor.setEndTime(endTime);
+            }
         }
         if (argMultimap.getValue(PREFIX_WEEKDAY).isPresent()) {
             editScheduleDescriptor.setWeekday(ParserUtil.parseWeekday(argMultimap.getValue(PREFIX_WEEKDAY).get()));
@@ -60,6 +63,7 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
         if (!editScheduleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditScheduleCommand.MESSAGE_NOT_EDITED);
         }
+
         return new EditScheduleCommand(index, editScheduleDescriptor);
     }
 
@@ -69,5 +73,42 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+
+    private static boolean isValidTimeSlot(String startTime, String endTime) throws ParseException {
+        try {
+            int startHour = Integer.parseInt(startTime.split(":")[0]);
+            int startMin = Integer.parseInt(startTime.split(":")[1]);
+            int endHour = Integer.parseInt(endTime.split(":")[0]);
+            int endMin = Integer.parseInt(endTime.split(":")[1]);
+
+            if (startHour >= 24 || endHour >= 24 || startHour < 0 || endHour < 0) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            if (startMin != 0 && startMin != 30) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            if (endMin != 0 && endMin != 30) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            if (startHour < 7) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
+            }
+            if (endHour >= 22 && endMin > 0 ) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
+            }
+
+            if ((startHour > endHour) || ((startHour == endHour) && (startMin >= endMin))) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT);
+            }
+
+            return true;
+
+
+        } catch (Exception e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+        }
+
     }
 }
