@@ -3,6 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -12,6 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.order.Order;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,6 +24,8 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    private static final String MESSAGE_URL_ERROR = "There is something wrong with the URL!";
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
@@ -102,6 +109,17 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void openGithub(Person target) throws CommandException {
+        try {
+            URI uri = new URI("https://github.com/" + target.getUsername());
+            Desktop.getDesktop().browse(uri);
+        } catch (URISyntaxException | IOException e) {
+            throw new CommandException(MESSAGE_URL_ERROR);
+        }
+
     }
 
     @Override

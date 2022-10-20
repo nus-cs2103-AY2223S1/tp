@@ -7,8 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -22,10 +24,12 @@ import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,9 +45,10 @@ public class ProfCommandParser implements Parser<ProfCommand> {
     public ProfCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING);
+                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING,
+                        PREFIX_SPECIALISATION, PREFIX_OFFICEHOUR);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_GENDER)
+                PREFIX_GENDER, PREFIX_OFFICEHOUR)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProfCommand.MESSAGE_USAGE));
         }
@@ -58,11 +63,18 @@ public class ProfCommandParser implements Parser<ProfCommand> {
         GithubUsername username = ParserUtil.parseGitHubUsername(argMultimap
                 .getValue(PREFIX_GITHUBUSERNAME)
                 .orElse(GithubUsername.DEFAULT_USERNAME), argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent());
+
+        Specialisation field = ParserUtil.parseSpecialisation(argMultimap
+                .getValue(PREFIX_SPECIALISATION)
+                .orElse(Specialisation.EMPTY_SPECIALISATION), argMultimap.getValue(PREFIX_SPECIALISATION).isPresent());
+
         Rating rating = ParserUtil.parseRating(argMultimap
                 .getValue(PREFIX_RATING)
                 .orElse(Rating.EMPTY_RATING), argMultimap.getValue(PREFIX_RATING).isPresent());
 
-        Person person = new Professor(name, moduleCode, phone, email, gender, tagList, location, username, rating);
+        OfficeHour officeHour = ParserUtil.parseOfficeHour(argMultimap.getValue(PREFIX_OFFICEHOUR).get());
+        Person person = new Professor(name, moduleCode, phone, email, gender, tagList, location, username, rating,
+                field, officeHour);
 
         return new ProfCommand(person);
     }

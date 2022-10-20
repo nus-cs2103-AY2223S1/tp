@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,26 +17,26 @@ public class PersonMatchesPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateNamesList = Collections.singletonList("firstNames");
-        List<String> firstPredicateModuleList = Collections.singletonList("firstModules");
-        List<String> secondPredicateNamesList = Arrays.asList("firstNames", "secondModules");
-        List<String> secondPredicateModuleList = Arrays.asList("firstModules", "secondModules");
-
+        List<String> firstPredicateNamesList = Collections.singletonList("firstName");
+        Set<String> firstPredicateModuleList = Collections.singleton("firstModule");
+        List<String> secondPredicateNamesList = Arrays.asList("secondName1", "secondName2");
+        Set<String> secondPredicateModuleList = new HashSet<>(Arrays.asList("secondModule1", "secondModule2"));
 
         PersonMatchesPredicate firstPredicate = new PersonMatchesPredicate();
         PersonMatchesPredicate secondPredicate = new PersonMatchesPredicate();
         firstPredicate.setNamesList(firstPredicateNamesList);
-        firstPredicate.setModuleList(firstPredicateModuleList);
+        firstPredicate.setModulesList(firstPredicateModuleList, false);
         secondPredicate.setNamesList(secondPredicateNamesList);
-        secondPredicate.setModuleList(secondPredicateModuleList);
+        secondPredicate.setModulesList(secondPredicateModuleList, true);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
+        assertTrue(secondPredicate.equals(secondPredicate));
 
         // same values -> returns true
         PersonMatchesPredicate firstPredicateCopy = new PersonMatchesPredicate();
         firstPredicateCopy.setNamesList(firstPredicateNamesList);
-        firstPredicateCopy.setModuleList(firstPredicateModuleList);
+        firstPredicateCopy.setModulesList(firstPredicateModuleList, false);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

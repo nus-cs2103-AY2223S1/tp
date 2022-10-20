@@ -32,6 +32,15 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Pastes template of a Person into the Command Box
+     * @param templateString The template of the Person
+     */
+    @FXML
+    public void pasteTemplate(String templateString) {
+        commandTextField.setText(templateString);
+    }
+
+    /**
      * Handles the Enter button pressed event.
      */
     @FXML

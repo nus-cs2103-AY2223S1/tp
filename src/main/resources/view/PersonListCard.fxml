@@ -12,13 +12,15 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <VBox fx:id="cardPaneLeft" maxWidth="-Infinity" prefHeight="105.0" prefWidth="100.0" stylesheets="@DarkTheme.css">
+   <VBox fx:id="cardPaneLeft" alignment="CENTER" maxWidth="-Infinity" prefHeight="105.0" prefWidth="105.0" stylesheets="@DarkTheme.css">
       <children>
          <HBox prefHeight="0.0" prefWidth="100.0" />
          <VBox alignment="CENTER">
             <children>
                <Label fx:id="title" text="Label" />
-               <HBox prefHeight="30.0" prefWidth="100.0" />
+               <Label fx:id="year" text="Label" />
+               <Label fx:id="specialisation" text="Label" wrapText="true" />
+               <HBox id="stars" fx:id="stars" prefHeight="30.0" prefWidth="100.0" />
             </children>
             <padding>
                <Insets top="10.0" />
@@ -50,6 +52,7 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="githubUsername" styleClass="cell_small_label" />
       <Label fx:id="locationAt" styleClass="cell_small_label" text="\$location" />
+        <Label fx:id="officeHour" styleClass="cell_small_label"/>
     </VBox>
       <rowConstraints>
          <RowConstraints />

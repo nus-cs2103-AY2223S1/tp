@@ -12,12 +12,15 @@ import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,26 +31,31 @@ public class SampleDataUtil {
         return new Person[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Gender("M"), getTagSet("friends"), new Location("Chess club room"),
-                    new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234")),
+                new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234"),
+                new Year("1")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Gender("M"),
                 getTagSet("colleagues", "friends"), new Location("UTown"),
-                    new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234")),
+                new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234"),
+                new Year("2")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Gender("F"),
                 getTagSet("neighbours"), new Location("NUS"), new GithubUsername("", false),
-                    getModuleCodeSet("CS4534", "CS5234")),
+                getModuleCodeSet("CS4534", "CS5234"), new Year("4")),
             new Professor(new Name("Wong Tin Lok"), new ModuleCode("CS1231S"),
                 new Phone("91031282"), new Email("wongtk@example.com"),
                 new Gender("M"),
-                getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("", false), new Rating("5")),
+                getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("", false),
+                new Rating("5"), new Specialisation("Discrete Math"), new OfficeHour("MONDAY, 3:00 PM to 5:00 PM")),
             new TeachingAssistant(new Name("Irfan Ibrahim"), new ModuleCode("CS2100"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Gender("M"),
-                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false), new Rating("4")),
+                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false),
+                new Rating("4")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Gender("M"), getTagSet("colleagues"), new Location("Research Lab"),
-                    new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234"))
+                new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234"),
+                new Year("3"))
         };
     }
 

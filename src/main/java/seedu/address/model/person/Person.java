@@ -4,7 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -86,33 +86,6 @@ public abstract class Person {
                 && otherPerson.getName().equals(getName());
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Person)) {
-            return false;
-        }
-
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getGender().equals(getGender())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getLocation().equals(getLocation())
-                && otherPerson.getUsername().equals(getUsername());
-    }
-
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, gender, tags, location, username);
-    }
-
     /**
      * Return 1 if this Person's name has higher precedence
      * lexicographically over the target's name.
@@ -142,4 +115,24 @@ public abstract class Person {
         }
         return -1;
     }
+
+    /**
+     * Returns the string short form of the Person to be used for FindCommand by type.
+     * @return the string short form.
+     */
+    public abstract String getTypeString();
+
+    /**
+     * Returns true if some or all the Person's module(s) match the provided set of modules.
+     * @param modulesSet the Set of modules to be matched against
+     * @param needsAllModules determines if all or some of the modules need to be matched.
+     * @return true if there is match in modules.
+     */
+    public abstract boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules);
+
+    public abstract boolean doesRatingMatch(List<String> ratingList);
+
+    public abstract boolean doesYearMatch(List<String> yearList);
+
+    public abstract boolean doesSpecialisationMatch(List<String> specList);
 }
