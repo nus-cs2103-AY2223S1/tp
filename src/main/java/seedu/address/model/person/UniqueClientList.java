@@ -45,7 +45,11 @@ public class UniqueClientList implements Iterable<Client> {
         if (contains(toAdd)) {
             throw new DuplicateClientException();
         }
-        internalList.add(toAdd);
+        int index = 0;
+        while (toAdd.compareTo(internalList.get(index)) > 0) {
+            index += 1;
+        }
+        internalList.add(index, toAdd);
     }
 
     /**

@@ -46,7 +46,11 @@ public class UniqueListingList implements Iterable<Listing> {
         if (contains(toAdd)) {
             throw new DuplicateListingException();
         }
-        internalList.add(toAdd);
+        int index = 0;
+        while (toAdd.compareTo(internalList.get(index)) > 0) {
+            index += 1;
+        }
+        internalList.add(index, toAdd);
     }
 
     /**
@@ -54,9 +58,9 @@ public class UniqueListingList implements Iterable<Listing> {
      * @param id id of the listing
      * @return listing with given id
      */
-    public Listing getListing(String id) {
+    public Listing getListing(ListingID id) {
         for (Listing listing : internalList) {
-            if (listing.getId().equals(id)) {
+            if (listing.getId().equals(id.value)) {
                 return listing;
             }
         }

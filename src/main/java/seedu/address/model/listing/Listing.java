@@ -16,10 +16,10 @@ import seedu.address.model.tag.Tag;
 /**
  * Listing object contains a currently listed property, its owner, asking price, and offers and clients.
  */
-public class Listing {
+public class Listing implements Comparable<Listing> {
 
     // Identity fields
-    private final String id;
+    private final ListingID id;
     private final Address address;
     private final Person owner;
     private final Price askingPrice;
@@ -36,7 +36,7 @@ public class Listing {
      * @param owner Person
      * @param askingPrice int
      */
-    public Listing(String id, Address address, Person owner, Price askingPrice) {
+    public Listing(ListingID id, Address address, Person owner, Price askingPrice) {
         this.id = id;
         this.address = address;
         this.owner = owner;
@@ -50,7 +50,7 @@ public class Listing {
      * Gets the id of this listing.
      * @return id of listing
      */
-    public String getId() {
+    public ListingID getId() {
         return this.id;
     }
 
@@ -172,6 +172,14 @@ public class Listing {
         return otherListing != null
                 && (otherListing.address.equals(this.address)
                 || otherListing.id.equals(this.id));
+    }
+
+    /**
+     * Compares current listing to l
+     */
+    @Override
+    public int compareTo(Listing l) {
+        return this.id.value.compareTo(l.id.value);
     }
 
     /**

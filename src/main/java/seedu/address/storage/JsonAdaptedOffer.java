@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
@@ -16,14 +17,14 @@ public class JsonAdaptedOffer {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Offer's %s field is missing!";
 
     private final String name;
-    private final String listing;
+    private final ListingID listing;
     private final String offerPrice;
 
     /**
      * Constructs a {@code JsonAdaptedOffer} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedOffer(@JsonProperty("name") String name, @JsonProperty("listing") String listing,
+    public JsonAdaptedOffer(@JsonProperty("name") String name, @JsonProperty("listing") ListingID listing,
                             @JsonProperty("offerPrice") String offerPrice) {
         this.name = name;
         this.listing = listing;
@@ -35,7 +36,7 @@ public class JsonAdaptedOffer {
      */
     public JsonAdaptedOffer(Offer source) {
         name = source.getClient().fullName;
-        listing = source.getListing().value;
+        listing = source.getListing();
         offerPrice = source.getOfferPrice().value;
     }
 
@@ -54,12 +55,13 @@ public class JsonAdaptedOffer {
         final Name modelName = new Name(name);
 
         if (listing == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, ListingID.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(listing)) {
+        if (!ListingID.isValidListingID(listing.value)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(listing);
+        final ListingID modelListingID = listing;
 
         if (offerPrice == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
@@ -72,6 +74,6 @@ public class JsonAdaptedOffer {
         final Price modelOfferPrice = new Price(offerPrice);
 
 
-        return new Offer(modelName, modelAddress, modelOfferPrice);
+        return new Offer(modelName, modelListingID, modelOfferPrice);
     }
 }

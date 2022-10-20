@@ -47,7 +47,11 @@ public class UniqueOfferList implements Iterable<Offer> {
         if (contains(toAdd)) {
             throw new DuplicateOfferException();
         }
-        internalList.add(toAdd);
+        int index = 0;
+        while (toAdd.compareTo(internalList.get(index)) > 0) {
+            index += 1;
+        }
+        internalList.add(index, toAdd);
     }
 
     /**
