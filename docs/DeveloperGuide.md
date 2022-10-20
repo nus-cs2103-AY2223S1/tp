@@ -265,6 +265,30 @@ Step 3. The user realised that there is some error in the task and wants to unma
 The following sequence diagram shows how the mark task operation works:
 ![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
 
+### Edit Task Feature
+
+#### Implementation
+
+The edit task feature updates the name of the task to the new name given by the user and this change is reflected in the Graphical User Interface.
+
+Given below is an example usage scenario:
+
+Step 1. The user creates the task and assign it to a team using `taskadd` command. The name of the task provided by the user is stored as Name in the Task class.
+
+Step 2. The user might want to update the name of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the name of the task from the previous name to the new name provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the new name by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task name and this would be reflected in the gui.
+
+### Delete Task Feature
+
+#### Implementation
+
+The delete task feature deletes the task from the specified team given by the user and this change is reflected in the Graphical User Interface.
+
+Given below is an example usage scenario:
+
+Step 1. The user creates the task and assign it to a team using `taskadd` command. The tasks are stored in the UniqueTaskList for each Team. 
+
+Step 2. The user might want to delete the task to remove the unwanted task in the future. The user then executes `taskdelete t/1 task/1` to delete the task from the specified team. The `taskdelete` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be deleted from the taskList. `Model#updateFilterPersonList` is called to update the team with the new deletions and this would be reflected in the gui.
+
 ### Edit Person Feature
 
 #### Implementation
