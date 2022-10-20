@@ -8,6 +8,13 @@ hide circle
 hide empty method
 hide empty attribute
 
+skinparam activityBorderThickness 1.5
+skinparam class {
+    BorderColor #7F5539
+    BackgroundColor #EDE0D4
+    arrowColor #7F5539
+}
+
 abstract "{abstract}\nCommand" as Command {
     {abstract} +execute(model: Model): CommandResult
 }
