@@ -1,11 +1,21 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+start
+:User executes remove task command;
+:ModtRekt parse the command looking for tags;
 
-autonumber
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+if () then ([contains all valid tags])
+    :check if parameter inputs are valid;
+    if () then ([valid inputs])
+        :remove task from TaskList;
+        :display remove success message;
+    else ([else])
+        :display invalid input error message;
+    endif
+else ([else])
+    :display invalid format message;
+endif
+stop
 @enduml
