@@ -23,21 +23,40 @@ public class Person {
     // Data fields
     private final Address address;
     private final Remark remark;
-    private NetWorth netWorth;
+    private final NetWorth netWorth;
+    private final FilePath filePath;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
-                  NetWorth netWorth, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, tags);
+                  NetWorth netWorth, FilePath filePath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, filePath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
         this.netWorth = netWorth;
+        this.filePath = filePath;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Constructor with no remark, for CreateCommand only.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  NetWorth netWorth, FilePath filepath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, filepath, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.remark = new Remark("");
+        this.netWorth = netWorth;
+        this.filePath = filepath;
         this.tags.addAll(tags);
     }
 
@@ -53,8 +72,10 @@ public class Person {
         this.address = address;
         this.remark = new Remark("");
         this.netWorth = netWorth;
+        this.filePath = new FilePath("");
         this.tags.addAll(tags);
     }
+
 
     public Name getName() {
         return name;
@@ -80,6 +101,10 @@ public class Person {
         return netWorth;
     }
 
+    public FilePath getFilePath() {
+        return filePath;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -103,6 +128,13 @@ public class Person {
     }
 
     /**
+     * Returns true if file path of person has been initialized
+     */
+    public boolean hasFilePath() {
+        return !filePath.isEmpty();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -123,13 +155,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
-                && otherPerson.getNetWorth().equals(getNetWorth());
+                && otherPerson.getNetWorth().equals(getNetWorth())
+                && otherPerson.getFilePath().equals(getFilePath());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, netWorth);
+        return Objects.hash(name, phone, email, address, tags, remark, netWorth, filePath);
     }
 
     @Override
@@ -140,12 +173,14 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append(" Address: ")
                 .append(getAddress())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Net Worth: ")
                 .append(getNetWorth())
+                .append(" File Path: ")
+                .append(getFilePath())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

@@ -14,6 +14,7 @@ public class FindNameCommand extends FindCommand {
     private final NameContainsKeywordsPredicate predicate;
 
     public FindNameCommand(NameContainsKeywordsPredicate predicate) {
+        assert false;
         this.predicate = predicate;
     }
 

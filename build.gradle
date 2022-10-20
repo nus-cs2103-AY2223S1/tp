@@ -16,6 +16,10 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
+run {
+    enableAssertions = true;
+}
+
 checkstyle {
     toolVersion = '10.2'
 }
@@ -63,6 +67,8 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+
 }
 
 shadowJar {
