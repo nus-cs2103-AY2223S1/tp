@@ -33,6 +33,7 @@ public class EditStallDescriptorBuilder {
         descriptor.setName(stall.getName());
         descriptor.setAddress(stall.getAddress());
         descriptor.setTags(stall.getTags());
+        descriptor.setReviews(stall.getReviews());
     }
 
     /**

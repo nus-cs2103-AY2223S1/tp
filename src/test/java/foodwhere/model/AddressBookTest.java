@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,7 @@ import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
 import foodwhere.model.stall.exceptions.DuplicateStallException;
+import foodwhere.testutil.ReviewBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -82,6 +84,21 @@ public class AddressBookTest {
     @Test
     public void getStallList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getStallList().remove(0));
+    }
+
+    @Test
+    public void addStallAddReview_generalTesting_success() {
+        AddressBook addressBook = new AddressBook();
+        String testName = "test stall";
+        Stall testStall = new StallBuilder().withName(testName).build();
+        Review testReview = new ReviewBuilder().withName(testName).build();
+        addressBook.addStall(testStall);
+        addressBook.addReview(testReview);
+        Set<Review> reviews = addressBook.getStallList().get(0).getReviews();
+        assertEquals(1, reviews.size());
+        for (Review review : reviews) {
+            assertTrue(testReview.equals(review));
+        }
     }
 
     /**

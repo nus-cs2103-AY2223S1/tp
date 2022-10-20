@@ -9,7 +9,9 @@ import java.util.Objects;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.UniqueReviewList;
 import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.StallBuilder;
 import foodwhere.model.stall.UniqueStallList;
+import foodwhere.model.stall.exceptions.StallNotFoundException;
 import javafx.collections.ObservableList;
 
 /**
@@ -41,6 +43,45 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+        refreshReviews();
+    }
+
+    /**
+     * Sets {@code reviews} correctly.
+     */
+    private void refreshReviews() {
+        ArrayList<Review> current = new ArrayList<>();
+        for (Stall stall : stalls) {
+            for (Review review : stall.getReviews()) {
+                current.add(review);
+            }
+        }
+        ArrayList<Review> toRemove = new ArrayList<>();
+        for (Review review : reviews) {
+            if (!current.contains(review)) {
+                toRemove.add(review);
+            }
+        }
+        for (Review review : toRemove) {
+            reviews.remove(review);
+        }
+        for (Review review : current) {
+            if (!reviews.contains(review)) {
+                reviews.add(review);
+            }
+        }
+    }
+
+    /**
+     * Finds the {@code Stall} which this review refers to
+     */
+    private Stall getStallOfReview(Review review) throws StallNotFoundException {
+        for (Stall stall : stalls) {
+            if (stall.getName().equals(review.getName())) {
+                return stall;
+            }
+        }
+        throw new StallNotFoundException();
     }
 
     //// list overwrite operations
@@ -51,14 +92,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStalls(List<Stall> stalls) {
         this.stalls.setStalls(stalls);
-    }
-
-    /**
-     * Replaces the contents of the review list with {@code reviews}.
-     * {@code reviews} must not contain duplicate reviews.
-     */
-    public void setReviews(List<Review> reviews) {
-        this.reviews.setReviews(reviews);
+        refreshReviews();
     }
 
     /**
@@ -66,9 +100,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setStalls(newData.getStallList());
-        setReviews(newData.getReviewList());
+        refreshReviews();
     }
 
     //// stall-level operations
@@ -87,6 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addStall(Stall p) {
         stalls.add(p);
+        refreshReviews();
     }
 
     /**
@@ -96,8 +130,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStall(Stall target, Stall editedStall) {
         requireNonNull(editedStall);
-
         stalls.setStall(target, editedStall);
+        refreshReviews();
     }
 
     /**
@@ -106,15 +140,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStall(Stall key) {
         stalls.remove(key);
-        List<Review> toRemove = new ArrayList<>();
-        for (Review review : reviews) {
-            if (review.getName().fullName.equals(key.getName().fullName)) {
-                toRemove.add(review);
-            }
-        }
-        for (Review review : toRemove) {
-            reviews.remove(review);
-        }
+        refreshReviews();
     }
 
     /**
@@ -138,8 +164,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a review to the address book.
      * The review must not already exist in the address book.
      */
-    public void addReview(Review p) {
-        reviews.add(p);
+    public void addReview(Review review) {
+        requireNonNull(review);
+        Stall oldStall = getStallOfReview(review);
+        Stall newStall = new StallBuilder(oldStall)
+                .addReview(review).build();
+        setStall(oldStall, newStall);
     }
 
     /**
@@ -148,9 +178,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The review identity of {@code editedReview} must not be the same as another existing review in the address book.
      */
     public void setReview(Review target, Review editedReview) {
+        requireNonNull(target);
         requireNonNull(editedReview);
-
-        reviews.setReview(target, editedReview);
+        Stall oldStall = getStallOfReview(target);
+        Stall newStall = new StallBuilder(oldStall)
+                .removeReview(target)
+                .addReview(editedReview).build();
+        setStall(oldStall, newStall);
     }
 
     /**
@@ -158,7 +192,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeReview(Review key) {
-        reviews.remove(key);
+        requireNonNull(key);
+        Stall oldStall = getStallOfReview(key);
+        Stall newStall = new StallBuilder(oldStall)
+                .removeReview(key).build();
+        setStall(oldStall, newStall);
     }
 
     /**

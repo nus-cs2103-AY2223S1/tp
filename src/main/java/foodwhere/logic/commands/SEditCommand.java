@@ -87,8 +87,8 @@ public class SEditCommand extends Command {
         Name updatedName = editStallDescriptor.getName().orElse(stallToEdit.getName());
         Address updatedAddress = editStallDescriptor.getAddress().orElse(stallToEdit.getAddress());
         Set<Tag> updatedTags = editStallDescriptor.getTags().orElse(stallToEdit.getTags());
-
-        return new Stall(updatedName, updatedAddress, updatedTags);
+        Set<Review> updatedReviews = editStallDescriptor.getReviews().orElse(stallToEdit.getReviews());
+        return new Stall(updatedName, updatedAddress, updatedTags, updatedReviews);
     }
 
     @Override

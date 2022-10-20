@@ -18,6 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import foodwhere.commons.exceptions.DataConversionException;
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
+import foodwhere.model.stall.Stall;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -73,7 +74,10 @@ public class JsonAddressBookStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addStall(HOON);
-        original.removeStall(ALICE);
+        Stall toRemove = original.getStallList().stream()
+                .filter(stall -> stall.getName().equals(ALICE.getName()))
+                .findFirst().get();
+        original.removeStall(toRemove);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
