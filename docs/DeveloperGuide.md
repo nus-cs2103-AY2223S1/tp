@@ -162,6 +162,8 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 
