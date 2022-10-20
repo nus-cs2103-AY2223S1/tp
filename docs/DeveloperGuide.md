@@ -191,6 +191,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Add Student feature
+
+#### Proposed Implementation
+
+The proposed add student mechanism is facilitated by `AddressBook`. 
+It implements the following operations:
+* `AddressBook#hasStudent(Student s)` - Returns true if a student with the same identity as Student s exists in the address book.
+* `AddressBook#addStudent(Student student)` - Adds a student to the address book.
+
+These operations are exposed in the Model interface as `Model#hasStudent(Student student)` 
+and `Model#addStudent(Student student)` respectively.
+
+Given below is an example usage scenario and how the addstu mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial 
+address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user execute `addstu n/John Doe h/@john...` command to add student called John Doe to the address book.
+The `addstu` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified 
+state of the address book after the `addtu n/John Doe h/@john...` command executes to be saved in the 
+`addressBookStateList` and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution 
+due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so the address book state will not be saved into the `addressBookStateList`. User will retype their command.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If upon invoking `AddressBook#hasStudent` 
+method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so the address book state will not be saved into the `addressBookStateList`. 
+
+The following sequence diagram shows how the add student operation works:
+![AddStuSequenceDiagram](images/AddStuSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `addstu` command.
+
+<img src="images/AddStuActivityDiagram.png" width="250" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
