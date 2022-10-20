@@ -11,7 +11,7 @@
 
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ScrollPane?>
+
 <fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
          xmlns:fx="http://javafx.com/fxml/1" minHeight="80" minWidth="650">
   <icons>
@@ -25,8 +25,8 @@
 
       <VBox prefWidth="750" VBox.vgrow="ALWAYS" fx:id="helpContainer">
 
-        <VBox styleClass="commands-summary-panel">
-          <Label styleClass="help-command-label" text="Help Command Summary"/>
+        <VBox styleClass="commands-summary-vbox">
+          <Label styleClass="help-title-label" text="Help Command Summary"/>
           <TableView fx:id="commandFeaturesTableView">
             <VBox.margin>
               <Insets top="10.0"/>

@@ -115,8 +115,9 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     private void buildTable(TableView<CommandFeatures> tableView, ObservableList<CommandFeatures> commands) {
-        int totalHeight = (commands.size() + 1) * MIN_ROW_HEIGHT;
+        int totalHeight = (6) * MIN_ROW_HEIGHT;
 
+        tableView.setSelectionModel(null);
         tableView.setItems(commands);
         tableView.setFixedCellSize(MIN_ROW_HEIGHT);
         tableView.setMinSize(MIN_TABLE_WIDTH, MIN_TABLE_HEIGHT);
