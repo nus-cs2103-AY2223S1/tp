@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Mark Task as Done Feature
 #### Implementation
 
-The mark feature allows users to mark a specific task as done. 
+The mark feature allows users to mark a specific task as done.
 
 The following is an example usage scenario of how a task is marked as done:
 
@@ -182,7 +182,7 @@ _Activity diagram of marking task as done_
 
 In the Logic component, once `execute` is called in `LogicManager`, `TruthTableParser` and `MarkCommandParser`
 parses the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
-`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. 
+`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component.
 A `CommandResult` is generated with `isCompleted` boolean value being true.
 
 The sequence diagram of the Mark command is shown below:
