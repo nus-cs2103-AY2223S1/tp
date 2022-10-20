@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser ADDRESSBOOKPARSER_COLOR
+participant ":AddQCommandParser" as AddQCommandParser ADDQCOMMANDPARSER_COLOR
+participant "a: AddQCommand" as AddQCommand ADDQCOMMAND_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook ADDRESSBOOK_COLOR
+participant ":StorageManager" as StorageManager STORAGE_COLOR
+
+[-> LogicManager : execute("addq Why?")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addq Why?")
+activate AddressBookParser
+
+AddressBookParser -> AddQCommandParser : parse(" Why?")
+activate AddQCommandParser
+
+Create AddQCommand
+AddQCommandParser -> AddQCommand : parse(" Why")
+activate AddQCommand
+
+AddQCommand --> AddQCommandParser : a
+deactivate AddQCommand
+
+AddQCommandParser --> AddressBookParser : a
+deactivate AddQCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddQCommand : execute(model)
+activate AddQCommand
+
+AddQCommand -> Model : addQuestion(toAdd)
+activate Model
+
+Model -> AddressBook : addQuestion(toAdd)
+activate AddressBook
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model -> Model : updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS)
+
+Model --> AddQCommand
+deactivate Model
+
+AddQCommand --> LogicManager : commandResult
+deactivate AddQCommand
+
+LogicManager -> StorageManager : saveAddressBook(model.getAddressBook())
+activate StorageManager
+
+StorageManager -> StorageManager : saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath())
+StorageManager --> LogicManager
+deactivate StorageManager
+
+
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml

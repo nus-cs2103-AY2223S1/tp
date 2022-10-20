@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes "addq" command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Save question to UniqueQuestionList
+     inside AddressBook;
+else ([question in command is a duplicate])
+endif
+stop
+@enduml

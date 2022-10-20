@@ -191,6 +191,60 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] addq feature
+
+#### Implementation
+
+The addq mechanism is facilitated by many objects. By adding a question, the `UniqueQuestionList` inside 
+`AddressBook` is updated and shown in the `Ui`. The user launches the application. The user then executes `addq Why?
+` command to add a question "Why?" in the question list. The application goes through a series of method callouts as 
+follows.
+
+1. The `LogicManager#execute("addq Why?")` is called, which in turn passes the argument "addq Why?" to the 
+   `parseCommand` method in `AddressBookParser`.
+2. `AddressBookParser#parseCommand("addq Why?")` is called with the " Why?" question being passed to 
+   `AddQCommand#parse(" Why")`.
+3. A `AddQCommand` object `a` is instantiated with `toAdd` (new Question("Why?")), the question to add in `a`.
+4. `a` is passed back as an output all the into `LogicManager`.
+5. `a#execute(model)` is called, which calls `Model#addQuestion(toAdd)`. `Model` takes in `toAdd` adds it to the `UniqueQuestionList` inside
+   `AddressBook` via `AddressBook#addQuestion(toAdd)`.
+6. `Model#updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS)` is called to update the question list.
+7. `a` returns a `commandResult` object to `LogicManager`.
+8. `StorageManager#saveAddressBook(model.getAddressBook())` is called and `StorageManager` calls its own 
+   `saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath())` method to update the storage of the 
+   application, inside `/data/addressbook.json`.
+9. `LogicManager` returns the `commandResult` to be shown in the `Ui`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note: Questions added not case sensitive. For 
+example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are 
+not allowed. E.g. adding another question called "why?".
+** .
+
+</div>
+
+
+The following sequence diagram shows how the addq operation works:
+
+![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an addq command:
+
+<img src="images/AddQActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How addq executes:**
+
+* **Alternative 1 (current choice):** Saves the question inside the entire address book.
+    * Pros: Easy to implement.
+    * Cons: If the data file is corrupted, all questions added are lost.
+
+* **Alternative 2:** Add questions to a separate list not part of the address book.
+    * Pros: Easier to test as data is stored separately.
+    * Cons: Having separate lists will cause the code to be more complicated.
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
