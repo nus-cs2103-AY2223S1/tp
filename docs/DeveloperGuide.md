@@ -9,6 +9,7 @@ title: Developer Guide
   * [Edit Class Feature](#edit-class-feature)
     * [Implementation details](#implementation-details)
     * [Design Considerations](#design-considerations)
+  * [Schedule Class Feature](#schedule-class-feature)
   * [[Proposed] Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
