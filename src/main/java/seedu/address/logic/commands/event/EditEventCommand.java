@@ -37,7 +37,7 @@ public class EditEventCommand extends EventCommand {
             + "by the index number used in the displayed event list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "TITLE "
+            + "[" + PREFIX_NAME + "TITLE] "
             + "[" + PREFIX_START_DATE + "START] "
             + "[" + PREFIX_END_DATE + "END] "
             + "[" + PREFIX_TAG + "TAG]...\n"
