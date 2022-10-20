@@ -4,8 +4,10 @@
 }
 
 .list-cell:empty {
-    /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    /*
+     * Updated color to match the background color of panes
+     */
+    -fx-background: #222324;
 }
 
 .tag-selector {

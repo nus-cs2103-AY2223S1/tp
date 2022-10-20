@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class AssignmentDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "Assignment details should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Assignment details should only contain alphanumeric characters "
+            + "and spaces, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String assignmentDetails;
 
