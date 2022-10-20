@@ -26,13 +26,12 @@ public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> 
      */
     public ReminderCommandGroup parse(String args) throws ParseException {
         requireNonNull(args);
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (args.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
-        String[] argArray = trimmedArgs.split("\\s+", 2);
+        String[] argArray = args.trim().split("\\s+", 2);
         String commandSpecifier = argArray[0];
 
         switch (commandSpecifier) {
@@ -41,15 +40,15 @@ public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> 
         case ReminderDeleteCommand.COMMAND_SPECIFIER:
             if (argArray.length < 2) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderDeleteCommand.MESSAGE_USAGE));
             }
             return new ReminderDeleteCommandParser().parse(argArray[1]);
         default:
             if (argArray.length < 2) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCreateCommand.MESSAGE_USAGE));
             }
-            return new ReminderCreateCommandParser().parse(trimmedArgs);
+            return new ReminderCreateCommandParser().parse(args);
         }
     }
 }

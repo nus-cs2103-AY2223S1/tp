@@ -306,14 +306,34 @@ public class ModelManager implements Model {
         return targetPersonReminderList.getAllReminders();
     }
 
+    private boolean isTargetPersonReminder(Reminder reminder) {
+        return hasTargetPerson()
+                && reminder.matchesNameAndPhone(targetPerson.get().getName(), targetPerson.get().getPhone());
+    }
+
     @Override
     public void deleteReminder(Reminder reminder) {
         reminderList.delete(reminder);
+        if (isTargetPersonReminder(reminder)) {
+            targetPersonReminderList.delete(reminder);
+        }
     }
 
     @Override
     public void addReminder(Reminder reminder) {
         reminderList.add(reminder);
+        if (isTargetPersonReminder(reminder)) {
+            targetPersonReminderList.add(reminder);
+        }
+    }
+
+    @Override
+    public ObservableList<Reminder> getCurrentReminderList() {
+        if (targetPerson.isPresent()) {
+            return getTargetPersonReminderListAsObservableList();
+        } else {
+            return getReminderListAsObservableList();
+        }
     }
 
     @Override

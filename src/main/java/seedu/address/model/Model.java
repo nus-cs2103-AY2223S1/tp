@@ -188,7 +188,12 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
-     * Clears the current reminder list.
+     * Clears the currently displayed reminder list.
+     */
+    ObservableList<Reminder> getCurrentReminderList();
+
+    /**
+     * Clears the currently displayed reminder list.
      */
     void clearCurrentReminderList();
 }
