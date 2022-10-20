@@ -154,6 +154,52 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Homework Feature
+
+#### Implementation
+
+The homework feature is facilitated by `HomeworkList` and `Homework`.
+Each `Person` has a `HomeworkList` which contains multiple `Homework` objects. Below is a partial class diagram of the relationship:
+
+![HomeworkClassDiagram](images/HomeworkClassDiagram.png)
+
+`HomeworkList` implements the following operations:
+
+* `HomeworkList#addHomework(Homework)` — Adds a homework task to the homework list.
+* `HomeworkList#editAtIndex(Index)` — Replaces the homework at the given index with a new homework.
+* `HomeworkList#clearList()` — Deletes all items in the homework list.
+
+These operations are exposed in command executions such as `HomeworkCommand#execute()` and `EditCommand#createEditedPerson()`.
+`HomeworkList#clearList()` is used for testing purposes only.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
+
+Step 2. The user executes `homework 1 h/Maths worksheet` to add homework to the first person in the address book.
+The `homework` command calls `HomeworkList#addHomework(Homework)` and adds the task to the list.
+
+The following sequence shows how adding homework works:
+
+![HomeworkSequenceDiagram](images/HomeworkSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HomeworkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+Step 3. The user decides to edit the homework to Science instead of Maths.
+They go into full view mode with the `view` command and execute `edit 1 h/Science worksheet`, which calls `HomeworkList#editAtIndex()` and replaces the old description with the new one.
+
+#### Design considerations:
+
+**Aspect: Format of homework command:**
+
+* **Alternative 1 (current choice):** Command prefix required.
+    * Pros: Easy to implement. Consistent with formats of other commands.
+    * Cons: May seem redundant to type as it can only add one item.
+
+* **Alternative 2:** Command prefix not required.
+    * Pros: Saves time for users during input.
+    * Cons: May be harder to implement. Inconsistent with formats of other commands.
+
 ### Grade Progress Feature
 
 #### Implementation
