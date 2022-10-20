@@ -94,6 +94,7 @@ public class StringUtilTest {
      *   - last word in sentence
      *   - middle word in sentence
      *   - matches multiple words
+     *   - subsequence of word appear in sentence
      *
      * Possible scenarios returning false:
      *   - query word matches part of a sentence word
@@ -110,7 +111,7 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
 
         // Matches a partial word only
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
         assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
 
         // Matches word in the sentence, different upper/lower case letters
@@ -119,6 +120,9 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
         assertTrue(StringUtil.containsWordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
         assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+
+        // Subsequence of word appears in sentence
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa baabaabaaabaaabaa", "aba"));
 
         // Matches multiple words in sentence
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
