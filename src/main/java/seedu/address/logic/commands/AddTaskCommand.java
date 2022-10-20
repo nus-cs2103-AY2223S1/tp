@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LONG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -17,12 +17,13 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list.\n"
             + "Parameters: "
+            + "{name}" + " "
             + PREFIX_DEADLINE + "{deadline}" + " "
-            + PREFIX_MODULE_LONG + "{module}" + "\n"
+            + PREFIX_MODULE + "{module}" + "\n"
             + "Example: " + COMMAND_WORD + " "
             + "Lab2" + " "
             + PREFIX_DEADLINE + "2022-02-02 23:59" + " "
-            + PREFIX_MODULE_LONG + "CS2030S";
+            + PREFIX_MODULE + "CS2030S";
 
     public static final String TEMPLATE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";

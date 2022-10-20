@@ -15,7 +15,7 @@ public class Task {
     private final TaskName name;
     private final Module module;
     private final Deadline deadline;
-    private Status status;
+    private final Status status;
 
     /**
      * Constructs a new Task. Every field must be present and not null.
@@ -50,7 +50,7 @@ public class Task {
      * @param isComplete The new completion status.
      * @return The new Task.
      */
-    public Task withCompletion(boolean isComplete) {
+    public Task withStatus(boolean isComplete) {
         return new Task(
                 this.name,
                 this.module,
