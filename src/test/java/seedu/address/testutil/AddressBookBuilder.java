@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Internship;
+import seedu.address.model.internship.Internship;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,8 +23,8 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Internship} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Internship internship) {
-        addressBook.addPerson(internship);
+    public AddressBookBuilder withInternship(Internship internship) {
+        addressBook.addInternship(internship);
         return this;
     }
 

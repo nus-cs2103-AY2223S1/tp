@@ -2,57 +2,60 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditInternshipDescriptorBuilder;
 
 public class EditInternshipDescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditCommand.EditInternshipDescriptor descriptorWithSameValues =
+                new EditCommand.EditInternshipDescriptor(DESC_GOOGLE);
+        assertTrue(DESC_GOOGLE.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_GOOGLE.equals(DESC_GOOGLE));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_GOOGLE.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_GOOGLE.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_GOOGLE.equals(DESC_TIKTOK));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditCommand.EditInternshipDescriptor editedGoogle =
+                new EditInternshipDescriptorBuilder(DESC_GOOGLE).withCompany(VALID_COMPANY_TIKTOK).build();
+        assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withLink(VALID_LINK_TIKTOK).build();
+        assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE)
+                .withDescription(VALID_DESCRIPTION_TIKTOK).build();
+        assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE)
+                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).build();
+        assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withTags(VALID_TAG_BACKEND).build();
+        assertFalse(DESC_GOOGLE.equals(editedGoogle));
     }
 }

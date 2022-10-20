@@ -1,0 +1,9 @@
+{
+  "internships": [ {
+    "company": "Hans Muster",
+    "link": "9482424",
+    "description": "invalid@email!3e",
+    "applicationStatus" : "applied",
+    "appliedDate": "4th street"
+  } ]
+}

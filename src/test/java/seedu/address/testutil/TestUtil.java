@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.person.Internship;
+import seedu.address.model.internship.Internship;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the internship in the {@code model}'s internship list at {@code index}.
      */
-    public static Internship getPerson(Model model, Index index) {
+    public static Internship getInternship(Model model, Index index) {
         return model.getFilteredInternshipList().get(index.getZeroBased());
     }
 }

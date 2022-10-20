@@ -1,0 +1,15 @@
+{
+  "internships": [ {
+    "company": "Valid Internship",
+    "link": "https://careers.alibaba.com/positionDetail",
+    "description": "Software Engineering Intern",
+    "applicationStatus" : "applied",
+    "appliedDate": "30 Oct 2022"
+  }, {
+    "company": "Internship With Invalid link Field",
+    "link": "948asdf2424",
+    "description": "Software Engineering Intern",
+    "applicationStatus" : "applied",
+    "appliedDate": "30 Oct 2022"
+  } ]
+}

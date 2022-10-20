@@ -10,12 +10,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.ApplicationStatus;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Internship;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.AppliedDate;
+import seedu.address.model.internship.Company;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -60,7 +60,7 @@ public class MarkCommand extends Command {
         Internship markedInternship = createMarkedInternship(internshipToMark, applicationStatus);
 
         model.setInternship(internshipToMark, markedInternship);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         return new CommandResult(String.format(MESSAGE_MARK_INTERNSHIP_SUCCESS, markedInternship));
     }
 
@@ -73,14 +73,14 @@ public class MarkCommand extends Command {
                                                      ApplicationStatus updatedApplicationStatus) {
         assert internshipToMark != null;
 
-        Name updatedName = internshipToMark.getName();
-        Phone updatedPhone = internshipToMark.getPhone();
-        Email updatedEmail = internshipToMark.getEmail();
-        Address updatedAddress = internshipToMark.getAddress();
+        Company updatedCompany = internshipToMark.getCompany();
+        Link updatedLink = internshipToMark.getLink();
+        Description updatedDescription = internshipToMark.getDescription();
+        AppliedDate updatedAppliedDate = internshipToMark.getAppliedDate();
         Set<Tag> updatedTags = internshipToMark.getTags();
 
-        return new Internship(updatedName, updatedPhone, updatedEmail, updatedApplicationStatus, updatedAddress,
-                updatedTags);
+        return new Internship(updatedCompany, updatedLink, updatedDescription,
+                updatedApplicationStatus, updatedAppliedDate, updatedTags);
     }
 
     @Override

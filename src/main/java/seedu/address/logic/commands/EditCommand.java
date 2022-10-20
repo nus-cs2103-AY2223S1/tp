@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -19,12 +19,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.ApplicationStatus;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Internship;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.AppliedDate;
+import seedu.address.model.internship.Company;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,32 +38,32 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_LINK + "LINK] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
+            + PREFIX_DESCRIPTION + "Global e-Commerce";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Internship: %1$s";
+    public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This internship already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
      * @param index of the internship in the filtered internship list to edit
-     * @param editPersonDescriptor details to edit the internship with
+     * @param editInternshipDescriptor details to edit the internship with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editInternshipDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editInternshipDescriptor = new EditInternshipDescriptor(editInternshipDescriptor);
     }
 
     @Override
@@ -76,35 +76,39 @@ public class EditCommand extends Command {
         }
 
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
-        Internship editedInternship = createEditedPerson(internshipToEdit, editPersonDescriptor);
+        Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
-        if (!internshipToEdit.isSamePerson(editedInternship) && model.hasPerson(editedInternship)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!internshipToEdit.isSameInternship(editedInternship) && model.hasInternship(editedInternship)) {
+            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_INTERNSHIPS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedInternship));
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
     /**
      * Creates and returns a {@code Internship} with the details of {@code internshipToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editInternshipDescriptor}.
      */
-    private static Internship createEditedPerson(Internship internshipToEdit,
-                                                 EditPersonDescriptor editPersonDescriptor) {
+    private static Internship createEditedInternship(Internship internshipToEdit,
+                                                     EditInternshipDescriptor editInternshipDescriptor) {
         assert internshipToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(internshipToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(internshipToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(internshipToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(internshipToEdit.getAddress());
+        Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
+        Link updatedLink = editInternshipDescriptor.getLink().orElse(internshipToEdit.getLink());
+        Description updatedDescription = editInternshipDescriptor.getDescription()
+                .orElse(internshipToEdit.getDescription());
+        AppliedDate updatedAppliedDate = editInternshipDescriptor.getAppliedDate()
+                .orElse(internshipToEdit.getAppliedDate());
         ApplicationStatus updatedApplicationStatus =
-                editPersonDescriptor.getApplicationStatus().orElse(internshipToEdit.getApplicationStatus());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(internshipToEdit.getTags());
+                editInternshipDescriptor.getApplicationStatus()
+                        .orElse(internshipToEdit.getApplicationStatus());
+        Set<Tag> updatedTags = editInternshipDescriptor.getTags()
+                .orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedName, updatedPhone, updatedEmail, updatedApplicationStatus, updatedAddress,
-                updatedTags);
+        return new Internship(updatedCompany, updatedLink, updatedDescription,
+                updatedApplicationStatus, updatedAppliedDate, updatedTags);
     }
 
     @Override
@@ -122,32 +126,32 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editInternshipDescriptor.equals(e.editInternshipDescriptor);
     }
 
     /**
      * Stores the details to edit the internship with. Each non-empty field value will replace the
      * corresponding field value of the internship.
      */
-    public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+    public static class EditInternshipDescriptor {
+        private Company company;
+        private Link link;
+        private Description description;
+        private AppliedDate appliedDate;
         private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditInternshipDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+        public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
+            setCompany(toCopy.company);
+            setLink(toCopy.link);
+            setDescription(toCopy.description);
+            setAppliedDate(toCopy.appliedDate);
             setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
@@ -156,39 +160,39 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setCompany(Company company) {
+            this.company = company;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Company> getCompany() {
+            return Optional.ofNullable(company);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setLink(Link link) {
+            this.link = link;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setAppliedDate(AppliedDate appliedDate) {
+            this.appliedDate = appliedDate;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<AppliedDate> getAppliedDate() {
+            return Optional.ofNullable(appliedDate);
         }
 
         public void setApplicationStatus(ApplicationStatus applicationStatus) {
@@ -224,17 +228,17 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditInternshipDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditInternshipDescriptor e = (EditInternshipDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+            return getCompany().equals(e.getCompany())
+                    && getLink().equals(e.getLink())
+                    && getDescription().equals(e.getDescription())
+                    && getAppliedDate().equals(e.getAppliedDate())
                     && getApplicationStatus().equals(e.getApplicationStatus())
                     && getTags().equals(e.getTags());
         }

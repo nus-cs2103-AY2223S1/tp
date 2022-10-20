@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ApplicationStatus;
+import seedu.address.model.internship.ApplicationStatus;
 
 /**
  * Parses input arguments and creates a new MarkCommand object

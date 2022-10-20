@@ -6,45 +6,45 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.ApplicationStatus;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Internship;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.AppliedDate;
+import seedu.address.model.internship.Company;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Internship[] getSamplePersons() {
+    public static Internship[] getSampleInternships() {
         return new Internship[] {
-            new Internship(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                ApplicationStatus.Applied, new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Internship(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                ApplicationStatus.Applied, new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Internship(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                ApplicationStatus.Applied, new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Internship(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                ApplicationStatus.Applied, new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Internship(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                ApplicationStatus.Applied, new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Internship(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                ApplicationStatus.Applied, new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Internship(new Company("Google"), new Link("https://careers.google.com/students"),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("03/09/2022"), getTagSet("Backend")),
+            new Internship(new Company("Tiktok"), new Link("careers@tiktok.com"),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("11/12/2022"), getTagSet("Frontend")),
+            new Internship(new Company("Stripe"), new Link("https://stripe.com/en-sg/jobs/university"),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("03/10/2022"), getTagSet("Backend")),
+            new Internship(new Company("Meta"), new Link("https://metacareers.com/careerprograms/students"),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("05/10/2022"), getTagSet("Frontend")),
+            new Internship(new Company("Jane Street"), new Link("https://janestreet.com/join-jane-street"),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("11/11/2022"), getTagSet("Quant")),
+            new Internship(new Company("Amazon"), new Link("https://amazon.jobs/en/business_categories"),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("22/07/2022"), getTagSet("Data"))
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Internship sampleInternship : getSamplePersons()) {
-            sampleAb.addPerson(sampleInternship);
+        for (Internship sampleInternship : getSampleInternships()) {
+            sampleAb.addInternship(sampleInternship);
         }
         return sampleAb;
     }
