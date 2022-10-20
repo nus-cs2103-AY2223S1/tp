@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.order.Order;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
@@ -90,7 +91,12 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Sort the contact list by name in a lexicographical manner
+     * Sort the contact list by name in a lexicographical manner.
      */
     void sort(Order order, boolean hasName, boolean hasModuleCode);
+
+    /**
+     * Opens default browser to target's github profile page.
+     */
+    public void openGithub(Person target) throws CommandException;
 }

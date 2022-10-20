@@ -11,11 +11,19 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    private final String noTemplateString = "EMPTY_TEMPLATE";
+    private String personTemplateString = noTemplateString;
+
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -34,6 +42,15 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code personTemplate}
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, String personTemplate) {
+        this(feedbackToUser, false, false);
+        this.personTemplateString = personTemplate;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -44,6 +61,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean hasPersonTemplate() {
+        return !personTemplateString.equals(noTemplateString);
+    }
+
+    public String getPersonTemplateString() {
+        return personTemplateString;
     }
 
     @Override
@@ -59,13 +84,14 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+            && showHelp == otherCommandResult.showHelp
+            && exit == otherCommandResult.exit
+            && personTemplateString.equals(otherCommandResult.personTemplateString);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, personTemplateString);
     }
 
 }
