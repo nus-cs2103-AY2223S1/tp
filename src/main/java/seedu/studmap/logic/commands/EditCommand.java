@@ -98,7 +98,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
      * Stores the details to edit the student with. Each non-empty field value will replace the
      * corresponding field value of the student.
      */
-    public static class EditCommandStudentEditor extends StudentEditor {
+    public static class EditCommandStudentEditor implements StudentEditor {
         private Name name;
         private Phone phone;
         private Email email;

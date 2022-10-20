@@ -83,7 +83,7 @@ public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagComman
     /**
      * A static StudentEditor that adds tags to a given Student.
      */
-    public static class AddTagCommandStudentEditor extends StudentEditor {
+    public static class AddTagCommandStudentEditor implements StudentEditor {
 
         private Set<Tag> tags;
 
