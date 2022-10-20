@@ -360,7 +360,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 **Extensions**
 
 - 1a. Teacher requests to find by address without providing any query.
-    - 1a1. Teacher’s Pet displays the normal ordering of students.
+    - 1a1. Teacher’s Pet displays invalid command format message.
 
       Use case ends.
 
