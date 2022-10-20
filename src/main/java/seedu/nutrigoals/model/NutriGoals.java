@@ -9,8 +9,8 @@ import java.util.Map;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.FoodCalorieList;
+import seedu.nutrigoals.model.meal.FoodList;
 import seedu.nutrigoals.model.meal.Name;
-import seedu.nutrigoals.model.meal.UniqueFoodList;
 import seedu.nutrigoals.model.user.User;
 
 /**
@@ -18,7 +18,7 @@ import seedu.nutrigoals.model.user.User;
  */
 public class NutriGoals implements ReadOnlyNutriGoals {
 
-    private final UniqueFoodList foods;
+    private final FoodList foods;
     private final FoodCalorieList foodCalorieList;
     private User user = new User();
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
@@ -33,7 +33,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
      *   among constructors.
      */
     {
-        foods = new UniqueFoodList();
+        foods = new FoodList();
         nusGymsLocations = new ArrayList<>(List.of(
             new Location("MPSH", "1.3007599674153045, 103.77578206094384"),
             new Location("STEPHEN RIADY CENTRE", "1.304511666901411, 103.77205745840185"),
