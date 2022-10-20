@@ -226,7 +226,7 @@ activities related to gender field is considered and shown in this activity diag
 in edit person command, therefore, it is not compulsory that gender field must be provided.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions is thrown and caught if 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if 
 the gender is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the 
 contact list. Error message is displayed on the GUI subsequently. 
 </div>
