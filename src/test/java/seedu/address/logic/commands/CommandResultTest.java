@@ -57,4 +57,29 @@ public class CommandResultTest {
         // different toggleView value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
     }
+
+    @Test
+    public void getFeedbackToUser() {
+        String expectedFeedback = "feedback";
+        CommandResult commandResult = new CommandResult("feedback");
+        assertEquals(expectedFeedback, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void isShowHelp() {
+        CommandResult commandResult = new CommandResult("feedback", true, false, false);
+        assertTrue(commandResult.isShowHelp());
+    }
+
+    @Test
+    public void isToggleView() {
+        CommandResult commandResult = new CommandResult("feedback", false, true, false);
+        assertTrue(commandResult.isToggleView());
+    }
+
+    @Test
+    public void isExit() {
+        CommandResult commandResult = new CommandResult("feedback", false, false, true);
+        assertTrue(commandResult.isExit());
+    }
 }

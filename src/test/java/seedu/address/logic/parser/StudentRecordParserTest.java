@@ -20,8 +20,12 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ToggleViewCommand;
 import seedu.address.logic.commands.ViewAllCommand;
+import seedu.address.logic.commands.ViewClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.ClassPredicate;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.IdPredicate;
 import seedu.address.model.student.Name;
@@ -100,9 +104,22 @@ public class StudentRecordParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_viewAll() throws Exception {
         assertTrue(parser.parseCommand(ViewAllCommand.COMMAND_WORD) instanceof ViewAllCommand);
         assertTrue(parser.parseCommand(ViewAllCommand.COMMAND_WORD + " 3") instanceof ViewAllCommand);
+    }
+
+    @Test
+    public void parseCommand_toggleView() throws Exception {
+        assertTrue(parser.parseCommand(ToggleViewCommand.COMMAND_WORD) instanceof ToggleViewCommand);
+        assertTrue(parser.parseCommand(ToggleViewCommand.COMMAND_WORD + " 3") instanceof ToggleViewCommand);
+    }
+
+    @Test
+    public void parseCommand_viewClass() throws Exception {
+        ViewClassCommand viewClassCommand = (ViewClassCommand) parser.parseCommand(
+                ViewClassCommand.COMMAND_WORD + " 3A");
+        assertEquals(new ViewClassCommand(new ClassPredicate(new Class("3A"))), viewClassCommand);
     }
 
     @Test
