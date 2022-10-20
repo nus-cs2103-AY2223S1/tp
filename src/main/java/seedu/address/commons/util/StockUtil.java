@@ -16,6 +16,9 @@ public class StockUtil {
      * Determines the color based on {@code currentStock} and {@code minStock}.
      */
     public static String determineStockHealthColor(int currentStock, int minStock) {
+        requireNonNull(currentStock);
+        requireNonNull(minStock);
+
         double mediumStockThreshold = minStock * HIGH_THRESHOLD;
         double lowStockThreshold = minStock * MEDIUM_THRESHOLD;
         if (currentStock < lowStockThreshold) {
