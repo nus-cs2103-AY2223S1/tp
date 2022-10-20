@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
@@ -92,6 +93,7 @@ public class PersonUtil {
         sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
         sb.append(PREFIX_SPECIALISATION + person.getSpecialisation().value + " ");
         sb.append(PREFIX_RATING + person.getRating().value + " ");
+        sb.append(PREFIX_OFFICEHOUR + "2-18:00-3" + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
