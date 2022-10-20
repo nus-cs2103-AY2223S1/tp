@@ -319,9 +319,13 @@ The following is a more detailed explanation on how the `TaskCommand` works.
 4. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
 5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
 
-//Insert sequence diagram for TaskCommand
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
-//Insert activity diagram for TaskCommand
+Figure No. Sequence diagram for TaskCommand
+
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+Figure No. Activity diagram for TaskCommand
 
 The following is a more detailed explanation on how the `RemoveTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
