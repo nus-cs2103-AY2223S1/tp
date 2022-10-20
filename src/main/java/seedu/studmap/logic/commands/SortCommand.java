@@ -3,12 +3,14 @@ package seedu.studmap.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
+import java.util.Comparator;
+
 import seedu.studmap.model.Model;
-import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
+import seedu.studmap.model.student.Student;
 
 /**
- * Sorts the student map by name in alphabetic order.
+ * Sorts the student map by specified attribute in specified order.
  */
 public class SortCommand extends Command {
 
@@ -16,39 +18,43 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort the list "
             + "by the attribute specified. \n "
-            + "Parameters: ORDER (asc or dsc) "
-            + "[" + PREFIX_ATTRIBUTE + "ORDER]...\n "
+            + "Parameters: ORDER(asc or dsc) "
+            + "[" + PREFIX_ATTRIBUTE + "ATTRIBUTE]\n "
             + "Example: " + COMMAND_WORD + " asc "
-            + PREFIX_ATTRIBUTE + "name";
+            + PREFIX_ATTRIBUTE + "name\n"
+            + "Supported attributes: name, phone, address, email, attendance";
 
     public static final String MESSAGE_SORT_SUCCESS = "Address book has been sorted by %1$s in %2$s order!";
 
+    private final Comparator<Student> comparator;
     private final Order sortOrder;
-    private final Attribute attribute;
+    private final String attributeType;
 
     /**
-     * Sorts the working list by the attribute in ascending or descending order.
-     * @param attribute The attribute to sort the list by
+     * Sorts the working list by the comparator in ascending or descending order.
+     *
+     * @param comparator The comparator to sort the list by
      * @param sortOrder Order to sort the list in
      */
-    public SortCommand(Attribute attribute, Order sortOrder) {
-        this.attribute = attribute;
+    public SortCommand(Comparator<Student> comparator, String attributeType, Order sortOrder) {
+        this.attributeType = attributeType;
+        this.comparator = comparator;
         this.sortOrder = sortOrder;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortFilteredStudentList(attribute, sortOrder);
+        model.sortFilteredStudentList(comparator, sortOrder);
         return new CommandResult(
-                String.format(MESSAGE_SORT_SUCCESS, attribute.toString(), sortOrder.toString()));
+                String.format(MESSAGE_SORT_SUCCESS, attributeType.toString(), sortOrder.toString()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
-                && attribute.equals(((SortCommand) other).attribute) // state check
+                && attributeType.equals(((SortCommand) other).attributeType) // state check
                 && sortOrder.equals(((SortCommand) other).sortOrder)); // state check
     }
 }

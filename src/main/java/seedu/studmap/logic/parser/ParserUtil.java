@@ -1,6 +1,8 @@
 package seedu.studmap.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.studmap.model.order.Order.ORDER_ASC;
+import static seedu.studmap.model.order.Order.ORDER_DSC;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -151,6 +153,6 @@ public class ParserUtil {
         if (!Order.isValidOrderName(trimmedOrder)) {
             throw new ParseException(Order.MESSAGE_CONSTRAINTS);
         }
-        return new Order(trimmedOrder);
+        return trimmedOrder.matches("asc") ? ORDER_ASC : ORDER_DSC;
     }
 }

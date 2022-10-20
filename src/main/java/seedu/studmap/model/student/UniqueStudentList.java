@@ -9,8 +9,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.studmap.model.attribute.Attribute;
-import seedu.studmap.model.attribute.exceptions.AttributeNotFoundException;
 import seedu.studmap.model.student.exceptions.DuplicateStudentException;
 import seedu.studmap.model.student.exceptions.StudentNotFoundException;
 
@@ -61,33 +59,8 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Sorts the list according to specified attribute and order.
      */
-    public void sort(Attribute attribute, Boolean isDescending) {
-        String attributeToSort = attribute.toString();
-        switch (attributeToSort) {
-
-        case ("[name]"):
-            internalList.sort(Comparator.comparing(Student::getNameString));
-            break;
-
-        case ("[phone]"):
-            internalList.sort(Comparator.comparing(Student::getPhoneString));
-            break;
-
-        case ("[studmap]"):
-            internalList.sort(Comparator.comparing(Student::getAddressString));
-            break;
-
-        case ("[email]"):
-            internalList.sort(Comparator.comparing(Student::getEmailString));
-            break;
-
-        case ("[attendance]"):
-            internalList.sort(Comparator.comparing(Student::getAttendancePercentage));
-            break;
-
-        default:
-            throw new AttributeNotFoundException();
-        }
+    public void sort(Comparator<Student> comparator, Boolean isDescending) {
+        internalList.sort(comparator);
         if (isDescending) {
             FXCollections.reverse(internalList);
         }

@@ -9,6 +9,7 @@ import static seedu.studmap.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,6 @@ import seedu.studmap.model.Model;
 import seedu.studmap.model.ReadOnlyStudMap;
 import seedu.studmap.model.ReadOnlyUserPrefs;
 import seedu.studmap.model.StudMap;
-import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.testutil.StudentBuilder;
@@ -156,7 +156,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortFilteredStudentList(Attribute attribute, Order order) {
+        public void sortFilteredStudentList(Comparator<Student> comparator, Order order) {
             throw new AssertionError("This method should not be called.");
         }
 

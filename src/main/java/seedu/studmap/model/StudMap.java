@@ -2,10 +2,10 @@ package seedu.studmap.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.UniqueStudentList;
@@ -110,9 +110,9 @@ public class StudMap implements ReadOnlyStudMap {
     }
 
     /** Sort the studmap by the given attribute and order */
-    public void sort(Attribute attribute, Order order) {
+    public void sort(Comparator<Student> comparator, Order order) {
         boolean isDescending = order.isDescending();
-        students.sort(attribute, isDescending);
+        students.sort(comparator, isDescending);
     }
 
     @Override

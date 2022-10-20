@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.studmap.commons.core.GuiSettings;
 import seedu.studmap.commons.core.LogsCenter;
-import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
 
@@ -125,8 +125,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortFilteredStudentList(Attribute attribute, Order order) {
-        this.studMap.sort(attribute, order);
+    public void sortFilteredStudentList(Comparator<Student> comparator, Order order) {
+        this.studMap.sort(comparator, order);
     }
 
     @Override

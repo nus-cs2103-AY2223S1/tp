@@ -1,11 +1,11 @@
 package seedu.studmap.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.studmap.commons.core.GuiSettings;
-import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
 
@@ -103,8 +103,8 @@ public interface Model {
      */
     void filterStudentListWithTag(Predicate<Student> predicate);
 
-    /** Sorts filteredList by specified attribute and order. */
-    void sortFilteredStudentList(Attribute attribute, Order order);
+    /** Sorts filteredList by specified comparator and order. */
+    void sortFilteredStudentList(Comparator<Student> comparator, Order order);
 
 
 }
