@@ -176,7 +176,7 @@ public class VersionedTaskBook {
     /**
      * Represents an error due to an invalid action on a {@link VersionedTaskBook}.
      */
-    protected static class InvalidActionException extends Exception {
+    public static class InvalidActionException extends Exception {
 
         /**
          * Constructs an {@code InvalidActionException} with the given {@code message}.

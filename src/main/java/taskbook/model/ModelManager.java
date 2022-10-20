@@ -23,6 +23,7 @@ import taskbook.model.task.Task;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final VersionedTaskBook taskBookVersions;
     private final TaskBook taskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs);
 
         this.taskBook = new TaskBook(taskBook);
+        this.taskBookVersions = new VersionedTaskBook(this.taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.taskBook.getPersonList());
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
@@ -84,6 +86,31 @@ public class ModelManager implements Model {
     }
 
     //=========== TaskBook ================================================================================
+
+    @Override
+    public void commitTaskBook() {
+        taskBookVersions.commit(taskBook);
+    }
+
+    @Override
+    public boolean canUndoTaskBook() {
+        return taskBookVersions.canUndo();
+    }
+
+    @Override
+    public void undoTaskBook() throws VersionedTaskBook.InvalidActionException {
+        taskBookVersions.undo();
+    }
+
+    @Override
+    public boolean canRedoTaskBook() {
+        return taskBookVersions.canRedo();
+    }
+
+    @Override
+    public void redoTaskBook() throws VersionedTaskBook.InvalidActionException {
+        taskBookVersions.redo();
+    }
 
     @Override
     public void setTaskBook(ReadOnlyTaskBook taskBook) {
@@ -161,7 +188,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedTaskBook}
+     * {@code TaskBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -182,7 +209,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedTaskBook}
+     * {@code TaskBook}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
@@ -197,7 +224,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the sorted list of {@code Task} backed by the internal list of
-     * {@code versionedTaskBook}
+     * {@code TaskBook}
      */
     @Override
     public ObservableList<Task> getSortedTaskList() {
