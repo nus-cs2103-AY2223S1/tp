@@ -15,6 +15,7 @@ import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.Model;
 import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.storage.Storage;
 
@@ -28,6 +29,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private FinancialAdvisorIncome income;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,6 +38,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        income = model.getIncome();
     }
 
     @Override
@@ -66,7 +69,9 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
-
+    public FinancialAdvisorIncome getIncome() {
+        return income;
+    }
     @Override
     public ObservableList<Policy> getFilteredPolicyList() {
         return model.getFilteredPolicyList();

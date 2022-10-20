@@ -69,20 +69,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of UI Component](./images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `EventListPanel`, `PolicyListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+Similarly, the layout of [`PersonListPanel`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/PersonListPanel.java), [`PolicyListPanel`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/PolicyListPanel.java) and [`EventListPanel`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/EventListPanel.java) are all specified in their respective [`.fxml`](https://github.com/AY2223S1-CS2103T-W13-2/tp/tree/master/src/main/resources/view) files.
+
+The layout of [`IncomeGraph`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/IncomeGraph.java) is specified in [`LineGraph.fxml`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/resources/view/LineGraph.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model`, `Policy` and `Event` component, as it displays `Person`, `Policy` and `Event` objects residing in the `Model`.
 
 ### Logic component
 
@@ -130,6 +134,24 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person or Policy
+
+<img src="images/ModelEventClassDiagram.png"  width="500"/>
+
+### Event Component
+
+An extension to the current Model is the `Event` Component,
+* Stores all information related to Event Objects, all of which are contained inside a `UniqueEventList` object.
+
+* Stores the current `Event` objects. Upon filtering via other commands (e.g: `calendar`), it is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be observed. 
+
+* Has strict requirements on deciding whether an new `Event` is valid or not.
+
+
+
+<div markdown="span" class="alert alert-info"> <B>information_source</B>: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
 </div>
 
 
@@ -154,6 +176,117 @@ Classes used by multiple components are in the `longtimenosee.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### pin and viewPin feature
+
+#### Implementation
+
+Each person object has a boolean attribute known as pinned. When the user pins the person using the index. This attribute will be set to true. When the user pins that same person again, this attribute will be set to false.
+
+
+* `pin <Index>` — Sets the boolean pinned attribute to a value of true.
+* `pin <Index>` — If the boolean pinned attribute was previously set true, calling the command again will set it to false.
+* `viewPin` — Uses the predicate PinnedPersonPredicate to sort the full list of existing clients to display only clients with pinned attribute of true.
+
+The following sequence diagram summarizes how pin works:
+
+![PinSequenceDiagram](images/PinSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Pin activity dragram:
+<img src="images/PinActivityDiagram.png" width="250" />
+
+#### View Pin Activity diagram:
+<img src="images/ViewPinActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How pin and viewPin executes:**
+
+* **Alternative 1 (current choice):** Uses a predicate to sort through pinned clients.
+    * Pros: Easy to implement.
+    * Cons: Hard for additional extensions given that this method uses a boolean attribute.
+
+* **Alternative 2:** Saves the entire address book of clients pinned.
+  * Pros: More potential for further extensions.
+  * Cons: May result in performance issues in terms of memory usage.
+
+### viewIncome feature
+
+#### Implementation
+
+This feature builds on the new policy class created. Where each client has a set of policies assigned to them. In this case, a financial advisor’s income is treated as a class by itself. Where inside the class there are methods of retrieving the income based on different factors stated below.
+
+The main calculation done in class FinancialAdvisorIncome is a function called calculateIncome. This function iterates through a list of clients and for each client, it iterates through the list of policies they have. For each of the policies, LocalDate and Period are used to determine which commission (out of the 3 year differing rates) the assigned policy of the current person is in. Subsequently, all commissions are multiplied by policy premium with the duration of the policy (relative from start date to given date) and summed to give income for a particular year.
+
+* `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
+
+Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
+
+#### Design considerations:
+
+**Aspect: How viewIncome executes:**
+
+* **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
+    * Pros: By assigning FinanicialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
+    * Cons: Might pose a problem for retrival of values from class.
+
+* **Alternative 2:** Saves the entire address book of clients pinned.
+    * Pros: More potential for further extensions.
+    * Cons: May result in performance issues in terms of memory usage.
+
+
+### Sort Feature 
+
+#### Implementation 
+
+The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list. 
+
+The method `FXCollections.sort()` is called by UniquePersonList, which takes in a comparator as an argument and sorts the client list based on the comparator supplied.
+Each attribute of a client which is considered a valid sorting metric has its own comparator within its class.
+
+This operation is exposed in the `Model` interface as `Model#sort()`.
+
+Given below is an example usage scenario and how the `Sort` mechanism behaves at each step. 
+
+Step 1.  The user executes `list` to view his current client list. 
+
+Step 2. The user executes `sort income` to view his client list by ascending income levels. This will pass the income comparator to `Model#sort()`. The list will be sorted and changes can be viewed immediately.
+
+
+The following sequence diagram shows how the sort operation works: 
+
+![Sort Sequence Diagram](./images/SortSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user issues a `sort` command:
+
+![Sort Activity Diagram](./images/SortActivityDiagram.png)
+
+#### Design Considerations 
+
+**Aspect: How to manage saving changes to `Storage`**
+
+As any commands called which modifies the `AddressBook` will save these changes to storage, a major design consideration was whether to save these post-sort changes to the storage
+
+* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view 
+  * Pros: Easy to implement, less memory required to keep separate original list 
+  * Cons: Client list remains in a particular order after `sort` command is called until `sort default` is issued
+
+* **Alternative 2:** keep original list and sorted list as 2 separate lists 
+  * Pros: User need not call further command to view original list
+  * Cons: More memory to store 2nd list, more difficult to implement 
+
+**Aspect: How to sort list given different metrics** 
+
+* **Alternative 1 (current choice):** each sortable class has its own comparator and will be passed as an argument after `sort` command is parsed
+  * Pros: Better abstraction and Better OOP 
+  * Cons: Comparators must be written for every class  
+
+* **Alternative 2:** `Model` decides how to sort the client list based on sort metric called 
+  * Pros: Easier to implement 
+  * Cons: less abstraction; information about client attributes will have to be unnecessarily exposed to `Model` class 
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -168,7 +301,7 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state/
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -219,7 +352,35 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+
+
+## AddEvent Feature 
+
+### Proposed Implementation 
+The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions. 
+
+* Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
+
+* No overlapping events: . If the event overlaps with another event (i.e: occurs on the same day, and has a start and end time that coincides with another event in `UniqueEventList`, the `AddEventParser` throws an: `OverlapEventException`.
+
+### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
+
+<B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`. 
+
+
+<B>Step 2</B>. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`. The event is added successfully.
+
+
+<B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time window of this event overlaps with the previously event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
+
+
+### The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
+
+<p align ="center"> <img src="images/AddEventActivityDiagram.png" width="650" /> </p>
+
+
+
+## Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -231,6 +392,19 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+
+**Aspect: Should events that occured in the past be auto-deleted on startup of app?:**
+* **Alternative 1 (current choice):** Don't delete, in fact allow users to add events that happened in the past. 
+   * Pros: Our target audience (Financial Advisors) might need to look up what past events or meetings have occured. Keeping past events serves as a good record.Increase in storage 
+   * Cons: More storage used by app
+
+* **Alternative 2 :** Delete all past events, users are not permitted to add events that happened in the past
+   * Pros: Less storage used up by app
+   * Cons: Difficult to implement without bugs.
+
+
+
 
 _{more aspects and alternatives to be added}_
 
@@ -390,22 +564,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. LTNS shows a list of clients stored in the database
 
    Use case ends.
-    
-**Use case 5: Sort a list**
-
-**MSS**
-
-1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
-2. User requests to sort the list based on name (or any other metric)
-3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
-
-   Use case ends
-
-**Extensions**
-
-* 2a. Given sorting metric does not exist.
-
-  Use case ends.
 
 **Use case 6: Delete a person**
 
@@ -428,8 +586,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case 7: Sort a list**
 
-**Use case 7: Pin a client**
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
+2. User requests to sort the list based on name (or any other metric)
+3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
+
+   Use case ends
+
+**Extensions**
+
+* 2a. Given sorting metric does not exist.
+
+  Use case ends.
+
+**Use case 8: Delete a person**
+
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>
+2. User requests to delete a specific person in the list
+3. LTNS deletes the person
+
+   Use case ends
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 8: Pin a client**
 
 **MSS**
 
@@ -445,7 +641,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case 8: Find a contact**
+**Use case 9: Find a contact**
 
 **MSS**
 

@@ -18,6 +18,7 @@ import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.Phone;
 import longtimenosee.model.person.RiskAppetite;
+import longtimenosee.model.policy.AssignedPolicy;
 import longtimenosee.model.tag.Tag;
 
 /**
@@ -36,6 +37,7 @@ class JsonAdaptedPerson {
     private final String income;
     private final String riskAppetite;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedAssignedPolicy> assignedPolicies = new ArrayList<>();
     private final boolean pinned;
 
     /**
@@ -46,7 +48,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("birthday") String birthday,
                              @JsonProperty("income") String income, @JsonProperty("riskAppetite") String riskAppetite,
-                                 @JsonProperty("pinned") boolean pinned) {
+                                 @JsonProperty("pinned") boolean pinned,
+                             @JsonProperty("assignedPolicies") List<JsonAdaptedAssignedPolicy> assignedPolicies) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -58,6 +61,9 @@ class JsonAdaptedPerson {
         this.birthday = birthday;
         this.income = income;
         this.riskAppetite = riskAppetite;
+        if (assignedPolicies != null) {
+            this.assignedPolicies.addAll(assignedPolicies);
+        }
     }
 
     /**
@@ -75,6 +81,9 @@ class JsonAdaptedPerson {
         birthday = source.getBirthday().value;
         income = source.getIncome().value;
         riskAppetite = source.getRiskAppetite().value;
+        assignedPolicies.addAll(source.getAssignedPolicies().stream()
+                .map(JsonAdaptedAssignedPolicy::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -87,6 +96,12 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
+
+        final List<AssignedPolicy> personPolicies = new ArrayList<>();
+        for (JsonAdaptedAssignedPolicy assignedPolicy : assignedPolicies) {
+            personPolicies.add(assignedPolicy.toModelType());
+        }
+        final Set<AssignedPolicy> modelPolicies = new HashSet<>(personPolicies);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -142,7 +157,7 @@ class JsonAdaptedPerson {
 
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelBirthday, modelIncome, modelRiskAppetite, pinned);
+                modelBirthday, modelIncome, modelRiskAppetite, modelPolicies, pinned);
     }
 
 }

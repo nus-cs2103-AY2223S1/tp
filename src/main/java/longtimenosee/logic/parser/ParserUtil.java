@@ -19,6 +19,7 @@ import longtimenosee.model.person.RiskAppetite;
 import longtimenosee.model.policy.Commission;
 import longtimenosee.model.policy.Company;
 import longtimenosee.model.policy.Coverage;
+import longtimenosee.model.policy.PolicyDate;
 import longtimenosee.model.policy.Title;
 import longtimenosee.model.tag.Tag;
 
@@ -236,6 +237,19 @@ public class ParserUtil {
             coverageSet.add(parseCoverage(coverage));
         }
         return coverageSet;
+    }
+
+    /**
+     * Parses {@code String policyDate} into a {@code PolicyDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static PolicyDate parsePolicyDate(String policyDate) throws ParseException {
+        requireNonNull(policyDate);
+        String trimmedPolicyDate = policyDate.trim();
+        if (!PolicyDate.isValidFormat(trimmedPolicyDate)) {
+            throw new ParseException(PolicyDate.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new PolicyDate(policyDate);
     }
 
 }

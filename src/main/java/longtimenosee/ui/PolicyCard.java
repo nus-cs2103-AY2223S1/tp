@@ -48,7 +48,7 @@ public class PolicyCard extends UiPart<Region> {
         this.policy = policy;
         id.setText(displayedIndex + ". ");
         title.setText(policy.getTitle().fullTitle);
-        company.setText(policy.getCompany().value);
+        company.setText(String.format("%s (%s)", policy.getCompany().getCompanyName(), policy.getCompany().value));
         commission.setText(policy.getCommission().value);
         policy.getCoverages().stream()
                 .sorted(Comparator.comparing(coverage -> coverage.getCoverageType()))

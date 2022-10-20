@@ -15,7 +15,7 @@ public class Premium {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\$(([1-9]\\d*)?\\d)(\\.\\d\\d)?$";
+    public static final String VALIDATION_REGEX = "([1-9]\\d*)?\\d(\\.\\d\\d)?";
 
     public final String value;
     public final float numericValue;

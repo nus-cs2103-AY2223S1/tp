@@ -40,7 +40,6 @@ public class Policy {
     public Company getCompany() {
         return company;
     }
-
     public Commission getCommission() {
         return commission;
     }
@@ -64,7 +63,7 @@ public class Policy {
 
         return otherPolicy != null
                 && otherPolicy.getCompany().equals(getCompany())
-                && otherPolicy.getTitle().equals(getCompany());
+                && otherPolicy.getTitle().equals(getTitle());
     }
 
     /**

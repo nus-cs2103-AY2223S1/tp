@@ -9,7 +9,7 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_TITLE;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import longtimenosee.logic.commands.AddPolicyCommand;
+import longtimenosee.logic.commands.PolicyAddCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.policy.Commission;
 import longtimenosee.model.policy.Company;
@@ -18,22 +18,22 @@ import longtimenosee.model.policy.Policy;
 import longtimenosee.model.policy.Title;
 
 /**
- * Parses input arguments and creates a new AddPolicyCommand object.
+ * Parses input arguments and creates a new PolicyAddCommand object.
  */
-public class AddPolicyCommandParser {
+public class PolicyAddCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPolicyCommand
-     * and returns an AddPolicyCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the PolicyAddCommand
+     * and returns an PolicyAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddPolicyCommand parse(String args) throws ParseException {
+    public PolicyAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_COMPANY, PREFIX_COMMISSION, PREFIX_COVERAGES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_COMPANY, PREFIX_COMMISSION, PREFIX_COVERAGES)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPolicyCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyAddCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
@@ -43,7 +43,7 @@ public class AddPolicyCommandParser {
 
         Policy policy = new Policy(title, company, commission, coverages);
 
-        return new AddPolicyCommand(policy);
+        return new PolicyAddCommand(policy);
     }
 
     /**

@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([sorting metric valid])
+    :Corresponding comparator passed to AddressBook;
+    :AddressBook sorted based on comparator;
+    :Sorted client list displayed to user;
+else ([else])
+endif
+stop
+@enduml
