@@ -25,7 +25,7 @@ public class RecordBuilder {
      * Creates a {@code RecordBuilder} with the default details.
      */
     public RecordBuilder() {
-        LocalDateTime recordDate = LocalDateTime.parse(DEFAULT_RECORD_DATE, Record.DATE_FORMAT);
+        recordDate = LocalDateTime.parse(DEFAULT_RECORD_DATE, Record.DATE_FORMAT);
         recordData = DEFAULT_RECORD_DATA;
         medications = new HashSet<>();
         medications.add(Medication.of(DEFAULT_MEDICATION));

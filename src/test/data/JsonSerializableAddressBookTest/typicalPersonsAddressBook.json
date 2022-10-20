@@ -2,6 +2,7 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "birthdate" : "04-04-1944",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
@@ -10,6 +11,7 @@
     "appointment": "01-01-2000 0000"
   }, {
     "name" : "Benson Meier",
+    "birthdate" : "08-08-1988",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -18,6 +20,7 @@
     "appointment" : "05-05-2023 1200"
   }, {
     "name" : "Carl Kurz",
+    "birthdate" : "02-02-2002",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
@@ -26,6 +29,7 @@
     "appointment" : "No appointment scheduled!"
   }, {
     "name" : "Daniel Meier",
+    "birthdate" : "06-06-1996",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
@@ -34,6 +38,7 @@
     "appointment" : "No appointment scheduled!"
   }, {
     "name" : "Elle Meyer",
+    "birthdate" : "13-03-1993",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
@@ -42,6 +47,7 @@
     "appointment" : "No appointment scheduled!"
   }, {
     "name" : "Fiona Kunz",
+    "birthdate" : "07-07-1977",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
@@ -50,6 +56,7 @@
     "appointment" : "No appointment scheduled!"
   }, {
     "name" : "George Best",
+    "birthdate" : "15-05-1975",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
