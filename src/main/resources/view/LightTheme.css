@@ -391,14 +391,11 @@
     -fx-background-color: #fafafa;
 }
 
-
-
 #address, #email {
      -fx-font-family: "Segoe UI Semibold";
      -fx-text-fill: #484b6a;
      -fx-font-size: 16px;
 }
-
 
 #income, #meetingDate {
      -fx-font-family: "Segoe UI Semibold";

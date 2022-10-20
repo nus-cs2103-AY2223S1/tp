@@ -22,6 +22,7 @@ done faster and more securely than traditional GUI apps.
     * [Saving the data](#saving-the-data)
     * [Importing data: `import`](#importing-data--import)
     * [Exporting data: `export`](#exporting-data--export)
+    * [Changing Light/Dark mode](#changing-lightdark-mode)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -272,6 +273,12 @@ Examples:
 
 * `export ./data.csv` exports data to the file `data.csv` which is located in the same directory as the FinBook executable
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the FinBook executable
+
+### Changing Light/Dark mode
+
+Toggle the UI of FinBook by clicking on the `sun` or `moon` icon on the top right. 
+* If icon is a `sun` FinBook is in Light mode. 
+* If icon is a `moon` FinBook is in Dark mode.
 
 --------------------------------------------------------------------------------------------------------------------
 
