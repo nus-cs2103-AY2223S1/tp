@@ -37,7 +37,7 @@ public class RateCommandParser implements Parser<RateCommand> {
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
-        
+
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

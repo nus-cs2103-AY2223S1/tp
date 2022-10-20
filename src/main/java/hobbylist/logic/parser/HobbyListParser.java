@@ -56,7 +56,7 @@ public class HobbyListParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-            
+
         case RateCommand.COMMAND_WORD:
             return new RateCommandParser().parse(arguments);
 

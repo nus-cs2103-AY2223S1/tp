@@ -27,7 +27,6 @@ class JsonAdaptedActivity {
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedDate> date = new ArrayList<>();
-    
     private int rating;
 
 
