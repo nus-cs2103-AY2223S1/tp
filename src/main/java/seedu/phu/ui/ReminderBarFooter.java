@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.phu.commons.util.StringUtil;
 import seedu.phu.model.ReadOnlyInternshipBook;
@@ -17,8 +19,8 @@ import seedu.phu.model.internship.Internship;
 public class ReminderBarFooter extends UiPart<Region> {
 
     private static final String FXML = "ReminderBarFooter.fxml";
-
-    private static final String DEFAULT_REMINDER_TEXT = "In the next 7 days, you have: ";
+    private static final String REMINDER_ICON_PATH = "/images/reminder_icon.png";
+    private static final String DEFAULT_REMINDER_TEXT = "Upcoming (in the next 7 days):  ";
     private static final String PROCESS_ASSESSMENT = "ASSESSMENT";
     private static final String PROCESS_INTERVIEW = "INTERVIEW";
     private static final int UPCOMING_DAYS = 7;
@@ -26,12 +28,16 @@ public class ReminderBarFooter extends UiPart<Region> {
     @FXML
     private Label reminderStatus;
 
+    @FXML
+    private ImageView reminderIcon;
+
     /**
      * Creates a {@code ReminderBarFooter}
      */
     public ReminderBarFooter(ReadOnlyInternshipBook book) {
         super(FXML);
         setReminderText(book);
+        reminderIcon.setImage(new Image(getClass().getResourceAsStream(REMINDER_ICON_PATH)));
     }
 
     public void setReminderText(ReadOnlyInternshipBook book) {
