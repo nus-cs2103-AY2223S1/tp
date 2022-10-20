@@ -16,7 +16,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.person.Person;
 
 /**
- * Links a Person and an Internship.
+ * Unlinks a Person and an Internship.
  */
 public class UnlinkCommand extends Command {
 
@@ -29,8 +29,6 @@ public class UnlinkCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PERSON + "0 "
             + PREFIX_INTERNSHIP + "0 ";
-
-    // TODO: change
     public static final String MESSAGE_SUCCESS = "Person %1$s and Internship %2$s has been unlinked";
     // when only 1 person/internship is provided and person/internship has no link
     public static final String MESSAGE_UNLINKED_INTERNSHIP = "Internship %1$s does not have a contact person";
