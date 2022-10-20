@@ -1,8 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +8,7 @@ import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.person.Name;
 import seedu.address.model.property.Description;
+import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -28,8 +26,7 @@ class JsonAdaptedProperty {
     private final String description;
     // characteristics cannot be null; converted to "" for saving to storage if null
     private final String characteristics;
-    private final String seller; // TODO: change to JsonAdaptedSeller
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final JsonAdaptedOwner owner;
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
@@ -38,31 +35,27 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("price") String price,
                              @JsonProperty("address") String address, @JsonProperty("description") String description,
                              @JsonProperty("characteristics") String characteristics,
-                             @JsonProperty("seller") String seller,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                               @JsonProperty("owner") JsonAdaptedOwner owner) {
         this.name = name;
         this.price = price;
         this.address = address;
         this.description = description;
         this.characteristics = characteristics;
-        this.seller = seller;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.owner = owner;
     }
 
     /**
      * Converts a given {@code Property} into this class for Jackson use.
      */
     public JsonAdaptedProperty(Property source) {
-        name = source.getName().fullName;
+        name = source.getPropertyName().fullName;
         price = source.getPrice().value;
         address = source.getAddress().value;
         description = source.getDescription().value;
         characteristics = source.getCharacteristics()
                 .map(Characteristics::toString)
                 .orElse("");
-        seller = source.getSeller();
+        owner = new JsonAdaptedOwner(source.getOwner());
     }
 
     /**
@@ -78,7 +71,7 @@ class JsonAdaptedProperty {
         if (!PropertyName.isValidPropertyName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final PropertyName modelName = new PropertyName(name);
+        final PropertyName modelPropertyName = new PropertyName(name);
 
         if (price == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -118,17 +111,13 @@ class JsonAdaptedProperty {
                 ? null
                 : new Characteristics(characteristics);
 
-        if (seller == null) {
+        if (owner == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "seller"));
+                    Owner.class.getSimpleName()));
         }
-        // TODO: implement after Seller class is implemented
-        // if (!Seller.isValidSeller(description)) {
-        //     throw new IllegalValueException(Seller.MESSAGE_CONSTRAINTS);
-        // }
-        final String modelSeller = seller;
+        final Owner modelOwner = owner.toModelType();
 
-        return new Property(modelName, modelPrice, modelAddress, modelDescription,
-                modelSeller, modelCharacteristics);
+        return new Property(modelPropertyName, modelPrice, modelAddress, modelDescription,
+                modelCharacteristics, modelOwner);
     }
 }

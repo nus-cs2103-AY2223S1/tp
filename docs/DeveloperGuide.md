@@ -238,11 +238,56 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Navigate previous commands with arrow keys
+
+#### Motivation
+
+Currently, once a command is executed successfully, there is no way for the user to get it back easily. 
+However, a user who frequently uses command line interfaces (CLIs) might expect the use of arrow keys to bring
+back previous commands, as a way to quickly input multiple similar commands at once.
+
+#### Implementation
+`CommandBox` in the `commandbox` package represents the GUI component where the user enters commands.
+To capture the event when the Up and Down keystrokes are depressed, we add the `onKeyReleased` parameter
+to the `TextField` in the FXML file, `CommandBox.fxml`. This fires the `CommandBox#handleKeyReleased` method in `CommandBox`
+whenever a key is released. 
+
+`CommandBox#handleKeyReleased` changes the text field in the GUI to the previous or next command on release of the Up and Down
+arrow key respectively, if the previous or next command exists. The list of commands is stored in an ArrayList of 
+strings, `previousCommands`. `previousCommandsIndex` always represents the `previousCommands` index of the command 
+currently being displayed in the GUI.
+
+Given below is an example usage scenario and how the arrow key changes the `CommandBox` text field at each step.
+A sequence diagram is also provided. (to be added)
+
+Step 1. The user launches the application for the first time. `previousCommands` is initialised with an empty string as
+its first element. This element will represent the command that the user executes, if it executes correctly.
+
+Step 2. The user executes a command, `listbuyers` by pressing the Enter key. `CommandBox#handleCommand` is fired,
+getting the text from the text field. Since it is a valid command, it is executed successfully. The last element 
+is set to `listbuyers` and an empty string is appended to `previousCommands`. The `previousCommandsIndex` is set to
+the last element.
+
+Step 3. The user types a command halfway, but does not press the Enter key. He/she now wishes to use the previous
+command to type the command.
+
+Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
+to display the `(previousCommandsIndex - 1)`th element in `previousCommands`. The user's unexecuted command from Step 3 
+is also saved as the last element in `previousCommands`.
+
+Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased` is fired, but since
+`previousCommandsIndex == 0`, nothing happens, since there is no more previous command to be shown. 
+
+Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
+to display the `(previousCommandsIndex + 1)`th element in `previousCommands`. This would be the user's unexecuted
+command from Step 3.
+
 ### Creating a buyer
 
-The `Person` class represents a buyer with buyer-specific fields. `Price Range` and `Characteristics` denote his budget and requirements for the property respectively. 
+The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority` denote his budget, requirements for the property, and buyer priority respectively. 
 
-These two fields are both optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`. 
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`. 
+When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
 
 This is the class diagram of a `Person`. 
 
@@ -251,7 +296,22 @@ This is the class diagram of a `Person`.
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide. 
 
 Design considerations: 
-No duplicate persons can be added to the list. This means that no two persons with the same name can exist. We considered using not only name but also contact number to identify a person, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+No duplicate persons can be added to the buyer list. This means that no two persons with the same name can exist. We considered using not only name but also contact number to identify a person, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+
+### Creating a property
+
+The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
+
+The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+
+This is the class diagram of a `Property`.
+
+![PropertyClassDiagram](images/PropertyClassDiagram.png)
+
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
+
+Design considerations:
+No duplicate properties can be added to the property list. This means that no two properties with the same name and price can exist. We considered using only name to identify a property, but later decided against it since in real life different units under the same property name can be listed at the same time. In the future, we might allow two properties with same name and price but different characteristics to be added to the property list because this can also be a possible scenario in real life.
 
 ### Filtering properties by price range
 
