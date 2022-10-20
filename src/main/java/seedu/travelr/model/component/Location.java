@@ -19,9 +19,7 @@ public class Location {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private static final String DEFAULT_LOCATION_NAME = "Default";
-
-    private static final Location DEFAULT_LOCATION = new Location(DEFAULT_LOCATION_NAME);
-
+    
     public final String locationName;
 
     /**
@@ -47,11 +45,11 @@ public class Location {
     }
 
     public static Location getDefaultLocation() {
-        return DEFAULT_LOCATION;
+        return new Location(DEFAULT_LOCATION_NAME);
     }
 
     public boolean isDefaultValue() {
-        return this.equals(DEFAULT_LOCATION);
+        return this.equals(getDefaultLocation());
     }
 
     @Override

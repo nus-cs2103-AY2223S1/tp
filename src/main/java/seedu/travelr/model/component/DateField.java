@@ -19,8 +19,6 @@ public class DateField {
     // Formatter has to be initialised before DEFAULT_DATE_FIELD
     private static final DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     private static final String DEFAULT_DATE_VALUE = "01-01-0000";
-    private static final DateField DEFAULT_DATE_FIELD = new DateField(DEFAULT_DATE_VALUE);
-
 
     public final LocalDate dateValue;
 
@@ -52,7 +50,7 @@ public class DateField {
     }
 
     public static DateField getDefaultDateField() {
-        return DEFAULT_DATE_FIELD;
+        return new DateField(DEFAULT_DATE_VALUE);
     }
 
     public boolean isDefaultValue() {
