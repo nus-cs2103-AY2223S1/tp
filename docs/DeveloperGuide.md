@@ -171,12 +171,51 @@ Classes used by multiple components are in the `seedu.taassist.commons` package.
 This section describes some noteworthy details on how certain features are implemented along with explanations
 for why certain functions are implemented in such a manner.
 
-### Assigning students to a class
+### Creating and deleting module classes
+
+Module class information is stored as `ModuleClass` objects, which captures the name of the module class as well as the sessions created for the module class. When the user creates a module class, the program creates a new `ModuleClass` object with the module class name and adds it to the collection of `ModuleClass` objects previously created, which is managed by the `TaAssist` class.
+
+When deleting module classes, all students previously assigned to those module classes will have the module classes unassigned from them, before the `ModuleClass` objects corresponding to those module classes are removed from the collection captured by `TaAssist`.
+
+The following methods in `TaAssist` manages the adding and deleting of module classes from the collection:
+
+- `TaAssist#addModuleClass(ModuleClass moduleClass)` - Adds the provided module class to the list of module classes created.
+- `TaAssist#removeModuleClass(ModuleClass moduleClass)` - Removes the provided module class from the list of module classes created.
+
+### Assigning students to module classes
 <img src="images/AssignCommandSequenceDiagram.png" width="700" />
 
-DESCRIPTION TODO
+Each student object contains a collection of `StudentModuleData` where module classes and the grades the student obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new `StudentModuleData` object is created and added to the collection for each student.
+
+Given below are the different steps taken when the user assigns students to a module class.
+
+Step 1: The user enters the command keyword `assign`, followed by the indices of the students he want to assign module classes to, and the names of the module classes that he wants to assign to the students. Example: `assign 1 2 3 c/CS1101S`.
+
+Step 2: The program makes use of the `TAAssistParser` to make sense of the keyword, and determine which parser to use to parse the arguments. In this case, the `AssignCommandParser` is used.
+
+Step 3: The `AssignCommandParser` makes sense of the arguments, and creates an `AssignCommand` object with the student indices and the module classes to assign them to.
+
+Step 4: The `AssignCommand` object is executed. The student indices are be used to retrieve the `Student` objects from the list of students captured by the `Model` interface. For each student, the program creates a new `StudentModuleData` object for each module class that is not already assigned to the student. The `StudentModuleData` object only contains the module class name and not any session information. The `StudentModuleData` objects created for the student are added to the student object's collection of `StudentModuleData`.
+
+Step 5: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI to the user.
+
+#### Design considerations:
+
+* Alternative 1 (current choice): Let each student maintain a collection of module classes that the student is being assigned to.
+  * Pros: Only captures necessary information, and easier to implement. This structure is also easier to capture session information for the students.
+  * Cons: Will be creating multiple `StudentModuleData` objects for a module class when multiple students are assigned to the module class. This may cause performance issues from the large number of objects created.
+* Alternative 2: Create a matrix of students and classes to determine which module class is assigned to which student.
+  * Pros: Will allow fast query to whether a student is assigned to a module class, or when looking for all the students assigned to a certain module class.
+  * Cons: Can possibly be storing a lot of unnecessary information. Considering the target audience of TAs, it is very unlikely for them to be teaching the same student for multiple module classes.
+
+### Unassigning students from module classes
+
+The implementation of unassigning students from module classes is similar to how module classes are assigned to students. The difference is that in the unassigning process, the `StudentModuleData` of the mentioned module classes are removed from the collection of `StudentModuleData` maintained by the students instead.
+
+Refer to [Assigning students to module classes](#assigning-students-to-module-classes) for more information.
 
 ### Tracking the state of focus mode
+
 The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)).
 When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModelManager` returns the state of the focus mode via the following methods:
 * `ModelManager#isInFocusMode()` - Checks whether focus mode is active.
@@ -254,7 +293,6 @@ creates a `Session` named "Lab1" and adds it inside the focused class.
 :information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 
 the focused class doesn't contain a session named `Lab1` as of current.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -289,21 +327,21 @@ the focused class doesn't contain a session named `Lab1` as of current.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                               | So that I can…​                                                  |
-|---------|-----------------|------------------------------------------------------------|------------------------------------------------------------------|
-| `* * *` | New user        | Get help for specific commands                             | Learn the complete features of a command and know how to use it. |
-| `* * *` | User            | Add students to my class                                   | Decide who to have in my class.                                  |
-| `* * *` | User            | Delete students from my class                              | Decide who to have in my class.                                  |
-| `* * *` | User            | Give participation points to students                      | Keep track of their participation in class.                      |
-| `* * *` | User            | Take attendance of my students                             | Keep track of their class attendance.                            |
-| `* * *` | User            | Delete students from TA Assist                             | Keep my list of students concise.                                |
-| `* * *` | User            | View all my classes                                        | See what classes I am teaching.                                  |
-| `* *  ` | Infrequent user | Remember the last used commands                            | Quickly find the commands that I need.                           |
-| `* *  ` | An expert user  | Create macros to perform multiple tasks                    | Be more efficient at using the system.                           |
-| `* *  ` | User            | Edit students' information                                 | Easily and quickly update their information.                     |
-| `* * *` | User            | Create assignments that contribute to CA components        | Assign grades to assignments done by students.                   |
-| `* *  ` | User            | Assign weightage to my created assignments                 | Estimate the overall performance of my students.                 |
-| `* * *` | User            | Change participation marks previously given to my students | Correctly and accurately reflect the marks for my students.      |
+| Priority | As a …​         | I want to …​                             | So that I can…​                          |
+| -------- | --------------- | ---------------------------------------- | ---------------------------------------- |
+| `* * *`  | New user        | Get help for specific commands           | Learn the complete features of a command and know how to use it. |
+| `* * *`  | User            | Add students to my class                 | Decide who to have in my class.          |
+| `* * *`  | User            | Delete students from my class            | Decide who to have in my class.          |
+| `* * *`  | User            | Give participation points to students    | Keep track of their participation in class. |
+| `* * *`  | User            | Take attendance of my students           | Keep track of their class attendance.    |
+| `* * *`  | User            | Delete students from TA Assist           | Keep my list of students concise.        |
+| `* * *`  | User            | View all my classes                      | See what classes I am teaching.          |
+| `* *  `  | Infrequent user | Remember the last used commands          | Quickly find the commands that I need.   |
+| `* *  `  | An expert user  | Create macros to perform multiple tasks  | Be more efficient at using the system.   |
+| `* *  `  | User            | Edit students' information               | Easily and quickly update their information. |
+| `* * *`  | User            | Create assignments that contribute to CA components | Assign grades to assignments done by students. |
+| `* *  `  | User            | Assign weightage to my created assignments | Estimate the overall performance of my students. |
+| `* * *`  | User            | Change participation marks previously given to my students | Correctly and accurately reflect the marks for my students. |
 
 *{More to be added}*
 
@@ -331,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The class does not exist.
   * 2a1. TA Assist tells the user that the class does not exist.
-  
+
     Use case ends
 
 * 4a. The list of students is empty.
