@@ -31,8 +31,8 @@ public interface Logic {
      */
     ReadOnlyFriday getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Student> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.friday = new Friday(friday);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.friday.getPersonList());
+        filteredStudents = new FilteredList<>(this.friday.getStudentList());
     }
 
     public ModelManager() {
@@ -87,17 +87,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return friday.hasPerson(student);
+        return friday.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        friday.removePerson(target);
+        friday.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        friday.addPerson(student);
+        friday.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -105,13 +105,13 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        friday.setPerson(target, editedStudent);
+        friday.setStudent(target, editedStudent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedFRIDAY}
      */
     @Override

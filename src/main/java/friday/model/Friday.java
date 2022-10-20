@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import friday.model.student.Student;
-import friday.model.student.UniquePersonList;
+import friday.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the highest level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class Friday implements ReadOnlyFriday {
 
-    private final UniquePersonList persons;
+    private final UniqueStudentList students;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class Friday implements ReadOnlyFriday {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        students = new UniqueStudentList();
     }
 
     public Friday() {}
 
     /**
-     * Creates FRIDAY using the Persons in the {@code toBeCopied}
+     * Creates FRIDAY using the Students in the {@code toBeCopied}
      */
     public Friday(ReadOnlyFriday toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class Friday implements ReadOnlyFriday {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Student> students) {
-        this.persons.setPersons(students);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
@@ -53,68 +53,68 @@ public class Friday implements ReadOnlyFriday {
     public void resetData(ReadOnlyFriday newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setStudents(newData.getStudentList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in FRIDAY.
+     * Returns true if a student with the same identity as {@code student} exists in FRIDAY.
      */
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return persons.contains(student);
+        return students.contains(student);
     }
 
     /**
-     * Adds a person to FRIDAY.
-     * The person must not already exist in FRIDAY.
+     * Adds a student to FRIDAY.
+     * The student must not already exist in FRIDAY.
      */
-    public void addPerson(Student p) {
-        persons.add(p);
+    public void addStudent(Student p) {
+        students.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in FRIDAY.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in FRIDAY.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in FRIDAY.
      */
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
 
-        persons.setPerson(target, editedStudent);
+        students.setStudent(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code FRIDAY}.
      * {@code key} must exist in FRIDAY.
      */
-    public void removePerson(Student key) {
-        persons.remove(key);
+    public void removeStudent(Student key) {
+        students.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return students.asUnmodifiableObservableList().size() + " students";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Student> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Friday // instanceof handles nulls
-                && persons.equals(((Friday) other).persons));
+                && students.equals(((Friday) other).students));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return students.hashCode();
     }
 }

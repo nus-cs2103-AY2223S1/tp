@@ -47,7 +47,7 @@ public class MasteryCheck {
     /**
      * Returns true if the given string is a valid Mastery Check or empty.
      *
-     * Only to be used when converting JSON to Student in JsonAdaptedPerson.
+     * Only to be used when converting JSON to Student in JsonAdaptedStudent.
      */
     public static boolean isValidOrEmpty(String test) {
         return test.matches(VALIDATION_REGEX) || test.equals("0001-01-01");

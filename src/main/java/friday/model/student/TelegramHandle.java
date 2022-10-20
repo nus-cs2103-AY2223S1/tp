@@ -4,7 +4,7 @@ import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Student's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegramHandle(String)}
  */
 public class TelegramHandle {
@@ -47,7 +47,7 @@ public class TelegramHandle {
     /**
      * Returns true if the given string is a valid Telegram handle or empty.
      *
-     * Only to be used when converting JSON to Student in JsonAdaptedPerson.
+     * Only to be used when converting JSON to Student in JsonAdaptedStudent.
      */
     public static boolean isValidOrEmpty(String test) {
         return test.matches(VALIDATION_REGEX) || test.equals("");

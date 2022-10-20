@@ -1,6 +1,6 @@
 package friday.logic;
 
-import static friday.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static friday.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static friday.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 /*
 import static friday.logic.commands.CommandTestUtil.CONSULTATION_DESC_AMY;
@@ -32,7 +32,7 @@ import friday.model.UserPrefs;
 import friday.storage.JsonFridayStorage;
 import friday.storage.JsonUserPrefsStorage;
 import friday.storage.StorageManager;
-// import friday.testutil.PersonBuilder;
+// import friday.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -61,7 +61,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -84,17 +84,17 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + TELEGRAMHANDLE_DESC_AMY + CONSULTATION_DESC_AMY
                 + MASTERYCHECK_DESC_AMY;
-        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedStudent);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
     */
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
     /**

@@ -2,9 +2,9 @@ package friday.logic.parser;
 
 import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
-import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static friday.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static friday.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static friday.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static friday.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -74,7 +74,7 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB
                 + CommandTestUtil.INVALID_TELEGRAMHANDLE_DESC, TelegramHandle.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Student} being edited,
         // parsing it together with a valid tag results in error
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.TAG_DESC_FRIEND
                 + CommandTestUtil.TAG_DESC_HUSBAND + INVALID_TAG, Tag.MESSAGE_CONSTRAINTS);
@@ -84,7 +84,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND_STUDENT;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.CONSULTATION_DESC_AMY
                 + CommandTestUtil.MASTERYCHECK_DESC_AMY + CommandTestUtil.NAME_DESC_AMY
@@ -103,7 +103,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB
                 + CommandTestUtil.CONSULTATION_DESC_AMY;
 
@@ -118,7 +118,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(
                 CommandTestUtil.VALID_NAME_AMY).build();
@@ -155,7 +155,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.TELEGRAMHANDLE_DESC_AMY
                 + CommandTestUtil.MASTERYCHECK_DESC_AMY
                 + CommandTestUtil.CONSULTATION_DESC_AMY
@@ -180,7 +180,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.INVALID_TELEGRAMHANDLE_DESC
                 + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB;
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(
@@ -202,7 +202,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();

@@ -19,16 +19,16 @@ import friday.model.student.Student;
 @JsonRootName(value = "addressbook")
 class JsonSerializableFriday {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableFriday} with the given persons.
+     * Constructs a {@code JsonSerializableFriday} with the given students.
      */
     @JsonCreator
-    public JsonSerializableFriday(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableFriday(@JsonProperty("students") List<JsonAdaptedStudent> students) {
+        this.students.addAll(students);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableFriday {
      * @param source future changes to this will not affect the created {@code JsonSerializableFriday}.
      */
     public JsonSerializableFriday(ReadOnlyFriday source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableFriday {
      */
     public Friday toModelType() throws IllegalValueException {
         Friday addressBook = new Friday();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Student student = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
+            Student student = jsonAdaptedStudent.toModelType();
+            if (addressBook.hasStudent(student)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addPerson(student);
+            addressBook.addStudent(student);
         }
         return addressBook;
     }

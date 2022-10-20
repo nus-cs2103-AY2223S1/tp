@@ -72,30 +72,30 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasStudent_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasStudent_studentInAddressBook_returnsTrue() {
         modelManager.addStudent(TypicalStudents.ALICE);
         assertTrue(modelManager.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
 
     @Test
     public void equals() {
-        Friday addressBook = new AddressBookBuilder().withPerson(TypicalStudents.ALICE)
-                .withPerson(TypicalStudents.BENSON).build();
+        Friday addressBook = new AddressBookBuilder().withStudent(TypicalStudents.ALICE)
+                .withStudent(TypicalStudents.BENSON).build();
         Friday differentAddressBook = new Friday();
         UserPrefs userPrefs = new UserPrefs();
 

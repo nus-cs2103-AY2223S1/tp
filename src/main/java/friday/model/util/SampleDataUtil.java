@@ -22,7 +22,7 @@ public class SampleDataUtil {
 
     public static final Remark EMPTY_REMARK = new Remark("");
 
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new TelegramHandle("al3xx"), new Consultation(LocalDate.now()),
                 new MasteryCheck(LocalDate.of(2022, 8, 16)), EMPTY_REMARK,
@@ -52,8 +52,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyFriday getSampleAddressBook() {
         Friday sampleAb = new Friday();
-        for (Student sampleStudent : getSamplePersons()) {
-            sampleAb.addPerson(sampleStudent);
+        for (Student sampleStudent : getSampleStudents()) {
+            sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
     }
