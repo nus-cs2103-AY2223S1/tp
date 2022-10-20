@@ -153,6 +153,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add debt feature - `adddebt`
+
+#### Implementation
+
+This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in the `Logic` component, and work as per described above.
+
+When given a valid user input, the `AddDebtCommandParser` will create a new `Debt` object to add to the `DebtList` of the specified `Person`.
+
+An example of the internal state when a valid `adddebt` command is provided by the user is given by the object diagram below.
+
+**(Insert object diagram here)**
+
+The activity diagram below details all the possible behaviour of PayMeLah when a user inputs a valid `adddebt` command.
+
+**(Insert activity diagram here)**
+
+#### Proposed updates
+To speed up adding similar `Debt` objects (for example, when each person is to pay $30 for lunch) to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` can be updated to take in multiple indices such that a new `Debt` object will be added to the `DebtList` of each specified `Person`.
+To ensure that modifying (such as marking as paid, or other future possible extensions such as editing) the `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, each `Debt` object should only be added to one `DebtList`, and an `equal` instance of `Debt` should be created and added to each `DebtList`.
+
+To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` should be updated to enable detection of optional `<date>` and `<time>` parameters.
+
 ### \[Proposed\] Improved find command
 
 #### Proposed Implementation
