@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.core.index.Index;
@@ -82,14 +83,29 @@ public class EditTaskCommand extends Command {
 
         model.deleteTask(taskToEdit);
         model.addTask(newTask);
-        model.updateModuleTask(newTask);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, newTask));
+    }
+
+    public ModCode getTargetModule() {
+        return targetModule;
+    }
+
+    public Description getTargetDesciption() {
+        return targetDesciption;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetIndex, targetModule, targetDeadline, targetDesciption);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EditTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((EditTaskCommand) other).targetIndex)); // state check
+                && (targetIndex == null || targetIndex.equals(((EditTaskCommand) other).targetIndex))
+                && (targetModule == null || targetModule.equals(((EditTaskCommand) other).targetModule))
+                && (targetDesciption == null || targetDesciption.equals(((EditTaskCommand) other).targetDesciption))
+                && (targetDeadline == null || targetDeadline.equals(((EditTaskCommand) other).targetDeadline)));
     }
 }

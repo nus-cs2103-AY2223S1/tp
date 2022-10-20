@@ -46,10 +46,16 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         Optional<Description> optionalDescription =
                 command.mapOptionalArgument(PREFIX_TASK_DESCRIPTION, rethrowFunction(ParserUtil::parseDescription));
         Description description = optionalDescription.isPresent() ? optionalDescription.get() : null;
+        System.out.println(description);
 
         Optional<LocalDate> optionalDeadline =
                 command.mapOptionalArgument(PREFIX_DEADLINE, rethrowFunction(ParserUtil::parseDueDate));
         LocalDate deadline = optionalDeadline.isPresent() ? optionalDeadline.get() : null;
+
+        if (deadline == null && code == null && description == null) {
+            throw new ParseException(
+                    "Please enter a deadline(-d) and/or module code(-c) and/or description(-ds) to edit");
+        }
 
         return new EditTaskCommand(index, code, deadline, description);
     }
