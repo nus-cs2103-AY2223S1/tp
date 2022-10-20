@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -31,6 +32,8 @@ public class UnmarkTaskCommand extends TaskCommand {
 
     private final Index targetIndex;
 
+    private final Logger log = Logger.getLogger("test");
+
     /**
      * @param targetIndex of the person's task to be updated
      */
@@ -38,6 +41,8 @@ public class UnmarkTaskCommand extends TaskCommand {
         requireAllNonNull(targetIndex);
 
         this.targetIndex = targetIndex;
+
+        log.warning("warning");
     }
 
     @Override
