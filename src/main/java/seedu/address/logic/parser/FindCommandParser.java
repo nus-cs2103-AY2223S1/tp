@@ -34,7 +34,7 @@ public class FindCommandParser implements Parser<FindNameCommand> {
      */
     public FindNameCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        List<String> findCommandKeywords = new ArrayList<String>();
+        String[] findCommandKeywords = new String[3];
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -45,22 +45,21 @@ public class FindCommandParser implements Parser<FindNameCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENTCLASS, PREFIX_SUBJECT);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            Name foundName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            findCommandKeywords.add(foundName.toString());
+            String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
+            findCommandKeywords[0] = foundName;
         }
 
         if (argMultimap.getValue(PREFIX_STUDENTCLASS).isPresent()) {
-            StudentClass foundClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_STUDENTCLASS)
-                                                                              .get());
-            findCommandKeywords.add(foundClass.toString());
+            String foundClass = String.join(" ", argMultimap.getAllValues(PREFIX_STUDENTCLASS));
+            findCommandKeywords[1] = foundClass;
         }
 
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            Subject foundSubjects = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-            findCommandKeywords.add(foundSubjects.toString());
+            String foundSubjects = String.join(" ", argMultimap.getAllValues(PREFIX_SUBJECT));
+            findCommandKeywords[2] = foundSubjects;
         }
 
-        return new FindNameCommand(new FindCommandPredicate(findCommandKeywords));
+        return new FindNameCommand(new FindCommandPredicate(Arrays.asList(findCommandKeywords)));
     }
 
 }
