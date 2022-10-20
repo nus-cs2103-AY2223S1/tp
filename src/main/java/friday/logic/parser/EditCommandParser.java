@@ -1,5 +1,11 @@
 package friday.logic.parser;
 
+import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
+import static friday.logic.parser.CliSyntax.PREFIX_NAME;
+import static friday.logic.parser.CliSyntax.PREFIX_TAG;
+import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -7,7 +13,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
 import friday.logic.commands.EditCommand;
 import friday.logic.parser.exceptions.ParseException;
@@ -26,35 +31,34 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_TELEGRAMHANDLE,
-                        CliSyntax.PREFIX_CONSULTATION, CliSyntax.PREFIX_MASTERYCHECK, CliSyntax.PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAMHANDLE, PREFIX_CONSULTATION,
+                        PREFIX_MASTERYCHECK, PREFIX_TAG);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditStudentDescriptor editStudentDescriptor = new EditCommand.EditStudentDescriptor();
-        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_TELEGRAMHANDLE).isPresent()) {
-            editStudentDescriptor.setTelegramHandle(ParserUtil.parseTelegramHandle(argMultimap.getValue(CliSyntax
-                    .PREFIX_TELEGRAMHANDLE).get()));
+        if (argMultimap.getValue(PREFIX_TELEGRAMHANDLE).isPresent()) {
+            editStudentDescriptor.setTelegramHandle(ParserUtil.parseTelegramHandle(
+                    argMultimap.getValue(PREFIX_TELEGRAMHANDLE).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
             editStudentDescriptor.setConsultation(ParserUtil.parseConsultation(
-                    argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).get()));
+                    argMultimap.getValue(PREFIX_CONSULTATION).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).isPresent()) {
+        if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
             editStudentDescriptor.setMasteryCheck(ParserUtil.parseMasteryCheck(
-                    argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).get()));
+                    argMultimap.getValue(PREFIX_MASTERYCHECK).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

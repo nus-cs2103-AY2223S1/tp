@@ -35,18 +35,20 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
-            + "by the index number used in the displayed list of students. "
+            + "by the index number used in the displayed list of students. \n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TELEGRAMHANDLE + "TELEGRAM HANDLE] "
             + "[" + PREFIX_CONSULTATION + "CONSULTATION] "
             + "[" + PREFIX_MASTERYCHECK + "MASTERY CHECK] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TELEGRAMHANDLE + "johndoe "
             + PREFIX_CONSULTATION + "2022-09-01 "
-            + PREFIX_MASTERYCHECK + "2022-08-24 ";
+            + PREFIX_MASTERYCHECK + "2022-08-24 "
+            + PREFIX_TAG + "Colour blind "
+            + PREFIX_TAG + "Experienced ";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

@@ -15,6 +15,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Created GitHub issues representing user stories
+  * Released trial JAR on GitHub
 
 * **Enhancements to existing features**:
   * Updated the `add` command to add students with optional details [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
@@ -24,9 +25,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Wrote documentation for the features `add` and `delete` [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
+    * Updated documentation for the features `add` and `delete` [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
+    * Wrote documentation for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
   * Developer Guide:
-    * Added target user profile and acknowledgements [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59) 
+    * Added target user profile and acknowledgements [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59)
+    * Added user stories and use case for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93)

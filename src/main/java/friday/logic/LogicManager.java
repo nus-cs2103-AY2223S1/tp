@@ -9,7 +9,7 @@ import friday.commons.core.LogsCenter;
 import friday.logic.commands.Command;
 import friday.logic.commands.CommandResult;
 import friday.logic.commands.exceptions.CommandException;
-import friday.logic.parser.AddressBookParser;
+import friday.logic.parser.FridayParser;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.Model;
 import friday.model.ReadOnlyFriday;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final FridayParser fridayParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        fridayParser = new FridayParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = fridayParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
