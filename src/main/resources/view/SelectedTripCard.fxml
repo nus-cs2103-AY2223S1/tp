@@ -19,9 +19,9 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-         <Label fx:id="selectedTripLabel" text="Selected Trip">
+         <Label fx:id="selectedTripLabel" styleClass="cell_big_label" text="Selected Trip">
             <font>
-               <Font name="System Bold" size="14.0" />
+               <Font name="System Bold" size="14.0"/>
             </font>
          </Label>
       <HBox alignment="CENTER_LEFT" spacing="5">
