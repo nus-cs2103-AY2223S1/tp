@@ -91,7 +91,7 @@ Format:
 * `add_member TASK_INDEX`
 
 Examples:
-* `add_member 1` will add the first person in the list of people as a member of the current team. 
+* `add_member 1` will add the first person in the list of people as a member of the current team.
 
 ### Delete a member from team `delete_member`
 
@@ -113,14 +113,14 @@ Examples:
 
 View all the members currently in the team, in the form of a list.
 
-Format: 
+Format:
 * `list_members`
 
 ### Add task to team : `add_task`
 
 Add a new task to the current team.
 
-Format: 
+Format:
 * `add_task TASK_NAME`
 
 Examples:
@@ -152,7 +152,7 @@ Examples:
 
 ### Set Deadline for task: `set_deadline`
 
-Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If 
+Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If
 deadline has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in YYYY-MM-DD HH:MM format.
 
 Format: `set_deadline TASK_INDEX DEADLINE`
@@ -164,7 +164,7 @@ Examples:
 
 Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
 
-Format: 
+Format:
 * `delete_task TASK_INDEX`
 
 Examples:
@@ -174,21 +174,21 @@ Examples:
 
 View all the tasks currently in the user’s team in the form of a list.
 
-Format: 
+Format:
 * `list_tasks` will list all the tasks of the current team.
 
 ### Clearing all entries : `clear`
 
 Deletes all the people from the application.
 
-Format: 
+Format:
 * `clear`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: 
+Format:
 * `exit`
 
 ### Saving the data

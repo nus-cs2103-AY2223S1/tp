@@ -71,7 +71,7 @@ shadowJar {
     archiveFileName = 'addressbook.jar'
 }
 
-run{
+run {
     enableAssertions = true
 }
 
