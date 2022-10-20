@@ -38,10 +38,10 @@ public class GradeCommand extends Command {
             + "[" + PREFIX_FINALS + "FINALS_SCORE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RA1 + "69.90 "
-            + PREFIX_RA2 + "90"
-            + PREFIX_PRACTICAL + "100"
-            + PREFIX_MIDTERM + "99.99"
-            + PREFIX_FINALS + "75.74";
+            + PREFIX_RA2 + "90 "
+            + PREFIX_PRACTICAL + "100 "
+            + PREFIX_MIDTERM + "99.99 "
+            + PREFIX_FINALS + "75.74 ";
 
     public static final String MESSAGE_EDIT_GRADE_SUCCESS = "Updated grade for Student: %1$s";
 
