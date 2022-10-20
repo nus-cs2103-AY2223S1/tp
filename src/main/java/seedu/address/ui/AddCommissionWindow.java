@@ -31,10 +31,9 @@ public class AddCommissionWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(AddCommissionWindow.class);
     private static final String FXML = "AddCommissionWindow.fxml";
     private static final int LIMIT_NUMBER_OF_TAGS = 10;
-    private static final String ERROR_LIMIT_TAG_NAME_LENGTH =
-            "Truncated tag name (tag name should be less than 25 chars)!";
     private static final String ERROR_LIMIT_NUMBER_OF_TAGS = "Number of tags should not exceed 10!";
     private static final String ERROR_BLANK_TAG_NAME = "Tag name should not be blank!";
+    private static final String ERROR_DUPLICATED_TAG_NAME = "This tag has already been added!";
 
     private final Stage windowStage;
     private final HashSet<String> uniqueTags;
@@ -159,17 +158,7 @@ public class AddCommissionWindow extends UiPart<Stage> {
             return;
         }
 
-        String inputTagName = tagField.getText().trim();
-        tagField.clear();
-
-        if (inputTagName.length() > 25) {
-            inputTagName = inputTagName.substring(0, 25);
-            setErrorLabel(ERROR_LIMIT_TAG_NAME_LENGTH);
-        } else {
-            errorMessagePlaceholder.getChildren().clear(); // clear previous error message
-        }
-
-        final String tagName = inputTagName;
+        String tagName = tagField.getText().trim();
 
         if (tagName.isEmpty()) {
             setErrorLabel(ERROR_BLANK_TAG_NAME);
@@ -193,6 +182,11 @@ public class AddCommissionWindow extends UiPart<Stage> {
             });
             newTag.setMaxWidth(100);
             tags.getChildren().add(newTag);
+            errorMessagePlaceholder.getChildren().clear(); // clear previous error message
+        } else {
+            setErrorLabel(ERROR_DUPLICATED_TAG_NAME);
         }
+
+        tagField.clear();
     }
 }
