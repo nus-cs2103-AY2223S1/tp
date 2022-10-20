@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -33,7 +33,7 @@ class AppointmentTest {
         assertFalse(Appointment.isValidDate("12 12 2007 1230")); // incorrect date format
         assertFalse(Appointment.isValidDate("2004-11-11 1300")); // incorrect date format
         assertFalse(Appointment.isValidDate("01-01-2001")); // missing time
-        assertFalse(Appointment.isValidDate("01-01-2001 2400")); // invalid time
+        assertFalse(Appointment.isValidDate("01-01-2001 3000")); // invalid time
 
         // valid dates
         assertTrue(Appointment.isValidDate("01-01-2001 1200"));
@@ -53,7 +53,7 @@ class AppointmentTest {
         assertFalse(Appointment.isValidAppointment("12 12 2007 1230")); // incorrect date format
         assertFalse(Appointment.isValidAppointment("2004-11-11 1300")); // incorrect date format
         assertFalse(Appointment.isValidAppointment("01-01-2001")); // missing time
-        assertFalse(Appointment.isValidAppointment("01-01-2001 2400")); // invalid time
+        assertFalse(Appointment.isValidAppointment("01-01-2001 3000")); // invalid time
 
         // valid appointments
         assertTrue(Appointment.isValidAppointment(Appointment.NO_APPOINTMENT_SCHEDULED));
@@ -66,7 +66,7 @@ class AppointmentTest {
         Appointment emptyAppointment = Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED);
         Appointment testAppointment = Appointment.of("01-01-2001 1200");
 
-        assertSame(Appointment.NO_APPOINTMENT_SCHEDULED, emptyAppointment.storageFormat());
-        assertSame("01-01-2001 1200", emptyAppointment.storageFormat());
+        assertEquals(Appointment.NO_APPOINTMENT_SCHEDULED, emptyAppointment.storageFormat());
+        assertEquals("01-01-2001 1200", testAppointment.storageFormat());
     }
 }
