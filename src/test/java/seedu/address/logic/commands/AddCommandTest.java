@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -168,14 +169,24 @@ public class AddCommandTest {
 
         }
 
-        /**
-         * Returns true if there is a duplicated supply item in the inventory.
-         *
-         * @param item
-         */
         @Override
         public boolean hasSupplyItem(SupplyItem item) {
-            return false;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSupplyItemSuppliedBy(Person supplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<SupplyItem> supplyItemSuppliedBy(Person supplier) {
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
