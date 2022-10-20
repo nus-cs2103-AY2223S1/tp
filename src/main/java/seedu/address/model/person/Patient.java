@@ -24,6 +24,16 @@ public class Patient extends Person {
     private final Optional<Physician> attendingPhysician;
     private final Optional<NextOfKin> nextOfKin;
 
+    public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
+                   Set<Tag> tags, List<DateTime> dateTime, VisitStatus visitStatus) {
+        super(uid, name, gender, phone, email, address, tags);
+        requireAllNonNull(dateTime);
+        this.dateTimes.addAll(dateTime);
+        this.visitStatus = visitStatus;
+        attendingPhysician = Optional.empty();
+        nextOfKin = Optional.empty();
+    }
+
     /**
      * Every field, except attending physician and next of kin, must be present and not null.
      */
@@ -35,6 +45,25 @@ public class Patient extends Person {
         this.visitStatus = visitStatus;
         attendingPhysician = Optional.of(p);
         nextOfKin = Optional.of(n);
+    }
+
+    public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
+                   Set<Tag> tags, List<DateTime> dateTime, VisitStatus visitStatus,
+                   Optional<Physician> p, Optional<NextOfKin> n) {
+        super(uid, name, gender, phone, email, address, tags);
+        requireAllNonNull(dateTime);
+        this.dateTimes.addAll(dateTime);
+        this.visitStatus = visitStatus;
+        attendingPhysician = p;
+        nextOfKin = n;
+    }
+
+    public Optional<Physician> getAttendingPhysician() {
+        return attendingPhysician;
+    }
+
+    public Optional<NextOfKin> getNextOfKin() {
+        return nextOfKin;
     }
 
     public String getNOKDetails() {
@@ -50,7 +79,7 @@ public class Patient extends Person {
     }
 
     public Category getCategory() {
-        return new Category("P");
+        return new Category(Category.PATIENT_SYMBOL);
     }
 
     public String getCategoryIndicator() {
