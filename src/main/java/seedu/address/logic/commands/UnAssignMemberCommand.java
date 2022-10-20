@@ -37,7 +37,7 @@ public class UnAssignMemberCommand extends Command {
     /**
      * Creates an UnAssignMemberCommand to remove the specified {@code Person} from specified {@code Team}
      */
-    public UnAssignMemberCommand(Index teamIndex, Index personIndex) {
+    public UnAssignMemberCommand(Index personIndex, Index teamIndex) {
         requireAllNonNull(personIndex, teamIndex);
         this.personIndex = personIndex;
         this.teamIndex = teamIndex;
