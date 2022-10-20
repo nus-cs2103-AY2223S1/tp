@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.task.Task;
 
 /**
@@ -32,6 +34,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label taskDeadline;
     @FXML
+    private FlowPane taskMark;
+    @FXML
     private Label id;
 
     /**
@@ -44,6 +48,12 @@ public class TaskCard extends UiPart<Region> {
         taskName.setText(task.getTaskDescription().toString());
         taskDescription.setText("Description : " + task.getTaskDescription().toString());
         taskDeadline.setText("Deadline : " + task.getTaskDeadline().toString());
+
+        Label label = new Label((task.getTaskMark().toString() == "true") ? "Completed" : "Not Completed");
+        label.setStyle((task.getTaskMark().toString() == "true")
+                ? "-fx-background-color: #89f98c"
+                : "-fx-background-color: #d73c3c");
+        taskMark.getChildren().add(label);
     }
 
     @Override
