@@ -42,7 +42,7 @@ MyInsuRec is a **desktop app for financial advisors, optimized for use via a Com
   e.g. in `addClient n/NAME ...`, `NAME` is a parameter which can be used as `addClient n/John Tan ...`.
 
 * Items in square brackets are optional, while those not in square brackets are compulsory.<br>
-  e.g `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY]` can be used as `addClient n/John Tan p/12345678 e/John@abc.com a/123 Avenue b/12122000` or as `addClient n/John Tan p/12345678 e/John@abc.com a/123 Avenue`.
+  e.g `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` can be used as `addClient i/1 p/12345678 e/John@abc.com a/123 Avenue b/12122000` or as `addClient n/John Tan p/12345678`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -68,17 +68,15 @@ Format: `help`
 
 Adds a new client to MyInsuRec.
 
-Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [tg/TAGS]`
+Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY]`
 
 * Adds a client having name `NAME`.
-* A client must have a NAME, PHONE_NUMBER, EMAIL, and ADDRESS.
-* BIRTHDAY is optional.
-* TAGS are optional and can be used more than once.
+* A client must have a NAME and a PHONE_NUMBER.
+* EMAIL and BIRTHDAY is optional.
 
 Examples:
-* `addClient n/John Tan p/0123456789 e/johntan@insurec.com a/123 Avenue b/12122000`
-* `addClient n/John Tan p/0123456789 e/johntan@insurec.com a/123 Avenue`
-* `addClient n/John Tan p/0123456789 e/johntan@insurec.com a/123 Avenue tg/MeetWeekly tg/RegularCustomer`
+* `addClient n/John Tan p/0123456789 b/12122000`
+* `addClient n/John Tan p/0123456789 e/johntan@insurec.com`
 
 ### Listing all clients : `listClient`
 
