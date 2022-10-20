@@ -351,6 +351,24 @@ The relevant commands for this section are:
 * **`archive -t <task index>`**  archives the task visible in the UI with the specified index.
 * **`unarchive -t <task index>`** unarchives the task visible in the UI with the specified index.
 
+##### Design considerations
+
+There was an alternative we considered for users to select the task to archive:
+
+* **Alternative 1:** Using the task name:
+    * Pro: Users do not have to search for a task and its index.
+    * Pro: Users can archive tasks that aren't visible in the UI.
+    * Con: Users have to type a significant amount to disambiguate tasks by their name.
+    * Con: Users have to remember the task names which may be difficult if there are many tasks.
+
+* **Alternative 2:** Using the task index of the current module (current implementation):
+    * Pro: Users can archive tasks by their index easily without much typing.
+    * Con: Users now have to use `cd` to change the current module tied to the task they want to archive.
+    * Con: Users now have to use `ls` and `ls -A` to view the tasks to archive or unarchive respectively.
+
+Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
+even though the `cd` and `ls` commands add a bit of overhead.
+
 ##### Current implementation
 
 Archival state is handled in the `Task` class via a boolean flag `isArchived`.
@@ -378,24 +396,6 @@ The classes directly involved in setting the archival state from user input are:
 For brevity, we omit the diagrams and explanations for task unarchival—it is the direct inverse of archival,
 such that the control flow is exactly the same: just replace "archive" and its derivatives
 with "unarchive", and vice versa.
-
-##### Design considerations
-
-There was an alternative we considered for users to select the task to archive:
-
-1. **Using the task name**:
-    * Pro: Users do not have to search for a task and its index.
-    * Pro: Users can archive tasks that aren't visible in the UI.
-    * Con: Users have to type a significant amount to disambiguate tasks by their name.
-    * Con: Users have to remember the task names which may be difficult if there are many tasks.
-
-2. **Using the task index of the current module (current implementation)**:
-    * Pro: Users can archive tasks by their index easily without much typing.
-    * Con: Users now have to use `cd` to change the current module tied to the task they want to archive.
-    * Con: Users now have to use `ls` and `ls -A` to view the tasks to archive or unarchive respectively.
-
-Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
-even though the `cd` and `ls` commands add a bit of overhead.
 
 #### Task listing
 
