@@ -1,10 +1,10 @@
 package eatwhere.foodguide.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.eatery.LocationContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all eateries in food guide whose tags contains any of the argument keywords.

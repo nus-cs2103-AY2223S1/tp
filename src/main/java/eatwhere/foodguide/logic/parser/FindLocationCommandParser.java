@@ -1,11 +1,11 @@
 package eatwhere.foodguide.logic.parser;
 
+import java.util.Arrays;
+
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.logic.commands.FindLocationCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.LocationContainsKeywordsPredicate;
-
-import java.util.Arrays;
 
 /**
  * Parses input arguments and creates a new FindCommand object

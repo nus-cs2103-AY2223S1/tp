@@ -3,8 +3,8 @@ package eatwhere.foodguide.model.eatery;
 import java.util.List;
 import java.util.function.Predicate;
 
-import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.commons.util.StringUtil;
+import eatwhere.foodguide.model.tag.Tag;
 
 /**
  * Tests that a {@code Eatery}'s {@code Name} matches any of the keywords given.
