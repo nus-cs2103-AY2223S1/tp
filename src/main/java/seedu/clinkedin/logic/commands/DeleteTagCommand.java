@@ -6,7 +6,6 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_SKILLTAG;
 import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashMap;
 import java.util.List;
 
 import seedu.clinkedin.commons.core.Messages;
