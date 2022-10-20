@@ -18,16 +18,31 @@ public class MasteryCheck {
     public static final MasteryCheck EMPTY_MASTERYCHECK = new MasteryCheck();
 
     private LocalDate value;
+    private boolean isPassed;
 
     /**
-     * Constructs an {@code MasteryCheck}.
+     * Constructs an {@code MasteryCheck} with isPassed set to false by default.
      *
      * @param desiredDate The student's desired date for Mastery Check.
      */
     public MasteryCheck(LocalDate desiredDate) {
         requireNonNull(desiredDate);
         checkArgument(isValidMasteryCheck(desiredDate.toString()), MESSAGE_CONSTRAINTS);
-        value = desiredDate;
+        this.value = desiredDate;
+        this.isPassed = false;
+    }
+
+    /**
+     * Constructs an {@code MasteryCheck} with the given isPassed value.
+     *
+     * @param desiredDate The student's desired date for Mastery Check.
+     * @param isPassed True if Mastery Check has already been passed, false otherwise.
+     */
+    public MasteryCheck(LocalDate desiredDate, boolean isPassed) {
+        requireNonNull(desiredDate);
+        checkArgument(isValidMasteryCheck(desiredDate.toString()), MESSAGE_CONSTRAINTS);
+        this.value = desiredDate;
+        this.isPassed = isPassed;
     }
 
     /**
@@ -69,10 +84,27 @@ public class MasteryCheck {
         return value;
     }
 
+    /**
+     * Returns true if the given Mastery Check has been marked as done, and false otherwise.
+     *
+     * @return isPassed
+     */
+    public boolean getIsPassed() {
+        return isPassed;
+    }
+
+    /**
+     * Marks the given Mastery Check as done.
+     */
+    public void markAsPassed() {
+        this.isPassed = true;
+    }
+
     @Override
     public String toString() {
-        String str = isEmpty() ? "" : value.toString();
-        return str;
+        String value = isEmpty() ? "" : this.value.toString();
+        String isDone = this.isPassed ? "(Passed)" : " ";
+        return value + " " + isDone;
     }
 
     @Override
