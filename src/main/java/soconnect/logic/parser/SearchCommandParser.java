@@ -21,7 +21,6 @@ import soconnect.model.person.search.ContactMightBeRelevantPredicate;
  * Parses input arguments and creates a new {@code SearchCommand} object.
  */
 public class SearchCommandParser implements Parser<SearchCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the {@code SearchCommand}
      * and returns a {@code SearchCommand} object for execution.
@@ -69,7 +68,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
     private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition) {
         Predicate<Person> contactMightBeRelevantPredicate =
-                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
+                new ContactMightBeRelevantPredicate(argMultimap);
         if (isJointCondition) {
             return new SearchCommand(new ContactContainsAllKeywordsPredicate(argMultimap),
                     contactMightBeRelevantPredicate);

@@ -46,7 +46,7 @@ public class SearchCommandTest {
         ContactContainsAnyKeywordsPredicate firstPredicate = new ContactContainsAnyKeywordsPredicate(argMultimap);
         ContactContainsAllKeywordsPredicate secondPredicate = new ContactContainsAllKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate thirdPredicate =
-                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
+                new ContactMightBeRelevantPredicate(argMultimap);
 
         SearchCommand searchFirstCommand = new SearchCommand(firstPredicate, thirdPredicate);
         SearchCommand searchSecondCommand = new SearchCommand(secondPredicate, thirdPredicate);
@@ -80,7 +80,7 @@ public class SearchCommandTest {
         ArgumentMultimap zeroPrefixAndKeywords = ArgumentTokenizer.tokenize("!!!");
         ContactContainsAnyKeywordsPredicate predicate = new ContactContainsAnyKeywordsPredicate(zeroPrefixAndKeywords);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords.getAllValues());
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords);
         SearchCommand command = new SearchCommand(predicate, alternativePredicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -93,7 +93,7 @@ public class SearchCommandTest {
         ArgumentMultimap zeroPrefixAndKeywords = ArgumentTokenizer.tokenize("abcdefg");
         ContactContainsAnyKeywordsPredicate predicate = new ContactContainsAnyKeywordsPredicate(zeroPrefixAndKeywords);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords.getAllValues());
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords);
         SearchCommand command = new SearchCommand(predicate, alternativePredicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
