@@ -6,6 +6,15 @@ html {
   }
 }
 
+.site-header {
+  font-family: "Epilogue", $base-font-family;
+  border: none;
+
+  @media print {
+    border-bottom: 1px solid $brand-color-light;
+  }
+}
+
 .post-content {
   margin-bottom: 2rem;
 
