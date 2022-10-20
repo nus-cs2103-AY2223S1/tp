@@ -33,8 +33,8 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 
 <img src="images/howsuen.png" width="200px">
 
-[[github](http://github.com/HowSuen)] 
-[[portfolio](team/howsuen.md)] 
+[[github](http://github.com/HowSuen)]
+[[portfolio](team/howsuen.md)]
 
 * Role: Developer
 * Responsibilities: Data

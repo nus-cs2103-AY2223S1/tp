@@ -73,7 +73,7 @@ public class Consultation {
     @Override
     public String toString() {
         String str = isEmpty() ? "" : value.toString();
-        return String.format("Consultation: %s", str);
+        return str;
     }
 
     @Override
