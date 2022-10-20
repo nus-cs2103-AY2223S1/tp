@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 public class VersionedTaskBook extends TaskBook {
 
+    protected static final String INVALID_UNDO_ACTION = "There are no actions left to undo.";
+    protected static final String INVALID_REDO_ACTION = "There are no actions left to redo.";
     private static final int DEFAULT_CAPACITY = 15;
     private static final int MAXIMUM_CAPACITY = 100;
     private final int capacity;
@@ -104,21 +106,33 @@ public class VersionedTaskBook extends TaskBook {
 
     /**
      * Reverts the state to the previous state and returns it.
+     *
+     * @throws InvalidActionException if there are no actions left to undo.
      */
-    public TaskBook undo() {
+    public TaskBook undo() throws InvalidActionException {
         assert taskBookStateList != null;
 
-        pointer = Math.max(0, pointer - 1);
+        if (pointer - 1 < 0) {
+            throw new InvalidActionException(INVALID_UNDO_ACTION);
+        }
+
+        pointer--;
         return taskBookStateList.get(pointer);
     }
 
     /**
      * Reverts the state to a previously undone state and returns it.
+     *
+     * @throws InvalidActionException if there are no actions left to redo.
      */
-    public TaskBook redo() {
+    public TaskBook redo() throws InvalidActionException {
         assert taskBookStateList != null;
 
-        pointer = Math.min(taskBookStateList.size() - 1, pointer + 1);
+        if (pointer + 1 >= taskBookStateList.size()) {
+            throw new InvalidActionException(INVALID_REDO_ACTION);
+        }
+
+        pointer++;
         return taskBookStateList.get(pointer);
     }
 
@@ -128,5 +142,18 @@ public class VersionedTaskBook extends TaskBook {
             || (other instanceof VersionedTaskBook // instanceof handles nulls
             && taskBookStateList.equals(((VersionedTaskBook) other).taskBookStateList)
             && pointer == ((VersionedTaskBook) other).pointer);
+    }
+
+    /**
+     * Represents an error due to an invalid action on a {@link VersionedTaskBook}.
+     */
+    protected static class InvalidActionException extends Exception {
+
+        /**
+         * Constructs an {@code InvalidActionException} with the given {@code message}.
+         */
+        public InvalidActionException(String message) {
+            super(message);
+        }
     }
 }

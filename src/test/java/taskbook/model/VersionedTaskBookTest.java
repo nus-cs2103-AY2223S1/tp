@@ -3,6 +3,9 @@ package taskbook.model;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static taskbook.model.VersionedTaskBook.INVALID_REDO_ACTION;
+import static taskbook.model.VersionedTaskBook.INVALID_UNDO_ACTION;
+import static taskbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -73,9 +76,8 @@ public class VersionedTaskBookTest {
         versioned.commit(TWO);
         versioned.commit(THREE);
         versioned.commit(FOUR);
-        assertEquals(THREE, versioned.undo());
-        assertEquals(THREE, versioned.undo());
-        assertEquals(FOUR, versioned.redo());
+        assertUndoEquals(THREE, versioned);
+        assertRedoEquals(FOUR, versioned);
     }
 
     @Test
@@ -87,8 +89,8 @@ public class VersionedTaskBookTest {
         versioned.commit(FOUR);
         versioned.commit(FIVE);
         versioned.commit(SIX);
-        assertEquals(FIVE, versioned.undo());
-        assertEquals(SIX, versioned.redo());
+        assertUndoEquals(FIVE, versioned);
+        assertRedoEquals(SIX, versioned);
     }
 
     @Test
@@ -98,20 +100,14 @@ public class VersionedTaskBookTest {
         newState.addTask(T1);
         VersionedTaskBook versioned = new VersionedTaskBook(initialState);
         versioned.commit(newState);
-        TaskBook undone = versioned.undo();
-        assertEquals(undone, initialState);
+        assertUndoEquals(initialState, versioned);
     }
 
     @Test
-    public void undo_pastFirstCommit_returnsFirst() {
+    public void undo_noActionsLeft_throwsInvalidActionsException() {
         TaskBook initialState = new TaskBook();
-        TaskBook newState = new TaskBook(initialState);
-        newState.addTask(T1);
         VersionedTaskBook versioned = new VersionedTaskBook(initialState);
-        versioned.commit(newState);
-        assertEquals(versioned.undo(), initialState);
-        assertEquals(versioned.undo(), initialState);
-        assertEquals(versioned.undo(), initialState);
+        assertThrows(VersionedTaskBook.InvalidActionException.class, INVALID_UNDO_ACTION, versioned::undo);
     }
 
     @Test
@@ -121,22 +117,28 @@ public class VersionedTaskBookTest {
         newState.addTask(T1);
         VersionedTaskBook versioned = new VersionedTaskBook(initialState);
         versioned.commit(newState);
-        TaskBook undone = versioned.undo();
-        TaskBook redone = versioned.redo();
-        assertNotEquals(undone, redone);
-        assertEquals(newState, redone);
+        assertDoesNotThrow(versioned::undo);
+        assertRedoEquals(newState, versioned);
     }
 
     @Test
-    public void redo_pastLatCommit_returnsLastCommit() {
+    public void redo_noActionsLeft_throwsInvalidActionsException() {
         TaskBook initialState = new TaskBook();
-        TaskBook newState = new TaskBook(initialState);
-        newState.addTask(T1);
         VersionedTaskBook versioned = new VersionedTaskBook(initialState);
-        versioned.commit(newState);
-        versioned.undo();
-        assertEquals(newState, versioned.redo());
-        assertEquals(newState, versioned.redo());
-        assertEquals(newState, versioned.redo());
+        assertThrows(VersionedTaskBook.InvalidActionException.class, INVALID_REDO_ACTION, versioned::redo);
+    }
+
+    private void assertUndoEquals(TaskBook expected, VersionedTaskBook versioned) {
+        assertDoesNotThrow(() -> {
+            TaskBook actual = versioned.undo();
+            assertEquals(expected, actual);
+        });
+    }
+
+    private void assertRedoEquals(TaskBook expected, VersionedTaskBook versioned) {
+        assertDoesNotThrow(() -> {
+            TaskBook actual = versioned.redo();
+            assertEquals(expected, actual);
+        });
     }
 }

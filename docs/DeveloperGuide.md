@@ -262,11 +262,11 @@ The following sequence diagram shows how a sort by description alphabetical comm
 * **Current choice:** Wrap the task list with a `FilteredList`, and the `FilteredList` with a `SortedList`.
     * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedList` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedTaskBook`. It extends `TaskBook` with an undo/redo history, stored internally as an `taskBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedTaskBook`. It extends `TaskBook` with an undo/redo history, stored internally as an `taskBookStateList` and `pointer`. Additionally, it implements the following operations:
 
 * `VersionedTaskBook#commit()` — Saves the current task book state in its history.
 * `VersionedTaskBook#undo()` — Restores the previous task book state from its history.
@@ -351,6 +351,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Current choice:** 15 commands.
     * Rationale: Since the current choice of undo operations to be supported is 15, the number of redo operations supported is also 15.
+
+**Aspect: Invalid undo/redo operation:**
+
+* **Current choice:** Show an error to the user in the UI.
+    * Rationale: Alert the user of the invalid action, stemming from a lack of actions to undo/redo, so that the user is aware that the command is invalid.
 
 ### \[Proposed\] Mark/Unmark Task Command
 
