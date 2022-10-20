@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 
 /**
@@ -23,5 +24,5 @@ public interface ReadOnlyNutriGoals {
 
     List<Location> getGymLocations();
 
-    Map<String, Calorie> getFoodCaloriesList();
+    Map<Name, Calorie> getFoodCalorieList();
 }

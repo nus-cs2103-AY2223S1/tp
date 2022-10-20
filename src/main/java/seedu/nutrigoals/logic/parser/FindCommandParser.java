@@ -1,9 +1,9 @@
 package seedu.nutrigoals.logic.parser;
 
-import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+import seedu.nutrigoals.commons.core.Messages;
 import seedu.nutrigoals.logic.commands.FindCommand;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
+import seedu.nutrigoals.model.meal.Name;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -16,11 +16,10 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        if (args.isBlank()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        return new FindCommand(trimmedArgs);
+        Name name = ParserUtil.parseName(args.toLowerCase());
+        return new FindCommand(name);
     }
-
 }

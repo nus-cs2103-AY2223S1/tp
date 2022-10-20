@@ -16,6 +16,7 @@ import seedu.nutrigoals.commons.core.LogsCenter;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 
 /**
@@ -205,11 +206,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Map<String, Calorie> getFoodCaloriesList() {
-        return nutriGoals.getFoodCaloriesList();
-    }
-
-    @Override
     public int getCalorieDifference() {
         Calorie target = nutriGoals.getCalorieTarget();
         Calorie actual = filteredFoods.stream()
@@ -223,6 +219,11 @@ public class ModelManager implements Model {
         return filteredFoods.stream()
                 .map(Food::getCalorie)
                 .reduce(new Calorie("0"), Calorie::addCalorie);
+    }
+
+    @Override
+    public Map<Name, Calorie> getFoodCalorieList() {
+        return nutriGoals.getFoodCalorieList();
     }
 
     @Override

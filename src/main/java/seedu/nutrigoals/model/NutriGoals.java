@@ -8,7 +8,8 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.FoodCaloriesList;
+import seedu.nutrigoals.model.meal.FoodCalorieList;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.meal.UniqueFoodList;
 import seedu.nutrigoals.model.user.User;
 
@@ -18,7 +19,7 @@ import seedu.nutrigoals.model.user.User;
 public class NutriGoals implements ReadOnlyNutriGoals {
 
     private final UniqueFoodList foods;
-    private final FoodCaloriesList foodCaloriesList;
+    private final FoodCalorieList foodCalorieList;
     private User user = new User();
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
@@ -44,7 +45,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
             // https://goo.gl/maps/h4oQXbtMLyQeuPwM7
             new Location("KENT RIDGE HALL", "1.2918512226940035, 103.77477995285786"))
         );
-        foodCaloriesList = new FoodCaloriesList();
+        foodCalorieList = new FoodCalorieList();
     }
 
     public NutriGoals() {
@@ -76,7 +77,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         setFoods(newData.getFoodList());
         setUser(newData.getUser());
         setNusGymsLocations(newData.getGymLocations());
-        setFoodCaloriesList(newData.getFoodCaloriesList());
+        setFoodCaloriesList(newData.getFoodCalorieList());
     }
 
     //// food-level operations
@@ -123,9 +124,9 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         this.user = user;
     }
 
-    public void setFoodCaloriesList(Map<String, Calorie> foodCaloriesList) {
+    public void setFoodCaloriesList(Map<Name, Calorie> foodCaloriesList) {
         requireNonNull(foodCaloriesList);
-        this.foodCaloriesList.setFoodCalorieMapping(foodCaloriesList);
+        this.foodCalorieList.setFoodCalorieMapping(foodCaloriesList);
     }
 
     @Override
@@ -162,8 +163,8 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     }
 
     @Override
-    public Map<String, Calorie> getFoodCaloriesList() {
-        return foodCaloriesList.asUnmodifiableMap();
+    public Map<Name, Calorie> getFoodCalorieList() {
+        return foodCalorieList.asUnmodifiableMap();
     }
 
     //// util methods
@@ -181,7 +182,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
             && foods.equals(((NutriGoals) other).foods)
             && this.calorieTarget.equals(((NutriGoals) other).calorieTarget)
             && this.user.equals(((NutriGoals) other).user)
-            && this.foodCaloriesList.equals(((NutriGoals) other).foodCaloriesList));
+            && this.foodCalorieList.equals(((NutriGoals) other).foodCalorieList));
     }
 
     @Override

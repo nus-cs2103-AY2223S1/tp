@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.FoodBuilder;
 
@@ -74,7 +75,7 @@ public class NutriGoalsTest {
 
     @Test
     public void getFoodCaloriesList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> nutriGoals.getFoodCaloriesList().clear());
+        assertThrows(UnsupportedOperationException.class, () -> nutriGoals.getFoodCalorieList().clear());
     }
 
     /**
@@ -109,7 +110,7 @@ public class NutriGoalsTest {
         }
 
         @Override
-        public Map<String, Calorie> getFoodCaloriesList() {
+        public Map<Name, Calorie> getFoodCalorieList() {
             return new HashMap<>();
         }
     }

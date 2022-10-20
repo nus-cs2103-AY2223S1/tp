@@ -25,6 +25,7 @@ import seedu.nutrigoals.logic.commands.SuggestCommand;
 import seedu.nutrigoals.logic.commands.TargetCommand;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.testutil.EditFoodDescriptorBuilder;
 import seedu.nutrigoals.testutil.FoodBuilder;
 import seedu.nutrigoals.testutil.FoodUtil;
@@ -71,7 +72,7 @@ public class NutriGoalsParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD + " rice");
-        assertEquals(new FindCommand("rice"), command);
+        assertEquals(new FindCommand(new Name("rice")), command);
     }
 
     @Test

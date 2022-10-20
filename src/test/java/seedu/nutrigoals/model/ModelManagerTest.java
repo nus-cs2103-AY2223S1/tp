@@ -128,8 +128,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFoodCaloriesList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFoodCaloriesList().clear());
+    public void getFoodCalorieList() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFoodCalorieList().clear());
     }
 
     @Test

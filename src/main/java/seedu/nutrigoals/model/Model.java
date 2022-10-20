@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 
 /**
@@ -118,9 +119,10 @@ public interface Model {
 
     boolean isUserCreated();
 
-    Map<String, Calorie> getFoodCaloriesList();
-
     int getCalorieDifference();
 
     Calorie getTotalCalorie();
+
+    /** Returns the {@code Map} of food items and their calorie content */
+    Map<Name, Calorie> getFoodCalorieList();
 }
