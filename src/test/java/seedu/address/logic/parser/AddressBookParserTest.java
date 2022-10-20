@@ -14,21 +14,21 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterLocCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindPetCommand;
-import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.*;
 //import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.AdditionalRequests;
+import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Price;
+import seedu.address.model.order.predicates.AdditionalRequestPredicate;
+import seedu.address.model.order.predicates.OrderStatusPredicate;
+import seedu.address.model.order.predicates.PriceRangePredicate;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
-import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.Species;
+import seedu.address.model.pet.predicates.*;
 import seedu.address.testutil.TypicalPersonCategories;
 
 public class AddressBookParserTest {
@@ -101,6 +101,40 @@ public class AddressBookParserTest {
                 new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")),
                 new LocationContainsKeywordsPredicate<>(Arrays.asList("Singapore")));
         assertEquals(parser.parseCommand(FilterLocCommand.COMMAND_WORD + " Singapore"), command);
+    }
+
+    @Test
+    public void parseCommand_filterPet() throws Exception {
+        ColorContainsKeywordsPredicate colorContainsKeywordsPredicate = new ColorContainsKeywordsPredicate(
+                Arrays.asList("grey"));
+        PetNameContainsKeywordsPredicate petNameContainsKeywordsPredicate = new PetNameContainsKeywordsPredicate(
+                Arrays.asList("ashy"));
+        PriceContainsKeywordsPredicate priceContainsKeywordsPredicate = new PriceContainsKeywordsPredicate(
+                Arrays.asList(5.5));
+        SpeciesContainsKeywordsPredicate speciesContainsKeywordsPredicate = new SpeciesContainsKeywordsPredicate(
+                Arrays.asList("cat"));
+        VaccinationStatusPredicate vaccinationStatusPredicate = new VaccinationStatusPredicate(true);
+        FilterPetCommand command = new FilterPetCommand(
+                colorContainsKeywordsPredicate,
+                petNameContainsKeywordsPredicate,
+                priceContainsKeywordsPredicate,
+                speciesContainsKeywordsPredicate,
+                vaccinationStatusPredicate);
+        String input = FilterPetCommand.COMMAND_WORD + " c/grey n/ashy p/5.5 v/true";
+        assertEquals(parser.parseCommand(input), command);
+    }
+
+    @Test
+    public void parseCommand_filterOrder() throws Exception {
+        AdditionalRequestPredicate additionalRequestPredicate = new AdditionalRequestPredicate(Arrays.asList("fat"));
+        OrderStatusPredicate orderStatusPredicate = new OrderStatusPredicate(OrderStatus.DELIVERING);
+        PriceRangePredicate priceRangePredicate = new PriceRangePredicate(new Price(34.5), new Price(79.9));
+        FilterOrderCommand command = new FilterOrderCommand(
+                additionalRequestPredicate,
+                orderStatusPredicate,
+                priceRangePredicate);
+        String input = FilterOrderCommand.COMMAND_WORD + " ar/fat os/Delivering pr/34.5-79.9";
+        assertEquals(parser.parseCommand(input), command);
     }
 
     @Test
