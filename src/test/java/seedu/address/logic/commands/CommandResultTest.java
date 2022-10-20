@@ -25,13 +25,13 @@ public class CommandResultTest {
         // different types -> returns false
         assertFalse(commandResult.equals(0.5f));
 
-        // different feedbackToUser scholarship -> returns false
+        // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different")));
 
-        // different showHelp scholarship -> returns false
+        // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
 
-        // different exit scholarship -> returns false
+        // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
     }
 
@@ -42,13 +42,13 @@ public class CommandResultTest {
         // same values -> returns same hashcode
         assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
 
-        // different feedbackToUser scholarship -> returns different hashcode
+        // different feedbackToUser value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
-        // different showHelp scholarship -> returns different hashcode
+        // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
 
-        // different exit scholarship -> returns different hashcode
+        // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
     }
 }

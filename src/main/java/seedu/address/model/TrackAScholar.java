@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
 import seedu.address.model.applicant.UniqueApplicantList;
 
 /**
@@ -93,6 +94,13 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
      */
     public void removeApplicant(Applicant key) {
         applicants.remove(key);
+    }
+
+    /**
+     * Removes all applicants with matching {@code status} from this {@code TrackAScholar}.
+     */
+    public void removeApplicantByStatus(ApplicationStatus status) {
+        applicants.removeByStatus(status);
     }
 
     /**

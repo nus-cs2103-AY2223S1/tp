@@ -3,6 +3,7 @@ package seedu.address.model.applicant;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -78,6 +79,46 @@ public class Applicant {
 
         return otherApplicant != null
                 && otherApplicant.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if this applicant has a matching application status.
+     */
+    public boolean isMatchingApplicationStatus(ApplicationStatus otherStatus) {
+        return otherStatus != null
+                && otherStatus.equals(applicationStatus);
+    }
+
+    /**
+     * Returns a comparator that sorts applicants lexicographically by name.
+     * No tiebreaker needed as applicant names are guaranteed to be unique.
+     */
+
+    public static Comparator<Applicant> sortByName() {
+        return (a1, a2) -> {
+            Name n1 = a1.getName();
+            Name n2 = a2.getName();
+            return n1.compareTo(n2);
+        };
+    }
+
+    /**
+     * Returns a comparator that sorts applicants lexicographically by scholarship.
+     * If both applicants have the same scholarship, tiebreak by name.
+     */
+
+    public static Comparator<Applicant> sortByScholarship() {
+        return (a1, a2) -> {
+            Scholarship s1 = a1.getScholarship();
+            Scholarship s2 = a2.getScholarship();
+            int result = s1.compareTo(s2);
+            if (result == 0) {
+                Name n1 = a1.getName();
+                Name n2 = a2.getName();
+                return n1.compareTo(n2);
+            }
+            return result;
+        };
     }
 
     /**
