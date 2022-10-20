@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+
+<VBox styleClass="welcome-panel, secondary-pane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="340" prefWidth="340" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="welcomeMessage" styleClass="welcome-message" text="welcome-message placeholder (this should not show up!)" wrapText="true"/>
+      <Label styleClass="reminders-header" text="Upcoming Reminders" />
+      <ListView styleClass="reminder-view" fx:id="reminderView" VBox.vgrow="ALWAYS" prefHeight="1" minHeight="-Infinity" />
+   </children>
+</VBox>

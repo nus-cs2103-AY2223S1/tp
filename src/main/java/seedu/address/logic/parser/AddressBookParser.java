@@ -14,6 +14,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.MessageCommandGroup;
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.TagCommandGroup;
@@ -84,6 +85,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
 
         case ShowCommand.COMMAND_WORD:
             // Fallthrough

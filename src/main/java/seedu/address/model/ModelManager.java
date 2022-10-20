@@ -250,6 +250,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setTargetPerson(Person person) {
+        assert(person != null) : "Target person cannot be null";
         targetPerson.set(person);
     }
 
