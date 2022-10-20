@@ -31,15 +31,27 @@ public class AddPropertyCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Condonery";
+    public static final String MESSAGE_IMAGE_UPLOAD = "Opened Upload Image window";
 
     private final Property toAdd;
+    private final boolean hasImage;
 
     /**
      * Creates an AddCommand to add the specified {@code Property}
      */
     public AddPropertyCommand(Property property) {
         requireNonNull(property);
+        this.toAdd = property;
+        this.hasImage = false;
+    }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Property}, with a boolean to indicate if image is uploaded.
+     */
+    public AddPropertyCommand(Property property, boolean hasImage) {
+        requireNonNull(property);
         toAdd = property;
+        this.hasImage = hasImage;
     }
 
     @Override
@@ -49,8 +61,17 @@ public class AddPropertyCommand extends Command {
         if (model.hasProperty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
+        toAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
 
         model.addProperty(toAdd);
+        if (this.hasImage) {
+            return new CommandResult(
+                String.format(MESSAGE_SUCCESS, toAdd),
+                false,
+                false,
+                "property-" + toAdd.getCamelCaseName()
+            );
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

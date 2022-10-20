@@ -2,6 +2,7 @@ package seedu.condonery.model.property;
 
 import static seedu.condonery.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class Property {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Path imageDirectoryPath;
 
     /**
      * Every field must be present and not null.
@@ -40,6 +42,13 @@ public class Property {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Path getImagePath() {
+        if (imageDirectoryPath == null) {
+            return null;
+        }
+        return imageDirectoryPath.resolve("property-" + getCamelCaseName());
     }
 
     /**
@@ -60,6 +69,33 @@ public class Property {
         return Collections.unmodifiableSet(stringTags);
     }
 
+    /**
+     * Returns the name of the property in lowerCamelCase.
+     * This function is used when getting the file name for image storage.
+     * @return property name in lowerCamelCase.
+     */
+    public String getCamelCaseName() {
+        String[] words = name.toString().split("[\\W_]+");
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (i == 0) {
+                word = word.isEmpty() ? word : word.toLowerCase();
+            } else {
+                word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
+            }
+            builder.append(word);
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Changes the imageDirectoryPath of the Property.
+     * @param imageDirectoryPath Path to be saved.
+     */
+    public void setImageDirectoryPath(Path imageDirectoryPath) {
+        this.imageDirectoryPath = imageDirectoryPath;
+    }
 
     /**
      * Returns true if both properties have the same name.

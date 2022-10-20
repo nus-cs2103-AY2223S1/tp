@@ -56,6 +56,11 @@ public interface Logic {
     Path getClientDirectoryFilePath();
 
     /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getUserImageDirectoryPath();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
