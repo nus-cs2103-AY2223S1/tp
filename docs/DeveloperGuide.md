@@ -179,7 +179,7 @@ The add operation is facilitated by `AddCommand`. It extends `Command` and imple
 Given below is an example usage scenario and how the add operation is handled by TrackAScholar:
 
 1. The user enters `add n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`, for example, to add a new applicant.
-This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to seperate the command word `add` and
+This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `add` and
 the arguments `n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`.
 
 2. `TrackAScholarParser` identifies the `add` command and `AddCommandParser` will be instantiated which calls `AddCommandParser#parse()`
@@ -205,6 +205,37 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
 
+
+### Filter application status feature
+
+#### Implementation
+
+The filter operation is facilitated by `FilterCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the filter operation is handled by TrackAScholar:
+
+1. The user enters `filter pending`, for example, to filter out applicants with pending scholarship status.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `filter` and
+   the argument `pending`.
+
+2. `TrackAScholarParser` identifies the `filter` command and `FilterCommandParser` will be instantiated which calls `FilterCommandParser#parse()`
+   to map the argument into its corresponding application status.
+
+3. `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning an `FilterCommand`
+   with the new `ApplicationStatusPredicate` as an argument.
+
+4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
+
+5. `AddCommand#execute()` finishes with returning a `CommandResult` containing list of all applicants with the matching scholarship status.
+
+The following sequence diagram shows how the filter operation works:
+
+![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an filter command:
+
+![Add command activity diagram](images/FilterCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -35,15 +35,15 @@ FilterCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
 TrackAScholarParser -> FilterCommandParser : parse(pending)
 activate FilterCommandParser
 
-'create ApplicationStatusPredicate
-'FilterCommandParser -> predicate:ApplicationStatusPredicate
-'activate ApplicationStatusPredicate
-'
-'ApplicationStatusPredicate --> FilterCommandParser
-'deactivate ApplicationStatusPredicate
+create ApplicationStatusPredicate
+FilterCommandParser -> ApplicationStatusPredicate:ApplicationStatusPredicate()
+activate ApplicationStatusPredicate
+
+ApplicationStatusPredicate --> FilterCommandParser
+deactivate ApplicationStatusPredicate
 
 create FilterCommand
-FilterCommandParser -> FilterCommand : FilterCommand(applicationStatusPredicate)
+FilterCommandParser -> FilterCommand : FilterCommand(predicate)
 activate FilterCommand
 
 FilterCommand --> FilterCommandParser
