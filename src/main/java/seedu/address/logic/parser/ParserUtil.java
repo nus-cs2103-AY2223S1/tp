@@ -112,18 +112,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String exam} into a {@code Exam}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code exam} is invalid.
      */
-    public static Exam parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Exam.isValidFormat(trimmedTag)) {
+    public static Exam parseTag(String exam) throws ParseException {
+        requireNonNull(exam);
+        String trimmedExam = exam.trim();
+        if (!Exam.isValidFormat(trimmedExam)) {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
-        String[] args = trimmedTag.split("\\s+");
+        String[] args = trimmedExam.split("\\s+");
         String name = args[0];
         String score = args[1];
         if (!Exam.isValidName(name)) {
@@ -136,17 +136,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> exams} into a {@code Set<Exam>}.
      */
-    public static Set<Exam> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        Set<Exam> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            Exam temp = parseTag(tagName);
-            tagSet.remove(temp); // Removes duplicate exam and overrides it with the latest one.
-            tagSet.add(temp);
+    public static Set<Exam> parseTags(Collection<String> exams) throws ParseException {
+        requireNonNull(exams);
+        Set<Exam> examSet = new HashSet<>();
+        for (String exam : exams) {
+            Exam temp = parseTag(exam);
+            examSet.remove(temp); // Removes duplicate exam and overrides it with the latest one.
+            examSet.add(temp);
         }
-        return tagSet;
+        return examSet;
     }
 
 }
