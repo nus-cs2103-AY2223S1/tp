@@ -288,10 +288,10 @@ Aspect: How should Interview be presented?
 
 Aspect: What fields should the `find` command search through? 
 
-- Alternative 1 (current choice): Find command finds all applications whose company name and/or position contain any of the specified keywords.
+- Alternative 1 (current choice): `find` command finds all applications whose company name and/or position contain any of the specified keywords.
   - Pros: Aligns with the definition of duplicate application, where applications are uniquely identified by their company name AND position. 
   - Cons: Tests need to be modified to take into consideration finding by more than 1 field.
-- Alternative 2: Find command finds only all applications whose company name contain any of the specified keywords.
+- Alternative 2: `find` command finds only all applications whose company name contain any of the specified keywords.
   - Pros: Easy to implement, with minimal modification to existing tests.
   - Cons: Limited breadth of search, does not align with definition of unique application. 
 
