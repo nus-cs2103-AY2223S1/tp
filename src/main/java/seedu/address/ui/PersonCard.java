@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
@@ -65,6 +66,8 @@ public class PersonCard extends UiPart<Region> {
     private Label year;
     @FXML
     private Label specialisation;
+    @FXML
+    private Label officeHour;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -89,6 +92,7 @@ public class PersonCard extends UiPart<Region> {
             renderRating(prof.getRating());
             year.setManaged(false);
             setSpecialisation(prof);
+            setOfficeHour(prof);
         }
         if (person instanceof TeachingAssistant) {
             TeachingAssistant ta = (TeachingAssistant) person;
@@ -136,6 +140,11 @@ public class PersonCard extends UiPart<Region> {
             githubUsername.setMaxHeight(0.0);
             githubUsername.setMinHeight(0.0);
         }
+    }
+
+    private void setOfficeHour(Professor professor) {
+        String officeHour = professor.getOfficeHour().value;
+        this.officeHour.setText(officeHour);
     }
 
 

@@ -39,7 +39,7 @@ public class ProfessorBuilder extends PersonBuilder {
     @Override
     public Professor build() {
         return new Professor(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(), getLocation(),
-                getGithubUsername(), rating, field);
+                getGithubUsername(), rating, field, );
     }
     /**
      * Sets the {@code ModuleCode} of the {@code Professor} that we are building.

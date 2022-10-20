@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
@@ -47,7 +48,8 @@ public class ProfCommand extends Command {
             + PREFIX_TAG + "owesMoney "
             + PREFIX_LOCATION + "COM2 LT4 "
             + PREFIX_GITHUBUSERNAME + "WongWong "
-            + PREFIX_RATING + "5";
+            + PREFIX_RATING + "5 "
+            + PREFIX_OFFICEHOUR + "2-12:00-2";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Professor already exists in the address book";
 
@@ -63,6 +65,7 @@ public class ProfCommand extends Command {
         .add(PREFIX_LOCATION.getPrefix())
         .add(PREFIX_GITHUBUSERNAME.getPrefix())
         .add(PREFIX_RATING.getPrefix())
+        .add(PREFIX_OFFICEHOUR.getPrefix())
         .toString();
 
     private final Person toAdd;
