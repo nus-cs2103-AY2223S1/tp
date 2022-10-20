@@ -24,7 +24,6 @@ public class MarkCommandParser implements Parser<MarkCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_APPLICATION_STATUS);
 
         Index index;
-        ApplicationStatus applicationStatus = null;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -34,15 +33,11 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_APPLICATION_STATUS).isPresent()) {
-            applicationStatus = ParserUtil.parseApplicationStatus(
+            ApplicationStatus applicationStatus = ParserUtil.parseApplicationStatus(
                     argMultimap.getValue(PREFIX_APPLICATION_STATUS).get());
-        }
-
-        if (applicationStatus == null) {
+            return new MarkCommand(index, applicationStatus);
+        } else {
             throw new ParseException(MarkCommand.MESSAGE_NOT_EDITED);
         }
-
-        return new MarkCommand(index, applicationStatus);
-
     }
 }
