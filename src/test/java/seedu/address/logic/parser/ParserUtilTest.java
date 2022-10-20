@@ -250,11 +250,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseLectureDetails_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseLectureDetails(INVALID_LECTURE_DETAILS));
-    }
-
-    @Test
     public void parseLectureDetails_validValueWithoutWhitespace_returnsLectureDetails() throws Exception {
         LectureDetails expectedLectureDetails = new LectureDetails(VALID_LECTURE_DETAILS);
         assertEquals(expectedLectureDetails, ParserUtil.parseLectureDetails(VALID_LECTURE_DETAILS));
@@ -270,11 +265,6 @@ public class ParserUtilTest {
     @Test
     public void parseTutorialDetails_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialDetails((String) null));
-    }
-
-    @Test
-    public void parseTutorialDetails_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialDetails(INVALID_TUTORIAL_DETAILS));
     }
 
     @Test

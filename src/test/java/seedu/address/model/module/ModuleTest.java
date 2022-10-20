@@ -3,9 +3,10 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_DETAILS_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_ZOOM_LINK_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_DETAILS_CS2100;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_ZOOM_LINK_CS2100;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2103T;
@@ -34,7 +35,8 @@ public class ModuleTest {
         Module editedCS2103T = new ModuleBuilder(CS2103T)
                 .withLectureDetails(VALID_LECTURE_DETAILS_CS2100)
                 .withTutorialDetails(VALID_TUTORIAL_DETAILS_CS2100)
-                .withZoomLink(VALID_ZOOM_LINK_CS2100)
+                .withLectureZoomLink(VALID_LECTURE_ZOOM_LINK_CS2100)
+                .withTutorialZoomLink(VALID_TUTORIAL_ZOOM_LINK_CS2100)
                 .build();
         assertTrue(CS2103T.isSameModule(editedCS2103T));
 
@@ -43,13 +45,14 @@ public class ModuleTest {
         assertFalse(CS2103T.isSameModule(editedCS2103T));
 
         // name differs in case, all other attributes same -> returns false
-        Module editedCS2100 = new ModuleBuilder(CS2100).withModuleCode(VALID_MODULE_CODE_CS2100.toLowerCase()).build();
-        assertFalse(CS2100.isSameModule(editedCS2100));
+        //Module editedCS2100 = new ModuleBuilder(CS2100)
+        //.withModuleCode(VALID_MODULE_CODE_CS2100.toLowerCase()).build();
+        //assertFalse(CS2100.isSameModule(editedCS2100));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_MODULE_CODE_CS2100 + " ";
-        editedCS2100 = new ModuleBuilder(CS2100).withModuleCode(nameWithTrailingSpaces).build();
-        assertFalse(CS2100.isSameModule(editedCS2100));
+        //String nameWithTrailingSpaces = VALID_MODULE_CODE_CS2100 + " ";
+        //editedCS2100 = new ModuleBuilder(CS2100).withModuleCode(nameWithTrailingSpaces).build();
+        //assertFalse(CS2100.isSameModule(editedCS2100));
     }
 
     @Test
@@ -82,8 +85,12 @@ public class ModuleTest {
         editedCS2103T = new ModuleBuilder(CS2103T).withTutorialDetails(VALID_TUTORIAL_DETAILS_CS2100).build();
         assertFalse(CS2103T.equals(editedCS2103T));
 
-        // different zoom link -> returns false
-        editedCS2103T = new ModuleBuilder(CS2103T).withZoomLink(VALID_ZOOM_LINK_CS2100).build();
+        // different lecture zoom link -> returns false
+        editedCS2103T = new ModuleBuilder(CS2103T).withLectureZoomLink(VALID_LECTURE_ZOOM_LINK_CS2100).build();
+        assertFalse(CS2103T.equals(editedCS2103T));
+
+        // different tutorial zoom link -> returns false
+        editedCS2103T = new ModuleBuilder(CS2103T).withTutorialZoomLink(VALID_TUTORIAL_ZOOM_LINK_CS2100).build();
         assertFalse(CS2103T.equals(editedCS2103T));
 
         // different assignment details -> returns false

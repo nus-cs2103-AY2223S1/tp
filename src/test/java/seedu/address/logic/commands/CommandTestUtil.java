@@ -6,12 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -53,8 +54,10 @@ public class CommandTestUtil {
     public static final String VALID_LECTURE_DETAILS_CS2100 = "Every tuesday";
     public static final String VALID_TUTORIAL_DETAILS_CS2103T = "Every wednesday";
     public static final String VALID_TUTORIAL_DETAILS_CS2100 = "Every friday";
-    public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
-    public static final String VALID_ZOOM_LINK_CS2100 = "https://nus-sg.zoom.us/CS2100";
+    public static final String VALID_LECTURE_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
+    public static final String VALID_LECTURE_ZOOM_LINK_CS2100 = "https://nus-sg.zoom.us/CS2100";
+    public static final String VALID_TUTORIAL_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
+    public static final String VALID_TUTORIAL_ZOOM_LINK_CS2100 = "https://nus-sg.zoom.us/CS2100";
     public static final String VALID_ASSIGNMENT_DETAILS_HARD = "hard";
     public static final String VALID_ASSIGNMENT_DETAILS_NORMAL = "normal";
 
@@ -75,8 +78,11 @@ public class CommandTestUtil {
     public static final String LECTURE_DETAILS_CS2100 = " " + PREFIX_LECTURE + VALID_LECTURE_DETAILS_CS2100;
     public static final String TUTORIAL_DETAILS_CS2103T = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_DETAILS_CS2103T;
     public static final String TUTORIAL_DETAILS_CS2100 = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_DETAILS_CS2100;
-    public static final String ZOOM_LINK_CS2103T = " " + PREFIX_ZOOM + VALID_ZOOM_LINK_CS2103T;
-    public static final String ZOOM_LINK_CS2100 = " " + PREFIX_ZOOM + VALID_ZOOM_LINK_CS2100;
+    public static final String LECTURE_ZOOM_LINK_CS2103T = " " + PREFIX_LECTURE_ZOOM + VALID_LECTURE_ZOOM_LINK_CS2103T;
+    public static final String LECTURE_ZOOM_LINK_CS2100 = " " + PREFIX_LECTURE_ZOOM + VALID_LECTURE_ZOOM_LINK_CS2100;
+    public static final String TUTORIAL_ZOOM_LINK_CS2103T = " " + PREFIX_LECTURE_ZOOM
+            + VALID_TUTORIAL_ZOOM_LINK_CS2103T;
+    public static final String TUTORIAL_ZOOM_LINK_CS2100 = " " + PREFIX_LECTURE_ZOOM + VALID_TUTORIAL_ZOOM_LINK_CS2100;
     public static final String ASSIGNMENT_DETAILS_HARD = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_HARD;
     public static final String ASSIGNMENT_DETAILS_NORMAL = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_NORMAL;
 
@@ -90,7 +96,8 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_CODE = " " + PREFIX_MODULE + "CS2103T%"; // only alphanumerics allowed
     public static final String INVALID_LECTURE_DETAILS = " " + PREFIX_LECTURE + " "; //empty string not allowed
     public static final String INVALID_TUTORIAL_DETAILS = " " + PREFIX_TUTORIAL + " "; //empty string not allowed
-    public static final String INVALID_ZOOM_LINK = " " + PREFIX_ZOOM + "zoom.com"; // TODO add reason
+    public static final String INVALID_LECTURE_ZOOM_LINK = " " + PREFIX_LECTURE_ZOOM + "zoom.com"; // TODO add reason
+    public static final String INVALID_TUTORIAL_ZOOM_LINK = " " + PREFIX_TUTORIAL_ZOOM + "zoom.com"; // TODO add reason
     public static final String INVALID_ASSIGNMENT_DETAILS = " " + PREFIX_ASSIGNMENT + "hard&"; // only alphanumerics
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

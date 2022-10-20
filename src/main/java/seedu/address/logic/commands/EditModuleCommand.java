@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.COMMAND_IDENTIFIER_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
@@ -102,8 +102,8 @@ public class EditModuleCommand extends Command {
         LectureDetails updatedLecture = editModuleDescriptor.getLecture().orElse(moduleToEdit.getLectureDetails());
         TutorialDetails updatedTutorial = editModuleDescriptor.getTutorial().orElse(moduleToEdit.getTutorialDetails());
         ZoomLink updatedLectureZoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLectureZoomLink());
-        ZoomLink updatedTutorialZoomLink = editModuleDescriptor.getZoomLink().
-                orElse(moduleToEdit.getTutorialZoomLink());
+        ZoomLink updatedTutorialZoomLink = editModuleDescriptor.getZoomLink()
+                .orElse(moduleToEdit.getTutorialZoomLink());
         Set<AssignmentDetails> updatedAssignment =
             editModuleDescriptor.getAssignments().orElse(moduleToEdit.getAssignmentDetails());
         return new Module(updatedModuleCode, updatedLecture, updatedTutorial,

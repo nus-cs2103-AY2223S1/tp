@@ -49,7 +49,7 @@ public class Name {
         return other == this // short circuit if same object
             || (other instanceof Name // instanceof handles nulls
             && fullName.equalsIgnoreCase(((Name) other).fullName)); // state check
-    }   
+    }
 
     @Override
     public int hashCode() {
