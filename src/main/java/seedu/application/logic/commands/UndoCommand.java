@@ -1,7 +1,6 @@
 package seedu.application.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
@@ -29,7 +28,6 @@ public class UndoCommand extends Command {
         }
 
         model.undoApplicationBook();
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }

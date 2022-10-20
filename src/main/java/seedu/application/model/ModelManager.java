@@ -158,12 +158,14 @@ public class ModelManager implements Model {
     public void archiveApplication(Application target) {
         versionedApplicationBook.setArchive(target);
         hideArchiveInFilteredApplicationList();
+        commitApplicationBook();
     }
 
     @Override
     public void retrieveApplication(Application target) {
         versionedApplicationBook.retrieveApplication(target);
         showArchiveInFilteredApplicationList();
+        commitApplicationBook();
     }
 
     @Override
