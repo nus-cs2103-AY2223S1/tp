@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -98,6 +99,21 @@ public class ModelManager implements Model {
     @Override
     public boolean hasSupplyItem(SupplyItem item) {
         return inventory.hasSupplyItem(item);
+    }
+
+    @Override
+    public boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem) {
+        return inventory.hasSupplyItemExcluding(item, excludedItem);
+    }
+
+    @Override
+    public boolean hasSupplyItemSuppliedBy(Person supplier) {
+        return inventory.hasSupplyItemSuppliedBy(supplier);
+    }
+
+    @Override
+    public Optional<SupplyItem> supplyItemSuppliedBy(Person supplier) {
+        return inventory.supplyItemSuppliedBy(supplier);
     }
 
     @Override
