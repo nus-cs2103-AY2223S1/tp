@@ -34,7 +34,7 @@ public class TypicalStudents {
             .withParentName("May Pauline")
             .withEmail("alice.pauline@gmail.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withExams("friends").build();
     public static final Student BENSON = new StudentBuilder()
             .withStudentName("Benson Meier")
             .withId("345B")
@@ -42,7 +42,7 @@ public class TypicalStudents {
             .withParentName("Johnson Meier")
             .withPhone("98765432")
             .withEmail("bensonmeier@gmail.com")
-            .withTags("owesMoney", "friends").build();
+            .withExams("owesMoney", "friends").build();
     public static final Student CARL = new StudentBuilder()
             .withStudentName("Carl Kurz")
             .withId("567F")
@@ -57,7 +57,7 @@ public class TypicalStudents {
             .withParentName("Benn Meier")
             .withPhone("87652533")
             .withEmail("daniel.meier@gmail.com")
-            .withTags("friends").build();
+            .withExams("friends").build();
     public static final Student ELLE = new StudentBuilder()
             .withStudentName("Elle Meyer")
             .withId("890A")
@@ -104,7 +104,7 @@ public class TypicalStudents {
             .withParentName(VALID_PARENT_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
-            .withTags().build();
+            .withExams().build();
     public static final Student BOB = new StudentBuilder()
             .withStudentName(VALID_STUDENT_NAME_BOB)
             .withId(VALID_ID_BOB)
@@ -112,7 +112,7 @@ public class TypicalStudents {
             .withParentName(VALID_PARENT_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withExams(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

@@ -46,7 +46,7 @@ public class StudentRecordTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withExams(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newPersons = Arrays.asList(ALICE, editedAlice);
         StudentRecordStub newData = new StudentRecordStub(newPersons);
@@ -73,7 +73,7 @@ public class StudentRecordTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInStudentRecord_returnsTrue() {
         studentRecord.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withExams(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(studentRecord.hasStudent(editedAlice));
     }

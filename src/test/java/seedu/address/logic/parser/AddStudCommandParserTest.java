@@ -53,7 +53,7 @@ public class AddStudCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedPerson = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Student expectedPerson = new StudentBuilder(BOB).withExams(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
@@ -86,7 +86,7 @@ public class AddStudCommandParserTest {
                 + EMAIL_DESC_AMY + EMAIL_DESC_BOB + TAG_DESC_FRIEND, new AddStudCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Student expectedPersonMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Student expectedPersonMultipleTags = new StudentBuilder(BOB).withExams(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                         + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -96,7 +96,7 @@ public class AddStudCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Student expectedPerson = new StudentBuilder(AMY).withTags().build();
+        Student expectedPerson = new StudentBuilder(AMY).withExams().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
                 + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY, new AddStudCommand(expectedPerson));
         // missing parent name
@@ -116,7 +116,7 @@ public class AddStudCommandParserTest {
                 .withParentName("")
                 .withEmail("")
                 .withPhone("")
-                .withTags().build();
+                .withExams().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY,
                 new AddStudCommand(expectedPersonWithoutOptional));
     }

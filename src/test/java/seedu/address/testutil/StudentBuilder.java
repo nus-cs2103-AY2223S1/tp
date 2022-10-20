@@ -9,7 +9,7 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Exam;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -30,7 +30,7 @@ public class StudentBuilder {
     private Name parentName;
     private Phone phone;
     private Email email;
-    private Set<Tag> tags;
+    private Set<Exam> exams;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -42,7 +42,7 @@ public class StudentBuilder {
         parentName = new Name(DEFAULT_PARENT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
+        exams = new HashSet<>();
     }
 
     /**
@@ -55,7 +55,7 @@ public class StudentBuilder {
         parentName = studentToCopy.getParentName();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
-        tags = new HashSet<>(studentToCopy.getExams());
+        exams = new HashSet<>(studentToCopy.getExams());
     }
 
     /**
@@ -79,10 +79,10 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
+     * Parses the {@code exams} into a {@code Set<Exam>} and set it to the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public StudentBuilder withExams(String ... exams) {
+        this.exams = SampleDataUtil.getExamSet(exams);
         return this;
     }
 
@@ -126,7 +126,7 @@ public class StudentBuilder {
         return this;
     }
     public Student build() {
-        return new Student(studentName, id, className, parentName, phone, email, tags);
+        return new Student(studentName, id, className, parentName, phone, email, exams);
     }
 
 }

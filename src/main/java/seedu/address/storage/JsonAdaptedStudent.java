@@ -16,6 +16,7 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.tag.Exam;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,7 +32,7 @@ class JsonAdaptedStudent {
     private final String parentName;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> exams = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -41,15 +42,15 @@ class JsonAdaptedStudent {
                               @JsonProperty("className") String className,
                               @JsonProperty("parentName") String parentName,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("exams") List<JsonAdaptedTag> exams) {
         this.studentName = studentName;
         this.id = id;
         this.className = className;
         this.parentName = parentName;
         this.phone = phone;
         this.email = email;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (exams != null) {
+            this.exams.addAll(exams);
         }
     }
 
@@ -63,7 +64,7 @@ class JsonAdaptedStudent {
         parentName = source.getParentName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        tagged.addAll(source.getExams().stream()
+        exams.addAll(source.getExams().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -74,9 +75,9 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Tag> studentTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            studentTags.add(tag.toModelType());
+        final List<Exam> studentExams = new ArrayList<>();
+        for (JsonAdaptedTag tag : exams) {
+            studentExams.add(tag.toModelType());
         }
 
         if (studentName == null) {
@@ -128,7 +129,7 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<Tag> modelTags = new HashSet<>(studentTags);
+        final Set<Exam> modelTags = new HashSet<>(studentExams);
         return new Student(modelStudentName, modelId, modelClassName, modelParentName, modelPhone,
                 modelEmail, modelTags);
     }

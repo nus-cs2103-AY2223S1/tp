@@ -54,7 +54,7 @@ public class EditCommandTest {
 
         StudentBuilder personInList = new StudentBuilder(lastPerson);
         Student editedPerson = personInList.withStudentName(VALID_STUDENT_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withExams(VALID_TAG_HUSBAND).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withStudentName(VALID_STUDENT_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withExams(VALID_TAG_HUSBAND).build();
