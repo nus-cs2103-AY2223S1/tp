@@ -2,6 +2,7 @@ package seedu.address.logic.commands.issue.find;
 
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.issue.IssueCommand;
@@ -20,10 +21,13 @@ public abstract class FindIssueCommand extends IssueCommand {
             + "address book. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_PRIORITY + "PRIORITY "
             + PREFIX_STATUS + "STATUS "
+            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_PROJECT_NAME + "PROJECT ID "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_DESCRIPTION + "This is an issue "
-            + PREFIX_PRIORITY + "1 ";
+            + PREFIX_STATUS + "COMPLETED "
+            + PREFIX_PRIORITY + "1 "
+            + PREFIX_PROJECT_NAME + "DevEnable ";
 }

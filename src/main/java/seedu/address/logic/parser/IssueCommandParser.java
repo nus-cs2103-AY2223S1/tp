@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
 import java.util.stream.Stream;
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByDescriptionCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByPriorityCommand;
+import seedu.address.logic.commands.issue.find.FindIssueByProjectCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
 import seedu.address.logic.commands.issue.find.FindIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,6 +34,7 @@ import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.predicates.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.issue.predicates.PriorityMatchesKeywordsPredicate;
+import seedu.address.model.issue.predicates.ProjectContainsKeywordsPredicate;
 import seedu.address.model.issue.predicates.StatusMatchesKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
@@ -153,7 +156,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         try {
 
             ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(arguments, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_STATUS);
+                    ArgumentTokenizer.tokenize(arguments, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
+                            PREFIX_STATUS, PREFIX_PROJECT_NAME);
 
             String trimmedArgs = arguments.trim();
 
@@ -171,6 +175,11 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
                 return new FindIssueByStatusCommand(new StatusMatchesKeywordsPredicate(
                         argMultimap.getAllValues(PREFIX_STATUS)));
+            }
+
+            if (arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME)) {
+                return new FindIssueByProjectCommand(new ProjectContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_PROJECT_NAME)));
             }
 
             //implies arePrefixesPresent(argMultimap, PREFIX_STATUS) is true
