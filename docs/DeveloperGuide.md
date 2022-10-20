@@ -307,6 +307,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
 
 #### Design considerations:
 
+### Filter Command
 **Aspect: How tags can be implemented:**
 
 * **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
@@ -324,11 +325,56 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
           wish to add or edit one of the many tags the client possesses.
 
-### \[Proposed\] Filter command
+#### Implementation
 
-#### Proposed Implementation
+The `filter`command provides a way for users to search for clients in Rapportbook. It extends from the `Command` class and results in an update of the `FilteredList<Person>` filtered list of the model.
+
+The following commands are provided:
+
+* `filter [n=NAME,...] [t=TAG,...]`  — Filter for clients with the specified names and tags
+
+* `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
+
+Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
+
+Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
+
+**Given below is an example usage scenario of filtering**
+
+Step 1: The user wants to filter the for he tagged as `rich` and `fun`.
+```
+filter t=rich,fun
+```
+
+Step 2: In the list returned, the user notices the names, `Bob`, `Alan`, which he has interests in. He can filter for them, so that they appear beside each other.
+
+```
+filter n=bob,alan
+```
+
+Step 3: After looking through their details, the user wants to look at other `rich` and `fun` clients in his contact. To do this, he can clear the name filters.
+
+```
+filter clear n=bob,alan
+```
 
 #### Design considerations:
+
+**Aspect: How filters are reduced:**
+
+* **Alternative 1 (current choice):** filters of the same type are reduced with `OR` and filters of different types are reduced with `AND`.
+    * Pros:
+      * Simple to implement
+      * Follows the same filtering pattern used by most websites
+    * Cons:
+      * It might be unintuitive for the user to see the list expanding after a new filter is applied.
+
+* **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commadns are reduced with `AND`.
+    * Pros:
+    	* Provides a lot of flexibility for the user
+    * Cons:
+      * Difficult to test as there are many different cases
+      * Difficult to implement clearing of filters in a sensible and intuitive manner
 
 ### Show command
 
@@ -405,7 +451,7 @@ tag friends
 * prefers to have minimal traveling expenses
 * likes motivational quotes
 
-**Value proposition**: 
+**Value proposition**:
 
 * manage contacts faster than a typical mouse/GUI driven app
 * keep track of the user's contacts and meeting schedule easily, but communication with contacts is not covered.
@@ -436,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Rapportbook` and the **Actor** is the `user`, unless specified otherwise)
 #### Use case: List contacts
 1. User requests to list contacts.
-2. Rapportbook shows a list of contacts.  
+2. Rapportbook shows a list of contacts.
    Use case ends.
 
 #### Use case: Add a contact
@@ -444,7 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a contact and provides details of contacts.
-2. Rapportbook indicates that contact has been added.  
+2. Rapportbook indicates that contact has been added.
    Use case ends.
 
 **Extensions**
@@ -458,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to delete a specific contact in the list.
-3. Rapportbook deletes the contact.  
+3. Rapportbook deletes the contact.
    Use case ends.
 
 **Extensions**
@@ -476,22 +522,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to edit a specific contact in the list by specifying fields and their updated values.
-3. Rapportbook edits the contact based on what the user specified.  
+3. Rapportbook edits the contact based on what the user specified. 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.  
+* 1a. The list is empty.
   Use case ends.
 
 * 2a. The given index is invalid.
-    * 2a1. Rapportbook shows an error message. 
+    * 2a1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2b. No fields were specified
-    * 2b1. Rapportbook shows an error message. 
+    * 2b1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2c. Updated values is not in the right format.
-    * 2c1. Rapportbook shows an error message. 
+    * 2c1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2d. No index was specified but there is a [contact shown](#use-case-show-contact).
     * Use case resumes at step 3.
@@ -504,38 +550,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to filter contacts of a certain tag and/or name.
-2. Rapportbook shows a list of contacts that matches his filter query.  
+2. Rapportbook shows a list of contacts that contains the tag **and** name specified in the filter query.
+
    Use case ends.
 
-**Extensions**
-
-* 1a. The tag specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-* 1b. The name specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-
-	Use case ends.
 
 #### Use case: Clearing filters
 
 **MSS**
 
-1. User requests to clear a filter that was applied.
-2. Rapportbook shows a list of contacts that without the filter applied.  
+1. User requests to clear filters that were originally applied.
+2. Rapportbook shows a list of contacts that without the filters applied.
+
    Use case ends.
 
 **Extensions**
 
-* 1a. The tag specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
-* 1b. The name specified does not exist.
-	* 1a1. Rapportbook shows an error message.
-	* Use case resumes at step 1.
+* 1a. Some filters specified were not previously applied.
+* 1a1. Rapportbook only clears the filters that were applied.
 
-	Use case ends.
 
 #### Use case: Show contact
 
@@ -543,8 +576,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to show a specific contact in the list.
-3. Rapportbook displays the contact in a separate panel for the user.  
-   Use case ends. 
+3. Rapportbook displays the contact in a separate panel for the user.
+   Use case ends.
 
 **Extensions**
 
@@ -577,12 +610,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User [lists contacts](#use-case-list-contacts).
 2.  User requests to tag a specific contact in the list with certain tag(s).
-3.  Rapportbook shows success message.  
+3.  Rapportbook shows success message.
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.  
+* 1a. The list is empty.
   Use case ends.
 
 * 2a. The given index is invalid.
@@ -593,10 +626,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case resumes at step 2.
 * 2c. Contact already tagged with certain tag(s) specified but not all the tag(s) specified.
     * 2c1. Rapportbook tags the contact with the missing tag(s).
-    * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.  
+    * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.
       Use case ends.
 * 2d. Contact already tagged with all tag(s) specified.
-    * 2d1. Rapportbook shows a message indicating that no tags were added.  
+    * 2d1. Rapportbook shows a message indicating that no tags were added.
       Use case ends.
 
 #### Use case: Remove tag(s) from contact
@@ -605,12 +638,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User [lists contacts](#use-case-list-contacts).
 2.  User requests to remove certain tag(s) from a specific contact in the list.
-3.  Rapportbook shows success message.  
+3.  Rapportbook shows success message.
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.  
+* 1a. The list is empty.
   Use case ends.
 
 * 2a. The given index is invalid.
@@ -620,17 +653,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Rapportbook shows an error message.
     * Use case resumes at step 2.
 * 2c. Contact already has at least one of the tag(s) specified.
-    * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.  
+    * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
     * Use case resumes at step 2.
 
 #### Use case: Request help manual
 1. User requests help for application usage.
-2. Rapportbook opens another window that contains a link to the help manual.  
+2. Rapportbook opens another window that contains a link to the help manual.
    Use case ends.
 
 #### Use case: Exit application
 1. User requests to exit the application.
-2. Rapportbook closes all windows and exits gracefully.  
+2. Rapportbook closes all windows and exits gracefully.
    Use case ends.
 
 
@@ -664,9 +697,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. Rapportbook code should follow the Object-oriented paradigm primarily.
 
 **Quality requirements**
-1. A user with above average typing speed should be able to accomplish most tasks faster using commands than using the 
-mouse. 
-2. Rapportbook GUI should work well for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 
+1. A user with above average typing speed should be able to accomplish most tasks faster using commands than using the
+mouse.
+2. Rapportbook GUI should work well for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and
 125%.
 3. Rapportbook GUI should be usable for screen resolutions 1280x720 and higher, and, for screen scales 150%.
 
