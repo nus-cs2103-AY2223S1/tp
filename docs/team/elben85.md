@@ -7,13 +7,9 @@ PleaseHireUs (PHU) is a **desktop app for managing internships, optimized for us
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be added soon
-    * What it does:
-    * Justification:
-    * Highlights:
-    * Credits:
-
-* **New Feature**: To be added soon
+* **New Feature**: A statistic bar chart
+    * What it does: Provides an overview of the number of applications in each application process using a stacked bar chart.
+    * Justification: This is a quality of life feature for users to get a rough idea regarding the state of their applications
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Elben85&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
