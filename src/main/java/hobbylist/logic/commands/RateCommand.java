@@ -71,7 +71,7 @@ public class RateCommand extends Command {
     private static Activity createActivityWithRating(Activity activityToRate,
                                                  int rating) {
         assert activityToRate != null;
-        return new Activity(activityToRate.getName(), activityToRate.getDescription(), 
+        return new Activity(activityToRate.getName(), activityToRate.getDescription(),
                 activityToRate.getTags(), activityToRate.getDate(), rating);
     }
 
