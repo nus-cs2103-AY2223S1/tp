@@ -228,7 +228,7 @@ The following activity diagrams summarizes what happens when a user enters an `e
 **Aspect: Allowing only specific fields provided to be edited**
 * As the edit command is usually used when there is a change or error in the information provided, it makes more sense for the user to be able to change only selected fields.
 
-**Aspect: Excluding b/ (Bill) in the `edit` command**
+**Aspect: Excluding `Bill` in the `edit` command**
 * As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace it by accident.
 
 ### Bill Command
@@ -261,6 +261,9 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 
 **Aspect: Accepting signed and unsigned positive values**
 * As the user may prefer to see `+` differentiating positive and negative values, or leave out the `+` sign for convenience, we decided to accept both formats for positive values.
+
+**Aspect: Using the `b/` prefix**
+* To standardise the formatting and testing for field inputs, we decided to include the `b/` prefix in the command syntax
 
 ### MarkRoomsUnclean Command
 
