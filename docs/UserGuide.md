@@ -1,6 +1,6 @@
 ---
 layout: page
-title: FoodRem User Guide
+title: User Guide
 show-toc: true
 ---
 ## About
