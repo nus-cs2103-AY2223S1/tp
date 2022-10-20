@@ -536,6 +536,32 @@ Software System: Travelr
     * 3b1. Travelr shows an error message.  
       Use Case Ends
 
+**Use case: UC08 Sort trips**
+
+**Actor: User**
+
+**MSS :**
+1. User request the list of trips.
+2. Travelr lists trips in UniqueTripList. 
+3. User request to sort the list of trips.
+4. Travelr sorts the trips according to the user's request.
+
+   Use case ends
+
+**Extensions:**
+
+* 2a. UniqueTripList is empty.  
+  Use case ends.
+  
+* 3a. The requested sorting factor does not exist
+  
+    * 3a1. Travelr shows an error message.  
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.  
+      Use Case Ends
+
 
 *{More TBA}*
 

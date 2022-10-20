@@ -6,7 +6,9 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.list.Itineraries;
@@ -20,7 +22,9 @@ public class Trip {
     // Identity fields
     private final Title title;
     private final Description description;
+    private final Location location;
     private boolean done;
+    private final DateField dateField;
 
     // Data fields
     private final Itineraries events = new Itineraries();
@@ -33,18 +37,38 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
+        this.location = Location.getDefaultLocation();
         this.done = false;
+        this.dateField = DateField.getDefaultDateField();
     }
 
     /**
+     * Used in JsonAdaptedTrips
      * Every field must be present and not null.
      */
-    public Trip(Title title, Description description, Set<Event> events, boolean markedAsDone) {
+    public Trip(Title title, Description description, Set<Event> events,
+                boolean markedAsDone, Location location, DateField dateField) {
         requireAllNonNull(title, description, events);
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
+        this.location = location;
         this.done = markedAsDone;
+        this.dateField = dateField;
+    }
+
+    /**
+     * Main constructor, used in Add Command
+     * Every field must be present and not null.
+     */
+    public Trip(Title title, Description description, Set<Event> events, Location location, DateField dateField) {
+        requireAllNonNull(title, description, events, location, dateField);
+        this.title = title;
+        this.description = description;
+        this.events.setInternalList(events);
+        this.location = location;
+        this.done = false;
+        this.dateField = dateField;
     }
 
     public void addEvent(Event event) {
@@ -81,6 +105,14 @@ public class Trip {
 
     public Description getDescription() {
         return description;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public DateField getDateField() {
+        return dateField;
     }
 
     /**
@@ -149,6 +181,17 @@ public class Trip {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        if (!getLocation().isDefaultValue()) {
+            builder.append("; Location: ");
+            builder.append(getLocation());
+        }
+
+        if (!getDateField().isDefaultValue()) {
+            builder.append("; Date: ");
+            builder.append(getDateField());
+        }
+
         return builder.toString();
     }
 
