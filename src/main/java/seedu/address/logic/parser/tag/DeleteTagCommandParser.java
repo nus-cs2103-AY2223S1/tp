@@ -38,13 +38,15 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CONTACT, PREFIX_TASK, PREFIX_TAG);
 
-        Index index;
+        Index contactIndex;
+        Index taskIndex;
 
         boolean deleteTagFromContact = argMultimap.getValue(PREFIX_CONTACT).isPresent();
         boolean deleteTagFromTask = argMultimap.getValue(PREFIX_TASK).isPresent();
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            contactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).orElse("1"));
+            taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).orElse("1"));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE), pe);
         }
@@ -55,11 +57,11 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
+        if (!editPersonDescriptor.isAnyFieldEdited() && !editTaskDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(DeleteTagCommand.MESSAGE_TAG_NOT_DELETED);
         }
 
-        return new DeleteTagCommand(index, editPersonDescriptor, editTaskDescriptor,
+        return new DeleteTagCommand(contactIndex, taskIndex, editPersonDescriptor, editTaskDescriptor,
             deleteTagFromContact, deleteTagFromTask);
     }
 

@@ -94,7 +94,13 @@ public interface Model {
      * Adds a task to the TaskList.
      * @param task The task to be added.
      */
-    void addT(Task task);
+    void addTask(Task task);
+
+    /**
+     * Deletes a task from the TaskList.
+     * @param target the task to be deleted
+     */
+    void deleteTask(Task target);
 
     /**
      * Returns true if a task with the same description as {@code task} exists in the address book.
