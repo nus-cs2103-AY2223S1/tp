@@ -78,8 +78,9 @@ public class TodoList implements ReadOnlyTodoList {
 
     /**
      * Replaces the given {@code Todo} in the {@code TodoList} with {@code editedTodo}.
-     * {@code target} must exist in the {@code TodoList}.
-     * {@code editedTodo} must not already exist in the {@code TodoList}.
+     *
+     * @param target Must exist in the {@code TodoList}.
+     * @param editedTodo Must not already exist in the {@code TodoList}.
      */
     public void setTodo(Todo target, Todo editedTodo) {
         requireAllNonNull(target, editedTodo);
