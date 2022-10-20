@@ -94,6 +94,7 @@ public class EditCommand extends Command {
             model.setApplication(editedApplication, editedApplicationWithInterview);
         }
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        model.updateApplicationListWithInterview();
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
 
