@@ -173,7 +173,7 @@ A `Module` Class contains
 
 All the commands associated with the `Module` Class would have the keyword "Module" in their class name. For example, the command to add a `Module` is referred to as a `AddModuleCommand`.
 
-All the `Module` objects are contained in a `UniqueModuleList` object which ensures that no duplicate `Module` objects can exist in the `UniqueModuleList` object. This is because in NUS, there are no two modules with the same module code. Thus, the notion of equality is defined by default to be two `Module` objects containing the same `ModuleCode` object. (Implemented by Ying Ming)
+All the `Module` objects are contained in a `UniqueModuleList` object which ensures that no duplicate `Module` objects can exist in the `UniqueModuleList` object, where the `UniqueModuleList` was implemented by Ying Ming. This is because in NUS, there are no two modules with the same module code. Thus, the notion of equality is defined by default to be two `Module` objects containing the same `ModuleCode` object.
 
 All the classes contained within the `Module` Class all have a regex that checks for whether the user input for the specific field is valid. 
 
