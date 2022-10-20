@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 `DeleteCommand` now accepts multiple inputs and allows multiple `Person` to be deleted from the `Model` in a single command.
 
-The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed. 
+The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed.
 
 <img src="images/DeleteMultipleSequenceDiagram.png" >
 
@@ -286,7 +286,7 @@ The following sequence diagram shows how the github feature works.
     * Cons: More complicated to implement, need to click or press tab + left arrow to get to CLI.
 
 * **Alternative:** Copies the template into the User's clipboard
-    * Pros: Easier to implement, can access CLI directly after pasting 
+    * Pros: Easier to implement, can access CLI directly after pasting
     * Cons: Less intuitive, less technically competent users may not understand what a clipboard is.
 
 ### Open Github Profile Page Feature
@@ -401,7 +401,7 @@ Step 1. The user types `sort A-Z n/name` and presses enter.
 
 Step 2. The `sort A-Z n/name` will be parsed by `AddressBook#parseCommand()` which will return a `SortCommandParser` and a `SortPersonListDescriptor`
 
-Step 3. The `FindCommandParser` will parse `A-Z` and `n/name` using `parse()` and then create an `Order` based on `A-Z` and also set the `isSortByName` and 
+Step 3. The `FindCommandParser` will parse `A-Z` and `n/name` using `parse()` and then create an `Order` based on `A-Z` and also set the `isSortByName` and
 `isSortByModuleCode` attributes of the `SortPersonListDescriptor`.
 
 Step 4. `SortCommandParser` then creates a `SortCommand` by passing the `Order` and `SortPersonListDescriptor` to its constructor.
