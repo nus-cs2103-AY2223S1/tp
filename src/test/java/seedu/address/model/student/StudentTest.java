@@ -2,8 +2,8 @@ package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PARENT_NAME_BOB;
@@ -40,7 +40,7 @@ public class StudentTest {
                 .withClassName(VALID_CLASS_BOB)
                 .withParentName(VALID_PARENT_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
-                .withAddress(VALID_ADDRESS_BOB)
+                .withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.hasSameNameOrId(editedAlice));
 
@@ -49,10 +49,10 @@ public class StudentTest {
                 .withId(VALID_ID_BOB).build();
         assertFalse(ALICE.hasSameNameOrId(editedAlice));
 
-        // name differs in case, different id, all other attributes same -> returns false
+        // name differs in case, different id, all other attributes same -> returns true
         Student editedBob = new StudentBuilder(BOB).withStudentName(VALID_STUDENT_NAME_BOB.toLowerCase())
                 .withId(VALID_ID_AMY).build();
-        assertFalse(BOB.hasSameNameOrId(editedBob));
+        assertTrue(BOB.hasSameNameOrId(editedBob));
 
         // name has trailing spaces, different id, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_STUDENT_NAME_BOB + " ";
@@ -91,8 +91,8 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        // different email -> returns false
+        editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

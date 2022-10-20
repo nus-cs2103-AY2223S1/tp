@@ -5,13 +5,13 @@
     "className" : "1A",
     "parentName": "Johnny",
     "phone": "9482424",
-    "address": "4th street"
+    "email": "validperson@gmail.com"
   }, {
     "studentName": "Person With Invalid Phone Field",
     "id": "123A",
     "className" : "2A",
     "parentName": "Johnny",
     "phone": "948asdf2424",
-    "address": "4th street"
+    "email": "example@example.com"
   } ]
 }
