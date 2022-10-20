@@ -250,5 +250,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public List<Event> calendarView() {
         return events.calendarView();
     }
+    /**
+     * Removes events associated with a given person.
+     * The person should no longer exist in the model
+     */
+
+    public void removeEventsUnderPerson(Person person) {
+        events.removeEventsUnderPerson(person);
+    }
 
 }

@@ -86,6 +86,9 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+        if (!personToEdit.isSamePerson(editedPerson)) { //If the name of the new person is changed
+            model.removeEventsUnderPerson(personToEdit); //Remove Events under old person
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), false, true, false);
     }

@@ -14,8 +14,7 @@ import javafx.collections.ObservableList;
 import longtimenosee.model.event.exceptions.DuplicateEventException;
 import longtimenosee.model.event.exceptions.EventNotFoundException;
 import longtimenosee.model.event.exceptions.OverlapEventException;
-
-
+import longtimenosee.model.person.Person;
 
 
 /**
@@ -212,13 +211,31 @@ public class UniqueEventList implements Iterable<Event> {
         List<Event> thisWeek = new ArrayList<>();
         LocalDate todaysDate = LocalDate.now();
         LocalDate weekLater = todaysDate.plusDays(7);
-        for (Event e : internalList) {
-            LocalDate eventDate = e.getDate().getDate();
+        for (Event event : internalList) {
+            LocalDate eventDate = event.getDate().getDate();
             if ((eventDate.isAfter(todaysDate) || eventDate.isEqual(todaysDate))
                     && (eventDate.isBefore(weekLater) || eventDate.isEqual(weekLater))) {
-                thisWeek.add(e);
+                thisWeek.add(event);
             }
         }
         return thisWeek;
+    }
+
+    /**
+     * Removes all events in internal event list associated with given person.
+     * @param person
+     */
+    public void removeEventsUnderPerson(Person person) {
+        List<Event> eventsAssociatedWithPerson = new ArrayList<>();
+        for (Event event: internalList) {
+            if (event.getPersonName().personName.equals(person.getName().fullName)) {
+                eventsAssociatedWithPerson.add(event);
+            }
+        }
+        for (Event event: internalList) {
+            if (eventsAssociatedWithPerson.contains(event)) {
+                remove(event);
+            }
+        }
     }
 }
