@@ -191,11 +191,51 @@ This section describes some noteworthy details on how certain features are imple
 
 *To be updated*
 
-#### 4.2.5 ViewStats command
+#### 4.2.6 Toggle View command
+Implementation: 
+
+The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand.
+```aidl
+Insert activity diagram 
+```
+The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The `StudentListPanel` is dependent on the toggle status in `FilteredStudent` to display or hide the students' parent details properly in the `StudentCard`.
+
+The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` component. 
+
+```aidl
+Insert sequence diagram
+```
+Given below is explains how the toggle view mechanism behaves at each step.
+
+Step 1. The user enters the command `toggleView`
+
+Step 2. The `StudentRecordParser` will identify the command and create a `ToggleViewCommand` object in the `LogicManager`
+
+Step 3. `ToggleViewCommand#execute` is called which changes the toggle status in `Model` 
+
+Step 4. The `MainWindow` handles the updating of UI by requesting `StudentListPanel` to rerender the `StudentCard` to display or hide the student's parent details
+
+With the above sequence, the UI is successfully updated to display the relevant student details according to the toggle status. 
+
+Design considerations:
+- Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
+  - Pros:
+    - The `StudentListPanel` will automatically update the `StudentCard` as it listens for changes in `FilteredStudentList`, thus reduces coupling (see Option 2 cons)   
+  - Cons: 
+    - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects 
+    - Needs a global variable to track the current toggle as new `Student` objects added need to know the current state of the toggle
+- Option 2 (current choice): The UI keeps track of the toggle
+  - Pros:
+    - No need to edit every student in the `FilteredStudentList`
+    - Able to retain the previously filtered list after toggling
+  - Cons: 
+    - Increase in coupling as `StudentListPanel` is dependent on `FilteredStudent` for toggling information
+
+#### 4.2.7 ViewStats command
 
 *To be updated*
 
-#### 4.2.6 \[Proposed\] Undo/redo feature
+#### 4.2.8 \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
