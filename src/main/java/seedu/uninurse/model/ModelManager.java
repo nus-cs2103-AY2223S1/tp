@@ -156,13 +156,11 @@ public class ModelManager implements Model {
 
     @Override
     public void undo() {
-        assert canUndo();
         persistentUninurseBook.undo();
     }
 
     @Override
     public void redo() {
-        assert canRedo();
         persistentUninurseBook.redo();
     }
 
