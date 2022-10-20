@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,13 +25,13 @@ public class Person {
     private final Address address;
     private final Birthday birthday;
     private final Set<Tag> tags = new HashSet<>();
-    private final Reminder reminders;
+    private final Set<Reminder> reminders;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
-                  Set<Tag> tags, Reminder reminders) {
+                  Set<Tag> tags, Set<Reminder> reminders) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -69,7 +70,7 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Reminder getReminders() {
+    public Set<Reminder> getReminders() {
         return reminders;
     }
 

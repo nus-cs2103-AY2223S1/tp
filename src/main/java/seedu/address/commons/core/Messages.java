@@ -1,5 +1,7 @@
 package seedu.address.commons.core;
 
+import seedu.address.model.person.Name;
+
 /**
  * Container for user visible messages.
  */
@@ -13,4 +15,7 @@ public class Messages {
             + " entries! Please delete by index instead or enter their full name.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
+    public static String generateHappyBirthdayMessage(Name name) {
+        return "Wish " + name + " Happy Birthday!";
+    }
 }

@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String birthday;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final String reminders;
+    private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,7 +42,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("birthday") String birthday,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("reminders") String reminders) {
+                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,7 +51,9 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.reminders = reminders;
+        if (reminders != null) {
+            this.reminders.addAll(reminders);
+        }
     }
 
     /**
@@ -66,7 +68,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        reminders = source.getReminders().task;
+        reminders.addAll(source.getReminders().stream()
+                .map(JsonAdaptedReminder::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -78,6 +82,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Reminder> personReminders = new ArrayList<>();
+        for (JsonAdaptedReminder reminder : reminders) {
+            personReminders.add(reminder.toModelType());
         }
 
         if (name == null) {
@@ -116,7 +125,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Reminder modelReminder = new Reminder(reminders);
+        final Set<Reminder> modelReminder = new HashSet<>(personReminders);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelReminder);
     }

@@ -97,7 +97,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Reminder} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withReminders(String reminder) {
-        descriptor.setReminders(new Reminder(reminder));
+//        descriptor.setReminders(new Reminder(reminder));
         return this;
     }
 

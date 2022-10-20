@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -98,7 +100,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Reminder updatedReminders = editPersonDescriptor.getReminders().orElse(personToEdit.getReminders());
+        Set<Reminder> updatedReminders = editPersonDescriptor.getReminders().orElse(personToEdit.getReminders());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
                 updatedTags, updatedReminders);
@@ -133,7 +135,7 @@ public class EditCommand extends Command {
         private Address address;
         private Birthday birthday;
         private Set<Tag> tags;
-        private Reminder reminders;
+        private Set<Reminder> reminders;
 
         public EditPersonDescriptor() {}
 
@@ -215,11 +217,11 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setReminders(Reminder reminders) {
+        public void setReminders(Set<Reminder> reminders) {
             this.reminders = reminders;
         }
 
-        public Optional<Reminder> getReminders() {
+        public Optional<Set<Reminder>> getReminders() {
             return Optional.ofNullable(reminders);
         }
 

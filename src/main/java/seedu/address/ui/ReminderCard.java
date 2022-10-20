@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Reminder;
+
+import java.time.format.DateTimeFormatter;
 
 /**
  * An UI component that displays reminder information of a {@code Person}.
@@ -38,13 +41,13 @@ public class ReminderCard extends UiPart<Region> {
     /**
      * Creates a {@code ReminderCard} with the given {@code Person} and index to display.
      */
-    public ReminderCard(Person person, int displayedIndex) {
+    public ReminderCard(Person person, Reminder reminder, int displayedIndex) {
         super(FXML);
         this.person = person;
         name.setText(person.getName().fullName);
-        // birthday.setText(person.getBirthday().value);
-        reminderTask.setText(person.getReminders().task);
-        reminderDate.setText(person.getReminders().date);
+        reminderTask.setText(reminder.task);
+        reminderDate.setText(reminder.date
+                .format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
     }
 
     @Override
