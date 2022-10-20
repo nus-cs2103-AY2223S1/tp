@@ -250,6 +250,11 @@ specific classes `AddMeetingCommandd` and `AddMeetingCommandParser` were added t
 commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
 to accept the new command word, `addMeeting`.
 
+The following sequence diagram offers a high-level overview of how
+the command is executed.
+
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
+
 #### Design Considerations
 
 **Aspect: What the addMeeting command accepts as a reference to a client:**
@@ -264,7 +269,7 @@ could be referencing more than one client.
 
 **Aspect: The parameters that the AddMeetingCommand constructor should accept:**
 
-- **Alternative 1 (current choice):** Accept the parsed command arguments separately
+- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
   - Pros: The logic and operations on the model that are associated with 
 command execution are inside the AddMeetingCommand.
   - Cons: The design of AddMeetingCommand is less intuitive.
