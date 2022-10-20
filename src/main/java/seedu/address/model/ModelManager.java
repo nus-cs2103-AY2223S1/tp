@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -19,7 +18,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 import seedu.address.model.person.SessionList;
 import seedu.address.model.person.TimeSlot;
-import seedu.address.model.person.TimeSlotList;
 
 /**
  * Represents the in-memory model of the address book data.
