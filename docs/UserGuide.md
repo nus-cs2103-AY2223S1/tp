@@ -99,7 +99,7 @@ Example:
 
 ### Splitting a debt: `splitdebt`
 
-Splits a debt among several people in PayMeLah such that each person owes the same amount.
+Splits a debt among several people in PayMeLah such that each person owes the same amount (rounded up to the closest cent).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can split a debt among as many people as you want. You can even include yourself with index '0'
