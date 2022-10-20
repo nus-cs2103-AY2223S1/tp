@@ -54,8 +54,12 @@ public class CommandTestUtil {
     public static final String VALID_SLOT_7 = "2024-03-19 15:45";
     public static final String VALID_SLOT_8 = "2023-05-10 09:15";
 
-    public static final String AMOUNT_7 = "10";
-    public static final String BILL_DATE_7 = "2019-12-24";
+    public static final String VALID_AMOUNT_7 = "10";
+    public static final String VALID_BILL_DATE_7 = "2019-12-24";
+    public static final String VALID_BILL_DATE_8 = "2019-12-25";
+    public static final String VALID_AMOUNT_8 = "11.00";
+    public static final String VALID_PAYMENT_STATUS_7 = "PAID";
+    public static final String VALID_PAYMENT_STATUS_8 = "UNPAID";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -77,8 +81,10 @@ public class CommandTestUtil {
     public static final String SLOT_DESC_7 = " " + PREFIX_SLOT + VALID_SLOT_7;
     public static final String SLOT_DESC_8 = " " + PREFIX_SLOT + VALID_SLOT_8;
 
-    public static final String AMOUNT_DESC_7 = " " + PREFIX_AMOUNT + "10";
-    public static final String BILL_DATE_DESC_7 = " " + PREFIX_BILL_DATE + "2019-12-24";
+    public static final String BILL_DATE_DESC_7 = " " + PREFIX_BILL_DATE + VALID_BILL_DATE_7;
+    public static final String BILL_DATE_DESC_8 = " " + PREFIX_BILL_DATE + VALID_BILL_DATE_8;
+    public static final String AMOUNT_DESC_7 = " " + PREFIX_AMOUNT + VALID_AMOUNT_7;
+    public static final String AMOUNT_DESC_8 = " " + PREFIX_AMOUNT + VALID_AMOUNT_8;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -90,8 +96,10 @@ public class CommandTestUtil {
     public static final String INVALID_MEDICAL_TEST_DESC = " " + PREFIX_MEDICAL_TEST;
     public static final String INVALID_SLOT_DESC = " " + PREFIX_SLOT + "2023-1-1 9:00";
 
-    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "-1";
-    public static final String INVALID_BILL_DATE_DESC = " " + PREFIX_BILL_DATE + "2012-12-99";
+
+    public static final String INVALID_BILL_DATE_DESC = " " + PREFIX_BILL_DATE + "2012-12-36";
+    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "-5";
+    public static final String INVALID_PAYMENT_STATUS = " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -23,5 +23,4 @@ public class CliSyntax {
     /* Prefix definitions for Bill*/
     public static final Prefix PREFIX_AMOUNT = new Prefix("a/");
     public static final Prefix PREFIX_BILL_DATE = new Prefix("d/");
-
 }

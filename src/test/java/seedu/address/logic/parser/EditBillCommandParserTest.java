@@ -1,13 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_7;
 import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_7;
-import static seedu.address.logic.commands.CommandTestUtil.BILL_DATE_7;
 import static seedu.address.logic.commands.CommandTestUtil.BILL_DATE_DESC_7;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BILL_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_7;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BILL_DATE_7;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -65,10 +65,10 @@ public class EditBillCommandParserTest {
                 + INVALID_BILL_DATE_DESC, BillDate.MESSAGE_CONSTRAINTS); // invalid bill date
 
         // invalid name followed by valid information
-        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC + BILL_DATE_7,
+        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC + VALID_BILL_DATE_7,
                 Amount.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, "1" + AMOUNT_7 + INVALID_AMOUNT_DESC + BILL_DATE_7,
+        assertParseFailure(parser, "1" + VALID_AMOUNT_7 + INVALID_AMOUNT_DESC + VALID_BILL_DATE_7,
                 Amount.MESSAGE_CONSTRAINTS);
     }
 
@@ -78,7 +78,7 @@ public class EditBillCommandParserTest {
         String userInput = targetIndex.getOneBased() + AMOUNT_DESC_7 + BILL_DATE_DESC_7;
 
         EditBillCommand.EditBillDescriptor descriptor = new EditBillDescriptorBuilder()
-                .withAmount(AMOUNT_7).withBillDate(BILL_DATE_7).build();
+                .withAmount(VALID_AMOUNT_7).withBillDate(VALID_BILL_DATE_7).build();
         EditBillCommand expectedCommand = new EditBillCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -90,7 +90,7 @@ public class EditBillCommandParserTest {
         String userInput = targetIndex.getOneBased() + AMOUNT_DESC_7;
 
         EditBillCommand.EditBillDescriptor descriptor = new EditBillDescriptorBuilder()
-                .withAmount(AMOUNT_7).build();
+                .withAmount(VALID_AMOUNT_7).build();
         EditBillCommand expectedCommand = new EditBillCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -102,7 +102,7 @@ public class EditBillCommandParserTest {
         Index targetIndex = INDEX_THIRD_BILL;
         String userInput = targetIndex.getOneBased() + BILL_DATE_DESC_7;
         EditBillCommand.EditBillDescriptor descriptor =
-                new EditBillDescriptorBuilder().withBillDate(BILL_DATE_7).build();
+                new EditBillDescriptorBuilder().withBillDate(VALID_BILL_DATE_7).build();
         EditBillCommand expectedCommand = new EditBillCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -114,7 +114,7 @@ public class EditBillCommandParserTest {
                 + BILL_DATE_DESC_7 + BILL_DATE_DESC_7;
 
         EditBillCommand.EditBillDescriptor descriptor = new EditBillDescriptorBuilder()
-                .withAmount(AMOUNT_7).withBillDate(BILL_DATE_7).build();
+                .withAmount(VALID_AMOUNT_7).withBillDate(VALID_BILL_DATE_7).build();
         EditBillCommand expectedCommand = new EditBillCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -126,13 +126,13 @@ public class EditBillCommandParserTest {
         Index targetIndex = INDEX_FIRST_APPOINTMENT;
         String userInput = targetIndex.getOneBased() + INVALID_AMOUNT_DESC + AMOUNT_DESC_7;
         EditBillCommand.EditBillDescriptor descriptor =
-                new EditBillDescriptorBuilder().withAmount(AMOUNT_7).build();
+                new EditBillDescriptorBuilder().withAmount(VALID_AMOUNT_7).build();
         EditBillCommand expectedCommand = new EditBillCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + AMOUNT_DESC_7 + INVALID_BILL_DATE_DESC + BILL_DATE_DESC_7;
-        descriptor = new EditBillDescriptorBuilder().withAmount(AMOUNT_7).withBillDate(BILL_DATE_7).build();
+        descriptor = new EditBillDescriptorBuilder().withAmount(VALID_AMOUNT_7).withBillDate(VALID_BILL_DATE_7).build();
         expectedCommand = new EditBillCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
