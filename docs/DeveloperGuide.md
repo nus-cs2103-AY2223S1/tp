@@ -169,10 +169,10 @@ This operation is exposed in the `Model` interface as `Model#loan()`.
 Given below is an example usage scenario and how the loan mechanism behaves at each step.
 
 Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
-executed by the user. The user then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
+executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
 in the book list. 
 
-Step 2. `LogicManager` executes the user `loan 2 2` command.
+Step 2. `LogicManager` executes the librarian's `loan 2 2` command.
 
 Step 3. `PrimaryParser` then creates a new `LoanCommandParser` after parsing `loan 2 2`.
 
@@ -191,7 +191,7 @@ The following sequence diagram shows how the loan operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-The following activity diagram summarizes what happens when a user executes a loan command:
+The following activity diagram summarizes what happens when the librarian executes a loan command:
 
 ![LoanActivityDiagram](images/LoanActivityDiagram.png)
 
@@ -209,6 +209,47 @@ in the future.
 One issue is that the `UniquePersonList` and `BookList` do not refresh their UI
 automatically and we resorted to getting the index of each list to set their
 internal `ObservableLists` to 'refresh' their UI. 
+
+### Return feature
+
+#### Implementation
+
+Similarly to the loan mechanism, the return mechanism is facilitated by `ReturnCommandParser` and `ReturnCommand`. It implements the following operation:
+* `BookFace#returnLoanedBook()` — returns a loaned book.
+
+This operation is exposed in the `Model` interface as `Model#returnLoanedBook()`.
+
+Given below is an example usage scenario and how the return mechanism behaves at each step.
+
+Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
+executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
+in the book list. The librarian now wants to return the 2nd book that was previously loaned out. 
+The librarian enters `return 2` command.
+
+Step 2. `LogicManager` executes the librarian's `return 2` command.
+
+Step 3. `PrimaryParser` then creates a new `ReturnCommandParser` after parsing `return 2`.
+
+Step 4. `ReturnCommandParser` parses `2` and creates a new `ReturnCommand`.
+
+Step 5. `LogicManager` executes `ReturnCommand`.
+
+Step 6. `ReturnCommand` calls `Model#returnLoanedBook()` and returns the 2nd book in the book list.
+
+Step 7. `ReturnCommand` creates a new `CommandResult` and returns the result to `LogicManager`.
+
+The following sequence diagram shows how the return operation works:
+
+![ReturnSequenceDiagram](images/ReturnSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+The following activity diagram summarizes what happens when a user executes a return command:
+
+![ReturnActivityDiagram](images/ReturnActivityDiagram.png)
+
+#### Design considerations:
+Similar to Design considerations for the loan command.
 
 ### \[Proposed\] Undo/redo feature
 
