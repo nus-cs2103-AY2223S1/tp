@@ -20,6 +20,11 @@ Class Name
 Class Phone
 Class Tag
 
+Class UniqueTeamList
+Class Team
+
+Class UniqueTaskList
+Class Task
 }
 
 Class HiddenOutside #FFFFFF
@@ -42,9 +47,17 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+AddressBook *-> "1" UniqueTeamList
+UniqueTeamList -> "~* all" Team
+
+AddressBook *-> "1" UniqueTaskList
+UniqueTaskList -> "~* all" Task
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Person
+ModelManager --->"~* filtered" Team
+ModelManager --->"~* filtered" Task
 @enduml
