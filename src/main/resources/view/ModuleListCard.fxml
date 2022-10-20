@@ -13,9 +13,8 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.text.Font?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+<HBox id="moduleCardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS" style="-fx-padding: 5 0 5 0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
         </columnConstraints>
@@ -34,7 +33,7 @@
                 <FlowPane fx:id="assignmentDetails"/>
             </HBox>
             <HBox>
-                <Label id="lectureLabel" styleClass="type-label" text="Lecture: "/>
+                <Label id="lectureLabel" styleClass="link_type_label" text="Lecture: "/>
                 <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>
             </HBox>
             <HBox>
@@ -52,7 +51,7 @@
             </HBox>
             <Label fx:id="placeHolder2" styleClass="cell_small_label" text=" "/>
             <HBox>
-                <Label fx:id="tutorialLabel" styleClass="type-label" text="Tutorial: "/>
+                <Label fx:id="tutorialLabel" styleClass="link_type_label" text="Tutorial: "/>
                 <Label fx:id="tutorialDetails" styleClass="cell_small_label" text="\$tutorialDetails"/>
             </HBox>
             <HBox>
