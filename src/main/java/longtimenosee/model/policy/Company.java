@@ -53,8 +53,8 @@ public class Company {
      */
     public Company(String company) {
         checkArgument(isValidCompany(company), MESSAGE_FORMAT_CONSTRAINTS);
+        value = company;
         cn = parseCompanyName(company);
-        value = cn.toString();
     }
 
     public CompanyName getCompanyName() {
