@@ -46,8 +46,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortFilteredStudentList(comparator, sortOrder);
-        return new CommandResult(
-                String.format(MESSAGE_SORT_SUCCESS, attributeType.toString(), sortOrder.toString()));
+        return new CommandResult(String.format(MESSAGE_SORT_SUCCESS, attributeType, sortOrder.toString()));
     }
 
     @Override
