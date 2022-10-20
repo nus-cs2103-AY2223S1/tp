@@ -36,23 +36,11 @@
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "tagged" : [ "colleagues" ]
   }, {
-    "name" : "aaa",
-    "phone" : "12345678",
-    "email" : "aaa@gmail.com",
-    "address" : "asdas",
-    "tagged" : [ ]
-  }, {
-    "name" : "aa",
-    "phone" : "12345678",
-    "email" : "a@gmail.com",
-    "address" : "asd",
-    "tagged" : [ ]
-  }, {
-    "name" : "asaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "phone" : "22222222",
-    "email" : "m@gmail.com",
-    "address" : "as",
-    "tagged" : [ ]
+    "name" : "Connor Kenway",
+    "phone" : "09090909",
+    "email" : "email@email.com",
+    "address" : "address",
+    "tagged" : [ "colleagues", "friends" ]
   } ],
   "tags" : [ "colleagues", "friends", "classmates", "family" ]
 }

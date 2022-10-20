@@ -2,6 +2,7 @@ package soconnect.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -11,9 +12,10 @@ import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.UserPrefs;
+import soconnect.model.tag.Tag;
 
 /**
- * Manages storage of SoConnect contact data in local storage, including data of the todo list.
+ * Manages storage of SoConnect contact data and todo data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -87,14 +89,16 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException {
-        return readTodoList(todoListStorage.getTodoListFilePath());
+    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException,
+            IOException {
+        return readTodoList(tagList, todoListStorage.getTodoListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList, Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return todoListStorage.readTodoList(filePath);
+        return todoListStorage.readTodoList(tagList, filePath);
     }
 
     @Override

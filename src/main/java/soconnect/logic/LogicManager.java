@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.commons.core.LogsCenter;
@@ -17,6 +16,7 @@ import soconnect.logic.parser.SoConnectParser;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.Model;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.person.Person;
 import soconnect.model.todo.Todo;
 import soconnect.storage.Storage;
@@ -54,6 +54,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveSoConnect(model.getSoConnect());
             autocomplete.updateSoConnect(model.getSoConnect());
+            storage.saveTodoList(model.getTodoList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -71,12 +72,6 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
-    // Stub - to be removed after Todo is implemented.
-    @Override
-    public ObservableList<Todo> getFilteredTodoList() {
-        return FXCollections.observableArrayList(new Todo("Description"));
-    }
-
     @Override
     public String getTodoHeader() {
         return "Today";
@@ -85,6 +80,21 @@ public class LogicManager implements Logic {
     @Override
     public Path getSoConnectFilePath() {
         return model.getSoConnectFilePath();
+    }
+
+    @Override
+    public ReadOnlyTodoList getTodoList() {
+        return model.getTodoList();
+    }
+
+    @Override
+    public ObservableList<Todo> getFilteredTodoList() {
+        return model.getFilteredTodoList();
+    }
+
+    @Override
+    public Path getTodoListFilePath() {
+        return model.getTodoListFilePath();
     }
 
     @Override

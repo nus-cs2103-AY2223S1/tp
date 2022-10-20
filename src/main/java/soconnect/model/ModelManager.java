@@ -29,12 +29,12 @@ public class ModelManager implements Model {
     private final ObservableList<Tag> tags;
 
     /**
-     * Initializes a ModelManager with the given soConnect, todoList, and userPrefs.
+     * Initializes a ModelManager with the given {@code soConnect}, {@code todoList}, and {@code userPrefs}.
      */
     public ModelManager(ReadOnlySoConnect soConnect, ReadOnlyTodoList todoList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(soConnect, todoList, userPrefs);
 
-        logger.fine("Initializing with SoConnect: " + soConnect + ", TodoList: " + " and user prefs " + userPrefs);
+        logger.fine("Initializing with SoConnect: " + soConnect + ", TodoList: " + ", and user prefs " + userPrefs);
 
         this.soConnect = new SoConnect(soConnect);
         this.todoList = new TodoList(todoList);
@@ -141,6 +141,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean areTagsAvailable(Person person) {
+        requireNonNull(person);
+
+        return soConnect.areTagsAvailable(person);
+    }
+
+    @Override
+    public boolean areTagsAvailable(Todo todo) {
+        requireNonNull(todo);
+
+        return soConnect.areTagsAvailable(todo);
+    }
+
+    @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
         return soConnect.hasTag(tag);
@@ -154,6 +168,18 @@ public class ModelManager implements Model {
     @Override
     public void editTag(Tag oldTag, Tag newTag) {
         soConnect.editTag(oldTag, newTag);
+        todoList.editTag(oldTag, newTag);
+    }
+
+    @Override
+    public Tag getTagFromList(Tag tag) {
+        return soConnect.getTagFromList(tag);
+    }
+
+    @Override
+    public void deleteTag(Tag tag) {
+        soConnect.deleteTag(tag);
+        todoList.deleteTag(tag);
     }
 
     @Override
@@ -242,8 +268,7 @@ public class ModelManager implements Model {
     //=========== Filtered TodoList Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedTodoList}.
+     * Returns an unmodifiable view of the {@code TodoList}.
      */
     @Override
     public ObservableList<Todo> getFilteredTodoList() {
