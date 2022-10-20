@@ -126,7 +126,22 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+
+<img src="images/ModelEventClassDiagram.png"  width="500" />
+
+### Event Component
+
+An extension to the current Model is the `Event` Component,
+* Stores all information related to Event Objects, all of which are contained inside a `UniqueEventList` object.
+
+* Stores the current `Event` objects. Upon filtering via other commands (e.g: `ViewCalendar`), it is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be observed. 
+
+* Has strict requirements on deciding whether the state of adding an Event is valid (will be elaborated on later)
+
+
+
+<div markdown="span" class="alert alert-info"> <B>information_source</B>: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -168,7 +183,7 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state/
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -219,7 +234,36 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+
+
+## AddEvent Feature 
+
+### Proposed Implementation 
+The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions. 
+
+* Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
+
+* No overlapping events: . If the event overlaps with another event (i.e: occurs on the same day, and has a start and end time that coincides with another event in `UniqueEventList`, the `AddEventParser` throws an: `OverlapEventException`.
+
+### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
+
+1. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. Assume on start, the Event list is empty
+
+
+
+2. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`
+
+
+3.  The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time of this event overlaps with another event, and the Event List is no longer updated. An `OverlapEventException` is returned by the parser.
+
+
+### The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
+
+<p align ="center"> <img src="images/AddEventActivityDiagram.png" width="500" /> </p>
+
+
+
+## Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -231,6 +275,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+
 
 _{more aspects and alternatives to be added}_
 
@@ -334,22 +380,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. LTNS shows a list of clients stored in the database
 
    Use case ends.
-    
-**Use case 5: Sort a list**
-
-**MSS**
-
-1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
-2. User requests to sort the list based on name (or any other metric)
-3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
-
-   Use case ends
-
-**Extensions**
-
-* 2a. Given sorting metric does not exist.
-
-  Use case ends.
 
 **Use case 6: Delete a person**
 
@@ -372,8 +402,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case 7: Sort a list**
 
-**Use case 7: Pin a client**
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
+2. User requests to sort the list based on name (or any other metric)
+3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
+
+   Use case ends
+
+**Extensions**
+
+* 2a. Given sorting metric does not exist.
+
+  Use case ends.
+
+**Use case 8: Delete a person**
+
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>
+2. User requests to delete a specific person in the list
+3. LTNS deletes the person
+
+   Use case ends
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 8: Pin a client**
 
 **MSS**
 
@@ -389,7 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case 8: Find a contact**
+**Use case 9: Find a contact**
 
 **MSS**
 
