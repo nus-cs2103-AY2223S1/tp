@@ -16,10 +16,10 @@ activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]> model : deletePatient(p)
 activate model MODEL_COLOR
 
-model -[MODEL_COLOR]> model: deleteRelativeAppointments()
+model -[MODEL_COLOR]> model: deleteRelativeAppointments(p)
 activate model MODEL_COLOR_T1
 
-model -[MODEL_COLOR_T1]> model: deleteRelativeBills()
+model -[MODEL_COLOR_T1]> model: deleteRelativeBills(a)
 activate model MODEL_COLOR_T2
 model --[MODEL_COLOR_T1]> model
 deactivate model
