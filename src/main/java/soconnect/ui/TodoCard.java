@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import soconnect.model.todo.Description;
+import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
 
 /**
@@ -33,9 +35,26 @@ public class TodoCard extends UiPart<Region> {
         super(FXML);
         this.todo = todo;
         id.setText(displayedIndex + ". ");
-        description.setText(todo.getDescription().value);
-        datetime.setText(todo.getDatetime());
-        priority.getChildren().add(new Label(todo.getPriority().priority));
+
+        Description newDescription = todo.getDescription();
+        String newDatetime = todo.getDatetime();
+        Priority newPriority = todo.getPriority();
+
+        setDescription(newDescription);
+        setDatetime(newDatetime);
+        setPriority(newPriority);
+    }
+
+    private void setDescription(Description newDescription) {
+        description.setText(newDescription.value);
+    }
+
+    private void setDatetime(String newDatetime) {
+        datetime.setText(newDatetime);
+    }
+
+    private void setPriority(Priority newPriority) {
+        priority.getChildren().add(new Label(newPriority.priority));
     }
 
     @Override
