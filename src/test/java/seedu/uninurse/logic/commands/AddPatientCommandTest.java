@@ -157,6 +157,31 @@ public class AddPatientCommandTest {
         public Supplier<Boolean> getTaskListFlagSupplier() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean canUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void makeSnapshot(CommandResult commandResult) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

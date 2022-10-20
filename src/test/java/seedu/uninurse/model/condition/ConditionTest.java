@@ -33,22 +33,22 @@ public class ConditionTest {
 
     @Test
     public void isValidCondition_validCondition_returnsTrue() {
-        // numbers in task description -> returns true
+        // numbers in condition -> returns true
         assertTrue(Condition.isValidCondition("123"));
 
-        // special characters in task description -> returns true
+        // special characters in condition -> returns true
         assertTrue(Condition.isValidCondition("@!#$%^&*()-=+_[];.,`~:<>?/"));
 
-        // valid task description -> returns true
+        // valid condition -> returns true
         assertTrue(Condition.isValidCondition("Check vitals"));
     }
 
     @Test
     public void isValidCondition_invalidCondition_returnsFalse() {
-        // empty task description -> returns false
+        // empty condition -> returns false
         assertFalse(Condition.isValidCondition(""));
 
-        // blank task description -> returns false
+        // blank condition -> returns false
         assertFalse(Condition.isValidCondition("  "));
     }
 
