@@ -169,7 +169,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Find module details by module code feature
-
 #### Implementation
 
 The find module details mechanism is facilitated by `ModuleViewCommand` and `ModuleViewCommandParser`. It allows users to search for modules based on module code.
@@ -199,7 +198,6 @@ Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Eng
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 
 ### [Proposed] AddSchedule feature
-
 #### Proposed Implementation
 
 The proposed add schedule functionality is accomplished by `AddScheduleCommand` which extends the `Command` class. The `AddScheduleCommand` overrides the following method:
@@ -240,7 +238,6 @@ During the execution, the following validity checks will be conducted:
 - Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -296,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list modules
-2. ProfNUS shows a list of modules 
+2. ProfNUS shows a list of modules
 3. User requests to add a module to the list
 4. ProfNUS adds the module
 
@@ -401,7 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list modules
-2. ProfNUS shows a list of modules 
+2. ProfNUS shows a list of modules
 3. User requests to delete an event in the module
 4. ProfNUS deletes the event
 
