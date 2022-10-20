@@ -26,8 +26,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
-import seedu.address.model.person.subject.Attendance;
-import seedu.address.model.person.subject.Grade;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
@@ -143,9 +141,7 @@ public class EditCommand extends Command {
         private Address address;
         private StudentClass studentClass;
         private Set<Remark> remarksList;
-        private Attendance attendance;
         private SubjectHandler subjectHandler;
-        private Grade grade;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -170,7 +166,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, studentClass, tags, remarksList,
+                                               subjectHandler);
         }
 
         public Optional<Name> getName() {
@@ -221,20 +218,15 @@ public class EditCommand extends Command {
             this.remarksList = (remarksList != null) ? new HashSet<>(remarksList) : null;
         }
 
-        public void setAttendance(Attendance attendance) {
-            this.attendance = attendance;
-        }
-
+        /**
+         * A SubjectHandler handles the addition of new subjects and the editing of current subjects.
+         * When editing a Person, to edit the Person's subjects, a new SubjectHandler is created
+         * with the old subjects and the new changes.
+         *
+         * @param subjectHandler the new SubjectHandler
+         */
         public void setSubjectHandler(SubjectHandler subjectHandler) {
             this.subjectHandler = subjectHandler;
-        }
-
-        public Optional<Grade> getGrade() {
-            return Optional.ofNullable(grade);
-        }
-
-        public void setGrade(Grade grade) {
-            this.grade = grade;
         }
 
         /**

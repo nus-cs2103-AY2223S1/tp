@@ -15,8 +15,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
-import seedu.address.model.person.subject.Attendance;
-import seedu.address.model.person.subject.Grade;
 import seedu.address.model.person.subject.Subject;
 import seedu.address.model.tag.Tag;
 
@@ -144,21 +142,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String attendance} into an {@code Attendance}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code attendance} is invalid.
-     */
-    public static Attendance parseAttendance(String attendanceCommand) throws ParseException {
-        requireNonNull(attendanceCommand);
-        String trimmedAttendance = attendanceCommand.trim();
-        if (!Attendance.isValidAttendance(trimmedAttendance)) {
-            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
-        }
-        return new Attendance(attendanceCommand);
-    }
-
-    /**
      * Parses a {@code String subject} into an {@code Subject}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -171,21 +154,6 @@ public class ParserUtil {
             throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
         return new Subject(trimmedSubject);
-    }
-
-    /**
-     * Parses a {@code String grade} into an {@code Grade}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code grade} is invalid.
-     */
-    public static Grade parseGrade(String gradeCommand) throws ParseException {
-        requireNonNull(gradeCommand);
-        String trimmedGrade = gradeCommand.trim();
-        if (!Grade.isValidGrade(trimmedGrade)) {
-            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
-        }
-        return new Grade(gradeCommand);
     }
 
     /**
