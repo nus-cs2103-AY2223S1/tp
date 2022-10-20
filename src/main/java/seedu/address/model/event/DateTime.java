@@ -3,11 +3,14 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Profile's start or end datetime in the address book.
@@ -51,8 +54,34 @@ public class DateTime {
             put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}\\s\\d{1,2}:\\d{2}:\\d{2}$", "dd MMMM yyyy HH:mm:ss");
         }};
 
-    public final LocalDateTime dateTime;
-    private final boolean hasTime;
+    private static final Map<String, String> TIME_REGEXES = new HashMap<>() {{
+        put("^\\d{1,2}:\\d{2}$", "HH:mm");
+        put("^\\d{1,2}:\\d{2}:\\d{2}$", "HH:mm:ss");
+        put("^\\d{1,2}\\d{2}$", "HHmm");
+        put("^\\d{1,2}\\d{2}\\d{2}$", "HHmmss");
+    }};
+
+    public static final String REGEX_DAY_SLASH = "(([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4})";
+    public static final String REGEX_DAY_SPACE = "(([1-9]|[0-2][0-9]|(3)[0-1])\\s(((0)?[0-9])|((1)[0-2]))\\s[0-9]{4})";
+    public static final String REGEX_DAY_DASH = "(([1-9]|[0-2][0-9]|(3)[0-1])-(((0)?[0-9])|((1)[0-2]))-[0-9]{4})";
+    public static final String REGEX_TIME_COLON = "(([01][0-9]|2[0-3]):([0-5][0-9])(:[0-5]?[0-9])?)";
+    public static final String REGEX_TIME_NO_SPACE = "(([01][0-9]|2[0-3])([0-5][0-9])([0-5]?[0-9])?)";
+    public static final String MONTHS_REGEX =
+            "((jan)|(feb)|(mar)|(apr)|(may)|(jun)|(jul)|(aug)|(sep)|(oct)|(nov)|(dec))";
+    public static final String REGEX_DAY_LETTER =
+            "(([1-9]|[0-2][0-9]|(3)[0-1])\\s" + MONTHS_REGEX + "\\s[0-9]{4})";
+    public static final String REGEX_YEAR_SLASH =
+            "([0-9]{4}/(((0)?[0-9])|((1)[0-2]))/([1-9]|[0-2][0-9]|(3)[0-1]))";
+    public static final String REGEX_YEAR_DASH =
+            "([0-9]{4}-(((0)?[0-9])|((1)[0-2]))-([1-9]|[0-2][0-9]|(3)[0-1]))";
+
+    public static Pattern VALIDATION_PATTERN = Pattern.compile(
+            "(?<dateGroup>" + REGEX_DAY_SLASH + "|" + REGEX_DAY_SPACE + "|" + REGEX_DAY_DASH + "|"
+                    + REGEX_DAY_LETTER + "|" + REGEX_YEAR_SLASH + "|" + REGEX_YEAR_DASH +  ")"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "|" + REGEX_TIME_NO_SPACE + "))?"
+    );
+    public final LocalDate date;
+    public final Optional<LocalTime> time;
 
     /**
      * Constructs a {@code DateTime}.
@@ -62,15 +91,8 @@ public class DateTime {
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.dateTime = parseDateTime(dateTime);
-        this.hasTime = checkDateHasTime(dateTime);
-    }
-
-    /**
-     * Returns true if a given string is a valid datetime.
-     */
-    public static boolean isValidDateTime(String test) {
-        return parseDateTime(test) != null;
+        this.date = parseDate(dateTime);
+        this.time = parseTime(dateTime);
     }
 
     /**
@@ -85,53 +107,49 @@ public class DateTime {
         return null;
     }
 
-    /**
-     * Returns a LocalDateTime object from a given date string.
-     */
-    public static LocalDateTime parseDateTime(String dateString) {
-        String dateFormat = determineDateFormat(dateString, TIME_VALIDATION_REGEXS);
-        if (dateFormat == null) {
-            dateFormat = determineDateFormat(dateString, DATE_VALIDATION_REGEXS);
-            if (dateFormat == null) {
-                return null;
-            } else {
-                dateFormat += " HH:mm";
-                dateString += " 00:00";
-            }
-        }
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
-            return LocalDateTime.parse(dateString, formatter);
-        } catch (DateTimeParseException | IllegalArgumentException e) {
-            return null;
-        }
+    public static boolean isValidDateTime(String dateString) {
+        Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
+        return matcher.matches();
     }
 
-    /**
-     * Returns whether a date string contains a time.
-     */
-    public static boolean checkDateHasTime(String dateString) {
-        String dateFormat = determineDateFormat(dateString, TIME_VALIDATION_REGEXS);
-        return dateFormat != null;
+    public static LocalDate parseDate(String dateString) {
+        Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
+        matcher.matches();
+        String date = matcher.group("dateGroup");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(
+                requireNonNull(determineDateFormat(date, DATE_VALIDATION_REGEXS)));
+        return LocalDate.parse(date, dateFormat);
+    }
+
+    public static Optional<LocalTime> parseTime(String dateString) {
+        Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
+        matcher.matches();
+        String time = matcher.group("timeGroup");
+        if (time == null) {
+            return Optional.empty();
+        }
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(
+                requireNonNull(determineDateFormat(time, TIME_REGEXES)));
+        return Optional.ofNullable(LocalTime.parse(time, dateFormat));
     }
 
     @Override
     public String toString() {
-        String pattern = this.hasTime ? RECOMMENDED_FORMAT_WITH_TIME : RECOMMENDED_FORMAT;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        return dateTime.format(formatter);
+        return date.format(DateTimeFormatter.ofPattern(RECOMMENDED_FORMAT))
+                + time.map(t -> " " + t).orElse("");
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime // instanceof handles nulls
-                && dateTime.equals(((DateTime) other).dateTime)); // state check
+                && date.equals(((DateTime) other).date) // state check
+                && time.equals(((DateTime) other).time)); // state check
     }
 
     @Override
     public int hashCode() {
-        return dateTime.hashCode();
+        return date.hashCode() ^ time.hashCode();
     }
 
 }

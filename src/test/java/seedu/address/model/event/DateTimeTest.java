@@ -49,22 +49,6 @@ public class DateTimeTest {
         assertTrue(DateTime.isValidDateTime("25-05-2018 04:55"));
 
     }
-
-    @Test
-    public void checkHasTime() {
-        // hasTime
-        assertTrue(DateTime.checkDateHasTime("24/02/2022 13:43"));
-        assertTrue(DateTime.checkDateHasTime("18 Mar 2021 16:55"));
-        assertTrue(DateTime.checkDateHasTime("2022-02-01 13:53"));
-        assertTrue(DateTime.checkDateHasTime("15 April 2025 11:46"));
-        assertTrue(DateTime.checkDateHasTime("10-10-2010 10:53"));
-
-        // not hasTime
-        assertFalse(DateTime.checkDateHasTime("24/02/2022"));
-        assertFalse(DateTime.checkDateHasTime("18 Mar 2021"));
-        assertFalse(DateTime.checkDateHasTime("2022-02-01"));
-        assertFalse(DateTime.checkDateHasTime("15 April 2025"));
-        assertFalse(DateTime.checkDateHasTime("10-10-2010"));
-    }
+//
 
 }
