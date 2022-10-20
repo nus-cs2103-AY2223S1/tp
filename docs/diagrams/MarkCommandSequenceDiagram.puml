@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+participant ":MarkCommandStudentEditor" as StudentEditor LOGIC_COLOR
+participant ":StudentData" as StudentData LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MarkCommand : execute("mark 1 present")
+activate MarkCommand
+
+MarkCommand -> MarkCommand : executeNoRefresh()
+activate MarkCommand
+
+loop until end of indexes
+    MarkCommand -> StudentEditor : editStudent(studentToEdit)
+    activate StudentEditor
+
+    create StudentData
+    StudentEditor -> StudentData : studentToEdit.getStudentData()
+    activate StudentData
+
+    StudentData -> StudentEditor
+
+    StudentEditor -> StudentData : setAttendances(newAttendances)
+
+    StudentData -> StudentEditor
+    deactivate StudentData
+
+    StudentEditor -> MarkCommand : editedStudent
+    deactivate StudentEditor
+
+    MarkCommand -> Model : setStudent(studentToEdit, editedStudent)
+    activate Model
+    Model -> MarkCommand
+    deactivate Model
+end
+
+deactivate MarkCommand
+
+[<--MarkCommand: CommandResult
+deactivate MarkCommand
+@enduml
