@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,7 +26,7 @@ public class AddInterestCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Interest(s) added successfully!";
 
     private final Index targetIndex;
-    private final ObservableList<Interest> interests;
+    private final Set<Interest> interests;
 
     /**
      * Constructs a command that adds all interests specified to the target batchmate.
@@ -34,7 +34,7 @@ public class AddInterestCommand extends Command {
      * @param index The index of the batchmate.
      * @param interests The set of mods to be marked.
      */
-    public AddInterestCommand(Index index, ObservableList<Interest> interests) {
+    public AddInterestCommand(Index index, Set<Interest> interests) {
         requireNonNull(index);
         requireNonNull(interests);
 
