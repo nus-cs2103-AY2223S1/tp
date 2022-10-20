@@ -26,11 +26,10 @@ public class AssignmentDetailsTest {
 
         // invalid assignment details
         assertFalse(AssignmentDetails.areValidAssignmentDetails("-!")); // Non-alphanumeric
-        assertFalse(AssignmentDetails.areValidAssignmentDetails("Assignment 1")); // No spaces allowed
 
         // valid assignment details
+        assertTrue(AssignmentDetails.areValidAssignmentDetails("Assignment 1")); // Spaces allowed
         assertTrue(AssignmentDetails.areValidAssignmentDetails("Assignment1"));
-        assertTrue(AssignmentDetails.areValidAssignmentDetails("Lab1"));
-        assertTrue(AssignmentDetails.areValidAssignmentDetails("Tutorial1"));
+        assertTrue(AssignmentDetails.areValidAssignmentDetails("Tutorial 1 Assignment 1")); // Multiple words
     }
 }
