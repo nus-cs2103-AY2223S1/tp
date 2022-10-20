@@ -63,12 +63,24 @@ public class StudentCard extends UiPart<Region> {
         studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
         className.setText(student.getClassName().className);
-        parentName.setText(student.getParentName().fullName);
-        phone.setText(student.getPhone().value);
-        email.setText("dummyEmail@gmail.com");
-//        student.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (student.getParentName().fullName == "") {
+            parentName.setText("-");
+        } else {
+            parentName.setText(student.getParentName().fullName);
+        }
+        if (student.getPhone().value == "") {
+            phone.setText("-");
+        } else {
+            phone.setText(student.getPhone().value);
+        }
+        if (student.getEmail().value == "") {
+            email.setText("-");
+        } else {
+            email.setText(student.getEmail().value);
+        }
+        student.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (conciseInfo) {
             showConciseInfo();
         } else {
@@ -93,6 +105,8 @@ public class StudentCard extends UiPart<Region> {
         phone.setVisible(true);
         email.setManaged(true);
         email.setVisible(true);
+        tags.setManaged(true);
+        tags.setVisible(true);
     }
 
     /**
@@ -107,6 +121,8 @@ public class StudentCard extends UiPart<Region> {
         phone.setVisible(false);
         email.setManaged(false);
         email.setVisible(false);
+        tags.setManaged(false);
+        tags.setVisible(false);
     }
 
     @Override

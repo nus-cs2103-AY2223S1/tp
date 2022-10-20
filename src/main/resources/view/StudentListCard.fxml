@@ -38,6 +38,7 @@
             </Label>
       </HBox>
       <FlowPane fx:id="tags" prefWidth="130.0" />
+<<<<<<< HEAD
       <Label fx:id="className" alignment="CENTER" styleClass="cell_big_label" text="\$className">
             <graphic>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="Class:" />
@@ -112,6 +113,13 @@
                <Insets top="10.0" />
             </VBox.margin>
          </VBox>
+=======
+      <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+      <Label fx:id="className" styleClass="cell_small_label" text="\$className" />
+      <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+>>>>>>> master
     </VBox>
       <rowConstraints>
          <RowConstraints />

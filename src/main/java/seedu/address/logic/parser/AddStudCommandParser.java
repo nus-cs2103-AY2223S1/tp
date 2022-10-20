@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddStudCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Address;
 import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -35,10 +35,9 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
     public AddStudCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_NAME, PREFIX_ID, PREFIX_CLASS,
-                        PREFIX_PARENT_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_PARENT_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_NAME, PREFIX_ID, PREFIX_CLASS, PREFIX_PARENT_NAME,
-                PREFIX_PHONE, PREFIX_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_NAME, PREFIX_ID, PREFIX_CLASS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudCommand.MESSAGE_USAGE));
         }
@@ -46,12 +45,27 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
         Name studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_STUDENT_NAME).get());
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Class className = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
-        Name parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Phone phone;
+        Name parentName;
+        Email email;
+        if (argMultimap.getValue(PREFIX_PHONE).isEmpty()) {
+            phone = new Phone();
+        } else {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        }
+        if (argMultimap.getValue(PREFIX_PARENT_NAME).isEmpty()) {
+            parentName = new Name();
+        } else {
+            parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).get());
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
+            email = new Email();
+        } else {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student person = new Student(studentName, id, className, parentName, phone, address, tagList);
+        Student person = new Student(studentName, id, className, parentName, phone, email, tagList);
 
         return new AddStudCommand(person);
     }
