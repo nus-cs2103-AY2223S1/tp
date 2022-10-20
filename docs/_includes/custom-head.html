@@ -9,4 +9,14 @@
     });
     spy.setup();
   });
+  document.addEventListener("gumshoeActivate", (e) => {
+    const classes = document.getElementsByClassName("sticky-toc")[0].classList;
+    classes.remove("hidden");
+    classes.add("shown");
+  });
+  document.addEventListener("gumshoeDeactivate", (e) => {
+    const classes = document.getElementsByClassName("sticky-toc")[0].classList;
+    classes.remove("shown");
+    classes.add("hidden");
+  });
 </script>
