@@ -39,6 +39,9 @@ public interface Logic {
      */
     ObservableList<TimeSlot> getTimeSlots();
 
+    /**
+     * Returns true if the address book is currently in day view mode.
+     */
     boolean isDayView();
     /**
      * Returns the user prefs' address book file path.

@@ -52,10 +52,19 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_notListMode_throwsCommandException() {
+    public void execute_inViewMode_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubInFullView();
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_NOT_LIST_MODE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_inDayMode_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubInDayView();
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_NOT_LIST_MODE, () -> addCommand.execute(modelStub));
     }
@@ -215,6 +224,11 @@ public class AddCommandTest {
         public boolean isFullView() {
             return false;
         }
+
+        @Override
+        public boolean isDayView() {
+            return false;
+        }
     }
 
     /**
@@ -244,6 +258,11 @@ public class AddCommandTest {
         public boolean isFullView() {
             return false;
         }
+
+        @Override
+        public boolean isDayView() {
+            return false;
+        }
     }
 
     /**
@@ -251,8 +270,28 @@ public class AddCommandTest {
      */
     private class ModelStubInFullView extends ModelStub {
         @Override
+        public boolean isDayView() {
+            return false;
+        }
+
+        @Override
         public boolean isFullView() {
             return true;
+        }
+    }
+
+    /**
+     * A Model stub that is always in day view mode.
+     */
+    private class ModelStubInDayView extends ModelStub {
+        @Override
+        public boolean isDayView() {
+            return true;
+        }
+
+        @Override
+        public boolean isFullView() {
+            return false;
         }
     }
 

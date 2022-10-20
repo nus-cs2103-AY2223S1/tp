@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.DayIsKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new ShowCommand object
@@ -39,6 +38,7 @@ public class ShowCommandParser implements Parser<ShowCommand> {
         }
 
         String dayKeyword = trimmedArgs;
+        dayKeyword = dayKeyword.substring(0, 1).toUpperCase() + dayKeyword.substring(1).toLowerCase();
 
         return new ShowCommand(dayKeyword);
     }

@@ -24,6 +24,9 @@ public class ShowCommand extends Command {
     private final DayIsKeywordPredicate predicate;
     private final String keyword;
 
+    /**
+     * @param keyword of the day to show.
+     */
     public ShowCommand(String keyword) {
         predicate = new DayIsKeywordPredicate(keyword);
         this.keyword = keyword;
@@ -47,6 +50,6 @@ public class ShowCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ShowCommand // instanceof handles nulls
-                && predicate.equals(((ShowCommand) other).predicate)); // state check
+                && keyword.equalsIgnoreCase(((ShowCommand) other).keyword)); // state check
     }
 }

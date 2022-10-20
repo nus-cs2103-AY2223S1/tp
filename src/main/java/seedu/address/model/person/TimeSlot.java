@@ -1,13 +1,24 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * An association class between a {@code Person} and a {@code Session}.
+ * Represents a time slot in a day.
  */
 public class TimeSlot implements Comparable<TimeSlot> {
     private final Session session;
     private final Person person;
 
+    /**
+     * Constructs an {@code TimeSlot}.
+     *
+     * @param session A person's session.
+     * @param person A person object to be associated with.
+     */
     public TimeSlot(Session session, Person person) {
+        requireNonNull(session);
+        requireNonNull(person);
         this.session = session;
         this.person = person;
     }
@@ -19,9 +30,12 @@ public class TimeSlot implements Comparable<TimeSlot> {
     public Person getPerson() {
         return person;
     }
+
     @Override
     public String toString() {
-        return "";
+        StringBuilder builder = new StringBuilder();
+        builder.append(session.toString()).append("\n").append(person.toString());
+        return builder.toString();
     }
 
     @Override

@@ -74,6 +74,7 @@ public class LogicManager implements Logic {
     public boolean isDayView() {
         return model.isDayView();
     }
+
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();

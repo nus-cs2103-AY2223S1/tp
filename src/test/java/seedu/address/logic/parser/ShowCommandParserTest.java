@@ -23,8 +23,7 @@ public class ShowCommandParserTest {
     @Test
     public void parse_validArgs_returnsShowCommand() {
         // no leading and trailing whitespaces
-        ShowCommand expectedShowCommand =
-                new ShowCommand("Mon");
+        ShowCommand expectedShowCommand = new ShowCommand("Mon");
         assertParseSuccess(parser, "Mon", expectedShowCommand);
 
         // multiple whitespaces between keywords

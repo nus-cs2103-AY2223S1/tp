@@ -13,7 +13,7 @@ import seedu.address.model.person.TimeSlot;
 /**
  * Panel containing the list of time slots.
  */
-public class TimeSlotListPanel extends UiPart<Region>{
+public class TimeSlotListPanel extends UiPart<Region> {
 
     private static final String FXML = "TimeSlotListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TimeSlotListPanel.class);
@@ -31,7 +31,7 @@ public class TimeSlotListPanel extends UiPart<Region>{
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code TimeSlot} using a {@code SessionCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code TimeSlot} using a {@code TimeSlotCard}.
      */
     class TimeSlotListViewCell extends ListCell<TimeSlot> {
         @Override

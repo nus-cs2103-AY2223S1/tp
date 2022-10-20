@@ -28,8 +28,6 @@ public class ShowCommandTest {
     public void equals() {
         String firstKeyword = "first";
         String secondKeyword = "second";
-//      DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
-//      DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
 
         ShowCommand showFirstCommand = new ShowCommand(firstKeyword);
         ShowCommand showSecondCommand = new ShowCommand(secondKeyword);
@@ -52,12 +50,13 @@ public class ShowCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0);
-        DayIsKeywordPredicate predicate = new DayIsKeywordPredicate(" ");
-        ShowCommand command = new ShowCommand(" ");
-        expectedModel.updateFilteredPersonList(predicate);
+    public void execute_zeroKeywords_noTimeSlotsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0, "Sat");
+        String keyword = "Sat";
+        ShowCommand command = new ShowCommand(keyword);
+        expectedModel.updateFilteredPersonList(new DayIsKeywordPredicate(keyword));
+        expectedModel.updateTimeSlots(keyword);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getTimeSlots());
     }
 }
