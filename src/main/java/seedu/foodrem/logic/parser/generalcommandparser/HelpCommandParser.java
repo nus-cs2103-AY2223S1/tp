@@ -5,7 +5,7 @@ import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.NOT_A_COM
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getCommandHelpMessage;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getGeneralHelpMessage;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;

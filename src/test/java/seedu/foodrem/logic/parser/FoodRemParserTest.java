@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
