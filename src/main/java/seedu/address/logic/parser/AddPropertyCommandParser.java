@@ -44,6 +44,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         String seller = ParserUtil.parseSellerName(argMultimap.getValue(PREFIX_SELLER).get());
 
+        // TODO: Consider allowing multiple -c instead of separated by ; in one -c
         Characteristics characteristics = null;
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());

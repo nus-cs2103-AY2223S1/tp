@@ -51,6 +51,7 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
             priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
         }
 
+        // TODO: Consider allowing multiple -c instead of separated by ; in one -c
         Characteristics characteristics = null;
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());

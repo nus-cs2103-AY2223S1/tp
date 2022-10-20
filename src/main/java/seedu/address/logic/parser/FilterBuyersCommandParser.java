@@ -1,15 +1,17 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
 
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FilterBuyerByCharacteristicsPredicate;
+import seedu.address.model.person.AbstractFilterBuyerPredicate;
 import seedu.address.model.person.FilterBuyerByPricePredicate;
-
+import seedu.address.model.property.Price;
 
 
 /**
@@ -28,26 +30,21 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CHARACTERISTICS, PREFIX_PRICE,
                 PREFIX_PRIORITY);
 
-        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            try {
-                return new FilterBuyersCommand(new FilterBuyerByPricePredicate(argMultimap
-                        .getValue(PREFIX_PRICE).get()));
-            } catch (Exception e) {
-                throw new ParseException(e.getMessage());
-            }
+        if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
+                || !isAnyPrefixPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterBuyersCommand.MESSAGE_USAGE));
         }
-        // BUG: Owing to StringUtil.containsWordIgnoreCase, characteristics can only be a single word.
-        // However, the error message does not show up in the dialog box in the GUI.
-        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
-            try {
-                return new FilterBuyersCommand(new FilterBuyerByCharacteristicsPredicate(argMultimap
-                    .getValue(PREFIX_CHARACTERISTICS).get()));
-            } catch (Exception e) {
-                throw new ParseException(e.getMessage());
-            }
-        }
-        // TODO andre: add case for tags
 
-        throw new ParseException(FilterBuyersCommand.MESSAGE_USAGE);
+        AbstractFilterBuyerPredicate predicate = null;
+
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
+            predicate = new FilterBuyerByPricePredicate(price);
+        }
+
+        // TODO: Consider allowing filtering by multiple characteristics and tags at once
+
+        return new FilterBuyersCommand(predicate);
     }
 }
