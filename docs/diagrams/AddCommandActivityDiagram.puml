@@ -14,7 +14,7 @@ else ([Valid argument parameters])
 
         :TrackAScholar updates\nto display new applicant\nat end of the list;
     endif
-    
+
 endif
 stop
 @enduml

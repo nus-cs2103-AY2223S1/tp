@@ -182,13 +182,13 @@ Given below is an example usage scenario and how the add operation is handled by
 This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to seperate the command word `add` and
 the arguments `n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`.
 
-2. `TrackAScholarParser` identifies the `add` command and `AddCommandParser` will be instantiated which calls `AddCommandParser#parse()` 
+2. `TrackAScholarParser` identifies the `add` command and `AddCommandParser` will be instantiated which calls `AddCommandParser#parse()`
 to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
 
 3. `AddCommandParser#parse()` will then call `AddCommandParser#arePrefixesPresent()` to ensure that all mandatory prefixes are present
 in the user input, after which the various arguments will be retrieved via the prefixes and parsed into their respective attributes.
 
-4. `AddCommandParser#parse()` creates a new `Applicant` with the various attributes before finally initializing and returning an `AddCommand` 
+4. `AddCommandParser#parse()` creates a new `Applicant` with the various attributes before finally initializing and returning an `AddCommand`
 with the new `Applicant` as an argument.
 
 5. `LogicManager#execute()` now calls `AddCommand#execute()`, which invokes `Model#hasApplicant()` to check if the new `Applicant` is a
