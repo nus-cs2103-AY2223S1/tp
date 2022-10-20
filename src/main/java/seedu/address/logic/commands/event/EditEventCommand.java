@@ -9,10 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.HashSet;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -26,7 +26,7 @@ import seedu.address.model.event.Title;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing profile in the address book.
+ * Edits the details of an existing event in the address book.
  */
 public class EditEventCommand extends EventCommand {
 
@@ -52,8 +52,8 @@ public class EditEventCommand extends EventCommand {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
-     * @param index of the profile in the filtered profile list to edit
-     * @param editEventDescriptor details to edit the profile with
+     * @param index of the event in the filtered event list to edit
+     * @param editEventDescriptor details to edit the event with
      */
     public EditEventCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
@@ -69,7 +69,7 @@ public class EditEventCommand extends EventCommand {
         List<Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
@@ -85,8 +85,8 @@ public class EditEventCommand extends EventCommand {
     }
 
     /**
-     * Creates and returns a {@code Profile} with the details of {@code profileToEdit}
-     * edited with {@code editProfileDescriptor}.
+     * Creates and returns a {@code Event} with the details of {@code eventToEdit}
+     * edited with {@code editEventDescriptor}.
      */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
