@@ -10,7 +10,12 @@ import seedu.address.model.listing.ListingID;
 import seedu.address.model.listing.UniqueListingList;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.UniqueOfferList;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueClientList;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level

@@ -15,8 +15,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.offer.Offer;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Client;
+import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**

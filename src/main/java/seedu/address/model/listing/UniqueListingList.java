@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.exceptions.DuplicateListingException;
 import seedu.address.model.listing.exceptions.ListingNotFoundException;
-import seedu.address.model.person.exceptions.DuplicateClientException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**

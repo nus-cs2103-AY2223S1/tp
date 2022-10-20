@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.exceptions.DuplicateListingException;
 import seedu.address.model.offer.Offer;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.ListingBuilder;
@@ -118,6 +119,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Client> getClientList() {
+            return null;
         }
 
         @Override
