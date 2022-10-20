@@ -197,9 +197,9 @@ The following activity diagram shows the process when a user calls the `AddProfi
 
 #### Description
 
-In this section, we will describe how our edit commands are implemented. In NUScheduler, there are two variants of edit commands, namely the `EditProfileCommand` and the `EditEventCommand`. `EditProfileCommand` is used to edit details of existing `Profile`s, whereas `EditEventCommand` is used to edit details of existing `Event`s.  
+In this section, we will describe how our edit commands are implemented. In NUScheduler, there are two variants of edit commands, namely the `EditProfileCommand` and the `EditEventCommand`. `EditProfileCommand` is used to edit details of existing `Profile`s, whereas `EditEventCommand` is used to edit details of existing `Event`s.
 
-Since both `EditProfileCommand` and `EditEventCommand` are implemented in a similar manner, we will be using the `EditProfileCommand` to illustrate the implementation of edit commands. 
+Since both `EditProfileCommand` and `EditEventCommand` are implemented in a similar manner, we will be using the `EditProfileCommand` to illustrate the implementation of edit commands.
 
 The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute` method, to edit existing profiles when called.
 
@@ -212,7 +212,7 @@ The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCo
 5. The `LogicManager` will call `Command#execute` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `EditProfileCommand#setProfile` method.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
-The following sequence diagram shows how the `EditProfileCommand` works.   
+The following sequence diagram shows how the `EditProfileCommand` works.
 
 ![EditProfileCommandSequenceDiagram](images/commands/EditProfileCommandSequenceDiagram.png)
 
@@ -222,7 +222,7 @@ The following activity diagram shows the process when a user calls the `EditProf
 
 #### Design Considerations
 
-The design considerations for the edit commands and the add commands are largely similar, please refer to the [Design Considerations](#design-considerations) for the add commands for more details. 
+The design considerations for the edit commands and the add commands are largely similar, please refer to the [Design Considerations](#design-considerations) for the add commands for more details.
 
 ### \[Proposed\] Add Attendees to an Event
 
@@ -268,7 +268,7 @@ The following sequence diagram illustrates how the operation works.
   * Pros: Easier to implement.
   * Cons: Very inconvenient especially when an `Event` already has many attendees.
 
-Alternative 1 was largely chosen due to the current implementation of the edit commands. Upon calling the edit command to change a specified attribute, the entire attribute will be overwritten with the new details. 
+Alternative 1 was largely chosen due to the current implementation of the edit commands. Upon calling the edit command to change a specified attribute, the entire attribute will be overwritten with the new details.
 
 Consider an `Event` with the `Tag`s [school] and [tutorial]. If the user wishes to add another `Tag`, they would have to specify the existing two `Tag`s along with the new `Tag`. This would be similar for attendees if **alternative 2** were chosen. Considering that an `Event` can have a lot more attendees than `Tag`s, **alternative 2** will be extremely inconvenient. To add to a long list of attendees, a user will have to specify the entire list of `Profile` indexes correctly to ensure that no existing `Profile`s are accidentally removed.
 

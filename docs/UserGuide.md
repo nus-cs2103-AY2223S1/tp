@@ -106,7 +106,7 @@ Format: `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t
 Examples:
 * `profile -e 1 p/91234567 e/johndoe@u.nus.edu` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@u.nus.edu` respectively.
 * `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
-* `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile. 
+* `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile.
 
 ### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]`
 
