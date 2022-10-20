@@ -48,6 +48,8 @@ public class SupplyItemCard extends UiPart<Region> {
     public SupplyItemCard(SupplyItem supplyItem, int displayedIndex) {
         super(FXML);
         this.supplyItem = supplyItem;
+        cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 6 0 0;",
+                determineStockHealth(supplyItem.getCurrentStock(), supplyItem.getMinStock())));
         id.setText(displayedIndex + ". ");
         name.setText(supplyItem.getName());
         supplierName.setText(supplyItem.getSupplier().getName().fullName);
@@ -56,6 +58,45 @@ public class SupplyItemCard extends UiPart<Region> {
         supplyItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Determines the color based on {@code currentStock} and {@code minStock}.
+     */
+    private String determineStockHealth(int currentStock, int minStock) {
+        double mediumStockThreshold = minStock * 1.65;
+        double lowStockThreshold = minStock * 1.2;
+        if (currentStock < lowStockThreshold) {
+            return translateStockLevelToColor(StockLevel.LOW);
+        } else if (currentStock < mediumStockThreshold) {
+            assert currentStock >= lowStockThreshold;
+            return translateStockLevelToColor(StockLevel.MEDIUM);
+        } else {
+            assert currentStock >= mediumStockThreshold;
+            return translateStockLevelToColor(StockLevel.HIGH);
+        }
+    }
+
+    /**
+     * Translates stock health to border colors.
+     */
+    private String translateStockLevelToColor(StockLevel level) {
+        switch (level) {
+        case LOW:
+            return "#e74c3c";
+        case MEDIUM:
+            return "#f39c12";
+        case HIGH:
+            return "#2ecc71";
+        default:
+            return "transparent";
+        }
+    }
+
+    private enum StockLevel {
+        LOW,
+        MEDIUM,
+        HIGH
     }
 
     @Override
