@@ -3,8 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REVERSE;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.applicant.Applicant;
@@ -25,14 +23,14 @@ public class SortCommandParser implements Parser<SortCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_REVERSE);
 
         String trimmedArgs = argMultimap.getPreamble().toLowerCase().trim();
-        if (isPrefixPresent(argMultimap, PREFIX_REVERSE)) {
+        if (isReversePrefixPresent(argMultimap)) {
             switch (trimmedArgs) {
             case "name":
                 return new SortCommand(Applicant.sortByName().reversed());
             case "scholarship":
                 return new SortCommand(Applicant.sortByScholarship().reversed());
             default:
-                throw new ParseException("with r/ " +
+                throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
             }
         }
@@ -48,7 +46,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
     }
 
-    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean isReversePrefixPresent(ArgumentMultimap argumentMultimap) {
+        return argumentMultimap.getValue(PREFIX_REVERSE).isPresent();
     }
 }
