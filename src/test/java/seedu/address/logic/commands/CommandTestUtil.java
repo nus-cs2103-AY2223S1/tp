@@ -64,8 +64,8 @@ public class CommandTestUtil {
     public static final String VALID_NEXTOFKIN_AMY = "Amy Nok";
     public static final String VALID_NEXTOFKIN_BOB = "Bob Nok";
 
-    public static final String VALID_QUALIFICATION_AMY = "BAmy";
-    public static final String VALID_QUALIFICATION_BOB = "MBob";
+    public static final String VALID_QUALIFICATION_AMY = "BAmy, Amy";
+    public static final String VALID_QUALIFICATION_BOB = "MBob, Bob";
     public static final String VALID_INSTITUTION_AMY = "Amy University";
     public static final String VALID_INSTITUTION_BOB = "Bob University";
 
