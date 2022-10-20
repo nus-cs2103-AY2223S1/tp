@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.ListingID;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,12 +28,12 @@ public class AddTagsToListingCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TAGS = "These tags already exists in the listing";
 
     private final Set<Tag> tags;
-    private final String listingId;
+    private final ListingID listingId;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddTagsToListingCommand(Set<Tag> tags, String listingId) {
+    public AddTagsToListingCommand(Set<Tag> tags, ListingID listingId) {
         requireNonNull(tags);
         this.tags = tags;
         this.listingId = listingId;
