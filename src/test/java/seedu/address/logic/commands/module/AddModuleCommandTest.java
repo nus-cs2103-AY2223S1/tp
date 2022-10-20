@@ -151,6 +151,10 @@ public class AddModuleCommandTest {
         public boolean conflictSchedule(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public boolean conflictScheduleWithTarget(Schedule schedule, Schedule target) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean hasModule(Module module) {
@@ -219,6 +223,11 @@ public class AddModuleCommandTest {
 
         @Override
         public ObservableList<Schedule> getFilteredScheduleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Schedule> getAllScheduleList() {
             throw new AssertionError("This method should not be called.");
         }
 

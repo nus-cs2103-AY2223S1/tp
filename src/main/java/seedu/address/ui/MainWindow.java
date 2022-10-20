@@ -215,11 +215,21 @@ public class MainWindow extends UiPart<Stage> {
         tabPane.getSelectionModel().select(MODULE);
     }
     /**
-     * Switch to schedules page.
+     * Switch to Schedules page with current filtered schedules.
      */
     @FXML
     public void handleShowTabSchedule() {
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+        tabPane.getSelectionModel().select(SCHEDULE);
+    }
+
+    /**
+     * Switch to Schedules page with all schedules shown.
+     */
+    @FXML
+    public void handleShowTabAllSchedule() {
+        scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
     }
@@ -276,7 +286,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowScheduleList()) {
-                handleShowTabSchedule();
+                handleShowTabAllSchedule();
             }
 
             return commandResult;

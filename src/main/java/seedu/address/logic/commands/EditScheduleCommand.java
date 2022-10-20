@@ -10,7 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -45,6 +47,7 @@ public class EditScheduleCommand extends Command {
     public static final String MESSAGE_CONFLICT_SCHEDULE = "This schedule conflicts with other schedules";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
+    private static final Logger logger = LogsCenter.getLogger(EditScheduleCommand.class);
     private final EditScheduleDescriptor editScheduleDescriptor;
     private final Index index;
 
@@ -63,17 +66,22 @@ public class EditScheduleCommand extends Command {
         requireNonNull(model);
         List<Schedule> lastShownList = model.getFilteredScheduleList();
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.warning("Index is invalid.");
             throw new CommandException(MESSAGE_SCHEDULE_NOT_EXIST);
         }
         Schedule target = lastShownList.get(index.getZeroBased());
+        logger.info("Obtained the target schedule: " + target.toString());
         Schedule editedSchedule = EditScheduleCommand.createEditedSchedule(target, editScheduleDescriptor);
         if (model.getModuleByModuleCode(editedSchedule.getModule()) == null) {
+            logger.warning("Cannot find the target module.");
             throw new CommandException(MESSAGE_MODULE_NOT_EXIST);
         }
-        if (model.conflictSchedule(editedSchedule)) {
+        if (model.conflictScheduleWithTarget(editedSchedule, target)) {
+            logger.warning("Edited schedule conflicts with other schedules.");
             throw new CommandException(MESSAGE_CONFLICT_SCHEDULE);
         }
         model.setSchedule(target, editedSchedule);
+        logger.fine("EditScheduleCommand executes successfully.");
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedSchedule), false, false, false,
                 false, false, true);
 

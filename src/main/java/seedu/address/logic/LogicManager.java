@@ -83,6 +83,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Schedule> getAllScheduleList() {
+        return model.getAllScheduleList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

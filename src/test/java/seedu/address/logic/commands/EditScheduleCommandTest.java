@@ -146,6 +146,10 @@ public class EditScheduleCommandTest {
         public boolean conflictSchedule(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public boolean conflictScheduleWithTarget(Schedule schedule, Schedule target) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean hasModule(Module module) {
@@ -217,6 +221,10 @@ public class EditScheduleCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Schedule> getAllScheduleList() {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");

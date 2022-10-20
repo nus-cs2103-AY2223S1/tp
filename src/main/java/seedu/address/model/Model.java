@@ -78,6 +78,11 @@ public interface Model {
     boolean conflictSchedule(Schedule schedule);
 
     /**
+     * Checks if the new schedule conflicts with existing schedules except the target.
+     */
+    boolean conflictScheduleWithTarget(Schedule schedule, Schedule target);
+
+    /**
      * Deletes the given person.
      * The person must exist in the ProfNUS.
      */
@@ -176,6 +181,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered module schedule list */
     ObservableList<Schedule> getFilteredScheduleList();
+
+    /** Returns an unmodifiable view of the whole module schedule list */
+    ObservableList<Schedule> getAllScheduleList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
