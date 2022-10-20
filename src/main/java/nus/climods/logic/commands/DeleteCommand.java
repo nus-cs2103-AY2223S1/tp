@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
 
         UserModule toDelete = new UserModule(targetCode, model);
 
-        if (!model.filteredListhasUserModule(toDelete)) {
+        if (!model.filteredListHasUserModule(toDelete)) {
             return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode));
         }
 

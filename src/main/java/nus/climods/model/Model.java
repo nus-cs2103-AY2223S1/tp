@@ -1,5 +1,6 @@
 package nus.climods.model;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -9,8 +10,6 @@ import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 import nus.climods.model.module.exceptions.DetailedModuleRetrievalException;
-import org.openapitools.client.ApiException;
-
 
 /**
  * The API of the Model component.
@@ -20,6 +19,8 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<UserModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    //=========== UserPrefs ==================================================================================
 
     /**
      * Returns the user prefs.
@@ -31,6 +32,8 @@ public interface Model {
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
+    //=========== GuiSettings ==================================================================================
+
     /**
      * Returns the user prefs' GUI settings.
      */
@@ -40,6 +43,9 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    //=========== Module ==================================================================================
+
     ReadOnlyModuleList getModuleList();
 
     /**
@@ -52,6 +58,12 @@ public interface Model {
      */
     Optional<Module> getListModule(String moduleCode);
 
+    ObservableList<Module> getFilteredModuleList();
+
+    void setFilteredModuleList(Predicate<Module> predicate);
+
+    void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator);
+
     /**
      * Sets active module (currently for view) in full module list to the module specified by moduleCode
      */
@@ -62,7 +74,7 @@ public interface Model {
      */
     void resetActiveModule();
 
-    /* USER MODULE */
+    //=========== UserModule ==================================================================================
 
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
@@ -72,8 +84,7 @@ public interface Model {
     /**
      * Returns true if a module with the same identity as {@code module} exists in the filtered user module list
      */
-    boolean filteredListhasUserModule(UserModule module);
-
+    boolean filteredListHasUserModule(UserModule module);
 
     /**
      * Deletes the given module. The module must exist in the address book.
@@ -89,15 +100,11 @@ public interface Model {
      * Returns an unmodifiable view of the filtered module list
      */
     ObservableList<UserModule> getFilteredUserModuleList();
+
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredUserModuleList(Predicate<UserModule> predicate);
-    void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser);
-
-    ObservableList<Module> getFilteredModuleList();
-
-    void setFilteredModuleList(Predicate<Module> predicate);
 }
