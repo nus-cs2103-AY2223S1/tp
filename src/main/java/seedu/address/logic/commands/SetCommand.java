@@ -53,7 +53,7 @@ public class SetCommand extends Command {
             + PREFIX_ROLE + "Frontend Engineer "
             + PREFIX_TIMEZONE + "+8 "
             + PREFIX_EMAIL + "e0123456@u.nus.edu "
-            + PREFIX_PHONE + "87654321"
+            + PREFIX_PHONE + "87654321 "
             + PREFIX_SLACK + "johndoe "
             + PREFIX_TELEGRAM + "@johndoe";
 
