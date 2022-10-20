@@ -193,8 +193,28 @@ This section describes some noteworthy details on how certain features are imple
 *To be updated*
 
 #### 4.2.6 ViewClass command
+Current Implementation:
+The `ViewClass` Command displays the list of Students in a particular class by updating the `FilteredStudentList` with a `ClassPredicate`.
+The ClassPredicate checks that a Student's Class matches the user input(ignoring case-sensitivity).
 
+Given below is an example usage scenario and how the ViewClass mechanism behaves at each step.
 
+Step 1. The user launches Class-ify for the first time. Class-ify is populated with sample data and the `FilteredStudentList` currently contains all Students.
+<Insert Object Diagram showing user fields>
+
+Step 2. The user executes `viewClass 1A` command. 
+<Insert Object Diagram>
+
+Step 3. Class-ify displays the list of students with the class "1A" on the student card list panel.
+<Insert Object Diagram>
+
+The following sequence diagram shows how the ViewClass Command works:
+<Insert Sequence Diagram>
+
+Design Considerations:
+1. 
+2. 
+3. 
 
 *To be further updated*
 
