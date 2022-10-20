@@ -100,8 +100,8 @@ public class ReminderList implements ReadOnlyReminderList {
 
     public List<Reminder> getRemindersWithNameAndPhone(Name name, Phone phone) {
         return internalUnmodifiableList.stream()
-                .filter(reminder -> reminder.getName().equals(name.fullName)
-                        && reminder.getPhone().equals(phone.value)).collect(Collectors.toList());
+                .filter(reminder -> reminder.getNameString().equals(name.fullName)
+                        && reminder.getPhoneString().equals(phone.value)).collect(Collectors.toList());
     }
 
     /**
@@ -121,8 +121,8 @@ public class ReminderList implements ReadOnlyReminderList {
      * Deletes reminders with {@code name} and {@code phone}
      */
     public void deleteRemindersWithNameAndPhone(Name name, Phone phone) {
-        internalUnmodifiableList.removeIf(reminder -> reminder.getName().equals(name.fullName)
-                        && reminder.getPhone().equals(phone.value));
+        internalList.removeIf(reminder -> reminder.getNameString().equals(name.fullName)
+                        && reminder.getPhoneString().equals(phone.value));
     }
 
     @Override

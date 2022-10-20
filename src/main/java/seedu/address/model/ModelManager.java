@@ -319,6 +319,7 @@ public class ModelManager implements Model {
     @Override
     public void clearCurrentReminderList() {
         if (targetPerson.isPresent()) {
+            reminderList.deleteRemindersWithNameAndPhone(targetPerson.get().getName(), targetPerson.get().getPhone());
             targetPersonReminderList.clear();
         } else {
             reminderList.clear();

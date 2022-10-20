@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.DateTimeParser.DATE_TIME_FORMATTER;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a date and time.
@@ -26,6 +27,18 @@ public class DateTime implements Comparable<DateTime> {
 
     public LocalDateTime getLocalDateTime() {
         return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+    }
+
+    /**
+     * Returns true if {@code dateTimeString} is a valid date time.
+     */
+    public static boolean isValidDateTimeString(String dateTimeString) {
+        try {
+            LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+            return true;
+        } catch (DateTimeParseException pe) {
+            return false;
+        }
     }
 
     @Override

@@ -17,9 +17,9 @@ public class ReminderClearCommand extends ReminderCommandGroup {
             + ": Clears the reminder list displayed";
 
     public static final String MESSAGE_SUCCESS = "Reminder list cleared.";
+    public static final String MESSAGE_SUCCESS_TARGET_PERSON_LIST = "Reminder list cleared.";
 
-    public ReminderClearCommand() {
-    }
+    public ReminderClearCommand() {}
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

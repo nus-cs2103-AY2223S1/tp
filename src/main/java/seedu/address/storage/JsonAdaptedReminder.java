@@ -38,8 +38,8 @@ public class JsonAdaptedReminder {
     public JsonAdaptedReminder(Reminder source) {
         description = source.getDescription();
         dateTime = source.getDateTimeString();
-        name = source.getName();
-        phone = source.getPhone();
+        name = source.getNameString();
+        phone = source.getPhoneString();
     }
 
     /**

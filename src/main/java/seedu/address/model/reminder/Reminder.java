@@ -1,9 +1,9 @@
 package seedu.address.model.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -15,8 +15,8 @@ public class Reminder implements Comparable<Reminder> {
     public static final String MESSAGE_CONSTRAINTS = "";
     private final String description;
     private final DateTime dateTime;
-    private Optional<Name> name;
-    private Optional<Phone> phone;
+    private Name name;
+    private Phone phone;
 
     /**
      * Constructs a {@code Reminder}
@@ -29,8 +29,8 @@ public class Reminder implements Comparable<Reminder> {
         requireNonNull(dateTime);
         this.description = description;
         this.dateTime = dateTime;
-        this.name = Optional.of(name);
-        this.phone = Optional.of(phone);
+        this.name = name;
+        this.phone = phone;
     }
 
     public String getDescription() {
@@ -45,12 +45,12 @@ public class Reminder implements Comparable<Reminder> {
         return dateTime.getDateTimeString();
     }
 
-    public String getName() {
-        return name.map(name -> name.fullName).orElse("");
+    public String getNameString() {
+        return name.fullName;
     }
 
-    public String getPhone() {
-        return phone.map(phone -> phone.value).orElse("");
+    public String getPhoneString() {
+        return phone.value;
     }
 
     /**
@@ -60,18 +60,23 @@ public class Reminder implements Comparable<Reminder> {
         if (name == null || phone == null) {
             return false;
         }
-        return getName().equals(name.fullName) && getPhone().equals(phone.value);
+        return getNameString().equals(name.fullName) && getPhoneString().equals(phone.value);
     }
 
     public void setNameAndPhone(Name name, Phone phone) {
-        this.name = Optional.of(name);
-        this.phone = Optional.of(phone);
+        this.name = name;
+        this.phone = phone;
     }
 
     /**
      * Returns true if parameters constitutes a valid reminder.
      */
     public static boolean isValidReminder(String description, String dateTimeString, String name, String phone) {
+        requireAllNonNull(description, dateTimeString, name, phone);
+        if (description.isEmpty() || !DateTime.isValidDateTimeString(dateTimeString)
+                || !Name.isValidName(name) || !Phone.isValidPhone(phone)) {
+            return false;
+        }
         return true;
     }
 
@@ -106,6 +111,6 @@ public class Reminder implements Comparable<Reminder> {
     @Override
     public String toString() {
         return "Description: " + description + "\nDate and Time: " + dateTime
-                + "\nName: " + name.get().toString() + "\nPhone: " + phone.get().toString();
+                + "\nName: " + name.toString() + "\nPhone: " + phone.toString();
     }
 }

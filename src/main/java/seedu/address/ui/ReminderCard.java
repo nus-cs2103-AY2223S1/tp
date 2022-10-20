@@ -18,6 +18,10 @@ public class ReminderCard extends UiPart<Region> {
     private Label description;
     @FXML
     private Label dateText;
+    @FXML
+    private Label name;
+    @FXML
+    private Label phone;
 
     /**
      * Creates a {@code ReminderCard} with the given {@code Reminder} to display.
@@ -28,6 +32,8 @@ public class ReminderCard extends UiPart<Region> {
         this.reminder = reminder;
         description.setText(reminder.getDescription());
         dateText.setText(reminder.getDateTimeString());
+        name.setText(reminder.getNameString());
+        phone.setText(reminder.getPhoneString());
     }
 
     @Override
@@ -45,6 +51,8 @@ public class ReminderCard extends UiPart<Region> {
         // state check
         ReminderCard card = (ReminderCard) other;
         return description.getText().equals(card.description.getText())
-                && dateText.getText().equals(card.dateText.getText());
+                && dateText.getText().equals(card.dateText.getText())
+                && name.getText().equals(card.name.getText())
+                && phone.getText().equals(card.phone.getText());
     }
 }
