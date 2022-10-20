@@ -33,6 +33,7 @@ public class ModuleListPanel extends UiPart<Region> {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanel.ModuleListViewCell());
+        logger.info("=================[Modules loaded]=================");
         moduleListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -58,12 +59,9 @@ public class ModuleListPanel extends UiPart<Region> {
         private EventHandler<MouseEvent> oneClickHandler;
         public ModuleListViewCell() {
             oneClickHandler = new EventHandler<MouseEvent>() {
+                // Prevents the list from being updated upon clicking on null area
                 @Override
                 public void handle(MouseEvent event) {
-                    Parent p = (Parent) event.getSource();
-                    Module m = (Module) p.getUserData();
-                    System.out.println(m);
-                    //  do what you want to do with data.
                 }
             };
         }
