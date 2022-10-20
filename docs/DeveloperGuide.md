@@ -179,21 +179,21 @@ The add operation is facilitated by `AddCommand`. It extends `Command` and imple
 Given below is an example usage scenario and how the add operation is handled by TrackAScholar:
 
 1. The user enters `add n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`, for example, to add a new applicant.
-This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `add` and
-the arguments `n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `add` and
+   the arguments `n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`.
 
 2. `TrackAScholarParser` identifies the `add` command and `AddCommandParser` will be instantiated which calls `AddCommandParser#parse()`
-to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
 
 3. `AddCommandParser#parse()` will then call `AddCommandParser#arePrefixesPresent()` to ensure that all mandatory prefixes are present
-in the user input, after which the various arguments will be retrieved via the prefixes and parsed into their respective attributes.
+   in the user input, after which the various arguments will be retrieved via the prefixes and parsed into their respective attributes.
 
 4. `AddCommandParser#parse()` creates a new `Applicant` with the various attributes before finally initializing and returning an `AddCommand`
-with the new `Applicant` as an argument.
+   with the new `Applicant` as an argument.
 
 5. `LogicManager#execute()` now calls `AddCommand#execute()`, which invokes `Model#hasApplicant()` to check if the new `Applicant` is a
-duplicate of any applicant already stored in TrackAScholar. When the check has concluded and no duplicate was found, `Model#addApplicant()`
-is called to add the new `Applicant` into TrackAScholar.
+   duplicate of any applicant already stored in TrackAScholar. When the check has concluded and no duplicate was found, `Model#addApplicant()`
+   is called to add the new `Applicant` into TrackAScholar.
 
 6. `AddCommand#execute()` finishes with returning a `CommandResult` containing details of the new applicant to the user.
 
@@ -219,7 +219,7 @@ Given below is an example usage scenario and how the filter operation is handled
    the argument `pending`.
 
 2. `TrackAScholarParser` identifies the `filter` command and `FilterCommandParser` will be instantiated which calls `FilterCommandParser#parse()`
-   to map the argument into its corresponding application status.
+   which checks that the argument is a valid application status by calling `ApplicationStatus#isValidApplicationStatus()`.
 
 3. `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning an `FilterCommand`
    with the new `ApplicationStatusPredicate` as an argument.
@@ -236,6 +236,8 @@ The following sequence diagram shows how the filter operation works:
 The following activity diagram summarizes what happens when a user executes an filter command:
 
 ![Add command activity diagram](images/FilterCommandActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The alternative paths should all end at the merge note but due to limitations of PlantUML, arrows extending
 
 --------------------------------------------------------------------------------------------------------------------
 
