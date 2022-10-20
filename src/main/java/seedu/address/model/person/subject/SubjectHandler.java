@@ -1,6 +1,9 @@
 package seedu.address.model.person.subject;
 
 import java.util.HashMap;
+import java.util.Set;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Handles a Student's subjects in the application.
@@ -13,6 +16,10 @@ public class SubjectHandler {
      */
     public SubjectHandler() {
         subjectsTaken = new HashMap<>();
+    }
+
+    public HashMap<String, Subject> getSubjectsTaken() {
+        return subjectsTaken;
     }
 
     /**
@@ -31,6 +38,26 @@ public class SubjectHandler {
      */
     public Subject getSubject(String subjectName) {
         return subjectsTaken.get(subjectName);
+    }
+
+    /**
+     * Checks if the HashMap containing subjects taken by a person contains the subject(s) given as
+     * keyword(s) in the find command.
+     *
+     * @param keywords Keywords separated by spaces and are given by user using the find command.
+     * @return A boolean for if keyword(s) is contained in sentence.
+     */
+    public boolean subjectsTakenContainsWord(String keywords) {
+        Set<String> subjectsSet = subjectsTaken.keySet();
+        String subjectsString = String.join(" ", subjectsSet);
+
+        String[] keywordArr = keywords.split(" ");
+        for (String keyword: keywordArr) {
+            if (StringUtil.containsWordIgnoreCase(subjectsString, keyword)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

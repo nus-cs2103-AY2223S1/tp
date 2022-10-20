@@ -5,8 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FindCommandPredicate;
@@ -31,33 +34,32 @@ public class FindCommandParser implements Parser<FindNameCommand> {
      */
     public FindNameCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        Name foundName = DEFAULT_NAME;
-        StudentClass foundClass = DEFAULT_CLASS;
-        Subject foundSubjects = DEFAULT_SUBJECT;
+        String[] findCommandKeywords = new String[3];
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindNameCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENTCLASS, PREFIX_SUBJECT);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            foundName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
+            findCommandKeywords[0] = foundName;
         }
 
         if (argMultimap.getValue(PREFIX_STUDENTCLASS).isPresent()) {
-            foundClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_STUDENTCLASS).get());
+            String foundClass = String.join(" ", argMultimap.getAllValues(PREFIX_STUDENTCLASS));
+            findCommandKeywords[1] = foundClass;
         }
 
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            foundSubjects = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
+            String foundSubjects = String.join(" ", argMultimap.getAllValues(PREFIX_SUBJECT));
+            findCommandKeywords[2] = foundSubjects;
         }
 
-        return new FindNameCommand(new FindCommandPredicate(Arrays.asList(foundName.toString(),
-                                                                          foundClass.toString(),
-                                                                          foundSubjects.toString())));
+        return new FindNameCommand(new FindCommandPredicate(Arrays.asList(findCommandKeywords)));
     }
 
 }
