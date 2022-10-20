@@ -37,7 +37,6 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private ScheduleListPanel scheduleListPanel;
     private StatisticsDisplay statisticsDisplay;
-    private StatisticsCalculator statisticsCalculator;
 
 
     @FXML
@@ -71,7 +70,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        statisticsCalculator = new StatisticsCalculator(logic.getTeachersPet());
     }
 
     public Stage getPrimaryStage() {
@@ -133,8 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         statisticsDisplay = new StatisticsDisplay();
-        statisticsDisplay.showStatisticsToUser(statisticsCalculator.getSize(),
-                statisticsCalculator.getAmountOwed(), statisticsCalculator.getAmountPaid());
+        statisticsDisplay.showStatisticsToUser(logic.getStatisticsCalculator());
         statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
     }
 
@@ -192,8 +189,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            statisticsDisplay.showStatisticsToUser(statisticsCalculator.getSize(),
-                    statisticsCalculator.getAmountOwed(), statisticsCalculator.getAmountPaid());
+            statisticsDisplay.showStatisticsToUser(logic.getStatisticsCalculator());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
