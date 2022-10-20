@@ -107,6 +107,9 @@ public class DateTime {
         }
     }
 
+    /**
+     * Returns whether a date string contains a time.
+     */
     public static boolean checkDateHasTime(String dateString) {
         String dateFormat = determineDateFormat(dateString, TIME_VALIDATION_REGEXS);
         return dateFormat != null;
