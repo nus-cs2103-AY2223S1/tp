@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HomeworkCommandParser" as HomeworkCommandParser LOGIC_COLOR
+participant "h:HomeworkCommand" as HomeworkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":HomeworkList" as HomeworkList MODEL_COLOR
+participant "editedPerson:Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("Homework 1 h/homework")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("Homework 1 h/homework")
+activate AddressBookParser
+
+create HomeworkCommandParser
+AddressBookParser -> HomeworkCommandParser
+activate HomeworkCommandParser
+
+HomeworkCommandParser --> AddressBookParser
+deactivate HomeworkCommandParser
+
+AddressBookParser -> HomeworkCommandParser : parse("1 h/homework")
+activate HomeworkCommandParser
+
+create HomeworkCommand
+HomeworkCommandParser -> HomeworkCommand
+activate HomeworkCommand
+
+HomeworkCommand --> HomeworkCommandParser : h
+deactivate HomeworkCommand
+
+HomeworkCommandParser --> AddressBookParser : h
+deactivate HomeworkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+HomeworkCommandParser -[hidden]-> AddressBookParser
+destroy HomeworkCommandParser
+
+AddressBookParser --> LogicManager : h
+deactivate AddressBookParser
+
+LogicManager -> HomeworkCommand : execute()
+activate HomeworkCommand
+
+HomeworkCommand -> HomeworkList : addHomework(homework)
+activate HomeworkList
+
+HomeworkList --> HomeworkCommand
+deactivate HomeworkList
+
+create Person
+HomeworkCommand -> Person
+activate Person
+
+Person --> HomeworkCommand
+deactivate Person
+
+HomeworkCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> HomeworkCommand
+deactivate Model
+
+create CommandResult
+HomeworkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> HomeworkCommand
+deactivate CommandResult
+
+HomeworkCommand --> LogicManager : result
+deactivate HomeworkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
