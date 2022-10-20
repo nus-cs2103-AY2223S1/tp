@@ -109,11 +109,11 @@ public class EditCommand extends Command {
 
         System.out.println(updatedLeaves);
 
-       Person p = new Person(
+        Person p = new Person(
                 updatedName, employeeId, updatedPhone, updatedEmail,
                 updatedPosition, updatedAddress, updatedTags, updatedLeaves);
-       p.setLeavesLeft(updatedLeaves - currentLeaves + currentLeaves);
-       return p;
+        p.setLeavesLeft(updatedLeaves - currentLeaves + currentLeaves);
+        return p;
     }
 
     @Override
@@ -167,7 +167,11 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags, totalNumberofLeaves);
+            Integer temp = null;
+            if (totalNumberofLeaves > 0) {
+                temp = totalNumberofLeaves;
+            }
+            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags, temp);
         }
 
         public void setName(Name name) {

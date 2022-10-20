@@ -20,7 +20,6 @@ import javafx.application.Application;
  */
 public class Main {
     public static void main(String[] args) {
-        assert false;
         Application.launch(MainApp.class, args);
     }
 }
