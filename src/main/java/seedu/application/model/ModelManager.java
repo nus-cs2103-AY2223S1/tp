@@ -6,12 +6,16 @@ import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.commons.core.LogsCenter;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.InterviewComparator;
 
 /**
  * Represents the in-memory model of the application book data.
@@ -22,6 +26,7 @@ public class ModelManager implements Model {
     private final ApplicationBook applicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
+    private final ObservableList<Application> applicationsWithInterview;
 
     /**
      * Initializes a ModelManager with the given applicationBook and userPrefs.
@@ -34,10 +39,22 @@ public class ModelManager implements Model {
         this.applicationBook = new ApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = new FilteredList<>(this.applicationBook.getApplicationList());
+        applicationsWithInterview = filterApplicationsWithInterview();
     }
 
     public ModelManager() {
         this(new ApplicationBook(), new UserPrefs());
+    }
+
+    private ObservableList<Application> filterApplicationsWithInterview() {
+        ObservableList<Application> applicationsWithInterview = FXCollections.observableList(
+                this.applicationBook
+                        .getApplicationList()
+                        .stream()
+                        .filter(application -> application.getInterview().isPresent())
+                        .collect(Collectors.toList()));
+        applicationsWithInterview.sort(new InterviewComparator());
+        return applicationsWithInterview;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -94,6 +111,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSameInterviewTime(Application application) {
+        requireNonNull(application);
+        return applicationBook.hasSameInterviewTime(application);
+    }
+
+    @Override
+    public boolean hasSameInterviewTime(Interview interview) {
+        requireNonNull(interview);
+        return applicationBook.hasSameInterviewTime(interview);
+    }
+
+    @Override
+    public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
+        requireNonNull(interview);
+        return applicationBook.hasSameInterviewTimeExcludeSelf(interview, application);
+    }
+
+    @Override
     public void deleteApplication(Application target) {
         applicationBook.removeApplication(target);
     }
@@ -123,9 +158,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Application> getApplicationListWithInterview() {
+        return applicationsWithInterview;
+    }
+
+    @Override
     public void updateFilteredApplicationList(Predicate<Application> predicate) {
         requireNonNull(predicate);
         filteredApplications.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateApplicationListWithInterview() {
+        applicationsWithInterview.clear();
+        applicationsWithInterview.addAll(applicationBook.getApplicationList());
+        applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
+        applicationsWithInterview.sort(new InterviewComparator());
     }
 
     @Override

@@ -7,9 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.application.logic.commands.AddCommand;
+import seedu.application.logic.commands.AddInterviewCommand;
 import seedu.application.logic.commands.ClearCommand;
 import seedu.application.logic.commands.Command;
 import seedu.application.logic.commands.DeleteCommand;
+import seedu.application.logic.commands.DeleteInterviewCommand;
 import seedu.application.logic.commands.EditCommand;
 import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
@@ -49,8 +51,14 @@ public class ApplicationBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case AddInterviewCommand.COMMAND_WORD:
+            return new AddInterviewCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteInterviewCommand.COMMAND_WORD:
+            return new DeleteInterviewCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

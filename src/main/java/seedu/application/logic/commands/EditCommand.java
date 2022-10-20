@@ -26,6 +26,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -87,6 +88,11 @@ public class EditCommand extends Command {
         }
 
         model.setApplication(applicationToEdit, editedApplication);
+        Optional<Interview> interview = applicationToEdit.getInterview();
+        if (interview.isPresent()) {
+            Application editedApplicationWithInterview = new Application(editedApplication, interview.get());
+            model.setApplication(editedApplication, editedApplicationWithInterview);
+        }
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }

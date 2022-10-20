@@ -12,6 +12,11 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.InterviewDate;
+import seedu.application.model.application.interview.InterviewTime;
+import seedu.application.model.application.interview.Location;
+import seedu.application.model.application.interview.Round;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -41,6 +46,34 @@ public class SampleDataUtil {
         };
     }
 
+    public static Application[] getSampleApplicationsWithInterviews() {
+        Interview[] interviews = getSampleInterviews();
+        Application[] applications = getSampleApplications();
+
+        return new Application[] {
+            new Application(applications[0], interviews[0]), new Application(applications[1], interviews[1]),
+            applications[2], new Application(applications[3], interviews[3]),
+            new Application(applications[4], interviews[4]), applications[5]
+        };
+    }
+
+    private static Interview[] getSampleInterviews() {
+        return new Interview[] {
+            new Interview(new Round("Technical interview 1"), new InterviewDate("2023-11-15"),
+                    new InterviewTime("1000"), new Location("Zoom")),
+            new Interview(new Round("Technical interview 2"), new InterviewDate("2023-11-30"),
+                    new InterviewTime("0900"), new Location("Microsoft Teams")),
+            new Interview(new Round("Technical interview 3"), new InterviewDate("2023-12-08"),
+                    new InterviewTime("1130"), new Location("77, Kallang Way 7, #02-18")),
+            new Interview(new Round("HR interview"), new InterviewDate("2023-01-31"),
+                    new InterviewTime("1345"), new Location("11, Science Park 2, #01-04")),
+            new Interview(new Round("Manager interview"), new InterviewDate("2023-02-12"),
+                    new InterviewTime("1500"), new Location("69, Keppel Tech Park, #04-20")),
+            new Interview(new Round("Online assessment"), new InterviewDate("2023-01-02"),
+                    new InterviewTime("1630"), new Location("Online"))
+        };
+    }
+
     public static ReadOnlyApplicationBook getSampleApplicationBook() {
         ApplicationBook sampleAb = new ApplicationBook();
         for (Application sampleApplication : getSampleApplications()) {
@@ -49,6 +82,13 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    public static ReadOnlyApplicationBook getSampleApplicationBookWithInterviews() {
+        ApplicationBook sampleAb = new ApplicationBook();
+        for (Application sampleApplication : getSampleApplicationsWithInterviews()) {
+            sampleAb.addApplication(sampleApplication);
+        }
+        return sampleAb;
+    }
     /**
      * Returns a tag set containing the list of strings given.
      */

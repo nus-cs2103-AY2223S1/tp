@@ -1,6 +1,7 @@
 package seedu.application.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.application.model.application.Application;
@@ -9,6 +10,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
 import seedu.application.model.tag.Tag;
 import seedu.application.model.util.SampleDataUtil;
 
@@ -29,6 +31,7 @@ public class ApplicationBuilder {
     private Email email;
     private Position position;
     private Set<Tag> tags;
+    private Optional<Interview> interview;
 
     /**
      * Creates an {@code ApplicationBuilder} with the default details.
@@ -40,6 +43,7 @@ public class ApplicationBuilder {
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
         tags = new HashSet<>();
+        interview = Optional.empty();
     }
 
     /**
@@ -52,6 +56,11 @@ public class ApplicationBuilder {
         email = applicationToCopy.getEmail();
         position = applicationToCopy.getPosition();
         tags = new HashSet<>(applicationToCopy.getTags());
+        if (applicationToCopy.getInterview().isPresent()) {
+            interview = applicationToCopy.getInterview();
+        } else {
+            interview = Optional.empty();
+        }
     }
 
     /**
@@ -102,8 +111,24 @@ public class ApplicationBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Interview} of the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withInterview(Interview interview) {
+        this.interview = Optional.of(interview);
+        return this;
+    }
+
+    /**
+     * Create Application with its fields.
+     * @return created Application.
+     */
     public Application build() {
-        return new Application(company, contact, email, position, date, tags);
+        if (this.interview.isPresent()) {
+            return new Application(new Application(company, contact, email, position, date, tags), interview.get());
+        } else {
+            return new Application(company, contact, email, position, date, tags);
+        }
     }
 
 }

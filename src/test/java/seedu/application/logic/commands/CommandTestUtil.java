@@ -6,7 +6,11 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_INTERVIEW_TIME;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_ROUND;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.application.testutil.Assert.assertThrows;
 
@@ -27,7 +31,7 @@ import seedu.application.testutil.EditApplicationDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    //Application fields
     public static final String VALID_COMPANY_GOOGLE = "Google";
     public static final String VALID_COMPANY_FACEBOOK = "Facebook";
     public static final String VALID_CONTACT_GOOGLE = "11111111";
@@ -54,12 +58,31 @@ public class CommandTestUtil {
     public static final String TAG_DESC_PREFERRED = " " + PREFIX_TAG + VALID_TAG_PREFERRED;
     public static final String TAG_DESC_TECH_COMPANY = " " + PREFIX_TAG + VALID_TAG_TECH_COMPANY;
 
+    //Interview fields
+    public static final String VALID_ROUND_GOOGLE = "Technical interview";
+    public static final String VALID_INTERVIEW_DATE_GOOGLE = "2024-10-12";
+    public static final String VALID_INTERVIEW_TIME_GOOGLE = "1100";
+    public static final String VALID_LOCATION_GOOGLE = "11, Kallang Way 6, 118436";
+    public static final String ROUND_DESC_GOOGLE = " " + PREFIX_ROUND + VALID_ROUND_GOOGLE;
+    public static final String INTERVIEW_DATE_DESC_GOOGLE = " " + PREFIX_INTERVIEW_DATE + VALID_INTERVIEW_DATE_GOOGLE;
+    public static final String INTERVIEW_TIME_DESC_GOOGLE = " " + PREFIX_INTERVIEW_TIME + VALID_INTERVIEW_TIME_GOOGLE;
+    public static final String LOCATION_DESC_GOOGLE = " " + PREFIX_LOCATION + VALID_LOCATION_GOOGLE;
+
+    //Invalid Application fields
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "Google&"; // '&' not allowed in companies
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in contacts
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01/09/2022"; // invalid date format
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "facebook!yahoo"; // missing '@' symbol
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION; // empty string not allowed for positions
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "senior referral"; // space not allowed in tags
+
+    //Invalid Interview fields
+    public static final String INVALID_ROUND_DESC = " " + PREFIX_ROUND
+            + "Google&"; // empty string not allowed for rounds
+    public static final String INVALID_INTERVIEW_DATE_DESC = " " + PREFIX_INTERVIEW_DATE
+            + "01/09/2022"; // invalid date format
+    public static final String INVALID_INTERVIEW_TIME_DESC = " " + PREFIX_INTERVIEW_TIME + "5678"; //invalid time format
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for location
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -68,6 +91,12 @@ public class CommandTestUtil {
     public static final EditCommand.EditApplicationDescriptor DESC_FACEBOOK;
 
     static {
+        /*
+        Interview interview = new InterviewBuilder().withRound(VALID_ROUND_GOOGLE)
+                .withInterviewDate(VALID_INTERVIEW_DATE_GOOGLE).withInterviewDate(VALID_INTERVIEW_TIME_GOOGLE)
+                .withLocation(VALID_LOCATION_GOOGLE).build();
+
+         */
         DESC_GOOGLE = new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_GOOGLE)
                 .withContact(VALID_CONTACT_GOOGLE).withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE)
                 .withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_TECH_COMPANY).build();
