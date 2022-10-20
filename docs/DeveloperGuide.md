@@ -239,7 +239,55 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
---------------------------------------------------------------------------------------------------------------------
+### \[Proposed\] Buy feature for transactions
+
+The proposed sort mechanism is facilitated by `BuyCommand`. It extends `Command` and `BuyCommandParser` which extends from `Parser`.
+To invoke the buy command, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` and returns the buy command
+if the arguements are valid.
+
+`BuyCommand` implements the `BuyCommandParser#execute()` operation which executes the command and returns the result message in a 
+`CommandResult` object.
+
+The operation is exposed in the `logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the buy transaction mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+![BuyState0](images/BuyState0-initial_state.png)
+
+Step 2. The user executes `buy 1 q/10 g/Apple p/0.5 d/17/05/2000` command to add a buy transaction of 10 apples at $0.50 each on the 17/05/2000 to the 
+client at index 1.
+
+Step 3. The `Execute` of `BuyCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to 
+get the client at the index to copy. The `BuyTransaction` is then added to the copied client by calling `Client#addTransaction(Transaction)`.
+The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
+
+The following sequence diagrams shows how the buy operation works:
+
+![BuyCommandSequenceDiagram](images/BuyCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `BuyCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+ </div>
+
+The following activity diagram summarizes what happens when a user executes the buy command:
+
+<img src="images/BuyCommandActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How buy transaction executes:**
+
+* **Alternative 1 (current choice):** Add buy transaction by into each client.
+    * Pros: Easy to implement and allow the user to see all the buy transactions for each client via view command.
+    * Cons: Users cannot see all buy transaction of every client at one time.
+* **Alternative 2:** Add buy transaction to JeeqTracker instead of per client.
+    * Pros: Easy to see every past buy transaction with all the clients.
+    * Cons: Users may be overwhelmed if there are too many transactions. Also cannot distintively see which buy transaction belongs to which client.
+
+_{more aspects and alternatives to be added}_
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
