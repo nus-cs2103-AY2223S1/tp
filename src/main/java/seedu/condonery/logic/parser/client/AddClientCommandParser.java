@@ -4,6 +4,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
