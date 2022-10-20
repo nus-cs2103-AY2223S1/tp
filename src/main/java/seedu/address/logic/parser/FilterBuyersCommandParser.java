@@ -44,6 +44,7 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         }
 
         // TODO: Consider allowing filtering by multiple characteristics and tags at once
+        // TODO: Filter by priority
 
         return new FilterBuyersCommand(predicate);
     }
