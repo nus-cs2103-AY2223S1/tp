@@ -52,9 +52,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL_1 = "rachel@example.com";
-    private static final String VALID_EMAIL_2 = "edmund@example.com";
-    private static final String VALID_CAPITALISED_EMAIL_2 = "Edmund@example.com";
+    private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GENDER = "Male";
     private static final String VALID_GRADUATION_DATE = "05-2024";
     private static final double VALID_CAP_VALUE = 3.3;
@@ -169,22 +167,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL_1);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL_1));
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL_1 + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL_1);
+        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
+        Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
-    }
-
-    @Test
-    public void parseEmail_validValueCapitalised_returnsEmailWithLowerCase() throws Exception {
-        String capitalisedEmail = VALID_CAPITALISED_EMAIL_2;
-        Email expectedEmail = new Email(VALID_EMAIL_2);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(capitalisedEmail));
     }
 
     @Test
