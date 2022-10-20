@@ -57,7 +57,7 @@ public class AddCommissionWindow extends UiPart<Stage> {
     @FXML
     private TextField completed;
     @FXML
-    private TextArea description;
+    private TextField description;
     @FXML
     private HBox errorMessagePlaceholder;
 

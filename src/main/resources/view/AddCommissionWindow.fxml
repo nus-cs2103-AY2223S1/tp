@@ -100,8 +100,7 @@
                                     <Insets right="32.0"/>
                                 </HBox.margin>
                             </Label>
-                            <TextArea fx:id="description" styleClass="addCommissionTextArea"
-                                      maxWidth="500" prefHeight="100" wrapText="true"/>
+                            <TextField fx:id="description" styleClass="addCommissionTextField" minWidth="500"/>
                         </HBox>
                         <BorderPane.margin>
                             <Insets left="36" right="36"/>
