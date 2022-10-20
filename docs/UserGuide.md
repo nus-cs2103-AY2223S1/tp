@@ -103,7 +103,8 @@ There are 2 types of Delete Commands.
 
 
 Example:
-* `delete id/A0123456G`
+* `delete-s id/A0123456G`
+* `delete-d id/A0123456G num/1`
 
 ### Marking project status: `mark`
 

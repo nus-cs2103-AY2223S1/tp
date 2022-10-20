@@ -23,7 +23,7 @@ import jeryl.fyp.model.student.exceptions.DuplicateDeadlineException;
  *
  * @see Deadline#isSameDeadlineName(Deadline)
  */
-public class DeadlineList implements Iterable<Deadline> {
+public class DeadlineList implements DeadlineListTemplate {
     private final ObservableList<Deadline> internalList = FXCollections.observableArrayList();
     private final ObservableList<Deadline> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -31,6 +31,7 @@ public class DeadlineList implements Iterable<Deadline> {
     /**
      * Returns true if the list contains an equivalent deadline as the given argument.
      */
+    @Override
     public boolean contains(Deadline toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameDeadlineName);
@@ -40,6 +41,7 @@ public class DeadlineList implements Iterable<Deadline> {
      * Adds a deadline to the list.
      * The deadline must not already exist in the list.
      */
+    @Override
     public void add(Deadline toAdd) {
         requireNonNull(toAdd);
         if (this.contains(toAdd)) {
@@ -53,6 +55,7 @@ public class DeadlineList implements Iterable<Deadline> {
      * {@code target} must exist in the list.
      * The deadline identity of {@code editedDeadline} must not be the same as another existing deadline in the list.
      */
+    @Override
     public void setDeadline(Deadline target, Deadline editedDeadline) {
         requireAllNonNull(target, editedDeadline);
 
@@ -72,6 +75,7 @@ public class DeadlineList implements Iterable<Deadline> {
      * Removes the equivalent deadline from the list.
      * The deadline must exist in the list.
      */
+    @Override
     public void remove(Deadline toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -82,6 +86,7 @@ public class DeadlineList implements Iterable<Deadline> {
     /**
      *  Replaces the contents of this list with {@code replacement}.
      */
+    @Override
     public void setDeadlines(jeryl.fyp.model.student.DeadlineList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -91,6 +96,7 @@ public class DeadlineList implements Iterable<Deadline> {
      * Replaces the contents of this list with {@code deadlines}.
      * @param deadlines must not contain duplicate deadlines.
      */
+    @Override
     public void setDeadlines(List<Deadline> deadlines) {
         requireAllNonNull(deadlines);
         if (!deadlinesAreUnique(deadlines)) {
@@ -103,6 +109,7 @@ public class DeadlineList implements Iterable<Deadline> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
+    @Override
     public ObservableList<Deadline> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
@@ -141,6 +148,7 @@ public class DeadlineList implements Iterable<Deadline> {
     /**
      * Returns unique Deadline if {@code deadlines} contains the Deadline with the specified task name.
      */
+    @Override
     public Deadline getDeadlineByName(String taskName) {
         Deadline deadline = null;
         for (int i = 0; i < internalList.size(); i++) {
@@ -154,6 +162,7 @@ public class DeadlineList implements Iterable<Deadline> {
     /**
      * Returns the index if {@code deadlines} contains the Deadline with the specified task name.
      */
+    @Override
     public Index getIndexByName(String taskName) {
         int index = internalList.size();
         for (int i = 0; i < internalList.size(); i++) {
@@ -165,6 +174,7 @@ public class DeadlineList implements Iterable<Deadline> {
     }
 
     // Pending implementation
+    @Override
     public Deadline getDeadlineByRank(Integer rank) {
         requireAllNonNull(rank);
         if (rank > internalList.size()) {

@@ -8,8 +8,8 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150" minWidth="10.0" prefWidth="150" />
-         <ColumnConstraints hgrow="SOMETIMES" maxWidth="160" minWidth="10.0" prefWidth="160" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="180" minWidth="10.0" prefWidth="180" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="180" minWidth="10.0" prefWidth="180" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
@@ -52,12 +52,12 @@
                   </Label>
                   <Label fx:id="name1" alignment="TOP_LEFT" styleClass="cell_big_label" text="Deadlines">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font size="12.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-             <FlowPane fx:id="deadlineList" />
+             <FlowPane fx:id="deadlineList" styleClass="content" />
          </children>
       </VBox>
       <rowConstraints>

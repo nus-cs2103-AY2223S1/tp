@@ -75,6 +75,7 @@ public class Student {
     public ProjectStatus getProjectStatus() {
         return projectStatus;
     }
+
     public DeadlineList getDeadlineList() {
         return deadlineList;
     }
