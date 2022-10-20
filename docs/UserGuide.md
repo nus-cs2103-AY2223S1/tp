@@ -213,7 +213,7 @@ PleaseHireUs data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-PleaseHireUs data are saved as a JSON file `[JAR file location]/data/pleasehireus.json`. Advanced users are welcome to update data directly by editing that data file.
+PleaseHireUs data are saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
