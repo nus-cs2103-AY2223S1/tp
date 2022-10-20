@@ -184,6 +184,7 @@ The following sequence shows how adding homework works:
 ![HomeworkSequenceDiagram](images/HomeworkSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HomeworkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 Step 3. The user decides to edit the homework to Science instead of Maths.
 They go into full view mode with the `view` command and execute `edit 1 h/Science worksheet`, which calls `HomeworkList#editAtIndex()` and replaces the old description with the new one.
