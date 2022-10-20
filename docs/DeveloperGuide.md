@@ -86,6 +86,15 @@ The `UI` component,
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+We added a new UI component in our implementation: the `LoginWindow`.
+The `LoginWindow` is a separate window that is displayed when the user first starts the application.
+The `LoginWindow` is responsible for authenticating the user and retrieving the user's data from the `Storage` component.
+The `LoginWindow` will then pass the user's data to the `MainWindow` so that the `MainWindow` can display the user's data.
+
+`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`. 
+As of 20/10/2022, it consists of 2 `TextBox` FXML components and a "submit" `Button` FXML component.
+
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
