@@ -9,8 +9,8 @@ import seedu.uninurse.logic.commands.CommandResult;
 /**
  * Versions of UninurseBookSnapshot after every command.
  */
-public class PersistentUninurseBook extends UninurseBook {
-
+public class PersistentUninurseBook {
+    private final UninurseBook workingCopy;
     private final List<UninurseBookSnapshot> uninurseBookVersions;
     private int currentVersion;
 
@@ -18,15 +18,22 @@ public class PersistentUninurseBook extends UninurseBook {
      * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
      */
     public PersistentUninurseBook(ReadOnlyUninurseBook toBeCopied) {
-        super(toBeCopied);
+        this.workingCopy = new UninurseBook(toBeCopied);
         this.uninurseBookVersions = new ArrayList<UninurseBookSnapshot>();
         this.uninurseBookVersions.add(new UninurseBookSnapshot(toBeCopied));
         this.currentVersion = 0;
         this.handleChange();
     }
 
+    /**
+     * Returns the current working copy of UninurseBook.
+     */
+    public UninurseBook getWorkingCopy() {
+        return workingCopy;
+    }
+
     private void handleChange() {
-        setPersons(this.uninurseBookVersions.get(currentVersion).getPersonList());
+        workingCopy.setPersons(uninurseBookVersions.get(currentVersion).getPersonList());
     }
 
     /**
@@ -48,7 +55,7 @@ public class PersistentUninurseBook extends UninurseBook {
      */
     public void undo() {
         if (canUndo()) {
-            currentVersion -= 1;
+            currentVersion--;
             handleChange();
         }
     }
@@ -58,7 +65,7 @@ public class PersistentUninurseBook extends UninurseBook {
      */
     public void redo() {
         if (canRedo()) {
-            currentVersion += 1;
+            currentVersion++;
             handleChange();
         }
     }
@@ -73,7 +80,7 @@ public class PersistentUninurseBook extends UninurseBook {
         while (uninurseBookVersions.size() > Config.UNDO_LIMIT) {
             uninurseBookVersions.remove(0);
         }
-        uninurseBookVersions.add(new UninurseBookSnapshot(this, commandResult));
+        uninurseBookVersions.add(new UninurseBookSnapshot(workingCopy, commandResult));
         currentVersion = uninurseBookVersions.size() - 1;
         handleChange();
     }
@@ -82,7 +89,7 @@ public class PersistentUninurseBook extends UninurseBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersistentUninurseBook // instanceof handles nulls
-                && super.equals(other)
+                && workingCopy.equals(((PersistentUninurseBook) other).workingCopy)
                 && uninurseBookVersions.equals(((PersistentUninurseBook) other).uninurseBookVersions)
                 && currentVersion == ((PersistentUninurseBook) other).currentVersion);
     }

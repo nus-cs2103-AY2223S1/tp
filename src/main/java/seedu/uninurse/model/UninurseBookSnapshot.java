@@ -1,18 +1,22 @@
 package seedu.uninurse.model;
 
+import java.util.List;
+
 import seedu.uninurse.logic.commands.CommandResult;
+import seedu.uninurse.model.person.Patient;
 
 /**
  * A snapshot of a UninurseBook after a command.
  */
-public class UninurseBookSnapshot extends UninurseBook {
+public class UninurseBookSnapshot {
+    private final ReadOnlyUninurseBook uninurseBook;
     private final CommandResult commandResult;
 
     /**
      * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
      */
     public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied) {
-        super(toBeCopied);
+        this.uninurseBook = new UninurseBook(toBeCopied);
         this.commandResult = new CommandResult("");
     }
 
@@ -20,7 +24,7 @@ public class UninurseBookSnapshot extends UninurseBook {
      * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
      */
     public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied, CommandResult commandResult) {
-        super(toBeCopied);
+        this.uninurseBook = new UninurseBook(toBeCopied);
         this.commandResult = commandResult;
     }
 
@@ -28,13 +32,22 @@ public class UninurseBookSnapshot extends UninurseBook {
      * Returns commandResult.
      */
     public CommandResult getCommandResult() {
-        return this.commandResult;
+        return commandResult;
     }
+
+    /**
+     * Returns the person list stored in uninurseBook.
+     */
+    public List<Patient> getPersonList() {
+        return uninurseBook.getPersonList();
+    }
+
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UninurseBookSnapshot // instanceof handles nulls
-                && super.equals(other) && commandResult.equals(((UninurseBookSnapshot) other).commandResult));
+                && uninurseBook.equals(((UninurseBookSnapshot) other).uninurseBook)
+                && commandResult.equals(((UninurseBookSnapshot) other).commandResult));
     }
 }

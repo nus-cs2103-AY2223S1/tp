@@ -38,7 +38,7 @@ public class ModelManager implements Model {
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
-        this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getPersonList());
+        this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
         this.taskListFlag = false;
     }
 
@@ -85,28 +85,28 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyUninurseBook getUninurseBook() {
-        return persistentUninurseBook;
+        return persistentUninurseBook.getWorkingCopy();
     }
 
     @Override
     public void setUninurseBook(ReadOnlyUninurseBook uninurseBook) {
-        this.persistentUninurseBook.resetData(uninurseBook);
+        this.persistentUninurseBook.getWorkingCopy().resetData(uninurseBook);
     }
 
     @Override
     public boolean hasPerson(Patient person) {
         requireNonNull(person);
-        return persistentUninurseBook.hasPerson(person);
+        return persistentUninurseBook.getWorkingCopy().hasPerson(person);
     }
 
     @Override
     public void deletePerson(Patient target) {
-        persistentUninurseBook.removePerson(target);
+        persistentUninurseBook.getWorkingCopy().removePerson(target);
     }
 
     @Override
     public void addPerson(Patient person) {
-        persistentUninurseBook.addPerson(person);
+        persistentUninurseBook.getWorkingCopy().addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -114,7 +114,7 @@ public class ModelManager implements Model {
     public void setPerson(Patient target, Patient editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        persistentUninurseBook.setPerson(target, editedPerson);
+        persistentUninurseBook.getWorkingCopy().setPerson(target, editedPerson);
     }
 
     //=========== Filtered Patient List Accessors =============================================================
