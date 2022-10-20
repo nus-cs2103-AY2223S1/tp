@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.schedule.Schedule;
 
 /**
  * Panel containing the list of modules.
@@ -24,11 +25,13 @@ public class ModuleListPanel extends UiPart<Region> {
     private ListView<Module> moduleListView;
     @FXML
     private ListView<Module> targetModuleView;
+    @FXML
+    private ListView<Schedule> scheduleListView;
 
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
      */
-    public ModuleListPanel(ObservableList<Module> moduleList) {
+    public ModuleListPanel(ObservableList<Module> moduleList, ObservableList<Schedule> scheduleList) {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanel.ModuleListViewCell());
@@ -38,10 +41,15 @@ public class ModuleListPanel extends UiPart<Region> {
             public void handle(MouseEvent event) {
                 Module moduleInterested = moduleListView.getSelectionModel().getSelectedItem();
                 ObservableList<Module> list = FXCollections.observableArrayList();
+                ObservableList<Schedule> schedules = FXCollections.observableArrayList();
                 list.add(moduleInterested);
+                moduleInterested.getSchedules().forEach(x -> schedules.add(x));
                 targetModuleView.setItems(list);
                 targetModuleView.setCellFactory(listView ->
                         new ModulePanel.ModuleViewCell());
+                scheduleListView.setItems(schedules);
+                scheduleListView.setCellFactory(listView ->
+                        new ScheduleListPanel.ScheduleListViewCell());
             }
         });
     }

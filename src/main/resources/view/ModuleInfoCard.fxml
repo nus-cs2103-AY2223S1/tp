@@ -14,6 +14,9 @@
             <FlowPane fx:id="tags" />
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="moduleName" styleClass="cell_big_label" text="\$moduleName">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
@@ -22,6 +25,9 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="moduleCode" styleClass="cell_big_label" text="\$moduleCode">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
@@ -30,6 +36,9 @@
             </HBox>
             <VBox alignment="CENTER_LEFT" spacing="10" VBox.vgrow="SOMETIMES">
                 <Label fx:id="moduleDescription" styleClass="cell_small_label" text="\$moduleDescription" />
+                <padding>
+                    <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
             </VBox>
             <padding>
                 <Insets bottom="50" left="0" right="0" top="50" />
