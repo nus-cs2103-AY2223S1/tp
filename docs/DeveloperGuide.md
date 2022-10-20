@@ -256,6 +256,30 @@ Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parse
 
 Given below is an example usage and how the find record mechanism works at each step.
 
+### \[Implemented\] List Records feature
+
+#### Implementation:
+
+The implemented list record mechanism is facilitated by `ListRecordCommandParser`, which extends `AddressBookParser`. `ListRecordCommandParser` implements the following operations:
+- `ListRecordCommandParser#parse()` - Parses the input argument into an `Index` and creates a new `ListRecordCommand` object with the parsed `Index`.
+
+The `ListRecordCommand` object then communicates with the `Model` API when it is executed, more specifically, by calling the following methods that are implemented in `ModelManager`:
+- `Model#setPersonWithRecords(Person)` - Sets the person whose record list is being displayed (`ModelManager#personWithRecords`) to the given `Person`, so that the displayed record list can be manipulated by calling methods such as `Model#addRecord()` and `Model#deleteRecord()`.
+- `Model#setRecordListDisplayed(boolean)` - Setter for a flag to determine if a record list is being displayed; set to `true`.
+- `Model#setFilteredRecordList(Person)` - Sets the *filtered list* of records (`ModelManager#filteredRecords`) to the record list of the given Person.
+- `Model#updateFilteredRecordList(Predicate)` - Updates the filter of the *filtered list* of records to the filter given by the predicate; an `always true` predicate is given so that all records will be included in the *filtered list*.
+
+At the final step of the execution of the `ListRecordCommand` object, a `CommandResult` object is returned.
+
+The Sequence Diagram below shows how the list record operation works:
+
+![ListRecordCommand](images/ListRecordSequenceDiagram.png)
+
+Example usage scenario:
+- Precondition: The user should be viewing the patient list by using the `list` command.
+- Execution: The user executes `rlist 1` to list the records of the 1st patient in the displayed patient list.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
