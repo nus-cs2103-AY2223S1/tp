@@ -18,7 +18,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons that match the given metrics and "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: (n/NAME)/(p/PHONE)/(e/EMAIL)/(a/ADDRESS)/(t/TAG)…\n"
+            + "Parameters: [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…\n"
             + "Example: " + COMMAND_WORD + " n/alice p/12341234";
 
     private final List<Predicate<Person>> predicates;
