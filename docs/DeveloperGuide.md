@@ -274,6 +274,66 @@ The following sequence diagram shows how the add grade operation works:
     * Pros: Separates the operations done on the `overallGrade` and the `assignmentsList`.
     * Cons: The updated `overallGrade` and `assignmentsList` are not available for creating new `Student` object.
 
+### \[Proposed\] Add Assignments feature
+
+#### Proposed Implementation
+
+The proposed Add Assignments feature is facilitated by `AddAssignmentsCommand` and `AddAssignmentsCommandParser`.
+
+This feature allows assignments with weightages to be added to each `Student` in TAB. Weightages are separated from the assignment name with the prefix: `w/`
+
+The `AddAssignmentsCommandParser` parses the user input to check the validity of the Assignment. Then, every `Student` currently listed in TAB will be assigned these Assignments. This is done with the help of the following methods:
+
+* `Student#addAssignment` Adds a single Assignment into the `ArrayList<Assignment>`
+* `Student#setAssignments` Adds every Assignment in the user input into `ArrayList<Assignment>`
+
+Listed below are the possible scenarios as well as the behavior of the feature in each scenario.
+
+Scenario 1: User inputs assignments with weightage that does not add up to 100%
+
+e.g. `assignments assignments/ Assignment 1 w/50, Finals w/40`
+
+It will be detected that the weightage of the assignments does not add up to 100 and a `CommandException` is thrown
+
+Scenario 2: User inputs assignments with negative weightage
+
+e.g. `assignments assignments/ Assignment 1 w/-50, Midterms w/50, Finals w/100`
+
+It will be detected that a particular assignment has a negative weightage and a `CommandException` is thrown
+
+Given below is an example usage scenario and how the Add Assignments mechanism behaves at each step.
+
+Step 1. The user launches the application. `TAB` will initially display all Persons
+
+![AddAssignmentsDiagram1](images/AddAssignmentsDiagram1.png)
+
+Step 2. The user executes `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/20, Finals w/50`. The `assignments` keyword
+causes `AddressBookParser#parseCommand()` to call `AddAssignmentsCommandParser#parse()`. This returns a `AddAssignmentsCommand`
+
+Step 3. The internals of `AddAssignmentCommand` loops through all the people in the list, checking if they have the position of student
+
+![AddAssignmentsDiagram2](images/AddAssignmentsDiagram2.png)
+
+Step 4. `Assignment` objects will be created according to the user input and added to the `assignmentsList` field in `Student`
+
+The following sequence diagram shows how the AddAssignments operation works:
+
+![AddAssignmentsDiagram3](images/AddAssignmentsDiagram3.png)
+
+The following activity diagram summarizes what happens in AddressBookParser when a user executes a AddAssignment command:
+
+![AddAssignmentsDiagram4](images/AddAssignmentsDiagram4.png)
+
+Design considerations:
+
+Aspect: How AddAssignments executes:
+* Alternative 1: Only adds assignments to indexed student
+  * Pros: Each student can have different assignments
+  * Cons: Will be tedious when there is a large number of students in `TAB`
+* Alternative 2: Save Assignments in a json file to be read so every student added after will be automatically instanciated with those assignments
+  * Pros: Eliminates the need to run AddAssignments command for new students
+  * Cons: Difficulty in implementation
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -357,6 +417,48 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### Display Details of Contacts in Secondary Panel
+
+#### Implementation
+
+This feature is facilitated by `ShowCommand`, which extends `Command` with an index, stored internally as `index`.
+It overwrites the following operations:
+* `ShowCommand#execute()` — Executes the command, displaying the details of the contact at the specified index.
+* `ShowCommand#equals(Object o)` — Checks if two objects are equal.
+
+Given below is an example usage scenario and how the displaying mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons with their `Positions`.
+
+![ShowDiagram1](images/ShowDiagram1.png)
+
+Step 2. The user executes `show 1` command to display the details of the first contact shown. The `show` keyowrd causes
+`AddressBookParser#parseCommand()` to call `ShowCommandParser#parse()`. This returns a `ShowCommand` containing the
+`index 1`.
+
+![ShowDiagram2](images/ShowDiagram2.png)
+
+Step 3. `Model` retrieves the `Person` object located at `index 1`. This returns a `CommandResult` containing the `Person`
+object.
+
+![ShowDiagram3](images/ShowDiagram3.png)
+
+Step 4. `MainWindow` from `UI` component will process the `CommandResult` and display the details found inside the
+included `Person` object.
+
+The following show diagram shows how the show operation works:
+
+![ShowSequenceDiagram](images/ShowSequenceDiagram.png)
+
+#### Design Considerations
+* **Alternative 1 (current choice):** Passing `Person` object to `MainWindow`
+    * Pros: Reduced coupling throughout the program
+    * Cons: Changing of many method signatures, unintuitive to implement at first.
+
+* **Alternative 2:** Passing `index` to `MainWindow` to retrieve details from `Model`
+    * Pros: More intuitive to implement in the sense that only `MainWindow` would be primarily modified.
+    * Cons: Increased coupling, violation of Law of Demeter.
 
 ### Multiple Teacher’s Address Books (TABs)
 **Feature Summary**

@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object "<u> Walter:Person" as Walter {
+    position = "Professor"
+    phone = "91234567"
+}
+
+object "<u> Jesse:Person" as Jesse {
+    position = "Student"
+    phone = "98765432"
+}
+
+object "<u> :List<Person>" as lastShownList
+lastShownList --> Walter
+lastShownList --> Jesse
+
+object "<u> :CommandResult" as CommandResult
+CommandResult --> Walter
+@enduml
