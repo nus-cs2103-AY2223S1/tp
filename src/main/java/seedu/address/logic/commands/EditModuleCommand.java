@@ -6,7 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.Collections;
@@ -43,7 +44,8 @@ public class EditModuleCommand extends Command {
         + "[" + PREFIX_MODULE + "MODULE CODED] "
         + "[" + PREFIX_LECTURE + "LECTURE] "
         + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
-        + "[" + PREFIX_ZOOM + "ZOOM] "
+        + "[" + PREFIX_LECTURE_ZOOM + "LECTURE ZOOM] "
+        + "[" + PREFIX_TUTORIAL_ZOOM + "TUTORIAL ZOOM] "
         + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_LECTURE + "Monday, 9am "
@@ -99,10 +101,13 @@ public class EditModuleCommand extends Command {
         ModuleCode updatedModuleCode = editModuleDescriptor.getModuleCode().orElse(moduleToEdit.getModuleCode());
         LectureDetails updatedLecture = editModuleDescriptor.getLecture().orElse(moduleToEdit.getLectureDetails());
         TutorialDetails updatedTutorial = editModuleDescriptor.getTutorial().orElse(moduleToEdit.getTutorialDetails());
-        ZoomLink updatedZoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getZoomLink());
+        ZoomLink updatedLectureZoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLectureZoomLink());
+        ZoomLink updatedTutorialZoomLink = editModuleDescriptor.getZoomLink().
+                orElse(moduleToEdit.getTutorialZoomLink());
         Set<AssignmentDetails> updatedAssignment =
             editModuleDescriptor.getAssignments().orElse(moduleToEdit.getAssignmentDetails());
-        return new Module(updatedModuleCode, updatedLecture, updatedTutorial, updatedZoomLink, updatedAssignment);
+        return new Module(updatedModuleCode, updatedLecture, updatedTutorial,
+                updatedLectureZoomLink, updatedTutorialZoomLink, updatedAssignment);
     }
 
     @Override

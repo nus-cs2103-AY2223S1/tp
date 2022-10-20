@@ -11,6 +11,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.assignmentdetails.AssignmentDetails;
@@ -27,19 +28,23 @@ public class Module {
     // Data fields
     private final LectureDetails lectureDetails;
     private final TutorialDetails tutorialDetails;
-    private final ZoomLink zoomLink;
+    private final ZoomLink lectureZoomLink;
+    private final ZoomLink tutorialZoomLink;
     private final Set<AssignmentDetails> assignmentDetails = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Module(ModuleCode moduleCode, LectureDetails lectureDetails,
-                  TutorialDetails tutorialDetails, ZoomLink zoomLink, Set<AssignmentDetails> assignmentDetails) {
-        requireAllNonNull(moduleCode, lectureDetails, tutorialDetails, zoomLink, assignmentDetails);
+                  TutorialDetails tutorialDetails, ZoomLink lectureZoomLink, ZoomLink tutorialZoomLink,
+                  Set<AssignmentDetails> assignmentDetails) {
+        requireAllNonNull(moduleCode, lectureDetails, tutorialDetails, lectureZoomLink, tutorialZoomLink,
+                assignmentDetails);
         this.moduleCode = moduleCode;
         this.lectureDetails = lectureDetails;
         this.tutorialDetails = tutorialDetails;
-        this.zoomLink = zoomLink;
+        this.lectureZoomLink = lectureZoomLink;
+        this.tutorialZoomLink = tutorialZoomLink;
         this.assignmentDetails.addAll(assignmentDetails);
     }
 
@@ -55,8 +60,12 @@ public class Module {
         return tutorialDetails;
     }
 
-    public ZoomLink getZoomLink() {
-        return zoomLink;
+    public ZoomLink getLectureZoomLink() {
+        return lectureZoomLink;
+    }
+
+    public ZoomLink getTutorialZoomLink() {
+        return tutorialZoomLink;
     }
 
     /**
@@ -99,13 +108,15 @@ public class Module {
         return otherModule.getModuleCode().equals(getModuleCode())
                 && otherModule.getLectureDetails().equals(getLectureDetails())
                 && otherModule.getTutorialDetails().equals(getTutorialDetails())
-                && otherModule.getZoomLink().equals(getZoomLink())
+                && otherModule.getLectureZoomLink().equals(getLectureZoomLink())
+                && otherModule.getTutorialZoomLink().equals(getTutorialZoomLink())
                 && otherModule.getAssignmentDetails().equals(getAssignmentDetails());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moduleCode, lectureDetails, tutorialDetails, zoomLink, assignmentDetails);
+        return Objects.hash(moduleCode, lectureDetails, tutorialDetails,
+                lectureZoomLink, tutorialZoomLink, assignmentDetails);
     }
 
     @Override
@@ -116,8 +127,10 @@ public class Module {
                 .append(getLectureDetails())
                 .append("; Tutorial Details: ")
                 .append(getTutorialDetails())
-                .append("; Zoom Link: ")
-                .append(getZoomLink());
+                .append("; Lecture Zoom Link: ")
+                .append(getLectureZoomLink())
+                .append("; Tutorial Zoom Link: ")
+                .append(getTutorialZoomLink());
 
         Set<AssignmentDetails> assignmentDetails = getAssignmentDetails();
         if (!assignmentDetails.isEmpty()) {

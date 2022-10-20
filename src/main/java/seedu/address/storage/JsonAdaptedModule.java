@@ -26,7 +26,8 @@ public class JsonAdaptedModule {
     private final String lectureDetails;
     private final String moduleCode;
     private final String tutorialDetails;
-    private final String zoomLink;
+    private final String lectureZoomLink;
+    private final String tutorialZoomLink;
     private final List<JsonAdaptedAssignmentDetails> assignmentDetails = new ArrayList<>();
 
     /**
@@ -36,12 +37,14 @@ public class JsonAdaptedModule {
     public JsonAdaptedModule(@JsonProperty("lectureDetails") String lectureDetails,
                              @JsonProperty("moduleCode") String moduleCode,
                              @JsonProperty("tutorialDetails") String tutorialDetails,
-                             @JsonProperty("zoomLink") String zoomLink,
+                             @JsonProperty("lectureZoomLink") String lectureZoomLink,
+                             @JsonProperty("tutorialZoomLink") String tutorialZoomLink,
                              @JsonProperty("assignmentDetails") List<JsonAdaptedAssignmentDetails> assignmentDetails) {
-        this.lectureDetails = lectureDetails;
         this.moduleCode = moduleCode;
+        this.lectureDetails = lectureDetails;
         this.tutorialDetails = tutorialDetails;
-        this.zoomLink = zoomLink;
+        this.lectureZoomLink = lectureZoomLink;
+        this.tutorialZoomLink = tutorialZoomLink;
         if (assignmentDetails != null) {
             this.assignmentDetails.addAll(assignmentDetails);
         }
@@ -51,10 +54,11 @@ public class JsonAdaptedModule {
      * Converts a given {@code Module} into this class for Jackson use.
      */
     public JsonAdaptedModule(Module source) {
-        lectureDetails = source.getLectureDetails().value;
         moduleCode = source.getModuleCode().moduleCode;
+        lectureDetails = source.getLectureDetails().value;
         tutorialDetails = source.getTutorialDetails().value;
-        zoomLink = source.getZoomLink().zoomLink;
+        lectureZoomLink = source.getLectureZoomLink().zoomLink;
+        tutorialZoomLink = source.getTutorialZoomLink().zoomLink;
         assignmentDetails.addAll(source.getAssignmentDetails().stream()
                 .map(JsonAdaptedAssignmentDetails::new)
                 .collect(Collectors.toList()));
@@ -97,18 +101,27 @@ public class JsonAdaptedModule {
         }
         final TutorialDetails modelTutorialDetails = new TutorialDetails(tutorialDetails);
 
-        if (zoomLink == null) {
+        if (lectureZoomLink == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ZoomLink.class.getSimpleName()));
         }
-        if (!ZoomLink.isValidUrl(zoomLink)) {
+        if (!ZoomLink.isValidUrl(lectureZoomLink)) {
             throw new IllegalValueException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
-        final ZoomLink modelZoomLink = new ZoomLink(zoomLink);
+        final ZoomLink modelLectureZoomLink = new ZoomLink(lectureZoomLink);
+
+        if (tutorialZoomLink == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ZoomLink.class.getSimpleName()));
+        }
+        if (!ZoomLink.isValidUrl(tutorialZoomLink)) {
+            throw new IllegalValueException(ZoomLink.MESSAGE_CONSTRAINTS);
+        }
+        final ZoomLink modelTutorialZoomLink = new ZoomLink(lectureZoomLink);
 
         final Set<AssignmentDetails> modelAssignmentDetails = new HashSet<>(moduleAssignmentDetails);
-        return new Module(modelModuleCode, modelLectureDetails, modelTutorialDetails, modelZoomLink,
-                modelAssignmentDetails);
+        return new Module(modelModuleCode, modelLectureDetails, modelTutorialDetails, modelLectureZoomLink,
+                modelTutorialZoomLink, modelAssignmentDetails);
     }
 
 }
