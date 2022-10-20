@@ -254,7 +254,7 @@ The following sequence diagram shows how the search operation works:
 
 </div>
 
-Step 4. The user is shown the searched list. The searched list contains all contacts that are relevant to the user's search query.
+Step 4. The user is shown the _filtered_ list. The _filtered_ list contains all contacts that are relevant to the user's search query.
 
 The following activity diagram summarizes what happens when a user executes a search command:
 
