@@ -7,13 +7,13 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "tutorial /from 1200 /to 1400 /day Tuesday"
+user -[USER_COLOR]> ui : "lesson user l/tut m/CS2103T d/4 start/12:00 end/13:00"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("tutorial /from 1200 /to 1400 /day Tuesday")
+ui -[UI_COLOR]> logic : execute("lesson user l/tut m/CS2103T d/4 start/12:00 end/13:00")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : addTutorial(1200, 1400, "Tuesday")
+logic -[LOGIC_COLOR]> model : addLesson(lesson)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic

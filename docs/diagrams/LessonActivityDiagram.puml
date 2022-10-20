@@ -1,0 +1,17 @@
+@startuml
+start
+:User inputs Add Lesson command;
+:Parser reads user command and recognises the command prefix lesson;
+:LessonCommandParser reads preamble;
+
+if () then ([preamble.equals"user"])
+  :executes LessonUserCommand;
+  :adds Lesson to User;
+else ([else])
+  :executes LessonIndexCommand;
+  :adds Lesson to User's contacts of the specified index;
+endif
+:Save to AddressBookStorage;
+stop
+
+@enduml
