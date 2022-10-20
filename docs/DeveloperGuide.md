@@ -241,8 +241,8 @@ The Add Interest mechanism is facilitated by ```AddInterestCommand```, which ext
 2. From the command word ```addInt```, a new ```AddInterestCommandParser``` object is constructed.
 3. ```AddInterestCommandParser#parse``` checks the command syntax, after which a new ```AddInterestCommand``` is constructed.
 4.  ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
-5. The index is verified to be valid and if so, the list of interests are added to the ```Person``` marked by the ```Index```.
-6. Once ```Person``` is updated with the added interests, ```ModelManager``` will be updated with the changes as well.
+5. The index is verified to be valid and if so, the list of interests is added to the ```Person``` marked by the ```Index```.
+6. After ```Person``` is updated with the added interests, ```ModelManager``` will also be updated with the changes.
 
 ####Design considerations:
 1. Usefulness of ```AddInterestCommand```
