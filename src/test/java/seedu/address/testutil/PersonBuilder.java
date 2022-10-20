@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -56,7 +56,7 @@ public class PersonBuilder {
         income = new IncomeLevel(DEFAULT_INCOME);
         monthly = new Monthly(DEFAULT_MONTHLY);
         tags = new HashSet<>();
-        appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
     }
 
     /**
@@ -71,7 +71,6 @@ public class PersonBuilder {
         monthly = personToCopy.getMonthly();
         riskTag = personToCopy.getRiskTag();
         planTag = personToCopy.getPlanTag();
-        income = personToCopy.getIncome();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new MaximumSortedList<>(personToCopy.getAppointments());
     }
@@ -150,8 +149,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAppointment(Appointment appointmentToBeAdded) {
-        this.appointments.add(appointmentToBeAdded);
+    public PersonBuilder withAppointments(String ... appointments) {
+        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
         return this;
     }
 
@@ -162,5 +161,11 @@ public class PersonBuilder {
     public Person build() {
         return new Person(name, phone, email, address, income, monthly, riskTag, planTag, tags);
     }
+
+
+    public Person buildWithAppointments() {
+        return new Person(name, phone, email, address, income, monthly, riskTag, planTag, tags, appointments);
+    }
+
 
 }

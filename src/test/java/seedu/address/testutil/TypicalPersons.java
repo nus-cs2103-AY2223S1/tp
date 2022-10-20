@@ -30,13 +30,12 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withIncome("$1000").withMonthly("$200")
             .withRiskTag("HIGH").withPlanTag("Savings Plan").withTags("friends").build();
 
-    public static final Person MUSAB_WITH_NO_APPT = new PersonBuilder().withName("Musab")
+    public static final Person MUSAB = new PersonBuilder().withName("Musab")
             .withAddress("301 Upper Thomson Rd, Singapore 574408")
             .withEmail("musab@gmail.com").withPhone("92345678").withIncome("$10000")
             .withMonthly("$100").withRiskTag("HIGH")

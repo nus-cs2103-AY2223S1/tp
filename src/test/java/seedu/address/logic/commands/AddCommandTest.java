@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -154,16 +152,6 @@ public class AddCommandTest {
         @Override
         public void sortPerson(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-
-        public List<CalendarEvent> getCalendarEventList(List<Person> lastShownList) {
-            throw new AssertionError("This method should not be called.");
         }
     }
 

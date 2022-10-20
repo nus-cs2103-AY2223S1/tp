@@ -110,7 +110,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

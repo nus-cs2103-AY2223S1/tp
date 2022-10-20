@@ -34,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private CalendarDisplay calendarDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -47,9 +46,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane calendarDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -119,9 +115,6 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        calendarDisplay = new CalendarDisplay(logic);
-        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

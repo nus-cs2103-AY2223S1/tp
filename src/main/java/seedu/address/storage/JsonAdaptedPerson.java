@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -103,7 +103,7 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final MaximumSortedList<Appointment> modelAppointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        final MaximumSortedList<Appointment> modelAppointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
 
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             modelAppointments.add(jsonAdaptedAppointment.toModelType());
@@ -141,15 +141,10 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (income == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    IncomeLevel.class.getSimpleName()));
-        }
         if (!IncomeLevel.isValidIncome(income)) {
             throw new IllegalValueException(IncomeLevel.MESSAGE_CONSTRAINTS);
         }
         final IncomeLevel modelIncome = new IncomeLevel(income);
-
 
         if (!Monthly.isValidMonthly(monthly)) {
             throw new IllegalValueException(Monthly.MESSAGE_CONSTRAINTS);
@@ -176,7 +171,6 @@ class JsonAdaptedPerson {
 
         Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome,
                 modelMonthly, modelRiskTag, modelPlanTag, modelTags);
-
         newPerson.setAppointments(modelAppointments);
 
         return newPerson;

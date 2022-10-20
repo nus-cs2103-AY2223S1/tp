@@ -2,19 +2,14 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_JURONGPOINT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
+import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_NO_APPOINTMENT_TO_DELETE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
+import static seedu.address.testutil.TypicalPersons.MUSAB;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,218 +19,70 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Appointment;
-import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class DeleteAppointmentCommandTest {
-    @Test
-    public void execute_validIndexUnfilteredList_success() {
-        // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                        .withLocation(VALID_LOCATION_JURONGPOINT).build())
-                .build());
-
-        // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                        .withLocation(VALID_LOCATION_JURONGPOINT).build())
-                .build());
-        Appointment deletedAppointment = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
-
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
-
-        String expectedMessage =
-                String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS, deletedAppointment);
-
-        assertCommandSuccess(deleteAppointmentCommand, actualModel, expectedMessage, expectedModel);
-    }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
-        // Create actualModel
+    public void execute_validIndex_throwsCommandException() {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                                .withAppointment(new AppointmentBuilder()
-                                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                                        .withLocation(VALID_LOCATION_NUS).build())
-                                .withAppointment(new AppointmentBuilder()
-                                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                                        .withLocation(VALID_LOCATION_JURONGPOINT).build())
-                                .build());
-        actualModel.addPerson(ALICE);
-        // Filter list
-        showPersonAtIndex(actualModel, INDEX_FIRST_PERSON);
-
-        // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                                .withAppointment(new AppointmentBuilder()
-                                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                                        .withLocation(VALID_LOCATION_JURONGPOINT).build())
-                                .build());
-        expectedModel.addPerson(ALICE);
-        Appointment deletedAppointment = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
+        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        expectedModel.addPerson(new PersonBuilder(MUSAB).buildWithAppointments());
 
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
+        Person editedPerson = expectedModel.getAddressBook().getPersonList().get(0);
 
-        String expectedMessage =
-                String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS, deletedAppointment);
+        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_PERSON_SUCCESS, editedPerson);
 
         assertCommandSuccess(deleteAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
 
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
-                .build());
+        testModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
 
-        Index outOfBoundPersonIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
-
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(outOfBoundPersonIndex, INDEX_FIRST_APPOINTMENT);
-
-        assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-    @Test
-    public void execute_invalidPersonIndexFilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                            .withAppointment(new AppointmentBuilder()
-                                    .withDateTime(VALID_DATETIME_21_JAN_2023)
-                                    .withLocation(VALID_LOCATION_NUS).build())
-                            .withAppointment(new AppointmentBuilder()
-                                    .withDateTime(VALID_DATETIME_22_JAN_2023)
-                                    .withLocation(VALID_LOCATION_NUS).build())
-                            .build());
-        testModel.addPerson(ALICE);
-        showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
-
-        Index outOfBoundPersonIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
-
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(outOfBoundPersonIndex, INDEX_FIRST_APPOINTMENT);
+        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_invalidAppointmentIndexUnfilteredList_throwsCommandException() {
+    public void execute_noAppointmentToDelete_throwsCommandException() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                            .withAppointment(new AppointmentBuilder()
-                                    .withDateTime(VALID_DATETIME_21_JAN_2023)
-                                    .withLocation(VALID_LOCATION_NUS).build())
-                            .withAppointment(new AppointmentBuilder()
-                                    .withDateTime(VALID_DATETIME_22_JAN_2023)
-                                    .withLocation(VALID_LOCATION_NUS).build())
-                            .build());
+        testModel.addPerson(new PersonBuilder(MUSAB).buildWithAppointments());
 
-        Index outOfBoundAppointmentIndex =
-                Index.fromOneBased(testModel.getFilteredPersonList().get(0)
-                                                .getAppointments().size() + 1);
+        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON);
 
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(outOfBoundAppointmentIndex, INDEX_FIRST_APPOINTMENT);
-
-        assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteAppointmentCommand, testModel, MESSAGE_NO_APPOINTMENT_TO_DELETE);
     }
-
-    @Test
-    public void execute_invalidAppointmentIndexFilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
-                .build());
-        testModel.addPerson(ALICE);
-        showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
-
-        Index outOfBoundAppointmentIndex =
-                Index.fromOneBased(testModel.getFilteredPersonList().get(0)
-                                            .getAppointments().size() + 1);
-
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(outOfBoundAppointmentIndex, INDEX_FIRST_APPOINTMENT);
-
-        assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-    @Test
-    public void execute_noAppointmentToDeleteUnfilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
-
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
-
-        assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-    }
-
-
-
-
-    @Test
-    public void execute_noAppointmentToDeleteFilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
-        testModel.addPerson(new PersonBuilder(ALICE).build());
-        showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
-
-        DeleteAppointmentCommand deleteAppointmentCommand =
-                new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
-
-        assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-    }
-
 
     @Test
     public void equals() {
-        DeleteAppointmentCommand deleteFirstApptFromFirstCommand =
-                new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
-        DeleteAppointmentCommand deleteSecondApptFromSecondCommand =
-                new DeleteAppointmentCommand(INDEX_SECOND_PERSON, INDEX_SECOND_APPOINTMENT);
+        DeleteAppointmentCommand deleteAllApptFromFirstCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON);
+        DeleteAppointmentCommand deleteAllApptFromSecondCommand = new DeleteAppointmentCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(deleteFirstApptFromFirstCommand.equals(deleteFirstApptFromFirstCommand));
+        assertTrue(deleteAllApptFromFirstCommand.equals(deleteAllApptFromFirstCommand));
 
         // same values -> returns true
-        DeleteAppointmentCommand deleteFirstCommandCopy =
-                new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
-        assertTrue(deleteFirstApptFromFirstCommand.equals(deleteFirstCommandCopy));
+        DeleteAppointmentCommand deleteFirstCommandCopy = new DeleteAppointmentCommand(INDEX_FIRST_PERSON);
+        assertTrue(deleteAllApptFromFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstApptFromFirstCommand.equals(1));
+        assertFalse(deleteAllApptFromFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstApptFromFirstCommand.equals(null));
+        assertFalse(deleteAllApptFromFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstApptFromFirstCommand.equals(deleteSecondApptFromSecondCommand));
+        assertFalse(deleteAllApptFromFirstCommand.equals(deleteAllApptFromSecondCommand));
     }
 }

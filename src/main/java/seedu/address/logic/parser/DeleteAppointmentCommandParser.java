@@ -19,20 +19,14 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
      */
     public DeleteAppointmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
-        Index personIndex;
-        Index appointmentIndex;
-
+        Index index;
         try {
-            String personAppointmentIndex = argMultimap.getPreamble();
-            personIndex = ParserUtil.parsePersonIndex(personAppointmentIndex);
-            appointmentIndex = ParserUtil.parseAppointmentIndex(personAppointmentIndex);
+            index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteAppointmentCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
-
-        return new DeleteAppointmentCommand(personIndex, appointmentIndex);
+        return new DeleteAppointmentCommand(index);
     }
 }
