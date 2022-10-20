@@ -2,6 +2,7 @@ package taskbook.testutil;
 
 import taskbook.model.TaskBook;
 import taskbook.model.person.Person;
+import taskbook.model.task.Task;
 
 /**
  * A utility class to help with building taskBook objects.
@@ -25,6 +26,14 @@ public class TaskBookBuilder {
      */
     public TaskBookBuilder withPerson(Person person) {
         taskBook.addPerson(person);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Task} to the {@code TaskBook} that we are building.
+     */
+    public TaskBookBuilder withTask(Task task) {
+        taskBook.addTask(task);
         return this;
     }
 
