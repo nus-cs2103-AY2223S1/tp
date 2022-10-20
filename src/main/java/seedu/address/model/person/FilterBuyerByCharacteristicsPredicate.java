@@ -9,8 +9,6 @@ import seedu.address.model.characteristics.Characteristics;
  */
 public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPredicate {
 
-    private static final String CHARACTERISTIC_DELIMITER = ";";
-
     private final Characteristics givenCharacteristics;
 
     /**
@@ -27,7 +25,7 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
         if (p.getDesiredCharacteristics().isEmpty()) {
             return true;
         }
-        return p.getDesiredCharacteristics().get().containsCharacteristics(givenCharacteristics);
+        return p.getDesiredCharacteristics().get().containsAnyGivenCharacteristics(givenCharacteristics);
     }
 
     @Override
