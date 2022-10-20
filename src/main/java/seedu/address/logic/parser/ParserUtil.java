@@ -19,6 +19,7 @@ import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderPriority;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -195,6 +196,15 @@ public class ParserUtil {
     public static ReminderDescription parseReminderDescription(String description) {
         String trimmedDescription = description.trim();
         return new ReminderDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String priority} into a {@code ReminderPriority}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ReminderPriority parseReminderPriority(String priority) {
+        String trimmedPriority = priority.trim();
+        return new ReminderPriority(trimmedPriority);
     }
 
     /**
