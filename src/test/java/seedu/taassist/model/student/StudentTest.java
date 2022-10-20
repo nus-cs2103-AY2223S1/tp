@@ -13,6 +13,7 @@ import static seedu.taassist.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class StudentTest {
@@ -33,7 +34,7 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withModuleClasses(VALID_CLASS_CS1101S).build();
+                .withAddress(VALID_ADDRESS_BOB).withModuleClasses(new ModuleClass(VALID_CLASS_CS1101S)).build();
         assertTrue(ALICE.isSame(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,7 +86,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different classes -> returns false
-        editedAlice = new StudentBuilder(ALICE).withModuleClasses(VALID_CLASS_CS1101S).build();
+        editedAlice = new StudentBuilder(ALICE).withModuleClasses(new ModuleClass(VALID_CLASS_CS1101S)).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }
