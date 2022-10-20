@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private TutorListPanel tutorListPanel;
     private ModuleListPanel moduleListPanel;
     private ModuleInfoPanel moduleInfoPanel;
+    private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -62,6 +63,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane moduleInfoPanelPlaceholder;
+
+    @FXML
+    private StackPane modulePanelPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;

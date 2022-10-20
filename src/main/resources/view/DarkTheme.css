@@ -312,6 +312,12 @@
     -fx-border-width: 0;
 }
 
+#modulePane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-font: 16px "Serif";
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
