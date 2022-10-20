@@ -20,9 +20,8 @@ of the technical details and inner workings of Class-ify.
 
 ### 1.3 About Class-ify
 
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor 
-their students’ academic progress. With a few intuitive commands, teachers can generate exam statistics for each class 
-and Class-ify will quickly flag out students who require more support.
+Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor their students’ academic progress.
+Teachers can generate exam statistics for each class, and Class-ify quickly flags out students who require more support for contacting.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +42,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -57,7 +56,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -89,7 +88,7 @@ The sections below give more details of each component.
 
 #### 4.1.1 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -106,7 +105,7 @@ The `UI` component,
 
 #### 4.1.2 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -134,26 +133,30 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 #### 4.1.3 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the student record data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** An alternative and perhaps more OOP model is given below.<br>
+It has a `Class` list in the `StudentRecord`, which `Student` references.
+<ul>
+  <li>This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.</li>
+  <li>This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.</li>
+</ul>
 <img src="images/BetterModelClassDiagram.png" width="450" />
-
 </div>
 
 #### 4.1.4 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -225,11 +228,52 @@ Design Considerations:
 
 *To be further updated*
 
-#### 4.2.7 ViewStats command
+=======
+#### 4.2.7 Toggle View command
+Implementation: 
+
+The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand.
+```aidl
+Insert activity diagram 
+```
+The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The `StudentListPanel` is dependent on the toggle status in `FilteredStudent` to display or hide the students' parent details properly in the `StudentCard`.
+
+The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` component. 
+
+```aidl
+Insert sequence diagram
+```
+Given below is explains how the toggle view mechanism behaves at each step.
+
+Step 1. The user enters the command `toggleView`
+
+Step 2. The `StudentRecordParser` will identify the command and create a `ToggleViewCommand` object in the `LogicManager`
+
+Step 3. `ToggleViewCommand#execute` is called which changes the toggle status in `Model` 
+
+Step 4. The `MainWindow` handles the updating of UI by requesting `StudentListPanel` to rerender the `StudentCard` to display or hide the student's parent details
+
+With the above sequence, the UI is successfully updated to display the relevant student details according to the toggle status. 
+
+Design considerations:
+- Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
+  - Pros:
+    - The `StudentListPanel` will automatically update the `StudentCard` as it listens for changes in `FilteredStudentList`, thus reduces coupling (see Option 2 cons)   
+  - Cons: 
+    - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects 
+    - Needs a global variable to track the current toggle as new `Student` objects added need to know the current state of the toggle
+- Option 2 (current choice): The UI keeps track of the toggle
+  - Pros:
+    - No need to edit every student in the `FilteredStudentList`
+    - Able to retain the previously filtered list after toggling
+  - Cons: 
+    - Increase in coupling as `StudentListPanel` is dependent on `FilteredStudent` for toggling information
+
+#### 4.2.8 ViewStats command
 
 *To be updated*
 
-#### 4.2.8 \[Proposed\] Undo/redo feature
+#### 4.2.9 \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
