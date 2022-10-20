@@ -186,7 +186,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Changes theme to light theme
+     * Changes theme to light theme or dark theme depending on current state.
      */
     @FXML
     private void handleLightDarkTheme() {
@@ -211,6 +211,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Compacts or expands all PersonCard depending on current state.
+     * Any new PersonCard will be created compacted or expanded depending on the new state.
+     */
     @FXML
     private void handleCompactExpand() {
         if (isExpanded) {
