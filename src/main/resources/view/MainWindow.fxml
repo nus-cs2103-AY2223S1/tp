@@ -49,7 +49,7 @@
 
         <SplitPane dividerPositions = "0.5" VBox.vgrow = "ALWAYS">
           <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <TextField alignment = "CENTER" text = "Persons" />
+            <TextField alignment = "CENTER" text = "Persons" editable="False"/>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
@@ -58,7 +58,7 @@
           </VBox>
 
           <VBox fx:id="groupList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <TextField alignment = "CENTER" text = "Groups" />
+            <TextField alignment = "CENTER" text = "Groups" editable="False"/>
             <StackPane fx:id="groupListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
