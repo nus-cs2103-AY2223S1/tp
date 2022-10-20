@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This feature is facilitated by `ListDebtorsCommandParser` and `ListDebtorsCommand` in the `Logic` component. It also utilises `DebtGreaterEqualAmountPredicate` which implements Java's in-built `Pedicate` interface. The command parser and the command itself work similarly to the others, and will not be explained in detail here. Please refer to the Logic component above for more details.
+This feature is facilitated by `ListDebtorsCommandParser` and `ListDebtorsCommand` in the `Logic` component. It also utilises `DebtGreaterEqualAmountPredicate` which implements Java's in-built `Predicate` interface. The command parser and the command itself work similarly to the others, and will not be explained in detail here. Please refer to the Logic component above for more details.
 
 The `DebtGreaterEqualAmountPredicate` constructor takes in a `Money` object, and returns a `Predicate<Person>` that tests whether a `Person`'s total amount owed is greater than or equal to the `Money` parameter. When a user requests to list debtors who owe over a certain amount of money, `ListDebtorsCommandParser` will create a `DebtGreaterEqualAmountPredicate` using the amount provided. The resulting `ListDebtorsCommand` will use this predicate to communicate to the Model which Persons to display: the ones that pass the predicate's test. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
 
