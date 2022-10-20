@@ -1,11 +1,21 @@
 package longtimenosee.model.person;
 
+import java.util.Comparator;
+
 /**
  * Immutable representation of a Person's income
  */
 public class Income {
 
+    public static final Comparator<Person> INCOME_COMPARATOR = new Comparator<Person>() {
+        @Override
+        public int compare(Person p1, Person p2) {
+            return Double.compare(p1.getIncome().getIncome(), p2.getIncome().getIncome());
+        }
+    };
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Error: Please enter a double value for income";
+    public static final String SORT_INCOME = "income";
+
     public final String value;
     public final IncomeBracket incomeBracket;
 
