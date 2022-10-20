@@ -4,6 +4,12 @@ import seedu.address.model.person.subject.Grades;
 
 public class PredictionUtil {
 
+    /**
+     * "Predicts" a student's grade for a subject based on the grades they have received so far.
+     * @param grades the Grade object with which to predict with
+     * @return the predicted grade as a double representing the percentagewa
+     */
+
     public static double predictGrade(Grades grades) {
         double totalSum = 0;
         double totalAssessmentsTaken = 0;

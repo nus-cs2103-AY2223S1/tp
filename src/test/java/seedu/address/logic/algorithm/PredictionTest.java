@@ -12,7 +12,6 @@ public class PredictionTest {
     @Test
     public void execute_validGradeInput_prediction() {
         double testResult = PredictionUtil.predictGrade(new GradeStub());
-        System.out.println(testResult);
         assertEquals(12.0, testResult);
     }
 
