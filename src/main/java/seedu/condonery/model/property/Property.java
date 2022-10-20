@@ -136,8 +136,8 @@ public class Property {
 
         Set<Client> interestedClients = getInterestedClients();
         if (!interestedClients.isEmpty()) {
-            builder.append(": Interested clients: ");
-            interestedClients.forEach(builder::append);
+            builder.append("; Interested clients: ");
+            interestedClients.forEach(interestedClient -> builder.append(interestedClient.getName().toString()));
         }
         return builder.toString();
     }
