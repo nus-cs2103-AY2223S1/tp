@@ -33,18 +33,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of internships */
     ObservableList<Internship> getFilteredInternshipList();
 
-    /**
-     * Returns the user prefs' work book file path.
-     */
+    /** Returns the user prefs' work book file path. */
     Path getWorkBookFilePath();
 
-    /**
-     * Returns the user prefs' GUI settings.
-     */
+    /** Returns the user prefs' GUI settings. */
     GuiSettings getGuiSettings();
 
-    /**
-     * Set the user prefs' GUI settings.
-     */
+    /** Set the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
 }

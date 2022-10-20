@@ -61,7 +61,7 @@ public class WorkBook implements ReadOnlyWorkBook {
     //// internship-level operations
 
     /**
-     * Returns true if a internship with the same identity as {@code internship}
+     * Returns true if an internship with the same identity as {@code internship}
      * exists in the work book.
      */
     public boolean hasInternship(Internship internship) {
@@ -70,7 +70,7 @@ public class WorkBook implements ReadOnlyWorkBook {
     }
 
     /**
-     * Adds a internship to the work book.
+     * Adds an internship to the work book.
      * The internship must not already exist in the work book.
      */
     public void addInternship(Internship i) {

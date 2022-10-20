@@ -14,42 +14,28 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
 
-    /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
+    /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
-    /**
-     * Returns the user prefs.
-     */
+    /** Returns the user prefs. */
     ReadOnlyUserPrefs getUserPrefs();
 
-    /**
-     * Returns the user prefs' GUI settings.
-     */
+    /** Returns the user prefs' GUI settings. */
     GuiSettings getGuiSettings();
 
-    /**
-     * Sets the user prefs' GUI settings.
-     */
+    /** Sets the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Returns the user prefs' work book file path.
-     */
+    /** Returns the user prefs' work book file path. */
     Path getWorkBookFilePath();
 
-    /**
-     * Sets the user prefs' work book file path.
-     */
+    /** Sets the user prefs' work book file path. */
     void setWorkBookFilePath(Path workBookFilePath);
 
-    /**
-     * Replaces work book data with the data in {@code workBook}.
-     */
+    /** Replaces work book data with the data in {@code workBook}. */
     void setWorkBook(ReadOnlyWorkBook workBook);
 
-    /** Returns the WorkBook */
+    /** Returns the WorkBook. */
     ReadOnlyWorkBook getWorkBook();
 
     /**
@@ -82,17 +68,17 @@ public interface Model {
     ObservableList<Internship> getFilteredInternshipList();
 
     /**
-     * Returns true if the model has undone address book states to restore.
+     * Returns true if the model has undone WorkBook states to restore.
      */
     boolean canUndoWorkBook();
 
     /**
-     * Restores the model's workbook back to its previous state.
+     * Restores the model's WorkBook back to its previous state.
      */
     void undoWorkBook();
 
     /**
-     * Saves the current address book state for undo.
+     * Saves the current WorkBook state for undo.
      */
     void commitWorkBook();
 

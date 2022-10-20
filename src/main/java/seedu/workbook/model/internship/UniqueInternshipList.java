@@ -22,7 +22,7 @@ import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
  * internship being added or updated is unique in terms of identity in the
  * UniqueInternshipList.
  *
- * However, the removal of a internship uses Internship#equals(Object) so as to
+ * However, the removal of an internship uses Internship#equals(Object) so as to
  * ensure that the internship with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -45,7 +45,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
     }
 
     /**
-     * Adds a Internship to the list.
+     * Adds an Internship to the list.
      * The Internship must not already exist in the list.
      */
     public void add(Internship toAdd) {

@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.workbook.model.internship.Internship;
 
 /**
- * Unmodifiable view of an work book
+ * Unmodifiable view of a WorkBook
  */
 public interface ReadOnlyWorkBook {
 

@@ -33,13 +33,13 @@ public class UndoCommandTest {
     public void execute() {
         // multiple undoable states in model
         expectedModel.undoWorkBook();
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_UNDO_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // single undoable state in model
         expectedModel.undoWorkBook();
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_UNDO_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // no undoable states in model
-        assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_NO_CHANGES);
     }
 }

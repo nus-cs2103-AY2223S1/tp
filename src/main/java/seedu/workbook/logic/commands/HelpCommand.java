@@ -7,11 +7,14 @@ import seedu.workbook.model.Model;
  */
 public class HelpCommand extends Command {
 
+    /** Command word to execute the help command */
     public static final String COMMAND_WORD = "help";
 
+    /** Help message to execute the help command */
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
+    /** Message string displaying successful execution of the help command */
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
