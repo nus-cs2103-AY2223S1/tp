@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Professor's office hour in the address book.
@@ -9,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class OfficeHour {
 
-    public static final String MESSAGE_CONSTRAINTS = "Office hour consist of:\n" +
-            "- integer representation of weekday (from monday[1]- friday[5])\n" +
-            "- time in HH:mm military time format (16:00 represents 4 pm)\n" +
-            "- duration specified in integer (1 - 9)";
+    public static final String MESSAGE_CONSTRAINTS = "Office hour consist of:\n"
+            + "- integer representation of weekday (from monday[1]- friday[5])\n"
+            + "- time in HH:mm military time format (16:00 represents 4 pm)\n"
+            + "- duration specified in integer (1 - 9)";
 
     /*
      * The length of the OfficeHour must be specifically 9 char.

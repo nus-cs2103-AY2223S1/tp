@@ -295,15 +295,22 @@ public class ParserUtil {
         }
         return new Specialisation(trimmedField, true);
     }
-    public static OfficeHour parseOfficeHour(String field) throws ParseException {
-        requireNonNull(field);
-        String trimmedOfficeHour = field.trim();
+
+    /**
+     * Parses a {@code String officeHour} into an {@code OfficeHour}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OfficeHour} is invalid.
+     */
+    public static OfficeHour parseOfficeHour(String officeHour) throws ParseException {
+        requireNonNull(officeHour);
+        String trimmedOfficeHour = officeHour.trim();
         if (!OfficeHour.isValidOfficeHour(trimmedOfficeHour)) {
             throw new ParseException(OfficeHour.MESSAGE_CONSTRAINTS);
         }
         // trimmedField: DayOfWeek-HH:mm-Duration
         // fieldArr: [DayOfWeek, HH:mm, Duration]
-        String[] fieldArr = field.split("-");
+        String[] fieldArr = officeHour.split("-");
         DayOfWeek dayOfWeek = DayOfWeek.of(Integer.parseInt(fieldArr[0]));
         LocalTime startTime;
         LocalTime endTime;
@@ -313,9 +320,11 @@ public class ParserUtil {
         } catch (DateTimeParseException e) {
             throw new ParseException(e.getMessage());
         }
-        String formattedOfficeHour = dayOfWeek.toString() + ", " +
-                startTime.format(TIME_FORMATTER) + " to " +
-                endTime.format(TIME_FORMATTER);
+        String formattedOfficeHour = dayOfWeek.toString()
+                + ", "
+                + startTime.format(TIME_FORMATTER)
+                + " to "
+                + endTime.format(TIME_FORMATTER);
         return new OfficeHour(formattedOfficeHour);
     }
 }
