@@ -191,6 +191,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+The `add` command is implemented by the `AddCommandParser` and `AddCommand` classes.
+
+`AddCommandParser` class is responsible for parsing the parameter received from the user.
+
+`AddCommand` class is responsible for adding a new entry to the specified list.
+
+Below is a sequence diagram and explanation of how the AddCommand is executed.
+![Interactions Inside the Logic Component for the `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` Command](images/AddSequenceDiagram.png)
+
+Step 1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
+
+Step 2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
+
+Step 3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `t/e d/Lunch a/7.20 da/04-10-2022 c/Food`.
+
+Step 4. The `PennyWiseParser` then calls `AddCommandParser#parse` method and the argument string is converted to a List.
+
+Step 5. The `AddCommandParser` then creates a new instances of arguments needed for an Entry: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
+
+Step 6. The `AddCommandParser` uses the new instances to create a new instance of `Entry`, depending on the `EntryType` specified.
+
+Step 7. The `AddCommandParser` creates a new `AddCommand` instance with the new `Entry` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
+
+Step 8. The `LogicManager` calls the `AddCommand#execute` method.
+
+Step 9. The `AddCommand` calls the `Model#addExpenditure` or `Model#addIncome` method and adds the new entry to the specified list.
+
+Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
+
+#### Design Considerations
+* **Alternative 1 (current choice):** Only allow users to create an Entry with 1 type of category
+  * Pros: Users are able to distinctly sort their entries into specific pre-determined categories.
+  * Cons: Users would not be able to specify entries under their own categories.
+
+* **Alternative 2:** Allow users to specify their own categories.
+  * Pros: Users can be more flexible in grouping their spending/incomes.
+  * Cons: Possible dilution of categories, which would make the PieChart diagram not as useful.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -526,20 +566,55 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding an entry
+
+1. Adding an entry while all entries are being shown
+
+    1. Prerequisites: None
+
+    1. Test case: `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food`<br>
+       Expected: Entry is added to the specified list. Details of the added entry shown in the status message.
+
+    1. Test case: ``add t/e d/Lunch a/$7.20 da/04-10-2022 c/Food ... ``<br>
+       Expected: No entry is added. Error details shown in the status message on amount formatted to 2 decimal places.
+   
+    1. Test case: `add d/Lunch a/7.20 da/04-10-2022 c/Food`<br>
+       Expected: No entry is added. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `add`, `add da/15-Feb-2022`, `add x`, `...` (where x a string that does not follow the command format) <br>
+       Expected: Similar to previous.
+
 ### Deleting an entry
 
 1. Deleting an entry while all entries are being shown
 
-    1. Prerequisites: List all entries using the `list` command. Multiple entries in the list.
+    1. Prerequisites: At least 1 entry in the specified list.
 
-    1. Test case: `delete 1`<br>
+    1. Test case: `delete 1 t/e`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `delete 0 t/e`<br>
        Expected: No entry is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete`, `delete x t/e`, `...` (where x is larger than the list size),
+       `delete 1 y` (where y is a string that does not follow the command format) <br>
+       Expected: Similar to previous.
+
+### Editing an entry
+
+1. Editing an entry while all entries are being shown
+
+    1. Prerequisites: At least 1 entry in the specified list.
+
+    1. Test case: `edit 1 t/e d/Edited Description`<br>
+       Expected: First contact is edit from the list. Details of the edited contact shown in the status message.
+
+    1. Test case: `edit 0 t/e d/Edited Description`<br>
+       Expected: No entry is edited. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `edit`, `edit x t/e`, `...` (where x is larger than the list size),
+    `edit 1 y` (where y is a string that does not follow the command format)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

@@ -49,7 +49,6 @@ public class LogicManager implements Logic {
 
         try {
             storage.savePennyWise(model.getPennyWise());
-            logger.info("TRYING TO LOGGGG ===========");
             logger.info(model.getPennyWise().toString());
             logger.info(storage.readPennyWise().toString());
         } catch (IOException ioe) {
