@@ -3,7 +3,9 @@ package seedu.travelr.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
@@ -20,6 +22,8 @@ public class TripBuilder {
     private Title title;
     private Description description;
     private Set<Event> events;
+    private Location location;
+    private DateField dateField;
 
     /**
      * Creates a {@code TripBuilder} with the default details.
@@ -37,6 +41,8 @@ public class TripBuilder {
         title = tripToCopy.getTitle();
         description = tripToCopy.getDescription();
         events = new HashSet<>(tripToCopy.getEvents());
+        location = tripToCopy.getLocation();
+        dateField = tripToCopy.getDateField();
     }
 
     /**
@@ -46,6 +52,7 @@ public class TripBuilder {
         this.title = new Title(title);
         return this;
     }
+
     /**
      * Sets the {@code Email} of the {@code Trip} that we are building.
      */
@@ -53,15 +60,22 @@ public class TripBuilder {
         this.description = new Description(description);
         return this;
     }
+
     /**
      * Parses the {@code events} into a {@code Set<Event>} and set it to the {@code Trip} that we are building.
      */
-    public TripBuilder withEvents(String ... events) {
+    public TripBuilder withEvents(String... events) {
         this.events = SampleDataUtil.getEventSet(events);
         return this;
     }
+
+    /**
+     * Builds the trip from the inputs
+     * @return
+     */
     public Trip build() {
-        return new Trip(title, description, events);
+        Trip newTrip = new Trip(title, description, events);
+        return newTrip;
     }
 
 }

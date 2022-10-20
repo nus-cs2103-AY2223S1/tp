@@ -9,12 +9,12 @@ import java.util.Set;
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.commons.util.StringUtil;
 import seedu.travelr.logic.parser.exceptions.ParseException;
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Address;
 import seedu.travelr.model.trip.Email;
-import seedu.travelr.model.trip.Phone;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -69,21 +69,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
-    /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -99,18 +84,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String location} into an {@code Location}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code location} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Location parseLocation(String location) throws ParseException {
+        requireNonNull(location);
+        String trimmedLocation = location.trim();
+        if (!Location.isValidLocation(trimmedLocation)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Location(trimmedLocation);
+    }
+
+    /**
+     * Parses a {@code String date} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code location} is invalid.
+     */
+    public static DateField parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DateField.isValidDate(trimmedDate)) {
+            throw new ParseException(DateField.MESSAGE_CONSTRAINTS);
+        }
+        return new DateField(trimmedDate);
     }
 
     /**
