@@ -36,7 +36,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s Student Record and {@code userPrefs}. <br>
+     * The data from the sample Student Record will be used instead if {@code storage}'s Student Record is not found,
+     * or an empty Student Record will be used instead if errors occur when reading {@code storage}'s Student Record.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyStudentRecord> addressBookOptional;
@@ -79,14 +79,14 @@ public class MainApp extends Application {
         try {
             addressBookOptional = storage.readStudentRecord();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample Class-ify");
+                logger.info("Data file not found. Will be starting with a sample Class-ify Record");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleStudentRecord);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Class-ify");
+            logger.warning("Data file not in the correct format. Will be starting with an empty Class-ify Record");
             initialData = new StudentRecord();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Class-ify");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Class-ify Record");
             initialData = new StudentRecord();
         }
 

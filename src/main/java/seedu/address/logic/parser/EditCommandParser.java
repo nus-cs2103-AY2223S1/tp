@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_STUDENT_NAME, PREFIX_ID, PREFIX_CLASS, PREFIX_PARENT_NAME,
-                        PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EXAM);
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_EXAM);
 
         Index index;
 
@@ -57,13 +57,14 @@ public class EditCommandParser implements Parser<EditCommand> {
             editStudentDescriptor.setClassName(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get()));
         }
         if (argMultimap.getValue(PREFIX_PARENT_NAME).isPresent()) {
-            editStudentDescriptor.setParentName(ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).get()));
+            editStudentDescriptor.setParentName(ParserUtil.parseName(
+                    argMultimap.getValue(PREFIX_PARENT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editStudentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_EXAM)).ifPresent(editStudentDescriptor::setTags);
 

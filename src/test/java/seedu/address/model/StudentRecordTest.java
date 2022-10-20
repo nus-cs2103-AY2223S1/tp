@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
@@ -37,7 +37,7 @@ public class StudentRecordTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyStudentRecord_replacesData() {
         StudentRecord newData = getTypicalStudentRecord();
         studentRecord.resetData(newData);
         assertEquals(newData, studentRecord);
@@ -46,7 +46,7 @@ public class StudentRecordTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newPersons = Arrays.asList(ALICE, editedAlice);
         StudentRecordStub newData = new StudentRecordStub(newPersons);
@@ -60,20 +60,20 @@ public class StudentRecordTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInStudentRecord_returnsFalse() {
         assertFalse(studentRecord.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInStudentRecord_returnsTrue() {
         studentRecord.addStudent(ALICE);
         assertTrue(studentRecord.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInStudentRecord_returnsTrue() {
         studentRecord.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(studentRecord.hasStudent(editedAlice));
     }
@@ -84,7 +84,7 @@ public class StudentRecordTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyStudentrecord whose persons list can violate interface constraints.
      */
     private static class StudentRecordStub implements ReadOnlyStudentRecord {
         private final ObservableList<Student> persons = FXCollections.observableArrayList();

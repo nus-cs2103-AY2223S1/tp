@@ -27,7 +27,7 @@ public class Class {
     public Class(String className) {
         requireNonNull(className);
         checkArgument(isValidClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className;
+        this.className = className.toUpperCase();
     }
 
     /**

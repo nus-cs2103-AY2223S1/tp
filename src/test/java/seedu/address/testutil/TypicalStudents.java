@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PARENT_NAME_AMY;
@@ -32,7 +32,7 @@ public class TypicalStudents {
             .withId("123A")
             .withClassName("4A1")
             .withParentName("May Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111")
+            .withEmail("alice.pauline@gmail.com")
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Student BENSON = new StudentBuilder()
@@ -41,7 +41,7 @@ public class TypicalStudents {
             .withClassName("4A2")
             .withParentName("Johnson Meier")
             .withPhone("98765432")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withEmail("bensonmeier@gmail.com")
             .withTags("owesMoney", "friends").build();
     public static final Student CARL = new StudentBuilder()
             .withStudentName("Carl Kurz")
@@ -49,14 +49,14 @@ public class TypicalStudents {
             .withClassName("4B1")
             .withParentName("Kenn Kurz")
             .withPhone("95352563")
-            .withAddress("wall street").build();
+            .withEmail("carl@hotmail.com").build();
     public static final Student DANIEL = new StudentBuilder()
             .withStudentName("Daniel Meier")
             .withId("678D")
             .withClassName("3A1")
             .withParentName("Benn Meier")
             .withPhone("87652533")
-            .withAddress("10th street")
+            .withEmail("daniel.meier@gmail.com")
             .withTags("friends").build();
     public static final Student ELLE = new StudentBuilder()
             .withStudentName("Elle Meyer")
@@ -64,21 +64,21 @@ public class TypicalStudents {
             .withClassName("3A1")
             .withParentName("James Meyer")
             .withPhone("9482224")
-            .withAddress("michegan ave").build();
+            .withEmail("elle@gmail.com").build();
     public static final Student FIONA = new StudentBuilder()
             .withStudentName("Fiona Kunz")
             .withId("789C")
             .withClassName("Charity 1")
             .withParentName("Gordon Kunz")
             .withPhone("9482427")
-            .withAddress("little tokyo").build();
+            .withEmail("kunz.fiona@gmail.com").build();
     public static final Student GEORGE = new StudentBuilder()
             .withStudentName("George Best")
             .withId("912B")
             .withClassName("17S68")
             .withParentName("Henry Best")
             .withPhone("9482442")
-            .withAddress("4th street").build();
+            .withEmail("georgebest@example.com").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder()
@@ -87,14 +87,14 @@ public class TypicalStudents {
             .withClassName("4O1")
             .withParentName("Denise Meier")
             .withPhone("8482424")
-            .withAddress("little india").build();
+            .withEmail("hoon@yahoo.com").build();
     public static final Student IDA = new StudentBuilder()
             .withStudentName("Ida Mueller")
             .withId("784C")
             .withClassName("4O1")
             .withParentName("Nathan Mueller")
             .withPhone("8482131")
-            .withAddress("chicago ave").build();
+            .withEmail("idamueller@gmail.com").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder()
@@ -103,7 +103,7 @@ public class TypicalStudents {
             .withClassName(VALID_CLASS_AMY)
             .withParentName(VALID_PARENT_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
-            .withAddress(VALID_ADDRESS_AMY)
+            .withEmail(VALID_EMAIL_AMY)
             .withTags().build();
     public static final Student BOB = new StudentBuilder()
             .withStudentName(VALID_STUDENT_NAME_BOB)
@@ -111,7 +111,7 @@ public class TypicalStudents {
             .withClassName(VALID_CLASS_BOB)
             .withParentName(VALID_PARENT_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
-            .withAddress(VALID_ADDRESS_BOB)
+            .withEmail(VALID_EMAIL_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -119,7 +119,7 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns a {@code StudentRecord} with all the typical persons.
      */
     public static StudentRecord getTypicalStudentRecord() {
         StudentRecord sr = new StudentRecord();

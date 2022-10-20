@@ -67,12 +67,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setStudentRecordFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setStudentRecordFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setStudentRecordFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setStudentRecordFilePath(path);
         assertEquals(path, modelManager.getStudentRecordFilePath());
@@ -122,13 +122,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StudentRecord addressBook = new StudentRecordBuilder().withStudent(ALICE).withStudent(BENSON).build();
-        StudentRecord differentAddressBook = new StudentRecord();
+        StudentRecord studentRecord = new StudentRecordBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        StudentRecord differentStudentRecord = new StudentRecord();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(studentRecord, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(studentRecord, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -140,13 +140,13 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different studentRecord -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentStudentRecord, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getStudentName().fullName.split("\\s+");
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(studentRecord, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -154,6 +154,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setStudentRecordFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(studentRecord, differentUserPrefs)));
     }
 }

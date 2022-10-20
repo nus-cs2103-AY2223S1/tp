@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.student.Address;
 import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -22,14 +22,14 @@ public class StudentBuilder {
     public static final String DEFAULT_CLASS = "1A";
     public static final String DEFAULT_PARENT_NAME = "John Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_EMAIL = "amybee@gmail.com";
 
     private Name studentName;
     private Id id;
     private Class className;
     private Name parentName;
     private Phone phone;
-    private Address address;
+    private Email email;
     private Set<Tag> tags;
 
     /**
@@ -41,7 +41,7 @@ public class StudentBuilder {
         className = new Class(DEFAULT_CLASS);
         parentName = new Name(DEFAULT_PARENT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        address = new Address(DEFAULT_ADDRESS);
+        email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
     }
 
@@ -54,12 +54,12 @@ public class StudentBuilder {
         className = studentToCopy.getClassName();
         parentName = studentToCopy.getParentName();
         phone = studentToCopy.getPhone();
-        address = studentToCopy.getAddress();
+        email = studentToCopy.getEmail();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
     /**
-     * Sets the parent {@code Name} of the {@code Student} that we are building.
+     * Sets the student name {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withStudentName(String name) {
         this.studentName = new Name(name);
@@ -67,10 +67,14 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the student {@code Name} of the {@code Student} that we are building.
+     * Sets the parent name {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withParentName(String name) {
-        this.parentName = new Name(name);
+        if (name == "") {
+            this.parentName = new Name();
+        } else {
+            this.parentName = new Name(name);
+        }
         return this;
     }
 
@@ -83,10 +87,14 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Student} that we are building.
+     * Sets the {@code Email} of the {@code Student} that we are building.
      */
-    public StudentBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public StudentBuilder withEmail(String email) {
+        if (email == "") {
+            this.email = new Email();
+        } else {
+            this.email = new Email(email);
+        }
         return this;
     }
 
@@ -94,7 +102,11 @@ public class StudentBuilder {
      * Sets the {@code Phone} of the {@code Student} that we are building.
      */
     public StudentBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        if (phone == "") {
+            this.phone = new Phone();
+        } else {
+            this.phone = new Phone(phone);
+        }
         return this;
     }
 
@@ -114,7 +126,7 @@ public class StudentBuilder {
         return this;
     }
     public Student build() {
-        return new Student(studentName, id, className, parentName, phone, address, tags);
+        return new Student(studentName, id, className, parentName, phone, email, tags);
     }
 
 }
