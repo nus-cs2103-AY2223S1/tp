@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.event;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -33,5 +35,22 @@ public class ViewEventsCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
         assertCommandSuccess(new ViewEventsCommand(), model,
                 ViewEventsCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        ViewEventsCommand viewEventsCommand = new ViewEventsCommand();
+
+        // same class -> returns true
+        assertTrue(viewEventsCommand.equals(new ViewEventsCommand()));
+
+        // same object -> returns true
+        assertTrue(viewEventsCommand.equals(viewEventsCommand));
+
+        // null -> returns false
+        assertFalse(viewEventsCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(viewEventsCommand.equals(1));
     }
 }
