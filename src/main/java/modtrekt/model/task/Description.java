@@ -7,7 +7,7 @@ import static modtrekt.commons.util.AppUtil.checkArgument;
  * Represents a Tasks's description in the task book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
-public class Description {
+public class Description implements Comparable<Description> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Descriptions should not be blank";
@@ -56,4 +56,8 @@ public class Description {
         return description.hashCode();
     }
 
+    @Override
+    public int compareTo(Description that) {
+        return this.description.compareTo(that.description);
+    }
 }

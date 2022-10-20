@@ -8,8 +8,10 @@ import modtrekt.model.module.ModCode;
  * Represents a basic immutable task in the task list.
  * Ensures that necessary details are valid, present and non-null.
  */
-public class Task {
+public class Task implements Comparable<Task> {
     public static final Comparator<Task> PRIORITY_COMPARATOR = Comparator.comparingInt(t -> t.getPriority().ordinal());
+    public static final Comparator<Task> ARCHIVAL_COMPARATOR = Comparator.comparing(Task::isArchived);
+    public static final Comparator<Task> DESCRIPTION_COMPARATOR = Comparator.comparing(Task::getDescription);
 
     /**
      * String representing description of task
@@ -106,6 +108,13 @@ public class Task {
     @Override
     public String toString() {
         return String.format("%s %s %s %s", description, module, priority, isArchived ? "(ARCHIVED)" : "");
+    }
+
+    @Override
+    public int compareTo(Task that) {
+        return ARCHIVAL_COMPARATOR.thenComparing(PRIORITY_COMPARATOR.reversed())
+                .thenComparing(DESCRIPTION_COMPARATOR)
+                .compare(this, that);
     }
 
     /**
