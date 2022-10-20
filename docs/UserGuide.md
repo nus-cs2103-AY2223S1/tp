@@ -110,7 +110,7 @@ Example:
 
 Deletes the debts specified by their index numbers from a person listed in PayMeLah.
 
-Format: `deletedebts <person index> debt/1 3 4`
+Format: `deletedebts <person index> debt/<debt index...>`
 
 Example:
 * `deletedebts 2 debt/2 3`
