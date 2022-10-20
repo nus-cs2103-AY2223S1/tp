@@ -19,6 +19,7 @@ public class TypicalItems {
             .withItemUnit("kg")
             .withItemBoughtDate("11-11-2022")
             .withItemExpiryDate("11-11-2022")
+            .withItemPrice("10.30")
             .withTags(VALID_TAG_NAME_VEGETABLES).build();
 
     public static final Item CUCUMBERS = new ItemBuilder()
@@ -27,6 +28,7 @@ public class TypicalItems {
             .withItemUnit("grams")
             .withItemBoughtDate("12-12-2022")
             .withItemExpiryDate("12-12-2022")
+            .withItemPrice("8")
             .withTags(VALID_TAG_NAME_VEGETABLES).build();
 
     public static final Item CARROTS = new ItemBuilder()
@@ -39,6 +41,7 @@ public class TypicalItems {
             .withItemUnit("kg")
             .withItemBoughtDate("11-11-2022")
             .withItemExpiryDate("11-11-2022")
+            .withItemPrice("10.30")
             .build();
 
     public static final Item CUCUMBERS_WITHOUT_TAG = new ItemBuilder()
@@ -47,6 +50,7 @@ public class TypicalItems {
             .withItemUnit("grams")
             .withItemBoughtDate("12-12-2022")
             .withItemExpiryDate("12-12-2022")
+            .withItemPrice("8")
             .build();
 
     public static final Item CARROTS_WITHOUT_TAG = new ItemBuilder()

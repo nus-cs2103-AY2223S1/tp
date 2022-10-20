@@ -29,12 +29,14 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_UNIT_POTATOES = "kg";
     public static final String VALID_ITEM_BOUGHT_DATE_POTATOES = "11-11-2022";
     public static final String VALID_ITEM_EXPIRY_DATE_POTATOES = "11-11-2022";
+    public static final String VALID_ITEM_PRICE_POTATOES = "10.30";
 
     public static final String VALID_ITEM_NAME_CUCUMBERS = "Cucumbers";
     public static final String VALID_ITEM_QUANTITY_CUCUMBERS = "2000";
     public static final String VALID_ITEM_UNIT_CUCUMBERS = "grams";
     public static final String VALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-2022";
     public static final String VALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-2022";
+    public static final String VALID_ITEM_PRICE_CUCUMBERS = "8";
 
     public static final String VALID_TAG_NAME_FRUITS = "fruits";
     public static final String VALID_TAG_NAME_FRUITS_WITH_WHITESPACES = "f r u i t s";
@@ -53,6 +55,8 @@ public class CommandTestUtil {
             + VALID_ITEM_BOUGHT_DATE_POTATOES;
     public static final String VALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + CliSyntax.PREFIX_ITEM_EXPIRY_DATE
             + VALID_ITEM_EXPIRY_DATE_POTATOES;
+    public static final String VALID_DESC_ITEM_PRICE_POTATOES = " " + CliSyntax.PREFIX_ITEM_PRICE
+            + VALID_ITEM_PRICE_POTATOES;
 
     public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = " " + CliSyntax.PREFIX_NAME
             + VALID_ITEM_NAME_CUCUMBERS;
@@ -64,6 +68,8 @@ public class CommandTestUtil {
             + VALID_ITEM_BOUGHT_DATE_CUCUMBERS;
     public static final String VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_EXPIRY_DATE
             + VALID_ITEM_EXPIRY_DATE_CUCUMBERS;
+    public static final String VALID_DESC_ITEM_PRICE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_PRICE
+            + VALID_ITEM_PRICE_CUCUMBERS;
 
     public static final String VALID_DESC_TAG_NAME_FRUITS = " " + CliSyntax.PREFIX_NAME
             + VALID_TAG_NAME_FRUITS;
@@ -87,6 +93,7 @@ public class CommandTestUtil {
     public static final String INVALID_ITEM_UNIT_CUCUMBERS = "gram@s";
     public static final String INVALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-202@2";
     public static final String INVALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-202@2";
+    public static final String INVALID_ITEM_PRICE_CUCUMBERS = "1/2";
 
     public static final String INVALID_TAG_NAME_DISALLOWED_PUNCTUATION = "Frui//ts";
     public static final String INVALID_TAG_NAME_EXCEED_CHAR_LIMIT =
@@ -103,6 +110,8 @@ public class CommandTestUtil {
             + INVALID_ITEM_BOUGHT_DATE_CUCUMBERS;
     public static final String INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_EXPIRY_DATE
             + INVALID_ITEM_EXPIRY_DATE_CUCUMBERS;
+    public static final String INVALID_DESC_ITEM_PRICE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_PRICE
+            + INVALID_ITEM_PRICE_CUCUMBERS;
 
     public static final String INVALID_DESC_ITEM_NAME_POTATOES = " " + CliSyntax.PREFIX_NAME
             + INVALID_ITEM_NAME_POTATOES;

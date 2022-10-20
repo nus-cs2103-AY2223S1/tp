@@ -25,9 +25,9 @@ public class Item {
     private final ItemUnit unit;
     private final ItemBoughtDate boughtDate;
     private final ItemExpiryDate expiryDate;
+    private final ItemPrice price;
 
     private final Set<Tag> tagSet;
-
 
     /**
      * Constructs an item.
@@ -37,18 +37,21 @@ public class Item {
      * @param unit       Unit of the item.
      * @param boughtDate Date when the item was purchased.
      * @param expiryDate Date when the item will expire.
+     * @param price      Price of one unit of the item.
      */
     public Item(ItemName name,
                 ItemQuantity quantity,
                 ItemUnit unit,
                 ItemBoughtDate boughtDate,
-                ItemExpiryDate expiryDate) {
-        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate);
+                ItemExpiryDate expiryDate,
+                ItemPrice price) {
+        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price);
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
+        this.price = price;
         this.tagSet = new HashSet<>();
     }
 
@@ -60,19 +63,23 @@ public class Item {
      * @param unit       Unit of the item.
      * @param boughtDate Date when the item was purchased.
      * @param expiryDate Date when the item will expire.
-     * @param tagSet     The set of tags in item
+     * @param price      Price of one unit of the item.
+     * @param tagSet     The set of tags in item.
      */
     public Item(ItemName name,
                 ItemQuantity quantity,
                 ItemUnit unit,
                 ItemBoughtDate boughtDate,
-                ItemExpiryDate expiryDate, Set<Tag> tagSet) {
-        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate);
+                ItemExpiryDate expiryDate,
+                ItemPrice price,
+                Set<Tag> tagSet) {
+        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price, tagSet);
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
+        this.price = price;
         this.tagSet = tagSet;
     }
 
@@ -93,6 +100,7 @@ public class Item {
                 itemToUntag.getUnit(),
                 itemToUntag.getBoughtDate(),
                 itemToUntag.getExpiryDate(),
+                itemToUntag.getPrice(),
                 itemToUntag.getTagSet()
         );
     }
@@ -120,6 +128,10 @@ public class Item {
 
     public Set<Tag> getTagSet() {
         return tagSet;
+    }
+
+    public ItemPrice getPrice() {
+        return price;
     }
 
     /**
@@ -179,6 +191,7 @@ public class Item {
                 && otherItem.getUnit().equals(unit)
                 && otherItem.getBoughtDate().equals(boughtDate)
                 && otherItem.getExpiryDate().equals(expiryDate)
+                && otherItem.getPrice().equals(price)
                 && otherItem.getTagSet().equals(tagSet);
     }
 
@@ -188,7 +201,7 @@ public class Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, unit, boughtDate, expiryDate, tagSet);
+        return Objects.hash(name, quantity, unit, boughtDate, expiryDate, price, tagSet);
     }
 
     /**
@@ -197,12 +210,14 @@ public class Item {
     @Override
     public String toString() {
         String tagsString = tagSet.stream().map(Tag::getName).collect(Collectors.joining(", "));
-        return String.format("Name: %s\nQuantity: %s%s\nBought Date: %s\nExpiry Date: %s\nTags: {%s}\n",
+        return String.format("Name: %s\nQuantity: %s%s\nBought Date: %s\n"
+                        + "Expiry Date: %s\nPrice: %s\nTags: {%s}\n",
                 name,
                 quantity,
                 String.valueOf(unit).isBlank() ? "" : " " + unit,
                 String.valueOf(boughtDate).isBlank() ? "Not Set" : boughtDate,
                 String.valueOf(expiryDate).isBlank() ? "Not Set" : expiryDate,
+                "$" + price,
                 tagsString);
     }
 }

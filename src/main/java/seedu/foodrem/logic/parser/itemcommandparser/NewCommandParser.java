@@ -14,6 +14,7 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
+import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 
@@ -35,7 +36,8 @@ public class NewCommandParser implements Parser<NewCommand> {
                         CliSyntax.PREFIX_ITEM_QUANTITY,
                         CliSyntax.PREFIX_ITEM_UNIT,
                         CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
-                        CliSyntax.PREFIX_ITEM_EXPIRY_DATE);
+                        CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
+                        CliSyntax.PREFIX_ITEM_PRICE);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -56,7 +58,10 @@ public class NewCommandParser implements Parser<NewCommand> {
         String expiryDate = argMultimap.getValue(CliSyntax.PREFIX_ITEM_EXPIRY_DATE).orElse("");
         ItemExpiryDate itemExpiryDate = ParserUtil.parseExpiryDate(expiryDate);
 
-        Item item = new Item(name, itemQuantity, itemUnit, itemBoughtDate, itemExpiryDate);
+        String price = argMultimap.getValue(CliSyntax.PREFIX_ITEM_PRICE).orElse("");
+        ItemPrice itemPrice = ParserUtil.parsePrice(price);
+
+        Item item = new Item(name, itemQuantity, itemUnit, itemBoughtDate, itemExpiryDate, itemPrice);
 
         return new NewCommand(item);
     }

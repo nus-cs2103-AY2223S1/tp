@@ -52,6 +52,7 @@ public class TagCommand extends Command {
                 itemToTag.getUnit(),
                 itemToTag.getBoughtDate(),
                 itemToTag.getExpiryDate(),
+                itemToTag.getPrice(),
                 newTagSet);
     }
 
