@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
  */
 public class Friday implements ReadOnlyFriday {
 
+
     private final UniqueStudentList students;
 
     /*
