@@ -66,7 +66,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'OmniHealth.jar'
 }
 
 defaultTasks 'clean', 'test'
