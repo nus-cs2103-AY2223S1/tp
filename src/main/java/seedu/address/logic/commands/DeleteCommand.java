@@ -55,6 +55,8 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        assert (targetIndex != null) || (targetName != null) : "either targetIndex or targetName should not be null";
+
         if (targetIndex != null) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
