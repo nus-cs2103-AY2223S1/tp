@@ -355,6 +355,43 @@ Step 3. The `delete` command then deletes the student by calling `Model#deletePe
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Adding a student, tutor or class
+
+#### Implementation
+
+The add mechanism is facilitated by `AddCommand`. It extends `Command` with an enum type `Entity` representing the three different types of entities that can be added to the `Model`. Also, it stores the `Person` or `TuitionClass` instances to be added. Additionally, it implements the following operations:
+
+* `AddCommand#of()` — Creates an `AddCommand` instance encapsulating the entity to be added.
+* `AddCommand#execute()` — Executes adding of the encapsulated entity to the `Model`.
+
+The `AddCommand#execute()` operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `add student n/David ...` to add a new student. `AddCommand#of()` is called and a new `AddCommand` instance encapsulating a new `Student` instance to be added to `Model` is instantiated. The `AddCommand#execute()` of this instance is then called, adding the `Student` instance to the `Model`.
+
+The following sequence diagram shows how the add operation works:
+
+{diagram to be added}
+
+Step 3. The user executes `list_s` to view the list of students he has added.
+
+The following activity diagram summarizes what happens when a user executes the add command:
+
+{diagram to be added}
+#### Design considerations:
+
+**Aspect: How to handle the adding of class and person separating:**
+
+* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `Class` fields but only atmost one can be non-null at a time.
+  * Pros: Less cluttered.
+  * Cons: Harder to implement.
+* **Alternative 2:** Separate classes that extend `Command` for adding of class and person separately.
+  * Pros: Easier to implement.
+  * Cons: More cluttered.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
