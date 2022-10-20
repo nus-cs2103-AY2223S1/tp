@@ -131,9 +131,7 @@ public class EditCommissionCommand extends Command {
 
         selectedCustomer.setCommission(commissionToEdit, editedCommission);
 
-        if (model.getSelectedCommission().getValue().isSameCommission(commissionToEdit)) {
-            model.selectCommission(editedCommission);
-        }
+        model.selectCommission(editedCommission);
 
         model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
         model.selectTab(GuiTab.COMMISSION);
