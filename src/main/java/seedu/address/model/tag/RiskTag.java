@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a RiskTag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class RiskTag extends Tag {
+public class RiskTag extends NormalTag {
 
     public static final String MESSAGE_CONSTRAINTS = "Risk tag name should be [LOW], [MEDIUM], or [HIGH]";
     public static final String VALIDATION_REGEX = "(HIGH|MEDIUM|LOW)";

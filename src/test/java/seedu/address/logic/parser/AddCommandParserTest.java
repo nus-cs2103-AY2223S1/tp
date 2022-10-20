@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_INCOME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONTHLY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLANTAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RISKTAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MONTHLY_DESC_AMY;
@@ -21,6 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PLANTAG_DESC_SAVINGS;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.RISKTAG_DESC_HIGH;
@@ -33,6 +35,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONTHLY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLANTAG_SAVINGS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKTAG_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -50,6 +53,7 @@ import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -64,43 +68,49 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple income - last income accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + MONTHLY_DESC_BOB + INCOME_DESC_AMY + INCOME_DESC_BOB
-                + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
         //multiple riskTags - last riskTag accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + RISKTAG_DESC_LOW + RISKTAG_DESC_HIGH
+                + RISKTAG_DESC_LOW + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        //multiple planTags - last planTag accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
+                + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + TAG_DESC_HUSBAND
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -109,7 +119,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + INCOME_DESC_AMY + MONTHLY_DESC_AMY + RISKTAG_DESC_LOW,
+                        + INCOME_DESC_AMY + MONTHLY_DESC_AMY + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS,
                 new AddCommand(expectedPerson));
     }
 
@@ -119,86 +129,101 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH, expectedMessage);
+                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS,
+                expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH, expectedMessage);
+                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS,
+                expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH, expectedMessage);
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS,
+                expectedMessage);
 
         // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
-                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH, expectedMessage);
+                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS,
+                expectedMessage);
 
         // missing income prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + VALID_INCOME_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH, expectedMessage);
+                + VALID_INCOME_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS,
+                expectedMessage);
 
         // missing monthly prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + INCOME_DESC_BOB + VALID_MONTHLY_BOB + RISKTAG_DESC_HIGH,
+                        + INCOME_DESC_BOB + VALID_MONTHLY_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS,
                 expectedMessage);
         // missing riskTag prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + VALID_RISKTAG_HIGH, expectedMessage);
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + VALID_RISKTAG_HIGH + PLANTAG_DESC_SAVINGS, expectedMessage);
+        // missing planTag prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + VALID_PLANTAG_SAVINGS, expectedMessage);
 
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
-                + VALID_INCOME_BOB + VALID_MONTHLY_BOB + VALID_RISKTAG_HIGH, expectedMessage);
+                + VALID_INCOME_BOB + VALID_MONTHLY_BOB + VALID_RISKTAG_HIGH + PLANTAG_DESC_SAVINGS, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
         // invalid income
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_INCOME_DESC + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH
+                + INVALID_INCOME_DESC + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, IncomeLevel.MESSAGE_CONSTRAINTS);
         // invalid monthly
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + INCOME_DESC_BOB + INVALID_MONTHLY_DESC + RISKTAG_DESC_HIGH
+                + INCOME_DESC_BOB + INVALID_MONTHLY_DESC + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid riskTag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INCOME_DESC_BOB + MONTHLY_DESC_BOB
-                + INVALID_RISKTAG_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, RiskTag.MESSAGE_CONSTRAINTS);
+                + INVALID_RISKTAG_DESC + PLANTAG_DESC_SAVINGS + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, RiskTag.MESSAGE_CONSTRAINTS);
+        // invalid planTag
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB
+                + RISKTAG_DESC_HIGH + INVALID_PLANTAG_DESC + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, PlanTag.MESSAGE_CONSTRAINTS);
 
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH, Name.MESSAGE_CONSTRAINTS);
+                        + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS,
+                Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB + RISKTAG_DESC_HIGH + PLANTAG_DESC_SAVINGS
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }

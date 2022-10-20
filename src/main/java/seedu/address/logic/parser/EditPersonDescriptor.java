@@ -1,20 +1,28 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.NormalTag;
+import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -27,8 +35,10 @@ public class EditPersonDescriptor {
     private Address address;
     private IncomeLevel income;
     private Monthly monthly;
+    private PlanTag planTag;
     private RiskTag riskTag;
-    private Set<Tag> tags;
+    private Set<NormalTag> tags;
+    private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
 
     /**
@@ -43,14 +53,17 @@ public class EditPersonDescriptor {
         setIncome(toCopy.income);
         setMonthly(toCopy.monthly);
         setRiskTag(toCopy.riskTag);
+        setPlanTag(toCopy.planTag);
         setTags(toCopy.tags);
+        setAppointments(toCopy.appointments);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, planTag,
+                tags, appointments);
     }
 
     public void setName(Name name) {
@@ -93,6 +106,25 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(riskTag);
     }
 
+    public void setPlanTag(PlanTag planTag) {
+        this.planTag = planTag;
+    }
+
+    public Optional<PlanTag> getPlanTag() {
+        return Optional.ofNullable(planTag);
+    }
+    /**
+     * Sets {@code appointments} to this object's {@code appointments}.
+     * A defensive copy of {@code appointments} is used internally.
+     */
+    public void setAppointments(MaximumSortedList<Appointment> appointments) {
+        this.appointments = (appointments != null) ? new MaximumSortedList<>(appointments) : null;
+    }
+
+    public Optional<MaximumSortedList<Appointment>> getAppointments() {
+        return Optional.ofNullable(appointments);
+    }
+
     public void setIncome(IncomeLevel income) {
         this.income = income;
     }
@@ -110,7 +142,7 @@ public class EditPersonDescriptor {
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
      */
-    public void setTags(Set<Tag> tags) {
+    public void setTags(Set<NormalTag> tags) {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
@@ -119,7 +151,7 @@ public class EditPersonDescriptor {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
-    public Optional<Set<Tag>> getTags() {
+    public Optional<Set<NormalTag>> getTags() {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
@@ -137,11 +169,75 @@ public class EditPersonDescriptor {
         IncomeLevel updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         RiskTag updatedRiskTag = editPersonDescriptor.getRiskTag().orElse(personToEdit.getRiskTag());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        PlanTag updatedPlanTag = editPersonDescriptor.getPlanTag().orElse(personToEdit.getPlanTag());
+        Set<NormalTag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
-                updateMonthly, updatedRiskTag, updatedTags);
+                updateMonthly, updatedRiskTag, updatedPlanTag, updatedTags);
     }
+
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with appointments added from {@code editPersonDescriptor}.
+     */
+    public static Person createEditedPersonByAddingAppointments(
+            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws ParseException {
+        assert personToEdit != null;
+
+        MaximumSortedList<Appointment> updatedAppointments = personToEdit.getAppointments();
+
+        Optional<Boolean> hasAppointment = editPersonDescriptor.appointments.stream()
+                .map(updatedAppointments::contains).reduce((x, y) -> x || y);
+        Optional<Boolean> isAppointmentsEdited = editPersonDescriptor.appointments.stream()
+                .map(updatedAppointments::add).reduce((x, y) -> x || y);
+
+        if (hasAppointment.isEmpty() || hasAppointment.get()) {
+            throw new ParseException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        if (isAppointmentsEdited.isEmpty() || !isAppointmentsEdited.get()) {
+            throw new ParseException(MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS);
+        }
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<NormalTag> tags = personToEdit.getTags();
+        Monthly monthly = personToEdit.getMonthly();
+        RiskTag risktag = personToEdit.getRiskTag();
+        PlanTag planTag = personToEdit.getPlanTag();
+        IncomeLevel income = personToEdit.getIncome();
+        Person newPerson = new Person(name, phone, email, address, income, monthly, risktag, planTag,
+                tags, updatedAppointments);
+        return newPerson;
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * overwritten with appointments from {@code editPersonDescriptor}.
+     */
+    public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
+                                                                   EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Monthly monthly = personToEdit.getMonthly();
+        PlanTag planTag = personToEdit.getPlanTag();
+        RiskTag riskTag = personToEdit.getRiskTag();
+        Set<NormalTag> tags = personToEdit.getTags();
+        IncomeLevel income = personToEdit.getIncome();
+        MaximumSortedList<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
+        Person newPerson = new Person(name, phone, email, address, income,
+                monthly, riskTag, planTag, tags, newAppointmentsOnly);
+
+        return newPerson;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -163,6 +259,7 @@ public class EditPersonDescriptor {
                 && getAddress().equals(e.getAddress())
                 && getRiskTag().equals(e.getRiskTag())
                 && getMonthly().equals(e.getMonthly())
-                && getTags().equals(e.getTags());
+                && getTags().equals(e.getTags())
+                && getAppointments().equals(e.getAppointments());
     }
 }

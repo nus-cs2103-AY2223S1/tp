@@ -1,19 +1,26 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.NormalTag;
+import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -40,6 +47,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setAppointments(person.getAppointments());
     }
 
     /**
@@ -81,6 +89,13 @@ public class EditPersonDescriptorBuilder {
         descriptor.setRiskTag(new RiskTag(riskTag));
         return this;
     }
+    /**
+     * Sets the {@code PlanTag} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPlanTag(String planTag) {
+        descriptor.setPlanTag(new PlanTag(planTag));
+        return this;
+    }
 
     /**
      * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
@@ -103,8 +118,20 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        Set<NormalTag> tagSet = Stream.of(tags).map(NormalTag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withAppointments(String... appointments) {
+        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
+                .map(DateTime::new).map(Appointment::new).forEach(appointmentList::add);
+        descriptor.setAppointments(appointmentList);
         return this;
     }
 

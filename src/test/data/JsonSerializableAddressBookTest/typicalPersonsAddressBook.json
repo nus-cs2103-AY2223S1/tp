@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "riskTag": "HIGH",
+    "planTag": "Savings Plan",
     "income": "$1000",
     "monthly": "$100",
     "tagged" : [ "friends" ]
@@ -15,6 +16,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "riskTag": "LOW",
+    "planTag": "Savings Plan",
     "income": "$10000",
     "monthly": "$200",
     "tagged" : [ "owesMoney", "friends" ]
@@ -24,6 +26,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "riskTag": "MEDIUM",
+    "planTag": "Savings Plan",
     "income": "$100000",
     "monthly": "$300",
     "tagged" : [ ]
@@ -33,6 +36,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "riskTag": "HIGH",
+    "planTag": "Savings Plan",
     "income": "$100000",
     "monthly": "$250",
     "tagged" : [ "friends" ]
@@ -42,6 +46,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "riskTag": "LOW",
+    "planTag": "Savings Plan",
     "income": "$100000",
     "monthly": "$1000",
     "tagged" : [ ]
@@ -51,6 +56,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "riskTag": "HIGH",
+    "planTag": "Savings Plan",
     "income": "$100000",
     "monthly": "$350",
     "tagged" : [ ]
@@ -60,6 +66,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "riskTag": "MEDIUM",
+    "planTag": "Savings Plan",
     "income": "$1000000",
     "monthly": "$500",
     "tagged" : [ ]

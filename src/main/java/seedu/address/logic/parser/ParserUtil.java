@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -17,12 +17,12 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
-import seedu.address.model.person.Location;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.NormalTag;
+import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -37,44 +37,11 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the appointment index.
-     * Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseAppointmentIndex(String personAppointmentIndex) throws ParseException {
-        requireNonNull(personAppointmentIndex);
-        String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split("\\.");
-
-        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[1])) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(splitStr[1]));
-    }
-
-    /**
-     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the person index.
-     * Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parsePersonIndex(String personAppointmentIndex) throws ParseException {
-        requireNonNull(personAppointmentIndex);
-        String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split("\\.");
-
-        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[0])) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(splitStr[0]));
     }
 
     /**
@@ -138,29 +105,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateAndTime} and a {@code String Location} into an {@code Appointment}.
+     * Parses a {@code String dateAndTime} into an {@code Appointment}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      */
-    public static Appointment parseAppointment(String dateAndTime, String location) throws ParseException {
+    public static Appointment parseAppointment(String dateAndTime) {
         requireNonNull(dateAndTime);
-        requireNonNull(location);
-        DateTime appointmentDateTime = parseDateTime(dateAndTime);
-        Location appointmentLocation = parseLocation(location);
-        if (!Appointment.isValidAppointment(appointmentDateTime, appointmentLocation)) {
-            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
-        }
-        return new Appointment(appointmentDateTime, appointmentLocation);
+        String trimmedDateAndTime = dateAndTime.trim();
+        return new Appointment(parseDateTime(trimmedDateAndTime));
     }
 
     /**
      * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
      */
-    public static MaximumSortedList<Appointment> parseAppointmentsIntoSortedList(Collection<Appointment> appointments) {
-        requireNonNull(appointments);
+    public static MaximumSortedList<Appointment> parseAppointments(Collection<String> datesAndTimes) {
+        requireNonNull(datesAndTimes);
         final MaximumSortedList<Appointment> appointmentSet =
-                new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
-        for (Appointment appointment : appointments) {
-            appointmentSet.add(appointment);
+                new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        for (String dateAndTime : datesAndTimes) {
+            appointmentSet.add(parseAppointment(dateAndTime));
         }
         return appointmentSet;
     }
@@ -175,21 +138,6 @@ public class ParserUtil {
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
     }
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Location parseLocation(String location) throws ParseException {
-        requireNonNull(location);
-        String trimmedLocation = location.trim();
-        if (!Location.isValidLocation(trimmedLocation)) {
-            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
-        }
-        return new Location(trimmedLocation);
-    }
-
     /**
      * Parses a {@code String income} into an {@code IncomeLevel}.
      * Leading and trailing whitespaces will be trimmed.
@@ -217,7 +165,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateAndTime} into an {@code DateTime}.
+     * Parses a {@code String riskTag} into an {@code RiskTag}.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static RiskTag parseRiskTag(String riskTag) throws ParseException {
@@ -229,6 +177,19 @@ public class ParserUtil {
         return new RiskTag(trimmedRiskTag);
     }
 
+    /**
+     * Parses a {@code String planTag} into an {@code PlanTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static PlanTag parsePlanTag(String planTag) throws ParseException {
+        requireNonNull(planTag);
+        String trimmedPlanTag = planTag.trim();
+        if (!PlanTag.isValidPlanTagName(trimmedPlanTag)) {
+            throw new ParseException(PlanTag.MESSAGE_CONSTRAINTS);
+        }
+        return new PlanTag(trimmedPlanTag);
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -236,21 +197,21 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static NormalTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!NormalTag.isValidNormalTagName(trimmedTag)) {
+            throw new ParseException(NormalTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new NormalTag(trimmedTag);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<NormalTag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<NormalTag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
