@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -12,15 +12,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSuppliers.ALICE;
 import static seedu.address.testutil.TypicalSuppliers.BOB;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalPersons;
-import seedu.address.testutil.TypicalPets;
+//import seedu.address.testutil.TypicalPets;
 
 public class SupplierTest {
     @Test
@@ -29,12 +26,12 @@ public class SupplierTest {
         assertThrows(UnsupportedOperationException.class, () -> supplier.getTags().remove(0));
     }
 
-//    @Test
-//    public void addPet_success() {
-//        Supplier supplier = new PersonBuilder().buildSupplier();
-//        supplier.addPet(TypicalPets.PLUM);
-//        assertEquals(supplier.getPetIds(), new ArrayList<>(Arrays.asList(TypicalPets.PLUM)));
-//    }
+    //    @Test
+    //    public void addPet_success() {
+    //        Supplier supplier = new PersonBuilder().buildSupplier();
+    //        supplier.addPet(TypicalPets.PLUM);
+    //        assertEquals(supplier.getPetIds(), new ArrayList<>(Arrays.asList(TypicalPets.PLUM)));
+    //  }
 
     @Test
     public void isSamePerson() {
@@ -102,14 +99,14 @@ public class SupplierTest {
         assertFalse(ALICE.equals(editedAlice));
     }
 
-//    @Test
-//    public void toString_withPetsOnSale() {
-//        Supplier supplier1 = new PersonBuilder().buildSupplier();
-//        Supplier supplier2 = new PersonBuilder().buildSupplier();
-//        supplier1.addPet(TypicalPets.DOJA);
-//        supplier1.addPet(TypicalPets.PLUM);
-//        supplier2.addPet(TypicalPets.DOJA);
-//        supplier2.addPet(TypicalPets.PLUM);
-//        assertEquals(supplier1.toString(), supplier2.toString());
-//    }
+    //    @Test
+    //    public void toString_withPetsOnSale() {
+    //        Supplier supplier1 = new PersonBuilder().buildSupplier();
+    //        Supplier supplier2 = new PersonBuilder().buildSupplier();
+    //        supplier1.addPet(TypicalPets.DOJA);
+    //        supplier1.addPet(TypicalPets.PLUM);
+    //        supplier2.addPet(TypicalPets.DOJA);
+    //        supplier2.addPet(TypicalPets.PLUM);
+    //        assertEquals(supplier1.toString(), supplier2.toString());
+    //    }
 }

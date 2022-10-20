@@ -14,7 +14,9 @@ import seedu.address.model.person.Supplier;
 /**
  * Parses input arguments and creates a new FindCommand object.
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindBuyerCommandParser implements Parser<FindCommand> {
+    public static final String PARSE_WORD = "find-b";
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -28,11 +30,26 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         Predicate<Buyer> bPredicate = PredicateParser.parseBuyer(trimmedArgs);
-        Predicate<Deliverer> dPredicate = PredicateParser.parseDeliverer(trimmedArgs);
-        Predicate<Supplier> sPredicate = PredicateParser.parseSupplier(trimmedArgs);
+        Predicate<Deliverer> dPredicate = new Predicate<Deliverer>() {
+            @Override
+            public boolean test(Deliverer deliverer) {
+                return false;
+            }
+            public boolean equals(Object object) {
+                return object instanceof Predicate;
+            }
+        };
+        Predicate<Supplier> sPredicate = new Predicate<Supplier>() {
+            @Override
+            public boolean test(Supplier supplier) {
+                return false;
+            }
+            public boolean equals(Object object) {
+                return object instanceof Predicate;
+            }
+        };
 
         return new FindCommand(bPredicate, dPredicate, sPredicate,
                 PersonCategory.getFromString("Buyer"));
     }
-
 }

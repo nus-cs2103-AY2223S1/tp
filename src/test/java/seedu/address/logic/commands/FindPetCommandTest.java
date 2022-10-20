@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalPets;
 
 public class FindPetCommandTest {
