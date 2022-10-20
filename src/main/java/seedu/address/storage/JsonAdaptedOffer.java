@@ -17,14 +17,14 @@ public class JsonAdaptedOffer {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Offer's %s field is missing!";
 
     private final String name;
-    private final ListingID listing;
+    private final String listing;
     private final String offerPrice;
 
     /**
      * Constructs a {@code JsonAdaptedOffer} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedOffer(@JsonProperty("name") String name, @JsonProperty("listing") ListingID listing,
+    public JsonAdaptedOffer(@JsonProperty("name") String name, @JsonProperty("listing") String listing,
                             @JsonProperty("offerPrice") String offerPrice) {
         this.name = name;
         this.listing = listing;
@@ -36,7 +36,7 @@ public class JsonAdaptedOffer {
      */
     public JsonAdaptedOffer(Offer source) {
         name = source.getClient().fullName;
-        listing = source.getListing();
+        listing = source.getListing().value;
         offerPrice = source.getOfferPrice().value;
     }
 
@@ -58,10 +58,10 @@ public class JsonAdaptedOffer {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, ListingID.class.getSimpleName()));
         }
-        if (!ListingID.isValidListingID(listing.value)) {
+        if (!ListingID.isValidListingID(listing)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final ListingID modelListingID = listing;
+        final ListingID modelListingID = new ListingID(listing);
 
         if (offerPrice == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));

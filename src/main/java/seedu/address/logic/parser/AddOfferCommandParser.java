@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LISTING_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFER;
 
@@ -28,14 +27,14 @@ public class AddOfferCommandParser implements Parser<AddOfferCommand> {
      */
     public AddOfferCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_OFFER);
+                ArgumentTokenizer.tokenize(args, PREFIX_LISTING_ID, PREFIX_NAME, PREFIX_OFFER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_OFFER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_LISTING_ID, PREFIX_NAME, PREFIX_OFFER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOfferCommand.MESSAGE_USAGE));
         }
 
-        ListingID listing = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_ID).get());
+        ListingID listing = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_LISTING_ID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Price offerPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_OFFER).get());
 
