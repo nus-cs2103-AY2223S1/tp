@@ -41,35 +41,36 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("Amazon"));
+        assertTrue(predicate.test(new InternshipBuilder().withName("Amazon Blackrock").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Amazon", "Blackrock"));
+        assertTrue(predicate.test(new InternshipBuilder().withName("Amazon Blackrock").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Carol").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Blackrock", "Carol"));
+        assertTrue(predicate.test(new InternshipBuilder().withName("Amazon Carol").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("amazon", "bLACKROCK"));
+        assertTrue(predicate.test(new InternshipBuilder().withName("Amazon Blackrock").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new InternshipBuilder().withName("Amazon").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new InternshipBuilder().withName("Amazon Blackrock").build()));
 
         // Keywords match phone, email and internship, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withRemark("Main Street").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "amazon@email.com", "Main", "Street"));
+        assertFalse(predicate.test(new InternshipBuilder().withName("Amazon").withPhone("12345")
+                .withEmail("amazon@email.com").withRemark("Main Street").build()));
     }
 }
