@@ -29,6 +29,7 @@ class JsonAdaptedStudent {
     private final String name;
     private final String telegramHandle;
     private final LocalDate masteryCheck;
+    private boolean masteryCheckIsDone;
     private final LocalDate consultation;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -37,14 +38,19 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
+
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("consultation") LocalDate consultation,
                              @JsonProperty("masteryCheck") LocalDate masteryCheck,
+
+                             @JsonProperty("masteryCheckIsDone") boolean masteryCheckIsDone,
                              @JsonProperty("remark") String remark,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.masteryCheck = masteryCheck;
+        this.masteryCheckIsDone = masteryCheckIsDone;
         this.consultation = consultation;
         this.remark = remark;
         if (tagged != null) {
@@ -59,6 +65,7 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         telegramHandle = source.getTelegramHandle().value;
         masteryCheck = source.getMasteryCheck().getValue();
+        masteryCheckIsDone = source.getMasteryCheck().getIsPassed();
         consultation = source.getConsultation().getValue();
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
@@ -124,7 +131,7 @@ class JsonAdaptedStudent {
         if (masteryCheck.equals(LocalDate.of(0001, 01, 01))) {
             modelMasteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
         } else {
-            modelMasteryCheck = new MasteryCheck(masteryCheck);
+            modelMasteryCheck = new MasteryCheck(masteryCheck, masteryCheckIsDone);
         }
 
         if (remark == null) {
