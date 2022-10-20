@@ -51,10 +51,9 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleDescription;
     @FXML
-    private Label prereqs;
-
+    private Label prerequisite;
     @FXML
-    private Label lessonTypes;
+    private Label preclusion;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -85,8 +84,12 @@ public class ModuleCard extends UiPart<Region> {
 
     private void showDetailedModuleInformation() {
         expandedModuleInfo.setVisible(true);
+
         moduleDescription.setText(module.getDescription());
         moduleDescription.setWrapText(true);
+
+        prerequisite.setText(module.getPrerequisite());
+        preclusion.setText(module.getPreclusion());
     }
 
     private Pill createSemesterPill(int semesterNum) {
