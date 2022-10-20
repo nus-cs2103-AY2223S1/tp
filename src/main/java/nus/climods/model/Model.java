@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
+import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
@@ -81,4 +82,6 @@ public interface Model {
     ObservableList<Module> getFilteredModuleList();
 
     void setFilteredModuleList(Predicate<Module> predicate);
+
+    Module getModule(String moduleCode) throws CommandException;
 }

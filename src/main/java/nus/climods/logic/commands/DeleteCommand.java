@@ -1,13 +1,9 @@
 package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static nus.climods.model.module.UserModule.MESSAGE_MODULE_NOT_FOUND;
-
-import java.util.Optional;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
-import nus.climods.model.module.Module;
 import nus.climods.model.module.UserModule;
 
 
@@ -35,20 +31,11 @@ public class DeleteCommand extends Command {
         this.targetCode = targetCode;
     }
 
-    private Module getModule(Model model, String moduleCode) throws CommandException {
-        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
-
-        if (optionalModule.isEmpty()) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
-        }
-        return optionalModule.get();
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        UserModule toDelete = new UserModule(getModule(model, targetCode));
+        UserModule toDelete = new UserModule(model.getModule(targetCode));
         if (!model.filteredListhasUserModule(toDelete)) {
             return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode));
         }

@@ -59,6 +59,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(userModuleListFilePath);
         this.addressBookFilePath = userModuleListFilePath;
     }
+
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
     }

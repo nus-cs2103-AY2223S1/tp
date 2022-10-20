@@ -2,6 +2,7 @@ package nus.climods.model;
 
 import static java.util.Objects.requireNonNull;
 import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
+import static nus.climods.model.module.UserModule.MESSAGE_MODULE_NOT_FOUND;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.module.CodeContainsKeywordsPredicate;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
@@ -135,5 +137,14 @@ public class ModelManager implements Model {
     public void setFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         this.filteredModuleList.setPredicate(predicate);
+    }
+
+    public Module getModule(String moduleCode) throws CommandException {
+        Optional<Module> optionalModule = moduleList.getListModule(moduleCode);
+
+        if (optionalModule.isEmpty()) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
+        return optionalModule.get();
     }
 }
