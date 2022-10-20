@@ -42,6 +42,14 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label birthday;
+    @FXML
+    private Label healthInsurance;
+    @FXML
+    private Label disabilityInsurance;
+    @FXML
+    private Label criticalIllnessInsurance;
+    @FXML
+    private Label lifeInsurance;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,6 +63,10 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         birthday.setText(person.getBirthday().value);
+        healthInsurance.setText(person.getHealthInsurance().hasInsurance ? "yes" : "no");
+        disabilityInsurance.setText(person.getDisabilityInsurance().hasInsurance ? "yes" : "no");
+        criticalIllnessInsurance.setText(person.getCriticalIllnessInsurance().hasInsurance ? "yes" : "no");
+        lifeInsurance.setText(person.getLifeInsurance().hasInsurance ? "yes" : "no");
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
