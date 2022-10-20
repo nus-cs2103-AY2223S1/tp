@@ -303,7 +303,10 @@ d/ represents the task description, dl/ represents deadline and t/ represents ta
 Step 2. The `AddTaskCommandParser` parses the input and ensures that command is valid.
 For it to be valid, all compulsory field such as deadline and descriptions must be present.
 Tag field is optional. Further checks are that date given are in the correct format of 
-`yyyy-mm-dd`. If these checks are not valid, an exception will be thrown.
+`yyyy-mm-dd`. Also date given must be a valid gregorian calendar date.
+Which means **01 <= dd <= 28/29/30/31** depending on month especially February. 
+**01 <= mm <= 12** for month.
+If these checks are not valid, an exception will be thrown.
 If checks are valid, a new Task instance will be created and a `AddTaskCommand` with the argument
 containing the new Task will be created.
 
