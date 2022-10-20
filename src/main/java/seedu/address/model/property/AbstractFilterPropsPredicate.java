@@ -2,8 +2,6 @@ package seedu.address.model.property;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Person;
-
 /**
  * An abstract class for predicates within the FilterProps method.
  * Since there are three possible ways that a {@code FilterPropsCommand} can be executed,

@@ -5,9 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.person.Name;
 
 /**
- * Tests that a {@code Property}'s {@code Owner} matches the given owner's name and phone.
+ * Tests that a {@code Property}'s {@code Owner} matches the given owner's name.
  */
-public class FilterPropsByOwnerNamePredicate extends AbstractFilterPropsPredicate{
+public class FilterPropsByOwnerNamePredicate extends AbstractFilterPropsPredicate {
     private final Name ownerName;
 
     /**
