@@ -18,6 +18,7 @@ title: Developer Guide
     * [Use case: **Delete a student**](#use-case-delete-a-student)
     * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
     * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
+    * [Use case: **Find student by address**](#use-case-find-student-by-address)
     * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
     * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
   * [Non-Functional Requirement](#non-functional-requirement)
@@ -280,7 +281,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Use Cases
 
-(For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `Teacher`, unless specified otherwise)
+(For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `teacher`, unless specified otherwise)
 
 #### Use case: **Delete a student**
 
@@ -344,6 +345,27 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 - 1b. Multiple students share the same name in the system.
     - 1b1. Teacher’s Pet lists the details of multiple people.
+
+      Use case ends.
+
+#### Use case: **Find student by address**
+
+**MSS**
+
+1. Teacher requests to [find](#use-case-find-student-by-address) a student by address
+2. Teacher’s Pet shows a list of filtered students according to their provided query
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. Teacher requests to find by address without providing any query.
+    - 1a1. Teacher’s Pet displays the normal ordering of students.
+
+      Use case ends.
+
+- 1b. Teacher's Pet detects multiple students share the same address in the system.
+    - 1b1. Teacher’s Pet lists the details of multiple students.
 
       Use case ends.
 
