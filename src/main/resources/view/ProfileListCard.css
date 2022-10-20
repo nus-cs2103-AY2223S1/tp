@@ -5,3 +5,8 @@
 #telegram > .label {
     -fx-font-size: 11pt;
 }
+
+.name_label {
+    -fx-font-size: 14pt;
+    -fx-padding: 0 0 20 0;
+}
