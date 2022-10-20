@@ -309,7 +309,7 @@ Predicates of each type of filter (name and tags) are stored in separate sets in
 
 **Given below is an example usage scenario of filtering**
 
-Step 1. The user wants to filter the for he tagged as `rich` and `fun`.
+Step 1: The user wants to filter the for he tagged as `rich` and `fun`.
 ```
 filter t=rich,fun
 ```
