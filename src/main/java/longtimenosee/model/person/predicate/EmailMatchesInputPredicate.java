@@ -18,4 +18,17 @@ public class EmailMatchesInputPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return person.getEmail().value.equals(input);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof EmailMatchesInputPredicate) {
+                return input.equals(((EmailMatchesInputPredicate) other).input);
+            } else {
+                return false;
+            }
+        }
+    }
 }

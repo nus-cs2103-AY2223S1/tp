@@ -22,4 +22,17 @@ public class IncomeMatchesInputPredicate implements Predicate<Person> {
         IncomeBracket inputIncomeBracket = Income.parseIncome(Double.parseDouble(income));
         return personIncomeBracket.equals(inputIncomeBracket);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof IncomeMatchesInputPredicate) {
+                return income.equals(((IncomeMatchesInputPredicate) other).income);
+            } else {
+                return false;
+            }
+        }
+    }
 }

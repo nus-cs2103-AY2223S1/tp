@@ -21,4 +21,17 @@ public class BirthdayMatchesInputPredicate implements Predicate<Person> {
         LocalDate inputDate = LocalDate.parse(birthday);
         return personBirthday.equals(inputDate);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof BirthdayMatchesInputPredicate) {
+                return birthday.equals(((BirthdayMatchesInputPredicate) other).birthday);
+            } else {
+                return false;
+            }
+        }
+    }
 }

@@ -22,4 +22,17 @@ public class RiskAppetiteMatchesInputPredicate implements Predicate<Person> {
         RiskLevel inputRiskLevel = RiskAppetite.parseRiskLevel(riskAppetite);
         return personRiskLevel.equals(inputRiskLevel);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof RiskAppetiteMatchesInputPredicate) {
+                return riskAppetite.equals(((RiskAppetiteMatchesInputPredicate) other).riskAppetite);
+            } else {
+                return false;
+            }
+        }
+    }
 }

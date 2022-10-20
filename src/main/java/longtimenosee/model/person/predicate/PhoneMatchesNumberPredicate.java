@@ -18,4 +18,17 @@ public class PhoneMatchesNumberPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return person.getPhone().value.contains(number);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof PhoneMatchesNumberPredicate) {
+                return number.equals(((PhoneMatchesNumberPredicate) other).number);
+            } else {
+                return false;
+            }
+        }
+    }
 }

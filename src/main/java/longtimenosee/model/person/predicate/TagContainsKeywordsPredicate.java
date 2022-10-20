@@ -28,5 +28,18 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof TagContainsKeywordsPredicate) {
+                return keywords.equals(((TagContainsKeywordsPredicate) other).keywords);
+            } else {
+                return false;
+            }
+        }
+    }
 }
 
