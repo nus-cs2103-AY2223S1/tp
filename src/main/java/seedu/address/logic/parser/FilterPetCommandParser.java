@@ -41,35 +41,35 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
         }
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        Predicate<Pet> cPredicate = defaultPredicate;
-        Predicate<Pet> nPredicate = defaultPredicate;
-        Predicate<Pet> pPredicate = defaultPredicate;
-        Predicate<Pet> sPredicate = defaultPredicate;
-        Predicate<Pet> vsPredicate = defaultPredicate;
+        Predicate<Pet> colorPredicate = defaultPredicate;
+        Predicate<Pet> namePredicate = defaultPredicate;
+        Predicate<Pet> pricePredicate = defaultPredicate;
+        Predicate<Pet> speciesPredicate = defaultPredicate;
+        Predicate<Pet> vaxPredicate = defaultPredicate;
 
         for (String arg: nameKeywords) {
             arg = arg.trim();
             switch (arg.charAt(0)) {
             case COLOR_PREFIX:
-                cPredicate = PredicateParser.parsePet(arg);
+                colorPredicate = PredicateParser.parsePet(arg);
                 break;
             case PET_NAME_PREFIX:
-                nPredicate = PredicateParser.parsePet(arg);
+                namePredicate = PredicateParser.parsePet(arg);
                 break;
             case PRICE_PREFIX:
-                pPredicate = PredicateParser.parsePet(arg);
+                pricePredicate = PredicateParser.parsePet(arg);
                 break;
             case SPECIES_PREFIX:
-                sPredicate = PredicateParser.parsePet(arg);
+                speciesPredicate = PredicateParser.parsePet(arg);
                 break;
             case VACCINATION_PREFIX:
-                vsPredicate = PredicateParser.parsePet(arg);
+                vaxPredicate = PredicateParser.parsePet(arg);
                 break;
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
             }
         }
-        return new FilterPetCommand(cPredicate, nPredicate, pPredicate, sPredicate, vsPredicate);
+        return new FilterPetCommand(colorPredicate, namePredicate, pricePredicate, speciesPredicate, vaxPredicate);
     }
 }

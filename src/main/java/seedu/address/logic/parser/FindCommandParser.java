@@ -27,11 +27,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        Predicate<Buyer> bPredicate = PredicateParser.parseBuyer(trimmedArgs);
-        Predicate<Deliverer> dPredicate = PredicateParser.parseDeliverer(trimmedArgs);
-        Predicate<Supplier> sPredicate = PredicateParser.parseSupplier(trimmedArgs);
+        Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(trimmedArgs);
+        Predicate<Deliverer> delivererPredicate = PredicateParser.parseDeliverer(trimmedArgs);
+        Predicate<Supplier> supplierPredicate = PredicateParser.parseSupplier(trimmedArgs);
 
-        return new FindCommand(bPredicate, dPredicate, sPredicate,
+        return new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
                 PersonCategory.getFromString("Buyer"));
     }
 
