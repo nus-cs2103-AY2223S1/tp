@@ -2,10 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
@@ -248,6 +250,27 @@ public class AddressBook implements ReadOnlyAddressBook {
         module.deleteSchedule(key);
     }
 
+
+    /**
+     * Removes all selected schedules from this {@code AddressBook}.
+     */
+    public void clearSchedules(ArrayList<ModuleCode> modulesToClear) {
+        if (modulesToClear == null) {
+            for (Module module : getModuleList()) {
+                module.clearSchedules();
+            }
+        } else {
+            for (Module module : getModuleList()) {
+                for (ModuleCode moduleCode : modulesToClear) {
+                    if (module.getCode().fullCode.equals(moduleCode.fullCode.toUpperCase())) {
+                        module.clearSchedules();
+                    }
+                }
+            }
+        }
+
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in ProfNUS.
@@ -312,4 +335,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+
 }

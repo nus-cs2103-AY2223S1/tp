@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_CATEGORY;
@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.schedule.ClassType;
@@ -36,10 +38,12 @@ public class EditScheduleCommand extends Command {
             + "[" + PREFIX_CLASS_TIME + "TIME PERIOD]"
             + "[" + PREFIX_CLASS_CATEGORY + "CLASS TYPE]"
             + "[" + PREFIX_CLASS_VENUE + "CLASS VENUE] \n"
-            + "Example: " + COMMAND_WORD + "1"
-            + PREFIX_WEEKDAY + "Wednesday"
-            + PREFIX_CLASS_TIME + "08:00-10:00 "
-            + PREFIX_CLASS_VENUE + "LT31 ";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_WEEKDAY + " Wednesday "
+            + PREFIX_CLASS_TIME + " 08:00-10:00 "
+            + PREFIX_CLASS_VENUE + " LT31 \n"
+            + "Reminder: the INDEX is the latest schedule list. \n"
+            + "You can type in \"view\" command or click Schedules button to view schedule list.";
 
     public static final String MESSAGE_SUCCESS = "Schedule edited: %1$s";
     public static final String MESSAGE_SCHEDULE_NOT_EXIST = "The schedule doesn't exist";

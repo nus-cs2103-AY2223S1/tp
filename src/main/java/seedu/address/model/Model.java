@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
@@ -111,6 +113,11 @@ public interface Model {
     void deleteSchedule(Schedule target);
 
     /**
+     * Clears all schedules.
+     */
+    void clearSchedules(ArrayList<ModuleCode> keywords);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the ProfNUS.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the ProfNUS.
@@ -173,11 +180,19 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the whole person list */
+
+    ObservableList<Person> getAllPersonList();
+
     /** Returns an unmodifiable view of the filtered tutor list */
     ObservableList<Student> getFilteredTutorList();
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
+
+    /** Returns an unmodifiable view of the whole module list */
+
+    ObservableList<Module> getAllModuleList();
 
     /** Returns an unmodifiable view of the filtered module schedule list */
     ObservableList<Schedule> getFilteredScheduleList();
@@ -214,4 +229,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredScheduleList(Predicate<Schedule> predicate);
+
+
+
 }

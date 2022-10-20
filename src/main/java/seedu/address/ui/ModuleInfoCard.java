@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -8,11 +10,10 @@ import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
 
 /**
- * A UI component that displays information of a {@code Module}.
+ * An UI component that displays more information of a {@code Module}.
  */
-public class ModuleCard extends UiPart<Region> {
-
-    private static final String FXML = "ModuleListCard.fxml";
+public class ModuleInfoCard extends UiPart<Region> {
+    private static final String FXML = "ModuleInfoCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,27 +25,29 @@ public class ModuleCard extends UiPart<Region> {
 
     public final Module module;
 
-    @FXML
+    @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label moduleName;
     @FXML
-    private Label id;
+    private Label moduleDescription;
     @FXML
-    private Label code;
-    @FXML
-    private Label description;
+    private Label moduleCode;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
+     * Creates a {@code ModuleInfoCode} with the given {@code Module}.
      */
-    public ModuleCard(Module module, int displayedIndex) {
+    public ModuleInfoCard(Module module) {
         super(FXML);
         this.module = module;
-        id.setText(displayedIndex + ". ");
-        code.setText(module.getCode().fullCode);
+        moduleName.setText("Module name: " + module.getName().fullName);
+        moduleCode.setText("Module code: " + module.getCode().fullCode);
+        moduleDescription.setText("Description: " + module.getDescription().fullDescription);
+        module.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -55,12 +58,13 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ModuleInfoCard)) {
             return false;
         }
 
         // state check
-        ModuleCard card = (ModuleCard) other;
-        return id.getText().equals(card.id.getText()) && module.equals(card.module);
+        ModuleInfoCard card = (ModuleInfoCard) other;
+        return moduleCode.getText().equals(card.moduleCode.getText())
+                && module.equals(card.module);
     }
 }

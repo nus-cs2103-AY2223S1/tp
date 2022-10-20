@@ -8,24 +8,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteScheduleCommand;
-import seedu.address.logic.commands.EditScheduleCommand;
 import seedu.address.logic.commands.EditStuCommand;
+import seedu.address.logic.commands.EditTeachingAssistantCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewModuleScheduleCommand;
 import seedu.address.logic.commands.module.AddModuleCommand;
 import seedu.address.logic.commands.module.DeleteModuleCommand;
 import seedu.address.logic.commands.module.EditModuleCommand;
 import seedu.address.logic.commands.module.ModuleListCommand;
 import seedu.address.logic.commands.module.ModuleViewCommand;
+import seedu.address.logic.commands.schedule.AddScheduleCommand;
+import seedu.address.logic.commands.schedule.ClearScheduleCommand;
+import seedu.address.logic.commands.schedule.DeleteScheduleCommand;
+import seedu.address.logic.commands.schedule.EditScheduleCommand;
+import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -69,6 +71,9 @@ public class AddressBookParser {
         case EditStuCommand.COMMAND_WORD:
             return new EditStuCommandParser().parse(arguments);
 
+        case EditTeachingAssistantCommand.COMMAND_WORD:
+            return new EditTaParser().parse(arguments);
+
         case EditModuleCommand.COMMAND_WORD:
             return new EditModuleCommandParser().parse(arguments);
 
@@ -89,12 +94,14 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case ClearScheduleCommand.COMMAND_WORD:
+            return new ClearScheduleCommandParser().parse(arguments);
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ViewModuleScheduleCommand.COMMAND_WORD:
+        case ViewScheduleCommand.COMMAND_WORD:
             return new ViewScheduleCommandParser().parse(arguments);
-            // return new ViewScheduleCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

@@ -2,7 +2,22 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<HBox minWidth="300" prefWidth="300" >
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="moduleListView" VBox.vgrow="ALWAYS" />
-</VBox>
+    <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="pane-with-border">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+        </padding>
+        <ListView fx:id="moduleListView" VBox.vgrow="ALWAYS" onMouseClicked="#handleMouseClick" />
+    </VBox>
+
+    <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+          styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+        </padding>
+        <ListView fx:id="targetModuleView" />
+    </VBox>
+</HBox>

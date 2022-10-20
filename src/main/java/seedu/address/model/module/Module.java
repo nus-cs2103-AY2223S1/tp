@@ -119,6 +119,13 @@ public class Module {
     }
 
     /**
+     * clear all schedules of this module.
+     */
+    public void clearSchedules() {
+        schedules.clear();
+    }
+
+    /**
      * Returns true if both modules have the same identity and data fields.
      * This defines a stronger notion of equality between two modules.
      */
@@ -161,6 +168,7 @@ public class Module {
         }
         return builder.toString();
     }
+
 
 
 }
