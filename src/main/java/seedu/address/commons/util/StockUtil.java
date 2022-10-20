@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Utility class containing methods to handle stock levels in the inventory.
  */
@@ -31,8 +33,12 @@ public class StockUtil {
      * Determines the stock health and returns a enum of {@code StockLevel}.
      */
     public static StockLevel determineStockHealth(int currentStock, int minStock) {
+        requireNonNull(currentStock);
+        requireNonNull(minStock);
+
         double mediumStockThreshold = minStock * HIGH_THRESHOLD;
         double lowStockThreshold = minStock * MEDIUM_THRESHOLD;
+
         if (currentStock < lowStockThreshold) {
             return StockLevel.LOW;
         } else if (currentStock < mediumStockThreshold) {
@@ -47,7 +53,9 @@ public class StockUtil {
     /**
      * Translates stock health to border colors.
      */
-    private static String translateStockLevelToColor(StockLevel level) {
+    public static String translateStockLevelToColor(StockLevel level) {
+        requireNonNull(level);
+
         switch (level) {
         case LOW:
             return COLOR_LOW;
