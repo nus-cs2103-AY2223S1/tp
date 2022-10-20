@@ -29,5 +29,15 @@
     "tagged" : [],
     "supplierName" : "Benson Meier",
     "personItem" : "Beef"
+  }, {
+    "name" : "Lamb",
+    "currentStock" : "99",
+    "minStock" : "1",
+    "phone" : "95352563",
+    "price" : "$0.90",
+    "address" : "wall street",
+    "tagged" : [],
+    "supplierName" : "Carl Kurz",
+    "personItem" : "Lamb"
   } ]
 }

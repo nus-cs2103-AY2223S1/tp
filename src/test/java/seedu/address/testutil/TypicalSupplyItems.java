@@ -37,6 +37,6 @@ public class TypicalSupplyItems {
     }
 
     public static List<SupplyItem> getTypicalSupplyItems() {
-        return new ArrayList<>(Arrays.asList(EGGS, GINGER, BEEF));
+        return new ArrayList<>(Arrays.asList(EGGS, GINGER, BEEF, LAMB));
     }
 }
