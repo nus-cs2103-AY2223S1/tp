@@ -5,3 +5,19 @@ html {
     scroll-behavior: auto;
   }
 }
+
+.page-content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  overflow-x: clip;
+
+  .sticky-toc {
+    width: 25%;
+    align-self: flex-start;
+  }
+
+  .wrapper {
+    width: 75%;
+  }
+}
