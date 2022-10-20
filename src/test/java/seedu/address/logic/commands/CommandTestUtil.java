@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -39,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_BIRTHDAY_AMY = "1 January 2000";
     public static final String VALID_BIRTHDAY_BOB = "1 February 2000";
+    public static final String VALID_REMINDER_AMY = "Amy's Reminder";
+    public static final String VALID_REMINDER_BOB = "Bob's Reminder";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,6 +55,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
+    public static final String REMINDER_DESC_AMY = " " + PREFIX_REMINDER + VALID_REMINDER_AMY;
+    public static final String REMINDER_DESC_BOB = " " + PREFIX_REMINDER + VALID_REMINDER_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -68,10 +73,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).withBirthday(VALID_BIRTHDAY_AMY).build();
+                .withTags(VALID_TAG_FRIEND).withBirthday(VALID_BIRTHDAY_AMY).withReminders(VALID_REMINDER_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withBirthday(VALID_BIRTHDAY_BOB).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withBirthday(VALID_BIRTHDAY_BOB)
+                .withReminders(VALID_REMINDER_BOB).build();
     }
 
     /**
