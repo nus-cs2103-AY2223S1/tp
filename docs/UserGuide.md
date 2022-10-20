@@ -39,7 +39,7 @@ title: User Guide
    
     * **`list`** : Displays internship application.
 
-    * **`add`**`c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` : Adds an internship application on `2022-01-01` to `Google` with contact number `11111111` and email `google@example.com` for the role of `Software Engineer` to **CinternS**.
+    * **`add`**`c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` : Adds an internship application that was submitted on `2022-01-01` to `Google` with contact number `11111111` and email `google@example.com` for the role of `Software Engineer` to **CinternS**.
 
     * **`delete`**`2` : Deletes the 2nd application shown in the current list.
    
@@ -71,7 +71,7 @@ title: User Guide
   e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `d/DATE p/POSITION`, `p/POSITION d/DATE` is also acceptable.
+  e.g. if the command specifies `d/DATE_APPLIED p/POSITION`, `p/POSITION d/DATE_APPLIED` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
   e.g. if you specify `ct/12341234 ct/62226222`, only `ct/62226222` will be taken.
@@ -90,7 +90,7 @@ Format: `help`
 
 Adds an internship application to the list.
 
-Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION [t/TAG]...`
+Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 Date must be specified in the format <em>yyyy-MM-dd</em>.
@@ -140,7 +140,7 @@ Examples:
 ### Editing an internship application: `edit`
 Edits an existing application in the CinternS.
 
-Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE] [t/TAG]...`
+Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`
 
 * Edits the application at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed application list. 
@@ -191,15 +191,15 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                                              |
-| **Add**    | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
-| **List**   | `list`                                                                                                                                                                              |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                 |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                            |
-| **Edit**   | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
-| **Clear**  | `clear`                                                                                                                                                                             |
-| **Exit**   | `exit`                                                                                                                                                                              |
+| Action     | Format, Examples                                                                                                                                                                            |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                                                      |
+| **Add**    | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
+| **List**   | `list`                                                                                                                                                                                      |
+| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
+| **Edit**   | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
+| **Clear**  | `clear`                                                                                                                                                                                     |
+| **Exit**   | `exit`                                                                                                                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
