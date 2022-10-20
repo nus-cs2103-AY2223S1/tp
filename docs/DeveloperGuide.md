@@ -386,6 +386,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**UC03: Delete debts**
+
+**MSS**
+
+1.  User requests to list persons
+1.  PayMeLah shows a list of persons
+1.  User requests to delete specific debts from a specific person in the list
+1.  PayMeLah deletes these debts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given indexes are invalid.
+
+    * 3a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
 
 **UC04: Clear debts**
 
