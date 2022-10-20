@@ -23,7 +23,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_SUCCESS = "Viewed Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Person viewed";
 
     private final Index index;
 
@@ -48,7 +48,7 @@ public class ViewCommand extends Command {
         Person personToView = lastShownList.get(index.getZeroBased());
 
         model.updateViewedPersonList(new SamePersonPredicate(personToView));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName().fullName));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
