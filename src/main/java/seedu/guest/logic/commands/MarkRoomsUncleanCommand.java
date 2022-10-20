@@ -15,6 +15,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 import seedu.guest.model.guest.Room;
 
 /**
@@ -62,8 +63,9 @@ public class MarkRoomsUncleanCommand extends Command {
         NumberOfGuests updatedNumberOfGuests = guestToEdit.getNumberOfGuests();
         IsRoomClean updatedIsRoomClean = new IsRoomClean("no");
         Bill updatedBill = guestToEdit.getBill();
+        Request updatedRequest = guestToEdit.getRequest();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
-                updatedNumberOfGuests, updatedIsRoomClean, updatedBill);
+                updatedNumberOfGuests, updatedIsRoomClean, updatedBill, updatedRequest);
     }
 
 }
