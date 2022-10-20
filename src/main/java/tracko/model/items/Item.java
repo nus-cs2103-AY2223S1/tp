@@ -61,7 +61,7 @@ public class Item {
         }
 
         return otherItem != null
-                && otherItem.getItemName().equals(getItemName());
+                && otherItem.getItemName().toString().equalsIgnoreCase(getItemName().toString());
     }
 
     /**

@@ -2,6 +2,8 @@ package tracko.logic.parser.order;
 
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
+import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -14,6 +16,7 @@ import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.logic.parser.*;
 import tracko.logic.parser.exceptions.ParseException;
+import tracko.model.order.ItemQuantityPair;
 import tracko.model.tag.Tag;
 
 /**
@@ -30,7 +33,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
-                    CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                    CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_ITEM, CliSyntax.PREFIX_QUANTITY);
 
         Index index;
 
@@ -100,10 +103,9 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         }
 
         if (isItemPrefixPresent && isQuantityPrefixPresent) {
-            editOrderDescriptor.setAddress(ParserUtil.parseAddress(
-                    argMultimap.getValue(CliSyntax.PREFIX_ITEM).get()));
-            editOrderDescriptor.setAddress(ParserUtil.parseAddress(
-                    argMultimap.getValue(CliSyntax.PREFIX_ITEM).get()));
+            String item = argMultimap.getValue(PREFIX_ITEM).get();
+            Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
+            editOrderDescriptor.setItemToEdit(new ItemQuantityPair(item, quantity));
         }
     }
 }

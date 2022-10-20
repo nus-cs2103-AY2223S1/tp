@@ -16,6 +16,7 @@ import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.items.Item;
+import tracko.model.items.exceptions.ItemNotFoundException;
 import tracko.model.order.Order;
 import tracko.storage.Storage;
 
@@ -44,7 +45,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String userInput) throws CommandException, ParseException {
+    public CommandResult execute(String userInput) throws CommandException, ParseException, ItemNotFoundException {
         logger.info("----------------[USER INPUT][" + userInput + "]");
 
         CommandResult commandResult;

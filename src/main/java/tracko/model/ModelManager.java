@@ -108,6 +108,13 @@ public class ModelManager implements Model {
         return trackO.getOrderList();
     }
 
+    @Override
+    public void setOrder(Order orderToEdit, Order editedOrder) {
+        requireAllNonNull(orderToEdit, editedOrder);
+
+        trackO.setOrder(orderToEdit, editedOrder);
+    }
+
     //=========== Filtered Order List Accessors =============================================================
 
     /**

@@ -131,4 +131,5 @@ public interface Model {
      */
     ObservableList<Item> getInventoryList();
 
+    void setOrder(Order orderToEdit, Order editedOrder);
 }

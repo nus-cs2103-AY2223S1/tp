@@ -1,9 +1,11 @@
 package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
+import static tracko.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.*;
 
+import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.CollectionUtil;
 import tracko.logic.commands.Command;
@@ -11,15 +13,19 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
+import tracko.model.items.Description;
+import tracko.model.items.Item;
+import tracko.model.items.ItemName;
+import tracko.model.items.Quantity;
+import tracko.model.items.exceptions.ItemNotFoundException;
 import tracko.model.order.*;
-import tracko.model.tag.Tag;
 
 /**
  * Edits the details of an existing Order in the address book.
  */
 public class EditOrderCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edito";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the order identified "
             + "by the index number used in the displayed order list. "
@@ -57,38 +63,55 @@ public class EditOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // requireNonNull(model);
-        // List<Order> lastShownList = model.getFilteredOrderList();
-        //
-        // if (index.getZeroBased() >= lastShownList.size()) {
-        //    throw new CommandException(Messages.MESSAGE_INVALID_Order_DISPLAYED_INDEX);
-        // }
-        //
-        // Order OrderToEdit = lastShownList.get(index.getZeroBased());
-        // Order editedOrder = createEditedOrder(OrderToEdit, EditOrderDescriptor);
-        //
-        // if (!OrderToEdit.isSameOrder(editedOrder) && model.hasOrder(editedOrder)) {
-        //    throw new CommandException(MESSAGE_DUPLICATE_Order);
-        // }
-        //
-        // model.setOrder(OrderToEdit, editedOrder);
-        // model.updateFilteredOrderList(PREDICATE_SHOW_ALL_OrderS);
-        // return new CommandResult(String.format(MESSAGE_EDIT_Order_SUCCESS, editedOrder));
-        // TODO: implement edit order functionality
-        return null;
+         requireNonNull(model);
+         List<Order> lastShownList = model.getFilteredOrderList();
+
+         if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+         }
+
+         Order orderToEdit = lastShownList.get(index.getZeroBased());
+         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
+
+         model.setOrder(orderToEdit, editedOrder);
+         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
     }
 
     /**
      * Creates and returns a {@code Order} with the details of {@code OrderToEdit}
      * edited with {@code EditOrderDescriptor}.
      */
-    private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor) {
+    private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor, Model model)
+        throws CommandException {
         assert orderToEdit != null;
 
         Name updatedName = editOrderDescriptor.getName().orElse(orderToEdit.getName());
         Phone updatedPhone = editOrderDescriptor.getPhone().orElse(orderToEdit.getPhone());
         Email updatedEmail = editOrderDescriptor.getEmail().orElse(orderToEdit.getEmail());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
+
+        // Run checks on whether the item is in the inventory list
+        Optional<ItemQuantityPair> itemToEdit = editOrderDescriptor.getItemToEdit();
+        if (!itemToEdit.equals(Optional.empty())) {
+            List<Item> items = model.getFilteredItemList();
+            Item itemToEditPlaceholder = new Item(new ItemName(itemToEdit.get().getItem()),
+                    new Description("Dummy description"), new Quantity(itemToEdit.get().getValue()), new HashSet<>());
+            boolean doesItemExistInList = false;
+
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).isSameItem(itemToEditPlaceholder)) {
+                    editOrderDescriptor.updateItemList(orderToEdit, itemToEdit.get());
+                    doesItemExistInList = true;
+                    break;
+                }
+            }
+
+            if(!doesItemExistInList) {
+                throw new CommandException("The item that is being added does not exist in the inventory list.");
+            }
+        }
+
         List<ItemQuantityPair> updatedItemList = editOrderDescriptor.getItemList().orElse(orderToEdit.getItemList());
         boolean isPaid = orderToEdit.getPaidStatus();
         boolean isDelivered = orderToEdit.getDeliveryStatus();
@@ -125,6 +148,7 @@ public class EditOrderCommand extends Command {
         private Email email;
         private Address address;
         private List<ItemQuantityPair> itemList;
+        private ItemQuantityPair itemToEdit;
 
         public EditOrderDescriptor() {}
 
@@ -138,6 +162,7 @@ public class EditOrderCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setItemList(toCopy.itemList);
+            setItemToEdit(toCopy.itemToEdit);
         }
 
 
@@ -146,7 +171,7 @@ public class EditOrderCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, itemList);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, itemToEdit);
         }
 
         public void setName(Name name) {
@@ -185,8 +210,40 @@ public class EditOrderCommand extends Command {
             return Optional.ofNullable(itemList);
         }
 
+        public Optional<ItemQuantityPair> getItemToEdit() {
+            return Optional.ofNullable(itemToEdit);
+        }
+
+        public void setItemToEdit(ItemQuantityPair itemToEdit) {
+            this.itemToEdit = itemToEdit;
+        }
+
         public void setItemList(List<ItemQuantityPair> itemList) {
             this.itemList = itemList;
+        }
+
+        public void updateItemList(Order orderToEdit, ItemQuantityPair itemToEdit) {
+            List<ItemQuantityPair> orderedItems = orderToEdit.getItemList();
+            boolean hasItemBeenUpdated = false;
+            for (int i = 0; i < orderedItems.size(); i++) {
+                ItemQuantityPair itemQuantityPair = orderedItems.get(i);
+                if (itemQuantityPair.getItem().equalsIgnoreCase(itemToEdit.getItem())) {
+                    if (itemToEdit.getValue() == 0) {
+                        orderedItems.remove(i);
+                        hasItemBeenUpdated = true;
+                    } else if (itemQuantityPair.getValue() != itemToEdit.getValue()) {
+                        ItemQuantityPair updatedItem = new ItemQuantityPair(itemQuantityPair.getKey(), itemToEdit.getValue());
+                        orderedItems.set(i, updatedItem);
+                        hasItemBeenUpdated = true;
+                    }
+                }
+            }
+
+            if (!hasItemBeenUpdated && itemToEdit.getValue() != 0) {
+                orderedItems.add(itemToEdit);
+            }
+
+            this.itemList = orderedItems;
         }
 
         @Override

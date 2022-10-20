@@ -8,10 +8,12 @@ import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.Set;
 
 import tracko.logic.commands.order.AddOrderCommand;
-import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
+import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
+import tracko.model.items.Item;
 import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 import tracko.model.tag.Tag;
@@ -53,22 +55,16 @@ public class OrderUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditOrderDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditOrderDescriptorDetails(EditOrderDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
+        descriptor.getItemToEdit().ifPresent(itemToEdit -> sb.append(PREFIX_ITEM).append(itemToEdit.getKey())
+                .append(PREFIX_QUANTITY).append(itemToEdit.getValue()));
         return sb.toString();
     }
 }
