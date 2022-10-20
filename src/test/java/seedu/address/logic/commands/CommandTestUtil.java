@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,14 +12,11 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.client.Person;
 import seedu.address.ui.Ui;
 
@@ -123,18 +119,19 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
-    /**
-     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().toString().split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPersonList().size());
-    }
+    //    /**
+    //     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
+    //     * {@code model}'s address book.
+    //     */
+    //    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    //
+    //        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+    //        final String[] splitName = person.getName().toString().split("\\s+");
+    //        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+    //
+    //        assertEquals(1, model.getFilteredPersonList().size());
+    //    }
 
 }

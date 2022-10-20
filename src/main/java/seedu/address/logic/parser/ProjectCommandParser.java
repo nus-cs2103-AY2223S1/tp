@@ -22,6 +22,9 @@ import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
 import seedu.address.logic.commands.project.SortProjectCommand;
+import seedu.address.logic.commands.project.find.FindProjectByNameCommand;
+import seedu.address.logic.commands.project.find.FindProjectByRepositoryCommand;
+import seedu.address.logic.commands.project.find.FindProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -30,6 +33,8 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.model.project.Repository;
+import seedu.address.model.project.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.project.predicates.RepositoryContainsKeywordsPredicate;
 
 
 /**
@@ -59,6 +64,9 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             return parseListProjectCommand(arguments);
         case SetProjectDefaultViewCommand.COMMAND_FLAG:
             return parseSetProjectDefaultViewCommand(arguments);
+        case FindProjectCommand.COMMAND_FLAG:
+            return parseFindProjectCommand(arguments);
+
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -219,6 +227,40 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         return new SortProjectCommand(sortPrefix, key);
+    }
+
+    private FindProjectCommand parseFindProjectCommand(String arguments) throws ParseException {
+        try {
+
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY);
+
+            String trimmedArgs = arguments.trim();
+
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE));
+            }
+
+
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+                return new FindProjectByNameCommand(new NameContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_NAME)));
+            }
+
+            //implies rePrefixesPresent(argMultimap, PREFIX_REPOSITORY) is true
+            return new FindProjectByRepositoryCommand(new RepositoryContainsKeywordsPredicate(
+                    argMultimap.getAllValues(PREFIX_REPOSITORY)));
+
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE), pe);
+        }
+
+    }
+
+    private FindProjectCommand parseFindIssueCommand(String flag, String arguments) throws ParseException {
+        return parseFindProjectCommand(arguments);
     }
 
     private ListProjectCommand parseListProjectCommand(String arguments) {

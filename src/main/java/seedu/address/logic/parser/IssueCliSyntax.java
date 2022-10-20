@@ -11,5 +11,6 @@ public class IssueCliSyntax {
     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
     public static final Prefix PREFIX_PROJECT_ID = new Prefix("pid/");
     public static final Prefix PREFIX_ISSUE_ID = new Prefix("iid/");
+    public static final Prefix PREFIX_STATUS = new Prefix("s/");
 
 }
