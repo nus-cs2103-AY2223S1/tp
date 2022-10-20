@@ -51,17 +51,17 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
         if (argMultimap.getValue(PREFIX_PHONE).isEmpty()) {
             phone = new Phone();
         } else {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
         if (argMultimap.getValue(PREFIX_PARENT_NAME).isEmpty()) {
             parentName = new Name();
         } else {
-            parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).orElse(""));
+            parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENT_NAME).get());
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
             email = new Email();
         } else {
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
