@@ -368,9 +368,9 @@
     -fx-pref-width: 140px;
 }
 
-#completedStatus {
+#takenStatus {
     -fx-background-radius: 16, 16, 0, 0;
     -fx-alignment: center;
     -fx-text-fill: white;
-    -fx-pref-width: 100px;
+    -fx-pref-width: 70px;
 }
