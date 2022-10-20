@@ -101,14 +101,12 @@ public class MainApp extends Application {
             taskListOptional = storage.readTaskList();
             if (!taskListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TaskList");
-                FileUtil.createIfMissing(Path.of("data\\tasklist.json"));
             }
             initialTasks = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
 
             inventoryOptional = storage.readInventory();
             if (!inventoryOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Inventory");
-                FileUtil.createIfMissing(Path.of("data\\inventory.json"));
             }
             initialInventory = inventoryOptional.orElseGet(SampleDataUtil::getSampleInventory);
         } catch (DataConversionException e) {
