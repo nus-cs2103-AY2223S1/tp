@@ -137,7 +137,6 @@ public class EditCommand extends Command {
         return new Person(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
                 updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes,
                 updatedTags);
-
     }
 
     @Override
@@ -295,7 +294,6 @@ public class EditCommand extends Command {
         }
 
         public Optional<AdditionalNotes> getAppendedAdditionalNotes() {
-            System.out.println(appendedAdditionalNotes);
             return Optional.ofNullable(appendedAdditionalNotes);
         }
 
@@ -350,6 +348,7 @@ public class EditCommand extends Command {
                     && getMoneyPaid().equals(e.getMoneyPaid())
                     && getRatesPerClass().equals(e.getRatesPerClass())
                     && getAdditionalNotes().equals(e.getAdditionalNotes())
+                    && getAppendedAdditionalNotes().equals(e.getAppendedAdditionalNotes())
                     && getTags().equals(e.getTags());
         }
     }

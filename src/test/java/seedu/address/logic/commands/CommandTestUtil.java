@@ -51,6 +51,7 @@ public class CommandTestUtil {
     public static final Integer VALID_RATES_PER_CLASS_AMY = 50;
     public static final Integer VALID_RATES_PER_CLASS_BOB = 50;
     public static final String VALID_ADDITIONAL_NOTES_AMY = "alive person";
+    public static final String VALID_DIFFERENT_ADDITIONAL_NOTES_AMY = "dead person";
     public static final String VALID_ADDITIONAL_NOTES_BOB = "alive person";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
