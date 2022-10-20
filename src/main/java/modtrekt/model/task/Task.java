@@ -78,11 +78,11 @@ public class Task implements Comparable<Task> {
     }
 
     public Task archive() {
-        return new Task(this.description, this.module, true);
+        return new Task(this.description, this.module, true, priority);
     }
 
     public Task unarchive() {
-        return new Task(this.description, this.module, false);
+        return new Task(this.description, this.module, false, priority);
     }
 
     /**
