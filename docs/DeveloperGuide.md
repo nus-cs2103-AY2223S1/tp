@@ -167,6 +167,32 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] History feature
+
+#### Proposed Implementation
+
+The proposed history feature is facilitated by managing commands with the new `HistoryList` component. Additionally, it implements the following features:
+
+* `HistoryList#addToHistory()` - Adds a command to a list.
+* `HistoryList#isMax()` - Checks if the list already has five commands.
+* `HistoryList#printList()` - Prints the current contents of the list.
+
+Given below is an example usage scenario and how the grouping mechanism behaves at each step.
+
+Step 1. The user executes `list` to see the list of contacts. The `AddressBookParser` then calls `HistoryList.addToHistory(list)` to add the command to the queue.
+
+Step 2. The user executes `help` to get help for his commands. The `AddressBookParser` then calls `HistoryList.addToHistory(help)` to add the command to the queue.
+
+Step 3. The user now wants to see his past few commands and executes `history` to see. The `HistoryCommand` then calls the `HistoryList.printList()` to show the previous commands.
+
+The following sequence diagram shows how the `HistoryCommand()` command works:
+
+![CreateGroupSequenceDiagram](images/HistorySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If there are no previous commands, then a message indicating there are no commands will be printed.
+
+</div>
+
 ### \[Proposed\] Grouping feature
 
 #### Proposed Implementation
