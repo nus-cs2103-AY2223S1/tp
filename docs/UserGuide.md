@@ -138,6 +138,18 @@ Examples:
 * `assign_task 1 Alex` will assign the first task on the task list to a member in the team named Alex.
 * `assign_task 2 Bernice` will assign the second task on the task list to a member in the team named Bernice.
 
+### Assign task to random team member: `assign_task_rand`
+
+Assign an existing task to a random team member in the user’s team. Will display an error message if either the task is
+not found in the user’s team or if there are no team members to assign the task to (if the team is empty, or if the task
+has already been assigned to all members of the team.
+
+Format: `assign_task_rand TASK_INDEX`
+
+Examples:
+* `assign_task_rand 1` will assign the first task on the task list to a random team member.
+
+
 ### Set Deadline for task: `set_deadline`
 
 Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If

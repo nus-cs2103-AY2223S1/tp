@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -34,7 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams = new UniqueTeamList();
     }
 
-    public AddressBook() {
+    private AddressBook() {
     }
 
     /**
@@ -43,6 +44,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Initialises a new Addressbook with a default team.
+     */
+    public static AddressBook createNewAddressBook() {
+        Team defaultTeam = Team.createDefaultTeam();
+        AddressBook ab = new AddressBook();
+        ab.addTeam(defaultTeam);
+        ab.setTeam(defaultTeam);
+        return ab;
     }
 
     //// list overwrite operations
@@ -130,6 +142,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTeams(List<Team> teams) {
         this.teams.setTeams(teams);
     }
+    //// link related operations
+    public boolean hasLink(Link link) {
+        return getTeam().hasLink(link);
+    }
+
+    public void addLink(Link link) {
+        getTeam().addLink(link);
+    }
+
+    public void setLink(Link target, Link editedLink) {
+        requireNonNull(editedLink);
+        getTeam().setLink(target, editedLink);
+    }
+
+    public void deleteLink(Link link) {
+        getTeam().deleteLink(link);
+    }
+
 
     //// util methods
 
@@ -148,6 +178,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Team> getTeamList() {
         return teams.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Link> getLinkList() {
+        return getTeam().getLinkList();
     }
 
     @Override

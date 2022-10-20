@@ -72,7 +72,7 @@ shadowJar {
 }
 
 run {
-    enableAssertions = true;
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.team.Url;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -121,4 +122,24 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String url} into a {@code Url}
+     */
+    public static Url parseUrl(String url) throws ParseException {
+        requireNonNull(url);
+        String trimmedUrl = url.trim();
+
+        String trimmedUrlWithHttps = Url.isValidUrl(trimmedUrl)
+                ? trimmedUrl //If it is already a valid url, do not append.
+                : trimmedUrl.startsWith("http") | trimmedUrl.startsWith("https")
+                ? trimmedUrl //If it starts with http or https, do not append.
+                : "https://" + trimmedUrl;
+
+        if (!Url.isValidUrl(trimmedUrlWithHttps)) {
+            throw new ParseException(Url.MESSAGE_CONSTRAINTS);
+        }
+        return new Url(trimmedUrlWithHttps);
+    }
+
 }
