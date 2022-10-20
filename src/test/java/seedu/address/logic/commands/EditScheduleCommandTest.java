@@ -15,15 +15,16 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.schedule.EditScheduleCommand;
 import seedu.address.logic.commands.schedule.EditScheduleCommand.EditScheduleDescriptor;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.Weekdays;
 import seedu.address.model.person.Person;
@@ -173,6 +174,11 @@ public class EditScheduleCommandTest {
         }
 
         @Override
+        public void clearSchedules(ArrayList<ModuleCode> keywords) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -208,12 +214,22 @@ public class EditScheduleCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getAllPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Student> getFilteredTutorList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Module> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getAllModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 

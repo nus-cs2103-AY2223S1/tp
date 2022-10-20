@@ -2,21 +2,14 @@ package seedu.address.logic.commands.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.schedule.Schedule;
 
 /**
  * Clears all schedules which satisfies selection requirements.
@@ -35,6 +28,11 @@ public class ClearScheduleCommand extends Command {
     public ClearScheduleCommand() {
         modulesToClear = null;
     }
+
+    /**
+     * Constructor of ClearScheduleCommand
+     * @param modulesToClear List of ModuleCode to clear.
+     */
     public ClearScheduleCommand(ArrayList<ModuleCode> modulesToClear) {
         this.modulesToClear = new ArrayList<>();
         this.modulesToClear.addAll(modulesToClear);

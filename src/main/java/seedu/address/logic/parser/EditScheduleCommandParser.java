@@ -95,7 +95,7 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
             if (startHour < 7) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
             }
-            if (endHour >= 22 && endMin > 0 ) {
+            if (endHour >= 22 && endMin > 0) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
             }
 

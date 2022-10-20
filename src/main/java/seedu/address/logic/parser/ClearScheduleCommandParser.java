@@ -2,18 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.schedule.ClearScheduleCommand;
-import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
+
 
 
 /**
@@ -41,7 +38,7 @@ public class ClearScheduleCommandParser implements Parser<ClearScheduleCommand> 
 
         ArrayList<ModuleCode> modulesToClear = new ArrayList<>();
         Set<String> modulesList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE_OF_SCHEDULE));
-        for(String moduleCode : modulesList) {
+        for (String moduleCode : modulesList) {
             modulesToClear.add(new ModuleCode(moduleCode));
         }
 

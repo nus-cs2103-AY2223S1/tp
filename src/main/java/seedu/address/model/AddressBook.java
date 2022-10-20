@@ -8,7 +8,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
@@ -257,12 +256,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void clearSchedules(ArrayList<ModuleCode> modulesToClear) {
         if (modulesToClear == null) {
-            for(Module module : getModuleList()){
+            for (Module module : getModuleList()) {
                 module.clearSchedules();
             }
         } else {
-            for(Module module : getModuleList()){
-                for(ModuleCode moduleCode : modulesToClear) {
+            for (Module module : getModuleList()) {
+                for (ModuleCode moduleCode : modulesToClear) {
                     if (module.getCode().fullCode.equals(moduleCode.fullCode.toUpperCase())) {
                         module.clearSchedules();
                     }
