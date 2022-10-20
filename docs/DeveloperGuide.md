@@ -100,7 +100,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delClient 1")` API call.
 
-![Interactions Inside the Logic Component for the `delClient 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delClient 1` Command](images/DeleteMeetingSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -153,6 +153,41 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Delete Meeting Feature
+
+Syntax: `delMeeting i/1`
+
+Purpose: Delete a specified `meeting` from the Meeting List in `Model`
+
+#### Implementation
+
+Usage Scenario of `delMeeting`:
+
+1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
+2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`. 
+
+Below is a sequence diagram that illustrates the execution of `delMeeting` command and the interaction with `Model`. 
+
+![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `delMeeting`.
+
+![DeleteMeetingActivityDiagram](images/DeleteMeetingActivitiyDiagram.png)
+
+#### Design Considerations
+
+Aspect: How many meetings to delete in one command
+
+- Alternative Solution 1 (Current Choice): Allows only one deletion
+  - Pros: Easy to implement
+  - Cons: Troublesome in the event where multiple meetings 
+- Alternative Solution 2: Allows multiple deletion
+  - Pros: Convenient to delete multiple meetings when needed.
+  - Cons: Complex to implement
+- Considering that the approach taken to develop MyInsuRec is a breath first approach, 
+where we should only build to the point where every iteration is a working product, 
+**Solution 1** is thus chosen as it is easier to implement.
 
 ### \[Proposed\] Undo/redo feature
 

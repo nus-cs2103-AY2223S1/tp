@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs command;
+if () then ([Valid Index])
+  :Delete all occurences of
+  the specified meeting;
+else ([else])
+  :Throws error;
+endif
+
+stop
+
+@enduml
