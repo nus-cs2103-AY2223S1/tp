@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+*The project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by
+  [se-education.org](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -110,8 +111,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `MyInsuRecParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MyInsuRecParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `MyInsuRecParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MyInsuRecParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -154,91 +155,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedMyInsuRec`. It extends `MyInsuRec` with an undo/redo history, stored internally as an `myInsuRecStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedMyInsuRec#commit()` — Saves the current MyInsuRec state in its history.
-* `VersionedMyInsuRec#undo()` — Restores the previous MyInsuRec state from its history.
-* `VersionedMyInsuRec#redo()` — Restores a previously undone MyInsuRec state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitMyInsuRec()`, `Model#undoMyInsuRec()` and `Model#redoMyInsuRec()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedMyInsuRec` will be initialized with the initial MyInsuRec state, and the `currentStatePointer` pointing to that single MyInsuRec state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delClient 5` command to delete the 5th client in MyInsuRec. The `delClient` command calls `Model#commitMyInsuRec()`, causing the modified state of MyInsuRec after the `delClient 5` command executes to be saved in the `myInsuRecStateList`, and the `currentStatePointer` is shifted to the newly inserted MyInsuRec state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `addClient n/John …​` to add a new client. The `addClient` command also calls `Model#commitMyInsuRec()`, causing another modified MyInsuRec state to be saved into the `myInsuRecStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitMyInsuRec()`, so the MyInsuRec state will not be saved into the `myInsuRecStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMyInsuRec()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous MyInsuRec state, and restores MyInsuRec to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial MyInsuRec state, then there are no previous MyInsuRec states to restore. The `undo` command uses `Model#canUndoMyInsuRec()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoMyInsuRec()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores MyInsuRec to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `MyInsuRecStateList.size() - 1`, pointing to the latest MyInsuRec state, then there are no undone MyInsuRec states to restore. The `redo` command uses `Model#canRedoMyInsuRec()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `listClient`. Commands that do not modify MyInsuRec, such as `listClient`, will usually not call `Model#commitMyInsuRec()`, `Model#undoMyInsuRec()` or `Model#redoMyInsuRec()`. Thus, the `MyInsuRecStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitMyInsuRec()`. Since the `currentStatePointer` is not pointing at the end of the `MyInsuRecStateList`, all MyInsuRec states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire MyInsuRec.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delClient`, just save the client being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -275,18 +191,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
-| Priority | As a(n) …​      | I want to …​            | So that I can…​                             |
-|----------|-----------------|-------------------------|---------------------------------------------|
-| `* * *`  | insurance agent | add client meetings     | keep track of when to meet clients          |
-| `* * *`  | insurance agent | add client details      | keep track of my client's details           |
-| `* * *`  | insurance agent | delete clients' details | remove clients whom I am no longer serving. |
-| `* * *`  | insurance agent | view all my clients     | see who I am providing services to          |
-| `* * *`  | insurance agent | delete client meetings  | remove meetings that are canceled           |
-| `* * *`  | insurance agent | view client meetings    | see when I have meetings                    |
+| Priority | As an …​        | I want to …​                                                      | So that I can…​                                                                   | Conditions                                                             |
+|----------|-----------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | insurance agent | add client details                                                | keep track of my client's details                                                 |                                                                        |
+| `* * *`  | insurance agent | view all my clients                                               | see who I am providing services to                                                |                                                                        |
+| `* * *`  | insurance agent | delete clients' details                                           | remove clients whom I am no longer serving                                        |                                                                        |
+| `* * * ` | insurance agent | I can update my clients details                                   | I have the latest contact details to keep in touch with my clients.               | All fields that uniquely identify a client should be uneditable        |
+| `* * *`  | insurance agent | add client meetings                                               | keep track of when to meet clients                                                | Meetings with timing conflict are not allowed                          |
+| `* * *`  | insurance agent | view all client meetings                                          | see when I have meetings                                                          |                                                                        |
+| `* * *`  | insurance agent | I can see an overview of today’s client meetings                  | I know what my schedule looks like for the day                                    |                                                                        |
+| `* * *`  | insurance agent | delete client meetings                                            | remove meetings that are canceled                                                 |                                                                        |
+| `* *`    | insurance agent | I can add and edit a list of the products a client bought         | I can better track which products might interest them                             | Product are created by the agent before being associated with a client |
+| `* *`    | insurance agent | I need to know which products my clients have bought              | I can gauge the popularity of each product                                        | Clients can be filtered according to the product they bought           |
+| `* *`    | insurance agent | I can see the birthdays of my clients for the upcoming week/month | I can send my clients a thank you/birthday gift and maintain a close relationship |                                                                        |
+| `* *`    | insurance agent | I can set the default views in my app to light mode and dark mode |                                                                                   |                                                                        |
 
-*{More to be added}*
+
 
 ### Use cases
 
@@ -303,7 +225,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User inputs incomplete client data.
+* 1a. User inputs incomplete or duplicate client data.
 
     * 1a1. System shows an error message.
 
@@ -325,15 +247,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
 
       Use case ends.
-
-#### Use case: UC3 - List all clients
-
-**MSS**
-
-1. User requests for a list of all clients.
-2. System shows a list of all clients.
-
-   Use case ends.
 
 #### Use case: UC4 - List all meetings
 
@@ -363,9 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
 
       Use case ends.
-
-
-*{More to be added}*
+    
 
 ### Non-Functional Requirements
 
@@ -380,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, MacOS, Unix
 * **Meeting**: An event that the user with the client at a specific date and time.
-
+* **Timing conflict**: Time periods that overlap. e.g. meetings should not have any timing conflict.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
