@@ -24,7 +24,7 @@ public abstract class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_LOCATION = "NUS";
-    public static final String DEFAULT_USERNAME = "";
+    public static final String DEFAULT_USERNAME = "amyb";
 
 
     private Name name;
@@ -45,7 +45,7 @@ public abstract class PersonBuilder {
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
         location = new Location(DEFAULT_LOCATION);
-        githubUsername = new GithubUsername(DEFAULT_USERNAME, false);
+        githubUsername = new GithubUsername(DEFAULT_USERNAME, true);
     }
 
     /**
@@ -113,7 +113,11 @@ public abstract class PersonBuilder {
      * Sets the {@code GithubUsername} of the {@code Person} that we are building.
      */
     public PersonBuilder withGithubUsername(String username) {
-        this.githubUsername = new GithubUsername(username, true);
+        if (username.equals(GithubUsername.DEFAULT_USERNAME)) {
+            this.githubUsername = new GithubUsername(username, false);
+        } else {
+            this.githubUsername = new GithubUsername(username, true);
+        }
         return this;
     }
 

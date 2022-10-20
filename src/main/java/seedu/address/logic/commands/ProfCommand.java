@@ -9,7 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.StringJoiner;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,6 +29,7 @@ public class ProfCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
+            + "[" + PREFIX_SPECIALISATION + "SPECIALISATION] "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GENDER + "GENDER "
@@ -35,17 +39,31 @@ public class ProfCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Wong Tin Lok "
             + PREFIX_MODULE_CODE + "CS1231S "
+            + PREFIX_SPECIALISATION + "Discrete Math "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "wongTK@example.com "
             + PREFIX_GENDER + "M "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
             + PREFIX_LOCATION + "COM2 LT4 "
-            + PREFIX_GITHUBUSERNAME + "WongWong"
+            + PREFIX_GITHUBUSERNAME + "WongWong "
             + PREFIX_RATING + "5";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Professor already exists in the address book";
+
     public static final String MESSAGE_SUCCESS = "New professor added: %1$s";
+
+    public static final String PROF_TEMPLATE = new StringJoiner(" ").add(COMMAND_WORD)
+        .add(PREFIX_NAME.getPrefix())
+        .add(PREFIX_MODULE_CODE.getPrefix())
+        .add(PREFIX_PHONE.getPrefix())
+        .add(PREFIX_EMAIL.getPrefix())
+        .add(PREFIX_GENDER.getPrefix())
+        .add(PREFIX_TAG.getPrefix())
+        .add(PREFIX_LOCATION.getPrefix())
+        .add(PREFIX_GITHUBUSERNAME.getPrefix())
+        .add(PREFIX_RATING.getPrefix())
+        .toString();
 
     private final Person toAdd;
 
@@ -72,7 +90,7 @@ public class ProfCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProfCommand // instanceof handles nulls
-                && toAdd.equals(((ProfCommand) other).toAdd));
+            || (other instanceof ProfCommand // instanceof handles nulls
+            && toAdd.equals(((ProfCommand) other).toAdd));
     }
 }

@@ -38,8 +38,9 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
                                         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                         @JsonProperty("location") String location,
                                         @JsonProperty("username") String username,
-                                        @JsonProperty("rating") String rating) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating);
+                                        @JsonProperty("rating") String rating,
+                                        @JsonProperty("specialisation") String specialistion) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "", specialistion);
     }
 
     /**
@@ -113,6 +114,12 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
         }
 
         final Location modelLocation = new Location(getLocation());
+
+        if (getUsername() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GithubUsername.class.getSimpleName()));
+        }
+
         final GithubUsername modelUsername;
 
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
@@ -123,14 +130,22 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
             }
             modelUsername = new GithubUsername(getUsername(), true);
         }
+
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
         }
-        if (!Rating.isValidRating(getRating())) {
-            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+
+        final Rating modelRating;
+
+        if (getRating().equals(Rating.EMPTY_RATING)) {
+            modelRating = new Rating(getRating(), false);
+        } else {
+            if (!Rating.isValidRating(getRating())) {
+                throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+            }
+            modelRating = new Rating(getRating(), true);
         }
-        final Rating modelRating = new Rating(getRating());
 
         return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
             modelTags, modelLocation, modelUsername, modelRating);

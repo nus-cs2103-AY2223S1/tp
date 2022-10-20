@@ -1,10 +1,12 @@
-package seedu.address.commons.core;
+package seedu.address.commons.util.core;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Config;
 
 public class ConfigTest {
 
@@ -13,7 +15,7 @@ public class ConfigTest {
         String defaultConfigAsString = "Current log level : INFO\n"
             + "Preference file Location : preferences.json";
 
-        assertEquals(defaultConfigAsString, new Config().toString());
+        Assertions.assertEquals(defaultConfigAsString, new Config().toString());
     }
 
     @Test
