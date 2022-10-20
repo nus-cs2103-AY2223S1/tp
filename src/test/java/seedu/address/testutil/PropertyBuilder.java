@@ -20,7 +20,8 @@ public class PropertyBuilder {
     public static final String DEFAULT_ADDRESS = "333 Thompson Road";
     public static final String DEFAULT_DESCRIPTION = "A 5-storey condo on top of a hill - "
             + "Peak Residence offers you serenity away from the hustle and bustle with breathtaking views all around.";
-    public static final Owner DEFAULT_OWNER = new Owner(new Name("John Doe"), new Phone("80001000"));
+    public static final String DEFAULT_OWNER_NAME = "John Doe";
+    public static final String DEFAULT_OWNER_PHONE = "94351253";
 
     private PropertyName name;
     private Price price;
@@ -38,7 +39,7 @@ public class PropertyBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
         characteristics = null;
-        owner = DEFAULT_OWNER;
+        owner = new Owner(new Name(DEFAULT_OWNER_NAME), new Phone(DEFAULT_OWNER_PHONE));
     }
 
     /**
