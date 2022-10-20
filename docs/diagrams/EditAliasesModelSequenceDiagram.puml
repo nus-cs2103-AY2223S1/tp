@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":UserPrefs" as UserPrefs MODEL_COLOR
+end box
+
+[-> ModelManager : setAliasSettings(a)
+activate ModelManager
+ModelManager -> UserPrefs : setAliasSettings(a)
+activate UserPrefs
+return
+return
+@enduml
