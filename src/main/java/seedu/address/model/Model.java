@@ -86,7 +86,7 @@ public interface Model {
     void updateFilteredClientList(Predicate<Client> predicate);
 
     /**
-     * Updates the total transaction of the filtered client list
+     * Updates the total transaction of the filtered client list.
      */
     double calculateTotalTransaction(ObservableList<Client> filteredClientList);
 }

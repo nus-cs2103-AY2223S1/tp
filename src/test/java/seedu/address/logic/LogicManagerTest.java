@@ -96,7 +96,7 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredClientList().remove(0));
     }
     @Test
-    private void testCalculate_totalTransactions() {
+    public void testCalculate_totalTransactions() {
         UniqueClientList clientList = new UniqueClientList();
         clientList.add(ALICE);
         clientList.add(BENSON);
