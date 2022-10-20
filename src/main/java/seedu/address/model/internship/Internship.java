@@ -72,12 +72,18 @@ public class Internship {
      * This defines a weaker notion of equality between two internships.
      */
     public boolean isSameInternship(Internship otherInternship) {
+
         if (otherInternship == this) {
             return true;
         }
 
+        //Backup for original code
+        //   return otherInternship != null
+        //        && otherInternship.getCompany().equals(getCompany());
+
         return otherInternship != null
-                && otherInternship.getCompany().equals(getCompany());
+                && otherInternship.getCompany().equals(getCompany())
+                && otherInternship.getTags().equals(getTags());
     }
 
     /**
