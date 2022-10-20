@@ -28,8 +28,6 @@ public class Team {
     public Team(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        this.tasks = new UniqueTaskList();
-        this.members = new UniquePersonList();
     }
 
     /**

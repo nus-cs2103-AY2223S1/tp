@@ -265,6 +265,40 @@ Step 3. The user realised that there is some error in the task and wants to unma
 The following sequence diagram shows how the mark task operation works:
 ![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
 
+### Edit Person Feature
+
+#### Implementation
+
+The edit person feature edit the information of a person in the address book, this change is reflected within
+all teams with the edited person as member. The editable information all phone number, email address, physical
+address and tag.
+
+Given below is an example usage scenario
+
+Step 1. The user want to change the phone number of a person in his company to 80779043. Said person is indexed number 4 in
+the global list. The user executes `edit 1 p/80779043`.
+
+Step 2. The parser will create an `edit` command. This `edit command` will call `Model#getFilteredList()`
+to get the `person` specified by the index in the command then create a new `person` with the modified info.
+`Model#updateFiltedPersonList` is called to update all teams with the edited members.
+
+The following sequence diagram shows how the edit task operation works:
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
+### Create Team Feature
+
+#### Implementation
+
+The Create Team Feature allow the user to create a team in EZLead. Team will be stored in a global team list
+
+Step 1. The user wants to create a team named Backend. The user executes `create t/backend`.
+
+Step 2. The parser will create a team object and a `createTeam` command containing created team.
+The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
+
+The following sequence diagram show how the create team operation works:
+![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
+
 _{more aspects and alternatives to be added}
 
 
@@ -304,20 +338,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I can  …​                              | So that I can…​                                    |
-|----------|-----------|----------------------------------------|----------------------------------------------------|
-| `* * *`  | tech lead | change the team structure              | manage the teams (EPIC)                            |
-| `* * *`  | tech lead | create a new team                      |                                                    |
-| `* * *`  | tech lead | edit the name of the team              | keep the team information up to date               |
-| `* * *`  | tech lead | add members to a team                  | update the team when a new member joins            |
-| `* * *`  | tech lead | remove members from a team             | keep the team information up to date               |
-| `* * *`  | tech lead | edit the information of members        | update their information when there is a change    |
-| `* * *`  | tech lead | manage the tasks for the company       | have an overview of the task in the company (EPIC) |
-| `* * *`  | tech lead | create a task                          |                                                    |
-| `* * *`  | tech lead | delete a task                          | unwanted tasks can be removed                      |
-| `* * *`  | tech lead | update a task name                     | respond to changes in the requirements             |
-| `* *  `  | tech lead | set the status of the task to complete | know which task is completed and which task is not |
-| `* *  `  | tech lead | set a deadline for the task            | know when the task should be completed             |
+| Priority | As a …​   | I can  …​                                  | So that I can…​                                    |
+|----------|-----------|--------------------------------------------|----------------------------------------------------|
+| `* * *`  | tech lead | change the team structure                  | manage the teams (EPIC)                            |
+| `* * *`  | tech lead | create a new team                          |                                                    |
+| `* * *`  | tech lead | delete a team                              | remove unwanted teams                              |
+| `* * *`  | tech lead | edit the name of the team                  | keep the team information up to date               |
+| `* * *`  | tech lead | add members to a team                      | update the team when a new member joins            |
+| `* * *`  | tech lead | remove members from a team                 | keep the team information up to date               |
+| `* * *`  | tech lead | edit the information of members            | update their information when there is a change    |
+| `* * *`  | tech lead | manage the tasks for the company           | have an overview of the task in the company (EPIC) |
+| `* * *`  | tech lead | create a task                              |                                                    |
+| `* * *`  | tech lead | delete a task                              | remove unwanted tasks                              |
+| `* * *`  | tech lead | update a task name                         | respond to changes in the requirements             |
+| `* *  `  | tech lead | set the status of the task to complete     | know which task is completed                       |
+| `* *  `  | tech lead | set the status of the task to not complete | know which task is not completed                   |
+| `* *  `  | tech lead | set a deadline for the task                | know when the task should be completed             |
+| `* *  `  | tech lead | see the progress of the team               | know the actively performing teams                 |
 
 *{More to be added}*
 
@@ -473,7 +510,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 
@@ -493,7 +530,85 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC8 - Editing a task name**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team, the task and the new task name.
+2. EZLead updates task name associated to specified task of the team.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC9 - Marking a task item as done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team and the task to be marked as done.
+2. EZLead marks the task associated to specified team as done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC10 - Marking a task item as not done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies  the team and the task to be marked as not done.
+2. EZLead marks the task associated to specified team as not done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 
