@@ -21,14 +21,14 @@ public class PositionTest {
 
     @Test
     public void isValidPosition() {
-        // null phone number
+        // null position
         assertThrows(NullPointerException.class, () -> Position.isValidPosition(null));
 
-        // invalid phone numbers
+        // invalid positions
         assertFalse(Position.isValidPosition("")); // empty string
         assertFalse(Position.isValidPosition(" ")); // spaces only
 
-        // valid phone numbers
+        // valid positions
         assertTrue(Position.isValidPosition("Chief Executive Officer"));
         assertTrue(Position.isValidPosition("General"));
         assertTrue(Position.isValidPosition("UI/UX Designer"));
