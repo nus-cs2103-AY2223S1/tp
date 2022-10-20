@@ -133,6 +133,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Undo & Redo =====================================================================================
+
     @Override
     public void commitApplicationBook() {
         versionedApplicationBook.commit();

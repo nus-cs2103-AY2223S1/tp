@@ -24,6 +24,20 @@ public class VersionedApplicationBook extends ApplicationBook {
     }
 
     /**
+     * Returns the history, i.e. {@code applicationBookStateList}.
+     */
+    public List<ReadOnlyApplicationBook> getHistory() {
+        return applicationBookStateList;
+    }
+
+    /**
+     * Returns the current {@code ApplicationBook} state.
+     */
+    public ReadOnlyApplicationBook getCurrentState() {
+        return applicationBookStateList.get(currentStatePointer);
+    }
+
+    /**
      * Saves a copy of the current {@code ApplicationBook} state at the end of {@code applicationBookStateList}.
      * States after {@code currentStatePointer}, which have been previously undone, are removed.
      */
