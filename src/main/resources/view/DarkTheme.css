@@ -147,7 +147,7 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color:transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -156,6 +156,14 @@
 .result-display .label {
     -fx-text-fill: black !important;
 }
+
+.saved-exercise {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
@@ -333,6 +341,11 @@
 }
 
 #resultDisplay .content {
+    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-radius: 0;
+}
+
+#savedExerciseList .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
 }
