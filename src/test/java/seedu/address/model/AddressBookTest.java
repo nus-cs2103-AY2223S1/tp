@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ECOMMERCE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALIBABA;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
@@ -48,7 +48,7 @@ public class AddressBookTest {
         // Two internships with the same identity fields
         Internship editedAlibaba =
                 new InternshipBuilder(ALIBABA).withAppliedDate(VALID_APPLIED_DATE_TIKTOK)
-                        .withTags(VALID_TAG_BACKEND).build();
+                        .withTags(VALID_TAG_ECOMMERCE).build();
         List<Internship> newInternships = Arrays.asList(ALIBABA, editedAlibaba);
         AddressBookStub newData = new AddressBookStub(newInternships);
 
@@ -72,10 +72,10 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasInternship_internshipWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasInternship_internshipWithSameFieldsInAddressBook_returnsTrue() {
         addressBook.addInternship(ALIBABA);
         Internship editedAlibaba = new InternshipBuilder(ALIBABA)
-                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_BACKEND).build();
+                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_ECOMMERCE).build();
         assertTrue(addressBook.hasInternship(editedAlibaba));
     }
 

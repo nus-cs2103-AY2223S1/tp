@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ECOMMERCE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALIBABA;
 import static seedu.address.testutil.TypicalInternships.TIKTOK;
@@ -44,7 +45,7 @@ public class UniqueInternshipListTest {
         uniqueInternshipList.add(ALIBABA);
         Internship editedAlibaba =
                 new InternshipBuilder(ALIBABA).withAppliedDate(VALID_APPLIED_DATE_TIKTOK)
-                        .withTags(VALID_TAG_BACKEND).build();
+                        .withTags(VALID_TAG_ECOMMERCE).build();
         assertTrue(uniqueInternshipList.contains(editedAlibaba));
     }
 

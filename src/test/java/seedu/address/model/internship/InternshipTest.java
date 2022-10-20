@@ -6,7 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ECOMMERCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALIBABA;
 import static seedu.address.testutil.TypicalInternships.TIKTOK;
@@ -31,10 +32,10 @@ public class InternshipTest {
         // null -> returns false
         assertFalse(ALIBABA.isSameInternship(null));
 
-        // same name, all other attributes different -> returns true
+        // same name and tags, all other attributes different -> returns true
         Internship editedAlibaba =
                 new InternshipBuilder(ALIBABA).withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_TIKTOK)
-                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_BACKEND).build();
+                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_ECOMMERCE).build();
         assertTrue(ALIBABA.isSameInternship(editedAlibaba));
 
         // different name, all other attributes same -> returns false
@@ -86,7 +87,7 @@ public class InternshipTest {
         assertFalse(ALIBABA.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new InternshipBuilder(ALIBABA).withTags(VALID_TAG_BACKEND).build();
+        editedAlice = new InternshipBuilder(ALIBABA).withTags(VALID_TAG_FRONTEND).build();
         assertFalse(ALIBABA.equals(editedAlice));
     }
 }
