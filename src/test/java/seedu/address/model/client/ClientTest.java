@@ -117,7 +117,7 @@ public class ClientTest {
 
     @Test
     public void getSellTransactionList() {
-        Client alice = new ClientBuilder(ALICE).build();
+        Client alice = new ClientBuilder().build();
         alice.addTransaction(SELL_PANTS);
         alice.addTransaction(BUY_BURGERS);
 
@@ -133,7 +133,7 @@ public class ClientTest {
 
     @Test
     public void getBuyTransactionList() {
-        Client alice = new ClientBuilder(ALICE).build();
+        Client alice = new ClientBuilder().build();
         alice.addTransaction(SELL_PANTS);
         alice.addTransaction(BUY_BURGERS);
 
