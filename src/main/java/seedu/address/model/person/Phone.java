@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
@@ -43,18 +45,7 @@ public class Phone {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            // short circuit if same object
-            return true;
-        } else if (other instanceof Phone) {
-            // instanceof handles nulls
-            if (value == null || ((Phone) other).value == null) {
-                // at least 1 of the values are null
-                return value == ((Phone) other).value;
-            }
-            return value.equals(((Phone) other).value); // state check
-        }
-        return false; // this is not null while other is null
+        return Objects.equals(value, ((Phone) other).value);
     }
 
     @Override

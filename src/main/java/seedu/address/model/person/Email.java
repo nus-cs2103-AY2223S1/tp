@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -63,18 +65,7 @@ public class Email {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            // short circuit if same object
-            return true;
-        } else if (other instanceof Email) {
-            // instanceof handles nulls
-            if (value == null || ((Email) other).value == null) {
-                // at least 1 of the values are null
-                return value == ((Email) other).value;
-            }
-            return value.equals(((Email) other).value); // state check
-        }
-        return false; // this is not null while other is null
+        return Objects.equals(value, ((Email) other).value);
     }
 
     @Override

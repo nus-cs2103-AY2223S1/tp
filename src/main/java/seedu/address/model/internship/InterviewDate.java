@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Represents an Internship's interview date in the address book.
@@ -49,18 +50,7 @@ public class InterviewDate {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            // short circuit if same object
-            return true;
-        } else if (other instanceof InterviewDate) {
-            // instanceof handles nulls
-            if (datetime == null || ((InterviewDate) other).datetime == null) {
-                // at least 1 of the values are null
-                return datetime == ((InterviewDate) other).datetime;
-            }
-            return datetime.equals(((InterviewDate) other).datetime); // state check
-        }
-        return false; // this is not null while other is null
+        return Objects.equals(datetime, ((InterviewDate) other).datetime);
     }
 
     @Override
