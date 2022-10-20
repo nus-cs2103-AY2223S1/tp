@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteTeamCommandParser" as DeleteTeamCommandParser LOGIC_COLOR
+participant "d:DeleteTeamCommand" as DeleteTeamCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "teamToDelete:Team" as Team MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deleteteam t/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deleteteam t/1")
+activate AddressBookParser
+
+create DeleteTeamCommandParser
+AddressBookParser -> DeleteTeamCommandParser
+activate DeleteTeamCommandParser
+
+DeleteTeamCommandParser --> AddressBookParser
+deactivate DeleteTeamCommandParser
+
+AddressBookParser -> DeleteTeamCommandParser : parse("deleteteam t/1")
+activate DeleteTeamCommandParser
+
+create DeleteTeamCommand
+DeleteTeamCommandParser -> DeleteTeamCommand
+activate DeleteTeamCommand
+
+DeleteTeamCommand --> DeleteTeamCommandParser : d
+deactivate DeleteTeamCommand
+
+DeleteTeamCommandParser --> AddressBookParser : d
+deactivate DeleteTeamCommandParser
+
+DeleteTeamCommandParser -[hidden]-> AddressBookParser
+destroy DeleteTeamCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager --> DeleteTeamCommand : execute()
+activate DeleteTeamCommand
+
+create Team
+DeleteTeamCommand -> Team
+activate Team
+
+Team --> DeleteTeamCommand : teamToDelete
+deactivate Team
+
+DeleteTeamCommand --> Model : deleteTeam(teamToDelete)
+activate Model
+
+Model --> DeleteTeamCommand
+deactivate Model
+
+create CommandResult
+DeleteTeamCommand -> CommandResult
+activate CommandResult
+
+
+CommandResult --> DeleteTeamCommand : result
+deactivate CommandResult
+
+DeleteTeamCommand --> LogicManager : result
+deactivate DeleteTeamCommand
+
+DeleteTeamCommand -[hidden]-> LogicManager
+destroy DeleteTeamCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
+

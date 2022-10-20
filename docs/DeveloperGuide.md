@@ -299,6 +299,23 @@ The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
 The following sequence diagram show how the create team operation works:
 ![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
 
+### Delete Team Feature
+
+#### Implementation
+
+The Delete Team Feature allows the user to delete a team in EZLead. After deletion, the team will no longer be reflected in the Graphical User Interface.
+
+Given below is an example usage scenario
+
+Step 1. The user created a team using the `createteam` command.
+
+Step 2. The user assigns some members into the newly created team using the `assign` command.
+
+Step 3. The user realises that the team has completed their work and is no longer needed, and proceeds to delete the team using the `deleteteam t/1` command (Given that the team created in Step 1 is the team in index 1).
+
+The following sequence diagram shows how the delete team operation works:
+![DeleteTeamSequenceDaigram](images/DeleteTeamSequenceDiagram.png)
+
 _{more aspects and alternatives to be added}
 
 
