@@ -168,7 +168,7 @@ The following sequence diagram shows the methods calls related to add person ope
 ![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add 
-person command text entered by user. The specific UniquePersonList operations are not shown in the diagram
+person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
 for simplicity.
 </div>
 
