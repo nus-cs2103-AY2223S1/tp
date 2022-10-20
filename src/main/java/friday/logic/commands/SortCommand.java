@@ -15,7 +15,7 @@ import friday.model.Model;
 import friday.model.student.Student;
 
 /**
- * Lists all students in FRIDAY to the user.
+ * Sorts students in FRIDAY.
  */
 public class SortCommand extends Command {
 
@@ -44,7 +44,6 @@ public class SortCommand extends Command {
      */
     public SortCommand(Comparator<Student> comparator) {
         requireNonNull(comparator);
-
         this.comparator = comparator;
     }
 
@@ -54,5 +53,13 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.updateSortedStudentList(comparator);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && comparator.equals(((SortCommand) other).comparator));
     }
 }

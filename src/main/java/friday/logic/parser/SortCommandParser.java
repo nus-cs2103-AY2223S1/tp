@@ -6,6 +6,7 @@ import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
@@ -15,13 +16,13 @@ import friday.logic.parser.exceptions.ParseException;
 import friday.model.student.Student;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
-     * and returns an SortCommand object for execution.
+     * and returns a SortCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
@@ -65,6 +66,8 @@ public class SortCommandParser implements Parser<SortCommand> {
                     ? x.getMasteryCheck().compareTo(y.getMasteryCheck())
                     : y.getMasteryCheck().compareTo(x.getMasteryCheck());
         }
+
+        assert !isNull(comparator);
 
         return new SortCommand(comparator);
     }
