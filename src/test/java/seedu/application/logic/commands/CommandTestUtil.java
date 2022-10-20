@@ -109,13 +109,15 @@ public class CommandTestUtil {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualModel} matches {@code expectedModel}, except for previously undone states
      */
     public static void assertCommandSuccess(Command command, Model actualModel,
                                             CommandResult expectedCommandResult, Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
+            expectedModel.commitApplicationBook();
+            actualModel.commitApplicationBook();
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
@@ -165,4 +167,14 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredApplicationList().size());
     }
 
+    /**
+     * Executes the given {@code command} to be used for other tests.
+     */
+    public static void executeCommand(Command command, Model model) {
+        try {
+            command.execute(model);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
 }

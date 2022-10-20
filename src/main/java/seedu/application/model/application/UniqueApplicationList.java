@@ -48,7 +48,7 @@ public class UniqueApplicationList implements Iterable<Application> {
             return false;
         }
         for (int i = 0; i < internalList.size() - 1; i++) {
-            if (internalList.get(i).getInterview().isEmpty()) {
+            if (internalList.get(i).getInterview().isEmpty() || internalList.get(i).isSameApplication(toCheck)) {
                 continue;
             }
             if (internalList.get(i).getInterview().get().isOnSameTime(toCheck.getInterview().get())) {
@@ -123,8 +123,11 @@ public class UniqueApplicationList implements Iterable<Application> {
         }
 
         if (!target.isSameApplication(editedApplication) && contains(editedApplication)) {
+            // check if applications other than target are equivalent to editedApplication
             throw new DuplicateApplicationException();
-        } else if (hasSameInterviewTimeAs(editedApplication)) {
+        } else if (!target.getInterview().flatMap(x -> editedApplication.getInterview().map(y -> x.isOnSameTime(y)))
+                .orElse(false) && hasSameInterviewTimeAs(editedApplication)) {
+            // check if applications other than target happen at the same time as editedApplication
             throw new DuplicateInterviewException();
         }
 

@@ -188,6 +188,14 @@ public class ModelManagerTest {
         // different ApplicationBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentApplicationBook, userPrefs)));
 
+        // different VersionedApplicationBook -> return false
+        modelManager.commitApplicationBook();
+        assertFalse(modelManager.equals(modelManagerCopy));
+
+        // same VersionedApplicationBook -> return true
+        modelManagerCopy.commitApplicationBook();
+        assertTrue(modelManager.equals(modelManagerCopy));
+
         // different filteredList (filtered by company) -> returns false
         String[] keywords = FACEBOOK.getCompany().company.split("\\s+");
         modelManager.updateFilteredApplicationList(new CompanyContainsKeywordsPredicate(Arrays.asList(keywords)));
