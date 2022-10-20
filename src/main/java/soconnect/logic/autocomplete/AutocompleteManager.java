@@ -3,21 +3,29 @@ package soconnect.logic.autocomplete;
 import static soconnect.commons.util.StringUtil.startWithIgnoreCase;
 import static soconnect.logic.parser.ArgumentTokenizer.PrefixArgument;
 import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
-import static soconnect.logic.parser.CliSyntax.*;
+import static soconnect.logic.parser.CliSyntax.INDICATOR_ADDRESS;
+import static soconnect.logic.parser.CliSyntax.INDICATOR_EMAIL;
+import static soconnect.logic.parser.CliSyntax.INDICATOR_NAME;
+import static soconnect.logic.parser.CliSyntax.INDICATOR_PHONE;
+import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
+import static soconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static soconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static soconnect.model.Model.PREDICATE_SHOW_NO_PERSON;
 import static soconnect.model.person.search.SearchPrefix.SearchPrefixCommand;
 import static soconnect.model.person.search.SearchPrefix.convertPrefixToEnumType;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javafx.collections.transformation.FilteredList;
-import soconnect.commons.core.LogsCenter;
 import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.parser.ArgumentMultimap;
 import soconnect.logic.parser.ArgumentTokenizer;
@@ -30,9 +38,11 @@ import soconnect.model.person.search.ContactContainsAllKeywordsPredicate;
  * Manager of the autocomplete component.
  */
 public class AutocompleteManager implements Autocomplete {
-    private static final Logger logger = LogsCenter.getLogger(AutocompleteManager.class);
-
     private static final Pattern SEARCH_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    // In the autocomplete display box, it will include the original search hence it
+    // will show a maximum of AUTOCOMPLETE_ENTRIES_LIMIT + 1 autocomplete entries
+    private static final int AUTOCOMPLETE_ENTRIES_LIMIT = 10;
 
     private static final String INVALID_SEARCH_COMMAND_ARGUMENT = "";
 
@@ -65,18 +75,18 @@ public class AutocompleteManager implements Autocomplete {
             return new ArrayList<>();
         }
 
-        String lastPrefixArgumentInput = getLastPrefixArgumentInput(searchCommandArguments, PREFIX_NAME, PREFIX_PHONE,
+        String lastPrefixArgument = getLastPrefixArgument(searchCommandArguments, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-        if (lastPrefixArgumentInput.equals(INVALID_PREFIX_ARGUMENT)) {
+        if (lastPrefixArgument.equals(INVALID_PREFIX_ARGUMENT)) {
             return new ArrayList<>();
         }
 
         String argsWithoutLastPrefixArgument = searchCommandArguments.substring(0, searchCommandArguments.length() -
-                lastPrefixArgumentInput.trim().length());
+                lastPrefixArgument.length());
 
         updateFilteredPersonList(argsWithoutLastPrefixArgument);
 
-        return generateAutocompleteEntries(argsWithoutLastPrefixArgument, lastPrefixArgumentInput);
+        return generateAutocompleteEntries(argsWithoutLastPrefixArgument, lastPrefixArgument);
     }
 
     @Override
@@ -92,49 +102,7 @@ public class AutocompleteManager implements Autocomplete {
                 ? SearchCommandArguments : INVALID_SEARCH_COMMAND_ARGUMENT;
     }
 
-    public List<String> generateAutocompleteEntries(String argsWithoutLastPrefixArgument,
-                                                    String lastPrefixArgumentInput) {
-        String autocompleteString = SearchCommand.COMMAND_WORD + " " + argsWithoutLastPrefixArgument;
-
-        String[] prefixArgument = lastPrefixArgumentInput.split("/", 2);
-        String prefix = prefixArgument[0] + "/";
-        String argument = prefixArgument[1];
-
-        switch (prefix) {
-        case INDICATOR_NAME:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getName().fullName, argument))
-                    .map(person -> autocompleteString + prefix + person.getName().fullName)
-                    .collect(Collectors.toList());
-        case INDICATOR_ADDRESS:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getAddress().value, argument))
-                    .map(person -> autocompleteString + prefix + person.getAddress().value)
-                    .collect(Collectors.toList());
-        case INDICATOR_EMAIL:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getEmail().value, argument))
-                    .map(person -> autocompleteString + prefix + person.getEmail().value)
-                    .collect(Collectors.toList());
-        case INDICATOR_PHONE:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getPhone().value, argument))
-                    .map(person -> autocompleteString + prefix + person.getPhone().value)
-                    .collect(Collectors.toList());
-        case INDICATOR_TAG:
-            return filteredPersons.stream()
-                    .filter(person -> person.getTags().stream()
-                            .anyMatch(tag -> startWithIgnoreCase(tag.tagName, argument)))
-                    .map(person -> autocompleteString + prefix + person.getTags().stream()
-                            .filter(tag -> startWithIgnoreCase(tag.tagName, argument))
-                                    .findFirst())
-                    .collect(Collectors.toList());
-        default:
-            return new ArrayList<>();
-        }
-    }
-
-    public String getLastPrefixArgumentInput(String argsString, Prefix... prefixes) {
+    public String getLastPrefixArgument(String argsString, Prefix... prefixes) {
         List<PrefixArgument> argsList = tokenizeToList(argsString, prefixes);
         assert argsList.size() >= 1;
         PrefixArgument lastPrefixArgument = argsList.get(argsList.size() - 1);
@@ -160,14 +128,12 @@ public class AutocompleteManager implements Autocomplete {
         }
     }
 
-    public void updateFilteredPersonList(String argsWithoutLastPrefixArgument) {
+    public void updateFilteredPersonList(String argsString) {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(argsWithoutLastPrefixArgument, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(argsString, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_TAG);
         String condition = argMultimap.getPreamble().toLowerCase();
 
-        logger.info("condition: " + condition );
-        logger.info("first few arg: "+ argsWithoutLastPrefixArgument);
         switch (condition) {
         case SearchCommand.AND_CONDITION:
         case SearchCommand.EMPTY_CONDITION:
@@ -180,6 +146,54 @@ public class AutocompleteManager implements Autocomplete {
             filteredPersons.setPredicate(PREDICATE_SHOW_NO_PERSON);
         }
 
+    }
+
+    public List<String> generateAutocompleteEntries(String argsWithoutLastPrefixArgument,
+                                                    String lastPrefixArgument) {
+        String autocompleteString = SearchCommand.COMMAND_WORD + argsWithoutLastPrefixArgument;
+
+        String[] prefixArgument = lastPrefixArgument.split("/", 2);
+        String prefix = prefixArgument[0] + "/";
+        String argument = prefixArgument[1];
+
+        switch (prefix) {
+        case INDICATOR_NAME:
+            return filteredPersons.stream()
+                    .filter(person -> startWithIgnoreCase(person.getName().fullName, argument))
+                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                    .map(person -> autocompleteString + prefix + person.getName().fullName)
+                    .collect(Collectors.toList());
+        case INDICATOR_ADDRESS:
+            return filteredPersons.stream()
+                    .filter(person -> startWithIgnoreCase(person.getAddress().value, argument))
+                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                    .map(person -> autocompleteString + prefix + person.getAddress().value)
+                    .collect(Collectors.toList());
+        case INDICATOR_EMAIL:
+            return filteredPersons.stream()
+                    .filter(person -> startWithIgnoreCase(person.getEmail().value, argument))
+                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                    .map(person -> autocompleteString + prefix + person.getEmail().value)
+                    .collect(Collectors.toList());
+        case INDICATOR_PHONE:
+            return filteredPersons.stream()
+                    .filter(person -> startWithIgnoreCase(person.getPhone().value, argument))
+                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                    .map(person -> autocompleteString + prefix + person.getPhone().value)
+                    .collect(Collectors.toList());
+        case INDICATOR_TAG:
+            return filteredPersons.stream()
+                    .map(person -> person.getTags().stream()
+                            .filter(tag -> startWithIgnoreCase(tag.tagName, argument))
+                            .map(tag -> autocompleteString + prefix + tag.tagName)
+                            .collect(Collectors.toList()))
+                    .flatMap(Collection::stream)
+                    .distinct()
+                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                    .collect(Collectors.toList());
+        default:
+            return new ArrayList<>();
+        }
     }
 
     @Override
