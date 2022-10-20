@@ -275,11 +275,11 @@ Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCom
 
 Step 5. The `LogicManager` executes the `RemarkCommand`.
 
-Step 6. The `RemarkCommand` obtains a list of `Internship` s via the `getFilteredInternshipList()` method
+Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getFilteredInternshipList()` method
 which is exposed to the `Model` interface as `Model#getFilteredInternshipList()`
 
 Step 7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
-`get(int INDEX)` method from list of `Internship` s.
+`get(int INDEX)` method from list of `Internship`s.
 
 Step 8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
 `REMARK_CONTENT` that the user has input.
@@ -295,7 +295,7 @@ The following sequence diagram shows how the `remark` command works:
 
 ![RemarkSequenceDiagram](images/RemarkSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes the remark command:
+The following activity diagram summarises what happens when a user executes the `remark` command:
 
 ![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
 

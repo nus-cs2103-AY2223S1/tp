@@ -60,6 +60,7 @@ public class RemarkCommand extends Command {
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
+
         return new CommandResult(generateSuccessMessage(editedInternship));
     }
 
