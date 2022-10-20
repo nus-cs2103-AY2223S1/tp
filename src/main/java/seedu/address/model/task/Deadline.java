@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
  * Represents the deadline of a task in the TaskList.
  * Deadline contains a date but not a time.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD-MM-YYYY";
 
     /*
@@ -48,13 +48,9 @@ public class Deadline {
         return true;
     }
 
-    /**
-     * Returns {@code Deadline} as a date.
-     *
-     * @return Date representation of {@code Deadline}.
-     */
-    public LocalDate getDate() {
-        return date;
+    @Override
+    public int compareTo(Deadline otherDeadline) {
+        return this.date.compareTo(otherDeadline.date);
     }
 
     @Override

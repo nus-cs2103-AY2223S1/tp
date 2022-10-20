@@ -2,7 +2,6 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -20,10 +19,14 @@ public class Task {
     private final Deadline deadline;
     private Boolean isDone;
     private final Set<Tag> tags = new HashSet<>();
+    private final Id id;
 
     /**
-     * A constructor that creates an instance of Task.
+     * A constructor that creates an instance of Task with a new id.
      * @param description The description of the task.
+     * @param deadline The deadline of the task.
+     * @param isDone The status of the task.
+     * @param tags The set of tags of the task.
      */
     public Task(Description description, Deadline deadline, Boolean isDone, Set<Tag> tags) {
         requireAllNonNull(description, deadline, isDone, tags);
@@ -31,6 +34,24 @@ public class Task {
         this.deadline = deadline;
         this.isDone = isDone;
         this.tags.addAll(tags);
+        id = new Id();
+    }
+
+    /**
+     * A constructor that creates an instance of Task with an existing id.
+     * @param description The description of the task.
+     * @param deadline The deadline of the task.
+     * @param isDone The status of the task.
+     * @param tags The set of tags of the task.
+     * @param id The id of the task.
+     */
+    public Task(Description description, Deadline deadline, Boolean isDone, Set<Tag> tags, Id id) {
+        requireAllNonNull(description, deadline, isDone, tags);
+        this.description = description;
+        this.deadline = deadline;
+        this.isDone = isDone;
+        this.tags.addAll(tags);
+        this.id = id;
     }
 
     /**
@@ -47,14 +68,6 @@ public class Task {
      */
     public Deadline getDeadline() {
         return deadline;
-    }
-
-    /**
-     * Returns the date representation of the deadline of task.
-     * @return Date representation of the deadline of task.
-     */
-    public LocalDate getDeadlineDate() {
-        return deadline.getDate();
     }
 
     /**
@@ -79,6 +92,14 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns the id of the task.
+     * @return id Id of the task.
+     */
+    public Id getId() {
+        return id;
     }
 
     /**
@@ -131,12 +152,13 @@ public class Task {
         return otherTask.getDescription().equals(getDescription())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getStatus().equals(getStatus())
-                && otherTask.getTags().equals(getTags());
+                && otherTask.getTags().equals(getTags())
+                && otherTask.getId().equals(getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, deadline, isDone, tags);
+        return Objects.hash(description, deadline, isDone, tags, id);
     }
 
     @Override

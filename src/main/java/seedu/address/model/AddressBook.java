@@ -203,7 +203,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public Boolean isSortByDeadline() {
-        return tasks.isSortedByDeadline();
+        return tasks.isSortByDeadline();
+    }
+
+    /**
+     * Sorts the task list by id.
+     */
+    public void sortById() {
+        tasks.sortById();
     }
 
     @Override

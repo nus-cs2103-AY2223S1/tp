@@ -126,6 +126,9 @@ public interface Model {
     /** Sorts the task list by deadline */
     void sortByDeadline();
 
+    /** Sorts the task list by id */
+    void sortById();
+
     /** Returns an unmodifiable view of the filtered tag list */
     ObservableList<Tag> getTagList();
 }

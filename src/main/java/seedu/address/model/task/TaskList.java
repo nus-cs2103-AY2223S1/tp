@@ -16,12 +16,13 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
  * Represents the tasklist.
  */
 public class TaskList implements Iterable<Task> {
-    private static final Comparator<Task> DATE_COMPARATOR = Comparator.comparing(Task::getDeadlineDate);
+    private static final Comparator<Task> DATE_COMPARATOR = Comparator.comparing(Task::getDeadline);
+    private static final Comparator<Task> ID_COMPARATOR = Comparator.comparing(Task::getId);
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private Boolean isSortedByDeadline = false;
+    private Boolean isSortByDeadline = false;
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -41,7 +42,7 @@ public class TaskList implements Iterable<Task> {
         }
         internalList.add(task);
 
-        if (isSortedByDeadline) {
+        if (isSortByDeadline) {
             sortByDeadline();
         }
     }
@@ -76,7 +77,7 @@ public class TaskList implements Iterable<Task> {
 
         internalList.set(index, editedTask);
 
-        if (isSortedByDeadline) {
+        if (isSortByDeadline) {
             sortByDeadline();
         }
     }
@@ -84,10 +85,6 @@ public class TaskList implements Iterable<Task> {
     public void setTasks(TaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-
-        if (isSortedByDeadline) {
-            sortByDeadline();
-        }
     }
 
     /**
@@ -101,22 +98,26 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
-
-        if (isSortedByDeadline) {
-            sortByDeadline();
-        }
     }
 
     /**
      * Sorts the task list by deadline
      */
     public void sortByDeadline() {
-        isSortedByDeadline = true;
+        isSortByDeadline = true;
         internalList.sort(DATE_COMPARATOR);
     }
 
-    public Boolean isSortedByDeadline() {
-        return isSortedByDeadline;
+    /**
+     * Sorts the task list by id.
+     */
+    public void sortById() {
+        isSortByDeadline = false;
+        internalList.sort(ID_COMPARATOR);
+    }
+
+    public Boolean isSortByDeadline() {
+        return isSortByDeadline;
     }
 
     @Override

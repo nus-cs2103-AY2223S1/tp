@@ -10,32 +10,32 @@ import seedu.address.model.task.TaskList;
  */
 class JsonAdaptedTaskList {
 
-    private Boolean isSortedByDeadline;
+    private Boolean isSortByDeadline;
 
     public JsonAdaptedTaskList() {
-        isSortedByDeadline = false;
+        isSortByDeadline = false;
     }
 
     /**
      * Constructs a {@code JsonAdaptedTaskList} with the given {@code isSortedByDeadline}.
      */
     @JsonCreator
-    public JsonAdaptedTaskList(@JsonProperty("isSortedByDeadline") Boolean isSortedByDeadline) {
-        this.isSortedByDeadline = isSortedByDeadline;
+    public JsonAdaptedTaskList(@JsonProperty("isSortedByDeadline") Boolean isSortByDeadline) {
+        this.isSortByDeadline = isSortByDeadline;
     }
 
     /**
      * Converts a given {@code TaskList} into this class for Jackson use.
      */
     public JsonAdaptedTaskList(TaskList source) {
-        isSortedByDeadline = source.isSortedByDeadline();
+        isSortByDeadline = source.isSortByDeadline();
     }
 
-    public Boolean isSortedByDeadline() {
-        return isSortedByDeadline;
+    public Boolean isSortByDeadline() {
+        return isSortByDeadline;
     }
 
-    public void setIsSortedByDeadline(Boolean isSortedByDeadline) {
-        this.isSortedByDeadline = isSortedByDeadline;
+    public void setSortByDeadline(Boolean isSortByDeadline) {
+        this.isSortByDeadline = isSortByDeadline;
     }
 }
