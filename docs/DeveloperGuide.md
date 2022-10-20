@@ -251,6 +251,48 @@ The following activity diagram summarizes what happens when a user enters a `mar
 
 Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous.
 
+### Find feature
+
+#### Implementation:
+* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `Name` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
+
+The following activity diagram summarizes what happens when a user enters a `find` command.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: Allowing searching only through `Name` field**
+* As the hotel manager would usually search by the Guest's name, it would be appropriate enough to search by the Guest's name. However, we do not rule out the possibility that the hotel manager might want to search by other fields as well. Hence, there could be another implementation, further elaborated on in the `Proposed` section below.
+
+**Aspect: Only matching full keywords**
+* The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
+
+### \[Proposed\] Improved `find` command
+
+#### Proposed Implementation
+
+The current `find` command enables the hotel manager to only search by the `Name` field. However, it is possible that the hotel manager might want to search by other fields as well, such as `Room`.
+Hence, we should make the `find` functionality extensible enough to search by other fields.
+
+The following activity diagram summarizes the proposed implementation of what should happen when a user enters a `find` command.
+
+![ProposedImplementationFindActivityDiagram](images/ProposedImplementationFindActivityDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: How to implement the extensible `find` command:**
+
+* **Alternative 1:** Use the functionality to find `Name` for other fields .
+    * Pros: Easy to implement.
+    * Cons: May lead to bugs as `Name` fields only accept alphanumeric characters, while other fields can accept other symbols.
+
+* **Alternative 2 (current choice):** Create the functionality for matching keywords for each field.
+    * Pros: Will be more accurate.
+    * Cons: We must ensure that the implementation of each field predicate are correct.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -416,6 +458,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case 1: Add a guest**
 
 **MSS**
+
 
 1. User requests to add a guest to the list with guest's details.
 2. System adds the guest.
