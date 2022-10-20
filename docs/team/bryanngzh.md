@@ -19,13 +19,13 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * `to be added soon`
-  
+
 * **Documentation**:
-    * `to be added soon`
+  * `to be added soon`
 
 * **Community**:
     * `to be added soon`
 
 * **Tools**:
     * `to be added soon`
-  
+
