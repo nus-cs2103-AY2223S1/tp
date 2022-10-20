@@ -16,5 +16,5 @@ SoConnect is a **desktop app for managing contacts, optimized for use via a Comm
 
 **Acknowledgements**
 
-* This product is adapted from [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/)
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* This product is adapted from [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
