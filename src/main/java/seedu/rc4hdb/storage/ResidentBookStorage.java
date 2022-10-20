@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 
@@ -16,6 +17,13 @@ public interface ResidentBookStorage {
      * Returns the file path of the data file.
      */
     Path getResidentBookFilePath();
+
+    /**
+     * Sets the file path to the {@code filePath}.
+     */
+    void setResidentBookFilePath(Path filePath);
+
+    ObservableValue<Path> getObservableResidentBookFilePath();
 
     /**
      * Returns ResidentBook data as a {@link ReadOnlyResidentBook}.
@@ -41,5 +49,21 @@ public interface ResidentBookStorage {
      * @see #saveResidentBook(ReadOnlyResidentBook)
      */
     void saveResidentBook(ReadOnlyResidentBook residentBook, Path filePath) throws IOException;
+
+    /**
+     * Deletes the resident book data file corresponding to {@code filePath}.
+     *
+     * @param filePath path of the data file to be deleted. Cannot be null.
+     * @throws IOException if there was any problem deleting the file.
+     */
+    void deleteResidentBookFile(Path filePath) throws IOException;
+
+    /**
+     * Creates the resident book data file corresponding to {@code filePath}.
+     *
+     * @param filePath path of the data file to be created. Cannot be null.
+     * @throws IOException if there was any problem creating the file.
+     */
+    void createResidentBookFile(Path filePath) throws IOException;
 
 }

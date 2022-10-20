@@ -1,10 +1,13 @@
 package seedu.rc4hdb.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
@@ -45,12 +48,22 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
+    // ================ ResidentBook methods =============================
 
     @Override
     public Path getResidentBookFilePath() {
         return residentBookStorage.getResidentBookFilePath();
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableResidentBookFilePath() {
+        return residentBookStorage.getObservableResidentBookFilePath();
+    }
+
+    @Override
+    public void setResidentBookFilePath(Path filePath) {
+        requireNonNull(filePath);
+        residentBookStorage.setResidentBookFilePath(filePath);
     }
 
     @Override
@@ -73,6 +86,36 @@ public class StorageManager implements Storage {
     public void saveResidentBook(ReadOnlyResidentBook residentBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         residentBookStorage.saveResidentBook(residentBook, filePath);
+    }
+
+    @Override
+    public void deleteResidentBookFile(Path filePath) throws IOException {
+        residentBookStorage.deleteResidentBookFile(filePath);
+    }
+
+    @Override
+    public void createResidentBookFile(Path filePath) throws IOException {
+        residentBookStorage.createResidentBookFile(filePath);
+    }
+
+    // ================ End of ResidentBook methods ======================
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof StorageManager)) {
+            return false;
+        }
+
+        // state check
+        StorageManager other = (StorageManager) obj;
+        return residentBookStorage.equals(other.residentBookStorage)
+                && userPrefsStorage.equals(other.userPrefsStorage);
     }
 
 }
