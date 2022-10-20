@@ -82,4 +82,22 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if {@code s} represents a non-negative unsigned float.
+     * Will return false for any other non-null string input
+     * e.g. empty string, "-1.234", "0", "+1.234",
+     * and " 2.343 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isNonNegativeUnsignedFloat(String s) {
+        requireNonNull(s);
+
+        try {
+            float value = Float.parseFloat(s);
+            return value >= 0 && !s.startsWith("+");
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
 }

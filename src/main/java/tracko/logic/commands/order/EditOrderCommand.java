@@ -3,6 +3,7 @@ package tracko.logic.commands.order;
 import static java.util.Objects.requireNonNull;
 import static tracko.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import tracko.commons.core.Messages;
@@ -13,10 +14,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.items.Description;
-import tracko.model.items.Item;
-import tracko.model.items.ItemName;
-import tracko.model.items.Quantity;
+import tracko.model.items.*;
 import tracko.model.items.exceptions.ItemNotFoundException;
 import tracko.model.order.*;
 
@@ -97,7 +95,8 @@ public class EditOrderCommand extends Command {
             boolean doesItemExistInList = false;
             List<Item> items = model.getFilteredItemList();
             Item itemToEditPlaceholder = new Item(new ItemName(itemToEdit.get().getItem()),
-                    new Description("Dummy description"), new Quantity(itemToEdit.get().getValue()), new HashSet<>());
+                    new Description("Dummy description"), new Quantity(itemToEdit.get().getValue()),
+                    new HashSet<>(), new Price(new BigDecimal(0)), new Price(new BigDecimal(0)));
 
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).isSameItem(itemToEditPlaceholder)) {
