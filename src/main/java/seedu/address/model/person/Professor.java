@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -123,5 +124,20 @@ public class Professor extends Person {
                     .compareTo(((TeachingAssistant) person).getModuleCode().toString());
         }
         return 1;
+    }
+
+    @Override
+    public String getTypeString() {
+        return "prof";
+    }
+
+    @Override
+    public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
+        if (modulesSet.size() > 1 && needsAllModules) {
+            return false;
+        }
+
+        return modulesSet.stream()
+                .anyMatch(module -> StringUtil.containsWordIgnoreCase(this.moduleCode.value, module));
     }
 }

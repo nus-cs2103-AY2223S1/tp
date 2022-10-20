@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -91,6 +92,37 @@ public class Student extends Person {
     }
 
     @Override
+
+    public String getTypeString() {
+        return "stu";
+    }
+
+    @Override
+    public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
+        Set<String> personModulesList = getModulesSetString();
+        if (needsAllModules) {
+            return personModulesList.equals(modulesSet);
+        } else {
+            personModulesList.retainAll(modulesSet);
+            return !personModulesList.isEmpty();
+        }
+    }
+
+    /**
+     * Creates Set of modules in their String form. Used to check if there is a match in
+     * modules provided by the user for a FindCommand.
+     * @return the Set of modules in their String form
+     */
+    private Set<String> getModulesSetString() {
+        return getModuleCodes().stream()
+                .map(moduleCode -> moduleCode.value.toLowerCase()).collect(Collectors.toSet());
+    }
+
+    /**
+     * Checks if the provided person is equal to this student.
+     * @param other the other person
+     * @return true if they are equal and false otherwise
+     */
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -109,5 +141,6 @@ public class Student extends Person {
                 && otherPerson.getUsername().equals(getUsername())
                 && otherPerson.getModuleCodes().equals(getModuleCodes())
                 && otherPerson.getYear().equals(getYear());
+
     }
 }
