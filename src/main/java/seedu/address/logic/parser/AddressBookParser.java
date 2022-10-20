@@ -24,6 +24,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListMembersCommand;
 import seedu.address.logic.commands.ListTasksCommand;
+import seedu.address.logic.commands.RandomlyAssignTaskCommand;
 import seedu.address.logic.commands.SetDeadlineCommand;
 import seedu.address.logic.commands.SetTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -108,6 +109,9 @@ public class AddressBookParser {
 
         case AssignTaskCommand.COMMAND_WORD:
             return new AssignTaskCommandParser().parse(arguments);
+
+        case RandomlyAssignTaskCommand.COMMAND_WORD:
+            return new RandomlyAssignTaskCommandParser().parse(arguments);
 
         case SetDeadlineCommand.COMMAND_WORD:
             return new SetDeadlineCommandParser().parse(arguments);
