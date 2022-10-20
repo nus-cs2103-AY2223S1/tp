@@ -46,7 +46,7 @@ public class UnmarkTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_ALREADY_NOT_COMPLETED);
         }
 
-        Task unmarkedTask = taskToUnmark.withCompletion(false);
+        Task unmarkedTask = taskToUnmark.withStatus(false);
         model.setTask(taskToUnmark, unmarkedTask);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask), true);
     }

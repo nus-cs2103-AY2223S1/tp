@@ -29,7 +29,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
    * **`listc`** : Lists all contacts.
 
    * **`add`**`add Finish homework by/2022-12-12 15:04 m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
-  
+
    * **`delete`**`1` : Deletes the 1st task shown in the current list.
 
    * **`clear`** : Deletes all contacts.

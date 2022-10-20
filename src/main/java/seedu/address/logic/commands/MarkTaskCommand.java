@@ -46,7 +46,7 @@ public class MarkTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_ALREADY_COMPLETED);
         }
 
-        Task markedTask = taskToMark.withCompletion(true);
+        Task markedTask = taskToMark.withStatus(true);
         model.setTask(taskToMark, markedTask);
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask), true);
     }
