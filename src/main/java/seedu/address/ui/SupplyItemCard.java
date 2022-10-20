@@ -16,6 +16,8 @@ import seedu.address.model.item.SupplyItem;
 public class SupplyItemCard extends UiPart<Region> {
 
     private static final String FXML = "SupplyItemCard.fxml";
+    private static final double MEDIUM_THRESHOLD = 1.65;
+    private static final double HIGH_THRESHOLD = 1.2;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -64,8 +66,8 @@ public class SupplyItemCard extends UiPart<Region> {
      * Determines the color based on {@code currentStock} and {@code minStock}.
      */
     private String determineStockHealth(int currentStock, int minStock) {
-        double mediumStockThreshold = minStock * 1.65;
-        double lowStockThreshold = minStock * 1.2;
+        double mediumStockThreshold = minStock * HIGH_THRESHOLD;
+        double lowStockThreshold = minStock * MEDIUM_THRESHOLD;
         if (currentStock < lowStockThreshold) {
             return translateStockLevelToColor(StockLevel.LOW);
         } else if (currentStock < mediumStockThreshold) {
