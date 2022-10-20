@@ -13,7 +13,7 @@ import seedu.uninurse.model.medication.exceptions.UnmodifiedMedicationException;
 
 /**
  * Represents a unique list of medications for a particular patient.
- * Two medications with the same name are considered duplicates and are hence, not allowed.
+ * Two medications with the same name and dosage amount are considered duplicates and are hence, not allowed.
  * Supports a minimal set of list operations.
  */
 public class MedicationList implements GenericList<Medication> {
@@ -108,6 +108,7 @@ public class MedicationList implements GenericList<Medication> {
             } else {
                 builder.append("\n")
                         .append(index + 1)
+                        .append(". ")
                         .append(m);
             }
         });
