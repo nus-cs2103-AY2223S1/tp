@@ -54,8 +54,7 @@ public class DateTimeParser {
         }
 
         requireNonNull(dateTime);
-        String parsedDateTimeString = dateTime.format(DateTimeFormatter.ofPattern(DateTime.DATE_TIME_FORMATTER));
-        return new DateTime(parsedDateTimeString);
+        return new DateTime(dateTime);
     }
 
     private static LocalDateTime parseLocalDateTime(String dateTimeString, String[] formats) {

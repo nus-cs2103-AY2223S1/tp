@@ -9,15 +9,27 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime implements Comparable<DateTime> {
     public static final String DATE_TIME_FORMATTER = "yyyy-MM-dd 'at' HH:mm";
-    private final String dateTime;
+    private final LocalDateTime dateTime;
 
+    /**
+     * Constructs a {@code DateTime} with the given dateTime string.
+     * @param dateTime {@code String} representing a date and time.
+     */
     public DateTime(String dateTime) {
         assert(isValidDateTimeString(dateTime));
+        this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+    }
+
+    /**
+     * Constructs a {@code DateTime} with the given {@code LocalDateTime} object.
+     * @param dateTime {@code LocalDateTime} representing a date and time.
+     */
+    public DateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
     public String getDateTimeString() {
-        return this.dateTime;
+        return dateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
     }
 
     @Override
@@ -26,7 +38,7 @@ public class DateTime implements Comparable<DateTime> {
     }
 
     public LocalDateTime getLocalDateTime() {
-        return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+        return dateTime;
     }
 
     /**
@@ -43,6 +55,6 @@ public class DateTime implements Comparable<DateTime> {
 
     @Override
     public String toString() {
-        return dateTime;
+        return getDateTimeString();
     }
 }
