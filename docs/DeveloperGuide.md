@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save address book data, task list data  and user preference data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as any one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -236,6 +236,32 @@ The `add` command follows the [general command implementation flow](#logic-compo
 * The `add` command shares the `m/` prefix for modules with the other commands.
   * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 
+### Marking and unmarking of tasks
+
+#### About
+
+CodeConnect has features that allow you to mark and unmark your tasks as complete and incomplete respectively.
+
+Examples of command use:
+* `mark 1`: marks the task at index 1 as complete
+* `unmark 1`: unmarks the task at index 1 as incomplete
+
+#### Implementation flow
+Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
+
+![Activity diagram for execution of a mark command](images/MarkTaskActivityDiagram.png)
+ <div style="text-align: center">Activity diagram of mark command execution</div>
+
+![Interactions Inside the Logic Component for the `unmark 1` Command](images/UnmarkTaskSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of unmark command execution</div>
+
+#### Design considerations
+
+* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task. 
+However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being 
+marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time 
+most of the time, so a mass mark/unmark feature is a nice-to-have one.
+
 ### \[Proposed\] Undo/redo feature
 ### \[Proposed\] Edit task feature
 
@@ -266,11 +292,7 @@ Initially we felt that being able to edit more than 1 feature per edit task comm
 a task object does not have that many fields to begin with. However, we felt that implementing it will still
 make it a lot easier in the event that a user want to have multiple changes to a task.
 
-Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively.
-
-This was done so that it would be easy for the user to remember what command to use when finding either contacts or tasks.
-- The only difference when finding contacts is that there is a c after the find for contacts
-- Both use the same prefixes
+_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
