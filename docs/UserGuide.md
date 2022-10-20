@@ -5,18 +5,14 @@ show-toc: true
 ---
 ## About
 
-We want you to spend less time keeping track of perishable goods in your daily operations.
-FoodRem is a command line application that enables you to efficiently record, update and categorise food items.
-It is a convenient administrative tool that can answer the following questions in a flash:
+We want you to spend less time keeping track of perishable goods in your daily operations. FoodRem is a command line application that enables you to efficiently record, update and categorise food items. It is a convenient administrative tool that can answer the following questions in a flash:
 
 * What food items are about to expire?
 * How much of each condiment do I have?
 * Which food items are newly purchases?
 * ...and many more!
 
-With a few quick commands, you can have complete control of your perishable goods, so you can focus on what
-is important: serving your customers, improving menu recipes, and transforming your business into the next
-success story.
+With a few quick commands, you can have complete control of your perishable goods, so you can focus on what is important: serving your customers, improving menu recipes, and transforming your business into the next success story.
 
 ## Key Features
 
@@ -43,8 +39,7 @@ This app is targeted at small F&B businesses which may struggle in inventory man
 
 This guide is targeted at users using FoodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner.
 
-Readers do not have to be familiar with the command line to use this guide effectively.
-The only expectation we have of you is to carefully read through the different sections.
+Readers do not have to be familiar with the command line to use this guide effectively. The only expectation we have of you is to carefully read through the different sections.
 
 {% include page-break.html %} <!-- Force a page break -->
 
@@ -54,8 +49,7 @@ The only expectation we have of you is to carefully read through the different s
 
 Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well!
 
-To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section.
-This will give you a brief overview about how to use this application.
+To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section. This will give you a brief overview about how to use this application.
 
 It is **highly recommended** that you read through the User Guide in a **sequential order** up until the section
 [Features](#features) where you can find all the information you need for each command.
@@ -74,17 +68,14 @@ It is **highly recommended** that you read through the User Guide in a **sequent
 * Important syntax you will come across while reading the user
   guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
 
-If you are confident, you can immediately refer to the [Command Summary](#command-summary)
-after completing the [Quick Start](#quick-start).
+If you are confident, you can immediately refer to the [Command Summary](#command-summary) after completing the [Quick Start](#quick-start).
 
 Meaning of icons:
 
 * ℹ️ : additional info
 * ❗ : warning
 
-If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
-There is also a [Glossary](#glossary) that contains definitions of what common words
-used in this application mean.
+If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq). There is also a [Glossary](#glossary) that contains definitions of what common words used in this application mean.
 
 It is time for you to unleash the potential of a command line application!
 
