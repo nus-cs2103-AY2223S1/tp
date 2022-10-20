@@ -98,13 +98,16 @@ public class Professor extends Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Gender: ")
-                .append(getGender())
-                .append("Office hour: ")
-                .append(getOfficeHour());
+                .append(getGender());
 
         if (!getUsername().value.equals(GithubUsername.DEFAULT_USERNAME)) {
             builder.append("; Github Username: ")
                     .append(getUsername());
+        }
+
+        if (!getOfficeHour().value.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
+            builder.append("Office hour: ")
+                    .append(getOfficeHour());
         }
 
         builder.append("; Location: ")
