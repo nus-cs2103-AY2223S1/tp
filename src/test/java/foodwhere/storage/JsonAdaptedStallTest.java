@@ -14,8 +14,9 @@ import org.junit.jupiter.api.Test;
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.commons.Name;
 import foodwhere.model.stall.Address;
+import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.StallBuilder;
 import foodwhere.testutil.TypicalReviews;
-
 
 public class JsonAdaptedStallTest {
     private static final String INVALID_NAME = "R@chel";
@@ -42,6 +43,13 @@ public class JsonAdaptedStallTest {
     public void toModelType_validStallTags_returnsStall() throws Exception {
         JsonAdaptedStall stall = new JsonAdaptedStall(BENSON);
         assertEquals(BENSON, stall.toModelType());
+    }
+
+    @Test
+    public void toModelType_withReview_returnsStall() throws Exception {
+        Stall testStall = new StallBuilder(BENSON).addReview(TypicalReviews.BENSON).build();
+        JsonAdaptedStall stall = new JsonAdaptedStall(testStall);
+        assertEquals(testStall, stall.toModelType());
     }
 
     @Test
