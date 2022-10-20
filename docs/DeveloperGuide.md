@@ -247,14 +247,13 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 
 ### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
 
-1. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. Assume on start, the Event list is empty
+<B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`. 
 
 
+<B>Step 2</B>. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`. The event is added successfully.
 
-2. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`
 
-
-3.  The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time of this event overlaps with another event, and the Event List is no longer updated. An `OverlapEventException` is returned by the parser.
+<B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time window of this event overlaps with the previously event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
 
 
 ### The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
@@ -275,6 +274,17 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+
+**Aspect: Should events that occured in the past be auto-deleted on startup of app?:**
+* **Alternative 1 (current choice):** Don't delete, in fact allow users to add events that happened in the past. 
+   * Pros: Our target audience (Financial Advisors) might need to look up what past events or meetings have occured. Keeping past events serves as a good record.Increase in storage 
+   * Cons: More storage used by app
+
+* **Alternative 2 :** Delete all past events, users are not permitted to add events that happened in the past
+   * Pros: Less storage used up by app
+   * Cons: Difficult to implement without bugs.
+
 
 
 
