@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+skinparam SequenceReferenceBackgroundColor White
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddInterestCommandParser" as AddInterestCommandParser LOGIC_COLOR
+participant ":AddInterestCommand" as AddInterestCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "interestList:Set<Interest>" as Interest MODEL_COLOR
+
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand()
+activate AddressBookParser
+
+create AddInterestCommandParser
+AddressBookParser -> AddInterestCommandParser
+activate AddInterestCommandParser
+
+
+create Interest
+AddInterestCommandParser -> Interest
+activate Interest
+Interest --> AddInterestCommandParser
+deactivate Interest
+AddInterestCommandParser --> AddressBookParser
+deactivate AddInterestCommandParser
+
+AddressBookParser -> AddInterestCommandParser : parse("1 anime")
+activate AddInterestCommandParser
+
+create AddInterestCommand
+AddInterestCommandParser -> AddInterestCommand: new(1, interestList)
+activate AddInterestCommand
+
+AddInterestCommand --> AddInterestCommandParser
+deactivate AddInterestCommand
+
+AddInterestCommandParser --> AddressBookParser
+deactivate AddInterestCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddInterestCommandParser -[hidden]-> AddressBookParser
+destroy AddInterestCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> AddInterestCommand : execute()
+activate AddInterestCommand
+
+ref over AddInterestCommand, Model : Add Interest
+
+AddInterestCommand --> LogicManager
+deactivate AddInterestCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam SequenceReferenceBackgroundColor White
+box Logic LOGIC_COLOR_T1
+participant ":AddInterestCommand" as AddInterestCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
+end box
+
+[-> AddInterestCommand : execute()
+activate AddInterestCommand
+
+activate Model
+
+AddInterestCommand -> Model: getFilteredPersonList()
+Model --> AddInterestCommand: ObservableList<Person>
+deactivate Model
+activate Person
+AddInterestCommand -> Person: get(1)
+Person --> AddInterestCommand: personToEdit
+
+AddInterestCommand -> Person: addInterest("anime")
+Person --> AddInterestCommand
+deactivate Person
+
+
+AddInterestCommand -> Model: updateFilteredPersonList()
+activate Model
+Model --> AddInterestCommand
+deactivate Model
+
+[<--AddInterestCommand
+deactivate AddInterestCommand
+@enduml

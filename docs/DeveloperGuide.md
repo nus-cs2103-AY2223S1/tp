@@ -238,12 +238,16 @@ The Add Interest mechanism is facilitated by ```AddInterestCommand```, which ext
 
 ####Steps:
 1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```AddressBookParser``` to parse the command.
-2. From the command word ```addInt```, a new ```AddInterestCommandParser``` object is constructed.
-3. ```AddInterestCommandParser#parse``` checks the command syntax, after which a new ```AddInterestCommand``` is constructed.
-4.  ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
-5. The index is verified to be valid and if so, the list of interests is added to the ```Person``` marked by the ```Index```.
-6. After ```Person``` is updated with the added interests, ```ModelManager``` will also be updated with the changes.
+2. A new ```AddInterestCommandParser``` object is constructed.
+3. ```AddInterestCommandParser#parse``` checks the command syntax and returns a list of Interests specified in the command arguments. A new ```AddInterestCommand``` is constructed.
+4. ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
+5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Person``` marked by the ```Index```.
+6. ```Person``` is updated with the added interests, and ```ModelManager``` will also be updated with the changes.
 
+The sequence diagram for the command ```addInt 1 anime``` is as follows.
+![AddInterestSequenceDiagram](images/AddInterestSequenceDiagram.png)
+In addition, the below sequence diagram illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers. 
+![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 ####Design considerations:
 1. Usefulness of ```AddInterestCommand```
 - Current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` provides a quick way to add new interests.
