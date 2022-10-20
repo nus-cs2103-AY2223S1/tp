@@ -24,13 +24,13 @@ public class SampleDataUtil {
         return new Profile[] {
             new Profile(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
                 new Telegram("lexyeoh"), getTagSet("friends")),
-            new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.nus.edu"),
+            new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.duke.nus.edu"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("colleagues", "friends")),
-            new Profile(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@u.nus.edu"),
+            new Profile(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@nus.edu.sg"),
                 new Telegram("charlotte_ol1"), getTagSet("neighbours")),
-            new Profile(new Name("David Li"), new Phone("91031282"), new Email("lidavid@u.nus.edu"),
+            new Profile(new Name("David Li"), new Phone("91031282"), new Email("lidavid@comp.nus.edu.sg"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("family")),
-            new Profile(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@u.nus.edu"),
+            new Profile(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@u.yale-nus.edu.sg"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("classmates")),
             new Profile(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@u.nus.edu"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("colleagues"))
