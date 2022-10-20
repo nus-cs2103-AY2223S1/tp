@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES_APPEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -80,6 +81,8 @@ public class CommandTestUtil {
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_AMY.toString();
     public static final String ADDITIONAL_NOTE_DESC_BOB =
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_BOB.toString();
+    public static final String APPENDED_ADDITIONAL_NOTE_DESC_BOB =
+            " " + PREFIX_ADDITIONAL_NOTES_APPEND + VALID_ADDITIONAL_NOTES_BOB.toString();
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
