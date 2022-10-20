@@ -219,7 +219,11 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
-
+    @Override
+    public void removeEventsUnderPerson(Person personToDelete) {
+        requireNonNull(personToDelete);
+        addressBook.removeEventsUnderPerson(personToDelete);
+    }
 
     @Override
     public boolean hasEventOverlap(Event toAdd) {

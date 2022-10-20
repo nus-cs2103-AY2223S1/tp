@@ -187,4 +187,5 @@ public interface Model {
     void updateFilteredEventList(Predicate<Event> predicate);
 
 
+    void removeEventsUnderPerson(Person personToDelete);
 }
