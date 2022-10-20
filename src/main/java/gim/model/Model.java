@@ -85,4 +85,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
+
+    /**
+     * Sorts the displayed exercise list according to chronological order of exercise dates.
+     */
+    void sortDisplayedList(Predicate<Exercise> predicate);
+
+    /**
+     * Resets the displayed exercise list to the default ordering.
+     */
+    void resetDisplayedList();
+
 }

@@ -34,6 +34,7 @@ public class ModelManager implements Model {
         this.exerciseTracker = new ExerciseTracker(exerciseTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExercises = new FilteredList<>(this.exerciseTracker.getExerciseList());
+        //sortedFilteredExercises = new FilteredList<>(this.exerciseTracker.getSortedExerciseList());
     }
 
     public ModelManager() {
@@ -108,7 +109,6 @@ public class ModelManager implements Model {
     @Override
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
-
         exerciseTracker.setExercise(target, editedExercise);
     }
 
@@ -126,7 +126,20 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
+        exerciseTracker.resetDisplayedList();
         filteredExercises.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortDisplayedList(Predicate<Exercise> predicate) {
+        requireNonNull(predicate);
+        exerciseTracker.sortDisplayedList();
+        filteredExercises.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetDisplayedList() {
+        exerciseTracker.resetDisplayedList();
     }
 
     @Override
