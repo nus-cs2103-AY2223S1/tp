@@ -14,8 +14,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_TITLE = new Prefix("ti/");
 
     public static final Prefix PREFIX_CONTACT = new Prefix("c/");
-    public static final Prefix PREFIX_ADD_CONTACT = new Prefix("ca/");
-    public static final Prefix PREFIX_DELETE_CONTACT = new Prefix("cd/");
+    public static final Prefix PREFIX_ADD_CONTACT = new Prefix("+@");
+    public static final Prefix PREFIX_DELETE_CONTACT = new Prefix("-@");
     public static final Prefix PREFIX_DEADLINE = new Prefix("by/");
 
 }

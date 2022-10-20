@@ -82,7 +82,6 @@ public class AssignTaskCommand extends TaskCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
         List<Task> lastShownTaskList = model.getFilteredTaskList();
         if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
