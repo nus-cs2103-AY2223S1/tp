@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="950" minWidth="1350" onCloseRequest="#handleExit" title="Salesy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="900" minWidth="1300" onCloseRequest="#handleExit" title="Salesy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -34,13 +34,20 @@
           </Menu>
         </MenuBar>
 
-        <SplitPane dividerPositions="0.6" VBox.vgrow="ALWAYS">
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-        <VBox minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <SplitPane dividerPositions="0.8" VBox.vgrow="ALWAYS">
+        <VBox VBox.vgrow="ALWAYS">
+          <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            <padding>
+              <Insets bottom="5" left="10" right="10" top="25" />
+            </padding>
+          </StackPane>
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="200" prefHeight="200" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            <padding>
+              <Insets bottom="5" left="10" right="10" top="5" />
+            </padding>
+          </StackPane>
+        </VBox>
+        <VBox minWidth="340" prefWidth="340" minHeight="200" prefHeight="250" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <TextField alignment="CENTER" disable="true" text="Stats" />
           <StackPane fx:id="statsPanelPlaceholder" VBox.vgrow="NEVER">
             <padding>
@@ -49,13 +56,6 @@
           </StackPane>
         </VBox>
         </SplitPane>
-
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <TextField alignment="CENTER" disable="true" text="Suppliers" />
@@ -79,7 +79,6 @@
             </padding>
           </VBox>
         </SplitPane>
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
