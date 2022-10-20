@@ -154,6 +154,48 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Finding Feature
+
+#### About
+
+CodeConnect has features that allow you to search for tasks and contacts.
+
+Examples of command use:
+- `find n/ quiz` - Find all tasks containing the word "quiz"
+- `find m/ CS1101S` - Find all tasks belonging to CS1101S
+- `findc n/ Tan` - Find all contacts with names containing "Tan"
+- `findc m/ CS1101S` - Find all contacts taking CS1101S
+
+![Sample result of a find command](images/FindContactExample.png)
+
+#### Implementation Flow
+
+Outline of how components work together when the user enters a find command:
+1. User enters `findc m/ CS1101S` into the command prompt box
+2. User input `findc m/ CS1101S` is sent to the `FindContactCommandParser`
+3. `FindContactCommandParser` determines the user's input to be valid
+4. `FindContactCommandParser` creates a `ModuleTakenPredicate` 
+   - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
+5. A `FindContactCommand` command created and executed by the `Model`
+6. The result of the find command is displayed to the user
+
+![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
+<div style="text-align: center">Activity diagram of findc command execution</div>
+
+![Interactions Inside the Logic Component for the `findc m/ CS1101S` Command](images/FindContactSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of findc command execution</div>
+
+#### Design Considerations
+
+One design consideration was if the user should be allowed to find contacts matching more than one module. For example, the input `findc m/ CS1101S MA1521` will return all contacts taking CS1101S, MA1521, or both. The reason why we decided to use additive search condition is as follows:
+
+Consider the following situation:
+- You have two assignments due tomorrow, from two different modules: MOD_X and MOD_Y.
+- Feeling stuck, you decide to use CodeConnect to search for help, to see if there's anybody you might have forgot.
+- You enter the command `findc m/ MOD_X MOD_Y`
+
+As a user in this situation, the last thing you would want is for the app to _exclude_ contacts taking both MOD_X and MOD_Y. Those would be the first people you want to ask for help!
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

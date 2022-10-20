@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindContactCommandParser" as FindContactCommandParser LOGIC_COLOR
+participant "p:ModuleTakenPredicate" as ModuleTakenPredicate LOGIC_COLOR
+participant "f:FindContactCommand" as FindContactCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findc m/ CS1101S")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findc m/ CS1101S")
+activate AddressBookParser
+
+create FindContactCommandParser
+AddressBookParser -> FindContactCommandParser
+activate FindContactCommandParser
+
+FindContactCommandParser --> AddressBookParser
+deactivate FindContactCommandParser
+
+AddressBookParser -> FindContactCommandParser : parse("m/ CS1101S")
+activate FindContactCommandParser
+
+create ModuleTakenPredicate
+FindContactCommandParser -> ModuleTakenPredicate
+activate ModuleTakenPredicate
+
+ModuleTakenPredicate --> FindContactCommandParser : p
+deactivate ModuleTakenPredicate
+
+create FindContactCommand
+FindContactCommandParser -> FindContactCommand : FindContactCommand(p)
+activate FindContactCommand
+
+FindContactCommand --> FindContactCommandParser : f
+deactivate FindContactCommand
+
+FindContactCommandParser --> AddressBookParser : f
+deactivate FindContactCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindContactCommand : execute()
+activate FindContactCommand
+
+FindContactCommand -> Model : updateFilteredPersonList(p)
+activate Model
+
+Model --> FindContactCommand
+deactivate Model
+
+create CommandResult
+FindContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindContactCommand
+deactivate CommandResult
+
+FindContactCommand --> LogicManager : result
+deactivate FindContactCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
