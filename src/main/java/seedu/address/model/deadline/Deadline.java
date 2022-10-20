@@ -1,4 +1,4 @@
-package seedu.address.model.project;
+package seedu.address.model.deadline;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 
 /**
- * Represent a project deadline in HR PRO Max++.
+ * Represent a deadline object in HR PRO Max++.
  */
 public class Deadline implements Comparable<Deadline> {
 
@@ -19,16 +19,16 @@ public class Deadline implements Comparable<Deadline> {
      */
     public static final String VALIDATION_REGEX =
             "^((2000|2400|2800|(2[0-9])(0[48]|[2468][048]|[13579][26]))-02-29)$"
-            + "|^(((2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$"
-            + "|^(((2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
-            + "|^(((2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
+                    + "|^(((2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$"
+                    + "|^(((2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
+                    + "|^(((2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
 
     public final String deadline;
 
     /**
      * Constructs an {@code Deadline}.
      *
-     * @param deadline A valid deadline address.
+     * @param deadline A valid deadline.
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);

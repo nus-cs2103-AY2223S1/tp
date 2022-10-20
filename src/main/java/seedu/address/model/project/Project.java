@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.tag.Tag;

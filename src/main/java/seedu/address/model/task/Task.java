@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.deadline.Deadline;
+
 /**
  * Represents a Task in the TaskList.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -11,21 +13,21 @@ import java.util.Objects;
 public class Task {
 
     // Identity fields
-    private final TaskDeadline deadline;
+    private final Deadline deadline;
     private final TaskDescription description;
     private final TaskMark mark;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(TaskDeadline deadline, TaskDescription description, TaskMark mark) {
+    public Task(Deadline deadline, TaskDescription description, TaskMark mark) {
         requireAllNonNull(deadline, description);
         this.deadline = deadline;
         this.description = description;
         this.mark = mark;
     }
 
-    public TaskDeadline getTaskDeadline() {
+    public Deadline getTaskDeadline() {
         return deadline;
     }
 

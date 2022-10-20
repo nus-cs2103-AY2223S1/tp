@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskMark;
 
@@ -35,7 +35,7 @@ public class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        taskDeadline = source.getTaskDeadline().taskDeadLine;
+        taskDeadline = source.getTaskDeadline().deadline;
         taskDescription = source.getTaskDescription().taskDescription;
         taskMark = source.getTaskMark().taskMark;
     }
@@ -48,12 +48,12 @@ public class JsonAdaptedTask {
     public Task toModelType() throws IllegalValueException {
         if (taskDeadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TaskDeadline.class.getSimpleName()));
+                    Deadline.class.getSimpleName()));
         }
-        if (!TaskDeadline.isValidTaskDeadline(taskDeadline)) {
-            throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(taskDeadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final TaskDeadline modelTaskDeadline = new TaskDeadline(taskDeadline);
+        final Deadline modelTaskDeadline = new Deadline(taskDeadline);
 
         if (taskDescription == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

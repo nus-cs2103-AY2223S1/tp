@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.project.Budget;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
@@ -19,7 +19,6 @@ import seedu.address.model.staff.StaffName;
 import seedu.address.model.staff.StaffTitle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskMark;
 
@@ -56,11 +55,11 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new TaskDeadline("2022-08-30"), new TaskDescription("Finish 2103"),
+            new Task(new Deadline("2022-08-30"), new TaskDescription("Finish 2103"),
                     new TaskMark("false")),
-            new Task(new TaskDeadline("2022-06-01"), new TaskDescription("Submit homework"),
+            new Task(new Deadline("2022-06-01"), new TaskDescription("Submit homework"),
                     new TaskMark("false")),
-            new Task(new TaskDeadline("2022-07-02"), new TaskDescription("Prepare for 2103 exam"),
+            new Task(new Deadline("2022-07-02"), new TaskDescription("Prepare for 2103 exam"),
                     new TaskMark("false"))
         };
     }
