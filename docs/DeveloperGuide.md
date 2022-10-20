@@ -234,9 +234,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Sort feature
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+
+The sort mechanism is facilitated by `TaskList` with the sorting status stored internally as `isSortByDeadline`. It implements the following operations:
+
+* `TaskList#sortByDeadline()` — Sorts the task list by deadline.
+* `TaskList#sortById()` — Sorts the task list by id, which is the order the tasks were added in.
+
+The two operations are exposed in the `Model` interface as `Model#sortByDeadline()` and `Model#sortById()` respectively.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application with some tasks in the task list already.
+
+Step 2. The user executes `sortD` command to sort the task list by deadline. The `sortD` command calls `Model#sortByDeadline()`, causing the task list to sort by deadline.
+The following sequence diagram shows how the sort by deadline operation works:
+
+![UndoSequenceDiagram](images/SortByDeadlineSequenceDiagram.png)
+
+Step 3. The user has seen the most urgent tasks to be completed but realises that there is one more task that has not been added. The user executes `addT d/do …` to add a new task.  The `addT` command eventually calls `TaskList#sortByDeadline()` to sort the task list after adding the new task.
+
+Step 4. The user now decides that the initial order of the task list looks much better after finding out the tasks to do. The user executes `sortI` to sort the task list by id. The `sortI` command calls `Model#sortById()` to sort the task list based on id. 
+
+#### Design considerations:
+
+**Aspect: Why the sort methods are implemented as stated above:**
+
+**Aspect: How the sort methods executes:**
+
+* **Alternative 1 (current choice):** Saves the sorting status after sorting
+  * Pros: Only need to enter sort command once for task list to permanently be sorted even when the task list is modified.
+  * Cons: Harder to implement as other task list need to be updated constantly to ensure sorting order.
+
+* **Alternative 2:** Don't save the sorting status and just sort once
+  * Pros: Easy to implement.
+  * Cons: Need to type a sort command each time the list is changed to preserve sorting order. 
+
+* **Saving:** 
+Once the user decides to sort the task list a certain way, the task list should remain in that sorted order even when other changes are made to the list. By storing the sorting state internally, the task list can ensure that the sorted order is maintained.
 
 
 --------------------------------------------------------------------------------------------------------------------
