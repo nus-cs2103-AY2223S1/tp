@@ -92,6 +92,13 @@ public class SortCommand extends Command {
         }
     }
 
+    /**
+     * Returns the invalid message when providing an invalid sorting metric
+     */
+    public static String getInvalidMessage() {
+        return INVALID_MESSAGE;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
