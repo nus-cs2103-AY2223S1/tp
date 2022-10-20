@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -23,7 +24,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "1 January 2000";
-    public static final String DEFAULT_REMINDER_TASK = "default reminder";
 
     private Name name;
     private Phone phone;
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Birthday birthday;
     private Set<Tag> tags;
-    private Reminder reminders;
+    private Set<Reminder> reminders;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,7 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         tags = new HashSet<>();
-        reminders = new Reminder(DEFAULT_REMINDER_TASK);
+        reminders = new HashSet<>();
     }
 
     /**
@@ -56,7 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         birthday = personToCopy.getBirthday();
         tags = new HashSet<>(personToCopy.getTags());
-        reminders = personToCopy.getReminders();
+        reminders = new HashSet<>(personToCopy.getReminders());
     }
 
     /**
@@ -110,8 +110,9 @@ public class PersonBuilder {
     /**
      * Sets the {@code Reminder} of the {@code Person} that we are building.
      */
-    public PersonBuilder withReminders(String task) {
-        this.reminders = new Reminder(task);
+    @SafeVarargs
+    public final PersonBuilder withReminders(Pair<String, String>... reminders) {
+        this.reminders = SampleDataUtil.getReminderSet(reminders);
         return this;
     }
 
