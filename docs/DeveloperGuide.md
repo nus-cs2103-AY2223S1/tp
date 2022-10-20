@@ -288,7 +288,49 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find Contact
 
+#### Implementation
+
+The Find Contact Feature is facilitated by `FindCommand`. It extends `Command` with a `PersonMatchesPredicate` field (which extends the `Predicate` interface) that is used to filter persons to produce the desirable list of contacts.
+
+Given below is an example usage scenario and how the find command mechanism behaves at each step.
+
+Step 1. The user types `find n/bob` and presses enter.
+
+Step 2. The `find n/bob` will be parsed by `AddressBook#parseCommand()` which will return a `FindCommandParser` which also creates a `PersonMatchesPredicate`.
+
+Step 3. The `FindCommandParser` will parse `n/bob` using `parse()` and then set the `namesList` of the `PersonMatchesPredicate` to a list of strings containing `bob`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesList and tagsList works differently than the other fields.
+</div>
+
+Step 5. `FindCommandParser` then creates a `FindCommand` by passing the `PersonMatchesPredicate` to its constructor.
+
+Step 4. The `FindCommand` will then be executed using `FindCommand#execute()`.
+
+Step 5. The `Model#updateFilteredPersonList(predicate);` method will be called and the list of persons will be filtered according to the `PersonMatchesPredicate`.
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+Step 7. A list of contacts, if any, will be displayed to the user.
+
+The following sequence diagram shows how the find contact feature works.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How open github profile page feature executes:**
+
+* **Alternative 1 (current choice):** Use a class that implements the `Predicate` interface to filter contacts.
+    * Pros: Easily extendable for future enhancements of find command.
+    * Pros: Less of the codebase needs to be changed.
+
+* **Alternative 2:** Create a generic contact class through the fields provided and match with other contacts to filter.
+    * Cons: Difficult to implement / bad runtime and memory usage when multiple values are provided for a single field. e.g. `find n/bob anne` will mean 2 contacts are created with names `bob` and `anne` respectively. Current contacts will then need to be compared with both of these.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
