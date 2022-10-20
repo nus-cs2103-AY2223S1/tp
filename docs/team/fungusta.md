@@ -10,11 +10,11 @@ They want a product to store all this information in one place.
 
 Given below are my contributions to the project.
 
-* **New Feature**: [to be added soon]
-    * What it does: [to be added soon]
-    * Justification: [to be added soon]
-    * Highlights: [to be added soon]
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: PDF Access
+    * What it does: Users are able to assign PDFs absolute path in computer to client profiles.
+    * Justification: Users are able to access their clients current plans and other information in an instant.
+    * Highlights: By inputting the command, the PDF will open on the User's browser
+    * Credits: Reused code from [Stackoverflow](https://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fungusta&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=fungusta&tabRepo=AY2223S1-CS2103T-T10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
