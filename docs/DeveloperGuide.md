@@ -248,17 +248,17 @@ _{Explain here how the data archiving feature will be implemented}_
 This feature is created for users to add multiple entries at once. 
 In the case of this application, there are two main reasons why our User (HR Executive) would use this.
 1. User is new and needs to import all the current data into the database.
-2. There is a new recruitment cycle and company has recruited a large number of employees
+2. There is a new recruitment cycle and company has recruited a large number of employees.
 
 Moving on to the implementation, some things to note.
 - As of now, our feature only accommodates adding from a CSV file.
 - Fields does not allow for commas inside. 
-These are possible things to work on for future iterations
+These are possible things to work on for future iterations.
 
 ####Implementation
 
 Pre-requisites: User has a CSV file filled with whatever information they have 
-and has stored it in the `/data` folder of the repository
+and has stored it in the `/data` folder of the repository.
 
 Step 1: User executes `batchadd filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
 This will return a new `BatchAddParser` object and `parse` function is then called. 
@@ -275,12 +275,12 @@ If there is any duplicate Person found, the function call will be aborted and th
 Step 4. storage#saveDatabase is then called on the current `database`, updates the database to contain the new persons added.
 
 ####Design Considerations
-- Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`
-  - Pros: Makes use of the Error Handling that the `AddCommand` has
-  - Cons: `BatchAdd` will fail if Add fails
-- Alternative 2: Own implementation of `BatchAdd` without relying on `AddCommand`
-  - Pros: If Add Fails, BatchAdd can sill work
-  - Cons: Implementation Heavy
+- Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
+  - Pros: Makes use of the Error Handling that the `AddCommand` has.
+  - Cons: `BatchAdd` will fail if Add fails.
+- Alternative 2: Own implementation of `BatchAdd` without relying on `AddCommand`.
+  - Pros: If Add Fails, BatchAdd can still work.
+  - Cons: Implementation Heavy.
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
