@@ -208,6 +208,15 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code String s} into a {@code DebtGreaterEqualAmountPredicate}.
+     */
+    public static DebtGreaterEqualAmountPredicate prepareDebtGreaterEqualAmountPredicate(String s)
+            throws ParseException {
+        Money m = parseMoney(s);
+        return new DebtGreaterEqualAmountPredicate(m);
+    }
+
+    /**
      * Returns true if none of the prefixes contains empty {@code Optional} values
      * in the given
      * {@code ArgumentMultimap}.
@@ -217,11 +226,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String s} into a {@code DebtGreaterEqualAmountPredicate}.
+     * Returns true if exactly one of the prefixes contains non-empty {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
      */
-    public static DebtGreaterEqualAmountPredicate prepareDebtGreaterEqualAmountPredicate(String s)
-            throws ParseException {
-        Money m = parseMoney(s);
-        return new DebtGreaterEqualAmountPredicate(m);
+    public static boolean isExactlyOneOfPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        int presentCount = 0;
+        for (Prefix prefix : prefixes) {
+            if (argumentMultimap.getValue(prefix).isPresent()) {
+                presentCount++;
+            }
+        }
+        return presentCount == 1;
     }
 }

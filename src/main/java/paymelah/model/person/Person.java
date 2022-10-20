@@ -74,6 +74,14 @@ public class Person {
         return new Money(debts.getTotalDebt().toString());
     }
 
+    public int compareNameWith(Person o) {
+        return name.compareTo(o.name);
+    }
+
+    public int compareAmountOwedWith(Person o) {
+        return getDebtsAmountAsMoney().compareTo(o.getDebtsAmountAsMoney());
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
