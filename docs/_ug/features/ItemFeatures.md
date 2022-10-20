@@ -127,7 +127,7 @@ Common errors:
     ```
     Use the list command or find command to find out what is the index of the item to be deleted.
     ```
-   
+
 2) If no fields to edit was provided.
    ```text
    At least one field to edit must be provided.
@@ -153,7 +153,7 @@ Common errors:
 
 Command: `del ITEM_INDEX`
 
-> Description: Deletes an item from FoodRem permanently. 
+> Description: Deletes an item from FoodRem permanently.
 
 Example:
 ```text
