@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITERATION_IMAGEPATH_FINALISE;
+
 import java.time.LocalDate;
 
 import seedu.address.model.iteration.Date;
@@ -15,7 +17,7 @@ public class IterationBuilder {
     public static final LocalDate DEFAULT_DATE = LocalDate.of(2022, 10, 13);
     public static final String DEFAULT_DESCRIPTION = "Draft sketch without colour";
     public static final String DEFAULT_FEEDBACK = "Looks good, but I want the lines to be thicker";
-    public static final String DEFAULT_IMAGE_PATH = "/images/placeholderart.png";
+    public static final String DEFAULT_IMAGE_PATH = VALID_ITERATION_IMAGEPATH_FINALISE;
 
     private Date date;
     private IterationDescription description;

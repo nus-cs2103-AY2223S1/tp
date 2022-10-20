@@ -58,6 +58,7 @@ public class AddCustomerCommand extends Command {
 
         model.addCustomer(toAdd);
         model.selectTab(GuiTab.CUSTOMER);
+        model.selectCustomer(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -8,9 +8,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
@@ -31,6 +31,7 @@ import seedu.address.ui.GuiTab;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String FILE_OPS_CREATE_ERROR_MESSAGE = "Could not create file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -71,13 +72,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Customer> getFilteredCustomerList() {
-        return model.getFilteredCustomerList();
+    public ObservableList<Customer> getSortedFilteredCustomerList() {
+        return model.getSortedFilteredCustomerList();
     }
 
 
     @Override
-    public ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList() {
+    public ObservableObject<Pair<Customer, FilteredList<Commission>>> getObservableFilteredCommissionList() {
         return model.getObservableFilteredCommissionList();
     }
 
@@ -118,18 +119,21 @@ public class LogicManager implements Logic {
 
     @Override
     public void selectValidCustomer() {
-        if (!model.getFilteredCustomerList().contains(model.getSelectedCustomer().getValue())) {
+        if (!model.getSortedFilteredCustomerList().contains(model.getSelectedCustomer().getValue())) {
             model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-            List<Customer> customers = model.getFilteredCustomerList();
+            List<Customer> customers = model.getSortedFilteredCustomerList();
             model.selectCustomer(customers.size() > 0 ? customers.get(0) : null);
         }
     }
 
     @Override
     public void selectValidCommission() {
-        if (!model.getFilteredCommissionList().contains(model.getSelectedCommission().getValue())) {
+        FilteredList<Commission> commissions = model.getFilteredCommissionList();
+        if (commissions == null) {
+            model.selectCommission(null);
+        } else if (!commissions.contains(model.getSelectedCommission().getValue())) {
             model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
-            List<Commission> commissions = model.getFilteredCommissionList();
+            commissions = model.getObservableFilteredCommissionList().getValue().getValue();
             model.selectCommission(commissions.size() > 0 ? commissions.get(0) : null);
         }
     }

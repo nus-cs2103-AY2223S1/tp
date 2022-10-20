@@ -1,11 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
@@ -81,7 +82,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Customer> getFilteredCustomerList() {
+    public ObservableList<Customer> getSortedFilteredCustomerList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -91,12 +92,17 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateSortedCustomerList(Comparator<Customer> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public FilteredList<Commission> getFilteredCommissionList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList() {
+    public ObservableObject<Pair<Customer, FilteredList<Commission>>> getObservableFilteredCommissionList() {
         throw new AssertionError("This method should not be called.");
     }
 

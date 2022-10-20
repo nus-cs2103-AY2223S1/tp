@@ -11,6 +11,10 @@ public class Messages {
     public static final String MESSAGE_CUSTOMERS_LISTED_OVERVIEW = "%1$d customers listed!";
     public static final String MESSAGE_NO_ACTIVE_CUSTOMER = "This command requires you to open a customer first!";
 
+    public static final String MESSAGE_CUSTOMERS_SORTED = "%1$d customers sorted in %2$s order by %3$s!";
+
+    public static final String MESSAGE_INVALID_UNIQUE_COMPARATOR = "The sort command requires exactly one option.";
+
     /* Commission Messages */
     public static final String MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX = "The commission index provided is invalid";
     public static final String MESSAGE_NO_ACTIVE_COMMISSION = "This command requires you to open a commission first!";

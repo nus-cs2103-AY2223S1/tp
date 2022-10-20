@@ -104,6 +104,10 @@ public class Customer {
         return commissions.asUnmodifiableObservableList();
     }
 
+    public int getCommissionsCount() {
+        return commissions.getSize();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

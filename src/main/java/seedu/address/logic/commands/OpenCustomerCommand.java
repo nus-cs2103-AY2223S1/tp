@@ -36,7 +36,7 @@ public class OpenCustomerCommand extends Command {
     public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
-        List<Customer> lastShownList = model.getFilteredCustomerList();
+        List<Customer> lastShownList = model.getSortedFilteredCustomerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
