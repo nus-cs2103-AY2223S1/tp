@@ -302,9 +302,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code OfficeHour} is invalid.
      */
-    public static OfficeHour parseOfficeHour(String officeHour) throws ParseException {
+    public static OfficeHour parseOfficeHour(String officeHour, boolean isPresent) throws ParseException {
         requireNonNull(officeHour);
         String trimmedOfficeHour = officeHour.trim();
+        if (!isPresent) {
+            return new OfficeHour(trimmedOfficeHour, false);
+        }
         if (!OfficeHour.isValidOfficeHour(trimmedOfficeHour)) {
             throw new ParseException(OfficeHour.MESSAGE_CONSTRAINTS);
         }
@@ -325,7 +328,7 @@ public class ParserUtil {
                 + startTime.format(TIME_FORMATTER)
                 + " to "
                 + endTime.format(TIME_FORMATTER);
-        return new OfficeHour(formattedOfficeHour);
+        return new OfficeHour(formattedOfficeHour, true);
     }
 
 }

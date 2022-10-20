@@ -28,7 +28,7 @@ public class ProfessorBuilder extends PersonBuilder {
         this.moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         this.rating = new Rating(DEFAULT_RATING);
         this.field = new Specialisation(DEFAULT_SPECIALISATION, true);
-        this.officeHour = new OfficeHour(DEFAULT_OFFICE_HOUR);
+        this.officeHour = new OfficeHour(DEFAULT_OFFICE_HOUR, true);
     }
 
     /**
