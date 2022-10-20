@@ -1,6 +1,5 @@
 package nus.climods.logic.parser;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
