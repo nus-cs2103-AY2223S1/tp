@@ -49,6 +49,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String seller = ParserUtil.parseSellerName(argMultimap.getValue(PREFIX_SELLER).get());
 
+        // TODO: Consider allowing multiple -c instead of separated by ; in one -c
         Characteristics characteristics = null;
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());

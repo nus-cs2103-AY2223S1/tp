@@ -23,4 +23,20 @@ public abstract class Parser<T extends Command> {
     public boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    /**
+     * Returns true if more than one {@code Prefix} is present in the given
+     * {@code ArgumentMultimap}.
+     */
+    public boolean areMoreThanOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() > 1;
+    }
+
+    /**
+     * Returns false if no {@code Prefix} is present in the given
+     * {@code ArgumentMultimap}.
+     */
+    public boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() > 0;
+    }
 }
