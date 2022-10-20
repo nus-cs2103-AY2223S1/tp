@@ -1,23 +1,21 @@
 package seedu.travelr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.travelr.commons.core.Messages;
-import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.EventCompletedPredicate;
-import seedu.travelr.model.event.EventInItineraryPredicate;
 import seedu.travelr.model.list.Itineraries;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.TripCompletedPredicate;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
-
+/**
+ * Displays all completed trips and events in Travelr to the user.
+ */
 public class ViewCompletedCommand extends Command {
 
     public static final String COMMAND_WORD = "completed";

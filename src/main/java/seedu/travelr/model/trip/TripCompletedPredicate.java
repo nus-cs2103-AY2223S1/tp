@@ -1,10 +1,10 @@
 package seedu.travelr.model.trip;
 
-import seedu.travelr.model.event.Event;
-
-import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Trip}'s is completed.
+ */
 public class TripCompletedPredicate implements Predicate<Trip> {
 
 
@@ -13,8 +13,6 @@ public class TripCompletedPredicate implements Predicate<Trip> {
      */
     public TripCompletedPredicate() {
     }
-
-
     @Override
     public boolean test(Trip trip) {
         return trip.isDone();

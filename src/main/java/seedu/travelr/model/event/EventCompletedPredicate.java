@@ -1,19 +1,20 @@
 package seedu.travelr.model.event;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.model.list.Itineraries;
-import seedu.travelr.model.trip.Trip;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
+import seedu.travelr.model.list.Itineraries;
+import seedu.travelr.model.trip.Trip;
+
+/**
+ * Tests that an {@code Event}'s is completed.
+ */
 public class EventCompletedPredicate implements Predicate<Event> {
 
     private FilteredList<Trip> completedTrips;
-    List<Event> completedEvents;
+    private List<Event> completedEvents;
 
     /**
      * Creates a new EventInItineraryPredicate.
