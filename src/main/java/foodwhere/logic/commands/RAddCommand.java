@@ -34,8 +34,8 @@ public class RAddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_STALL_INDEX + "3 "
             + CliSyntax.PREFIX_DATE + "20/09/2022 "
-            + CliSyntax.PREFIX_CONTENT + "The food was good, the chicken rice was fresh.\n"
-            + CliSyntax.PREFIX_RATING + "4\n"
+            + CliSyntax.PREFIX_CONTENT + "The food was good, the chicken rice was fresh. "
+            + CliSyntax.PREFIX_RATING + "4 "
             + CliSyntax.PREFIX_TAG + "opensDaily "
             + CliSyntax.PREFIX_TAG + "worthyTrip";
 

@@ -41,29 +41,32 @@ public class ReviewListPanel extends UiPart<Region> {
      */
     @FXML
     public void handleMouseClicked() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ContextMenu contextMenu = new ContextMenu();
-        final ObservableList<MenuItem> contextMenuItems = contextMenu.getItems();
         final Review selectedReview = reviewListView.getSelectionModel().getSelectedItem();
 
-        CopyMenuItem<Review> copyReviewName = new CopyMenuItem<>("Copy Name",
-                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_NAME);
-        CopyMenuItem<Review> copyReviewDate = new CopyMenuItem<>("Copy Date",
-                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_DATE);
-        CopyMenuItem<Review> copyReviewContent = new CopyMenuItem<>("Copy Content",
-                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_CONTENT);
-        CopyMenuItem<Review> copyReviewRating = new CopyMenuItem<>("Copy Rating",
-                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_RATING);
+        if (selectedReview != null) {
+            final Clipboard clipboard = Clipboard.getSystemClipboard();
+            final ContextMenu contextMenu = new ContextMenu();
+            final ObservableList<MenuItem> contextMenuItems = contextMenu.getItems();
 
-        contextMenuItems.addAll(copyReviewName, copyReviewDate, copyReviewContent, copyReviewRating);
+            CopyMenuItem<Review> copyReviewName = new CopyMenuItem<>("Copy Name",
+                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_NAME);
+            CopyMenuItem<Review> copyReviewDate = new CopyMenuItem<>("Copy Date",
+                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_DATE);
+            CopyMenuItem<Review> copyReviewContent = new CopyMenuItem<>("Copy Content",
+                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_CONTENT);
+            CopyMenuItem<Review> copyReviewRating = new CopyMenuItem<>("Copy Rating",
+                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_RATING);
 
-        if (!selectedReview.getTags().isEmpty()) {
-            CopyMenuItem<Review> copyReviewTag = new CopyMenuItem<>("Copy Tag",
-                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_TAG);
-            contextMenuItems.add(copyReviewTag);
+            contextMenuItems.addAll(copyReviewName, copyReviewDate, copyReviewContent, copyReviewRating);
+
+            if (!selectedReview.getTags().isEmpty()) {
+                CopyMenuItem<Review> copyReviewTag = new CopyMenuItem<>("Copy Tag",
+                        selectedReview, clipboard, CopyMenuItem.Action.FIELDS_TAG);
+                contextMenuItems.add(copyReviewTag);
+            }
+
+            reviewListView.setContextMenu(contextMenu);
         }
-
-        reviewListView.setContextMenu(contextMenu);
     }
 
     /**
