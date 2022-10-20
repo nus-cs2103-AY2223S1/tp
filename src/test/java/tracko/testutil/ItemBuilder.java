@@ -7,8 +7,8 @@ import java.util.Set;
 import tracko.model.item.Description;
 import tracko.model.item.Item;
 import tracko.model.item.ItemName;
-import tracko.model.item.Quantity;
 import tracko.model.item.Price;
+import tracko.model.item.Quantity;
 import tracko.model.tag.Tag;
 
 /**
@@ -80,7 +80,6 @@ public class ItemBuilder {
     }
 
     /**
-<<<<<<< HEAD
      * Sets the {@code Sell Price} of the {@code Item} that we are building.
      */
     public ItemBuilder withSellPrice(BigDecimal sellPrice) {
