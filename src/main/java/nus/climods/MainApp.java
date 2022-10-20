@@ -19,7 +19,6 @@ import nus.climods.model.Model;
 import nus.climods.model.ModelManager;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
-import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
@@ -83,7 +82,6 @@ public class MainApp extends Application {
         // TODO: load from storage
         UniqueUserModuleList initialUserModuleList = new UniqueUserModuleList();
         String academicYear = userPrefs.getAcademicYear();
-        Module.setCurrentAcademicYear(academicYear);
         try {
             moduleListOptional = storage.readModuleList(academicYear);
             if (moduleListOptional.isEmpty()) {

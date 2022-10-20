@@ -8,6 +8,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import org.openapitools.client.ApiException;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -18,7 +20,6 @@ import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
-import nus.climods.model.module.exceptions.DetailedModuleRetrievalException;
 import nus.climods.model.module.predicate.ViewModulePredicate;
 
 /**
@@ -38,7 +39,7 @@ public class ModelManager implements Model {
 
     private final UserPrefs userPrefs;
 
-    private Optional<Module> activeModule = Optional.empty();
+    private Module moduleInFocus;
 
     /**
      * Initializes a ModelManager with the given moduleList and userPrefs.
@@ -68,11 +69,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasListModule(String moduleCode) {
-        return getListModule(moduleCode).isPresent();
-    }
-
-    @Override
     public Optional<Module> getListModule(String moduleCode) {
         return getModuleList().getListModule(moduleCode);
     }
@@ -99,24 +95,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setActiveModule(String moduleCode) throws DetailedModuleRetrievalException {
-        Optional<Module> optionalModule = getListModule(moduleCode);
+    public void setModuleInFocus(Module module) throws ApiException {
+        module.requestFocus();
+        moduleInFocus = module;
 
-        // Didn't use ifPresent here in order to handle ApiException in outer method
-        if (optionalModule.isEmpty()) {
-            return;
-        }
-
-        Module mod = optionalModule.get();
-        mod.makeActive();
-        activeModule = Optional.of(mod);
-
-        setFilteredModuleList(new ViewModulePredicate(moduleCode));
+        setFilteredModuleList(new ViewModulePredicate(module.getCode()));
     }
 
     @Override
-    public void resetActiveModule() {
-        activeModule.ifPresent(Module::makeinActive);
+    public void clearModuleInFocus() {
+        if (moduleInFocus != null) {
+            moduleInFocus.clearFocus();
+        }
+        moduleInFocus = null;
     }
 
     //=========== UserModule ==================================================================================

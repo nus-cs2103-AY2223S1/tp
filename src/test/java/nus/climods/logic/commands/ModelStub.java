@@ -1,7 +1,10 @@
 package nus.climods.logic.commands;
 
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
+
+import org.openapitools.client.ApiException;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
@@ -49,6 +52,11 @@ class ModelStub implements Model {
     }
 
     @Override
+    public Optional<Module> getListModule(String moduleCode) {
+        return Optional.empty();
+    }
+
+    @Override
     public boolean hasUserModule(UserModule module) {
         return hasModule;
     }
@@ -89,6 +97,16 @@ class ModelStub implements Model {
 
     @Override
     public void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator) {
+
+    }
+
+    @Override
+    public void setModuleInFocus(Module module) throws ApiException {
+
+    }
+
+    @Override
+    public void clearModuleInFocus() {
 
     }
 }

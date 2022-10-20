@@ -1,7 +1,6 @@
 package nus.climods.ui.common;
 
 import javafx.scene.control.Button;
-import javafx.scene.text.Font;
 
 /**
  * A button UI component in a shape of a pill.

@@ -72,28 +72,21 @@ public class ModuleCard extends UiPart<Region> {
 
         moduleDescription.setText(module.getDescription().replace("\n", " "));
 
-        // managed controls whether it interrupts the flow i.e display in CSS vs visibility
+        // managed controls whether it interrupts the flow i.e. display in CSS vs visibility
         // bind allows for managed to follow the visible property's changes
         expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
         // by default expanded is not visible
         expandedModuleInfo.setVisible(false);
 
-        if (module.isActive()) {
+        if (module.isFocused()) {
             showDetailedModuleInformation();
-
         }
     }
 
     private void showDetailedModuleInformation() {
-        prereqs.setText("Prerequisites: ");
-        String typesText = "No lesson types found";
-        typesText = module.getUniqueLessonTypes().size() > 0 ? "Types: " + String.join(",",
-            module.getUniqueLessonTypes()) : typesText;
-        lessonTypes.setText(typesText);
         expandedModuleInfo.setVisible(true);
         moduleDescription.setText(module.getDescription());
         moduleDescription.setWrapText(true);
-
     }
 
     private Pill createSemesterPill(int semesterNum) {
