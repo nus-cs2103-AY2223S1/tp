@@ -1,0 +1,78 @@
+@startuml
+ !include style.puml
+
+ box Logic LOGIC_COLOR_T1
+ participant ":LogicManager" as LogicManager LOGIC_COLOR
+ participant ":JeeqTrackerParser" as JeeqTrackerParser LOGIC_COLOR
+ participant ":BuyCommandParser" as BuyCommandParser LOGIC_COLOR
+ participant "d:BuyCommand" as BuyCommand LOGIC_COLOR
+ participant ":CommandResult" as CommandResult LOGIC_COLOR
+ end box
+
+ [-> LogicManager : execute("buy 1 q/10 g/Apple p/0.5 d/17/05/2000")
+ activate LogicManager
+
+ LogicManager -> JeeqTrackerParser : parseCommand("buy 1 q/10 g/Apple p/0.5 d/17/05/2000")
+ activate JeeqTrackerParser
+
+ create BuyCommandParser
+ JeeqTrackerParser -> BuyCommandParser
+ activate BuyCommandParser
+
+ BuyCommandParser --> JeeqTrackerParser
+ deactivate BuyCommandParser
+
+ JeeqTrackerParser -> BuyCommandParser : parse("buy 1 q/10 g/Apple p/0.5 d/17/05/2000")
+ activate BuyCommandParser
+
+ create BuyCommand
+ BuyCommandParser -> BuyCommand
+ activate BuyCommand
+
+ BuyCommand -> Model :getFilteredClientList()
+ activate Model
+
+ Model --> BuyCommand
+ deactivate Model
+
+ BuyCommand -> Client :addTransaction()
+ activate Client
+
+ Client --> BuyCommand
+ deactivate Client
+
+ BuyCommand -> Model :setClient()
+ activate Model
+
+ Model --> BuyCommand
+ deactivate Model
+
+ BuyCommand --> BuyCommandParser : d
+ deactivate BuyCommand
+
+ BuyCommandParser --> JeeqTrackerParser : d
+ deactivate BuyCommandParser
+ 'Hidden arrow to position the destroy marker below the end of the activation bar.
+ BuyCommandParser -[hidden]-> JeeqTrackerParser
+ destroy BuyCommandParser
+
+
+ JeeqTrackerParser --> LogicManager : d
+ deactivate JeeqTrackerParser
+
+ LogicManager -> BuyCommand : execute()
+ activate BuyCommand
+
+ create CommandResult
+ BuyCommand -> CommandResult
+ activate CommandResult
+
+ CommandResult --> BuyCommand
+ deactivate CommandResult
+
+ BuyCommand --> LogicManager : result
+ deactivate BuyCommand
+
+ [<--LogicManager
+ deactivate LogicManager
+ @enduml
