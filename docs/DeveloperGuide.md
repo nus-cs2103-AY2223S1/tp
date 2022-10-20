@@ -115,7 +115,7 @@ How the parsing works:
 
 ### Command Classes
 
-The UML below expands the Command and Parser part in the Logic component above, showing the details of how commands are parsed and created
+The class diagram below expands the details of gCommand and Parser part in the Logic component above, showing the details of how commands are parsed and created
 
 Simple commands without arguments including `clear` `list` `exit` `help` are created directly by `AddressBookParser`<br/>
 To parse complex commands with arguments, including `add` `find` `edit` `delete`, `AddressBookParser` will create customized parser corresponding to the command. <br/>
