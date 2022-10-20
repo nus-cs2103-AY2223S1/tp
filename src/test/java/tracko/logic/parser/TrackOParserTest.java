@@ -17,21 +17,16 @@ import tracko.testutil.OrderBuilder;
 import tracko.testutil.OrderUtil;
 
 public class TrackOParserTest {
-    // TODO: Update test cases according to new implementations
 
     private final TrackOParser parser = new TrackOParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Order baseOrder = new OrderBuilder().withEmptyItemList().build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getBaseAddOrderCommand(baseOrder));
-        assertEquals(new AddOrderCommand(baseOrder), command);
-
-        Order orderWithItems = new OrderBuilder().build();
-        AddOrderCommand commandWithUpdates =
-            (AddOrderCommand) parser.parseAndUpdateCommand(
-                OrderUtil.getItemQuantityPairDetails(orderWithItems), command);
-        assertEquals(new AddOrderCommand(orderWithItems), commandWithUpdates);
+        AddOrderCommand baseCommand = (AddOrderCommand) parser
+            .parseCommand(OrderUtil.getBaseAddOrderCommand(baseOrder));
+        assertEquals(new AddOrderCommand(baseOrder), baseCommand);
+        assertTrue(baseCommand.isAwaitingInput());
     }
 
     // @Test

@@ -1,5 +1,6 @@
 package tracko.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -9,25 +10,30 @@ import static tracko.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static tracko.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static tracko.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static tracko.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static tracko.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_AMY;
+import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static tracko.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static tracko.logic.commands.CommandTestUtil.QUANTITY_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
-// import static tracko.testutil.TypicalOrders.ORDER_10;
 import static tracko.testutil.TypicalOrders.ORDER_11;
 
 import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.order.AddOrderCommand;
+import tracko.logic.parser.exceptions.ParseException;
 import tracko.logic.parser.order.AddOrderCommandParser;
+import tracko.model.item.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.Name;
@@ -62,14 +68,6 @@ public class AddOrderCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB, new AddOrderCommand(expectedOrder));
     }
-
-    // @Test
-    // public void parse_optionalFieldsMissing_success() {
-    //     // zero tags
-    //     Person expectedPerson = new OrderBuilder(ORDER_10).withTags().build();
-    //     assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-    //             new AddOrderCommand(expectedPerson));
-    // }
 
     @Test
     public void parseInitial_compulsoryFieldMissing_failure() {
@@ -123,5 +121,42 @@ public class AddOrderCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parseAndUpdate_compulsoryFieldMissing_failure() {
+        Order baseOrder = new OrderBuilder().withEmptyItemList().build();
+        AddOrderCommand baseCommand = new AddOrderCommand(baseOrder);
+
+        // missing item prefix
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE_2);
+        try {
+            parser.parseAndUpdate(QUANTITY_AMY, baseCommand);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (ParseException e) {
+            assertEquals(expectedMessage, e.getMessage());
+        }
+
+        // missing quantity prefix
+        try {
+            parser.parseAndUpdate(ITEM_NAME_AMY, baseCommand);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (ParseException e) {
+            assertEquals(expectedMessage, e.getMessage());
+        }
+    }
+
+    @Test
+    public void parseAndUpdate_invalidValue_failure() {
+        Order baseOrder = new OrderBuilder().withEmptyItemList().build();
+        AddOrderCommand baseCommand = new AddOrderCommand(baseOrder);
+
+        // invalid quantity value
+        try {
+            parser.parseAndUpdate(ITEM_NAME_BOB + INVALID_QUANTITY_DESC, baseCommand);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (ParseException e) {
+            assertEquals(Quantity.MESSAGE_CONSTRAINTS, e.getMessage());
+        }
     }
 }

@@ -17,7 +17,7 @@ import tracko.logic.commands.item.DeleteItemCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

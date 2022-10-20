@@ -6,7 +6,7 @@ package tracko.logic.commands;
 public abstract class MultiLevelCommand extends Command {
 
     protected boolean isCancelled;
-    private boolean isAwaitingInput;
+    protected boolean isAwaitingInput;
 
     protected MultiLevelCommand() {
         this(true, false);
