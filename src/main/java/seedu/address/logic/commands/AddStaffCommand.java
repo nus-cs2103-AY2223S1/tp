@@ -29,7 +29,7 @@ public class AddStaffCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to a selected project. "
             + "Parameters: "
-            + PREFIX_PROJECT_NAME + "PROJECT NAME "
+            + PREFIX_PROJECT_NAME + "PROJECT_NAME "
             + PREFIX_STAFF_NAME + "NAME "
             + PREFIX_STAFF_CONTACT + "PHONE_NUMBER "
             + PREFIX_STAFF_LEAVE + "LEAVE_STATUS "

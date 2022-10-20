@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.project.Project;
 
 /**
@@ -56,16 +55,19 @@ public class TypicalProjects {
 
     private TypicalProjects() {} // prevents instantiation
 
+
     /**
      * Returns an {@code AddressBook} with all the typical projects.
      */
-    public static AddressBook getTypicalAddressBook() {
+    /*
+    public static AddressBook getTypicalAddressBookWithProjectOnly() {
         AddressBook ab = new AddressBook();
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
         }
         return ab;
     }
+    */
 
     public static List<Project> getTypicalProjects() {
         return new ArrayList<>(Arrays.asList(APPLE, BANANA, COCONUT, DANIEL, ELLE, FIONA, GEORGE));

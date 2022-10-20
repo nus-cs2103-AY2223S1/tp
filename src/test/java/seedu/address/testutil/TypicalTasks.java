@@ -18,20 +18,20 @@ import seedu.address.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task TASK_1 = new TaskBuilder().withDescription("Todo 2101")
-            .withDeadline("2022-01-11").withMark("false").build();
+    public static final Task TASK_1 = new TaskBuilder().withDescription("Assignment 2101")
+            .withDeadline("2022-07-11").withMark("false").build();
     public static final Task TASK_2 = new TaskBuilder().withDescription("Todo 2102")
-            .withDeadline("2022-02-16").withMark("true").build();
+            .withDeadline("2022-06-12").withMark("true").build();
     public static final Task TASK_3 = new TaskBuilder().withDescription("Todo 2103")
-            .withDeadline("2022-03-15").withMark("false").build();
+            .withDeadline("2022-02-16").withMark("false").build();
     public static final Task TASK_4 = new TaskBuilder().withDescription("Todo 2104")
             .withDeadline("2022-04-14").withMark("true").build();
     public static final Task TASK_5 = new TaskBuilder().withDescription("Todo 2105")
-            .withDeadline("2022-05-13").withMark("false").build();
+            .withDeadline("2022-01-11").withMark("false").build();
     public static final Task TASK_6 = new TaskBuilder().withDescription("Todo 2106")
-            .withDeadline("2022-06-12").withMark("true").build();
+            .withDeadline("2022-03-15").withMark("true").build();
     public static final Task TASK_7 = new TaskBuilder().withDescription("Todo 2107")
-            .withDeadline("2022-07-11").withMark("false").build();
+            .withDeadline("2022-05-13").withMark("false").build();
 
     // Manually added - Staff's details found in {@code CommandTestUtil}
 
