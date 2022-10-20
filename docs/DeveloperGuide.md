@@ -231,6 +231,7 @@ classes. The `EditStuCommandParser` is in charge of parsing the user's input whi
 at the index provided by the user.
 
 The following sequence diagram shows how the `editstu` command works:
+![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
 
 
 

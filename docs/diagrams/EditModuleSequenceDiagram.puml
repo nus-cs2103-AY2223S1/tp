@@ -1,103 +1,103 @@
-@startuml
-!include style.puml
+    @startuml
+    !include style.puml
 
-box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":EditModuleCommandParser" as EditModuleCommandParser LOGIC_COLOR
-participant "c:ModuleCode" as ModuleCode LOGIC_COLOR
-participant "d:EditModuleDescriptor" as EditModuleDescriptor LOGIC_COLOR
-participant "e:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
-participant "CommandResult" as CommandResult LOGIC_COLOR
-end box
+    box Logic LOGIC_COLOR_T1
+    participant ":LogicManager" as LogicManager LOGIC_COLOR
+    participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+    participant ":EditModuleCommandParser" as EditModuleCommandParser LOGIC_COLOR
+    participant "c:ModuleCode" as ModuleCode LOGIC_COLOR
+    participant "d:EditModuleDescriptor" as EditModuleDescriptor LOGIC_COLOR
+    participant "e:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+    participant "CommandResult" as CommandResult LOGIC_COLOR
+    end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-participant "m:Module" as Module MODEL_COLOR
-end box
+    box Model MODEL_COLOR_T1
+    participant ":Model" as Model MODEL_COLOR
+    participant "m:Module" as Module MODEL_COLOR
+    end box
 
-[-> LogicManager : execute("medit CS2107 n/Cybersecurity")
-activate LogicManager
+    [-> LogicManager : execute("medit CS2107 n/Cybersecurity")
+    activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("medit CS2107 n/Cybersecurity")
-activate AddressBookParser
+    LogicManager -> AddressBookParser : parseCommand("medit CS2107 n/Cybersecurity")
+    activate AddressBookParser
 
-create EditModuleCommandParser
-AddressBookParser -> EditModuleCommandParser
-activate EditModuleCommandParser
+    create EditModuleCommandParser
+    AddressBookParser -> EditModuleCommandParser
+    activate EditModuleCommandParser
 
-EditModuleCommandParser --> AddressBookParser
-deactivate EditModuleCommandParser
+    EditModuleCommandParser --> AddressBookParser
+    deactivate EditModuleCommandParser
 
-AddressBookParser -> EditModuleCommandParser : parse("CS2107 n/Cybersecurity")
-activate EditModuleCommandParser
+    AddressBookParser -> EditModuleCommandParser : parse("CS2107 n/Cybersecurity")
+    activate EditModuleCommandParser
 
-create ModuleCode
-EditModuleCommandParser -> ModuleCode : "CS2107"
-activate ModuleCode
+    create ModuleCode
+    EditModuleCommandParser -> ModuleCode : "CS2107"
+    activate ModuleCode
 
-ModuleCode --> EditModuleCommandParser : c
-deactivate ModuleCode
-destroy ModuleCode
+    ModuleCode --> EditModuleCommandParser : c
+    deactivate ModuleCode
+    destroy ModuleCode
 
-create EditModuleDescriptor
-EditModuleCommandParser -> EditModuleDescriptor : "n/Cybersecurity"
-activate EditModuleDescriptor
+    create EditModuleDescriptor
+    EditModuleCommandParser -> EditModuleDescriptor : "n/Cybersecurity"
+    activate EditModuleDescriptor
 
-EditModuleDescriptor -> EditModuleCommandParser : d
-deactivate EditModuleDescriptor
-destroy EditModuleDescriptor
+    EditModuleDescriptor -> EditModuleCommandParser : d
+    deactivate EditModuleDescriptor
+    destroy EditModuleDescriptor
 
-create EditModuleCommand
-EditModuleCommandParser -> EditModuleCommand : EditModuleCommand(c, d)
-activate EditModuleCommand
+    create EditModuleCommand
+    EditModuleCommandParser -> EditModuleCommand : EditModuleCommand(c, d)
+    activate EditModuleCommand
 
-EditModuleCommand --> EditModuleCommandParser : e
-deactivate EditModuleCommand
+    EditModuleCommand --> EditModuleCommandParser : e
+    deactivate EditModuleCommand
 
-EditModuleCommandParser --> AddressBookParser : e
-deactivate EditModuleCommandParser
+    EditModuleCommandParser --> AddressBookParser : e
+    deactivate EditModuleCommandParser
 
-AddressBookParser --> LogicManager : e
-destroy EditModuleCommandParser
-deactivate AddressBookParser
+    AddressBookParser --> LogicManager : e
+    destroy EditModuleCommandParser
+    deactivate AddressBookParser
 
-LogicManager -> EditModuleCommand : execute()
-activate EditModuleCommand
+    LogicManager -> EditModuleCommand : execute()
+    activate EditModuleCommand
 
-EditModuleCommand -> Model : getFilteredModuleList()
-activate Model
+    EditModuleCommand -> Model : getFilteredModuleList()
+    activate Model
 
-Model --> EditModuleCommand
+    Model --> EditModuleCommand
 
-create Module
-EditModuleCommand -> Module : createEditedModule()
-activate Module
+    create Module
+    EditModuleCommand -> Module : createEditedModule()
+    activate Module
 
-Module --> EditModuleCommand
-deactivate Module
+    Module --> EditModuleCommand
+    deactivate Module
 
-EditModuleCommand -> Model : setModule()
+    EditModuleCommand -> Model : setModule()
 
-Model --> EditModuleCommand
+    Model --> EditModuleCommand
 
-EditModuleCommand -> Model : updatedFilteredModuleList(predicate)
-Model --> EditModuleCommand
+    EditModuleCommand -> Model : updatedFilteredModuleList(predicate)
+    Model --> EditModuleCommand
 
 
 
-create CommandResult
-EditModuleCommand -> CommandResult
-activate CommandResult
+    create CommandResult
+    EditModuleCommand -> CommandResult
+    activate CommandResult
 
-CommandResult --> EditModuleCommand
-deactivate CommandResult
+    CommandResult --> EditModuleCommand
+    deactivate CommandResult
 
-EditModuleCommand --> LogicManager : result
-deactivate EditModuleCommand
-EditModuleCommand -[hidden]-> LogicManager : result
-destroy EditModuleCommand
+    EditModuleCommand --> LogicManager : result
+    deactivate EditModuleCommand
+    EditModuleCommand -[hidden]-> LogicManager : result
+    destroy EditModuleCommand
 
-[<--LogicManager
-deactivate LogicManager
-@enduml
+    [<--LogicManager
+    deactivate LogicManager
+    @enduml
