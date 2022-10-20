@@ -21,6 +21,7 @@
 | Untag items with a specific tag | :untag:     |
 | Rename a tag                    | :renametag: |
 | Delete a tag                    | :deletetag: |
+| Filter items by tag             | :filtertag: |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->
@@ -32,4 +33,5 @@
   | replace: ":untag:", untag
   | replace: ":renametag:", renametag
   | replace: ":deletetag:", deletetag
+  | replace: ":filtertag:", filtertag
 }}
