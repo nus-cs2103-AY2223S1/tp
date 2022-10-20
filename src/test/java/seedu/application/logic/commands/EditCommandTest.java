@@ -43,6 +43,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ApplicationBook(model.getApplicationBook()), new UserPrefs());
         expectedModel.setApplication(model.getFilteredApplicationList().get(0), editedApplication);
+        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -64,6 +65,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ApplicationBook(model.getApplicationBook()), new UserPrefs());
         expectedModel.setApplication(lastApplication, editedApplication);
+        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -76,6 +78,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
 
         Model expectedModel = new ModelManager(new ApplicationBook(model.getApplicationBook()), new UserPrefs());
+        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,6 +98,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ApplicationBook(model.getApplicationBook()), new UserPrefs());
         expectedModel.setApplication(model.getFilteredApplicationList().get(0), editedApplication);
+        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

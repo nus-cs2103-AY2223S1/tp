@@ -215,6 +215,11 @@ public class AddCommandTest {
         public ReadOnlyApplicationBook getApplicationBook() {
             return new ApplicationBook();
         }
+
+        @Override
+        public void commitApplicationBook() {
+
+        }
     }
 
 }

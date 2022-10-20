@@ -16,6 +16,7 @@ public class ClearCommandTest {
     public void execute_emptyApplicationBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
+        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
@@ -25,6 +26,7 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalApplicationBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalApplicationBook(), new UserPrefs());
         expectedModel.setApplicationBook(new ApplicationBook());
+        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
