@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.NameEqualsKeywordPredicate;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.UniqueCompanyList;
 
@@ -46,6 +47,8 @@ public class DeleteCompanyCommand extends DeleteCommand {
         }
 
         Company deletedCompany = companyList.removeByIndex(targetIndex.getZeroBased());
+
+        model.updateFilteredClientList(new NameEqualsKeywordPredicate(focusedClient));
 
         return new CommandResult(String.format(MESSAGE_DELETE_COMPANY_SUCCESS, deletedCompany));
     }
