@@ -154,52 +154,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add a Task Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The add task feature allows users to add a specific task to their team's task list. The following is an example of how a task is added:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Precondition: Task name is valid (it cannot be empty).
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+1. User keys in the add task command with the name of the task to be added (e.g. `add_task Complete Resume`)
+2. A task is created and added to the current team's task list.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The following sequence diagram summarises the action taken when `addTaskCommand` is executed:
 
-![UndoRedoState0](images/UndoRedoState0.png)
+## ENTER Sequence DIAGRAM
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+#### Design considerations:
 
-![UndoRedoState1](images/UndoRedoState1.png)
+* **Alternative 1**: Store a global list of tasks and each task keeps track of which team it was created for through an attribute.
+  * Pros: A single list of tasks makes it easier to list all the tasks associated with all teams.
+  * Cons: Does not accurately model how teams actually work in terms of task distribution.
+* **Alternative 2**: Each team stores a list of tasks that are associated with it.
+  * Pros: Better modularisation since a team contains all the information related to itelf, including the tasks associated with it.
+  * Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs to multiple teams since there multiple task lists.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+We decided to use alternative 2 because it scales better as the number of teams increase.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+A class diagram depicting the relationship between classes is as follows:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
-</div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png) 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+The following sequence diagram shows how the undo operation works:
+
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
