@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,7 @@ import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.Stall;
 import foodwhere.testutil.TypicalStalls;
 
 /**
@@ -68,10 +70,14 @@ public class SFindCommandTest {
         SFindCommand command = new SFindCommand(predicate);
         expectedModel.updateFilteredStallList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalStalls.CARL,
+        List<Stall> toFind = Arrays.asList(TypicalStalls.CARL,
                 TypicalStalls.ELLE,
-                TypicalStalls.FIONA),
-                model.getFilteredStallList());
+                TypicalStalls.FIONA);
+        List<Stall> foundStalls = model.getFilteredStallList();
+        assertEquals(3, foundStalls.size());
+        for (Stall stall : toFind) {
+            assertTrue(foundStalls.stream().anyMatch(found -> found.isSameStall(stall)));
+        }
     }
 
     /**

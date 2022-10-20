@@ -108,7 +108,7 @@ class JsonAdaptedStall {
 
         final Set<Tag> modelTags = new HashSet<>(stallTags);
 
-        return new Stall(modelName, modelAddress, modelTags);
+        return new Stall(modelName, modelAddress, modelTags, new HashSet<>(getModelReviews()));
     }
 
     /**
