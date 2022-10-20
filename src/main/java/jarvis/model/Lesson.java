@@ -70,6 +70,7 @@ public abstract class Lesson {
     public boolean isCompleted() {
         return isCompleted;
     }
+
     public LessonDesc getDesc() {
         return lessonDesc;
     }
@@ -80,5 +81,13 @@ public abstract class Lesson {
 
     public LessonAttendance getAttendance() {
         return attendance;
+    }
+
+    public void addOverallNotes(String overallNotes) {
+        notes.addNote(overallNotes);
+    }
+
+    public void addStudentNotes(String studentNotes, Student student) {
+        notes.addNote(student, studentNotes);
     }
 }
