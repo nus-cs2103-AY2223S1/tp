@@ -238,6 +238,44 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Implemented\] Add/Edit/Delete Tags Feature
+
+#### Implementation
+
+The addition, modification and deletion of tags are executed through `AddCommand`, `AddTagCommand`, `DeleteTagCommand`, `EditCommand`, and facilated by `Tag`, `TagType`, `UniqueTagTypeMap` and `UniqueTagList`.
+
+Each candidate in the `UniquePersonList` has a `UniqueTagTypeMap`, which represents a map of the tag types and corresponding tags belonging to the person. `UniqueTagTypeMap` implements the following operations:
+
+* `UniqueTagTypeMap#mergeTagTypeMap()` — Merges a `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#removeTags()` — Removes the tags from the `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#mergeTag()` — Adds a tag of the given tag type to the `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#setTagTypeMap()` — Replaces the `UniqueTagTypeMap` of the candidate with the given `UniqueTagTypeMap`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `UniqueTagTypeMap` internally uses an `ObservableMap`, backed by a `HashMap`, that maps each tag type of the candidate to a `UniqueTagList` of tags.
+</div>
+
+Given below is an example usage scenario and how the add/edit/delete Tag mechanism behaves at each step:
+
+Step 1. The user executes `addTag 3 st/Java dt/Bachelors` to add a skill tag `Java` and degree tag `Bachelors` to the 3rd candidate in the displayed list of candidates. After being parsed by the `AddTagCommandParser` to an `AddTagCommand`, the `AddTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, and merges the new tags by invoking `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+Step 2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Java` to `JavaScript` of the 3rd candidate in the displayed list of candidates. After being parsed by the `EditCommandParser` to an `EditCommand`, the `EditCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, removes the existing tags to be edited by invoking `UniqueTagTypeMap#removeTags()` and adds the edited tags by invoking the `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+#### Design Considerations:
+
+**Aspect: How the addressBook is updated:**
+
+* **Alternative 1 (current choice):** Creates a new person each time a tag is added, edited or deleted.
+    * Pros: Ensures that `Person` and all its attributes are immutable.
+    * Cons: May be inefficient compared to directly updating the attributes of `Person`.
+
+* **Alternative 2:** Modifies the existing `UniqueTagTypeMap` of the candidate each time a tag is added, edited or deleted.
+  itself.
+    * Pros: May be more efficient, as a new `Person` instance is not created every time a tag is added, edited or deleted.
+    * Cons: Allowing `Person` to be mutated may not be safe and defensive.
+
+
 ### \[Implemented\] Create/Edit/Delete Tag Types feature  
 
 For the ease of classifying tags and storing candidate information in a more organised way, users can now also create Tag Types and assign tags to the relevant Tag Types.
@@ -448,7 +486,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
