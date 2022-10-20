@@ -35,7 +35,7 @@ public class ArgumentMultimap {
      * Returns whether this map contains {@code prefix} as a key.
      *
      * @param prefix The {@code Prefix} to check for in this map
-     * @return Whether this map contains {@code prefix} as a key.
+     * @return whether this map contains {@code prefix} as a key.
      */
     public boolean hasPrefix(Prefix prefix) {
         return argMultimap.containsKey(prefix);
