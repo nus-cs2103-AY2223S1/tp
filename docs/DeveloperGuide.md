@@ -177,7 +177,7 @@ The following activity diagram shows what happens when a user executes a new add
 ![AddPersonActivityDiagram](images/AddPersonActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only the 
-activities related to gender field is considered and shown in this activity diagram.
+activities related to gender field are considered and shown in this activity diagram.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions is thrown and caught if 
