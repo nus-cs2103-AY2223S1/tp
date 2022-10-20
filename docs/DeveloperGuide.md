@@ -195,25 +195,35 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The addq mechanism is facilitated by many objects. By adding a question, the `UniqueQuestionList` inside 
-`AddressBook` is updated and shown in the `Ui`. The user launches the application. The user then executes `addq Why?
-` command to add a question "Why?" in the question list. The application goes through a series of method callouts as 
-follows.
+### \[Proposed\] Add Question feature
 
-1. The `LogicManager#execute("addq Why?")` is called, which in turn passes the argument "addq Why?" to the 
-   `parseCommand` method in `AddressBookParser`.
-2. `AddressBookParser#parseCommand("addq Why?")` is called with the " Why?" question being passed to 
-   `AddQCommand#parse(" Why")`.
-3. A `AddQCommand` object `a` is instantiated with `toAdd` (new Question("Why?")), the question to add in `a`.
-4. `a` is passed back as an output all the into `LogicManager`.
-5. `a#execute(model)` is called, which calls `Model#addQuestion(toAdd)`. `Model` takes in `toAdd` adds it to the `UniqueQuestionList` inside
-   `AddressBook` via `AddressBook#addQuestion(toAdd)`.
-6. `Model#updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS)` is called to update the question list.
-7. `a` returns a `commandResult` object to `LogicManager`.
-8. `StorageManager#saveAddressBook(model.getAddressBook())` is called and `StorageManager` calls its own 
-   `saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath())` method to update the storage of the 
-   application, inside `/data/addressbook.json`.
-9. `LogicManager` returns the `commandResult` to be shown in the `Ui`.
+#### Proposed Implementation
+
+The proposed add question mechanism is facilitated by `AddressBook`.
+It implements the following operations:
+* `AddressBook#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question 
+  exists in the 
+  address book.
+* `AddressBook#addQuestion(Question question)` - Adds a question to the question list in the address book.
+
+These operations are exposed in the Model interface as `Model#hasQuestion(Question question)`
+and `Model#addQuestion(Question question)` respectively.
+
+Given below is an example usage scenario and how the addq mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
+address book state.
+
+Step 2. The user execute `addq Why?` command to add question called "Why?" to the question list ('UniqueQuestionList').
+The `addq` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified address book 
+after the `addq Why?` command executes to be saved in the `addressBook`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution 
+due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so the address book state will not be saved into `addressBook`. User will retype their command.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If upon invoking `AddressBook#hasQuestion` 
+method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so 'UniqueQuestionList' and `addressBook` will not be updated.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note: Questions added not case sensitive. For 
 example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are 
@@ -222,12 +232,10 @@ not allowed. E.g. adding another question called "why?".
 
 </div>
 
-
-The following sequence diagram shows how the addq operation works:
-
+The following sequence diagram shows how the add question operation works:
 ![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes an addq command:
+The following activity diagram summarizes what happens when a user executes a new `addq` command.
 
 <img src="images/AddQActivityDiagram.png" width="250" />
 

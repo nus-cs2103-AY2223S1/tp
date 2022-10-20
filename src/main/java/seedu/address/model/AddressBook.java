@@ -266,8 +266,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a question to the address book.
      * The question must not already exist in the address book.
      */
-    public void addQuestion(Question p) {
-        questions.add(p);
+    public void addQuestion(Question question) {
+        questions.add(question);
     }
 
     /**

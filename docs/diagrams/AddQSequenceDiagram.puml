@@ -1,14 +1,16 @@
 @startuml
 !include style.puml
 
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser ADDRESSBOOKPARSER_COLOR
 participant ":AddQCommandParser" as AddQCommandParser ADDQCOMMANDPARSER_COLOR
 participant "a: AddQCommand" as AddQCommand ADDQCOMMAND_COLOR
+box end
 
+box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":AddressBook" as AddressBook ADDRESSBOOK_COLOR
-participant ":StorageManager" as StorageManager STORAGE_COLOR
 
 [-> LogicManager : execute("addq Why?")
 activate LogicManager
@@ -41,24 +43,17 @@ activate Model
 Model -> AddressBook : addQuestion(toAdd)
 activate AddressBook
 
+AddressBook -> AddressBook : resetData(ReadOnlyAddressBook newData)
 AddressBook --> Model
 deactivate AddressBook
 
-Model -> Model : updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS)
 
 Model --> AddQCommand
 deactivate Model
 
 AddQCommand --> LogicManager : commandResult
 deactivate AddQCommand
-
-LogicManager -> StorageManager : saveAddressBook(model.getAddressBook())
-activate StorageManager
-
-StorageManager -> StorageManager : saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath())
-StorageManager --> LogicManager
-deactivate StorageManager
-
+destroy AddQCommand
 
 
 [<--LogicManager : commandResult
