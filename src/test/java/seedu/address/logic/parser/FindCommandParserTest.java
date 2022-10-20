@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
@@ -16,7 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.ClassContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -92,8 +92,20 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validClassDate_returnsFindCommand() {
-        // TODO: Update test case with dt/ prefix
-        assertParseFailure(parser, CLASS_DESC_AMY, "dt/ search not implemented yet.");
+        FindCommand expectedFindCommand =
+                new FindCommand(new ClassContainsKeywordsPredicate(Arrays.asList("2022-10-10")));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " dt/2022-10-10", expectedFindCommand);
+
+        // trailing whitespaces
+        assertParseSuccess(parser, " dt/2022-10-10  ", expectedFindCommand);
+
+        // leading whitespaces
+        assertParseSuccess(parser, " dt/   2022-10-10  ", expectedFindCommand);
+
+        // leading and trailing whitespaces
+        assertParseSuccess(parser, " dt/   2022-10-10  ", expectedFindCommand);
     }
 
 }
