@@ -63,6 +63,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_LEAVE).isPresent()) {
+            System.out.println("Fuck");
+            System.out.println(ParserUtil.parseId(
+                    argMultimap.getValue(PREFIX_LEAVE).get()));
             editPersonDescriptor.setLeaves(Integer.valueOf(ParserUtil.parseId(
                     argMultimap.getValue(PREFIX_LEAVE).get())));
         }

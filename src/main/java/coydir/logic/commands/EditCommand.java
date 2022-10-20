@@ -96,6 +96,7 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
+        int currentLeaves = personToEdit.getTotalNumberOfLeaves();
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
@@ -103,12 +104,16 @@ public class EditCommand extends Command {
         Position updatedPosition = editPersonDescriptor.getPosition().orElse(personToEdit.getPosition());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        int updatedLeaves = editPersonDescriptor.getLeaves().orElse(personToEdit.getTotalNumberOfLeaves());
+        int updatedLeaves = editPersonDescriptor.getLeaves().orElse(currentLeaves);
         EmployeeId employeeId = personToEdit.getEmployeeId();
 
-        return new Person(
+        System.out.println(updatedLeaves);
+
+       Person p = new Person(
                 updatedName, employeeId, updatedPhone, updatedEmail,
                 updatedPosition, updatedAddress, updatedTags, updatedLeaves);
+       p.setLeavesLeft(updatedLeaves - currentLeaves + currentLeaves);
+       return p;
     }
 
     @Override
@@ -162,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags, totalNumberofLeaves);
         }
 
         public void setName(Name name) {
@@ -210,7 +215,11 @@ public class EditCommand extends Command {
         }
 
         public Optional<Integer> getLeaves() {
-            return Optional.ofNullable(totalNumberofLeaves);
+            Integer temp = null;
+            if (totalNumberofLeaves > 0) {
+                temp = totalNumberofLeaves;
+            }
+            return Optional.ofNullable(temp);
         }
 
         /**
