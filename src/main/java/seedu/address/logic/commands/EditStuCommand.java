@@ -100,6 +100,13 @@ public class EditStuCommand extends Command {
         }
 
         model.setPerson(studentToEdit, editedStudent);
+        if (editedStudent.isTeachingAssistant()) {
+            if (studentToEdit.isTeachingAssistant()) {
+                model.setTutor(studentToEdit, editedStudent);
+            } else {
+                model.addTutor(editedStudent);
+            }
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
@@ -110,7 +117,7 @@ public class EditStuCommand extends Command {
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+    public static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());

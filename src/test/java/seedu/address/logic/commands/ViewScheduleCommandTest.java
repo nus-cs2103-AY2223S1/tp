@@ -11,13 +11,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ViewModuleScheduleCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ViewScheduleCommand.
  */
 public class ViewScheduleCommandTest {
 
@@ -37,9 +38,10 @@ public class ViewScheduleCommandTest {
         ScheduleContainsKeywordsPredicate secondPredicate =
                 new ScheduleContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        ViewModuleScheduleCommand viewFirstCommand = new ViewModuleScheduleCommand(firstPredicate);
-        ViewModuleScheduleCommand viewFirstCommandCopy = new ViewModuleScheduleCommand(firstPredicate);
-        ViewModuleScheduleCommand viewSecondCommand = new ViewModuleScheduleCommand(secondPredicate);
+        ViewScheduleCommand viewFirstCommand = new ViewScheduleCommand(firstPredicate);
+        ViewScheduleCommand viewFirstCommandCopy = new ViewScheduleCommand(firstPredicate);
+        ViewScheduleCommand viewSecondCommand = new ViewScheduleCommand(secondPredicate);
+
 
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
@@ -62,7 +64,7 @@ public class ViewScheduleCommandTest {
 
     @Test
     public void execute_scheduleListIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ViewModuleScheduleCommand(), model,
+        assertCommandSuccess(new ViewScheduleCommand(), model,
                 new CommandResult(String.format(String.format(
                         Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                 false, false, false, false,

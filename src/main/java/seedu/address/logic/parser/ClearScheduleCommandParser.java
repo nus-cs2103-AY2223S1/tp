@@ -2,48 +2,47 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.schedule.ViewScheduleCommand;
+import seedu.address.logic.commands.schedule.ClearScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleCode;
+
 
 
 /**
- * Parses input arguments and creates a new ViewScheduleCommand object
+ * Parses input arguments and creates a new ClearScheduleCommand object
  */
-public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
+public class ClearScheduleCommandParser implements Parser<ClearScheduleCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ViewScheduleCommand
-     * and returns a ViewScheduleCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ClearScheduleCommand
+     * and returns a ClearScheduleCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ViewScheduleCommand parse(String args) throws ParseException {
+    public ClearScheduleCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isEmpty()) {
-            return new ViewScheduleCommand();
+            return new ClearScheduleCommand();
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WEEKDAY, PREFIX_MODULE_OF_SCHEDULE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_OF_SCHEDULE);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewScheduleCommand.MESSAGE_USAGE));
+                    ClearScheduleCommand.MESSAGE_USAGE));
         }
 
-        Set<String> weekdaysList = ParserUtil.parseWeekdays(argMultimap.getAllValues(PREFIX_WEEKDAY));
+        ArrayList<ModuleCode> modulesToClear = new ArrayList<>();
         Set<String> modulesList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE_OF_SCHEDULE));
+        for (String moduleCode : modulesList) {
+            modulesToClear.add(new ModuleCode(moduleCode));
+        }
 
-        ArrayList<String> keywords = new ArrayList<>();
-        keywords.addAll(weekdaysList);
-        keywords.addAll(modulesList);
-
-        return new ViewScheduleCommand(new ScheduleContainsKeywordsPredicate(keywords));
+        return new ClearScheduleCommand(modulesToClear);
     }
 
     /**

@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private TutorListPanel tutorListPanel;
     private ModuleListPanel moduleListPanel;
     private ModuleInfoPanel moduleInfoPanel;
+    private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -62,6 +63,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane moduleInfoPanelPlaceholder;
+
+    @FXML
+    private StackPane modulePanelPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
@@ -188,6 +192,18 @@ public class MainWindow extends UiPart<Stage> {
         tabPane.getSelectionModel().select(STUDENTLIST);
     }
 
+
+    /**
+     * Switch to students page with all students.
+     */
+    @FXML
+    public void handleShowTabAllStudents() {
+        personListPanel = new PersonListPanel(logic.getAllPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        tabPane.getSelectionModel().select(STUDENTLIST);
+        resultDisplay.setFeedbackToUser("Show all students!");
+    }
+
     /**
      * Switch to modules page.
      */
@@ -197,6 +213,18 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULELIST);
     }
+
+    /**
+     * Switch to modules page with all modules shown.
+     */
+    @FXML
+    public void handleShowTabAllModules() {
+        moduleListPanel = new ModuleListPanel(logic.getAllModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        tabPane.getSelectionModel().select(MODULELIST);
+        resultDisplay.setFeedbackToUser("Show all modules!");
+    }
+
 
     /**
      * Switch to module information page.
@@ -227,6 +255,7 @@ public class MainWindow extends UiPart<Stage> {
         scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
+        resultDisplay.setFeedbackToUser("Show all schedules!");
     }
 
     void show() {
@@ -281,7 +310,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowScheduleList()) {
-                handleShowTabAllSchedule();
+                handleShowTabSchedule();
             }
 
             return commandResult;

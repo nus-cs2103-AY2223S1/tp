@@ -127,11 +127,23 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
+#### Schedule
+
+**API** : [Schedule.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/address/model/module/schedule)
+
+<img src="images/ScheduleUML.png" alt="ScheduleUML" style="zoom:65%;" />
+
+The `Schedule` component
+
+- represents a schedule of its corresponding module
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to let `Schedule` object have a reference of the module it belongs to. The diagram is as follows:<br>
+
+<img src="images/NewScheduleUML.png" alt="NewScheduleUML" style="zoom: 50%; width=450" />
 
 ### Storage component
 
@@ -143,6 +155,8 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+
 
 ### Common classes
 
@@ -213,7 +227,6 @@ Additionally, it will also contain these fields:
 
 
 ### Find module details by module code feature
-
 #### Implementation
 
 The find module details mechanism is facilitated by `ModuleViewCommand` and `ModuleViewCommandParser`. It allows users to search for modules based on module code.
@@ -221,30 +234,68 @@ It uses `ModelManager#updateFilteredModuleList(Predicate<Module> predicate)` whi
 The method updates the student and tutor list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
 
 The following sequence diagram shows how the find module by module code operation works:
-![ViewModuleSequenceDiagram](images/ViewModuleSequenceDiagram.png)
+![ViewModuleSequenceDiagram](./images/ViewModuleSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a findmod command:
 
-![ViewModuleActivityDiagram](images/ViewModuleActivityDiagram.png)
+![ViewModuleActivityDiagram](./images/ViewModuleActivityDiagram.png)
 
 #### Design consideration:
 
 ##### Aspect: How mview executes
 
 |                                             | Pros                                                     | Cons                                    |
-|---------------------------------------------|----------------------------------------------------------|-----------------------------------------|
+| ------------------------------------------- | -------------------------------------------------------- | --------------------------------------- |
 | **Option 1** <br/> Searching by module code | Allows module with different codes to have the same name | User might not remember the module code |
 | **Option 2** <br/> Searching by module name | Easier for user to search for the module                 | Modules cannot have the same name       |
-
 
 Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 
-<div style="page-break-after: always;"></div>
+### [Proposed] AddSchedule feature
+#### Proposed Implementation
 
+The proposed add schedule functionality is accomplished by `AddScheduleCommand` which extends the `Command` class. The `AddScheduleCommand` overrides the following method:
+
+- `AddScheduleCommand#execute(Model model)` — Executes the command and add the new schedule to the ProfNUS
+
+The following sequence diagram shows how add schedule operation works
+
+![AddScheduleSequence](images/AddScheduleSequence.png)
+
+After the ProfNUS receives the instruction to add a new `Scheudule`, it will find the corresponding `Module` and add the new schedule to its schedule list.
+
+During the execution, the following validity checks will be conducted:
+
+- Module existance check — The model will check if it can find the module indicated by the new schedule. If no module is found, then a `CommandException` will be thrown.
+- Schedule conflict check — The model will check if the new schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.
+
+### [Proposed] EditSchedule feature
+
+#### Proposed Implementation
+
+The proposed edit schedule functionality is accomplished by `EditScheduleCommand` which extends the `Command` class. The `EditScheduleCommand` overrides the following method:
+
+- `EditScheduleCommand#execute(Model model)` — Executes the command and edit the target schedule with new information
+
+The following sequence diagram shows how add schedule operation works
+
+![EditScheduleSequence](images/EditScheduleSequence.png)
+
+After the ProfNUS receives the instruction to edit a target `Schedule` (indicated by the index in the shown schedule list), it will modify it based on new information given by the user. 
+
+During the execution, the following validity checks will be conducted:
+
+- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of $1$ to $n$ where $n$ is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
+- Schedule conflict check — The model will check if the edited schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
+- Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

@@ -14,7 +14,7 @@ public class ModuleListCommand extends Command {
 
     public static final String COMMAND_WORD = "mlist";
 
-    public static final String MESSAGE_SUCCESS = "Listed all module";
+    public static final String MESSAGE_SUCCESS = "Listed all modules";
 
     @Override
     public CommandResult execute(Model model) {
