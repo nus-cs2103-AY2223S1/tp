@@ -236,13 +236,13 @@ _{more aspects and alternatives to be added}
 
 ### Mark Task Feature
 
-#### Implementation 
+#### Implementation
 
-The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface. 
+The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface.
 
-Given below is an example usage scenario 
+Given below is an example usage scenario
 
-Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false. 
+Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false.
 
 Step 2. After the task is completed, the user want to mark the task as done. The user then executes `taskmark t/1 task/3` to mark the 3rd task in the 1st team as completed. The task which is contained in team 1 would be marked as completed and this would be reflected in the gui.
 
@@ -257,12 +257,12 @@ The following sequence diagram shows how the mark task operation works:
 #### Implementation
 
 The edit person feature edit the information of a person in the address book, this change is reflected within
-all teams with the edited person as member. The editable information all phone number, email address, physical 
+all teams with the edited person as member. The editable information all phone number, email address, physical
 address and tag.
 
 Given below is an example usage scenario
 
-Step 1. The user want to change the phone number of a person in his company to 80779043. Said person is indexed number 4 in 
+Step 1. The user want to change the phone number of a person in his company to 80779043. Said person is indexed number 4 in
 the global list. The user executes `edit 1 p/80779043`.
 
 Step 2. The parser will create an `edit` command. This `edit command` will call `Model#getFilteredList()`
