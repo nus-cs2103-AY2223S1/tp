@@ -17,8 +17,7 @@ public class Attendance {
     public static final String MESSAGE_CONSTRAINTS =
         "Attendance should only contain a date followed by a \"1\" or a \"0\", and it should not be blank";
 
-    private static final Pattern DATE_FORMAT = Pattern.compile("date/(?<date>.+) "
-                                                               + "attendance/(?<attendance>[1|0])");
+    private static final Pattern FORMAT = Pattern.compile("date/(?<date>.+) attendance/(?<attendance>[01])");
 
     private final HashMap<String, Integer> personAttendance;
 
@@ -35,15 +34,15 @@ public class Attendance {
      * @return true if the String can be parsed into a valid Attendance object, otherwise false
      */
     public static boolean isValidAttendance(String test) {
-        // TODO: replace with valid regex check that checks for a date and a "1" or "0"
         // Input should be in the form date/DATE attendance/[1/0]
         // e.g. date/13 Jan 2022 attendance/1
-        Matcher matcher = DATE_FORMAT.matcher(test);
+        Matcher matcher = FORMAT.matcher(test.trim());
         if (!matcher.matches()) {
             return false;
         }
-        String dateGroup = matcher.group("date");
-        return DateUtil.isValidDateString(dateGroup);
+        String date = matcher.group("date");
+        date += " 00:00"; // scuffed implementation to avoid Temporal errors
+        return DateUtil.isValidDateString(date);
     }
 
     /**
