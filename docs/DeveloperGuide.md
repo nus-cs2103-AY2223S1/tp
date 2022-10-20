@@ -140,6 +140,7 @@ The `Model` component,
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
@@ -305,7 +306,7 @@ Given below is an example usage scenario and how an `assign` command is executed
 The interactions between the components during the usage scenario is shown in the *Sequence Diagram* below.
 
 <p align="center" >
-  <img src="diagrams/AssignPolicySequenceDiagram.png" width="700"/>
+  <img src="images/AssignPolicySequenceDiagram.png" width="700"/>
 </p>
 
 Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
