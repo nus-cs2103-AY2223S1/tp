@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
 
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.Command;
@@ -17,14 +18,15 @@ import modtrekt.model.task.Task;
 /**
  * Sets the priority of a task to a specified level.
  */
+@Parameters(commandDescription = "Assigns a task a priority rating.")
 public class PrioritizeTaskCommand extends Command {
     public static final String COMMAND_WORD = "prioritize";
 
-    @Parameter(names = "-t", converter = IndexConverter.class, description = "Index of the task to set the priority",
-            required = true)
+    @Parameter(names = "-t", description = "Index of the task to set the priority",
+            required = true, converter = IndexConverter.class)
     private Index index;
-    @Parameter(names = "-p", converter = PriorityConverter.class, description = "Priority level for the task",
-            required = true)
+    @Parameter(names = "-p", description = "Priority level for the task",
+            required = true, converter = PriorityConverter.class)
     private Task.Priority priority;
 
     /**
