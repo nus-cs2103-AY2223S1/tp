@@ -27,7 +27,6 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Professor}.
  */
 class JsonAdaptedProfessor extends JsonAdaptedPerson {
-    private final String officeHour;
 
     /**
      * Constructs a {@code JsonAdaptedProfessor} with the given person details.
@@ -41,8 +40,8 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
                                 @JsonProperty("username") String username, @JsonProperty("rating") String rating,
                                 @JsonProperty("specialisation") String specialisation,
                                 @JsonProperty("officeHour") String officeHour) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "", specialisation);
-        this.officeHour = officeHour;
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "",
+                specialisation, officeHour);
     }
 
     /**
@@ -50,11 +49,6 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
      */
     public JsonAdaptedProfessor(Professor source) {
         super(source);
-        this.officeHour = source.getOfficeHour().value;
-    }
-
-    public String getOfficeHour() {
-        return this.officeHour;
     }
 
     /**
@@ -129,11 +123,6 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         final GithubUsername modelUsername;
 
-        if (getUsername() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    GithubUsername.class.getSimpleName()));
-        }
-
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
             modelUsername = new GithubUsername(getUsername(), false);
         } else {
@@ -166,13 +155,6 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
                     Specialisation.class.getSimpleName()));
         }
 
-        final OfficeHour modelOfficeHour;
-
-        if (getOfficeHour() == null) {
-            throw new IllegalValueException(String.format(OfficeHour.MESSAGE_CONSTRAINTS));
-        } else {
-            modelOfficeHour = new OfficeHour(getOfficeHour());
-        }
         if (getSpecialisation().equals(Specialisation.EMPTY_SPECIALISATION)) {
             modelSpecialisation = new Specialisation(getSpecialisation(), false);
         } else {
@@ -182,6 +164,20 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
             modelSpecialisation = new Specialisation(getSpecialisation(), true);
         }
 
+        final OfficeHour modelOfficeHour;
+
+        if (getOfficeHour() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+        }
+
+        if (getOfficeHour().equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
+            modelOfficeHour = new OfficeHour(getOfficeHour(), false);
+        } else {
+            //if (!OfficeHour.isValidOfficeHour(getOfficeHour())) {
+            //throw new IllegalValueException(OfficeHour.MESSAGE_CONSTRAINTS);
+            //}
+            modelOfficeHour = new OfficeHour(getOfficeHour(), true);
+        }
 
         return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
             modelLocation, modelUsername, modelRating, modelSpecialisation, modelOfficeHour);

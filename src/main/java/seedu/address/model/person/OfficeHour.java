@@ -13,6 +13,8 @@ public class OfficeHour {
             + "- time in HH:mm military time format (16:00 represents 4 pm)\n"
             + "- duration specified in integer (1 - 9)";
 
+    public static final String EMPTY_OFFICE_HOUR = "";
+
     /*
      * The length of the OfficeHour must be specifically 9 char.
      * Day specified must be from (1 - 5) matching (monday - friday)
@@ -26,13 +28,17 @@ public class OfficeHour {
     public final String value;
 
     /**
-     * Constructs an {@code OfficeHour}.
-     *
-     * @param officeHour A valid officeHour.
+     * @param officeHour A valid office hour.
+     * @param isPresent Whether prefix was present in user input.
      */
-    public OfficeHour(String officeHour) {
+    public OfficeHour(String officeHour, boolean isPresent) {
         requireNonNull(officeHour);
-        this.value = officeHour;
+        if (isPresent) {
+            // there should be a regex validation check here
+            value = officeHour;
+        } else {
+            value = EMPTY_OFFICE_HOUR;
+        }
     }
 
     /**

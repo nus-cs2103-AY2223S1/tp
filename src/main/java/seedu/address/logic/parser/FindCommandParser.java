@@ -9,8 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -42,10 +45,12 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME);
+                PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME,
+                PREFIX_RATING, PREFIX_SPECIALISATION, PREFIX_YEAR);
 
         if (!(areAllArgsValid(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME))) {
+                PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME,
+                PREFIX_RATING, PREFIX_SPECIALISATION, PREFIX_YEAR))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -83,6 +88,18 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             setTagsList();
+        }
+
+        if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
+            predicate.setYearsList(getKeywordList(PREFIX_YEAR));
+        }
+
+        if (argMultimap.getValue(PREFIX_SPECIALISATION).isPresent()) {
+            predicate.setSpecList(getSpecialisationList());
+        }
+
+        if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
+            predicate.setRatingsList(getKeywordList(PREFIX_RATING));
         }
 
         return new FindCommand(predicate);
@@ -143,6 +160,12 @@ public class FindCommandParser implements Parser<FindCommand> {
     private List<String> getKeywordList(Prefix prefix) {
         String[] keywordsString = argMultimap.getValue(prefix).get().split("\\s+");
         return Arrays.asList(keywordsString);
+    }
+
+    private List<String> getSpecialisationList() {
+        String[] keyWordsString = argMultimap.getValue(PREFIX_SPECIALISATION).get().toLowerCase()
+                .trim().split("\\s*,\\s*");
+        return Arrays.asList(keyWordsString);
     }
 
     /**

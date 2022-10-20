@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Year;
@@ -45,7 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING, PREFIX_YEAR,
-                        PREFIX_SPECIALISATION);
+                        PREFIX_SPECIALISATION, PREFIX_OFFICEHOUR);
 
         Index index;
 
@@ -109,6 +111,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                 editPersonDescriptor.setSpecialisation(ParserUtil.parseSpecialisation(specialisationInput, false));
             } else {
                 editPersonDescriptor.setSpecialisation(ParserUtil.parseSpecialisation(specialisationInput, true));
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_OFFICEHOUR).isPresent()) {
+            String officeHourInput = argMultimap.getValue(PREFIX_OFFICEHOUR)
+                    .orElse(OfficeHour.EMPTY_OFFICE_HOUR);
+            if (officeHourInput.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
+                editPersonDescriptor.setOfficeHour(ParserUtil.parseOfficeHour(officeHourInput, false));
+            } else {
+                editPersonDescriptor.setOfficeHour(ParserUtil.parseOfficeHour(officeHourInput, true));
             }
         }
 

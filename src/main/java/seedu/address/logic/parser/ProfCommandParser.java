@@ -72,7 +72,9 @@ public class ProfCommandParser implements Parser<ProfCommand> {
                 .getValue(PREFIX_RATING)
                 .orElse(Rating.EMPTY_RATING), argMultimap.getValue(PREFIX_RATING).isPresent());
 
-        OfficeHour officeHour = ParserUtil.parseOfficeHour(argMultimap.getValue(PREFIX_OFFICEHOUR).get());
+        OfficeHour officeHour = ParserUtil.parseOfficeHour(argMultimap.getValue(PREFIX_OFFICEHOUR)
+                .orElse(OfficeHour.EMPTY_OFFICE_HOUR), argMultimap.getValue(PREFIX_OFFICEHOUR).isPresent());
+
         Person person = new Professor(name, moduleCode, phone, email, gender, tagList, location, username, rating,
                 field, officeHour);
 
