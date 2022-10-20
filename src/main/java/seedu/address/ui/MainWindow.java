@@ -24,6 +24,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String COMPACT_MENUITEM_TEXT = "Compacted Cards";
+    private static final String EXPAND_MENUITEM_TEXT = "Expanded Cards";
+    private static final String LIGHT_THEME_MENUITEM_TEXT = "Light Theme";
+    private static final String DARK_THEME_MENUITEM_TEXT = "Dark Theme";
 
     private final String lightTheme = getClass().getResource("/view/LightTheme.css").toExternalForm();
     private final String darkTheme = getClass().getResource("/view/DarkTheme.css").toExternalForm();
@@ -39,8 +43,17 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private boolean isExpanded;
+    private boolean isLightTheme;
+
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private MenuItem lightDarkThemeItem;
+
+    @FXML
+    private MenuItem compactExpandItem;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -70,6 +83,11 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        isExpanded = false;
+        compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
+        isLightTheme = true;
+        lightDarkThemeItem.setText(DARK_THEME_MENUITEM_TEXT);
     }
 
     public Stage getPrimaryStage() {
@@ -114,7 +132,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), isExpanded);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -168,37 +186,49 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Changes theme to light theme
+     * Changes theme to light theme or dark theme depending on current state.
      */
     @FXML
-    private void handleLightTheme() {
-        boolean hasLightTheme = primaryStage.getScene().getStylesheets().contains(lightTheme);
-        boolean hasDarkTheme = primaryStage.getScene().getStylesheets().contains(darkTheme);
-
-        if (!hasLightTheme && hasDarkTheme) {
-            primaryStage.getScene().getStylesheets().remove(darkTheme);
+    private void handleLightDarkTheme() {
+        if (isLightTheme) {
+            logger.info("Switching to dark theme...");
+            isLightTheme = false;
+            lightDarkThemeItem.setText(LIGHT_THEME_MENUITEM_TEXT);
+            primaryStage.getScene().getStylesheets().add(darkTheme);
+            primaryStage.getScene().getStylesheets().add(extensionsDark);
+            primaryStage.getScene().getStylesheets().remove(lightTheme);
+            primaryStage.getScene().getStylesheets().remove(extensionsLight);
+            helpWindow.setDarkTheme();
+        } else {
+            logger.info("Switching to light theme...");
+            isLightTheme = true;
+            lightDarkThemeItem.setText(DARK_THEME_MENUITEM_TEXT);
             primaryStage.getScene().getStylesheets().add(lightTheme);
-            primaryStage.getScene().getStylesheets().remove(extensionsDark);
             primaryStage.getScene().getStylesheets().add(extensionsLight);
+            primaryStage.getScene().getStylesheets().remove(darkTheme);
+            primaryStage.getScene().getStylesheets().remove(extensionsDark);
+            helpWindow.setLightTheme();
         }
-        helpWindow.setLightTheme();
     }
 
     /**
-     * Changes theme to dark theme
+     * Compacts or expands all PersonCard depending on current state.
+     * Any new PersonCard will be created compacted or expanded depending on the new state.
      */
     @FXML
-    private void handleDarkTheme() {
-        boolean hasLightTheme = primaryStage.getScene().getStylesheets().contains(lightTheme);
-        boolean hasDarkTheme = primaryStage.getScene().getStylesheets().contains(darkTheme);
-
-        if (!hasDarkTheme && hasLightTheme) {
-            primaryStage.getScene().getStylesheets().remove(lightTheme);
-            primaryStage.getScene().getStylesheets().add(darkTheme);
-            primaryStage.getScene().getStylesheets().remove(extensionsLight);
-            primaryStage.getScene().getStylesheets().add(extensionsDark);
+    private void handleCompactExpand() {
+        if (isExpanded) {
+            logger.info("Switching to compacted cards...");
+            isExpanded = false;
+            compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
+        } else {
+            logger.info("Switching to expanded cards...");
+            isExpanded = true;
+            compactExpandItem.setText(COMPACT_MENUITEM_TEXT);
         }
-        helpWindow.setDarkTheme();
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), isExpanded);
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     public PersonListPanel getPersonListPanel() {
