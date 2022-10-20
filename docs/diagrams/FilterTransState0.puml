@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state
+
+package MainWindow {
+    class State1 as "clients:ClientListPanel"
+    class State2 as "companies:CompanyListPanel"
+    class State3 as "transactions:TransactionListPanel"
+}
+State1 -[hidden]right-> State2
+State2 -[hidden]right-> State3
+
+@end
