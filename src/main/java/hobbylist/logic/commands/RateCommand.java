@@ -18,8 +18,8 @@ public class RateCommand extends Command {
 
     public static final String COMMAND_WORD = "rate";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or modifies the rating of the activity identified "
-            + "by the index number used in the displayed activity list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or modifies the rating of the activity "
+            + "identified by the index number used in the displayed activity list. "
             + "Existing value will be overwritten by the input value.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_RATING + "RATING (1-5)]\n"
@@ -52,7 +52,7 @@ public class RateCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
         }
 
-        Activity activityToRate= lastShownList.get(index.getZeroBased());
+        Activity activityToRate = lastShownList.get(index.getZeroBased());
         Activity activityWithRating = createActivityWithRating(activityToRate, rating);
 
         if (!activityToRate.isSameActivity(activityWithRating) && model.hasActivity(activityWithRating)) {
@@ -71,7 +71,8 @@ public class RateCommand extends Command {
     private static Activity createActivityWithRating(Activity activityToRate,
                                                  int rating) {
         assert activityToRate != null;
-        return new Activity(activityToRate.getName(), activityToRate.getDescription(), activityToRate.getTags(), activityToRate.getDate(), rating);
+        return new Activity(activityToRate.getName(), activityToRate.getDescription(), 
+                activityToRate.getTags(), activityToRate.getDate(), rating);
     }
 
     @Override
