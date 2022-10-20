@@ -69,20 +69,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of UI Component](./images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `EventListPanel`, `PolicyListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+Similarly, the layout of [`PersonListPanel`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/PersonListPanel.java), [`PolicyListPanel`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/PolicyListPanel.java) and [`EventListPanel`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/EventListPanel.java) are all specified in their respective [`.fxml`](https://github.com/AY2223S1-CS2103T-W13-2/tp/tree/master/src/main/resources/view) files.
+
+The layout of [`IncomeGraph`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/IncomeGraph.java) is specified in [`LineGraph.fxml`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/resources/view/LineGraph.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model`, `Policy` and `Event` component, as it displays `Person`, `Policy` and `Event` objects residing in the `Model`.
 
 ### Logic component
 
@@ -213,6 +217,56 @@ Given below is an example usage scenario and how the pin mechanism behaves at ea
     * Pros: More potential for further extensions.
     * Cons: May result in performance issues in terms of memory usage.
 
+
+### Sort Feature 
+
+#### Implementation 
+
+The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list. 
+
+The method `FXCollections.sort()` is called by UniquePersonList, which takes in a comparator as an argument and sorts the client list based on the comparator supplied.
+Each attribute of a client which is considered a valid sorting metric has its own comparator within its class.
+
+This operation is exposed in the `Model` interface as `Model#sort()`.
+
+Given below is an example usage scenario and how the `Sort` mechanism behaves at each step. 
+
+Step 1.  The user executes `list` to view his current client list. 
+
+Step 2. The user executes `sort income` to view his client list by ascending income levels. This will pass the income comparator to `Model#sort()`. The list will be sorted and changes can be viewed immediately.
+
+
+The following sequence diagram shows how the sort operation works: 
+
+![Sort Sequence Diagram](./images/SortSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user issues a `sort` command:
+
+![Sort Activity Diagram](./images/SortActivityDiagram.png)
+
+#### Design Considerations 
+
+**Aspect: How to manage saving changes to `Storage`**
+
+As any commands called which modifies the `AddressBook` will save these changes to storage, a major design consideration was whether to save these post-sort changes to the storage
+
+* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view 
+  * Pros: Easy to implement, less memory required to keep separate original list 
+  * Cons: Client list remains in a particular order after `sort` command is called until `sort default` is issued
+
+* **Alternative 2:** keep original list and sorted list as 2 separate lists 
+  * Pros: User need not call further command to view original list
+  * Cons: More memory to store 2nd list, more difficult to implement 
+
+**Aspect: How to sort list given different metrics** 
+
+* **Alternative 1 (current choice):** each sortable class has its own comparator and will be passed as an argument after `sort` command is parsed
+  * Pros: Better abstraction and Better OOP 
+  * Cons: Comparators must be written for every class  
+
+* **Alternative 2:** `Model` decides how to sort the client list based on sort metric called 
+  * Pros: Easier to implement 
+  * Cons: less abstraction; information about client attributes will have to be unnecessarily exposed to `Model` class 
 
 
 ### \[Proposed\] Undo/redo feature
