@@ -5,10 +5,11 @@ package seedu.address.model.assignment;
  * Workload can only be defined as low, medium or high.
  */
 public enum Workload {
-    HIGH {
+
+    LOW {
         @Override
         public String toString() {
-            return "HIGH";
+            return "LOW";
         }
     },
     MEDIUM {
@@ -17,10 +18,14 @@ public enum Workload {
             return "MEDIUM";
         }
     },
-    LOW {
+    HIGH {
         @Override
         public String toString() {
-            return "LOW";
+            return "HIGH";
         }
-    },
+    };
+
+
+    public static final String MESSAGE_CONSTRAINTS = "Workload must be either low, medium or high!";
+
 }

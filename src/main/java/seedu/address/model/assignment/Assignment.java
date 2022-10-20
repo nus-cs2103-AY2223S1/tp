@@ -2,6 +2,7 @@ package seedu.address.model.assignment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Person's remark in the address book.
@@ -20,6 +21,8 @@ public class Assignment implements Comparable<Assignment> {
     private String value;
 
     private Workload workload;
+
+    private Deadline deadline;
 
     /**
      * Empty constructor to prevent error reading from jsonFile.
@@ -43,10 +46,24 @@ public class Assignment implements Comparable<Assignment> {
      * @param workload A valid workload.
      */
     public Assignment(String name, Workload workload) {
-        requireNonNull(name);
+        requireAllNonNull(name, workload);
         checkArgument(isValidAssignment(name), MESSAGE_CONSTRAINTS);
         this.value = name;
         this.workload = workload;
+    }
+
+    /**
+     * Constructs an assignment with name, workload and deadline
+     * @param name A valid name.
+     * @param workload A valid workload.
+     * @param deadline A valid deadline.
+     */
+    public Assignment(String name, Workload workload, Deadline deadline) {
+        requireAllNonNull(name, workload, deadline);
+        checkArgument(isValidAssignment(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.workload = workload;
+        this.deadline = deadline;
     }
 
     /**
@@ -56,28 +73,24 @@ public class Assignment implements Comparable<Assignment> {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Get name of assignment
-     */
     public String getAssignment() {
         return value;
     }
 
-    /**
-     * Get workload of assignment
-     */
     public Workload getWorkload() {
         return workload;
     }
 
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
     @Override
     public String toString() {
-        //If workload is specified
-        if (getWorkload() != null) {
-            return value + " (" + workload + ")";
-        } else {
-            return value;
+        if (getDeadline() != null) {
+            return value + " (" + workload + ") by: " + deadline.getDeadlineString() + "\n";
         }
+        return value + " (" + workload + ")\n";
     }
 
     @Override
@@ -92,18 +105,12 @@ public class Assignment implements Comparable<Assignment> {
         return value.hashCode();
     }
 
-    //Compare deadline and workload with other assignments
+    //Compare workload with other assignments and sort based on workload.
+    //High will appear on top of the list, followed by medium then low.
     @Override
     public int compareTo(Assignment otherAssignment) {
-        if (getWorkload() == null && otherAssignment.getWorkload() == null) {
-            return 0;
-        } else if (getWorkload() == null) {
-            return 1;
-        } else if (otherAssignment.getWorkload() == null) {
-            return -1;
-        } else {
-            return Integer.compare(getWorkload().ordinal(),
-                    otherAssignment.getWorkload().ordinal());
-        }
+        return Integer.compare(otherAssignment.getWorkload().ordinal(),
+                getWorkload().ordinal());
     }
+
 }
