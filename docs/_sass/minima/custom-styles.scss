@@ -1,7 +1,21 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-h2, h3, h4, h5, h6 {
-  color: #e46c0a;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Epilogue", $base-font-family;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #966b61;
+  font-weight: 500;
 }
 
 // Bootstrap style alerts
@@ -10,7 +24,7 @@ h2, h3, h4, h5, h6 {
   padding: $alert-padding-y $alert-padding-x;
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
-  order-radius : $alert-border-radius;
+  border-radius: $alert-border-radius;
 }
 
 // Headings for larger alerts
@@ -28,7 +42,10 @@ h2, h3, h4, h5, h6 {
 
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
+    @include alert-variant(
+      color-level($value, $alert-bg-level),
+      color-level($value, $alert-border-level),
+      color-level($value, $alert-color-level)
+    );
   }
 }
-

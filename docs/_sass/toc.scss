@@ -1,3 +1,6 @@
+/* ==================================== *
+ * COUNTERS                             *
+ * ==================================== */
 #markdown-toc {
   // Adapted from https://stackoverflow.com/a/51007932/9311854
   counter-reset: item;
@@ -45,5 +48,16 @@ article.post {
   h4:not(.no_toc)::before {
     counter-increment: subsubsection;
     content: counter(section) "." counter(subsection) "." counter(subsubsection) ". ";
+  }
+}
+
+/* ==================================== *
+ * STYLES                             *
+ * ==================================== */
+article.post {
+  h2:not(.no_toc)::before,
+  h3:not(.no_toc)::before,
+  h4:not(.no_toc)::before {
+    color: #dd9889;
   }
 }
