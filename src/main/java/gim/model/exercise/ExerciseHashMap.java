@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
+import gim.ui.Observer;
 
 /**
  * An Exercise HashMap to categorise Exercises, with the same Name, together. For instance, if a user adds an
@@ -22,8 +23,31 @@ public class ExerciseHashMap {
 
     private final HashMap<Name, ArrayList<Exercise>> exerciseHashMap;
 
+    private final ArrayList<Observer> observerArrayList;
+
+    /**
+     * Constructs a {@code ExerciseHashMap}.
+     */
     public ExerciseHashMap() {
         exerciseHashMap = new HashMap<>();
+        observerArrayList = new ArrayList<Observer>();
+    }
+
+    /**
+     * Notifies observers who have 'subscribed' whenever there are changes in the state of the ExerciseHashMap
+     */
+    public void notifyObservers() {
+        for (Observer o: observerArrayList) {
+            o.update();
+        }
+    }
+
+    /**
+     * Allows an Observer object to 'subscribe' to changes in the state of the ExerciseHashMap.
+     * @param o Observer object
+     */
+    public void addUI(Observer o) {
+        observerArrayList.add(o);
     }
 
     /**
@@ -41,6 +65,7 @@ public class ExerciseHashMap {
      */
     public Exercise add(Exercise toAdd) {
         requireNonNull(toAdd);
+
         Name toStoreName = toAdd.getName();
         if (!contains(toAdd)) {
             exerciseHashMap.put(toAdd.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
@@ -49,6 +74,8 @@ public class ExerciseHashMap {
         }
         toAdd = new Exercise(toStoreName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
         exerciseHashMap.get(toStoreName).add(toAdd); // add Exercise to arraylist
+        System.out.println(observerArrayList.size());
+        this.notifyObservers();
         return toAdd;
     }
 
@@ -65,6 +92,7 @@ public class ExerciseHashMap {
             if (exerciseHashMap.get(toRemove.getName()).isEmpty()) { // Remove Exercise from hashmap
                 exerciseHashMap.remove(toRemove.getName()); // If no more Exercises in key's ArrayList, delete key
             }
+            this.notifyObservers();
         }
     }
 
@@ -117,7 +145,7 @@ public class ExerciseHashMap {
 
 
     /**
-     * Returns an alphabetically sorted ArrayList of all key values in ExerciseHashMap
+     * Returns an Alphabetically sorted ArrayList of all key values in ExerciseHashMap
      * @return Returns ArrayList of String
      */
     public ArrayList<String> getAllKeys() {
