@@ -2,7 +2,9 @@ package taskbook.model;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taskbook.model.VersionedTaskBook.INVALID_REDO_ACTION;
 import static taskbook.model.VersionedTaskBook.INVALID_UNDO_ACTION;
 import static taskbook.testutil.Assert.assertThrows;
@@ -94,6 +96,28 @@ public class VersionedTaskBookTest {
     }
 
     @Test
+    public void commit_commitAfterUndo_cannotRedo() {
+        VersionedTaskBook versioned = new VersionedTaskBook();
+        versioned.commit(ONE);
+        assertDoesNotThrow(versioned::undo);
+        versioned.commit(TWO);
+        assertFalse(versioned.canUndo());
+    }
+
+    @Test
+    public void canUndo_canUndo_true() {
+        VersionedTaskBook versioned = new VersionedTaskBook();
+        versioned.commit(ONE);
+        assertTrue(versioned.canUndo());
+    }
+
+    @Test
+    public void canUndo_cannotUndo_false() {
+        VersionedTaskBook versioned = new VersionedTaskBook();
+        assertFalse(versioned.canUndo());
+    }
+
+    @Test
     public void undo_success() {
         TaskBook initialState = new TaskBook();
         TaskBook newState = new TaskBook(initialState);
@@ -108,6 +132,20 @@ public class VersionedTaskBookTest {
         TaskBook initialState = new TaskBook();
         VersionedTaskBook versioned = new VersionedTaskBook(initialState);
         assertThrows(VersionedTaskBook.InvalidActionException.class, INVALID_UNDO_ACTION, versioned::undo);
+    }
+
+    @Test
+    public void canRedo_canRedo_true() {
+        VersionedTaskBook versioned = new VersionedTaskBook();
+        versioned.commit(ONE);
+        assertDoesNotThrow(versioned::undo);
+        assertTrue(versioned.canRedo());
+    }
+
+    @Test
+    public void canRedo_cannotRedo_false() {
+        VersionedTaskBook versioned = new VersionedTaskBook();
+        assertFalse(versioned.canRedo());
     }
 
     @Test

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * TaskBook with version history.
  */
-public class VersionedTaskBook extends TaskBook {
+public class VersionedTaskBook {
 
     protected static final String INVALID_UNDO_ACTION = "There are no actions left to undo.";
     protected static final String INVALID_REDO_ACTION = "There are no actions left to redo.";
@@ -57,13 +57,27 @@ public class VersionedTaskBook extends TaskBook {
 
     /**
      * Returns true if the given state matches the newest state in the version history.
-     * Defensively ensure that commits that do nothing do not clog the version history.
+     * Ensure that commits that with no state change do not clog the version history.
      */
     private boolean isDuplicateCommit(TaskBook state) {
         assert state != null;
 
         TaskBook newestState = taskBookStateList.get(pointer);
         return state.equals(newestState);
+    }
+
+    private void pruneFutureStatesIfRequired() {
+        if (pointer + 1 == taskBookStateList.size() - 1) {
+            return;
+        }
+
+        ArrayList<TaskBook> prunedList = new ArrayList<>(capacity);
+        for (int i = 0; i < pointer; i++) {
+            TaskBook state = taskBookStateList.get(i);
+            prunedList.add(state);
+        }
+
+        taskBookStateList = prunedList;
     }
 
     private void pruneToCapacityIfRequired() {
@@ -98,10 +112,18 @@ public class VersionedTaskBook extends TaskBook {
         // Defensively commit a copy of the state instead.
         TaskBook copy = new TaskBook(state);
         taskBookStateList.add(copy);
+        pruneFutureStatesIfRequired();
         pruneToCapacityIfRequired();
 
         // Set the pointer to point to the newest command.
         pointer = taskBookStateList.size() - 1;
+    }
+
+    /**
+     * Returns true if an undo operation is valid.
+     */
+    public boolean canUndo() {
+        return pointer - 1 >= 0;
     }
 
     /**
@@ -112,12 +134,19 @@ public class VersionedTaskBook extends TaskBook {
     public TaskBook undo() throws InvalidActionException {
         assert taskBookStateList != null;
 
-        if (pointer - 1 < 0) {
+        if (!canUndo()) {
             throw new InvalidActionException(INVALID_UNDO_ACTION);
         }
 
         pointer--;
         return taskBookStateList.get(pointer);
+    }
+
+    /**
+     * Returns true if a redo operation is valid.
+     */
+    public boolean canRedo() {
+        return pointer + 1 < taskBookStateList.size();
     }
 
     /**
@@ -128,7 +157,7 @@ public class VersionedTaskBook extends TaskBook {
     public TaskBook redo() throws InvalidActionException {
         assert taskBookStateList != null;
 
-        if (pointer + 1 >= taskBookStateList.size()) {
+        if (!canRedo()) {
             throw new InvalidActionException(INVALID_REDO_ACTION);
         }
 
