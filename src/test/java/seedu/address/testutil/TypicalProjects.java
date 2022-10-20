@@ -56,9 +56,11 @@ public class TypicalProjects {
 
     private TypicalProjects() {} // prevents instantiation
 
+
     /**
      * Returns an {@code AddressBook} with all the typical projects.
      */
+    /*
     public static AddressBook getTypicalAddressBookWithProjectOnly() {
         AddressBook ab = new AddressBook();
         for (Project project : getTypicalProjects()) {
@@ -66,6 +68,7 @@ public class TypicalProjects {
         }
         return ab;
     }
+    */
 
     public static List<Project> getTypicalProjects() {
         return new ArrayList<>(Arrays.asList(APPLE, BANANA, COCONUT, DANIEL, ELLE, FIONA, GEORGE));

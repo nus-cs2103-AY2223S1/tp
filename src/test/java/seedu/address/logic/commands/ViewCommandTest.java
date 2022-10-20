@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBookWithProjectOnly;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ import seedu.address.model.project.Project;
  * Contains integration tests (interaction with the Model) for {@code ViewCommand}.
  */
 public class ViewCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBookWithProjectOnly(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
