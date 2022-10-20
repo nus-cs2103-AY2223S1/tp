@@ -12,5 +12,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_MC_NUM = new Prefix("num/");
     public static final Prefix PREFIX_MC_RES = new Prefix("r/");
+    public static final Prefix PREFIX_START_DATE_TIME = new Prefix("sd/");
+    public static final Prefix PREFIX_END_DATE_TIME = new Prefix("ed/");
+    public static final Prefix PREFIX_STUDENT_INDEX = new Prefix("si/");
+    public static final Prefix PREFIX_LESSON = new Prefix("l/");
 
 }

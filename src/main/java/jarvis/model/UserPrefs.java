@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path studentBookFilePath = Paths.get("data" , "studentbook.json");
     private Path taskBookFilePath = Paths.get("data" , "taskbook.json");
+    private Path lessonBookFilePath = Paths.get("data", "lessonbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -56,6 +57,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(studentBookFilePath);
         this.studentBookFilePath = studentBookFilePath;
     }
+
     public Path getTaskBookFilePath() {
         return taskBookFilePath;
     }
@@ -63,6 +65,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setTaskBookFilePath(Path taskBookFilePath) {
         requireNonNull(taskBookFilePath);
         this.taskBookFilePath = taskBookFilePath;
+    }
+
+    public Path getLessonBookFilePath() {
+        return lessonBookFilePath;
+    }
+
+    public void setLessonBookFilePath(Path lessonBookFilePath) {
+        requireNonNull(lessonBookFilePath);
+        this.lessonBookFilePath = lessonBookFilePath;
     }
 
     @Override
@@ -77,19 +88,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && studentBookFilePath.equals(o.studentBookFilePath);
+                && studentBookFilePath.equals(o.studentBookFilePath)
+                && taskBookFilePath.equals(o.taskBookFilePath)
+                && lessonBookFilePath.equals(o.lessonBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, studentBookFilePath);
+        return Objects.hash(guiSettings, studentBookFilePath, taskBookFilePath, lessonBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + studentBookFilePath);
+        sb.append("\nLocal student data file location : " + studentBookFilePath);
+        sb.append("\nLocal task data file location : " + taskBookFilePath);
+        sb.append("\nLocal lesson data file location : " + lessonBookFilePath);
         return sb.toString();
     }
 

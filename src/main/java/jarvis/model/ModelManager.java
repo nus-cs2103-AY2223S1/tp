@@ -20,42 +20,54 @@ public class ModelManager implements Model {
 
     private final StudentBook studentBook;
     private final TaskBook taskBook;
+    private final LessonBook lessonBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Lesson> filteredLessons;
 
     /**
-     * Initializes a ModelManager with the given studentBook, taskBook and userPrefs.
+     * Initializes a ModelManager with the given studentBook, taskBook, lessonBook and userPrefs.
      */
-    public ModelManager(ReadOnlyStudentBook studentBook, ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(studentBook, userPrefs);
+    public ModelManager(ReadOnlyStudentBook studentBook, ReadOnlyTaskBook taskBook,
+                        ReadOnlyLessonBook lessonBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(studentBook, taskBook, lessonBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + studentBook + "and task book:" + taskBook
-                + " and user prefs " + userPrefs);
+        logger.fine("Initializing with student book: " + studentBook + "and task book:" + taskBook
+                + "and lesson book:" + lessonBook + " and user prefs " + userPrefs);
 
         this.studentBook = new StudentBook(studentBook);
         this.taskBook = new TaskBook(taskBook);
+        this.lessonBook = new LessonBook(lessonBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.studentBook.getStudentList());
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
+        filteredLessons = new FilteredList<>(this.lessonBook.getLessonList());
     }
 
     /**
      * Initializes a ModelManager with the given studentBook and userPrefs.
      */
     public ModelManager(ReadOnlyStudentBook studentBook, ReadOnlyUserPrefs userPrefs) {
-        this(studentBook, new TaskBook(), userPrefs);
+        this(studentBook, new TaskBook(), new LessonBook(), userPrefs);
     }
 
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
      */
     public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
-        this(new StudentBook(), taskBook, userPrefs);
+        this(new StudentBook(), taskBook, new LessonBook(), userPrefs);
+    }
+
+    /**
+     * Initializes a ModelManager with the given LessonBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyLessonBook lessonBook, ReadOnlyUserPrefs userPrefs) {
+        this(new StudentBook(), new TaskBook(), lessonBook, userPrefs);
     }
 
     public ModelManager() {
-        this(new StudentBook(), new TaskBook(), new UserPrefs());
+        this(new StudentBook(), new TaskBook(), new LessonBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -104,6 +116,19 @@ public class ModelManager implements Model {
         userPrefs.setTaskBookFilePath(taskBookFilePath);
     }
 
+    @Override
+    public Path getLessonBookFilePath() {
+        return userPrefs.getLessonBookFilePath();
+    }
+
+    @Override
+    public void setLessonBookFilePath(Path lessonBookFilePath) {
+        requireNonNull(lessonBookFilePath);
+        userPrefs.setTaskBookFilePath(lessonBookFilePath);
+    }
+
+
+
     //=========== StudentBook ================================================================================
 
     @Override
@@ -123,8 +148,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudent(Student target) {
-        studentBook.removeStudent(target);
+    public void deleteStudent(Student targetStudent) {
+        studentBook.removeStudent(targetStudent);
     }
 
     @Override
@@ -134,10 +159,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setStudent(Student target, Student editedStudent) {
-        requireAllNonNull(target, editedStudent);
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        requireAllNonNull(targetStudent, editedStudent);
 
-        studentBook.setStudent(target, editedStudent);
+        studentBook.setStudent(targetStudent, editedStudent);
     }
 
     //=========== TaskBook ================================================================================
@@ -159,8 +184,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(Task target) {
-        taskBook.removeTask(target);
+    public void deleteTask(Task targetTask) {
+        taskBook.removeTask(targetTask);
     }
 
     @Override
@@ -170,17 +195,58 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
+    public void setTask(Task targetTask, Task editedTask) {
+        requireAllNonNull(targetTask, editedTask);
 
-        taskBook.setTask(target, editedTask);
+        taskBook.setTask(targetTask, editedTask);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== LessonBook ================================================================================
+
+    @Override
+    public void setLessonBook(ReadOnlyLessonBook lessonBook) {
+        this.lessonBook.resetData(lessonBook);
+    }
+
+    @Override
+    public ReadOnlyLessonBook getLessonBook() {
+        return lessonBook;
+    }
+
+    @Override
+    public boolean hasLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        return lessonBook.hasLesson(lesson);
+    }
+
+    @Override
+    public void deleteLesson(Lesson targetLesson) {
+        lessonBook.removeLesson(targetLesson);
+    }
+
+    @Override
+    public void addLesson(Lesson lesson) {
+        lessonBook.addLesson(lesson);
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+    }
+
+    @Override
+    public void setLesson(Lesson targetLesson, Lesson editedLesson) {
+        requireAllNonNull(targetLesson, editedLesson);
+
+        lessonBook.setLesson(targetLesson, editedLesson);
+    }
+
+    @Override
+    public boolean hasPeriodClash(Lesson lesson) {
+        requireNonNull(lesson);
+        return lessonBook.hasPeriodClash(lesson);
+    }
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedStudentBook}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -204,6 +270,16 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<Lesson> getFilteredLessonList() {
+        return filteredLessons;
+    }
+
+    @Override
+    public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+        requireNonNull(predicate);
+        filteredLessons.setPredicate(predicate);
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -221,7 +297,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return studentBook.equals(other.studentBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredLessons.equals(other.filteredLessons);
     }
 
 }
