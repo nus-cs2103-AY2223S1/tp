@@ -42,3 +42,49 @@ html {
     width: 75%;
   }
 }
+
+.sticky-toc {
+  $margin-block: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+
+  top: $margin-block;
+  bottom: $margin-block;
+  max-height: calc(100vh - 2 * #{$margin-block});
+
+  border-left: 1px solid lightgray;
+  line-height: 200%;
+  padding-inline: 6px;
+
+  font-size: small;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media print {
+    display: none;
+  }
+
+  ul,
+  ol {
+    margin-left: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    li {
+      list-style-type: none;
+      padding-left: 12px;
+
+      a {
+        color: gray;
+
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}
