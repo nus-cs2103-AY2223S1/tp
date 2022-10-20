@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ProfCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.StudentCommand;
 import seedu.address.logic.commands.TaCommand;
+import seedu.address.logic.commands.TemplateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -86,6 +87,9 @@ public class AddressBookParser {
 
         case "clear":
             throw new ParseException(ClearCommand.MESSAGE_CONFIRMATION);
+
+        case TemplateCommand.COMMAND_WORD:
+            return new TemplateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -2,10 +2,15 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
 
@@ -48,6 +53,12 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
+        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
+        sb.append(PREFIX_YEAR + person.getYear().value + " ");
+        person.getModuleCodes().stream().forEach(
+                s -> sb.append(PREFIX_MODULE_CODE + s.value + " ")
+        );
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -61,6 +72,9 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
+        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
+        sb.append(PREFIX_RATING + person.getRating().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -74,6 +88,10 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
+        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
+        sb.append(PREFIX_SPECIALISATION + person.getSpecialisation().value + " ");
+        sb.append(PREFIX_RATING + person.getRating().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -102,14 +120,15 @@ public class PersonUtil {
 
     public static String getFindCommandDetails(PersonMatchesPredicate predicate) {
         String commandDetails = "";
-        if (predicate.hasNamesListPredicate()) {
+        if (predicate.getHasNamesList()) {
             commandDetails += PREFIX_NAME + String.join(" ", predicate.getNamesList()) + " ";
 
         }
 
-        if (predicate.hasModuleListPredicate()) {
-            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModuleList());
+        if (predicate.getHasModulesList()) {
+            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesSet());
         }
+
         return commandDetails;
     }
 }
