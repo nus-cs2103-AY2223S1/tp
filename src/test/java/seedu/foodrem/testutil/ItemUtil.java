@@ -1,6 +1,6 @@
 package seedu.foodrem.testutil;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.item.Item;

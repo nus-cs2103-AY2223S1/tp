@@ -1,4 +1,4 @@
-package seedu.foodrem.enums;
+package seedu.foodrem.commons.enums;
 
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;

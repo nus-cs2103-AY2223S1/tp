@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandType.LIST_COMMAND;
+import static seedu.foodrem.commons.enums.CommandType.LIST_COMMAND;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import seedu.foodrem.logic.commands.Command;
