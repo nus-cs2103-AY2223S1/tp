@@ -39,17 +39,17 @@ public class Price {
     // TODO testing for these methods
 
     /**
-     * Returns true if the stored numerical value is greater than a given {@code Price}.
+     * Returns true if the stored numerical value is greater than or equal to a given {@code Price}.
      */
-    public boolean isGreaterThan(Price p) {
+    public boolean isGreaterThanOrEqual(Price p) {
         double d = p.getNumericalValue();
         return numericalValue - d > EPSILON || numericalValue - d == 0;
     }
 
     /**
-     * Returns true if the stored numerical value is smaller than a given {@code Price}.
+     * Returns true if the stored numerical value is smaller than or equal to a given {@code Price}.
      */
-    public boolean isSmallerThan(Price p) {
+    public boolean isSmallerThanOrEqual(Price p) {
         double d = p.getNumericalValue();
         return d - numericalValue > EPSILON || numericalValue - d == 0;
     }

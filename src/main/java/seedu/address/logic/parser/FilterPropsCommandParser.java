@@ -30,7 +30,7 @@ public class FilterPropsCommandParser extends Parser<FilterPropsCommand> {
                 PREFIX_CHARACTERISTICS, PREFIX_SELLER);
 
         if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
-                || areNoPrefixesPresent(argMultimap, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
+                || !isAnyPrefixPresent(argMultimap, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPropsCommand.MESSAGE_USAGE));
         }

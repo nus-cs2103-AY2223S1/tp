@@ -33,10 +33,10 @@ public abstract class Parser<T extends Command> {
     }
 
     /**
-     * Returns true if no {@code Prefix} is present in the given
+     * Returns false if no {@code Prefix} is present in the given
      * {@code ArgumentMultimap}.
      */
-    public boolean areNoPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() == 0;
+    public boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() > 0;
     }
 }

@@ -31,7 +31,7 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
                 PREFIX_TAG);
 
         if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
-                || areNoPrefixesPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
+                || !isAnyPrefixPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_SELLER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterBuyersCommand.MESSAGE_USAGE));
         }
