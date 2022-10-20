@@ -17,6 +17,7 @@ import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
 import seedu.application.logic.commands.HelpCommand;
 import seedu.application.logic.commands.ListCommand;
+import seedu.application.logic.commands.RemindCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,6 +75,9 @@ public class ApplicationBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
