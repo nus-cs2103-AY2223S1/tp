@@ -275,4 +275,17 @@ public class Person {
             mark.reset();
         }
     }
+
+    /**
+     * Checks whether a student has multiple classes per day.
+     *
+     * @return true if the student has multiple classes in one day.
+     */
+    public boolean hasMultipleClasses() {
+        if (!mark.isMarked()) {
+            return false;
+        }
+
+        return (aClass.isSameDateAs(displayedClass.date));
+    }
 }

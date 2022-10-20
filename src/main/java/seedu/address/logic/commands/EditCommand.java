@@ -67,6 +67,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
+    private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "A student cannot have multiple classes per day";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -97,6 +98,10 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (editedPerson.hasMultipleClasses()) {
+            throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
         }
 
         if (!editPersonDescriptor.hasEmptyClass()) {
