@@ -301,16 +301,16 @@ The following sequence diagram shows how the filter operation works:
 
 Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
 
-** Design considerations **
+**Design considerations**
 
-** Aspect: How flter executes**
-- ** Alterantive 1 (current choice): ** Filters the entire tasklist.
-  Pros:
-  Cons:
+**Aspect: How flter executes**
+- **Alterantive 1 (current choice):** Filters the entire tasklist.
+  -Pros: Easy to implement
+  -Cons:
 
-- ** Alternative 2:
-  Pros:
-  Cons:
+- **Alternative 2:**
+  -Pros:
+  -Cons:
 
 
 --------------------------------------------------------------------------------------------------------------------
