@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -146,6 +147,56 @@ public class FindCommandTest {
         command.execute(sModel);
         assertEquals(Arrays.asList(TypicalSuppliers.CARL, TypicalSuppliers.ELLE, TypicalSuppliers.FIONA),
                 sModel.getFilteredSupplierList());
+    }
+
+    @Test
+    public void execute_findDeliverers_noBuyersFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        Predicate<Buyer> buyerPredicate = new Predicate<Buyer>() {
+            @Override
+            public boolean test(Buyer buyer) {
+                return false;
+            }
+        };
+        Predicate<Deliverer> delivererPredicate = preparePredicateDeliverer(
+                "Kurz Elle Kunz");
+        Predicate<Supplier> supplierPredicate = new Predicate<Supplier>() {
+            @Override
+            public boolean test(Supplier supplier) {
+                return false;
+            }
+        };
+
+        FindCommand command = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
+                PersonCategory.DELIVERER);
+        bExpectedModel.updateFilteredBuyerList(buyerPredicate);
+        assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
+        assertEquals(Collections.emptyList(), bModel.getFilteredBuyerList());
+    }
+
+    @Test
+    public void execute_findSuppliers_noBuyersFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        Predicate<Buyer> buyerPredicate = new Predicate<Buyer>() {
+            @Override
+            public boolean test(Buyer buyer) {
+                return false;
+            }
+        };
+        Predicate<Deliverer> delivererPredicate = new Predicate<Deliverer>() {
+            @Override
+            public boolean test(Deliverer deliverer) {
+                return false;
+            }
+        };
+
+        Predicate<Supplier> supplierPredicate = preparePredicateSupplier("Kurz Elle Kunz");
+
+        FindCommand command = new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
+                PersonCategory.SUPPLIER);
+        bExpectedModel.updateFilteredBuyerList(buyerPredicate);
+        assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
+        assertEquals(Collections.emptyList(), bModel.getFilteredBuyerList());
     }
 
     /**
