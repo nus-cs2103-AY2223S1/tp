@@ -83,5 +83,4 @@ PolicyAssignCommand -[hidden]-> LogicManager : result
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml

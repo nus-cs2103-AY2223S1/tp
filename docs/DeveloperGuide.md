@@ -125,7 +125,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the following address book data 
+* stores the following address book data
   * all `Person` objects (which are contained in a `UniquePersonList` object)
   * all `Policy` objects (which are contained in a `UniquePolicyList` object)
   <img src="images/UniquePolicyListClassDiagram.png" width="300" />
@@ -142,7 +142,7 @@ The `Model` component,
 An extension to the current Model is the `Event` Component,
 * Stores all information related to Event Objects, all of which are contained inside a `UniqueEventList` object.
 
-* Stores the current `Event` objects. Upon filtering via other commands (e.g: `calendar`), it is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be observed. 
+* Stores the current `Event` objects. Upon filtering via other commands (e.g: `calendar`), it is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be observed.
 
 * Has strict requirements on deciding whether an new `Event` is valid or not.
 
@@ -236,25 +236,25 @@ Given below is an example usage scenario and how the pin mechanism behaves at ea
     * Cons: May result in performance issues in terms of memory usage.
 
 
-### Sort Feature 
+### Sort Feature
 
-#### Implementation 
+#### Implementation
 
-The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list. 
+The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list.
 
 The method `FXCollections.sort()` is called by UniquePersonList, which takes in a comparator as an argument and sorts the client list based on the comparator supplied.
 Each attribute of a client which is considered a valid sorting metric has its own comparator within its class.
 
 This operation is exposed in the `Model` interface as `Model#sort()`.
 
-Given below is an example usage scenario and how the `Sort` mechanism behaves at each step. 
+Given below is an example usage scenario and how the `Sort` mechanism behaves at each step.
 
-Step 1.  The user executes `list` to view his current client list. 
+Step 1.  The user executes `list` to view his current client list.
 
 Step 2. The user executes `sort income` to view his client list by ascending income levels. This will pass the income comparator to `Model#sort()`. The list will be sorted and changes can be viewed immediately.
 
 
-The following sequence diagram shows how the sort operation works: 
+The following sequence diagram shows how the sort operation works:
 
 ![Sort Sequence Diagram](./images/SortSequenceDiagram.png)
 
@@ -262,13 +262,13 @@ The following activity diagram summarizes what happens when a user issues a `sor
 
 ![Sort Activity Diagram](./images/SortActivityDiagram.png)
 
-#### Design Considerations 
+#### Design Considerations
 
 **Aspect: How to manage saving changes to `Storage`**
 
 As any commands called which modifies the `AddressBook` will save these changes to storage, a major design consideration was whether to save these post-sort changes to the storage
 
-* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view 
+* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view
   * Pros: Easy to implement, less memory required to keep separate original list 
   * Cons: Client list remains in a particular order after `sort` command is called until `sort default` is issued
 
