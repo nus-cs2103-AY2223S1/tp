@@ -229,7 +229,7 @@ The following sequence diagram shows how add schedule operation works
 
 ![EditScheduleSequence](images/EditScheduleSequence.png)
 
-After the ProfNUS receives the instruction to edit a target `Scheudule` (indicated by the index in the shown schedule list), it will modify it based on new information given by the user. 
+After the ProfNUS receives the instruction to edit a target `Schedule` (indicated by the index in the shown schedule list), it will modify it based on new information given by the user. 
 
 During the execution, the following validity checks will be conducted:
 
