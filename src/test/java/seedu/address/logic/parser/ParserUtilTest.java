@@ -166,9 +166,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseProduct_validValueWithWhitespace_returnsTrimmedProduct() throws Exception {
-        String ProductWithWhitespace = WHITESPACE + VALID_PRODUCT_1 + WHITESPACE;
+        String productWithWhitespace = WHITESPACE + VALID_PRODUCT_1 + WHITESPACE;
         Product expectedProduct = new Product(VALID_PRODUCT_1);
-        assertEquals(expectedProduct, ParserUtil.parseProduct(ProductWithWhitespace));
+        assertEquals(expectedProduct, ParserUtil.parseProduct(productWithWhitespace));
     }
 
     @Test
