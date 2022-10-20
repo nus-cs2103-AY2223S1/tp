@@ -13,54 +13,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents a Profile's start or end datetime in the address book.
+ * Represents a Event's start or end datetime in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
 
     public static final String RECOMMENDED_FORMAT = "dd/MM/yyyy";
-    public static final String RECOMMENDED_FORMAT_WITH_TIME = "dd/MM/yyyy HH:mm";
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should follow a valid format. Try " + RECOMMENDED_FORMAT;
-
-    // Not an exhaustive list
-    private static final Map<String, String> DATE_VALIDATION_REGEXS = new HashMap<>() {{
-            put("^\\d{1,2}-\\d{1,2}-\\d{4}$", "dd-MM-yyyy");
-            put("^\\d{1,2}-\\d{1,2}-\\d{2}$", "dd-MM-yy");
-            put("^\\d{4}-\\d{1,2}-\\d{1,2}$", "yyyy-MM-dd");
-            put("^\\d{1,2}/\\d{1,2}/\\d{4}$", "dd/MM/yyyy");
-            put("^\\d{1,2}/\\d{1,2}/\\d{2}$", "dd/MM/yy");
-            put("^\\d{4}/\\d{1,2}/\\d{1,2}$", "yyyy/MM/dd");
-            put("^\\d{1,2}\\s[a-z]{3}\\s\\d{4}$", "dd MMM yyyy");
-            put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}$", "dd MMMM yyyy");
-        }};
-
-    private static final Map<String, String> TIME_VALIDATION_REGEXS = new HashMap<>() {{
-            put("^\\d{12}$", "yyyyMMddHHmm");
-            put("^\\d{8}\\s\\d{4}$", "yyyyMMdd HHmm");
-            put("^\\d{1,2}-\\d{1,2}-\\d{4}\\s\\d{1,2}:\\d{2}$", "dd-MM-yyyy HH:mm");
-            put("^\\d{4}-\\d{1,2}-\\d{1,2}\\s\\d{1,2}:\\d{2}$", "yyyy-MM-dd HH:mm");
-            put("^\\d{1,2}/\\d{1,2}/\\d{4}\\s\\d{1,2}:\\d{2}$", "dd/MM/yyyy HH:mm");
-            put("^\\d{4}/\\d{1,2}/\\d{1,2}\\s\\d{1,2}:\\d{2}$", "yyyy/MM/dd HH:mm");
-            put("^\\d{1,2}\\s[a-z]{3}\\s\\d{4}\\s\\d{1,2}:\\d{2}$", "dd MMM yyyy HH:mm");
-            put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}\\s\\d{1,2}:\\d{2}$", "dd MMMM yyyy HH:mm");
-            put("^\\d{14}$", "yyyyMMddHHmmss");
-            put("^\\d{8}\\s\\d{6}$", "yyyyMMdd HHmmss");
-            put("^\\d{1,2}-\\d{1,2}-\\d{4}\\s\\d{1,2}:\\d{2}:\\d{2}$", "dd-MM-yyyy HH:mm:ss");
-            put("^\\d{4}-\\d{1,2}-\\d{1,2}\\s\\d{1,2}:\\d{2}:\\d{2}$", "yyyy-MM-dd HH:mm:ss");
-            put("^\\d{1,2}/\\d{1,2}/\\d{4}\\s\\d{1,2}:\\d{2}:\\d{2}$", "dd/MM/yyyy HH:mm:ss");
-            put("^\\d{4}/\\d{1,2}/\\d{1,2}\\s\\d{1,2}:\\d{2}:\\d{2}$", "yyyy/MM/dd HH:mm:ss");
-            put("^\\d{1,2}\\s[a-z]{3}\\s\\d{4}\\s\\d{1,2}:\\d{2}:\\d{2}$", "dd MMM yyyy HH:mm:ss");
-            put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}\\s\\d{1,2}:\\d{2}:\\d{2}$", "dd MMMM yyyy HH:mm:ss");
-        }};
-
-    private static final Map<String, String> TIME_REGEXES = new HashMap<>() {{
-        put("^\\d{1,2}:\\d{2}$", "HH:mm");
-        put("^\\d{1,2}:\\d{2}:\\d{2}$", "HH:mm:ss");
-        put("^\\d{1,2}\\d{2}$", "HHmm");
-        put("^\\d{1,2}\\d{2}\\d{2}$", "HHmmss");
-    }};
-
     public static final String REGEX_DAY_SLASH = "(([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4})";
     public static final String REGEX_DAY_SPACE = "(([1-9]|[0-2][0-9]|(3)[0-1])\\s(((0)?[0-9])|((1)[0-2]))\\s[0-9]{4})";
     public static final String REGEX_DAY_DASH = "(([1-9]|[0-2][0-9]|(3)[0-1])-(((0)?[0-9])|((1)[0-2]))-[0-9]{4})";
@@ -75,11 +35,31 @@ public class DateTime {
     public static final String REGEX_YEAR_DASH =
             "([0-9]{4}-(((0)?[0-9])|((1)[0-2]))-([1-9]|[0-2][0-9]|(3)[0-1]))";
 
-    public static Pattern VALIDATION_PATTERN = Pattern.compile(
+    public static final Pattern VALIDATION_PATTERN = Pattern.compile(
             "(?<dateGroup>" + REGEX_DAY_SLASH + "|" + REGEX_DAY_SPACE + "|" + REGEX_DAY_DASH + "|"
-                    + REGEX_DAY_LETTER + "|" + REGEX_YEAR_SLASH + "|" + REGEX_YEAR_DASH +  ")"
+                    + REGEX_DAY_LETTER + "|" + REGEX_YEAR_SLASH + "|" + REGEX_YEAR_DASH + ")"
                     + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "|" + REGEX_TIME_NO_SPACE + "))?"
     );
+
+    // Not an exhaustive list
+    private static final Map<String, String> DATE_VALIDATION_REGEXS = new HashMap<>() {{
+            put("^\\d{1,2}-\\d{1,2}-\\d{4}$", "dd-MM-yyyy");
+            put("^\\d{1,2}-\\d{1,2}-\\d{2}$", "dd-MM-yy");
+            put("^\\d{4}-\\d{1,2}-\\d{1,2}$", "yyyy-MM-dd");
+            put("^\\d{1,2}/\\d{1,2}/\\d{4}$", "dd/MM/yyyy");
+            put("^\\d{1,2}/\\d{1,2}/\\d{2}$", "dd/MM/yy");
+            put("^\\d{4}/\\d{1,2}/\\d{1,2}$", "yyyy/MM/dd");
+            put("^\\d{1,2}\\s[a-z]{3}\\s\\d{4}$", "dd MMM yyyy");
+            put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}$", "dd MMMM yyyy");
+        }};
+
+    private static final Map<String, String> TIME_REGEXES = new HashMap<>() {{
+            put("^\\d{1,2}:\\d{2}$", "HH:mm");
+            put("^\\d{1,2}:\\d{2}:\\d{2}$", "HH:mm:ss");
+            put("^\\d{1,2}\\d{2}$", "HHmm");
+            put("^\\d{1,2}\\d{2}\\d{2}$", "HHmmss");
+        }};
+
     public final LocalDate date;
     public final Optional<LocalTime> time;
 
@@ -107,11 +87,18 @@ public class DateTime {
         return null;
     }
 
+    /**
+     * Returns true if an input string satisfies the required format and time
+     * period, false otherwise.
+     */
     public static boolean isValidDateTime(String dateString) {
         Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
         return matcher.matches();
     }
 
+    /**
+     * Returns a LocalDate from a given date time string.
+     */
     public static LocalDate parseDate(String dateString) {
         Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
         matcher.matches();
@@ -121,6 +108,11 @@ public class DateTime {
         return LocalDate.parse(date, dateFormat);
     }
 
+    /**
+     * Returns an Optional containing a LocalTime object if a
+     * time is present in a given date time string. Otherwise,
+     * return a empty Optional.
+     */
     public static Optional<LocalTime> parseTime(String dateString) {
         Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
         matcher.matches();
