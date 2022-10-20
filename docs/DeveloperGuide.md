@@ -168,7 +168,7 @@ Examples of command use:
 Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
 
 ![Activity diagram for execution of a mark command](images/MarkTaskActivityDiagram.png)
- <div style="text-align: center">Activity diagram of findc command execution</div>
+ <div style="text-align: center">Activity diagram of mark command execution</div>
 
 ![Interactions Inside the Logic Component for the `unmark 1` Command](images/UnmarkTaskSequenceDiagram.png)
 <div style="text-align: center">Sequence diagram of unmark command execution</div>
