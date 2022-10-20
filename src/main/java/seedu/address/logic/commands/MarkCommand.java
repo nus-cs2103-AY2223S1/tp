@@ -19,18 +19,20 @@ import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
- * Mark the status of an existing internship in the address book.
+ * Marks the status of an existing internship in the address book.
  */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
-    public static final String MESSAGE_NOT_EDITED = "Please enter a status to mark the internship with.";
-    public static final String MESSAGE_MARK_INTERNSHIP_SUCCESS = "Marked Internship: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the internship identified by the index number used in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer) [s/APPLICATIONSTATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 s/Rejected";
+
+    public static final String MESSAGE_NOT_EDITED = "Please enter an application status to mark the internship with.";
+    public static final String MESSAGE_SAME_APPLICATION_STATUS = "This is the current application status.";
+    public static final String MESSAGE_MARK_INTERNSHIP_SUCCESS = "Marked Internship: %1$s";
 
     private final Index index;
     private final ApplicationStatus applicationStatus;
@@ -58,6 +60,10 @@ public class MarkCommand extends Command {
 
         Internship internshipToMark = lastShownList.get(index.getZeroBased());
         Internship markedInternship = createMarkedInternship(internshipToMark, applicationStatus);
+
+        if (internshipToMark.equals(markedInternship)) {
+            throw new CommandException(MESSAGE_SAME_APPLICATION_STATUS);
+        }
 
         model.setInternship(internshipToMark, markedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
