@@ -12,6 +12,10 @@ public class NameEqualsKeywordPredicate implements Predicate<Client> {
         this.keyword = keyword;
     }
 
+    public NameEqualsKeywordPredicate(Client client) {
+        this.keyword = client.getName().toString();
+    }
+
     @Override
     public boolean test(Client client) {
         String clientName = client.getName().toString();
