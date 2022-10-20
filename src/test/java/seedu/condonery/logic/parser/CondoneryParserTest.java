@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
+import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,8 +51,8 @@ public class CondoneryParserTest {
     @Test
     public void parseCommand_deleteProperty() throws Exception {
         DeletePropertyCommand command = (DeletePropertyCommand) parser.parseCommand(
-            DeletePropertyCommand.COMMAND_WORD + " " + INDEX_FIRST_PROPERTY.getOneBased());
-        assertEquals(new DeletePropertyCommand(INDEX_FIRST_PROPERTY), command);
+            DeletePropertyCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeletePropertyCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -60,8 +60,8 @@ public class CondoneryParserTest {
         Property property = new PropertyBuilder().build();
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(property).build();
         EditPropertyCommand command = (EditPropertyCommand) parser.parseCommand(EditPropertyCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PROPERTY.getOneBased() + " " + PropertyUtil.getEditPropertyDescriptorDetails(descriptor));
-        assertEquals(new EditPropertyCommand(INDEX_FIRST_PROPERTY, descriptor).getEditPropertyDescriptor(),
+            + INDEX_FIRST.getOneBased() + " " + PropertyUtil.getEditPropertyDescriptorDetails(descriptor));
+        assertEquals(new EditPropertyCommand(INDEX_FIRST, descriptor).getEditPropertyDescriptor(),
                 command.getEditPropertyDescriptor());
     }
 

@@ -3,6 +3,10 @@ package seedu.condonery.logic.parser.property;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -12,10 +16,6 @@ import static seedu.condonery.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.condonery.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.condonery.testutil.TypicalProperties.AMY;
@@ -35,7 +35,7 @@ public class AddPropertyCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Property expectedProperty = new PropertyBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Property expectedProperty = new PropertyBuilder(BOB).withTags(CLIENT_VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
@@ -51,7 +51,7 @@ public class AddPropertyCommandParserTest {
 
         // multiple tags - all accepted
         Property expectedPersonMultipleTags =
-                new PropertyBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+                new PropertyBuilder(BOB).withTags(CLIENT_VALID_TAG_FRIEND, CLIENT_VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddPropertyCommand(expectedPersonMultipleTags));
     }
@@ -69,15 +69,15 @@ public class AddPropertyCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + ADDRESS_DESC_BOB,
             expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + CLIENT_VALID_ADDRESS_BOB,
             expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + CLIENT_VALID_ADDRESS_BOB,
             expectedMessage);
     }
 
@@ -93,7 +93,7 @@ public class AddPropertyCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
-            + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+            + INVALID_TAG_DESC + CLIENT_VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC,
