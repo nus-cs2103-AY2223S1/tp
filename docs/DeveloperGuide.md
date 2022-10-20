@@ -161,13 +161,13 @@ This section describes some noteworthy details on how certain features are imple
 The add/delete tag mechanism operates for both contacts and tasks in YellowBook.
 
 Every instance of AddTagCommand and DeleteTagCommand is created with two booleans.
-For AddTagCommand, they are addTagToTask and addTagToContact. 
+For AddTagCommand, they are addTagToTask and addTagToContact.
 For DeleteTagCommand, they are removeTagFromTask and removeTagFromContact.
 Only one of these booleans will be true. Otherwise, an exception is thrown.
 
 Depending on the status of these booleans, an EditTaskDescriptor or EditPersonDescriptor is created respectively.
 
-This descriptor object is then used to modify the list of tags attached to the selected task/contact. 
+This descriptor object is then used to modify the list of tags attached to the selected task/contact.
 
 A new contact/task is created, with all attributes copied over from the original person, except for the list of tags, where the modified version is used.
 
@@ -175,7 +175,7 @@ This contact/task then replaces the previous contact/task in the YellowBook via 
 
 Given below is an example usage scenario and how the add/delete tag mechanism behaves at each step.
 
-Step 1. The user executes `addL c/1 t/CS2103T` to add the tag "CS2103T" to the first contact in the contact list. 
+Step 1. The user executes `addL c/1 t/CS2103T` to add the tag "CS2103T" to the first contact in the contact list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The above command will fail if the contact list is empty. An error message will be displayed informing the user.
 
@@ -198,9 +198,9 @@ The following sequence diagram shows how the add tag operation works:
 **Aspect: How add & delete tag executes:**
 
 * **Alternative 1 (current choice):** Implement a static class to edit tag list.
-  * Pros: Preserves immutability of Contact and Task. 
+  * Pros: Preserves immutability of Contact and Task.
   * Cons: Longer code, requires writing a new class.
-  
+
 * **Alternative 2:** Use the existing EditContact and EditTask classes.
     * Pros: Requires no additional code.
     * Cons: Increases coupling. Will fail if the associated classes stop working.
@@ -278,7 +278,7 @@ The following sequence diagram shows how the sort by deadline operation works:
 
 Step 3. The user has seen the most urgent tasks to be completed but realises that there is one more task that has not been added. The user executes `addT d/do …` to add a new task.  The `addT` command eventually calls `TaskList#sortByDeadline()` to sort the task list after adding the new task.
 
-Step 4. The user now decides that the initial order of the task list looks much better after finding out the tasks to do. The user executes `sortI` to sort the task list by id. The `sortI` command calls `Model#sortById()` to sort the task list based on id. 
+Step 4. The user now decides that the initial order of the task list looks much better after finding out the tasks to do. The user executes `sortI` to sort the task list by id. The `sortI` command calls `Model#sortById()` to sort the task list based on id.
 
 #### Design considerations:
 
@@ -290,7 +290,7 @@ Step 4. The user now decides that the initial order of the task list looks much 
 
 * **Alternative 2:** Don't save the sorting status and just sort once
   * Pros: Easy to implement.
-  * Cons: Need to type a sort command each time the list is changed to preserve sorting order. 
+  * Cons: Need to type a sort command each time the list is changed to preserve sorting order.
   
 
 --------------------------------------------------------------------------------------------------------------------
@@ -319,7 +319,7 @@ Step 4. The user now decides that the initial order of the task list looks much 
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * manage project contacts and tasks faster than a typical mouse/GUI driven app
 * manage many group projects at the same time
@@ -332,41 +332,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                                      |
 | -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------ |
-| `* * *`  | technically competent student who prefers typing to clicking | have a CLI   | perform operations quickly | 
+| `* * *`  | technically competent student who prefers typing to clicking | have a CLI   | perform operations quickly |
 | `* * *`  | student who is part of many group projects | keep track of the contact information of my groupmates | communicate with my team |
 | `* * *`  | student who is part of many group projects | track the progress of each group towards its goals | know if everyone is putting in their share of work |
-| `* * *`  | student who often has to email others | store people’s emails    | remember their emails | 
+| `* * *`  | student who often has to email others | store people’s emails    | remember their emails |
 | `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
 | `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
 | `* * *`  | SWE student                                | save the github usernames of my contacts | view their repo |
-| `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary | 
+| `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary |
 | `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
 | `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
 | `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
-| `* * *`  | team member                                | group contacts                 | know which people are involved in which projects | 
+| `* * *`  | team member                                | group contacts                 | know which people are involved in which projects |
 | `* * *`  | team member                                | give status updates on individual tasks | inform the group on my progress |
 | `* * *`  | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
-| `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already | 
-| `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time | 
-| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names | 
-| `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them | 
+| `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already |
+| `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time |
+| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names |
+| `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them |
 | `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
 | `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
 | `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
-| `* *`    | team member                                | send reminders to other team members | remind them to do their work | 
-| `* *`    | team member                                | use an idea board | generate inspiration with my teammates | 
-| `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease | 
-| `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule | 
-| `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them | 
-| `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI | 
+| `* *`    | team member                                | send reminders to other team members | remind them to do their work |
+| `* *`    | team member                                | use an idea board | generate inspiration with my teammates |
+| `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease |
+| `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule |
+| `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them |
+| `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI |
 | `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
-| `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes | 
+| `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes |
 | `*`      | student who struggles with remembering identities | add nicknames to my contacts | better identify them |
-| `*`      | student who prefers pen and paper          | print out my tasks             | annotate on it physically | 
+| `*`      | student who prefers pen and paper          | print out my tasks             | annotate on it physically |
 | `*`      | artistic student                           | have the software I use to look aesthetic | enjoy using them |
-| `*`      | student who is bad with names              | see the person’s first name emphasized | know how to address the person| 
-| `*`      | student with poor eyesight                 | ensure that my software have big fonts and large buttons | distinguish all elements | 
-| `*`      | animal loving person                       | have some cute animals in the background | feel entertained while managing my tasks | 
+| `*`      | student who is bad with names              | see the person’s first name emphasized | know how to address the person|
+| `*`      | student with poor eyesight                 | ensure that my software have big fonts and large buttons | distinguish all elements |
+| `*`      | animal loving person                       | have some cute animals in the background | feel entertained while managing my tasks |
 
 ### Use cases
 
@@ -376,23 +376,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User request to add a contact
-2.  YellowBook adds the contact
+1. User request to add a contact
+2. YellowBook adds the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. The details of the contact are incomplete.
-     
+
     * 1a1. YellowBook shows an error message.
 
 	     Use case ends.
-    
+
 * 1b. The contact given already exists.
-	   
+
     * 1b1. YellowBook shows an error message.
-  
+
       Use case ends.
 
 **Use case: Delete a contact**
@@ -534,7 +534,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-  
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -542,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 30,000 persons without a _noticeable sluggishness_ in performance for typical usage.
 3. Should be able to hold up to 30,000 tasks without a _noticeable sluggishness_ in performance for typical usage.
-4. A user with _above average typing speed_ for _regular text_ should be able to accomplish 
+4. A user with _above average typing speed_ for _regular text_ should be able to accomplish
 most of the tasks faster using commands than using the mouse.
 5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or symbols.
 6. Contact/task/tag names should be case-insensitive.
