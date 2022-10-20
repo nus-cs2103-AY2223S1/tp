@@ -29,3 +29,4 @@ public class ViewIncomeCommand extends Command {
         return new CommandResult(message, false, false, true);
     }
 }
+
