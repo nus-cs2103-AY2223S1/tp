@@ -30,8 +30,10 @@ public class AddClientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in Condonery";
+    public static final String MESSAGE_IMAGE_UPLOAD = "Opened Upload Image window";
 
     private final Client toAdd;
+    private final boolean hasImage;
 
     /**
      * Creates an AddCommand to add the specified {@code Property}
@@ -39,6 +41,16 @@ public class AddClientCommand extends Command {
     public AddClientCommand(Client client) {
         requireNonNull(client);
         toAdd = client;
+        hasImage = false;
+    }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Client}, with a boolean to indicate if image is uploaded.
+     */
+    public AddClientCommand(Client client, boolean hasImage) {
+        requireNonNull(client);
+        toAdd = client;
+        this.hasImage = hasImage;
     }
 
     @Override
@@ -49,7 +61,17 @@ public class AddClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
+        toAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
         model.addClient(toAdd);
+
+        if (this.hasImage) {
+            return new CommandResult(
+                String.format(MESSAGE_SUCCESS, toAdd),
+                false,
+                false,
+                "client-" + toAdd.getCamelCaseName()
+            );
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

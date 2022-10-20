@@ -2,6 +2,7 @@ package seedu.condonery.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -14,7 +15,7 @@ import seedu.condonery.model.client.UniqueClientList;
  */
 public class ClientDirectory implements ReadOnlyClientDirectory {
 
-    private final UniqueClientList properties;
+    private final UniqueClientList clients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +25,7 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
      *   among constructors.
      */
     {
-        properties = new UniqueClientList();
+        clients = new UniqueClientList();
     }
 
     public ClientDirectory() {}
@@ -32,9 +33,13 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     /**
      * Creates an ClientDirectory using the Properties in the {@code toBeCopied}
      */
-    public ClientDirectory(ReadOnlyClientDirectory toBeCopied) {
+    public ClientDirectory(ReadOnlyClientDirectory toBeCopied, Path imageDirectoryPath) {
         this();
         resetData(toBeCopied);
+
+        for (Client client : this.clients) {
+            client.setImageDirectoryPath(imageDirectoryPath);
+        }
     }
 
     //// list overwrite operations
@@ -44,7 +49,7 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
      * {@code properties} must not contain duplicate properties.
      */
     public void setProperties(List<Client> properties) {
-        this.properties.setClients(properties);
+        this.clients.setClients(properties);
     }
 
     /**
@@ -63,7 +68,7 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return properties.contains(client);
+        return clients.contains(client);
     }
 
     /**
@@ -71,7 +76,7 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
      * The client must not already exist in the address book.
      */
     public void addClient(Client p) {
-        properties.add(p);
+        clients.add(p);
     }
 
     /**
@@ -83,7 +88,7 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
 
-        properties.setClient(target, editedClient);
+        clients.setClient(target, editedClient);
     }
 
     /**
@@ -91,31 +96,31 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
      * {@code key} must exist in the address book.
      */
     public void removeClient(Client key) {
-        properties.remove(key);
+        clients.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return properties.asUnmodifiableObservableList().size() + " properties";
+        return clients.asUnmodifiableObservableList().size() + " clients";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Client> getClientList() {
-        return properties.asUnmodifiableObservableList();
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClientDirectory // instanceof handles nulls
-                && properties.equals(((ClientDirectory) other).properties));
+                && clients.equals(((ClientDirectory) other).clients));
     }
 
     @Override
     public int hashCode() {
-        return properties.hashCode();
+        return clients.hashCode();
     }
 }
