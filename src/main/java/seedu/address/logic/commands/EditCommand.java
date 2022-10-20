@@ -102,7 +102,6 @@ public class EditCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
-
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
         Predicate<Person> filterPersonToEdit = p -> !p.equals(personToEdit);

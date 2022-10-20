@@ -98,9 +98,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete p/1234567")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete p/1234567` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -112,6 +112,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
 
 ### Command Classes
 
@@ -125,7 +126,9 @@ The diagram also includes some new classes involved. For example, the `find` com
 
 <img src="images/CommandClasses.png" width="1200"/>
 
+
 ## Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -165,6 +168,78 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### \[Insert Numbering\] Edit feature
+The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
+an `EditCommand` that is executed by the `LogicManager`.
+
+This feature allows the user to edit any fields of a Customer, and supports editing multiple fields at once.
+
+**Below is a sample usage and how the edit sequence behaves at each step.**
+
+1. User chooses the Customer he/ she wants to edit and enters the command `edit e/test@gmail/com n/Bob`
+2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `EditCommandParser` and
+returns the `EditCommand` containing the Customer with all the new fields that are supposed to be edited to
+3. The `LogicManager` executes the `EditCommand` and Customer to be edited is updated with the new fields
+4. The `CommandResult` reflects the changes made to this Customer
+
+The following sequence diagram shows how the edit feature works, following the flow of entering the command `edit e/test@gmail/com n/Bob`:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes the flow of when a user enters an edit command:
+
+![EditActivityDiagram](images/EditCommandActivityDiagram.png)
+
+**Aspect: How `edit` is executed**
+* **Alternative 1 (current choice):** User can edit a customer via either `PHONE_NUMBER` or `EMAIL`.
+
+  | Pros/Cons | Description                                                                          | Examples                                                                                                                                    |
+    |--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user more flexibility in choosing the inputs as identifiers for editing       | The user can edit any customer as long as they have details of either their `PHONE_NUMBER` or `EMAIL`.                                      |
+  | Pros      | The user does not need to know the specific position of the customer within the list | The user can use either identifier `PHONE_NUMBER` or `EMAIL` to edit customers without a need for their index/position.                     |
+  | Cons      | The length of the command is longer with the new identifiers                         | The user has to type `edit p/12345678 n/Bob` or `edit e/test@gmail.com n/Bob` to edit a user which is longer compared to editing via index. |
+
+* **Alternative 2:** User can edit a customer via `index`.
+
+  | Pros/Cons | Description                                                                                               | Examples                                                                                                                                                                                                                                            |
+    |-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Short commands enable fast editing                                                                        | The user can edit any customer as long as they have details of the `index` of the customer, e.g. `edit 1`.                                                                                                                                          |
+  | Cons      | Identifying the customer via `index` might be slow especially when there are customers with similar names | The user has to find out the `index` of the customer to edit before typing the command. Supposed that we want to edit Bob and there exists an Bob and bob, identifying the correct customer takes time and thus delay the execution of the command. |
+
+* **Future Extension:** bobaBot can support multiple editing so user do not have to edit customers one by one.
+
+
+### \[Insert Numbering\] Delete feature
+
+The delete feature enables the user to remove a customer from bobaBot. The user's input is first retrieved by the `MainWindow` class. It is then passed to the `LogicManager` through the `execute` method. `LogicManager` will call the `parseCommand` method of `AddressBookParser` which upon parsing the input, creates a temporary `DeleteCommandParser` object. The `DeleteCommandParser` object then further parses the user's input and returns a `DeleteCommand`.  The command is executed in the `LogicManager`, returning a `CommandResult` object which will then be returned as feedback to the user.
+
+The sequence diagram below shows how the `delete` feature parsing an input `p/12345678` behaves at each step.
+
+<img src="images/DeleteSequenceDiagram.png" width="600" />
+
+The activity diagram below illustrates how the `delete` operation works.
+
+<img src="images/DeleteActivityDiagram.png" width="600" />
+
+#### \[Insert Numbering\] Design Considerations
+
+**Aspect: How `delete` is executed**
+* **Alternative 1 (current choice):** User can delete a customer via either `PHONE_NUMBER` or `EMAIL`.
+
+  | Pros/Cons | Description                                                                          | Examples                                                                                                                               |
+  |-----------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user more flexibility in choosing the inputs as identifiers for deletion      | The user can delete any customer as long as they have details of either their `PHONE_NUMBER` or `EMAIL`.                               |
+  | Pros      | The user does not need to know the specific position of the customer within the list | The user can use either identifier `PHONE_NUMBER` or `EMAIL` to delete customers without a need for their index/position.              |
+  | Cons      | The length of the command is longer with the new identifiers                         | The user has to type `delete p/12345678` or `delete e/test@gmail.com` to delete a user which is longer compared to deleting via index. |
+
+* **Alternative 2:** User can delete a customer via `index`.
+
+  | Pros/Cons | Description                                                                                               | Examples                                                                                                                                                                                                                                                    |
+  |-----------|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Short commands enable fast deletion                                                                       | The user can delete any customer as long as they have details of the `index` of the customer, e.g. `delete 1`.                                                                                                                                              |
+  | Cons      | Identifying the customer via `index` might be slow especially when there are customers with similar names | The user has to find out the `index` of the customer to delete before typing the command. Supposed that we want to delete Alex and there exists an Alex and alex, identifying the correct customer takes time and thus delay the execution of the command.  |
+
+* **Future Extension:** bobaBot can support multiple deletions so user do not have to delete customers one by one.
 
 ### \[Proposed\] Undo/redo feature
 

@@ -1,0 +1,33 @@
+@startuml
+start
+skinparam activityBorderThickness 1.5
+skinparam activity {
+    BorderColor #7F5539
+    BackgroundColor #EDE0D4
+    arrowColor #7F5539
+}
+:User executes EditCommand;
+:AddressBookParser parses the command;
+:EditCommandParser parses the arguments provided;
+if () then ([command is valid])
+    :Get Phone/ Email details as identifier;
+    :Fields to be edited are initialized in an EditPersonDescriptor object;
+    :New EditCommand object created;
+    :Get Customer's Index via identifier;
+    if () then ([invalid index])
+        :Throws an error message;
+    else ([else])
+        :EditCommand creates new Customer object
+        containing the updated fields;
+        if () then ([Customer already in database])
+            :Throws an error message;
+        else ([else])
+            :Model sets the Customer to edit to the edited Customer;
+            :Edited Customer is reflected on the GUI;
+        endif
+    endif
+else ([else])
+    : Throws an error message;
+endif
+stop
+@enduml
