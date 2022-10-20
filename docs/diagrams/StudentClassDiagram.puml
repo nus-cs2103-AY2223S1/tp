@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+show members
+hide empty members
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package Student <<Rectangle>> {
+
+    class Person {
+
+    }
+
+    class Student extends Person {
+        studentModuleInfo: Set<ModuleCode>
+        teachingAssistantInfo: Set<ModuleCode>
+    }
+
+    class TelegramHandle {
+        telegramHandle: String
+    }
+
+    class StudentId {
+        value : String
+    }
+
+
+}
+
+Student *-down->"1" StudentId
+Student *-down->"1" TelegramHandle
+
+@enduml
