@@ -59,8 +59,8 @@ public class EditOrderCommand extends Command {
     private final EditOrderDescriptor editOrderDescriptor;
 
     /**
-     * @param index of the Order in the filtered Order list to edit
-     * @param editOrderDescriptor details to edit the Order with
+     * @param index of the order in the filtered order list to edit
+     * @param editOrderDescriptor details to edit the order with
      */
     public EditOrderCommand(Index index, EditOrderDescriptor editOrderDescriptor) {
         requireNonNull(index);
@@ -89,7 +89,7 @@ public class EditOrderCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Order} with the details of {@code OrderToEdit}
+     * Creates and returns a {@code Order} with the details of {@code orderToEdit}
      * edited with {@code EditOrderDescriptor}.
      */
     private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor, Model model)
@@ -144,8 +144,8 @@ public class EditOrderCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the Order with. Each non-empty field value will replace the
-     * corresponding field value of the Order.
+     * Stores the details to edit the order with. Each non-empty field value will replace the
+     * corresponding field value of the order.
      */
     public static class EditOrderDescriptor {
         private Name name;
