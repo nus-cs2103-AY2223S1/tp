@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
@@ -21,12 +20,18 @@ import seedu.address.model.person.Name;
  * interacted with.
  */
 public class CalendarPopup extends Tooltip {
+    public static final int POPUP_DELAY = 10;
+    public static final int POPUP_DURATION = 1000;
+    public static final String LABEL_STYLE = "-fx-text-fill: black;";
     private static final String SQUARE_BUBBLE =
             "M24 1h-24v16.981h4v5.019l7-5.019h13z";
+    private static final String POPUP_STYLE = "-fx-font-size: 16px; -fx-background-color: "
+            + "white; -fx-shape: \"" + SQUARE_BUBBLE + "\";";
     private static final Image DATE_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/calendar.png"));
     private static final Image TIME_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/clock.png"));
+    private static final Image LOCATION_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/location.png"));
+
     private final Node owner;
-    private final Point2D ownerCoordinates;
 
     /**
      * Creates a {@code CalendarPopup} with the given Appointment details.
@@ -34,38 +39,33 @@ public class CalendarPopup extends Tooltip {
     public CalendarPopup(Name name, String time, Location location, String date, Node owner) {
 
         this.owner = owner;
-        this.ownerCoordinates = owner.localToScene(0.0, 0.0);
-        setStyle("-fx-font-size: 16px; -fx-background-color: white; -fx-shape: \"" + SQUARE_BUBBLE + "\";");
+        setStyle(POPUP_STYLE);
         setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
-        //setMinSize(50, 100);
-        setShowDelay(new Duration(10));
-        setShowDuration(new Duration(1000));
+        setShowDelay(new Duration(POPUP_DELAY));
+        setShowDuration(new Duration(POPUP_DURATION));
         setAutoHide(false);
         VBox vBox = new VBox();
-        vBox.setMinWidth(10);
         vBox.setAlignment(Pos.TOP_CENTER);
-
         Label f = new Label(name.toString());
-        FlowPane day = new FlowPane();
-        FlowPane timePane = new FlowPane();
-        day.setAlignment(Pos.CENTER);
-        timePane.setAlignment(Pos.CENTER);
-        ImageView dateIcon = new ImageView(DATE_IMAGE);
-        ImageView timeIcon = new ImageView(TIME_IMAGE);
-        Label dayLabel = new Label(date);
-        dayLabel.setStyle("-fx-text-fill: black;");
-        Label timeLabel = new Label(time);
-        timeLabel.setStyle("-fx-text-fill: black;");
-        day.getChildren().addAll(dateIcon, dayLabel);
-        timePane.getChildren().addAll(timeIcon, timeLabel);
-        Label s = new Label(location.toString());
-        f.setStyle("-fx-text-fill: black;");
-        s.setStyle("-fx-text-fill: black;");
-        vBox.getChildren().addAll(f, day, timePane, s);
-        //flowPane.setMinSize(10, 10);
-        //flowPane.setStyle("-fx-background-color: black;");
+        f.setStyle(LABEL_STYLE);
+        FlowPane datePane = createFlowPane(DATE_IMAGE, date);
+        FlowPane timePane = createFlowPane(TIME_IMAGE, time);
+        FlowPane locationPane = createFlowPane(LOCATION_IMAGE, location.toString());
+        vBox.getChildren().addAll(f, datePane, timePane, locationPane);
         setGraphicTextGap(0);
         setGraphic(vBox);
         setContentDisplay(ContentDisplay.TOP);
+    }
+
+    private FlowPane createFlowPane(Image image, String content) {
+        FlowPane flowPane = new FlowPane();
+        ImageView icon = new ImageView(image);
+        Label label = new Label(content);
+        label.setPrefWidth(200);
+        label.setStyle(LABEL_STYLE);
+        label.setAlignment(Pos.CENTER);
+        flowPane.getChildren().addAll(icon, label);
+        flowPane.setAlignment(Pos.CENTER);
+        return flowPane;
     }
 }
