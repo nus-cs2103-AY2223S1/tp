@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":GradeCommand" as GradeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "<<class>>\nStudent" as StudentC LOGIC_COLOR
+participant ":Student" as Student LOGIC_COLOR
+participant "<<class>>\nStudentModuleData" as SMD LOGIC_COLOR
+participant "<<class>>\nSessionData" as SD LOGIC_COLOR
+participant ":Session" as Session LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> GradeCommand: execute()
+activate GradeCommand
+
+GradeCommand -> Model: getFocusedClass()
+activate Model
+Model --> GradeCommand: moduleClass
+deactivate Model
+
+GradeCommand -> Model: getFilteredStudentList()
+activate Model
+Model --> GradeCommand: lastShownList
+deactivate Model
+
+GradeCommand -> StudentC: getUpdatedStudent
+activate StudentC
+
+StudentC -> SMD: getUpdatedModuleDataList
+activate SMD
+
+SMD -> SD: getUpdatedSessionDataList
+activate SD
+create Session
+SD -> Session
+activate Session
+Session --> SD
+deactivate Session
+SD --> SMD
+deactivate SD
+
+
+SMD --> StudentC: newModuleDataList
+deactivate SMD
+
+create Student
+StudentC -> Student
+activate Student
+Student --> StudentC: newStudent
+deactivate Student
+
+StudentC --> GradeCommand: newStudent
+deactivate StudentC
+
+GradeCommand -> Model: setStudent
+activate Model
+deactivate Model
+
+create CommandResult
+GradeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GradeCommand
+deactivate CommandResult
+
+GradeCommand -->[: result
+
+@enduml
