@@ -10,7 +10,6 @@ show Person methods
 Class "<<interface>>\nParser" as Parser
 Class "<<interface>>\nPredicate" as Predicate
 Class "{abstract}\nCommand" as Command
-Class "Interest" as Interest
 
 Class FindInterestCommandParser {
   +parse(args: String): FindInterestCommand
@@ -26,12 +25,11 @@ Class Person {
 }
 
 Parser <|.. FindInterestCommandParser
-PersonContainsInterestPredicate ..right.|> Predicate
+PersonContainsInterestPredicate .right.|> Predicate
 FindInterestCommandParser -right-> PersonContainsInterestPredicate
 FindInterestCommandParser -right-> FindInterestCommand
 FindInterestCommand --> PersonContainsInterestPredicate
 FindInterestCommand -up-|> Command
 PersonContainsInterestPredicate -left-> Person
-Person -left-> Interest
 
 @enduml
