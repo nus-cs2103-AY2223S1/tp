@@ -16,7 +16,7 @@ public class Email {
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
             + "characters.\n"
             + "2. This is followed by a '@' and then a domain name. The domain name must one of the following "
-            + "NUS email domain:\n"
+            + "NUS email domains:\n"
             + "    - u.nus.edu\n"
             + "    - u.duke.nus.edu\n"
             + "    - nus.edu.sg\n"
