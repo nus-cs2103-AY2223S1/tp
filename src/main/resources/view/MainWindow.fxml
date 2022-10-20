@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="850" minWidth="1150" onCloseRequest="#handleExit" title="Salesy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="950" minWidth="1350" onCloseRequest="#handleExit" title="Salesy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -34,11 +34,17 @@
           </Menu>
         </MenuBar>
 
+        <SplitPane dividerPositions="0.6" VBox.vgrow="ALWAYS">
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
+        <VBox minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <TextField alignment="CENTER" disable="true" text="Stats" />
+          <StackPane fx:id="statsPanelPlaceHolder" VBox.vgrow="ALWAYS" />
+        </VBox>
+        </SplitPane>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
