@@ -1,11 +1,13 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
@@ -22,9 +24,9 @@ import seedu.address.model.student.Student;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add student";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ID + "STUDENT ID "
@@ -33,7 +35,9 @@ public class AddCommand extends Command {
             + PREFIX_TELEGRAM + "TELEGRAM "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_TUTORIAL + "TUTORIAL "
-            + PREFIX_GRADE + "GRADE "
+            + "[" + PREFIX_GRADE + "GRADE] "
+            + "[" + PREFIX_ATTENDANCE + "ATTENDANCE] "
+            + "[" + PREFIX_PARTICIPATION + "PARTICIPATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -43,6 +47,8 @@ public class AddCommand extends Command {
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_TUTORIAL + "W17 "
             + PREFIX_GRADE + "A "
+            + PREFIX_ATTENDANCE + "5 "
+            + PREFIX_PARTICIPATION + "3 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

@@ -20,9 +20,9 @@ import seedu.address.model.student.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Student#isSamePerson(Student)
+ * @see Student#isSameStudent(Student)
  */
-public class UniquePersonList implements Iterable<Student> {
+public class UniqueStudentList implements Iterable<Student> {
 
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Student> {
      */
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameStudent);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Student> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedStudent) && contains(editedStudent)) {
+        if (!target.isSameStudent(editedStudent) && contains(editedStudent)) {
             throw new DuplicatePersonException();
         }
 
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueStudentList // instanceof handles nulls
+                        && internalList.equals(((UniqueStudentList) other).internalList));
     }
 
     @Override
@@ -127,7 +127,7 @@ public class UniquePersonList implements Iterable<Student> {
     private boolean personsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {
             for (int j = i + 1; j < students.size(); j++) {
-                if (students.get(i).isSamePerson(students.get(j))) {
+                if (students.get(i).isSameStudent(students.get(j))) {
                     return false;
                 }
             }
