@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.studmap.commons.core.index.SingleIndexGenerator;
 import seedu.studmap.logic.commands.AddCommand;
 import seedu.studmap.logic.commands.ClearCommand;
 import seedu.studmap.logic.commands.DeleteCommand;
@@ -55,10 +56,11 @@ public class StudMapParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new StudentBuilder().build();
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
+        EditCommand.EditCommandStudentEditor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditstudentDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
+        assertEquals(new EditCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), descriptor),
+                command);
     }
 
     @Test
@@ -90,7 +92,7 @@ public class StudMapParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

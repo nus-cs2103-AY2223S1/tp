@@ -4,13 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.studmap.commons.core.GuiSettings;
 import seedu.studmap.commons.core.LogsCenter;
+import seedu.studmap.commons.core.index.Index;
 import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
@@ -122,6 +126,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
+    }
+
+    @Override
+    public List<Index> getFilteredStudentIndices() {
+        return IntStream.range(0, filteredStudents.size()).mapToObj(Index::fromZeroBased).collect(Collectors.toList());
     }
 
     @Override

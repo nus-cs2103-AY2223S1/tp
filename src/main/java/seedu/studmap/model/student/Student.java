@@ -93,13 +93,17 @@ public class Student {
     }
 
     public StudentData getStudentData() {
+
         StudentData studentData = new StudentData();
+
         studentData.setName(this.getName());
         studentData.setPhone(this.getPhone());
         studentData.setEmail(this.getEmail());
         studentData.setAddress(this.getAddress());
-        studentData.setTags(this.getTags());
-        studentData.setAttendances(this.getAttendances());
+
+        studentData.setTags(new HashSet<>(this.getTags()));
+        studentData.setAttendances(new HashSet<>(this.getAttendances()));
+
         return studentData;
     }
 

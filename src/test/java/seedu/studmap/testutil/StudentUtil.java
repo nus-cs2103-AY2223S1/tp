@@ -9,7 +9,7 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.studmap.logic.commands.AddCommand;
-import seedu.studmap.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.tag.Tag;
 
@@ -43,7 +43,7 @@ public class StudentUtil {
     /**
      * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
-    public static String getEditstudentDescriptorDetails(EditStudentDescriptor descriptor) {
+    public static String getEditstudentDescriptorDetails(EditCommandStudentEditor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
