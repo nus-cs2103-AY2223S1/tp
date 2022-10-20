@@ -4,6 +4,7 @@
     {
       "name": "Pinnacle@Duxton",
       "address": "123, Jurong West Ave 6, #08-111",
+      "price": "1,000,000",
       "tagged": [
         "friends"
       ]
@@ -11,6 +12,7 @@
     {
       "name": "Oasis",
       "address": "311, Clementi Ave 2, #02-25",
+      "price": "1,000,000",
       "tagged": [
         "owesMoney",
         "friends"
@@ -19,11 +21,13 @@
     {
       "name": "Carl Kurz",
       "address": "wall street",
+      "price": "1,000,000",
       "tagged": []
     },
     {
       "name": "Daniel Meier",
       "address": "10th street",
+      "price": "1,000,000",
       "tagged": [
         "friends"
       ]
@@ -31,16 +35,19 @@
     {
       "name": "Elle Meyer",
       "address": "michegan ave",
+      "price": "1,000,000",
       "tagged": []
     },
     {
       "name": "Fiona Kunz",
       "address": "little tokyo",
+      "price": "1,000,000",
       "tagged": []
     },
     {
       "name": "George Best",
       "address": "4th street",
+      "price": "1,000,000",
       "tagged": []
     }
   ]

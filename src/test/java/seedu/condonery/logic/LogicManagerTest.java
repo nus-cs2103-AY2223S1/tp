@@ -3,8 +3,7 @@ package seedu.condonery.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.*;
 import static seedu.condonery.testutil.Assert.assertThrows;
 import static seedu.condonery.testutil.TypicalProperties.AMY;
 
@@ -85,7 +84,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddPropertyCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
+        String addCommand = AddPropertyCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY + PRICE_DESC_AMY;
         Property expectedProperty = new PropertyBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addProperty(expectedProperty);

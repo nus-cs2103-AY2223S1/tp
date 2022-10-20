@@ -1,9 +1,7 @@
 package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.condonery.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -18,6 +16,7 @@ import seedu.condonery.logic.parser.Prefix;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -33,18 +32,19 @@ public class AddPropertyCommandParser implements Parser<Command> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Property property = new Property(name, address, tagList);
+        Property property = new Property(name, address, price, tagList);
 
         return new AddPropertyCommand(property);
     }

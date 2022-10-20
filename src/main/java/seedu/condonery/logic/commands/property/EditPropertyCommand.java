@@ -1,9 +1,7 @@
 package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.condonery.logic.parser.CliSyntax.*;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.util.Collections;
@@ -21,6 +19,7 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -37,6 +36,7 @@ public class EditPropertyCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
@@ -93,9 +93,10 @@ public class EditPropertyCommand extends Command {
 
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
+        Price updatedPrice = editPropertyDescriptor.getPrice().orElse(propertyToEdit.getPrice());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
-        return new Property(updatedName, updatedAddress, updatedTags);
+        return new Property(updatedName, updatedAddress, updatedPrice, updatedTags);
     }
 
     @Override
@@ -126,6 +127,7 @@ public class EditPropertyCommand extends Command {
     public static class EditPropertyDescriptor {
         private Name name;
         private Address address;
+        private Price price;
         private Set<Tag> tags;
 
         public EditPropertyDescriptor() {}
@@ -137,6 +139,7 @@ public class EditPropertyCommand extends Command {
         public EditPropertyDescriptor(EditPropertyDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
+            setPrice(toCopy.price);
             setTags(toCopy.tags);
         }
 
@@ -180,6 +183,14 @@ public class EditPropertyCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -205,9 +216,11 @@ public class EditPropertyCommand extends Command {
             return "EditPropertyDescriptor{"
                     + "name=" + name
                     + ", address=" + address
+                    + ", price=" + price
                     + ", tags=" + tags
                     + '}';
         }
+
     }
 
     @Override

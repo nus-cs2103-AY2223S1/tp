@@ -22,15 +22,17 @@ public class Property {
 
     // Data fields
     private final Address address;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, address, tags);
+    public Property(Name name, Address address, Price price, Set<Tag> tags) {
+        requireAllNonNull(name, address, price, tags);
         this.name = name;
         this.address = address;
+        this.price = price;
         this.tags.addAll(tags);
     }
 
@@ -40,6 +42,10 @@ public class Property {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     /**
@@ -91,13 +97,14 @@ public class Property {
         Property otherProperty = (Property) other;
         return otherProperty.getName().equals(getName())
             && otherProperty.getAddress().equals(getAddress())
+            && otherProperty.getPrice().equals(getPrice())
             && otherProperty.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(name, address, price, tags);
     }
 
     @Override
@@ -105,7 +112,9 @@ public class Property {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
             .append("; Address: ")
-            .append(getAddress());
+            .append(getAddress())
+            .append("; Price: ")
+            .append(getPrice());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -114,5 +123,6 @@ public class Property {
         }
         return builder.toString();
     }
+
 }
 

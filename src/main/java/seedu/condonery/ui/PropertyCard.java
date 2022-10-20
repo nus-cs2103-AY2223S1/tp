@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.condonery.model.property.Property;
 
 /**
@@ -35,6 +36,8 @@ public class PropertyCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label price;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -46,6 +49,7 @@ public class PropertyCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(property.getName().fullName);
         address.setText(property.getAddress().value);
+        price.setText("$" + property.getPrice().value);
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

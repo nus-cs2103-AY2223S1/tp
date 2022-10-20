@@ -11,6 +11,7 @@ import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -21,11 +22,11 @@ public class SampleDataUtil {
     public static Property[] getSampleProperties() {
         return new Property[] {
             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
-                    getTagSet("High-End", "Available")),
+                    new Price("1000000"), getTagSet("High-End", "Available")),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
-                    getTagSet("High-End", "Sold")),
+                    new Price("1000000"), getTagSet("High-End", "Sold")),
             new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                    getTagSet("High-End", "Reserved"))
+                    new Price("1000000"), getTagSet("High-End", "Reserved"))
         };
     }
 

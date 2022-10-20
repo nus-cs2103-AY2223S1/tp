@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
-import static seedu.condonery.testutil.TypicalClients.CARL;
-import static seedu.condonery.testutil.TypicalClients.ELLE;
-import static seedu.condonery.testutil.TypicalClients.FIONA;
+import static seedu.condonery.testutil.TypicalClients.CARL_CLIENT;
+import static seedu.condonery.testutil.TypicalClients.ELLE_CLIENT;
+import static seedu.condonery.testutil.TypicalClients.FIONA_CLIENT;
 import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
@@ -74,7 +74,7 @@ public class FindClientCommandTest {
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
+        assertEquals(Arrays.asList(CARL_CLIENT, ELLE_CLIENT, FIONA_CLIENT), model.getFilteredClientList());
     }
 
     /**
