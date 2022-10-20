@@ -5,17 +5,13 @@ import static seedu.address.commons.core.index.Index.MESSAGE_INVALID_INDEX;
 import static seedu.address.commons.util.StringUtil.capitaliseOnlyFirstLetter;
 import static seedu.address.commons.util.StringUtil.convertShortFormLevel;
 import static seedu.address.commons.util.StringUtil.formatTime;
-import static seedu.address.commons.util.StringUtil.removeAllWhitespace;
 import static seedu.address.commons.util.StringUtil.removeDuplicateComma;
 import static seedu.address.commons.util.StringUtil.removeDuplicateWhitespace;
 import static seedu.address.commons.util.StringUtil.removeWhitespaceForLevel;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;

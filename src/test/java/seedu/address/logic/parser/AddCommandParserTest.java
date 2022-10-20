@@ -24,7 +24,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUALIFICATION
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SCHOOL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUBJECT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME1_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME2_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LEVEL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LEVEL_DESC_BOB;
@@ -376,8 +375,8 @@ public class AddCommandParserTest {
 
         // invalid time
         // not using dash
-//        assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
-//                + DAY_DESC_CLASS1 + INVALID_TIME1_DESC + TAG_DESC_FRIEND, Time.MESSAGE_CONSTRAINTS);
+        // assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
+        // + DAY_DESC_CLASS1 + INVALID_TIME1_DESC + TAG_DESC_FRIEND, Time.MESSAGE_CONSTRAINTS);
 
         // format okay but start time after end time
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
