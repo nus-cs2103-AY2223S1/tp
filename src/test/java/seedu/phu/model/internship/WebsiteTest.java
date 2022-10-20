@@ -32,7 +32,7 @@ public class WebsiteTest {
 
         // valid websites
         assertTrue(Website.isValidWebsite("http://careers.google.com/jobs/results")); // unsafe url
-        assertTrue(Website.isValidWebsite("https://careers.google.com/jobs/results/115402744447017670/"));
+        assertTrue(Website.isValidWebsite("https://www.amazon.jobs/results/115402744447017670/"));
         assertTrue(Website.isValidWebsite("https://example.com/web/jobs"));
         assertTrue(Website.isValidWebsite("https://example.sg/careers/swe"));
     }

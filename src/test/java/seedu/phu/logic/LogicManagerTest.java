@@ -3,13 +3,13 @@ package seedu.phu.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.phu.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.phu.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.phu.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.POSITION_DESC_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
+import static seedu.phu.logic.commands.CommandTestUtil.EMAIL_DESC_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.PHONE_DESC_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.POSITION_DESC_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.REMARK_DESC_APPLE;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.AMY;
+import static seedu.phu.testutil.TypicalInternships.APPLE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -83,9 +83,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + REMARK_DESC_AMY + POSITION_DESC_AMY;
-        Internship expectedInternship = new InternshipBuilder(AMY).withTags().withApplicationProcess("apply")
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE
+                + REMARK_DESC_APPLE + POSITION_DESC_APPLE;
+        Internship expectedInternship = new InternshipBuilder(APPLE).withTags().withApplicationProcess("apply")
                 .withDate(LocalDate.now().format(Date.DEFAULT_FORMATTER)).withWebsite("NA").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);

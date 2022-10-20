@@ -2,14 +2,14 @@ package seedu.phu.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
-import static seedu.phu.testutil.TypicalInternships.BOB;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
+import static seedu.phu.testutil.TypicalInternships.BLACKROCK;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,66 +26,68 @@ public class InternshipTest {
     @Test
     public void isSameInternship() {
         // same object -> returns true
-        assertTrue(ALICE.isSameInternship(ALICE));
+        assertTrue(AMAZON.isSameInternship(AMAZON));
 
         // null -> returns false
-        assertFalse(ALICE.isSameInternship(null));
+        assertFalse(AMAZON.isSameInternship(null));
 
         // same name, all other attributes different -> returns true
-        Internship editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRemark(VALID_REMARK_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameInternship(editedAlice));
+        Internship editedAmazon = new InternshipBuilder(AMAZON).withPhone(VALID_PHONE_BLACKROCK)
+                .withEmail(VALID_EMAIL_BLACKROCK).withRemark(VALID_REMARK_BLACKROCK)
+                .withTags(VALID_TAG_TRANSPORT).build();
+        assertTrue(AMAZON.isSameInternship(editedAmazon));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameInternship(editedAlice));
+        editedAmazon = new InternshipBuilder(AMAZON).withName(VALID_NAME_BLACKROCK).build();
+        assertFalse(AMAZON.isSameInternship(editedAmazon));
 
         // name differs in case, all other attributes same -> returns false
-        Internship editedBob = new InternshipBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameInternship(editedBob));
+        Internship editedBlackrock = new InternshipBuilder(BLACKROCK)
+                .withName(VALID_NAME_BLACKROCK.toLowerCase()).build();
+        assertFalse(BLACKROCK.isSameInternship(editedBlackrock));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new InternshipBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameInternship(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_BLACKROCK + " ";
+        editedBlackrock = new InternshipBuilder(BLACKROCK).withName(nameWithTrailingSpaces).build();
+        assertFalse(BLACKROCK.isSameInternship(editedBlackrock));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Internship aliceCopy = new InternshipBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Internship amazonCopy = new InternshipBuilder(AMAZON).build();
+        assertTrue(AMAZON.equals(amazonCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(AMAZON.equals(AMAZON));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(AMAZON.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(AMAZON.equals(5));
 
         // different internship -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(AMAZON.equals(BLACKROCK));
 
         // different name -> returns false
-        Internship editedAlice = new InternshipBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Internship editedAmazon = new InternshipBuilder(AMAZON).withName(VALID_NAME_BLACKROCK).build();
+        assertFalse(AMAZON.equals(editedAmazon));
 
         // different phone -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAmazon = new InternshipBuilder(AMAZON).withPhone(VALID_PHONE_BLACKROCK).build();
+        assertFalse(AMAZON.equals(editedAmazon));
 
         // different email -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAmazon = new InternshipBuilder(AMAZON).withEmail(VALID_EMAIL_BLACKROCK).build();
+        assertFalse(AMAZON.equals(editedAmazon));
 
         // different internship -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK).build();
+        assertFalse(AMAZON.equals(editedAmazon));
 
         // different tags -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAmazon = new InternshipBuilder(AMAZON).withTags(VALID_TAG_TRANSPORT).build();
+        assertFalse(AMAZON.equals(editedAmazon));
     }
 }

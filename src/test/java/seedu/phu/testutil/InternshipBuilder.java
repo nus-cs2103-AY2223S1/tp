@@ -20,9 +20,9 @@ import seedu.phu.model.util.SampleDataUtil;
  */
 public class InternshipBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Apple";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EMAIL = "apple@gmail.com";
     public static final String DEFAULT_INTERNSHIP = "winter internship '22";
     public static final String DEFAULT_POSITION = "Software Intern";
     public static final String DEFAULT_APPLICATION_PROCESS = "interview";
