@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.model.person.testutil.Assert.assertThrows;
 import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -17,11 +18,13 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddGroupCommand;
+import seedu.address.logic.commands.AddGroupMemberCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
+import seedu.address.logic.commands.DeleteGroupMemberCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -56,6 +59,15 @@ public class AddressBookParserTest {
         assertEquals(new AddGroupCommand(group), command);
     }
 
+    @Test
+    public void parseCommand_addgroupmember() throws Exception {
+        String group = "Group";
+        String name = "Alex";
+        AddGroupMemberCommand command = (AddGroupMemberCommand) parser.parseCommand(
+                AddGroupMemberCommand.COMMAND_WORD + " " + PREFIX_GROUP + group
+                        + " " + PREFIX_NAME + name);
+        assertEquals(new AddGroupMemberCommand(group, name), command);
+    }
     @Test
     public void parseCommand_adduser() throws Exception {
         Person person = new PersonBuilder().build();
@@ -96,6 +108,16 @@ public class AddressBookParserTest {
         DeleteGroupCommand command = (DeleteGroupCommand) parser.parseCommand(
                 DeleteGroupCommand.COMMAND_WORD + " " + PREFIX_GROUP + groupname);
         assertEquals(new DeleteGroupCommand(group), command);
+    }
+
+    @Test
+    public void parseCommand_deletegroupmember() throws Exception {
+        String group = "Group";
+        String name = "Alex";
+        DeleteGroupMemberCommand command = (DeleteGroupMemberCommand) parser.parseCommand(
+                DeleteGroupMemberCommand.COMMAND_WORD + " " + PREFIX_GROUP + group
+                        + " " + PREFIX_NAME + name);
+        assertEquals(new DeleteGroupMemberCommand(group, name), command);
     }
 
     @Test
