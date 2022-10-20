@@ -160,11 +160,11 @@ The delete feature enables the user to remove a customer from bobaBot. The user'
 
 The sequence diagram below shows how the `delete` feature parsing an input `p/12345678` behaves at each step.
 
-<img src="images/DeleteSequenceDiagram.png" width="550" />
+<img src="images/DeleteSequenceDiagram.png" width="600" />
 
 The activity diagram below illustrates how the `delete` operation works.
 
-<img src="images/DeleteActivityDiagram.png" width="550" />
+<img src="images/DeleteActivityDiagram.png" width="600" />
 
 #### \[Insert Numbering\] Design Considerations
 
