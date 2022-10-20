@@ -5,9 +5,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.TruthTable;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TruthTable;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {

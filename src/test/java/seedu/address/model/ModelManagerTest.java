@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.truthTableBuilder;
+import seedu.address.testutil.TruthTableBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TruthTable truthTable = new truthTableBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        TruthTable truthTable = new TruthTableBuilder().withPerson(ALICE).withPerson(BENSON).build();
         TruthTable differentTruthTable = new TruthTable();
         UserPrefs userPrefs = new UserPrefs();
 
