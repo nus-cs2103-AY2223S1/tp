@@ -8,7 +8,6 @@ import static seedu.classify.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.classify.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.HashSet;
 import java.util.List;

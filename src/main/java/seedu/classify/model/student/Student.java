@@ -1,5 +1,7 @@
 package seedu.classify.model.student;
 
+import static seedu.classify.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -7,7 +9,6 @@ import java.util.Set;
 
 import seedu.classify.model.tag.Exam;
 
-import static seedu.classify.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Student in the record.

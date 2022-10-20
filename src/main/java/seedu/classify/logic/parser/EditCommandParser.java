@@ -1,37 +1,25 @@
 package seedu.classify.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-<<<<<<< HEAD:src/main/java/seedu/address/logic/parser/EditCommandParser.java
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-=======
->>>>>>> master:src/main/java/seedu/classify/logic/parser/EditCommandParser.java
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-<<<<<<< HEAD:src/main/java/seedu/address/logic/parser/EditCommandParser.java
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Exam;
-=======
 import seedu.classify.commons.core.Messages;
 import seedu.classify.commons.core.index.Index;
 import seedu.classify.logic.commands.EditCommand;
 import seedu.classify.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.classify.logic.parser.exceptions.ParseException;
-import seedu.classify.model.tag.Tag;
->>>>>>> master:src/main/java/seedu/classify/logic/parser/EditCommandParser.java
+import seedu.classify.model.tag.Exam;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -47,14 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-<<<<<<< HEAD:src/main/java/seedu/address/logic/parser/EditCommandParser.java
                         PREFIX_STUDENT_NAME, PREFIX_ID, PREFIX_CLASS, PREFIX_PARENT_NAME,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_EXAM);
-=======
-                        CliSyntax.PREFIX_STUDENT_NAME, CliSyntax.PREFIX_ID, CliSyntax.PREFIX_CLASS,
-                        CliSyntax.PREFIX_PARENT_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
-                        CliSyntax.PREFIX_TAG);
->>>>>>> master:src/main/java/seedu/classify/logic/parser/EditCommandParser.java
 
         Index index;
 
@@ -87,11 +69,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
             editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
         }
-<<<<<<< HEAD:src/main/java/seedu/address/logic/parser/EditCommandParser.java
         parseExamsForEdit(argMultimap.getAllValues(PREFIX_EXAM)).ifPresent(editStudentDescriptor::setExams);
-=======
-        parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
->>>>>>> master:src/main/java/seedu/classify/logic/parser/EditCommandParser.java
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

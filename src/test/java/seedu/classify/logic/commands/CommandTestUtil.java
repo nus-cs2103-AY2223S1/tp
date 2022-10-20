@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.classify.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.classify.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
