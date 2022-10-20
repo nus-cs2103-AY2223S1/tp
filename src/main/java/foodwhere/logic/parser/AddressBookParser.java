@@ -87,10 +87,10 @@ public class AddressBookParser {
             return new SFindCommandParser().parse(arguments);
 
         case SSortCommand.COMMAND_WORD:
-            return new SSortCommand();
+            return new SSortCommandParser().parse(arguments);
 
         case RSortCommand.COMMAND_WORD:
-            return new RSortCommand();
+            return new RSortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

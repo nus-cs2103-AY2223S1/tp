@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -160,12 +161,12 @@ public class SAddCommandTest {
         }
 
         @Override
-        public void sortStalls() {
+        public void sortStalls(Comparator<Stall> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sortReviews() {
+        public void sortReviews(Comparator<Review> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

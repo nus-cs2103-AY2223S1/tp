@@ -80,9 +80,9 @@ public class UniqueStallList implements Iterable<Stall> {
         }
     }
 
-    /** Sorts the stall list by name. */
-    public void sort() {
-        internalList.sort(Comparator.comparing(o -> o.getName().fullName));
+    /** Sorts the list by {@code comparator}. */
+    public void sort(Comparator<Stall> comparator) {
+        internalList.sort(comparator);
     }
 
     public void setStalls(UniqueStallList replacement) {

@@ -14,7 +14,9 @@ import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
+import foodwhere.model.review.comparator.ReviewsComparatorList;
 import foodwhere.model.stall.Address;
+import foodwhere.model.stall.comparator.StallsComparatorList;
 
 
 /**
@@ -136,5 +138,37 @@ public class ParserUtil {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
         return new Rating(rating);
+    }
+
+    /**
+     * Parses a {@code String criteria} into an {@code StallsComparatorList}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static StallsComparatorList parseStallCriteria(String criteria) throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim();
+        try {
+            return StallsComparatorList.valueOf(trimmedCriteria.toUpperCase());
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(StallsComparatorList.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String criteria} into an {@code ReviewsComparatorList}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static ReviewsComparatorList parseReviewCriteria(String criteria) throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim();
+        try {
+            return ReviewsComparatorList.valueOf(trimmedCriteria.toUpperCase());
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(ReviewsComparatorList.MESSAGE_CONSTRAINTS);
+        }
     }
 }
