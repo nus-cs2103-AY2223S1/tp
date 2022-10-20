@@ -53,10 +53,12 @@ html {
   }
 
   .wrapper {
-    width: 75%;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: $on-large;
 
-    @media print {
-      width: 100%;
+    @media screen and (min-width: $on-medium) {
+      width: 75%;
     }
   }
 }
