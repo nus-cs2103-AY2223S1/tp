@@ -1,6 +1,8 @@
 package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
 
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.Set;
 
 import seedu.rc4hdb.logic.commands.Command;
 
@@ -18,6 +20,13 @@ public abstract class FileCommand implements Command {
 
     public static final String MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE = "%s is the current working data file. "
             + "Try another file.";
+
+    /**
+     * Stores the set of restricted characters. Add to the set to add restricted characters.
+     */
+    public static final Collection<String> RESTRICTED_CHARACTERS = Set.of(
+            " ", ".", "/", "\\"
+    );
 
     protected Path filePath;
 
@@ -38,10 +47,9 @@ public abstract class FileCommand implements Command {
      * @return True if filePathString does not contain whitespaces, fullstops, forward and backslashes.
      */
     public static boolean isValidPath(String filePathString) {
-        return !(filePathString.contains(" ")
-                || filePathString.contains(".")
-                || filePathString.contains("/")
-                || filePathString.contains("\\"));
+        return !RESTRICTED_CHARACTERS.stream()
+                .map(filePathString::contains)
+                .reduce(false, (curr, next) -> curr || next);
     }
 
     @Override
