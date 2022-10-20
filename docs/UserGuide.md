@@ -71,7 +71,7 @@ Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
 * The remark of a contact is optional.
 
-Examples: 
+Examples:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
@@ -143,7 +143,7 @@ Example:
 
 ### Filtering contacts by label: `filterC`
 
-Filters contacts whose label(s) contain any of the given keywords. 
+Filters contacts whose label(s) contain any of the given keywords.
 
 Format: `filterC KEYWORD [MORE_KEYWORDS]`
 
@@ -172,8 +172,8 @@ Format: `listT`
 
 ### Adding Tasks: `addT`
 
-Adds a task to the task list. 
-The description and deadline of the task are not allowed to be empty. Newly added tasks are marked as not done. 
+Adds a task to the task list.
+The description and deadline of the task are not allowed to be empty. Newly added tasks are marked as not done.
 Throws an exception if the description of the task is empty.
 Throws an exception if the deadline of the task is empty.
 Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
@@ -312,14 +312,14 @@ Removes a label from an existing task in the address book. If contact is last re
 
 Format: `deleteL t/INDEX l/label_NAME`
 
-Example: 
+Example:
 
 * `deleteL t/14 l/CS2101` will remove the label "CS2101" from the 14th task on the task list.
 
 ## Automatic tab switching
 
-Depending on the command you enter, you will see the open tab in the GUI switch automatically. 
-For example, when using a task-related command, the tab switches to "Task" and the task list is displayed. 
+Depending on the command you enter, you will see the open tab in the GUI switch automatically.
+For example, when using a task-related command, the tab switches to "Task" and the task list is displayed.
 
 The result of the entered command is displayed.
 For example, after adding a new contact, the list shown on the GUI is the updated list with your new contact included.
@@ -352,7 +352,7 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **listC**   | `listC`                                                                                                                                                |
 | **addC**   | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 | 
+| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
 | **editC**   | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
 | **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
 | **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |                                                                                                 |

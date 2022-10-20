@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes mark/unmark task command;
+
+if () then ([valid index])
+    :Create new Task with
+    task completion status
+    updated;
+    :Replace old Task
+    with new Task
+    in TaskList;
+else ([invalid index])
+endif
+stop
+@enduml
