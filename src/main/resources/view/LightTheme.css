@@ -138,7 +138,7 @@
 
 .pane-with-border {
      -fx-background-color: derive(#ebebeb, 20%);
-     -fx-border-color: derive(#ebebeb, 10%);
+     -fx-border-color: derive(#000000, 10%);
      -fx-border-top-width: 1px;
 }
 
@@ -282,7 +282,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#999999, 20%);
+    -fx-background-color: derive(#ebebeb, 20%);
 }
 
 .scroll-bar .thumb {
@@ -333,8 +333,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #ebebeb, transparent, #ebebeb;
-    -fx-border-color: #000000;
+    -fx-background-color: #edeeee;
     -fx-background-radius: 0;
 }
 
