@@ -231,7 +231,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-    
+
 ### Add Task Feature
 
 #### Implementation
@@ -249,13 +249,13 @@ The following sequence diagram shows how the add task operation works:
 
 ### Mark Task Feature
 
-#### Implementation 
+#### Implementation
 
-The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface. 
+The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface.
 
-Given below is an example usage scenario 
+Given below is an example usage scenario
 
-Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false. 
+Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false.
 
 Step 2. After the task is completed, the user want to mark the task as done. The user then executes `taskmark t/1 task/3` to mark the 3rd task in the 1st team as completed. The task which is contained in team 1 would be marked as completed and this would be reflected in the gui.
 
