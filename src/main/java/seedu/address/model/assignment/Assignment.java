@@ -97,7 +97,7 @@ public class Assignment implements Comparable<Assignment> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
-                && value.equals(((Assignment) other).value));// state check
+                && value.equals(((Assignment) other).value)); // state check
     }
 
     @Override

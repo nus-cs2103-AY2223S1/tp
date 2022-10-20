@@ -32,7 +32,7 @@ public class Deadline {
         return DateTimeParser.getDateTimeString(dateTime);
     }
 
-    public static final String MESSAGE_CONSTRAINTS =
+    public final static String MESSAGE_CONSTRAINTS =
             "Date must be in the form of yyyy-MM-dd or yyyy-MM-dd HH:mm";
 
 }

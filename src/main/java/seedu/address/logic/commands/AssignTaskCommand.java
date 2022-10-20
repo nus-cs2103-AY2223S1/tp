@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -24,8 +27,8 @@ public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a " +
-            "group.\nWorkload specified must be low, medium or high.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a "
+            + "group.\nWorkload specified must be low, medium or high.\n"
             + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format\n"
             + "Parameters: NAME "
             + PREFIX_GROUP + "GROUP "
