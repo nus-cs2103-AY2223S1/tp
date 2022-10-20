@@ -16,7 +16,7 @@ Class UserPrefs
 
 Class UniqueStudentList
 Class Student
-Class Address
+Class StudentId
 Class Email
 Class ClassGroup
 Class Name
@@ -50,7 +50,7 @@ Student *--> Name
 Student *--> Phone
 Student *--> Email
 Student *--> ClassGroup
-Student *--> Address
+Student *--> StudentId
 Student *--> "*" Tag
 
 TaskBook *--> "1" TaskList
@@ -65,7 +65,7 @@ AddressBook -[hidden]right> UserPrefs
 UserPrefs -[hidden]right-> TaskBook
 
 Name -[hidden]right-> Phone
-Address -[hidden]right-> Email
+StudentId -[hidden]right-> Email
 Email -[hidden]right-> ClassGroup
 ClassGroup -[hidden]right-> Tag
 
