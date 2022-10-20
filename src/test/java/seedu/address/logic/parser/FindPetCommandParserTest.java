@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindPetCommand;
-import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 
 public class FindPetCommandParserTest {
     private FindPetCommandParser parser = new FindPetCommandParser();

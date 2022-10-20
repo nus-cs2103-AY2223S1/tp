@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindPetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindPetCommand object.

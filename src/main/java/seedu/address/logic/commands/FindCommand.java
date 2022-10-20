@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 
@@ -23,11 +24,11 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " [b/d/s]/Bernice Charlotte";
 
-    private final NameContainsKeywordsPredicate<Buyer> bPredicate;
+    private final Predicate<Buyer> bPredicate;
 
-    private final NameContainsKeywordsPredicate<Deliverer> dPredicate;
+    private final Predicate<Deliverer> dPredicate;
 
-    private final NameContainsKeywordsPredicate<Supplier> sPredicate;
+    private final Predicate<Supplier> sPredicate;
 
     private final PersonCategory type;
 
@@ -43,9 +44,8 @@ public class FindCommand extends Command {
      *             Buyer, Deliverer or Supplier.
      * @return FindCommand.
      */
-    public FindCommand(NameContainsKeywordsPredicate<Buyer> bPredicate,
-                       NameContainsKeywordsPredicate<Deliverer> dPredicate,
-                       NameContainsKeywordsPredicate<Supplier> sPredicate, PersonCategory type) {
+    public FindCommand(Predicate<Buyer> bPredicate, Predicate<Deliverer> dPredicate,
+                       Predicate<Supplier> sPredicate, PersonCategory type) {
         this.bPredicate = bPredicate;
         this.dPredicate = dPredicate;
         this.sPredicate = sPredicate;
@@ -66,7 +66,7 @@ public class FindCommand extends Command {
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredDelivererList().size()));
         } else {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredSupplierList().size()));
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMainList().size()));
         }
     }
 

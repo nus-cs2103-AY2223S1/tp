@@ -6,8 +6,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.LocationContainsKeywordsPredicate;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
 
 /**
  * Filters and lists all persons in address book whose locations match the argument keyword.

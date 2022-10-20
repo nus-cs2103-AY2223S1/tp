@@ -5,21 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
 import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.model.pet.exceptions.PetNotFoundException;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalPets;
 
 public class UniquePetListTest {
@@ -41,17 +37,17 @@ public class UniquePetListTest {
         assertTrue(uniquePetList.contains(TypicalPets.DOJA));
     }
 
-//    @Test
-//    public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
-//        uniquePetList.add(TypicalPets.DOJA);
-//        Pet newDoja = new Pet(new Name("Doja"), TypicalBuyers.ALICE,
-//                new Color("white"),
-//                new ColorPattern("white and brown"),
-//                new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),
-//                new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
-//                new HashSet<>());
-//        assertTrue(uniquePetList.contains(newDoja));
-//    }
+    //    @Test
+    //    public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
+    //        uniquePetList.add(TypicalPets.DOJA);
+    //        Pet newDoja = new Pet(new Name("Doja"), TypicalBuyers.ALICE,
+    //                new Color("white"),
+    //                new ColorPattern("white and brown"),
+    //                new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),
+    //                new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+    //                new HashSet<>());
+    //        assertTrue(uniquePetList.contains(newDoja));
+    //    }
 
     @Test
     public void add_nullPet_throwsNullPointerException() {
