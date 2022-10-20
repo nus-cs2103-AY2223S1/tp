@@ -28,7 +28,6 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Exam;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing student in the student record.
@@ -104,15 +103,8 @@ public class EditCommand extends Command {
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Set<Exam> updatedExams = studentToEdit.getExams();
-        editStudentDescriptor.getExams().ifPresent(examSet -> {
-            examSet.forEach(exam -> {
-                if (updatedExams.contains(exam)) {
-                    updatedExams.remove(exam); // Remove duplicate exam
-                    updatedExams.add(exam); // Update exam scores
-                }
-            });
-        });
+        Set<Exam> updatedExams = editStudentDescriptor.getExams().orElse(Collections.emptySet());
+        updatedExams.addAll(studentToEdit.getExams());
 
         return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,
                 updatedEmail, updatedExams);
@@ -229,12 +221,11 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable exam set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Returns an exam set.
          * Returns {@code Optional#empty()} if {@code exams} is null.
          */
         public Optional<Set<Exam>> getExams() {
-            return (exams != null) ? Optional.of(Collections.unmodifiableSet(exams)) : Optional.empty();
+            return (exams != null) ? Optional.of(exams) : Optional.empty();
         }
 
         @Override

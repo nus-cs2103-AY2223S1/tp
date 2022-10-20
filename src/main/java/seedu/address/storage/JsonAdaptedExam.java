@@ -39,7 +39,7 @@ class JsonAdaptedExam {
      * @throws IllegalValueException if there were any data constraints violated in the adapted exam.
      */
     public Exam toModelType() throws IllegalValueException {
-        if (!Exam.isValidName(exam)) {
+        if (!Exam.isValidFormat(exam)) {
             throw new IllegalValueException(Exam.MESSAGE_CONSTRAINTS);
         }
         String[] args = exam.split("\\s+");

@@ -75,8 +75,8 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<Exam> studentExams = new ArrayList<>();
-        for (JsonAdaptedExam tag : exams) {
-            studentExams.add(tag.toModelType());
+        for (JsonAdaptedExam exam : exams) {
+            studentExams.add(exam.toModelType());
         }
 
         if (studentName == null) {
@@ -128,9 +128,9 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<Exam> modelTags = new HashSet<>(studentExams);
+        final Set<Exam> modelExams = new HashSet<>(studentExams);
         return new Student(modelStudentName, modelId, modelClassName, modelParentName, modelPhone,
-                modelEmail, modelTags);
+                modelEmail, modelExams);
     }
 
 }
