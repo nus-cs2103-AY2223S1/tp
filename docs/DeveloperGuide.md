@@ -444,11 +444,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User wants to view more details of an internship application.
-2. System displays more details of the internship application.
+2. System displays more details of the internship application in a separate UI box from the main window.
 3. Use case ends.
 
 **Extensions**
-*{More to be added}*
+* 1a. The given index is invalid.
+
+    * 1a1. PleaseHireUs shows an error message.
 
 **Use case: Filter internship(s)**
 
@@ -654,6 +656,28 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `edit 0 n/Citadel Securities`<br>
         Expected: No internship is edited. Error details shown in the status message.
+
+### View internship
+
+1. Viewing internship(s) while all internships are being shown
+
+    1. Prerequisites: List all internships using the `list` command. The list is non-empty.
+
+    2. Test case: `view 1`<br>
+       Expected: More details for the first internship is viewed from the list. Details of the viewed internship shown in the view window.
+
+    3. Test case: `view 0`<br>
+       Expected: No internship is viewed. Error details shown in the status message.
+
+2. Viewing internship(s) while only the selected internships are being shown
+
+    1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
+
+    2. Test case: `view 2`<br>
+       Expected: If there is less than 2 internships in the list, no internship details is shown and error details will be shown in the status message. Else if there are at least two internships on the list, details of the second internship will be shown in the view window.
+
+    3. Test case: `view 0`<br>
+       Expected: No internship is viewed. Error details shown in the status message.
 
 ### Saving data
 
