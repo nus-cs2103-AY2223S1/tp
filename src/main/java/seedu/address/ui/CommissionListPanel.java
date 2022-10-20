@@ -33,7 +33,9 @@ public class CommissionListPanel extends UiPart<Region> {
                                Consumer<Commission> selectCommission,
                                ObservableObject<Commission> selectedCommission) {
         super(FXML);
-        this.updateUI(observableCommissionList.getValue().getValue());
+        if (observableCommissionList.getValue() != null) {
+            this.updateUI(observableCommissionList.getValue().getValue());
+        }
         this.selectCommission = selectCommission;
 
         observableCommissionList.addListener((observable, oldValue, newValue) -> this.updateUI(newValue.getValue()));
