@@ -280,7 +280,8 @@ table {
   /**
   * Prevents page break from cutting through content when printing
   */
-  body {
+  body,
+  main.page-content {
     display: block;
   }
   /**
