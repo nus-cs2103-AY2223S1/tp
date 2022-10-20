@@ -40,8 +40,8 @@ import swift.model.person.Phone;
 import swift.model.tag.Tag;
 import swift.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddContactCommandParserTest {
+    private AddContactCommandParser parser = new AddContactCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
