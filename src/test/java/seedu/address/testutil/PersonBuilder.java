@@ -14,6 +14,7 @@ import seedu.address.model.person.LifeInsurance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -31,6 +32,7 @@ public class PersonBuilder {
     public static final boolean DEFAULT_DISABILITY_INSURANCE = false;
     public static final boolean DEFAULT_CRITICAL_ILLNESS_INSURANCE = false;
     public static final boolean DEFAULT_LIFE_INSURANCE = false;
+    public static final String DEFAULT_REMINDER_TASK = "default reminder";
 
     private Name name;
     private Phone phone;
@@ -42,6 +44,7 @@ public class PersonBuilder {
     private Insurance criticalIllnessInsurance;
     private Insurance lifeInsurance;
     private Set<Tag> tags;
+    private Reminder reminders;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -57,6 +60,7 @@ public class PersonBuilder {
         criticalIllnessInsurance = new CriticalIllnessInsurance(DEFAULT_CRITICAL_ILLNESS_INSURANCE);
         lifeInsurance = new LifeInsurance(DEFAULT_LIFE_INSURANCE);
         tags = new HashSet<>();
+        reminders = new Reminder(DEFAULT_REMINDER_TASK);
     }
 
     /**
@@ -73,6 +77,7 @@ public class PersonBuilder {
         criticalIllnessInsurance = personToCopy.getCriticalIllnessInsurance();
         lifeInsurance = personToCopy.getLifeInsurance();
         tags = new HashSet<>(personToCopy.getTags());
+        reminders = personToCopy.getReminders();
     }
 
     /**
@@ -156,13 +161,19 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Reminder} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withReminders(String task) {
+        this.reminders = new Reminder(task);
+        return this;
+    }
+    
+     /**
      * Builds and returns the Person
      *
      * @return Person
      */
     public Person build() {
         return new Person(name, phone, email, address, birthday,
-                healthInsurance, disabilityInsurance, criticalIllnessInsurance, lifeInsurance, tags);
-    }
-
+                healthInsurance, disabilityInsurance, criticalIllnessInsurance, lifeInsurance, reminders, tags);
 }

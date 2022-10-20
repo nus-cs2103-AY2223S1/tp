@@ -28,6 +28,7 @@ public class Person {
     private final Insurance criticalIllnessInsurance;
     private final Insurance lifeInsurance;
     private final Set<Tag> tags = new HashSet<>();
+    private final Reminder reminders;
 
     /**
      * Every field must be present and not null, except for Insurance fields which are added by overloaded method.
@@ -52,7 +53,8 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Birthday birthday, Insurance healthInsurance, Insurance disabilityInsurance,
-                  Insurance criticalIllnessInsurance, Insurance lifeInsurance, Set<Tag> tags) {
+                  Insurance criticalIllnessInsurance, Insurance lifeInsurance, 
+                  Reminder reminders, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -64,6 +66,7 @@ public class Person {
         this.disabilityInsurance = disabilityInsurance;
         this.criticalIllnessInsurance = criticalIllnessInsurance;
         this.lifeInsurance = lifeInsurance;
+        this.reminders = reminders;
     }
 
     public Name getName() {
@@ -109,6 +112,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Reminder getReminders() {
+        return reminders;
     }
 
     /**

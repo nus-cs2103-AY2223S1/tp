@@ -16,4 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DISABILITY_INSURANCE = new Prefix("di/");
     public static final Prefix PREFIX_CRITICAL_ILLNESS_INSURANCE = new Prefix("ci/");
     public static final Prefix PREFIX_LIFE_INSURANCE = new Prefix("li/");
+    public static final Prefix PREFIX_REMINDER = new Prefix("r/");
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
 }

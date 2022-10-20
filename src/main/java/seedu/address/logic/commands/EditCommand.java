@@ -28,6 +28,7 @@ import seedu.address.model.person.Insurance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -95,7 +96,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -108,10 +109,11 @@ public class EditCommand extends Command {
         Insurance criticalIllnessInsurance = personToEdit.getCriticalIllnessInsurance();
         Insurance lifeInsurance = personToEdit.getLifeInsurance();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Reminder updatedReminders = editPersonDescriptor.getReminders().orElse(personToEdit.getReminders());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedBirthday, healthInsurance, disabilityInsurance, criticalIllnessInsurance,
-                lifeInsurance, updatedTags);
+                lifeInsurance, updatedReminders, updatedTags);
     }
 
     @Override
@@ -143,6 +145,7 @@ public class EditCommand extends Command {
         private Address address;
         private Birthday birthday;
         private Set<Tag> tags;
+        private Reminder reminders;
 
         public EditPersonDescriptor() {}
 
@@ -157,13 +160,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setBirthday(toCopy.birthday);
             setTags(toCopy.tags);
+            setReminders(toCopy.reminders);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, reminders);
         }
 
         public void setName(Name name) {
@@ -223,6 +227,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setReminders(Reminder reminders) {
+            this.reminders = reminders;
+        }
+
+        public Optional<Reminder> getReminders() {
+            return Optional.ofNullable(reminders);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -243,7 +255,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getBirthday().equals(e.getBirthday())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getReminders().equals(e.getReminders());
         }
     }
 }

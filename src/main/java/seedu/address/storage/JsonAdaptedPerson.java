@@ -21,6 +21,7 @@ import seedu.address.model.person.LifeInsurance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,6 +41,7 @@ class JsonAdaptedPerson {
     private final String criticalIllnessInsurance;
     private final String lifeInsurance;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String reminders;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -52,6 +54,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("disabilityInsurance") String disabilityInsurance,
                              @JsonProperty("criticalIllnessInsurance") String criticalIllnessInsurance,
                              @JsonProperty("lifeInsurance") String lifeInsurance,
+                             @JsonProperty("reminders") String reminders,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -65,6 +68,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.reminders = reminders;
     }
 
     /**
@@ -80,6 +84,7 @@ class JsonAdaptedPerson {
         disabilityInsurance = Boolean.toString(source.getDisabilityInsurance().hasInsurance);
         criticalIllnessInsurance = Boolean.toString(source.getCriticalIllnessInsurance().hasInsurance);
         lifeInsurance = Boolean.toString(source.getLifeInsurance().hasInsurance);
+        reminders = source.getReminders().task;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -137,9 +142,10 @@ class JsonAdaptedPerson {
         final Insurance modelLifeInsurance = new LifeInsurance(Boolean.valueOf(lifeInsurance));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Reminder modelReminder = new Reminder(reminders);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
                 modelHealthInsurance, modelDisabilityInsurance, modelCriticalIllnessInsurance,
-                modelLifeInsurance, modelTags);
+                modelLifeInsurance, modelReminder, modelTags);
     }
 
 }

@@ -29,30 +29,33 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE
                 + CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.BIRTHDAY_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + CommandTestUtil.REMINDER_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
                 + CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.BIRTHDAY_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + CommandTestUtil.REMINDER_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.BIRTHDAY_DESC_BOB
+                + CommandTestUtil.REMINDER_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.BIRTHDAY_DESC_BOB
+                + CommandTestUtil.REMINDER_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_AMY
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.BIRTHDAY_DESC_BOB
+                + CommandTestUtil.REMINDER_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple birthdays - last birthday accepted
@@ -69,6 +72,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                 + CommandTestUtil.BIRTHDAY_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
+                + CommandTestUtil.REMINDER_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -78,7 +82,8 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
                 + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.BIRTHDAY_DESC_AMY,
+                + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.BIRTHDAY_DESC_AMY
+                + CommandTestUtil.REMINDER_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 

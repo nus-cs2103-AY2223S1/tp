@@ -71,7 +71,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case ReminderCommand.COMMAND_WORD:
-            return new ReminderCommand();
+            return new ReminderCommandParser().parse(arguments);
 
         case InsuranceCommand.COMMAND_WORD:
             return new InsuranceCommandParser().parse(arguments);
