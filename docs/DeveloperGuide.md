@@ -334,14 +334,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PetCode` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - List Summary of Orders**
+**Use case: UC01 - List Summary**
 
 **MSS**
-1. User requests for a summary of orders
-2. PetCode generates a summary based on saved orders
-3. PetCode formats the summary
-4. PetCode outputs the summary
+1. User specifies which list summary to show
+2. PetCode generates a summary based on the selected list
+3. PetCode formats the list summary
+4. PetCode outputs the list summary
 
+Use case ends.
+
+**Extensions**
+
+  1a. PetCode detects that the list being specified by the user does not exist <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the list does not exist.
+    
 Use case ends.
 
 **Use case: UC02 - Add an Inquiry from a Buyer**
@@ -394,12 +401,24 @@ Use case ends.
 
 Use case ends.
 
-**Use case: UC05 - Sort Orders**
+**Use case: UC05 - Sort**
 
 **MSS**
-1. User requests PetCode to sort
-2. PetCode sorts the orders in ascending chronological order
-3. PetCode outputs the sorted list
+1. User specifies the list to sort and the attribute to sort by
+2. PetCode sorts the specified list in ascending chronological order according to the specified attribute
+3. User could <u>list the summary(UC01)</u> to see the outcome 
+
+Use case ends.
+
+**Extensions**
+
+1a. The PetCode detects that the specified list does not exist <br>
+&nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the list does not exist
+
+Use case ends.
+
+1b. The PetCode detects that the specified attribute does not exist <br>
+&nbsp;&nbsp;&nbsp;&nbsp;  1b1. PetCode notifies user that the attribute does not exist and sort the list by its default attribute
 
 Use case ends.
 
@@ -415,6 +434,7 @@ Use case ends.
 ### Glossary
 
 * **Buyer/Client**: A customer of the pet sale coordinator interested in purchasing a pet.
+* **Supplier**: A supplier that has pets on sale.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
