@@ -13,6 +13,8 @@ public class Grades {
         "Grades should only contain an alphabet, and it should not be blank";
     private static final String EXCEPTION_NO_GRADE_FOUND = "No grade found for assessment %s";
 
+    // the double array contains 3 values: the score for the assessment,
+    // the total score for the assessment, and the weightage of the assessment
     private final HashMap<String, double[]> assessmentMarks;
 
     /**
@@ -29,13 +31,18 @@ public class Grades {
      */
     public void updateAssessment(Assessment updatedAssessment) {
         if (assessmentMarks.containsKey(updatedAssessment.getAssessmentName())) {
-            double[] updatedMarks = new double[2];
+            double[] updatedMarks = new double[3];
             updatedMarks[0] = updatedAssessment.getAssessmentScore();
-            updatedMarks[1] = updatedAssessment.getAssessmentWeightage();
+            updatedMarks[1] = updatedAssessment.getAssessmentTotalScore();
+            updatedMarks[2] = updatedAssessment.getAssessmentWeightage();
             assessmentMarks.put(updatedAssessment.getAssessmentName(), updatedMarks);
         } else {
             assessmentMarks.put(updatedAssessment.getAssessmentName(), updatedAssessment.getScoreArray());
         }
+    }
+
+    public ArrayList<String> getAllAssessments() {
+        return new ArrayList<>(assessmentMarks.keySet());
     }
 
     public double getCurrentPercentageObtained(HashMap<String, double[]> subjectMarks) {
@@ -49,9 +56,9 @@ public class Grades {
         return (totalMarks / totalWeightage);
     }
 
-    public double getGradeForAssessment(String assessment) {
+    public double[] getGradeForAssessment(String assessment) {
         if (assessmentMarks.containsKey(assessment)) {
-            return assessmentMarks.get(assessment)[0];
+            return assessmentMarks.get(assessment);
         } else {
             throw new NoSuchElementException(String.format(EXCEPTION_NO_GRADE_FOUND, assessment));
         }

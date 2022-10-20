@@ -56,7 +56,7 @@ public class Assessment {
     }
 
     public double[] getScoreArray() {
-        return new double[]{assessmentScore, assessmentWeightage};
+        return new double[]{assessmentScore, assessmentTotalScore, assessmentWeightage};
     }
 
     public void setAssessmentName(String assessmentName) {

@@ -61,7 +61,7 @@ public class Subject {
      * @param assessmentName the assessment to get the grade for
      * @return the grade for the assessment specified
      */
-    public double getGradeForAssessment(String assessmentName) {
+    public double[] getGradeForAssessment(String assessmentName) {
         return grades.getGradeForAssessment(assessmentName);
     }
 
