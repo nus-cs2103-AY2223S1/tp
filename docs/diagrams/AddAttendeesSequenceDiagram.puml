@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
+Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
+Participant ":EventCommandParser" as eventCommandParser LOGIC_COLOR_T3
+Participant ":AddAttendeesCommandParser" as addAttendeesCommandParser LOGIC_COLOR_T3
+Participant "p:AddAttendeesCommand" as addAttendeesCommand LOGIC_COLOR_T3
+Participant ":CommandResult" as commandResult LOGIC_COLOR_T3
+endBox
+
+box Model MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR_T3
+endBox
+
+-> logicManager ++: execute("event -ap...")
+logicManager -> nuSchedulerParser ++: parseCommand("event -ap...")
+
+create eventCommandParser
+nuSchedulerParser -> eventCommandParser ++
+return
+nuSchedulerParser -> eventCommandParser ++: parse(" -ap...")
+
+create addAttendeesCommandParser
+eventCommandParser -> addAttendeesCommandParser ++
+return
+eventCommandParser -> addAttendeesCommandParser ++: parse(" -ap...")
+
+create addAttendeesCommand
+addAttendeesCommandParser -> addAttendeesCommand ++
+return p
+return p
+destroy addAttendeesCommandParser
+return p
+destroy eventCommandParser
+return p
+
+logicManager -> addAttendeesCommand ++: execute(model)
+addAttendeesCommand -> model ++: updateEventAttendees(profile)
+return
+
+create commandResult
+addAttendeesCommand -> commandResult++
+return
+return
+return
+
+@enduml

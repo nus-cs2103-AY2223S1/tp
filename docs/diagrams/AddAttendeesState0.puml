@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After commands 'profile -a' and 'event -a'
+
+object "__:Profile__" as Profile1 {
+    name = "John"
+}
+
+object "__:Event__" as Event1 {
+    title = "Consultation"
+}
+
+object "__:Attendees__" as Attendees
+
+Event1 -[hidden]-> Attendees
+Attendees -[hidden]-> Profile1
+
+hide Attendees
+show attributes
+@end
