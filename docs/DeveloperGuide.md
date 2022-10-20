@@ -732,12 +732,12 @@ testers are expected to do more *exploratory* testing.
     The guest should exist in the guest book.
     The edit content should be valid.
    
-   2. Test case: `edit 1 n/Johnny`
+   2. Test case: `edit 1 n/Johnny`<br>
       Expected: edit successfully, the first guest's name will change from "John Doe" to "Johnny"
 
-   3. Test case: `edit 2 n/Johnny`
+   3. Test case: `edit 2 n/Johnny`<br>
       Expected: No guest is edited, because the input index does not exist. Error details shown in the status message.
 
-   4. Test case: `edit 1 n/Jo@`
+   4. Test case: `edit 1 n/Jo@`<br>
       Expected: No guest is edited, because the name is invalid. Error details shown in the status message.
       Status bar remains the same.
