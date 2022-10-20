@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FilePath;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
@@ -26,6 +27,7 @@ public class PersonBuilder {
     public static final String DEFAULT_REMARK = "";
     public static final String DEFAULT_MEETING_TIME = "01-01-2000 12:00";
     public static final String DEFAULT_NETWORTH = "$2000";
+    public static final String DEFAULT_FILEPATH = "src/test/data/TestPDFs/Test_PDF.pdf";
 
     private Name name;
     private Phone phone;
@@ -34,6 +36,7 @@ public class PersonBuilder {
     private Remark remark;
     private NetWorth netWorth;
     private MeetingTime meetingTime;
+    private FilePath filePath;
     private Set<Tag> tags;
 
     /**
@@ -47,6 +50,7 @@ public class PersonBuilder {
         remark = new Remark(DEFAULT_REMARK);
         netWorth = new NetWorth(DEFAULT_NETWORTH);
         meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
+        filePath = new FilePath(DEFAULT_FILEPATH);
         tags = new HashSet<>();
     }
 
@@ -61,6 +65,7 @@ public class PersonBuilder {
         remark = personToCopy.getRemark();
         netWorth = personToCopy.getNetWorth();
         meetingTime = personToCopy.getMeetingTime();
+        filePath = personToCopy.getFilePath();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -127,12 +132,20 @@ public class PersonBuilder {
         this.meetingTime = new MeetingTime(meetingTime);
         return this;
     }
-
-    public Person build() {
-        return new Person(name, phone, email, address, remark, netWorth, meetingTime, tags);
+    
+    /**
+     * Sets the {@code filePath} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFilePath(String filePath) {
+        this.filePath = new FilePath(filePath);
+        return this;
     }
 
-    public Person buildNoRemark() {
+    public Person build() {
+        return new Person(name, phone, email, address, remark, netWorth, meetingTime, filePath, tags);
+    }
+
+    public Person buildNoRemarkAndFilePath() {
         return new Person(name, phone, email, address, netWorth, meetingTime, tags);
     }
 }

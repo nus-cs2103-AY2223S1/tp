@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NETWORTH;
@@ -27,7 +28,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getCreateCommand(Person person) {
-        return CreateCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return CreateCommand.COMMAND_WORD + " " + getCreatedPersonDetails(person);
     }
 
     /**
@@ -42,8 +43,22 @@ public class PersonUtil {
         sb.append(PREFIX_REMARK + person.getRemark().value + " ");
         sb.append(PREFIX_NETWORTH + person.getNetWorth().value + " ");
         sb.append(PREFIX_MEETING_TIME + person.getMeetingTime().value + " ");
+        sb.append(PREFIX_FILEPATH + person.getFilePath().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        );
+        return sb.toString();
+    }
+
+    public static String getCreatedPersonDetails(Person person) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NAME + person.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_NETWORTH + person.getNetWorth().value + " ");
+        person.getTags().stream().forEach(
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }

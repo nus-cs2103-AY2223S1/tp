@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NETWORTH;
@@ -42,6 +43,9 @@ public class CommandTestUtil {
     public static final String VALID_NETWORTH_BOB = "$53000";
     public static final String VALID_MEETING_TIME_AMY = "14-11-2022 23:30";
     public static final String VALID_MEETING_TIME_BOB = "18-12-2022 13:30";
+    public static final String VALID_FILEPATH_AMY = "src/test/data/TestPDFs/Test_PDF.pdf";
+    public static final String VALID_FILEPATH_BOB = "src/test/data/TestPDFs/Test_PDF2.pdf";
+    public static final String EMPTY_FILEPATH = "";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -57,6 +61,8 @@ public class CommandTestUtil {
     public static final String NETWORTH_DESC_BOB = " " + PREFIX_NETWORTH + VALID_NETWORTH_BOB;
     public static final String MEETING_TIME_DESC_AMY = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_AMY;
     public static final String MEETING_TIME_DESC_BOB = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_BOB;
+    public static final String FILEPATH_DESC_AMY = " " + PREFIX_FILEPATH + VALID_FILEPATH_AMY;
+    public static final String FILEPATH_DESC_BOB = " " + PREFIX_FILEPATH + VALID_FILEPATH_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -65,6 +71,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_NETWORTH_DESC = " " + PREFIX_NETWORTH + "1222"; // missing '$' symbol
+    public static final String INVALID_FILEPATH_DESC = " " + PREFIX_FILEPATH + "misc/Test_PDF2"; // missing '.pdf' label
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEETING_TIME = " " + PREFIX_MEETING_TIME
             + "56-10-2022 19:00"; // Date does not exist

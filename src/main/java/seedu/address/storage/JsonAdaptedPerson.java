@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FilePath;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String remark;
     private final String netWorth;
     private final String meetingTime;
+    private final String filePath;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -45,6 +47,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("remark") String remark,
                              @JsonProperty("netWorth") String netWorth,
                              @JsonProperty("meetingTime") String meetingTime,
+                             @JsonProperty("filePath") String filePath,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
         this.remark = remark;
         this.netWorth = netWorth;
         this.meetingTime = meetingTime;
+        this.filePath = filePath;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -69,6 +73,7 @@ class JsonAdaptedPerson {
         remark = source.getRemark().value;
         netWorth = source.getNetWorth().value;
         meetingTime = source.getMeetingTime().value;
+        filePath = source.getFilePath().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -134,16 +139,24 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
         final MeetingTime modelMeetingTime = new MeetingTime(meetingTime);
+        
+        if (filePath == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, FilePath.class.getSimpleName()));
+        }
+        if (!FilePath.isValidFilePath(filePath)) {
+            throw new IllegalValueException(FilePath.MESSAGE_CONSTRAINTS);
+        }
+        final FilePath modelFilePath = new FilePath(filePath);
 
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Remark.class.getSimpleName()));
         }
-
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
-                modelNetWorth, modelMeetingTime, modelTags);
+                modelNetWorth, modelMeetingTime, modelFilePath, modelTags);
     }
 }

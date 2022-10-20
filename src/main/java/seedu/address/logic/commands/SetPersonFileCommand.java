@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.FilePath.EMPTY_FILEPATH;
 
 import java.util.List;
 
@@ -10,39 +11,39 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.FilePath;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
 
 /**
  * Changes the remark of an existing person in the address book.
  */
-public class RemarkCommand extends Command {
+public class SetPersonFileCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "filepath";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the file path of the person identified "
+            + "by the index number used in the last person listing.\n"
+            + "Existing file path will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "[REMARK]\n"
+            + PREFIX_FILEPATH + "[FilePath]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Likes to swim.";
+            + PREFIX_FILEPATH + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_CHANGE_FILEPATH_SUCCESS = "Added file path to Person: %1$s";
+    public static final String MESSAGE_DELETE_FILEPATH_SUCCESS = "File path set to placeholder pdf for Person: %1$s";
 
     private final Index index;
-    private final Remark remark;
+    private final FilePath filePath;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the person in the filtered person list to edit the filePath
+     * @param filePath of the person to be updated to
      */
-    public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
+    public SetPersonFileCommand(Index index, FilePath filePath) {
+        requireAllNonNull(index, filePath);
 
         this.index = index;
-        this.remark = remark;
+        this.filePath = filePath;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -54,9 +55,8 @@ public class RemarkCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getNetWorth(), personToEdit.getMeetingTime(),
-                personToEdit.getFilePath(), personToEdit.getTags());
-
+                personToEdit.getAddress(), personToEdit.getRemark(),
+                personToEdit.getNetWorth(), filePath, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -65,11 +65,12 @@ public class RemarkCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
+     * Generates a command execution success message based on whether the file path is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !filePath.value.equals(EMPTY_FILEPATH) ? MESSAGE_CHANGE_FILEPATH_SUCCESS
+                : MESSAGE_DELETE_FILEPATH_SUCCESS;
         return String.format(message, personToEdit);
     }
 
@@ -81,13 +82,13 @@ public class RemarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof SetPersonFileCommand)) {
             return false;
         }
 
         // state check
-        RemarkCommand e = (RemarkCommand) other;
+        SetPersonFileCommand e = (SetPersonFileCommand) other;
         return index.equals(e.index)
-                && remark.equals(e.remark);
+                && filePath.equals(e.filePath);
     }
 }

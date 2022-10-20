@@ -14,4 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_NETWORTH = new Prefix("nw/");
     public static final Prefix PREFIX_MEETING_TIME = new Prefix("mt/");
+    public static final Prefix PREFIX_FILEPATH = new Prefix("f/");
 }
