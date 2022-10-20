@@ -287,7 +287,26 @@ _{To add activity diagram}_
 
 _{To add other design considerations}_
 
+### \[Proposed\] Find feature
 
+#### Proposed Implementation
+The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
+logic established. However, it is unique in the sense that it will look through all the possible fields and data
+and return matches.
+
+Example of current implementation of find feature
+
+Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
+and their data. e.g. mastery check field will have a corresponding list with the dates of all mastery check etc.
+
+Step 2. When user types in the find command the logic will tell the program to go through all these lists and display
+all matches
+
+#### Design considerations:
+
+**Aspect: How find command is implemented:**
+
+_{To add other design considerations}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -554,6 +573,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. FRIDAY displays the students according to the first criteria. 
 
       Use case ends.
+
+**Use case: Mark a student's Mastery Check as passed.**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to mark the Mastery Check of a specific student as passed
+4. FRIDAY marks the student's Mastery Check as passed
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends 
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The Mastery Check of the student has already been marked as passed.
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
 
 *{More to be added}*
 

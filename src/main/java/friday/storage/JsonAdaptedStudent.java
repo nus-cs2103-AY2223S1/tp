@@ -23,29 +23,34 @@ import friday.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String telegramHandle;
     private final LocalDate masteryCheck;
+    private boolean masteryCheckIsDone;
     private final LocalDate consultation;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
+
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("consultation") LocalDate consultation,
                              @JsonProperty("masteryCheck") LocalDate masteryCheck,
+                             @JsonProperty("masteryCheckIsDone") boolean masteryCheckIsDone,
                              @JsonProperty("remark") String remark,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.masteryCheck = masteryCheck;
+        this.masteryCheckIsDone = masteryCheckIsDone;
         this.consultation = consultation;
         this.remark = remark;
         if (tagged != null) {
@@ -56,10 +61,11 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Student source) {
+    public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         telegramHandle = source.getTelegramHandle().value;
         masteryCheck = source.getMasteryCheck().getValue();
+        masteryCheckIsDone = source.getMasteryCheck().getIsPassed();
         consultation = source.getConsultation().getValue();
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
@@ -125,7 +131,7 @@ class JsonAdaptedPerson {
         if (masteryCheck.equals(LocalDate.of(0001, 01, 01))) {
             modelMasteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
         } else {
-            modelMasteryCheck = new MasteryCheck(masteryCheck);
+            modelMasteryCheck = new MasteryCheck(masteryCheck, masteryCheckIsDone);
         }
 
         if (remark == null) {

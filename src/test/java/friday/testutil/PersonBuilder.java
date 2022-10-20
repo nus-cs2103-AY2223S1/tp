@@ -76,7 +76,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code MasteryCheck} of the {@code Person} that we are building.
+     * Sets the {@code MasteryCheck} of the {@code Person} that we are building with isDone set to false by default.
      */
     public PersonBuilder withMasteryCheck(LocalDate desiredDate) {
         this.masteryCheck = new MasteryCheck(desiredDate);
