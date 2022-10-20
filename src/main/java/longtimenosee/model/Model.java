@@ -32,7 +32,7 @@ public interface Model {
     ReadOnlyUserPrefs getUserPrefs();
 
     /**
-     * Returns the user prefs' GUI settings.
+     * Returns the user prefs GUI settings.
      */
     GuiSettings getGuiSettings();
 
