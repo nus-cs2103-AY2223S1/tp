@@ -384,6 +384,21 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Finding persons
+
+1. Finding persons that shares the same subject.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `findSubject math`<br>
+       Expected: All persons that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
+
+    1. Test case: `findSubject engrish`<br>
+       Expected: No person will be shown in a new list. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
+       Expected: Similar to previous.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
