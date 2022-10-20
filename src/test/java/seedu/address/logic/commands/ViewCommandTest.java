@@ -1,29 +1,23 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NameIsKeywordsPredicate;
-
-import javax.swing.text.View;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSON_FULL_VIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSON_NOT_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.NameIsKeywordsPredicate;
 
 public class ViewCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -77,7 +71,7 @@ public class ViewCommandTest {
     }
 
     @Test
-    public void execute_caseIgnore_PersonFound() {
+    public void execute_ignoreCase_singlePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSON_FULL_VIEW, "alice Pauline");
         NameIsKeywordsPredicate ignoreCasePredicate = preparePredicate("alIcE PaUlIne");
         NameIsKeywordsPredicate predicate = preparePredicate("Alice Pauline");
