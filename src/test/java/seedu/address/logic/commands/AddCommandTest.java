@@ -178,7 +178,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<TimeSlot> getTimeSlots() {
+        public ObservableList<TimeSlot> getTimeSlotList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -37,7 +37,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the time slots for a particular day.
      */
-    ObservableList<TimeSlot> getTimeSlots();
+    ObservableList<TimeSlot> getTimeSlotList();
 
     /**
      * Returns true if the address book is currently in day view mode.

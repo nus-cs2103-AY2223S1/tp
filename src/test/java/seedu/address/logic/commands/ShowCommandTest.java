@@ -57,6 +57,6 @@ public class ShowCommandTest {
         expectedModel.updateFilteredPersonList(new DayIsKeywordPredicate(keyword));
         expectedModel.updateTimeSlots(keyword);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getTimeSlots());
+        assertEquals(Collections.emptyList(), model.getTimeSlotList());
     }
 }

@@ -102,7 +102,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the time slots for a particular day.
      */
-    ObservableList<TimeSlot> getTimeSlots();
+    ObservableList<TimeSlot> getTimeSlotList();
 
     /**
      * Sets a flag to signify day view.

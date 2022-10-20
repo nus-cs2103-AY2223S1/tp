@@ -66,8 +66,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<TimeSlot> getTimeSlots() {
-        return model.getTimeSlots();
+    public ObservableList<TimeSlot> getTimeSlotList() {
+        return model.getTimeSlotList();
     }
 
     @Override

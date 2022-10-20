@@ -43,7 +43,8 @@ public class ShowCommand extends Command {
         model.updateTimeSlots(keyword);
         return new CommandResult(
                 // Assumption: Each student has only one session on that day.
-                String.format(Messages.MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, model.getTimeSlots().size(), keyword));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY,
+                        model.getTimeSlotList().size(), keyword));
     }
 
     @Override

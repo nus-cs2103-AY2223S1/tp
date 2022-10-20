@@ -159,7 +159,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<TimeSlot> getTimeSlots() {
+    public ObservableList<TimeSlot> getTimeSlotList() {
         return timeSlots;
     }
 
