@@ -99,13 +99,27 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
     @Override
     public String toString() {
-        return exerciseList.asUnmodifiableObservableList().size() + " exercises";
+        return exerciseList.asDisplayedList().size() + " exercises";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Exercise> getExerciseList() {
-        return exerciseList.asUnmodifiableObservableList();
+        return exerciseList.asDisplayedList();
+    }
+
+    /**
+     * Sorts the displayed exercise list according to chronological order of exercise dates.
+     */
+    public void sortDisplayedList() {
+        exerciseList.sortDisplayedList();
+    }
+
+    /**
+     * Resets the displayed exercise list to the default ordering.
+     */
+    public void resetDisplayedList() {
+        exerciseList.resetDisplayedList();
     }
 
     @Override
@@ -119,4 +133,5 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     public int hashCode() {
         return exerciseList.hashCode();
     }
+
 }
