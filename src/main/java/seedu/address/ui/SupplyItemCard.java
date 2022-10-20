@@ -22,8 +22,8 @@ public class SupplyItemCard extends UiPart<Region> {
     public static final String COLOR_LOW = "#e74c3c";
     private static final String COLOR_DEFAULT = "transparent";
     private static final String FXML = "SupplyItemCard.fxml";
-    private static final double MEDIUM_THRESHOLD = 1.65;
-    private static final double HIGH_THRESHOLD = 1.2;
+    private static final double MEDIUM_THRESHOLD = 1.2;
+    private static final double HIGH_THRESHOLD = 1.65;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
