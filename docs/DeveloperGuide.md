@@ -305,6 +305,76 @@ Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parse
 
 Given below is an example usage and how the find record mechanism works at each step.
 
+### \[Implemented\] Clear Records
+
+The clear record command `rclear` allows the application to clear all the existing records in the current active record
+list.
+
+#### Implementation:
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `rlist INDEX` command to show the record list of a specified patient. 
+
+**Step 3:** The user executes the `rclear` command to clear all existing records in the record list.
+
+### \[Implemented\] Add appointment
+
+The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
+reference for record keeping that the user is able to edit and clear.
+
+#### Implementation:
+The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
+
+`AddAppointmentParser` implements the following operations:
+* `AddAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as 
+an `ArgumentMultimap.`
+
+`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `appt INDEX d/ dd-MM-yyyy` command in the CLI.
+
+**Step 3:** An appointment will be assigned to the patient specified with the index input.
+
+### \[Implemented\] Clear appointment
+
+#### Implementation:
+The add appointment mechanism is facilitated by `ClearAppointmentCommandParser`  which extends `AddressbookParser`.
+
+`ClearAppointmentParser` implements the following operations:
+* `ClearAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as
+  an `ArgumentMultimap.`
+
+`ClearAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `apptcl INDEX ` command in the CLI.
+
+**Step 3:** The patient's appointment(if any) will be cleared. 
+
+###\[Proposed\] Upcoming appointment tracker
+
+The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
+
+####Proposed Implementation
+The proposed implementation is facilitated by `AppointmentWindow`. It extends `UiPart<Stage>` with a new window.
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** A additional window appears, showing the current upcoming appointments.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
