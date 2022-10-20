@@ -80,6 +80,7 @@ public class ModelManager implements Model {
     @Override
     public void setApplicationBook(ReadOnlyApplicationBook applicationBook) {
         versionedApplicationBook.resetData(applicationBook);
+        commitApplicationBook();
     }
 
     @Override
@@ -96,12 +97,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteApplication(Application target) {
         versionedApplicationBook.removeApplication(target);
+        commitApplicationBook();
     }
 
     @Override
     public void addApplication(Application application) {
         versionedApplicationBook.addApplication(application);
         updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        commitApplicationBook();
     }
 
     @Override
@@ -109,6 +112,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedApplication);
 
         versionedApplicationBook.setApplication(target, editedApplication);
+        commitApplicationBook();
     }
 
     //=========== Filtered Application List Accessors =============================================================

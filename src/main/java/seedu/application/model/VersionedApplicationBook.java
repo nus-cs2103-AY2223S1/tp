@@ -34,7 +34,7 @@ public class VersionedApplicationBook extends ApplicationBook {
     }
 
     /**
-     * Restores the previous {@code ApplicationBook} state from its history.
+     * Restores the previous {@code ApplicationBook} state from the history.
      */
     public void undo() {
         assert canUndo();
@@ -50,7 +50,7 @@ public class VersionedApplicationBook extends ApplicationBook {
     }
 
     /**
-     * Restores a previously undone {@code ApplicationBook} state from its history.
+     * Restores a previously undone {@code ApplicationBook} state from the history.
      */
     public void redo() {
         assert canRedo();

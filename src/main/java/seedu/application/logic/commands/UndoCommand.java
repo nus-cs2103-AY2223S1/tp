@@ -14,9 +14,9 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Restores the previous application book state from its history.\n";
+            + ": Restores the previous application book state from the history.\n";
 
-    public static final String MESSAGE_SUCCESS = "Undo successfully!";
+    public static final String MESSAGE_SUCCESS = "Undone successfully!";
 
     public static final String MESSAGE_NO_PREVIOUS_COMMAND = "No previous commands to undo!";
 

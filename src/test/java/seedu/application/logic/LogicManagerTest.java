@@ -85,7 +85,6 @@ public class LogicManagerTest {
         Application expectedApplication = new ApplicationBuilder(GOOGLE).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addApplication(expectedApplication);
-        expectedModel.commitApplicationBook();
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

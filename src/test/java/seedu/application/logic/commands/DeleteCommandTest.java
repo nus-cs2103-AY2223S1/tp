@@ -36,7 +36,6 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getApplicationBook(), new UserPrefs());
         expectedModel.deleteApplication(applicationToDelete);
-        expectedModel.commitApplicationBook();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -61,7 +60,6 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getApplicationBook(), new UserPrefs());
         expectedModel.deleteApplication(applicationToDelete);
-        expectedModel.commitApplicationBook();
         showNoApplication(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

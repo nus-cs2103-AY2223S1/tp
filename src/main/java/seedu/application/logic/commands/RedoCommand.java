@@ -7,16 +7,16 @@ import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
 
 /**
- * Reverts the {@code model}'s application book to its previous state.
+ * Restores the model's previously undone {@code ApplicationBook} state from the history.
  */
 public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Restores a previously undone application book state from its history.\n";
+            + ": Restores a previously undone application book state from the history.\n";
 
-    public static final String MESSAGE_SUCCESS = "Redo successfully!";
+    public static final String MESSAGE_SUCCESS = "Redone successfully!";
 
     public static final String MESSAGE_NO_PREVIOUSLY_UNDONE = "No previously undone commands to redo!";
 

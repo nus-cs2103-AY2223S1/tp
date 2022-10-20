@@ -87,7 +87,7 @@ public interface Model {
     void updateFilteredApplicationList(Predicate<Application> predicate);
 
     /**
-     * Saves the current {@code ApplicationBook} state in its history.
+     * Saves the current {@code ApplicationBook} state in the history.
      */
     void commitApplicationBook();
 
@@ -102,12 +102,12 @@ public interface Model {
     boolean canRedoApplicationBook();
 
     /**
-     * Restores the model's previous {@code ApplicationBook} state from its history.
+     * Restores the model's previous {@code ApplicationBook} state from the history.
      */
     void undoApplicationBook();
 
     /**
-     * Restores the model's previously undone {@code ApplicationBook} state from its history.
+     * Restores the model's previously undone {@code ApplicationBook} state from the history.
      */
     void redoApplicationBook();
 }
