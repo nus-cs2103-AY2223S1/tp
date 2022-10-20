@@ -98,9 +98,19 @@ html {
   opacity: 0;
   &.shown {
     animation: slide-in 0.4s ease-in-out forwards, fade-in 0.4s ease-in-out forwards;
+
+    // Back to top button
+    + .after::before {
+      animation: fade-in 0.4s ease-in-out forwards;
+    }
   }
   &.hidden {
     animation: slide-out 0.4s ease-in-out forwards, fade-out 0.4s ease-in-out forwards;
+
+    // Back to top button
+    + .after::before {
+      animation: fade-out 0.4s ease-in-out forwards;
+    }
   }
 
   scrollbar-width: none;
@@ -147,6 +157,27 @@ html {
         &:hover {
           color: black;
         }
+      }
+    }
+  }
+
+  // Back to top button
+  + .after {
+    &::before {
+      content: "\261E\A0 Back to top";
+      color: lightgray;
+      position: fixed;
+      display: block;
+      bottom: $margin-block;
+      margin-left: -6px;
+      transform: rotateZ(-90deg);
+      transform-origin: bottom left;
+
+      opacity: 0;
+
+      &:hover::before {
+        color: gray;
+        text-decoration: underline;
       }
     }
   }
