@@ -108,6 +108,7 @@ public class RemarkList implements GenericList<Remark> {
             } else {
                 builder.append("\n")
                         .append(index + 1)
+                        .append(". ")
                         .append(r);
             }
         });
