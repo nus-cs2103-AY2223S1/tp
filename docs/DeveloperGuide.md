@@ -335,6 +335,113 @@ obtaining the index, it would be used to instantiate a `RemoveCommand`. When the
 first obtain the `Module` using the index. Then it would remove the `Module` from the `ModuleList`. Using the saved
 `Module` it would then remove all `Task` in the `TaskBook` with the `Module`.
 
+### 3.2. Task/Deadline Features
+
+### 3.1.1. Add task
+
+In this section, the functionality of `add` task feature, expected execution path, and the interactions between
+`AddTaskCommand`, `AddDeadlineCommand`, `AddTaskCommandParser`, and other objects will be discussed.
+Deadlines are an extension of tasks, and have a due date. For the most part, their implementations are 
+similar, and areas where they differ will be highlighted. As such, please consider deadline to be synonymous
+with task, unless explicitly stated.
+
+### What is the add task feature
+
+The `add` task features allows users to add a task or a deadline that they have taken or are currently taking into the
+`TaskList`.
+
+In order to add tasks or deadlines related to the module, a module would have to be created.
+
+Additionally, the modules to which these tasks belong need to be specified within
+the command. If the user is CD-ed into the module, the module code will not
+be required in the command.
+
+Information regarding tasks/deadlines can be recognised in the CLI using tags
+
+These tags are:
+
+- `-t <task name/description>`
+- `-d <YYYY-MM-DD>` (this is only required for adding deadlines)
+- `-c <module_code>`
+
+
+### Design considerations
+
+**Aspect 1: How many tasks are added:**
+
+* **Alternative 1 (current choice):** Add 1 task added per AddTaskCommand.
+    * Pros: Easy to implement.
+    * Cons: May have to type more to add multiple tasks.
+
+* **Alternative 2:** Add multiple tasks per AddTaskCommand.
+    * Pros: Convenient for user.
+    * Cons: More complicated, may require much more parsing.
+
+We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
+reduce the compulsory AddTaskCommand parameters.
+
+**Aspect 2: What parameters do we need:**
+
+* **Alternative 1:** Add task by specifying module index instead of code.
+    * Pros: Less verbosity in the command, user can go off of the displayed index.
+    * Cons: Slightly more complicated as more errors need to be handled (invalid index etc.). Users
+    may also be more prone to adding the task to the wrong module.
+
+* **Alternative 2:** Require the user to specify the module code.
+    * Pros: Reduces the chance of error by the user, users will not need to remember the module index.
+    * Cons: User has to type more information in the command.
+
+We decided to implement alternative 2 in order to reduce the chance of user error and reduce the 
+potential for bugs.
+
+### Current implementation
+
+The diagram below showcases the path execution for when adding a task, when a user is **NOT** CD-ed
+into a module. For ease of understanding, we will be adding a task instead of a deadline. Note that
+the flow is exactly the same for both tasks and deadlines.
+
+<img src="images/TaskPUMLs/AddTask/TaskAddPathExecution.png" width="800" />
+
+The diagram below shows how the add command work with input `add -m -c CS2103T`
+
+<img src="images/TaskPUMLs/AddTask/TaskAddSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `AddTaskCommandParser`. After
+parsing the arguments, a deadline or a task object is created, depending on the presence of a deadline flag. The task 
+would be used to instantiate an `AddTaskCommand`. When the `AddTaskCommand` is executed, the `Model` would add the task 
+to the `TaskList`. After adding the task, the `Model` invokes its own method to update the task count of the module 
+whose code is associated with the task.
+
+### 3.1.2. Remove Task
+
+In this section, the functionality of `remove` task feature, expected execution path, and the interactions between the
+`RemoveTaskCommand`, `RemoveTaskCommandParser`, and other objects will be discussed.
+
+### What is the remove task feature
+
+The `remove` task features allows users to remove a task/deadline that they have taken or mistakenly inputted into
+`TaskList`.
+
+Removal of a `Task` would result in the reduction of the task count of the `Module` with the module code the task
+is associated with.
+
+### Current implementation
+
+The diagram below showcases the path execution for when removing a task
+
+<img src="images/TaskPUMLs/RemoveTask/TaskRemovePathExecution.png" width="800" />
+
+The diagram below shows how the remove command work with input `remove -t 1`
+
+<img src="images/TaskPUMLs/RemoveTask/TaskRemoveSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `RemoveTaskCommandParser`. After
+obtaining the index, it would be used to instantiate a `RemoveTaskCommand`. When the `RemoveTaskCommand` is executed, it would
+first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. Using the saved
+`Task` it would then reduce the task count of the `Module` whose code is equal to that of the removed `Task`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

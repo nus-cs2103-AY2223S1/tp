@@ -1,0 +1,107 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
+participant "a:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "task:Task" as Task MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add -t Assignment 1 -c CS2103T")
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand("add -t Assignment 1 -c CS2103T")
+activate ModtrektParser
+
+create AddTaskCommandParser
+ModtrektParser -> AddTaskCommandParser
+activate AddTaskCommandParser
+
+AddTaskCommandParser --> ModtrektParser
+
+ModtrektParser -> AddTaskCommandParser : parse("Assignment 1 -c CS2103T")
+
+create Task
+AddTaskCommandParser -> Task : Task()
+activate Task
+
+Task --> AddTaskCommandParser : task
+deactivate Task
+
+create AddTaskCommand
+AddTaskCommandParser -> AddTaskCommand : AddTaskCommand(task)
+activate AddTaskCommand
+
+AddTaskCommand --> AddTaskCommandParser : a
+deactivate AddTaskCommand
+
+AddTaskCommandParser --> ModtrektParser : a
+deactivate AddTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddTaskCommandParser -[hidden]-> ModtrektParser
+destroy AddTaskCommandParser
+
+ModtrektParser --> LogicManager : a
+deactivate ModtrektParser
+
+LogicManager -> AddTaskCommand : execute()
+activate AddTaskCommand
+
+AddTaskCommand -> Model : addTask(task)
+activate Model
+
+Model -> TaskList : add(task)
+activate TaskList
+TaskList --> Model
+deactivate TaskList
+
+Model -> Model : updateModuleTask(task)
+activate Model
+
+Model -> Task : getModule()
+activate Task
+
+Task --> Model: moduleCode
+deactivate Task
+
+Model -> Model : parseModuleFromCode(moduleCode)
+activate Model
+Model -> ModuleList : getModuleFromCode(moduleCode)
+activate ModuleList
+ModuleList --> Model : module
+deactivate ModuleList
+deactivate Model
+
+Model -> Module: updateTaskCount(module)
+activate Module
+Module --> Model
+deactivate Module
+
+deactivate Model
+Model --> AddTaskCommand
+deactivate Model
+
+create CommandResult
+AddTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTaskCommand
+deactivate CommandResult
+
+AddTaskCommand --> LogicManager : result
+deactivate AddTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

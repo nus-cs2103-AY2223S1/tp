@@ -1,0 +1,103 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant ":RemoveTaskCommandParser" as RemoveTaskCommandParser LOGIC_COLOR
+participant "a:RemoveTaskCommand" as RemoveTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "task:Task" as Task MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remove -t 1")
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand("remove -t 1")
+activate ModtrektParser
+
+create RemoveTaskCommandParser
+ModtrektParser -> RemoveTaskCommandParser
+activate RemoveTaskCommandParser
+
+RemoveTaskCommandParser --> ModtrektParser
+
+ModtrektParser -> RemoveTaskCommandParser : parse("1")
+
+create RemoveTaskCommand
+RemoveTaskCommandParser -> RemoveTaskCommand
+activate RemoveTaskCommand
+
+RemoveTaskCommand --> RemoveTaskCommandParser : a
+deactivate RemoveTaskCommand
+
+RemoveTaskCommandParser --> ModtrektParser : a
+deactivate RemoveTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemoveTaskCommandParser -[hidden]-> ModtrektParser
+destroy RemoveTaskCommandParser
+
+ModtrektParser --> LogicManager : a
+deactivate ModtrektParser
+
+LogicManager -> RemoveTaskCommand : execute()
+activate RemoveTaskCommand
+
+RemoveTaskCommand -> Model : deleteTask(task)
+activate Model
+
+Model -> TaskList : removeTask(task)
+activate TaskList
+TaskList --> Model :
+deactivate TaskList
+
+Model -> Model : updateModuleTask(task)
+activate Model
+
+Model -> Task : getModule()
+activate Task
+
+Task --> Model: moduleCode
+deactivate Task
+
+Model -> Model : parseModuleFromCode(moduleCode)
+activate Model
+
+Model -> ModuleList : getModuleFromCode(moduleCode)
+activate ModuleList
+ModuleList --> Model : module
+deactivate ModuleList
+
+deactivate Model
+
+Model -> Module: updateTaskCount(module)
+activate Module
+Module --> Model
+deactivate Module
+deactivate TaskList
+
+deactivate Model
+Model --> RemoveTaskCommand
+deactivate Model
+
+create CommandResult
+RemoveTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemoveTaskCommand
+deactivate CommandResult
+
+RemoveTaskCommand --> LogicManager : result
+deactivate RemoveTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
