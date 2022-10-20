@@ -154,6 +154,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Lesson plan feature
+
+#### Implementation
+
+The lesson plan feature allows the user to keep track of a lesson plan for a student. It is a required parameter when a new person is added, through `AddCommandParser`.
+
+It can also be added independently, and is facilitated by `LessonPlanCommand` in the Logic component. It extends `Commmand` with a `LessonPlan` object stored internally.
+`LessonPlanCommand` is created by `LessonPlanCommandParser` which implements `Parser<LessonPlanCommand>`.
+Each `Person` has a `LessonPlan` object which contains a string value with the Lesson Plan.
+
+Given below is an example usage scenario and how the lesson plan feature behaves at each step.
+
+Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
+
+Step 2. The user executes `lessonplan 1 lp/Biology` to overwrite the lesson plan of the first person in the address book.
+
+The functionality and sequence is implemented as described in the Logic component.
+
 ### Homework Feature
 
 #### Implementation
@@ -172,7 +190,7 @@ Each `Person` has a `HomeworkList` which contains multiple `Homework` objects. B
 These operations are exposed in command executions such as `HomeworkCommand#execute()` and `EditCommand#createEditedPerson()`.
 `HomeworkList#clearList()` is used for testing purposes only.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the adding homework mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
 
@@ -309,7 +327,7 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
 		
 #### Design considerations:
 
-**Aspect: How to encapsulate user input in Sesssion**
+**Aspect: How to encapsulate user input in Session**
 
 ***Alternative 1 (current choice):** Use defaulting of `LocalDateTimeFormatter` as formatter for `LocalDateTime`.
   * Pros: Easier to implement, uses only one imported Java class `LocalDateTime` for encapsulating user input.
@@ -319,6 +337,9 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
   * Pros: Less of a workaround. More accurate backstage representation of user input.
   * Cons: Harder to implement. Have to concatenate `DayOfWeek` and `LocalDateTime` in `toString` method, which may affect performance with a large `SessionList`.
 
+### Schedule feature
+
+_{to be added}_
 
 ### \[Proposed\] Undo/redo feature
 
