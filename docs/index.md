@@ -5,7 +5,7 @@ title: AddressBook Level-3
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
-[![codecov](https://codecov.io/gh/nus-cs2103-AY2223S1/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://codecov.io/gh/nus-cs2103-AY2223S1/tp)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T08-3/tp/branch/master/graph/badge.svg?token=Y4F4ICZLXL)](https://codecov.io/gh/AY2223S1-CS2103T-T08-3/tp)
 ![Ui](images/Ui.png)
 
 **uNivUSal is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
