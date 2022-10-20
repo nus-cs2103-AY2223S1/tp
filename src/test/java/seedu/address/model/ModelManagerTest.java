@@ -10,12 +10,10 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
