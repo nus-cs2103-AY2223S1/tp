@@ -90,9 +90,9 @@ public class TaskTest {
 
     @Test
     public void withCompletion_smokeTest() {
-        Task a = sampleA.withCompletion(true);
-        Task b = sampleB.withCompletion(false);
-        Task c = sampleA.withCompletion(true).withCompletion(false);
+        Task a = sampleA.withStatus(true);
+        Task b = sampleB.withStatus(false);
+        Task c = sampleA.withStatus(true).withStatus(false);
         assertTrue(a.getStatus().getIsComplete());
         assertFalse(b.getStatus().getIsComplete());
         assertFalse(c.getStatus().getIsComplete());

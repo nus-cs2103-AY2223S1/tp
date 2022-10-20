@@ -23,7 +23,7 @@ CodeConnect allows you to quickly manage your tasks and contacts through a text 
 
 ### Finding tasks: `find`
 
-Finds tasks from your task list via keywords, or via module. 
+Finds tasks from your task list via keywords, or via module.
 
 Format:
 `find /t {task}`, `find /m {module}`
