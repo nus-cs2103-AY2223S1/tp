@@ -252,7 +252,7 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 
 Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
 
-![FilterTransState0](images/FilterTransState0png.png)
+![FilterTransState0](images/FilterTransState0.png)
 
 Step 2. The user executes `filter buy` command to filter all the buy transactions from all the clients. This is done by calling the 
 `Client#getBuyTransactionList()` which returns an unmodifiable view of the buy transaction list.
