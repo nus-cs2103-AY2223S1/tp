@@ -28,15 +28,24 @@
           </Label>
           <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
         </HBox>
-        <Label fx:id="phone" styleClass="cell_medium_label" text="\$phone" />
+        <HBox spacing="5" alignment="CENTER_LEFT">
+          <Region styleClass="icon-button" id="phoneIcon"/>
+          <Label fx:id="phone" styleClass="cell_medium_label" text="\$phone" />
+        </HBox>
       </VBox>
       <FlowPane fx:id="tags" />
       <VBox spacing="5" style="-fx-background-color: #9dc28e; -fx-background-radius:20;" styleClass="field-pane-with-border">
-        <Label fx:id="LessonPlanHeader" styleClass="cell_medium_label" text="Lesson Plan:"/>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+          <Region styleClass="icon-button" id="lessonPlanIcon"/>
+          <Label fx:id="LessonPlanHeader" styleClass="cell_medium_label" text="Lesson Plan:"/>
+        </HBox>
         <Label fx:id="lessonPlan" styleClass="cell_small_label" text="\$lessonPlan" wrapText="true"/>
       </VBox>
       <VBox spacing="5" style="-fx-background-color: #c2a78e; -fx-background-radius:20;" styleClass="field-pane-with-border">
-        <Label fx:id="homeworkHeader" styleClass="cell_medium_label" text="Homework:"/>
+        <HBox spacing="5">
+          <Region styleClass="icon-button" id="homeworkIcon"/>
+          <Label fx:id="homeworkHeader" styleClass="cell_medium_label" text="Homework:"/>
+        </HBox>
         <Label fx:id="homework" styleClass="cell_small_label" text="\$homework" wrapText="true"/>
       </VBox>
     </VBox>
@@ -48,15 +57,24 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <VBox spacing="5" style="-fx-background-color: #8eb1c2; -fx-background-radius:20;" styleClass="field-pane-with-border">
-        <Label fx:id="attendanceHeader" styleClass="cell_medium_label" text="Attendance:"/>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+          <Region styleClass="icon-button" id="attendanceIcon"/>
+          <Label fx:id="attendanceHeader" styleClass="cell_medium_label" text="Attendance:"/>
+        </HBox>
         <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" wrapText="true"/>
       </VBox>
       <VBox spacing="5" style="-fx-background-color: #938ec2; -fx-background-radius:20;" styleClass="field-pane-with-border">
-        <Label fx:id="gradeProgressHeader" styleClass="cell_medium_label" text="Grade Progress:"/>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+          <Region styleClass="icon-button" id="gradeIcon"/>
+          <Label fx:id="gradeProgressHeader" styleClass="cell_medium_label" text="Grade Progress:"/>
+        </HBox>
         <Label fx:id="gradeProgress" styleClass="cell_small_label" text="\$gradeProgress" wrapText="true"/>
       </VBox>
       <VBox spacing="5" style="-fx-background-color: #c28e92; -fx-background-radius:20;" styleClass="field-pane-with-border">
-        <Label fx:id="sessionHeader" styleClass="cell_medium_label" text="Session:"/>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+          <Region styleClass="icon-button" id="sessionIcon"/>
+          <Label fx:id="sessionHeader" styleClass="cell_medium_label" text="Session:"/>
+        </HBox>
         <Label fx:id="session" styleClass="cell_small_label" text="\$session" wrapText="true"/>
       </VBox>
 
