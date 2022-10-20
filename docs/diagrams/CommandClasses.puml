@@ -1,0 +1,81 @@
+@startuml
+'!include style.puml
+'skinparam arrowThickness 1.1
+'skinparam arrowColor UI_COLOR_T4
+'skinparam classBackgroundColor UI_COLOR
+skinparam classAttributeIconSize 0
+
+class "{abstract}\nCommand" as Command {
+    +execute(model: Model): CommandResult
+}
+
+package Commands <<Rectangle>>{
+    Class EditCommand
+    Class AddCommand
+    Class DeleteCommand
+    Class FindCommand
+    Class ListCommand
+    Class ExitCommand
+    Class HelpCommand
+    Class ClearCommand
+}
+
+package Parsers <<Rectangle>> {
+    Class AddCommandParser
+    Class EditCommandParser
+    Class DeleteCommandParser
+    Class FindCommandParser
+}
+
+package Model/Person <<Rectangle>> {
+    Class MultiSearchPredicate
+    Class AllInfoContainsKeywordsPredicate
+    Class NameSoundsSimilarPredicate
+}
+class EditCommand {
+    -editCommandDescriptor
+    -index
+}
+
+class DeleteCommand {
+    -deleteCommandDescriptor
+    -targetIndex
+}
+
+class FindCommand {
+    -predicate: Predicate<Person>
+    -findPersonDescriptor
+}
+
+
+AddCommand --> "toAdd 1" Person
+
+AddressBookParser ..|> FindCommandParser: creates >
+AddressBookParser ..|> EditCommandParser: creates >
+AddressBookParser ..|> AddCommandParser: creates >
+AddressBookParser ..|> DeleteCommandParser: creates >
+AddressBookParser ..|> ListCommand: creates >
+AddressBookParser ..|> ClearCommand: creates >
+AddressBookParser ..|> HelpCommand: creates >
+AddressBookParser ..|> ExitCommand: creates >
+
+
+FindCommandParser ..|> FindCommand : creates >
+EditCommandParser ..|> EditCommand
+DeleteCommandParser ..|> DeleteCommand
+AddCommandParser ..|> AddCommand
+
+FindCommandParser ..|> MultiSearchPredicate : uses >
+MultiSearchPredicate --> "0..1 matchPredicate" AllInfoContainsKeywordsPredicate
+MultiSearchPredicate --> "0..1 fuzzyPredicate" NameSoundsSimilarPredicate
+
+AddCommand --|> Command
+EditCommand --|> Command
+DeleteCommand --|> Command
+FindCommand --|> Command
+ListCommand --|> Command
+ClearCommand --|> Command
+HelpCommand --|> Command
+ExitCommand --|> Command
+
+@enduml
