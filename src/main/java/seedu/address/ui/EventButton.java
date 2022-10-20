@@ -9,8 +9,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.Name;
+import seedu.address.model.calendar.CalendarEvent;
 
 /**
  * Button that contains a CalendarEvent.
@@ -20,22 +19,25 @@ public class EventButton extends Button {
     private static final int MAX_HEIGHT = 30;
     private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-color: grey; -fx-border-radius: 5;"
             + "-fx-min-width: 100;";
+    private static final double ORIGIN = 0.0;
     private Stage primaryStage;
     private CalendarPopup calendarPopup;
 
     /**
-     * Creates a {@code CalendarButton} with the given Appointment details.
+     * Creates a {@code EventButton} with the given Appointment details.
      */
-    public EventButton(Name name, String time, Location location, String date, Stage primaryStage) {
-        super(time + " " + name);
+    public EventButton(CalendarEvent calendarEvent, Stage primaryStage) {
+        super(calendarEvent.getTimeFormat() + " " + calendarEvent.getName());
+        this.primaryStage = primaryStage;
+        this.calendarPopup = new CalendarPopup(calendarEvent, this);
+        initialiseEventButton();
+    }
+
+    private void initialiseEventButton() {
         this.setStyle(EVENT_BUTTON_STYLE);
         this.setMaxSize(MAX_WIDTH, MAX_HEIGHT);
-        this.setOnAction(x -> {
-            displayToolTip(x);
-        });
-        this.primaryStage = primaryStage;
-        this.focusedProperty().addListener(x -> displayToolTip(x));
-        this.calendarPopup = new CalendarPopup(name, time, location, date, this);
+        this.setOnAction(this::handleOnPressed);
+        this.focusedProperty().addListener(this::handleFocusedEvent);
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             if (calendarPopup.isShowing()) {
                 calendarPopup.hide();
@@ -46,25 +48,26 @@ public class EventButton extends Button {
     }
 
     @FXML
-    private void displayToolTip(ActionEvent event) {
-        Point2D p = localToScene(0.0, 0.0);
+    private void handleOnPressed(ActionEvent event) {
         if (!calendarPopup.isShowing()) {
-            calendarPopup.show(this, p.getX()
-                    + this.getScene().getX() + this.getScene().getWindow().getX(), p.getY()
-                    + this.getScene().getY() + this.getScene().getWindow().getY() + 15);
+            displayToolTip();
         }
     }
 
     @FXML
-    private void displayToolTip(Observable observable) {
-        Point2D p = localToScene(0.0, 0.0);
+    private void handleFocusedEvent(Observable observable) {
         if (!calendarPopup.isShowing() && isFocused()) {
-            calendarPopup.show(this, p.getX()
-                    + this.getScene().getX() + this.getScene().getWindow().getX(), p.getY()
-                    + this.getScene().getY() + this.getScene().getWindow().getY() + 15);
+            displayToolTip();
         }
         if (!isFocused()) {
             calendarPopup.hide();
         }
+    }
+
+    private void displayToolTip() {
+        Point2D p = localToScene(ORIGIN, ORIGIN);
+        calendarPopup.show(this, p.getX()
+                + this.getScene().getX() + this.getScene().getWindow().getX(), p.getY()
+                + this.getScene().getY() + this.getScene().getWindow().getY() + 15);
     }
 }

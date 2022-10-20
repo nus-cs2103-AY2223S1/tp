@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow;
 import javafx.util.Duration;
 import seedu.address.MainApp;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 
@@ -36,8 +37,7 @@ public class CalendarPopup extends Tooltip {
     /**
      * Creates a {@code CalendarPopup} with the given Appointment details.
      */
-    public CalendarPopup(Name name, String time, Location location, String date, Node owner) {
-
+    public CalendarPopup(CalendarEvent calendarEvent, Node owner) {
         this.owner = owner;
         setStyle(POPUP_STYLE);
         setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
@@ -46,11 +46,11 @@ public class CalendarPopup extends Tooltip {
         setAutoHide(false);
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.TOP_CENTER);
-        Label f = new Label(name.toString());
+        Label f = new Label(calendarEvent.getName().toString());
         f.setStyle(LABEL_STYLE);
-        FlowPane datePane = createFlowPane(DATE_IMAGE, date);
-        FlowPane timePane = createFlowPane(TIME_IMAGE, time);
-        FlowPane locationPane = createFlowPane(LOCATION_IMAGE, location.toString());
+        FlowPane datePane = createFlowPane(DATE_IMAGE, calendarEvent.getDate());
+        FlowPane timePane = createFlowPane(TIME_IMAGE, calendarEvent.getTimeFormat());
+        FlowPane locationPane = createFlowPane(LOCATION_IMAGE, calendarEvent.getLocation().toString());
         vBox.getChildren().addAll(f, datePane, timePane, locationPane);
         setGraphicTextGap(0);
         setGraphic(vBox);
