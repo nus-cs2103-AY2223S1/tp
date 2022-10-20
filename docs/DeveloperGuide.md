@@ -212,12 +212,11 @@ The following activity diagram summarizes what happens when a teacher executes a
 This feature allows the user to be able to view a schedule on the right hand side of the panel.
 
 #### Implementation Details
-In order to update the `UI` from original view of a single panel to the right panel, there was a
-need to modify the existing `UI`. As a result, `MainWindow.fxml` had to be modified.
+`MainWindow.fxml` is modified to update the UI from the original single-panel view to include an additional right panel.
 
 Since there is a need for the schedule list to be a constant panel, which is separate from the `PersonListPanel`,
 a `ScheduleListPanel` under `UI` had to be created along with a `ScheduleListCard` class also under `UI`. The
-`ScheduleListCard` will contain more specific information than `PersonCard`. 
+`ScheduleListCard` will contain a selective set of information related to a schedule compared to `PersonCard`. 
 
 Correspondingly, `PersonListCard.fxml` and `PersonListPanel.fxml` had to be created too.
 
