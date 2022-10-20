@@ -285,6 +285,64 @@ There are only 2 commands which can modify the Remark for a Person. These are th
         * `edit` command no longer agrees with its definition to edit entries.
 
 
+### Message command
+
+#### Implementation
+
+The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file. 
+
+The following commands are provided:
+
+`create`  — Create a message template
+
+`delete`  — Delete the specified message template
+
+`generate`  — Using the specified message template and client, generate a message for client. 
+
+Creation and deletion are exposed in the `Model` interface as `Model#createMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
+
+The following class diagram shows how messages are implemented:
+
+![UndoRedoState4](images/MessageClassDiagram.png)
+
+**Given below is an example usage scenario of message generation**
+
+Step 1. The user creates a message template. A new `Message` object is created in `CreateMessageParser`. Then, `CreateMessageCommand#execute()` calls `ModelManager#createMessage()`, which calls `AddressBook#createMessage()`, which adds the message into `AddressBook#messages`
+
+```
+message create Hello {name}, long time no see! Are you free tomorrow? I'd like to share something exciting with you!
+```
+
+Step 2: The user generates a message template for Bob (id=4 in the list), an early-stage client. In `GenerateMessageCommand#execute()`, {name} is replaced with the target person's `fullName`.
+
+```
+message generate 4 1
+```
+
+*Hello Bob, long time no see! Are you free tomorrow? I'd like to share something exciting with you!*
+
+Step 3: The user realises his first attempt at a pitch isn't working well, so they delete the message from the address book. `DeleteMessageCommand#execute()` calls `ModelManager#deleteMessage()`, which calls `AddressBook#deleteMessage()`, which deletes the message from `AddressBook#messages`
+
+```
+message delete 1
+```
+
+#### Design considerations:
+
+- **Aspect: Allow editing**
+  
+  - Alternative 1 (current choice): Don't allow editing
+    
+    - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
+    
+    - Cons: Less convenient when user actually wants to edit message templates
+  
+  - Alternative 2: Allow editing
+    
+    - Pros: (Slightly) more convenient
+    
+    - Cons: More complicated command set
+
 ### Tag command
 
 #### Proposed Implementation
@@ -307,8 +365,28 @@ We can also remove tags from a user using the `tag remove` command. For example,
 
 #### Design considerations:
 
+**Aspect: How tags can be implemented:**
+
+* **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
+    * Pros:
+        * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
+    * Cons:
+        * Forces the creation of a few unique commands. Not user-friendly as the user is expected
+          to memorise all commands.
+
+* **Alternative 2:** Building on top of the `add` and `edit` commands.
+    * Pros:
+        * It allows a more concise set of operations.
+    * Cons:
+        * `add` and `edit` commands will be slightly messier and may contain ambiguities.
+        * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
+          wish to add or edit one of the many tags the client possesses.
+        
+### \[Proposed\] Filter command
+=======
 ### Filter Command
 **Aspect: How tags can be implemented:**
+>>>>>>> ad384bb8de0efdc505c9ded5adb05374915a7164
 
 * **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
     * Pros:
@@ -392,7 +470,7 @@ Commands that integrates with the `show` command includes:
 
 **Given below is an example usage scenario of show command**
 
-Step 1. The user types "show 1" to target the client at index 1 of the current list.
+Step 1: The user types "show 1" to target the client at index 1 of the current list.
 
 ```
 show 1
