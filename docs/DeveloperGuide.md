@@ -239,22 +239,41 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Delete feature
 
-#### Implementation
+#### Implementation (_Proposed_)
+
 This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
 Below is a sequence diagram and explanation of how `delete` is executed.
 
 <img src="images/DeleteCommandUML.png" width="550" />
 
-Step 1. The user enters the command `delete 1`
+Step 1. The user enters the command `delete 1`.
 
-Step 2. User input is parsed by `DeleteCommandParser` which creates the`DeleteCommand` object, then the method LogicManager#execute is called to create the DeleteCommand object.
+Step 2. User input is parsed by `DeleteCommandParser` which creates the `DeleteCommand` object, then the method `LogicManager#execute` is called to create the `DeleteCommand` object.
 
-Step 3. The `execute` method of DeleteCommand is then called on the object, which returns a `CommandResult` object.
+Step 3. The `execute` method of `DeleteCommand` is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This finds the `person` from the list from model#getFilteredPersonList by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using model#deletePerson(), the `person` object is deleted from the `database`.
+Step 4. This finds the `person` from the list from `model#getFilteredPersonList` by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using `model#deletePerson()`, the `person` object is deleted from the `database`.
 
-Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`
+Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`.
+
+### Find feature
+
+This section explains the implementation of the `find` feature. The command takes in a number of parameters, which serve as the "filters" for the finding/searching function. At present, we have implemented finding by name, department, position, and any combination of these three. Thus it is possible to use these altogether to search for a person with high specificity.
+
+Below is a sequence diagram and explanation of how `find` is executed. In this simple example, we will look at the command `find n/Alex`.
+
+<img src="images/FindCommandUML.png" width="550" />
+
+Step 1. The user enters the command `find n/Alex`.
+
+Step 2. User input is parsed by `FindCommandParser` which creates the `FindCommand` object, then the method `LogicManager#execute` is called to create the `FindCommand` object.
+
+Step 3. The `execute` method of `FindCommand` is then called on the object, which returns a `CommandResult` object.
+
+Step 4. This then iterates through the list of `Person` objects returned by the `model#getFilteredPersonList` for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
+
+Step 5. The list of `Person` objects is then returned, and is passed to the `UiManager` to be displayed on the user interface.
 
 ---
 
@@ -378,9 +397,9 @@ _{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Documentation: user guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
 5. The product should be easy to use by person with little experience of using a command line application.
 
