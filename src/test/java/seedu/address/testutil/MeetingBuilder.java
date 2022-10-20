@@ -14,7 +14,7 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * A utility class to help with building Meeting objects.
@@ -27,7 +27,8 @@ public class MeetingBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    private static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
+    private static final Set<Product> DEFAULT_ProductS = new HashSet<>();
+    private static final Set<Product> DEFAULT_PRODUCTS = new HashSet<>();
 
     private Description description;
     private Client client;
@@ -42,7 +43,7 @@ public class MeetingBuilder {
         meetingDate = new MeetingDate(DEFAULT_MEETING_DATE);
         meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
         client = new Client(new Name(DEFAULT_NAME), new Phone(DEFAULT_PHONE),
-                new Email(DEFAULT_EMAIL), new Address(DEFAULT_ADDRESS), DEFAULT_TAGS);
+                new Email(DEFAULT_EMAIL), new Address(DEFAULT_ADDRESS), DEFAULT_PRODUCTS);
     }
 
     /**

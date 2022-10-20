@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Represents a Client in MyInsuRec.
@@ -25,34 +25,36 @@ public class Client {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Product> products = new HashSet<>();
     private final List<Meeting> meetings;
 
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email,
+                  Address address, Set<Product> products) {
+        requireAllNonNull(name, phone, products);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.products.addAll(products);
         this.meetings = new ArrayList<>();
     }
 
     /**
      * Construct a client with meetings
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Meeting> meetings) {
-        requireAllNonNull(name, phone, email, address, tags, meetings);
+    public Client(Name name, Phone phone, Email email, Address address,
+                  List<Meeting> meetings, Set<Product> products) {
+        requireAllNonNull(name, phone, email, address, meetings, products);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
         this.meetings = meetings;
+        this.products.addAll(products);
     }
 
     public Name getName() {
@@ -96,11 +98,11 @@ public class Client {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable product set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Product> getProducts() {
+        return Collections.unmodifiableSet(products);
     }
 
     /**
@@ -135,13 +137,13 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getProducts().equals(getProducts());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, products);
     }
 
     @Override
@@ -149,16 +151,20 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getPhone());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        if (!getEmail().isEmpty()) {
+            builder.append("; Email: ").append(getEmail());
+        }
+
+        if (!getAddress().isEmpty()) {
+            builder.append("; Address: ").append(getAddress());
+        }
+
+        Set<Product> products = getProducts();
+        if (!products.isEmpty()) {
+            builder.append("; Products: ");
+            products.forEach(builder::append);
         }
         return builder.toString();
     }

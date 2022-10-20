@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_2;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
@@ -47,7 +47,7 @@ public class MyInsuRecTest {
     @Test
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
         // Two clients with the same identity fields
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withProducts(VALID_PRODUCT_2)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
         // This test only tests for duplicate clients with same identity field. Meeting list can be empty.
@@ -76,7 +76,7 @@ public class MyInsuRecTest {
     @Test
     public void hasClient_clientWithSameIdentityFieldsInMyInsuRec_returnsTrue() {
         myInsuRec.addClient(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withProducts(VALID_PRODUCT_2)
                 .build();
         assertTrue(myInsuRec.hasClient(editedAlice));
     }

@@ -5,14 +5,14 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 MyInsuRec *-right-> "1" UniqueClientList
-MyInsuRec *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueClientList
-UniqueTagList -[hidden]down- UniqueClientList
+MyInsuRec *-right-> "1" UniqueProductList
+UniqueProductList -[hidden]down- UniqueClientList
+UniqueProductList -[hidden]down- UniqueClientList
 
-UniqueTagList *-right-> "*" Tag
+UniqueProductList *-right-> "*" Product
 UniqueClientList -right-> Client
 
-Client -up-> "*" Tag
+Client -up-> "*" Product
 
 Client *--> Name
 Client *--> Phone
