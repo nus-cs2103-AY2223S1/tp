@@ -6,14 +6,14 @@ import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new FilterTransCommand object
+ * Parses input arguments and creates a new FilterTransCommand object.
  */
 public class FilterTransCmdParser implements Parser<FilterTransCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
      *
      * @param userInput
-     * @throws ParseException if {@code userInput} does not conform the expected format
+     * @throws ParseException if {@code userInput} does not conform the expected format.
      */
     @Override
     public FilterTransCommand parse(String userInput) throws ParseException {

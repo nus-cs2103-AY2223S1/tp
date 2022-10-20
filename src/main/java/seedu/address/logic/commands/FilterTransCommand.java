@@ -40,4 +40,21 @@ public class FilterTransCommand extends Command {
             false, false, true);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FilterTransCommand)) {
+            return false;
+        }
+
+        // state check
+        FilterTransCommand e = (FilterTransCommand) other;
+        return isBuy == e.isBuy;
+    }
+
 }
