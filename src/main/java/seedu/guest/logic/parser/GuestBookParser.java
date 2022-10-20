@@ -16,6 +16,7 @@ import seedu.guest.logic.commands.ExitCommand;
 import seedu.guest.logic.commands.FindCommand;
 import seedu.guest.logic.commands.HelpCommand;
 import seedu.guest.logic.commands.ListCommand;
+import seedu.guest.logic.commands.MarkRoomsUncleanCommand;
 import seedu.guest.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +72,9 @@ public class GuestBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case MarkRoomsUncleanCommand.COMMAND_WORD:
+            return new MarkRoomsUncleanCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
