@@ -224,6 +224,11 @@
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
+#closeBtn {
+    -fx-background-color: #c41010;
+    -fx-text-fill: #d8d8d8;
+}
+
 .button:hover {
     -fx-background-color: #3a3a3a;
 }

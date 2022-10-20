@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Comparator;
-
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.applicant.Applicant;
@@ -23,24 +21,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         String trimmedArgs = args.toLowerCase().trim();
         switch (trimmedArgs) {
         case "name":
-            return new SortCommand(new Comparator<Applicant>() {
-                @Override
-                public int compare(Applicant o1, Applicant o2) {
-                    return o1.getName().compareTo(o2.getName());
-                }
-            });
+            return new SortCommand(Applicant.sortByName());
         case "scholarship":
-            return new SortCommand(new Comparator<Applicant>() {
-                @Override
-                public int compare(Applicant o1, Applicant o2) {
-
-                    int value = o1.getScholarship().compareTo(o2.getScholarship());
-                    if (value == 0) {
-                        return o1.getName().compareTo(o2.getName());
-                    }
-                    return value;
-                }
-            });
+            return new SortCommand(Applicant.sortByScholarship());
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
