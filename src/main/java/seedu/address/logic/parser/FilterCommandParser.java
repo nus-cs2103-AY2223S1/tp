@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterClearCommand;
 import seedu.address.logic.commands.FilterCommand;

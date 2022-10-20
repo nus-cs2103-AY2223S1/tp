@@ -315,6 +315,11 @@ public class CommandTestUtil {
         }
 
         @Override
+        public boolean reminderExists(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Reminder> getCurrentReminderList() {
             throw new AssertionError("This method should not be called.");
         }
