@@ -14,7 +14,7 @@ import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a list of interests to the specified person.
  */
 public class AddInterestCommand extends Command {
 
@@ -32,7 +32,7 @@ public class AddInterestCommand extends Command {
      * Constructs a command that adds all interests specified to the target batchmate.
      *
      * @param index The index of the batchmate.
-     * @param interests The set of mods to be marked.
+     * @param interests The set of interests to be marked.
      */
     public AddInterestCommand(Index index, Set<Interest> interests) {
         requireNonNull(index);

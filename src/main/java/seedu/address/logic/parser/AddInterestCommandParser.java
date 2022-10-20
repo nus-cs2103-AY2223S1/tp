@@ -17,7 +17,7 @@ import seedu.address.model.interest.Interest;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddInterestCommand object
  */
 public class AddInterestCommandParser implements Parser<AddInterestCommand> {
 
@@ -28,7 +28,7 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddInterestCommandParser
      * and returns an AddInterestCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddInterestCommand parse(String args) throws ParseException {
         Index index;
