@@ -9,9 +9,9 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * `to be added soon`
-  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=leongdl135&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * `to be added soon`
-  
+
 * **Tools**:
   * `to be added soon`
-  
+

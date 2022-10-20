@@ -5,9 +5,9 @@ title: Li Zekai's Project Portfolio Page
 
 ### Project: ProfNUS
 
-* **Code contributed**: 
+* **Code contributed**:
 * **Project management**:
-* **New features implemented**: 
+* **New features implemented**:
 * **Enhancements to existing features**:
 * **Documentation**:
   * User Guide:
