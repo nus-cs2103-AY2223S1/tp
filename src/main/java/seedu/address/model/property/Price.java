@@ -9,11 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Price {
 
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers and an optional exponent. For example: 123.45";
     private static final String VALIDATION_REGEX = "^[0-9]*\\.*[0-9]+$";
     private static final double EPSILON = 0.01d;
-    private final String value;
+    public final String value;
     private final double numericalValue;
 
     /**

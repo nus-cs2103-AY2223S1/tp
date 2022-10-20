@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -9,7 +10,7 @@ import seedu.address.model.person.Priority;
 import seedu.address.model.property.Owner;
 
 /**
- * Jackson-friendly version of {@link Priority}.
+ * Jackson-friendly version of {@link Owner}.
  */
 class JsonAdaptedOwner {
 
@@ -20,7 +21,7 @@ class JsonAdaptedOwner {
      * Constructs a {@code JsonAdaptedOwner} with the given {@code name} and {@code phone}.
      */
     @JsonCreator
-    public JsonAdaptedOwner(String name, String phone) {
+    public JsonAdaptedOwner(@JsonProperty("name") String name, @JsonProperty("phone") String phone) {
         this.name = name;
         this.phone = phone;
     }
