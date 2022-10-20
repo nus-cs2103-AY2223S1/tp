@@ -10,18 +10,18 @@ import java.util.Arrays;
  * Individual characteristics are separated by semicolons.
  */
 public class Characteristics {
-    public static final String MESSAGE_CONSTRAINTS = "If -c flag is used, "
+    private static final String MESSAGE_CONSTRAINTS = "If -c flag is used, "
             + "characteristics entry cannot be left blank.";
 
     /*
      * The first character of the characteristics must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    private static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String CHARACTERISTIC_DELIMITER = ";";
+    private static final String CHARACTERISTIC_DELIMITER = ";";
 
-    public final String[] characteristicsArr;
+    private final String[] characteristicsArray;
 
     /**
      * Constructs a {@code Characteristics}.
@@ -31,17 +31,17 @@ public class Characteristics {
         requireNonNull(characteristics);
         checkArgument(isValidCharacteristics(characteristics), MESSAGE_CONSTRAINTS);
 
-        characteristicsArr = characteristics.split(CHARACTERISTIC_DELIMITER);
-        for (int i = 0; i < characteristicsArr.length; i++) {
-            characteristicsArr[i] = characteristicsArr[i].trim();
+        characteristicsArray = characteristics.split(CHARACTERISTIC_DELIMITER);
+        for (int i = 0; i < characteristicsArray.length; i++) {
+            characteristicsArray[i] = characteristicsArray[i].trim();
         }
     }
 
     /**
      * Returns the characteristics array represented by {@code Characteristics}.
      */
-    public String[] getCharacteristicsArr() {
-        return characteristicsArr;
+    public String[] getCharacteristicsArray() {
+        return characteristicsArray;
     }
 
     /**
@@ -56,7 +56,7 @@ public class Characteristics {
      * characteristics array.
      */
     public boolean containsCharacteristic(String characteristic) {
-        return Arrays.stream(characteristicsArr)
+        return Arrays.stream(characteristicsArray)
                 .anyMatch(c -> c.toLowerCase().contains(characteristic));
     }
 
@@ -65,7 +65,7 @@ public class Characteristics {
      * is also found in this {@code Characteristic}
      */
     public boolean containsAnyGivenCharacteristics(Characteristics other) {
-        return Arrays.stream(other.getCharacteristicsArr())
+        return Arrays.stream(other.getCharacteristicsArray())
                 .anyMatch(c -> containsCharacteristic(c));
     }
 
@@ -74,8 +74,8 @@ public class Characteristics {
         StringBuilder sb = new StringBuilder();
         // string representation has to be exactly the same as in user input format
         // so that when saved and then retrieved from storage, can be parsed back directly
-        for (int i = 0; i < characteristicsArr.length; i++) {
-            sb.append(characteristicsArr[i])
+        for (int i = 0; i < characteristicsArray.length; i++) {
+            sb.append(characteristicsArray[i])
                     .append("; ");
         }
         // remove last "; " as we don't want it to be repeatedly appended
@@ -87,12 +87,12 @@ public class Characteristics {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Characteristics // instanceof handles nulls
-                && Arrays.equals(characteristicsArr, ((Characteristics) other).characteristicsArr)); // state check
+                && Arrays.equals(characteristicsArray, ((Characteristics) other).characteristicsArray)); // state check
     }
 
     @Override
     public int hashCode() {
-        return characteristicsArr.hashCode();
+        return characteristicsArray.hashCode();
     }
 
 }

@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -24,7 +24,7 @@ public class FilterPropsCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
-            + "[" + PREFIX_SELLER + " SELLER]\n"
+            + "[" + PREFIX_OWNER_NAME + " OWNER NAME]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PRICE_RANGE + " 200000 - 500000 ";
 
