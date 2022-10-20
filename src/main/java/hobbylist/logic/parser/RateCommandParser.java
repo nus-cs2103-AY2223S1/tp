@@ -4,14 +4,9 @@ import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_RATING;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
-
 import hobbylist.commons.core.index.Index;
-import hobbylist.logic.commands.EditCommand;
-import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.commands.RateCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
-import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

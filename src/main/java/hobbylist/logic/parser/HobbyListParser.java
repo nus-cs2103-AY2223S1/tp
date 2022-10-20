@@ -6,7 +6,17 @@ import static hobbylist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import hobbylist.logic.commands.*;
+import hobbylist.logic.commands.AddCommand;
+import hobbylist.logic.commands.ClearCommand;
+import hobbylist.logic.commands.Command;
+import hobbylist.logic.commands.DeleteCommand;
+import hobbylist.logic.commands.EditCommand;
+import hobbylist.logic.commands.ExitCommand;
+import hobbylist.logic.commands.FindCommand;
+import hobbylist.logic.commands.FindTagCommand;
+import hobbylist.logic.commands.HelpCommand;
+import hobbylist.logic.commands.ListCommand;
+import hobbylist.logic.commands.RateCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
 
 /**

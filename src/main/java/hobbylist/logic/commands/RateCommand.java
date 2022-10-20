@@ -2,24 +2,14 @@ package hobbylist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import hobbylist.commons.core.Messages;
 import hobbylist.commons.core.index.Index;
-import hobbylist.commons.util.CollectionUtil;
 import hobbylist.logic.commands.exceptions.CommandException;
 import hobbylist.logic.parser.CliSyntax;
 import hobbylist.model.Model;
 import hobbylist.model.activity.Activity;
-import hobbylist.model.activity.Description;
-import hobbylist.model.activity.Name;
-import hobbylist.model.date.Date;
-import hobbylist.model.tag.Tag;
 
 /**
  * Add or modify the rating of an activity.
