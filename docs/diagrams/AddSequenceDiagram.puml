@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LinkedoutParser" as LinkedoutParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "applicant:Applicant" as Applicant MODEL_COLOR
+end box
+
+[-> LogicManager : execute(add n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
+activate LogicManager
+
+LogicManager -> LinkedoutParser : parseCommand(args)
+activate LinkedoutParser
+
+create AddCommandParser
+LinkedoutParser -> AddCommandParser : AddCommandParser()
+activate AddCommandParser
+
+AddCommandParser --> LinkedoutParser
+deactivate AddCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> LinkedoutParser: BUFFER_MESSAGE
+
+LinkedoutParser -> AddCommandParser : parse(add n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
+activate AddCommandParser
+
+
+AddCommandParser -> AddCommandParser : arePrefixesPresent()
+activate AddCommandParser
+
+
+create Applicant
+AddCommandParser -> Applicant : Applicant()
+activate Applicant
+
+Applicant --> AddCommandParser
+deactivate Applicant
+
+create AddCommand
+AddCommandParser -> AddCommand : AddCommand(applicant)
+activate AddCommand
+
+AddCommand --> AddCommandParser
+deactivate
+
+AddCommandParser --> LinkedoutParser
+deactivate
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> LinkedoutParser
+destroy AddCommandParser
+
+LinkedoutParser --> LogicManager
+deactivate LinkedoutParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : hasApplicant(applicant)
+activate Model
+
+Model --> AddCommand
+deactivate
+
+AddCommand -> Model : addApplicant(applicant)
+activate Model
+
+Model --> AddCommand
+deactivate
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

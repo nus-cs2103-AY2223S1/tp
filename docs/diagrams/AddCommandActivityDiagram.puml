@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters Add command;
+
+if () then ([else])
+    :Add new Applicant \ninto TrackAScholar;
+
+    :TrackAScholar updates\nto display new applicant\nat end of the list;
+else ([Applicant already exist in TrackAScholar])
+    :TrackAScholar shows an\nerror message indicating\nthat Applicant already exist;
+endif
+stop
+@enduml
