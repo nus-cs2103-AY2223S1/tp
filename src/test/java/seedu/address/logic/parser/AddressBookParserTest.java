@@ -102,7 +102,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteTask() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
-          DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
+                  DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
         );
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
     }

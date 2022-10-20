@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalProjects.COCONUT;
 import static seedu.address.testutil.TypicalProjects.ELLE;
 import static seedu.address.testutil.TypicalProjects.FIONA;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 

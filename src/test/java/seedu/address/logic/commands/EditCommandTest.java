@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
