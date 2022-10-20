@@ -85,6 +85,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_SWE = " " + PREFIX_TAG + VALID_TAG_SWE;
     public static final String TAG_DESC_CCA = " " + PREFIX_TAG + VALID_TAG_CCA;
 
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME + "Lunch&Dinner";
     public static final String INVALID_START_DESC = " " + PREFIX_START_DATE + "2020/02/02 abcd";
     public static final String INVALID_END_DESC = " " + PREFIX_END_DATE + "efgh 2020/15/02";
 
