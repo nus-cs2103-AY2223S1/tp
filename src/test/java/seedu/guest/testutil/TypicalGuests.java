@@ -4,8 +4,6 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.guest.logic.commands.CommandTestUtil.VALID_IS_ROOM_CLEAN_AMY;
-import static seedu.guest.logic.commands.CommandTestUtil.VALID_IS_ROOM_CLEAN_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_AMY;
@@ -76,12 +74,10 @@ public class TypicalGuests {
     public static final Guest AMY = new GuestBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withRoom(VALID_ROOM_AMY).withDateRange(VALID_DATE_RANGE_AMY)
             .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_AMY)
-            .withIsRoomClean(VALID_IS_ROOM_CLEAN_AMY)
             .build();
     public static final Guest BOB = new GuestBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withRoom(VALID_ROOM_BOB).withDateRange(VALID_DATE_RANGE_BOB)
             .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB)
-            .withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

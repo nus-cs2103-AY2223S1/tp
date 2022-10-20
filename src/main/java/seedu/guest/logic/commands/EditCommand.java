@@ -106,7 +106,6 @@ public class EditCommand extends Command {
         NumberOfGuests updatedNumberOfGuests = editGuestDescriptor.getNumberOfGuests()
                 .orElse(guestToEdit.getNumberOfGuests());
         IsRoomClean updatedIsRoomClean = editGuestDescriptor.getIsRoomClean().orElse(guestToEdit.getIsRoomClean());
-
         Bill updatedBill = guestToEdit.getBill();
         Request updatedRequest = guestToEdit.getRequest();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,

@@ -29,7 +29,7 @@ public class MarkRoomsUncleanCommand extends Command {
             + ": Changes all guests' isRoomClean statuses to \"no\".\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Mark all guests' isRoomClean statuses as \"no\".";
+    public static final String MESSAGE_SUCCESS = "Marked all guests' isRoomClean statuses as \"no\".";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
