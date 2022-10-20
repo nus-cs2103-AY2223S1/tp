@@ -17,8 +17,8 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
@@ -116,7 +116,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        PropertyDirectory expectedPropertyDirectory = new PropertyDirectory(actualModel.getPropertyDirectory());
+        PropertyDirectory expectedPropertyDirectory = new PropertyDirectory();
         List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -133,7 +133,7 @@ public class CommandTestUtil {
 
         Property person = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPropertyList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPropertyList().size());
     }
