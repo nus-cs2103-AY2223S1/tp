@@ -174,24 +174,24 @@ public class ModuleCondensed {
      * Gets or Sets semesters
      */
     public enum SemestersEnum {
-        S1("S1"),
+        S1(1),
 
-        S2("S2"),
+        S2(2),
 
-        ST1("ST1"),
+        ST1(3),
 
-        ST2("ST2");
+        ST2(4);
 
-        private String value;
+        private int value;
 
-        SemestersEnum(String value) {
+        SemestersEnum(int value) {
             this.value = value;
         }
 
         @JsonCreator
-        public static SemestersEnum fromValue(String value) {
+        public static SemestersEnum fromValue(int value) {
             for (SemestersEnum b : SemestersEnum.values()) {
-                if (b.value.equals(value)) {
+                if (b.value == value) {
                     return b;
                 }
             }
@@ -204,15 +204,15 @@ public class ModuleCondensed {
          * @return
          */
         @JsonCreator
-        public static SemestersEnum fromValue(int value) {
+        public static SemestersEnum fromValue(String value) {
             switch (value) {
-            case 1:
+            case "S1":
                 return S1;
-            case 2:
+            case "S2":
                 return S2;
-            case 3:
+            case "ST1":
                 return ST1;
-            case 4:
+            case "ST2":
                 return ST2;
             default:
                 throw new IllegalArgumentException("Unexpected value '" + value + "'");
@@ -225,34 +225,23 @@ public class ModuleCondensed {
          */
         @JsonValue
         public int getValue() {
-            switch (value) {
-            case "S1":
-                return 1;
-            case "S2":
-                return 2;
-            case "ST1":
-                return 3;
-            default:
-                return 4;
-            }
+            return this.value;
         }
 
         @Override
         public String toString() {
             switch (value) {
-            case "S1":
+            case 1:
                 return "Semester 1";
-            case "S2":
+            case 2:
                 return "Semester 2";
-            case "ST1":
+            case 3:
                 return "Special Term 1";
-            case "ST2":
+            case 4:
                 return "Special Term 2";
             default:
                 return "Invalid semester!";
             }
         }
     }
-
 }
-
