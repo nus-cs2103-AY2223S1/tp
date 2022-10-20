@@ -13,8 +13,8 @@ import seedu.address.model.person.Phone;
  */
 public class Reminder implements Comparable<Reminder> {
     public static final String MESSAGE_CONSTRAINTS = "";
-    public final String description;
-    public final DateTime dateTime;
+    private final String description;
+    private final DateTime dateTime;
     private Optional<Name> name;
     private Optional<Phone> phone;
 
@@ -31,6 +31,18 @@ public class Reminder implements Comparable<Reminder> {
         this.dateTime = dateTime;
         this.name = Optional.of(name);
         this.phone = Optional.of(phone);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
+    public String getDateTimeString() {
+        return dateTime.getDateTimeString();
     }
 
     public String getName() {

@@ -52,7 +52,6 @@ public class GenerateMessageCommand extends MessageCommandGroup {
         Person person = lastShownList.get(personIndex.getZeroBased());
 
         List<Message> messages = model.getMessages();
-        System.out.println(messageIndex.getZeroBased());
         if (messageIndex.getZeroBased() >= messages.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MESSAGE_INDEX);
         }

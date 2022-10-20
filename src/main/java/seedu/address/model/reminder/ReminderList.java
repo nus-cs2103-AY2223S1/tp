@@ -127,7 +127,6 @@ public class ReminderList implements ReadOnlyReminderList {
 
     @Override
     public ObservableList<Reminder> getAllReminders() {
-        System.out.println(internalUnmodifiableList.size());
         return internalUnmodifiableList;
     }
 

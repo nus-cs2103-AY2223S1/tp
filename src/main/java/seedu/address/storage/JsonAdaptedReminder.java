@@ -36,8 +36,8 @@ public class JsonAdaptedReminder {
      * Converts a given {@code Reminder} into this class for Jackson use.
      */
     public JsonAdaptedReminder(Reminder source) {
-        description = source.description;
-        dateTime = source.dateTime.getDateTimeString();
+        description = source.getDescription();
+        dateTime = source.getDateTimeString();
         name = source.getName();
         phone = source.getPhone();
     }
