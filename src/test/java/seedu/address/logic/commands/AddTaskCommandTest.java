@@ -77,7 +77,7 @@ public class AddTaskCommandTest {
         // null -> returns false
         assertFalse(addBuyChickenCommand.equals(null));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(addBuyChickenCommand.equals(addBuyOilCommand));
     }
 
