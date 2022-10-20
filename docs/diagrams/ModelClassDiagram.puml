@@ -15,12 +15,15 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Address
+Class AdditionalNotes
 Class Class
 Class Email
-Class Money
+Class MoneyOwed
+Class MoneyPaid
+Class NokPhone
 Class Name
 Class Phone
-Class AdditionalNotes
+Class RatesPerClass
 Class Tag
 
 }
@@ -41,20 +44,28 @@ AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
+Person *--> NokPhone
 Person *--> Email
 Person *--> Address
 Person *--> Class
 Person *--> Money
 Person *--> AdditionalNotes
 Person *--> "*" Tag
+Person *--> Class
+Person *--> AdditionalNotes
+Person *--> MoneyOwed
+Person *--> MoneyPaid
+Person *--> RatesPerClass
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Phone -[hidden]right-> NokPhone
+NokPhone -[hidden]right-> Address
 Address -[hidden]right-> Email
-Email -[hidden]right-> Class
-Class -[hidden]right-> Money
-Money -[hidden]right-> AdditionalNotes
-AdditionalNotes -[hidden]right-> Tag
+Name -[hidden]down-> Class
+Class -[hidden]right-> MoneyOwed
+MoneyOwed -[hidden]right-> MoneyPaid
+MoneyPaid -[hidden]right-> RatesPerClass
+RatesPerClass -[hidden]right-> AdditionalNotes
 
 ModelManager -->"~* filtered" Person
 @enduml

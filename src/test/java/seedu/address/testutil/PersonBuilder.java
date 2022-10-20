@@ -110,6 +110,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the next of kin {@code Phone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNokPhone(String nokPhone) {
+        this.nokPhone = new Phone(nokPhone);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {

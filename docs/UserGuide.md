@@ -33,12 +33,12 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
 
-![UI introduction](images/UiIntro.png)
+![UI introduction](images/UG-screenshots/UiIntro.png)
 
 
 ### UI Overview
 
-![Partition](images/UiPartition.png)
+![Partition](images/UG-screenshots/UiPartition.png)
 
 Our application is divided into 5 areas to maximise productivity, the specific uses are:
 
@@ -87,7 +87,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-![Help](images/UiHelp.png)
+![Help](images/UG-screenshots/UiHelp.png)
 
 [Back to top](#table-of-contents)
 
@@ -138,7 +138,7 @@ Example:
 
 - `add n/Ben Tan p/87201223 np/90125012 e/BenTan@gmail.com a/Avenue 712`
 
-![Add](images/UiAdd.png)
+![Add](images/UG-screenshots/UiAdd.png)
 
 ```yaml
 Note: Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
@@ -191,7 +191,7 @@ Example:
 
 - `edit 1 e/Ben2022@gmail.com`
 
-![UiEdit](images/UiEdit.png)
+![UiEdit](images/UG-screenshots/UiEdit.png)
 
 [Back to top](#table-of-contents)
 
@@ -212,7 +212,7 @@ Allows the user to view students and their information which includes:
 
 Format: `list`
 
-![UiUList](images/UiList.png)
+![UiUList](images/UG-screenshots/UiList.png)
 
 [Back to top](#table-of-contents)
 
@@ -234,7 +234,7 @@ Example:
 
 `find tan` returns `Tan Xiao Ming` and `John Tan`.
 
-![UiFind](images/UiFind.png)
+![UiFind](images/UG-screenshots/UiFind.png)
 
 [Back to top](#table-of-contents)
 
