@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -142,5 +143,20 @@ public class Student extends Person {
                 && otherPerson.getModuleCodes().equals(getModuleCodes())
                 && otherPerson.getYear().equals(getYear());
 
+    }
+
+    @Override
+    public boolean doesRatingMatch(List<String> ratingList) {
+        return false;
+    }
+
+    @Override
+    public boolean doesYearMatch(List<String> yearList) {
+        return yearList.stream().anyMatch(year -> year.equals(this.year.value));
+    }
+
+    @Override
+    public boolean doesSpecialisationMatch(List<String> specList) {
+        return false;
     }
 }
