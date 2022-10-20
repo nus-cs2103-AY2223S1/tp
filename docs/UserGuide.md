@@ -105,7 +105,7 @@ Splits a debt among several people in PayMeLah such that each person owes the sa
 You can split a debt among as many people as you want. You can even include yourself with index '0'
 </div>
 
-Format: `splitdebt <person index>... d/<description> m/<money>`
+Format: `splitdebt <person index...> d/<description> m/<money>`
 
 Examples:
 * `splitdebt 1 2 d/Pizza m/33.99`
