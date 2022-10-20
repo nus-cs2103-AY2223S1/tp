@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ApplicationBookParser" as ApplicationBookParser LOGIC_COLOR
+participant ":AddInterviewCommandParser" as AddInterviewCommandParser LOGIC_COLOR
+participant "a:AddInterviewCommand" as AddInterviewCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ApplicationBook" as ApplicationBook MODEL_COLOR
+participant "e:Application" as Application MODEL_COLOR
+participant "i:Interview" as Interview MODEL_COLOR
+
+end box
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> ApplicationBookParser : parseCommand()
+activate ApplicationBookParser
+
+create AddInterviewCommandParser
+ApplicationBookParser -> AddInterviewCommandParser
+activate AddInterviewCommandParser
+
+
+create Interview
+AddInterviewCommandParser -> Interview : new Interview(Round, InterviewDate, InterviewTime, Location)
+activate Interview
+
+Interview --> AddInterviewCommandParser : i
+deactivate Interview
+
+create AddInterviewCommand
+AddInterviewCommandParser -> AddInterviewCommand : i
+activate AddInterviewCommand
+
+AddInterviewCommand --> AddInterviewCommandParser
+deactivate AddInterviewCommand
+
+AddInterviewCommandParser --> ApplicationBookParser
+deactivate
+
+ApplicationBookParser --> LogicManager : a
+deactivate ApplicationBookParser
+
+LogicManager -> AddInterviewCommand : execute()
+activate AddInterviewCommand
+
+create Application
+AddInterviewCommand -> Application : new Application(Application, Interview)
+activate Application
+
+Application --> AddInterviewCommand : e
+deactivate
+
+AddInterviewCommand -> Model : setApplication(e)
+activate Model
+
+Model -> ApplicationBook : setApplication(e)
+activate ApplicationBook
+
+ApplicationBook --> Model :
+deactivate ApplicationBook
+
+Model --> AddInterviewCommand
+deactivate Model
+
+create CommandResult
+AddInterviewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddInterviewCommand : r
+deactivate CommandResult
+
+AddInterviewCommand --> LogicManager : r
+deactivate AddInterviewCommand
+AddInterviewCommand -[hidden]-> LogicManager : r
+destroy AddInterviewCommand
+AddInterviewCommandParser -[hidden]-> LogicManager : r
+destroy AddInterviewCommandParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
