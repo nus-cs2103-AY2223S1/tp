@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -29,8 +31,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -67,27 +72,39 @@ public class AddressBookParserTest {
     }
     @Test
     public void parseCommand_addAppointment() throws Exception {
-        EditPersonDescriptor descriptor = new EditPersonDescriptor(DESC_APPOINTMENT);
-        AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(AddAppointmentCommand.COMMAND_WORD
-            + " " + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023);
-        assertEquals(new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor), command);
+        AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(
+                AddAppointmentCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + PREFIX_APPOINTMENT_DATE + VALID_DATETIME_21_JAN_2023
+                        + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS);
+        Appointment appointmentToAdd = new AppointmentBuilder()
+                                    .withDateTime(VALID_DATETIME_21_JAN_2023)
+                                    .withLocation(VALID_LOCATION_NUS).build();
+        assertEquals(new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd), command);
     }
     @Test
     public void parseCommand_editAppointment() throws Exception {
-        EditPersonDescriptor descriptor = new EditPersonDescriptor(DESC_APPOINTMENT);
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_NUS));
+
         EditAppointmentCommand command = (EditAppointmentCommand) parser.parseCommand(
                 EditAppointmentCommand.COMMAND_WORD
                         + " " + INDEX_FIRST_PERSON.getOneBased()
-                        + " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023);
-        assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor), command);
+                        + "." + INDEX_FIRST_APPOINTMENT.getOneBased()
+                        + " " + PREFIX_APPOINTMENT_DATE + VALID_DATETIME_21_JAN_2023
+                        + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS);
+
+        assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor), command);
     }
 
     @Test
     public void parseCommand_deleteAppointment() throws Exception {
         DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
                 DeleteAppointmentCommand.COMMAND_WORD
-                        + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON), command);
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + "." + INDEX_FIRST_APPOINTMENT.getOneBased());
+        assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT), command);
     }
 
     @Test

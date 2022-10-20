@@ -22,14 +22,14 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_INCOME + "Income "
-            + PREFIX_MONTHLY + "MONTHLY "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_INCOME + "INCOME] "
+            + "[" + PREFIX_MONTHLY + "MONTHLY] "
             + "[" + PREFIX_RISKTAG + "RISKTAG] "
             + "[" + PREFIX_PLANTAG + "PLANTAG] "
             + "[" + PREFIX_TAG + "TAG]...\n"

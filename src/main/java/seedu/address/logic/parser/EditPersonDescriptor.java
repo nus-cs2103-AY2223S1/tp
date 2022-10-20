@@ -1,18 +1,12 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
@@ -22,7 +16,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -39,6 +32,7 @@ public class EditPersonDescriptor {
     private RiskTag riskTag;
     private Set<NormalTag> tags;
     private MaximumSortedList<Appointment> appointments;
+    private Set<Tag> tags;
     public EditPersonDescriptor() {}
 
     /**
@@ -55,15 +49,16 @@ public class EditPersonDescriptor {
         setRiskTag(toCopy.riskTag);
         setPlanTag(toCopy.planTag);
         setTags(toCopy.tags);
-        setAppointments(toCopy.appointments);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
+
         return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, planTag,
                 tags, appointments);
+
     }
 
     public void setName(Name name) {
@@ -124,6 +119,7 @@ public class EditPersonDescriptor {
     public Optional<MaximumSortedList<Appointment>> getAppointments() {
         return Optional.ofNullable(appointments);
     }
+
 
     public void setIncome(IncomeLevel income) {
         this.income = income;
@@ -238,6 +234,7 @@ public class EditPersonDescriptor {
         return newPerson;
     }
 
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -259,7 +256,6 @@ public class EditPersonDescriptor {
                 && getAddress().equals(e.getAddress())
                 && getRiskTag().equals(e.getRiskTag())
                 && getMonthly().equals(e.getMonthly())
-                && getTags().equals(e.getTags())
-                && getAppointments().equals(e.getAppointments());
+                && getTags().equals(e.getTags());
     }
 }

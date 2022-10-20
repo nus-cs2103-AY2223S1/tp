@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
  * Guarantees: immutable;
  */
 public class DateTime implements Comparable<DateTime> {
+    public static final String MESSAGE_CONSTRAINTS = "Invalid date time format";
     private final LocalDateTime localDateTime;
 
     /**
@@ -28,6 +29,24 @@ public class DateTime implements Comparable<DateTime> {
         return new Time(localDateTime.toLocalTime());
     }
 
+    public String getTimeFormat() {
+        return localDateTime.format(java.time.format
+                .DateTimeFormatter.ofPattern("hh:mm a"));
+    }
+
+
+    public int getDay() {
+        return this.localDateTime.getDayOfMonth();
+    }
+
+    public int getMonth() {
+        return this.localDateTime.getMonthValue();
+    }
+
+    public int getYear() {
+        return this.localDateTime.getYear();
+    }
+
     @Override
     public String toString() {
         return localDateTime.format(java.time.format
@@ -42,7 +61,7 @@ public class DateTime implements Comparable<DateTime> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime// instanceof handles nulls
-                && localDateTime.equals(((DateTime) other).localDateTime)); // state check
+                && localDateTime.toString().equals(((DateTime) other).localDateTime.toString())); // state check
     }
 
     @Override
