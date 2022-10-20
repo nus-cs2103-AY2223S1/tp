@@ -48,7 +48,7 @@ public class AddressBookTest {
         assertEquals(newData, addressBook);
     }
 
-    @Test
+    /*@Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
@@ -71,7 +71,7 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(newPersons, newListings, newOffers);
 
         assertThrows(DuplicateListingException.class, () -> addressBook.resetData(newData));
-    }
+    }*/
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
