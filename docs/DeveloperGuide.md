@@ -260,8 +260,6 @@ Step 4. The user now decides that the initial order of the task list looks much 
 
 #### Design considerations:
 
-**Aspect: Why the sort methods are implemented as stated above:**
-
 **Aspect: How the sort methods executes:**
 
 * **Alternative 1 (current choice):** Saves the sorting status after sorting
@@ -271,9 +269,6 @@ Step 4. The user now decides that the initial order of the task list looks much 
 * **Alternative 2:** Don't save the sorting status and just sort once
   * Pros: Easy to implement.
   * Cons: Need to type a sort command each time the list is changed to preserve sorting order. 
-
-* **Saving:** 
-Once the user decides to sort the task list a certain way, the task list should remain in that sorted order even when other changes are made to the list. By storing the sorting state internally, the task list can ensure that the sorted order is maintained.
 
 
 --------------------------------------------------------------------------------------------------------------------
