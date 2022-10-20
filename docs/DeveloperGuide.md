@@ -163,7 +163,7 @@ The following is an example usage scenario of how a task is marked as done:
 
 Precondition: Task index provided is valid.
 
-1. User keys in mark command with the specific index of the task. (eg. mark 1)
+1. User keys in mark command with the specific index of the task. (eg. `mark 1`)
 2. The first task in the task list is marked as done.
 
 If any of the following occurs:
@@ -175,9 +175,10 @@ If any of the following occurs:
 Then, an appropriate exception will be thrown and the respective error message will be
 shown to the user.
 
-The following activity diagram summarises the action taken when markCommand is executed:
+The following activity diagram summarizes the action taken when markCommand is executed:
 
 ![MarkActivityDiagram](images/MarkActivityDiagram.png)
+
 _Activity diagram of marking task as done_
 
 In the Logic component, once `execute` is called in `LogicManager`, `TruthTableParser` and `MarkCommandParser`
@@ -187,7 +188,9 @@ A `CommandResult` is generated with `isCompleted` boolean value being true.
 
 The sequence diagram of the Mark command is shown below:
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
 _Sequence diagram of marking tasks as done_
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
