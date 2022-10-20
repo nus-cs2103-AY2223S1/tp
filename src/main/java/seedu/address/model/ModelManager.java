@@ -328,6 +328,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean reminderExists(Reminder reminder) {
+        return reminderList.contains(reminder);
+    }
+
+    @Override
     public ObservableList<Reminder> getCurrentReminderList() {
         if (targetPerson.isPresent()) {
             return getTargetPersonReminderListAsObservableList();

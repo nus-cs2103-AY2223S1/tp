@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
@@ -43,9 +44,7 @@ public class ReminderCreateCommand extends ReminderCommandGroup {
      * @param dateTime of the reminder
      */
     public ReminderCreateCommand(Index index, String description, DateTime dateTime) {
-        requireNonNull(index);
-        requireNonNull(description);
-        requireNonNull(dateTime);
+        requireAllNonNull(index, description, dateTime);
         this.index = Optional.of(index);
         this.description = description;
         this.dateTime = dateTime;
@@ -56,8 +55,7 @@ public class ReminderCreateCommand extends ReminderCommandGroup {
      * @param dateTime of the reminder
      */
     public ReminderCreateCommand(String description, DateTime dateTime) {
-        requireNonNull(description);
-        requireNonNull(dateTime);
+        requireAllNonNull(description, dateTime);
         this.index = Optional.empty();
         this.description = description;
         this.dateTime = dateTime;
@@ -75,12 +73,13 @@ public class ReminderCreateCommand extends ReminderCommandGroup {
             throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
 
-
-        Person person = index.isPresent() ? lastShownList.get(index.get().getZeroBased())
-                : model.getTargetPerson();
+        Person person = index.map(i -> lastShownList.get(i.getZeroBased())).orElseGet(() -> model.getTargetPerson());
         Name name = person.getName();
         Phone phone = person.getPhone();
         Reminder reminder = new Reminder(description, dateTime, name, phone);
+        if (model.reminderExists(reminder)) {
+            throw new CommandException(String.format(Messages.MESSAGE_REMINDER_ALREADY_EXIST, reminder));
+        }
         model.addReminder(reminder);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, reminder));

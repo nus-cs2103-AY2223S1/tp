@@ -187,6 +187,9 @@ public interface Model {
      */
     void addReminder(Reminder reminder);
 
+    /** Returns {@code true} if reminder already exists, {@code false} otherwise */
+    boolean reminderExists(Reminder reminder);
+
     /**
      * Clears the currently displayed reminder list.
      */

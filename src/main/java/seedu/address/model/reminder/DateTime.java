@@ -41,6 +41,13 @@ public class DateTime implements Comparable<DateTime> {
         return dateTime;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DateTime // instanceof handles nulls
+                && dateTime.equals(((DateTime) other).dateTime)); // state check
+    }
+
     /**
      * Returns true if {@code dateTimeString} is a valid date time.
      */

@@ -43,9 +43,9 @@ public class JsonAdaptedReminder {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Reminder} object.
+     * Converts this Jackson-friendly adapted reminder object into the model's {@code Reminder} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted reminder.
      */
     public Reminder toModelType() throws IllegalValueException {
         if (!Reminder.isValidReminder(description, dateTime, name, phone)) {

@@ -86,46 +86,43 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        Optional<ReadOnlyReminderList> reminderListOptional;
-        ReadOnlyReminderList reminderListData;
+        launchMessage = WELCOME_MESSAGE;
+        ReadOnlyAddressBook addressBookData = readAddressBookFromStorage(storage);
+        ReadOnlyReminderList reminderListData = readReminderListFromStorage(storage);
+
+        return new ModelManager(addressBookData, userPrefs, reminderListData);
+    }
+
+    private ReadOnlyAddressBook readAddressBookFromStorage(Storage storage) {
         try {
-            addressBookOptional = storage.readAddressBook();
+            Optional<ReadOnlyAddressBook> addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
                 launchMessage = WELCOME_MESSAGE_FIRST_LAUNCH;
-            } else {
-                launchMessage = WELCOME_MESSAGE;
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            return addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
-            initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
-            initialData = new AddressBook();
         }
+        launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
+        return new AddressBook();
+    }
 
+    private ReadOnlyReminderList readReminderListFromStorage(Storage storage) {
         try {
-            reminderListOptional = storage.readReminderList();
-            if (!reminderListOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample ReminderList");
-                reminderListData = new ReminderList();
-            } else {
-                reminderListData = reminderListOptional.get();
+            Optional<ReadOnlyReminderList> reminderListOptional = storage.readReminderList();
+            if (reminderListOptional.isPresent()) {
+                return reminderListOptional.get();
             }
+            logger.info("Data file not found. Will be starting with a sample ReminderList");
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ReminderList");
-            reminderListData = new ReminderList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ReminderList");
-            reminderListData = new ReminderList();
         }
-
-        return new ModelManager(initialData, userPrefs, reminderListData);
+        return new ReminderList();
     }
 
     private void initLogging(Config config) {

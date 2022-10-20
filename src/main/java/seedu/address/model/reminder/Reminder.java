@@ -25,8 +25,7 @@ public class Reminder implements Comparable<Reminder> {
      * @param dateTime The date and time associated with the reminder in {@code String} format.
      */
     public Reminder(String description, DateTime dateTime, Name name, Phone phone) {
-        requireNonNull(description);
-        requireNonNull(dateTime);
+        requireAllNonNull(description, dateTime, name, phone);
         this.description = description;
         this.dateTime = dateTime;
         this.name = name;

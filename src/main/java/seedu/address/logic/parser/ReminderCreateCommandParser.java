@@ -29,7 +29,7 @@ public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATETIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATETIME)) {
+        if (!argMultimap.arePrefixesPresent(PREFIX_DESCRIPTION, PREFIX_DATETIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ReminderCreateCommand.MESSAGE_USAGE));
         }
@@ -46,14 +46,6 @@ public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand
         DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         return index.map(i -> new ReminderCreateCommand(i, description, dateTime))
                 .orElse(new ReminderCreateCommand(description, dateTime));
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     private Optional<Index> parseIndex(ArgumentMultimap argMultimap) throws ParseException {
