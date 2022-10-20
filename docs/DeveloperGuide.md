@@ -170,11 +170,11 @@ This section describes some noteworthy details on how certain features are imple
 The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 Additionally, the mechanism utilises the following operations in `UniquePersonList`:
 
-* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by name in alphabetical order.
-* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by phone number in increasing order.
-* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by email in alphabetical order.
-* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by address in alphabetical order.
-* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified tag.
+* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by **Name** in alphabetical order.
+* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by **Phone** number in increasing order.
+* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by **Email** in alphabetical order.
+* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by **Address** in alphabetical order.
+* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified **Tag**.
 
 These operations sort in reverse order when `isReverse` is true.
 
@@ -182,11 +182,16 @@ These operations are exposed in the `Model` interface under the same method name
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-Step 1. The user executes `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
+Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` checks the user input to confirm
+that parameters have been entered. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
 
-Step 2. The `sort` command sorts the currently displayed list by name first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. The `friend` string is checked to see if it 
+fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters,
+they are ignored and the command continues execution as per normal.
 
-Step 3. The `sort` command sorts the currently displayed list by the `friend` tag next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
+Step 3. The `sort` command sorts the currently displayed list by **Name** first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+
+Step 4. The `sort` command sorts the currently displayed list by the `friend` **Tag** next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
 
 The following sequence diagram shows how the sort operation works:
 
@@ -196,7 +201,7 @@ The following sequence diagram shows how the sort operation works:
 
 </div>
 
-Step 4. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
+Step 5. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 
