@@ -2,10 +2,6 @@ package paymelah.model.debt;
 
 import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 /**
@@ -13,15 +9,10 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Debt {
-    public static final String DATE_CONSTRAINTS =
-            "Dates should be in yyyy-mm-dd format; where y is year, m is month and d is day.";
-    public static final String TIME_CONSTRAINTS =
-            "Time should be in hh:mm format; where h is hour in 24h clock and m is minute.";
-
     private final Description description;
     private final Money money;
-    private final LocalDate date;
-    private final LocalTime time;
+    private final DebtDate date;
+    private final DebtTime time;
 
     /**
      * Every field must be present and not null.
@@ -31,7 +22,7 @@ public class Debt {
      * @param date The date of the debt.
      * @param time The time of the debt.
      */
-    public Debt(Description description, Money money, LocalDate date, LocalTime time) {
+    public Debt(Description description, Money money, DebtDate date, DebtTime time) {
         requireAllNonNull(description, money, date, time);
         this.description = description;
         this.money = money;
@@ -47,11 +38,11 @@ public class Debt {
         return money;
     }
 
-    public LocalDate getDate() {
+    public DebtDate getDate() {
         return date;
     }
 
-    public LocalTime getTime() {
+    public DebtTime getTime() {
         return time;
     }
 
@@ -59,23 +50,8 @@ public class Debt {
      * Returns a Debt with the given description, money, date and time.
      */
     public static Debt makeDebt(String description, String money, String date, String time) {
-        LocalDate localDate = null;
-        LocalTime localTime = null;
-
-        try {
-            localDate = LocalDate.parse(date);
-        } catch (DateTimeParseException dateException) {
-            assert false : "makeDebt called with erroneous date format.";
-        }
-
-        try {
-            localTime = LocalTime.parse(time);
-        } catch (DateTimeParseException timeException) {
-            assert false : "makeDebt called with erroneous time format.";
-        }
-
-        assert localDate != null && localTime != null;
-        return new Debt(new Description(description), new Money(money), localDate, localTime);
+        requireAllNonNull(description, money, date, time);
+        return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time));
     }
 
     /**
@@ -109,7 +85,7 @@ public class Debt {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDate().format(DateTimeFormatter.ofPattern("dd/MM/yy")))
+        builder.append(getDate())
                 .append(": ")
                 .append(getDescription())
                 .append("; $")

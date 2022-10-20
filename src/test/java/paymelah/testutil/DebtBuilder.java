@@ -1,10 +1,10 @@
 package paymelah.testutil;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 
@@ -19,8 +19,8 @@ public class DebtBuilder {
 
     private Description description;
     private Money money;
-    private LocalDate date;
-    private LocalTime time;
+    private DebtDate date;
+    private DebtTime time;
 
     /**
      * Creates a {@code DebtBuilder} with the default details.
@@ -29,8 +29,8 @@ public class DebtBuilder {
         try {
             description = new Description(DEFAULT_DESCRIPTION);
             money = new Money(DEFAULT_MONEY);
-            date = LocalDate.parse(DEFAULT_DATE);
-            time = LocalTime.parse(DEFAULT_TIME);
+            date = new DebtDate(DEFAULT_DATE);
+            time = new DebtTime(DEFAULT_TIME);
         } catch (DateTimeParseException e) {
             assert false : "DebtBuilder constructor error that should not occur has occurred.";
         }
@@ -66,7 +66,7 @@ public class DebtBuilder {
      * Sets the date of the {@code Debt} that we are building.
      */
     public DebtBuilder withDate(String date) {
-        this.date = LocalDate.parse(date);
+        this.date = new DebtDate(date);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class DebtBuilder {
      * Sets the time of the {@code Debt} that we are building.
      */
     public DebtBuilder withTime(String time) {
-        this.time = LocalTime.parse(time);
+        this.time = new DebtTime(time);
         return this;
     }
 

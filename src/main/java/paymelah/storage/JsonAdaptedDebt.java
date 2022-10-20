@@ -1,14 +1,12 @@
 package paymelah.storage;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import paymelah.commons.exceptions.IllegalValueException;
 import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 
@@ -52,6 +50,14 @@ class JsonAdaptedDebt {
         return money;
     }
 
+    public String getDebtDate() {
+        return date;
+    }
+
+    public String getDebtTime() {
+        return time;
+    }
+
     /**
      * Converts this Jackson-friendly adapted debt object into the model's {@code Debt} object.
      *
@@ -64,21 +70,13 @@ class JsonAdaptedDebt {
         if (!Money.isValidMoney(money)) {
             throw new IllegalValueException(Money.MESSAGE_CONSTRAINTS);
         }
-
-        LocalDate localDate;
-        LocalTime localTime;
-        try {
-            localDate = LocalDate.parse(date);
-        } catch (DateTimeParseException e1) {
-            throw new IllegalValueException(Debt.DATE_CONSTRAINTS);
+        if (!DebtDate.isValidDate(date)) {
+            throw new IllegalValueException(DebtDate.MESSAGE_CONSTRAINTS);
         }
-        try {
-            localTime = LocalTime.parse(time);
-        } catch (DateTimeParseException e2) {
-            throw new IllegalValueException(Debt.TIME_CONSTRAINTS);
+        if (!DebtTime.isValidTime(time)) {
+            throw new IllegalValueException(DebtTime.MESSAGE_CONSTRAINTS);
         }
 
-        return new Debt(new Description(description), new Money(money), localDate, localTime);
+        return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time));
     }
-
 }

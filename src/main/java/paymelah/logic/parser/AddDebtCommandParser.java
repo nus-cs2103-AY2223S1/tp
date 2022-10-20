@@ -5,13 +5,12 @@ import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.AddDebtCommand;
 import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 
@@ -20,8 +19,8 @@ import paymelah.model.debt.Money;
  */
 public class AddDebtCommandParser implements Parser<AddDebtCommand> {
     // DEFAULT_DATE will be deleted when AddDebtCommand is reworked
-    public static final LocalDate DEFAULT_DATE = LocalDate.parse("2022-10-12");
-    public static final LocalTime DEFAULT_TIME = LocalTime.MIDNIGHT;
+    public static final DebtDate DEFAULT_DATE = new DebtDate("2022-10-12");
+    public static final DebtTime DEFAULT_TIME = new DebtTime("00:00");
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddDebtCommand

@@ -7,7 +7,8 @@ import static paymelah.testutil.TypicalDebts.CHICKEN_RICE;
 import org.junit.jupiter.api.Test;
 
 import paymelah.commons.exceptions.IllegalValueException;
-import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 
@@ -43,12 +44,12 @@ public class JsonAdaptedDebtTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedDebt debt = new JsonAdaptedDebt(VALID_DESCRIPTION, VALID_MONEY, INVALID_DATE, VALID_TIME);
-        assertThrows(IllegalValueException.class, Debt.DATE_CONSTRAINTS, debt::toModelType);
+        assertThrows(IllegalValueException.class, DebtDate.MESSAGE_CONSTRAINTS, debt::toModelType);
     }
 
     @Test
     public void toModelType_invalidTime_throwsIllegalValueException() {
         JsonAdaptedDebt debt = new JsonAdaptedDebt(VALID_DESCRIPTION, VALID_MONEY, VALID_DATE, INVALID_TIME);
-        assertThrows(IllegalValueException.class, Debt.TIME_CONSTRAINTS, debt::toModelType);
+        assertThrows(IllegalValueException.class, DebtTime.MESSAGE_CONSTRAINTS, debt::toModelType);
     }
 }
