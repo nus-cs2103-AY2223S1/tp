@@ -577,7 +577,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: ``add t/e d/Lunch a/$7.20 da/04-10-2022 c/Food ... ``<br>
        Expected: No entry is added. Error details shown in the status message on amount formatted to 2 decimal places.
-   
+
     1. Test case: `add d/Lunch a/7.20 da/04-10-2022 c/Food`<br>
        Expected: No entry is added. Error details shown in the status message.
 
