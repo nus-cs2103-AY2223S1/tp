@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REVERSE;
+
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,7 +21,26 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.toLowerCase().trim();
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_REVERSE);
+
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+
+        String trimmedArgs = argMultimap.getPreamble().toLowerCase().trim();
+        if (isPrefixPresent(argMultimap, PREFIX_REVERSE)) {
+            switch (trimmedArgs) {
+            case "name":
+                return new SortCommand(Applicant.sortByName().reversed());
+            case "scholarship":
+                return new SortCommand(Applicant.sortByScholarship().reversed());
+            default:
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            }
+        }
+
         switch (trimmedArgs) {
         case "name":
             return new SortCommand(Applicant.sortByName());
@@ -28,5 +50,9 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
+    }
+
+    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
