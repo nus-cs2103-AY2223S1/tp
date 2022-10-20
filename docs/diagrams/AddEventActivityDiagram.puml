@@ -6,13 +6,13 @@ start
 'diamond we place it as the true branch instead.
 
 if () then
-    :Throw Exception;
+    :Throw InvalidCommandException;
 else ([ValidSyntax])
 if () then
-    : Throw Exception;
+    : Throw InvalidPersonException;
 else ([Person Name exists in AB])
     if () then
-    : Throw Exception;
+    : Throw OverlapEventException;
     else ([Event doesn't overlap])
     : ModeManager adds event to AB;
     : UniqueEventList is updated;

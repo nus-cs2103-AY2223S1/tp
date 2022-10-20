@@ -128,16 +128,16 @@ The `Model` component,
 
 
 
-<img src="images/ModelEventClassDiagram.png"  width="500" />
+<img src="images/ModelEventClassDiagram.png"  width="500"/>
 
 ### Event Component
 
 An extension to the current Model is the `Event` Component,
 * Stores all information related to Event Objects, all of which are contained inside a `UniqueEventList` object.
 
-* Stores the current `Event` objects. Upon filtering via other commands (e.g: `ViewCalendar`), it is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be observed. 
+* Stores the current `Event` objects. Upon filtering via other commands (e.g: `calendar`), it is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be observed. 
 
-* Has strict requirements on deciding whether the state of adding an Event is valid (will be elaborated on later)
+* Has strict requirements on deciding whether an new `Event` is valid or not.
 
 
 
@@ -259,7 +259,7 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 
 ### The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
 
-<p align ="center"> <img src="images/AddEventActivityDiagram.png" width="500" /> </p>
+<p align ="center"> <img src="images/AddEventActivityDiagram.png" width="650" /> </p>
 
 
 
