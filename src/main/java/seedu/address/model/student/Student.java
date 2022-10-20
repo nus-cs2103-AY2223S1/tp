@@ -12,7 +12,7 @@ import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -105,7 +105,7 @@ public class Student {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Student otherStudent) {
+    public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
@@ -135,6 +135,8 @@ public class Student {
                 && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getTutorialModule().equals(getTutorialModule())
                 && otherStudent.getTutorialName().equals(getTutorialName())
+                && otherStudent.getAttendance().equals(getAttendance())
+                && otherStudent.getParticipation().equals(getParticipation())
                 && otherStudent.getGrade().equals(getGrade())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -142,7 +144,8 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, phone, email, telegramHandle, tutorialModule, tutorialName, grade, tags);
+        return Objects.hash(name, id, phone, email, telegramHandle, tutorialModule, tutorialName,
+                attendance, participation, grade, tags);
     }
 
     @Override
@@ -157,10 +160,14 @@ public class Student {
                 .append(getEmail())
                 .append("; Telegram Handle: ")
                 .append(getTelegram())
-                .append("; Tutorial: ")
+                .append("; Module: ")
                 .append(getTutorialModule())
-                .append(" ")
+                .append("; Tutorial: ")
                 .append(getTutorialName())
+                .append("; Attendance: ")
+                .append(getAttendance())
+                .append("; Participation: ")
+                .append(getParticipation())
                 .append("; Grade: ")
                 .append(getGrade());
 
