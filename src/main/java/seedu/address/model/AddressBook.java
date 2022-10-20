@@ -259,17 +259,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
      *     in the list (other than {@code target}).
      */
-    public void replaceExam(Exam target, Exam editedExam) throws DuplicateExamException {
+    public void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException {
         requireAllNonNull(target, editedExam);
-
-        exams.replaceExam(target, editedExam);
+        exams.replaceExam(target, editedExam, isSameExam);
     }
 
-    public void setExam(Exam target, Exam editedExam) {
-        requireAllNonNull(target, editedExam);
-
-        exams.setExam(target, editedExam);
-    }
     public void setExams(List<Exam> exams) {
         this.exams.setExams(exams);
     }

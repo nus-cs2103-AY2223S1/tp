@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
@@ -21,6 +22,7 @@ public class Task {
     private final PriorityTag priorityTag;
     private final DeadlineTag deadlineTag;
     private final TaskStatus status;
+    private final Exam linkedExam;
 
     /**
      * The constructor of the Task class. Sets the module and
@@ -35,6 +37,7 @@ public class Task {
         this.status = TaskStatus.INCOMPLETE;
         priorityTag = null;
         deadlineTag = null;
+        linkedExam = null;
     }
 
     /**
@@ -50,16 +53,19 @@ public class Task {
         this.status = status;
         priorityTag = null;
         deadlineTag = null;
+        linkedExam = null;
     }
 
     /**
      * The constructor of the Task class. Sets the module, description,
-     * completion status and the priority status of the task.
+     * completion status, the priority status of the task and the deadline
+     * of the task.
      *
      * @param module The module being set.
      * @param description The description being set.
      * @param status The completion status of the task.
      * @param priorityTag The tag marking the priority status of the task.
+     * @param deadlineTag The tag marking the deadline of the task.
      */
     public Task(Module module, TaskDescription description, TaskStatus status, PriorityTag priorityTag,
             DeadlineTag deadlineTag) {
@@ -68,6 +74,29 @@ public class Task {
         this.status = status;
         this.priorityTag = priorityTag;
         this.deadlineTag = deadlineTag;
+        linkedExam = null;
+    }
+
+    /**
+     * The constructor of the Task class. Sets the module, description,
+     * completion status, the priority status of the task, the deadline
+     * of the task and the exam description of the task.
+     *
+     * @param module The module being set.
+     * @param description The description being set.
+     * @param status The completion status of the task.
+     * @param priorityTag The tag marking the priority status of the task.
+     * @param deadlineTag The tag marking the deadline of the task.
+     * @param linkedExam The exam the task is linked to.
+     */
+    public Task(Module module, TaskDescription description, TaskStatus status, PriorityTag priorityTag,
+                DeadlineTag deadlineTag, Exam linkedExam) {
+        this.module = module;
+        this.description = description;
+        this.status = status;
+        this.priorityTag = priorityTag;
+        this.deadlineTag = deadlineTag;
+        this.linkedExam = linkedExam;
     }
 
     public TaskDescription getDescription() {
@@ -101,7 +130,7 @@ public class Task {
      * and returns the task.
      */
     public Task mark() {
-        return new Task(module, description, TaskStatus.COMPLETE, priorityTag, deadlineTag);
+        return new Task(module, description, TaskStatus.COMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 
     public Task setPriorityTag(PriorityTag tag) {
@@ -109,7 +138,7 @@ public class Task {
         if (priorityTag != null) {
             throw new PriorityTagAlreadyExistsException();
         }
-        return new Task(module, description, status, tag, deadlineTag);
+        return new Task(module, description, status, tag, deadlineTag, linkedExam);
     }
 
     public boolean hasPriorityTag() {
@@ -133,7 +162,15 @@ public class Task {
         if (deadlineTag != null) {
             throw new DeadlineTagAlreadyExistsException();
         }
-        return new Task(module, description, status, priorityTag, tag);
+        return new Task(module, description, status, priorityTag, tag, linkedExam);
+    }
+
+    public boolean isLinked() {
+        return linkedExam != null;
+    }
+
+    public Exam getExam() {
+        return linkedExam;
     }
 
     /**
@@ -141,7 +178,7 @@ public class Task {
      * and returns the task.
      */
     public Task unmark() {
-        return new Task(module, description, TaskStatus.INCOMPLETE, priorityTag, deadlineTag);
+        return new Task(module, description, TaskStatus.INCOMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 
     /**
@@ -154,6 +191,17 @@ public class Task {
         Module updatedModule = editTaskDescriptor.getModule().orElse(module);
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
         return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+    }
+
+    /**
+     * Links the task to the exam in the exam list.
+     *
+     * @param exam The exam which the task will be linked to.
+     * @return Task object which now contains the linked exam.
+     */
+    public Task linkTask(Exam exam) {
+        requireNonNull(exam);
+        return new Task(module, description, status, priorityTag, deadlineTag, exam);
     }
 
     @Override

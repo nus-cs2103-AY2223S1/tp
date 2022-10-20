@@ -13,10 +13,6 @@ import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
 
-
-
-
-
 /**
  * This class represents a list which contains Exam objects which are distinct from
  * each other. Exam objects are distinct from each other when they have different module
@@ -60,40 +56,25 @@ public class DistinctExamList implements Iterable<Exam> {
     }
 
     /**
-     * Replaces the exam {@code target} in the exam list with {@code editedExam}.
-     * {@code target} must exist in the exam list.
-     * The exam identity of {@code editedExam} should be the same as exam identity of {@code target}.
-     */
-    public void setExam(Exam target, Exam editedExam) {
-        requireAllNonNull(target, editedExam);
-
-        int index = examList.indexOf(target);
-        if (index == -1) {
-            throw new ExamNotFoundException();
-        }
-
-        if (!target.isSameExam(editedExam)) {
-            throw new ExamIdentityModifiedException();
-        }
-
-        examList.set(index, editedExam);
-    }
-
-    /**
      * Replaces the given exam {@code target} with {@code editedExam}.
      * {@code target} must exist in the exam list.
      *
      * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
      *     in the exam list (other than {@code target}).
      */
-    public void replaceExam(Exam target, Exam editedExam) throws DuplicateExamException {
+    public void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException {
         requireAllNonNull(target, editedExam);
 
         int index = examList.indexOf(target);
         if (index == -1) {
             throw new ExamNotFoundException();
         }
-        if (contains(editedExam) && !editedExam.isSameExam(target)) {
+
+        if (isSameExam && !target.isSameExam(editedExam)) {
+            throw new ExamIdentityModifiedException();
+        }
+
+        if (!isSameExam && contains(editedExam) && !editedExam.isSameExam(target)) {
             throw new DuplicateExamException();
         }
         examList.set(index, editedExam);

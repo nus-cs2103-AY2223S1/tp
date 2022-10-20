@@ -28,6 +28,9 @@ public class ExamCard extends UiPart<Region> {
     @FXML
     private Label moduleCode;
 
+    @FXML
+    private Label count;
+
 
     /**
      * Constructor of the ExamCard. Sets the exam and the position.

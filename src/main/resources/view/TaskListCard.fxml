@@ -41,6 +41,7 @@
                 <Label fx:id="description" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$description" />
             </HBox>
             <Label fx:id="moduleCode" text="\$modCode" style="-fx-text-fill: black;" />
+            <Label fx:id="examDescription" style="-fx-text-fill: black;" visible="false"/>
         </VBox>
       <rowConstraints>
          <RowConstraints />
