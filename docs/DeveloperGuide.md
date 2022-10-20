@@ -94,7 +94,12 @@ The `LoginWindow` will then pass the user's data to the `MainWindow` so that the
 `LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`. 
 As of 20/10/2022, it consists of 2 `TextBox` FXML components and a "submit" `Button` FXML component.
 
+We plan to add a new UI component in our implementation: the `ImportCSVButton`.
+The `ImportCSVButton` is a button that is displayed on the `MainWindow` after login
+The `ImportCSVButton` is allows users to import student's data from a CSV file into the `storage` component
 
+`ImportCSVButton` inherits from the abstract `UiPart` class, just like the `MainWindow`.
+As of 21/10/2022, it has yet to be implemented
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -292,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Sherlock remains confidential |
 | `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly                           |     |     |     |
 
-_{More to be added}_
+_{User Stories to be updated according to new project direction}_
 
 ### Use cases
 
@@ -341,7 +346,7 @@ _{More to be added}_
 
   Use case ends.
 
-_{More to be added}_
+_{Use Cases to be updated according to new project direction}
 
 ### Non-Functional Requirements
 
