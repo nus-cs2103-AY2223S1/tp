@@ -1,13 +1,10 @@
 package seedu.address.ui;
 
-import static java.lang.Integer.MAX_VALUE;
-
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
@@ -16,13 +13,12 @@ import seedu.address.model.calendar.CalendarEvent;
  * Button that contains a CalendarEvent.
  */
 public class EventButton extends Button {
-    private static final int MAX_WIDTH = MAX_VALUE;
-    private static final int MAX_HEIGHT = 30;
-    private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-color: grey; -fx-border-radius: 5;";
+    private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-color: grey; "
+            + "-fx-border-radius: 5;";
     private static final String ENGAGED_EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-color: orange;"
             + "-fx-border-radius: 5;";
     private static final double ORIGIN = 0.0;
-    public static final int TOOLTIP_OFFSET = 15;
+    private static final int TOOLTIP_OFFSET = 15;
     private Stage primaryStage;
     private CalendarPopup calendarPopup;
 

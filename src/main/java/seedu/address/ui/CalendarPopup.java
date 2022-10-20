@@ -9,21 +9,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.PopupWindow;
 import javafx.util.Duration;
 import seedu.address.MainApp;
 import seedu.address.model.calendar.CalendarEvent;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.Name;
 
 /**
  * The Popup that is displayed when a {@code CalendarButton} is
  * interacted with.
  */
 public class CalendarPopup extends Tooltip {
-    public static final int POPUP_DELAY = 10;
-    public static final int POPUP_DURATION = 1000;
-    public static final String LABEL_STYLE = "-fx-text-fill: black;";
+    private static final int POPUP_DELAY = 10;
+    private static final int POPUP_DURATION = 1000;
+    private static final String LABEL_STYLE = "-fx-text-fill: black;";
     private static final String SQUARE_BUBBLE =
             "M24 1h-24v16.981h4v5.019l7-5.019h13z";
     private static final String POPUP_STYLE = "-fx-font-size: 16px; -fx-background-color: "
@@ -31,7 +28,7 @@ public class CalendarPopup extends Tooltip {
     private static final Image DATE_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/calendar.png"));
     private static final Image TIME_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/clock.png"));
     private static final Image LOCATION_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/location.png"));
-    public static final int LABEL_PREF_WIDTH = 200;
+    private static final int LABEL_PREF_WIDTH = 200;
 
     private final Node owner;
 
