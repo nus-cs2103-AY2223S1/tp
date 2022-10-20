@@ -134,7 +134,6 @@ public class SoConnect implements ReadOnlySoConnect {
         return persons.contains(person);
     }
 
-    //@@author ChongCheeKaiClarence
     /**
      * Returns true if all the tags in the contact exist in the tagList.
      *
@@ -227,7 +226,6 @@ public class SoConnect implements ReadOnlySoConnect {
         persons.removeRelevantPersonTag(tag);
     }
 
-    //@@author ChongCheeKaiClarence
     /**
      * Gets the tag from the tagList.
      *

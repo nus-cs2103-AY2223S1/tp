@@ -106,7 +106,6 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
-    //@@author ChongCheeKaiClarence
     /**
      * Updates the tag in every contact.
      *
@@ -131,7 +130,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
-    //@@author ChongCheeKaiClarence
     /**
      * Removes the tag in every contact.
      *
