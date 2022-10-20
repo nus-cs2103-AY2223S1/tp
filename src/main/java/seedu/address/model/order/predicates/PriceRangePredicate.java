@@ -5,10 +5,19 @@ import java.util.function.Predicate;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Price;
 
+/**
+ * Tests that a {@code Order}'s {@code PriceRange} matches any of the keywords given.
+ */
 public class PriceRangePredicate<T extends Order> implements Predicate<T> {
     private final Price lowerBound;
     private final Price upperBound;
 
+    /**
+     * Constructs a PriceRangePredicate.
+     *
+     * @param lowerBound The lower bound Price.
+     * @param upperBound The upper bound Price.
+     */
     public PriceRangePredicate(Price lowerBound, Price upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;

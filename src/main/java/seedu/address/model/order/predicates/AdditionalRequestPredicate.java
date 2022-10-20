@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.order.Order;
 
+/**
+ * Tests that a {@code Order}'s {@code AdditionalRequest} matches any of the keywords given.
+ */
 public class AdditionalRequestPredicate<T extends Order> implements Predicate<T> {
     private final List<String> keywords;
 
@@ -18,7 +21,9 @@ public class AdditionalRequestPredicate<T extends Order> implements Predicate<T>
     public boolean test(T order) {
         List<String> additionalRequests = order.getAdditionalRequests().getAdditionalRequests();
         Set<String> result = additionalRequests.stream()
-                .distinct().filter(keywords::contains).collect(Collectors.toSet());
+                .distinct()
+                .filter(keywords::contains)
+                .collect(Collectors.toSet());
         return result.size() > 0;
     }
 

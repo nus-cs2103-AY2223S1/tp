@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
 
+/**
+ * Tests that a {@code Order}'s {@code OrderStatus} matches any of the keywords given.
+ */
 public class OrderStatusPredicate<T extends Order> implements Predicate<T> {
     private final OrderStatus orderStatus;
 
