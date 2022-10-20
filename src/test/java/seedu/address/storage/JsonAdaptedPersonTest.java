@@ -52,7 +52,6 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL, VALID_ADDRESS, VALID_BIRTHDAY,
                         VALID_HEALTH_INSURANCE, VALID_DISABILITY_INSURANCE, VALID_CRITICAL_ILLNESS_INSURANCE,
                         VALID_LIFE_INSURANCE, VALID_REMINDER, VALID_TAGS);
-                        VALID_EMAIL, VALID_ADDRESS, VALID_BIRTHDAY, VALID_TAGS, VALID_REMINDER);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -84,7 +83,6 @@ public class JsonAdaptedPersonTest {
                 VALID_EMAIL, VALID_ADDRESS, VALID_BIRTHDAY,
                 VALID_HEALTH_INSURANCE, VALID_DISABILITY_INSURANCE, VALID_CRITICAL_ILLNESS_INSURANCE,
                 VALID_LIFE_INSURANCE, VALID_REMINDER, VALID_TAGS);
-                VALID_EMAIL, VALID_ADDRESS, VALID_BIRTHDAY, VALID_TAGS, VALID_REMINDER);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -116,7 +114,7 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         INVALID_ADDRESS, VALID_BIRTHDAY,
                         VALID_HEALTH_INSURANCE, VALID_DISABILITY_INSURANCE, VALID_CRITICAL_ILLNESS_INSURANCE,
-                        VALID_LIFE_INSURANCE, VALID_REMINDERVALID_TAGS);
+                        VALID_LIFE_INSURANCE, VALID_REMINDER, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

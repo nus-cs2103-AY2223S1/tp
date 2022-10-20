@@ -22,6 +22,7 @@ import seedu.address.model.person.Insurance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -90,6 +91,7 @@ public class InsuranceCommand extends Command {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Birthday birthday = personToEdit.getBirthday();
+        Reminder reminders = personToEdit.getReminders();
         Insurance updatedHealthInsurance = editInsuranceDescriptor
                 .getHealthInsurance().orElse(personToEdit.getHealthInsurance());
         Insurance updatedDisabilityInsurance = editInsuranceDescriptor.getDisabilityInsurance()
@@ -102,7 +104,7 @@ public class InsuranceCommand extends Command {
 
         return new Person(name, phone, email, address, birthday,
                 updatedHealthInsurance, updatedDisabilityInsurance, updatedCriticalIllnessInsurance,
-                updatedLifeInsurance, tags);
+                updatedLifeInsurance, reminders, tags);
     }
 
     @Override

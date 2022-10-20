@@ -54,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Reminder reminders = ParserUtil.parseReminders(argMultimap.getValue(PREFIX_REMINDER).get());
 
-        Person person = new Person(name, phone, email, address, birthday, tagList, reminders);
+        Person person = new Person(name, phone, email, address, birthday, reminders, tagList);
 
         return new AddCommand(person);
     }

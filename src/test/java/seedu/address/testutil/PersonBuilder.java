@@ -167,7 +167,6 @@ public class PersonBuilder {
         this.reminders = new Reminder(task);
         return this;
     }
-    
     /**
      * Builds and returns the Person
      *

@@ -62,7 +62,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.BIRTHDAY_DESC_AMY
-                + CommandTestUtil.BIRTHDAY_DESC_BOB
+                + CommandTestUtil.REMINDER_DESC_AMY + CommandTestUtil.BIRTHDAY_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted

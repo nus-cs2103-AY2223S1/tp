@@ -34,7 +34,7 @@ public class Person {
      * Every field must be present and not null, except for Insurance fields which are added by overloaded method.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Birthday birthday, Set<Tag> tags) {
+                  Birthday birthday, Reminder reminders, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -42,12 +42,13 @@ public class Person {
         this.address = address;
         this.birthday = birthday;
         this.tags.addAll(tags);
+        this.reminders = reminders;
         this.healthInsurance = new HealthInsurance(false);
         this.disabilityInsurance = new DisabilityInsurance(false);
         this.criticalIllnessInsurance = new CriticalIllnessInsurance(false);
         this.lifeInsurance = new LifeInsurance(false);
     }
-    
+
     /**
      * Every field must be present and not null.
      */
