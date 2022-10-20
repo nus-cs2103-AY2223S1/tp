@@ -4,17 +4,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-PennyWise *-right-> "1" UniqueEntryList
-PennyWise *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueEntryList
-UniqueTagList -[hidden]down- UniqueEntryList
+PennyWise *-down-> "1" UniqueEntryList
 
-UniqueTagList *-right-> "*" Tag
 UniqueEntryList -right-> Entry
 
-Entry -up-> "*" Tag
-
-Entry *--> Description
-Entry *--> Amount
-Entry *--> Date
+Entry *--> "1" Description
+Entry *--> "1" Amount
+Entry *--> "1" Date
+Entry *--> "1" Tag
 @enduml

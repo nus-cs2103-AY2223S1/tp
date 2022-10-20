@@ -34,7 +34,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 PennyWise *--> "1" UniqueEntryList
-UniqueEntryList --> "~* all" Entry
+UniqueEntryList ---> "~* all" Entry
 Entry *--> Description
 Entry *--> Amount
 Entry *--> Date
@@ -43,5 +43,5 @@ Entry *--> "*" Tag
 Description -[hidden]right-> Amount
 Amount -[hidden]right-> Date
 
-ModelManager -->"~* filtered" Entry
+ModelManager --->"~* filtered" Entry
 @enduml

@@ -289,13 +289,9 @@ to the right, pointing to the previously undone state, and restores the applicat
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the application state, such
-as `list`, will usually not call `Model#commitPennyWise()`, `Model#undoPennyWise()` or `Model#redoPennyWise()`.
-Thus, the `pennyWiseStateList` remains unchanged.
-
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitPennyWise()`. Since the `currentStatePointer` is not
+Step 5. The user executes `clear`, which calls `Model#commitPennyWise()`. Since the `currentStatePointer` is not
 pointing at the end of the `pennyWiseStateList`, all application states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add t/e …​` command. This is the behavior that most modern
 desktop applications follow.
@@ -343,7 +339,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of entries
+* has a need to manage a significant number of expenditures or income streams
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -377,7 +373,7 @@ Priorities: High (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (un
 ### Use cases
 
 (For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `User`, unless specified
-otherwise, for all **lists**, the `User` is able to select between the `expenditure` or `income` lists.)
+otherwise, for all **Entries**, they can only be of type `expenditure` or `income`.)
 
 **Use case: UC1 - Add an entry**
 
@@ -467,7 +463,7 @@ otherwise, for all **lists**, the `User` is able to select between the `expendit
 
       Use case resumes at step 1.
 
-**Use case: UC5 - Viewing the summary**
+**Use case: UC5 - Summarizing statistics**
 
 **MSS**
 
@@ -567,7 +563,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: None
 
     1. Test case: `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food`<br>
-       Expected: Entry is added to the specified list. Details of the added entry shown in the status message.
+       Expected: Entry is added to the expenditure list. Details of the added entry shown in the status message.
 
     1. Test case: ``add t/e d/Lunch a/$7.20 da/04-10-2022 c/Food ... ``<br>
        Expected: No entry is added. Error details shown in the status message on amount formatted to 2 decimal places.
