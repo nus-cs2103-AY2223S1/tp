@@ -16,9 +16,9 @@ public class Id {
             + "Job IDs can only be of length max " + LENGTH_LIMIT;
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Job ID should be alphanumeric";
+            "Job ID should be upper case letters and/or numeric, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "[A-Z0-9]+";
 
     public final String value;
 
@@ -31,13 +31,6 @@ public class Id {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         value = id;
-    }
-
-    /**
-     * Returns true if the length of a given string is within the length limit
-     */
-    public static boolean isWithinLengthLimit(String test) {
-        return test.length() <= LENGTH_LIMIT;
     }
 
     /**
