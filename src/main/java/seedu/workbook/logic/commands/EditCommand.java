@@ -53,10 +53,16 @@ public class EditCommand extends Command {
     /** Message string displaying successful execution of the edit command */
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
 
-    /** Message string displaying error message for unsuccessful execution of the edit command for invalid input field */
+    /**
+     * Message string displaying error message for unsuccessful execution of the edit command
+     * for invalid input field
+     */
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    /** Message string displaying error message for unsuccessful execution of the edit command for a duplicate internship */
+    /**
+     * Message string displaying error message for unsuccessful execution of the edit command
+     * for a duplicate internship
+     */
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the work book.";
 
     /** Index of the internship to be edited */

@@ -16,7 +16,10 @@ public class UndoCommand extends Command {
     /** Message string displaying successful execution of the list command */
     public static final String MESSAGE_SUCCESS = "Undo previous changes successful!";
 
-    /** Message string displaying error message for unsuccessful execution of the undo command for an unmodified WorkBook */
+    /**
+     * Message string displaying error message for unsuccessful execution of the undo command
+     * for an unmodified WorkBook
+     */
     public static final String MESSAGE_NO_CHANGES = "No previous changes to undo!";
 
     @Override
