@@ -21,6 +21,7 @@ import seedu.application.model.Model;
 import seedu.application.model.ReadOnlyApplicationBook;
 import seedu.application.model.ReadOnlyUserPrefs;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.interview.Interview;
 import seedu.application.testutil.ApplicationBuilder;
 
 public class AddCommandTest {
@@ -130,6 +131,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameInterviewTime(Interview interview) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameInterviewTime(Application application) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
         public void deleteApplication(Application target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -155,6 +172,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Application> getApplicationListWithInterview() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredApplicationList(Predicate<Application> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -166,6 +188,10 @@ public class AddCommandTest {
 
         @Override
         public void showArchiveInFilteredApplicationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void updateApplicationListWithInterview() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -198,6 +224,23 @@ public class AddCommandTest {
         public boolean hasApplication(Application application) {
             requireNonNull(application);
             return applicationsAdded.stream().anyMatch(application::isSameApplication);
+        }
+
+        @Override
+        public boolean hasSameInterviewTime(Application application) {
+            requireNonNull(application);
+            if (application.getInterview().isEmpty()) {
+                return false;
+            }
+            for (int i = 0; i < applicationsAdded.size() - 1; i++) {
+                if (applicationsAdded.get(i).getInterview().isEmpty()) {
+                    continue;
+                }
+                if (applicationsAdded.get(i).getInterview().get().isOnSameTime(application.getInterview().get())) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override

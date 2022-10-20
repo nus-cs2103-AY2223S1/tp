@@ -6,20 +6,32 @@
     "email": "shopee@example.com",
     "position": "Frontend Engineer",
     "date": "2022-12-31",
-    "tagged": ["consumerTech"]
+    "tagged": ["consumerTech"],
+    "round": "",
+    "interviewDate": "",
+    "interviewTime": "",
+    "location": ""
   }, {
     "company": "ByteDance",
     "contact": "83920382",
     "email": "bytedance@example.com",
     "position": "Backend Engineer",
     "date": "2022-08-01",
-    "tagged": ["BytePlus", "TikTok"]
+    "tagged": ["BytePlus", "TikTok"],
+    "round": "",
+    "interviewDate": "",
+    "interviewTime": "",
+    "location": ""
   }, {
     "company": "Jane Street",
     "contact": "91420834",
     "email": "janestreet@example.com",
     "position": "Software Engineer",
     "date": "2022-01-01",
-    "tagged": ["fintech"]
+    "tagged": ["fintech"],
+    "round": "",
+    "interviewDate": "",
+    "interviewTime": "",
+    "location": ""
   }]
 }

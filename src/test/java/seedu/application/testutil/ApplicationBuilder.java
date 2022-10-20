@@ -1,6 +1,7 @@
 package seedu.application.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.application.model.application.Application;
@@ -9,6 +10,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
 import seedu.application.model.tag.Tag;
 import seedu.application.model.util.SampleDataUtil;
 
@@ -31,6 +33,7 @@ public class ApplicationBuilder {
     private Position position;
     private Set<Tag> tags;
     private boolean isArchived;
+    private Optional<Interview> interview;
 
     /**
      * Creates an {@code ApplicationBuilder} with the default details.
@@ -43,6 +46,7 @@ public class ApplicationBuilder {
         position = new Position(DEFAULT_POSITION);
         tags = new HashSet<>();
         isArchived = DEFAULT_ARCHIVE_STATUS;
+        interview = Optional.empty();
     }
 
     /**
@@ -56,6 +60,11 @@ public class ApplicationBuilder {
         position = applicationToCopy.getPosition();
         tags = new HashSet<>(applicationToCopy.getTags());
         isArchived = applicationToCopy.isArchived();
+        if (applicationToCopy.getInterview().isPresent()) {
+            interview = applicationToCopy.getInterview();
+        } else {
+            interview = Optional.empty();
+        }
     }
 
     /**
@@ -107,7 +116,7 @@ public class ApplicationBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Application} that we are building.
+     * Sets the {@code isArchived} boolean of the {@code Application} that we are building.
      */
     public ApplicationBuilder withArchiveStatus(boolean isArchived) {
         this.isArchived = isArchived;
@@ -115,13 +124,31 @@ public class ApplicationBuilder {
     }
 
     /**
+     * Sets the {@code Interview} of the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withInterview(Interview interview) {
+        this.interview = Optional.of(interview);
+        return this;
+    }
+
+    /**
      * Creates an Application object according to the parameters.
+     * @return created Application.
      */
     public Application build() {
         if (isArchived) {
+            if (this.interview.isPresent()) {
+                return new Application(new Application(company, contact, email, position, date, tags),
+                        interview.get()).setToArchive();
+            }
             return new Application(company, contact, email, position, date, tags).setToArchive();
+        } else {
+            if (this.interview.isPresent()) {
+                return new Application(new Application(company, contact, email, position, date, tags), interview.get());
+            } else {
+                return new Application(company, contact, email, position, date, tags);
+            }
         }
-        return new Application(company, contact, email, position, date, tags);
     }
 
 }

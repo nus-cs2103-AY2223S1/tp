@@ -3,6 +3,7 @@ package seedu.application.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,11 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.InterviewDate;
+import seedu.application.model.application.interview.InterviewTime;
+import seedu.application.model.application.interview.Location;
+import seedu.application.model.application.interview.Round;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -25,6 +31,7 @@ class JsonAdaptedApplication {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Application's %s field is missing!";
 
+    //Fields in Application
     private final String company;
     private final String contact;
     private final String email;
@@ -33,21 +40,63 @@ class JsonAdaptedApplication {
     private final boolean isArchived;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    /**
-     * Constructs a {@code JsonAdaptedApplication} with the given application details.
-     */
+    //Fields in Interview
+    private final String round;
+    private final String interviewDate;
+    private final String interviewTime;
+    private final String location;
+
+
+    /*
     @JsonCreator
     public JsonAdaptedApplication(@JsonProperty("company") String company, @JsonProperty("contact") String contact,
                                   @JsonProperty("email") String email, @JsonProperty("position") String position,
                                   @JsonProperty("date") String date,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                  @JsonProperty("isArchived") boolean isArchived) {
+                                  @JsonProperty("isArchived") boolean isArchived)
+                                  ) {
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
         this.isArchived = isArchived;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+<<<<<<< HEAD
+
+        this.round = "";
+        this.interviewDate = "";
+        this.interviewTime = "";
+        this.location = "";
+    }
+
+     */
+
+
+    /**
+     * Constructs a {@code JsonAdaptedApplication} with the given application details with non-empty Interview.
+     */
+    @JsonCreator
+    public JsonAdaptedApplication(@JsonProperty("company") String company, @JsonProperty("contact") String contact,
+                                  @JsonProperty("email") String email, @JsonProperty("position") String position,
+                                  @JsonProperty("date") String date,
+                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                  @JsonProperty("isArchived") boolean isArchived, @JsonProperty("round") String round,
+                                  @JsonProperty("interviewDate") String interviewDate,
+                                  @JsonProperty("interviewTime") String interviewTime,
+                                  @JsonProperty("location") String location) {
+        this.company = company;
+        this.contact = contact;
+        this.email = email;
+        this.position = position;
+        this.date = date;
+        this.isArchived = isArchived;
+        this.round = round;
+        this.interviewDate = interviewDate;
+        this.interviewTime = interviewTime;
+        this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -66,6 +115,19 @@ class JsonAdaptedApplication {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+
+        Optional<Interview> interview = source.getInterview();
+        if (interview.isEmpty()) {
+            this.round = "";
+            this.interviewDate = "";
+            this.interviewTime = "";
+            this.location = "";
+        } else {
+            this.round = interview.get().getRound().value;
+            this.interviewDate = interview.get().getInterviewDate().value.toString();
+            this.interviewTime = interview.get().getInterviewTime().toCommandString();
+            this.location = interview.get().getLocation().value;
+        }
     }
 
     /**
@@ -78,6 +140,7 @@ class JsonAdaptedApplication {
         for (JsonAdaptedTag tag : tagged) {
             applicationTags.add(tag.toModelType());
         }
+
 
         if (company == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
@@ -119,13 +182,68 @@ class JsonAdaptedApplication {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
-
         final Set<Tag> modelTags = new HashSet<>(applicationTags);
-        if (isArchived) {
-            return new Application(modelCompany, modelContact, modelEmail, modelPosition, modelDate,
-                    modelTags).setToArchive();
+
+        Application modelApplication = new Application(modelCompany, modelContact, modelEmail, modelPosition,
+                modelDate, modelTags);
+
+        Application modelUpdatedApplication;
+
+        //check and update interview sector
+        if (!round.isEmpty() && !interviewDate.isEmpty() && !interviewTime.isEmpty() && !location.isEmpty()) {
+            Interview modelInterview = toModelTypeInterview();
+            modelUpdatedApplication = new Application(modelApplication, modelInterview);
+        } else {
+            modelUpdatedApplication = modelApplication;
         }
-        return new Application(modelCompany, modelContact, modelEmail, modelPosition, modelDate, modelTags);
+
+        if (isArchived) {
+            return modelUpdatedApplication.setToArchive();
+        }
+        return modelUpdatedApplication;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted interview object into the model's {@code Interview} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted interview.
+     */
+    public Interview toModelTypeInterview() throws IllegalValueException {
+        if (round == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Round.class.getSimpleName()));
+        }
+        if (!Round.isValidRound(round)) {
+            throw new IllegalValueException(Round.MESSAGE_CONSTRAINTS);
+        }
+        final Round modelRound = new Round(round);
+
+        if (interviewDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InterviewDate.class.getSimpleName()));
+        }
+        if (!InterviewDate.isValidDate(interviewDate)) {
+            throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
+        }
+        final InterviewDate modelInterviewDate = new InterviewDate(interviewDate);
+
+        if (interviewTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InterviewTime.class.getSimpleName()));
+        }
+        if (!InterviewTime.isValidTime(interviewTime)) {
+            throw new IllegalValueException(InterviewTime.MESSAGE_CONSTRAINTS);
+        }
+        final InterviewTime modelInterviewTime = new InterviewTime(interviewTime);
+
+        if (location == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
+        }
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        }
+        final Location modelLocation = new Location(location);
+
+        return new Interview(modelRound, modelInterviewDate, modelInterviewTime, modelLocation);
+    }
 }

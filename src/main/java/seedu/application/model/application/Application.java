@@ -5,8 +5,11 @@ import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.exceptions.InvalidInterviewException;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -22,12 +25,19 @@ public class Application {
     private final Position position;
     private final Date date;
     private final boolean isArchived;
+    private final Optional<Interview> interview;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Instantiate Application with empty Interview.
+     *
+     * @param company name that represents the company
+     * @param contact number of the company.
+     * @param email of the company.
+     * @param position that the user applies to.
+     * @param date of the user applies to this position.
      */
     public Application(Company company, Contact contact, Email email, Position position, Date date, Set<Tag> tags) {
         requireAllNonNull(company, contact, email, position, date, tags);
@@ -37,19 +47,57 @@ public class Application {
         this.position = position;
         this.date = date;
         this.tags.addAll(tags);
+        this.interview = Optional.empty();
         this.isArchived = false;
     }
 
-    private Application(Company company, Contact contact, Email email, Position position,
-                        Date date, Set<Tag> tags, boolean isArchived) {
-        requireAllNonNull(company, contact, email, position, date);
-        this.company = company;
-        this.contact = contact;
-        this.email = email;
-        this.position = position;
-        this.date = date;
-        this.tags.addAll(tags);
+    //Private constructor for set application to archive application or retrieve application.
+    private Application(Application application, boolean isArchived) {
+        requireAllNonNull(application);
+        this.company = application.getCompany();
+        this.contact = application.getContact();
+        this.email = application.getEmail();
+        this.position = application.getPosition();
+        this.date = application.getDate();
+        this.tags.addAll(application.getTags());
         this.isArchived = isArchived;
+        this.interview = application.getInterview();
+    }
+
+    /**
+     * Instantiate Application with empty Interview.
+     *
+     * @param application that either contains empty interview or non-empty interview.
+     */
+    public Application(Application application) {
+        requireAllNonNull(application);
+        this.company = application.getCompany();
+        this.contact = application.getContact();
+        this.email = application.getEmail();
+        this.position = application.getPosition();
+        this.date = application.getDate();
+        this.tags.addAll(application.getTags());
+        this.interview = Optional.empty();
+        this.isArchived = application.isArchived();
+    }
+
+    /**
+     * Instantiate Application with non-empty Interview.
+     *
+     * @param application that either contains empty interview or non-empty interview.
+     * @param interview to be added into the application.
+     */
+    public Application(Application application, Interview interview) throws InvalidInterviewException {
+        requireAllNonNull(application, interview);
+        this.company = application.getCompany();
+        this.contact = application.getContact();
+        this.email = application.getEmail();
+        this.position = application.getPosition();
+        this.date = application.getDate();
+        this.tags.addAll(application.getTags());
+        interviewIsAfterApplication(interview, application);
+        this.interview = Optional.of(interview);
+        this.isArchived = application.isArchived();
     }
 
     public Company getCompany() {
@@ -70,6 +118,9 @@ public class Application {
 
     public Date getDate() {
         return date;
+    }
+    public Optional<Interview> getInterview() {
+        return interview;
     }
 
     public boolean isArchived() {
@@ -98,18 +149,24 @@ public class Application {
                 && otherApplication.getPosition().equals(getPosition());
     }
 
+    private void interviewIsAfterApplication(Interview interview, Application application) {
+        if (interview.getInterviewDate().value.isBefore(application.getDate().value)) {
+            throw new InvalidInterviewException();
+        }
+    }
+
     /**
      * Returns a new Application object with its archive status set to true and other attributes remain the same.
      */
     public Application setToArchive() {
-        return new Application(company, contact, email, position, date, tags, true);
+        return new Application(this, true);
     }
 
     /**
      * Returns a new Application object with its archive status set to false and other attributes remain the same.
      */
     public Application retrieveFromArchive() {
-        return new Application(company, contact, email, position, date, tags);
+        return new Application(this, true);
     }
 
     /**
@@ -132,13 +189,14 @@ public class Application {
                 && otherApplication.getEmail().equals(getEmail())
                 && otherApplication.getPosition().equals(getPosition())
                 && otherApplication.getDate().equals(getDate())
-                && otherApplication.getTags().equals(getTags());
+                && otherApplication.getTags().equals(getTags())
+                && otherApplication.getInterview().equals((getInterview()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, contact, email, position, date, tags);
+        return Objects.hash(company, contact, email, position, date, tags, interview);
     }
 
     @Override
@@ -159,6 +217,12 @@ public class Application {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        if (getInterview().isPresent()) {
+            builder.append("; \nInterview: ")
+                    .append(getInterview().get());
+        }
+
         return builder.toString();
     }
 
