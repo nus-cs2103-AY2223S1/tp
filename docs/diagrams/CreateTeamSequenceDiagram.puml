@@ -39,6 +39,9 @@ deactivate CreateCommand
 CreateCommandParser --> AddressBookParser : c
 deactivate CreateCommandParser
 
+CreateCommandParser -[hidden]-> AddressBookParser
+destroy CreateCommandParser
+
 AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
 
@@ -51,8 +54,10 @@ activate Model
 Model --> CreateCommand
 deactivate Model
 
+create CommandResult
 CreateCommand -> CommandResult
 activate CommandResult
+
 
 CommandResult --> CreateCommand : result
 deactivate CommandResult
@@ -66,9 +71,5 @@ destroy CreateCommand
 [<--LogicManager
 deactivate LogicManager
 
-
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-CreateCommandParser -[hidden]-> AddressBookParser
-destroy CreateCommandParser
 @enduml
 

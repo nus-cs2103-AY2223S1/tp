@@ -232,7 +232,20 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}
+### Add Task Feature
+
+#### Implementation
+
+The add task feature adds a task into a team and this change is reflected in the Graphical User Interface.
+The user may specify a deadline to be associated with the task (i.e. deadline is optional).
+The deadline is implemented using `Optional<LocalDate>`. Thus, the deadline can be passed into other methods without knowing whether the deadline exists or not. The `Task` objects are stored in a `UniqueTaskList`.
+
+Given below is an example usage scenario.
+
+Step 1. The user creates the task using the `taskadd` command, executing `taskadd t/1 n/Create Feature A d/12-12-2022` to add the task "Create Feature A" to team 1, with 12th December 2022 as the deadline.
+
+The following sequence diagram shows how the add task operation works:
+![TaskAddSequenceDiagram](images/TaskAddSequenceDiagram.png)
 
 ### Mark Task Feature
 
@@ -272,7 +285,6 @@ to get the `person` specified by the index in the command then create a new `per
 The following sequence diagram shows how the edit task operation works:
 ![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
 
-
 ### Create Team Feature
 
 #### Implementation
@@ -286,6 +298,9 @@ The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
 
 The following sequence diagram show how the create team operation works:
 ![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
+
+_{more aspects and alternatives to be added}
+
 
 ### \[Proposed\] Data archiving
 
