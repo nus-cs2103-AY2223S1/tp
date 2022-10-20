@@ -1,9 +1,11 @@
 package tracko.logic.parser.item;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.parser.CliSyntax.PREFIX_COST_PRICE;
 import static tracko.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static tracko.logic.parser.CliSyntax.PREFIX_SELL_PRICE;
 import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -16,10 +18,11 @@ import tracko.logic.parser.Parser;
 import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.items.Description;
-import tracko.model.items.Item;
-import tracko.model.items.ItemName;
-import tracko.model.items.Quantity;
+import tracko.model.item.Description;
+import tracko.model.item.Item;
+import tracko.model.item.ItemName;
+import tracko.model.item.Price;
+import tracko.model.item.Quantity;
 import tracko.model.tag.Tag;
 
 /**
@@ -34,9 +37,11 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
     public AddItemCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION, PREFIX_TAG,
+                        PREFIX_SELL_PRICE, PREFIX_COST_PRICE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION,
+                PREFIX_SELL_PRICE, PREFIX_COST_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
@@ -44,9 +49,11 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         ItemName itemName = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_ITEM).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Price sellPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_SELL_PRICE).get());
+        Price costPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_COST_PRICE).get());
 
-        Item item = new Item(itemName, description, quantity, tagList);
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Item item = new Item(itemName, description, quantity, tagList, sellPrice, costPrice);
 
         return new AddItemCommand(item);
     }

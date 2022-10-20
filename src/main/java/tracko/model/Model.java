@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
 
 /**
@@ -61,6 +61,8 @@ public interface Model {
     /** Returns the TrackO */
     ReadOnlyTrackO getTrackO();
 
+    // ORDER METHODS =============================================================================
+
     /**
      * Adds the given order.
      */
@@ -87,10 +89,17 @@ public interface Model {
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
 
+    // ITEM METHODS =============================================================================
+
     /**
      * Adds the given item.
      */
     void addItem(Item item);
+
+    /**
+     * Returns an item from the inventory list with the given item name.
+     */
+    Item getItem(String itemName);
 
     /**
      * Deletes the given item.

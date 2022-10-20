@@ -10,7 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 
 /**
  * A UI component that displays information of an {@code Item}.
@@ -42,6 +42,10 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Label sellPrice;
+    @FXML
+    private Label costPrice;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -66,6 +70,14 @@ public class ItemCard extends UiPart<Region> {
         description.setWrapText(true);
         description.setTextAlignment(TextAlignment.JUSTIFY);
         description.setPadding(new Insets(0, 10, 0, 0));
+
+        sellPrice.setText("$" + item.getSellPrice().price);
+        sellPrice.setWrapText(true);
+        sellPrice.setPadding(new Insets(0, 10, 0, 0));
+
+        costPrice.setText("$" + item.getCostPrice().price);
+        costPrice.setWrapText(true);
+        costPrice.setPadding(new Insets(0, 10, 0, 0));
 
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

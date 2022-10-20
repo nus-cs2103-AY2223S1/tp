@@ -50,7 +50,7 @@ public class TrackOParser {
      */
     public MultiLevelCommand parseAndUpdateCommand(String userInput, MultiLevelCommand command) throws ParseException {
         if (command instanceof AddOrderCommand) {
-            return new AddOrderCommandParser().parseStageTwo(userInput, (AddOrderCommand) command);
+            return new AddOrderCommandParser().parseAndUpdate(userInput, (AddOrderCommand) command);
         }
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
     }

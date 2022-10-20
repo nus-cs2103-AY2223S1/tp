@@ -13,7 +13,6 @@ import tracko.model.order.OrderContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindOrderCommand object
  */
 public class FindOrderCommandParser implements Parser<FindOrderCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindOrderCommand
      * and returns a FindOrderCommand object for execution.
@@ -30,5 +29,4 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
 
         return new FindOrderCommand(new OrderContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
-
 }

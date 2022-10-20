@@ -16,10 +16,11 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.items.Description;
-import tracko.model.items.Item;
-import tracko.model.items.ItemName;
-import tracko.model.items.Quantity;
+import tracko.model.item.Description;
+import tracko.model.item.Item;
+import tracko.model.item.ItemName;
+import tracko.model.item.Price;
+import tracko.model.item.Quantity;
 import tracko.model.tag.Tag;
 
 /**
@@ -44,7 +45,7 @@ public class EditItemCommand extends Command {
             + CliSyntax.PREFIX_TAG + "Limited "
             + CliSyntax.PREFIX_TAG + "New";
 
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory list.";
 
@@ -95,8 +96,10 @@ public class EditItemCommand extends Command {
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         Description updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
+        Price sellPrice = editItemDescriptor.getSellPrice().orElse(itemToEdit.getSellPrice());
+        Price costPrice = editItemDescriptor.getCostPrice().orElse(itemToEdit.getCostPrice());
 
-        return new Item(updatedItemName, updatedDescription, updatedQuantity, updatedTags);
+        return new Item(updatedItemName, updatedDescription, updatedQuantity, updatedTags, sellPrice, costPrice);
     }
 
     @Override
@@ -126,6 +129,8 @@ public class EditItemCommand extends Command {
         private Quantity quantity;
         private Description description;
         private Set<Tag> tags;
+        private Price sellPrice;
+        private Price costPrice;
 
         public EditItemDescriptor() {}
 
@@ -138,6 +143,8 @@ public class EditItemCommand extends Command {
             setQuantity(toCopy.quantity);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
+            setSellPrice(toCopy.sellPrice);
+            setCostPrice(toCopy.costPrice);
         }
 
         /**
@@ -188,6 +195,22 @@ public class EditItemCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setSellPrice(Price sellPrice) {
+            this.sellPrice = sellPrice;
+        }
+
+        public Optional<Price> getSellPrice() {
+            return Optional.ofNullable(sellPrice);
+        }
+
+        public void setCostPrice(Price costPrice) {
+            this.costPrice = costPrice;
+        }
+
+        public Optional<Price> getCostPrice() {
+            return Optional.ofNullable(costPrice);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -206,7 +229,9 @@ public class EditItemCommand extends Command {
             return getItemName().equals(e.getItemName())
                     && getQuantity().equals(e.getQuantity())
                     && getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getSellPrice().equals(e.getSellPrice())
+                    && getCostPrice().equals(e.getCostPrice());
         }
     }
 }
