@@ -552,6 +552,46 @@ unless specified otherwise)
 
   Use case ends.
 
+---
+
+**Use case: UC11 - See the list of patients with tasks on current day**
+
+**MSS**
+
+1. User requests to list patients with tasks for the current day.
+2. UniNurse shows a list of patients with tasks for that day.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+---
+
+**Use case: UC12 - See the list of tasks on a particular day**
+
+**MSS**
+
+1. User requests to list tasks on a particular day.
+2. UniNurse shows the list of tasks on that particular day.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given date is invalid or wrong format.
+
+    * 1a1. UniNurse shows an error message.
+
+      Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 *{More to be added}*
 
 ---
