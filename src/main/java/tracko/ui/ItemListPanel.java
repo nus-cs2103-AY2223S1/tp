@@ -7,7 +7,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tracko.commons.core.LogsCenter;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 
 /**
  * Panel containing the list of orders.
