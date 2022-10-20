@@ -103,10 +103,6 @@ class CommissionTest {
         editedAliceCat = new CommissionBuilder(ALICE_CAT).withCompletionStatus(true).build(ALICE);
         assertFalse(ALICE_CAT.equals(editedAliceCat));
 
-        // different customer -> returns false;
-        editedAliceCat = new CommissionBuilder(ALICE_CAT).build(BOB);
-        assertFalse(ALICE_CAT.equals(editedAliceCat));
-
     }
 
     @Test
