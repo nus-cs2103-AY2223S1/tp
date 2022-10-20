@@ -56,6 +56,10 @@ public class PersonTest {
         // different phone number -> returns false
         editedBob = new PersonBuilder(BOB).withPhone(EDITED_PHONE).build();
         assertFalse(BOB.isSamePerson(editedBob));
+
+        // different next of kin phone number -> returns true
+        editedBob = new PersonBuilder(BOB).withNokPhone(EDITED_PHONE).build();
+        assertTrue(BOB.isSamePerson(editedBob));
     }
 
     @Test
