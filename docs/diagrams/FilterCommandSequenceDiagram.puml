@@ -49,4 +49,5 @@ deactivate ABParser
 
 FilterCommand -> LM : Result
 deactivate FilterCommand
+
 @enduml
