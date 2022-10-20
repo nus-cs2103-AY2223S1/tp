@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
-         title="InternConnect" minHeight="720" maxHeight="720" minWidth="1080" maxWidth="1080" onCloseRequest="#handleExit">
+         title="InternConnect" minHeight="600" minWidth="450" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
