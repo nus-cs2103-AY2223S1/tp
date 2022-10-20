@@ -3,6 +3,7 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +24,7 @@ public class Team {
     private final String teamName;
     private final UniquePersonList teamMembers = new UniquePersonList();
     private final TaskList taskList = new TaskList();
-
+    private final UniqueLinkList links = new UniqueLinkList();
     /**
      * Constructs a {@code Team}.
      *
@@ -50,6 +51,27 @@ public class Team {
         this.teamMembers.setPersons(teamMembers);
         this.taskList.setTasks(tasks);
     }
+
+    /**
+     * Constructs a {@code Team}
+     * @param teamName A valid team name
+     * @param teamMembers A list of persons to be added as members
+     * @param tasks A list of tasks for the team to do
+     * @param links A list of links that the team should keep track of
+     */
+    public Team(String teamName, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
+        requireNonNull(teamName);
+        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        this.teamName = teamName;
+        this.teamMembers.setPersons(teamMembers);
+        this.taskList.setTasks(tasks);
+        this.links.setLinks(links);
+    }
+
+    public static Team createDefaultTeam() {
+        return new Team("default", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+    }
+
     public String getTeamName() {
         return teamName;
     }
@@ -112,6 +134,27 @@ public class Team {
      */
     public void assignTask(Task task, Person person) {
         task.assignTo(person);
+    }
+
+    //// link related operations
+    public boolean hasLink(Link link) {
+        return links.contains(link);
+    }
+
+    public void addLink(Link link) {
+        links.add(link);
+    }
+
+    public void setLink(Link target, Link editedLink) {
+        requireNonNull(editedLink);
+        links.setLink(target, editedLink);
+    }
+
+    public void deleteLink(Link link) {
+        links.remove(link);
+    }
+    public ObservableList<Link> getLinkList() {
+        return links.asUnmodifiableObservableList();
     }
 
     /**

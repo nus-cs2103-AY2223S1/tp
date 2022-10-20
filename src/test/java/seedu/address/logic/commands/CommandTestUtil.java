@@ -14,11 +14,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditLinkCommand.EditLinkDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditLinkDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -36,6 +38,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_NAME_GOOGLE = "Google";
+    public static final String VALID_NAME_FACEBOOK = "Facebook";
+    public static final String VALID_URL_GOOGLE = "https://google.com";
+    public static final String VALID_URL_FACEBOOK = "https://facebook.com";
+
 
     public static final String NAME_DESC_AMY = " -" + FLAG_NAME_STR + " \"" + VALID_NAME_AMY + "\"";
     public static final String NAME_DESC_BOB = " -" + FLAG_NAME_STR + " \"" + VALID_NAME_BOB + "\"";
@@ -60,6 +68,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditLinkDescriptor DESC_GOOGLE;
+
+    public static final EditLinkDescriptor DESC_FACEBOOK;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -67,6 +79,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_GOOGLE = new EditLinkDescriptorBuilder().withName(VALID_NAME_GOOGLE)
+                .withUrl(VALID_URL_GOOGLE).build();
+        DESC_FACEBOOK = new EditLinkDescriptorBuilder().withName(VALID_NAME_FACEBOOK)
+                .withUrl(VALID_URL_FACEBOOK).build();
     }
 
     /**

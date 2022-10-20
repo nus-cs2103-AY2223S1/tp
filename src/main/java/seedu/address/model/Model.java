@@ -7,6 +7,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 
 /**
@@ -15,6 +16,8 @@ import seedu.address.model.team.Team;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<Link> PREDICATE_SHOW_ALL_LINKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -103,4 +106,16 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     ObjectProperty<Team> getTeamAsProperty();
+
+    boolean hasLink(Link link);
+
+    void addLink(Link link);
+
+    void setLink(Link target, Link editedLink);
+
+    void deleteLink(Link link);
+
+    ObservableList<Link> getFilteredLinkList();
+
+    void updateFilteredLinkList(Predicate<Link> predicate);
 }
