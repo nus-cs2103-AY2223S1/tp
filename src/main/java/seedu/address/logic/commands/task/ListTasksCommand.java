@@ -2,6 +2,8 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AFTER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BEFORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 
 import java.util.HashSet;
@@ -39,6 +41,8 @@ public class ListTasksCommand extends TaskCommand {
             + "Parameters: "
             + "[" + "KEYWORD]"
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX]...\n"
+            + "[" + PREFIX_BEFORE + "DATE]...\n"
+            + "[" + PREFIX_AFTER + "DATE]...\n"
             + "Example: " + COMMAND_WORD_FULL + " "
             + "fix "
             + PREFIX_CONTACT + "1 ";

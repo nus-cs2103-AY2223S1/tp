@@ -60,7 +60,6 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
         }
 
         Set<Index> personsIndexes;
-        Predicate<Task> basePredicate = Model.PREDICATE_INCOMPLETE_TASKS;
         Optional<Deadline> before = Optional.empty();;
         Optional<Deadline> after = Optional.empty();;
 
