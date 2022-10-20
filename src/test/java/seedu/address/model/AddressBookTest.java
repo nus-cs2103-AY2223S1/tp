@@ -9,22 +9,17 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.exceptions.DuplicateListingException;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.ListingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
