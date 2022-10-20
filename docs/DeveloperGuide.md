@@ -395,7 +395,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC05 - Finding a client by name**
+**Use case: UC05 - Adding description to a client**
+
+**MSS**
+1. User requests to add a description of any form to a specific client
+
+2. FABook adds the description
+
+3. FABook informs user the description has been added
+
+**Extensions**
+* 1a. The client is not found.
+
+  * 1a1. FABook shows an error message with command explanation.
+  
+    Use case ends.
+
+* 1b. No description was given.
+
+  * 1b1. FABook shows an error message with suggested format
+
+    Use case ends.
+
+**Use case: UC06 - Finding a client by name**
 
 **MSS**
 1. User requests to find a specific client by name
@@ -419,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC06 - Finding a client by phone number**
+**Use case: UC07 - Finding a client by phone number**
 
 **MSS**
 1. User requests to find a specific client by phone number
@@ -449,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - Finding a client by address**
+**Use case: UC08 - Finding a client by address**
 
 **MSS**
 1. User requests to find a specific client by address
@@ -473,7 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
     
-**Use case: UC08 - Delete a person**
+**Use case: UC09 - Delete a person**
 
 **MSS**
 1. User requests to <u>find a client by name(UC05)</u>
@@ -484,7 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC09 - Clearing all entries**
+**Use case: UC10 - Clearing all entries**
 
 **MSS**
 1. User requests to clear all entries
@@ -495,7 +517,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC10 - Exiting FABook**
+**Use case: UC11 - Exiting FABook**
 
 **MSS**
 1. User requests to exit
