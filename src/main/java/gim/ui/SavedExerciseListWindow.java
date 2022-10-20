@@ -5,7 +5,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the Saved Exercises List that is displayed at the Bottom Right of the application.
+ * A ui for the Saved Exercises List Window that is displayed at the Bottom Right of the application.
  */
 public class SavedExerciseListWindow extends UiPart<Region> {
 
@@ -15,7 +15,7 @@ public class SavedExerciseListWindow extends UiPart<Region> {
     private TextArea savedExerciseList;
 
     /**
-     * Creates a {@code SavedExerciseList}.
+     * Creates a {@code SavedExerciseListWindow}.
      */
     public SavedExerciseListWindow() {
         super(FXML);
