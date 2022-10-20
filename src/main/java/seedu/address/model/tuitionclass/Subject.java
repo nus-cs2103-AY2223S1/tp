@@ -6,7 +6,7 @@ import seedu.address.model.tuitionclass.exceptions.InvalidSubjectException;
  * Represents the subject of the tuition class.
  */
 public enum Subject {
-    ENGLISH("english"), MATHEMATICS("mathematics"), PHYSICS("physics"), CHEMISTRY("chemistry"), BIOLOGY("biology");
+    ENGLISH("English"), MATHEMATICS("Mathematics"), PHYSICS("Physics"), CHEMISTRY("Chemistry"), BIOLOGY("Biology");
 
     public static final String MESSAGE_CONSTRAINTS =
             "Subject name should only contain letters, and should be spelt out in full.";

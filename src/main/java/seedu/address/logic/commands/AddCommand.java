@@ -35,8 +35,12 @@ public class AddCommand extends Command {
         TUTOR,
         CLASS;
 
-        public static final String MESSAGE_CONSTRAINTS = "Entity should only be either student, tutor or class";
-        public static final String VALIDATION_REGEX = "(?i)student|tutor|class";
+        public static final String MESSAGE_CONSTRAINTS = "Entity type should only be either a student, tutor or class\n";
+        public static final String MESSAGE_DID_YOU_MEAN_STUDENT = "Did you mean \"student\"? ";
+        public static final String MESSAGE_DID_YOU_MEAN_TUTOR = "Did you mean \"tutor\"? ";
+        public static final String MESSAGE_DID_YOU_MEAN_CLASS = "Did you mean \"class\"? ";
+
+        public static final String VALIDATION_REGEX = "(?i)s|t|c|student|tutor|class";
 
         public static boolean isValidEntity(String test) {
             return test.matches(VALIDATION_REGEX);

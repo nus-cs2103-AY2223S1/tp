@@ -11,8 +11,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class Time {
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should be in LocalTime parsable format separted by dash \"-\"";
-    public static final String VALIDATION_REGEX = "\\p{Digit}{2}:\\p{Digit}{2}-\\p{Digit}{2}:\\p{Digit}{2}";
+            "Timings should only be in 12-hour or 24-hour formats separated by a dash, a space or \"to\" "
+                    + "and is chronologically sound";
+
+    public static final String VALIDATION_REGEX =
+            "((\\p{Digit}{1,2}(am|pm))|"
+                    + "(\\p{Digit}{1,2}:{0,1}\\p{Digit}{2}"
+                    + "(am|pm){0,1}))"
+                    + "\\s*(-|to|\\s)\\s*"
+                    + "((\\p{Digit}{1,2}(am|pm))|"
+                    + "(\\p{Digit}{1,2}:{0,1}\\p{Digit}{2}"
+                    + "(am|pm){0,1}))";
 
     public final String timeFrame;
 
