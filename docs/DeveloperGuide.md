@@ -287,6 +287,7 @@ associated to each instance of the class. The `Session` class uses the format `E
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to `LocalDateTimeFormatter` requiring enough information to create a `LocalDateTime` instance, the implementation of `Session` is such that the `LocalDateTimeFormatter` will default to its `ChronoField.YEAR` to be 2000, its `ChronoField.MONTH` be 1 and `ChronoField.ALIGNED_WEEK_OF_MONTH` be 1, as a workaround around this issue.
 
+</div>
 
 Additionally, it implements the following operations:
 * `Session#isValidSession(String test)` - Checks whether the string passed by the user is in the valid format to create a `Session` Object.
