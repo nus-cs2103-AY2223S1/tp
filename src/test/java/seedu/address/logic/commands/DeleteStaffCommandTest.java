@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_JA
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStaff.STAFF_ANDY;
 
 import java.util.ArrayList;

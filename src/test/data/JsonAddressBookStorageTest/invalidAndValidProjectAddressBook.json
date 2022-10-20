@@ -5,7 +5,7 @@
     "deadline": "2022-01-02",
     "staffList": []
   }, {
-    "projectName": "Person With Invalid Budget Field",
+    "projectName": "Project with invalid date",
     "budget": "9482424",
     "deadline": "invalid date",
     "staffList": []

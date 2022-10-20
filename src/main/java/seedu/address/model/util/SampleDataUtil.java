@@ -55,11 +55,11 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Deadline("2022-06-01"), new TaskDescription("Finish 2103"),
+            new Task(new Deadline("2022-08-30"), new TaskDescription("Finish 2103"),
                     new TaskMark("false")),
-            new Task(new Deadline("2022-07-02"), new TaskDescription("Submit homework"),
+            new Task(new Deadline("2022-06-01"), new TaskDescription("Submit homework"),
                     new TaskMark("false")),
-            new Task(new Deadline("2022-08-30"), new TaskDescription("Prepare for 2103 exam"),
+            new Task(new Deadline("2022-07-02"), new TaskDescription("Prepare for 2103 exam"),
                     new TaskMark("false"))
         };
     }

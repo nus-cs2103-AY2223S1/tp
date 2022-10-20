@@ -26,6 +26,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 /**
@@ -180,6 +182,20 @@ public class CommandTestUtil {
         model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = task.getTaskDescription().toString().split("\\s+");
+        model.updateFilteredTaskList(new TaskDescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredTaskList().size());
     }
 
 }
