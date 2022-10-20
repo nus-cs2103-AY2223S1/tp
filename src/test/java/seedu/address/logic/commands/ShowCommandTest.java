@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.address.logic.commands.CommandTestUtil.showTuitionClassAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -107,41 +108,14 @@ public class ShowCommandTest {
     }
 
     @Test
-    public void executeForTuitionClass_validIndexUnfilteredList_success() {
+    public void executeForTuitionClass_validIndexUnfilteredList_throwsCommandException() {
         TuitionClass tuitionClassToShow = tuitionClassModel.getFilteredTuitionClassList().get(
                 INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(
-                ShowCommand.MESSAGE_DELETE_ENTITY_SUCCESS, tuitionClassToShow.getName().name);
-
-        ModelManager expectedModel = new ModelManager(tuitionClassModel.getAddressBook(), new UserPrefs());
         tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
 
-        assertCommandSuccess(showCommand, tuitionClassModel, expectedMessage,
-                expectedModel, INDEX_FIRST_PERSON.getZeroBased());
-    }
-
-    @Test
-    public void executeForTuitionClass_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(tuitionClassModel.getFilteredTuitionClassList().size() + 1);
-        ShowCommand showCommand = new ShowCommand(outOfBoundIndex);
-
-        assertCommandFailure(showCommand, tuitionClassModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void executeForTuitionClass_invalidIndexFilteredList_throwsCommandException() {
-        showTuitionClassAtIndex(tuitionClassModel, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < tuitionClassModel.getAddressBook().getTuitionClassList().size());
-
-        ShowCommand showCommand = new ShowCommand(outOfBoundIndex);
-
-        assertCommandFailure(showCommand, tuitionClassModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertThrows(CommandException.class, () -> showCommand.execute(tuitionClassModel));
     }
 
     @Test

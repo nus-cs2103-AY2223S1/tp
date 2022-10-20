@@ -11,7 +11,6 @@ import seedu.address.model.Model;
 import seedu.address.model.Model.ListType;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
-import seedu.address.model.tuitionclass.TuitionClass;
 
 
 
@@ -29,6 +28,9 @@ public class ShowCommand extends Command {
 
     public static final String MESSAGE_DELETE_ENTITY_SUCCESS = "Showing Entity: %1$s";
 
+    public static final String MESSAGE_INVALID_CURRENT_LIST = "The current list type is invalid for assign command \n"
+            + "Valid list type are tutor and student list";
+
     private final Index targetIndex;
 
     public ShowCommand(Index targetIndex) {
@@ -42,7 +44,6 @@ public class ShowCommand extends Command {
         ListType type = model.getCurrentListType();
         List<Student> lastShownStudentList;
         List<Tutor> lastShownTutorList;
-        List<TuitionClass> lastShownTuitionClassList;
         String entityInformation;
 
         try {
@@ -58,17 +59,14 @@ public class ShowCommand extends Command {
                 entityInformation = tutorToShow.getName().fullName;
                 break;
             default:
-                assert (type == ListType.TUITIONCLASS_LIST);
-                lastShownTuitionClassList = model.getFilteredTuitionClassList();
-                TuitionClass tuitionClassToShow = lastShownTuitionClassList.get(targetIndex.getZeroBased());
-                entityInformation = tuitionClassToShow.getName().name;
-                break;
+                throw new CommandException(MESSAGE_INVALID_CURRENT_LIST);
             }
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation), targetIndex.getZeroBased());
+        return new CommandResult(String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation),
+                targetIndex.getZeroBased());
     }
 
     @Override

@@ -32,8 +32,6 @@ import seedu.address.model.Model;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    private static final String SELECTED_LABEL_STYLE_CLASS = "active-label";
-
     private static final String SELECTED_STUDENT_LABEL_STYLE_CLASS = "active-student-label";
 
     private static final String SELECTED_TUTOR_LABEL_STYLE_CLASS = "active-tutor-label";
@@ -214,6 +212,7 @@ public class MainWindow extends UiPart<Stage> {
     /** Shows the specified entity **/
     private void handleShow(int index) {
         Model.ListType type = logic.getCurrentListType();
+        assert(type != Model.ListType.TUITIONCLASS_LIST);
         entityDescriptionPlaceholder.getChildren().clear();
         descriptionEntityType = type;
         descriptionEntityIndex = index;
@@ -227,11 +226,6 @@ public class MainWindow extends UiPart<Stage> {
             tutorDescription = new TutorDescription(
                     logic.getFilteredTutorList().get(index), index + 1);
             entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
-            break;
-        case TUITIONCLASS_LIST:
-            tuitionClassDescription = new TuitionClassDescription(
-                    logic.getFilteredTuitionClassList().get(index), index + 1);
-            entityDescriptionPlaceholder.getChildren().add(tuitionClassDescription.getRoot());
             break;
         default:
             break;
