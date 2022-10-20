@@ -45,13 +45,6 @@ public class FilteredStudents {
         this.hasConciseInfo = !hasConciseInfo;
     }
 
-    /**
-     * Sets the filtered student list to only concise information - the student's name and ID, or all information.
-     */
-    public void setConciseInfo(boolean b) {
-        this.hasConciseInfo = b;
-    }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
