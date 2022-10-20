@@ -117,6 +117,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `SoConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SoConnectParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, etc.) inherit from the `Parser` interface so that they can be treated similarly where possible, e.g., during testing.
 
@@ -178,11 +179,11 @@ This section describes some noteworthy details on how certain features are imple
 The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 Additionally, the mechanism utilises the following operations in `UniquePersonList`:
 
-* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by name in alphabetical order.
-* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by phone number in increasing order.
-* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by email in alphabetical order.
-* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by address in alphabetical order.
-* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified tag.
+* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by **Name** in alphabetical order.
+* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by **Phone** number in increasing order.
+* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by **Email** in alphabetical order.
+* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by **Address** in alphabetical order.
+* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified **Tag**.
 
 These operations sort in reverse order when `isReverse` is true.
 
@@ -190,11 +191,16 @@ These operations are exposed in the `Model` interface under the same method name
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-Step 1. The user executes `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
+Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` checks the user input to confirm
+that the parameters have been entered. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
 
-Step 2. The `sort` command sorts the currently displayed list by name first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. The `friend` string is checked to see if it 
+fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters,
+they are ignored and the command continues execution as per normal.
 
-Step 3. The `sort` command sorts the currently displayed list by the `friend` tag next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
+Step 3. The `sort` command sorts the currently displayed list by **Name** first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+
+Step 4. The `sort` command sorts the currently displayed list by the `friend` **Tag** next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
 
 The following sequence diagram shows how the sort operation works:
 
@@ -204,7 +210,7 @@ The following sequence diagram shows how the sort operation works:
 
 </div>
 
-Step 4. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
+Step 5. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 
@@ -389,15 +395,55 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 **Aspect: How to implement tag add:**
 
-* **Alternative 1 (current choice):** Creates a new `Person` with the tag included.
-    * Pros: Prevents direct access into the tags of a `Person`.
+* **Alternative 1 (current choice):** Creates a new person with the tag included.
+    * Pros: Prevents direct access into the tags of a person.
     * Cons: Potential error occurs if some form of duplication is allowed.
 
-* **Alternative 2:** Directly add the tag into the `Person` .
+* **Alternative 2:** Directly add the tag into the person .
     * Pros: Easy to implement.
-    * Cons: Easy to access into the tags of a `Person`. Could cause accidental bugs.
+    * Cons: Easy to access into the tags of a person. Could cause accidental bugs.
+
+_{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
+### Tag editing feature
+
+The tag adding mechanism is facilitated by `TagEditCommand` and `TagEditCommandParser`.
+Additionally, The mechanism utilises the following operations in `UniqueTagList`, `UniquePersonList` and `UniqueTodoList`.
+
+* `UniqueTagList#editTag(Tag oldTag, Tag newTag)` - Changes the old tag with the new tag.
+* `UniquePersonList#changeRelevantPersonTag(oldTag, newTag)` - Updates every person who has the old tag with the new tag.
+* `UniqueTodoList#changeRelevantTodoTag(Tag oldTag, Tag newTag)` -  Updates every task which has the old tag with the new tag.
+
+These operations are exposed in the `Model` interface under the same method name.
+
+Given below is an example usage scenario and how the tag editing mechanism behaves at each step.
+
+Step 1. The user executes `tag edit t/friend t/bestFriend` command to edit the old tag, `friend`, to the new tag, `bestFriend`.
+`TageditCommandParser` calls  `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/friend` and `t/bestFriend`.
+
+Step 2. The `tag edit` command edits the old tag with the new tag, calling `Model#editTag(oldTag, newTag)`.
+
+Step 3. The old tag on every person and every task is now replaced with the new tag for display.
+
+The following activity diagram summarizes what happens when a user executes a tag add command:
+
+(insert activity diagram here)
+
+#### Design consideration
+
+**Aspect: How to implement tag edit:**
+
+* **Alternative 1 (current choice):** Creates a new tag and replaces the old tag with the new one.
+    * Pros: Prevents direct access into the information of a tag.
+    * Cons: Tedious. Necessary to manually change the old tag in every person and every task.
+
+* **Alternative 2:** Change the tag's name.
+    * Pros: Easy to implement.
+    * Cons: Can potentially introduce bugs due to direct access into the tag's implementation.
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -682,8 +728,9 @@ i.e., features that require creating user accounts, login, logout etc., audio-re
 * **kLoC**: Stands for thousands of lines of code.
 * **NUS**: National University of Singapore.
 * **SoC**: School of Computing, a computing school in NUS.
-* **Private contact detail**: A contact detail that is not meant to be shared with others.
+* **Private Contact Detail**: A contact detail that is not meant to be shared with others.
 * **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
+* **Todo**: A task that the user needs to complete.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -702,7 +749,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and todos. The window size may not be optimum.
 
 1. Saving window preferences
 

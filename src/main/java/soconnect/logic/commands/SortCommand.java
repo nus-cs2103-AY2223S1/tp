@@ -24,16 +24,18 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Sort the list of contacts displayed by certain parameter(s).\n"
-        + "Insert a ! after a / to sort in reverse.\n"
-        + "Sort with multiple parameters, succeeding parameters will be used as tiebreakers "
-        + "when sorting with preceding parameters.\n"
+        + "Insert a ! directly after a / to sort in reverse.\n"
+        + "Sort with multiple parameters. The first parameter will be used to sort. When ties occur, "
+        + "the next parameter will be used to sort the two contacts that tie.\n"
         + "Parameters: "
         + "[" + PREFIX_NAME + "] "
         + "[" + PREFIX_PHONE + "] "
         + "[" + PREFIX_EMAIL + "] "
         + "[" + PREFIX_ADDRESS + "] "
         + "[" + PREFIX_TAG + "TAG]...\n"
-        + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "!friend";
+        + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "!friend \n"
+        + COMMAND_WORD + " " + PREFIX_NAME + " " + PREFIX_PHONE
+        + "(List will be sorted by name, for contacts with the same name, they will be sorted by phone)";
 
     public static final String MESSAGE_SUCCESS = "List has been sorted.";
     public static final String MESSAGE_WRONG_PREFIX = "Invalid parameter(s).";

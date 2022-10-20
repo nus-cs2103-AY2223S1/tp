@@ -39,7 +39,6 @@ public class TodoParser {
         final String subCommandWord = matcher.group("subCommandWord");
         final String arguments = matcher.group("arguments");
         switch (subCommandWord) {
-
         case TodoAddCommand.SUB_COMMAND_WORD:
             return new TodoAddCommandParser().parse(arguments);
 
