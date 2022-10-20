@@ -13,9 +13,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "TrackAScholar has been cleared!";
-
     public static final String MESSAGE_TERMINATION = "Clearing of all data is cancelled!";
-
     public static final String MESSAGE_CONFIRMATION =
             "Are you sure that you want to terminate all data from TrackAScholar?";
 
