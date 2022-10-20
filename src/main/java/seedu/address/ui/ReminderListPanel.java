@@ -32,15 +32,17 @@ public class ReminderListPanel extends UiPart<Region> {
      */
     public ReminderListPanel(ObservableList<Person> personList) {
         super(FXML);
-        ArrayList<Pair<Person, Reminder>> total = new ArrayList<>();
-        for (Person person : personList) {
-            total.addAll(person.getReminders().stream().map(reminder -> new Pair<Person, Reminder>(
-                    person, reminder
-            )).collect(Collectors.toList()));
-        }
-        SortedList<Pair<Person, Reminder>> sorted = sort(total);
+        SortedList<Pair<Person, Reminder>> sorted = sort(personList);
         reminderListView.setItems(sorted);
         reminderListView.setCellFactory(listView -> new ReminderListViewCell());
+    }
+
+    /**
+     * Updates the items in the {@code ReminderListPanel} with the given {@code ObservableList}.
+     */
+    public void updateItems(ObservableList<Person> personList) {
+        SortedList<Pair<Person, Reminder>> sorted = sort(personList);
+        reminderListView.setItems(sorted);
     }
 
     /**
@@ -48,8 +50,15 @@ public class ReminderListPanel extends UiPart<Region> {
      * @param personList The {@code ObservableList} to be sorted
      * @return The sorted {@code SortedList}
      */
-    private SortedList<Pair<Person, Reminder>> sort(ArrayList<Pair<Person, Reminder>> personList) {
-        SortedList<Pair<Person, Reminder>> sorted = new SortedList<>(FXCollections.observableArrayList(personList));
+    private SortedList<Pair<Person, Reminder>> sort(ObservableList<Person> personList) {
+        ArrayList<Pair<Person, Reminder>> total = new ArrayList<>();
+        for (Person person : personList) {
+            total.addAll(person.getReminders().stream().map(reminder -> new Pair<Person, Reminder>(
+                    person, reminder
+            )).collect(Collectors.toList()));
+        }
+        SortedList<Pair<Person, Reminder>> sorted = new SortedList<>(FXCollections.observableArrayList(total));
+        sorted.setComparator(Comparator.comparing(x -> x.getKey().getName().fullName));
         sorted.setComparator(Comparator.comparing(x -> x.getValue().date));
         return sorted;
     }
@@ -66,7 +75,8 @@ public class ReminderListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ReminderCard(personReminderPair.getKey(), personReminderPair.getValue(), getIndex() + 1).getRoot());
+                setGraphic(new ReminderCard(personReminderPair.getKey(),
+                        personReminderPair.getValue(), getIndex() + 1).getRoot());
             }
         }
     }

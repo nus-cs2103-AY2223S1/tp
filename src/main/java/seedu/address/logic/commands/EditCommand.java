@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -23,7 +21,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,10 +97,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Reminder> updatedReminders = editPersonDescriptor.getReminders().orElse(personToEdit.getReminders());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
-                updatedTags, updatedReminders);
+                updatedTags, personToEdit.getReminders());
     }
 
     @Override
@@ -135,7 +131,6 @@ public class EditCommand extends Command {
         private Address address;
         private Birthday birthday;
         private Set<Tag> tags;
-        private Set<Reminder> reminders;
 
         public EditPersonDescriptor() {}
 
@@ -150,14 +145,13 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setBirthday(toCopy.birthday);
             setTags(toCopy.tags);
-            setReminders(toCopy.reminders);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, reminders);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -217,14 +211,6 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setReminders(Set<Reminder> reminders) {
-            this.reminders = reminders;
-        }
-
-        public Optional<Set<Reminder>> getReminders() {
-            return Optional.ofNullable(reminders);
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -245,8 +231,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getBirthday().equals(e.getBirthday())
-                    && getTags().equals(e.getTags())
-                    && getReminders().equals(e.getReminders());
+                    && getTags().equals(e.getTags());
         }
     }
 }

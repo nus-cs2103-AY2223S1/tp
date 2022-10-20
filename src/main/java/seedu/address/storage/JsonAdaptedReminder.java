@@ -1,60 +1,49 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Reminder;
-import seedu.address.model.tag.Tag;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import javafx.util.Pair;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Reminder;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.
  */
 class JsonAdaptedReminder {
 
-    private final String reminderTask;
-    private final LocalDate reminderDate;
+    private final Pair<String, LocalDate> stringLocalDatePair;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedReminder(String reminderTask, String reminderDate) {
-        this.reminderTask = reminderTask;
+    public JsonAdaptedReminder(@JsonProperty("key") String reminderTask, @JsonProperty("value") String reminderDate) {
         LocalDate tempDate;
         try {
             tempDate = LocalDate.parse(reminderDate, DateTimeFormatter.ofPattern("d-MM-yyyy"));
         } catch (DateTimeParseException e) {
-            try {
-                tempDate = LocalDate.parse(reminderDate, DateTimeFormatter.ofPattern("yyyy-MM-d"));
-            } catch (DateTimeParseException e1) {
-                throw new RuntimeException("Incorrect Date format given to constructor");
-            }
+            tempDate = LocalDate.parse(reminderDate, DateTimeFormatter.ofPattern("yyyy-MM-d"));
         }
-        this.reminderDate = tempDate;
+        this.stringLocalDatePair = new Pair<>(reminderTask, tempDate);
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedReminder(Reminder source) {
-        System.out.println(source);
-        this.reminderTask = source.task;
-        this.reminderDate = source.date;
+        this.stringLocalDatePair = new Pair<>(source.task, source.date);
     }
 
     @JsonValue
-    public String getReminderTask() {
-        return reminderTask;
-    }
-
-    @JsonValue
-    public String getReminderDate() {
-        return reminderDate.format(DateTimeFormatter.ofPattern("d-MM-yyyy"));
+    public Pair<String, LocalDate> getReminderPair() {
+        return stringLocalDatePair;
     }
 
     /**
@@ -63,7 +52,8 @@ class JsonAdaptedReminder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Reminder toModelType() throws IllegalValueException {
-        return new Reminder(reminderTask, reminderDate.format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
+        return new Reminder(stringLocalDatePair.getKey(),
+                stringLocalDatePair.getValue().format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
     }
 
 }

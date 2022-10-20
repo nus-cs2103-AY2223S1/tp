@@ -1,13 +1,13 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Reminder;
-
-import java.time.format.DateTimeFormatter;
 
 /**
  * An UI component that displays reminder information of a {@code Person}.

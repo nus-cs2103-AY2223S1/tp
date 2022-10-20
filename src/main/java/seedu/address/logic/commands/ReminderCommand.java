@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class ReminderCommand extends Command {
     private final Reminder reminder;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index    of the person in the filtered person list to edit
      * @param reminder to associate with the person
      */
     public ReminderCommand(Index index, Reminder reminder) {
@@ -47,13 +46,6 @@ public class ReminderCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         personToEdit.getReminders().add(reminder);
-//        Person editedPerson = new Person(
-//                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-//                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(),
-//                personToEdit.getReminders().add(reminder));
-//
-//        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(personToEdit));
     }

@@ -26,21 +26,12 @@ public class Reminder {
             try {
                 tempDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-d"));
             } catch (DateTimeParseException e1) {
-                throw new RuntimeException("Incorrect Date format given to constructor");
+                // Placeholder before date validation is implemented.
+                tempDate = LocalDate.of(2000, 1, 1);
             }
         }
         this.date = tempDate;
     }
-
-//    /**
-//     * Constructs an {@code Reminder}.
-//     *
-//     * @param reminder A valid reminder.
-//     */
-//    public Reminder(String reminder) {
-//        this.task = reminder;
-//        this.date = "";
-//    }
 
     @Override
     public String toString() {
