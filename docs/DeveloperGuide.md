@@ -256,6 +256,44 @@ Step 4. This finds the `person` from the list from model#getFilteredPersonList b
 
 Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`
 
+
+### BatchAdd 
+This feature is created for users to add multiple entries at once. 
+In the case of this application, there are two main reasons why our User (HR Executive) would use this.
+1. User is new and needs to import all the current data into the database.
+2. There is a new recruitment cycle and company has recruited a large number of employees.
+
+Moving on to the implementation, some things to note.
+- As of now, our feature only accommodates adding from a CSV file.
+- Fields does not allow for commas inside. 
+These are possible things to work on for future iterations.
+
+####Implementation
+
+Pre-requisites: User has a CSV file filled with whatever information they have 
+and has stored it in the `/data` folder of the repository.
+
+Step 1: User executes `batchadd filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
+This will return a new `BatchAddParser` object and `parse` function is then called. 
+A helper function in `ParserUtil` helps to trim the filename and check if it is valid. If no argument is provided, a 
+`ParseException` will be thrown.
+
+Step 2: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first 
+step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and write it
+into a `List<AddCommand>`. If file does not exist in the folder, a `FileNotFound` exception is thrown too.
+
+Step 3. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`
+If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
+
+Step 4. storage#saveDatabase is then called on the current `database`, updates the database to contain the new persons added.
+
+####Design Considerations
+- Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
+  - Pros: Makes use of the Error Handling that the `AddCommand` has.
+  - Cons: `BatchAdd` will fail if Add fails.
+- Alternative 2: Own implementation of `BatchAdd` without relying on `AddCommand`.
+  - Pros: If Add Fails, BatchAdd can still work.
+  - Cons: Implementation Heavy.
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
