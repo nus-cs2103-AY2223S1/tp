@@ -8,9 +8,9 @@ import seedu.address.model.Model;
 public class ToggleViewCommand extends Command {
     public static final String COMMAND_WORD = "toggleView";
 
-    public static final String MESSAGE_SUCCESS_HIDE = "Hiding parent details";
+    public static final String MESSAGE_SUCCESS_HIDE = "Parent details are hidden";
 
-    public static final String MESSAGE_SUCCESS_SHOW = "Showing parent details";
+    public static final String MESSAGE_SUCCESS_SHOW = "Parent details are shown";
 
     @Override
     public CommandResult execute(Model model) {
