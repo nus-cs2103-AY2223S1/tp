@@ -62,9 +62,9 @@ public class SampleDataUtil {
 
     public static SupplyItem[] getSampleSupplyItems() {
         return new SupplyItem[]{
-            new SupplyItem("Ginger", 5, 2, new Person(new Name("Ya Shu Egg"),
-                new Phone("63450864"), new Price("$1.10"), new Item("Egg"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new SupplyItem("Ginger", 5, 2, new Person(new Name("ABC Pte Ltd"),
+                new Phone("67089005"), new Price("$1.00"), new Item("Ginger"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("Supplier")), getTagSet("Item")),
             new SupplyItem("Egg", 5, 2, new Person(new Name("Ya Shu Egg"),
                 new Phone("63450864"), new Price("$1.10"), new Item("Egg"),
