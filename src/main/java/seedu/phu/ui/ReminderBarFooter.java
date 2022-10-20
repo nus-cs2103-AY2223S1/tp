@@ -21,6 +21,7 @@ public class ReminderBarFooter extends UiPart<Region> {
     private static final String DEFAULT_REMINDER_TEXT = "In the next 7 days, you have: ";
     private static final String PROCESS_ASSESSMENT = "ASSESSMENT";
     private static final String PROCESS_INTERVIEW = "INTERVIEW";
+    private static final int UPCOMING_DAYS = 7;
 
     @FXML
     private Label reminderStatus;
@@ -40,12 +41,11 @@ public class ReminderBarFooter extends UiPart<Region> {
     }
 
     private int getStatusCount(String ap, ReadOnlyInternshipBook book) {
-
         return book.getInternshipList().filtered(new Predicate<Internship>() {
             @Override
             public boolean test(Internship internship) {
-                return LocalDate.now().isBefore(internship.getDate().value)
-                        && internship.getDate().value.isBefore(LocalDate.now().plusDays(7))
+                return LocalDate.now().plusDays(-1).isBefore(internship.getDate().value)
+                        && internship.getDate().value.isBefore(LocalDate.now().plusDays(UPCOMING_DAYS))
                         && StringUtil.containsWordIgnoreCase(
                                 String.valueOf(internship.getApplicationProcess().value), ap);
             }
