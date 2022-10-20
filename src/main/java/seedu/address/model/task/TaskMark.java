@@ -39,10 +39,7 @@ public class TaskMark {
 
     @Override
     public String toString() {
-        if (taskMark.equals("false")) {
-            return "[ ]";
-        }
-        return "[X]";
+        return taskMark;
     }
 
     @Override
