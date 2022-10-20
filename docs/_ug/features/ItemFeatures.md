@@ -99,6 +99,7 @@ Rose apple
 ---
 
 #### Update the information of an item
+
 Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
 
 > Description: Updates the details of the item identified.
@@ -112,41 +113,50 @@ edit 100 bgt/11-11-2022 exp/11-30-2023
 ```
 
 Output:
+
 ```text
 Edited Item:
 (A description of the item being edited)
 ```
 
 Common errors:
+
 1) If the item index is not shown in the current list an error message will be thrown.
+
     ```
     The item index provided is invalid.
     ```
 
    Remedy:
+
     ```
     Use the list command or find command to find out what is the index of the item to be deleted.
     ```
 
 2) If no fields to edit was provided.
+
    ```text
    At least one field to edit must be provided.
    ```
 
    Remedy:
+
    ```
    Include at least one field using the prefix as shown in the command format.
    ```
 
 3) If the item name is set to a name similar to an item in FoodRem.
+
    ```text
    This item already exists in the FoodRem.
    ```
 
    Remedy:
+
    ```
    Choose a different name while editing the item.
    ```
+
 ---
 
 #### Delete an item
@@ -156,24 +166,29 @@ Command: `del ITEM_INDEX`
 > Description: Deletes an item from FoodRem permanently.
 
 Example:
+
 ```text
 del 1
 del 10
 ```
 
 Output:
+
 ```text
 Deleted Item:
 (A description of the item being deleted)
 ```
 
 Possible errors:
+
 1) If the item index is not shown in the current list an error message will be thrown.
+
     ```
     The item index provided is invalid.
     ```
 
     Remedy:
+
     ```
     Use the list command or find command to find out what is the index of the item to be deleted.
     ```
