@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -84,20 +81,21 @@ public class PersonCard extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(appointment,getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
             }
         }
     }
 
-//    private void addAppointmentLabels(Person person) {
-//        List<Appointment> appointmentList = person.getAppointments().stream()
-//                .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
-//        int listSize = appointmentList.size();
-//        for (int i = 0; i < listSize; i++) {
-//            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
-//                    + "                                                                                 "));
-//        }
-//    }
+    //    private void addAppointmentLabels(Person person) {
+    //        List<Appointment> appointmentList = person.getAppointments().stream()
+    //                .sorted(Comparator.comparing(appointment -> appointment.getDateTime()))
+    //                .collect(Collectors.toList());
+    //        int listSize = appointmentList.size();
+    //        for (int i = 0; i < listSize; i++) {
+    //            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
+    //                    + "                                                                                 "));
+    //        }
+    //    }
 
     private void addTagLabels(Person person) {
         person.getSpecialTags().stream()
