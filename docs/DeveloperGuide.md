@@ -153,7 +153,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### Edit feature
+### \[Insert Numbering\] Edit feature
 The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
 an `EditCommand` that is executed by the `LogicManager`.
 
