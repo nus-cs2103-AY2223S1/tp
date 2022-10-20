@@ -183,7 +183,7 @@ These operations are exposed in the `Model` interface under the same method name
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
 Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` checks the user input to confirm
-that parameters have been entered. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
+that the parameters have been entered. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
 
 Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. The `friend` string is checked to see if it 
 fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters,
