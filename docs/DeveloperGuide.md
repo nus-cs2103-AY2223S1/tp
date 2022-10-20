@@ -228,7 +228,6 @@ Design Considerations:
 
 *To be further updated*
 
-=======
 #### 4.2.7 Toggle View command
 Implementation: 
 
