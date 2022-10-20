@@ -31,11 +31,6 @@ public class AssignMemberCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the team";
     public static final String MESSAGE_ARGUMENTS = "Person: %1$s, Team: %2$s";
 
-    /*
-    private final Name toAssign;
-    private final seedu.address.model.team.Name teamName;
-    */
-
     private final Index personIndex;
     private final Index teamIndex;
 
