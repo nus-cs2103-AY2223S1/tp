@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="topCalendar" />
@@ -17,7 +17,7 @@
          <content>
             <AnchorPane>
                <children>
-                  <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" gridLinesVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <columnConstraints>
                           <ColumnConstraints hgrow="ALWAYS" />
                           <ColumnConstraints hgrow="ALWAYS" />
@@ -38,6 +38,10 @@
                       <opaqueInsets>
                           <Insets />
                       </opaqueInsets>
+                     <styleClass>
+                        <String fx:value="gridStyle" />
+                        <String fx:value="pane-with-border" />
+                     </styleClass>
                   </GridPane>
                </children>
             </AnchorPane>

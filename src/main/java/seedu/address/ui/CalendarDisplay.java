@@ -1,18 +1,22 @@
 package seedu.address.ui;
 
 
+import static javafx.scene.paint.Color.WHITE;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import seedu.address.logic.Logic;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
 
@@ -23,16 +27,20 @@ public class CalendarDisplay extends UiPart<Region> {
 
     private static final String FXML = "CalendarDisplay.fxml";
 
-    private static final String[] monthNames = {
+    private static final String[] MONTH_NAMES = {
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     };
-    private static final String[] dayNames = {
+    private static final String[] DAY_NAMES = {
         "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
-    private static final String switchButtonStyle = "-fx-border-color: grey; -fx-border-radius: 5;";
+    private static final String SWITCH_BUTTON_STYLE = "-fx-border-color: grey; -fx-border-radius: 5;";
+    private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; "
+            + "-fx-background-color: #fff";
+
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
+    private Logic logic;
 
     @FXML
     private GridPane calendarDisplay;
@@ -42,11 +50,12 @@ public class CalendarDisplay extends UiPart<Region> {
     /**
      * Creates a Calendar with the given list of CalendarEvents.
      */
-    public CalendarDisplay(ObservableList<CalendarEvent> calendarEventObservableList) {
+    public CalendarDisplay(Logic logic) {
         super(FXML);
-        this.calendarMonth = new CalendarMonth(calendarEventObservableList);
+        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
+        this.logic = logic;
         drawCalendar();
     }
 
@@ -58,9 +67,12 @@ public class CalendarDisplay extends UiPart<Region> {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         Button prevButtonHeader = getButtonHeader("Prev");
-        Button nextButtonHeader = getButtonHeader("Next");
 
-        topCalendar.getChildren().addAll(textHeader, prevButtonHeader, nextButtonHeader);
+        Button nextButtonHeader = getButtonHeader("Next");
+        Button refreshButtonHeader = getButtonHeader("Refresh");
+
+        topCalendar.getChildren().addAll(textHeader, prevButtonHeader, nextButtonHeader, refreshButtonHeader);
+        topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
     private void drawBody() {
@@ -68,6 +80,7 @@ public class CalendarDisplay extends UiPart<Region> {
         // Draw days of the week
         for (int day = 1; day <= 7; day++) {
             Text tDayName = new Text(" " + getDayName(day));
+            tDayName.setFill(WHITE);
             calendarDisplay.add(tDayName, day - 1, 0);
         }
 
@@ -94,20 +107,21 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
 
+
     private String getDayName(int n) {
-        return dayNames[n - 1];
+        return DAY_NAMES[n - 1];
     }
 
     private String getMonthName(int n) {
-        return monthNames[n];
+        return MONTH_NAMES[n];
     }
 
     public Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
         Text header = new Text(monthString + ", " + yearString);
-        header.setStyle("-fx-font-size: 15pt; -fx-text-fill: white; -fx-background-color: #fff");
-        header.setFill(Color.WHITE);
+        header.setStyle(TEXT_HEADER_STYLE);
+        header.setFill(WHITE);
         return header;
     }
 
@@ -115,26 +129,37 @@ public class CalendarDisplay extends UiPart<Region> {
         if (text.equals("Prev")) {
             Button prevButton = new Button(text);
             prevButton.setOnAction(e -> previous());
-            prevButton.setStyle(switchButtonStyle);
+            prevButton.setStyle(SWITCH_BUTTON_STYLE);
             return prevButton;
-        } else {
+        } else if (text.equals("Next")) {
             Button nextButton = new Button(text);
             nextButton.setOnAction(e -> next());
-            nextButton.setStyle(switchButtonStyle);
+            nextButton.setStyle(SWITCH_BUTTON_STYLE);
+            return nextButton;
+        } else {
+            Button nextButton = new Button(text);
+            nextButton.setOnAction(e -> refresh());
+            nextButton.setStyle(SWITCH_BUTTON_STYLE);
             return nextButton;
         }
     }
 
+    private void refresh() {
+        resetGridPane();
+        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        drawCalendar();
+    }
+
     private void previous() {
-        topCalendar.getChildren().clear();
-        calendarDisplay.getChildren().clear();
+        resetGridPane();
+        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getPreviousMonth(currentMonth);
         drawCalendar();
     }
 
     private void next() {
-        topCalendar.getChildren().clear();
-        calendarDisplay.getChildren().clear();
+        resetGridPane();
+        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getNextMonth(currentMonth);
         drawCalendar();
     }
@@ -168,5 +193,13 @@ public class CalendarDisplay extends UiPart<Region> {
         }
         return new GregorianCalendar(futureYear, futureMonth, 1);
     }
+
+    private void resetGridPane() {
+        topCalendar.getChildren().clear();
+        Node node = calendarDisplay.getChildren().get(0);
+        calendarDisplay.getChildren().clear();
+        calendarDisplay.getChildren().add(0, node);
+    }
+
 
 }
