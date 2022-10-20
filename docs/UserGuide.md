@@ -153,17 +153,21 @@ Example:
 
 ### Clone a person : `clone`
 
-Clones a specified person in the app.
+Clones an existing person in Survin with updated details.
 
-Format: `clone INDEX`
+Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY] [t/TAG]…`
 
-- Clones the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …​
+- Clones the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to clone, as shown in the display list. The index must be a **positive integer**.
+- At least one of the unique optional fields has to be provided. (E.g. Phone or Email)
+- A new person with updated values in specified field will be added to the address book.
+- When updating tags or surveys, the existing tags or surveys of the person will be removed i.e adding of tags is not cumulative.
+- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+- You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
 
 Examples:
 
-* Use `find Alex` to list all the persons whose name contains Alex, followed by `clone 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
+- `clone 1 p/91234567 e/johndoe@example.com` Add a new person with all details of the 1st person except the phone number and email will be updated to `91234567` and `johndoe@example.com` respectively.
+- `clone 2 n/Betsy Crower t/` Add a new person with all details of the 2nd person except the name will be updated to `Betsy Crower` and all tags are removed.
 
 ### Viewing a person: `view`
 
