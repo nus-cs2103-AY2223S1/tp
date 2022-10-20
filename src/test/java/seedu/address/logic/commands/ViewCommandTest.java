@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_NAME_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSON_FULL_VIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSON_NOT_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -52,7 +52,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = MESSAGE_PERSON_NOT_FOUND;
+        String expectedMessage = MESSAGE_NAME_NOT_FOUND;
         NameIsKeywordsPredicate predicate = preparePredicate(" ");
         ViewCommand command = new ViewCommand(predicate);
         model.updateFilteredPersonList(predicate);
@@ -62,7 +62,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_multipleKeywords_noPersonsFound() {
-        String expectedMessage = MESSAGE_PERSON_NOT_FOUND;
+        String expectedMessage = MESSAGE_NAME_NOT_FOUND;
         NameIsKeywordsPredicate predicate = preparePredicate("Alice Pauline Benson Meier");
         ViewCommand command = new ViewCommand(predicate);
         model.updateFilteredPersonList(predicate);

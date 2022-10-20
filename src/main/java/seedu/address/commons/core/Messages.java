@@ -11,6 +11,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_PERSON_FULL_VIEW = "Viewing %1$s in full view.";
     public static final String MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY = "Showing %1$d sessions";
-    public static final String MESSAGE_PERSON_NOT_FOUND =
+    public static final String MESSAGE_NAME_NOT_FOUND =
             "Person specified is not found," + " please provide correct full name";
 }

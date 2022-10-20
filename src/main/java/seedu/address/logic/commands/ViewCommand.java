@@ -32,7 +32,7 @@ public class ViewCommand extends Command {
         model.updateFilteredPersonList(predicate);
         model.setFullView();
         if (model.getFilteredPersonList().isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_NAME_NOT_FOUND);
         }
         Person person = model.getFilteredPersonList().get(0);
         person.setFullView();
