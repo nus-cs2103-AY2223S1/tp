@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -75,6 +78,33 @@ public class CommandTestUtil {
                 .withRemark(VALID_REMARK_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
+    public static final String VALID_DESCRIPTION_QUIZ = "do quiz";
+    public static final String VALID_DEADLINE_QUIZ = "12-12-2022";
+    public static final String VALID_DESCRIPTION_REPORT = "finish report";
+    public static final String VALID_DEADLINE_REPORT = "10-11-2023";
+    public static final String VALID_TAG_2103 = "CS2103T";
+    public static final String VALID_TAG_2101 = "CS2101";
+
+    public static final String DESCRIPTION_DESC_QUIZ = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_QUIZ;
+    public static final String DEADLINE_DESC_QUIZ = " " + PREFIX_TASK_DEADLINE + VALID_DEADLINE_QUIZ;
+    public static final String DESCRIPTION_DESC_REPORT = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_REPORT;
+    public static final String DEADLINE_DESC_REPORT = " " + PREFIX_TASK_DEADLINE + VALID_DEADLINE_REPORT;
+    public static final String TAG_DESC_2103 = " " + PREFIX_TAG + VALID_TAG_2103;
+    public static final String TAG_DESC_2101 = " " + PREFIX_TAG + VALID_TAG_2101;
+
+    public static final String INVALID_DESCRIPTION_DESC = "This&THAT!";
+    public static final String INVALID_DEADLINE_DESC = "234-12-344";
+
+    public static final EditTaskDescriptor DESC_QUIZ;
+    public static final EditTaskDescriptor DESC_REPORT;
+
+    static {
+        DESC_QUIZ = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_QUIZ)
+                .withDeadline(VALID_DEADLINE_QUIZ).build();
+        DESC_REPORT = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_REPORT)
+                .withDeadline(VALID_DEADLINE_REPORT).build();
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -119,6 +149,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredPersonList, actualModel.getFilteredPersonList());
         assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
     }
+
     /**
      * Updates {@code model}'s filtered person list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -132,5 +163,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
-
 }
