@@ -28,9 +28,9 @@ public class TeamDetailsCard extends UiPart<Region> {
     @FXML
     private Label teamNameDisplay;
     @FXML
-    private ListView<Person> memberListView;
+    private StackPane memberListPanel;
     @FXML
-    private ListView<Task> taskListView;
+    private StackPane taskListPanel;
 
     /**
      * Creates a {@code TeamDetailsCard} with the given {@code Team}.
@@ -38,15 +38,15 @@ public class TeamDetailsCard extends UiPart<Region> {
     public TeamDetailsCard(Team team) {
         super(FXML);
         teamNameDisplay.setText(team.getTeamName());
-        memberListView.setItems(team.getTeamMembers());
+//        memberListView.setItems(team.getTeamMembers());
 
-//        MemberListPanel members = new MemberListPanel(team.getTeamMembers());
-//        memberListView.getChildren().add(members.getRoot());
-//
-//        TaskListPanel tasks = new TaskListPanel(team.getTaskList());
-//        taskListView.getChildren().add(tasks.getRoot());
+        MemberListPanel members = new MemberListPanel(team.getTeamMembers());
+        memberListPanel.getChildren().add(members.getRoot());
 
-        taskListView.setItems(team.getTaskList());
+        TaskListPanel tasks = new TaskListPanel(team.getTaskList());
+        taskListPanel.getChildren().add(tasks.getRoot());
+
+//        taskListView.setItems(team.getTaskList());
         teamNameDisplay.setWrapText(true);
     }
 }

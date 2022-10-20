@@ -28,9 +28,9 @@ public class MemberCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label memberName;
+    private Label memberName = new Label();
     @FXML
-    private Label id;
+    private Label id = new Label();
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.

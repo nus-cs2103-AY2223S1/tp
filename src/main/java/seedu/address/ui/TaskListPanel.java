@@ -9,6 +9,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.team.Task;
 
+
 /**
  * Panel containing the list of tasks.
  */
@@ -41,6 +42,7 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                assert task != null;
                 setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
             }
         }

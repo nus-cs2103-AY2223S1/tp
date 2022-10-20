@@ -18,7 +18,7 @@
         </HBox>
         <HBox>
             <VBox>
-                <ListView fx:id="memberListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="memberListPanel" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
                 <padding>
                     <Insets left="10" right="10"/>
                 </padding>
@@ -27,7 +27,7 @@
                 <padding>
                     <Insets left="10" right="10"/>
                 </padding>
-                <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+                <StackPane fx:id="taskListPanel" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
             </VBox>
         </HBox>
     </VBox>

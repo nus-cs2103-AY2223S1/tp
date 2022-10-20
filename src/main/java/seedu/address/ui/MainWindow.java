@@ -134,22 +134,9 @@ public class MainWindow extends UiPart<Stage> {
         teamDetailsPanel = new TeamDetailsPanel(logic.getTeamAsProperty());
         teamDetailsCardPlaceHolder.getChildren().add(teamDetailsPanel.getRoot());
 
-//        taskListPanel = new TaskListPanel(logic.getCurrentTeam().getTaskList());
-//        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-//
-//        memberListPanel = new MemberListPanel(logic.getCurrentTeam().getTeamMembers());
-//        memberListPanelPlaceholder.getChildren().add(memberListPanel.getRoot());
-
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-//
-//        ObservableList<Task> tasks = logic.getCurrentTeam().getTaskList();
-//        if (tasks.size() > 0) {
-//            taskListPanel = new TaskListPanel(tasks);
-//            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-//        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
