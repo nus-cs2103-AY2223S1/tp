@@ -42,9 +42,9 @@ create CommandResult
 FindCommand -> CommandResult : new \nCommandResult\n (feedBackToUser)
 activate CommandResult
 
-CommandResult --> FindCommand : result
+CommandResult --> FindCommand : commandResult
 deactivate CommandResult
 
-[<--FindCommand : result
+[<--FindCommand : commandResult
 deactivate FindCommand
 @enduml
