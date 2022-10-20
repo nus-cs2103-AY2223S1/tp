@@ -16,6 +16,6 @@ public class HomeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, SecondaryPaneState.WELCOME);
+        return new CommandResult(MESSAGE_SUCCESS, SecondaryPaneState.WELCOME);
     }
 }

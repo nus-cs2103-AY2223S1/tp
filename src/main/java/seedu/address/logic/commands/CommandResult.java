@@ -36,6 +36,13 @@ public class CommandResult {
     }
 
     /**
+     * Construct a {@code CommandResult} that updates the secondary pane state.
+     */
+    public CommandResult(String feedbackTouser, SecondaryPaneState secondaryPaneState) {
+        this(feedbackTouser, false, false, secondaryPaneState);
+    }
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields, without changing the state of the secondary panel.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
