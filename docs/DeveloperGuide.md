@@ -303,14 +303,16 @@ Step 5. After looking through all the tasks that are related to backend, the use
 
 **Design considerations**
 
-**Aspect: How flter executes**
-- **Alterantive 1 (current choice):** Filters the entire tasklist.
-  -Pros: Easy to implement
-  -Cons:
+**Aspect: How undo & redo executes:**
 
-- **Alternative 2:**
-  -Pros:
-  -Cons:
+* **Alternative 1 (current choice):** Filters entire tasklist
+  * Pros: Easy to implement.
+  * Cons: 
+
+* **Alternative 2:** 
+  itself.
+  * Pros: 
+  * Cons: 
 
 
 --------------------------------------------------------------------------------------------------------------------
