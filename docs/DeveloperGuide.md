@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Filter by `ApplicationStatus` feature
+
+#### Implementation
+
+`FilterCommand` was implemented similar to how `FindCommand` was implemented.
+* A `FilterCommandParser` class is created, which parses the user input by passing it to `ApplicationStatus`, then returns the relevant `FilterCommand`.
+* `FilterCommand` takes in a `InternshipHasApplicationStatusPredicate`.
+* `InternshipHasApplicationStatusPredicate` implements `Predicate<Internship>`, and holds the `ApplicationStatus` that the user is filtering for.
+
+When `execute` of `FilterCommand` is run, the `InternshipHasApplicationStatusPredicate` is passed into the model to filter the Internship list. 
+
+The following activity diagram summarizes what happens when a user executes a filter command:
+
+<img src="images/FilterCommandActivityDiagram.png" width="350" />
+
+#### Design considerations
+
+* The implementation is similar to `FindCommand` as both have the same idea of filtering/finding something in the list.
+* The model already supports filtering for a certain predicate, therefore it is only intuitive that `FilterCommand` would make use of this functionality, just like how `FindCommand` would.
+* This implementation would allow easy extension should there be more `ApplicationStatus` added, since parsing of user input is done by `ApplicationStatus`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
