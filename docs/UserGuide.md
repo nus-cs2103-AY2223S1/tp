@@ -210,6 +210,7 @@ ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. A
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
 </div>
+
 ### Add a teaching schedule `sadd`
 
 Adds a schedule of a module in the ProfNUS.
@@ -235,8 +236,6 @@ If the schedule to be added conflicts with any existing schedule, the ProfNUS wi
 
 <img src="./images/userguide/sadd.png" alt="Screenshot 2022-10-16 at 2.30.31 PM" style="zoom: 50%;" width=1200px/>
 
-
-
 ### Edit a schedule `sedit`
 
 Edits a schedule in the ProfNUS.
@@ -251,8 +250,6 @@ Edits a schedule in the ProfNUS.
 
 <img src="./images/userguide/sedit.png" alt="sedit" style="zoom:67%;" width=1000px/>
 
-
-
 ### Delete a schedule `sdelete`
 
 Deletes a schedule from the ProfNUS.
@@ -265,37 +262,39 @@ Deletes a schedule from the ProfNUS.
 
 <img src="images/userguide/sdelete.png" alt="sdelete" style="zoom:67%;" width=1000px/>
 
-### View your teaching schedule: `view schedule`
+### Clear your teaching schedule: `sclear`
 
-**Syntax**: `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`
+Clears some selected schedules/all schedules from the ProfNUS.
 
-- `-w WEEKDAY` option shows your schedule on the `WEEKDAY`. `WEEKDAY` should be one of `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`.
-- `-m MODULE_NAME` option shows your weekly schedule of `MODULE_CODE`.
-- `-d DATE` option shows your schedule on the `DATE`. `DATE` should comply with the format `yyyy-mm-dd`
-- `-h` option shows your schedule table in a horizontal mode (time will be columns and weekdays will be rows).
-- `-v` options shows your schedule table in a vertical mode (weekdays will be columns and time will be rows).
-- The result will be a timetable in vertical mode by default if no option is specified.
+**Format**: `sclear`
+**Format**: `sclear [m/MODULE_CODE] [m/MORE_MODULE_CODES]`
 
-**Notes about the syntax**:
+- If only one single command `sclear`, it will clear all schedules.
+- `[m/MODULE_CODE]` can be optional or more than one.
+- `sclear [m/MODULE_CODE_1] [m/MODULE_CODE_2]` will clear all `MODULE_CODE_1` and `MODULE_CODE_2` schedules.
+- If all `[m/MODULE_CODE]` don't exist, it will not clear any schedules.
 
-- `-w WEEKDAY` option and `-d DATE` option cannot be used at the same time.
-- If either `-w WEEKDAY`, `-m MODULE_NAME` or `-d DATE` is used, the result won't be a timetable. Instead, it will be shown as a list of slots.
-- `-h` and `-v` options can only be used when the result is shown as a timetable.
-- `-h` option and `-v` option cannot be used at the same time.
+**Example**: `sclear m/CS2103T m/CS2103`
 
-**Examples**:
+<img src="images/userguide/sclear.png" alt="sdelete" style="zoom:67%;" width="1000px/">
 
-- `view schedule -w Monday -m CS2103T`
 
-  <div align=center><img src="./images/view schedule -w Monday -m CS2103T.png" width=300px></div>
+### View your teaching schedule: `view`
 
-- `view schedule -d 2022-09-12`
+Shows the list of some selected schedules/all schedules from the ProfNUS.
 
-  <div align=center><img src="./images/view schedule -d 2022-09-12.png" width=300px></div>
+**Format**: `view`
+**Format**: `view [m/MODULE_CODE] [m/MORE_MODULE_CODES] [w/WEEKDAY] [w/MORE_WEEKDAYS]`
 
-- `view schedule -h`
+- If only one single command `view`, it will show the list all schedules.
+- `[m/MODULE_CODE]`and`[w/WEEKDAY]`can be optional or more than one.
+- `view [m/MODULE_CODE_1] [m/MODULE_CODE_2] [w/WEEKDAY] [w/WEEKDAY_2]` will show all schedules of `MODULE_CODE_1`and`MODULE_CODE_2` as well as schedules either on `WEEKDAY` or `WEEKDAY_2`.
+- If all `[m/MODULE_CODE]` don't exist or they have no schedules, it will show empty list.
 
-  <div align=center><img src="./images/view schedule -h.png" width=500px height=250px></div>
+**Example**: `view m/CS2103T m/CS2103`
+
+<img src="images/userguide/view.png" alt="sdelete" style="zoom:67%;" width="1000px/">
+
 
 ### Finding a student
 
