@@ -206,7 +206,7 @@ public class ModelManager implements Model {
      */
     public void updateApplicationListWithInterview() {
         applicationsWithInterview.clear();
-        applicationsWithInterview.addAll(applicationBook.getApplicationList());
+        applicationsWithInterview.addAll(filteredApplications);
         applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
         applicationsWithInterview.sort(new InterviewComparator());
     }

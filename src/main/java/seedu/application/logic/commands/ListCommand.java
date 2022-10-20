@@ -21,6 +21,7 @@ public class ListCommand extends Command {
         HideArchiveFromListPredicate hideArchiveFromListPredicate =
                 new HideArchiveFromListPredicate();
         model.updateFilteredApplicationList(hideArchiveFromListPredicate);
+        model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -20,6 +20,7 @@ public class ListArchiveCommand extends Command {
         ShowArchiveOnlyPredicate showArchiveOnlyPredicate =
                 new ShowArchiveOnlyPredicate();
         model.updateFilteredApplicationList(showArchiveOnlyPredicate);
+        model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

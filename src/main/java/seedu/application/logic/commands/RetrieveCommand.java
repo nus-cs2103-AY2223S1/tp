@@ -53,6 +53,7 @@ public class RetrieveCommand extends Command {
             throw new CommandException(MESSAGE_APPLICATION_IS_NOT_ARCHIVE);
         }
         model.retrieveApplication(applicationToRetrieve);
+        model.updateApplicationListWithInterview();
         return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, applicationToRetrieve));
     }
 
