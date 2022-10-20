@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Developer Guide
+show-toc: true
 ---
 
 {% include toc.md header=true show-in-toc=false %}
