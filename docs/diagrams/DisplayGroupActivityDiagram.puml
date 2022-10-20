@@ -1,0 +1,28 @@
+@startuml
+
+title DisplayGroupCommand
+
+start
+:User executes "displaygroup" command;
+:Command is parsed;
+
+if () then ([input is not empty])
+    :Check validity of groupname;
+
+    if () then ([valid groupname])
+        :Get the group from the group list;
+        :Filter the group list to only
+        display the group specified;
+        :Feedback to user that execution
+        was successful;
+
+    else ([else])
+        :Throw CommandException;
+    endif
+
+else ([else])
+    :Throw ParseException;
+endif
+
+stop
+@enduml
