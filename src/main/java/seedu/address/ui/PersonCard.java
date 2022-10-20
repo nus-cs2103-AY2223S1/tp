@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -53,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane appointments;
+    private ListView<Appointment> appointments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -67,18 +69,35 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         addTagLabels(person);
-        addAppointmentLabels(person);
+        appointments.setItems(person.getAppointments().getObservableList());
+        appointments.setCellFactory(listView -> new AppointmentListViewCell());
     }
 
-    private void addAppointmentLabels(Person person) {
-        List<Appointment> appointmentList = person.getAppointments().stream()
-                .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
-        int listSize = appointmentList.size();
-        for (int i = 0; i < listSize; i++) {
-            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
-                    + "                                                                                 "));
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     */
+    class AppointmentListViewCell extends ListCell<Appointment> {
+        protected void updateItem(Appointment appointment, boolean empty) {
+            super.updateItem(appointment, empty);
+
+            if (empty || appointment == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new AppointmentCard(appointment,getIndex() + 1).getRoot());
+            }
         }
     }
+
+//    private void addAppointmentLabels(Person person) {
+//        List<Appointment> appointmentList = person.getAppointments().stream()
+//                .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
+//        int listSize = appointmentList.size();
+//        for (int i = 0; i < listSize; i++) {
+//            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
+//                    + "                                                                                 "));
+//        }
+//    }
 
     private void addTagLabels(Person person) {
         person.getSpecialTags().stream()
