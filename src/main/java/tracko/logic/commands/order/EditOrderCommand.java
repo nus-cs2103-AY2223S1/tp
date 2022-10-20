@@ -52,8 +52,8 @@ public class EditOrderCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_NONEXISTENT_ITEM = "The item that is being added does "
             + "not exist in the inventory list.";
-    public static final String MESSAGE_ONE_ORDERED_ITEM = "The item that is being added does "
-            + "not exist in the inventory list.";
+    public static final String MESSAGE_ONE_ORDERED_ITEM = "An order list cannot have 0 items. "
+            + "Perhaps you want to delete the order instead?";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
