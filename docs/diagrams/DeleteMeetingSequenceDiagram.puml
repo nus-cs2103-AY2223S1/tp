@@ -15,7 +15,7 @@ end box
 [-> LogicManager : execute("delMeeting i/1")
 activate LogicManager
 
-LogicManager -> MyInsuRecParser : parseCommand("delMeeting i/1")")
+LogicManager -> MyInsuRecParser : parseCommand("delMeeting i/1")
 activate MyInsuRecParser
 
 create DeleteMeetingCommandParser

@@ -25,7 +25,7 @@ Given below are my contributions to the project.
         * Added documentation for the command summary
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [#30](https://github.com/nus-cs2103-AY2223S1/ip/pull/30/files/8747b6733960793f58073631497b68ef093b584a), [#402](https://github.com/nus-cs2103-AY2223S1/ip/pull/402/files/3e90719169c9d34d360f5f543bf639817b2e78ac), 
+    * PRs reviewed (with non-trivial review comments): [#30](https://github.com/nus-cs2103-AY2223S1/ip/pull/30/files/8747b6733960793f58073631497b68ef093b584a), [#402](https://github.com/nus-cs2103-AY2223S1/ip/pull/402/files/3e90719169c9d34d360f5f543bf639817b2e78ac),
     * Contributed to forum discussions (examples: [#25](https://github.com/nus-cs2103-AY2223S1/forum/issues/25), [#136](https://github.com/nus-cs2103-AY2223S1/forum/issues/136), [#140](https://github.com/nus-cs2103-AY2223S1/forum/issues/140))
 
 * **Tools**:

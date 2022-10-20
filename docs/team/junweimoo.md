@@ -10,7 +10,7 @@ financial advisors stay connected with their clients. *MyInsuRec* is best suited
 optimized for use via a Command Line Interface (CLI), with all the benefits of a Graphical User Interface (GUI).
 Given below are my contributions to the project.
 
-* **Code contributed**: 
+* **Code contributed**:
   * to be added soon
 
 * **Project management**:
