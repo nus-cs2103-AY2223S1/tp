@@ -4,6 +4,7 @@ import static javafx.scene.paint.Color.WHITE;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -36,6 +37,7 @@ public class CalendarEventListPanel extends VBox {
         calendarDayEvents.stream()
                 .forEach(x -> calendarEventList.getChildren()
                         .add(new EventButton(x, primaryStage)));
+
         return calendarEventList;
     }
 

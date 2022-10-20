@@ -31,6 +31,7 @@ public class CalendarPopup extends Tooltip {
     private static final Image DATE_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/calendar.png"));
     private static final Image TIME_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/clock.png"));
     private static final Image LOCATION_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/location.png"));
+    public static final int LABEL_PREF_WIDTH = 200;
 
     private final Node owner;
 
@@ -39,8 +40,12 @@ public class CalendarPopup extends Tooltip {
      */
     public CalendarPopup(CalendarEvent calendarEvent, Node owner) {
         this.owner = owner;
+        initialiseCalendarPopup(calendarEvent);
+    }
+
+    private void initialiseCalendarPopup(CalendarEvent calendarEvent) {
         setStyle(POPUP_STYLE);
-        setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
+        setAnchorLocation(AnchorLocation.WINDOW_BOTTOM_LEFT);
         setShowDelay(new Duration(POPUP_DELAY));
         setShowDuration(new Duration(POPUP_DURATION));
         setAutoHide(false);
@@ -52,16 +57,15 @@ public class CalendarPopup extends Tooltip {
         FlowPane timePane = createFlowPane(TIME_IMAGE, calendarEvent.getTimeFormat());
         FlowPane locationPane = createFlowPane(LOCATION_IMAGE, calendarEvent.getLocation().toString());
         vBox.getChildren().addAll(f, datePane, timePane, locationPane);
-        setGraphicTextGap(0);
         setGraphic(vBox);
-        setContentDisplay(ContentDisplay.TOP);
+        setContentDisplay(ContentDisplay.BOTTOM);
     }
 
     private FlowPane createFlowPane(Image image, String content) {
         FlowPane flowPane = new FlowPane();
         ImageView icon = new ImageView(image);
         Label label = new Label(content);
-        label.setPrefWidth(200);
+        label.setPrefWidth(LABEL_PREF_WIDTH);
         label.setStyle(LABEL_STYLE);
         label.setAlignment(Pos.CENTER);
         flowPane.getChildren().addAll(icon, label);
