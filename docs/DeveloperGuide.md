@@ -180,7 +180,7 @@ The following activity diagram shows what happens when a user executes a new add
 activities related to gender field are considered and shown in this activity diagram.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions is thrown and caught if 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if 
 gender field in not provided in the command, or the gender is not of valid format; Duplicated person exception is 
 thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
 </div>
