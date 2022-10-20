@@ -154,6 +154,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete multiple contacts (enhancement to delete feature)
+
+`DeleteCommand` now accepts multiple inputs and allows multiple `Person` to be deleted from the `Model` in a single command.
+
+The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed. 
+
+<img src="images/DeleteMultipleSequenceDiagram.png" >
+
+#### Differences from original `DeleteCommand` implementation:
+1. `DeleteCommandParser` now returns a `Set<Index>` instead of just a single `Index` to be used as arguments for the `DeleteCommand`constructor.
+2. If any of the inputs are invalid (out of bounds indexes or non-integer characters) a `ParseException` will be thrown, even if other inputs are valid.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running. >
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
