@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+  <?import java.net.URL?>
+  <?import javafx.geometry.Insets?>
+  <?import javafx.scene.Scene?>
+  <?import javafx.scene.control.Menu?>
+  <?import javafx.scene.control.MenuBar?>
+  <?import javafx.scene.control.MenuItem?>
+  <?import javafx.scene.control.SplitPane?>
+  <?import javafx.scene.image.Image?>
+  <?import javafx.scene.layout.StackPane?>
+  <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+  <?import javafx.scene.layout.AnchorPane?>
+  <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="HR Pro Max++" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
@@ -48,36 +48,52 @@
         </StackPane>
 
 
-        <SplitPane dividerPositions="0.5" prefHeight="160" prefWidth="700" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.50" prefHeight="160" prefWidth="700" VBox.vgrow="ALWAYS">
           <items>
+            <SplitPane dividerPositions="0.50" prefHeight="160" prefWidth="700" VBox.vgrow="ALWAYS" orientation ="VERTICAL">
+              <items>
+                <AnchorPane minHeight="160" minWidth="200">
+                  <children>
+                    <VBox fx:id="projectList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                          AnchorPane.topAnchor="0.0">
+                      <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                      </padding>
+                      <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+
+                <AnchorPane minHeight="160" minWidth="200">
+                  <children>
+                    <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                          AnchorPane.topAnchor="0.0">
+                      <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                      </padding>
+                      <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+
+              </items>
+            </SplitPane>
+
             <AnchorPane minHeight="160" minWidth="200">
               <children>
-                <VBox fx:id="projectList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                <VBox fx:id="staffList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                   AnchorPane.topAnchor="0.0">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
-                  <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                  <StackPane fx:id="staffListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
               </children>
             </AnchorPane>
-            <SplitPane dividerPositions="0.50" prefHeight="160" prefWidth="400" VBox.vgrow="ALWAYS">
-              <items>
-                <AnchorPane minHeight="160" minWidth="200">
-                  <children>
-                    <VBox fx:id="staffList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                      AnchorPane.topAnchor="0.0">
-                      <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
-                      </padding>
-                      <StackPane fx:id="staffListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                    </VBox>
-                  </children>
-                </AnchorPane>
-              </items>
-            </SplitPane>
+
           </items>
         </SplitPane>
 
@@ -85,4 +101,4 @@
       </VBox>
     </Scene>
   </scene>
-</fx:root>
+  </fx:root>
