@@ -260,8 +260,6 @@ Step 4. The user now decides that the initial order of the task list looks much 
 
 #### Design considerations:
 
-**Aspect: Why the sort methods are implemented as stated above:**
-
 **Aspect: How the sort methods executes:**
 
 * **Alternative 1 (current choice):** Saves the sorting status after sorting
