@@ -2,23 +2,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&family=Inconsolata&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap"
   rel="stylesheet"
 />
 
 <script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe@5.1.1/dist/gumshoe.polyfills.min.js"></script>
 <script defer>
-  // Adapted from https://www.freecodecamp.org/news/javascript-debounce-example/
-  function debounce(func, timeout = 500) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, timeout);
-    };
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     const header = document.getElementsByClassName("site-header")[0];
     const spy = new Gumshoe(".sticky-toc li a", {
@@ -29,27 +18,9 @@
     spy.setup();
   });
   document.addEventListener("gumshoeActivate", (e) => {
-    const toc = document.getElementsByClassName("sticky-toc")[0];
-    const classes = toc.classList;
+    const classes = document.getElementsByClassName("sticky-toc")[0].classList;
     classes.remove("hidden");
     classes.add("shown");
-    const relativePosition = e.target.offsetTop - toc.scrollTop;
-    if (relativePosition < 0 || relativePosition > toc.clientHeight) {
-      // debounce(() =>
-      //   toc.scrollTo({
-      //     top: e.target.offsetTop,
-      //     left: 0,
-      //     behavior: "smooth",
-      //   })
-      // );
-    }
-    // setTimeout(() => {
-    //   toc.scrollTo({
-    //     top: e.target.offsetTop,
-    //     left: 0,
-    //     behavior: "smooth",
-    //   });
-    // }, 1000);
   });
   document.addEventListener("gumshoeDeactivate", (e) => {
     const classes = document.getElementsByClassName("sticky-toc")[0].classList;
