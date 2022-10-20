@@ -306,7 +306,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowScheduleList()) {
-                handleShowTabAllSchedule();
+                handleShowTabSchedule();
             }
 
             return commandResult;

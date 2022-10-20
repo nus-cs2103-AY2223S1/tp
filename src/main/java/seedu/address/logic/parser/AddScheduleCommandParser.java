@@ -41,8 +41,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         ClassType classType = ParserUtil.parseClassType(argMultimap.getValue(PREFIX_CLASS_CATEGORY).get());
         Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_CLASS_VENUE).get());
 
-        // if (isValidTimeSlot(startTime, endTime)) {
-        if (true) {
+        if (isValidTimeSlot(startTime, endTime)) {
             Schedule newSchedule = new Schedule(module, venue, weekday, startTime, endTime, classType);
             return new AddScheduleCommand(newSchedule);
         } else {
