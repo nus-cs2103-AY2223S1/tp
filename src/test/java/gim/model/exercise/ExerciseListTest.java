@@ -143,7 +143,7 @@ public class ExerciseListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> exerciseList.asUnmodifiableObservableList()
+        assertThrows(UnsupportedOperationException.class, () -> exerciseList.asDisplayedList()
                 .remove(0));
     }
 }
