@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Region;
 
@@ -21,5 +22,7 @@ public class GradeChart extends UiPart<Region> {
         super(FXML);
         pieChart.setData(pieChartData);
         pieChart.setTitle("Grade chart");
+        pieChart.setLegendSide(Side.LEFT);
+        pieChart.setLabelsVisible(false);
     }
 }

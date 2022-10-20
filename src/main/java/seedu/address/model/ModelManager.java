@@ -159,14 +159,12 @@ public class ModelManager implements Model {
                 break;
             }
         }
-
         ObservableList<PieChart.Data> gradeChartData = FXCollections.observableArrayList(
-                new PieChart.Data("A", gradeArr[0]),
-                new PieChart.Data("B", gradeArr[1]),
-                new PieChart.Data("C", gradeArr[2]),
-                new PieChart.Data("D", gradeArr[3]),
-                new PieChart.Data("F", gradeArr[4]));
-
+                new PieChart.Data("Grade A: " + gradeArr[0], gradeArr[0]),
+                new PieChart.Data("Grade B: " + gradeArr[1], gradeArr[1]),
+                new PieChart.Data("Grade C: " + gradeArr[2], gradeArr[2]),
+                new PieChart.Data("Grade D: " + gradeArr[3], gradeArr[3]),
+                new PieChart.Data("Grade F: " + gradeArr[4], gradeArr[4]));
         return gradeChartData;
     }
 
