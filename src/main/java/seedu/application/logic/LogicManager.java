@@ -66,11 +66,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Application> getApplicationListWithInterview() {
-        return model.getApplicationListWithInterview();
-    }
-
-    @Override
     public Path getApplicationBookFilePath() {
         return model.getApplicationBookFilePath();
     }

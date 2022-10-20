@@ -1,9 +1,5 @@
 package seedu.application.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.application.logic.commands.EditCommand.EditApplicationDescriptor;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.Company;
@@ -11,7 +7,6 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
-import seedu.application.model.tag.Tag;
 
 /**
  * A utility class to help with building EditApplicationDescriptor objects.
@@ -38,7 +33,6 @@ public class EditApplicationDescriptorBuilder {
         descriptor.setDate(application.getDate());
         descriptor.setEmail(application.getEmail());
         descriptor.setPosition(application.getPosition());
-        descriptor.setTags(application.getTags());
     }
 
     /**
@@ -78,16 +72,6 @@ public class EditApplicationDescriptorBuilder {
      */
     public EditApplicationDescriptorBuilder withPosition(String position) {
         descriptor.setPosition(new Position(position));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditApplicationDescriptor}
-     * that we are building.
-     */
-    public EditApplicationDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

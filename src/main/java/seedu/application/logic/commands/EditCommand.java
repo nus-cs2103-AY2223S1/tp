@@ -6,14 +6,10 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
@@ -26,8 +22,6 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
-import seedu.application.model.application.interview.Interview;
-import seedu.application.model.tag.Tag;
 
 /**
  * Edits the details of an existing application in the application book.
@@ -45,7 +39,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_DATE + "DATE]..\n"
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CONTACT + "91234567 "
             + PREFIX_EMAIL + "internships@shopee.com";
@@ -88,11 +81,6 @@ public class EditCommand extends Command {
         }
 
         model.setApplication(applicationToEdit, editedApplication);
-        Optional<Interview> interview = applicationToEdit.getInterview();
-        if (interview.isPresent()) {
-            Application editedApplicationWithInterview = new Application(editedApplication, interview.get());
-            model.setApplication(editedApplication, editedApplicationWithInterview);
-        }
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
@@ -110,9 +98,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editApplicationDescriptor.getEmail().orElse(applicationToEdit.getEmail());
         Position updatedPosition = editApplicationDescriptor.getPosition().orElse(applicationToEdit.getPosition());
         Date updatedDate = editApplicationDescriptor.getDate().orElse(applicationToEdit.getDate());
-        Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(applicationToEdit.getTags());
 
-        return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition, updatedDate, updatedTags);
+        return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition, updatedDate);
     }
 
     @Override
@@ -143,13 +130,11 @@ public class EditCommand extends Command {
         private Email email;
         private Position position;
         private Date date;
-        private Set<Tag> tags;
 
         public EditApplicationDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditApplicationDescriptor(EditApplicationDescriptor toCopy) {
             setCompany(toCopy.company);
@@ -157,14 +142,13 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setPosition(toCopy.position);
             setDate(toCopy.date);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, contact, email, position, date, tags);
+            return CollectionUtil.isAnyNonNull(company, contact, email, position, date);
         }
 
         public void setCompany(Company company) {
@@ -207,23 +191,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -243,8 +210,7 @@ public class EditCommand extends Command {
                     && getContact().equals(e.getContact())
                     && getEmail().equals(e.getEmail())
                     && getPosition().equals(e.getPosition())
-                    && getDate().equals(e.getDate())
-                    && getTags().equals(e.getTags());
+                    && getDate().equals(e.getDate());
         }
     }
 }

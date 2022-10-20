@@ -6,7 +6,6 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
@@ -26,21 +25,15 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_POSITION + "POSITION "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "ByteDance "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_POSITION + "Software Engineer (Front-End) "
-            + PREFIX_DATE + "2022-10-09"
-            + PREFIX_TAG + "IT company "
-            + PREFIX_TAG + "parent company of TikTok";
+            + PREFIX_DATE + "2022-10-09";
 
     public static final String MESSAGE_SUCCESS = "New application added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in CinternS";
-    public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview has clashed with another interview "
-            + "exists in CinternS";
-
 
     private final Application toAdd;
 
@@ -58,8 +51,6 @@ public class AddCommand extends Command {
 
         if (model.hasApplication(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
-        } else if (model.hasSameInterviewTime(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
 
         model.addApplication(toAdd);

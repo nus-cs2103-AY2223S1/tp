@@ -1,15 +1,9 @@
 package seedu.application.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +13,6 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
-import seedu.application.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_COMPANY = "G@@gle";
@@ -27,15 +20,12 @@ public class ParserUtilTest {
     private static final String INVALID_DATE = "01/01/2022";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_POSITION = " ";
-    private static final String INVALID_TAG = "#tech";
 
     private static final String VALID_COMPANY = "Google";
     private static final String VALID_CONTACT = "123456";
     private static final String VALID_DATE = "2022-01-01";
     private static final String VALID_EMAIL = "google@example.com";
     private static final String VALID_POSITION = "Software Engineer";
-    private static final String VALID_TAG_1 = "techCompany";
-    private static final String VALID_TAG_2 = "preferred";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -162,51 +152,5 @@ public class ParserUtilTest {
         String tagWithWhitespace = WHITESPACE + VALID_POSITION + WHITESPACE;
         Position expectedPosition = new Position(VALID_POSITION);
         assertEquals(expectedPosition, ParserUtil.parsePosition(tagWithWhitespace));
-    }
-
-    @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-    }
-
-    @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-    }
-
-    @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
-    }
-
-    @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-    }
-
-    @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    }
-
-    @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
     }
 }

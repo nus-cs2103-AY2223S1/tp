@@ -30,7 +30,6 @@ public class RedoCommand extends Command {
 
         model.redoApplicationBook();
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
-        model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

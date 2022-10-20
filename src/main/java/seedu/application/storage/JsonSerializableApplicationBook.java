@@ -20,7 +20,6 @@ import seedu.application.model.application.Application;
 class JsonSerializableApplicationBook {
 
     public static final String MESSAGE_DUPLICATE_APPLICATION = "Application list contains duplicate application(s).";
-    public static final String MESSAGE_DUPLICATE_INTERVIEW = "Application list contains duplicate interview(s).";
 
     private final List<JsonAdaptedApplication> applications = new ArrayList<>();
 
@@ -53,8 +52,6 @@ class JsonSerializableApplicationBook {
             Application application = jsonAdaptedApplication.toModelType();
             if (applicationBook.hasApplication(application)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPLICATION);
-            } else if (applicationBook.hasSameInterviewTime(application)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_INTERVIEW);
             }
             applicationBook.addApplication(application);
         }

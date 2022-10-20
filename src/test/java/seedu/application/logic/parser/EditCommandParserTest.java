@@ -13,11 +13,8 @@ import static seedu.application.logic.commands.CommandTestUtil.INVALID_CONTACT_D
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
-import static seedu.application.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.POSITION_DESC_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.POSITION_DESC_GOOGLE;
-import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_PREFERRED;
-import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_TECH_COMPANY;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_GOOGLE;
@@ -27,9 +24,6 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_FACEB
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
-import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
-import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
-import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
@@ -46,12 +40,9 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
-import seedu.application.model.tag.Tag;
 import seedu.application.testutil.EditApplicationDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -92,25 +83,13 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_POSITION_DESC, Position.MESSAGE_CONSTRAINTS); // invalid position
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid contact followed by valid email
-        assertParseFailure(parser, "1" + INVALID_CONTACT_DESC + EMAIL_DESC_FACEBOOK,
-                Contact.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_CONTACT_DESC + EMAIL_DESC_FACEBOOK, Contact.MESSAGE_CONSTRAINTS);
 
         // valid contact followed by invalid contact. The test case for invalid contact followed by valid contact
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + CONTACT_DESC_GOOGLE + INVALID_CONTACT_DESC,
-                Contact.MESSAGE_CONSTRAINTS);
-
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Application} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_PREFERRED + TAG_DESC_TECH_COMPANY + TAG_EMPTY,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_PREFERRED + TAG_EMPTY + TAG_DESC_TECH_COMPANY,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_PREFERRED + TAG_DESC_TECH_COMPANY,
-                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + CONTACT_DESC_GOOGLE + INVALID_CONTACT_DESC, Contact.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC + INVALID_EMAIL_DESC + VALID_DATE_FACEBOOK
@@ -120,13 +99,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_APPLICATION;
-        String userInput = targetIndex.getOneBased() + CONTACT_DESC_GOOGLE + POSITION_DESC_GOOGLE + TAG_DESC_PREFERRED
-                + EMAIL_DESC_FACEBOOK + DATE_DESC_FACEBOOK + COMPANY_DESC_FACEBOOK + TAG_DESC_TECH_COMPANY;
+        String userInput = targetIndex.getOneBased() + CONTACT_DESC_GOOGLE + POSITION_DESC_GOOGLE
+                + EMAIL_DESC_FACEBOOK + DATE_DESC_FACEBOOK + COMPANY_DESC_FACEBOOK;
 
         EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder()
                 .withCompany(VALID_COMPANY_FACEBOOK).withContact(VALID_CONTACT_GOOGLE)
                 .withEmail(VALID_EMAIL_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
-                .withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
+                .withPosition(VALID_POSITION_GOOGLE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -177,25 +156,19 @@ public class EditCommandParserTest {
         descriptor = new EditApplicationDescriptorBuilder().withPosition(VALID_POSITION_FACEBOOK).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
-        // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_TECH_COMPANY;
-        descriptor = new EditApplicationDescriptorBuilder().withTags(VALID_TAG_TECH_COMPANY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_APPLICATION;
-        String userInput = targetIndex.getOneBased() + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK + TAG_DESC_PREFERRED
+        String userInput = targetIndex.getOneBased() + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK
                 + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK
                 + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
-                + TAG_DESC_TECH_COMPANY + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE + TAG_DESC_PREFERRED;
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE;
 
         EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder().withContact(VALID_CONTACT_GOOGLE)
                 .withEmail(VALID_EMAIL_GOOGLE).withDate(VALID_DATE_GOOGLE).withPosition(VALID_POSITION_GOOGLE)
-                .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
+                .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -217,17 +190,6 @@ public class EditCommandParserTest {
         descriptor = new EditApplicationDescriptorBuilder().withContact(VALID_CONTACT_GOOGLE)
                 .withEmail(VALID_EMAIL_GOOGLE).withDate(VALID_DATE_GOOGLE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_APPLICATION;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

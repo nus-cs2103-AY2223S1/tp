@@ -6,7 +6,6 @@ import static seedu.application.logic.commands.CommandTestUtil.DESC_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
-import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.application.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.application.logic.commands.CommandTestUtil.showApplicationAtIndex;
@@ -55,11 +54,10 @@ public class EditCommandTest {
 
         ApplicationBuilder applicationInList = new ApplicationBuilder(lastApplication);
         Application editedApplication = applicationInList.withCompany(VALID_COMPANY_FACEBOOK)
-                .withContact(VALID_CONTACT_FACEBOOK).withTags(VALID_TAG_PREFERRED).build();
+                .withContact(VALID_CONTACT_FACEBOOK).build();
 
         EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder()
-                .withCompany(VALID_COMPANY_FACEBOOK).withContact(VALID_CONTACT_FACEBOOK).withTags(VALID_TAG_PREFERRED)
-                .build();
+                .withCompany(VALID_COMPANY_FACEBOOK).withContact(VALID_CONTACT_FACEBOOK).build();
         EditCommand editCommand = new EditCommand(indexLastApplication, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
