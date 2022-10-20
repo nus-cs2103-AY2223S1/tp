@@ -24,11 +24,11 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
-Class JsonAdaptedModule
 }
 
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
+Class JsonAdaptedModule
 
 }
 
@@ -53,4 +53,5 @@ JsonAdaptedPerson --> "*" JsonAdaptedModule
 JsonTaskListStorage .up.|> TaskListStorage
 JsonTaskListStorage ..> JsonSerializableTaskList
 JsonSerializableTaskList --> "*" JsonAdaptedTask
+JsonAdaptedTask --> "1" JsonAdaptedModule
 @enduml
