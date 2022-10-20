@@ -72,6 +72,7 @@ activate Model
 Model --> AddCommand
 deactivate
 
+
 AddCommand -> Model : addApplicant(applicant)
 activate Model
 

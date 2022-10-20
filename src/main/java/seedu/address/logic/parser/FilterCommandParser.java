@@ -19,9 +19,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.toLowerCase().trim();
-        if (ApplicationStatus.isValidApplicationStatus(trimmedArgs))
-            return new FilterCommand(new ApplicationStatusPredicate(trimmedArgs));
-        else {
+
+        if (ApplicationStatus.isValidApplicationStatus(trimmedArgs)) {
+            ApplicationStatusPredicate predicate = new ApplicationStatusPredicate(trimmedArgs);
+            return new FilterCommand(predicate);
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
