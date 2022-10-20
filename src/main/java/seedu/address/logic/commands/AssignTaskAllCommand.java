@@ -41,6 +41,10 @@ public class AssignTaskAllCommand extends Command {
     private final String group;
     private final Assignment task;
 
+    /**
+     * Assigns an assignment to all members in a group in the address book.
+     * Skips over members who already have the assignment.
+     */
     public AssignTaskAllCommand(String group, Assignment task) {
         requireAllNonNull(group, task);
         this.group = group;
@@ -106,7 +110,7 @@ public class AssignTaskAllCommand extends Command {
         StringBuilder updatedPersonsStrBld = new StringBuilder();
         for (Person personToAssignTask : successfullyAdded) {
             updatedPersonsStrBld.append(
-                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group,this.task) + "\n");
+                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group, this.task) + "\n");
         }
         String updatedPersonsString = updatedPersonsStrBld.toString();
 

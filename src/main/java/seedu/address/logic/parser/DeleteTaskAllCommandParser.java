@@ -11,6 +11,9 @@ import seedu.address.logic.commands.DeleteTaskAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
 
+/**
+ * Parses input arguments and creates a new {@code DeleteTaskAllCommand} object
+ */
 public class DeleteTaskAllCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of a {@code DeleteTaskAllCommand}

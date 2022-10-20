@@ -22,9 +22,9 @@ import seedu.address.model.person.Person;
  * Skips over members who do not have the assignment.
  */
 public class DeleteTaskAllCommand extends Command {
-    
+
     public static final String COMMAND_WORD = "deletetaskall";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete task from all users in a group. "
             + "Members who do not have this task are skipped over. "
             + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
@@ -36,34 +36,38 @@ public class DeleteTaskAllCommand extends Command {
     public static final String MESSAGE_NO_TASKS_DELETED = "All members of this group do not have this task.";
     public static final String MESSAGE_MEMBER_LIST_ERROR = "The group specified has an erroneous member list.";
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Task deleted for the following persons.";
-    
+
     public final String group;
     public final Assignment task;
-    
+
+    /**
+     * Deletes an assignment to all members in a group in the address book.
+     * Skips over members who do not have the assignment.
+     */
     public DeleteTaskAllCommand(String group, Assignment task) {
         requireAllNonNull(group, task);
         this.group = group;
         this.task = task;
     }
-    
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Group> groupList = model.getGroupWithName(new GroupName(this.group));
         Group groupToAssign;
         ArrayList<Person> successfullyDeleted = new ArrayList<>();
-        
+
         try {
             groupToAssign = groupList.get(0);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_GROUP);
         }
-        
+
         Set<Person> members = groupToAssign.getMembers();
-        
+
         if (members.isEmpty()) {
             throw new CommandException(MESSAGE_NO_MEMBERS);
         }
-        
+
         for (Person p : members) {
             Person personToDeleteTask;
             try {
@@ -110,7 +114,7 @@ public class DeleteTaskAllCommand extends Command {
         StringBuilder updatedPersonsStrBld = new StringBuilder();
         for (Person personToAssignTask : successfullyDeleted) {
             updatedPersonsStrBld.append(
-                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group,this.task) + "\n");
+                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group, this.task) + "\n");
         }
         String updatedPersonsString = updatedPersonsStrBld.toString();
 

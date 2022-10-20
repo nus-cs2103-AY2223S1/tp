@@ -11,7 +11,9 @@ import seedu.address.logic.commands.AssignTaskAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
 
-
+/**
+ * Parses input arguments and creates a new {@code AssignTaskAllCommand} object
+ */
 public class AssignTaskAllCommandParser {
     /**
      * Parses the given {@code Sting} of arguments in the context of a {@code AssignTaskAllCommand}
