@@ -288,6 +288,7 @@ Additionally, it implements the following operations:
 * UniqueTagTypeMap#removeExistingTagType()  —  Deletes a Tag Type from the prefixMap and, hence, the Tag Type is no more recognised as a valid Tag Type.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `prefixMap` in `UniqueTagTypeMap` is a HashMap that maps all the existing Tag Type alias to their respective Tag Types. For user convenience, we have already provided the user with the three basic Tag Types a recruiter might need: Skills Tag Type (alias: st/), Degree Tag Type (alias: dt/), and Job Type Tag Type (alias: jtt/)<br>
+</div>
 
 Given below is an example usage scenario and how the create/edit/delete Tag Types mechanism behaves at each step:  
 
