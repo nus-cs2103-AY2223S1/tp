@@ -69,7 +69,7 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The Telegram handle, consultation date, and Mastery Check date are optional. 
-A person can have any number of tags (including 0).
+A student can have any number of tags (including 0).
 </div>
 
 ### Deleting a student: `delete`

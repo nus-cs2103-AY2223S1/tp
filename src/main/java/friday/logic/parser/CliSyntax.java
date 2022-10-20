@@ -13,4 +13,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_TAG = new Prefix("tag/");
 
+    /* Order definitions */
+    public static final Order ORDER_ASCENDING = new Order("asc");
+    public static final Order ORDER_DESCENDING = new Order("desc");
+
 }

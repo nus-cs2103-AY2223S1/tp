@@ -4,7 +4,7 @@ import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static friday.logic.parser.CliSyntax.PREFIX_REMARK;
 import static friday.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static friday.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +19,14 @@ public class RemarkCommandParserTest {
     @Test
     public void parse_indexSpecified_success() {
         // have remark
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_REMARK + nonEmptyRemark;
-        RemarkCommand expectedCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(nonEmptyRemark));
+        RemarkCommand expectedCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(nonEmptyRemark));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no remark
         userInput = targetIndex.getOneBased() + " " + PREFIX_REMARK;
-        expectedCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""));
+        expectedCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

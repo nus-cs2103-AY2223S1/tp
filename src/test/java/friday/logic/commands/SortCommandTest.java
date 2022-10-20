@@ -7,76 +7,63 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.GuiSettings;
-import friday.logic.commands.exceptions.CommandException;
 import friday.model.Friday;
 import friday.model.Model;
 import friday.model.ReadOnlyFriday;
 import friday.model.ReadOnlyUserPrefs;
 import friday.model.student.Student;
-import friday.testutil.StudentBuilder;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
-public class AddCommandTest {
+public class SortCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullComparator_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new SortCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_studentsSortedByModel_sortSuccessful() throws Exception {
+        ModelStubAcceptingSorting modelStub = new ModelStubAcceptingSorting();
+        Comparator<Student> comparator = (x, y) -> x.getName().compareTo(y.getName());
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new SortCommand(comparator).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
-    }
-
-    @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+        assertEquals(SortCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
     }
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Comparator<Student> comparatorOne = (x, y) -> x.getName().compareTo(y.getName());
+        Comparator<Student> comparatorTwo = (x, y) -> x.getConsultation().compareTo(y.getConsultation());
+        SortCommand sortCommandOne = new SortCommand(comparatorOne);
+        SortCommand sortCommandTwo = new SortCommand(comparatorTwo);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(sortCommandOne.equals(sortCommandOne));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        SortCommand sortCommandOneCopy = new SortCommand(comparatorOne);
+        assertTrue(sortCommandOne.equals(sortCommandOneCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(sortCommandOne.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(sortCommandOne.equals(null));
 
         // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(sortCommandOne.equals(sortCommandTwo));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -156,39 +143,22 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that always accepts sorting.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubAcceptingSorting extends ModelStub {
+        private ObservableList<Student> students = getFriday().getStudentList();
+        final SortedList<Student> sortedStudents = new SortedList<>(students);
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        @Override
+        public ObservableList<Student> getStudentList() {
+            return students;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the student being added.
-     */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
-        }
-
-        @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
+        public void updateSortedStudentList(Comparator<Student> comparator) {
+            requireNonNull(comparator);
+            sortedStudents.setComparator(comparator);
+            students = sortedStudents;
         }
 
         @Override
@@ -196,5 +166,4 @@ public class AddCommandTest {
             return new Friday();
         }
     }
-
 }
