@@ -389,12 +389,10 @@
 .student-cardPane {
     -fx-background-color: #395B64;
     -fx-opacity: 0.8;
-    -fx-effect: innershadow(ONE_PASS_BOX, #55417b, 10, 0, 0, 0);
 }
 
 .tutor-cardPane {
     -fx-background-color: #3B5249;
     -fx-opacity: 0.8;
-    -fx-effect: innershadow(ONE_PASS_BOX, #55417b, 10, 0, 0, 0);
 }
 

@@ -162,13 +162,87 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Person Model, Student Class and Student ID
+
+#### Implementation
+
+The class diagram below shows out current implementation of the `Student` class 
+which extends from the `Person` class.
+
+![StudentClassDiagram](images/StudentClassDiagram.png)
+
+Each `Student` in ProfNUS will contain the basic information in the `Person` class.
+Additionally, it will also contain these fields:
+- `StudentId`: A unique student id to identify each student.
+- `TelegramHandle`: The student's telegram handle.
+- `studentModuleInfo`: A set of ModuleCode's that the student is taking.
+- `teachingAssistantInfo`: A set of ModuleCode's that the student is a teaching assistant for.
+
+#### Design consideration:
+
+##### Aspect 1: Inheritance vs Refactoring of Code
+
+* **Alternative 1 (current choice):** Make `Student` inherit from `Person`
+    * Pros:
+      * More OOP since `Student` is a `Person`, thus allowing more flexibility through polymorphism.
+      * Improves the extensibility of the project since we are not constrained to 
+      having a single class to represent all the people in the project. Can include different types
+      of persons in the future such as other professors.
+    * Cons:
+      * Harder to implement, have to write more code and test cases.
+      * Have to consider Liskov Substitution Principle when writing code. 
+
+* **Alternative 2:** Refactor `Person` into `Student` class
+  * Pros:
+    * Easier to implement since it just involves the refactoring of code.
+  * Cons:
+    * Limits the extensibility of the project to just a student managing application.
+
+##### Aspect 2: How to ensure Student being added is unique
+
+* **Alternative 1 (current choice):** Ensure that the `StudentId` of each student is unique
+  * Pros:
+    * Convenient and easy to implement since all students have a unique studentId when they
+    matriculate into NUS
+  * Cons:
+    * The `StudentId` field is editable, and we cannot ensure that the `StudentId` that is added is 
+    a valid Id of a student in NUS. 
+
+* **Alternative 2:** Ensure that students do not have the same name/fields
+  * Pros:
+    * Already implemented in AB3, do not need to change much
+  * Cons:
+    * NUS has many students, and it is inevitable that some of them will share the exact same name
+
+### The edit student feature
+
+#### Implementation
+
+The edit student mechanism is facilitated by `EditStuCommand`, `EditStuCommandParser` and `EditStudentDescriptor` 
+classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a 
+`EditStudentDescriptor` and returns a `EditStuCommand`. When the `EditStuCommand` is executed, it modifies the student
+at the index provided by the user.
+
+The following sequence diagram shows how the `editstu` command works:
+![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
+
+
+
+
+
+
+
 ### Find module details by module code feature
+
 #### Implementation
 
 The find module details mechanism is facilitated by `ModuleViewCommand` and `ModuleViewCommandParser`. It allows users to search for modules based on module code.
@@ -180,7 +254,7 @@ The following sequence diagram shows how the find module by module code operatio
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a findmod command:
+The following activity diagram summarizes what happens when a user executes a `mview` command:
 
 ![ViewModuleActivityDiagram](./images/ViewModuleActivityDiagram.png)
 
@@ -196,6 +270,34 @@ The following activity diagram summarizes what happens when a user executes a fi
 Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
+
+### [Proposed] Edit a module feature
+### Proposed Implementation
+
+The proposed edit module functionality is facilitated by `EditModuleCommand`. It extends `Command` and overrides the method `Command#execute(Model model)`.
+
+The following sequence diagram shows how editing a module works:
+
+![EditModuleSequence](images/EditModuleSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a `medit` command.
+
+![EditModuleActivity](images/EditModuleActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How medit executes
+
+|                                                           | Pros                                           | Cons                                               |
+|-----------------------------------------------------------|------------------------------------------------|----------------------------------------------------|
+| **Option 1** <br/> Edit by module code                    | Allows convenience if module code is known     | User might not remember the module code            |
+| **Option 2** <br/> Edit by making use of indexing in list | Allows convenience if module code is forgotten | Have to use `mlist` command to obtain the indexing |
+
+Reason for choosing option 1:
+A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence,
+an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
 ### [Proposed] AddSchedule feature
 #### Proposed Implementation
@@ -229,7 +331,7 @@ The following sequence diagram shows how add schedule operation works
 
 ![EditScheduleSequence](images/EditScheduleSequence.png)
 
-After the ProfNUS receives the instruction to edit a target `Schedule` (indicated by the index in the shown schedule list), it will modify it based on new information given by the user. 
+After the ProfNUS receives the instruction to edit a target `Schedule` (indicated by the index in the shown schedule list), it will modify it based on new information given by the user.
 
 During the execution, the following validity checks will be conducted:
 
