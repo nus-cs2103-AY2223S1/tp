@@ -40,8 +40,8 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         title.setText(event.getTitle().title);
-        startDateTime.setText(event.getStartDateTime().dateTime.toString());
-        endDateTime.setText(event.getEndDateTime().dateTime.toString());
+        startDateTime.setText(event.getStartDateTime().toString());
+        endDateTime.setText(event.getEndDateTime().toString());
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

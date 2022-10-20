@@ -32,21 +32,16 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        <VBox minWidth="500">
-          <children>
-            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-              <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
-              </padding>
-            </StackPane>
-            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                       minHeight="100" prefHeight="100" maxHeight="100">
-              <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
-              </padding>
-            </StackPane>
-          </children>
-        </VBox>
+
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+          <padding>
+            <Insets top="15" right="15" bottom="15" left="15" />
+          </padding>
+        </StackPane>
+
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border">
+        </StackPane>
+
         <HBox VBox.vgrow="ALWAYS" >
           <VBox fx:id="profileList" styleClass="pane-with-border" minWidth="300" HBox.hgrow="ALWAYS">
             <padding>
