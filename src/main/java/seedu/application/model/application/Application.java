@@ -166,7 +166,7 @@ public class Application {
      * Returns a new Application object with its archive status set to false and other attributes remain the same.
      */
     public Application retrieveFromArchive() {
-        return new Application(this, true);
+        return new Application(this, false);
     }
 
     /**

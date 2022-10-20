@@ -201,6 +201,9 @@ public class ModelManager implements Model {
         filteredApplications.setPredicate(predicate);
     }
 
+    /**
+     * Updates the interview list.
+     */
     public void updateApplicationListWithInterview() {
         applicationsWithInterview.clear();
         applicationsWithInterview.addAll(applicationBook.getApplicationList());

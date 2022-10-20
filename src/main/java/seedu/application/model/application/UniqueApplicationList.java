@@ -122,9 +122,11 @@ public class UniqueApplicationList implements Iterable<Application> {
             throw new ApplicationNotFoundException();
         }
 
+        boolean haveSameArchiveStatus = (target.isArchived() && editedApplication.isArchived())
+                || (!target.isArchived() && !editedApplication.isArchived());
         if (!target.isSameApplication(editedApplication) && contains(editedApplication)) {
             throw new DuplicateApplicationException();
-        } else if (hasSameInterviewTimeAs(editedApplication)) {
+        } else if (hasSameInterviewTimeAs(editedApplication) && haveSameArchiveStatus) {
             throw new DuplicateInterviewException();
         }
 
