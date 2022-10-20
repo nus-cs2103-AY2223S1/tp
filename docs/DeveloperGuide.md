@@ -210,7 +210,7 @@ The following activity diagram summarizes what happens when a teacher executes a
 
 ### [Proposed] Sort-by feature
 
-This feature allows the user(teacher) to sort the students from Teacher's Pet by one of the specified keywords.
+This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
 
 #### Proposed Implementation
 
@@ -227,6 +227,39 @@ The following diagram illustrates how the operation works:
 
 </div>
 
+### [Proposed] Find-by feature
+
+This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
+
+#### Proposed Implementation
+
+The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+There are 4 different variations of `find` :
+1. Find by name: Find all matching student(s) using any matching full keyword(s) from name of student using `find n/[KEYWORDS]`
+2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`
+3. Find by address: Find all matching student(s) using any matching full keyword(s) from address of using `find a/[KEYWORDS]`
+4. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindActivityDiagram](images/DG-images/FindActivityDiagram.png)
+
+Below is an example of the general flow of a find by address command.
+
+##### Find by address
+1. `FindCommandParser` will parse the keywords to `AddressContainsKeywordsPredicate`.
+2. `AddressContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
+3. `FindCommandParser` will send the predicate value to `FindCommand`.
+4. `FindCommand` will be generated and the command will be returned to the `FindCommandParser`. 
+5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredTaskList`.
+6. `filteredTasks` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
+7. `CommandResult` will eventually be returned and feedback will be given to the user.
+
+The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
+
+![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
 
 ## Appendix: Requirements
 
