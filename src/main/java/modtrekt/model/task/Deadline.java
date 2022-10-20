@@ -25,30 +25,6 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor for deadline object.
-     *
-     * @param description description of task
-     * @param module module code of task
-     * @param dueDate date object representing due date
-     */
-    public Deadline(Description description, ModCode module, LocalDate dueDate, boolean isArchived) {
-        super(description, module, isArchived);
-        this.dueDate = dueDate;
-    }
-
-    /**
-     * Constructor for deadline objects, with a default unarchived state.
-     *
-     * @param description description of task
-     * @param module module code of task
-     * @param dueDate date object representing due date
-     */
-    public Deadline(Description description, ModCode module, LocalDate dueDate) {
-        super(description, module);
-        this.dueDate = dueDate;
-    }
-
-    /**
      * Gets due date of deadline.
      * @return Due date of deadline
      */

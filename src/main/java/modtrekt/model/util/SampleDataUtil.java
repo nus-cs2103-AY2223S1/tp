@@ -27,10 +27,10 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[]{
-            new Task(new Description("Assignment 1"), new ModCode("CS2103T"), false),
-            new Task(new Description("Attend lecture"), new ModCode("CS1231S"), false),
-            new Task(new Description("Attend exam"), new ModCode("CS2040S"), true),
-            new Task(new Description("Study for exam"), new ModCode("GEA1000"), false),
+            new Task(new Description("Assignment 1"), new ModCode("CS2103T"), false, Task.Priority.MEDIUM),
+            new Task(new Description("Attend lecture"), new ModCode("CS1231S"), false, Task.Priority.NONE),
+            new Task(new Description("Attend exam"), new ModCode("CS2040S"), true, Task.Priority.LOW),
+            new Task(new Description("Study for exam"), new ModCode("GEA1000"), false, Task.Priority.HIGH),
         };
     }
 

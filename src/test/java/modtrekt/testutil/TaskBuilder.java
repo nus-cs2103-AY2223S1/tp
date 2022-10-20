@@ -55,6 +55,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, modCode, isArchived);
+        return new Task(description, modCode, isArchived, Task.Priority.NONE);
     }
 }

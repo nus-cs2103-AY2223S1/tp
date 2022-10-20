@@ -36,27 +36,6 @@ public class Task implements Comparable<Task> {
         this.priority = priority;
     }
 
-    /**
-     * Constructor for an instance of Task without a priority, which defaults to NONE.
-     *
-     * @param description description of task
-     * @param module      module code of note's module
-     * @param isArchived  true if task is completed/archived
-     */
-    public Task(Description description, ModCode module, boolean isArchived) {
-        this(description, module, isArchived, Priority.NONE);
-    }
-
-    /**
-     * Constructor for an instance of Task, with a default unarchived state.
-     *
-     * @param description description of task
-     * @param module      module code of task
-     */
-    public Task(Description description, ModCode module) {
-        this(description, module, false);
-    }
-
     public Description getDescription() {
         return this.description;
     }
