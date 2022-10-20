@@ -17,6 +17,7 @@ import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
 import seedu.address.model.company.Company;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * Jackson-friendly version of {@link Client}.
@@ -32,6 +33,7 @@ class JsonAdaptedClient {
     private final String email;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedCompany> companies = new ArrayList<>();
+    private final List<JsonAdaptedTransaction> transactions = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -40,9 +42,11 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("companies") List<JsonAdaptedCompany> companies) {
+                             @JsonProperty("companies") List<JsonAdaptedCompany> companies,
+                             @JsonProperty("transactions") List<JsonAdaptedTransaction> transactions) {
         this.name = name;
         this.companies.addAll(companies);
+        this.transactions.addAll(transactions);
         this.address = address;
         this.phone = phone;
         this.email = email;
@@ -60,6 +64,8 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
+        transactions.addAll(source.getTransactionList().stream()
+                .map(JsonAdaptedTransaction::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -121,6 +127,12 @@ class JsonAdaptedClient {
             }
             client.addCompany(company);
         }
+
+        for (JsonAdaptedTransaction jsonAdaptedTransaction : transactions) {
+            Transaction transaction = jsonAdaptedTransaction.toModelType();
+            client.addTransaction(transaction);
+        }
+
         return client;
     }
 

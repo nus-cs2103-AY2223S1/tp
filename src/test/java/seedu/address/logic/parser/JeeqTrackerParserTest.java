@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompany.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +35,8 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.transaction.BuyTransaction;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
@@ -44,7 +46,7 @@ import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ClientUtil;
 import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditClientDescriptorBuilder;
-import seedu.address.testutil.TransactionUtil;
+
 
 public class JeeqTrackerParserTest {
 
@@ -138,9 +140,19 @@ public class JeeqTrackerParserTest {
 
     @Test
     public void parseCommand_buy() throws Exception {
-        BuyCommand command = (BuyCommand) parser.parseCommand(
-                TransactionUtil.getBuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE));
-        assertEquals(new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE), command);
+
+        Goods goods = new Goods("Orange");
+        Price price = new Price("2.5");
+        Quantity quantity = new Quantity("200");
+        Date date = new Date("09/11/2000");
+        Transaction transaction = new BuyTransaction(goods, price, quantity, date);
+        BuyCommand command = (BuyCommand) parser.parseCommand(BuyCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + PREFIX_QUANTITY + "200 " + PREFIX_GOODS + "Orange "
+                + PREFIX_PRICE
+                + "2.5 "
+                + PREFIX_DATE
+                + "09/11/2000 ");
+        assertEquals(new BuyCommand(INDEX_FIRST_CLIENT, transaction), command);
     }
 
     @Test
@@ -149,11 +161,14 @@ public class JeeqTrackerParserTest {
         Goods goods = new Goods("Orange");
         Price price = new Price("2.5");
         Quantity quantity = new Quantity("200");
-        Transaction transaction = new SellTransaction(goods, price, quantity);
+        Date date = new Date("09/11/2000");
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
         SellCommand command = (SellCommand) parser.parseCommand(SellCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CLIENT.getOneBased() + " " + PREFIX_QUANTITY + "200 " + PREFIX_GOODS + "Orange "
                 + PREFIX_PRICE
-                + "2.5 ");
+                + "2.5 "
+                + PREFIX_DATE
+                + "09/11/2000 ");
         assertEquals(new SellCommand(INDEX_FIRST_CLIENT, transaction), command);
     }
 }

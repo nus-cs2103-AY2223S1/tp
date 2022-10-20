@@ -70,4 +70,11 @@ public class CommandResultTest {
         assertEquals(secondCommandResult.isExit(), true);
     }
 
+    @Test
+    public void toStringTest() {
+        String feedbackToUser = "feedback to user";
+        CommandResult commandResult = new CommandResult(feedbackToUser);
+        assertEquals(commandResult.toString(), feedbackToUser);
+    }
+
 }

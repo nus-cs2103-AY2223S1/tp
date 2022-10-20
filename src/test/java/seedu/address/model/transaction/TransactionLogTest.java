@@ -28,8 +28,9 @@ class TransactionLogTest {
         Goods goods = new Goods("Apple");
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
 
-        Transaction transaction = new SellTransaction(goods, price, quantity);
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
         TransactionLog log = new TransactionLog();
         List<Transaction> transactionList = new ArrayList<>();
         transactionList.add(transaction);
@@ -42,8 +43,9 @@ class TransactionLogTest {
         Goods goods = new Goods("Apple");
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
 
-        Transaction transaction = new SellTransaction(goods, price, quantity);
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
 
         TransactionLog log = new TransactionLog(new ArrayList<>());
         log.addTransaction(transaction);
@@ -52,8 +54,9 @@ class TransactionLogTest {
         Goods goods2 = new Goods("Mango");
         Price price2 = new Price("1.5");
         Quantity quantity2 = new Quantity("10");
+        Date date2 = new Date("17/05/2000");
 
-        Transaction buyTransaction = new BuyTransaction(goods2, price2, quantity2);
+        Transaction buyTransaction = new BuyTransaction(goods2, price2, quantity2, date2);
         log.addTransaction(buyTransaction);
 
         assertEquals(log.calculateNetTransacted(), -7);
@@ -64,8 +67,9 @@ class TransactionLogTest {
         Goods goods = new Goods("Apple");
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
 
-        Transaction transaction = new SellTransaction(goods, price, quantity);
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
         TransactionLog log = new TransactionLog(new ArrayList<>());
         log.addTransaction(transaction);
 

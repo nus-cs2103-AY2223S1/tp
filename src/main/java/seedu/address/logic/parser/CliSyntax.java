@@ -16,4 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_GOODS = new Prefix("g/");
     public static final Prefix PREFIX_MODE = new Prefix("m/");
 
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
+
 }

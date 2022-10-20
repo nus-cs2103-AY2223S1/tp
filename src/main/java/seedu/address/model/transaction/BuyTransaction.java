@@ -6,8 +6,8 @@ package seedu.address.model.transaction;
 public class BuyTransaction extends Transaction {
     private static final double NEGATIVE = -1;
 
-    public BuyTransaction(Goods goods, Price price, Quantity quantity) {
-        super(goods, price, quantity);
+    public BuyTransaction(Goods goods, Price price, Quantity quantity, Date date) {
+        super(goods, price, quantity, date);
     }
 
     /**
@@ -23,7 +23,7 @@ public class BuyTransaction extends Transaction {
     @Override
     public String toString() {
         return "You bought " + quantity + " quantity of "
-                + goods + " at " + price + " each";
+                + goods + " at " + price + " each " + "on " + date;
     }
 
     /**
@@ -43,6 +43,7 @@ public class BuyTransaction extends Transaction {
         BuyTransaction otherTransaction = (BuyTransaction) other;
         return otherTransaction.getGoods().equals(getGoods())
                 && otherTransaction.getQuantity().equals(getQuantity())
-                && otherTransaction.getPrice().equals(getPrice());
+                && otherTransaction.getPrice().equals(getPrice())
+                && otherTransaction.getDate().equals(getDate());
     }
 }
