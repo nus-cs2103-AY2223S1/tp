@@ -65,8 +65,9 @@ public class CommandResult {
     public boolean isShowClient() {
         return showClients;
     }
-
-    public boolean isShowIncome() { return showIncome; }
+    public boolean isShowIncome() {
+        return showIncome;
+    }
 
     @Override
     public boolean equals(Object other) {
