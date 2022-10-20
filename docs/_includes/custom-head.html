@@ -1,6 +1,30 @@
-{% comment %}
-  Placeholder to allow defining custom head, in principle, you can add anything here, e.g. favicons:
+<!-- Custom fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&family=Inconsolata&display=swap"
+  rel="stylesheet"
+/>
 
-  1. Head over to https://realfavicongenerator.net/ to add your own favicons.
-  2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
-{% endcomment %}
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe@5.1.1/dist/gumshoe.polyfills.min.js"></script>
+<script defer>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementsByClassName("site-header")[0];
+    const spy = new Gumshoe(".sticky-toc li a", {
+      nested: true,
+      nestedClass: "active-parent",
+      reflow: true,
+    });
+    spy.setup();
+  });
+  document.addEventListener("gumshoeActivate", (e) => {
+    const classes = document.getElementsByClassName("sticky-toc")[0].classList;
+    classes.remove("hidden");
+    classes.add("shown");
+  });
+  document.addEventListener("gumshoeDeactivate", (e) => {
+    const classes = document.getElementsByClassName("sticky-toc")[0].classList;
+    classes.remove("shown");
+    classes.add("hidden");
+  });
+</script>
