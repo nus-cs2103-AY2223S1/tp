@@ -154,6 +154,73 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Proposed Add feature
+
+#### Proposed Implementation for adding a patient
+
+The add patient mechanism is facilitated by `Patient`, `AddCommandParser`,`AddCommand`, `Model`, `AddressBook` and `UniquePersonList`.
+
+`Patient` extends from `Person`. A `Patient` have the `Person` attributes and a `dateTimeList`. This is shown in the diagram below:
+
+![PatientClassDiagram](images/PatientClassDiagram.png)
+
+The `AddCommandParser` will take in the input and extract out different information respectively and create a `Patient`.
+
+The `AddCommand` will then be executed and add the `Patient` to the `Model`'s `AddressBook`'s `UniquePersonList`.
+
+Given below is an example usage scenario and how the add patient mechanism behaves at each step.
+
+Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` command to add a new patient that requires nurse's home-visit. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `c/P` is needed to indicate that the person added is a patient.`Name`, `Gender`, `Phone`, `Address`, `Email` is compulsory but `Tag` and `DateTime` has been made optional. The `n/`, `g/`, `p/` ... are the prefixes used to extract different details' field of the patient.
+
+</div>
+
+Step 2. The `AddressBookParser` will parse the user command to return an `AddCommandParser` with the patient's details.
+
+Step 3. The `AddCommandParser` will parse the respective patient's details using fixed prefixes and check their validity. The `Uid` for the patient will also be generated and used along with the parsed patient's details to create a patient if all the inputs are valid. Then, it returns an `AddCommand` with the patient created. 
+
+Step 4. The `AddCommand` will be executed and the patient will be added to the `Model`'s `AddressBook`'s `UniquePersonList`. In the `UniquePersonList`, potential duplication will be checked. 
+
+The following sequence diagram shows how the add patient operation works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For simplification purpose, `c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` will be written as userInput and all the parsed patient's details will be written as patientDetails. 
+
+</div>
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+Step 5. The `LogicManager` will then call `saveAddressBook()` to store the new updated `AddressBook` so that the data of the new patient can be retrieved later.
+
+The following activity diagram summarizes what happens when a user executes an add patient command:
+
+![AddPatientActivityDiagram](images/AddPatientActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How to deal with duplication:**
+
+* **Alternative 1:** Check the name. If the name is the same, then shows duplicate error and that patient would not be added.
+    * Pros: Easy to implement.
+    * Cons: If the 2 different patients have the exact same name, the user would not be able to add that patient.
+
+* **Alternative 2:** Check the name. If the name is the same, then shows duplicate warning but that patient would still be added. 
+    * Pros: If the 2 different patients have the exact same name, the user would still be able to add that patient. At the same time, it will show potential duplication to the user.
+    * Cons: The user have to manually check whether it is the same person and delete it if it is a duplication. 
+    * Cons: The user might miss out the duplicated patients. 
+
+**Aspect: The home-visit `DateTime` input:**
+
+* **Alternative 1:** The `DateTime` input is in the format of `YYYY-MM-DDTHH:mm` and it can in any time.
+    * Pros: More specific date and time recorded for the patient.
+    * Pros: More flexible in the home visit date and time that a patient can choose.
+    * Cons: It is hard to determine/check time crashes when assigning a home-visit `DateTime` to a nurse.
+
+  * **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
+    * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
+    * Cons: Less flexible in the home visit date and time that a patient can choose.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
