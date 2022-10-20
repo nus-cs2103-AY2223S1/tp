@@ -8,10 +8,12 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 
 /**
@@ -135,7 +137,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
+        ObservableList<Person> lastShownList = this.filteredPersons;
+        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
+        return calendarEventList;
+    }
+
+    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Person> lastShownList) {
+        ObservableList<CalendarEvent> calendarEventList = FXCollections.observableArrayList();
+        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
+        return calendarEventList;
+    }
+
+    @Override public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
             return true;

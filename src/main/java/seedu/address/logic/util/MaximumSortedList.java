@@ -64,19 +64,32 @@ public class MaximumSortedList<T extends Comparable<T>> {
     }
 
     /**
+     * Returns the specified element to the list
+     *
+     * @param zeroBasedIndex the index of the element to get
+     * @return a boolean value describing whether the input element has been added.
+     */
+    public T get(int zeroBasedIndex) throws SortedListException {
+        if (zeroBasedIndex < 0 || zeroBasedIndex >= maxSize) {
+            throw new SortedListException("Error: The list does not contain the input zeroBasedIndex");
+        }
+        return internalMaximumSortedList.get(zeroBasedIndex);
+    }
+
+    /**
      * Removes the element at the specified position in this list. Shifts any
      * subsequent elements to the left (subtracts one from their indices).
      *
-     * @param index the index of the element to be removed.
-     * @return the Comparable at the specified index.
-     * @throws SortedListException the exception encountered when the input index
+     * @param zeroBasedIndex the zeroBasedIndex of the element to be removed.
+     * @return the Comparable at the specified zeroBasedIndex.
+     * @throws SortedListException the exception encountered when the input zeroBasedIndex
      *         is invalid.
      */
-    public T remove(int index) throws SortedListException {
-        if (index < 0 || index >= maxSize) {
-            throw new SortedListException("Error: The list does not contain the input index");
+    public T remove(int zeroBasedIndex) throws SortedListException {
+        if (zeroBasedIndex < 0 || zeroBasedIndex >= maxSize) {
+            throw new SortedListException("Error: The list does not contain the input zeroBasedIndex");
         }
-        return internalMaximumSortedList.remove(index);
+        return internalMaximumSortedList.remove(zeroBasedIndex);
     }
 
     /**
@@ -89,10 +102,17 @@ public class MaximumSortedList<T extends Comparable<T>> {
      *         contain the specified element.
      */
     public T remove(T t) throws SortedListException {
-        if (!contains(t)) {
+        requireNonNull(t);
+        int indexToRemove = -1;
+        for (int i = 0; i < internalMaximumSortedList.size(); i++) {
+            if (t.equals(internalMaximumSortedList.get(i))) {
+                indexToRemove = i;
+                break;
+            }
+        }
+        if (indexToRemove == -1) {
             throw new SortedListException("Error: The list does not contain the object");
         }
-        int indexToRemove = binarySearch(t);
         return internalMaximumSortedList.remove(indexToRemove);
     }
 
@@ -105,7 +125,14 @@ public class MaximumSortedList<T extends Comparable<T>> {
      */
     public boolean contains(T t) {
         requireNonNull(t);
-        int indexOfElement = binarySearch(t);
+
+        int indexOfElement = -1;
+        for (int i = 0; i < internalMaximumSortedList.size(); i++) {
+            if (t.equals(internalMaximumSortedList.get(i))) {
+                indexOfElement = i;
+                break;
+            }
+        }
         if (indexOfElement == -1) {
             return false;
         } else {

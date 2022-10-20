@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,9 +14,8 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.NormalTag;
-import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -29,7 +28,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_RISKTAG = "LOW";
-    public static final String DEFAULT_PLANTAG = "Savings Plan";
     public static final String DEFAULT_INCOME = "$1000";
     public static final String DEFAULT_MONTHLY = "$200";
     private Name name;
@@ -37,10 +35,9 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private RiskTag riskTag;
-    private PlanTag planTag;
     private IncomeLevel income;
     private Monthly monthly;
-    private Set<NormalTag> tags;
+    private Set<Tag> tags;
     private MaximumSortedList<Appointment> appointments;
 
     /**
@@ -52,11 +49,10 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         riskTag = new RiskTag(DEFAULT_RISKTAG);
-        planTag = new PlanTag(DEFAULT_PLANTAG);
         income = new IncomeLevel(DEFAULT_INCOME);
         monthly = new Monthly(DEFAULT_MONTHLY);
         tags = new HashSet<>();
-        appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
     }
 
     /**
@@ -70,7 +66,7 @@ public class PersonBuilder {
         income = personToCopy.getIncome();
         monthly = personToCopy.getMonthly();
         riskTag = personToCopy.getRiskTag();
-        planTag = personToCopy.getPlanTag();
+        income = personToCopy.getIncome();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new MaximumSortedList<>(personToCopy.getAppointments());
     }
@@ -124,14 +120,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code PlanTag} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPlanTag(String planTag) {
-        this.planTag = new PlanTag(planTag);
-        return this;
-    }
-
-    /**
      * Sets the {@code Income} of the {@code Person} that we are building.
      */
     public PersonBuilder withIncome(String income) {
@@ -149,8 +137,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAppointments(String ... appointments) {
-        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
+    public PersonBuilder withAppointment(Appointment appointmentToBeAdded) {
+        this.appointments.add(appointmentToBeAdded);
         return this;
     }
 
@@ -159,13 +147,7 @@ public class PersonBuilder {
      * By default, the set of appointments field is created but is empty
      */
     public Person build() {
-        return new Person(name, phone, email, address, income, monthly, riskTag, planTag, tags);
+        return new Person(name, phone, email, address, income, monthly, riskTag, tags, appointments);
     }
-
-
-    public Person buildWithAppointments() {
-        return new Person(name, phone, email, address, income, monthly, riskTag, planTag, tags, appointments);
-    }
-
 
 }
