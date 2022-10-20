@@ -169,7 +169,8 @@ public class EditCommand extends Command {
 
             model.setTuitionClass(classToEdit, editedClass);
             model.updateFilteredTuitionClassList(PREDICATE_SHOW_ALL_TUITIONCLASS);
-            return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass), EDIT);
+            return new CommandResult(
+                    String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass), EDIT, index.getZeroBased());
         }
 
         Person personToEdit = (Person) lastShownList.get(index.getZeroBased());
@@ -185,7 +186,8 @@ public class EditCommand extends Command {
         } else {
             model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTOR);
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), EDIT);
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), EDIT, index.getZeroBased());
     }
 
     /**

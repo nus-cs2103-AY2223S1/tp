@@ -70,7 +70,8 @@ public class AssignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeAssigned = model.getTuitionClass(className);
                 studentToAssign.assignClassToStudent(tuitionClassToBeAssigned);
-                return new CommandResult(String.format(MESSAGE_ASSIGN_STUDENT_SUCCESS, studentToAssign), ASSIGN);
+                return new CommandResult(
+                        String.format(MESSAGE_ASSIGN_STUDENT_SUCCESS, studentToAssign), ASSIGN, index.getZeroBased());
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (DuplicateTuitionClassException e) {
@@ -85,7 +86,8 @@ public class AssignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeAssignedTo = model.getTuitionClass(className);
                 tutorToAssign.assignClassToTutor(tuitionClassToBeAssignedTo);
-                return new CommandResult(String.format(MESSAGE_ASSIGN_TUTOR_SUCCESS, tutorToAssign), ASSIGN);
+                return new CommandResult(
+                        String.format(MESSAGE_ASSIGN_TUTOR_SUCCESS, tutorToAssign), ASSIGN, index.getZeroBased());
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (DuplicateTuitionClassException e) {

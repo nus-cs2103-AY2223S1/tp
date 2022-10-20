@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandResult.CommandType.SHOW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
@@ -46,7 +47,7 @@ public class ShowCommandTest {
         ModelManager expectedModel = new ModelManager(studentModel.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(showCommand, studentModel, expectedMessage,
-                expectedModel, INDEX_FIRST_PERSON.getZeroBased());
+                expectedModel, SHOW, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -83,7 +84,7 @@ public class ShowCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
 
         assertCommandSuccess(showCommand, tutorModel, expectedMessage,
-                expectedModel, INDEX_FIRST_PERSON.getZeroBased());
+                expectedModel, SHOW, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test

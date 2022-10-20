@@ -66,8 +66,12 @@ public class StudentDescription extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         student.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
-                .forEach(tuitionClass -> assignedClassList.getChildren().add(new AssignedClass(tuitionClass.getName().name).getRoot()));
+                .forEach(tuitionClass -> assignedClassList.getChildren().add(
+                        new AssignedClass(tuitionClass.getName().name).getRoot()));
+    }
 
+    public Student getDisplayedStudent() {
+        return this.student;
     }
 
     @Override

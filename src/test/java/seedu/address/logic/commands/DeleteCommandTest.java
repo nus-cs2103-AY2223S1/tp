@@ -44,7 +44,7 @@ public class DeleteCommandTest {
         ModelManager expectedModel = new ModelManager(studentModel.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(studentToDelete);
 
-        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel, studentToDelete);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(studentToDelete);
         showNoEntity(expectedModel);
 
-        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel, studentToDelete);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class DeleteCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel.deletePerson(tutorToDelete);
 
-        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel, tutorToDelete);
     }
 
     @Test
@@ -122,7 +122,7 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(tutorToDelete);
         showNoEntity(expectedModel);
 
-        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel, tutorToDelete);
     }
 
     @Test
@@ -151,7 +151,7 @@ public class DeleteCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel.deleteTuitionClass(tuitionClassToDelete);
 
-        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel, tuitionClassToDelete);
     }
 
     @Test
@@ -178,7 +178,7 @@ public class DeleteCommandTest {
         expectedModel.deleteTuitionClass(tuitionClassToDelete);
         showNoEntity(expectedModel);
 
-        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel, tuitionClassToDelete);
     }
 
     @Test

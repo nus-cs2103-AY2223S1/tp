@@ -70,6 +70,10 @@ public class TutorDescription extends UiPart<Region> {
                         new AssignedClass(tuitionClass.getName().name).getRoot()));
     }
 
+    public Tutor getDisplayedTutor() {
+        return this.tutor;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

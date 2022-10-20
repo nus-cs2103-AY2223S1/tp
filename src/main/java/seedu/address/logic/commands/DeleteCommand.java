@@ -51,26 +51,27 @@ public class DeleteCommand extends Command {
                 Student studentToDelete = lastShownStudentList.get(targetIndex.getZeroBased());
                 model.deletePerson(studentToDelete);
                 entityInformation = studentToDelete.toString();
-                break;
+                return new CommandResult(
+                        String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation), studentToDelete);
             case TUTOR_LIST:
                 lastShownTutorList = model.getFilteredTutorList();
                 Tutor tutorToDelete = lastShownTutorList.get(targetIndex.getZeroBased());
                 model.deletePerson(tutorToDelete);
                 entityInformation = tutorToDelete.toString();
-                break;
+                return new CommandResult(
+                        String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation), tutorToDelete);
             default:
                 assert (type == ListType.TUITIONCLASS_LIST);
                 lastShownTuitionClassList = model.getFilteredTuitionClassList();
                 TuitionClass tuitionClassToDelete = lastShownTuitionClassList.get(targetIndex.getZeroBased());
                 model.deleteTuitionClass(tuitionClassToDelete);
                 entityInformation = tuitionClassToDelete.toString();
-                break;
+                return new CommandResult(
+                        String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation), tuitionClassToDelete);
             }
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation));
     }
 
     @Override

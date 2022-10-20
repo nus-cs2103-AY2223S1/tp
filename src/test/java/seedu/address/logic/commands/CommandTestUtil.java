@@ -234,11 +234,45 @@ public class CommandTestUtil {
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
-     * This is for ShowCommand only.
+     * This is for ShowCommand, EditCommand, AssignCommand and UnassignCommand.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel, int index) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, index);
+                                            Model expectedModel, CommandType type, int index) {
+        assert(type == CommandType.SHOW || type == CommandType.EDIT || type == CommandType.ASSIGN);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, type, index);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     * This is for DeleteCommand.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, Student student) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, student);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     * This is for DeleteCommand.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, Tutor tutor) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, tutor);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     * This is for DeleteCommand.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, TuitionClass tuitionClass) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, tuitionClass);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

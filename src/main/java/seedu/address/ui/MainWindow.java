@@ -215,7 +215,6 @@ public class MainWindow extends UiPart<Stage> {
         assert(type != Model.ListType.TUITIONCLASS_LIST);
         entityDescriptionPlaceholder.getChildren().clear();
         descriptionEntityType = type;
-        descriptionEntityIndex = index;
         switch(type) {
         case STUDENT_LIST:
             studentDescription = new StudentDescription(
@@ -254,6 +253,61 @@ public class MainWindow extends UiPart<Stage> {
             break;
         }
         setLabelStyle();
+    }
+
+    /** Displays the added entity in Description Panel. **/
+    private void handleAdd() {
+        Model.ListType type = logic.getCurrentListType();
+        entityDescriptionPlaceholder.getChildren().clear();
+        int listSize;
+        switch(type) {
+        case STUDENT_LIST:
+            listSize = logic.getFilteredStudentList().size();
+            studentDescription = new StudentDescription(
+                    logic.getFilteredStudentList().get(listSize - 1), listSize - 1);
+            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            break;
+        case TUTOR_LIST:
+            listSize = logic.getFilteredTutorList().size();
+            tutorDescription = new TutorDescription(
+                    logic.getFilteredTutorList().get(listSize - 1), listSize - 1);
+            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+            break;
+        default:
+            break;
+        }
+    }
+
+    /** Clears the current Description Panel if the displayed entity
+     * is in the cleared list.
+     */
+    private void handleClear() {
+        if (descriptionEntityType == null) {
+            return;
+        }
+
+        if (descriptionEntityType == logic.getCurrentListType()) {
+            entityDescriptionPlaceholder.getChildren().clear();
+        }
+    }
+
+    /** Clears the current Description Panel if it is the deleted entity **/
+    private void handleDelete(CommandResult commandResult) {
+        Model.ListType type = logic.getCurrentListType();
+        switch (type) {
+        case STUDENT_LIST:
+            if (commandResult.getDeletedStudent().equals(studentDescription.getDisplayedStudent())) {
+                entityDescriptionPlaceholder.getChildren().clear();
+            }
+            break;
+        case TUTOR_LIST:
+            if (commandResult.getDeletedTutor().equals(tutorDescription.getDisplayedTutor())) {
+                entityDescriptionPlaceholder.getChildren().clear();
+            }
+            break;
+        default:
+            break;
+        }
     }
 
     /** Switches to the student list when the student tab is clicked **/
@@ -377,6 +431,22 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isUpdateListView()) {
                 updateListView();
+            }
+
+            if (commandResult.isUpdateDescription()) {
+                handleShow(commandResult.getIndex());
+            }
+
+            if (commandResult.isClear()) {
+                handleClear();
+            }
+
+            if (commandResult.isAdd()) {
+                handleAdd();
+            }
+
+            if (commandResult.isDelete()) {
+                handleDelete(commandResult);
             }
 
             return commandResult;

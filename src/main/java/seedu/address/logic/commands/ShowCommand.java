@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.SHOW;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ShowCommand extends Command {
 
     public static final String MESSAGE_DELETE_ENTITY_SUCCESS = "Showing Entity: %1$s";
 
-    public static final String MESSAGE_INVALID_CURRENT_LIST = "The current list type is invalid for assign command \n"
+    public static final String MESSAGE_INVALID_CURRENT_LIST = "The current list type is invalid for show command \n"
             + "Valid list type are tutor and student list";
 
     private final Index targetIndex;
@@ -65,8 +66,8 @@ public class ShowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation),
-                targetIndex.getZeroBased());
+        return new CommandResult(
+                String.format(MESSAGE_DELETE_ENTITY_SUCCESS, entityInformation), SHOW, targetIndex.getZeroBased());
     }
 
     @Override
