@@ -4,16 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import tuthub.model.tag.Tag;
-import tuthub.model.tutor.Comment;
-import tuthub.model.tutor.Email;
+import tuthub.model.tutor.*;
 import tuthub.model.tutor.Module;
-import tuthub.model.tutor.Name;
-import tuthub.model.tutor.Phone;
-import tuthub.model.tutor.Rating;
-import tuthub.model.tutor.StudentId;
-import tuthub.model.tutor.TeachingNomination;
-import tuthub.model.tutor.Tutor;
-import tuthub.model.tutor.Year;
 import tuthub.model.util.SampleDataUtil;
 
 /**
@@ -29,7 +21,6 @@ public class TutorBuilder {
     public static final String DEFAULT_STUDENTID = "A1234567X";
     public static final String DEFAULT_TEACHINGNOMINATION = "0";
     public static final String DEFAULT_RATING = "5.0";
-    public static final String DEFAULT_COMMENT = "";
 
     private Name name;
     private Phone phone;
@@ -39,7 +30,7 @@ public class TutorBuilder {
     private StudentId studentId;
     private TeachingNomination teachingNomination;
     private Rating rating;
-    private Comment comment;
+    private CommentList comments;
     private Set<Tag> tags;
 
     /**
@@ -54,7 +45,7 @@ public class TutorBuilder {
         studentId = new StudentId(DEFAULT_STUDENTID);
         teachingNomination = new TeachingNomination(DEFAULT_TEACHINGNOMINATION);
         rating = new Rating(DEFAULT_RATING);
-        comment = new Comment(DEFAULT_COMMENT);
+        comments = new CommentList();
         tags = new HashSet<>();
     }
 
@@ -70,7 +61,7 @@ public class TutorBuilder {
         studentId = tutorToCopy.getStudentId();
         teachingNomination = tutorToCopy.getTeachingNomination();
         rating = tutorToCopy.getRating();
-        comment = tutorToCopy.getComment();
+        comments = tutorToCopy.getComments();
         tags = new HashSet<>(tutorToCopy.getTags());
     }
 
@@ -109,7 +100,7 @@ public class TutorBuilder {
      * Sets the {@code Comment} of the {@code Tutor} that we are building.
      */
     public TutorBuilder withComment(String comment) {
-        this.comment = new Comment(comment);
+        this.comments = new CommentList().addComment(new Comment(comment));
         return this;
     }
 
@@ -154,7 +145,7 @@ public class TutorBuilder {
     }
 
     public Tutor build() {
-        return new Tutor(name, phone, email, modules, year, studentId, comment, teachingNomination, rating, tags);
+        return new Tutor(name, phone, email, modules, year, studentId, comments, teachingNomination, rating, tags);
     }
 
 }

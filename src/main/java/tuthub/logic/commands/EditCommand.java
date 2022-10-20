@@ -25,6 +25,7 @@ import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.model.Model;
 import tuthub.model.tag.Tag;
 import tuthub.model.tutor.Comment;
+import tuthub.model.tutor.CommentList;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
@@ -116,11 +117,11 @@ public class EditCommand extends Command {
                 editTutorDescriptor.getTeachingNomination().orElse(tutorToEdit.getTeachingNomination());
         Rating updatedRating =
                 editTutorDescriptor.getRating().orElse(tutorToEdit.getRating());
-        Comment updatedComment = tutorToEdit.getComment();
+        CommentList updatedComments = tutorToEdit.getComments();
         Set<Tag> updatedTags = editTutorDescriptor.getTags().orElse(tutorToEdit.getTags());
 
         return new Tutor(updatedName, updatedPhone, updatedEmail,
-            updatedModules, updatedYear, updatedStudentId, updatedComment, updatedTeachingNomination,
+            updatedModules, updatedYear, updatedStudentId, updatedComments, updatedTeachingNomination,
             updatedRating, updatedTags);
     }
 
