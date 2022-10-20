@@ -53,10 +53,17 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        String cleanedName = trimmedName.replaceAll(" +", " ");
+
+        if (!Name.isWithinLengthLimit(cleanedName)) {
+            throw new ParseException(Name.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Name.isValidName(cleanedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+
+        return new Name(cleanedName);
     }
 
     /**
@@ -68,10 +75,17 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+        String cleanedPhone = trimmedPhone.replaceAll(" +", " ");
+
+        if (!Phone.isWithinLengthLimit(cleanedPhone)) {
+            throw new ParseException(Phone.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Phone.isValidPhone(cleanedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+
+        return new Phone(cleanedPhone);
     }
 
     /**
@@ -83,10 +97,17 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
+        String cleanedAddress = trimmedAddress.replaceAll(" +", " ");
+
+        if (!Address.isWithinLengthLimit(cleanedAddress)) {
+            throw new ParseException(Address.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Address.isValidAddress(cleanedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+
+        return new Address(cleanedAddress);
     }
 
     /**
@@ -98,10 +119,17 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+        String cleanedEmail = trimmedEmail.replaceAll(" +", " ");
+
+        if (!Email.isWithinLengthLimit(cleanedEmail)) {
+            throw new ParseException(Email.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Email.isValidEmail(cleanedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+
+        return new Email(cleanedEmail);
     }
 
     /**
@@ -166,10 +194,17 @@ public class ParserUtil {
     public static University parseUniversity(String university) throws ParseException {
         requireNonNull(university);
         String trimmedUniversity = university.trim();
-        if (!University.isValidUniversity(trimmedUniversity)) {
+        String cleanedUniversity = trimmedUniversity.replaceAll(" +", " ");
+
+        if (!University.isWithinLengthLimit(cleanedUniversity)) {
+            throw new ParseException(University.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!University.isValidUniversity(cleanedUniversity)) {
             throw new ParseException(University.MESSAGE_CONSTRAINTS);
         }
-        return new University(trimmedUniversity);
+
+        return new University(cleanedUniversity);
     }
 
     /**
@@ -181,10 +216,17 @@ public class ParserUtil {
     public static Major parseMajor(String major) throws ParseException {
         requireNonNull(major);
         String trimmedMajor = major.trim();
-        if (!Major.isValidMajor(trimmedMajor)) {
+        String cleanedMajor = trimmedMajor.replaceAll(" +", " ");
+
+        if (!Major.isWithinLengthLimit(cleanedMajor)) {
+            throw new ParseException(Major.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Major.isValidMajor(cleanedMajor)) {
             throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
-        return new Major(trimmedMajor);
+
+        return new Major(cleanedMajor);
     }
 
     /**
@@ -196,10 +238,17 @@ public class ParserUtil {
     public static Id parseId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedId = id.trim();
-        if (!Id.isValidId(trimmedId)) {
+        String cleanedId = trimmedId.replaceAll(" +", " ");
+
+        if (!Id.isWithinLengthLimit(cleanedId)) {
+            throw new ParseException(Id.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Id.isValidId(cleanedId)) {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
-        return new Id(trimmedId);
+
+        return new Id(cleanedId);
     }
 
     /**
@@ -211,10 +260,17 @@ public class ParserUtil {
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        if (!Title.isValidTitle(trimmedTitle)) {
+        String cleanedTitle = trimmedTitle.replaceAll(" +", " ");
+
+        if (!Title.isWithinLengthLimit(cleanedTitle)) {
+            throw new ParseException(Title.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Title.isValidTitle(cleanedTitle)) {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Title(trimmedTitle);
+
+        return new Title(cleanedTitle);
     }
 
     /**
@@ -226,10 +282,17 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        String cleanedTag = trimmedTag.replaceAll(" +", " ");
+
+        if (!Tag.isWithinLengthLimit(cleanedTag)) {
+            throw new ParseException(Tag.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
+
+        if (!Tag.isValidTagName(cleanedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+
+        return new Tag(cleanedTag);
     }
 
     /**
