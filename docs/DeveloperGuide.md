@@ -191,6 +191,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+###Filter feature
+
+####Current Implementation
+The 'filter' feature is implemented by the 'FilterCommand'
+class which extends its parent 'Command' class. The structure
+of the 'filter' feature can be summarized via the sequence 
+diagram shown below.
+
+![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png)
+
+This method is implemented to support the feature of 
+filtering students by the tags that is assigned to them.
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
