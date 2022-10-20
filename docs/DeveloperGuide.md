@@ -127,11 +127,23 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
+#### Schedule
+
+**API** : [Schedule.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/address/model/module/schedule)
+
+<img src="images/ScheduleUML.png" alt="ScheduleUML" style="zoom:65%;" />
+
+The `Schedule` component
+
+- represents a schedule of its corresponding module
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to let `Schedule` object have a reference of the module it belongs to. The diagram is as follows:<br>
+
+<img src="images/NewScheduleUML.png" alt="NewScheduleUML" style="zoom: 50%; width=450" />
 
 ### Storage component
 
@@ -144,6 +156,8 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -153,6 +167,49 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### [Proposed] AddSchedule feature
+
+#### Proposed Implementation
+
+The proposed add schedule functionality is accomplished by `AddScheduleCommand` which extends the `Command` class. The `AddScheduleCommand` overrides the following method:
+
+- `AddScheduleCommand#execute(Model model)` — Executes the command and add the new schedule to the ProfNUS
+
+The following sequence diagram shows how add schedule operation works
+
+![AddScheduleSequence](images/AddScheduleSequence.png)
+
+After the ProfNUS receives the instruction to add a new `Scheudule`, it will find the corresponding `Module` and add the new schedule to its schedule list.
+
+During the execution, the following validity checks will be conducted:
+
+- Module existance check — The model will check if it can find the module indicated by the new schedule. If no module is found, then a `CommandException` will be thrown.
+- Schedule conflict check — The model will check if the new schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.
+
+### [Proposed] EditSchedule feature
+
+#### Proposed Implementation
+
+The proposed edit schedule functionality is accomplished by `EditScheduleCommand` which extends the `Command` class. The `EditScheduleCommand` overrides the following method:
+
+- `EditScheduleCommand#execute(Model model)` — Executes the command and edit the target schedule with new information
+
+The following sequence diagram shows how add schedule operation works
+
+![EditScheduleSequence](images/EditScheduleSequence.png)
+
+After the ProfNUS receives the instruction to edit a target `Scheudule` (indicated by the index in the shown schedule list), it will modify it based on new information given by the user. 
+
+During the execution, the following validity checks will be conducted:
+
+- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of $1$ to $n$ where $n$ is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
+- Schedule conflict check — The model will check if the edited schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
+- Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -190,7 +247,6 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
-
 </div>
 
 The following sequence diagram shows how the undo operation works:
