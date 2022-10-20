@@ -11,8 +11,6 @@ import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * The API of the Model component.
  */
