@@ -28,7 +28,7 @@ public class AddStudCommand extends Command {
             + "[" + PREFIX_PARENT_NAME + "PARENT NAME] "
             + "[" + PREFIX_PHONE + "PARENT PHONE NUMBER] "
             + "[" + PREFIX_EMAIL + "PARENT EMAIL] "
-            + "[" + PREFIX_EXAM + "TAG]...\n"
+            + "[" + PREFIX_EXAM + "NAME SCORE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_NAME + "John Doe "
             + PREFIX_ID + "928C "
@@ -36,7 +36,7 @@ public class AddStudCommand extends Command {
             + PREFIX_PARENT_NAME + "Bob Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "bobdoe@gmail.com "
-            + PREFIX_EXAM + "Allergy";
+            + PREFIX_EXAM + "CA1 50";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the record";
