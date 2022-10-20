@@ -30,6 +30,13 @@ public class PropertyListPanel extends UiPart<Region> {
     }
 
     /**
+     * Forces re-render of the PropertyListPanel.
+     */
+    public void refresh() {
+        propertyListView.refresh();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Property} using a {@code PropertyCard}.
      */
     class PropertyListViewCell extends ListCell<Property> {

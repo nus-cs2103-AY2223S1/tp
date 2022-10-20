@@ -88,6 +88,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getUserImageDirectoryPath() {
+        return model.getUserPrefs().getUserImageDirectoryPath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }

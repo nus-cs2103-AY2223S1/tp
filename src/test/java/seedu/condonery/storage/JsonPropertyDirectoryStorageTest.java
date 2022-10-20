@@ -79,20 +79,20 @@ public class JsonPropertyDirectoryStorageTest {
         // Save in new file and read back
         jsonPropertyDirectoryStorage.savePropertyDirectory(original, filePath);
         ReadOnlyPropertyDirectory readBack = jsonPropertyDirectoryStorage.readPropertyDirectory(filePath).get();
-        assertEquals(original, new PropertyDirectory(readBack));
+        assertEquals(original, new PropertyDirectory(readBack, testFolder.resolve("images")));
 
         // Modify data, overwrite exiting file, and read back
         original.addProperty(HOON);
         original.removeProperty(PINNACLE);
         jsonPropertyDirectoryStorage.savePropertyDirectory(original, filePath);
         readBack = jsonPropertyDirectoryStorage.readPropertyDirectory(filePath).get();
-        assertEquals(original, new PropertyDirectory(readBack));
+        assertEquals(original, new PropertyDirectory(readBack, testFolder.resolve("images")));
 
         // Save and read without specifying file path
         original.addProperty(IDA);
         jsonPropertyDirectoryStorage.savePropertyDirectory(original); // file path not specified
         readBack = jsonPropertyDirectoryStorage.readPropertyDirectory().get(); // file path not specified
-        assertEquals(original, new PropertyDirectory(readBack));
+        assertEquals(original, new PropertyDirectory(readBack, testFolder.resolve("images")));
 
     }
 

@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path propertyDirectoryFilePath = Paths.get("data" , "propertyDirectory.json");
     private Path clientDirectoryFilePath = Paths.get("data" , "clientDirectory.json");
+    private Path userImageDirectoryPath = Paths.get("data", "images");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -48,12 +49,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    @Override
     public Path getPropertyDirectoryFilePath() {
         return propertyDirectoryFilePath;
     }
 
+    @Override
     public Path getClientDirectoryFilePath() {
         return clientDirectoryFilePath;
+    }
+
+    @Override
+    public Path getUserImageDirectoryPath() {
+        return userImageDirectoryPath;
     }
 
     public void setPropertyDirectoryFilePath(Path propertyDirectoryFilePath) {
