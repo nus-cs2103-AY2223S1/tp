@@ -14,7 +14,6 @@ import seedu.address.model.reminder.DateTime;
  * Contains utility methods used for parsing date time strings.
  */
 public class DateTimeParser {
-    public static final String DATE_TIME_FORMATTER = "yyyy-MM-dd 'at' HH:mm";
     public static final String[] VALID_DATE_24HOUR_TIME_FORMATS = {
         "yy-M-d H:mm", "yy-MMM-d H:mm", "yyyy-M-d H:mm", "yyyy-MMM-d H:mm"};
     public static final String[] VALID_DATE_AMPM_TIME_FORMATS = {
@@ -55,7 +54,7 @@ public class DateTimeParser {
         }
 
         requireNonNull(dateTime);
-        String parsedDateTimeString = dateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+        String parsedDateTimeString = dateTime.format(DateTimeFormatter.ofPattern(DateTime.DATE_TIME_FORMATTER));
         return new DateTime(parsedDateTimeString);
     }
 

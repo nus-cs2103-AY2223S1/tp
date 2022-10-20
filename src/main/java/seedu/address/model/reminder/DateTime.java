@@ -1,7 +1,5 @@
 package seedu.address.model.reminder;
 
-import static seedu.address.logic.parser.DateTimeParser.DATE_TIME_FORMATTER;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,9 +8,11 @@ import java.time.format.DateTimeParseException;
  * Represents a date and time.
  */
 public class DateTime implements Comparable<DateTime> {
+    public static final String DATE_TIME_FORMATTER = "yyyy-MM-dd 'at' HH:mm";
     private final String dateTime;
 
     public DateTime(String dateTime) {
+        assert(isValidDateTimeString(dateTime));
         this.dateTime = dateTime;
     }
 
