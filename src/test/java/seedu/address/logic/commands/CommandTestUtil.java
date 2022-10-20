@@ -18,6 +18,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.SetPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -32,6 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_ROLE_AMY = "Software Engineer";
     public static final String VALID_ROLE_BOB = "Product Manager";
+    public static final String VALID_TIMEZONE_AMY = "+8";
+    public static final String VALID_TIMEZONE_BOB = "-8";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -48,6 +51,20 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final SetCommand.SetPersonDescriptor DESC_AMY;
+    public static final SetCommand.SetPersonDescriptor DESC_BOB;
+
+    static {
+        DESC_AMY = new SetPersonDescriptorBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY)
+                                                   .withTags(VALID_TAG_FRIEND).withRole(VALID_ROLE_AMY)
+                                                   .withTimezone(VALID_TIMEZONE_AMY).build();
+
+        DESC_BOB = new SetPersonDescriptorBuilder().withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
+                                                   .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                                                   .withRole(VALID_ROLE_BOB)
+                                                   .withTimezone(VALID_TIMEZONE_BOB).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
