@@ -3,6 +3,7 @@ package seedu.address.model.offer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,11 +48,8 @@ public class UniqueOfferList implements Iterable<Offer> {
         if (contains(toAdd)) {
             throw new DuplicateOfferException();
         }
-        int index = 0;
-        while (toAdd.compareTo(internalList.get(index)) > 0) {
-            index += 1;
-        }
-        internalList.add(index, toAdd);
+        internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
