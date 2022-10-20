@@ -154,6 +154,45 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 ### Edit feature
+The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
+an `EditCommand` that is executed by the `LogicManager`.
+
+This feature allows the user to edit any fields of a Customer, and supports editing multiple fields at once.
+
+**Below is a sample usage and how the edit sequence behaves at each step.**
+
+1. User chooses the Customer he/ she wants to edit and enters the command `edit e/test@gmail/com n/Bob`
+2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `EditCommandParser` and
+returns the `EditCommand` containing the Customer with all the new fields that are supposed to be edited to
+3. The `LogicManager` executes the `EditCommand` and Customer to be edited is updated with the new fields
+4. The `CommandResult` reflects the changes made to this Customer
+
+The following sequence diagram shows how the edit feature works, following the flow of entering the command `edit e/test@gmail/com n/Bob`:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes the flow of when a user enters an edit command:
+![EditActivityDiagram](images/EditCommandActivityDiagram.png)
+
+**Aspect: How `edit` is executed**
+* **Alternative 1 (current choice):** User can edit a customer via either `PHONE_NUMBER` or `EMAIL`.
+
+  | Pros/Cons | Description                                                                          | Examples                                                                                                                                    |
+    |--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user more flexibility in choosing the inputs as identifiers for editing       | The user can edit any customer as long as they have details of either their `PHONE_NUMBER` or `EMAIL`.                                      |
+  | Pros      | The user does not need to know the specific position of the customer within the list | The user can use either identifier `PHONE_NUMBER` or `EMAIL` to edit customers without a need for their index/position.                     |
+  | Cons      | The length of the command is longer with the new identifiers                         | The user has to type `edit p/12345678 n/Bob` or `edit e/test@gmail.com n/Bob` to edit a user which is longer compared to editing via index. |
+
+* **Alternative 2:** User can edit a customer via `index`.
+
+  | Pros/Cons | Description                                                                                               | Examples                                                                                                                                                                                                                                            |
+    |-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Short commands enable fast editing                                                                        | The user can edit any customer as long as they have details of the `index` of the customer, e.g. `edit 1`.                                                                                                                                          |
+  | Cons      | Identifying the customer via `index` might be slow especially when there are customers with similar names | The user has to find out the `index` of the customer to edit before typing the command. Supposed that we want to edit Bob and there exists an Bob and bob, identifying the correct customer takes time and thus delay the execution of the command. |
+
+* **Future Extension:** bobaBot can support multiple editing so user do not have to edit customers one by one.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
