@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes filter command;
+:ApplicationStatus parses argument;
+if () then ([invalid ApplicationStatus entered])
+    :Display error message;
+else ([else])
+    :ApplicationStatus is used to filter the internship list;
+    :Filtered internship list is displayed;
+endif
+stop
+@enduml
