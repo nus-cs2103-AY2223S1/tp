@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a client's birthday in MyInsuRec.
  */
@@ -24,9 +26,7 @@ public class Birthday {
 
     @Override
     public String toString() {
-        if (birthday == null) {
-            return "";
-        }
+        requireNonNull(birthday);
         return birthday.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
     }
 
@@ -39,16 +39,11 @@ public class Birthday {
 
     /**
      * Returns a reader-friendly version of date.
-     * @return
      */
     public String formattedDate() {
         String birthdayFormatted;
-        if (birthday == null) {
-            birthdayFormatted = "";
-        } else {
-            // returns date as '12 Jan 1952' for example
-            birthdayFormatted = birthday.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
-        }
+        // returns date as '12 Jan 1952' for example
+        birthdayFormatted = birthday.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         return birthdayFormatted;
     }
 }

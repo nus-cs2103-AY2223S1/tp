@@ -21,7 +21,7 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Birthday birthday; // may be null
+    private final Optional<Birthday> birthday;
     private final Address address;
 
     // Data fields
@@ -32,7 +32,7 @@ public class Client {
      * Every field must be present.
      * Birthday may be null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, Optional<Birthday> birthday, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -47,7 +47,7 @@ public class Client {
      * Birthday may be null.
      */
     public Client(Name name, Phone phone, Email email, Address address,
-                  Birthday birthday, Set<Tag> tags, Meeting meeting) {
+                  Optional<Birthday> birthday, Set<Tag> tags, Meeting meeting) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -76,9 +76,7 @@ public class Client {
     }
 
     public Optional<Birthday> getBirthday() {
-        return (birthday == null)
-                ? Optional.empty()
-                : Optional.of(birthday);
+        return birthday;
     }
 
     public boolean hasMeeting() {

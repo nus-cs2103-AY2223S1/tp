@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -45,11 +46,11 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Birthday birthday = null;
+        Optional<Birthday> birthday = Optional.empty();
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
             String dateString = argMultimap.getValue(PREFIX_BIRTHDAY).get();
             LocalDate dateLocalDate = ParserUtil.parseDate(dateString);
-            birthday = new Birthday(dateLocalDate);
+            birthday = Optional.of(new Birthday(dateLocalDate));
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
