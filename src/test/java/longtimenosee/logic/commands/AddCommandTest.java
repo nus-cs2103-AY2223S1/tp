@@ -24,6 +24,7 @@ import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.ReadOnlyUserPrefs;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.testutil.PersonBuilder;
 
@@ -80,7 +81,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -88,6 +89,9 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public FinancialAdvisorIncome getIncome() {
+            return new FinancialAdvisorIncome();
+        }
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");

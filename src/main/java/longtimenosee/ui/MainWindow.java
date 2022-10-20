@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private IncomeChart incomeChart;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,6 +55,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane lineChart;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -64,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -138,13 +142,20 @@ public class MainWindow extends UiPart<Stage> {
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         personListPanelPlaceholder.getChildren().removeAll();
 
+        incomeChart = new IncomeChart(logic.getIncome());
+
         switch (tab) {
         case "policy":
             personListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
             break;
+
         case "event":
             personListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
+        case "income":
+            personListPanelPlaceholder.getChildren().add(incomeChart.lineChart);
             break;
+            
         default:
             //Default case is to display clients
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -156,12 +167,13 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
-        primaryStage.setHeight(guiSettings.getWindowHeight());
-        primaryStage.setWidth(guiSettings.getWindowWidth());
+        primaryStage.setHeight(650);
+        primaryStage.setWidth(900);
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        primaryStage.setResizable(false);
     }
 
     /**
@@ -225,6 +237,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowEvent()) {
                 updateInnerContent("event");
+
+            if (commandResult.isShowIncome()) {
+                updateInnerContent("income");
             }
 
             return commandResult;

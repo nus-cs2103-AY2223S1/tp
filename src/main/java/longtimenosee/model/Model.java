@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import longtimenosee.commons.core.GuiSettings;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 
 /**
@@ -36,7 +37,7 @@ public interface Model {
     ReadOnlyUserPrefs getUserPrefs();
 
     /**
-     * Returns the user prefs' GUI settings.
+     * Returns the user prefs GUI settings.
      */
     GuiSettings getGuiSettings();
 
@@ -106,6 +107,8 @@ public interface Model {
      * Returns true if a policy with the same identity as {@code Policy} exists in the address book.
      */
     boolean hasPolicy(Policy toAdd);
+
+    FinancialAdvisorIncome getIncome();
 
     /**
      * Adds the policy specified.

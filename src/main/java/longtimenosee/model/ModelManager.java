@@ -16,6 +16,7 @@ import longtimenosee.commons.core.LogsCenter;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.exceptions.PersonNotFoundException;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 
 /**
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Policy> filteredPolicies;
+    private final FinancialAdvisorIncome income;
 
     private final FilteredList<Event> filteredEvents;
 
@@ -43,6 +45,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredPolicies = new FilteredList<>(this.addressBook.getPolicyList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        this.income = new FinancialAdvisorIncome();
 
     }
 
@@ -120,7 +123,9 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-
+    public FinancialAdvisorIncome getIncome() {
+        return income;
+    }
 
     @Override
     public void sort(Comparator<Person> comparator) {

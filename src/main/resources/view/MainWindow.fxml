@@ -10,8 +10,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.HBox?>
 
-<fx:root  minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Long Time No See (LTNS)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Box?>
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Long Time No See (LTNS)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/LTNSlogo.png" />
   </icons>
@@ -36,14 +43,14 @@
         </StackPane>
 
 
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <StackPane style="-fx-background-color: white;" fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+        <VBox fx:id="personList"  prefWidth="540" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <StackPane style="-fx-background-color: black;" fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
 <!--        \\\\\\\\\\\\ Commented out attempt at Policy list panel \\\\\\\\\\\-->
-        <StackPane fx:id="policyList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </StackPane>
+
+
+
 
 
         <StackPane fx:id="eventList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
