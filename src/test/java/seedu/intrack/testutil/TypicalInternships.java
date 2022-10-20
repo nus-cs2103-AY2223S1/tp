@@ -65,8 +65,8 @@ public class TypicalInternships {
             .withPosition("Product Designer").withStatus("Progress").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
     public static final Internship IDA = new InternshipBuilder().withName("Ida Mueller")
-            .withPosition("Data Engineer").withEmail("hans@example.com").withPhone("8482131")
-            .withStatus("Progress").withAddress("chicago ave").build();
+            .withPosition("Data Engineer").withStatus("Progress").withPhone("8482131")
+            .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}
     public static final Internship AAPL = new InternshipBuilder().withName(VALID_NAME_AAPL)
