@@ -47,13 +47,13 @@ public class Person {
         this.criticalIllnessInsurance = new CriticalIllnessInsurance(false);
         this.lifeInsurance = new LifeInsurance(false);
     }
-
+    
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
                 Birthday birthday, Insurance healthInsurance, Insurance disabilityInsurance,
-                Insurance criticalIllnessInsurance, Insurance lifeInsurance, 
+                Insurance criticalIllnessInsurance, Insurance lifeInsurance,
                 Reminder reminders, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
