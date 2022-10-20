@@ -61,7 +61,8 @@ public class FindInterestCommandTest {
         PersonContainsInterestPredicate predicate = preparePredicate(" ");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                false, false, true, false);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -71,7 +72,8 @@ public class FindInterestCommandTest {
         PersonContainsInterestPredicate predicate = preparePredicate("tennis");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                false, false, true, false);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
@@ -81,7 +83,8 @@ public class FindInterestCommandTest {
         PersonContainsInterestPredicate predicate = preparePredicate("tennis netflix");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                false, false, true, false);
         assertEquals(List.of(BENSON), model.getFilteredPersonList());
     }
 
@@ -91,7 +94,8 @@ public class FindInterestCommandTest {
         PersonContainsInterestPredicate predicate = preparePredicate("tennis TENNIS TenNiS");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                false, false, true, false);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 

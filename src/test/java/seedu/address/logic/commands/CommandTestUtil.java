@@ -104,8 +104,10 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+                                            Model expectedModel, boolean showHelp, boolean exit,
+                                            boolean resetModPanel, boolean updatePersonPanel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, showHelp,
+                exit, resetModPanel, updatePersonPanel);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -125,6 +127,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
