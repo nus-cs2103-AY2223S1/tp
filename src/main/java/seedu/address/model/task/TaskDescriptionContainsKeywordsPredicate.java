@@ -1,10 +1,13 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+
+/**
+ * Tests that a {@code Task}'s {@code TaskDescription} matches any of the keywords given.
+ */
 public class TaskDescriptionContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
 
