@@ -1,10 +1,10 @@
 package seedu.address.model.client;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a client's birthday in MyInsuRec.
@@ -21,12 +21,12 @@ public class Birthday {
      * @param birthday A valid birthday date.
      */
     public Birthday(LocalDate birthday) {
+        requireNonNull(birthday);
         this.birthday = birthday;
     }
 
     @Override
     public String toString() {
-        requireNonNull(birthday);
         return birthday.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
     }
 

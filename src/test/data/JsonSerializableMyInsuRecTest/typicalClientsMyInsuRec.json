@@ -7,8 +7,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthday" : "",
-    "tagged" : [ "friends" ],
-    "meetings": [ ]
+    "meetings": [ ],
+    "products" : [ "friends" ]
   }, {
     "@UUID" : "d4d3240e-589b-4d22-84ab-4c6bee1cca7b",
     "name" : "Benson Meier",
@@ -16,8 +16,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "birthday" : "",
-    "tagged" : [ "owesMoney", "friends" ],
-    "meetings" : [ ]
+    "meetings" : [ ],
+    "products" : [ "owesMoney", "friends" ]
   }, {
     "@UUID" : "2f2c94eb-834e-40d0-a22b-3eac6460f26e",
     "name" : "Carl Kurz",
@@ -26,7 +26,8 @@
     "address" : "wall street",
     "birthday" : "",
     "tagged" : [ ],
-    "meetings" : [ ]
+    "meetings" : [ ],
+    "products" : [ ]
   }, {
     "@UUID" : "234870ed-7cd0-4a1d-9466-6679e5c5f52f",
     "name" : "Daniel Meier",
@@ -34,34 +35,34 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "birthday" : "",
-    "tagged" : [ "friends" ],
-    "meetings" : [ ]
+    "meetings" : [ ],
+    "products" : [ "friends" ]
   }, {
     "@UUID" : "deed0742-5740-4514-87e7-bd9bef479046",
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822241",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "birthday" : "",
-    "tagged" : [ ],
-    "meetings" : [ ]
+    "meetings" : [ ],
+    "products" : [ ]
   }, {
     "@UUID" : "deed0742-5740-4514-87e7-bd9bef579046",
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94824271",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "birthday" : "",
-    "tagged" : [ ],
-    "meetings" : [ ]
+    "meetings" : [ ],
+    "products" : [ ]
   }, {
     "@UUID" : "deed0742-5740-4514-97e7-bd9bef479046",
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824421",
     "email" : "anna@example.com",
     "address" : "4th street",
     "birthday" : "",
-    "tagged" : [ ],
-    "meetings" : [ ]
+    "meetings" : [ ],
+    "products" : [ ]
   } ]
 }

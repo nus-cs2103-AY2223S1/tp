@@ -79,7 +79,7 @@ public interface Model {
     boolean hasMeeting(Meeting meeting);
 
     /**
-     * Adds the given client.
+     * Adds the given meeting.
      * {@code meeting} must not already exist in the MyInsuRec.
      */
     void addMeeting(Meeting meeting);

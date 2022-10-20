@@ -4,14 +4,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Client;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * A utility class for Client.
@@ -34,8 +34,8 @@ public class ClientUtil {
         sb.append(PREFIX_PHONE + client.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
-        client.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        client.getProducts().stream().forEach(
+            s -> sb.append(PREFIX_PRODUCT + s.productName + " ")
         );
         return sb.toString();
     }
@@ -49,12 +49,12 @@ public class ClientUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        if (descriptor.getProducts().isPresent()) {
+            Set<Product> products = descriptor.getProducts().get();
+            if (products.isEmpty()) {
+                sb.append(PREFIX_PRODUCT);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                products.forEach(s -> sb.append(PREFIX_PRODUCT).append(s.productName).append(" "));
             }
         }
         return sb.toString();

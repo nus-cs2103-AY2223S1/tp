@@ -1,7 +1,7 @@
 package seedu.address.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -12,41 +12,39 @@ import org.junit.jupiter.api.Test;
 
 
 public class BirthdayTest {
+    private LocalDate validDate = LocalDate.of(2000, 12, 12);
 
     @Test
-    public void toString_variousBirthdayObjects_returnsCorrectString() {
-        Birthday emptyBirthday = new Birthday(null);
-        assertEquals("", emptyBirthday.toString());
+    public void constructor() {
+        // throws error if date is null
+        assertThrows(NullPointerException.class, () -> new Birthday(null));
 
+        // constructs Birthday with given valid date
+        assertTrue(new Birthday(validDate) instanceof Birthday);
+    }
+    @Test
+    public void toString_validBirthdayObject_returnsCorrectString() {
         Birthday validBirthday = new Birthday(LocalDate.of(2000, 4, 4));
         assertEquals("04042000", validBirthday.toString());
     }
 
     @Test
-    public void equals_variousBirthdayObjects_evalutatesCorrectly() {
-        Birthday emptyBirthday = new Birthday(null);
-        Birthday nullBirthday = null;
+    public void equals_variousBirthdayObjects_evaluatesCorrectly() {
         Birthday validBirthday = new Birthday(LocalDate.of(2000, 12, 12));
 
         // same birthday
-        assertTrue(emptyBirthday.equals(emptyBirthday));
         assertTrue(validBirthday.equals(validBirthday));
 
         // identical birthday
         Birthday validBirthdayCopy = new Birthday(LocalDate.of(2000, 12, 12));
         assertTrue(validBirthday.equals(validBirthdayCopy));
-
-        // emptyBirthday does not equal nullBirthday
-        assertFalse(emptyBirthday.equals(nullBirthday));
     }
 
     @Test
     public void formattedDate_variousBirthdays_returnsFormattedBirthday() {
-        Birthday emptyBirthday = new Birthday(null);
         LocalDate date = LocalDate.of(1952, 1, 12);
         Birthday validBirthday = new Birthday(LocalDate.of(1952, 1, 12));
 
         assertEquals(date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)), validBirthday.formattedDate());
-        assertEquals("", emptyBirthday.formattedDate());
     }
 }

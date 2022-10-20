@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,8 +20,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Jackson-friendly version of {@link Client}.
@@ -36,9 +34,10 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
     private final String birthday;
+    private final List<JsonAdaptedProduct> products = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -47,8 +46,8 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("birthday") String birthday,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
+                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings,
+                             @JsonProperty("products") List<JsonAdaptedProduct> products) {
         if (meetings != null) {
             this.meetings.addAll(meetings);
         }
@@ -57,8 +56,8 @@ class JsonAdaptedClient {
         this.email = email;
         this.address = address;
         this.birthday = birthday;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (products != null) {
+            this.products.addAll(products);
         }
     }
 
@@ -66,28 +65,24 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
-        if (source.getMeeting() != null) {
-            meetings.add(new JsonAdaptedMeeting(source.getMeeting(), this));
-        }
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-
         Optional<Birthday> sourceBirthday = source.getBirthday();
-        if (sourceBirthday.isEmpty()) {
-            birthday = "";
-        } else {
-            birthday = sourceBirthday.toString();
-        }
-
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        birthday = sourceBirthday.isEmpty()
+            ? ""
+            : sourceBirthday.toString();
+        meetings.addAll(source.getMeetings().stream()
+                .map(meeting -> new JsonAdaptedMeeting(meeting, this))
+                .collect(Collectors.toList()));
+        products.addAll(source.getProducts().stream()
+                .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts a given {@code Client} and {@Code JsonAdaptedMeeting} into this class for Jackson use.
+     * Converts a given {@code Client} and {@code JsonAdaptedMeeting} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source, JsonAdaptedMeeting adaptedMeeting) {
         meetings.add(adaptedMeeting);
@@ -95,29 +90,27 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-
         Optional<Birthday> sourceBirthday = source.getBirthday();
-        if (sourceBirthday.isEmpty()) {
-            birthday = "";
-        } else {
-            birthday = sourceBirthday.toString();
-        }
-
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        birthday = sourceBirthday.isEmpty()
+                ? ""
+                : sourceBirthday.toString();
+        products.addAll(source.getProducts().stream()
+                .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Client} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> clientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            clientTags.add(tag.toModelType());
+
+        final List<Product> clientProducts = new ArrayList<>();
+        for (JsonAdaptedProduct product : products) {
+            clientProducts.add(product.toModelType());
         }
+        final Set<Product> modelProducts = new HashSet<>(clientProducts);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -150,25 +143,18 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+        final Optional<Birthday> modelBirthday;
+        modelBirthday = birthday.equals("")
+                ? Optional.empty()
+                : Optional.of(new Birthday(ParserUtil.parseDate(birthday)));
+        Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelProducts);
 
-        final Birthday modelBirthday;
-        if (birthday.equals("")) {
-            modelBirthday = null;
-        } else {
-            LocalDate dateLocalDate = ParserUtil.parseDate(birthday);
-            modelBirthday = new Birthday(dateLocalDate);
-        }
-
-        final Set<Tag> modelTags = new HashSet<>(clientTags);
-
-        if (!meetings.isEmpty()) {
-            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
-            final Meeting meeting = meetings.get(0).toModelType(client);
-            client.setMeeting(meeting);
+        if (meetings.isEmpty()) {
             return client;
-        } else {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
         }
+        for (JsonAdaptedMeeting meeting : meetings) {
+            client.addMeeting(meeting.toModelType(client));
+        }
+        return client;
     }
-
 }

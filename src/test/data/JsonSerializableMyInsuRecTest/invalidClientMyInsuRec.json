@@ -7,6 +7,7 @@
     "address" : "4th street",
     "birthday" : "",
     "tagged" : [ ],
-    "meetings" : [ ]
+    "meetings" : [ ],
+    "products": [ ]
   } ]
 }

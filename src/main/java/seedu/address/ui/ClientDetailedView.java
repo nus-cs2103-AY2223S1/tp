@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Panel containing a detailed view of a client.
@@ -45,7 +47,6 @@ public class ClientDetailedView extends UiPart<Region> {
         clientName.setText(client.getName().toString());
         phoneNumber.setText(client.getPhone().toString());
         email.setText(client.getEmail().toString());
-
         Optional<Birthday> clientBirthday = client.getBirthday();
         if (clientBirthday.isEmpty()) {
             birthday.setText("");
@@ -53,8 +54,9 @@ public class ClientDetailedView extends UiPart<Region> {
             birthday.setText(clientBirthday.get().formattedDate());
         }
 
-        if (client.getMeeting() != null) {
-            meetings.getChildren().add(new MeetingCondensedView(client.getMeeting()).getRoot());
+        List<Meeting> clientMeetings = client.getMeetings();
+        for (Meeting meeting : clientMeetings) {
+            meetings.getChildren().add(new MeetingCondensedView(meeting).getRoot());
         }
     }
 }
