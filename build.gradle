@@ -19,6 +19,7 @@ repositories {
 checkstyle {
     toolVersion = '10.2'
 }
+
 run {
     enableAssertions = true
 }
@@ -69,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'uNivUSal.jar'
 }
 
 defaultTasks 'clean', 'test'
