@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 /**
  * Represents the acceptable command words of a command.
@@ -31,7 +33,11 @@ public class CommandWord {
      * @return The boolean indicating whether the given string matches the command words.
      */
     public boolean matches(String input) {
-        return mainCommandWord.equals(input) || alternativeCommandWords.contains(input);
+
+        return mainCommandWord.toLowerCase().equals(input.toLowerCase())
+                || alternativeCommandWords.stream()
+                .map(w -> w.toLowerCase())
+                .anyMatch(w -> w.equals(input.toLowerCase()));
     }
 
     /**
