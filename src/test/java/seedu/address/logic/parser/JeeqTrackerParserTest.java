@@ -23,7 +23,7 @@ import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -74,10 +74,11 @@ public class JeeqTrackerParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Client client = new ClientBuilder().build();
-        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_CLIENT, descriptor), command);
+        EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
+        EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CLIENT.getOneBased() + " m/client "
+                + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditClientCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
     @Test

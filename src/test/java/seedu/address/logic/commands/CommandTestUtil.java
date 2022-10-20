@@ -87,8 +87,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditClientDescriptor DESC_AMY;
-    public static final EditCommand.EditClientDescriptor DESC_BOB;
+    public static final EditClientCommand.EditClientDescriptor DESC_AMY;
+    public static final EditClientCommand.EditClientDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY)

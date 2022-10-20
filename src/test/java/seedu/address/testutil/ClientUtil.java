@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.model.client.Client;
 import seedu.address.model.tag.Tag;
 
@@ -43,7 +43,7 @@ public class ClientUtil {
     /**
      * Returns the part of command string for the given {@code EditClientDescriptor}'s details.
      */
-    public static String getEditClientDescriptorDetails(EditCommand.EditClientDescriptor descriptor) {
+    public static String getEditClientDescriptorDetails(EditClientCommand.EditClientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
