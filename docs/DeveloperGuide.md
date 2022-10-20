@@ -262,6 +262,25 @@ Step 4. John is edited to James via the Edit command. This will be reflected in 
 
 Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
 
+### \[Proposed\] Persistent Storage for Task
+
+#### Proposed Implementation
+
+We save tasks in Json format which contains the details of the task such as the task's name, description, etc.
+We can then read the Json data file to obtain the details of each task and create a list of JsonAdaptedTask which can 
+then be converted to a list of tasks. Hence, our Json data file contains a list of task details.
+
+When reading Json file we also check whether the values saved are valid before converting it back to a Task object.
+This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for
+such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal
+values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
+
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
+a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative 
+to this is to keep a person object in a task object but this will prevent the change in the person object that is
+supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
