@@ -87,8 +87,8 @@ public class ModuleList implements ReadOnlyModuleList {
      * Adds a module to the module list.
      * The module must not already exist in the module list.
      */
-    public void addModule(Module p) {
-        modules.add(p);
+    public void addModule(Module m) {
+        modules.add(m);
     }
 
     /**
