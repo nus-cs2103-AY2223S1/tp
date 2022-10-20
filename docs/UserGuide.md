@@ -248,7 +248,7 @@ Example:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the SoConnect.
+Clears all contacts from the SoConnect.
 
 Format: `clear`
 
