@@ -3,7 +3,7 @@ start
 :User executes AddProfileCommand;
 
 if () then ([input is valid])
-    :Parses input into index and fields required for profile;
+    :Parses input into fields required for profile;
     :Creates AddProfileCommand;
     :LogicManager executes AddProfileCommand;
     :Update ProfileList with the new profile;

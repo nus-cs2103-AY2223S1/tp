@@ -10,7 +10,6 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * This project is built upon the existing code for [AddressBook Level-3](https://github.com/se-edu/addressbook-level3).
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,9 +159,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Description
 
-In this section, we will describe how our add commands are implemented. In NUScheduler, there are two variants of add commands, namely the `AddProfileCommand` and the `AddEventCommand`. `AddProfileCommand` is used to add a new `Profile`, whereas `AddEventCommand` is used to add a new `Event`s.
+In this section, we will describe how our add commands are implemented. In NUScheduler, there are two variants of add commands, namely the `AddProfileCommand` and the `AddEventCommand`. `AddProfileCommand` is used to add a new `Profile`, whereas `AddEventCommand` is used to add a new `Event`.
 
-Since both `AddProfileCommand` and `AddEventCommands` are implemented in a similar manner, we will be using the `AddProfileCommand` to illustrate the implementation of add commands.
+Since both `AddProfileCommand` and `AddEventCommand` are implemented in a similar manner, we will be using the `AddProfileCommand` to illustrate the implementation of add commands.
 
 The `AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute` method, to add new profiles when called.
 
@@ -172,7 +171,7 @@ The `AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCom
 2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
 3. The method `ProfileCommandParser#parse` is then called, and return a new `AddProfileCommandParser`.
 4. The method `AddProfileCommandParser#parse` will then return a new `AddProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute` method of the `AddProfileCommand`, which will then create a new `Profile` using the `AddProfileCommand#setProfile` method.
+5. The `LogicManager` will call `Command#execute` method of the `AddProfileCommand`, which will then create a new `Profile` using the `AddProfileCommand#addProfile` method.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `AddProfileCommand` works.
@@ -198,7 +197,7 @@ The following activity diagram shows the process when a user calls the `AddProfi
 
 In this section, we will describe how our edit commands are implemented. In NUScheduler, there are two variants of edit commands, namely the `EditProfileCommand` and the `EditEventCommand`. `EditProfileCommand` is used to edit details of existing `Profile`s, whereas `EditEventCommand` is used to edit details of existing `Event`s.  
 
-Since both `EditProfileCommand` and `EditEventCommands` are implemented in a similar manner, we will be using the `EditProfileCommand` to illustrate the implementation of edit commands. 
+Since both `EditProfileCommand` and `EditEventCommand` are implemented in a similar manner, we will be using the `EditProfileCommand` to illustrate the implementation of edit commands. 
 
 The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute` method, to edit existing profiles when called.
 
@@ -221,12 +220,7 @@ The following activity diagram shows the process when a user calls the `EditProf
 
 #### Design Considerations
 
-- **Alternative 1 (Current Design)**: Separate the `EditProfileCommand` and the `EditEventCommand` as separate classes.
-  - Pros: More flexibility in the parsing and order of the commands.
-  - Cons: Additional classes are implemented, and thus higher complexity.
-- **Alternative 2**: Have one single `EditCommand` class.
-  - Pros: Less classes to implement.
-  - Cons: Prevents us from using separate command words for editing profiles and editing events.
+The design considerations for the edit commands and the add commands are largely similar, please refer to the [Design Considerations](#design-considerations) for the add commands for more details. 
 
 ### \[Proposed\] Undo/redo feature
 
