@@ -12,10 +12,10 @@ participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":FilteredList<Event>" as eventList MODEL_COLOR
 
 end box
-[-> LogicManager : execute(listEvents)
+[-> LogicManager : execute("listEvents")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(listEvents)
+LogicManager -> AddressBookParser : parseCommand("listEvents")
 activate AddressBookParser
 
 create ListEventsCommand

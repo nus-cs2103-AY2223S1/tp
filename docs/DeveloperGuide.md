@@ -246,8 +246,8 @@ The List Events feature allows users to enter `listEvents` and update the UI dis
 events sorted in their current order inside `ModelManager`. In the future, the command will take in a parameter,
 which specifies the field that the events list can be permanently sorted by.
 
-### Implementation
-The List Events feature is facilitated by `ListEventsCommand` which extends from Command. Additionally, it implements
+#### Implementation
+The List Events feature is facilitated by `ListEventsCommand` which extends from `Command`. Additionally, it implements
 the following operation:
 
 * `ModelManager#updateFilteredEventList`  — Updates the predicate inside `ModelManager`'s filtered event list 
@@ -255,7 +255,7 @@ to modify and sort which and how events are shown.
 
 This operation is exposed in the `Model` interface as the method `Model#updateFilteredEventList`.
 
-The following sequence diagram shows how the listEvents operation works.
+The following sequence diagram shows how the `listEvents` operation works.
 
 ![ListEventsSequenceDiagram](images/ListEventsSequenceDiagram.png)
 
@@ -263,21 +263,21 @@ The following sequence diagram shows how the listEvents operation works.
 considered and shown in this activity diagram.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for ListEventsCommand should
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListEventsCommand` should
 end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
-### Design Considerations:
+#### Design Considerations:
 
-**Aspect: If listEvents should sort events permanently:
+**Aspect: If listEvents should sort events permanently:**
 * **Alternative 1 (current choice):** Sort all events permanently.
   * Pros: Easy to implement.
   * Cons: Whenever events are added, they are always added as the last event in the event list. Once sorted, the order 
   cannot be returned to the order which events were added.
 * **Alternative 2:** Sort all events temporarily.
-  * Pros: Users can choose if they want to sort their events permanently or temporarily.
+  * Pros: When users sort their events, the ordering of the events in the ModelManager stays constant.
   * Cons: Hard to implement as a new form of storage or memory has to be created to maintain the relative ordering of
-    events initially. Furthermore, a new sort command must be created to sort events permanently.
+    events.
 
 
 
