@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
+import java.util.prefs.*;
 
 import javafx.fxml.FXML;
+import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -20,6 +22,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    @FXML
+    private Scene parent;
 
     @FXML
     private Button copyButton;
@@ -64,6 +69,16 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
+
+        //Set helpWindow dark/light theme
+        Preferences pref = Preferences.userRoot().node("seedu.address.ui.MainWindow");
+        if (pref.getInt("mode", 0) == 0) {
+            parent.getStylesheets().add("view/HelpWindowDark.css");
+            parent.getStylesheets().remove("view/HelpWindowLight.css");
+        } else {
+            parent.getStylesheets().add("view/HelpWindowLight.css");
+            parent.getStylesheets().remove("view/HelpWindowDark.css");
+        }
         getRoot().show();
         getRoot().centerOnScreen();
     }
