@@ -195,8 +195,8 @@ This section describes some noteworthy details on how certain features are imple
 
 The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books. 
 It implements the following operations:
-* `#updateFilteredPersonList(predicate)` -
-* `updatedFilteredBookList(predicate)` -  
+* `#updateFilteredPersonList(predicate)` — Display users with names matching predicate.
+* `updatedFilteredBookList(predicate)` — Display books with title/authors matching predicate.
 
 
 Given below is an example usage scenario and how the find users mechanism behaves at each step.
