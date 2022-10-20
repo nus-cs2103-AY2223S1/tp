@@ -167,12 +167,16 @@ that had to be copied, and they included
 
 The following classes had to be extended in order to support meeting list
 - `MainApp`
+- `UserPrefs`
+- `ReadOnlyUserPrefs`
+- `SampleDataUtil`
 - `Storage`
 - `StorageManager`
 - `Model`
 - `ModelManager`
 - `Logic`
 - `LogicManager`
+- `AddressBookParser`
 
 The app maintained its own internal list of meetings in the `ModelManager` and the 
 `LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
