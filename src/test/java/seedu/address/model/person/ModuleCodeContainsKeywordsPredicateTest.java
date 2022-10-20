@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.testutil.ModuleBuilder;
 
@@ -42,7 +43,7 @@ public class ModuleCodeContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_ModuleCodeContainsKeywords_returnsTrue() {
+    public void test_moduleCodeContainsKeywords_returnsTrue() {
         // One keyword
         ModuleCodeContainsKeywordsPredicate predicate =
                 new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("CS2100"));
@@ -62,7 +63,7 @@ public class ModuleCodeContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_ModuleCodeDoesNotContainKeywords_returnsFalse() {
+    public void test_moduleCodeDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         ModuleCodeContainsKeywordsPredicate predicate =
                 new ModuleCodeContainsKeywordsPredicate(Collections.emptyList());

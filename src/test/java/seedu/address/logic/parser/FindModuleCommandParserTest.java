@@ -7,9 +7,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-
 public class FindModuleCommandParserTest {
 
     private FindModuleCommandParser parser = new FindModuleCommandParser();
