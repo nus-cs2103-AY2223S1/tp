@@ -9,7 +9,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ClientCommandParser" as ClientCommandParser LOGIC_COLOR
-participant "u:ListClientCommand" as ListClientCommand LOGIC_COLOR
+participant ":ListClientCommand" as ListClientCommand LOGIC_COLOR
 end box
 
 [-> MainWindow : executeCommand(client -l)
@@ -23,6 +23,9 @@ activate AddressBookParser
 
 create ClientCommandParser
 AddressBookParser -> ClientCommandParser
+activate ClientCommandParser
+ClientCommandParser --> AddressBookParser
+deactivate ClientCommandParser
 AddressBookParser -> ClientCommandParser : parse(-l)
 activate ClientCommandParser
 
@@ -36,10 +39,10 @@ deactivate ListClientCommand
 ClientCommandParser --> AddressBookParser
 deactivate ClientCommandParser
 
-AddressBookParser --> LogicManager : u
+AddressBookParser --> LogicManager
 deactivate AddressBookParser
 
-LogicManager -> ListClientCommand : execute()
+LogicManager -> ListClientCommand : execute(model, ui)
 activate ListClientCommand
 
 ListClientCommand --> LogicManager : result
@@ -48,13 +51,11 @@ deactivate ListClientCommand
 ListClientCommand -[hidden]-> LogicManager : result
 destroy ListClientCommand
 
-
-
 MainWindow <-- LogicManager : result
-MainWindow --> MainWindow : swapClientListDisplay()
 deactivate LogicManager
+MainWindow --> MainWindow : swapClientListDisplay()
 
-[<-- MainWindow
+[<-- MainWindow : result
 deactivate MainWindow
 
 @enduml
