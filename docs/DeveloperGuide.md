@@ -476,7 +476,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 
@@ -496,7 +496,85 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC8 - Editing a task name**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team, the task and the new task name.
+2. EZLead updates task name associated to specified task of the team.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC9 - Marking a task item as done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team and the task to be marked as done.
+2. EZLead marks the task associated to specified team as done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC10 - Marking a task item as not done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies  the team and the task to be marked as not done.
+2. EZLead marks the task associated to specified team as not done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 
