@@ -3,6 +3,7 @@ package jarvis.model;
 import java.util.Objects;
 
 import jarvis.storage.JsonAdaptedMasteryCheck;
+import jarvis.storage.JsonAdaptedTimePeriod;
 
 /**
  * Represents a Mastery Check in JARVIS.
@@ -54,7 +55,8 @@ public class MasteryCheck extends Lesson {
 
     @Override
     public JsonAdaptedMasteryCheck toJson() {
-        return new JsonAdaptedMasteryCheck("mastery check", this.getDesc().lessonDesc, this.getTimePeriod(),
+        return new JsonAdaptedMasteryCheck(this.getDesc().lessonDesc,
+                new JsonAdaptedTimePeriod(this.getTimePeriod()),
                 this.getAttendance(), this.getNotes(), this.isCompleted());
     }
 }

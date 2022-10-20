@@ -1,13 +1,18 @@
 package jarvis.storage;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.model.Consult;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
 import jarvis.model.TimePeriod;
+import jarvis.model.util.SampleStudentUtil;
 
 /**
  * Jackson-friendly version of {@link MasteryCheck}.
@@ -19,9 +24,11 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
      * Constructs a {@code JsonAdaptedMasteryCheck} with the given lesson details.
      */
     @JsonCreator
-    public JsonAdaptedMasteryCheck(String lessonType, String lessonDesc, TimePeriod timePeriod,
-                                   LessonAttendance attendance, LessonNotes notes, boolean isCompleted) {
-        super(lessonType, lessonDesc, timePeriod, attendance, notes, isCompleted);
+    public JsonAdaptedMasteryCheck(@JsonProperty("lessonDesc") String lessonDesc, JsonAdaptedTimePeriod timePeriod,
+                                   @JsonProperty("attendance") LessonAttendance attendance,
+                                   @JsonProperty("notes") LessonNotes notes,
+                                   @JsonProperty("isCompleted") boolean isCompleted) {
+        super(lessonDesc, timePeriod, isCompleted);
     }
 
     /**
@@ -42,7 +49,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-
+/*
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -51,8 +58,10 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
         if (this.getNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
-        }
+        }*/
 
-        return new MasteryCheck(modelLessonDesc, this.getTimePeriod(), this.getAttendance(), this.getNotes());
+        return new MasteryCheck(modelLessonDesc, this.getTimePeriod().toModelType(),
+                new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())),
+                new LessonNotes(List.of(SampleStudentUtil.getSampleStudents())));
     }
 }

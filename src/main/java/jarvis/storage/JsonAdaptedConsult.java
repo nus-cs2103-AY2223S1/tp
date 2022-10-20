@@ -1,6 +1,9 @@
 package jarvis.storage;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.Consult;
@@ -8,6 +11,7 @@ import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
 import jarvis.model.TimePeriod;
+import jarvis.model.util.SampleStudentUtil;
 
 /**
  * Jackson-friendly version of {@link Consult}.
@@ -19,9 +23,12 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
      * Constructs a {@code JsonAdaptedConsult} with the given consult details.
      */
     @JsonCreator
-    public JsonAdaptedConsult(String lessonType, String lessonDesc, TimePeriod timePeriod, LessonAttendance attendance,
-                              LessonNotes notes, boolean isCompleted) {
-        super(lessonType, lessonDesc, timePeriod, attendance, notes, isCompleted);
+    public JsonAdaptedConsult(@JsonProperty("lessonDesc") String lessonDesc,
+                              @JsonProperty("timePeriod") JsonAdaptedTimePeriod timePeriod,
+                              @JsonProperty("attendance") LessonAttendance attendance,
+                              @JsonProperty("notes") LessonNotes notes,
+                              @JsonProperty("isCompleted") boolean isCompleted) {
+        super(lessonDesc, timePeriod, isCompleted);
     }
 
     /**
@@ -42,7 +49,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-
+/*
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -51,8 +58,10 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
         if (this.getNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
-        }
+        }*/
 
-        return new Consult(modelLessonDesc, this.getTimePeriod(), this.getAttendance(), this.getNotes());
+        return new Consult(modelLessonDesc, this.getTimePeriod().toModelType(),
+                new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())),
+                new LessonNotes(List.of(SampleStudentUtil.getSampleStudents())));
     }
 }

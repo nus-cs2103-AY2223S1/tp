@@ -1,6 +1,9 @@
 package jarvis.storage;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.LessonAttendance;
@@ -9,6 +12,7 @@ import jarvis.model.LessonNotes;
 import jarvis.model.Studio;
 import jarvis.model.StudioParticipation;
 import jarvis.model.TimePeriod;
+import jarvis.model.util.SampleStudentUtil;
 
 /**
  * Jackson-friendly version of {@link Studio}.
@@ -16,15 +20,19 @@ import jarvis.model.TimePeriod;
 public class JsonAdaptedStudio extends JsonAdaptedLesson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Studio's %s field is missing!";
 
-    private StudioParticipation studioParticipation;
+    private final StudioParticipation studioParticipation;
 
     /**
      * Constructs a {@code JsonAdaptedStudio} with the given lesson details.
      */
     @JsonCreator
-    public JsonAdaptedStudio(String lessonType, String lessonDesc, TimePeriod timePeriod, LessonAttendance attendance,
-                             LessonNotes notes, boolean isCompleted, StudioParticipation studioParticipation) {
-        super(lessonType, lessonDesc, timePeriod, attendance, notes, isCompleted);
+    public JsonAdaptedStudio(@JsonProperty("lessonDesc") String lessonDesc,
+                             @JsonProperty("timePeriod") JsonAdaptedTimePeriod timePeriod,
+                             @JsonProperty("attendance") LessonAttendance attendance,
+                             @JsonProperty("notes") LessonNotes notes,
+                             @JsonProperty("isCompleted") boolean isCompleted,
+                             @JsonProperty("participation") StudioParticipation studioParticipation) {
+        super(lessonDesc, timePeriod, isCompleted);
         this.studioParticipation = studioParticipation;
     }
 
@@ -46,7 +54,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-
+/*
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -55,14 +63,15 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
         if (this.getNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
-        }
+        }*/
 
         if (studioParticipation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StudioParticipation.class.getSimpleName()));
         }
 
-        return new Studio(modelLessonDesc, this.getTimePeriod(), this.getAttendance(), studioParticipation,
-                this.getNotes());
+        return new Studio(modelLessonDesc, this.getTimePeriod().toModelType(),
+                new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())), studioParticipation,
+                new LessonNotes(List.of(SampleStudentUtil.getSampleStudents())));
     }
 }

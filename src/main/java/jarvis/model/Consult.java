@@ -3,6 +3,7 @@ package jarvis.model;
 import java.util.Objects;
 
 import jarvis.storage.JsonAdaptedConsult;
+import jarvis.storage.JsonAdaptedTimePeriod;
 
 /**
  * Represents a Consult in JARVIS.
@@ -54,7 +55,8 @@ public class Consult extends Lesson {
 
     @Override
     public JsonAdaptedConsult toJson() {
-        return new JsonAdaptedConsult("consult", this.getDesc().lessonDesc, this.getTimePeriod(),
+        return new JsonAdaptedConsult(this.getDesc().lessonDesc,
+                new JsonAdaptedTimePeriod(this.getTimePeriod()),
                 this.getAttendance(), this.getNotes(), this.isCompleted());
     }
 }
