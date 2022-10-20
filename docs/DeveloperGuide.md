@@ -389,6 +389,7 @@ Guarantees: Gim will exit.
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Vim**: A Unix text editor, known for being lightweight, fast and efficient. it can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Exercise**: Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
 * **Reps**: Number of times you perform a specific exercise
 * **Sets**: Number of cycles of reps that you complete
