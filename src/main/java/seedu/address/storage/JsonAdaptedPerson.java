@@ -81,7 +81,7 @@ class JsonAdaptedPerson {
         moneyOwed = source.getMoneyOwed().value;
         moneyPaid = source.getMoneyPaid().value;
         ratesPerClass = source.getRatesPerClass().value;
-        additionalNotes = source.getAdditionalNotes().notes;
+        additionalNotes = source.getAdditionalNotes().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

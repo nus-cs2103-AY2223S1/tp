@@ -6,7 +6,7 @@ package seedu.address.model.person;
  */
 public class AdditionalNotes {
 
-    public String notes;
+    private String notes;
 
     /**
      * Constructs an {@code AdditionalNotes}.
