@@ -269,6 +269,45 @@ The structure for executing an `addprop` command follows the flow as mentioned i
 Design considerations:
 No duplicate properties can be added to the property list. This means that no two properties with the same name and price can exist. We considered using only name to identify a property, but later decided against it since in real life different units under the same property name can be listed at the same time. In the future, we might allow two properties with same name and price but different characteristics to be added to the property list because this can also be a possible scenario in real life.
 
+### Owner specification within a property
+
+To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
+
+The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact person.
+The fields are also validated the same way as when creating a new `Buyer` object.
+
+To support retrieving the `Owner` of a `Property`, we added the following methods:
+- `Property#getOwner()` - Returns the `Owner` object of the property.
+- `Property#getOwnerName()` - Retrieves the name of the owner of the property.
+- `Property#getOwnerPhone()` - Retrieves the phone number of the owner of the property.
+
+This is the class diagram showing the full `Property` class diagram, with the `Owner` class included:
+![FullPropertyClassDiagram](images/FullPropertyClassDiagram.png)
+
+The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted. 
+The tradeoffs for this approach is examined below:
+
+#### Design considerations:
+
+**Aspect: How the owner class associates with the property class:**
+
+* **Alternative 1 (current choice):** Owner class is coupled together with the property class.
+    * Pros:
+      * The `Owner` class is only used in the `Property` class, so it makes sense to couple them together.
+      * You do not need to create an owner object separately using another command.
+      * This reduces complexity of the system, and unexpected behaviours.
+    * Cons: 
+      * This creates a 1-to-1 relationship between the owner and the property.
+      * Each owner is coupled tightly with the property, and cannot be used for other properties.
+
+* **Alternative 2:** Users will have to create an `Owner` object separately, and link it to the property manually.
+    * Pros:
+      * This allows for a many-to-many relationship between the owners and properties.
+      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to `Buyer`.
+    * Cons:
+      * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
+      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when the owner is deleted.
+
 ### Filtering properties by price range
 
 The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the property's price falls within a specified price range. 
