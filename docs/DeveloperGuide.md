@@ -214,7 +214,7 @@ The following sequence diagram shows the methods calls related to edit person op
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit 
 person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list 
-in the model. The specific UniquePersonList operations are not shown in the diagram for simplicity.
+in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
 </div>
 
 The following activity diagram shows what happens when a user executes a new edit command:
