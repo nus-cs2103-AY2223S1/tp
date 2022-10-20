@@ -6,6 +6,27 @@ html {
   }
 }
 
+.post-content {
+  margin-bottom: 2rem;
+
+  h1,
+  h2,
+  h3 {
+    margin-top: 3rem;
+  }
+
+  h4,
+  h5,
+  h6 {
+    margin-top: 2rem;
+  }
+
+  p,
+  li {
+    text-align: justify;
+  }
+}
+
 .page-content {
   display: flex;
   justify-content: space-between;
