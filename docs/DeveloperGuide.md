@@ -741,3 +741,6 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `edit 1 n/Jo@`<br>
       Expected: No guest is edited, because the name is invalid. Error details shown in the status message.
       Status bar remains the same.
+
+   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `...`<br>
+      Expected: Similar to previous.
