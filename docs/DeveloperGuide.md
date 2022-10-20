@@ -262,6 +262,8 @@ The `price` field is mandatory while the `characteristics` field is optional. Wh
 
 This is the class diagram of a `Property`.
 
+![PropertyClassDiagram](images/PropertyClassDiagram.png)
+
 The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
 Design considerations:
