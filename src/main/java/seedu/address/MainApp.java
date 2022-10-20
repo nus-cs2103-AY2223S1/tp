@@ -41,9 +41,9 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private static final String WELCOME_MESSAGE = "Welcome back to Rapportbook!";
     private static final String WELCOME_MESSAGE_FIRST_LAUNCH = "Welcome to Rapportbook! Press (F1) or click (Help) to"
-            + " view the help page.\nWe have populated the app with some sample entries for you to test the app out."
-            + "\nUse the clear command to start afresh!";
-    private static final String MESSAGE_UNABLE_TO_READ_DATA = "Welcome to Rapportbook!\nUnable to load from data"
+            + " view the help page.\n\nWe have populated the app with some sample entries for you to test the app out."
+            + "\n\nUse the clear command to start afresh!";
+    private static final String MESSAGE_UNABLE_TO_READ_DATA = "Welcome to Rapportbook!\n\nUnable to load from data"
             + " file. Either check the data file and relaunch the app, or start with a new one.";
 
     protected Ui ui;
