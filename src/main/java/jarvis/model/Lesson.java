@@ -1,5 +1,7 @@
 package jarvis.model;
 
+import jarvis.commons.core.index.Index;
+
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
@@ -89,5 +91,13 @@ public abstract class Lesson {
 
     public void addStudentNotes(String studentNotes, Student student) {
         notes.addNote(student, studentNotes);
+    }
+
+    public String deleteOverallNotes(Index index) {
+        return notes.deleteNote(index.getOneBased());
+    }
+
+    public String deleteStudentNotes(Student student, Index index) {
+        return notes.deleteNote(student, index.getZeroBased());
     }
 }

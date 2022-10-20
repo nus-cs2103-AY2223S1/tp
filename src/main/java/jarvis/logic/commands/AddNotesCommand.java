@@ -16,14 +16,14 @@ import jarvis.model.Model;
 import jarvis.model.Student;
 
 /**
- * Add notes to a lesson.
+ * Adds notes to a lesson.
  * Notes added can be for the lesson or for a specific student in the lesson if the student is specified.
  * The student is identified using its displayed index from the student book.
  * The lesson is identified using its displayed index from the lesson book.
  */
 public class AddNotesCommand extends Command {
 
-    public static final String COMMAND_WORD = "addnotes";
+    public static final String COMMAND_WORD = "addnote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds notes to a lesson or for a specific student in the lesson if optional student index is specified."

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import jarvis.model.exceptions.NoteNotFoundException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -44,6 +45,61 @@ public class LessonNotes {
         }
         studentNotes.get(student).append(notes);
         studentNotes.get(student).append("\n");
+    }
+
+    /**
+     * Deletes note at given index from overall lesson notes.
+     *
+     * @param index Index of note according to order of notes in overall notes.
+     * @return String of the deleted note.
+     * @throws NoteNotFoundException
+     */
+    public String deleteNote(int index) throws NoteNotFoundException {
+        String overallNotesString = overallNotes.toString();
+        String[] notesSplit = overallNotesString.split("\n");
+        if (index >= notesSplit.length) {
+            throw new NoteNotFoundException();
+        }
+        int deleteStartIndex = 0;
+        for (int i = 0; i < index; i++) {
+            deleteStartIndex += notesSplit[i].length() + 1;
+        }
+        int deleteEndIndex = deleteStartIndex + notesSplit[index].length() + 1;
+        String deletedNote = overallNotes.substring(deleteStartIndex, deleteEndIndex);
+        overallNotes.delete(deleteStartIndex, deleteEndIndex);
+        return deletedNote;
+    }
+
+    /**
+     * Deletes note at given index of given student's notes.
+     *
+     * @param student Student to delete notes from.
+     * @param index Index of note according to order of notes in student notes.
+     * @return String of the deleted note.
+     * @throws NoteNotFoundException
+     */
+    public String deleteNote(Student student, int index) throws NoteNotFoundException {
+        if (!studentNotes.containsKey(student)) {
+            throw new StudentNotFoundException();
+        }
+        StringBuilder studentStringBuilder = studentNotes.get(student);
+        String studentNotesString = studentStringBuilder.toString();
+        String[] notesSplit = studentNotesString.split("\n");
+        if (index >= notesSplit.length) {
+            throw new NoteNotFoundException();
+        }
+        int deleteStartIndex = 0;
+        for (int i = 0; i < index; i++) {
+            deleteStartIndex += notesSplit[i].length() + 1;
+        }
+        int deleteEndIndex = deleteStartIndex + notesSplit[index].length() + 1;
+        System.out.println(studentStringBuilder.toString());
+        System.out.println(deleteStartIndex);
+        System.out.println(deleteEndIndex);
+        String deletedNote = studentStringBuilder.substring(deleteStartIndex, deleteEndIndex);
+        StringBuilder editedStudentStringBuilder = studentStringBuilder.delete(deleteStartIndex, deleteEndIndex);
+        studentNotes.put(student, editedStudentStringBuilder);
+        return deletedNote;
     }
 
     public String getNotes() {
