@@ -91,7 +91,7 @@ Examples:
 
 Edits an existing Customer in bobaBot.
 
-Format: `edit n/NAME OR edit p/PHONE_NUMBER OR edit e/EMAIL
+Format: `edit p/PHONE_NUMBER OR edit e/EMAIL
 [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
@@ -99,8 +99,8 @@ At least one of the optional fields must be provided
 </div>
 
 Examples:
-* `edit n/John Doe p/91234567 e/johndoe@example.com r/1000`
-* `edit n/Peter Parker r/420`
+* `edit p/91234567 e/johndoe@example.com r/1000`
+* `edit e/peterparker@example.com r/420`
 
 ### Listing all customers : `list`
 
@@ -184,7 +184,7 @@ _Details coming soon ..._
 | Action     | Format, Examples                                                                                                                                                                     |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                                    |
-| **Edit**   | `edit n/NAME` or `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit n/John Doe p/91234567 e/johndoe@example.com r/1000` |
+| **Edit**   | `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit p/91234567 e/johndoe@example.com r/1000` |
 | **Delete** | `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete p/87438807`, `delete e/alexyeoh@example.com`                                                                          |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                                           |
 | **Clear**  | `clear`                                                                                                                                                                              |
