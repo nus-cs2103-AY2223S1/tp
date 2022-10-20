@@ -79,40 +79,34 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs)
             throws IOException {
-        Optional<ReadOnlyModuleList> moduleListOptional;
+        Optional<ReadOnlyModuleList> moduleListOptional = Optional.empty();
         ReadOnlyModuleList initialModuleList;
-        Optional<UniqueUserModuleList> userModuleListOptional;
+        Optional<UniqueUserModuleList> userModuleListOptional = Optional.empty();
         UniqueUserModuleList initialUserModuleList;
         String academicYear = userPrefs.getAcademicYear();
 
         try {
             userModuleListOptional = storage.getUserModuleListStorage().readUserModuleList();
-            if (userModuleListOptional.isEmpty()) {
-                logger.info("Data file not found!");
-                initialUserModuleList = new UniqueUserModuleList();
-            } else {
-                initialUserModuleList = userModuleListOptional.get();
-            }
+            moduleListOptional = storage.readModuleList(academicYear);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format!");
-            initialUserModuleList = new UniqueUserModuleList();
         } catch (NullPointerException e) {
             logger.warning("Data file is empty!");
-            initialUserModuleList = new UniqueUserModuleList();
-        }
-
-        try {
-            moduleListOptional = storage.readModuleList(academicYear);
-            if (moduleListOptional.isEmpty()) {
-                logger.info("Data file not found!");
-            }
-            initialModuleList = moduleListOptional.orElseGet(() -> new ModuleList(academicYear));
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format!");
-            initialModuleList = new ModuleList(academicYear);
+        } finally {
+            initialUserModuleList = loadStoredList(userModuleListOptional, new UniqueUserModuleList());
+            initialModuleList = loadStoredList(moduleListOptional, new ModuleList(academicYear));
         }
 
         return new ModelManager(initialModuleList, initialUserModuleList, userPrefs);
+    }
+
+    private <T> T loadStoredList(Optional<T> optionalList, T alternative) {
+        if (optionalList.isEmpty()) {
+            logger.info("Data file not found!");
+            return alternative;
+        } else {
+            return optionalList.get();
+        }
     }
 
     private void initLogging(Config config) {
