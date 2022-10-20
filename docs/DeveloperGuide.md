@@ -230,6 +230,31 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+Given below are the proposed Classes to implement:
+
+* `VersionedAddressBook`
+  * Extends `AddressBook` with an Undo/Redo history
+  * Uses `addressBookStateList` (List of `AddressBook`s) and `currentStatePointer` (int Index of current `AddressBook` state)
+  * `VersionedAddressBook#commit()`
+    * Adds current `AddressBook` into `addressBookStateList`
+    * Called after each change in `AddressBook` state
+  * `VersionedAddressBook#undo()`
+    * Calls `Model#canUndoAddressBook()` to check if there is a previous state
+    * Shifts `currentStatePointer` back by one
+    * Called after user inputs `undo` command
+  * `VersionedAddressBook#redo()`
+    * Calls `Model#canRedoAddressBook()` to check if there is a next state
+    * Shifts `currentStatePointer` forward by one
+    * Called after user inputs `redo` command
+
+Given below are the proposed Methods to implement:
+* `Model`
+  * `Model#canUndoAddressBook()` - Checks if there is a previous `AddressBook` state
+  * `Model#canRedoAddressBook()` - Checks if there is a forward `AddressBook` state
+  * `Model#undoAddressBook()` - Changes the current Model to read from the previous `AddressBook` state
+  * `Model#redoAddressBook()` - Changes the current Model to read from the next `AddressBook` state
+  * `Model#commitAddressBook()` - Saves current `AddressBook` state into `addressBookStateList`
+
 ### \[Proposed\] Filter feature
 
 #### Proposed Implementation
