@@ -214,7 +214,7 @@ The following sequence diagram shows how the `DeleteProfileCommand` works.
 
 ![DeleteProfileCommandSequenceDiagram](images/commands/DeleteProfileCommandSequenceDiagram.png)
 
-The following activity diagram shows the process when a user calls the `EditProfileCommand`.
+The following activity diagram shows the process when a user calls the `DeleteProfileCommand`.
 
 ![DeleteProfileCommandActivityDiagram](images/commands/DeleteProfileCommandActivityDiagram.png)
 
