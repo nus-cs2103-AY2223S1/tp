@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import foodwhere.testutil.StallBuilder;
-
 public class NameContainsKeywordsPredicateTest {
 
     @Test

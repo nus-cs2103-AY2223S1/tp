@@ -17,6 +17,7 @@ import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.Model;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
@@ -116,6 +117,7 @@ public class SEditCommand extends Command {
         private Name name;
         private Address address;
         private Set<Tag> tags;
+        private Set<Review> reviews;
 
         public EditStallDescriptor() {}
 
@@ -127,6 +129,7 @@ public class SEditCommand extends Command {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setReviews(toCopy.reviews);
         }
 
         /**
@@ -167,6 +170,23 @@ public class SEditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code reviews} to this object's {@code reviews}.
+         * A defensive copy of {@code reviews} is used internally.
+         */
+        public void setReviews(Set<Review> reviews) {
+            this.reviews = (reviews != null) ? new HashSet<>(reviews) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Review>> getReviews() {
+            return (reviews != null) ? Optional.of(Collections.unmodifiableSet(reviews)) : Optional.empty();
         }
 
         @Override

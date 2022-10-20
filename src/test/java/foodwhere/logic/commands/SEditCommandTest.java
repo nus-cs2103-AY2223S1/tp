@@ -13,8 +13,8 @@ import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
 import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.StallBuilder;
 import foodwhere.testutil.EditStallDescriptorBuilder;
-import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalIndexes;
 import foodwhere.testutil.TypicalStalls;
 
