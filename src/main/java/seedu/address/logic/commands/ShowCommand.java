@@ -50,18 +50,18 @@ public class ShowCommand extends Command {
             case STUDENT_LIST:
                 lastShownStudentList = model.getFilteredStudentList();
                 Student studentToShow = lastShownStudentList.get(targetIndex.getZeroBased());
-                entityInformation = studentToShow.toString();
+                entityInformation = studentToShow.getName().fullName;
                 break;
             case TUTOR_LIST:
                 lastShownTutorList = model.getFilteredTutorList();
                 Tutor tutorToShow = lastShownTutorList.get(targetIndex.getZeroBased());
-                entityInformation = tutorToShow.toString();
+                entityInformation = tutorToShow.getName().fullName;
                 break;
             default:
                 assert (type == ListType.TUITIONCLASS_LIST);
                 lastShownTuitionClassList = model.getFilteredTuitionClassList();
                 TuitionClass tuitionClassToShow = lastShownTuitionClassList.get(targetIndex.getZeroBased());
-                entityInformation = tuitionClassToShow.toString();
+                entityInformation = tuitionClassToShow.getName().name;
                 break;
             }
         } catch (IndexOutOfBoundsException e) {

@@ -39,7 +39,8 @@ public class ShowCommandTest {
         Student studentToShow = studentModel.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ShowCommand.MESSAGE_DELETE_ENTITY_SUCCESS, studentToShow);
+        String expectedMessage = String.format(
+                ShowCommand.MESSAGE_DELETE_ENTITY_SUCCESS, studentToShow.getName().fullName);
 
         ModelManager expectedModel = new ModelManager(studentModel.getAddressBook(), new UserPrefs());
 
@@ -73,7 +74,8 @@ public class ShowCommandTest {
         Tutor tutorToShow = tutorModel.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ShowCommand.MESSAGE_DELETE_ENTITY_SUCCESS, tutorToShow);
+        String expectedMessage = String.format(
+                ShowCommand.MESSAGE_DELETE_ENTITY_SUCCESS, tutorToShow.getName().fullName);
 
         ModelManager expectedModel = new ModelManager(tutorModel.getAddressBook(), new UserPrefs());
         tutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
@@ -110,7 +112,8 @@ public class ShowCommandTest {
                 INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ShowCommand.MESSAGE_DELETE_ENTITY_SUCCESS, tuitionClassToShow);
+        String expectedMessage = String.format(
+                ShowCommand.MESSAGE_DELETE_ENTITY_SUCCESS, tuitionClassToShow.getName().name);
 
         ModelManager expectedModel = new ModelManager(tuitionClassModel.getAddressBook(), new UserPrefs());
         tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);

@@ -249,6 +249,7 @@ public class MainWindow extends UiPart<Stage> {
         setLabelStyle();
     }
 
+    /** Switches to the student list when the student tab is clicked **/
     @FXML
     private void switchToStudentList() throws CommandException, ParseException {
         try {
@@ -261,6 +262,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /** Switches to the tutor list when the tutor tab is clicked **/
     @FXML
     private void switchToTutorList() throws CommandException, ParseException {
         try {
@@ -273,6 +275,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /** Switches to the class list when the class tab is clicked **/
     @FXML
     private void switchToTuitionClassList() throws CommandException, ParseException {
         try {
@@ -285,6 +288,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
+    /** Updates the ui of the tabs **/
     private void setLabelStyle() {
         studentLabelPanel.getStyleClass().clear();
         tutorLabelPanel.getStyleClass().clear();
@@ -307,6 +312,31 @@ public class MainWindow extends UiPart<Stage> {
             tuitionClassLabelPanel.getStyleClass().add(SELECTED_CLASS_LABEL_STYLE_CLASS);
             break;
         default:
+            break;
+        }
+    }
+
+    /** Updates the list when specifications of an entity is changed.
+     * This is needed as ObservableList does not keep track of the
+     * changes in the elements of the list but only changes in the list itself.
+     */
+    private void updateList() {
+        Model.ListType type = logic.getCurrentListType();
+        switch(type) {
+        case STUDENT_LIST:
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            break;
+        case TUTOR_LIST:
+            tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            break;
+        case TUITIONCLASS_LIST:
+            tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;
         }
     }
@@ -338,7 +368,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleShow(commandResult.getIndex());
             }
 
-
+            updateList();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

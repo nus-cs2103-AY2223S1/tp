@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
@@ -41,12 +41,12 @@
                </VBox.margin>
                 </StackPane>
 
-                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="-Infinity" prefHeight="100" prefWidth="800.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-                <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="40.0" minHeight="30.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="340.0" styleClass="background" VBox.vgrow="NEVER">
+                <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="40.0" minHeight="30.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="800.0" styleClass="background" VBox.vgrow="NEVER">
                     <children>
                         <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" spacing="10.0">
                             <children>

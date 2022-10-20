@@ -20,14 +20,14 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5.0">
-        <Label fx:id="id">
+      <HBox alignment="CENTER_LEFT">
+        <Label fx:id="id" styleClass="name-label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label id="student-name-label" fx:id="name" styleClass="student-name-label" text="\$first" />
+        <Label fx:id="name" styleClass="name-label" text="\$first" />
       </HBox>
          <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
             <children>
