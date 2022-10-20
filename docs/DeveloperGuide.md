@@ -234,9 +234,196 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Implemented\] Assign/unassign feature
+
+#### Implementation
+
+User would be required to input the command `assign` followed by the index of the person that the user want 
+to assign a class to. Lastly, user would have to input the exact tuition class name in the following prefix 
+and syntax `n/[Class Name]` to specify which tuition class they want to assign to the specified person.
+
+The `assign` and `unassign` features requires the user to be currently be either in student or tutor list.
+If the user is currently not in any of the two lists, the feature will not work and user would be prompted
+to go to the valid current list through a `command exception`.
+
+During the execution of `assign` command, it would first check for the type of current list the user is in
+as mentioned above. If the current list is student list, the index of assign command would be referred to the
+student list and same for if the current list is a tutor list. 
+
+After, the index that the user inputted would be checked 
+to see if it is within the size of the current list. If it exceeds the size of the list, a `command exception` would be 
+thrown and user would be informed of their invalid index. 
+
+Then with the tuition class name that the user inputted and parsed, it would
+be searched among the list of tuition class for matching names. If there is no matching tuition class in the list, 
+a `command exception` would be thrown and user would be informed that the tuition class they inputted does not exist.
+
+If there is no `command exception` thrown due to the above scenarios, the tuition class would be assigned to the 
+specified student/tutor.
+
+The following sequence diagram shows how the `assign` operation works:
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+
+The `unassign` command just does the opposite - it calls `Student#unassignClassFromStudent`/ 
+`Tutor#unassignClassFromTutor` instead which remove the specified tuition class from the list of
+tuition classes in the student/tutor.
+
+#### Design considerations:
+
+**Aspect: How assign & unassign executes:**
+
+* **Alternate 1 (current choice)):** `assign`/`unassign` just involves adding / removing tuition class from 
+  a list of tuition classes that every student/tutor has.
+  * Pros: Easier to implement and store in Json format.
+  * Cons: Not keeping a list of students and tutors for tuition classes may
+  result in a more tedious process when searching in the future.
+* **Alternate 2:** `assign`/`unassign` involves adding / removing tuition class from
+  a list of tuition classes that every student/tutor has and as well as the tuition classes
+  keeping a list of students and tutors it has. 
+  * Pros: Makes searching process easier in the future.
+  * Cons: Hard and tedious to implement the storing of information in Json. 
+
+
+### \[Proposed\] Find by fields feature
+
+#### Proposed Implementation
+
+The proposed find by fields mechanism searches the lists based on multiple fields by taking in a set of prefixes with their respective keywords and updating the respective `FilteredList`.
+
+Given below is an example usage scenario and how the find by fields mechanism behaves at each step.
+
+Step 1. The user launches the application and executes the `list_s` command to show the list of all students.
+
+Step 2. The user executes `find John sch/Keming Primary School` command to search for all students who are named John and are students of Keming Primary School. A list of students with that predicate is then shown.
+
+Step 3. The user now decides he wants to be more specific with his search, and decides to execute `find John l/primary3 sch/Keming Primary School` to find all students who are named John, and are primary 3 students of Keming Primary School.
+A more specific list of students is then shown.
+
+
+#### Design considerations:
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** Searches each field strictly by ensuring that the search will only show results with the keywords matching the fields exactly.
+    * Pros: More logical for enum fields such as `Level`, where giving `primary` as input will not trivially show all primary school students.
+    * Cons: Less flexibility in the search as users are not allowed to show more results using more generic keywords to search.
+
+* **Alternative 2:** Searches each field with partially matching keywords.
+    * Pros: More flexibility in the search.
+    * Cons: Could lead to trivial searches.
+
+_{more aspects and alternatives to be added}_
+
+
+### \[Implemented\] List type feature
+
+#### Implementation
+
+The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST` (PERSON_LIST is to be removed in future version). 
+
+The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. As `Student`, `Tutor` and `TuitionClass` instances are stored in `FilteredList` `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, `ListType` `type` would indicate which of the three would be operated on by the `Logic` component. Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
+
+* `Model#updateCurrentListType()` - Updates the `type` to the specified list type.
+* `Model#getCurrentListType()` - Returns the `ListType` `type` that the `ModelManager` currently stores.
+* Model#getCurrentList()` - Returns the current filtered list from `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
+
+The operations are exposed to `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since `Ui` keeps a reference to `Logic`, these operations can be accessed by `Ui` as well.
+
+`ListType` `type` is referred to by any method that need to access to the current list. Given below is an example usage scenario including `ListTuitionClassCommand` and how the list type mechanism behaves in each step.
+
+Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
+
+Step 2. The user execute `list_c` command to list out tuition classes by ccalling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
+
+Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
+
+Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
+
+Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUITIONCLASS_LIST`, it will change the children of `entityListPanelPlaceholder` to `tuitionClassListPanel`, which holds the list of tuition classes.
+
+Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tuitionClassLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tutorLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+
+Another example that makes use of the list type is the `DeleteCommand`. Since the `delete` command deletes the entity with the specified index in the current list, it needs to access to the current list type. Below are the steps of how list type mechanism behaves.
+
+Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
+
+Step 2. The user executes `delete 1` command to delete the 1th student in the list. The `delete` command calls `Model#getCurrentListType` and gets `STUDENT_LIST` as the current list type. 
+
+Step 3. The `delete` command then deletes the student by calling `Model#deletePerson` with the student to be deleted being the parameter.
+
+### \[Implemented\] Sort Command
+The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  
+Sorting by default means sorting by oldest to newest.  
+*(To be added)*: sort by class timings, level.
+
+#### Implementation
+Since the list displayed is directly linked to each `Student`, `Tutor` and `TuitionClass` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
+Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.  
+** *TODO: add PlantUML diagram* ** 
+
+
+| Sort by 	     | methods 	|
+|---------------|---	|
+| Default 	     | Comparator.compare(Student::getUniqueId) 	|
+| Alphabetical 	 | Comparator.compare(Tutor::getName) 	|
+| Reverse 	     | Collections.reverse(internalList) 	|
+
+#### Design considerations:
+
+**Aspect: How to save the order of the entries since the time/date an entry was entered is not stored.**
+
+* **Alternative 1:** Store entries in a separate list, `OrderedList`.
+    - A new entry will first be added to `OrderedList`.
+    - `internalList` will then copy the `OrderedList`.
+    - when the user wants to sort the list in alphabetical or reverse order, `internalList` will be sorted accordingly.
+    - To sort by default, `internalList` just copies the current `OrderedList`.
+
+
+* **Alternative 2:** Store the order of entries as a field in their respective objects.
+    - Have a static field to count the number of `Student`, `Tutor` and `TuitionClass` instances.
+    - When a new entry is added, it'll contain a `uniqueId` field, which is the order the entry was added in.
+    - When the user wants to sort by default, the comparator can use this `uniqueId` to compare 2 instances.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### Adding a student, tutor or class
+
+#### Implementation
+
+The add mechanism is facilitated by `AddCommand`. It extends `Command` with an enum type `Entity` representing the three different types of entities that can be added to the `Model`. Also, it stores the `Person` or `TuitionClass` instances to be added. Additionally, it implements the following operations:
+
+* `AddCommand#of()` — Creates an `AddCommand` instance encapsulating the entity to be added.
+* `AddCommand#execute()` — Executes adding of the encapsulated entity to the `Model`.
+
+The `AddCommand#execute()` operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `add student n/David ...` to add a new student. `AddCommand#of()` is called and a new `AddCommand` instance encapsulating a new `Student` instance to be added to `Model` is instantiated. The `AddCommand#execute()` of this instance is then called, adding the `Student` instance to the `Model`.
+
+The following sequence diagram shows how the add operation works:
+
+{diagram to be added}
+
+Step 3. The user executes `list_s` to view the list of students he has added.
+
+The following activity diagram summarizes what happens when a user executes the add command:
+
+{diagram to be added}
+#### Design considerations:
+
+**Aspect: How to handle the adding of class and person separating:**
+
+* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `Class` fields but only atmost one can be non-null at a time.
+  * Pros: Less cluttered.
+  * Cons: Harder to implement.
+* **Alternative 2:** Separate classes that extend `Command` for adding of class and person separately.
+  * Pros: Easier to implement.
+  * Cons: More cluttered.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -284,6 +471,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | sole tuition admin | display a list of tutors                | get an overview of all the tutors in the tuition center                 |
 | `* * *`  | sole tuition admin | display a list of classes               | get an overview of all the classes in the tuition center                |
 | `* * *`  | sole tuition admin | find entities by name                   | locate details of entities without having to go through the entire list |
+| `* * *`  | sole tuition admin | assign a student to a class             |                                                                         |
+| `* * *`  | sole tuition admin | unassigned a student from a class       |                                                                         |
+| `* * *`  | sole tuition admin | assigned a tutor from a class           |                                                                         |
+| `* * *`  | sole tuition admin | unassigned a tutor from a class         |                                                                         |
 *{More to be added}*
 
 ### Use cases
