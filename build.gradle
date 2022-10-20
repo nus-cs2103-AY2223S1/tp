@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'foodrem.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
