@@ -49,6 +49,9 @@ Person *--> ModuleCode
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
+ModuleCode -[hidden]right-> TutorialDetails
+TutorialDetails -[hidden]right-> LectureDetails
+LectureDetails -[hidden]right-> ZoomLink
 
 AddressBook *--> "1" UniqueModuleList
 UniqueModuleList --> "~* all" Module
@@ -57,7 +60,4 @@ Module *--> LectureDetails
 Module *--> TutorialDetails
 Module *--> ZoomLink
 Module *--> "*" AssignmentDetails
-
-ModelManager -->"~* filtered" Person
-ModelManager -->"~* filtered" Module
 @enduml
