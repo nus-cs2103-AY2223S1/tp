@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `SoConnectParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `SoConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -141,7 +141,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `SoConnectStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Autocomplete component
@@ -155,7 +155,7 @@ The `Autocomplete` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `soconnect.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -383,15 +383,55 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 **Aspect: How to implement tag add:**
 
-* **Alternative 1 (current choice):** Creates a new `Person` with the tag included.
-    * Pros: Prevents direct access into the tags of a `Person`.
+* **Alternative 1 (current choice):** Creates a new person with the tag included.
+    * Pros: Prevents direct access into the tags of a person.
     * Cons: Potential error occurs if some form of duplication is allowed.
 
-* **Alternative 2:** Directly add the tag into the `Person` .
+* **Alternative 2:** Directly add the tag into the person .
     * Pros: Easy to implement.
-    * Cons: Easy to access into the tags of a `Person`. Could cause accidental bugs.
+    * Cons: Easy to access into the tags of a person. Could cause accidental bugs.
+
+_{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
+### Tag editing feature
+
+The tag adding mechanism is facilitated by `TagEditCommand` and `TagEditCommandParser`.
+Additionally, The mechanism utilises the following operations in `UniqueTagList`, `UniquePersonList` and `UniqueTodoList`.
+
+* `UniqueTagList#editTag(Tag oldTag, Tag newTag)` - Changes the old tag with the new tag.
+* `UniquePersonList#changeRelevantPersonTag(oldTag, newTag)` - Updates every person who has the old tag with the new tag.
+* `UniqueTodoList#changeRelevantTodoTag(Tag oldTag, Tag newTag)` -  Updates every task which has the old tag with the new tag.
+
+These operations are exposed in the `Model` interface under the same method name.
+
+Given below is an example usage scenario and how the tag editing mechanism behaves at each step.
+
+Step 1. The user executes `tag edit t/friend t/bestFriend` command to edit the old tag, `friend`, to the new tag, `bestFriend`.
+`TageditCommandParser` calls  `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/friend` and `t/bestFriend`.
+
+Step 2. The `tag edit` command edits the old tag with the new tag, calling `Model#editTag(oldTag, newTag)`.
+
+Step 3. The old tag on every person and every task is now replaced with the new tag for display.
+
+The following activity diagram summarizes what happens when a user executes a tag add command:
+
+(insert activity diagram here)
+
+#### Design consideration
+
+**Aspect: How to implement tag edit:**
+
+* **Alternative 1 (current choice):** Creates a new tag and replaces the old tag with the new one.
+    * Pros: Prevents direct access into the information of a tag.
+    * Cons: Tedious. Necessary to manually change the old tag in every person and every task.
+
+* **Alternative 2:** Change the tag's name.
+    * Pros: Easy to implement.
+    * Cons: Can potentially introduce bugs due to direct access into the tag's implementation.
 
 _{Explain here how the data archiving feature will be implemented}_
 
