@@ -64,8 +64,17 @@ title: User Guide
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add c/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add c/Google`.
 
+* Items in square brackets are optional.
+  e.g `c/COMPANY_NAME [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
+
+* Items with `...` after them can be used multiple times including zero times.
+  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany` etc.
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/DATE p/POSITION`, `p/POSITION d/DATE` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+  e.g. if you specify `ct/12341234 ct/62226222`, only `ct/62226222` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
@@ -81,7 +90,7 @@ Format: `help`
 
 Adds an internship application to the list.
 
-Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION`
+Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 Date must be specified in the format <em>yyyy-MM-dd</em>.
@@ -89,7 +98,7 @@ Date must be specified in the format <em>yyyy-MM-dd</em>.
 <br>
 
 Examples:
-* `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer`
+* `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred`
 * `add c/Facebook ct/22222222 d/2022-01-02 e/facebook@example.com p/Backend Engineer`
 
 ### Listing all internship applications: `list`
@@ -131,18 +140,20 @@ Examples:
 ### Editing an internship application: `edit`
 Edits an existing application in the CinternS.
 
-Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE]`
+Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE] [t/TAG]...`
 
 * Edits the application at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed application list. 
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* When editing tags, the existing tags of the application will be removed i.e adding of tags is not cumulative.
+* You can remove all the application’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
 `edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
-`edit 2 c/Garena` edits the company of the 2nd application to be Garena.
+`edit 2 c/Garena t/` edits the company of the 2nd application to be `Garena` and clears all existing tags.
 
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
@@ -180,15 +191,15 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                             |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                       |
-| **Add**    | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` |
-| **List**   | `list`                                                                                                                                                       |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                          |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                     |
-| **Edit**   | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE]`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                 |
-| **Clear**  | `clear`                                                                                                                                                      |
-| **Exit**   | `exit`                                                                                                                                                       |
+| Action     | Format, Examples                                                                                                                                                                    |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                                              |
+| **Add**    | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
+| **List**   | `list`                                                                                                                                                                              |
+| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                 |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                            |
+| **Edit**   | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
+| **Clear**  | `clear`                                                                                                                                                                             |
+| **Exit**   | `exit`                                                                                                                                                                              |
 
 --------------------------------------------------------------------------------------------------------------------
