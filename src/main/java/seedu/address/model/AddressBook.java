@@ -131,6 +131,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Checks if the new schedule to be added conflicts with existing ones except the target
+     * @param editedSchedule edited schedule
+     * @param target target schedule
+     * @return true if conflicts; otherwise, false.
+     */
+    public boolean conflictScheduleWithTarget(Schedule editedSchedule, Schedule target) {
+        for (Module module: modules) {
+            List<Schedule> schedules = module.getSchedules();
+            for (Schedule s: schedules) {
+                if (!s.equals(target) && s.isConflictWith(editedSchedule)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds a person to profNUS.
      * The person must not already exist in profNUS.
      */

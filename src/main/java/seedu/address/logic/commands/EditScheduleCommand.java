@@ -76,7 +76,7 @@ public class EditScheduleCommand extends Command {
             logger.warning("Cannot find the target module.");
             throw new CommandException(MESSAGE_MODULE_NOT_EXIST);
         }
-        if (model.conflictSchedule(editedSchedule)) {
+        if (model.conflictScheduleWithTarget(editedSchedule, target)) {
             logger.warning("Edited schedule conflicts with other schedules.");
             throw new CommandException(MESSAGE_CONFLICT_SCHEDULE);
         }
