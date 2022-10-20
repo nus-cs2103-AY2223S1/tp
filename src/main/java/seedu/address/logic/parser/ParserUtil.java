@@ -140,7 +140,8 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+//        return new Tag(trimmedTag);
+        return Tag.convertToTag(trimmedTag);
     }
 
     /**
