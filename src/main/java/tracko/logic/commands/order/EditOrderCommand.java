@@ -94,10 +94,10 @@ public class EditOrderCommand extends Command {
         // Run checks on whether the item is in the inventory list
         Optional<ItemQuantityPair> itemToEdit = editOrderDescriptor.getItemToEdit();
         if (!itemToEdit.equals(Optional.empty())) {
+            boolean doesItemExistInList = false;
             List<Item> items = model.getFilteredItemList();
             Item itemToEditPlaceholder = new Item(new ItemName(itemToEdit.get().getItem()),
                     new Description("Dummy description"), new Quantity(itemToEdit.get().getValue()), new HashSet<>());
-            boolean doesItemExistInList = false;
 
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).isSameItem(itemToEditPlaceholder)) {
@@ -226,19 +226,24 @@ public class EditOrderCommand extends Command {
             List<ItemQuantityPair> orderedItems = orderToEdit.getItemList();
             boolean hasItemBeenUpdated = false;
             for (int i = 0; i < orderedItems.size(); i++) {
-                ItemQuantityPair itemQuantityPair = orderedItems.get(i);
-                if (itemQuantityPair.getItem().equalsIgnoreCase(itemToEdit.getItem())) {
-                    if (itemToEdit.getValue() == 0) {
-                        orderedItems.remove(i);
-                        hasItemBeenUpdated = true;
-                    } else if (itemQuantityPair.getValue() != itemToEdit.getValue()) {
-                        ItemQuantityPair updatedItem = new ItemQuantityPair(itemQuantityPair.getKey(), itemToEdit.getValue());
-                        orderedItems.set(i, updatedItem);
-                        hasItemBeenUpdated = true;
-                    }
+                ItemQuantityPair itemInList = orderedItems.get(i);
+
+                // Check whether the item is in the customer's order list.
+                boolean isItemInList = itemInList.getItem().equalsIgnoreCase(itemToEdit.getItem());
+                boolean isUpdatedQuantityZero = itemToEdit.getValue() == 0;
+                boolean shouldQuantityBeUpdated = itemInList.getValue() != itemToEdit.getValue();
+
+                if (isItemInList && isUpdatedQuantityZero) {
+                    orderedItems.remove(i);
+                    hasItemBeenUpdated = true;
+                } else if (isItemInList && shouldQuantityBeUpdated) {
+                    ItemQuantityPair updatedItem = new ItemQuantityPair(itemInList.getKey(), itemToEdit.getValue());
+                    orderedItems.set(i, updatedItem);
+                    hasItemBeenUpdated = true;
                 }
             }
 
+            // if the item does not exist in the list and the value is not 0
             if (!hasItemBeenUpdated && itemToEdit.getValue() != 0) {
                 orderedItems.add(itemToEdit);
             }
