@@ -6,6 +6,7 @@ import static seedu.address.commons.util.StringUtil.capitaliseOnlyFirstLetter;
 import static seedu.address.commons.util.StringUtil.convertShortFormLevel;
 import static seedu.address.commons.util.StringUtil.formatTime;
 import static seedu.address.commons.util.StringUtil.removeAllWhitespace;
+import static seedu.address.commons.util.StringUtil.removeDuplicateComma;
 import static seedu.address.commons.util.StringUtil.removeDuplicateWhitespace;
 import static seedu.address.commons.util.StringUtil.removeWhitespaceForLevel;
 
@@ -158,9 +159,9 @@ public class ParserUtil {
         if (!Qualification.isValidQualification(trimmedQualification)) {
             throw new ParseException(Qualification.MESSAGE_CONSTRAINTS);
         }
-        // a qualification name should be capitalised and no dup whitespace
+        // a qualification name should have no dup whitespace and comma
         trimmedQualification = removeDuplicateWhitespace(trimmedQualification);
-        trimmedQualification = capitaliseOnlyFirstLetter(trimmedQualification);
+        trimmedQualification = removeDuplicateComma(trimmedQualification);
         return new Qualification(trimmedQualification);
     }
 
@@ -176,9 +177,8 @@ public class ParserUtil {
         if (!Institution.isValidInstitution(trimmedInstitution)) {
             throw new ParseException(Institution.MESSAGE_CONSTRAINTS);
         }
-        // a institution name should be capitalised and no dup whitespace
+        // a institution name should have no dup whitespace
         trimmedInstitution = removeDuplicateWhitespace(trimmedInstitution);
-        trimmedInstitution = capitaliseOnlyFirstLetter(trimmedInstitution);
         return new Institution(trimmedInstitution);
     }
 
@@ -298,7 +298,6 @@ public class ParserUtil {
             throw new ParseException(seedu.address.model.tuitionclass.Name.MESSAGE_CONSTRAINTS);
         }
         trimmedName = removeDuplicateWhitespace(trimmedName);
-        trimmedName = capitaliseOnlyFirstLetter(trimmedName);
         return new seedu.address.model.tuitionclass.Name(trimmedName);
     }
 

@@ -78,6 +78,12 @@ public class StringUtil {
         return matcher.replaceAll(" ");
     }
 
+    public static String removeDuplicateComma(String str) {
+        Pattern pattern = Pattern.compile(",+");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.replaceAll(",");
+    }
+
     public static String removeAllWhitespace(String str) {
         Pattern pattern = Pattern.compile("\\s+");
         Matcher matcher = pattern.matcher(str);
