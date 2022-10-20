@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.student.Student;
 
 /**
@@ -45,6 +46,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label sa2;
     @FXML
+    private VBox parentDetailsContainer;
+    @FXML
     private Label parentName;
     @FXML
     private Label phone;
@@ -59,10 +62,20 @@ public class StudentCard extends UiPart<Region> {
     public StudentCard(Student student, int displayedIndex, boolean conciseInfo) {
         super(FXML);
         this.student = student;
+        // Set compulsory student details
         id.setText(displayedIndex + ". ");
         studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
         className.setText(student.getClassName().className);
+
+        // Set optional grades
+        // Currently dummy text
+        ca1.setText("40");
+        sa1.setText("-");
+        ca2.setText("70");
+        sa2.setText("-");
+
+        // Set optional parent details
         if (student.getParentName().fullName == "") {
             parentName.setText("-");
         } else {
@@ -86,43 +99,22 @@ public class StudentCard extends UiPart<Region> {
         } else {
             showAllInfo();
         }
-        // Dummy variables
-        ca1.setText("40");
-        sa1.setText("-");
-        ca2.setText("70");
-        sa2.setText("-");
     }
 
     /**
      * Updates PersonCard to show all info
      */
     public void showAllInfo() {
-        className.setManaged(true);
-        className.setVisible(true);
-        parentName.setManaged(true);
-        parentName.setVisible(true);
-        phone.setManaged(true);
-        phone.setVisible(true);
-        email.setManaged(true);
-        email.setVisible(true);
-        tags.setManaged(true);
-        tags.setVisible(true);
+        parentDetailsContainer.setManaged(true);
+        parentDetailsContainer.setVisible(true);
     }
 
     /**
      * Updates PersonCard to only show student's name and ID
      */
     public void showConciseInfo() {
-        className.setManaged(false);
-        className.setVisible(false);
-        parentName.setManaged(false);
-        parentName.setVisible(false);
-        phone.setManaged(false);
-        phone.setVisible(false);
-        email.setManaged(false);
-        email.setVisible(false);
-        tags.setManaged(false);
-        tags.setVisible(false);
+        parentDetailsContainer.setManaged(false);
+        parentDetailsContainer.setVisible(false);
     }
 
     @Override
