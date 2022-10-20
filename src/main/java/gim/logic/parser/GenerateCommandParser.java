@@ -3,12 +3,12 @@ package gim.logic.parser;
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
 
-
 import java.util.ArrayList;
 
 import gim.commons.core.index.Index;
 import gim.commons.exceptions.IllegalValueException;
 import gim.logic.commands.GenerateCommand;
+import gim.logic.generators.ValidLevel;
 import gim.logic.parser.exceptions.ParseException;
 
 
@@ -18,11 +18,9 @@ import gim.logic.parser.exceptions.ParseException;
  */
 public class GenerateCommandParser implements Parser<GenerateCommand> {
 
-    static final String INDEX_VALIDATION_REGEX = "[0-9]+(,[0-9]+)*";
+    static final String INDEX_VALIDATION_REGEX = "^ *\\d+ *(?:, *\\d+ *)*$";
 
-    enum ValidLevel {
-        EASY, MEDIUM, HARD
-    }
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
@@ -39,7 +37,7 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
         String indicesAsString = argMultimap.getPreamble();
         String level = argMultimap.getValue(PREFIX_LEVEL).orElse("");
         ArrayList<Index> indices = validateIndices(indicesAsString);
-        String validLevel = validateLevel(level).toString();
+        ValidLevel validLevel = validateLevel(level);
         return new GenerateCommand(indices, validLevel);
     }
 

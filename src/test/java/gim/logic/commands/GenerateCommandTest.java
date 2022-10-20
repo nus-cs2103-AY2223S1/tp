@@ -5,6 +5,7 @@ import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.GenerateCommand.MESSAGE_NOT_IMPLEMENTED_YET;
 import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static gim.testutil.TypicalIndexes.INDEX_LIST_FIRST_SECOND;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,5 +25,14 @@ class GenerateCommandTest {
     public void execute() {
         assertCommandFailure(new GenerateCommand(INDEX_LIST_FIRST_SECOND, VALID_LEVEL_EASY),
                 model, MESSAGE_NOT_IMPLEMENTED_YET);
+        // work in progress
+    }
+
+    @Test
+    public void equals() {
+        final GenerateCommand standardCommand = new GenerateCommand(INDEX_LIST_FIRST_SECOND, VALID_LEVEL_EASY);
+
+        GenerateCommand commandWithSameValues = new GenerateCommand(INDEX_LIST_FIRST_SECOND, VALID_LEVEL_EASY);
+        assertTrue(standardCommand.equals(commandWithSameValues));
     }
 }

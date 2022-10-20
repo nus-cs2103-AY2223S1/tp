@@ -4,15 +4,22 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import gim.commons.core.Messages;
 import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
+import gim.logic.generators.Generator;
+import gim.logic.generators.GeneratorFactory;
+import gim.logic.generators.ValidLevel;
 import gim.model.Model;
+import gim.model.exercise.Exercise;
+import gim.model.exercise.Name;
 
 /**
  * Generates a sample workout based on existing PRs of the specified exercises,
  * according to the difficulty level specified.
- * Difficulty levels supported: {easy, medium, hard}
+ * Difficulty levels supported: {easy, medium, hard}.
  */
 public class GenerateCommand extends Command {
 
@@ -33,14 +40,14 @@ public class GenerateCommand extends Command {
 
 
     private final ArrayList<Index> indices;
-    private final String level;
+    private final ValidLevel level;
 
 
     /**
-     * @param indices of the exercises in the filtered exercise list
-     * @param level difficulty level of the workout generated
+     * @param indices of the exercises in the filtered exercise list.
+     * @param level difficulty level of the workout generated.
      */
-    public GenerateCommand(ArrayList<Index> indices, String level) {
+    public GenerateCommand(ArrayList<Index> indices, ValidLevel level) {
         requireAllNonNull(indices, level);
         this.indices = indices;
         this.level = level;
@@ -48,8 +55,19 @@ public class GenerateCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        indices.forEach(Index::getOneBased);
-        throw new CommandException(indices + level + "\n" + MESSAGE_USAGE);
+        List<Exercise> lastShownList = model.getFilteredExerciseList();
+        StringBuilder feedback = new StringBuilder();
+        for (Index index : indices) {
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
+            }
+            Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
+            Name exerciseName = exerciseToEdit.getName();
+            Generator generator = GeneratorFactory.getGenerator(exerciseName, level);
+            assert generator != null;
+            feedback.append(generator.suggest()).append("\n");
+        }
+        return new CommandResult(feedback.toString());
     }
 
     @Override
