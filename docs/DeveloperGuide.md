@@ -378,13 +378,15 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 **Aspect: How to implement tag add:**
 
-* **Alternative 1 (current choice):** Creates a new `Person` with the tag included.
-    * Pros: Prevents direct access into the tags of a `Person`.
+* **Alternative 1 (current choice):** Creates a new person with the tag included.
+    * Pros: Prevents direct access into the tags of a person.
     * Cons: Potential error occurs if some form of duplication is allowed.
 
-* **Alternative 2:** Directly add the tag into the `Person` .
+* **Alternative 2:** Directly add the tag into the person .
     * Pros: Easy to implement.
-    * Cons: Easy to access into the tags of a `Person`. Could cause accidental bugs.
+    * Cons: Easy to access into the tags of a person. Could cause accidental bugs.
+
+_{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Data archiving
 
@@ -397,7 +399,7 @@ Additionally, The mechanism utilises the following operations in `UniqueTagList`
 
 * `UniqueTagList#editTag(Tag oldTag, Tag newTag)` - Changes the old tag with the new tag.
 * `UniquePersonList#changeRelevantPersonTag(oldTag, newTag)` - Updates every person who has the old tag with the new tag.
-* `UniqueTodoList#changeRelevantTodoTag(Tag oldTag, Tag newTag)` -  Updates every todo which has the old tag with the new tag.
+* `UniqueTodoList#changeRelevantTodoTag(Tag oldTag, Tag newTag)` -  Updates every task which has the old tag with the new tag.
 
 These operations are exposed in the `Model` interface under the same method name.
 
@@ -405,6 +407,28 @@ Given below is an example usage scenario and how the tag editing mechanism behav
 
 Step 1. The user executes `tag edit t/friend t/bestFriend` command to edit the old tag, `friend`, to the new tag, `bestFriend`.
 `TageditCommandParser` calls  `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/friend` and `t/bestFriend`.
+
+Step 2. The `tag edit` command edits the old tag with the new tag, calling `Model#editTag(oldTag, newTag)`.
+
+Step 3. The old tag on every person and every task is now replaced with the new tag for display.
+
+The following activity diagram summarizes what happens when a user executes a tag add command:
+
+(insert activity diagram here)
+
+#### Design consideration
+
+**Aspect: How to implement tag edit:**
+
+* **Alternative 1 (current choice):** Creates a new tag and replace the old tag with the new one.
+    * Pros: Prevents direct access into the information of a tag.
+    * Cons: Tedious. Necessary to manually change the old tag in every person and every task.
+
+* **Alternative 2:** Change the tag's name .
+    * Pros: Easy to implement.
+    * Cons: Easy to access into a tag. Could cause accidental bugs.
+
+_{Explain here how the data archiving feature will be implemented}_
 
 ### Customise Order Feature
 
