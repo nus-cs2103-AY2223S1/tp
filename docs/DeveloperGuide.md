@@ -169,7 +169,7 @@ A `Module` Class contains
 * `TutorialDetails`
 * `LectureDetails`
 * A `ZoomLink`
-* `AssignementDetails`
+* `AssignmentDetails`
 
 All the commands associated with the `Module` Class would have the keyword "Module" in their class name. For example, the command to add a `Module` is referred to as a `AddModuleCommand`.
 
@@ -187,7 +187,7 @@ For the five classes,
 
 In a future, among these five classes, only the `ModuleCode` will be a compulsory field, while the other fields will all be optional. The user would be able to add on more information to these existing `Modules` using the edit command.
 
-<img src="images/ModuleClassDiagram.png" width="450" />
+<img src="images/ModuleClassDiagram.png" width="550" />
 
 ### \[Proposed\] Undo/redo feature
 
