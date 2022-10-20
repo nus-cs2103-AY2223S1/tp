@@ -13,6 +13,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -90,8 +91,10 @@ public class AddAddressCommand extends Command {
         Email updatedEmail = personToAddAddress.getEmail();
         Address updatedAddress = addAddressDescriptor.getAddress().orElse(personToAddAddress.getAddress());
         Set<Tag> updatedTags = personToAddAddress.getTags();
+        Set<Group> updatedGroups = personToAddAddress.getGroups();
 
-        return new Person(updatedOccupation, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedOccupation, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedGroups);
     }
 
     @Override
