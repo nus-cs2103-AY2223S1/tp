@@ -95,7 +95,7 @@ public interface Model {
     /**
      * Updates the time slots to a particular day.
      *
-     * @param day
+     * @param day to retrieve time slots for.
      */
     void updateTimeSlots(String day);
 
