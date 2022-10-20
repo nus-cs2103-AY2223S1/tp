@@ -351,6 +351,39 @@ Step 2. The user executes `delete 1` command to delete the 1th student in the li
 
 Step 3. The `delete` command then deletes the student by calling `Model#deletePerson` with the student to be deleted being the parameter.
 
+### \[Implemented\] Sort Command
+The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  
+Sorting by default means sorting by oldest to newest.  
+*(To be added)*: sort by class timings, level.
+
+#### Implementation
+Since the list displayed is directly linked to each `Student`, `Tutor` and `TuitionClass` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
+Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.  
+** *TODO: add PlantUML diagram* ** 
+
+
+| Sort by 	     | methods 	|
+|---------------|---	|
+| Default 	     | Comparator.compare(Student::getUniqueId) 	|
+| Alphabetical 	 | Comparator.compare(Tutor::getName) 	|
+| Reverse 	     | Collections.reverse(internalList) 	|
+
+#### Design considerations:
+
+**Aspect: How to save the order of the entries since the time/date an entry was entered is not stored.**
+
+* **Alternative 1:** Store entries in a separate list, `OrderedList`.
+    - A new entry will first be added to `OrderedList`.
+    - `internalList` will then copy the `OrderedList`.
+    - when the user wants to sort the list in alphabetical or reverse order, `internalList` will be sorted accordingly.
+    - To sort by default, `internalList` just copies the current `OrderedList`.
+
+
+* **Alternative 2:** Store the order of entries as a field in their respective objects.
+    - Have a static field to count the number of `Student`, `Tutor` and `TuitionClass` instances.
+    - When a new entry is added, it'll contain a `uniqueId` field, which is the order the entry was added in.
+    - When the user wants to sort by default, the comparator can use this `uniqueId` to compare 2 instances.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
