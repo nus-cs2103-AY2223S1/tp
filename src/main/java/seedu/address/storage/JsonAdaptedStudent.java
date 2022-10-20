@@ -17,7 +17,6 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Exam;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -32,7 +31,7 @@ class JsonAdaptedStudent {
     private final String parentName;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedTag> exams = new ArrayList<>();
+    private final List<JsonAdaptedExam> exams = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -42,7 +41,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("className") String className,
                               @JsonProperty("parentName") String parentName,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                              @JsonProperty("exams") List<JsonAdaptedTag> exams) {
+                              @JsonProperty("exams") List<JsonAdaptedExam> exams) {
         this.studentName = studentName;
         this.id = id;
         this.className = className;
@@ -65,7 +64,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         exams.addAll(source.getExams().stream()
-                .map(JsonAdaptedTag::new)
+                .map(JsonAdaptedExam::new)
                 .collect(Collectors.toList()));
     }
 
@@ -76,7 +75,7 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<Exam> studentExams = new ArrayList<>();
-        for (JsonAdaptedTag tag : exams) {
+        for (JsonAdaptedExam tag : exams) {
             studentExams.add(tag.toModelType());
         }
 
