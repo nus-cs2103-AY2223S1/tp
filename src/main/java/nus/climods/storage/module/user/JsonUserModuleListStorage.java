@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.commons.exceptions.IllegalValueException;
 import nus.climods.commons.util.FileUtil;
 import nus.climods.commons.util.JsonUtil;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.storage.exceptions.StorageException;
 
 /**
  * A class to access UserModuleList data stored as a json file on the hard disk.
@@ -60,15 +60,19 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
 
         try {
             return Optional.of(jsonUserModuleList.get().toModelType());
-        } catch (IllegalValueException | CommandException ive) {
+        } catch (StorageException | CommandException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }
 
     @Override
-    public void saveUserModuleList(UniqueUserModuleList userModuleList) throws IOException {
-        saveUserModuleList(userModuleList, filePath);
+    public void saveUserModuleList(UniqueUserModuleList userModuleList) throws StorageException {
+        try {
+            saveUserModuleList(userModuleList, filePath);
+        } catch (IOException e) {
+            throw new StorageException(e.getMessage(), e);
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.storage.exceptions.StorageException;
 
 // TODO: Rename all "ReadOnlyAddressBook" to "ReadOnlyUserModuleList"
 
@@ -26,12 +27,12 @@ public interface UserModuleListStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<UniqueUserModuleList> readUserModuleList() throws DataConversionException, IOException;
+    Optional<UniqueUserModuleList> readUserModuleList() throws DataConversionException;
 
     /**
      * @see #getUserModuleListFilePath()
      */
-    Optional<UniqueUserModuleList> readUserModuleList(Path filePath) throws DataConversionException, IOException;
+    Optional<UniqueUserModuleList> readUserModuleList(Path filePath) throws DataConversionException;
 
     /**
      * Saves the given {@link UniqueUserModuleList} to the storage.
@@ -39,7 +40,7 @@ public interface UserModuleListStorage {
      * @param userModuleList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserModuleList(UniqueUserModuleList userModuleList) throws IOException;
+    void saveUserModuleList(UniqueUserModuleList userModuleList) throws StorageException;
 
     /**
      * @see #saveUserModuleList(UniqueUserModuleList)

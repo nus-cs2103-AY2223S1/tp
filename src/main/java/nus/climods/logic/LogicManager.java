@@ -1,6 +1,5 @@
 package nus.climods.logic;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -18,6 +17,7 @@ import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 import nus.climods.storage.Storage;
+import nus.climods.storage.exceptions.StorageException;
 
 /**
  * The main LogicManager of the app.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, StorageException {
         logger.info("[User Command] " + commandText);
 
         CommandResult commandResult;

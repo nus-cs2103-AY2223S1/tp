@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
+import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.module.Module;
@@ -96,5 +97,10 @@ class ModelStub implements Model {
     @Override
     public void setFilteredModuleList(Predicate<Module> predicate) {
 
+    }
+
+    @Override
+    public Module getModule(String moduleCode) throws CommandException {
+        return null;
     }
 }

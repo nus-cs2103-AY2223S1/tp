@@ -10,6 +10,7 @@ import nus.climods.commons.exceptions.IllegalValueException;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
+import nus.climods.storage.exceptions.StorageException;
 
 /**
  * An Immutable userModuleList that is serializable to JSON format.
@@ -31,12 +32,12 @@ class JsonSerializableUserModuleList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public UniqueUserModuleList toModelType() throws IllegalValueException, CommandException {
+    public UniqueUserModuleList toModelType() throws CommandException, StorageException {
         UniqueUserModuleList userModuleList = new UniqueUserModuleList();
         for (JsonAdaptedUserModule jsonAdaptedModule : modules) {
             UserModule module = jsonAdaptedModule.toModelType();
             if (userModuleList.contains(module)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
+                throw new StorageException(MESSAGE_DUPLICATE_MODULE);
             }
             userModuleList.add(module);
         }

@@ -7,6 +7,7 @@ import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.storage.exceptions.StorageException;
 import nus.climods.storage.module.ModuleListStorage;
 import nus.climods.storage.module.user.UserModuleListStorage;
 
@@ -23,5 +24,5 @@ public interface Storage extends UserPrefsStorage, ModuleListStorage {
 
     UserModuleListStorage getUserModuleListStorage();
 
-    void saveUserModuleList(UniqueUserModuleList uniqueUserModuleList) throws IOException;
+    void saveUserModuleList(UniqueUserModuleList uniqueUserModuleList) throws StorageException;
 }

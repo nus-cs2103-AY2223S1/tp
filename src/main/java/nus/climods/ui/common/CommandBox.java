@@ -8,6 +8,7 @@ import nus.climods.logic.Logic;
 import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.storage.exceptions.StorageException;
 import nus.climods.ui.UiPart;
 
 /**
@@ -46,7 +47,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | StorageException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -82,7 +83,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, StorageException;
     }
 
 }
