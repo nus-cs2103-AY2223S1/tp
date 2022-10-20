@@ -10,7 +10,7 @@ import gim.model.date.Date;
  * Represents an Exercise in the exercise tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Exercise {
+public class Exercise implements Comparable<Exercise> {
 
     private final Name name;
     private final Weight weight;
@@ -125,4 +125,12 @@ public class Exercise {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Exercise exercise) {
+        int value = exercise.getDate().date.compareTo(this.getDate().date);
+        if (value == 0) {
+            return this.getName().fullName.compareTo(exercise.getName().fullName);
+        }
+        return value;
+    }
 }
