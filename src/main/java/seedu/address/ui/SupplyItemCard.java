@@ -14,7 +14,13 @@ import seedu.address.model.item.SupplyItem;
  * An UI component that displays information of a {@code Person}.
  */
 public class SupplyItemCard extends UiPart<Region> {
-
+    /**
+     * These colors are made public for possible accessibility in other Ui components.
+     */
+    public static final String COLOR_HIGH = "#2ecc71";
+    public static final String COLOR_MEDIUM = "#f39c12";
+    public static final String COLOR_LOW = "#e74c3c";
+    private static final String COLOR_DEFAULT = "transparent";
     private static final String FXML = "SupplyItemCard.fxml";
     private static final double MEDIUM_THRESHOLD = 1.65;
     private static final double HIGH_THRESHOLD = 1.2;
@@ -85,13 +91,13 @@ public class SupplyItemCard extends UiPart<Region> {
     private String translateStockLevelToColor(StockLevel level) {
         switch (level) {
         case LOW:
-            return "#e74c3c";
+            return COLOR_LOW;
         case MEDIUM:
-            return "#f39c12";
+            return COLOR_MEDIUM;
         case HIGH:
-            return "#2ecc71";
+            return COLOR_HIGH;
         default:
-            return "transparent";
+            return COLOR_DEFAULT;
         }
     }
 
