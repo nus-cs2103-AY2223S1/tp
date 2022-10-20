@@ -48,7 +48,7 @@ public class ModelManager implements Model {
 
     private ObservableList<Application> filterApplicationsWithInterview() {
         ObservableList<Application> applicationsWithInterview = FXCollections.observableList(
-                this.applicationBook
+            versionedApplicationBook
                         .getApplicationList()
                         .stream()
                         .filter(application -> application.getInterview().isPresent())
@@ -114,19 +114,19 @@ public class ModelManager implements Model {
     @Override
     public boolean hasSameInterviewTime(Application application) {
         requireNonNull(application);
-        return applicationBook.hasSameInterviewTime(application);
+        return versionedApplicationBook.hasSameInterviewTime(application);
     }
 
     @Override
     public boolean hasSameInterviewTime(Interview interview) {
         requireNonNull(interview);
-        return applicationBook.hasSameInterviewTime(interview);
+        return versionedApplicationBook.hasSameInterviewTime(interview);
     }
 
     @Override
     public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
         requireNonNull(interview);
-        return applicationBook.hasSameInterviewTimeExcludeSelf(interview, application);
+        return versionedApplicationBook.hasSameInterviewTimeExcludeSelf(interview, application);
     }
 
     @Override
@@ -202,7 +202,7 @@ public class ModelManager implements Model {
     @Override
     public void updateApplicationListWithInterview() {
         applicationsWithInterview.clear();
-        applicationsWithInterview.addAll(applicationBook.getApplicationList());
+        applicationsWithInterview.addAll(versionedApplicationBook.getApplicationList());
         applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
         applicationsWithInterview.sort(new InterviewComparator());
     }
