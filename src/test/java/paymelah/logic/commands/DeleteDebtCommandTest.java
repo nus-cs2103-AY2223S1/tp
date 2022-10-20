@@ -41,10 +41,6 @@ public class DeleteDebtCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9b73f9b1146d25c4ff36bc99f9cea7956389111d
     @Test
     public void execute_validIndexFollowedByValidDebtOnUnfilteredList_success() {
         Person debtor = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -113,10 +109,7 @@ public class DeleteDebtCommandTest {
     @Test
     public void execute_validIndexFollowedByValidDebtsOnFilteredList_success() {
         showDebtors(model);
-<<<<<<< HEAD
-=======
-        
->>>>>>> 9b73f9b1146d25c4ff36bc99f9cea7956389111d
+
         Person debtor = model.getFilteredPersonList().get(INDEX_FIFTH_PERSON.getZeroBased());
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_SECOND_DEBT, INDEX_FIRST_DEBT));
         DeleteDebtCommand deleteDebtCommand = new DeleteDebtCommand(INDEX_FIFTH_PERSON, debtIndexSet);
@@ -209,5 +202,4 @@ public class DeleteDebtCommandTest {
         // different set of Debts -> returns false
         assertFalse(deleteDebtFirstCommand.equals(deleteDebtThirdCommand));
     }
-
 }
