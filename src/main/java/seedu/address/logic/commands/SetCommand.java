@@ -36,7 +36,6 @@ import seedu.address.ui.MainPanelName;
 public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
 
-    // TODO: update with every single possible prefix
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a person's Contacts. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME"
