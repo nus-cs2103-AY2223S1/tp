@@ -5,9 +5,9 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-:Store the total number of students;
+:StatisticsCalculator counts and stores the total number of students;
 
-:Sum the total amount owed;
+:StatisticsCalculator sums the total amount owed;
 
 if () then ([total amount owed > $2147483647])
     :Store a warning message;
@@ -16,7 +16,7 @@ else ([else])
 
 endif
 
-:Sum the total amount paid;
+:StatisticsCalculator sums the total amount paid;
 
 if () then ([total amount paid > $2147483647])
     :Store a warning message;
