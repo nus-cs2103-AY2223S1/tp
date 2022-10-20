@@ -39,9 +39,9 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
                                         @JsonProperty("location") String location,
                                         @JsonProperty("username") String username,
                                         @JsonProperty("rating") String rating,
-                                        @JsonProperty("specialisation") String specialistion) {
+                                        @JsonProperty("specialisation") String specialisation) {
         super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "",
-                specialistion, "");
+                specialisation, "");
     }
 
     /**
