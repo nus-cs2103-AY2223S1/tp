@@ -36,6 +36,10 @@ html {
   .sticky-toc {
     width: 25%;
     align-self: flex-start;
+
+    @media screen and (max-width: $on-medium) {
+      display: none;
+    }
   }
 
   .wrapper {
