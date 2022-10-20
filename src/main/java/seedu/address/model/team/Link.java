@@ -15,7 +15,7 @@ public class Link {
             "Link names should not be blank and cannot begin with a whitespace";
 
     public static final String URL_CONSTRAINTS =
-            "Link URLs must be a valid url name";
+            "Link URLs must be a valid url ";
 
     /**
      * Name of the link

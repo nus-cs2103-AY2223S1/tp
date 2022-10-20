@@ -15,8 +15,10 @@ import seedu.address.model.team.Link;
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete_link";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing link TODO";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes an existing link identified by the index number used in the displayed link list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted Link: %1$s";
 
     private final Index targetIndex;

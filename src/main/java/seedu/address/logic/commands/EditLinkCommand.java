@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.util.List;
@@ -21,7 +23,15 @@ import seedu.address.model.team.Url;
 public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "edit_link";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a current link TODO";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits a current link identified by the index number used in the displayed link list. \n"
+            + "Existing values will be overwritten by the input values. \n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "-" + FLAG_NAME_STR + " NAME "
+            + "-" + FLAG_URL_STR + " PHONE \n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + "-" + FLAG_NAME_STR + " \"Google\" "
+            + "-" + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
