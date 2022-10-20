@@ -242,7 +242,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list modules
-2. ProfNUS shows a list of modules 
+2. ProfNUS shows a list of modules
 3. User requests to add a module to the list
 4. ProfNUS adds the module
 
@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list modules
-2. ProfNUS shows a list of modules 
+2. ProfNUS shows a list of modules
 3. User requests to delete an event in the module
 4. ProfNUS deletes the event
 

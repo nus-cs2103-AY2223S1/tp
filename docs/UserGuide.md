@@ -212,12 +212,12 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 </div>
 ### Add a teaching schedule `sadd`
 
-Adds a schedule of a module in the ProfNUS. 
+Adds a schedule of a module in the ProfNUS.
 
 **Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cv/VENUE `
 
 - Adds a schedule with the module it belongs to, the weekday, the time period, the type of the class, and the venue.
-- `MODULE_CODE` needs to abide by the [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf) 
+- `MODULE_CODE` needs to abide by the [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf)
 - The `WEEKDAY` should be one of `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`.
 - The `PERIOD` includes the start time and the end time which are both in the format of the *modern 24-hour clock*.
 - The `CLASS_TYPE` should be one of `lec`, `tut`, `lab`, and `rec`, which represent lecture, tutorial, laborartory, and reflection respectively.
@@ -239,7 +239,7 @@ If the schedule to be added conflicts with any existing schedule, the ProfNUS wi
 
 ### Edit a schedule `sedit`
 
-Edits a schedule in the ProfNUS. 
+Edits a schedule in the ProfNUS.
 
 **Format**: `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cv/VENUE] `
 
@@ -293,7 +293,7 @@ Deletes a schedule from the ProfNUS.
 
   <div align=center><img src="./images/view schedule -d 2022-09-12.png" width=300px></div>
 
-- `view schedule -h` 
+- `view schedule -h`
 
   <div align=center><img src="./images/view schedule -h.png" width=500px height=250px></div>
 
@@ -308,7 +308,7 @@ Format: `find keyword`
 
 **Tip:** The result is a list of persons which keywords matching with their name, phone number or email.
 
-**Example** 
+**Example**
 
 
 - `find Adam Do`
@@ -345,6 +345,6 @@ _Details coming soon ..._
 | list all modules           | `mlist`                                                              | `mlist`                                                                                                                                                                     |
 | view the teaching schedule | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`    | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
 | find a person              | `find KEYWORD [MORE_KEYWORD]`                                        | `find Adam Do`                                                                                                                                                              |
-| help                       | `help`                                                               | `help`                                                                                                                                                                      | 
-| exit                       | `exit`                                                               | `exit`                                                                                                                                                                      | 
+| help                       | `help`                                                               | `help`                                                                                                                                                                      |
+| exit                       | `exit`                                                               | `exit`                                                                                                                                                                      |
 
