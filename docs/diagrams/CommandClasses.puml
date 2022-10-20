@@ -5,8 +5,8 @@
 'skinparam classBackgroundColor UI_COLOR
 skinparam classAttributeIconSize 0
 
-class "{abstract}\nCommand" as Command {
-    +execute(model: Model): CommandResult
+abstract "{abstract}\nCommand" as Command {
+    {abstract} +execute(model: Model): CommandResult
 }
 
 package Commands <<Rectangle>>{
@@ -47,23 +47,44 @@ class FindCommand {
     -findPersonDescriptor
 }
 
+class AllInfoContainsKeywordsPredicate {
+    -keyWords: List<String>
+    +test(person: Person): boolean
+}
 
-AddCommand --> "toAdd 1" Person
+class NameSoundsSimilarPredicate {
+    {static} -soundexMapping: List<List<String>>
+    -keyWords: List<String>
+    {static} -dropHwy(name: String): String
+    {static} -applySoundexMapping(strippedName: String): String
+    {static} -combineAdjacentDigits(code: String): String
+    {static} -trimSoundexCode(code: String): String
+    -hasMatch(name: String): boolean
+    +test(person: Person): boolean
+}
 
-AddressBookParser ..|> FindCommandParser: creates >
+class CommandResult {
+    -feedbackToUser: String
+}
+
+AddCommand --> "1 toAdd" Person
+
+
 AddressBookParser ..|> EditCommandParser: creates >
 AddressBookParser ..|> AddCommandParser: creates >
 AddressBookParser ..|> DeleteCommandParser: creates >
+AddressBookParser ..|> FindCommandParser: creates >
+
 AddressBookParser ..|> ListCommand: creates >
 AddressBookParser ..|> ClearCommand: creates >
 AddressBookParser ..|> HelpCommand: creates >
 AddressBookParser ..|> ExitCommand: creates >
 
 
-FindCommandParser ..|> FindCommand : creates >
-EditCommandParser ..|> EditCommand
-DeleteCommandParser ..|> DeleteCommand
-AddCommandParser ..|> AddCommand
+FindCommandParser ....|> FindCommand : creates >
+EditCommandParser ....|> EditCommand: creates >
+DeleteCommandParser ....|> DeleteCommand: creates >
+AddCommandParser ....|> AddCommand: creates >
 
 FindCommandParser ..|> MultiSearchPredicate : uses >
 MultiSearchPredicate --> "0..1 matchPredicate" AllInfoContainsKeywordsPredicate
@@ -77,5 +98,7 @@ ListCommand --|> Command
 ClearCommand --|> Command
 HelpCommand --|> Command
 ExitCommand --|> Command
+
+Command ..|> CommandResult: returns >
 
 @enduml
