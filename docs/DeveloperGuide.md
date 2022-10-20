@@ -153,6 +153,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Improved find command
+
+#### Proposed Implementation
+
+The proposed improved find command shall use `ArgumentTokenizer` to get a list of fields to search by.
+
+For each present prefix, the list of persons shall be filtered by the relevant field using a variety of additional `Predicate`s.
+
+Finally, the user will be shown the filtered list of persons, like in the original find command.
+
 ### List debtors feature
 
 #### Implementation
