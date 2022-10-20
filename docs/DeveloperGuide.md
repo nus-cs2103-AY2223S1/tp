@@ -281,6 +281,8 @@ Since the user can provide any number of the three attributes (from 1 to 3 inclu
 
 For the `DeleteCommand` class, the idea is rather straightforward where we make use of `Predicate` so that we can make use of the `updateFilteredPersonList` method in the `ModelManager` class. Note that if the user specified a survey, we would only remove the person if that was the only survey that the person is involved in, or else, we would just remove the survey from the person.
 
+![NewDeleteSequenceDiagram](images/NewDeleteSequenceDiagram.png)
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
