@@ -1,10 +1,11 @@
 package seedu.phu.model.internship;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 public class Statistic {
     private ObservableList<Internship> internships;
@@ -23,7 +24,7 @@ public class Statistic {
 
         ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
 
-        for(ApplicationProcess.ApplicationProcessState s : states) {
+        for (ApplicationProcess.ApplicationProcessState s : states) {
             double width = (double) statesNum.get(s) / totalNum * 100;
             System.out.println(width);
             statesWidth.put(s, width);

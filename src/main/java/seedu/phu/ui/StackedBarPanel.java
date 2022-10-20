@@ -1,5 +1,10 @@
 package seedu.phu.ui;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,11 +15,6 @@ import seedu.phu.model.internship.ApplicationProcess;
 import seedu.phu.model.internship.Internship;
 import seedu.phu.model.internship.Statistic;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.util.Objects.requireNonNull;
-
 public class StackedBarPanel extends UiPart<Node> {
     private static final String NO_DATA_MESSAGE = "No Data Found";
     private static final String FXML = "StackedBarPanel.fxml";
@@ -24,46 +24,46 @@ public class StackedBarPanel extends UiPart<Node> {
     private final HashMap<ApplicationProcess.ApplicationProcessState, Label> labels;
 
     @FXML
-    ColumnConstraints appliedConstraint;
+    private ColumnConstraints appliedConstraint;
 
     @FXML
-    ColumnConstraints assessmentConstraint;
+    private ColumnConstraints assessmentConstraint;
 
     @FXML
-    ColumnConstraints interviewConstraint;
+    private ColumnConstraints interviewConstraint;
 
     @FXML
-    ColumnConstraints offerConstraint;
+    private ColumnConstraints offerConstraint;
 
     @FXML
-    ColumnConstraints acceptedConstraint;
+    private ColumnConstraints acceptedConstraint;
 
     @FXML
-    ColumnConstraints rejectedConstraint;
+    private ColumnConstraints rejectedConstraint;
 
     @FXML
-    ColumnConstraints noDataConstraint;
+    private ColumnConstraints noDataConstraint;
 
     @FXML
-    Label appliedLabel;
+    private Label appliedLabel;
 
     @FXML
-    Label assessmentLabel;
+    private Label assessmentLabel;
 
     @FXML
-    Label interviewLabel;
+    private Label interviewLabel;
 
     @FXML
-    Label offerLabel;
+    private Label offerLabel;
 
     @FXML
-    Label acceptedLabel;
+    private Label acceptedLabel;
 
     @FXML
-    Label rejectedLabel;
+    private Label rejectedLabel;
 
     @FXML
-    Label noDataLabel;
+    private Label noDataLabel;
 
     public StackedBarPanel(ObservableList<Internship> list) {
         super(FXML);
@@ -96,7 +96,7 @@ public class StackedBarPanel extends UiPart<Node> {
         updateBar();
 
         //add event listener
-        internships.addListener((ListChangeListener<Internship>)  c -> {
+        internships.addListener((ListChangeListener<Internship>) c -> {
             updateBar();
         });
     }
@@ -115,7 +115,7 @@ public class StackedBarPanel extends UiPart<Node> {
 
         ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
 
-        for(ApplicationProcess.ApplicationProcessState s : states) {
+        for (ApplicationProcess.ApplicationProcessState s : states) {
             constraints.get(s).setPercentWidth(width.get(s));
         }
 
@@ -126,7 +126,7 @@ public class StackedBarPanel extends UiPart<Node> {
     private void handleNoData() {
         ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
 
-        for(ApplicationProcess.ApplicationProcessState s : states) {
+        for (ApplicationProcess.ApplicationProcessState s : states) {
             constraints.get(s).setPercentWidth(0);
         }
 
@@ -140,7 +140,7 @@ public class StackedBarPanel extends UiPart<Node> {
 
         ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
 
-        for(ApplicationProcess.ApplicationProcessState s : states) {
+        for (ApplicationProcess.ApplicationProcessState s : states) {
             int amount = num.get(s);
             labels.get(s).setText(String.valueOf(amount));
         }
