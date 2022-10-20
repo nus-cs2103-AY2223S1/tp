@@ -170,11 +170,11 @@ This section describes some noteworthy details on how certain features are imple
 The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 Additionally, the mechanism utilises the following operations in `UniquePersonList`:
 
-* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by name in alphabetical order.
-* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by phone number in increasing order.
-* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by email in alphabetical order.
-* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by address in alphabetical order.
-* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified tag.
+* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by **Name** in alphabetical order.
+* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by **Phone** number in increasing order.
+* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by **Email** in alphabetical order.
+* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by **Address** in alphabetical order.
+* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified **Tag**.
 
 These operations sort in reverse order when `isReverse` is true.
 
@@ -182,11 +182,16 @@ These operations are exposed in the `Model` interface under the same method name
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-Step 1. The user executes `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
+Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` checks the user input to confirm
+that the parameters have been entered. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
 
-Step 2. The `sort` command sorts the currently displayed list by name first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. The `friend` string is checked to see if it 
+fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters,
+they are ignored and the command continues execution as per normal.
 
-Step 3. The `sort` command sorts the currently displayed list by the `friend` tag next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
+Step 3. The `sort` command sorts the currently displayed list by **Name** first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+
+Step 4. The `sort` command sorts the currently displayed list by the `friend` **Tag** next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
 
 The following sequence diagram shows how the sort operation works:
 
@@ -196,7 +201,7 @@ The following sequence diagram shows how the sort operation works:
 
 </div>
 
-Step 4. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
+Step 5. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 
@@ -459,18 +464,20 @@ Note:
 
 **Target user profile**: NUS SoC Student
 
-* has a need to manage a significant number of contacts (from NUS modules and co-curricular activities)
-* prefer desktop apps over other types (easy access to laptop for NUS/SoC modules)
-* can type fast (from SoC coding modules)
-* prefers typing to mouse interactions (from SoC coding modules)
-* is reasonably comfortable using CLI apps (from SoC coding modules)
+* Has a need to manage a significant number of contacts (from NUS modules and co-curricular activities).
+* Has a need to manage a significant number of tasks (from NUS modules and co-curricular activities).
+* Prefer desktop apps over other types (easy access to laptop for NUS/SoC modules).
+* Can type fast (from coding in SoC coding modules).
+* Prefers typing to mouse/touch interactions (from coding in SoC coding modules).
+* Is reasonably comfortable using CLI apps (familiarity from SoC coding modules).
 
 **Value proposition**:
 
-* manage contacts faster than a typical mouse/GUI driven app
-* organise and separate their school contacts from personal contacts
-* practice and train their typing speed
-* increase their familiarity with using CLI tools
+* Manage contacts and tasks faster than a typical mouse/GUI driven equivalent app.
+* Organise and separate their school contacts from personal contacts.
+* Organise their tasks.
+* Practice and train their typing speed.
+* Increase their familiarity with using CLI tools.
 
 
 ### User stories
@@ -663,15 +670,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CLI**: A text-based user interface used to run programs
-* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator
-* **JavaFX**: A Java library used to develop client applications
-* **kLoC**: Stands for thousands of lines of code
-* **NUS**: National University of Singapore
-* **SoC**: School of Computing, a computing school in NUS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **CLI**: A text-based user interface used to run programs.
+* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
+* **JavaFX**: A Java library used to develop client applications.
+* **kLoC**: Stands for thousands of lines of code.
+* **NUS**: National University of Singapore.
+* **SoC**: School of Computing, a computing school in NUS.
+* **Private Contact Detail**: A contact detail that is not meant to be shared with others.
+* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
+* **Todo**: A task that the user needs to complete.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -690,7 +698,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and todos. The window size may not be optimum.
 
 1. Saving window preferences
 
