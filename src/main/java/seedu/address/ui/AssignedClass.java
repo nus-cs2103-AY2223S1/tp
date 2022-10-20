@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
+/**
+ * An UI component that displays information of {@code TuitionClass} assigned
+ * to {@code Student} or {@code Tutor}.
+ */
 public class AssignedClass extends UiPart<Region> {
     private static final String FXML = "AssignedClass.fxml";
     @FXML

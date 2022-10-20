@@ -140,7 +140,7 @@ public class CommandResultTest {
         assertFalse(commandResult.isClear());
     }
     @Test
-    public void getFeedbackToUser_feedback_EqualToFeedback() {
+    public void getFeedbackToUser_feedback_equalToFeedback() {
         String feedback = "feedback";
         CommandResult commandResult = new CommandResult(feedback);
         assertEquals(feedback, commandResult.getFeedbackToUser());
@@ -153,19 +153,19 @@ public class CommandResultTest {
     }
 
     @Test
-    public void getIndex_showCommandType_EqualToIndex() {
+    public void getIndex_showCommandType_equalToIndex() {
         CommandResult commandResult = new CommandResult("feedback", SHOW, 0);
         assertEquals(0, commandResult.getIndex());
     }
 
     @Test
-    public void getIndex_editCommandType_EqualToIndex() {
+    public void getIndex_editCommandType_equalToIndex() {
         CommandResult commandResult = new CommandResult("feedback", EDIT, 0);
         assertEquals(0, commandResult.getIndex());
     }
 
     @Test
-    public void getIndex_assignCommandType_EqualToIndex() {
+    public void getIndex_assignCommandType_equalToIndex() {
         CommandResult commandResult = new CommandResult("feedback", ASSIGN, 0);
         assertEquals(0, commandResult.getIndex());
     }

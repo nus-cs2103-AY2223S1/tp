@@ -97,9 +97,6 @@
                      </HBox.margin>
                       </VBox>
                   <StackPane fx:id="entityDescriptionPlaceholder" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="250.0" text="No entity displayed" textAlignment="CENTER" textFill="WHITE" />
-                     </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </HBox.margin>

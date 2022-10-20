@@ -32,8 +32,6 @@ public class StudentDescription extends UiPart<Region> {
     @FXML
     protected Label name;
     @FXML
-    protected Label id;
-    @FXML
     protected Label phone;
     @FXML
     protected Label address;
@@ -54,7 +52,6 @@ public class StudentDescription extends UiPart<Region> {
     public StudentDescription(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
-        id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
@@ -88,7 +85,6 @@ public class StudentDescription extends UiPart<Region> {
 
         // state check
         StudentDescription card = (StudentDescription) other;
-        return id.getText().equals(card.id.getText())
-                && student.equals(card.student);
+        return student.equals(card.student);
     }
 }

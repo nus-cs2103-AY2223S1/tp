@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -37,6 +40,8 @@ public class TuitionClassCard extends UiPart<Region> {
     protected Label subject;
     @FXML
     protected Label time;
+    @FXML
+    protected FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -44,6 +49,9 @@ public class TuitionClassCard extends UiPart<Region> {
     public TuitionClassCard(TuitionClass tuitionClass, int displayedIndex) {
         super(FXML);
         this.tuitionClass = tuitionClass;
+        tuitionClass.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         id.setText(displayedIndex + ". ");
         name.setText(tuitionClass.getName().name.toUpperCase());
         day.setText("Day: " + tuitionClass.getDay().day);

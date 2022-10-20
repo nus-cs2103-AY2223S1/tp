@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -39,7 +40,11 @@ public class MainWindow extends UiPart<Stage> {
     private static final String SELECTED_CLASS_LABEL_STYLE_CLASS = "active-class-label";
 
     private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
+
     private static final String FXML = "MainWindow.fxml";
+
+    private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Entity Displayed");
+
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -52,13 +57,10 @@ public class MainWindow extends UiPart<Stage> {
     private TuitionClassListPanel tuitionClassListPanel;
     private StudentDescription studentDescription;
     private TutorDescription tutorDescription;
-    private TuitionClassDescription tuitionClassDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     private Model.ListType descriptionEntityType;
-
-    private int descriptionEntityIndex;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -163,6 +165,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
     }
 
     /**
@@ -212,7 +216,6 @@ public class MainWindow extends UiPart<Stage> {
     /** Shows the specified entity **/
     private void handleShow(int index) {
         Model.ListType type = logic.getCurrentListType();
-        assert(type != Model.ListType.TUITIONCLASS_LIST);
         entityDescriptionPlaceholder.getChildren().clear();
         descriptionEntityType = type;
         switch(type) {
@@ -278,7 +281,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /** Clears the current Description Panel if the displayed entity
+    /**
+     * Clears the current Description Panel if the displayed entity
      * is in the cleared list.
      */
     private void handleClear() {
@@ -288,6 +292,7 @@ public class MainWindow extends UiPart<Stage> {
 
         if (descriptionEntityType == logic.getCurrentListType()) {
             entityDescriptionPlaceholder.getChildren().clear();
+            entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
         }
     }
 
@@ -298,11 +303,13 @@ public class MainWindow extends UiPart<Stage> {
         case STUDENT_LIST:
             if (commandResult.getDeletedStudent().equals(studentDescription.getDisplayedStudent())) {
                 entityDescriptionPlaceholder.getChildren().clear();
+                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
             }
             break;
         case TUTOR_LIST:
             if (commandResult.getDeletedTutor().equals(tutorDescription.getDisplayedTutor())) {
                 entityDescriptionPlaceholder.getChildren().clear();
+                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
             }
             break;
         default:
@@ -377,7 +384,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /** Updates the list when specifications of an entity is changed.
+    /**
+     * Updates the list when specifications of an entity is changed.
      * This is needed as ObservableList does not keep track of the
      * changes in the elements of the list but only changes in the list itself.
      */
@@ -398,6 +406,8 @@ public class MainWindow extends UiPart<Stage> {
             tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+            break;
+        default:
             break;
         }
     }

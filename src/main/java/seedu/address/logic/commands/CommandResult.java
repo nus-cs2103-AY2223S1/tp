@@ -41,7 +41,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, CommandType type) {
         assert(type == CommandType.ADD
-                ||type == CommandType.LIST
+                || type == CommandType.LIST
                 || type == CommandType.EXIT
                 || type == CommandType.HELP
                 || type == CommandType.CLEAR);
