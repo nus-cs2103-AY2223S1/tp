@@ -23,7 +23,7 @@ title: Developer Guide
     * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
   * [Non-Functional Requirement](#non-functional-requirement)
   * [Glossary](#glossary)
-    
+
 --------------------------------------------------------------------------------------------------------------------
 ## Design
 ### Architecture
@@ -174,7 +174,7 @@ ClassStorage#removeExistingClass() — Removes class from storage to free up
 
 ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
 
-The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer, 
+The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer,
 a `ParseException` will be thrown.
 If the index is valid, `ParserUtil` will then check that both the date and time are valid before creating an `EditCommand`.
 
@@ -182,8 +182,8 @@ During the execution of `EditCommand`, if the given index is not within the rang
 Otherwise, the model will then obtain the student using getFilteredPersonList.
 
 Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new class
-and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class 
-will be removed in order to free up the time slot. If there is no time conflict, `ClassStorage` will proceed to 
+and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class
+will be removed in order to free up the time slot. If there is no time conflict, `ClassStorage` will proceed to
 save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
@@ -203,10 +203,10 @@ The following activity diagram summarizes what happens when a teacher executes a
 
 * **Alternative 2**: dt/Day-of-Week 0000-2359 (case-insensitive)
   * Pros: More convenient and easier for the teacher to type.
-  * Cons: 
+  * Cons:
     1. Harder to implement.
     2. Only can set the class to a date at most 1 week away.
-  
+
 
 ### [Proposed] Sort-by feature
 
@@ -252,7 +252,7 @@ Below is an example of the general flow of a find by address command.
 1. `FindCommandParser` will parse the keywords to `AddressContainsKeywordsPredicate`.
 2. `AddressContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
 3. `FindCommandParser` will send the predicate value to `FindCommand`.
-4. `FindCommand` will be generated and the command will be returned to the `FindCommandParser`. 
+4. `FindCommand` will be generated and the command will be returned to the `FindCommandParser`.
 5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredTaskList`.
 6. `filteredTasks` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
 7. `CommandResult` will eventually be returned and feedback will be given to the user.
