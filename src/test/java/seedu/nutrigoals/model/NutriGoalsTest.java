@@ -11,13 +11,16 @@ import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.FoodBuilder;
 
@@ -70,6 +73,11 @@ public class NutriGoalsTest {
         assertThrows(UnsupportedOperationException.class, () -> nutriGoals.getFoodList().remove(0));
     }
 
+    @Test
+    public void getFoodCaloriesList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> nutriGoals.getFoodCalorieList().clear());
+    }
+
     /**
      * A stub ReadOnlyNutriGoals whose foods list can violate interface constraints.
      */
@@ -100,6 +108,10 @@ public class NutriGoalsTest {
         public List<Location> getGymLocations() {
             return new ArrayList<>();
         }
-    }
 
+        @Override
+        public Map<Name, Calorie> getFoodCalorieList() {
+            return new HashMap<>();
+        }
+    }
 }

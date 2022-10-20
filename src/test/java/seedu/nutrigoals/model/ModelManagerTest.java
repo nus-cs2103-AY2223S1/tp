@@ -3,6 +3,7 @@ package seedu.nutrigoals.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.filterListByFoodName;
 import static seedu.nutrigoals.model.Model.PREDICATE_SHOW_ALL_FOODS;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_EARLIER_TIME;
@@ -11,14 +12,12 @@ import static seedu.nutrigoals.testutil.TypicalFoods.BREAD;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
-import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
 import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.NutriGoalsBuilder;
 import seedu.nutrigoals.testutil.UserBuilder;
@@ -99,14 +98,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getDatePredicate_filterListForADay_returnsPredicateWithSameDay() {
-        DateTime dateTime = new DateTime();
-        IsFoodAddedOnThisDatePredicate predicate = new IsFoodAddedOnThisDatePredicate(dateTime);
-        modelManager.updateFilteredFoodList(predicate);
-        assertEquals(predicate, modelManager.getDatePredicate());
-    }
-
-    @Test
     public void isFilteredFoodListEmpty_emptyFilteredList_returnsTrue() {
         modelManager.updateFilteredFoodList(unused -> false);
         assertTrue(modelManager.isFilteredFoodListEmpty());
@@ -137,6 +128,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFoodCalorieList() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFoodCalorieList().clear());
+    }
+
+    @Test
     public void equals() {
         NutriGoals nutriGoals = new NutriGoalsBuilder().withFood(APPLE).withFood(BREAD).build();
         NutriGoals differentNutriGoals = new NutriGoals();
@@ -160,8 +156,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentNutriGoals, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = APPLE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        filterListByFoodName(modelManager, APPLE);
         assertFalse(modelManager.equals(new ModelManager(nutriGoals, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

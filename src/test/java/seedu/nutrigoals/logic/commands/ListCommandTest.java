@@ -72,7 +72,7 @@ public class ListCommandTest {
         DateTime date = new DateTime(DEFAULT_EARLIER_TIME);
         IsFoodAddedOnThisDatePredicate datePredicate = new IsFoodAddedOnThisDatePredicate(date);
         ListCommand listCommand = new ListCommand(datePredicate);
-        String expectedMessage = String.format(ListCommand.EMPTY_FOOD_LIST, date.getDate());
+        String expectedMessage = String.format(ListCommand.MESSAGE_EMPTY_FOOD_LIST, date.getDate());
 
         expectedModel.updateFilteredFoodList(datePredicate);
         assertCommandSuccess(listCommand, model, expectedMessage, expectedModel);

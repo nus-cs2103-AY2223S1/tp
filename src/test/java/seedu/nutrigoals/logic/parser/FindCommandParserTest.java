@@ -4,31 +4,33 @@ import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.nutrigoals.logic.commands.FindCommand;
-import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
+import seedu.nutrigoals.model.meal.Name;
 
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
+    public void parse_blankArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidFoodName_throwsParseException() {
+        assertParseFailure(parser, "r!ce", Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        FindCommand expectedFindCommand = new FindCommand(new Name("rice"));
+        assertParseSuccess(parser, "rice", expectedFindCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        // whitespaces
+        assertParseSuccess(parser, " \n rice \t", expectedFindCommand);
     }
 
 }

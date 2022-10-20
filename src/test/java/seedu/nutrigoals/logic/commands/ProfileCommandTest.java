@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import seedu.nutrigoals.model.ReadOnlyNutriGoals;
 import seedu.nutrigoals.model.ReadOnlyUserPrefs;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.UserBuilder;
 
@@ -181,6 +183,11 @@ public class ProfileCommandTest {
 
         @Override
         public Calorie getTotalCalorie() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Test
+        public Map<Name, Calorie> getFoodCalorieList() {
             throw new AssertionError("This method should not be called.");
         }
     }

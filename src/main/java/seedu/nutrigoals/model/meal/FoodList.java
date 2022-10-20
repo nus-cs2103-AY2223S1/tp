@@ -15,14 +15,14 @@ import seedu.nutrigoals.model.meal.exceptions.MealNotFoundException;
  * A list of food that enforces uniqueness between its elements and does not allow nulls.
  * A Food is considered unique by comparing using {@code Food#isSameFood(Food)}. As such, adding and updating of
  * Foods uses Food#isSameFood(Food) for equality so as to ensure that the Food being added or updated is
- * unique in terms of identity in the UniqueFoodList. However, the removal of a Food uses Food#equals(Object) so
+ * unique in terms of identity in the FoodList. However, the removal of a Food uses Food#equals(Object) so
  * as to ensure that the Food with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Food#isSameFood(Food)
  */
-public class UniqueFoodList implements Iterable<Food> {
+public class FoodList implements Iterable<Food> {
 
     private final ObservableList<Food> internalList = FXCollections.observableArrayList();
     private final SortedList<Food> sortedList = new SortedList<>(internalList, new FoodComparator());
@@ -72,7 +72,7 @@ public class UniqueFoodList implements Iterable<Food> {
         internalList.set(index, editedFood);
     }
 
-    public void setFood(UniqueFoodList replacement) {
+    public void setFood(FoodList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -102,8 +102,8 @@ public class UniqueFoodList implements Iterable<Food> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueFoodList // instanceof handles nulls
-                        && sortedList.equals(((UniqueFoodList) other).sortedList));
+                || (other instanceof FoodList // instanceof handles nulls
+                        && sortedList.equals(((FoodList) other).sortedList));
     }
 
     @Override

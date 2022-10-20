@@ -5,6 +5,7 @@ import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -15,6 +16,7 @@ import seedu.nutrigoals.commons.core.LogsCenter;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.user.User;
 
 /**
@@ -134,6 +136,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedFood);
         nutriGoals.setFood(target, editedFood);
     }
+
     @Override
     public List<Location> getNusGymLocations() {
         return this.nutriGoals.getGymLocations();
@@ -206,17 +209,21 @@ public class ModelManager implements Model {
     public int getCalorieDifference() {
         Calorie target = nutriGoals.getCalorieTarget();
         Calorie actual = filteredFoods.stream()
-                .map(food -> food.getCalorie())
-                .reduce(new Calorie("0"), (prev, curr) -> prev.addCalorie(curr));
+                .map(Food::getCalorie)
+                .reduce(new Calorie("0"), Calorie::addCalorie);
         return target.calculateDifference(actual);
     }
 
     @Override
     public Calorie getTotalCalorie() {
-        Calorie total = filteredFoods.stream()
-                .map(food -> food.getCalorie())
-                .reduce(new Calorie("0"), (prev, curr) -> prev.addCalorie(curr));
-        return total;
+        return filteredFoods.stream()
+                .map(Food::getCalorie)
+                .reduce(new Calorie("0"), Calorie::addCalorie);
+    }
+
+    @Override
+    public Map<Name, Calorie> getFoodCalorieList() {
+        return nutriGoals.getFoodCalorieList();
     }
 
     @Override
@@ -233,11 +240,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        boolean isEqual = nutriGoals.equals(other.nutriGoals)
+        return nutriGoals.equals(other.nutriGoals)
             && userPrefs.equals(other.userPrefs)
             && filteredFoods.equals(other.filteredFoods)
             && currentDatePredicate.equals(other.currentDatePredicate);
-        return isEqual;
     }
-
 }

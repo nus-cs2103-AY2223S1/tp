@@ -15,13 +15,14 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.nutrigoals.commons.core.index.Index;
+import seedu.nutrigoals.commons.util.StringUtil;
 import seedu.nutrigoals.logic.commands.exceptions.CommandException;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
 import seedu.nutrigoals.testutil.EditFoodDescriptorBuilder;
 
 /**
@@ -35,16 +36,13 @@ public class CommandTestUtil {
     public static final String VALID_BREAD_CALORIE = "150";
     public static final String VALID_SUSHI_NAME = "Sushi";
     public static final String VALID_BISCUIT_NAME = "Biscuit";
-    public static final String VALID_BISCUIT_CALORIE = "200";
     public static final String VALID_TAG_BREAKFAST = "breakfast";
     public static final String VALID_TAG_LUNCH = "lunch";
     public static final String VALID_HEIGHT_AMOUNT = "170";
     public static final String VALID_WEIGHT_AMOUNT = "60";
     public static final String VALID_GENDER = "M";
 
-    public static final String CALORIE_DESC_APPLE = " " + PREFIX_CALORIE + VALID_APPLE_CALORIE;
     public static final String CALORIE_DESC_BREAD = " " + PREFIX_CALORIE + VALID_BREAD_CALORIE;
-    public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_APPLE_NAME;
     public static final String NAME_DESC_BREAD = " " + PREFIX_NAME + VALID_BREAD_NAME;
     public static final String TAG_DESC_BREAKFAST = " " + PREFIX_TAG + VALID_TAG_BREAKFAST;
     public static final String TAG_DESC_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
@@ -132,10 +130,19 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
 
         Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
-        final String[] splitName = food.getName().fullName.split("\\s+");
-        model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        filterListByFoodName(model, food);
 
         assertEquals(1, model.getFilteredFoodList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only foods with the given {@code Food} name.
+     */
+    public static void filterListByFoodName(Model model, Food food) {
+        final String[] splitName = food.getName().fullName.split("\\s+");
+        List<String> keywords = Arrays.asList(splitName[0]);
+        Predicate<Food> filterPredicate = foodToFilter -> keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(foodToFilter.getName().fullName, keyword));
+        model.updateFilteredFoodList(filterPredicate);
+    }
 }
