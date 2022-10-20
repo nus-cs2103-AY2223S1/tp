@@ -234,6 +234,37 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+
+### \[Proposed\] Find by fields feature
+
+#### Proposed Implementation
+
+The proposed find by fields mechanism searches the lists based on multiple fields by taking in a set of prefixes with their respective keywords and updating the respective `FilteredList`.
+
+Given below is an example usage scenario and how the find by fields mechanism behaves at each step.
+
+Step 1. The user launches the application and executes the `list_s` command to show the list of all students.
+
+Step 2. The user executes `find John sch/Keming Primary School` command to search for all students who are named John and are students of Keming Primary School. A list of students with that predicate is then shown.
+
+Step 3. The user now decides he wants to be more specific with his search, and decides to execute `find John l/primary3 sch/Keming Primary School` to find all students who are named John, and are primary 3 students of Keming Primary School.
+A more specific list of students is then shown.
+
+
+#### Design considerations:
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** Searches each field strictly by ensuring that the search will only show results with the keywords matching the fields exactly.
+    * Pros: More logical for enum fields such as `Level`, where giving `primary` as input will not trivially show all primary school students.
+    * Cons: Less flexibility in the search as users are not allowed to show more results using more generic keywords to search.
+
+* **Alternative 2:** Searches each field with partially matching keywords.
+    * Pros: More flexibility in the search.
+    * Cons: Could lead to trivial searches.
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
