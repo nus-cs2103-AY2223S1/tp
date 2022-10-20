@@ -20,9 +20,9 @@ public class FilterBuyersCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all buyers in the database who"
             + " either have a price range that accepts the given price, characteristics that match the given"
-            + " characteristics list, or has the given tag.\n"
+            + " characteristics list, or has the given tag. You must filter by exactly one criteria at a time.\n"
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
-            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]"
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             // TODO change this from tag to priority after andre's refactor
             + "[" + PREFIX_PRIORITY + " <HIGH/LOW>]\n"
             + "Example: " + COMMAND_WORD + " -c bright; sunny";

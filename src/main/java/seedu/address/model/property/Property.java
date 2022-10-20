@@ -16,6 +16,8 @@ import seedu.address.model.characteristics.Characteristics;
  */
 public class Property {
 
+    // TODO: Remove description and tags fields
+
     // Identity fields
     private final PropertyName propertyName;
     private final Price price;
