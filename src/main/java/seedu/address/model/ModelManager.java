@@ -163,6 +163,7 @@ public class ModelManager implements Model {
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
+        updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
@@ -194,6 +195,8 @@ public class ModelManager implements Model {
     public void deleteTask(Index teamIndex, Index taskIndex) {
         requireAllNonNull(teamIndex, taskIndex);
         addressBook.deleteTask(teamIndex, taskIndex);
+        updateFilteredTeamList(unused -> false);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     //=========== Filtered Person List Accessors =============================================================

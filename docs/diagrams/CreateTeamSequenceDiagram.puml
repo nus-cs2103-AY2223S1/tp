@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CreateCommandParser" as CreateCommandParser LOGIC_COLOR
+participant "c:CreateCommand" as CreateCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("t/Backend")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("create t/Backend")
+activate AddressBookParser
+
+create CreateCommandParser
+AddressBookParser -> CreateCommandParser
+activate CreateCommandParser
+
+CreateCommandParser --> AddressBookParser
+deactivate CreateCommandParser
+
+AddressBookParser -> CreateCommandParser : parse("t/backend")
+activate CreateCommandParser
+
+create CreateCommand
+CreateCommandParser -> CreateCommand
+activate CreateCommand
+
+CreateCommand --> CreateCommandParser : c
+deactivate CreateCommand
+
+CreateCommandParser --> AddressBookParser : c
+deactivate CreateCommandParser
+
+CreateCommandParser -[hidden]-> AddressBookParser
+destroy CreateCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager --> CreateCommand : execute()
+activate CreateCommand
+
+CreateCommand --> Model : addTeam(toAdd)
+activate Model
+
+Model --> CreateCommand
+deactivate Model
+
+create CommandResult
+CreateCommand -> CommandResult
+activate CommandResult
+
+
+CommandResult --> CreateCommand : result
+deactivate CommandResult
+
+CreateCommand --> LogicManager : result
+deactivate CreateCommand
+
+CreateCommand -[hidden]-> LogicManager
+destroy CreateCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
+

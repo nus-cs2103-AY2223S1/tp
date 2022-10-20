@@ -27,7 +27,8 @@ public class AssignMemberParser {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEMBER_INDEX, PREFIX_TEAM_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MEMBER_INDEX, PREFIX_TEAM_INDEX)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MEMBER_INDEX, PREFIX_TEAM_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignMemberCommand.MESSAGE_USAGE));
         }
 

@@ -232,17 +232,30 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}
+### Add Task Feature
+
+#### Implementation
+
+The add task feature adds a task into a team and this change is reflected in the Graphical User Interface.
+The user may specify a deadline to be associated with the task (i.e. deadline is optional).
+The deadline is implemented using `Optional<LocalDate>`. Thus, the deadline can be passed into other methods without knowing whether the deadline exists or not. The `Task` objects are stored in a `UniqueTaskList`.
+
+Given below is an example usage scenario.
+
+Step 1. The user creates the task using the `taskadd` command, executing `taskadd t/1 n/Create Feature A d/12-12-2022` to add the task "Create Feature A" to team 1, with 12th December 2022 as the deadline.
+
+The following sequence diagram shows how the add task operation works:
+![TaskAddSequenceDiagram](images/TaskAddSequenceDiagram.png)
 
 ### Mark Task Feature
 
-#### Implementation 
+#### Implementation
 
-The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface. 
+The mark task feature marks a task as completed and this change is reflected in the Graphical User Interface.
 
-Given below is an example usage scenario 
+Given below is an example usage scenario
 
-Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false. 
+Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false.
 
 Step 2. After the task is completed, the user want to mark the task as done. The user then executes `taskmark t/1 task/3` to mark the 3rd task in the 1st team as completed. The task which is contained in team 1 would be marked as completed and this would be reflected in the gui.
 
@@ -251,6 +264,42 @@ Step 3. The user realised that there is some error in the task and wants to unma
 
 The following sequence diagram shows how the mark task operation works:
 ![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
+
+### Edit Person Feature
+
+#### Implementation
+
+The edit person feature edit the information of a person in the address book, this change is reflected within
+all teams with the edited person as member. The editable information all phone number, email address, physical
+address and tag.
+
+Given below is an example usage scenario
+
+Step 1. The user want to change the phone number of a person in his company to 80779043. Said person is indexed number 4 in
+the global list. The user executes `edit 1 p/80779043`.
+
+Step 2. The parser will create an `edit` command. This `edit command` will call `Model#getFilteredList()`
+to get the `person` specified by the index in the command then create a new `person` with the modified info.
+`Model#updateFiltedPersonList` is called to update all teams with the edited members.
+
+The following sequence diagram shows how the edit task operation works:
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
+### Create Team Feature
+
+#### Implementation
+
+The Create Team Feature allow the user to create a team in EZLead. Team will be stored in a global team list
+
+Step 1. The user wants to create a team named Backend. The user executes `create t/backend`.
+
+Step 2. The parser will create a team object and a `createTeam` command containing created team.
+The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
+
+The following sequence diagram show how the create team operation works:
+![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
+
+_{more aspects and alternatives to be added}
 
 
 ### \[Proposed\] Data archiving
@@ -461,7 +510,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 
@@ -481,7 +530,85 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC8 - Editing a task name**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team, the task and the new task name.
+2. EZLead updates task name associated to specified task of the team.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC9 - Marking a task item as done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team and the task to be marked as done.
+2. EZLead marks the task associated to specified team as done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC10 - Marking a task item as not done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies  the team and the task to be marked as not done.
+2. EZLead marks the task associated to specified team as not done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 
