@@ -2,10 +2,14 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
@@ -19,6 +23,8 @@ public class ModuleListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Module> moduleListView;
+    @FXML
+    private ListView<Module> targetModuleView;
 
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
@@ -27,12 +33,40 @@ public class ModuleListPanel extends UiPart<Region> {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanel.ModuleListViewCell());
+        moduleListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Module moduleInterested = moduleListView.getSelectionModel().getSelectedItem();
+                ObservableList<Module> list = FXCollections.observableArrayList();
+                list.add(moduleInterested);
+                targetModuleView.setItems(list);
+                targetModuleView.setCellFactory(listView ->
+                        new ModulePanel.ModuleViewCell());
+            }
+        });
+    }
+
+    @FXML
+    public void handleMouseClick(MouseEvent me) {
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
     class ModuleListViewCell extends ListCell<Module> {
+
+        private EventHandler<MouseEvent> oneClickHandler;
+        public ModuleListViewCell() {
+            oneClickHandler = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Parent p = (Parent) event.getSource();
+                    Module m = (Module) p.getUserData();
+                    System.out.println(m);
+                    //  do what you want to do with data.
+                }
+            };
+        }
         @Override
         protected void updateItem(Module module, boolean empty) {
             super.updateItem(module, empty);

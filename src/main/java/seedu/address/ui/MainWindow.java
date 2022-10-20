@@ -9,6 +9,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -41,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private TutorListPanel tutorListPanel;
     private ModuleListPanel moduleListPanel;
     private ModuleInfoPanel moduleInfoPanel;
+    private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -62,6 +64,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane moduleInfoPanelPlaceholder;
+
+    @FXML
+    private StackPane modulePanelPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
