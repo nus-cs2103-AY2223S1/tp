@@ -222,7 +222,7 @@ The following activity diagram shows what happens when a user executes a new edi
 ![EditPersonActivityDiagram](images/EditPersonActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only the 
-activities related to gender field is considered and shown in this activity diagram. All fields are considered optional 
+activities related to gender field are considered and shown in this activity diagram. All fields are considered optional 
 in edit person command, therefore, it is not compulsory that gender field must be provided.
 </div>
 
