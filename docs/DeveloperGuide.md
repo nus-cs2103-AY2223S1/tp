@@ -249,72 +249,95 @@ Below is a sequence diagram and explanation of how `add` is executed.
 
 Step 1. The user enters the command `add n/Jon j/janitor`.
 
-Step 2. User input is parsed by `AddCommandParser` which creates the`AddCommand` object, then the method LogicManager#execute is called to create the AddCommand object.
+Step 2. User input is parsed by `AddCommandParser` which creates the`AddCommand` object, then the method `LogicManager#execute` is called to create the AddCommand object.
 
 Step 3. The `execute` method of AddCommand is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This adds the `person` from the list from the model. The employeeID is set and if there already exist a `person` object with the same field data, a `CommandException` will be thrown and a message indicating duplicate person will be shown. If the `person` object does not exist, then using model#addPerson(), the `person` object is added to the `database`.
+Step 4. This adds the `person` from the list from the model. The `employeeID` is set and if there already exist a `person` object with the same field data, a `CommandException` will be thrown and a message indicating duplicate person will be shown. If the `person` object does not exist, then using `model#addPerson()`, the `person` object is added to the `database`.
 
-Step 5. storage#saveDatabase is then called on the current `database`, updates the database to contain the new `person`.
-
+Step 5. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new `person`.
 
 ### Delete feature
 
-#### Implementation
+#### Implementation (_Proposed_)
+
 This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
 Below is a sequence diagram and explanation of how `delete` is executed.
 
 <img src="images/DeleteCommandUML.png" width="550" />
 
-Step 1. The user enters the command `delete 1`
+Step 1. The user enters the command `delete 1`.
 
-Step 2. User input is parsed by `DeleteCommandParser` which creates the`DeleteCommand` object, then the method LogicManager#execute is called to create the DeleteCommand object.
+Step 2. User input is parsed by `DeleteCommandParser` which creates the `DeleteCommand` object, then the method `LogicManager#execute` is called to create the `DeleteCommand` object.
 
-Step 3. The `execute` method of DeleteCommand is then called on the object, which returns a `CommandResult` object.
+Step 3. The `execute` method of `DeleteCommand` is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This finds the `person` from the list from model#getFilteredPersonList by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using model#deletePerson(), the `person` object is deleted from the `database`.
+Step 4. This finds the `person` from the list from `model#getFilteredPersonList` by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using `model#deletePerson()`, the `person` object is deleted from the `database`.
 
-Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`
+Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`.
 
+### Find feature
 
-### BatchAdd 
-This feature is created for users to add multiple entries at once. 
+This section explains the implementation of the `find` feature. The command takes in a number of parameters, which serve as the "filters" for the finding/searching function. At present, we have implemented finding by name, department, position, and any combination of these three. Thus it is possible to use these altogether to search for a person with high specificity.
+
+Below is a sequence diagram and explanation of how `find` is executed. In this simple example, we will look at the command `find n/Alex`.
+
+<img src="images/FindCommandUML.png" width="550" />
+
+Step 1. The user enters the command `find n/Alex`.
+
+Step 2. User input is parsed by `FindCommandParser` which creates the `FindCommand` object, then the method `LogicManager#execute` is called to create the `FindCommand` object.
+
+Step 3. The `execute` method of `FindCommand` is then called on the object, which returns a `CommandResult` object.
+
+Step 4. This then iterates through the list of `Person` objects returned by the `model#getFilteredPersonList` for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
+
+Step 5. The list of `Person` objects is then returned, and is passed to the `UiManager` to be displayed on the user interface.
+
+### BatchAdd
+
+This feature is created for users to add multiple entries at once.
 In the case of this application, there are two main reasons why our User (HR Executive) would use this.
+
 1. User is new and needs to import all the current data into the database.
 2. There is a new recruitment cycle and company has recruited a large number of employees.
 
 Moving on to the implementation, some things to note.
+
 - As of now, our feature only accommodates adding from a CSV file.
-- Fields does not allow for commas inside. 
+- Fields does not allow for commas inside.
+
 These are possible things to work on for future iterations.
 
-####Implementation
+#### Implementation
 
-Pre-requisites: User has a CSV file filled with whatever information they have 
+Pre-requisites: User has a CSV file filled with whatever information they have
 and has stored it in the `/data` folder of the repository.
 
 Step 1: User executes `batchadd filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
-This will return a new `BatchAddParser` object and `parse` function is then called. 
-A helper function in `ParserUtil` helps to trim the filename and check if it is valid. If no argument is provided, a 
+This will return a new `BatchAddParser` object and `parse` function is then called.
+A helper function in `ParserUtil` helps to trim the filename and check if it is valid. If no argument is provided, a
 `ParseException` will be thrown.
 
-Step 2: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first 
+Step 2: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
 step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and write it
 into a `List<AddCommand>`. If file does not exist in the folder, a `FileNotFound` exception is thrown too.
 
 Step 3. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`
 If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
 
-Step 4. storage#saveDatabase is then called on the current `database`, updates the database to contain the new persons added.
+Step 4. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
 
-####Design Considerations
+#### Design Considerations
+
 - Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
   - Pros: Makes use of the Error Handling that the `AddCommand` has.
   - Cons: `BatchAdd` will fail if Add fails.
 - Alternative 2: Own implementation of `BatchAdd` without relying on `AddCommand`.
   - Pros: If Add Fails, BatchAdd can still work.
   - Cons: Implementation Heavy.
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -437,9 +460,9 @@ _{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Documentation: user guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
 5. The product should be easy to use by person with little experience of using a command line application.
 
