@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -158,7 +158,12 @@ This section describes some noteworthy details on how certain features are imple
 
 #### About
 
-CodeConnect has features that allow you to search for tasks and contacts.
+CodeConnect has features that allow you to search for tasks and contacts. The finding features use the following commands:
+
+* `find n/` —  Finds tasks in the TaskList by their description(name)
+* `find m/` —  Finds tasks in the TaskList by their module
+* `findc n/` —  Finds contacts in the AddressBook by their name
+* `findc m/` —  Finds contacts in the AddressBook by their module
 
 Examples of command use:
 - `find n/ quiz` - Find all tasks containing the word "quiz"
@@ -172,9 +177,9 @@ Examples of command use:
 
 Outline of how components work together when the user enters a find command:
 1. User enters `findc m/ CS1101S` into the command prompt box
-2. User input `findc m/ CS1101S` is sent to the `FindContactCommandParser`
+2. User input `m/ CS1101S` is sent to the `FindContactCommandParser`
 3. `FindContactCommandParser` determines the user's input to be valid
-4. `FindContactCommandParser` creates a `ModuleTakenPredicate` 
+4. `FindContactCommandParser` creates a `ModuleTakenPredicate`
    - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
 5. A `FindContactCommand` command created and executed by the `Model`
 6. The result of the find command is displayed to the user
@@ -182,8 +187,10 @@ Outline of how components work together when the user enters a find command:
 ![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
 <div style="text-align: center">Activity diagram of findc command execution</div>
 
-![Interactions Inside the Logic Component for the `findc m/ CS1101S` Command](images/FindContactSequenceDiagram.png)
-<div style="text-align: center">Sequence diagram of findc command execution</div>
+![Interactions Inside the Logic Component for the `find n/ Lab 2` Command](images/FindTasksSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of find command execution</div>
+<p></p>
+<div style="text-align: center">Note: The implementation flow and the activity and sequence diagrams are similar for both the find and findc commands</div>
 
 #### Design Considerations
 
@@ -305,7 +312,11 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively.
+
+This was done so that it would be easy for the user to remember what command to use when finding either contacts or tasks.
+- The only difference when finding contacts is that there is a c after the find for contacts
+- Both use the same prefixes
 
 
 --------------------------------------------------------------------------------------------------------------------
