@@ -6,9 +6,9 @@ import java.time.format.DateTimeFormatter;
  * A class for formatting LocalDateTime.
  */
 public class DateTimeUtil {
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy <HH:mm>");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy <HH:mm>");
 
     public static DateTimeFormatter getFormat() {
-        return dateTimeFormatter;
+        return DATE_TIME_FORMATTER;
     }
 }
