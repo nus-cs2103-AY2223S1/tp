@@ -40,6 +40,10 @@ html {
 
   .wrapper {
     width: 75%;
+
+    @media print {
+      width: 100%;
+    }
   }
 }
 
@@ -163,6 +167,10 @@ html {
 
   // Back to top button
   + .after {
+    @media print {
+      display: none;
+    }
+
     &::before {
       content: "\261E\A0 Back to top";
       color: lightgray;
