@@ -34,7 +34,7 @@ activate SessionCommandParser
 
 
 create Session
-SessionCommandParser -> Session
+SessionCommandParser -> Session: Session("Lab1", currentDate)
 activate Session
 
 Session --> SessionCommandParser: s
@@ -65,7 +65,7 @@ Model --> SessionCommand: oldClass
 deactivate Model
 
 create ModuleClass
-SessionCommand -> ModuleClass
+SessionCommand -> ModuleClass: ModuleClass(oldClassName, modifiedSessionList)
 activate ModuleClass
 ModuleClass --> SessionCommand: newClass
 deactivate ModuleClass

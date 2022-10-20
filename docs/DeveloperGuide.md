@@ -8,7 +8,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We'd like to thank:
+* The [CS2103/T teaching team](https://nus-cs2103-ay2223s1.github.io/website/admin/instructors.html) for guiding us throughout the development of this project.
+* [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for laying the foundations on which our (brownfield) project is built upon.
+* The [Jackson Project](https://github.com/FasterXML/jackson) for creating an awesome library for JSON parsing in Java!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -128,13 +131,13 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
 
-**UniqueList**
+#### UniqueList
 
 The `UniqueList` class is a generic class that stores a collection of unique elements. In TA Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
 
 <img src="images/TaAssistObjectDiagram.png" width="600"/>
 
-**Student, ModuleClass and Session**
+#### Student, ModuleClass and Session
 
 Each `Student` object stores all module-class-related data, such as the `ModuleClass` and session data, in a `StudentModuleData` object. 
 Session data belonging to a `Student` is stored in `SessionData` objects.
@@ -143,8 +146,6 @@ Session data belonging to a `Student` is stored in `SessionData` objects.
 a weaker notion of equality than the `equals` method.
 
 Similarly, objects that keep a reference of `Student`, `ModuleClass` or `Session` objects such as the `UniqueList` and `StudentModuleData` may also implement the `Identity` method.
-
-
 
 <img src="images/StudentAndModuleClassDiagram.png" width="600"/>
 
@@ -167,7 +168,8 @@ Classes used by multiple components are in the `seedu.taassist.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented along with explanations
+for why certain functions are implemented in such a manner.
 
 ### Assigning students to a class
 <img src="images/AssignCommandSequenceDiagram.png" width="700" />
@@ -237,6 +239,19 @@ module code are then same.
 
 This `Identity` construct is similar to a `<Key, Value>` pair  in a HashMap implementation, where we use the `Key` to 
 determine the object's identity and `Value` for its satellite values.
+
+### Managing Sessions within a Class
+
+As `ModuleClass` is immutable, there exists no methods to add/delete/modify the `Session`-s associated with a `ModuleClass`. 
+The only way to do so is by constructing new `ModuleClass` instances.
+
+For example, the following sequence diagram shows how the command `session s/Lab1`
+creates a `Session` named "Lab1" and adds it inside the focused class.
+
+<img src="images/SessionCommandSequenceDiagram.png" width="1000"/>
+
+:information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 
+the focused class doesn't contain a session named `Lab1` as of current.
 
 
 --------------------------------------------------------------------------------------------------------------------
