@@ -116,7 +116,8 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        PropertyDirectory expectedPropertyDirectory = new PropertyDirectory();
+        PropertyDirectory expectedPropertyDirectory = new PropertyDirectory(actualModel.getPropertyDirectory(),
+                actualModel.getUserPrefs().getUserImageDirectoryPath());
         List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
