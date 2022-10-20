@@ -70,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        personListPanelPlaceholder.managedProperty().bind(personListPanelPlaceholder.visibleProperty());
+        timeSlotListPanelPlaceholder.managedProperty().bind(timeSlotListPanelPlaceholder.visibleProperty());
     }
 
     public Stage getPrimaryStage() {
@@ -114,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        handleDayView(false);
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -170,6 +174,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleDayView(boolean isDay) {
+        personListPanelPlaceholder.setVisible(!isDay);
+        timeSlotListPanelPlaceholder.setVisible(isDay);
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -192,6 +202,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            handleDayView(logic.isDayView());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
