@@ -238,6 +238,50 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Navigate previous commands with arrow keys
+
+#### Motivation
+
+Currently, once a command is executed successfully, there is no way for the user to get it back easily. 
+However, a user who frequently uses command line interfaces (CLIs) might expect the use of arrow keys to bring
+back previous commands, as a way to quickly input multiple similar commands at once.
+
+#### Implementation
+`CommandBox` in the `commandbox` package represents the GUI component where the user enters commands.
+To capture the event when the Up and Down keystrokes are depressed, we add the `onKeyReleased` parameter
+to the `TextField` in the FXML file, `CommandBox.fxml`. This fires the `CommandBox#handleKeyReleased` method in `CommandBox`
+whenever a key is released. 
+
+`CommandBox#handleKeyReleased` changes the text field in the GUI to the previous or next command on release of the Up and Down
+arrow key respectively, if the previous or next command exists. The list of commands is stored in an ArrayList of 
+strings, `previousCommands`. `previousCommandsIndex` always represents the `previousCommands` index of the command 
+currently being displayed in the GUI.
+
+Given below is an example usage scenario and how the arrow key changes the `CommandBox` text field at each step.
+A sequence diagram is also provided. (to be added)
+
+Step 1. The user launches the application for the first time. `previousCommands` is initialised with an empty string as
+its first element. This element will represent the command that the user executes, if it executes correctly.
+
+Step 2. The user executes a command, `listbuyers` by pressing the Enter key. `CommandBox#handleCommand` is fired,
+getting the text from the text field. Since it is a valid command, it is executed successfully. The last element 
+is set to `listbuyers` and an empty string is appended to `previousCommands`. The `previousCommandsIndex` is set to
+the last element.
+
+Step 3. The user types a command halfway, but does not press the Enter key. He/she now wishes to use the previous
+command to type the command.
+
+Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
+to display the `(previousCommandsIndex - 1)`th element in `previousCommands`. The user's unexecuted command from Step 3 
+is also saved as the last element in `previousCommands`.
+
+Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased` is fired, but since
+`previousCommandsIndex == 0`, nothing happens, since there is no more previous command to be shown. 
+
+Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
+to display the `(previousCommandsIndex + 1)`th element in `previousCommands`. This would be the user's unexecuted
+command from Step 3.
+
 ### Creating a buyer
 
 The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority` denote his budget, requirements for the property, and buyer priority respectively. 
