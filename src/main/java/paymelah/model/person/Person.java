@@ -4,11 +4,9 @@ import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.debt.Money;
 import paymelah.model.tag.Tag;
@@ -141,11 +139,8 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        List<Debt> debts = getDebts().asList();
-        if (!debts.isEmpty()) {
-            builder.append("; Debts: ");
-            debts.forEach(builder::append);
-        }
+        builder.append("\nDebts:");
+        builder.append(debts);
 
         return builder.toString();
     }

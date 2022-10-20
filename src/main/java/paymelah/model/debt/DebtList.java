@@ -146,11 +146,11 @@ public class DebtList {
         final StringBuilder builder = new StringBuilder();
         int i = 1;
         for (Debt debt : debts) {
-            builder.append(i + ". ")
-                    .append(debt.toString())
-                    .append("\n");
+            builder.append("\n")
+                    .append(i + ". ")
+                    .append(debt.toString());
             i++;
         }
-        return builder.toString().equals("") ? "No debts" : builder.toString();
+        return builder.toString().equals("") ? "\nNo debts" : builder.toString();
     }
 }
