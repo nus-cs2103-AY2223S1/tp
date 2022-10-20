@@ -37,9 +37,9 @@ destroy profileCommandParser
 return p
 
 logicManager -> addProfileCommand ++: execute(model)
-addProfileCommand -> model ++: hasProfile(p)
+addProfileCommand -> model ++: hasProfile(toAdd)
 return
-addProfileCommand -> model ++: addProfile(p)
+addProfileCommand -> model ++: addProfile(toAdd)
 return
 
 create commandResult
