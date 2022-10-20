@@ -50,7 +50,11 @@ public class Exam {
      * Returns true if a given string is a valid exam score.
      */
     public static boolean isValidScore(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            int score = Integer.parseInt(test);
+            return score >= 0 && score <= 100;
+        }
+        return false;
     }
 
     /**
