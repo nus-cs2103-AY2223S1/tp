@@ -3,8 +3,7 @@
 
 #### Implementation
 
-The tagging functionality is facilitated by the `UniqueTagList` stored in `FoodRem`.
-Additionally, each `Item` stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
+The tagging functionality is facilitated by the `UniqueTagList` stored in `FoodRem`. Additionally, each `Item` stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
 Creating, updating and deleting tags will modify the tags within the `UniqueTagList` which contains all existing `Tag` objects.
 
@@ -17,9 +16,7 @@ Given below is an UML diagram of `Tag` and the classes related to it:
 
 **Aspect: Storage of `Tag`**
 
-* **Alternative 1 (current choice):**
-Store `Tag` in a separate `UniqueTagList` and each `Item` stores its own set of associated `Tag`
-
+* **Alternative 1 (current choice):** Store `Tag` in a separate `UniqueTagList` and each `Item` stores its own set of associated `Tag`
   * Pros:
     * Easy to implement
     * Allows users to create and rename `Tag` to suit their own use case instead of just providing a preset list of `Tag` that cannot be modified or extended
