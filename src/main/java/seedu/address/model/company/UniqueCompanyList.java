@@ -49,6 +49,10 @@ public class UniqueCompanyList implements Iterable<Company> {
         internalList.add(toAdd);
     }
 
+    public int size() {
+        return internalList.size();
+    }
+
     /**
      * Replaces the Company {@code target} in the list with {@code editedCompany}.
      * {@code target} must exist in the list.
@@ -78,6 +82,10 @@ public class UniqueCompanyList implements Iterable<Company> {
         if (!internalList.remove(toRemove)) {
             throw new CompanyNotFoundException();
         }
+    }
+
+    public Company removeByIndex(int index) {
+        return internalList.remove(index);
     }
 
     public void setCompanies(UniqueCompanyList replacement) {

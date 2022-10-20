@@ -177,4 +177,27 @@ public class UniqueCompanyListTest {
         CompanyName bobName = BOB.getName();
         assertEquals(companies.toString(), "Companies: " + aliceName + ", " + bobName);
     }
+
+    @Test
+    public void removeByIndex_removesCorrectCompany_success() {
+        UniqueCompanyList companies = new UniqueCompanyList();
+        companies.add(ALICE);
+        companies.add(BOB);
+
+        Company expectedDeletedCompany = BOB;
+        Company deletedCompany = companies.removeByIndex(1);
+        assertEquals(deletedCompany, expectedDeletedCompany);
+    }
+
+    @Test
+    public void size_returnsCorrectSize_success() {
+        UniqueCompanyList companies = new UniqueCompanyList();
+        assertEquals(companies.size(), 0);
+
+        companies.add(ALICE);
+        assertEquals(companies.size(), 1);
+
+        companies.add(BOB);
+        assertEquals(companies.size(), 2);
+    }
 }
