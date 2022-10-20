@@ -144,6 +144,11 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
         final Optional<Birthday> modelBirthday;
+
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
         modelBirthday = birthday.equals("")
                 ? Optional.empty()
                 : Optional.of(new Birthday(ParserUtil.parseDate(birthday)));
