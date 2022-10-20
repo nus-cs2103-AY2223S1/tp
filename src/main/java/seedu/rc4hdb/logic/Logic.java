@@ -2,6 +2,7 @@ package seedu.rc4hdb.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.logic.commands.CommandResult;
@@ -36,7 +37,7 @@ public interface Logic {
     /**
      * Returns the user prefs' resident book file path.
      */
-    Path getResidentBookFilePath();
+    Path getUserPrefsResidentBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -49,4 +50,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     ObservableList<String> getObservableFields();
+
+    ObservableValue<Path> getObservableResidentBookFilePath();
 }
