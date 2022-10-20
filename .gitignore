@@ -7,10 +7,11 @@ src/main/resources/docs/
 .settings/
 .classpath
 
-# IDEA files
+# IDE files
 /.idea/
 /out/
 /*.iml
+/.vscode/*
 
 # Storage/log files
 /data/
