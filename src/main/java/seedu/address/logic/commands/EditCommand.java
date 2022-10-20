@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
@@ -31,6 +32,7 @@ import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
@@ -65,7 +67,8 @@ public class EditCommand extends Command {
         + "[" + PREFIX_RATING + "RATING]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
-        + PREFIX_EMAIL + "johndoe@example.com";
+        + PREFIX_EMAIL + "johndoe@example.com"
+        + PREFIX_OFFICEHOUR + "2/23:00/2";
 
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -159,9 +162,10 @@ public class EditCommand extends Command {
         Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
         Specialisation updatedSpecialisation = editPersonDescriptor.getSpecialisation()
                 .orElse(personToEdit.getSpecialisation());
+        OfficeHour updatedOfficeHour = editPersonDescriptor.getOfficeHour().orElse(personToEdit.getOfficeHour());
 
         return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
-            updatedLocation, updatedUsername, updatedRating, updatedSpecialisation);
+            updatedLocation, updatedUsername, updatedRating, updatedSpecialisation, updatedOfficeHour);
     }
 
     /**
@@ -222,6 +226,9 @@ public class EditCommand extends Command {
         private Rating rating;
         private Year year;
         private Specialisation specialisation;
+        private OfficeHour officeHour;
+
+
 
         public EditPersonDescriptor() {
         }
@@ -243,6 +250,7 @@ public class EditCommand extends Command {
             setRating(toCopy.rating);
             setYear(toCopy.year);
             setSpecialisation(toCopy.specialisation);
+            setOfficeHour(toCopy.officeHour);
         }
 
         /**
@@ -250,7 +258,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating,
-                    year, specialisation);
+                    year, specialisation, officeHour);
         }
 
         public void setName(Name name) {
@@ -349,6 +357,12 @@ public class EditCommand extends Command {
         public void setSpecialisation(Specialisation specialisation) {
             this.specialisation = specialisation;
         }
+        public void setOfficeHour(OfficeHour officeHour) {
+            this.officeHour = officeHour;
+        }
+        public Optional<OfficeHour> getOfficeHour() {
+            return Optional.ofNullable(officeHour);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -393,7 +407,8 @@ public class EditCommand extends Command {
                 && getGithubUsername().equals(e.getGithubUsername())
                 && getRating().equals(e.getRating())
                 && getYear().equals(e.getYear())
-                && getSpecialisation().equals(e.getSpecialisation());
+                && getSpecialisation().equals(e.getSpecialisation())
+                && getOfficeHour().equals(e.getOfficeHour());
         }
 
     }

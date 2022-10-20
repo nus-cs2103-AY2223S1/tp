@@ -114,4 +114,19 @@ public abstract class Person {
         }
         return -1;
     }
+
+    /**
+     * Returns the string short form of the Person to be used for FindCommand by type.
+     * @return the string short form.
+     */
+    public abstract String getTypeString();
+
+    /**
+     * Returns true if some or all the Person's module(s) match the provided set of modules.
+     * @param modulesSet the Set of modules to be matched against
+     * @param needsAllModules determines if all or some of the modules need to be matched.
+     * @return true if there is match in modules.
+     */
+    public abstract boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules);
+
 }
