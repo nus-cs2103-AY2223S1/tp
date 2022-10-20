@@ -1,6 +1,6 @@
 package seedu.address.logic.parser.event;
 
-import static seedu.address.logic.commands.profile.ViewProfilesCommand.MESSAGE_FAILURE;
+import static seedu.address.logic.commands.event.ViewEventsCommand.MESSAGE_FAILURE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 

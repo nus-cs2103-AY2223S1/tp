@@ -72,6 +72,12 @@ public class CommandParserTestUtil {
             userInput = " -" + ViewProfilesCommand.COMMAND_OPTION + " " + userInput;
         }
 
+        if (parser instanceof AddEventCommandParser) {
+            userInput = " -" + AddEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof ViewEventsCommandParser) {
+            userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
+        }
+
         try {
             parser.parse(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");
