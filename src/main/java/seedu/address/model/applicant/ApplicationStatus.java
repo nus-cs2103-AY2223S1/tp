@@ -12,6 +12,9 @@ public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "ApplicationStatus can only be 3 values (PENDING, ACCEPTED or REJECTED), and it should not be blank";
 
+    public static final String MESSAGE_STATUS_REJECTION =
+            "Completed ApplicationStatus can only be 2 values (ACCEPTED or REJECTED), and it should not be blank";
+
     private static final String PENDING = "pending";
     private static final String ACCEPTED = "accepted";
     private static final String REJECTED = "rejected";
@@ -37,10 +40,20 @@ public class ApplicationStatus {
     }
 
     /**
-     * Returns true only if a given string is a valid status.
+     * Returns true only if a given string is a valid application status.
      */
     public static boolean isValidApplicationStatus(String test) {
-        return test.equalsIgnoreCase(PENDING) || test.equalsIgnoreCase(ACCEPTED) || test.equalsIgnoreCase(REJECTED);
+        return test.equalsIgnoreCase(PENDING)
+                || test.equalsIgnoreCase(ACCEPTED)
+                || test.equalsIgnoreCase(REJECTED);
+    }
+
+    /**
+     * Returns true only if a given string is a valid and completed application status.
+     */
+    public static boolean isCompletedApplicationStatus(String test) {
+        return (!test.equalsIgnoreCase(PENDING))
+                && (test.equalsIgnoreCase(ACCEPTED) || test.equalsIgnoreCase(REJECTED));
     }
 
     @Override

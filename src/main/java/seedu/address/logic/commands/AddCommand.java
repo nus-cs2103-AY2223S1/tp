@@ -31,10 +31,10 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_SCHOLARSHIP + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_SCHOLARSHIP + "NUS Global Merit Scholarship "
             + PREFIX_APPLICATION_STATUS + "pending "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney ";
+            + PREFIX_TAG + "computerScience ";
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in TrackAScholar";
@@ -52,7 +52,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasApplicant(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }

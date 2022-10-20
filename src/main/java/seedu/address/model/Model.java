@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
 
 /**
  * The API of the Model component.
@@ -64,6 +66,11 @@ public interface Model {
     void deleteApplicant(Applicant target);
 
     /**
+     * Removes all applicants by completion status (accepted/pending).
+     */
+    void removeApplicant(ApplicationStatus applicationStatus);
+
+    /**
      * Adds the given applicant.
      * {@code applicant} must not already exist in TrackAScholar.
      */
@@ -76,6 +83,8 @@ public interface Model {
      * the same as another existing applicant in TrackAScholar.
      */
     void setApplicant(Applicant target, Applicant editedApplicant);
+
+    void sortApplicants(Comparator<Applicant> comparator);
 
     /** Returns an unmodifiable view of the filtered applicant list */
     ObservableList<Applicant> getFilteredApplicantList();

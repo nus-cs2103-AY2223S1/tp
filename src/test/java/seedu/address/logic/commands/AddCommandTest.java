@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import seedu.address.model.ReadOnlyTrackAScholar;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TrackAScholar;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
 import seedu.address.testutil.ApplicantBuilder;
 
 public class AddCommandTest {
@@ -79,74 +81,86 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        private static final String MESSAGE_RESTRICTED_METHOD = "This method should not be called.";
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public Path getTrackAScholarFilePath() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public void setTrackAScholarFilePath(Path trackAScholarFilePath) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public void addApplicant(Applicant applicant) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public void setTrackAScholar(ReadOnlyTrackAScholar newData) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public ReadOnlyTrackAScholar getTrackAScholar() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public boolean hasApplicant(Applicant applicant) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public void deleteApplicant(Applicant target) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
+        }
+
+        @Override
+        public void removeApplicant(ApplicationStatus applicationStatus) {
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public void setApplicant(Applicant target, Applicant editedApplicant) {
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
+        }
+
+        @Override
+        public void sortApplicants(Comparator<Applicant> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Applicant> getFilteredApplicantList() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
         public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
     }
 

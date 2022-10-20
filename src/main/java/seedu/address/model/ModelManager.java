@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
 
 /**
  * Represents the in-memory model of the TrackAScholar tracker data.
@@ -99,6 +101,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeApplicant(ApplicationStatus applicationStatus) {
+        trackAScholar.removeApplicantByStatus(applicationStatus);
+    }
+
+    @Override
     public void addApplicant(Applicant applicant) {
         trackAScholar.addApplicant(applicant);
         updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
@@ -109,6 +116,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedApplicant);
 
         trackAScholar.setApplicant(target, editedApplicant);
+    }
+
+    @Override
+    public void sortApplicants(Comparator<Applicant> comparator) {
+        requireNonNull(comparator);
+        trackAScholar.sortApplicants(comparator);
     }
 
     //=========== Filtered Applicant List Accessors =============================================================
