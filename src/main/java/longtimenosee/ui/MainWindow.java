@@ -87,6 +87,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -134,6 +135,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Updates the content placeholders to display either policies or persons.
+     *
      * @param tab The specified tab type. Either "policy" or "client".
      */
     void updateInnerContent(String tab) {
@@ -155,7 +157,6 @@ public class MainWindow extends UiPart<Stage> {
         case "income":
             personListPanelPlaceholder.getChildren().add(incomeChart.lineChart);
             break;
-            
         default:
             //Default case is to display clients
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -237,12 +238,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowEvent()) {
                 updateInnerContent("event");
+            }
 
             if (commandResult.isShowIncome()) {
                 updateInnerContent("income");
             }
 
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
@@ -250,3 +253,4 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 }
+
