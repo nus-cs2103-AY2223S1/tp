@@ -156,9 +156,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Delete Meeting Feature
 
-Syntax: `delMeeting i/1`
+Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
 
-Purpose: Delete a specified `meeting` from the Meeting List in `Model`
+Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 
 #### Implementation
 
@@ -167,13 +167,13 @@ Usage Scenario of `delMeeting`:
 1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
 2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
 
-Below is a sequence diagram that illustrates the execution of `delMeeting` command and the interaction with `Model`.
+Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
 
-![DeleteMeetingSequenceDiagram](images/DeleteSequenceDiagram.png)
+![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
 
 Below is an activity diagram that summarises the execution of `delMeeting`.
 
-![DeleteMeetingActivityDiagram](images/DeleteMeetingActivitiyDiagram.png)
+![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
 
 #### Design Considerations
 
