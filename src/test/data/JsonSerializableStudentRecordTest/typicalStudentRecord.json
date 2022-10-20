@@ -7,7 +7,7 @@
     "parentName": "May Pauline",
     "phone" : "94351253",
     "email" : "alice.pauline@gmail.com",
-    "tagged" : [ "friends" ]
+    "exams" : [ "CA2 90", "SA1 60" ]
   }, {
     "studentName" : "Benson Meier",
     "id": "345B",
@@ -15,7 +15,7 @@
     "parentName": "Johnson Meier",
     "phone" : "98765432",
     "email" : "bensonmeier@gmail.com",
-    "tagged" : [ "owesMoney", "friends" ]
+    "exams" : [ "CA1 90", "SA2 60" ]
   }, {
     "studentName" : "Carl Kurz",
     "id": "567F",
@@ -23,7 +23,7 @@
     "parentName": "Kenn Kurz",
     "phone" : "95352563",
     "email" : "carl@hotmail.com",
-    "tagged" : [ ]
+    "exams" : [ ]
   }, {
     "studentName" : "Daniel Meier",
     "id": "678D",
@@ -31,7 +31,7 @@
     "parentName": "Benn Meier",
     "phone" : "87652533",
     "email" : "daniel.meier@gmail.com",
-    "tagged" : [ "friends" ]
+    "exams" : [ "CA1 50", "CA2 70", "SA1 90", "SA2 60" ]
   }, {
     "studentName" : "Elle Meyer",
     "id": "890A",
@@ -39,7 +39,7 @@
     "parentName": "James Meyer",
     "phone" : "9482224",
     "email" : "elle@gmail.com",
-    "tagged" : [ ]
+    "exams" : [ ]
   }, {
     "studentName" : "Fiona Kunz",
     "id": "789C",
@@ -47,7 +47,7 @@
     "parentName": "Gordon Kunz",
     "phone" : "9482427",
     "email" : "kunz.fiona@gmail.com",
-    "tagged" : [ ]
+    "exams" : [ ]
   }, {
     "studentName" : "George Best",
     "id": "912B",
@@ -55,6 +55,6 @@
     "parentName": "Henry Best",
     "phone" : "9482442",
     "email" : "georgebest@example.com",
-    "tagged" : [ ]
+    "exams" : [ ]
   } ]
 }

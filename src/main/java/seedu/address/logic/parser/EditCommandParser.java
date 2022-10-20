@@ -4,14 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -86,8 +86,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (exams.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> examSet = exams.size() == 1 && exams.contains("") ? Collections.emptySet() : exams;
-        return Optional.of(ParserUtil.parseTags(examSet));
+        Collection<String> examSet = exams.size() == 1 && exams.contains("") ? new HashSet<>() : exams;
+        return Optional.of(ParserUtil.parseExams(examSet));
     }
 
 }

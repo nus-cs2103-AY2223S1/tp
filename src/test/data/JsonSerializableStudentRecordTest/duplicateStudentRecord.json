@@ -6,13 +6,14 @@
     "parentName": "Jace Pauline",
     "phone": "94351253",
     "email": "alicepauline@gmail.com",
-    "tagged": [ "friends" ]
+    "exams" : [ ]
   }, {
     "studentName": "Alice Pauline",
     "id": "456B",
     "className" : "1A",
     "parentName": "Jace Pauline",
     "phone": "94351253",
-    "email": "alicepauline@gmail.com"
+    "email": "alicepauline@gmail.com",
+    "exams" : [ ]
   } ]
 }

@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -58,7 +58,7 @@ public class AddStudCommandParser implements Parser<AddStudCommand> {
         if (!argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
-        Set<Exam> examSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_EXAM));
+        Set<Exam> examSet = ParserUtil.parseExams(argMultimap.getAllValues(PREFIX_EXAM));
 
         Student person = new Student(studentName, id, className, parentName, phone, email, examSet);
 

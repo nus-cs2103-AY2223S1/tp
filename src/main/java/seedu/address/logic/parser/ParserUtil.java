@@ -117,7 +117,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code exam} is invalid.
      */
-    public static Exam parseTag(String exam) throws ParseException {
+    public static Exam parseExam(String exam) throws ParseException {
         requireNonNull(exam);
         String trimmedExam = exam.trim();
         if (!Exam.isValidFormat(trimmedExam)) {
@@ -132,17 +132,17 @@ public class ParserUtil {
         if (!Exam.isValidScore(score)) {
             throw new ParseException(Exam.MESSAGE_SCORE_CONSTRAINTS);
         }
-        return new Exam(exam);
+        return new Exam(trimmedExam);
     }
 
     /**
      * Parses {@code Collection<String> exams} into a {@code Set<Exam>}.
      */
-    public static Set<Exam> parseTags(Collection<String> exams) throws ParseException {
+    public static Set<Exam> parseExams(Collection<String> exams) throws ParseException {
         requireNonNull(exams);
         Set<Exam> examSet = new HashSet<>();
         for (String exam : exams) {
-            Exam temp = parseTag(exam);
+            Exam temp = parseExam(exam);
             examSet.remove(temp); // Removes duplicate exam and overrides it with the latest one.
             examSet.add(temp);
         }

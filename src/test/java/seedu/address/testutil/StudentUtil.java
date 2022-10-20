@@ -2,18 +2,18 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddStudCommand;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Student;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Exam;
 
 /**
  * A utility class for Student.
@@ -39,7 +39,7 @@ public class StudentUtil {
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         student.getExams().stream().forEach(
-            s -> sb.append(PREFIX_EXAM + s.tagName + " ")
+            s -> sb.append(PREFIX_EXAM + s.toString() + " ")
         );
         return sb.toString();
     }
@@ -56,11 +56,11 @@ public class StudentUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         if (descriptor.getExams().isPresent()) {
-            Set<Tag> tags = descriptor.getExams().get();
+            Set<Exam> tags = descriptor.getExams().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_EXAM);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_EXAM).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_EXAM).append(s.toString()).append(" "));
             }
         }
         return sb.toString();

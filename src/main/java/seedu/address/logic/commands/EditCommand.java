@@ -3,14 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -103,7 +102,7 @@ public class EditCommand extends Command {
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Set<Exam> updatedExams = editStudentDescriptor.getExams().orElse(Collections.emptySet());
+        Set<Exam> updatedExams = editStudentDescriptor.getExams().orElse(new HashSet<>());
         updatedExams.addAll(studentToEdit.getExams());
 
         return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,

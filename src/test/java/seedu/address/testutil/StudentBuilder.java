@@ -23,6 +23,8 @@ public class StudentBuilder {
     public static final String DEFAULT_PARENT_NAME = "John Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amybee@gmail.com";
+    public static final String DEFAULT_EXAM_1 = "CA2 90";
+    public static final String DEFAULT_EXAM_2 = "SA1 60";
 
     private Name studentName;
     private Id id;
@@ -82,7 +84,7 @@ public class StudentBuilder {
      * Parses the {@code exams} into a {@code Set<Exam>} and set it to the {@code Student} that we are building.
      */
     public StudentBuilder withExams(String ... exams) {
-        this.exams = SampleDataUtil.getExamSet(exams);
+        this.exams.addAll(SampleDataUtil.getExamSet(exams));
         return this;
     }
 

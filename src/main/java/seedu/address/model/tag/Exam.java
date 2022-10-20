@@ -33,6 +33,9 @@ public class Exam {
         this.score = Integer.parseInt(score);
     }
 
+    /**
+     * Returns true if a given string is a valid exam format.
+     */
     public static boolean isValidFormat(String test) {
         String[] args = test.split("\\s+");
         return args.length == 2;
