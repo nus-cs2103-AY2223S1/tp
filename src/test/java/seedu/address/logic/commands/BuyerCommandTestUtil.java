@@ -176,7 +176,7 @@ public class BuyerCommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
 
         Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
-        final String[] splitName = property.getName().fullName.split("\\s+");
+        final String[] splitName = property.getPropertyName().fullName.split("\\s+");
         model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPropertyList().size());

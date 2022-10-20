@@ -172,7 +172,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different filteredPropertyList -> returns false
-        String[] keywordsForPeak = PEAKRESIDENCE.getName().fullName.split("\\s+");
+        String[] keywordsForPeak = PEAKRESIDENCE.getPropertyName().fullName.split("\\s+");
         modelManager.updateFilteredPropertyList(
                 new PropertyNameContainsKeywordsPredicate(Arrays.asList(keywordsForPeak)));
         assertFalse(modelManager.equals(new ModelManager(personBook, propertyBook, userPrefs)));

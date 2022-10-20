@@ -2,7 +2,10 @@ package seedu.address.testutil;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.property.Description;
+import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -17,13 +20,14 @@ public class PropertyBuilder {
     public static final String DEFAULT_ADDRESS = "333 Thompson Road";
     public static final String DEFAULT_DESCRIPTION = "A 5-storey condo on top of a hill - "
             + "Peak Residence offers you serenity away from the hustle and bustle with breathtaking views all around.";
-    public static final String DEFAULT_SELLER = "Aaron";
+    public static final String DEFAULT_OWNER_NAME = "John Doe";
+    public static final String DEFAULT_OWNER_PHONE = "94351253";
 
     private PropertyName name;
     private Price price;
     private Address address;
     private Description description;
-    private String seller;
+    private Owner owner;
     private Characteristics characteristics;
 
     /**
@@ -34,19 +38,19 @@ public class PropertyBuilder {
         price = new Price(DEFAULT_PRICE);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
-        seller = DEFAULT_SELLER;
         characteristics = null;
+        owner = new Owner(new Name(DEFAULT_OWNER_NAME), new Phone(DEFAULT_OWNER_PHONE));
     }
 
     /**
      * Initializes the PropertyBuilder with the data of {@code propertyToCopy}.
      */
     public PropertyBuilder(Property propertyToCopy) {
-        name = propertyToCopy.getName();
+        name = propertyToCopy.getPropertyName();
         price = propertyToCopy.getPrice();
         description = propertyToCopy.getDescription();
         address = propertyToCopy.getAddress();
-        seller = propertyToCopy.getSeller();
+        owner = propertyToCopy.getOwner();
         characteristics = propertyToCopy.getCharacteristics().orElse(null);
     }
 
@@ -83,10 +87,10 @@ public class PropertyBuilder {
     }
 
     /**
-     * Sets the {@code Seller} of the {@code Property} that we are building.
+     * Sets the {@code Owner} of the {@code Property} that we are building.
      */
-    public PropertyBuilder withSeller(String seller) {
-        this.seller = seller;
+    public PropertyBuilder withOwner(Owner owner) {
+        this.owner = owner;
         return this;
     }
 
@@ -107,6 +111,6 @@ public class PropertyBuilder {
     }
 
     public Property build() {
-        return new Property(name, price, address, description, seller, characteristics);
+        return new Property(name, price, address, description, characteristics, owner);
     }
 }
