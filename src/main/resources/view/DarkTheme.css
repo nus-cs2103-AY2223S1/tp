@@ -351,6 +351,10 @@
     -fx-font-size: 11;
 }
 
+#badges {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
 
 /*
 CommandBox
