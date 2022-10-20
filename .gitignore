@@ -3,9 +3,9 @@
 /build/
 src/main/resources/docs/
 /bin/
-.project
-.settings/
 .classpath
+.project
+/.settings/
 
 # IDE files
 /.idea/
