@@ -172,6 +172,7 @@ The following sequence diagram shows how the edit feature works, following the f
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 The following activity diagram summarizes the flow of when a user enters an edit command:
+
 ![EditActivityDiagram](images/EditCommandActivityDiagram.png)
 
 **Aspect: How `edit` is executed**
