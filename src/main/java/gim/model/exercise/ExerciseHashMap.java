@@ -118,7 +118,7 @@ public class ExerciseHashMap {
 
     /**
      * Returns an alphabetically sorted ArrayList of all key values in ExerciseHashMap
-     * @return Returns the Name of the first Exercise instance
+     * @return Returns ArrayList of String
      */
     public ArrayList<String> getAllKeys() {
         Set<Name> keySet = exerciseHashMap.keySet();
