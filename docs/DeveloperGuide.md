@@ -198,6 +198,10 @@ the original `Module` object in Plannit using the `Model::setModule` method.
 
 The following sequence diagram shows how the 'add link' feature works:
 ![AddLinkSequenceDiagram](images/AddLinkFeature/AddLinkSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The lifeline for `AddLinkCommand` and `AddLinkCommandParser` should end at the destroy marker (X) 
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The following activity diagram shows how the 'add link' feature works:
 ![AddLinkActivityDiagram](images/AddLinkFeature/AddLinkActivityDiagram.png)
