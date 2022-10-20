@@ -238,6 +238,23 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Implemented\] Find Records
+
+#### Implementation: 
+The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
+which extends `Predicate` and `AddressbookParser` repectively. 
+
+`FindRecordCommandParser` implements the following operations:
+* `FindRecordCommandParser#parse()` - Parses the input arguments by storing each prefix and its respective
+values as an `ArgumentMultimap`.
+
+`RecordContainsKeywordPredicate` implements the following operations:
+* `RecordContainsKeywordPredicate#test()` - Tests whether the record under testing contains any of the keywords
+in the correct fields.
+
+Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage and how the find record mechanism works at each step.
 
 --------------------------------------------------------------------------------------------------------------------
 
