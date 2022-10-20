@@ -173,6 +173,11 @@ public interface Model {
      */
     void addConsultation(Consultation consultation);
 
+    /**
+     * Clears all existing consultations.
+     */
+    void clearConsultations();
+
     /** Returns an unmodifiable view of the filtered consultation list */
     ObservableList<Consultation> getFilteredConsultationList();
 

@@ -81,6 +81,13 @@ public class UniqueConsultationList implements Iterable<Consultation> {
     }
 
     /**
+     * Clears all existing consultations.
+     */
+    public void clear() {
+        internalList.remove(0, internalList.size());
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Consultation > asUnmodifiableObservableList() {

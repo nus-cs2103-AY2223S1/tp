@@ -231,6 +231,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Removes all {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void clearConsultations() {
+        consultations.clear();
+    }
+
+    /**
      * Returns an array containing number of specific grade.
      */
     public int[] getGradeData() {

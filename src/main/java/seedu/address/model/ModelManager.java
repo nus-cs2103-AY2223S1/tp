@@ -270,6 +270,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearConsultations() {
+        addressBook.clearConsultations();
+    }
+    @Override
     public void deleteConsultation(Consultation target) {
         addressBook.removeConsultation(target);
     }
