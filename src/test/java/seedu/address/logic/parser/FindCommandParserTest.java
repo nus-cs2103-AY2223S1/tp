@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.predicate.ClassContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 
@@ -106,6 +107,19 @@ public class FindCommandParserTest {
 
         // leading and trailing whitespaces
         assertParseSuccess(parser, " dt/   2022-10-10  ", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_invalidDate() {
+        // different format
+        assertParseFailure(parser, " dt/10 oct", Class.INVALID_DATETIME_ERROR_MESSAGE);
+
+        // incomplete date format
+        assertParseFailure(parser, " dt/2022-10", Class.INVALID_DATETIME_ERROR_MESSAGE);
+        assertParseFailure(parser, " dt/2022", Class.INVALID_DATETIME_ERROR_MESSAGE);
+
+        // empty
+        assertParseFailure(parser, " dt/", Class.INVALID_DATETIME_ERROR_MESSAGE);
     }
 
 }
