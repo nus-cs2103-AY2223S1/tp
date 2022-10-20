@@ -8,6 +8,6 @@ public class TimeSlotTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Session(null));
+        assertThrows(NullPointerException.class, () -> new TimeSlot(null, null));
     }
 }
