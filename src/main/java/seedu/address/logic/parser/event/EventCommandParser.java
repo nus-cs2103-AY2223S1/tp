@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
-import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
+import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
