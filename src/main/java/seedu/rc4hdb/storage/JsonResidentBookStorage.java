@@ -7,12 +7,15 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.commons.util.JsonUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.ResidentBook;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * A class to access ResidentBook data stored as a json file on the hard disk.
@@ -21,19 +24,24 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonResidentBookStorage.class);
 
-    private Path filePath;
+    private ObservableItem<Path> filePath;
 
     public JsonResidentBookStorage(Path filePath) {
-        this.filePath = filePath;
+        this.filePath = new ObservableItem<>(filePath);
     }
 
     public Path getResidentBookFilePath() {
+        return filePath.getValue();
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableResidentBookFilePath() {
         return filePath;
     }
 
     @Override
     public Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException {
-        return readResidentBook(filePath);
+        return readResidentBook(filePath.getValue());
     }
 
     /**
@@ -60,7 +68,7 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
     }
 
     public void saveResidentBook(ReadOnlyResidentBook residentBook) throws IOException {
-        saveResidentBook(residentBook, filePath);
+        saveResidentBook(residentBook, filePath.getValue());
     }
 
     /**
@@ -74,6 +82,50 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(residentBook), filePath);
+    }
+
+    /**
+     * Deletes the resident book data file corresponding to {@code filePath}.
+     *
+     * @param filePath path of the data file to be deleted. Cannot be null.
+     */
+    public void deleteResidentBookFile(Path filePath) throws IOException {
+        requireNonNull(filePath);
+        FileUtil.deleteFile(filePath);
+    }
+
+    /**
+     * Creates the resident book data file corresponding to {@code filePath}.
+     *
+     * @param filePath path of the data file to be created. Cannot be null.
+     */
+    public void createResidentBookFile(Path filePath) throws IOException {
+        requireNonNull(filePath);
+        FileUtil.createFile(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableResidentBook(new ResidentBook()), filePath);
+    }
+
+    @Override
+    public void setResidentBookFilePath(Path filePath) {
+        requireNonNull(filePath);
+        this.filePath.setValue(filePath);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof JsonResidentBookStorage)) {
+            return false;
+        }
+
+        // state check
+        JsonResidentBookStorage other = (JsonResidentBookStorage) obj;
+        return filePath.equals(other.filePath);
     }
 
 }

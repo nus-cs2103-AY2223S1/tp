@@ -6,21 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.rc4hdb.commons.core.GuiSettings;
+import seedu.rc4hdb.logic.ModelStub;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
-import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.testutil.ResidentBuilder;
@@ -77,98 +71,18 @@ public class AddCommandTest {
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getResidentBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setResidentBookFilePath(Path residentBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addResident(Resident resident) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setResidentBook(ReadOnlyResidentBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyResidentBook getResidentBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasResident(Resident resident) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteResident(Resident target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setResident(Resident target, Resident editedResident) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Resident> getFilteredResidentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredResidentList(Predicate<Resident> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<String> getObservableFields() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setObservableFields(List<String> observableFields) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
+    //======================== Start of model stubs ===============================================
 
     /**
      * A Model stub that contains a single resident.
      */
-    private class ModelStubWithResident extends ModelStub {
+    public static class ModelStubWithResident extends ModelStub {
         private final Resident resident;
 
-        ModelStubWithResident(Resident resident) {
+        /**
+         * Constructs a model stub with a single resident.
+         */
+        public ModelStubWithResident(Resident resident) {
             requireNonNull(resident);
             this.resident = resident;
         }
@@ -183,8 +97,8 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the resident being added.
      */
-    private class ModelStubAcceptingResidentAdded extends ModelStub {
-        final ArrayList<Resident> residentsAdded = new ArrayList<>();
+    public static class ModelStubAcceptingResidentAdded extends ModelStub {
+        public final ArrayList<Resident> residentsAdded = new ArrayList<>();
 
         @Override
         public boolean hasResident(Resident resident) {
