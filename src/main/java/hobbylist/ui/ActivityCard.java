@@ -38,6 +38,8 @@ public class ActivityCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane date;
+    @FXML
+    private Label rating;
 
     /**
      * Creates a {@code ActivityCard} with the given {@code Activity} and index to display.
@@ -53,11 +55,17 @@ public class ActivityCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         activity.getDate().stream().forEach(d -> date.getChildren().add(new Label(d.toString())));
-
+        
         tags.getChildren().forEach(child -> {
             Label tagLabel = (Label) child;
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
+        
+        if (activity.getRating() != 0) {
+            Label ratingLabel = new Label(new String(new char[activity.getRating()]).replace("\0", "★"));
+            ratingLabel.setStyle("-fx-background-color: " + String.format("#%06X", (0x2e2e2e)));
+            tags.getChildren().add(ratingLabel);
+        }
     }
 
     private String intToHexColor(String tag) {

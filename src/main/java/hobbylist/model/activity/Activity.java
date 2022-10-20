@@ -24,9 +24,10 @@ public class Activity {
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Date> listDate = new ArrayList<>();
+    private int rating = 0;
 
     /**
-     * Every field must be present and not null.
+     * Constructor without rating. Every field excpet rating must be present and not null.
      */
     public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate) {
         CollectionUtil.requireAllNonNull(name, description, tags, listDate);
@@ -34,6 +35,19 @@ public class Activity {
         this.description = description;
         this.tags.addAll(tags);
         this.listDate.addAll(listDate);
+    }
+
+
+    /**
+     * Constructor with rating. Every field must be present and not null.
+     */
+    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, int rating) {
+        CollectionUtil.requireAllNonNull(name, description, tags, listDate, rating);
+        this.name = name;
+        this.description = description;
+        this.tags.addAll(tags);
+        this.listDate.addAll(listDate);
+        this.rating = rating;
     }
 
     public Name getName() {
@@ -54,7 +68,9 @@ public class Activity {
     public List<Date> getDate() {
         return this.listDate;
     }
-
+    public int getRating() {
+        return this.rating;
+    }
 
 
     /**
@@ -113,6 +129,10 @@ public class Activity {
         if (!listDate.isEmpty()) {
             builder.append("; Date: ")
                     .append(this.listDate.get(0).toString());
+        }
+        if (rating != 0) {
+            builder.append("; Rating: ")
+                    .append(rating);
         }
         return builder.toString();
     }
