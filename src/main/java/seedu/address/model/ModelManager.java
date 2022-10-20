@@ -120,6 +120,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean conflictScheduleWithTarget(Schedule schedule, Schedule target) {
+        requireNonNull(schedule);
+        return addressBook.conflictScheduleWithTarget(schedule, target);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -278,7 +284,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-
         return filteredSchedule;
     }
 
@@ -287,7 +292,6 @@ public class ModelManager implements Model {
         return new FilteredList<>(this.addressBook.getScheduleList());
 
     }
-
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {

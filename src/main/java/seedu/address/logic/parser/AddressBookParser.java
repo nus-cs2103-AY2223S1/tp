@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.schedule.AddScheduleCommand;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -36,6 +38,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -61,6 +64,7 @@ public class AddressBookParser {
             return new AddModuleCommandParser().parse(arguments);
 
         case AddScheduleCommand.COMMAND_WORD:
+            logger.fine("User creates an add schedule command ");
             return new AddScheduleCommandParser().parse(arguments);
 
         case EditStuCommand.COMMAND_WORD:
@@ -70,6 +74,7 @@ public class AddressBookParser {
             return new EditModuleCommandParser().parse(arguments);
 
         case EditScheduleCommand.COMMAND_WORD:
+            logger.fine("User creates an edit schedule command ");
             return new EditScheduleCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
@@ -79,6 +84,7 @@ public class AddressBookParser {
             return new DeleteModuleCommandParser().parse(arguments);
 
         case DeleteScheduleCommand.COMMAND_WORD:
+            logger.fine("User creates a delete schedule command ");
             return new DeleteScheduleCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:

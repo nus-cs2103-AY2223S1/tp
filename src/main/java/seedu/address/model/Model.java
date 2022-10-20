@@ -78,6 +78,11 @@ public interface Model {
     boolean conflictSchedule(Schedule schedule);
 
     /**
+     * Checks if the new schedule conflicts with existing schedules except the target.
+     */
+    boolean conflictScheduleWithTarget(Schedule schedule, Schedule target);
+
+    /**
      * Deletes the given person.
      * The person must exist in the ProfNUS.
      */
