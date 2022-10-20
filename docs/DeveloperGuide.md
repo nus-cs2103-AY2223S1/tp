@@ -154,85 +154,56 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Add/delete tag feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed add/delete tag mechanism operates for both contacts and tasks in YellowBook.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Every instance of AddTagCommand and DeleteTagCommand is created with two booleans.
+For AddTagCommand, they are addTagToTask and addTagToContact. 
+For DeleteTagCommand, they are removeTagFromTask and removeTagFromContact.
+Only one of these booleans will be true. Otherwise, an exception is thrown.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Depending on the status of these booleans, an EditTaskDescriptor or EditPersonDescriptor is created respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+This descriptor object is then used to modify the list of tags attached to the selected task/contact. 
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+A new contact/task is created, with all attributes copied over from the original person, except for the list of tags, where the modified version is used.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+This contact/task then replaces the previous contact/task in the YellowBook via `AddressBook#setPerson()`.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Given below is an example usage scenario and how the add/delete tag mechanism behaves at each step.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Step 1. The user executes `addL c/1 t/CS2103T` to add the tag "CS2103T" to the first contact in the contact list. 
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The above command will fail if the contact list is empty. An error message will be displayed informing the user.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 2. The user now decides that adding the tag was a mistake, and decides to undo that action by executing `deleteT c/1 l/CS2103T`.
 
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The tag provided in the `deleteL` command must be an exact match for that provided in the `addL` command. Matching is case-sensitive. Otherwise, YellowBook will display an error message stating that no such tag is present on the selected user.
 
 </div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![AddTagSequenceDiagram](images/AddTagSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+* **Alternative 1 (current choice):** Implement a static class to edit tag list.
+  * Pros: Preserves immutability of Contact and Task. 
+  * Cons: Longer code, requires writing a new class.
+  
+* **Alternative 2:** Use the existing EditContact and EditTask classes.
+    * Pros: Requires no additional code.
+    * Cons: Increases coupling. Will fail if the associated classes stop working.
 
 ### Sort feature
 
@@ -252,7 +223,7 @@ Step 1. The user launches the application with some tasks in the task list alrea
 Step 2. The user executes `sortD` command to sort the task list by deadline. The `sortD` command calls `Model#sortByDeadline()`, causing the task list to sort by deadline.
 The following sequence diagram shows how the sort by deadline operation works:
 
-![UndoSequenceDiagram](images/SortByDeadlineSequenceDiagram.png)
+![SortByDeadlineSequenceDiagram](images/SortByDeadlineSequenceDiagram.png)
 
 Step 3. The user has seen the most urgent tasks to be completed but realises that there is one more task that has not been added. The user executes `addT d/do …` to add a new task.  The `addT` command eventually calls `TaskList#sortByDeadline()` to sort the task list after adding the new task.
 
