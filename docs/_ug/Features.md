@@ -31,8 +31,8 @@ Command: `help [COMMAND_WORD]`
 Example:
 ```text
 help
-help delete
-held help
+help del
+help help
 ```
 
 Output:
@@ -47,10 +47,23 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 --- 
 
 ### Reset the application
+Command: `reset`
+
+> Description: Resets FoodRem program by clearing all items and tags currently stored.
+
+---
+
+Example:
+
+Input
+
+```text
+exit
+```
 
 ### Exit the application
 
-Command: `bye`
+Command: `exit`
 
 > Description: Exits FoodRem program.
 
@@ -61,5 +74,5 @@ Example:
 Input
 
 ```text
-bye
+exit
 ```
