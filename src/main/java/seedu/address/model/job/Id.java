@@ -11,7 +11,7 @@ public class Id {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Job ID should be alphanumeric";
+            "Job ID should be upper case letters and/or numeric, and it should not be blank or spaces only";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public final String value;
 
