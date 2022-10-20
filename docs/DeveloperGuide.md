@@ -158,9 +158,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Implementation
 
-The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely Student, Tutor and Tuition Class. It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST` (PERSON_LIST is to be removed in future version). 
+The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST` (PERSON_LIST is to be removed in future version). 
 
-The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. As Student, Tutor and Tuition Class are stored in `FilteredList` `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, `ListType` `type` would indicate which of the three would be operated on by the `Logic` component. Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
+The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. As `Student`, `Tutor` and `TuitionClass` instances are stored in `FilteredList` `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, `ListType` `type` would indicate which of the three would be operated on by the `Logic` component. Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
 
 * `Model#updateCurrentListType()` - Updates the `type` to the specified list type.
 * `Model#getCurrentListType()` - Returns the `ListType` `type` that the `ModelManager` currently stores.
