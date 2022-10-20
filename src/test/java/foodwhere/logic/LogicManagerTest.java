@@ -24,10 +24,10 @@ import foodwhere.model.ModelManager;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.UserPrefs;
 import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.StallBuilder;
 import foodwhere.storage.JsonAddressBookStorage;
 import foodwhere.storage.JsonUserPrefsStorage;
 import foodwhere.storage.StorageManager;
-import foodwhere.testutil.StallBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

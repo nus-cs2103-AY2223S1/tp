@@ -21,7 +21,7 @@ import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.ReadOnlyUserPrefs;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
-import foodwhere.testutil.StallBuilder;
+import foodwhere.model.stall.StallBuilder;
 import javafx.collections.ObservableList;
 
 public class SAddCommandTest {

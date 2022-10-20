@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import foodwhere.logic.commands.CommandTestUtil;
 import foodwhere.model.stall.exceptions.DuplicateStallException;
 import foodwhere.model.stall.exceptions.StallNotFoundException;
-import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
 
 public class UniqueStallListTest {

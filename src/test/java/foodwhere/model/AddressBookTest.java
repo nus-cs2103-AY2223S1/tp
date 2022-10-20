@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.StallBuilder;
 import foodwhere.model.stall.exceptions.DuplicateStallException;
-import foodwhere.testutil.StallBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
