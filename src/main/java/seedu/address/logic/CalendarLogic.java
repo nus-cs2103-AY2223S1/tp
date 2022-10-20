@@ -160,7 +160,9 @@ public class CalendarLogic {
     public void previous() {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getPreviousMonth(currentMonth);
-        topCalendar.getChildren().set(0, getTextHeader());
+        Text newMonthHeader = getTextHeader();
+        topCalendar.getChildren().set(0, newMonthHeader);
+        topCalendar.setMargin(newMonthHeader, new Insets(0, 50, 0, 0));
         resetCalendarBody();
         drawBody();
     }
@@ -172,7 +174,9 @@ public class CalendarLogic {
         //resetGridPane();
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getNextMonth(currentMonth);
-        topCalendar.getChildren().set(0, getTextHeader());
+        Text newMonthHeader = getTextHeader();
+        topCalendar.getChildren().set(0, newMonthHeader);
+        topCalendar.setMargin(newMonthHeader, new Insets(0, 50, 0, 0));
         resetCalendarBody();
         drawBody();
     }
