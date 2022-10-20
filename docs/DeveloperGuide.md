@@ -299,6 +299,18 @@ The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
 The following sequence diagram show how the create team operation works:
 ![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
 
+### Edit Team Feature
+
+#### Implementation
+
+The Edit Team Feature allows the user to edit the name of a pre-existing team in EZLead.
+
+Step 1. The user wishes to change the name of first team to Team1. The user executes `create t/1 n/Team1`.
+
+Step 2. The parser will create a `editTeam` command using the given team index and new name.
+The `editTeam` command will call `Model#setTeamName` to change the name of the required team.
+
+
 _{more aspects and alternatives to be added}
 
 
