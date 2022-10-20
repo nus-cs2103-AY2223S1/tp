@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class UniquePolicyList
+Class Policy
+Class Commission
+Class Company
+Class Coverage
+Class Title
+
+Class OtherHiddenOutside #FFFFFF
+OtherHiddenOutside ..> "~* filtered" Policy
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> UniquePolicyList
+
+UniquePolicyList --> "~* all" Policy
+Policy *--> "1..*" Coverage
+Policy *--> Company
+Policy *--> Commission
+Policy *--> Title
+
+
+Commission -[hidden]right-> Company
+Commission -[hidden]right-> Coverage
+HiddenOutside -[hidden]right-> Policy
+OtherHiddenOutside -[hidden]-> HiddenOutside
+
+@enduml
