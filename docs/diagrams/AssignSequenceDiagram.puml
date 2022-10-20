@@ -1,0 +1,102 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "a:AssignCommand" as AssignCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "studentToAssign:Student" as StudentToAssign MODEL_COLOR
+participant "tutorToAssign:Tutor" as TutorToAssign MODEL_COLOR
+end box
+
+[-> LogicManager : execute("assign 1 n/P2 maths")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("assign 1 n/P2 maths")
+activate AddressBookParser
+
+create AssignCommand
+AddressBookParser -> AssignCommand
+activate AssignCommand
+
+AssignCommand --> AddressBookParser
+deactivate AssignCommand
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager --> AssignCommand : execute(model)
+activate AssignCommand
+
+AssignCommand --> Model : getCurrentListType()
+activate Model
+
+Model --> AssignCommand
+deactivate Model
+
+alt student list
+
+AssignCommand --> Model : getFilteredStudentList().get(Index.getZeroBased())
+activate Model
+
+Model --> AssignCommand : studentToAssign
+deactivate Model
+
+AssignCommand --> Model : getTuitionClass(className)
+activate Model
+
+Model --> AssignCommand : tuitionClassToBeAssigned
+deactivate Model
+
+AssignCommand --> StudentToAssign : assignClassToStudent(tuitionClassToBeAssigned)
+activate StudentToAssign
+
+StudentToAssign --> AssignCommand
+deactivate StudentToAssign
+
+else tutor list
+
+AssignCommand --> Model : getFilteredTutorList().get(Index.getZeroBased())
+activate Model
+
+Model --> AssignCommand : tutorToAssign
+deactivate Model
+
+AssignCommand --> Model : getTuitionClass(className)
+activate Model
+
+Model --> AssignCommand : tuitionClassToBeAssignedTo
+deactivate Model
+
+AssignCommand --> TutorToAssign : assignClassToTutor(tuitionClassToBeAssignedTo)
+activate TutorToAssign
+
+TutorToAssign --> AssignCommand
+deactivate TutorToAssign
+
+end
+
+create CommandResult
+AssignCommand --> CommandResult
+activate CommandResult
+
+CommandResult --> AssignCommand
+deactivate CommandResult
+CommandResult -[hidden]-> AssignCommand
+destroy CommandResult
+
+AssignCommand --> LogicManager : commandResult
+deactivate AssignCommand
+
+AssignCommand -[hidden]-> LogicManager
+destroy AssignCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

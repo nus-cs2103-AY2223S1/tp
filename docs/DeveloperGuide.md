@@ -232,7 +232,58 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+{more aspects and alternatives to be added}_
+
+### \[Implemented\] Assign/unassign feature
+
+#### Implementation
+
+User would be required to input the command `assign` followed by the index of the person that the user want 
+to assign a class to. Lastly, user would have to input the exact tuition class name in the following prefix 
+and syntax `n/[Class Name]` to specify which tuition class they want to assign to the specified person.
+
+The `assign` and `unassign` features requires the user to be currently be either in student or tutor list.
+If the user is currently not in any of the two lists, the feature will not work and user would be prompted
+to go to the valid current list through a `command exception`.
+
+During the execution of `assign` command, it would first check for the type of current list the user is in
+as mentioned above. If the current list is student list, the index of assign command would be referred to the
+student list and same for if the current list is a tutor list. 
+
+After, the index that the user inputted would be checked 
+to see if it is within the size of the current list. If it exceeds the size of the list, a `command exception` would be 
+thrown and user would be informed of their invalid index. 
+
+Then with the tuition class name that the user inputted and parsed, it would
+be searched among the list of tuition class for matching names. If there is no matching tuition class in the list, 
+a `command exception` would be thrown and user would be informed that the tuition class they inputted does not exist.
+
+If there is no `command exception` thrown due to the above scenarios, the tuition class would be assigned to the 
+specified student/tutor.
+
+The following sequence diagram shows how the `assign` operation works:
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+
+The `unassign` command just does the opposite - it calls `Student#unassignClassFromStudent`/ 
+`Tutor#unassignClassFromTutor` instead which remove the specified tuition class from the list of
+tuition classes in the student/tutor.
+
+#### Design considerations:
+
+**Aspect: How assign & unassign executes:**
+
+* **Alternate 1 (current choice)):** `assign`/`unassign` just involves adding / removing tuition class from 
+  a list of tuition classes that every student/tutor has.
+  * Pros: Easier to implement and store in Json format.
+  * Cons: Not keeping a list of students and tutors for tuition classes may
+  result in a more tedious process when searching in the future.
+* **Alternate 2:** `assign`/`unassign` involves adding / removing tuition class from
+  a list of tuition classes that every student/tutor has and as well as the tuition classes
+  keeping a list of students and tutors it has. 
+  * Pros: Makes searching process easier in the future.
+  * Cons: Hard and tedious to implement the storing of information in Json. 
+  
+_
 
 ### \[Proposed\] Data archiving
 
@@ -284,6 +335,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | sole tuition admin | display a list of tutors                | get an overview of all the tutors in the tuition center                 |
 | `* * *`  | sole tuition admin | display a list of classes               | get an overview of all the classes in the tuition center                |
 | `* * *`  | sole tuition admin | find entities by name                   | locate details of entities without having to go through the entire list |
+| `* * *`  | sole tuition admin | assign a student to a class             |                                                                         |
+| `* * *`  | sole tuition admin | unassigned a student from a class       |                                                                         |
+| `* * *`  | sole tuition admin | assigned a tutor from a class           |                                                                         |
+| `* * *`  | sole tuition admin | unassigned a tutor from a class         |                                                                         |
 *{More to be added}*
 
 ### Use cases
