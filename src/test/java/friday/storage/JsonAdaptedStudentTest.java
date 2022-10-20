@@ -35,73 +35,73 @@ public class JsonAdaptedStudentTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(TypicalStudents.BENSON);
-        assertEquals(TypicalStudents.BENSON, person.toModelType());
+    public void toModelType_validStudentDetails_returnsStudent() throws Exception {
+        JsonAdaptedStudent student = new JsonAdaptedStudent(TypicalStudents.BENSON);
+        assertEquals(TypicalStudents.BENSON, student.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedStudent person =
+        JsonAdaptedStudent student =
                 new JsonAdaptedStudent(INVALID_NAME, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK,
                         false, VALID_REMARK, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent person =
+        JsonAdaptedStudent student =
                 new JsonAdaptedStudent(null, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK,
                         false, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_invalidTelegramHandle_throwsIllegalValueException() {
-        JsonAdaptedStudent person =
+        JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, INVALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK,
                         false, VALID_REMARK, VALID_TAGS);
         String expectedMessage = TelegramHandle.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_nullTelegramHandle_throwsIllegalValueException() {
-        JsonAdaptedStudent person =
+        JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, null, VALID_CONSULTATION, VALID_MASTERYCHECK,
                         false, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TelegramHandle.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedStudent person =
+        JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK,
                         false, VALID_REMARK, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        assertThrows(IllegalValueException.class, student::toModelType);
     }
 
 
     @Test
     public void toModelType_nullConsultation_throwsIllegalValueException() {
-        JsonAdaptedStudent person =
+        JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_TELEGRAMHANDLE, null, VALID_MASTERYCHECK,
                         false, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Consultation.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_nullMasteryCheck_throwsIllegalValueException() {
-        JsonAdaptedStudent person =
+        JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, null,
                         false, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MasteryCheck.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 }

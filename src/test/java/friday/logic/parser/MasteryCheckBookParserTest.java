@@ -4,7 +4,7 @@ import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static friday.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static friday.logic.parser.CliSyntax.PREFIX_REMARK;
 import static friday.testutil.Assert.assertThrows;
-import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,8 +30,8 @@ import friday.model.student.Remark;
 /*
 import friday.model.student.Student;
 import friday.testutil.EditStudentDescriptorBuilder;
-import friday.testutil.PersonBuilder;
-import friday.testutil.PersonUtil;
+import friday.testutil.StudentBuilder;
+import friday.testutil.StudentUtil;
 */
 
 public class MasteryCheckBookParserTest {
@@ -41,8 +41,8 @@ public class MasteryCheckBookParserTest {
     /*
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        Student student = new StudentBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
 
@@ -57,18 +57,18 @@ public class MasteryCheckBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
     }
 
     /*
     @Test
     public void parseCommand_edit() throws Exception {
-        Student student = new PersonBuilder().build();
+        Student student = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
      */
@@ -103,8 +103,8 @@ public class MasteryCheckBookParserTest {
     public void parseCommand_remark() throws Exception {
         final Remark remark = new Remark("Some remark.");
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark.value);
-        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_REMARK + remark.value);
+        assertEquals(new RemarkCommand(INDEX_FIRST_STUDENT, remark), command);
     }
 
     @Test

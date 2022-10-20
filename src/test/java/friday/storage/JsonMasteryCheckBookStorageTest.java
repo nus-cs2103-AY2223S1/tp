@@ -49,13 +49,13 @@ public class JsonMasteryCheckBookStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readAddressBook_invalidStudentAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudentAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readAddressBook_invalidAndValidStudentAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudentAddressBook.json"));
     }
     */
 
@@ -71,14 +71,14 @@ public class JsonMasteryCheckBookStorageTest {
         assertEquals(original, new Friday(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(TypicalStudents.HOON);
-        original.removePerson(TypicalStudents.ALICE);
+        original.addStudent(TypicalStudents.HOON);
+        original.removeStudent(TypicalStudents.ALICE);
         jsonFridayStorage.saveFriday(original, filePath);
         readBack = jsonFridayStorage.readFriday(filePath).get();
         assertEquals(original, new Friday(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(TypicalStudents.IDA);
+        original.addStudent(TypicalStudents.IDA);
         jsonFridayStorage.saveFriday(original); // file path not specified
         readBack = jsonFridayStorage.readFriday().get(); // file path not specified
         assertEquals(original, new Friday(readBack));
