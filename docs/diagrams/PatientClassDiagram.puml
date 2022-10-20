@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+Class Person
+Class Address
+Class DateTime
+Class Gender
+Class Email
+Class Name
+Class Patient
+Class Phone
+Class Tag
+Class Uid
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Person
+
+Person *--> "1" Uid
+Person *--> "1" Name
+Person *--> "1" Gender
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "1" Address
+Person *--> "*" Tag
+Patient -left-|> Person
+Patient *--> "*" DateTime
+
+Uid -[hidden]right-> Name
+Name -[hidden]right-> Gender
+Gender -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+
+@enduml
+
