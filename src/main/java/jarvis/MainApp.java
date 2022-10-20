@@ -13,8 +13,10 @@ import jarvis.commons.util.ConfigUtil;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.Logic;
 import jarvis.logic.LogicManager;
+import jarvis.model.LessonBook;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
+import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
@@ -41,7 +43,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 0, true);
+    public static final Version VERSION = new Version(1, 2, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -82,8 +84,10 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyStudentBook> studentBookOptional;
         Optional<ReadOnlyTaskBook> taskBookOptional;
+        Optional<ReadOnlyLessonBook> lessonBookOptional;
         ReadOnlyStudentBook initialStudentData = new StudentBook();
         ReadOnlyTaskBook initialTaskData = new TaskBook();
+        ReadOnlyLessonBook initialLessonData = new LessonBook();
         try {
             studentBookOptional = storage.readStudentBook();
             taskBookOptional = storage.readTaskBook();
@@ -100,7 +104,7 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with empty book");
         }
-        return new ModelManager(initialStudentData, initialTaskData, userPrefs);
+        return new ModelManager(initialStudentData, initialTaskData, initialLessonData, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -3,16 +3,23 @@ package jarvis.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
+import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Assessment;
+import jarvis.model.LessonDesc;
 import jarvis.model.MatricNum;
 import jarvis.model.StudentName;
 import jarvis.model.TaskDeadline;
 import jarvis.model.TaskDesc;
+import jarvis.model.TimePeriod;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -159,5 +166,57 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_MARK);
         }
         return value;
+    }
+
+    /**
+     * Parses a {@code String lessonDesc} into a {@code LessonDesc}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lessonDesc} is invalid.
+     */
+    public static LessonDesc parseLessonDesc(String lessonDesc) throws ParseException {
+        requireNonNull(lessonDesc);
+        String trimmedLessonDesc = lessonDesc.trim().toLowerCase();
+        if (!LessonDesc.isValidLessonDesc(trimmedLessonDesc)) {
+            throw new ParseException(LessonDesc.MESSAGE_CONSTRAINTS);
+        }
+        return new LessonDesc(trimmedLessonDesc);
+    }
+
+    /**
+     * Parses a {@code String DateTime} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+
+        try {
+            return LocalDateTime.parse(dateTime.trim());
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses {@code Collection<String> studentIndexes} into a {@code Set<Student>}.
+     *
+     * @throws ParseException if the given {@code studentIndexes} is invalid.
+     */
+    public static Set<Index> parseStudentIndexes(Collection<String> studentIndexes) throws ParseException {
+        requireNonNull(studentIndexes);
+
+        final Set<Index> studentIndexSet = new HashSet<>();
+        try {
+            for (String studentIndex : studentIndexes) {
+                requireNonNull(studentIndex);
+                Index trimmedStudentIndex = ParserUtil.parseIndex(studentIndex.trim());
+                studentIndexSet.add(trimmedStudentIndex);
+            }
+        } catch (ParseException pe) {
+            throw new ParseException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+        return studentIndexSet;
     }
 }

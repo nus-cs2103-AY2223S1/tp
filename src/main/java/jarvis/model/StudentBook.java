@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 /**
  * Wraps all student data in JARVIS
- * Duplicates are not allowed (by .isSameStudent comparison)
+ * Duplicates are not allowed (by .equal comparison)
  */
 public class StudentBook implements ReadOnlyStudentBook {
 
@@ -39,7 +39,7 @@ public class StudentBook implements ReadOnlyStudentBook {
 
     /**
      * Replaces the contents of the student list with {@code students}.
-     * {@code persons} must not contain duplicate students.
+     * {@code students} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
@@ -54,7 +54,7 @@ public class StudentBook implements ReadOnlyStudentBook {
         setStudents(newData.getStudentList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student book.
@@ -85,8 +85,8 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code StudentBook}.
+     * {@code key} must exist in the student book.
      */
     public void removeStudent(Student key) {
         students.remove(key);
