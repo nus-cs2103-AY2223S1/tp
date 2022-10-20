@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
@@ -10,7 +12,13 @@ import seedu.address.model.tag.Tag;
 public class TagMatchesQueryPredicate implements Predicate<Person> {
     private final Tag tag;
 
+    /**
+     * Creates a {@code TagMatchesQueryPRedicate} with the tag specified.
+     *
+     * @param keywords Name to filter for.
+     */
     public TagMatchesQueryPredicate(Tag tag) {
+        requireNonNull(tag);
         this.tag = tag;
     }
 
