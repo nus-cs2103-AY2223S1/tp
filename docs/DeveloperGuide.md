@@ -350,8 +350,6 @@ interactions between the commands, their parsers, and the UI.
 The relevant commands for this section are:
 * **`archive -t <task index>`**  archives the task visible in the UI with the specified index.
 * **`unarchive -t <task index>`** unarchives the task visible in the UI with the specified index.
-* **`ls`** displays only the unarchived tasks in the UI.
-* **`ls -a`** displays all the tasks, including the ones archived, in the UI.
 
 ##### Current implementation
 
@@ -364,7 +362,7 @@ The following activity diagram shows the execution and control flow of the `arch
 <img src="images/tasks/ArchivalActivityDiagram.png" width="1000" />
 
 Notice how we explicitly prevent an archived task from being archived again. Even though archiving an archived task
-is inconsequential from a data perspective (nothing in `Task` changes other than the creation of a new instance),
+is inconsequential from a data perspective (nothing in a `Task` changes other than the creation of a new instance),
 it is still a user error that should be handled:
 
 > Suppose that a user intended to _unarchive_ a task, but accidentally entered the `archive` command instead.
@@ -398,6 +396,27 @@ There was an alternative we considered for users to select the task to archive:
 
 Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
 even though the `cd` and `ls` commands add a bit of overhead.
+
+#### Task listing
+
+Task listing allows users to view the tasks they have created which belong to a module.
+
+The relevant commands for this section are:
+* **`cd`** sets the current module to view tasks for.
+* **`ls`** displays only the unarchived tasks for the current module in the UI.
+* **`ls -a`** displays all the tasks for the current module, including the ones archived, in the UI.
+
+##### Current implementation
+
+We check for the presence of the `-a` flag to decide whether to display archived tasks.
+
+The predicates defined by `Model.SHOW_ALL_TASKS` and `Model.HIDE_ARCHIVED_TASKS` are used to filter
+the tasks displayed in the UI via the `updateFilteredTaskList` method in the `Model` interface.
+
+The sequence diagram below details the interactions between the command, parser, and the model
+for the`ls` and `ls -a` commands:
+
+<img src="images/tasks/ListingSequenceDiagram.png" width="1000" />
 
 --------------------------------------------------------------------------------------------------------------------
 
