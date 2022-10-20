@@ -1,6 +1,8 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 This section describes some noteworthy details on how certain features are implemented.
 
+{% include_relative _dg/TaggingFunctionality.md %}
+
 #### Tagging an item
 The `tag` feature tags an item with with the provided tag name in FoodRem. If both the item and the tag are valid,  the item will be tagged successfully.
 
