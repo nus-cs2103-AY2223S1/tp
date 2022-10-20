@@ -177,7 +177,7 @@ Classes used by multiple components are in the `seedu.guest.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add feature
+### Add Command
 
 #### Implementation:
 
@@ -214,10 +214,10 @@ the initial bill to be 0 and chose to remove `Bill` as it makes the `add` comman
 * As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
 we chose to make `Request` optional and default it as blank should it not be provided.
 
-### Edit feature
+### Edit Command
 
 #### Implementation:
-* The `edit` command takes in an INDEX indicating the index of the guests to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
+* The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
 The following activity diagrams summarizes what happens when a user enters an `edit` command.
 
@@ -231,7 +231,38 @@ The following activity diagrams summarizes what happens when a user enters an `e
 **Aspect: Excluding b/ (Bill) in the `edit` command**
 * As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace it by accident.
 
-### MarkRoomsUnclean Feature
+### Bill Command
+
+#### Implementation:
+* The `bill` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and the `bill` field and is supported by the `BillCommandParser` that extracts the bill value.
+
+The following activity diagrams summarizes what happens when a user enters a `bill` command.
+
+![BillActivityDiagram](images/BillActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: How to update a bill**
+* **Alternative 1:** Set the bill to the input value.
+  * Pros: Can be implemented by extending the `edit` command, so that the user does not need to learn an additional command
+  * Cons: The user is required to calculate the updated bill value, which is less convenient and intuitive.
+* **Alternative 2 (current choice):** Add the input value to the bill.
+  * Pros: More aligned with real-life implementation of bills, by adding the next charge. Easy to undo as the previous command is displayed.
+  * Cons: Addition method must be implemented, and negative values must be accepted.
+* **Alternative 3:** Allow both depending on syntax.
+  * Pros: Flexibility for user, such as resetting the bill to 0 or another known value if needed.
+  * Cons: Syntax may be confusing and complex to implement.
+
+Taking into consideration the much higher probability of the user using the bill command to add a value as compared to setting the value,
+and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE`), we decided to proceed with Alternative 2.
+
+**Aspect: Accepting negative values**
+* As the user may want to give the guest a discount or fix an erroneous charge, we allow the user to input a negative value.
+
+**Aspect: Accepting signed and unsigned positive values**
+* As the user may prefer to see `+` differentiating positive and negative values, or leave out the `+` sign for convenience, we decided to accept both formats for positive values.
+
+### MarkRoomsUnclean Command
 
 #### Implementation
 * The `markRoomsUnclean` command edits all the guests in the guest book and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields. 
@@ -251,7 +282,7 @@ The following activity diagram summarizes what happens when a user enters a `mar
 
 Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous.
 
-### Find feature
+### Find Command
 
 #### Implementation:
 * The `find` command takes in multiple keywords separated by spaces, and find all guests whose `Name` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
@@ -268,7 +299,7 @@ The following activity diagram summarizes what happens when a user enters a `fin
 **Aspect: Only matching full keywords**
 * The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
 
-### \[Proposed\] Improved `find` command
+### \[Proposed\] Improved `find` Command
 
 #### Proposed Implementation
 
@@ -279,8 +310,7 @@ The following activity diagram summarizes the proposed implementation of what sh
 
 ![ProposedImplementationFindActivityDiagram](images/ProposedImplementationFindActivityDiagram.png)
 
-
-#### Design considerations:
+#### Design Considerations:
 
 **Aspect: How to implement the extensible `find` command:**
 
@@ -293,7 +323,7 @@ The following activity diagram summarizes the proposed implementation of what sh
     * Cons: We must ensure that the implementation of each field predicate are correct.
 
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/Redo Command
 
 #### Proposed Implementation
 
@@ -358,7 +388,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design Considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -373,7 +403,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Data Archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
