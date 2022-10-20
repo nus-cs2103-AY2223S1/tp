@@ -38,12 +38,18 @@ public class Name {
     }
 
     /**
+     * Returns true if the length of a given string is within the length limit
+     */
+    public static boolean isWithinLengthLimit(String test) {
+        return test.length() <= LENGTH_LIMIT;
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

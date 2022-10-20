@@ -58,6 +58,13 @@ public class Email {
     }
 
     /**
+     * Returns true if the length of a given string is within the length limit
+     */
+    public static boolean isWithinLengthLimit(String test) {
+        return test.length() <= LENGTH_LIMIT;
+    }
+
+    /**
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {

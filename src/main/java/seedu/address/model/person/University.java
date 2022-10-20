@@ -38,6 +38,13 @@ public class University {
     }
 
     /**
+     * Returns true if the length of a given string is within the length limit
+     */
+    public static boolean isWithinLengthLimit(String test) {
+        return test.length() <= LENGTH_LIMIT;
+    }
+
+    /**
      * Returns true if a given string is a valid university name.
      */
     public static boolean isValidUniversity(String test) {
