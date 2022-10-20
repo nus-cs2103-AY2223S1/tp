@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+skinparam activityBorderThickness 1.5
+skinparam activity {
+    BorderColor #7F5539
+    BackgroundColor #EDE0D4
+    arrowColor #7F5539
+}
+:User enters a AddCommand;
+if () then ([valid command format])
+  :creates a AddCommandParser Object;
+  :AddCommandParser Object parses input;
+    if () then ([input valid format])
+      :get all Person details;
+      :Returns AddCommand Object;
+      :Check if Person with same phone
+       or email address already exists;
+      if () then ([does not exist yet])
+        :Model adds customer;
+        :Returns CommandResult to LogicManager;
+        :Saves changes to Storage on bobaBot;
+      else ([else])
+        : throw CommandException;
+      endif
+    else ([else])
+      :throw ParseException;
+    endif
+else ([else])
+  :throw ParseException;
+endif
+:Return Feedback to User;
+stop
+
+@enduml

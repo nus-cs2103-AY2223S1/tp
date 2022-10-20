@@ -168,6 +168,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### \[Insert Numbering\] Add feature
+The Edit feature is facilitated by `LogicManager`. The `AddCommandParser` parses the command arguments, and returns
+an `AddCommand` that is executed by the `LogicManager`.
+
+This feature allows the user to add a new Customer.
+
+**Below is a sample usage and how the add sequence behaves at each step.**
+
+1. User chooses the Customer he/ she wants to add and enters the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`
+2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `AddCommandParser` and
+   returns the `AddCommand` containing the Customer with all the required fields
+3. The `LogicManager` executes the `AddCommand` and Customer is added to database
+4. The `CommandResult` reflects this Customer
+
+The following sequence diagram shows how the add feature works, following the flow of entering the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+The following activity diagram summarizes the flow of when a user enters an add command:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+**Aspect: How `add` is executed**
+* **Alternative 1 (current choice):** User can only add a customer with unique `PHONE_NUMBER` and `EMAIL` that does not already exist in database.
+
+  | Pros/Cons | Description                                                                                                                                 | Examples                                                                                                                                                                      |
+      |---------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user to add customers with same names but different phone numbers and email addresses                                                | The user can add Alex with phone number `99999999` and a different Alex with phone number `88888888`, where Alex is not a unique name.                                        |
+  | Cons      | If an existing customer changes phone number, and a new customer uses this customer's previous phone number, we cannot add the new customer | Alex changes his phone number from `99999999` to `88888888`, Bob got Alex's old phone number `99999999`, we cannot sign Bob up for membership without editing Alex's details. |
+
+* **Alternative 2:** User can only add a customer with unique `NAME`.
+
+  | Pros/Cons | Description                                                                                  | Examples                                                                                                       |
+      |----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Customers can choose not to disclose private details such as phone number and email address. | The user just needs to `add n/Bob` without asking for phone number or email address.                           |
+  | Cons      | User cannot add customers that have same names.                                              | The user cannot `add n/Alex` if there already exists an `Alex` in the database, since `Alex` is a common name. |
+
+* **Future Extension:** bobaBot can support adding more customer details such as birthday month to provide more timely deals for customers.
+
+
 ### \[Insert Numbering\] Edit feature
 The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
 an `EditCommand` that is executed by the `LogicManager`.
