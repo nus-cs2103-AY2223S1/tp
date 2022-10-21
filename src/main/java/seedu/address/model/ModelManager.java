@@ -15,6 +15,7 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Client> filteredClients;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Listing> filteredListings;
     private final FilteredList<Offer> filteredOffers;
@@ -40,6 +42,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredListings = new FilteredList<>(this.addressBook.getListingList());
         filteredOffers = new FilteredList<>(this.addressBook.getOfferList());
@@ -127,6 +130,36 @@ public class ModelManager implements Model {
 
 
     @Override
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return addressBook.hasClient(client);
+    }
+
+    @Override
+    public void deleteClient(Client target) {
+        addressBook.removeClient(target);
+    }
+
+    @Override
+    public void addClient(Client client) {
+        addressBook.addClient(client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
+    public Client getClient(Name name) {
+        return addressBook.getClient(name);
+    }
+
+    @Override
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+
+        addressBook.setClient(target, editedClient);
+    }
+
+
+    @Override
     public boolean hasListing(Listing listing) {
         requireNonNull(listing);
         return addressBook.hasListing(listing);
@@ -204,6 +237,18 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
+    }
+
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
     @Override
     public ObservableList<Listing> getFilteredListingList() {
         return filteredListings;
@@ -242,7 +287,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+                && filteredClients.equals(other.filteredClients)
                 && filteredListings.equals(other.filteredListings)
                 && filteredOffers.equals(other.filteredOffers);
     }

@@ -6,19 +6,23 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.AddListingCommand;
 import seedu.address.logic.commands.AddOfferCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AddTagsToListingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteListingCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.EditListingCommand;
 import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ViewClientListCommand;
 import seedu.address.logic.commands.ViewListingClientsCommand;
 import seedu.address.logic.commands.ViewListingOffersCommand;
 import seedu.address.logic.commands.ViewListingsCommand;
@@ -55,6 +59,9 @@ public class AddressBookParser {
         case AddPersonCommand.COMMAND_WORD:
             return new AddPersonCommandParser().parse(arguments);
 
+        case AddClientCommand.COMMAND_WORD:
+            return new AddClientCommandParser().parse(arguments);
+
         case AddListingCommand.COMMAND_WORD:
             return new AddListingCommandParser().parse(arguments);
 
@@ -67,11 +74,17 @@ public class AddressBookParser {
         case EditPersonCommand.COMMAND_WORD:
             return new EditPersonCommandParser().parse(arguments);
 
+        case EditClientCommand.COMMAND_WORD:
+            return new EditClientCommandParser().parse(arguments);
+
         case EditListingCommand.COMMAND_WORD:
             return new EditListingCommandParser().parse(arguments);
 
         case DeletePersonCommand.COMMAND_WORD:
             return new DeletePersonCommandParser().parse(arguments);
+
+        case DeleteClientCommand.COMMAND_WORD:
+            return new DeleteClientCommandParser().parse(arguments);
 
         case DeleteListingCommand.COMMAND_WORD:
             return new DeleteListingCommandParser().parse(arguments);
@@ -84,6 +97,9 @@ public class AddressBookParser {
 
         case ViewPersonListCommand.COMMAND_WORD:
             return new ViewPersonListCommand();
+
+        case ViewClientListCommand.COMMAND_WORD:
+            return new ViewClientListCommand();
 
         case ViewListingsCommand.COMMAND_WORD:
             return new ViewListingsCommand();

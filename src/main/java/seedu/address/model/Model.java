@@ -9,6 +9,7 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -18,6 +19,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Listing> PREDICATE_SHOW_ALL_LISTINGS = unused -> true;
@@ -163,7 +167,7 @@ public interface Model {
 
     /**
      * Gets the offer from the given name {@code name} and listing address {@code address}.
-     * @param name name of the person in offer
+     * @param name name of the client in offer
      * @param address listing address of offer
      * @return offer with given name and listing address
      */
@@ -184,5 +188,46 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOfferList(Predicate<Offer> predicate);
+
+
+    /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     */
+    boolean hasClient(Client client);
+
+    /**
+     * Deletes the given client.
+     * The client must exist in the address book.
+     */
+    void deleteClient(Client target);
+
+    /**
+     * Adds the given client.
+     * {@code client} must not already exist in the address book.
+     */
+    void addClient(Client client);
+
+    /**
+     * Gets the client with the given name {@code name}.
+     * @param name name of the client
+     * @return client with given name
+     */
+    Client getClient(Name name);
+
+    /**
+     * Replaces the given client {@code target} with {@code editedClient}.
+     * {@code target} must exist in the address book.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
+     */
+    void setClient(Client target, Client editedClient);
+
+    /** Returns an unmodifiable view of the filtered client list */
+    ObservableList<Client> getFilteredClientList();
+
+    /**
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredClientList(Predicate<Client> predicate);
 
 }

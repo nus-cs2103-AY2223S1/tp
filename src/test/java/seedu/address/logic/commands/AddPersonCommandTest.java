@@ -24,6 +24,7 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -228,6 +229,41 @@ public class AddPersonCommandTest {
         @Override
         public void updateFilteredOfferList(Predicate<Offer> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClient(Client client) {
+            return false;
+        }
+
+        @Override
+        public void deleteClient(Client target) {
+
+        }
+
+        @Override
+        public void addClient(Client client) {
+
+        }
+
+        @Override
+        public Client getClient(Name name) {
+            return null;
+        }
+
+        @Override
+        public void setClient(Client target, Client editedClient) {
+
+        }
+
+        @Override
+        public ObservableList<Client> getFilteredClientList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredClientList(Predicate<Client> predicate) {
+
         }
     }
 
