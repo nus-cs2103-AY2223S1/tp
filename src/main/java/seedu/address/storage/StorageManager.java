@@ -78,7 +78,7 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
-    // ================ AddressBook methods ==============================
+    // ================ CommandHistory methods ==============================
     @Override
     public Path getUserCommandHistoryPath() {
         return null;

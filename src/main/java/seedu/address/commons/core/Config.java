@@ -16,6 +16,8 @@ public class Config {
     private Level logLevel = Level.INFO;
     private Path userPrefsFilePath = Paths.get("preferences.json");
 
+    private Path commandHistoryFilePath = Paths.get("commandHistory.txt");
+
     public Level getLogLevel() {
         return logLevel;
     }
@@ -26,6 +28,10 @@ public class Config {
 
     public Path getUserPrefsFilePath() {
         return userPrefsFilePath;
+    }
+
+    public Path getCommandHistoryFilePath() {
+        return commandHistoryFilePath;
     }
 
     public void setUserPrefsFilePath(Path userPrefsFilePath) {

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface ReadOnlyCommandHistory {
     /**
-     * Returns an unmodifiable view of the persons list.
+     * Returns an unmodifiable view of the command history list.
      * This list will not contain any duplicate persons.
      */
     List<String> getCommandHistoryList();

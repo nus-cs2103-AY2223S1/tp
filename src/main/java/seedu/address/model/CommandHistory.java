@@ -2,21 +2,21 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents User's command history.
  */
 public class CommandHistory implements ReadOnlyCommandHistory{
-    private List<String> commandHistoryList;
-    private int currentIndex;
+    private List<String> commandHistoryList = new ArrayList<>();
+    private int currentIndex = 0;
     private static final int MAX_COMMAND_HISTORY_SIZE = 20;
 
     public CommandHistory() {}
 
     public CommandHistory(ReadOnlyCommandHistory toBeCopied) {
         this.commandHistoryList = commandHistoryList;
-        currentIndex = 0;
     }
 
     /**
@@ -35,6 +35,7 @@ public class CommandHistory implements ReadOnlyCommandHistory{
 
         setCommandHistoryList(newData.getCommandHistoryList());
     }
+
     @Override
     public List<String> getCommandHistoryList() {
         return commandHistoryList;
