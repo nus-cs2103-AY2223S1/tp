@@ -7,10 +7,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -37,7 +38,7 @@ public class AddInterestCommandTest {
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddInterestCommand(null,
-                FXCollections.observableArrayList()));
+                new HashSet<>()));
     }
 
     /**
@@ -60,8 +61,10 @@ public class AddInterestCommandTest {
 
         // execute AddInterestCommand on the test person
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        HashSet<Interest> currentInterestSet = new HashSet<>();
+        currentInterestSet.add(VALID_INTEREST_TENNIS);
         AddInterestCommand commandToExecute = new AddInterestCommand(indexLastPerson,
-                FXCollections.singletonObservableList(VALID_INTEREST_TENNIS));
+                currentInterestSet);
         CommandResult commandResult = commandToExecute.execute(model);
         // get the edited person from AddInterestCommand
         Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
@@ -88,8 +91,10 @@ public class AddInterestCommandTest {
 
         // execute AddInterestCommand on the test person with existing mod
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        HashSet<Interest> currentInterestSet = new HashSet<>();
+        currentInterestSet.add(VALID_INTEREST_ANIME);
         AddInterestCommand commandToExecute = new AddInterestCommand(indexLastPerson,
-                FXCollections.singletonObservableList(VALID_INTEREST_ANIME));
+                currentInterestSet);
         CommandResult commandResult = commandToExecute.execute(model);
         // get the edited person from AddInterestCommand
         Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
@@ -111,8 +116,10 @@ public class AddInterestCommandTest {
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() {
         Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        HashSet<Interest> currentInterestSet = new HashSet<>();
+        currentInterestSet.add(VALID_INTEREST_ANIME);
         AddInterestCommand invalidCommand = new AddInterestCommand(indexOutOfBounds,
-                FXCollections.singletonObservableList(VALID_INTEREST_TENNIS));
+                currentInterestSet);
         assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 

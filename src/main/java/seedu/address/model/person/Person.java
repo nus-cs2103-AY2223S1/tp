@@ -78,7 +78,7 @@ public class Person {
      *
      * @param interestsToBeAdded The list of interests to add in.
      */
-    public void addInterests(ObservableList<Interest> interestsToBeAdded) {
+    public void addInterests(Set<Interest> interestsToBeAdded) {
         Set<Interest> uniqueInterestsSet = interestsToBeAdded
                 .stream()
                 .filter(interest -> !this.interests.contains(interest))
