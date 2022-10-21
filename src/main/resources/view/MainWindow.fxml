@@ -61,6 +61,12 @@
                     <Insets top="5" right="10" bottom="5" left="10" />
                   </padding>
                 </StackPane>
+
+                <StackPane VBox.vgrow="ALWAYS" fx:id="personTaskListPanelPlaceholder" styleClass="pane-with-border">
+                  <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                  </padding>
+                </StackPane>
               </VBox>
             </HBox>
           </HBox>
