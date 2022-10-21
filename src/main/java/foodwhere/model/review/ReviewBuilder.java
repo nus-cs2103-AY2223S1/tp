@@ -30,7 +30,7 @@ public class ReviewBuilder {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
         content = new Content(DEFAULT_CONTENT);
-        rating = new Rating(DEFAULT_RATING);
+        rating = new Rating(String.valueOf(DEFAULT_RATING));
         tags = new HashSet<>();
     }
 
@@ -73,7 +73,7 @@ public class ReviewBuilder {
      * Sets the {@code Rating} of the {@code Review} that we are building.
      */
     public ReviewBuilder withRating(Integer rating) {
-        this.rating = new Rating(rating);
+        this.rating = new Rating(String.valueOf(rating));
         return this;
     }
 

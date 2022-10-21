@@ -16,7 +16,7 @@ public class RatingTest {
     @Test
     public void constructor_invalidRating_throwsIllegalArgumentException() {
         Integer invalidRating = 6;
-        assertThrows(IllegalArgumentException.class, () -> new Rating(invalidRating));
+        assertThrows(IllegalArgumentException.class, () -> new Rating(String.valueOf(invalidRating)));
     }
 
     @Test
@@ -25,11 +25,15 @@ public class RatingTest {
         assertThrows(NullPointerException.class, () -> Rating.isValidRating(null));
 
         // invalid contents
-        assertFalse(Rating.isValidRating(6)); // invalid number
-        assertFalse(Rating.isValidRating(7)); // invalid number
+        assertFalse(Rating.isValidRating("asdf")); // invalid number
+        assertFalse(Rating.isValidRating("7")); // invalid number
+        assertFalse(Rating.isValidRating("8")); // invalid number
+        assertFalse(Rating.isValidRating("")); // invalid number
+        assertFalse(Rating.isValidRating("abcd")); // invalid number
+        assertFalse(Rating.isValidRating("   ")); // invalid number
 
         // valid contents
-        assertTrue(Rating.isValidRating(0));
-        assertTrue(Rating.isValidRating(3)); // one character
+        assertTrue(Rating.isValidRating("0"));
+        assertTrue(Rating.isValidRating("3")); // one character
     }
 }

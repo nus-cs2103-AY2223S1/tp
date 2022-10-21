@@ -127,12 +127,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Integer rating} into an {@code Rating}.
+     * Parses a {@code String rating} into an {@code Rating}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code rating} is invalid.
      */
-    public static Rating parseRating(Integer rating) throws ParseException {
+    public static Rating parseRating(String rating) throws ParseException {
         requireNonNull(rating);
         if (!Rating.isValidRating(rating)) {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);

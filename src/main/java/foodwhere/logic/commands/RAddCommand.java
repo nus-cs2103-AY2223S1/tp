@@ -30,6 +30,7 @@ public class RAddCommand extends Command {
             + CliSyntax.PREFIX_STALL_INDEX + "STALL_INDEX "
             + CliSyntax.PREFIX_DATE + "DATE "
             + CliSyntax.PREFIX_CONTENT + "CONTENT "
+            + CliSyntax.PREFIX_RATING + "RATING "
             + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_STALL_INDEX + "3 "

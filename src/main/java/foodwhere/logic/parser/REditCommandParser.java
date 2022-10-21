@@ -51,7 +51,7 @@ public class REditCommandParser implements Parser<REditCommand> {
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_RATING).isPresent()) {
             editReviewDescriptor.setRating(ParserUtil.parseRating(
-                    Integer.parseInt(argMultimap.getValue(CliSyntax.PREFIX_RATING).get())));
+                    argMultimap.getValue(CliSyntax.PREFIX_RATING).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG))
                 .ifPresent(editReviewDescriptor::setTags);
