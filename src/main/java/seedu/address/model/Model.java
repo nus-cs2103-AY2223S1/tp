@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
@@ -160,7 +161,7 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
 
-    void sortTaskList(String criteria);
+    void sortTaskList(Criteria criteria);
 
     /**
      * Returns true if a exam with the same description and module and exam date

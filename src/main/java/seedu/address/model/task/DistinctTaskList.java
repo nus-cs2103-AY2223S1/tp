@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -21,8 +22,6 @@ import seedu.address.model.task.exceptions.WrongTaskModifiedException;
  */
 public class DistinctTaskList implements Iterable<Task> {
 
-    public static final String CRITERIA_CONSTRAINTS =
-            "The sorting criteria should be either priority, deadline, module or description";
     public final ObservableList<Task> taskList = FXCollections.observableArrayList();
     public final ObservableList<Task> unmodifiableTaskList = FXCollections
             .unmodifiableObservableList(taskList);
@@ -105,25 +104,30 @@ public class DistinctTaskList implements Iterable<Task> {
      *
      * @param criteria The criteria used for sorting.
      */
-    public void sortTasks(String criteria) {
+    public void sortTasks(Criteria criteria) {
+
         //@@author dlimyy-reused
         //Reused from https://stackoverflow.com/questions/51186174/
         //with slight modifications
-        if (criteria.equals("priority")) {
+        switch (criteria.getCriteria().toLowerCase()) {
+        case "priority":
             FXCollections.sort(taskList, Comparator.comparing(Task::getPriorityTag,
                     Comparator.nullsLast(Comparator.naturalOrder())));
-        }
-        if (criteria.equals("deadline")) {
+            break;
+        case "deadline":
             FXCollections.sort(taskList, Comparator.comparing(Task::getDeadlineTag,
                     Comparator.nullsLast(Comparator.naturalOrder())));
-        }
-        if (criteria.equals("module")) {
+            break;
+        case "module":
             FXCollections.sort(taskList, Comparator.comparing(Task::getModule,
                     Comparator.naturalOrder()));
-        }
-        if (criteria.equals("description")) {
+            break;
+        case "description":
             FXCollections.sort(taskList, Comparator.comparing(Task::getDescription,
                     Comparator.naturalOrder()));
+            break;
+        default:
+            break;
         }
         //@@author
     }

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.commons.Criteria;
 
 /**
  * SortTaskCommand represents a command which sorts the tasks in the task list.
@@ -15,7 +16,7 @@ public class SortTaskCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_CRITERIA + "CRITERIA";
     public static final String TASK_SORTED_SUCCESSFULLY =
             "Task list has been successfully sorted";
-    private final String criteria;
+    private final Criteria criteria;
 
     /**
      * The constructor of the SortTaskCommand. Sets the criteria
@@ -23,7 +24,7 @@ public class SortTaskCommand extends Command {
      *
      * @param criteria The criteria used for sorting.
      */
-    public SortTaskCommand(String criteria) {
+    public SortTaskCommand(Criteria criteria) {
         requireNonNull(criteria);
         this.criteria = criteria;
     }

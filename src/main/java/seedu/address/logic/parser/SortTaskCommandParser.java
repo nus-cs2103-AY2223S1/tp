@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.DistinctTaskList;
+import seedu.address.model.commons.Criteria;
 
 /**
  * SortTaskCommandParser represents a parser which parses the arguments
@@ -22,11 +22,8 @@ public class SortTaskCommandParser implements Parser<Command> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     SortTaskCommand.MESSAGE_USAGE));
         }
-        String criteria = argumentMultimap.getValue(PREFIX_CRITERIA)
-                .get();
-        if (!DistinctTaskList.isValidCriteria(criteria)) {
-            throw new ParseException(DistinctTaskList.CRITERIA_CONSTRAINTS);
-        }
+
+        Criteria criteria = ParserUtil.parseCriteria(argumentMultimap.getValue(PREFIX_CRITERIA).get());
         return new SortTaskCommand(criteria);
     }
 

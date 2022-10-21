@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.DistinctExamList;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
@@ -230,7 +231,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * @param criteria The criteria used for sorting the task list.
      */
-    public void sortTaskList(String criteria) {
+    public void sortTaskList(Criteria criteria) {
         requireNonNull(criteria);
         tasks.sortTasks(criteria);
     }
