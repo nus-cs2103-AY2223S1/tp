@@ -9,6 +9,7 @@ import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 import seedu.uninurse.model.util.SampleDataUtil;
 
@@ -64,7 +65,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tasks} into a {@code TaskList} and set it to the {@code Patient} that we are building.
      */
-    public PersonBuilder withTasks(String ... tasks) {
+    public PersonBuilder withTasks(Task... tasks) {
         this.tasks = SampleDataUtil.getTaskList(tasks);
         return this;
     }

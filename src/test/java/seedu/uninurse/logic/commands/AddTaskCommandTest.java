@@ -3,6 +3,7 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TASK_DATE_FIRST;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TASK_DESC_FIRST;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -23,6 +24,7 @@ import seedu.uninurse.model.ModelManager;
 import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.testutil.PersonBuilder;
 
@@ -52,7 +54,7 @@ public class AddTaskCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(patientToAddTask)
-                .withTasks(VALID_TASK_DESC_FIRST).build();
+                .withTasks(new Task(VALID_TASK_DESC_FIRST, new DateTime(VALID_TASK_DATE_FIRST))).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
         Task addedTask = editedPatient.getTasks().get(lastTaskIndex);
 
@@ -83,7 +85,7 @@ public class AddTaskCommandTest {
 
         Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withTasks(VALID_TASK_DESC_FIRST).build();
+                .withTasks(new Task(VALID_TASK_DESC_FIRST, new DateTime(VALID_TASK_DATE_FIRST))).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
         Task addedTask = editedPatient.getTasks().get(lastTaskIndex);
 

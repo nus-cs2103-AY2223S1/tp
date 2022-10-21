@@ -5,24 +5,28 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
+import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.model.person.Patient;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Patient> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Patient> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Patient> PREDICATE_SHOW_PATIENTS_FOR_TODAY = patient -> patient.getTasks().containsTaskToday();
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -45,12 +49,14 @@ public interface Model {
     void setUninurseBookFilePath(Path uninurseBookFilePath);
 
     /**
+     * Returns the UninurseBook
+     */
+    ReadOnlyUninurseBook getUninurseBook();
+
+    /**
      * Replaces uninurse book data with the data in {@code uninurseBook}.
      */
     void setUninurseBook(ReadOnlyUninurseBook uninurseBook);
-
-    /** Returns the UninurseBook */
-    ReadOnlyUninurseBook getUninurseBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the uninurse book.
@@ -76,11 +82,14 @@ public interface Model {
      */
     void setPerson(Patient target, Patient editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Patient> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Patient> predicate);
@@ -97,4 +106,28 @@ public interface Model {
      */
     Patient getPatientOfInterest();
 
+    /**
+     * Returns whether you can revert to an earlier version of UninurseBook.
+     */
+    boolean canUndo();
+
+    /**
+     * Returns whether you can revert to a later version of UninurseBook.
+     */
+    boolean canRedo();
+
+    /**
+     * Reverts to an earlier version of UninurseBook.
+     */
+    void undo();
+
+    /**
+     * Reverts to a later version of UninurseBook.
+     */
+    void redo();
+
+    /**
+     * Makes a snapshot of the current UninurseBook.
+     */
+    void makeSnapshot(CommandResult commandResult);
 }

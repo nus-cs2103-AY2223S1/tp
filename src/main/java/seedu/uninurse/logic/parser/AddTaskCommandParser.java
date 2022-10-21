@@ -33,8 +33,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                     AddTaskCommand.MESSAGE_USAGE), ive);
         }
 
-        String task = argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get();
+        Task newTask = ParserUtil.parseTask(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
 
-        return new AddTaskCommand(index, new Task(task));
+        return new AddTaskCommand(index, newTask);
     }
 }

@@ -12,6 +12,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TASK_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_CONDITION = new Prefix("c/");
     public static final Prefix PREFIX_OPTION_PATIENT_INDEX = new Prefix("-p");
     public static final Prefix PREFIX_OPTION_TASK_INDEX = new Prefix("-t");
+    public static final Prefix PREFIX_OPTION_CONDITION_INDEX = new Prefix("-c");
 }

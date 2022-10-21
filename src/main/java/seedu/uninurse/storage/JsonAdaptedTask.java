@@ -1,9 +1,10 @@
 package seedu.uninurse.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.uninurse.commons.exceptions.IllegalValueException;
+import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
 /**
@@ -12,13 +13,16 @@ import seedu.uninurse.model.task.Task;
 public class JsonAdaptedTask {
 
     private final String taskDescription;
+    private final JsonAdaptedDateTime dateTime;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskDescription}.
      */
     @JsonCreator
-    public JsonAdaptedTask(String taskDescription) {
+    public JsonAdaptedTask(@JsonProperty("taskDescription") String taskDescription,
+                           @JsonProperty("dateTime") JsonAdaptedDateTime dateTime) {
         this.taskDescription = taskDescription;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -26,11 +30,7 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         taskDescription = source.taskDescription;
-    }
-
-    @JsonValue
-    public String getTaskDescription() {
-        return taskDescription;
+        dateTime = new JsonAdaptedDateTime(source.dateTime);
     }
 
     /**
@@ -39,9 +39,9 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
-        if (!Task.isValidTaskDescription(taskDescription)) {
+        if (!Task.isValidTaskDescription(taskDescription) || !DateTime.isValidDateTime(dateTime.getDateTime())) {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
         }
-        return new Task(taskDescription);
+        return new Task(taskDescription, dateTime.toModelType());
     }
 }

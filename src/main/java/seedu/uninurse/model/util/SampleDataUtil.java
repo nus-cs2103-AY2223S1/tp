@@ -13,6 +13,7 @@ import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -29,11 +30,12 @@ public class SampleDataUtil {
                 getTagSet("friends")),
             new Patient(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTaskList("Change dressing on right arm"),
+                getTaskList(new Task("Change dressing on right arm", new DateTime("16-10-2022 1015"))),
                 getTagSet("colleagues", "friends")),
             new Patient(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTaskList("Check blood glucose level", "Administer insulin dose"),
+                getTaskList(new Task("Check blood glucose level", new DateTime("25-11-2022 1300")),
+                        new Task("Administer insulin dose", new DateTime("30-12-2022 1845"))),
                 getTagSet("neighbours")),
             new Patient(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_TASK_LIST,
@@ -65,11 +67,10 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a {@code TaskList} containing the list of strings given.
+     * Returns a {@code TaskList} containing the list of tasks given.
      */
-    public static TaskList getTaskList(String... strings) {
-        ArrayList<Task> taskArrayList = Arrays.stream(strings)
-                .map(Task::new).collect(Collectors.toCollection(ArrayList::new));
+    public static TaskList getTaskList(Task... tasks) {
+        ArrayList<Task> taskArrayList = Arrays.stream(tasks).collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(taskArrayList);
     }
 
