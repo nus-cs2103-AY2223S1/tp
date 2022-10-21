@@ -7,7 +7,6 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -94,7 +93,6 @@ public class EditCommand extends Command {
         } else {
             model.setApplication(applicationToEdit, editedApplication);
         }
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.updateApplicationListWithInterview();
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
@@ -114,6 +112,10 @@ public class EditCommand extends Command {
         Date updatedDate = editApplicationDescriptor.getDate().orElse(applicationToEdit.getDate());
         Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(applicationToEdit.getTags());
 
+        if (applicationToEdit.isArchived()) {
+            return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition,
+                    updatedDate, updatedTags).setToArchive();
+        }
         return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition, updatedDate, updatedTags);
     }
 

@@ -24,7 +24,6 @@ import seedu.application.model.application.interview.InterviewComparator;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final VersionedApplicationBook versionedApplicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
@@ -41,7 +40,7 @@ public class ModelManager implements Model {
 
         versionedApplicationBook = new VersionedApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredApplications = new FilteredList<>(versionedApplicationBook.getApplicationList());
+        filteredApplications = initialiseFilteredList(this.versionedApplicationBook);
         sortedFilteredApplications = new SortedList<>(filteredApplications);
         applicationsWithInterview = filterApplicationsWithInterview();
     }
@@ -50,12 +49,19 @@ public class ModelManager implements Model {
         this(new ApplicationBook(), new UserPrefs());
     }
 
+
+    private static FilteredList<Application> initialiseFilteredList(VersionedApplicationBook versionedApplicationBook) {
+        FilteredList<Application> initialList = new FilteredList<>(versionedApplicationBook.getApplicationList());
+        initialList.setPredicate(HIDE_ARCHIVE_IN_LIST);
+        return initialList;
+    }
+
     private ObservableList<Application> filterApplicationsWithInterview() {
         ObservableList<Application> applicationsWithInterview = FXCollections.observableList(
             versionedApplicationBook
                         .getApplicationList()
                         .stream()
-                        .filter(application -> application.getInterview().isPresent())
+                        .filter(application -> application.getInterview().isPresent() && !application.isArchived())
                         .collect(Collectors.toList()));
         applicationsWithInterview.sort(new InterviewComparator());
         return applicationsWithInterview;
@@ -142,7 +148,21 @@ public class ModelManager implements Model {
     @Override
     public void addApplication(Application application) {
         versionedApplicationBook.addApplication(application);
-        updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        filteredApplications.setPredicate(HIDE_ARCHIVE_IN_LIST);
+        commitApplicationBook();
+    }
+
+    @Override
+    public void archiveApplication(Application target) {
+        versionedApplicationBook.setArchive(target);
+        filteredApplications.setPredicate(HIDE_ARCHIVE_IN_LIST);
+        commitApplicationBook();
+    }
+
+    @Override
+    public void retrieveApplication(Application target) {
+        versionedApplicationBook.retrieveApplication(target);
+        filteredApplications.setPredicate(SHOW_ARCHIVE_ONLY);
         commitApplicationBook();
     }
 
@@ -203,10 +223,12 @@ public class ModelManager implements Model {
         versionedApplicationBook.redo();
     }
 
-    @Override
+    /**
+     * Updates the interview list.
+     */
     public void updateApplicationListWithInterview() {
         applicationsWithInterview.clear();
-        applicationsWithInterview.addAll(versionedApplicationBook.getApplicationList());
+        applicationsWithInterview.addAll(filteredApplications);
         applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
         applicationsWithInterview.sort(new InterviewComparator());
     }

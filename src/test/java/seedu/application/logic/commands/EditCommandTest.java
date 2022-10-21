@@ -84,25 +84,6 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
-
-        Application applicationInFilteredList = model.getFilteredApplicationList()
-                .get(INDEX_FIRST_APPLICATION.getZeroBased());
-        Application editedApplication = new ApplicationBuilder(applicationInFilteredList)
-                .withCompany(VALID_COMPANY_FACEBOOK).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_APPLICATION,
-                new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_FACEBOOK).build());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
-
-        Model expectedModel = new ModelManager(new ApplicationBook(model.getApplicationBook()), new UserPrefs());
-        expectedModel.setApplication(model.getFilteredApplicationList().get(0), editedApplication);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_duplicateApplicationUnfilteredList_failure() {
         Application firstApplication = model.getFilteredApplicationList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder(firstApplication).build();

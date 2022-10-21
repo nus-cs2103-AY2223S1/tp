@@ -37,6 +37,7 @@ class JsonAdaptedApplication {
     private final String email;
     private final String position;
     private final String date;
+    private final boolean isArchived;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     //Fields in Interview
@@ -51,12 +52,22 @@ class JsonAdaptedApplication {
     public JsonAdaptedApplication(@JsonProperty("company") String company, @JsonProperty("contact") String contact,
                                   @JsonProperty("email") String email, @JsonProperty("position") String position,
                                   @JsonProperty("date") String date,
+                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                  @JsonProperty("isArchived") boolean isArchived)
                                   ) {
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
+<<<<<<< HEAD
+        this.isArchived = isArchived;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+<<<<<<< HEAD
+=======
+>>>>>>> master
 
         this.round = "";
         this.interviewDate = "";
@@ -75,7 +86,7 @@ class JsonAdaptedApplication {
                                   @JsonProperty("email") String email, @JsonProperty("position") String position,
                                   @JsonProperty("date") String date,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                  @JsonProperty("round") String round,
+                                  @JsonProperty("isArchived") boolean isArchived, @JsonProperty("round") String round,
                                   @JsonProperty("interviewDate") String interviewDate,
                                   @JsonProperty("interviewTime") String interviewTime,
                                   @JsonProperty("location") String location) {
@@ -84,6 +95,7 @@ class JsonAdaptedApplication {
         this.email = email;
         this.position = position;
         this.date = date;
+        this.isArchived = isArchived;
         this.round = round;
         this.interviewDate = interviewDate;
         this.interviewTime = interviewTime;
@@ -102,6 +114,7 @@ class JsonAdaptedApplication {
         email = source.getEmail().value;
         position = source.getPosition().value;
         date = source.getDate().value.toString();
+        isArchived = source.isArchived();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -176,12 +189,21 @@ class JsonAdaptedApplication {
 
         Application modelApplication = new Application(modelCompany, modelContact, modelEmail, modelPosition,
                 modelDate, modelTags);
-        if (round.equals("") && interviewDate.equals("") && interviewTime.equals("") && location.equals("")) {
-            return modelApplication;
-        } else {
+
+        Application modelUpdatedApplication;
+
+        //check and update interview sector
+        if (!round.isEmpty() && !interviewDate.isEmpty() && !interviewTime.isEmpty() && !location.isEmpty()) {
             Interview modelInterview = toModelTypeInterview();
-            return new Application(modelApplication, modelInterview);
+            modelUpdatedApplication = new Application(modelApplication, modelInterview);
+        } else {
+            modelUpdatedApplication = modelApplication;
         }
+
+        if (isArchived) {
+            return modelUpdatedApplication.setToArchive();
+        }
+        return modelUpdatedApplication;
     }
 
     /**
