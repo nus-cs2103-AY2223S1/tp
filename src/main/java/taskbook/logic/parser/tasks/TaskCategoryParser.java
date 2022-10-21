@@ -6,6 +6,7 @@ import taskbook.logic.commands.tasks.TaskDeadlineCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
+import taskbook.logic.commands.tasks.TaskFindCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
 import taskbook.logic.commands.tasks.TaskMarkCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
@@ -47,6 +48,8 @@ public class TaskCategoryParser {
             return new TaskListCommand();
         case TaskSortCommand.COMMAND_WORD:
             return new TaskSortCommandParser().parse(arguments);
+        case TaskFindCommand.COMMAND_WORD:
+            return new TaskFindCommandParser().parse(arguments);
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
