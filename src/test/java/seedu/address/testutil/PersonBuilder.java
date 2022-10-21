@@ -13,7 +13,6 @@ import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Attendance;
 import seedu.address.model.person.subject.Grades;
 import seedu.address.model.person.subject.Subject;
-import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.subject.Grades;
 
 public class PredictionTest {
@@ -25,9 +27,9 @@ public class PredictionTest {
 
         public double[] getGradeForAssessment(String assessment) {
             if (assessment.equals("FirstTest")) {
-                return new double[] { 10, 10, 20 };
+                return new double[]{10, 10, 20};
             } else {
-                return new double[] { 14, 20, 20 };
+                return new double[]{14, 20, 20};
             }
         }
     }

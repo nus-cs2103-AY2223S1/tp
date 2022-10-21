@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.ArrayList;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FindCommandPredicate;
