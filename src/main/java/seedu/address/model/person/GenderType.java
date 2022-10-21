@@ -12,13 +12,10 @@ public enum GenderType {
 
     // Declaration order defines the natural order of GenderType
     // Natural order is used in the compareTo() method
-
-    NO_GENDER("NA"), //NA is the default gender option
     FEMALE("Female"),
     MALE("Male");
 
     private static final Set<String> MALE_GENDERS = new HashSet<>(Arrays.asList("m", "male", "M", "Male"));
-    private static final Set<String> FEMALE_GENDERS = new HashSet<>(Arrays.asList("F", "Female", "f", "female"));
     private String gender;
 
 
@@ -29,10 +26,8 @@ public enum GenderType {
     public static GenderType getGenderType(String gender) {
         if (MALE_GENDERS.contains(gender)) {
             return MALE;
-        } else if (FEMALE_GENDERS.contains(gender)) {
-            return FEMALE;
         } else {
-            return NO_GENDER;
+            return FEMALE;
         }
     }
 

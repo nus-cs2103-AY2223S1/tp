@@ -40,21 +40,6 @@ public class Person {
         this.gender = gender;
     }
 
-    /**
-     * Every field must be present and not null.
-     * Gender field is added at the end of each method.
-     */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.dob = dob;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.gender = Gender.getNoGender();
-    }
-
     public Name getName() {
         return name;
     }
@@ -139,7 +124,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender());
 
         if (!getDob().isEmpty()) { //Need check if DateOfBirth is empty
             builder.append("; Date of Birth: ")
@@ -152,10 +139,6 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        if (!getGender().equals(Gender.getNoGender())) {
-            // add gender field in toString method
-            builder.append("; Gender: ").append(getGender());
-        }
         return builder.toString();
     }
 }
