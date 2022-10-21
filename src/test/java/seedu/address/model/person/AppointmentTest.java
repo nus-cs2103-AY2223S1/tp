@@ -1,8 +1,11 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +33,32 @@ public class AppointmentTest {
         assertTrue(Appointment.isValidDateTime("2022-09-08 00:00")); // follows date/time format
         assertTrue(Appointment.isValidTimePeriod("")); // empty period allowed;
         assertTrue(Appointment.isValidTimePeriod("2D")); // a single value is sufficient
+    }
+
+    @Test
+    public void yearCompares() {
+        // 2010-12-31 23:45 < 2019-12-10 16:30
+        assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
+
+        // 2019-12-10 16:30 = 2019-12-10 16:30
+        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), 0);
+
+        // 2019-12-10 16:30 > 2010-12-31 23:45
+        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
+    }
+
+    @Test
+    public void compares() {
+        // 2010-12-31 23:45 < 2019-12-10 16:30
+        assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
+
+        // 2019-12-10 16:30 = 2019-12-10 16:30
+        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), 0);
+
+        // 2019-12-10 16:30 > 2010-12-31 23:45
+        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
+
+        // 2010-12-31 23:45 < 2010-12-31 23:46
+        assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_DAVID), -1);
     }
 }

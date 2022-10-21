@@ -128,11 +128,7 @@ public class Person {
      * @param person The other person to compare with.
      */
     public int compareTo(Person person) {
-        int value = this.getName().compareTo(person.getName());
-        if (value == 0) {
-            return this.getPhone().compareTo(person.getPhone());
-        }
-        return value;
+        return this.getName().compareTo(person.getName());
     }
 
     /**

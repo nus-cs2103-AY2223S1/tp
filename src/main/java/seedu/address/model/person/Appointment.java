@@ -309,7 +309,11 @@ public class Appointment {
      * @param appointment The other appointment to compare with.
      */
     public int compareTo(Appointment appointment) {
-        return this.dateTime.compareTo(appointment.dateTime);
+        return this.dateTime.isBefore(appointment.dateTime)
+                ? -1
+                : this.dateTime.isAfter(appointment.dateTime)
+                ? 1
+                : 0;
     }
 
     @Override

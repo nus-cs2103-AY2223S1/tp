@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -87,5 +86,17 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_EAR).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void compares() {
+        // ALICE < BOB
+        assertEquals(ALICE.compareTo(BOB), -1);
+
+        // ALICE == ALICE
+        assertEquals(ALICE.compareTo(ALICE), 0);
+
+        // BOB > ALICE
+        assertEquals(BOB.compareTo(ALICE), 1);
     }
 }

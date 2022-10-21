@@ -20,6 +20,9 @@ public class TypicalAppointments {
     public static final Appointment SECOND_APPOINTMENT_CARL =
             new Appointment("Sore Throat", "2019-12-10 16:30", "1Y", false);
 
+    public static final Appointment APPOINTMENT_DAVID =
+            new Appointment("Cough", "2010-12-31 23:46", "", true);
+
     public static List<Appointment> getTypicalAppointments() {
         APPOINTMENT_BENSON.setPatient(BENSON);
         APPOINTMENT_CARL.setPatient(CARL);
