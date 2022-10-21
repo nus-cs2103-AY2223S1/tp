@@ -36,6 +36,7 @@ public class JsonAdaptedLesson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedLesson(Lesson source) {
+        assert !source.equals(null) : "lesson to add should not be null";
         type = source.getType();
         module = source.getModule();
         day = String.format("%d", source.getDay());
