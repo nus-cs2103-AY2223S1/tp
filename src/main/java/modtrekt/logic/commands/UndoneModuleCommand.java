@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
+
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.model.Model;
@@ -33,6 +34,7 @@ public class UndoneModuleCommand extends Command {
      * @param moduleCode the module code of the module that wants to be marked as undone.
      */
     public UndoneModuleCommand(ModCode moduleCode) {
+        requireNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
 
