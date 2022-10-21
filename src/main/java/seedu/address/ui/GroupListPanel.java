@@ -39,7 +39,7 @@ public class GroupListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new GroupCard(group).getRoot());
+                setGraphic(new GroupCard(group, 1).getRoot());
             }
         }
     }
