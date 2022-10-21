@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CommandResult.CommandType.CLEAR;
 
 import java.util.Collections;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
 /**
@@ -30,12 +29,10 @@ public class ClearCommand extends Command {
             model.setTutors(Collections.emptyList());
             break;
 
-        case TUITIONCLASS_LIST:
+        default:
+            assert (model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST);
             model.setTuitionClasses(Collections.emptyList());
             break;
-
-        default:
-            model.setAddressBook(new AddressBook());
         }
         return new CommandResult(MESSAGE_SUCCESS, CLEAR);
     }

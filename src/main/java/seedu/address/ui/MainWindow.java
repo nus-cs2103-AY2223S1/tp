@@ -214,17 +214,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /** Shows the specified entity **/
-    private void handleShow(int index) {
+    private void updateDescription(int index) {
         Model.ListType type = logic.getCurrentListType();
-        entityDescriptionPlaceholder.getChildren().clear();
         descriptionEntityType = type;
         switch(type) {
         case STUDENT_LIST:
+            entityDescriptionPlaceholder.getChildren().clear();
             studentDescription = new StudentDescription(
                     logic.getFilteredStudentList().get(index), index + 1);
             entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
             break;
         case TUTOR_LIST:
+            entityDescriptionPlaceholder.getChildren().clear();
             tutorDescription = new TutorDescription(
                     logic.getFilteredTutorList().get(index), index + 1);
             entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
@@ -440,7 +441,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isUpdateDescription()) {
-                handleShow(commandResult.getIndex());
+                updateDescription(commandResult.getIndex());
             }
 
             if (commandResult.isClear()) {

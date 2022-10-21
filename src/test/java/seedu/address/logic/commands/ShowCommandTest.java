@@ -149,6 +149,8 @@ public class ShowCommandTest {
         model.updateFilteredTutorList(t -> false);
         model.updateFilteredTuitionClassList(c -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredStudentList().isEmpty());
+        assertTrue(model.getFilteredTutorList().isEmpty());
+        assertTrue(model.getFilteredTuitionClassList().isEmpty());
     }
 }

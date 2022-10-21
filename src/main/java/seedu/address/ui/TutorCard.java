@@ -47,7 +47,7 @@ public class TutorCard extends UiPart<Region> {
         tutor.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
                 .forEach(tuitionClass -> classes.getChildren()
-                        .add(new Label(tuitionClass.getName().name.toUpperCase())));
+                        .add(new Label(tuitionClass.getName().name)));
     }
 
     @Override

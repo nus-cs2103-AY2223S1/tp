@@ -53,7 +53,7 @@ public class TuitionClassCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         id.setText(displayedIndex + ". ");
-        name.setText(tuitionClass.getName().name.toUpperCase());
+        name.setText(tuitionClass.getName().name);
         day.setText("Day: " + tuitionClass.getDay().day);
         time.setText("Time: " + tuitionClass.getTime().toString());
         level.setText("Level: " + tuitionClass.getLevel().level);

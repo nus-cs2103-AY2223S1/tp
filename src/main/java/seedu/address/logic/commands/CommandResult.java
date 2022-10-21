@@ -149,7 +149,8 @@ public class CommandResult {
 
     public boolean isUpdateDescription() {
         return this.type == CommandType.ASSIGN
-                || this.type == CommandType.EDIT;
+                || this.type == CommandType.EDIT
+                || this.type == CommandType.SHOW;
     }
 
     public boolean isDelete() {

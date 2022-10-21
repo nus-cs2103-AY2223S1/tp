@@ -18,6 +18,6 @@ public class AssignedClass extends UiPart<Region> {
      */
     public AssignedClass(String className) {
         super(FXML);
-        name.setText(className.toUpperCase());
+        name.setText(className);
     }
 }

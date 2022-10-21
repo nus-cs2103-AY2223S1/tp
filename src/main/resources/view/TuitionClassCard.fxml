@@ -30,7 +30,7 @@
       </HBox>
          <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
             <children>
-               <Label id="classDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="36.0" text="Class" textAlignment="CENTER">
+               <Label id="classDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="36.0" text="class" textAlignment="CENTER">
                   <HBox.margin>
                      <Insets top="1.0" />
                   </HBox.margin>
