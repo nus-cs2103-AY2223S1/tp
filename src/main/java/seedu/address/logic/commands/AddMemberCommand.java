@@ -19,9 +19,9 @@ public class AddMemberCommand extends Command {
     public static final String COMMAND_WORD = "add_member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Adds the person with the specified name into the current team.\n"
-        + "Parameters: PERSON_NAME\n"
-        + "Example: " + COMMAND_WORD + " Alice";
+            + ": Adds the person with the specified name into the current team.\n"
+            + "Parameters: NAME\n"
+            + "Example: " + COMMAND_WORD + " Alice";
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
@@ -30,7 +30,7 @@ public class AddMemberCommand extends Command {
     private final Name targetPersonName;
 
     /**
-     * Creates an AddMemberCommand to add the {@code Person} with the specified {@code Name} to the current team
+     * Creates an AddMemberCommand to add the {@code Person} with the specified {@code Name} to the current {@code Team}
      */
     public AddMemberCommand(Name targetPersonName) {
         requireNonNull(targetPersonName);
@@ -41,7 +41,7 @@ public class AddMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> matchingPersons =
-            model.getFilteredPersonList(new NamePredicate(targetPersonName));
+                model.getFilteredPersonList(new NamePredicate(targetPersonName));
 
         if (matchingPersons.size() == 0) {
             throw new CommandException(MESSAGE_PERSON_NOT_EXISTS);
@@ -63,7 +63,7 @@ public class AddMemberCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddMemberCommand // instanceof handles nulls
-            && targetPersonName.equals(((AddMemberCommand) other).targetPersonName)); // state check
+                || (other instanceof AddMemberCommand // instanceof handles nulls
+                && targetPersonName.equals(((AddMemberCommand) other).targetPersonName)); // state check
     }
 }
