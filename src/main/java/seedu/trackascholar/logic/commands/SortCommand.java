@@ -18,9 +18,10 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all applicants by the specified "
-            + "input (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: name/scholarship\n"
-            + "Example: " + COMMAND_WORD + " name";
+            + "parameter (case-insensitive) in ascending order and displays them as a list with index numbers.\n"
+            + "To sort in descending order, add a \"-r\" flag at the end of the input.\n"
+            + "Parameters: name/scholarship/status [-r]\n"
+            + "Example: " + COMMAND_WORD + " name -r";
 
     private final Comparator<Applicant> comparator;
 
