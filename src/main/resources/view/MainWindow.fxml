@@ -26,10 +26,10 @@
       <VBox maxWidth="1600.0" prefHeight="66.0" prefWidth="1200.0">
         <MenuBar fx:id="menuBar" translateX="-6.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="CONTACTS">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            <MenuItem mnemonicParsing="false" onAction="#handleContactTab" text="Contacts" />
           </Menu>
           <Menu mnemonicParsing="false" text="TASKS">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem fx:id="openTaskTabItem" mnemonicParsing="false" onAction="#handleTaskTab" text="Tasks" />
           </Menu>
           <Menu mnemonicParsing="false" text="HELP">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
@@ -45,11 +45,11 @@
         <VBox VBox.vgrow="ALWAYS">
           <HBox VBox.vgrow="ALWAYS">
             <HBox maxWidth="850.0" minWidth="850.0" prefHeight="22.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                <VBox fx:id="personList" prefHeight="22.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <VBox fx:id="list" prefHeight="22.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
-                  <StackPane fx:id="taskListPanelPlaceholder" minWidth="600.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                  <StackPane fx:id="listPanelPlaceholder" minWidth="600.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
                 </VBox>
             </HBox>
 

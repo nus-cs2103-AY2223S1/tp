@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -18,6 +19,8 @@ public class TaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
+    private Label listPanelHeading;
+    @FXML
     private ListView<Task> taskListView;
 
     /**
@@ -27,6 +30,13 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
+    }
+
+    /**
+     * Remove heading from the panel.
+     */
+    protected void removeHeading() {
+        listPanelHeading.setText("");
     }
 
     /**

@@ -44,10 +44,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem openTaskTabItem;
 
     @FXML
-    private StackPane taskListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,11 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -173,8 +170,16 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleTaskTab() {
+        personListPanel.removeHeading();
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+    }
+
+    @FXML
+    private void handleContactTab() {
+        taskListPanel.removeHeading();
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     public PersonListPanel getPersonListPanel() {
