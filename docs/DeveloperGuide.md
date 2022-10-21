@@ -282,6 +282,9 @@ Step 10: The `InsuranceCommand` calls the `updateFilteredPersonList` method of t
 Step 11: The `InsuranceCommand` then returns a new `CommandResult` object with the result of the execution.
 
 Step 12: The `LogicManager` then returns the `CommandResult` object.
+
+![Sequence diagram for the Insurance Command](images/InsuranceSequenceDiagram.png)
+
 ### Delete feature
 
 #### Implementation
