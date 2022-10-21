@@ -399,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS)**
 
 1. User requests to undo the latest command they have executed.
-2. Workbook reverts any changes made by the command and displays the previous state of the list of the internship applications.
+2. Workbook reverts any changes made by the command and displays the previous state of the list of internship applications.
 
    Use case ends.
 
@@ -407,7 +407,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. There is no previous command executed and the list is empty.
 
-      Use case ends.
+    * 1a1. WorkBook displays an error message that no previous command has been entered.
+
+       Use case ends.
 
 **Use case: UC06 - Clear list of internship applications**
 
