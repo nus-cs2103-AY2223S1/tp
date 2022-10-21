@@ -85,7 +85,7 @@ Examples:
 
 ### Adding a new member to the team `add_member`
 
-Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
+Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
 
 Format:
 * `add_member TASK_INDEX`
