@@ -10,7 +10,7 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
@@ -21,23 +21,23 @@ import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddStudentCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddStudentCommandParser implements Parser<AddStudentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddStudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_STUDENT_NAME, PREFIX_PROJECT_NAME,
                         PREFIX_EMAIL, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_STUDENT_NAME, PREFIX_PROJECT_NAME,
                 PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
@@ -49,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Student student = new Student(studentName, studentId, email, projectName, projectStatus, tagList);
 
-        return new AddCommand(student);
+        return new AddStudentCommand(student);
     }
 
     /**

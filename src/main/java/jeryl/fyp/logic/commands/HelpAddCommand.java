@@ -8,7 +8,7 @@ import jeryl.fyp.model.Model;
 public class HelpAddCommand extends HelpCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD + " " + AddCommand.COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + " " + AddStudentCommand.COMMAND_WORD;
 
     public static final String SHOWING_HELP_ADD_MESSAGE = "ADD Command:\n"
             + "Adds a new FYP of a student to the FYP manager.\n"

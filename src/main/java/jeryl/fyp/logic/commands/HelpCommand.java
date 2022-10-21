@@ -13,7 +13,7 @@ public class HelpCommand extends Command {
             + "Parameters: "
             + "[COMMAND]\n"
             + "Example: " + COMMAND_WORD + " "
-            + AddCommand.COMMAND_WORD;
+            + AddStudentCommand.COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 

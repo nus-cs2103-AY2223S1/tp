@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.logic.commands.ClearCommand;
-import jeryl.fyp.logic.commands.DeleteCommand;
+import jeryl.fyp.logic.commands.DeleteStudentCommand;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.logic.commands.ExitCommand;
@@ -41,8 +41,8 @@ public class FypManagerParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
-        assertEquals(new AddCommand(student), command);
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
+        assertEquals(new AddStudentCommand(student), command);
     }
 
     @Test
@@ -54,8 +54,9 @@ public class FypManagerParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         Student student = new StudentBuilder().build();
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(StudentUtil.getDeleteCommand(student));
-        assertEquals(new DeleteCommand(student.getStudentId()), command);
+        DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
+                StudentUtil.getDeleteCommand(student));
+        assertEquals(new DeleteStudentCommand(student.getStudentId()), command);
     }
 
     @Test
@@ -110,6 +111,7 @@ public class FypManagerParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand("unknownCommand"));
     }
 }

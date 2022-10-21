@@ -1,7 +1,11 @@
 package jeryl.fyp.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_DEADLINE_RANK;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +13,7 @@ import java.util.Set;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.commons.util.StringUtil;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
+import jeryl.fyp.model.student.DeadlineName;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -134,5 +139,99 @@ public class ParserUtil {
             throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
         }
         return new ProjectStatus(trimmedProjectStatus);
+    }
+
+    /**
+     * Parses a {@code String deadlineName} into a {@code deadlineName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadlineName} is invalid.
+     */
+    public static DeadlineName parseDeadlineName(String deadlineName) throws ParseException {
+        requireNonNull(deadlineName);
+        String trimmedDeadlineName = deadlineName.trim();
+        if (!DeadlineName.isValidDeadlineName(trimmedDeadlineName)) {
+            throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
+        }
+        return new DeadlineName(trimmedDeadlineName);
+    }
+
+    /**
+     * Converts a datetime string to a LocalDateTime Object.
+     * @param dateTime A string in format: yyyy-MM-dd hh:mm.
+     * @return A LocalDateTime variable implied by the string.
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static LocalDateTime parseDeadlineDatetime(String dateTime) throws ParseException {
+        String[] dateAndTime = dateTime.trim().split(" ");
+        String hour;
+        String min;
+        if (dateAndTime.length != 2) {
+            throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+        } else {
+            String[] components = dateAndTime[1].strip().split(":", 2);
+            if (components.length != 2) {
+                throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+            } else {
+                hour = components[0];
+                min = components[1];
+                if (hour.length() == 2 && min.length() == 2) {
+                    try {
+                        LocalDate date = parseLocalDate(dateAndTime[0]);
+                        LocalTime time = LocalTime.parse(dateAndTime[1]);
+                        return LocalDateTime.of(date, time);
+                    } catch (Exception e) {
+                        throw new ParseException("The correct Format: YYYY-MM-DD HH:mm. \nHH should be a number in "
+                                + "[0,23]; mm should be a number in [0,59]");
+                    }
+                }
+                throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+            }
+        }
+    }
+
+    /**
+     * Converts a datetime string to a LocalDate Object.
+     * @param date A string in format: yyyy-MM-dd.
+     * @return A LocalDate variable implied by the string.
+     * @throws ParseException
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        String[] components = date.strip().split("-", 3);
+        String year;
+        String month;
+        String day;
+        if (components.length != 3) {
+            throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+        } else {
+            year = components[0];
+            month = components[1];
+            day = components[2];
+            if (year.length() == 4 && month.length() == 2 && day.length() == 2) {
+                try {
+                    return LocalDate.parse(date);
+                } catch (Exception e) {
+                    throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+                }
+            }
+            throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+        }
+    }
+
+    /**
+     * Parses a {@code String rank} into a {@code Integer rank}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rank} is invalid.
+     */
+    public static Integer parseRank(String rank) throws ParseException {
+        requireNonNull(rank);
+        String trimmedRank = rank.trim();
+        //
+        try {
+            return Integer.valueOf(trimmedRank);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DEADLINE_RANK);
+        }
     }
 }

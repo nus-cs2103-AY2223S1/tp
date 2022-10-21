@@ -5,30 +5,30 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
 import java.util.stream.Stream;
 
-import jeryl.fyp.logic.commands.DeleteCommand;
+import jeryl.fyp.logic.commands.DeleteStudentCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.StudentId;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteStudentCommand object
  */
-public class DeleteCommandParser implements Parser<DeleteCommand> {
+public class DeleteStudentCommandParser implements Parser<DeleteStudentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteStudentCommand
+     * and returns a DeleteStudentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteCommand parse(String args) throws ParseException {
+    public DeleteStudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
         }
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
-        return new DeleteCommand(studentId);
+        return new DeleteStudentCommand(studentId);
     }
 
     /**

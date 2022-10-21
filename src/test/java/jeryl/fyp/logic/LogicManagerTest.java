@@ -17,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
 import jeryl.fyp.logic.commands.CommandResult;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
@@ -58,7 +58,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete id/A9999999Z";
+        String deleteCommand = "delete-s id/A9999999Z";
         assertCommandException(deleteCommand, MESSAGE_STUDENT_NOT_FOUND);
     }
 
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + STUDENT_ID_DESC_AMY
+        String addCommand = AddStudentCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + STUDENT_ID_DESC_AMY
                 + PROJECT_NAME_DESC_AMY + EMAIL_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

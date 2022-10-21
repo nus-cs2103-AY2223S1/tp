@@ -15,9 +15,9 @@ import jeryl.fyp.model.student.StudentId;
 /**
  * Deletes a student identified using it's unique StudentId.
  */
-public class DeleteCommand extends Command {
+public class DeleteStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete-s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by it's unique student id.\n"
@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
 
     private final StudentId studentId;
 
-    public DeleteCommand(StudentId studentId) {
+    public DeleteStudentCommand(StudentId studentId) {
         this.studentId = studentId;
     }
 
@@ -51,7 +51,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && studentId.equals(((DeleteCommand) other).studentId)); // state check
+                || (other instanceof DeleteStudentCommand // instanceof handles nulls
+                && studentId.equals(((DeleteStudentCommand) other).studentId)); // state check
     }
 }

@@ -69,30 +69,42 @@ title: User Guide
 
 ### Adding students FYP: `add`
 
-Adds a new FYP of a student to the FYP manager.
+There are 2 types of Add Commands. 
+1. `add-s`: Adds a new FYP of a student to the FYP manager.
+Format: `add-s id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​`
+2. `add-d`: Adds a new deadline task to a student specified by ID.
+Format: `add-d id/STUDENT_ID dn/DEADLINE_NAME dd/DEADLINE_DATETIME`
 
-Format: `add id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​`
-* `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
+* `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 letter)**, e.g. `A0123456G`
+* `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and space but **cannot start with a space**, e.g. `Support vector machine: some improvements` is invalid
+* `DEADLINE_DATETIME` should be in the format of "YYYY-MM-DD HH:mm"
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add id/A0123456G n/Jane Doe proj/Neural Network e/e0123456@u.nus.edu t/NN`
-* `add id/A0987654X n/Alex Yeoh proj/Data Caching e/e09876567@u.nus.edu`
+* `add-s id/A0123456G n/Jane Doe proj/Neural Network e/e0123456@u.nus.edu t/NN`
+* `add-s id/A0987654X n/Alex Yeoh proj/Data Caching e/e09876567@u.nus.edu`
+* `add-d id/A0123456G dn/Random Task dd/2022-10-23 23:59`
 
 ### Removing students FYP: `delete`
 
-Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
+There are 2 types of Delete Commands.
+1. `delete-s`: Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
 * Student dropped the FYP
 * Student finished the FYP
 
-Format: `delete id/STUDENT_ID`
+    Format: `delete-s id/STUDENT_ID`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
+2. `delete-d`: Removes a deadline assigned to a student specified by ID.
+   
+    Format: `delete-d id/STUDENT_ID num/DEADLINE_RANK`
+
 
 Example:
-* `delete id/A0123456G`
+* `delete-s id/A0123456G`
+* `delete-d id/A0123456G num/1`
 
 ### Marking project status: `mark`
 

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.commons.core.index.Index;
+import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
@@ -102,6 +103,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addStudent(Student student) {
+        requireNonNull(student);
         fypManager.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
@@ -111,6 +113,30 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         fypManager.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public boolean hasDeadline(Student student, Deadline deadline) {
+        requireAllNonNull(student, deadline);
+        return fypManager.hasDeadline(student, deadline);
+    }
+
+    @Override
+    public void deleteDeadline(Student student, Deadline deadline) {
+        requireAllNonNull(student, deadline);
+        fypManager.removeDeadline(student, deadline);
+    }
+
+    @Override
+    public void addDeadline(Student student, Deadline deadline) {
+        requireAllNonNull(student, deadline);
+        fypManager.addDeadline(student, deadline);
+    }
+
+    @Override
+    public void setDeadline(Student student, Deadline target, Deadline editedDeadline) {
+        requireAllNonNull(student, target, editedDeadline);
+        fypManager.setDeadline(student, target, editedDeadline);
     }
 
     @Override
