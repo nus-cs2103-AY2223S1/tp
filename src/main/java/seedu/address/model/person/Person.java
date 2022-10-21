@@ -142,10 +142,7 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-        Company company = getCompany();
-        if (company != null) {
-            builder.append(("; Company: ")).append(getCompany());
-        }
+        builder.append(("; Company: ")).append(getCompany());
         return builder.toString();
     }
 

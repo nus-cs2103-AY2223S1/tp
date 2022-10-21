@@ -119,8 +119,8 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withCompany(String company) {
-        if (company == null) {
-            this.company = null;
+        if (company == null || company.isBlank()) {
+            this.company = new Company(null);
         } else {
             this.company = new Company(company);
         }
