@@ -338,6 +338,44 @@ Here is an example of what happens when the recruiter attempts to edit a candida
 
 It is designed to be a mandatory feature, as every candidate under the recruiting process must be at an application stage.
 
+### \[Implemented\] Note feature
+
+#### Implementation 
+
+The proposed `Note` feature is added as an optional attribute under the `Person` class. 
+
+A `Note` class is created, and is implemented via a `String`. The String can take in any input, including a blank string. 
+
+The `Note` attribute is mainly implemented by the following methods: 
+- `Note` can be added via the `AddCommand` 
+- `Note` can be edited via the `EditCommand`.
+
+It is also additionally facilitated by these methods:
+- `NoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input
+- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
+
+Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
+1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore note/Strong in Python.`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command. 
+3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
+4. Each of the different arguments of a candidate (name, phone, email, address, Status) are parsed by `AddCommandParser#parse()`
+5. If any of the compulsory arguments of a candidate (name, phone, email, address, Status) are not present, the command will fail its execution and `ParseException` will be thrown. 
+6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned 
+
+Here is an example of what happens when the recruiter attempts to edit a candidate's Note  CLInkedIn:
+1. Recruiter enters the command `edit 1 note/Missed 2 interviews`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
+4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
+5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
+6. An `EditCommand` object is generated. 
+7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands 
+8. A `CommandResult` is returned.
+
+#### Design Considerations 
+
+It is designed to be an optional feature, as it is meant to be a supplementary source of notetaking that recruiters can make on candidates saved.
+
 ### \[Implementing\] Rating feature
 
 The proposed `Rating` feature is added as an attribute under the `Person` class.
