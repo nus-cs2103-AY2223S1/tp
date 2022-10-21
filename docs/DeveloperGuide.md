@@ -237,6 +237,7 @@ _{more aspects and alternatives to be added}_
 ### Appointments feature
 
 ![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
 The class diagram above visualises the `Appointment` package. The members of the `Medication` class have been hidden.
 
 **Implementation**
