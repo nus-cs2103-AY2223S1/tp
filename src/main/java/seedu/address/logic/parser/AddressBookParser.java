@@ -20,6 +20,8 @@ import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HideAppointmentsCommand;
+import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
@@ -76,6 +78,15 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case HidePatientsCommand.COMMAND_WORD:
+            if (descriptor.equals(HidePatientsCommand.DESCRIPTOR_WORD)) {
+                return new HidePatientsCommandParser().parse(arguments);
+            } else if (descriptor.equals(HideAppointmentsCommand.DESCRIPTOR_WORD)) {
+                return new HideAppointmentsCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
 
         case BookCommand.COMMAND_WORD:
             return new BookCommandParser().parse(arguments);

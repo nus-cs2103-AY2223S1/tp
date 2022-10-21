@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -47,9 +45,6 @@ public class CancelCommand extends SelectAppointmentCommand {
         int index = patientToCancelAppt.getAppointments().indexOf(toBeCancelledAppt) + 1;
         cancelAppointment(patientToCancelAppt.getAppointments(), toBeCancelledAppt);
         model.deleteAppointment(toBeCancelledAppt);
-
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
         return new CommandResult(String.format(MESSAGE_CANCEL_APPOINTMENT_SUCCESS, index)
                 + patientToCancelAppt.getName());
