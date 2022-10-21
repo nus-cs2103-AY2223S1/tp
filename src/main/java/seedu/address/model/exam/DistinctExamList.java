@@ -12,6 +12,7 @@ import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * This class represents a list which contains Exam objects which are distinct from
@@ -88,6 +89,25 @@ public class DistinctExamList implements Iterable<Exam> {
         requireNonNull(toRemove);
         if (!examList.remove(toRemove)) {
             throw new ExamNotFoundException();
+        }
+    }
+
+    /**
+     * Links task to exams in distinct exam list.
+     *
+     * @param task Task which is being linked to exam.
+     */
+    public void linkTaskToExams(Task task) {
+        requireNonNull(task);
+        for (Exam exam : examList) {
+            if (task.getExam() != null && exam.isSameExam(task.getExam())) {
+                exam.linkExam(task);
+            }
+            assert task.getExam() == null
+                    || (task.getExam() != null
+                    && !exam.isSameExam(task.getExam()))
+                    : "The task should not have no exam linked to it or "
+                    + "the task is not linked to current exam";
         }
     }
 

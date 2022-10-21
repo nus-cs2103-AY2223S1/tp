@@ -282,6 +282,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return exams.getUnmodifiableExamList();
     }
 
+    /**
+     * Links task to exam list stored in {@code AddressBook}.
+     *
+     * @param task The task which is linked.
+     */
+    public void linkTaskToExam(Task task) {
+        this.exams.linkTaskToExams(task);
+    }
 
     @Override
     public boolean equals(Object other) {

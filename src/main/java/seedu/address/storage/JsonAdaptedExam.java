@@ -1,9 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -12,7 +8,6 @@ import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.task.Task;
 
 /**
  * This class represents a Jackson friendly version of the Exam.
@@ -24,7 +19,6 @@ public class JsonAdaptedExam {
     private final String description;
     private final String moduleCode;
     private final String date;
-    private final List<JsonAdaptedLinkedTask> linkedTasks;
 
     /**
      * Builds a {@code JsonAdaptedExam} with the description and module code and date.
@@ -35,12 +29,10 @@ public class JsonAdaptedExam {
      */
     public JsonAdaptedExam(@JsonProperty("description") String description,
                            @JsonProperty("modCode") String moduleCode,
-                           @JsonProperty("date") String date,
-                           @JsonProperty("linkedTasks") ArrayList<JsonAdaptedLinkedTask> linkedTasks) {
+                           @JsonProperty("date") String date) {
         this.description = description;
         this.moduleCode = moduleCode;
         this.date = date;
-        this.linkedTasks = linkedTasks;
     }
 
     /**
@@ -52,10 +44,6 @@ public class JsonAdaptedExam {
         description = exam.getDescription().description;
         moduleCode = exam.getModule().getModuleCode().moduleCode;
         date = exam.getExamDate().dateWithoutFormatting;
-        linkedTasks = exam.getTasksLinked()
-                .stream()
-                .map(JsonAdaptedLinkedTask::new)
-                .collect(Collectors.toList());
     }
 
     /**
@@ -83,15 +71,11 @@ public class JsonAdaptedExam {
         if (!ExamDate.isValidDateFormat(date)) {
             throw new IllegalValueException(ExamDate.DATE_CONSTRAINTS);
         }
-        final List<Task> tasks = new ArrayList<>();
-        for (JsonAdaptedLinkedTask linkedTask : linkedTasks) {
-            tasks.add(linkedTask.toModelType());
-        }
         final ExamDescription examDescription = new ExamDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);
         final ExamDate examDate = new ExamDate(date);
-        return new Exam(module, examDescription, examDate, tasks);
+        return new Exam(module, examDescription, examDate);
     }
 
 }
