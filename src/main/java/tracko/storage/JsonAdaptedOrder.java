@@ -122,6 +122,7 @@ public class JsonAdaptedOrder {
             itemQuantityPairs.add(pair.toModelType(inventoryList));
         }
 
-        return new Order(modelName, modelPhone, modelEmail, modelAddress, timeCreated, itemQuantityPairs, isPaid, isDelivered);
+        return new Order(modelName, modelPhone, modelEmail, modelAddress, timeCreated, itemQuantityPairs, 
+            isPaid, isDelivered);
     }
 }
