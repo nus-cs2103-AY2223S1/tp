@@ -15,6 +15,7 @@ import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterTaskCategoryCommand;
 import seedu.address.logic.commands.FilterTaskDeadlineCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -88,6 +89,9 @@ public class AddressBookParser {
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
+
+        case FilterTaskCategoryCommand.COMMAND_WORD:
+            return new FilterTaskCategoryParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
