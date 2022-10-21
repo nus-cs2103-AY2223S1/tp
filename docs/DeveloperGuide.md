@@ -191,6 +191,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+=======
 ### Add Student feature
 
 The Add Student feature allows CS2103T TAs to add a new `Student` object to the student list. When successfully added, 
@@ -296,6 +297,64 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Pros: More comprehensive, users can check the quality of responses to award participation marks correspondingly
   - Cons: More memory consumed, takes quite long to implement on top of other features to be implemented in 4 weeks 
 before feature freeze.
+=======
+### Add Question feature
+
+#### Implementation
+
+The proposed add question mechanism is facilitated by `AddressBook`.
+It implements the following operations:
+* `AddressBook#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question 
+  exists in the 
+  address book.
+* `AddressBook#addQuestion(Question question)` - Adds a question to the question list in the address book.
+
+These operations are exposed in the Model interface as `Model#hasQuestion(Question question)`
+and `Model#addQuestion(Question question)` respectively.
+
+Given below is an example usage scenario and how the addq mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
+address book state.
+
+Step 2. The user execute `addq Why?` command to add question called "Why?" to the question list ('UniqueQuestionList').
+The `addq` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified address book 
+after the `addq Why?` command executes to be saved in the `addressBook`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution 
+due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so the address book state will not be saved into `addressBook`. User will retype their command.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If upon invoking `AddressBook#hasQuestion` 
+method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so 'UniqueQuestionList' and `addressBook` will not be updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note: Questions added not case sensitive. For 
+example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are 
+not allowed. E.g. adding another question called "why?".
+** .
+
+</div>
+
+The following sequence diagram shows how the add question operation works:
+![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `addq` command.
+
+<img src="images/AddQActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How addq executes:**
+
+* **Alternative 1 (current choice):** Saves the question inside the entire address book.
+    * Pros: Easy to implement.
+    * Cons: If the data file is corrupted, all questions added are lost.
+
+* **Alternative 2:** Add questions to a separate list not part of the address book.
+    * Pros: Easier to test as data is stored separately.
+    * Cons: Having separate lists will cause the code to be more complicated.
+
+_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Undo/redo feature
 
