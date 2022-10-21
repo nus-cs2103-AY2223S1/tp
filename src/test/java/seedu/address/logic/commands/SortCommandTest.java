@@ -70,5 +70,4 @@ public class SortCommandTest {
         assertNotEquals(sortName, sortScholarship);
     }
 
-
 }
