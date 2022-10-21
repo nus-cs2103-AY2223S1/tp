@@ -27,9 +27,10 @@ public class AppointmentByDatePredicate implements Predicate<Person> {
     public boolean test(Person person) {
         Boolean hasMatchPastAppointments = appointments.stream().anyMatch(
                 keyword -> person.getPastAppointments().stream()
-                        .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
+                .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
         Boolean isPresentUpcomingAppointments = appointments.stream().anyMatch(keyword
                 -> person.getUpcomingAppointment().isPresent());
+                .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
         Boolean hasMatchUpcomingAppointments = appointments.stream().anyMatch(keyword
                 -> person.getUpcomingAppointment().stream()
                 .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
