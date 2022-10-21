@@ -81,7 +81,7 @@ public class UniquePetListTest {
         uniquePetList.setPet(TypicalPets.DOJA, TypicalPets.DOJA);
         UniquePetList expectedUniquePetList = new UniquePetList();
         expectedUniquePetList.add(TypicalPets.DOJA);
-        assertEquals(expectedUniquePetList, expectedUniquePetList);
+        assertEquals(expectedUniquePetList, uniquePetList);
     }
 
     @Test
