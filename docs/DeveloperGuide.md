@@ -33,9 +33,9 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Libraries used:
-  * JavaFX
-  * Jackson
-  * JUnit5
+  * [JavaFX](https://openjfx.io/)
+  * [Jackson](https://github.com/FasterXML/jackson)
+  * [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
