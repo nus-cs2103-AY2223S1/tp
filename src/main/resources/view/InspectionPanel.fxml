@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.ListView?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.image.ImageView?>
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="inspectionPanel-VBox">
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10" />
+  </padding>
+  <VBox prefWidth="250" maxWidth="250">
+    <GridPane HBox.hgrow="NEVER">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="250" />
+      </columnConstraints>
+      <VBox alignment="CENTER_LEFT" minHeight="30" GridPane.columnIndex="0">
+        <padding>
+          <Insets top="15" right="15" bottom="15" left="15" />
+        </padding>
+        <VBox spacing="5" alignment="CENTER_LEFT" styleClass="inspection-card">
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <ImageView fx:id="nameImage" fitHeight="20" fitWidth="20"/>
+            <Label fx:id="name" text="\$first" styleClass="cell_bigger_label" wrapText="true"/>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <ImageView fx:id="phoneImage" fitHeight="20" fitWidth="20"/>
+            <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" wrapText="true"/>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <ImageView fx:id="addressImage" fitHeight="20" fitWidth="20"/>
+            <Label fx:id="address" styleClass="cell_big_label" text="\$address" wrapText="true"/>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <ImageView fx:id="emailImage" fitHeight="20" fitWidth="20"/>
+            <Label fx:id="email" styleClass="cell_big_label" text="\$email" wrapText="true" />
+          </HBox>
+          <FlowPane fx:id="tags"/>
+        </VBox>
+      </VBox>
+    </GridPane>
+  </VBox>
+  <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
+</HBox>

@@ -1,14 +1,15 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of persons.
@@ -18,31 +19,30 @@ public class NoteListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(NoteListPanel.class);
 
     @FXML
-    private ListView<Person> noteListView;
+    private ListView<Note> noteListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code NoteListPanel} with the given {@code ObservableList}.
      */
-    public NoteListPanel(ObservableList<Person> personList) {
+    public NoteListPanel(ObservableList<Note> noteList) {
         super(FXML);
-        assert noteListView == null;
-        noteListView.setItems(personList);
+        noteListView.setItems(noteList);
         noteListView.setCellFactory(listView -> new NoteListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Note} using a {@code NoteCard}.
      */
-    class NoteListViewCell extends ListCell<Person> {
+    class NoteListViewCell extends ListCell<Note> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Note note, boolean empty) {
+            super.updateItem(note, empty);
 
-            if (empty || person == null) {
+            if (empty || note == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new NoteCard(note, getIndex() + 1).getRoot());
             }
         }
     }

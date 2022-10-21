@@ -16,6 +16,13 @@
     <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
   </VBox>
 
+  <VBox fx:id="inspectionSection" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+    <padding>
+      <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    <StackPane fx:id="inspectionPanelPlaceholder" VBox.vgrow="SOMETIMES"/>
+  </VBox>
+
   <VBox fx:id="noteList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
     <StackPane fx:id="noteListPanelPlaceholder" VBox.vgrow="SOMETIMES"/>
   </VBox>

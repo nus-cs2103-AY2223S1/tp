@@ -3,7 +3,8 @@
   -fx-contrast-color: #F2D492;
   -fx-highlight-color: #B8B08D;
   -fx-shadow-color: #2C3333;
-  -fx-midtone-color: #1F2933;
+  -fx-midtone-color: #544464;
+  -fx-darktone-color: #29153D;
 }
 
 .background {
@@ -97,10 +98,28 @@
 }
 
 .notes-VBox {
-    -fx-background-color: derive(-fx-shadow-color, 10%);
+    -fx-background-color: linear-gradient(to left, derive(-fx-shadow-color, 20%) 99%, orangered 100%);
     -fx-background-radius: 20;
     -fx-padding: 5, 5, 5, 5;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
+}
+
+.person-VBox {
+    -fx-background-color: linear-gradient(to left, derive(-fx-shadow-color, 20%) 99.5%, orangered 100%);
+    -fx-background-radius: 20;
+    -fx-padding: 5, 5, 5, 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
+}
+
+.inspectionPanel-VBox {
+    -fx-background-color: linear-gradient(to left, derive(-fx-shadow-color, 20%) 99.5%, orangered 100%);
+    -fx-background-radius: 20;
+    -fx-padding: 5, 5, 5, 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
+}
+
+.inspection-card .label {
+    -fx-text-fill: white;
 }
 
 .list-view {
@@ -114,24 +133,33 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 4;
     -fx-background-radius: 20;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -1.0, 1.0);
 }
 
 .list-cell:filled {
-    -fx-background-color: -fx-shadow-color;
+    -fx-background-color: linear-gradient(to left, -fx-midtone-color, -fx-darktone-color);
     -fx-background-insets: 4px ;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: derive(-fx-midtone-color, 20%);
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
+    -fx-border-radius: 20px;
 }
 
 .list-cell .label {
     -fx-text-fill: white;
+}
+
+.cell_bigger_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 21px;
+    -fx-text-fill: #010504;
 }
 
 .cell_big_label {
