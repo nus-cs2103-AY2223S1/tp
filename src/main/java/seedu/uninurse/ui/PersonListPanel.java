@@ -33,10 +33,9 @@ public class PersonListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Patient> {
-
-
         PersonListViewCell() {
             super();
+            setStyle("-fx-padding: 5 5 5 0");
         }
 
         @Override
@@ -51,5 +50,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

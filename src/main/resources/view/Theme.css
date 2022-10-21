@@ -352,15 +352,14 @@
 .pane-with-border {
     -fx-background-color: white;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-    -fx-background-radius: 20;
-    -fx-padding: 10 25 10 25;
+    -fx-background-radius: 5;
 }
 
 .text-area {
     -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 16px;
     -fx-background-color: white;
-    -fx-padding: 0 3 0 5;
+    -fx-padding: 0 5 0 5;
     -fx-effect: null;
     -fx-focus-color: transparent;
     -fx-highlight-fill: rgba(46, 74, 138, 0.3);

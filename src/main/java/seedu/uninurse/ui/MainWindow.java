@@ -33,25 +33,12 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private OutputPanel outputPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private OutputPanel outputPanel;
-    //private SchedulePanel schedulePanel;
-
-    @FXML
-    private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     @FXML
     private Label patientHeader;
@@ -60,10 +47,19 @@ public class MainWindow extends UiPart<Stage> {
     private Label outputHeader;
 
     @FXML
-    private StackPane outputPanelPlaceholder;
+    private StackPane personListPanelContainer;
 
     @FXML
-    private StackPane schedulePanelPlaceholder;
+    private StackPane outputPanelContainer;
+
+    @FXML
+    private StackPane resultDisplayContainer;
+
+    @FXML
+    private StackPane commandBoxContainer;
+
+    @FXML
+    private StackPane statusbarContainer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,29 +118,31 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Fills up all the Containers of this window.
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        personListPanelContainer.getChildren().add(personListPanel.getRoot());
+        personListPanelContainer.prefHeightProperty().bind(this.getRoot().heightProperty());
+
+        outputPanel = new OutputPanel();
+        outputPanel.getRoot().prefWidthProperty().bind(outputPanelContainer.widthProperty());
+        outputPanel.getRoot().prefHeightProperty().bind(outputPanelContainer.heightProperty());
+
+        outputPanelContainer.getChildren().add(outputPanel.getRoot());
+        outputPanelContainer.prefHeightProperty().bind(this.getRoot().heightProperty());
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getUninurseBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        resultDisplayContainer.getChildren().add(resultDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxContainer.getChildren().add(commandBox.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getUninurseBookFilePath());
+        statusbarContainer.getChildren().add(statusBarFooter.getRoot());
 
         patientHeader.setText("Patients");
         outputHeader.setText("Output");
-
-        outputPanel = new OutputPanel();
-        outputPanelPlaceholder.getChildren().add(outputPanel.getRoot());
-
-        //schedulePanel = new SchedulePanel();
-        //schedulePanelPlaceholder.getChildren().add(schedulePanel.getRoot());
     }
 
     /**
@@ -230,7 +228,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isDeletePatient()) {
                 outputPanel.handleDeletePatient(logic.getPatientOfInterest());
             }
-
 
             return commandResult;
         } catch (CommandException | ParseException e) {

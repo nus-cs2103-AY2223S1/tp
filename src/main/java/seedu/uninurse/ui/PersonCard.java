@@ -32,8 +32,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private VBox personDetails;
     @FXML
-    private VBox rightBox;
-    @FXML
     private Label name;
     @FXML
     private Label id;

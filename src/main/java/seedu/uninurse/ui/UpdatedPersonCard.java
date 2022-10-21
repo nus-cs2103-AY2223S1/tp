@@ -5,8 +5,8 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -28,7 +28,7 @@ public class UpdatedPersonCard extends UiPart<Region> {
     public final Patient person;
 
     @FXML
-    private HBox cardPane;
+    private VBox cardPane;
     @FXML
     private Label name;
     @FXML
@@ -51,7 +51,7 @@ public class UpdatedPersonCard extends UiPart<Region> {
     private Label tasklist;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Patient}.
+     * Creates a {@code UpdatePersonCard} with the given {@code Patient}.
      */
     public UpdatedPersonCard(Patient person, String headerString) {
         super(FXML);
@@ -60,6 +60,7 @@ public class UpdatedPersonCard extends UiPart<Region> {
                 + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
         this.person = person;
+
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -68,11 +69,10 @@ public class UpdatedPersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         header.setText(headerString);
-        conditions.setText("Conditions:" + "\n" + "1. small syndrome"); //dummy values
-        medications.setText("Medications:" + "\n" + "1. enlarger"); //dummy values
+        conditions.setText("Conditions:" + "\n" + "1. small syndrome with a really really long name"); //dummy values
+        medications.setText("Medications:" + "\n" + "1. enlarger with also a really really long name"); //dummy values
         taskheader.setText("Tasks:");
         tasklist.setText(person.getTasks().toString());
-
     }
 
     @Override
