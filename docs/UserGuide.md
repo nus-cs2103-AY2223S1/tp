@@ -34,24 +34,25 @@ contains some sample data.<br>
 
 ### 1.1. Command summary
 
-| Action                                              | Format                                                         | Short Description                                                               |
-|-----------------------------------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)                     | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`               | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                | Delete module by module code                                                    |
-| [`find-module`](#213-find-module)                   | `find-module     KEYWORD`                                      | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#214-list-module)                   | `list-module`                                                  | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)                         | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`            | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)                   | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                 | Delete task corresponding to specified task number of specified module code     |
-| [`add-link`](#231-add-link)                         | `add-link        INDEX l/LINK_URL`                             | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)                   | `delete-link     INDEX l/LINK_URL`                             | Delete link URL from a module by its displayed index                            |
-| [`add-contact`](#241-add-contact)                   | `add-contact     n/NAME    e/EMAIL    p/PHONE_NUMBER`          | Add contact with specified name, email, and phone number                        |
-| [`delete-contact`](#242-delete-contact-coming-soon) | `delete-contact  n/NAME`                                       | Delete contact belonging to the specified name                                  |
-| [`edit-contact`](#243-edit-contact)                 | `edit-contact    INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])` | Edit contact belonging to the specified index currently displayed on the screen |
-| [`find-contact`](#244-find-contact)                 | `find-contact KEYWORD`                                         | Find contacts that starts with specified keyword                                |
-| [`list-contact`](#245-list-contact)                 | `list-contact`                                                 | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)                     | `home`                                                         | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules)             | `goto MODULE_CODE`                                             | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)                   | `exit`                                                         | Exit the program                                                                |
+| Action                                              | Format                                                                    | Short Description                                                               |
+|-----------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [`add-module`](#211-add-module)                     | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                          | Add module with a module code and optional module title                         |
+| [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                           | Delete module by module code                                                    |
+| [`edit-module`](#213-edit-module)                   | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
+| [`find-module`](#214-find-module)                   | `find-module     KEYWORD`                <br/>                            | Find module that starts with specified keyword in home page                     |
+| [`list-module`](#215-list-module)                   | `list-module`                                                             | List all modules in home page after finding                                     |
+| [`add-task`](#221-add-task)                         | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                       | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)                   | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                            | Delete task corresponding to specified task number of specified module code     |
+| [`add-link`](#231-add-link)                         | `add-link        INDEX l/LINK_URL`                                        | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)                   | `delete-link     INDEX l/LINK_URL`                                        | Delete link URL from a module by its displayed index                            |
+| [`add-contact`](#241-add-contact)                   | `add-contact     n/NAME    e/EMAIL    p/PHONE_NUMBER`                     | Add contact with specified name, email, and phone number                        |
+| [`delete-contact`](#242-delete-contact-coming-soon) | `delete-contact  n/NAME`                                                  | Delete contact belonging to the specified name                                  |
+| [`edit-contact`](#243-edit-contact)                 | `edit-contact    INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`            | Edit contact belonging to the specified index currently displayed on the screen |
+| [`find-contact`](#244-find-contact)                 | `find-contact KEYWORD`                                                    | Find contacts that starts with specified keyword                                |
+| [`list-contact`](#245-list-contact)                 | `list-contact`                                                            | List all contacts                                                               |
+| [`home`](#251-navigate-to-home)                     | `home`                                                                    | Navigate to the home page                                                       |
+| [`goto`](#252-navigate-between-modules)             | `goto MODULE_CODE`                                                        | Navigate to specified module page                                               |
+| [`exit`](#26-exiting-the-program)                   | `exit`                                                                    | Exit the program                                                                |
 
 ## 2. Features
 
@@ -130,7 +131,7 @@ delete-module m/CS2103T
 ```
 In the above example, we are deleting module `CS2103T` from Plannit.
 
-#### 2.1.2. Edit module
+#### 2.1.3. Edit module
 You can edit a module on Plannit using the `edit-module` command.
 
 This command will require an index and at least one of the following flags:
@@ -162,7 +163,7 @@ edit-module 3 m/CS2103T t/Software Engineering
 In the above example, we are changing the module code of the third module on Plannit to `CS2103T`,
 and at the same time, changing the module title to `Software Engineering`.
 
-#### 2.1.3. Find module
+#### 2.1.4. Find module
 You can find all modules in Plannit whose module code starts with a specific keyword.
 
 Format: `find-module KEYWORD`
@@ -183,7 +184,7 @@ remain on the home page after executing the `find-module` command. This is diffe
 from the behavior of [`goto`](#252-navigate-between-modules)
 </div>
 
-#### 2.1.4. List module
+#### 2.1.5. List module
 Show a list of all modules in Plannit after finding module.
 
 Format: `list-module`
