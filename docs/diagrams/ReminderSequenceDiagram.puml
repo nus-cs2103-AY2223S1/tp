@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ReminderCommandParser" as ReminderCommandParser LOGIC_COLOR
+participant "r:ReminderCommand" as ReminderCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "lastShownList:List" as List LOGIC_COLOR
+participant "editedPerson:Person" as Person LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remind 1 r/zoom call d/2023-10-10")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remind 1 r/zoom call d/2023-10-10")
+activate AddressBookParser
+
+create ReminderCommandParser
+AddressBookParser -> ReminderCommandParser
+activate ReminderCommandParser
+
+ReminderCommandParser --> AddressBookParser
+deactivate ReminderCommandParser
+
+AddressBookParser -> ReminderCommandParser : parse("1 r/zoom call d/2023-10-10")
+activate ReminderCommandParser
+
+create ReminderCommand
+ReminderCommandParser -> ReminderCommand
+activate ReminderCommand
+
+ReminderCommand --> ReminderCommandParser : r
+deactivate ReminderCommand
+
+ReminderCommandParser --> AddressBookParser : r
+deactivate ReminderCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ReminderCommandParser -[hidden]-> AddressBookParser
+destroy ReminderCommandParser
+
+AddressBookParser --> LogicManager : r
+deactivate AddressBookParser
+
+LogicManager -> ReminderCommand : execute()
+activate ReminderCommand
+
+ReminderCommand -> Model : getFilteredPersonList()
+activate Model
+
+create List
+Model --> List
+activate List
+
+ReminderCommand -> List : get(1)
+
+List --> ReminderCommand: personToEdit
+deactivate List
+
+create Person
+ReminderCommand -> Person
+activate Person
+
+Person --> ReminderCommand : editedPerson
+deactivate Person
+
+ReminderCommand -> Model : setPerson(personToEdit, editedPerson)
+
+Model --> ReminderCommand
+deactivate Model
+
+create CommandResult
+ReminderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ReminderCommand
+deactivate CommandResult
+
+ReminderCommand --> LogicManager : result
+deactivate ReminderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

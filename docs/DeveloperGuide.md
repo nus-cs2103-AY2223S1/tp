@@ -324,12 +324,36 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Implementation
 
-To be added: Reminder implementation
+The remind mechanism is facilitated by `RemindCommand` and `RemindCommandParser`. It allows users to set a reminder message and date, for a contact from the contact list.
 
 The `Reminder` objects for each `Person` is stored in the `Person` object as a `SortedList` where the predicate for sorting is based on the `date` attribute in `Reminder`.
 
 The `UI` component then displays all the `Reminder` for all `Person` objects in `AddressBook.persons` in the `ReminderListPanel`.
 
+#### Example Usage
+
+Step 1: The user inputs `remind 1 r/zoom call d/2023-10-10` to create a reminder for the 2nd person in the displayed contact list.
+
+Step 2: `LogicManager` calls `AddressBookParser` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `ReminderCommandParser` and call its function `parse` with the rest of the user input as the arguments.
+
+Step 4: The `ReminderCommandParser#parse` will then parse the index, task and date to create a new `ReminderCommand` object.
+
+Step 5: The `LogicManager` then calls `ReminderCommand#execute`.
+
+Step 6: The `ReminderCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
+
+Step 7: The `ReminderCommand` gets the `Person` to be edited from the `List`
+
+Step 8: The `ReminderCommand` creates a new edited `Person`, with the given `Reminder`
+
+Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of the execution.
+
+![Sequence diagram for the Remind Command](images/ReminderSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -449,9 +473,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Friendnancial shows a list of persons
 3.  User requests to set a reminder for a specific person in the list
-4.  AddressBook reminds user when it is time to do so
+4.  User can view all reminders in the reminder list, sorted by date (from earliest to latest)
 
     Use case ends.
 
@@ -463,23 +487,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message
+    * 3a1. Friendnancial shows an error message
 
       Use case resumes at step 2.
-    * 3b. The user requests to remove the reminder
-      * 3b1 AddressBook removes the reminder
+* 3b. The user requests to remove the reminder
+  * 3b1 Friendnancial removes the reminder
 
-        Use case ends.
+    Use case ends.
 
 
 **Use case: Filter contacts**
 
 **MSS**
 
-1.  User requests to filter contacts based off a criteria
-2.  AddressBook shows the list of people that match the criteria
+1. User requests to filter contacts based off a given field
+2. Friendnancial shows the list of people that match the criteria
 
     Use case ends.
+
+**Extensions**
+* 1a. The given prefix is invalid.
+  * 1a1. Friendnancial shows an error message
 
 
 ### Non-Functional Requirements
