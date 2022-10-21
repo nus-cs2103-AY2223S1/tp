@@ -1,11 +1,13 @@
 package swift.ui;
 
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import swift.commons.core.LogsCenter;
 import swift.logic.commands.CommandResult;
 import swift.logic.commands.CommandSuggestor;
 import swift.logic.commands.exceptions.CommandException;
@@ -20,6 +22,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+
+    private static final Logger logger = LogsCenter.getLogger(CommandBox.class);
 
     @FXML
     private TextField commandTextField;
@@ -120,6 +124,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandSuggestionTextField.setText(commandSuggestor.suggestCommand(commandText));
         } catch (CommandException e) {
+            logger.info("Invalid Command Entered");
             commandSuggestionTextField.setText(commandText);
             setStyleToIndicateCommandFailure();
         }

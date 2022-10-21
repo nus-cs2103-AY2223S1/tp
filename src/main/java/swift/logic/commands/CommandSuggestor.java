@@ -44,6 +44,7 @@ public class CommandSuggestor {
     }
 
     public String suggestCommand(String userInput) throws CommandException {
+        assert userInput != null && !userInput.isEmpty();
         String[] userInputArray = userInput.split(" ");
         String commandWord = userInputArray[0];
         String suggestedCommand = "";
