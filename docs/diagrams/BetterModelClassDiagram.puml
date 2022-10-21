@@ -14,9 +14,9 @@ UniqueInternshipList -right-> Internship
 
 Internship -up-> "*" Tag
 
-Internship *--> Name
-Internship *--> Phone
-Internship *--> Email
-Internship *--> Address
+Internship *--> Company
+Internship *--> AppliedDate
+Internship *--> Description
+Internship *--> Link
 Internship *--> ApplicationStatus
 @enduml

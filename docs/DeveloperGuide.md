@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find `Internships` from `Company`
+
+#### Implementation
+
+- `FindCommandParser` parses the user input by splitting the input by whitespaces.
+- The parsed user input, also known as keywords, are then passed to the predicate `CompanyContainsKeywordsPredicate`.
+- `FindCommand` then takes in the `CompanyContainsKeywordsPredicate` containing the keywords.
+- When `FindCommand#execute(model)` is called, it updates the given model to the `Internship` list where the `Company` matches the keywords.
+
+#### Design Considerations
+
+- Allowing for multiple keywords to show more than 1 specific internship in list
+- **Matching of company name with keywords:**
+  - **Alternative 1:** Only allows full word match
+      - Pros: More specific internship list
+      - Cons: Require typing full name of company
+  - **Alternative 2 (current choice):** Allows partial word match
+      - Pros: Allow quick searching for company name
+      - Cons: Less specific internship list
+
+
 ### Filter by `ApplicationStatus` feature
 
 #### Implementation
@@ -169,7 +190,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 <img src="images/FilterCommandActivityDiagram.png" width="350" />
 
-#### Design considerations
+#### Design Considerations
 
 * The implementation is similar to `FindCommand` as both have the same idea of filtering/finding something in the list.
 * The model already supports filtering for a certain predicate, therefore it is only intuitive that `FilterCommand` would make use of this functionality, just like how `FindCommand` would.

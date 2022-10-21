@@ -14,10 +14,11 @@ Class UserPrefs
 
 Class UniqueInternshipList
 Class Internship
-Class Address
-Class Email
-Class Name
-Class Phone
+Class Description
+Class Link
+Class Company
+Class AppliedDate
+Class ApplicationStatus
 Class Tag
 
 }
@@ -37,17 +38,17 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueInternshipList
 UniqueInternshipList -[hidden]right-> "~* all" Internship
 UniqueInternshipList --> "~* all" Internship
-Internship *--> Name
-Internship *--> Phone
-Internship *--> Email
-Internship *--> Address
+Internship *--> Company
+Internship *--> AppliedDate
+Internship *--> Link
+Internship *--> Description
 Internship *--> ApplicationStatus
 Internship *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-Email -[hidden]right-> ApplicationStatus
+Company -[hidden]right-> AppliedDate
+AppliedDate -[hidden]right-> Description
+Description -[hidden]right-> Link
+Link -[hidden]right-> ApplicationStatus
 
 ModelManager -->"~* filtered" Internship
 @enduml
