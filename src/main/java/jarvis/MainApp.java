@@ -95,24 +95,26 @@ public class MainApp extends Application {
         ReadOnlyLessonBook initialLessonData = new LessonBook();
         try {
             studentBookOptional = storage.readStudentBook();
-            taskBookOptional = storage.readTaskBook();
-            lessonBookOptional = storage.readLessonBook();
             if (!studentBookOptional.isPresent()) {
                 logger.info("Student data file not found. Will be starting with a sample student book");
             }
+            initialStudentData = studentBookOptional.orElseGet(SampleStudentUtil::getSampleStudentBook);
+
+            taskBookOptional = storage.readTaskBook();
             if (!taskBookOptional.isPresent()) {
                 logger.info("Task data file not found. Will be starting with a sample task book");
             }
+            initialTaskData = taskBookOptional.orElseGet(SampleTaskUtil::getSampleTaskBook);
+
+            lessonBookOptional = storage.readLessonBook();
             if (!lessonBookOptional.isPresent()) {
                 logger.info("Lesson data file not found. Will be starting with a sample lesson book");
             }
-            initialTaskData = taskBookOptional.orElseGet(SampleTaskUtil::getSampleTaskBook);
-            initialStudentData = studentBookOptional.orElseGet(SampleStudentUtil::getSampleStudentBook);
             initialLessonData = lessonBookOptional.orElseGet(SampleLessonUtil::getSampleLessonBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with empty book");
+            logger.warning("Data file(s) not in the correct format. Will be starting with empty book(s)");
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with empty book");
+            logger.warning("Problem while reading from the file(s). Will be starting with empty book(s)");
         }
         return new ModelManager(initialStudentData, initialTaskData, initialLessonData, userPrefs);
     }

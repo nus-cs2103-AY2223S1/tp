@@ -9,16 +9,15 @@ import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.Lesson;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonNotes;
-import jarvis.model.TimePeriod;
 
 /**
  * Jackson-friendly version of {@link Lesson}.
  */
-@JsonTypeInfo( use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = JsonAdaptedConsult.class, name = "consult"),
-        @JsonSubTypes.Type(value = JsonAdaptedMasteryCheck.class, name = "mastery check"),
-        @JsonSubTypes.Type(value = JsonAdaptedStudio.class, name = "studio")
+    @JsonSubTypes.Type(value = JsonAdaptedConsult.class, name = "consult"),
+    @JsonSubTypes.Type(value = JsonAdaptedMasteryCheck.class, name = "mastery check"),
+    @JsonSubTypes.Type(value = JsonAdaptedStudio.class, name = "studio")
 })
 public abstract class JsonAdaptedLesson {
     // Identity fields
@@ -26,8 +25,8 @@ public abstract class JsonAdaptedLesson {
     private final JsonAdaptedTimePeriod timePeriod;
 
     // Data fields
-    //private final LessonAttendance attendance;
-    //private final LessonNotes notes;
+    private final LessonAttendance attendance;
+    private final LessonNotes notes;
     private final boolean isCompleted;
 
     /**
@@ -36,13 +35,13 @@ public abstract class JsonAdaptedLesson {
     @JsonCreator
     public JsonAdaptedLesson(@JsonProperty("lessonDesc") String lessonDesc,
                              @JsonProperty("timePeriod") JsonAdaptedTimePeriod timePeriod,
-                             //@JsonProperty("attendance") LessonAttendance attendance,
-                             //@JsonProperty("notes") LessonNotes notes,
+                             @JsonProperty("attendance") LessonAttendance attendance,
+                             @JsonProperty("notes") LessonNotes notes,
                              @JsonProperty("isCompleted") boolean isCompleted) {
         this.lessonDesc = lessonDesc;
         this.timePeriod = timePeriod;
-        //this.attendance = attendance;
-        //this.notes = notes;
+        this.attendance = attendance;
+        this.notes = notes;
         this.isCompleted = isCompleted;
     }
 
@@ -52,8 +51,8 @@ public abstract class JsonAdaptedLesson {
     public JsonAdaptedLesson(Lesson source) {
         lessonDesc = source.getDesc().lessonDesc;
         timePeriod = new JsonAdaptedTimePeriod(source.getTimePeriod());
-        //attendance = source.getAttendance();
-        //notes = source.getNotes();
+        attendance = source.getAttendance();
+        notes = source.getNotes();
         isCompleted = source.isCompleted();
     }
 
@@ -65,14 +64,14 @@ public abstract class JsonAdaptedLesson {
         return timePeriod;
     }
 
-    /*
+
     protected LessonAttendance getAttendance() {
         return attendance;
     }
 
     protected LessonNotes getNotes() {
         return notes;
-    }*/
+    }
 
     /**
      * Converts this Jackson-friendly adapted lesson object into the model's {@code Lesson} object.

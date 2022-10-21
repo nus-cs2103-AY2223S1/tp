@@ -28,7 +28,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
                               @JsonProperty("attendance") LessonAttendance attendance,
                               @JsonProperty("notes") LessonNotes notes,
                               @JsonProperty("isCompleted") boolean isCompleted) {
-        super(lessonDesc, timePeriod, isCompleted);
+        super(lessonDesc, timePeriod, attendance, notes, isCompleted);
     }
 
     /**
@@ -49,7 +49,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-/*
+
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -58,7 +58,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
         if (this.getNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
-        }*/
+        }
 
         return new Consult(modelLessonDesc, this.getTimePeriod().toModelType(),
                 new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())),

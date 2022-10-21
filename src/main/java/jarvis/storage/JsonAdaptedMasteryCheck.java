@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.Consult;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
@@ -28,7 +27,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
                                    @JsonProperty("attendance") LessonAttendance attendance,
                                    @JsonProperty("notes") LessonNotes notes,
                                    @JsonProperty("isCompleted") boolean isCompleted) {
-        super(lessonDesc, timePeriod, isCompleted);
+        super(lessonDesc, timePeriod, attendance, notes, isCompleted);
     }
 
     /**
@@ -49,7 +48,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-/*
+
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -58,7 +57,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
         if (this.getNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
-        }*/
+        }
 
         return new MasteryCheck(modelLessonDesc, this.getTimePeriod().toModelType(),
                 new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())),

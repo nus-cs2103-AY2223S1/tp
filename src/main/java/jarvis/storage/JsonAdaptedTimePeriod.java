@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.Lesson;
-import jarvis.model.LessonAttendance;
-import jarvis.model.LessonNotes;
 import jarvis.model.TimePeriod;
 
 /**

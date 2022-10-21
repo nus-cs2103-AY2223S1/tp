@@ -32,7 +32,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
                              @JsonProperty("notes") LessonNotes notes,
                              @JsonProperty("isCompleted") boolean isCompleted,
                              @JsonProperty("participation") StudioParticipation studioParticipation) {
-        super(lessonDesc, timePeriod, isCompleted);
+        super(lessonDesc, timePeriod, attendance, notes, isCompleted);
         this.studioParticipation = studioParticipation;
     }
 
@@ -54,7 +54,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-/*
+
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -63,7 +63,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
         if (this.getNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
-        }*/
+        }
 
         if (studioParticipation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
