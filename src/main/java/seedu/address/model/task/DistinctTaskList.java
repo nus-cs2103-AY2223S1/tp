@@ -81,7 +81,7 @@ public class DistinctTaskList implements Iterable<Task> {
         }
 
         boolean isDuplicateTask = contains(editedTask) && !editedTask.isSameTask(target);
-        if (!isSameTask && contains(editedTask) && isDuplicateTask) {
+        if (!isSameTask && isDuplicateTask) {
             throw new DuplicateTaskException();
         }
 
@@ -97,6 +97,17 @@ public class DistinctTaskList implements Iterable<Task> {
         if (!taskList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    public int getNumOfTasksCompleted(Module module) {
+        requireNonNull(module);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
+            .filter(module::isSameModule).count();
+    }
+
+    public int getTotalNumOfTasks(Module module) {
+        requireNonNull(module);
+        return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
     }
 
     /**
