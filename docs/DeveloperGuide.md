@@ -195,6 +195,39 @@ Therefore, given the constraints of the UI, sorting is implemented as a **perman
    * Cons: Requires redesigning a significant part of the `UI`, `Logic` and `Model` classes.
 
 
+### Adding Events
+
+The Add Events feature that is accessed through the `addEvent` command allows users to add new marketing campaigns of 
+the `event` class to the application. 
+
+The `event` added by the user will have 4 compulsory fields:
+- Title of the `event`
+- Date of the `event`
+- Time of the `event`
+- Purpose of the `event`
+
+The `addEvent` operation is facilitated by `AddEventCommand` which extends from `Command`. If the users' input matches
+the COMMAND_WORD of `AddEventCommand` in `AddressBookParser#parseCommand()`, `AddEventCommandParser#parse()` will 
+process the additional user inputs which constitute the 4 compulsory fields of the `event` class and return an 
+`AddEventCommand`. Executing this Command object through the `AddEventCommand#execute()` triggers the `Model` interface's 
+`Model#addEvent()`. This operation subsequently calls upon the `AddressBook#addEvent()` operation which in turn call 
+upon the `UniqueEventList#add()` operation and the `event` will be stored in memory.
+
+The addEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the event to
+a json format together with all other `person`(s) and `event`(s) in memory.
+
+The following sequence diagram will illustrate how the `addEvent` operation works: 
+
+#### Design Considerations
+
+**Aspect: Should `addEvent` should allow adding of multiple events at one go:**
+* **Alternative 1 (current choice):** Allows adding a single event when `addEvent` command is input
+  * Pros: Easy to implement
+  * Cons: User will need to repeat the `addEvent` process for each event
+* **Alternative 2:** Multiple events will be added when `addEvent` command is input
+  * Pros: User can directly input multiple events and does not need to call the `addEvent` command more than once
+  * Cons: If a mistake has been made at the point of input and failing validation checks, user will have difficulty in 
+  identifying the event had been keyed in incorrectly
 
 
 ### \[Proposed\] Undo/redo feature
