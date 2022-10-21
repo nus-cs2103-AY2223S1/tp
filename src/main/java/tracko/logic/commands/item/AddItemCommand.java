@@ -34,6 +34,7 @@ public class AddItemCommand extends Command {
             + CliSyntax.PREFIX_COST_PRICE + "1.98";
 
     public static final String MESSAGE_SUCCESS = "New item and quantity added:\n%1$s";
+    public static final String MESSAGE_ITEM_EXISTS = "This item already exists in the inventory list.";
 
     private final Item toAdd;
 
@@ -50,6 +51,9 @@ public class AddItemCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
+        if (model.hasItem(toAdd)) {
+            throw new CommandException(MESSAGE_ITEM_EXISTS);
+        }
         model.addItem(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

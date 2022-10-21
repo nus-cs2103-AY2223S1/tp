@@ -120,21 +120,28 @@
 
 .cell_big_label_item {
     -fx-font-family: "Poppins";
-    -fx-font-size: 24px;
+    -fx-font-size: 22px;
     -fx-font-weight: 700;
     -fx-text-fill: #FFEDEC;
 }
 
 .cell_small_label_item {
     -fx-font-family: "Poppins";
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
     -fx-font-weight: 600;
+    -fx-text-fill: #FFEDEC;
+}
+
+.item_id {
+    -fx-font-size: 56px !important;
+    -fx-font-family: "Poppins";
+    -fx-font-weight: 700;
     -fx-text-fill: #FFEDEC;
 }
 
 .cell_big_label_order {
     -fx-font-family: "Poppins";
-    -fx-font-size: 24px;
+    -fx-font-size: 56px;
     -fx-font-weight: 700;
     -fx-text-fill: #E9EBFF;
 }
@@ -142,7 +149,7 @@
 .cell_small_label_order {
     -fx-font-family: "Poppins";
     -fx-font-weight: 600; /* medium weight */
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
     -fx-text-fill: #E9EBFF;
 }
 
@@ -248,7 +255,7 @@
 .ordered-items-content {
     -fx-font-family: "Poppins";
     -fx-font-weight: 700; /* medium weight */
-    -fx-font-size: 18px;
+    -fx-font-size: 22px;
     -fx-text-fill: #D9DCFF !important;
 }
 
@@ -262,6 +269,11 @@
 /**
  * Icons from SVG file format
  */
+
+#personIcon {
+    -fx-shape: "M 2213.06 2248.84 L 37.1172 2248.84 C 17.4219 2248.84 1.44922 2232.87 1.44922 2213.17 L 1.44922 2009.9 C 1.44922 1671.71 276.582 1396.58 614.77 1396.58 L 1635.41 1396.58 C 1973.6 1396.58 2248.73 1671.71 2248.73 2009.9 L 2248.73 2213.17 C 2248.73 2232.87 2232.76 2248.84 2213.06 2248.84 Z M 1125.09 1300.68 C 766.488 1300.68 474.75 1008.94 474.75 650.34 C 474.75 291.742 766.488 0 1125.09 0 C 1483.69 0 1775.43 291.742 1775.43 650.34 C 1775.43 1008.94 1483.69 1300.68 1125.09 1300.68 Z M 1125.09 1300.68 M 2213.06 2248.84 L 37.1172 2248.84 C 17.4219 2248.84 1.44922 2232.87 1.44922 2213.17 L 1.44922 2009.9 C 1.44922 1671.71 276.582 1396.58 614.77 1396.58 L 1635.41 1396.58 C 1973.6 1396.58 2248.73 1671.71 2248.73 2009.9 L 2248.73 2213.17 C 2248.73 2232.87 2232.76 2248.84 2213.06 2248.84 Z M 1125.09 1300.68 C 766.488 1300.68 474.75 1008.94 474.75 650.34 C 474.75 291.742 766.488 0 1125.09 0 C 1483.69 0 1775.43 291.742 1775.43 650.34 C 1775.43 1008.94 1483.69 1300.68 1125.09 1300.68 Z M 1125.09 1300.68";
+}
+
 #timeCreatedIcon {
     -fx-shape: "M233.004,0C104.224,0,0,104.212,0,233.004c0,128.781,104.212,233.004,233.004,233.004c128.782,0,233.004-104.212,233.004-233.004C466.008,104.222,361.796,0,233.004,0z M244.484,242.659l-63.512,75.511c-5.333,6.34-14.797,7.156-21.135,1.824c-6.34-5.333-7.157-14.795-1.824-21.135l59.991-71.325V58.028c0-8.284,6.716-15,15-15s15,6.716,15,15v174.976h0C248.004,236.536,246.757,239.956,244.484,242.659z"
 }
@@ -498,7 +510,7 @@
 #description {
     -fx-text-fill: #FFEDEC;
     -fx-background-insets: 0 5 0 5 ;
-    -fx-padding: 5 12.5 10 5 ;
+    -fx-padding: 5 12.5 5 5 ;
     -fx-font-size: 18 !important;
 }
 
@@ -611,6 +623,10 @@
     -fx-background-radius: 10px;
 }
 
+#resultDisplay .content .text {
+    -fx-text-alignment: justify;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
@@ -619,9 +635,11 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #5d7ee3;
-    -fx-padding: 2 7 2 7;
+    -fx-padding: 3 10 5 10;
+    -fx-background-insets: 0 0 2 0;
     -fx-border-radius: 2;
-    -fx-background-radius: 10;
+    -fx-background-radius: 20;
     -fx-font-size: 14;
     -fx-font-family: "Poppins";
+    -fx-wrap-text: true;
 }

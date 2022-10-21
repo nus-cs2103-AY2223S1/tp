@@ -1,12 +1,13 @@
 package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
+import static tracko.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
+import javafx.util.Pair;
+import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.CollectionUtil;
 import tracko.logic.commands.Command;
@@ -14,23 +15,29 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
+import tracko.model.item.Item;
+import tracko.model.item.Quantity;
+import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
+import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Name;
+import tracko.model.order.Order;
 import tracko.model.order.Phone;
-import tracko.model.person.Person;
-import tracko.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing Order in the address book.
  */
 public class EditOrderCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edito";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the order identified "
+            + "by the index number used in the displayed order list. "
+            + "Existing name, phone, email, address values will "
+            + "be overwritten by the input values. An item tag ("
+            + CliSyntax.PREFIX_ITEM + ") needs to be accompanied by a "
+            + "quantity tag (" + CliSyntax.PREFIX_QUANTITY + ")."
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
             + "[" + CliSyntax.PREFIX_PHONE + "PHONE] "
@@ -41,62 +48,81 @@ public class EditOrderCommand extends Command {
             + CliSyntax.PREFIX_PHONE + "91234567 "
             + CliSyntax.PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NONEXISTENT_ITEM = "The item that is being added does "
+            + "not exist in the inventory list.";
+    public static final String MESSAGE_ONE_ORDERED_ITEM = "An order list cannot have 0 items. "
+            + "Perhaps you want to delete the order instead?";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditOrderDescriptor editOrderDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the order in the filtered order list to edit
+     * @param editOrderDescriptor details to edit the order with
      */
-    public EditOrderCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditOrderCommand(Index index, EditOrderDescriptor editOrderDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editOrderDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editOrderDescriptor = new EditOrderDescriptor(editOrderDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // requireNonNull(model);
-        // List<Person> lastShownList = model.getFilteredPersonList();
-        //
-        // if (index.getZeroBased() >= lastShownList.size()) {
-        //    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        // }
-        //
-        // Person personToEdit = lastShownList.get(index.getZeroBased());
-        // Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        //
-        // if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-        //    throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        // }
-        //
-        // model.setPerson(personToEdit, editedPerson);
-        // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        // return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
-        // TODO: implement edit order functionality
-        return null;
+        requireNonNull(model);
+        List<Order> lastShownList = model.getFilteredOrderList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        }
+
+        Order orderToEdit = lastShownList.get(index.getZeroBased());
+        Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
+
+        model.setOrder(orderToEdit, editedOrder);
+        model.refreshData();
+        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Order} with the details of {@code orderToEdit}
+     * edited with {@code EditOrderDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor, Model model)
+            throws CommandException {
+        assert orderToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editOrderDescriptor.getName().orElse(orderToEdit.getName());
+        Phone updatedPhone = editOrderDescriptor.getPhone().orElse(orderToEdit.getPhone());
+        Email updatedEmail = editOrderDescriptor.getEmail().orElse(orderToEdit.getEmail());
+        Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        // Run checks on whether the item is in the inventory list
+        Optional<Pair<String, Integer>> unlinkedItem = editOrderDescriptor.getUnlinkedItemToEdit();
+        if (!unlinkedItem.equals(Optional.empty())) {
+            Pair<String, Integer> itemToCompare = unlinkedItem.get();
+            Item item;
+
+            try {
+                item = model.getItem(itemToCompare.getKey());
+            } catch (ItemNotFoundException e) {
+                throw new CommandException(MESSAGE_NONEXISTENT_ITEM);
+            }
+
+            ItemQuantityPair itemToEdit = new ItemQuantityPair(item, new Quantity(itemToCompare.getValue()));
+            editOrderDescriptor.updateItemList(orderToEdit, itemToEdit);
+        }
+
+        List<ItemQuantityPair> updatedItemList = editOrderDescriptor.getItemList().orElse(orderToEdit.getItemList());
+        boolean isPaid = orderToEdit.getPaidStatus();
+        boolean isDelivered = orderToEdit.getDeliveryStatus();
+
+        return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedItemList, isPaid, isDelivered);
     }
 
     @Override
@@ -114,39 +140,43 @@ public class EditOrderCommand extends Command {
         // state check
         EditOrderCommand e = (EditOrderCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editOrderDescriptor.equals(e.editOrderDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the order with. Each non-empty field value will replace the
+     * corresponding field value of the order.
      */
-    public static class EditPersonDescriptor {
+    public static class EditOrderDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private List<ItemQuantityPair> itemList;
+        private Pair<String, Integer> itemUnlinkedToInventory;
 
-        public EditPersonDescriptor() {}
+        public EditOrderDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditOrderDescriptor(EditOrderDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setItemList(toCopy.itemList);
+            setUnlinkedItemToEdit(toCopy.itemUnlinkedToInventory);
         }
+
+
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, itemUnlinkedToInventory);
         }
 
         public void setName(Name name) {
@@ -181,21 +211,61 @@ public class EditOrderCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public Optional<List<ItemQuantityPair>> getItemList() {
+            return Optional.ofNullable(itemList);
+        }
+
+        public void setItemList(List<ItemQuantityPair> itemList) {
+            this.itemList = itemList;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Updates the item list. This method checks whether the item that is going to be updated is
+         * in the customer's ordered items list; if it is, then it will check whether the values are different
+         * from the original or 0. If the value is zero, the item will be removed from the order list, else
+         * its quantity will be updated. If the item is not in the item list, then the item will be added to
+         * the customer's ordered items list.
+         *
+         * @param orderToEdit The order whose ordered items list is going to be edited.
+         * @param itemToEdit The item that is going to be added, removed or have its quantity edited.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public void updateItemList(Order orderToEdit, ItemQuantityPair itemToEdit) throws CommandException {
+            List<ItemQuantityPair> orderedItems = orderToEdit.getItemList();
+            boolean hasItemBeenUpdated = false;
+            for (int i = 0; i < orderedItems.size(); i++) {
+                ItemQuantityPair itemInList = orderedItems.get(i);
+
+                if (!itemInList.getItem().isSameItem(itemToEdit.getItem())) {
+                    continue;
+                }
+
+                if (itemToEdit.getQuantityValue() == 0) {
+                    if (orderedItems.size() == 1) {
+                        throw new CommandException(MESSAGE_ONE_ORDERED_ITEM);
+                    }
+                    orderedItems.remove(i);
+                    hasItemBeenUpdated = true;
+                    break;
+                } else if (itemInList.getQuantityValue() != itemToEdit.getQuantityValue()) {
+                    ItemQuantityPair updatedItem = new ItemQuantityPair(itemInList.getItem(), itemToEdit.getQuantity());
+                    orderedItems.set(i, updatedItem);
+                    hasItemBeenUpdated = true;
+                    break;
+                }
+            }
+
+            if (!hasItemBeenUpdated && itemToEdit.getQuantityValue() != 0) {
+                orderedItems.add(itemToEdit);
+            }
+            this.itemList = orderedItems;
+        }
+
+        public void setUnlinkedItemToEdit(Pair<String, Integer> itemUnlinkedToInventory) {
+            this.itemUnlinkedToInventory = itemUnlinkedToInventory;
+        }
+
+        public Optional<Pair<String, Integer>> getUnlinkedItemToEdit() {
+            return Optional.ofNullable(itemUnlinkedToInventory);
         }
 
         @Override
@@ -206,18 +276,18 @@ public class EditOrderCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditOrderDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditOrderDescriptor e = (EditOrderDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getItemList().equals(e.getItemList());
         }
     }
 }

@@ -39,7 +39,7 @@ public class ItemName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ItemName // instanceof handles nulls
-                && itemName.equals(((ItemName) other).itemName)); // state check
+                && itemName.equalsIgnoreCase(((ItemName) other).itemName)); // state check
     }
 
     @Override

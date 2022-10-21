@@ -154,6 +154,8 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+        primaryStage.setMaximized(true);
+        primaryStage.setResizable(false);
     }
 
     /**

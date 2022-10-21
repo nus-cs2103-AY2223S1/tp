@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tracko.logic.commands.order.AddOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 
@@ -50,5 +51,19 @@ public class OrderUtil {
             details.add(sb.toString());
         }
         return details;
+    }
+
+    /**
+     * Returns the part of command string for the given {@code EditOrderDescriptor}'s details.
+     */
+    public static String getEditOrderDescriptorDetails(EditOrderDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getUnlinkedItemToEdit().ifPresent(itemToEdit -> sb.append(PREFIX_ITEM).append(itemToEdit.getKey())
+                .append(PREFIX_QUANTITY).append(itemToEdit.getValue()));
+        return sb.toString();
     }
 }
