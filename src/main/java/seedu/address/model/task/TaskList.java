@@ -86,7 +86,7 @@ public class TaskList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
 
-        if (toEdit.isSameTask(editedTask) && contains(editedTask)) {
+        if (!toEdit.isSameTask(editedTask) && contains(editedTask)) {
             throw new DuplicateTaskException();
         }
 
@@ -263,7 +263,7 @@ public class TaskList implements Iterable<Task> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         for (Task t : internalList) {
-            str.append("\n" + t);
+            str.append("\n").append(t);
         }
         return str.toString();
     }

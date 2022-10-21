@@ -71,13 +71,6 @@ public class TaskListTest {
     }
 
     @Test
-    public void edit_throwsDuplicateTaskException() {
-        TaskList test = new TaskList();
-        test.add(testTask);
-        assertThrows(DuplicateTaskException.class, () -> test.edit(testTask, testTask));
-    }
-
-    @Test
     public void find_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskList().find(null));
     }

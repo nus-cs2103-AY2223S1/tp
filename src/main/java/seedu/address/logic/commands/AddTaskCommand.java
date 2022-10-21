@@ -30,15 +30,15 @@ public class AddTaskCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
             + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PERSON + "PERSON Email Address (must be a valid email)]\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE (YYYY-MM-DD, must be after current date)] "
+            + "[" + PREFIX_PERSON + "PERSON EMAIL ADDRESS (must be a valid email)]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Create Initial UIUX Design "
             + PREFIX_DESCRIPTION + "Use FIGMA to create initial UIUX Design "
             + PREFIX_PRIORITY + "medium "
             + PREFIX_CATEGORY + "uiux "
-            + PREFIX_DEADLINE + "2022-01-01 "
-            + PREFIX_PERSON + "1 ";
+            + PREFIX_DEADLINE + "2023-01-01 "
+            + PREFIX_PERSON + "johnd@example.com ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";

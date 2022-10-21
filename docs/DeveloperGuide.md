@@ -238,6 +238,82 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Task and Person display each other
+
+#### Proposed Implementation
+
+Currently, A person in the addressbook has no relation to the tasks assigned to that person. This feature will allow tasks and persons to be related to each other, and allow the UI to display which tasks are assigned to a person, and which person is in charge of a task.
+
+This will be implemented by modifying 3 already existing commands
+
+* `Add` — Whenever a person is added, any task that shares the same email as the new Person's email wil be updated to reflect the person's name.
+* `Delete` — Whenever a person is deleted, their tasks will be edited to reflect that they are not assigned to any person
+* `Edit` — Whenever a person is edited, their tasks will be edited to reflect the new changes
+
+Given below is an example usage scenario.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. A new person (John) is added, with an email of test@example.com
+
+Step 3. A new task is added, assigned to John.
+
+Step 4. John is edited to James via the Edit command. This will be reflected in the task that John/James is assigned to
+
+Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
+
+### \[Proposed\] Persistent Storage for Task
+
+#### Proposed Implementation
+
+We save tasks in Json format which contains the details of the task such as the task's name, description, etc.
+We can then read the Json data file to obtain the details of each task and create a list of JsonAdaptedTask which can 
+then be converted to a list of tasks. Hence, our Json data file contains a list of task details.
+
+When reading Json file we also check whether the values saved are valid before converting it back to a Task object.
+This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for
+such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal
+values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
+
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
+a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative 
+to this is to keep a person object in a task object but this will prevent the change in the person object that is
+supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+
+### \[Proposed\] Filtering of tasks by Task Category
+
+#### Proposed Implementation
+
+The proposed filter mechanism allows A `Task` to be filtered based on its `Task Category`. 
+The command is executed using the `FilterTaskCategoryCommand`class which extends the `Command` class and the category is determined from the `FilterTaskCategoryParser` class which parses the user input. The `TaskContainsCategoryPredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with an empty tasklist.
+
+Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 pe/2` to add a task to the tasklist.
+
+Step 3. The user repeats step 2 to add more tasks to the tasklist.
+
+step 4. The user decides that he only wants to see the tasks that are backend related. The user executes `filter c/backend` to filter the tasks that are backend related. After this, only tasks that have TaskCategory:backend are displayed onto the application.
+
+The following sequence diagram shows how the filter operation works:
+
+Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
+
+**Design considerations**
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Filters entire tasklist
+  * Pros: Easy to implement.
+  * Cons: 
+
+* **Alternative 2:** 
+  itself.
+  * Pros: 
+  * Cons: 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
