@@ -2,14 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.staff.StaffName;
 
 /**
  * Parses input arguments and creates a new FindStaffCommand object.
@@ -21,20 +20,18 @@ public class FindStaffCommandParser implements Parser<FindStaffCommand> {
      */
     public FindStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME,
-                        PREFIX_STAFF_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_STAFF_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME)
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStaffCommand.MESSAGE_USAGE));
         }
 
         ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
 
-        StaffName staffName =
-                ParserUtil.parseStaffName(argMultimap.getValue(PREFIX_STAFF_NAME).get());
+        String[] nameKeywords = argMultimap.getPreamble().trim().split("\\s+");
 
-        return new FindStaffCommand(projectName, staffName);
+        return new FindStaffCommand(projectName, Arrays.asList(nameKeywords));
     }
 
     /**

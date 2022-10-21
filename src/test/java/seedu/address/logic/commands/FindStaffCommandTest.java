@@ -4,16 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_JAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,78 +27,124 @@ import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.StaffBuilder;
 
 public class FindStaffCommandTest {
-
     @Test
     public void constructor_nullProject_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new FindStaffCommand(null, null));
     }
 
     @Test
-    public void execute_validProjectValidStaff_success() {
+    public void execute_zeroKeywords_noStaffFound() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Project validProject = new ProjectBuilder().build();
-        Staff validStaff = new StaffBuilder().build();
-        validProject.getStaffList().add(validStaff);
-        model.addProject(validProject);
-        FindStaffCommand findStaffCommand = new FindStaffCommand(validProject.getProjectName(),
-                validStaff.getStaffName());
-        String expectedMessage = String.format(FindStaffCommand.MESSAGE_FIND_STAFF_SUCCESS, validStaff);
+        Project project = new ProjectBuilder().withName(VALID_NAME_AMY).build();
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Project expectedProject = new ProjectBuilder().build();
-        expectedProject.getStaffList().add(validStaff);
-        expectedModel.addProject(expectedProject);
+        Staff staffAmy = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
+        Staff staffAmyBob = new StaffBuilder().withStaffName(VALID_NAME_AMY + VALID_NAME_BOB)
+                .withStaffContact(VALID_STAFFCONTACT_ANDY).build();
+        Staff staffBob = new StaffBuilder().withStaffName(VALID_NAME_BOB).build();
+
+        project.getStaffList().add(staffAmy);
+        project.getStaffList().add(staffAmyBob);
+        project.getStaffList().add(staffBob);
+
+        model.addProject(project);
+
+        String expectedMessage = String.format(FindStaffCommand.MESSAGE_STAFF_NOT_FOUND);
+        FindStaffCommand command = new FindStaffCommand(model.getFilteredProjectList().get(0).getProjectName(),
+                nameKeywordGenerator(" "));
+        assertCommandFailure(command, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleStaffsFound() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project project = new ProjectBuilder().withName(VALID_NAME_AMY).build();
+
+        Staff staffAmy = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
+        Staff staffAmyBob = new StaffBuilder().withStaffName(VALID_NAME_AMY + VALID_NAME_BOB)
+                .withStaffContact(VALID_STAFFCONTACT_ANDY).build();
+        Staff staffBob = new StaffBuilder().withStaffName(VALID_NAME_BOB).build();
+
+        project.getStaffList().add(staffAmy);
+        project.getStaffList().add(staffAmyBob);
+        project.getStaffList().add(staffBob);
+
+        model.addProject(project);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        List<StaffName> staffNameList = Arrays.asList(new StaffName[] {staffAmy.getStaffName(),
+            staffAmyBob.getStaffName(), staffBob.getStaffName()});
+
+        String expectedMessage = String.format(FindStaffCommand.MESSAGE_FIND_STAFF_SUCCESS, staffNameList);
+
+        FindStaffCommand findStaffCommand = new FindStaffCommand(project.getProjectName(),
+                nameKeywordGenerator("Amy Bob"));
 
         assertCommandSuccess(findStaffCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_validProjectInvalidStaff_throwsException() {
+    public void execute_singleKeyword_multipleStaffsFound() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Project validProject = new ProjectBuilder().build();
-        Staff validStaff = new StaffBuilder().build();
-        model.addProject(validProject);
-        FindStaffCommand findStaffCommand = new FindStaffCommand(validProject.getProjectName(),
-                validStaff.getStaffName());
-        assertCommandFailure(findStaffCommand, model, FindStaffCommand.MESSAGE_STAFF_NOT_FOUND);
-    }
+        Project project = new ProjectBuilder().withName(VALID_NAME_AMY).build();
 
-    @Test
-    public void execute_invalidProjectValidStaff_throwsException() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Project invalidProject = new ProjectBuilder().build();
-        Staff validStaff = new StaffBuilder().build();
+        Staff staffAmy = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
+        Staff staffAmyBob = new StaffBuilder().withStaffName(VALID_NAME_AMY + VALID_NAME_BOB)
+                .withStaffContact(VALID_STAFFCONTACT_ANDY).build();
+        Staff staffBob = new StaffBuilder().withStaffName(VALID_NAME_BOB).build();
 
-        FindStaffCommand findStaffCommand = new FindStaffCommand(invalidProject.getProjectName(),
-                validStaff.getStaffName());
+        project.getStaffList().add(staffAmy);
+        project.getStaffList().add(staffAmyBob);
+        project.getStaffList().add(staffBob);
 
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_PROJECT, invalidProject.getProjectName());
+        model.addProject(project);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandFailure(findStaffCommand, model, expectedMessage);
+        List<StaffName> staffNameList = Arrays.asList(new StaffName[] {staffAmy.getStaffName(),
+                staffAmyBob.getStaffName()});
+
+        String expectedMessage = String.format(FindStaffCommand.MESSAGE_FIND_STAFF_SUCCESS, staffNameList);
+
+        FindStaffCommand findStaffCommand = new FindStaffCommand(project.getProjectName(),
+                nameKeywordGenerator("Amy"));
+
+        assertCommandSuccess(findStaffCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        final StaffName staffName = new StaffName(VALID_STAFFNAME_ANDY);
-        final ProjectName projectName = new ProjectName(VALID_NAME_AMY);
-        final FindStaffCommand findStaffCommand = new FindStaffCommand(projectName, staffName);
+        ProjectName projectNameOne = new ProjectName(VALID_NAME_AMY);
+        ProjectName projectNameTwo = new ProjectName(VALID_NAME_BOB);
+
+        FindStaffCommand findStaffCommand = new FindStaffCommand(projectNameOne, nameKeywordGenerator("Amy"));
 
         // same object -> returns true
         assertTrue(findStaffCommand.equals(findStaffCommand));
 
         // same values -> returns true
-        assertTrue(findStaffCommand.equals(new FindStaffCommand(projectName, staffName)));
+        FindStaffCommand findStaffCommandCopy = new FindStaffCommand(projectNameOne,
+                nameKeywordGenerator("Amy"));
+        assertTrue(findStaffCommand.equals(findStaffCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findStaffCommand.equals("Good day"));
 
         // null -> returns false
         assertFalse(findStaffCommand.equals(null));
 
-        // different types -> return false
-        assertFalse(findStaffCommand.equals(new ClearCommand()));
-
         // different project name -> returns false
-        assertFalse(findStaffCommand.equals(new FindStaffCommand(new ProjectName(VALID_NAME_BOB), staffName)));
+        FindStaffCommand findStaffCommandTwo = new FindStaffCommand(projectNameTwo, nameKeywordGenerator("Amy"));
+        assertFalse(findStaffCommand.equals(findStaffCommandTwo));
 
-        // different staff name -> returns false
-        assertFalse(findStaffCommand.equals(new FindStaffCommand(projectName, new StaffName(VALID_STAFFNAME_JAY))));
+        // different keywords -> returns false
+        FindStaffCommand findStaffCommandThree = new FindStaffCommand(projectNameOne, nameKeywordGenerator("Bb"));
+        assertFalse(findStaffCommand.equals(findStaffCommandThree));
+    }
+
+    /**
+     * Parses {@code input} into a {@code List<String>} to use as
+     * list of keywords for {@code FindStaffCommand}.
+     */
+    private List<String> nameKeywordGenerator(String input) {
+        return Arrays.asList(input.split("\\s+"));
     }
 }

@@ -3,18 +3,18 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
-
 
 /**
  * Finds a staff within a given project in HR Pro Max++.
@@ -23,13 +23,15 @@ public class FindStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "findstaff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a staff in a given project. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all staffs in a given project whose names "
+            + "contain any of the specified keywords (case-insensitive) and displays them "
+            + "as a list. \n "
             + "Parameters: "
-            + PREFIX_PROJECT_NAME + "PROJECT_NAME "
-            + PREFIX_STAFF_NAME + "STAFF NAME "
+            + "Parameters: KEYWORD [MORE_KEYWORDS]..."
+            + PREFIX_PROJECT_NAME + "PROJECT_NAME \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT_NAME + "CS2103T TP "
-            + PREFIX_STAFF_NAME + "John Doe ";
+            + "alice bob charlie "
+            + PREFIX_PROJECT_NAME + "CS2103T TP";
 
     public static final String MESSAGE_FIND_STAFF_SUCCESS = "Staff found: %1$s";
 
@@ -38,18 +40,18 @@ public class FindStaffCommand extends Command {
 
     private final ProjectName projectToFind;
 
-    private final StaffName staffToFind;
+    private final List<String> keywords;
 
     /**
      * Creats a FindStaffCommand to find the specified
      * {@code Project} with the specified {@code pname}
      * to look for a {@code Staff} with specified {@code sname}.
      */
-    public FindStaffCommand(ProjectName pname, StaffName sname) {
+    public FindStaffCommand(ProjectName pname, List<String> keywords) {
         requireNonNull(pname);
-        requireNonNull(sname);
-        projectToFind = pname;
-        staffToFind = sname;
+        requireNonNull(keywords);
+        this.projectToFind = pname;
+        this.keywords = keywords;
     }
 
     @Override
@@ -57,8 +59,7 @@ public class FindStaffCommand extends Command {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
         int projectIndex = 0;
-        boolean staffIsFound = false;
-        Staff foundStaff = null;
+        List<StaffName> foundStaffNames = new ArrayList<>();
 
         for (int i = 0; i < lastShownList.size(); ++i) {
             if (lastShownList.get(i).getProjectName().equals(projectToFind)) {
@@ -77,17 +78,17 @@ public class FindStaffCommand extends Command {
         Project projectToFind = lastShownList.get(pIndex.getZeroBased());
 
         for (Staff staff : projectToFind.getStaffList()) {
-            if (staff.getStaffName().equals(staffToFind)) {
-                foundStaff = staff;
-                staffIsFound = true;
+            if (keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(staff.getStaffName().toString(), keyword))) {
+                foundStaffNames.add(staff.getStaffName());
             }
         }
 
-        if (!staffIsFound) {
+        if (foundStaffNames.size() == 0) {
             throw new CommandException(MESSAGE_STAFF_NOT_FOUND);
         }
 
-        return new CommandResult(String.format(MESSAGE_FIND_STAFF_SUCCESS, foundStaff));
+        return new CommandResult(String.format(MESSAGE_FIND_STAFF_SUCCESS, foundStaffNames));
 
     }
 
@@ -96,6 +97,6 @@ public class FindStaffCommand extends Command {
         return other == this
                 || (other instanceof FindStaffCommand)
                 && projectToFind.equals(((FindStaffCommand) other).projectToFind)
-                && staffToFind.equals(((FindStaffCommand) other).staffToFind);
+                && keywords.equals(((FindStaffCommand) other).keywords);
     }
 }
