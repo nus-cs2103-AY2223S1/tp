@@ -116,7 +116,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
@@ -219,6 +219,89 @@ tags
 
 Step 4: The result list of students will then be shown back to the user via the dashboard
 
+### Addtag feature
+
+#### Current Implementation
+The `addtag` feature is implemented by the `AddTagCommand` class which extends the more general `EditStudentCommand` class. 
+`AddTagCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
+The execution of this command is handled by `EditStudentCommand#execute`, which calls `AddTagCommand.AddTagStudentEditor#editStudent`,
+which in turn adds the tags. `EditStudentCommand#execute` handles the re-insert of the edited `Student` back into `Model`.
+
+The flow for `AddTagCommand.AddTagStudentEditor#editStudent` is as follows
+
+1. Given the student to be edited (`studentToEdit`), we copy `studentToEdit.StudentData` as `studentData`.
+2. The current set of tags is retrieved from `studentData`.
+3. The retrieved tag set is combined with the new tags to be added.
+4. The combined tag set will then replace the existing one in `studentData`.
+5. We rebuild a new student using this edited `studentData` and return it.
+
+#### Design considerations:
+
+**Aspect: How `addtag` executes:**
+
+* **Alternative 1:** Update the students' tags set using `EditStudentCommand`.
+    * Pros: Easy to implement (after refactoring), is flexible and has minimal duplicated code.
+    * Cons: Requires refactoring of existing EditCommand code.
+
+* **Alternative 2:** Update the students' tags set using `EditCommand`.
+    * Pros: Easy to implement. Shares optimization with `EditCommand`.
+    * Cons: Increasing coupling of the code.
+
+* **Alternative 3:** Interact with the model directly to modify the tag set for the student.
+    * Pros: Remove dependency on other commands which reduces coupling.
+    * Cons: Possible duplication of the code. Changes in `setTags` of the `Student` needs to be updated in both places.
+
+### Mark feature
+
+#### Current Implementation
+
+The `mark` feature is implemented through the `MarkCommand` which extends the `Command` abstract class. 
+
+`MarkCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
+The implementation of the execute command is contained in the parent class `EditStudentCommand#execute`, which 
+`MarkCommand` calls from. A brief summary of the class structure is illustrated in the class diagram below.
+
+![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
+
+`IndexListGenerator` is an abstract class representing the list of indexes to modify. 
+The instance of `IndexListGenerator` can be either 
+* `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
+* `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
+
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. MarkCommand implements an
+unique subclass of `StudentEditor` called `MarkCommandStudentEditor`.
+
+Both `IndexListGenerator` and `MarkCommandStudentEditor` are passed to `MarkCommand` in its constructor via the 
+`MarkCommandParser`. Details of the class structure for `MarkCommandParser` are illustrated in the class diagram 
+below.
+
+![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
+
+Given below is the flow for `MarkCommand#execute`.
+
+Step 1. The mark command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
+
+Step 2. The mark command modifies the student through `MarkCommandStudentEditor#editStudent`, marking the student as
+absent or present for the class
+
+Step 3. The mark command replaces the old student with the newly edited student in the `Model`.
+
+Below is a more detailed sequence diagram for the execution of the command.
+
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How mark command executes:**
+
+* **Alternative 1 (current choice):** Update the students using StudentEditor.
+    * Pros: Easy to extend functionality to other classes, more OOP-oriented
+    * Cons: May decrease readability for new users due to many classes involved
+
+* **Alternative 2:** Update the students in MarkCommand itself
+    * Pros: More intuitive and easy to understand
+    * Cons: Makes code harder to maintain, more code duplication.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -241,14 +324,14 @@ initial address book state, and the `currentStatePointer` pointing to that singl
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command
 calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`
 , causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -257,7 +340,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
@@ -309,7 +392,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -357,8 +440,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tutor                                       | add a new student                                    |                                                                        |
 | `* * *`  | tutor                                       | delete a student                                     | remove entries that I no longer need                                   |
 | `* * *`  | tutor                                       | mark students who are present and absent from class  | keep track of attendance using this application                        |
-| `* * *`  | tutor                                       | find a student by name                               | locate details of persons without having to go through the entire list |
-| `* *`    | tutor with many persons in the address book | sort students by name                                | locate a student easily                                                |
+| `* * *`  | tutor                                       | find a student by name                               | locate details of students without having to go through the entire list |
+| `* *`    | tutor with many students in the address book | sort students by name                                | locate a student easily                                                |
 | `* *`    | tutor                                       | filter the students by attribute                     | locate a student easily                                                |
 | `* *`    | tutor                                       | create new labels to tag my students with            | better differentiate the students                                      |
 
@@ -411,7 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. The software should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. The software should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical
+2. The software should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical
    usage.
 3. The software should be able to start up in 30 seconds.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
@@ -471,18 +554,18 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.

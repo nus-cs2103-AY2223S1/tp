@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes addtag command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([single INDEX])
+    :Retrieve existing tags;
+    :Concatenate new tags;
+    :Set student to have the concatenated tag set;
+else ([INDEX is "all"])
+repeat
+    :Retrieve existing tags;
+    :Concatenate new tags;
+    :Update the student to have the
+    concatenated tag set;
+repeat while () is ([Not every student updated]) not ([else]);
+endif
+stop
+@enduml
