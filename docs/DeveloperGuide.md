@@ -551,7 +551,132 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC11 - View list of commands**
+**Use case: UC11 - Add client**
+
+**MSS**
+
+1.  User requests to add a client.
+2.  DevEnable adds the client to the client list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user makes an error in writing the request.
+    * 1a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 1.
+* 1b. DevEnable detects that the client already exists in the list.
+    * 1b1. DevEnable displays an error message that the client already exists.
+
+      Use case ends.
+
+**Use case: UC12 - Delete client**
+
+**MSS**
+
+1. User views the list of clients.
+2. User requests to delete a specific client in the list.
+3. DevEnable deletes the client from the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the client does not exist in the list.
+    * 2b1. DevEnable displays an error message that the client does not exist.
+
+      Use case ends.
+
+**Use case: UC13 - Edit client**
+
+**MSS**
+
+1. User views the list of clients.
+2. User requests to edit a specific client in the list.
+3. DevEnable edits the client in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the client does not exist in the list.
+    * 2b1. DevEnable displays an error message that the client does not exist.
+
+      Use case ends.
+
+**Use case: UC14 - Find projects**
+
+**MSS**
+
+1. User views <ins>views the list of projects (UC1).</ins>
+2. User requests to filter the list based on specific keywords.
+3. DevEnable finds matching projects in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that such a project does not exist in the list.
+    * 2b1. DevEnable displays an error message that such a project does not exist.
+
+      Use case ends.
+
+**Use case: UC15 - Find clients**
+
+**MSS**
+
+1. User views the list of clients.
+2. User requests to filter the list based on specific keywords.
+3. DevEnable finds matching clients in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that such a client does not exist in the list.
+    * 2b1. DevEnable displays an error message that such a client does not exist.
+
+      Use case ends.
+
+**Use case: UC16 - Find issues**
+
+**MSS**
+
+1. User views the list of issues.
+2. User requests to filter the list based on specific keywords.
+3. DevEnable finds matching issues in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that such an issue does not exist in the list.
+    * 2b1. DevEnable displays an error message that such an issue does not exist.
+
+      Use case ends.
+
+**Use case: UC17 - View list of commands**
 
 **MSS**
 
@@ -561,6 +686,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 *{More to be added}*
+
+
 
 ### Non-Functional Requirements
 
