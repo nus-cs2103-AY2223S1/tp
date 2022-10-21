@@ -314,20 +314,20 @@ e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
-| Priority | As an …​        | I want to …​                                                      | So that I can…​                                                                   | Conditions                                                             |
-|----------|-----------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | insurance agent | add client details                                                | keep track of my client's details                                                 |                                                                        |
-| `* * *`  | insurance agent | view all my clients                                               | see who I am providing services to                                                |                                                                        |
-| `* * *`  | insurance agent | delete clients' details                                           | remove clients whom I am no longer serving                                        |                                                                        |
-| `* * * ` | insurance agent | I can update my clients details                                   | I have the latest contact details to keep in touch with my clients.               | All fields that uniquely identify a client should be uneditable        |
-| `* * *`  | insurance agent | add client meetings                                               | keep track of when to meet clients                                                | Meetings with timing conflict are not allowed                          |
-| `* * *`  | insurance agent | view all client meetings                                          | see when I have meetings                                                          |                                                                        |
-| `* * *`  | insurance agent | I can see an overview of today’s client meetings                  | I know what my schedule looks like for the day                                    |                                                                        |
-| `* * *`  | insurance agent | delete client meetings                                            | remove meetings that are canceled                                                 |                                                                        |
-| `* *`    | insurance agent | I can add and edit a list of the products a client bought         | I can better track which products might interest them                             | Product are created by the agent before being associated with a client |
-| `* *`    | insurance agent | I need to know which products my clients have bought              | I can gauge the popularity of each product                                        | Clients can be filtered according to the product they bought           |
-| `* *`    | insurance agent | I can see the birthdays of my clients for the upcoming week/month | I can send my clients a thank you/birthday gift and maintain a close relationship |                                                                        |
-| `* *`    | insurance agent | I can set the default views in my app to light mode and dark mode |                                                                                   |                                                                        |
+| Priority | As an …​        | I want to …​                                                | So that I can…​                                                             | Conditions                                                             |
+|----------|-----------------|-------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | insurance agent | add client details                                          | keep track of my client's details                                           |                                                                        |
+| `* * *`  | insurance agent | view all my clients                                         | see who I am providing services to                                          |                                                                        |
+| `* * *`  | insurance agent | delete clients' details                                     | remove clients whom I am no longer serving                                  |                                                                        |
+| `* * * ` | insurance agent | update my clients details                                   | have the latest contact details to keep in touch with my clients.           | All fields that uniquely identify a client should be uneditable        |
+| `* * *`  | insurance agent | add client meetings                                         | keep track of when to meet clients                                          | Meetings with timing conflict are not allowed                          |
+| `* * *`  | insurance agent | view all client meetings                                    | see when I have meetings                                                    |                                                                        |
+| `* * *`  | insurance agent | see an overview of today’s client meetings                  | know what my schedule looks like for the day                                |                                                                        |
+| `* * *`  | insurance agent | delete client meetings                                      | remove meetings that are canceled                                           |                                                                        |
+| `* *`    | insurance agent | add and edit a list of the products a client bought         | better track which products might interest them                             | Product are created by the agent before being associated with a client |
+| `* *`    | insurance agent | know which products my clients have bought                  | gauge the popularity of each product                                        | Clients can be filtered according to the product they bought           |
+| `* *`    | insurance agent | see the birthdays of my clients for the upcoming week/month | send my clients a thank you/birthday gift and maintain a close relationship |                                                                        |
+| `* *`    | insurance agent | set the default views in my app to light mode and dark mode |                                                                             |                                                                        |
 
 
 
@@ -440,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 * **Mainstream OS**: Windows, MacOS, Unix
 * **Meeting**: An event that the user with the client at a specific date and time.
-* **Timing conflict**: Time periods that overlap. e.g. meetings should not have any timing conflict.
+* **Timing conflict**: Time periods that overlap. e.g. meetings should not be happening on the same time.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
