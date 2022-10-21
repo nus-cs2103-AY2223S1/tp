@@ -96,7 +96,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TaskBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -122,16 +122,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the task book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task book data i.e., all `Person` objects which are contained in a `UniquePersonList` object, as well as `Task` objects which are contained in a `TaskList` a object.
+* stores a subset of `Person` objects in the `UniquePersonList` (according to user filter query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a subset of `Task` objects in the `TaskList` (according to user filter query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed'.
+* stores the `Task` objects in the _filtered_ list above (according to user sort query) as a _sorted_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed'.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Person` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -147,7 +143,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `taskbookbook.commons` package.
+Classes used by multiple components are in the `taskbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
