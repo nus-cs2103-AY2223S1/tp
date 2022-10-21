@@ -2,9 +2,9 @@ package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -61,7 +61,8 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_INTERESTEDCLIENTS).isPresent()) {
-            editPropertyDescriptor.setInterestedClients(ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS)));
+            editPropertyDescriptor.setInterestedClients(
+                    ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS)));
         }
 
         return new EditPropertyCommand(index, editPropertyDescriptor);

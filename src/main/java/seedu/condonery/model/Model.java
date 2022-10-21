@@ -112,7 +112,7 @@ public interface Model {
      */
     boolean hasClient(Client client);
 
-   /**
+    /**
      * Returns true if a client whos name contains the given String exists in the client directory.
      */
     boolean hasClientName(String substring);

@@ -96,7 +96,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code clientName} does not match to a unique
-     * existing client's name.
+     *     existing client's name.
      */
     public static Client parseClientName(String clientName) throws ParseException {
         requireNonNull(clientName);

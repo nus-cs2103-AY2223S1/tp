@@ -77,7 +77,8 @@ public class Property {
      */
     public Set<String> getInterestedClientNames() {
         HashSet<String> stringInterestedClients = new HashSet<>(interestedClients.size());
-        interestedClients.forEach(interestedClient -> stringInterestedClients.add(interestedClient.getName().toString()));
+        interestedClients.forEach(
+                interestedClient -> stringInterestedClients.add(interestedClient.getName().toString()));
         return Collections.unmodifiableSet(stringInterestedClients);
     }
 

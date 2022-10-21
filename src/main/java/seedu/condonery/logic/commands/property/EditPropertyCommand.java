@@ -2,9 +2,9 @@ package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.util.Collections;
@@ -25,7 +25,6 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.utils.ParsePropertyInterestedClients;
-
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -102,7 +101,9 @@ public class EditPropertyCommand extends Command {
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
-        Set<Client> updatedInterestedClients = editPropertyDescriptor.getInterestedClients().orElse(propertyToEdit.getInterestedClients());
+        Set<Client> updatedInterestedClients = editPropertyDescriptor
+                .getInterestedClients()
+                .orElse(propertyToEdit.getInterestedClients());
 
         return new Property(updatedName, updatedAddress, updatedTags, updatedInterestedClients);
     }
@@ -205,7 +206,9 @@ public class EditPropertyCommand extends Command {
          * Returns {@code Optional#empty()} if {@code interestedClients} is null.
          */
         public Optional<Set<Client>> getInterestedClients() {
-            return (interestedClients != null) ? Optional.of(Collections.unmodifiableSet(interestedClients)) : Optional.empty();
+            return (interestedClients != null)
+                    ? Optional.of(Collections.unmodifiableSet(interestedClients))
+                    : Optional.empty();
         }
 
         @Override
