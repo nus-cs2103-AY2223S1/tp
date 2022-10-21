@@ -69,7 +69,7 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The Telegram handle, consultation date, and Mastery Check date are optional. 
-A person can have any number of tags (including 0).
+A student can have any number of tags (including 0).
 </div>
 
 ### Deleting a student: `delete`
@@ -121,6 +121,16 @@ Lists all students in FRIDAY.
 
 Format: `list`
 
+### Marking a student's Mastery Check as passed: `mark`
+
+Marks the Mastery Check of a specified student as passed.
+
+Format: `mark INDEX`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student can be seen from the student list.<br>
+</div>
+
 ### Sorting students: `sort`
 
 Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
@@ -155,14 +165,15 @@ Format: `help`
 
 ## Command Summary
 
-| Action                           | Format                                                                                     |
-|----------------------------------|--------------------------------------------------------------------------------------------|
-| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
-| **Delete a student**             | `delete i/INDEX`                                                                           |
-| **Edit a student's details**     | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`  |
-| **Add remarks for a student**    | `remark INDEX [r/REMARK]`                                                                  |
-| **Find a student's details**     | `find s/STUDENT_NAME`                                                                      |
-| **View all students**            | `list`                                                                                     |
-| **Sort students**                | `sort CRITERIA/ORDER`                                                                      |
-| **Get a link to the User Guide** | `guide`                                                                                    |
-| **Getting Help**                 | `help`                                                                                     |
+| Action                                       | Format                                                                                     |
+|----------------------------------------------|--------------------------------------------------------------------------------------------|
+| **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
+| **Delete a student**                         | `delete i/INDEX`                                                                           |
+| **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`  |
+| **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                  |
+| **Find a student's details**                 | `find s/STUDENT_NAME`                                                                      |
+| **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                               |
+| **View all students**                        | `list`                                                                                     |
+| **Sort students**                            | `sort CRITERIA/ORDER`                                                                      |
+| **Get a link to the User Guide**             | `guide`                                                                                    |
+| **Getting Help**                             | `help`                                                                                     |

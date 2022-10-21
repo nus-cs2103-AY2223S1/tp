@@ -9,7 +9,7 @@ import java.time.LocalDate;
  * Represents a Student's consultations in FRIDAY.
  * Guarantees: immutable; is valid as declared in {@link #isValidConsultation(String)}
  */
-public class Consultation {
+public class Consultation implements Comparable<Consultation> {
 
     public static final String MESSAGE_CONSTRAINTS = "Desired dates for consultation should be in the format:"
             + "YYYY-MM-DD";
@@ -48,9 +48,9 @@ public class Consultation {
     /**
      * Returns true if the given string is a valid consultation or empty.
      *
-     * Only to be used when converting JSON to Student in JsonAdaptedPerson.
+     * Only to be used when converting JSON to Student in JsonAdaptedStudent.
      */
-    public static boolean isValidOrEmpty(String test) {
+    public static boolean isValidOrEmptyJson(String test) {
         return test.matches(VALIDATION_REGEX) || test.equals("0001-01-01");
     }
 
@@ -86,6 +86,18 @@ public class Consultation {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Consultation consultation) {
+        if (this.equals(consultation)) {
+            return 0;
+        } else if (this.isEmpty()) {
+            return 1;
+        } else if (consultation.isEmpty()) {
+            return -1;
+        }
+        return this.value.compareTo(consultation.value);
     }
 
 }

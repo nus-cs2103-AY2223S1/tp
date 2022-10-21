@@ -24,7 +24,7 @@ import friday.model.tag.Tag;
  */
 class JsonAdaptedStudent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
     private final String telegramHandle;
@@ -35,7 +35,7 @@ class JsonAdaptedStudent {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
@@ -56,7 +56,7 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
@@ -71,14 +71,14 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted student object into the model's {@code Student} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> studentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            studentTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -93,7 +93,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
         }
-        if (!TelegramHandle.isValidOrEmpty(telegramHandle)) {
+        if (!TelegramHandle.isValidOrEmptyJson(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
         final TelegramHandle modelTelegramHandle;
@@ -107,7 +107,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Consultation.class.getSimpleName()));
         }
-        if (!Consultation.isValidOrEmpty(consultation.toString())) {
+        if (!Consultation.isValidOrEmptyJson(consultation.toString())) {
             throw new IllegalValueException(Consultation.MESSAGE_CONSTRAINTS);
         }
         final Consultation modelConsultation;
@@ -121,7 +121,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MasteryCheck.class.getSimpleName()));
         }
-        if (!MasteryCheck.isValidOrEmpty(masteryCheck.toString())) {
+        if (!MasteryCheck.isValidOrEmptyJson(masteryCheck.toString())) {
             throw new IllegalValueException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
         final MasteryCheck modelMasteryCheck;
@@ -137,7 +137,7 @@ class JsonAdaptedStudent {
         }
         final Remark modelRemark = new Remark(remark);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(studentTags);
         return new Student(modelName, modelTelegramHandle, modelConsultation, modelMasteryCheck, modelRemark,
                 modelTags);
     }

@@ -11,7 +11,7 @@ import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
 import friday.model.student.Student;
-import friday.testutil.PersonBuilder;
+import friday.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,8 +26,8 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Student validStudent = new PersonBuilder().build();
+    public void execute_newStudent_success() {
+        Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
         expectedModel.addStudent(validStudent);
@@ -37,8 +37,8 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Student studentInList = model.getFriday().getPersonList().get(0);
+    public void execute_duplicateStudent_throwsCommandException() {
+        Student studentInList = model.getFriday().getStudentList().get(0);
         assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
