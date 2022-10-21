@@ -11,16 +11,7 @@ import com.beust.jcommander.ParameterException;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.util.StringUtil;
-import modtrekt.logic.commands.AddCommand;
-import modtrekt.logic.commands.AddTaskCommand;
-import modtrekt.logic.commands.CdModuleCommand;
-import modtrekt.logic.commands.Command;
-import modtrekt.logic.commands.DoneModuleCommand;
-import modtrekt.logic.commands.EditTaskCommand;
-import modtrekt.logic.commands.ExitCommand;
-import modtrekt.logic.commands.HelpCommand;
-import modtrekt.logic.commands.RemoveCommand;
-import modtrekt.logic.commands.UndoneModuleCommand;
+import modtrekt.logic.commands.*;
 import modtrekt.logic.commands.tasks.ArchiveTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
@@ -55,6 +46,8 @@ public class ModtrektParser {
         JCommander jcommander = JCommander.newBuilder()
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
+                .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
+                .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
                 .build();
         try {
             // This takes care of invalid commands, as well as missing or invalid arguments
@@ -108,10 +101,6 @@ public class ModtrektParser {
             return new HelpCommand();
         case CdModuleCommand.COMMAND_WORD:
             return new CdCommandParser().parse(arguments);
-        case DoneModuleCommand.COMMAND_WORD:
-            return new DoneModuleCommandParser().parse(arguments);
-        case UndoneModuleCommand.COMMAND_WORD:
-            return new UndoneModuleCommandParser().parse(arguments);
         default:
             return null;
         }

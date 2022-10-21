@@ -1,9 +1,11 @@
 package modtrekt.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
 import modtrekt.logic.commands.exceptions.CommandException;
+import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.model.Model;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
@@ -11,15 +13,19 @@ import modtrekt.model.module.Module;
 /**
  * Marks a module as undone.
  */
+@Parameters(commandDescription = "Marks a module as done.")
 public class UndoneModuleCommand extends Command {
     public static final String COMMAND_WORD = "undone";
 
-    public static final String MESSAGE_USAGE =
-            String.format("Format: %s %s <module code>", COMMAND_WORD, PREFIX_MOD_CODE);
+    @Parameter(names = "-c", description = "Module code of the module to mark undone",
+            required = true, converter = ModCodeConverter.class)
 
-    public static final String MESSAGE_UNDONE_MODULE_SUCCESS = "Marked Module %1$s as undone!";
+    private ModCode moduleCode;
 
-    private final ModCode moduleCode;
+    /**
+     * Returns a new UndoneModuleCommand object, with no fields initialized, for use with JCommander.
+     */
+    public UndoneModuleCommand() {}
 
     /**
      * Returns a new UndoneModuleCommand object.
