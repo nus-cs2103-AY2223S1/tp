@@ -63,7 +63,10 @@ public class PasswordCommand extends Command {
         requireNonNull(model);
         try {
             if (isUpdatePassword) {
-                if (model.isPasswordCorrect(oldPassword)) {
+                if (!model.isPasswordSet()) {
+                    model.updatePassword("", newPassword);
+                    return new CommandResult(MESSAGE_SET_PASSWORD_SUCCESS);
+                } else if (model.isPasswordCorrect(oldPassword)) {
                     model.updatePassword(oldPassword, newPassword);
                     return new CommandResult(MESSAGE_UPDATE_PASSWORD_SUCCESS);
                 } else {
@@ -96,6 +99,7 @@ public class PasswordCommand extends Command {
 
         // state check
         PasswordCommand e = (PasswordCommand) other;
-        return oldPassword.equals(e.oldPassword) && newPassword.equals(e.newPassword);
+        return isUpdatePassword == e.isUpdatePassword
+                && oldPassword.equals(e.oldPassword) && newPassword.equals(e.newPassword);
     }
 }
