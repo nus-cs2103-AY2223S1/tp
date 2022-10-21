@@ -34,7 +34,6 @@ public class ModelManager implements Model {
         this.exerciseTracker = new ExerciseTracker(exerciseTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExercises = new FilteredList<>(this.exerciseTracker.getExerciseList());
-        //sortedFilteredExercises = new FilteredList<>(this.exerciseTracker.getSortedExerciseList());
     }
 
     public ModelManager() {

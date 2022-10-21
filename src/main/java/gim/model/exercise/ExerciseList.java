@@ -67,7 +67,6 @@ public class ExerciseList implements Iterable<Exercise> {
             throw new ExerciseNotFoundException();
         }
         displayedList.setAll(internalUnmodifiableList);
-
     }
 
     public void setExercises(ExerciseList replacement) {

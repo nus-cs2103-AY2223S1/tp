@@ -133,5 +133,4 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     public int hashCode() {
         return exerciseList.hashCode();
     }
-
 }
