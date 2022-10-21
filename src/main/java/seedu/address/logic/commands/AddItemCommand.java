@@ -46,8 +46,6 @@ public class AddItemCommand extends Command {
      */
     public AddItemCommand(Index index, int currentStock, int minimumStock) {
         requireNonNull(index);
-        requireNonNull(currentStock);
-        requireNonNull(minimumStock);
         this.targetIndex = index;
         this.currentStock = currentStock;
         this.minimumStock = minimumStock;
