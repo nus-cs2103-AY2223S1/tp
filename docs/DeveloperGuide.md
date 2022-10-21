@@ -278,6 +278,49 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/AddGroupMemberActivityDiagram.png" width="550" />
 
+### **\[Developed\] Bulk Assignment & Deletion of Tasks**
+All members in a group can be assigned a task via the `assigntaskall` command,
+and similarly deleted via the `deletetaskall` command. The commands accept a group
+to affect, and the task to be added or deleted. In any cases where a member
+will have a duplicate task upon assignment/does not have the task to delete, they
+are skipped over.
+
+Below is an activity diagram reflecting the operation of the `assigntaskall` command.
+`deletetaskall` operates similarly.
+
+![AssignTaskAllDiagram](images/AssignTaskAllDiagram.png)
+![AssignTaskAllDiagramAddendum](images/AssignTaskAllDiagramAddendum.png)
+
+#### Implementation Details
+1. User input is parsed in the context of `assigntaskall` and `deletetaskall` commands
+   using the `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively.
+   Erroneous inputs trigger a ParseException indicating to the user of invalid input.
+2. The correct command is then generated and executed. During execution, several
+   conditions are checked to ensure proper operation of the instruction, failing which
+   the user is notified. These are:
+  1. The group specified exists in the app;
+  2. The group has members to operate on, and;
+  3. At least one member is modified following the instruction.
+3. The instruction iterates over each member and assigns/deletes the task respectively.
+   As mentioned prior, members which already have/do not have the task respectively are
+   skipped over.
+4. The model is invoked to update its displayed person list.
+5. Successfully modified members are told to user via feedback.
+
+#### Implementation Rationale
+The above-mentioned flow follows closely with pre-existing instruction `edit`.
+In doing so, some rationales are carried forward:
+1. Follows in line with other commands by having an "XYZParser", in this case
+   `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively, which
+   return an executable command to be executed by the `Logic` (and by extension `Model`)
+   class.
+2. Upon execution, performs several checks which upon failure throw CommandExceptions
+   to indicate to the user when the command is not successful.
+3. Modification of each person by adding/deleting assignment follows that of `edit`
+   in that the given Person is treated as immutable, and an edited copy is created before
+   `Model` is invoked to set the Person, thus adhering to defensive programming standards
+   previously established.
+
 ### **\[Proposed\] Undo/redo feature**
 
 #### **Proposed Implementation**
