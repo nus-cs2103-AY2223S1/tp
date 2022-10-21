@@ -51,7 +51,7 @@ public class SubjectHandler {
         return subjectsTaken.keySet().stream().map(subjectsTaken::get).collect(
             Collectors.toSet());
     }
-    
+
     /**
      * Checks if the HashMap containing subjects taken by a person contains the subject(s) given as
      * keyword(s) in the find command.
