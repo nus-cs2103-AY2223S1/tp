@@ -9,6 +9,7 @@ import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.person.Person;
+import swift.model.task.Task;
 
 /**
  * API of the Logic component
