@@ -14,7 +14,9 @@ import seedu.address.model.team.Team;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Link> PREDICATE_SHOW_ALL_LINKS = unused -> true;
@@ -54,7 +56,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -81,26 +85,46 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns the current team */
+    /**
+     * Returns the current team
+     */
     Team getTeam();
 
-    /** Sets the current team to an existing team */
+    /**
+     * Sets the current team to an existing team
+     */
     void setTeam(Team teamToSet);
 
-    /** Adds a new team */
+    /**
+     * Adds a new team
+     */
     void addTeam(Team teamToAdd);
 
-    /** Deletes an existing team */
+    /**
+     * Deletes an existing team
+     */
     void deleteTeam(Team teamToDelete);
 
-    /** Returns the list of teams */
+    /**
+     * Returns the list of teams
+     */
     ObservableList<Team> getTeamList();
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of the person list filtered based on the specified predicate.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    ObservableList<Person> getFilteredPersonList(Predicate<Person> predicate);
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
