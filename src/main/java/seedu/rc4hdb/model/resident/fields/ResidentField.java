@@ -2,7 +2,6 @@ package seedu.rc4hdb.model.resident.fields;
 
 import java.util.List;
 
-import seedu.rc4hdb.commons.util.StringUtil;
 import seedu.rc4hdb.model.Field;
 
 /**

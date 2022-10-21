@@ -2,10 +2,6 @@ package seedu.rc4hdb.model;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.rc4hdb.commons.util.StringUtil;
-
-import java.util.Locale;
-
 /**
  * Represents a field with a string value.
  */
