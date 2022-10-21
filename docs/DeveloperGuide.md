@@ -244,29 +244,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                               | I can …​                             | So that I can…​                                                                   |
 |--------| --------------------------------------|--------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *` | user                                  | list all tutor profiles              | get a quick view of all available tutors                                                  |
-| `* * *` | user                                  | add a new tutor                      | track their profiles                                                                      |
-| `* * *` | user                                  | find a specific tutor by name easily | filter tutor names                                                                        |
-| `* * *` | user                                  | delete a tutor profile               | remove tutors that are no longer available for work                                       |
-| `* * *` | user                                  | save data                            | there is a local backup on the computer                                                   |
-| `* * *` | user                                  | exit the program                     |                                                                                           |
-| `* *`  | user                                  | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
+| `* * *` | NUS Computing Professor                                  | list all tutor profiles              | get a quick view of all available tutors                                                  |
+| `* * *` | NUS Computing Professor                                  | add a new tutor                      | track their profiles                                                                      |
+| `* * *` | NUS Computing Professor                                  | find a specific tutor by name easily | filter tutor names                                                                        |
+| `* * *` | NUS Computing Professor                                  | delete a tutor profile               | remove tutors that are no longer available for work                                       |
+| `* * *` | NUS Computing Professor                                  | save data                            | there is a local backup on the computer                                                   |
+| `* * *` | NUS Computing Professor                                  | exit the program                     |                                                                                           |
+| `* *`  | NUS Computing Professor                                  | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
 
 
 ### Use cases
 
-(For all use cases below, the **System** is `Tuthub` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Tuthub` and the **Actor** is the `NUS Computing Professor`, unless specified otherwise)
 
 **Use case: UC1 - Listing all tutor profiles**
 
-System: TutHub <br>
-Use case: UC1 - Listing all tutor profiles <br>
-Actor: User <br>
-Guarantees: All stored user profiles to be shown. (if any)
-
 **MSS**
 
-1.  User requests to list tutors.
+1.  User requests to list all tutors.
 2.  Tuthub shows a list of tutors.
 
     Use case ends.
@@ -277,12 +272,25 @@ Guarantees: All stored user profiles to be shown. (if any)
 
   Use case ends.
 
-**Use case: UC2 - Add a tutor**
+**Use case: UC2 - Viewing a specific tutor profile**
 
-System: TutHub <br>
-Use case: UC2 - Add tutor profile <br>
-Actor: User <br>
-Guarantees: Tutor profile will be stored when user correctly inputs details.
+**MSS**
+
+1. User requests to list all tutors.
+2. User requests to view a specific tutor's details using their displayed index on the list.
+3. Tuthub displays the full details of the Tutor on a side panel and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The input index is invalid.
+    * Tuthub displays an error message.
+
+      Use case resumes from step 2.  
+    
+
+**Use case: UC3 - Add a tutor**
 
 **MSS**
 
@@ -301,12 +309,7 @@ Guarantees: Tutor profile will be stored when user correctly inputs details.
 
     Use case ends.
 
-**Use case: UC3 - Delete a tutor**
-
-System: TutHub <br>
-Use case: UC3 - Deleting a tutor profile <br>
-Actor: User <br>
-Guarantees: Tutor profile will be deleted.
+**Use case: UC4 - Delete a tutor**
 
 **MSS**
 
@@ -329,12 +332,7 @@ Guarantees: Tutor profile will be deleted.
 
       Use case resumes at step 2.
 
-**Use case: UC4 - Exit the program**
-
-System: TutHub <br>
-Use case: UC4 - Exit TutHub <br>
-Actor: User <br>
-Guarantees: TutHub application will close.
+**Use case: UC5 - Exit the program**
 
 **MSS**
 
@@ -343,7 +341,6 @@ Guarantees: TutHub application will close.
 
     Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -363,7 +360,6 @@ Guarantees: TutHub application will close.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `GENDER`, `EMAIL`, etc.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -385,14 +381,32 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+### Viewing a tutor's full details
+
+1. Viewing a tutor's full details
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `view 1`<br>
+        Expected: Details panel of the first tutor in the list is displayed. Details of the tutor viewed shown in the status message.
+
+    3. Test case: Click on the first tutor card in the list with mouse.<br>
+       Expected: Details panel of the first tutor in the list is displayed. Details of the tutor viewed shown in the status message.
+   
+    4. Test case: `view 0`<br>
+       Expected: No tutor panel displayed. Error details shown in the status message.
+
+    5. Other incorrect view commands to try: `view`, `view x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Deleting a tutor
 
