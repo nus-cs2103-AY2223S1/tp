@@ -3,9 +3,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+
 <?import javafx.scene.control.Label?>
-<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label styleClass="label-bright-padding" text="Teams: "/>
-    <ListView fx:id="teamListView" VBox.vgrow="ALWAYS" />
+    <Label styleClass="label-bright-padding" text="Team members:"/>
+    <ListView fx:id="memberListView" VBox.vgrow="ALWAYS"/>
 </VBox>

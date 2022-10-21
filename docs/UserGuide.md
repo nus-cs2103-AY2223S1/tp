@@ -74,8 +74,8 @@ Examples:
 ### Delete an existing team `delete_team`
 
 Delete an existing team from the user's list of teams. Throws an error under these conditions.
-- The target team does not exist.
-- The target team is the only existing team.
+ - The target team does not exist.
+ - The target team is the only existing team.
 
 Format:
 * `delete_team TEAM_NAME`
