@@ -154,6 +154,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Select property/client feature
+
+The select feature is meant to expand on either a `Property` or a `Client` to display its details in the GUI. Importantly, a `Property` can hold a list of interested clients and a `Client` can hold a list of properties that the client is interested in. Depending on if a `Property` or `Client` is selected, the GUI changes to show just the selected `Property`/`Client` in its respective tab, and its interested clients/intersted properties in the other tab. The select command is as follows:
+```
+select -[pc] [INDEX]
+```
+The compulsory input `INDEX` would correspond to the current displayed list in the GUi.
+
+Examples of usage:
+* `select -p 2`
+* `select -c 10`
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
