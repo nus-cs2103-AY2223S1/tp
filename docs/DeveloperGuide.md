@@ -125,7 +125,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the following address book data 
+* stores the following address book data
   * all `Person` objects (which are contained in a `UniquePersonList` object)
   * all `Policy` objects (which are contained in a `UniquePolicyList` object)
   <img src="images/ModelPolicyClassDiagram.png" width="500" />
@@ -136,8 +136,6 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person, Policy or Event
-
-
 
 
 ### Storage component
@@ -221,25 +219,25 @@ Given below is an example usage scenario and how the pin mechanism behaves at ea
     * Cons: May result in performance issues in terms of memory usage.
 
 
-### Sort Feature 
+### Sort Feature
 
-#### Implementation 
+#### Implementation
 
-The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list. 
+The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list.
 
 The method `FXCollections.sort()` is called by UniquePersonList, which takes in a comparator as an argument and sorts the client list based on the comparator supplied.
 Each attribute of a client which is considered a valid sorting metric has its own comparator within its class.
 
 This operation is exposed in the `Model` interface as `Model#sort()`.
 
-Given below is an example usage scenario and how the `Sort` mechanism behaves at each step. 
+Given below is an example usage scenario and how the `Sort` mechanism behaves at each step.
 
-Step 1.  The user executes `list` to view his current client list. 
+Step 1.  The user executes `list` to view his current client list.
 
 Step 2. The user executes `sort income` to view his client list by ascending income levels. This will pass the income comparator to `Model#sort()`. The list will be sorted and changes can be viewed immediately.
 
 
-The following sequence diagram shows how the sort operation works: 
+The following sequence diagram shows how the sort operation works:
 
 ![Sort Sequence Diagram](./images/SortSequenceDiagram.png)
 
@@ -247,13 +245,13 @@ The following activity diagram summarizes what happens when a user issues a `sor
 
 ![Sort Activity Diagram](./images/SortActivityDiagram.png)
 
-#### Design Considerations 
+#### Design Considerations
 
 **Aspect: How to manage saving changes to `Storage`**
 
 As any commands called which modifies the `AddressBook` will save these changes to storage, a major design consideration was whether to save these post-sort changes to the storage
 
-* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view 
+* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view
   * Pros: Easy to implement, less memory required to keep separate original list 
   * Cons: Client list remains in a particular order after `sort` command is called until `sort default` is issued
 
@@ -392,6 +390,56 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 
 
 _{more aspects and alternatives to be added}_
+
+###\[Developed\] Assigning clients a policy
+
+Users can assign existing policies to a client, whilst providing uptake details
+such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
+and `PolicyAssignCommandParser` classes.
+
+The `PolicyAssignCommandParser` parses the input from the user and identifies which policy has to be assigned to
+which client. The appropriate AssignedPolicy object is created with details given in the input 
+and is then assigned to the respective client in `PolicyAssignCommand`.
+
+* `Person#addPolicy(assignedPolicy)` - Attempts to add an assigned policy to a set of assigned policies stored within
+the person object. It also returns a boolean describing if the assigned policy already exists in the set.
+
+Given below is an example usage scenario and how an `assign` command is executed.
+
+The interactions between the components during the usage scenario is shown in the *Sequence Diagram* below.
+
+<p align="center" >
+  <img src="images/AssignPolicySequenceDiagram.png" width="700"/>
+</p>
+
+Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
+to the first person. The policy has a yearly premium of $200 and lasts for 2 years, from 2020 to 2022.
+
+Step 2: The `PolicyAssignCommandParser` parses the input and confirm that the indices are valid. 
+A `PolicyAssignCommand` object with all parameters is constructed. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Policy and Person indices that are not found in the `UniquePersonList` and `UniquePolicyList` respectively
+would be regarded as invalid indices. 
+</div>
+
+Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and the 
+if not already assigned, the policy is assigned to the person.
+
+#### Design considerations
+
+**Aspect: Whether to allow users to assign policies to persons using names:**
+
+* **Alternative 1:** Allows assignment using policy/persons names.
+  * Pros: More flexible and quicker assigning if user knows exactly who and which policy they want to assign.
+  * Cons: More-bug prone, and would require the user to accurately provide the exact name of the policy/person. 
+  Hard to get used to for new users, and complicated for established users with lots of contacts and policies.
+
+* **Alternative 2: (Current implementation)** Allow assignment using policy/person indices.
+  * Pros: Easy to implement and avoids confusion for new users.
+  * Cons: Would require the user to check out the list and find out the indices of their target person/policy.
+  This is overcome by the functionality of the `find` command, which allows users to filter the lists for specific 
+  persons/policies.
 
 ### \[Proposed\] Data archiving
 
