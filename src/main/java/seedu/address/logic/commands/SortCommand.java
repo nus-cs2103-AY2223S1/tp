@@ -19,21 +19,14 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all applicants by the specified "
             + "parameter (case-insensitive) in ascending order and displays them as a list with index numbers.\n"
-            + "To sort in descending order, add a \"r/\" token at the end of the input.\n"
-            + "Parameters: name/scholarship/status [r/]\n"
-            + "Example: " + COMMAND_WORD + " name r/";
+            + "To sort in descending order, add a \"-r\" flag at the end of the input.\n"
+            + "Parameters: name/scholarship/status [-r]\n"
+            + "Example: " + COMMAND_WORD + " name -r";
 
     private final Comparator<Applicant> comparator;
 
-    /**
-     * Creates a SortCommand with the given comparator based on user input.
-     */
-    public SortCommand(Comparator<Applicant> comparator, boolean isReversed) {
-        if (isReversed) {
-            this.comparator = comparator.reversed();
-        } else {
-            this.comparator = comparator;
-        }
+    public SortCommand(Comparator<Applicant> comparator) {
+        this.comparator = comparator;
     }
 
     @Override

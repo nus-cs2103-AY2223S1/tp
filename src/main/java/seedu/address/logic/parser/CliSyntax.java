@@ -12,5 +12,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_SCHOLARSHIP = new Prefix("s/");
     public static final Prefix PREFIX_APPLICATION_STATUS = new Prefix("as/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_REVERSE = new Prefix("r/");
 }

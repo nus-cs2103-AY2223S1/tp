@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REVERSE;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -14,30 +17,37 @@ import seedu.address.model.applicant.Applicant;
 public class SortCommandParser implements Parser<SortCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SortCommand
+     * and returns a SortCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_REVERSE);
 
-        String trimmedArgs = argMultimap.getPreamble().toLowerCase().trim();
+        String trimmedArgs = args.toLowerCase().trim();
+        String[] keywords = trimmedArgs.split("\\s+");
+        List<String> keywordsList = Arrays.asList(keywords);
 
-        switch (trimmedArgs) {
-        case "name":
-            return new SortCommand(Applicant.sortByName(), isReversePrefixPresent(argMultimap));
-        case "scholarship":
-            return new SortCommand(Applicant.sortByScholarship(), isReversePrefixPresent(argMultimap));
-        case "status":
-            return new SortCommand(Applicant.sortByStatus(), isReversePrefixPresent(argMultimap));
-        default:
+        if (keywordsList.contains("name")) {
+            return new SortCommand(checkInputSizeAndReverseFlag(Applicant.sortByName(), keywordsList));
+        } else if (keywordsList.contains("scholarship")) {
+            return new SortCommand(checkInputSizeAndReverseFlag(Applicant.sortByScholarship(), keywordsList));
+        } else if (keywordsList.contains("status")) {
+            return new SortCommand(checkInputSizeAndReverseFlag(Applicant.sortByStatus(), keywordsList));
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
     }
 
-    private static boolean isReversePrefixPresent(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_REVERSE).isPresent();
+    private static Comparator<Applicant> checkInputSizeAndReverseFlag(
+            Comparator<Applicant> comparator, List<String> list) throws ParseException {
+        if (list.size() == 2 && list.contains("-r")) {
+            return comparator.reversed();
+        } else if (list.size() == 1) {
+            return comparator;
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
     }
 }
