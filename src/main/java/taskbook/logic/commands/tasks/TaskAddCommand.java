@@ -23,6 +23,9 @@ public abstract class TaskAddCommand extends Command {
 
     public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in task book!";
 
+    public static final String MESSAGE_DUPLICATE_TASK_FAILURE = "Task cannot be added.\n"
+            + "Task already exists in task book.";
+
     private final Name name;
     private final Description description;
     private final Assignment assignment;
