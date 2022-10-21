@@ -5,7 +5,6 @@ title: Developer guide
 
 * Table of Contents
 {:toc}
->>>>>>> master
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,6 +189,52 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/DisplayGroupActivityDiagram.png" width="550" />
 
+### **\[Developed\] Delete Group feature**
+
+#### **Implementation**
+
+This feature allows an existing group to be deleted from TABS, using the `deletegroup` command. Tasks assigned to the
+members will be deleted and existing members will be removed from the specified group. This is facilitated by the `DeleteGroupCommand` and `DeleteGroupCommandParser` classes.
+
+The `DeleteGroupCommandParser` class parses the input entered by the user, which is the group name the user wants to delete from TABS.
+
+The details of the members in the specified group will be updated as such:
+- Each member will have their assignments associated with the group removed.
+- Each member will be updated such that they are no longer associated with the target group.
+- Other details of the members will remain the same.
+
+A new `Person` with the edited fields above is created for each member, and `Model#setPerson()` will be called to update in TABS.
+
+`Model#deleteGroup(GroupName)` is called to remove the group from TABS, and `Model#updateFilteredPersonList(Predicate)` is called to display the new result in the GUI after deletion.
+
+**Steps**
+
+Step 1. The user enters `deletegroup [NAME OF GROUP]` command
+
+Step 2. The `DeleteGroupCommandParser` class parses the group name input and returns a `DeleteGroupCommand` object with a single `Group` attribute.
+
+Step 3. The `DisplayGroupCommand` object is executed. This group can be retrieved by calling `ObservableList#getGroupWithName()` method.
+
+Step 4. If no groups show up in the ObservableList, a CommandException is thrown where the group is not found in TABS. Otherwise, members of the group are retrieved with the `getMembers()` method in `Group` class.
+
+Step 5. For each member, `getAssignments()` and `getPersonGroups` methods from `Person` class are called to aid in removal of the tasks and associated group.
+
+Step 6. A new Person object is created with the edited fields and `Model#setPerson(Person)` is called to update the new details for each member, with the new `editedPerson` passed in as an argument.
+
+Step 7. The `Group` invoked is deleted from TABS. A CommandResult is then returned, which provides a feedback to user that the specified group has been successfully deleted.
+
+**Activity Diagram**
+
+The user flow can be illustrated in the Activity Diagram as shown below.
+
+<img src="images/DeleteGroupActivityDiagram.png" width="550" />
+
+**Sequence Diagram**
+
+The sequence diagram for DeleteGroup command is as shown below.
+
+<img src="images/DeleteGroupSequenceDiagram.png" width="550" />
+
 ### **\[Developed\] Add Group Member feature**
 
 #### **Implementation**
@@ -230,6 +275,7 @@ added to the specified group.
 **Activity Diagram**
 
 The user flow can be illustrated in the Activity Diagram as shown below.
+
 <img src="images/AddGroupMemberActivityDiagram.png" width="550" />
 
 ### **\[Proposed\] Undo/redo feature**
@@ -328,7 +374,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 ### Product scope
 **Target user profile**:
