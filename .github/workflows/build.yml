@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew shadowJar
       - name: Generate tag name from time
         id: time
-        run: echo ::set-output name=NOW::$(echo ${{ github.event.repository.updated_at}} | sed -e 's/-//g' -e 's/T/-/g' -e 's/.\{4\}$/Z/' -e 's/://g')
+        run: echo ::set-output name=NOW::$(echo ${{ github.event.repository.pushed_at }} | sed -e 's/-//g' -e 's/T/-/g' -e 's/.\{4\}$/Z/' -e 's/://g')
       - name: Create release on GitHub
         id: create_release # We need the id to refer to it in the next step
         uses: actions/create-release@v1
@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.time.outputs.NOW }}
-          release_name: Auto-release ${{ github.event.repository.updated_at}}
+          release_name: Auto-release ${{ github.event.repository.pushed_at }}
           body: 'Auto-created release from branch "${{ github.ref_name }}"'
       - name: Upload JAR file to GitHub releases
         uses: actions/upload-release-asset@v1
