@@ -29,7 +29,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
    * **`add`**`n/42km run d/NUS Run event [t/sport]` : Adds a hobby activity named `42km run` to the list.
 
    * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
-   
+
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
