@@ -21,7 +21,6 @@ import seedu.address.model.person.Role;
 import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
-import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
@@ -134,7 +133,6 @@ public class SetCommand extends Command {
         private Set<Tag> tags;
         private Role role;
         private Timezone timezone;
-        private User user;
         private Map<ContactType, Contact> contacts = new HashMap<>();
 
         /**
@@ -153,7 +151,7 @@ public class SetCommand extends Command {
             this.setRole(toCopy.role);
             this.setTimezone(toCopy.timezone);
             for (ContactType key : toCopy.contacts.keySet()) {
-                this.setContacts(key, toCopy.contacts.get(key));
+                this.setContact(key, toCopy.contacts.get(key));
             }
         }
 
@@ -183,17 +181,13 @@ public class SetCommand extends Command {
             this.timezone = timezone;
         }
 
-        public void updateUser(User user) {
-            this.user = user;
-        }
-
         /**
          * Updates the Contacts map.
          *
          * @param typeToSet The type of Contact to be updated
          * @param contactToSet The Contact to be updated
          */
-        public void setContacts(ContactType typeToSet, Contact contactToSet) {
+        public void setContact(ContactType typeToSet, Contact contactToSet) {
             contacts.put(typeToSet, contactToSet);
         }
 
@@ -215,10 +209,6 @@ public class SetCommand extends Command {
 
         public Optional<Timezone> getTimezone() {
             return Optional.ofNullable(this.timezone);
-        }
-
-        public Optional<User> getUser() {
-            return Optional.ofNullable(this.user);
         }
 
         /**

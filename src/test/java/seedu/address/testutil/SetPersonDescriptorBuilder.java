@@ -43,7 +43,7 @@ public class SetPersonDescriptorBuilder {
         this.descriptor.setTags(person.getTags());
 
         for (ContactType key : person.getContacts().keySet()) {
-            this.descriptor.setContacts(key, person.getContacts().get(key));
+            this.descriptor.setContact(key, person.getContacts().get(key));
         }
     }
 
@@ -93,7 +93,7 @@ public class SetPersonDescriptorBuilder {
      */
     public SetPersonDescriptorBuilder withTelegram(String telegram) {
         Telegram newTelegram = new Telegram(telegram);
-        this.descriptor.setContacts(ContactType.TELEGRAM, newTelegram);
+        this.descriptor.setContact(ContactType.TELEGRAM, newTelegram);
         return this;
     }
 
@@ -102,7 +102,7 @@ public class SetPersonDescriptorBuilder {
      */
     public SetPersonDescriptorBuilder withEmail(String email) {
         Email newEmail = new Email(email);
-        this.descriptor.setContacts(ContactType.EMAIL, newEmail);
+        this.descriptor.setContact(ContactType.EMAIL, newEmail);
         return this;
     }
 
@@ -111,7 +111,7 @@ public class SetPersonDescriptorBuilder {
      */
     public SetPersonDescriptorBuilder withPhone(String phone) {
         Phone newPhone = new Phone(phone);
-        this.descriptor.setContacts(ContactType.PHONE, newPhone);
+        this.descriptor.setContact(ContactType.PHONE, newPhone);
         return this;
     }
 
@@ -120,7 +120,7 @@ public class SetPersonDescriptorBuilder {
      */
     public SetPersonDescriptorBuilder withSlack(String slack) {
         Slack newSlack = new Slack(slack);
-        this.descriptor.setContacts(ContactType.SLACK, newSlack);
+        this.descriptor.setContact(ContactType.SLACK, newSlack);
         return this;
     }
 
