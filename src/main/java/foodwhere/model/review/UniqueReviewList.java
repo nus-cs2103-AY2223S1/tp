@@ -80,9 +80,9 @@ public class UniqueReviewList implements Iterable<Review> {
         }
     }
 
-    /** Sorts the review list by name. */
-    public void sort() {
-        internalList.sort(Comparator.comparing(o -> o.getName().fullName));
+    /** Sorts the list by {@code comparator}. */
+    public void sort(Comparator<Review> comparator) {
+        internalList.sort(comparator);
     }
 
     public void setStalls(UniqueReviewList replacement) {

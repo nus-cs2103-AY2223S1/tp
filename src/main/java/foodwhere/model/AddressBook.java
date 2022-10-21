@@ -3,6 +3,7 @@ package foodwhere.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -144,10 +145,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sorts the stall list by name.
+     * Sorts the stall list by {@code comparator}.
      */
-    public void sortStalls() {
-        stalls.sort();
+    public void sortStalls(Comparator<Stall> comparator) {
+        stalls.sort(comparator);
     }
 
     //// review methods
@@ -200,10 +201,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sorts the review list by name.
+     * Sorts the review list by {@code comparator}.
      */
-    public void sortReviews() {
-        reviews.sort();
+    public void sortReviews(Comparator<Review> comparator) {
+        reviews.sort(comparator);
     }
 
     //// util methods

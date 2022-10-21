@@ -1,6 +1,7 @@
 package foodwhere.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import foodwhere.commons.core.GuiSettings;
@@ -81,9 +82,9 @@ public interface Model {
     void setStall(Stall target, Stall editedStall);
 
     /**
-     * Sorts the stall list by name.
+     * Sorts the stall list by {@code comparator}.
      */
-    void sortStalls();
+    void sortStalls(Comparator<Stall> comparator);
 
     /**
      * Returns true if a review with the same identity as {@code review} exists in the address book.
@@ -110,9 +111,9 @@ public interface Model {
     void setReview(Review target, Review editedReview);
 
     /**
-     * Sorts the review list by name.
+     * Sorts the review list by {@code comparator}.
      */
-    void sortReviews();
+    void sortReviews(Comparator<Review> comparator);
 
     /** Returns an unmodifiable view of the filtered stall list */
     ObservableList<Stall> getFilteredStallList();

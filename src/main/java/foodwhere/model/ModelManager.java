@@ -4,6 +4,7 @@ import static foodwhere.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -115,8 +116,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortStalls() {
-        addressBook.sortStalls();
+    public void sortStalls(Comparator<Stall> comparator) {
+        addressBook.sortStalls(comparator);
     }
 
     @Override
@@ -145,8 +146,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortReviews() {
-        addressBook.sortReviews();
+    public void sortReviews(Comparator<Review> comparator) {
+        addressBook.sortReviews(comparator);
     }
 
     //=========== Filtered Stall List Accessors =============================================================
