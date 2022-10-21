@@ -10,7 +10,14 @@ import longtimenosee.model.person.Person;
 public class EmailMatchesInputPredicate implements Predicate<Person> {
     private final String input;
 
+    /**
+     * Constructs an EmailMatchesInputPredicate object, which consists of an input.
+     *
+     * @param input is the input by the user to be compared.
+     */
     public EmailMatchesInputPredicate(String input) {
+        assert input.length() != 0;
+        assert input.contains("@");
         this.input = input;
     }
 

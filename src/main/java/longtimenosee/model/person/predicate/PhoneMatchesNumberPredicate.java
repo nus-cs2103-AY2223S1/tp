@@ -10,7 +10,13 @@ import longtimenosee.model.person.Person;
 public class PhoneMatchesNumberPredicate implements Predicate<Person> {
     private final String number;
 
+    /**
+     * Constructs a PhoneMatchesNumberPredicate object, which consists of a number input.
+     *
+     * @param income is the input by the user to be compared.
+     */
     public PhoneMatchesNumberPredicate(String number) {
+        assert number.length() >= 3;
         this.number = number;
     }
 

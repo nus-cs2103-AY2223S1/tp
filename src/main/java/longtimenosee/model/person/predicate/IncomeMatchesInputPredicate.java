@@ -12,7 +12,13 @@ import longtimenosee.model.person.Person;
 public class IncomeMatchesInputPredicate implements Predicate<Person> {
     private final String income;
 
+    /**
+     * Constructs an IncomeMatchesInputPredicate object, which consists of an income input.
+     *
+     * @param income is the input by the user to be compared.
+     */
     public IncomeMatchesInputPredicate(String income) {
+        assert income.length() != 0;
         this.income = income;
     }
 

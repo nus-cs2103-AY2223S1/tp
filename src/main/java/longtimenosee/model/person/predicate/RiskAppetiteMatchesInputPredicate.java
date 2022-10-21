@@ -12,7 +12,13 @@ import longtimenosee.model.person.RiskAppetite.RiskLevel;
 public class RiskAppetiteMatchesInputPredicate implements Predicate<Person> {
     private final String riskAppetite;
 
+    /**
+     * Constructs a RiskAppetiteMatchesInputPredicate object, which consists of a risk appetite input.
+     *
+     * @param riskAppetite is the input by the user to be compared.
+     */
     public RiskAppetiteMatchesInputPredicate(String riskAppetite) {
+        assert riskAppetite.length() == 1;
         this.riskAppetite = riskAppetite;
     }
 

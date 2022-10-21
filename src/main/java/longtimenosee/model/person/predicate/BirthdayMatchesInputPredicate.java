@@ -11,7 +11,14 @@ import longtimenosee.model.person.Person;
 public class BirthdayMatchesInputPredicate implements Predicate<Person> {
     private final String birthday;
 
+    /**
+     * Constructs a BirthdayMatchesInputPredicate object, which consists of a birthday input.
+     *
+     * @param birthday is the input by the user to be compared.
+     */
     public BirthdayMatchesInputPredicate(String birthday) {
+        assert birthday.length() != 0;
+        assert birthday.length() == 10;
         this.birthday = birthday;
     }
 

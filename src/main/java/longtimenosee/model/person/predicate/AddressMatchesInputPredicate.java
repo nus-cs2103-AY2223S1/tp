@@ -10,7 +10,13 @@ import longtimenosee.model.person.Person;
 public class AddressMatchesInputPredicate implements Predicate<Person> {
     private final String address;
 
+    /**
+     * Constructs a AddressMatchesInputPredicate object, which consists of an address input.
+     *
+     * @param address is the input by the user to be compared.
+     */
     public AddressMatchesInputPredicate(String address) {
+        assert address.length() != 0;
         this.address = address;
     }
 
