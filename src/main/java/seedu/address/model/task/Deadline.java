@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -41,14 +42,10 @@ public class Deadline {
      * Creates a Deadline with the given string.
      * @param date the string representing the deadline
      */
-    private Deadline(String date) throws ParseException {
+    public Deadline(String date) {
         requireNonNull(date);
-
-        try {
-            this.date = LocalDate.parse(date, formatter);
-        } catch (DateTimeParseException pe) {
-            throw new ParseException(MESSAGE_CONSTRAINTS);
-        }
+        checkArgument(isValidDeadline(date), MESSAGE_CONSTRAINTS);
+        this.date = LocalDate.parse(date);
     }
 
     /**
@@ -79,6 +76,10 @@ public class Deadline {
                     .toLocalDate();
 
         return new Deadline(localDate);
+    }
+
+    public static Deadline of(LocalDate date) {
+        return new Deadline(date);
     }
 
     /**
