@@ -202,7 +202,7 @@ The Add Gender feature allows users to add a gender field (Male / Female) to a p
 
 These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
 `AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
-stored in AddressBook. 
+stored in AddressBook.
 
 The following sequence diagram shows the methods calls related to add person operation:
 
@@ -269,7 +269,7 @@ in edit person command, therefore, it is not compulsory that gender field must b
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
 the gender is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
-contact list. Error message is displayed on the GUI subsequently. 
+contact list. Error message is displayed on the GUI subsequently.
 </div>
 
 ### \[Proposed\] Undo/redo feature
