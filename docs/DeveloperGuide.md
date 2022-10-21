@@ -188,6 +188,25 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. We are currently exploring the use of event listeners on the Model, such that when a command is executed, the Model can listen for the specific view for the UI to display. This however causes the Model to have to depend on UI which results in more coupling of compartments. Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
 
+
+### View Meeting feature
+
+Syntax: `viewMeeting i/INDEX`
+
+Purpose: View details associated with a meeting, such as meeting’s date and time.
+
+#### Implementation
+
+Usage Scenario of `viewMeeting`:
+
+1) User inputs `viewMeeting i/1` to view the first meeting in the `Model`.
+
+:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
+
+Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
+
+![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
