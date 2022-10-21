@@ -40,15 +40,15 @@ public class NextOfKin {
     }
 
     public String getNextOfKinName() {
-        return value.split(",",3)[0].trim();
+        return value.split(",", 3)[0].trim();
     }
 
     public String getNextOfKinRelationship() {
-        return value.split(",",3)[1].trim();
+        return value.split(",", 3)[1].trim();
     }
 
     public String getNextOfKinContact() {
-        return value.split(",",3)[2].trim();
+        return value.split(",", 3)[2].trim();
     }
 
     @Override
