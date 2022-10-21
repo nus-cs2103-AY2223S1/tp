@@ -33,6 +33,16 @@ public class Deadline extends Task {
     }
 
     @Override
+    public Task archive() {
+        return new Deadline(this.getDescription(), this.getModule(), this.getDueDate(), true, this.getPriority());
+    }
+
+    @Override
+    public Task unarchive() {
+        return new Deadline(this.getDescription(), this.getModule(), this.getDueDate(), false, this.getPriority());
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
