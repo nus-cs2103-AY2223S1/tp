@@ -419,7 +419,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1e1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-  
+
+**Use case: Sort contacts by keywords**
+
+**MSS**
+
+1.  User requests to sort clients by keyword(s)
+2.  Financial Advisor Planner shows a list of clients sorted by the matching keyword(s)
+
+    Use case ends.
+
+    **Extensions**
+
+* 1a. User did not input any arguments.
+
+    * 1a1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1b. The given keyword is invalid.
+
+    * 1b1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1c. User did not input any keywords.
+
+    * 1c1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
 
       *{More to be added}*
 

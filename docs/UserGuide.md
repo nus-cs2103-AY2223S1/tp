@@ -28,11 +28,13 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low s/1000` : Adds a contact named `John Doe` to the list of clients.
 
+   * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the person in index 1 of the contact book with the date and location of the appointment.
+   
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
-   * **'sort'**'alphabet' : Sorts the contacts in alphabetical order.
+   * **`sort KEYWORD`** : Sorts the contacts based on the `KEYWORD`.
 
    * **`find`** `John`: looks for contact that matches keyword ‘John’
 
@@ -159,11 +161,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list of clients.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Adding an appointment : `addappt`
+### Adding an appointment : `aa`
 
 Adds an appointment at the input date(s) and time(s) for an existing person in the list of clients.
 
-Format: `addappt INDEX d/DATE_TIME [d/MORE_DATE_TIMES]`
+Format: `aa [INDEX] [d/DATE AND TIME] [l/LOCATION]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 DATE_TIME has the format `d-MMM-yyyy hh:mm a` </div>
@@ -173,8 +175,7 @@ DATE_TIME has the format `d-MMM-yyyy hh:mm a` </div>
 
 Examples:
 
-* `addappt 2 d/21-Jan-2023 10:00 AM`
-* `addappt 4 d/21-Jan-2023 10:00 AM d/14-Jan-2023 12:00 PM d/14-Jan-2023 12:00 PM`
+* `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 
 ### Sorting by alphabetical order : `sort alphabet`
 
@@ -230,7 +231,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Addappt** | `addappt INDEX d/DATE_TIME [d/MORE_DATE_TIMES]…​ ` <br> e.g., `e.g., addappt 4 d/21-Jan-2023 10:00 AM d/14-Jan-2023 12:00 PM d/14-Jan-2023 12:00 PM`
+**Addappt** | `aa [INDEX] [d/DATE AND TIME] [l/LOCATION]…​ ` <br> e.g., `e.g., aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
