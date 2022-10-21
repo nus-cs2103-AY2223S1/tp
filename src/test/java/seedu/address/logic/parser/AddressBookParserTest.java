@@ -24,7 +24,7 @@
 //import seedu.address.logic.commands.client.EditClientCommand.EditPersonDescriptor;
 //import seedu.address.logic.commands.client.ListClientCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.client.NameContainsKeywordsPredicate;
+//import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
 //import seedu.address.model.client.Person;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //import seedu.address.testutil.PersonBuilder;

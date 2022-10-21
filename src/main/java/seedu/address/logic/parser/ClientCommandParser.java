@@ -17,11 +17,18 @@ import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
+import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
+import seedu.address.logic.commands.client.find.FindClientByNameCommand;
+import seedu.address.logic.commands.client.find.FindClientByPhoneCommand;
+import seedu.address.logic.commands.client.find.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.ClientWithoutModel;
+import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
+import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -50,6 +57,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             return parseListClientCommand(arguments);
         case SetClientDefaultViewCommand.COMMAND_FLAG:
             return parseSetClientDefaultViewCommand(arguments);
+        case FindClientCommand.COMMAND_FLAG:
+            return parseFindClientCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -137,6 +146,44 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
     private ClientCommand parseSetClientDefaultViewCommand(String arguments) {
         return new SetClientDefaultViewCommand();
+    }
+    private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
+        try {
+
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
+
+            String trimmedArgs = arguments.trim();
+
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
+            }
+
+
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+                return new FindClientByNameCommand(new NameContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_NAME)));
+            }
+
+            if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+                return new FindClientByEmailCommand(new EmailContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_CLIENT_EMAIL)));
+            }
+
+            //implies arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE) is true
+            return new FindClientByPhoneCommand(new PhoneContainsKeywordsPredicate(
+                    argMultimap.getAllValues(PREFIX_CLIENT_PHONE)));
+
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE), pe);
+        }
+
+    }
+
+    public FindClientCommand parseFindClientCommands(String flag, String arguments) throws ParseException {
+        return parseFindClientCommand(arguments);
     }
 
     /**
