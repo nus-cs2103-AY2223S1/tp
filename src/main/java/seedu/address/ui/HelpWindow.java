@@ -19,14 +19,24 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t11-4.github.io/tp/UserGuide.html\n";
     public static final String COMMAND_SUMMARY = "\nCOMMAND SUMMARY\n"
-            + "– help\n"
-            + "– add: add n/NAME g/GITHUB_REPO_LINK [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]\n"
-            + "– list\n"
-            + "– edit: edit INDEX [n/NAME] [g/GITHUB_REPO_LINK] [p/PHONE] [e/EMAIL] [t/TAG]\n"
-            + "– sort: sort TAG\n"
-            + "– find: find KEYWORD\n"
-            + "– delete: delete INDEX\n"
-            + "– exit\n";
+            + "▪ help\n"
+            + "▪ add: add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST] [m/MODULE]\n"
+            + "▪ list\n"
+            + "▪ edit: edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]\n"
+            + "▪ find: find KEYWORD [MORE_KEYWORDS]\n"
+            + "▪ addInt: addInt INDEX INTEREST [MORE_INTERESTS]\n"
+            + "▪ findInt: findInt INTEREST [MORE_INTERESTS]\n"
+            + "▪ delete: delete INDEX\n"
+            + "▪ mod:\n"
+                + "\t▫ add: mod add INDEX MODULE [MORE_MODULES]\n"
+                + "\t▫ delete: mod delete INDEX MODULE [MORE_MODULES]\n"
+                + "\t▫ mark: mod mark INDEX MODULE [MORE_MODULES]\n"
+                + "\t▫ unmark: mod unmark INDEX MODULE [MORE_MODULES]\n"
+                + "\t▫ mark all: mod mark all\n"
+                + "\t▫ find: mod find MODULE [MORE_MODULES]\n"
+                + "\t▫ find taking: mod find taking MODULE [MORE_MODULES]\n"
+                + "\t▫ find taken: mod find taken MODULE [MORE_MODULES]\n"
+            + "▪ exit\n";
     public static final String HELP_MESSAGE = "Refer to the user guide for more details: "
             + USERGUIDE_URL
             + COMMAND_SUMMARY;

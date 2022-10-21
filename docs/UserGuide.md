@@ -261,13 +261,13 @@ Modules are automatically categorised upon their creation.
 
 Below is the categorisation.
 
-| Category                  | Module Prefix      | Colour      |
-|---------------------------|--------------------|-------------|
-| Computing Modules         | CS, IS, CP         | To be added |
-| Math Modules              | ST, MA             | To be added |
-| Science Modules           | LS, CM, PC         | To be added |
-| General Education Modules | GE, UT             | To be added |
-| Unrestricted Electives    | All other prefixes | To be added |
+| Category                  | Module Prefix      |
+|---------------------------|--------------------|
+| Computing Modules         | CS, IS, CP         |
+| Math Modules              | ST, MA             |
+| Science Modules           | LS, CM, PC         |
+| General Education Modules | GE, UT             |
+| Unrestricted Electives    | All other prefixes |
 
 Module prefix refers to the first two characters of every module name.
 

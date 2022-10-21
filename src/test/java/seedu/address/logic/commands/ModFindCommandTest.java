@@ -61,7 +61,8 @@ public class ModFindCommandTest {
         ModContainsKeywordsPredicate predicate = preparePredicate(" ");
         ModFindCommand command = new ModFindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                false, false, true, false);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -71,7 +72,8 @@ public class ModFindCommandTest {
         ModContainsKeywordsPredicate predicate = preparePredicate("cs1231s");
         ModFindCommand command = new ModFindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                false, false, true, false);
         assertEquals(Arrays.asList(ALICE, BENSON, ELLE), model.getFilteredPersonList());
     }
 
