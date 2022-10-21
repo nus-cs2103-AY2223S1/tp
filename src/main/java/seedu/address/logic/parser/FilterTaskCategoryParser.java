@@ -30,9 +30,9 @@ public class FilterTaskCategoryParser implements Parser<FilterTaskCategoryComman
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTaskCategoryCommand.MESSAGE_USAGE));
         }
 
-        TaskCategory date = ParserUtil.parseTaskCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+        TaskCategory category = ParserUtil.parseTaskCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
-        return new FilterTaskCategoryCommand(new TaskContainsCategoryPredicate(date));
+        return new FilterTaskCategoryCommand(new TaskContainsCategoryPredicate(category));
     }
 
     /**
