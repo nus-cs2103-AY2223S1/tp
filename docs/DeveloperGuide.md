@@ -154,6 +154,41 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete Meeting Feature
+
+Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
+
+Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
+
+#### Implementation
+
+Usage Scenario of `delMeeting`:
+
+1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
+2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
+
+Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
+
+![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `delMeeting`.
+
+![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+
+#### Design Considerations
+
+Aspect: How many meetings to delete in one command
+
+- Alternative Solution 1 (Current Choice): Allows only one deletion
+  - Pros: Easy to implement
+  - Cons: Troublesome in the event where multiple meetings
+- Alternative Solution 2: Allows multiple deletion
+  - Pros: Convenient to delete multiple meetings when needed.
+  - Cons: Complex to implement
+- Considering that the approach taken to develop MyInsuRec is a breath first approach,
+where we should only build to the point where every iteration is a working product,
+**Solution 1** is thus chosen as it is easier to implement.
+
 ### List Meeting feature
 
 Syntax: `listMeeting`
