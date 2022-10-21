@@ -1,5 +1,5 @@
 .pic {
-    -fx-background-image: url("../images/dark.jpg");
+    -fx-background-image: url("../images/light.jpg");
 
     -fx-background-size: contain;
 }

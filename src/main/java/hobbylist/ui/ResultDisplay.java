@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -15,6 +16,8 @@ public class ResultDisplay extends UiPart<Region> {
 
     @FXML
     private TextArea resultDisplay;
+    @FXML
+    private StackPane placeHolder;
 
     public ResultDisplay() {
         super(FXML);
@@ -23,6 +26,7 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
+
     }
 
 }
