@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.contact.Contact;
@@ -60,12 +61,12 @@ public class Person {
         return gitHubUser;
     }
 
-    public Role getRole() {
-        return role;
+    public Optional<Role> getRole() {
+        return role == null ? Optional.empty() : Optional.of(role);
     }
 
-    public Timezone getTimezone() {
-        return timezone;
+    public Optional<Timezone> getTimezone() {
+        return timezone == null ? Optional.empty() : Optional.of(timezone);
     }
 
     /**
@@ -147,6 +148,9 @@ public class Person {
                 builder.append(contacts.get(contactType));
             }
         }
+
+        getRole().ifPresent(r -> builder.append("; Role: " + r));
+        getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
         builder.append("; Github: ")
                 .append(getGitHubUser());

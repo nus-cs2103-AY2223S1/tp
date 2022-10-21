@@ -33,7 +33,7 @@
           "contactValue": "benson@gmail.com"
         }
       ],
-      "role": "Software Engineer",
+      "role": "Product Manager",
       "timezone": "+8",
       "tagged": [
         "owesMoney",
@@ -43,15 +43,11 @@
     {
       "name": "Carl Kurz",
       "address": "wall street",
-      "role": "Software Engineer",
-      "timezone": "+8",
       "tagged": []
     },
     {
       "name": "Daniel Meier",
       "address": "10th street",
-      "role": "Software Engineer",
-      "timezone": "+8",
       "tagged": [
         "friends"
       ]
@@ -59,22 +55,16 @@
     {
       "name": "Elle Meyer",
       "address": "michegan ave",
-      "role": "Software Engineer",
-      "timezone": "+8",
       "tagged": []
     },
     {
       "name": "Fiona Kunz",
       "address": "little tokyo",
-      "role": "Software Engineer",
-      "timezone": "+8",
       "tagged": []
     },
     {
       "name": "George Best",
       "address": "4th street",
-      "role": "Software Engineer",
-      "timezone": "+8",
       "tagged": []
     }
   ]

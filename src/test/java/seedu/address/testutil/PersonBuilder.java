@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -37,8 +38,8 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
-        role = new Role(DEFAULT_ROLE);
-        timezone = new Timezone(DEFAULT_TIMEZONE);
+        role = null;
+        timezone = null;
         tags = new HashSet<>();
         contacts = new HashMap<>();
     }
@@ -51,8 +52,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         contacts = new HashMap<>(personToCopy.getContacts());
-        role = personToCopy.getRole();
-        timezone = personToCopy.getTimezone();
+        role = personToCopy.getRole().orElse(null);
+        timezone = personToCopy.getTimezone().orElse(null);
     }
 
     /**

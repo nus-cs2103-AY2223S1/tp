@@ -64,17 +64,8 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         address = source.getAddress().value;
 
-        if (source.getRole() != null) {
-            role = source.getRole().role;
-        } else {
-            role = null;
-        }
-
-        if (source.getTimezone() != null) {
-            timezone = source.getTimezone().timezone;
-        } else {
-            timezone = null;
-        }
+        role = source.getRole().map(r -> r.role).orElse(null);
+        timezone = source.getTimezone().map(t -> t.timezone).orElse(null);
 
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
