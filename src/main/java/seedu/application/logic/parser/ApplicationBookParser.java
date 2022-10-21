@@ -20,11 +20,8 @@ import seedu.application.logic.commands.HelpCommand;
 import seedu.application.logic.commands.ListArchiveCommand;
 import seedu.application.logic.commands.ListCommand;
 import seedu.application.logic.commands.RedoCommand;
-<<<<<<< HEAD
 import seedu.application.logic.commands.RemindCommand;
-=======
 import seedu.application.logic.commands.RetrieveCommand;
->>>>>>> master
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.commands.UndoCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
