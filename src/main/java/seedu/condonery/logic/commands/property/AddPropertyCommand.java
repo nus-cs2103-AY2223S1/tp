@@ -15,6 +15,7 @@ import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.utils.ParsePropertyInterestedClients;
 import seedu.condonery.model.client.Client;
 
 /**
@@ -50,24 +51,7 @@ public class AddPropertyCommand extends Command {
         toAdd = property;
     }
 
-    private Set<Client> filterInterestedClients(Set<String> interestedClientNames,
-            Model model) {
-       Set<Client> filteredInterestedClients = new HashSet<>();
-       for (String clientName : interestedClientNames) {
-           if (model.hasClientName(clientName)) {
-               if (model.hasUniqueClientName(clientName)) {
-                   filteredInterestedClients.add(model.getUniqueClientByName(clientName));
-               } else {
-                   duplicateClients.add(clientName);
-               }
-           } else {
-               missingClients.add(clientName);
-           }
-       }
-       return filteredInterestedClients;
-    }
-
-    private String getUpdatedSuccessMessage() {
+    private String getUpdatedSuccessMessage(ArrayList<String> missingClients, ArrayList<String> duplicateClients) {
        String newSuccessMessage = MESSAGE_SUCCESS + ". ";
 
        if (missingClients.isEmpty() && duplicateClients.isEmpty()) {
@@ -86,7 +70,6 @@ public class AddPropertyCommand extends Command {
                        + ". ";
            }
        }
-
        return newSuccessMessage;
     }
 
@@ -98,14 +81,13 @@ public class AddPropertyCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        Set<Client> filteredInterestedClients = filterInterestedClients(
-                toAdd.getInterestedClientNames(), model);
+        ParsePropertyInterestedClients parser = new ParsePropertyInterestedClients(
+                toAdd, model);
 
-        String newMessageSuccess = getUpdatedSuccessMessage();
+        Property newPropertyToAdd = parser.getNewProperty();
+
+        String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingClients(), parser.getDuplicateClients());
         
-        Property newPropertyToAdd = new Property(toAdd.getName(), toAdd.getAddress(),
-                toAdd.getTags(), filteredInterestedClients);
-
         model.addProperty(newPropertyToAdd);
         return new CommandResult(String.format(newMessageSuccess, newPropertyToAdd));
     }

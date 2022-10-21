@@ -24,6 +24,8 @@ import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.utils.ParsePropertyInterestedClients;
+
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -77,13 +79,16 @@ public class EditPropertyCommand extends Command {
 
         Property propertyToEdit = lastShownList.get(targetIndex.getZeroBased());
         Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
-        if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
+        // Parsed intersted clients
+        Property newEditedProperty = new ParsePropertyInterestedClients(editedProperty, model).getNewProperty();
+
+        if (!propertyToEdit.isSameProperty(newEditedProperty) && model.hasProperty(newEditedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        model.setProperty(propertyToEdit, editedProperty);
+        model.setProperty(propertyToEdit, newEditedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty));
+        return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, newEditedProperty));
     }
 
     /**

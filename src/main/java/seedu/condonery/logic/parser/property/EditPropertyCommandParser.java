@@ -35,7 +35,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
     @Override
     public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INTERESTEDCLIENTS);
         EditPropertyDescriptor editPropertyDescriptor =
                 new EditPropertyDescriptor();
         Index index;
@@ -76,4 +76,5 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
+}
 
