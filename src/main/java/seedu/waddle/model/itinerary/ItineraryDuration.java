@@ -3,12 +3,16 @@ package seedu.waddle.model.itinerary;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Itinerary's duration in days.
+ */
 public class ItineraryDuration {
     public static final String MESSAGE_CONSTRAINTS =
             "Duration should only contain a positive number.";
+    public static final String VALIDATION_REGEX = "\\d+";
+
     private final int duration;
 
-    public static final String VALIDATION_REGEX = "\\d+";
 
     /**
      * Constructs a {@code ItineraryDuration}.

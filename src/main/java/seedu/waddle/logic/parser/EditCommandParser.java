@@ -2,7 +2,11 @@ package seedu.waddle.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.parser.CliSyntax.*;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.EditCommand;
@@ -43,7 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editItineraryDescriptor.setStartDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_ITINERARY_DURATION).isPresent()) {
-            editItineraryDescriptor.setDuration(ParserUtil.parseItineraryDuration(argMultimap.getValue(PREFIX_ITINERARY_DURATION).get()));
+            editItineraryDescriptor.setDuration(ParserUtil.parseItineraryDuration(
+                    argMultimap.getValue(PREFIX_ITINERARY_DURATION).get()));
         }
         if (argMultimap.getValue(PREFIX_PEOPLE).isPresent()) {
             editItineraryDescriptor.setPeople(ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get()));

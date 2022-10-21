@@ -1,7 +1,12 @@
 package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.waddle.logic.parser.CliSyntax.*;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
 
 import java.util.List;
@@ -12,7 +17,13 @@ import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.util.CollectionUtil;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
-import seedu.waddle.model.itinerary.*;
+import seedu.waddle.model.itinerary.Budget;
+import seedu.waddle.model.itinerary.Country;
+import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.ItineraryDuration;
+import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.People;
 
 /**
  * Edits the details of an existing itinerary.
@@ -59,17 +70,19 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Itinerary createEditedItinerary(Itinerary itineraryToEdit,
-            EditItineraryDescriptor editItineraryDescriptor) {
+                                                   EditItineraryDescriptor editItineraryDescriptor) {
         assert itineraryToEdit != null;
 
         Name updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
         Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
-        ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration().orElse(itineraryToEdit.getDuration());
+        ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration()
+                .orElse(itineraryToEdit.getDuration());
         People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
         Budget updatedBudget = editItineraryDescriptor.getBudget().orElse(itineraryToEdit.getBudget());
 
-        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration, updatedPeople, updatedBudget);
+        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration,
+                updatedPeople, updatedBudget);
     }
 
     @Override

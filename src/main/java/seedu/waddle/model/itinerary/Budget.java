@@ -3,6 +3,9 @@ package seedu.waddle.model.itinerary;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Itinerary's budget.
+ */
 public class Budget {
     public static final String MESSAGE_CONSTRAINTS =
             "Budget should only contain numbers.";

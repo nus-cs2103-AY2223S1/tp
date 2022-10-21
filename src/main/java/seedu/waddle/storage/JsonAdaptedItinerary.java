@@ -8,7 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Item;
-import seedu.waddle.model.itinerary.*;
+import seedu.waddle.model.itinerary.Budget;
+import seedu.waddle.model.itinerary.Country;
+import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.ItineraryDuration;
+import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.People;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.
@@ -93,7 +99,8 @@ class JsonAdaptedItinerary {
         final Date modelStartDate = new Date(startDate);
 
         if (duration == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ItineraryDuration.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItineraryDuration.class.getSimpleName()));
         }
         if (!ItineraryDuration.isValidDuration(duration)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
@@ -101,7 +108,8 @@ class JsonAdaptedItinerary {
         final ItineraryDuration modelDuration = new ItineraryDuration(duration);
 
         if (people == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, People.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    People.class.getSimpleName()));
         }
         if (!People.isValidPeople(people)) {
             throw new IllegalValueException(People.MESSAGE_CONSTRAINTS);
@@ -116,7 +124,8 @@ class JsonAdaptedItinerary {
         }
         final Budget modelBudget = new Budget(budget);
 
-        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelDuration, modelPeople, modelBudget);
+        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelDuration,
+                modelPeople, modelBudget);
         for (JsonAdaptedItem jsonAdaptedItem : items) {
             Item item = jsonAdaptedItem.toModelType();
             if (itinerary.hasItem(item)) {
