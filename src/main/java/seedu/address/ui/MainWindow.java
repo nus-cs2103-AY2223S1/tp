@@ -31,6 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final int MODULE = 2;
     private static final int SCHEDULE = 3;
 
+    private static final int TIMETABLE = 4;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -73,6 +74,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane scheduleListPanelPlaceholder;
 
+    @FXML
+    private StackPane scheduleGridPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
 
@@ -150,6 +153,10 @@ public class MainWindow extends UiPart<Stage> {
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+
+        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
+        scheduleGridPanel.construct();
+        scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -240,6 +247,23 @@ public class MainWindow extends UiPart<Stage> {
         tutorListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULE);
     }
+
+
+
+    /**
+     * Switch to Timetable page with all schedules.
+     */
+    @FXML
+    public void handleShowTabScheduleGrid() {
+        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
+        scheduleGridPanel.construct();
+        scheduleListPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+        tabPane.getSelectionModel().select(TIMETABLE);
+        resultDisplay.setFeedbackToUser("Show the Timetable!");
+    }
+
+
+
     /**
      * Switch to Schedules page with current filtered schedules.
      */
@@ -254,22 +278,11 @@ public class MainWindow extends UiPart<Stage> {
      * Switch to Schedules page with all schedules shown.
      */
     @FXML
-    public void handleShowTabAllSchedule() {
+    public void handleShowTabAllSchedules() {
         scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
         resultDisplay.setFeedbackToUser("Show all schedules!");
-    }
-
-    /**
-     * Switch to Schedules page with timetable shown.
-     */
-    @FXML
-    public void handleShowTabScheduleGrid() {
-        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
-        scheduleGridPanel.construct();
-        scheduleListPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
-        tabPane.getSelectionModel().select(SCHEDULE);
     }
 
     void show() {
@@ -324,7 +337,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowScheduleList()) {
-                handleShowTabScheduleGrid();
+                // handleShowTabScheduleGrid();
+                handleShowTabSchedule();
             }
 
             return commandResult;
