@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 public class HideCommandParserTest {
     private final HideCommandParser parser = new HideCommandParser();
     private final List<String> emptyList = new ArrayList<>();
-    private final List<String> allFields = ResidentFields.FIELDS.stream()
+    private final List<String> allFields = ResidentField.FIELDS.stream()
             .map(String::toLowerCase).collect(Collectors.toList());
 
     @Test
