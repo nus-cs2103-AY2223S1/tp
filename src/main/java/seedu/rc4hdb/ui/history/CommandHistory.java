@@ -22,6 +22,7 @@ public class CommandHistory {
      * @param commandText both valid and invalid commands are valid texts.
      */
     public void add(String commandText) {
+        assert(commandText != null);
         forwardHistory.add(commandText);
     }
 
