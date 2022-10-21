@@ -4,9 +4,7 @@
 start
 if () then ([else])
     :Finds an existing team with the same name;
-    if () then ([team does not exist])
-        :Throw CommandException;
-    elseif () then ([team already set])
+    if () then ([team does not exist] / [team already set to target team] )
         :Throw CommandException;
     else ()
         :Set team to target team;
