@@ -14,6 +14,7 @@ import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.nextofkin.Relationship;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
@@ -153,6 +154,15 @@ public class ParserUtil {
         }
         String[] splitTime = trimmedTime.split("-");
         return new Time(splitTime[0], splitTime[1]);
+    }
+
+    public static Relationship parseRelationship(String relationship) throws ParseException {
+        requireNonNull(relationship);
+        String trimmedRelationship = relationship.trim();
+        if (!Relationship.isValidRelationship(trimmedRelationship)) {
+            throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
+        }
+        return Relationship.createRelationship(trimmedRelationship);
     }
 
     /**

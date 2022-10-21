@@ -17,4 +17,6 @@ public class Messages {
 
     public static final String MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW = "%1$d tuition classes listed!";
 
+    public static final String MESSAGE_WRONG_LIST_FOR_COMMAND_USAGE = "Wrong list to execute this command!";
+
 }
