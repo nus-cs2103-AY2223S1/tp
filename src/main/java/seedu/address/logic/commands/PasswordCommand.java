@@ -23,7 +23,7 @@ public class PasswordCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_NEW_PASSWORD + "foobar\n"
             + "- Sets the password to \"foobar\", given that a password has not yet been set\n"
             + COMMAND_WORD + " " + PREFIX_OLD_PASSWORD + "foobar " + PREFIX_NEW_PASSWORD + "barfoo"
-            + "- Updates the password to \"barfoo\", given that the old password is \"foobar\"\n";
+            + "- Updates the password to \"barfoo\", given that the current password is \"foobar\"\n";
 
     public static final String MESSAGE_SET_PASSWORD_SUCCESS = "Successfully set new FinBook password.";
     public static final String MESSAGE_UPDATE_PASSWORD_SUCCESS = "Successfully updated FinBook password.";
