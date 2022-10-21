@@ -1,6 +1,7 @@
 package taskbook.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -89,6 +90,16 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getPreviousCommand_valid_returnsNull() {
+        assertNull(logic.getPreviousCommand());
+    }
+
+    @Test
+    public void getNextCommand_valid_returnsNull() {
+        assertNull(logic.getNextCommand());
     }
 
     /**

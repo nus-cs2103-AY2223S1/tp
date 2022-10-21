@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -115,19 +115,19 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `ContactAddCommandParser`, `ContactDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the task book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Person` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -136,13 +136,13 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/taskbook/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both task book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TaskBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -155,41 +155,148 @@ Classes used by multiple components are in the `taskbookbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Command History Navigation
+
+### Command History Navigation
+
+#### Implementation
+
+The command history navigation mechanism is facilitated by `CommandHistoryManager`. It implements `CommandHistory`, stored internally as a `commandsList` and `pointer`. Additionally, it implements the following operations:
+
+* `CommandHistory#getPreviousCommmand()` — Retrieves the previous command from its history.
+* `CommandHistory#getNextCommmand()` — Retrieves the next command from its history.
+* `CommandHistory#addCommand(String command)` — Adds a new command into its history.
+
+The methods will handle cases where the command history is empty, full and when there are no more previous or next commands to navigate to.
+
+`CommandHistoryManager` can be instantiated with an optional capacity, the default is as explained in the design considerations below. When the size of the command history exceeds double the allocated capacity, the older half of the history is pruned.
+
+`LogicManager` will store an instance of a `CommandHistoryManager`.
+
+* Set the `setOnKeyPressed` for the `commandTextField` to detect key presses `UP` and `DOWN` arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
+* Call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` when handling user input to save the user's input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
+
+Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
+
+Given below is an example usage scenario and how the command history mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. `CommandHistoryManager` will be initialized in `CommandBox`. The internal `commandsHistoryList` will be empty and the `commandsHistoryPointer` will point to the `0`th element.
+
+Step 2. The user executes a few commands. It does not matter if these commands are invalid. Each of these inputs will fire `CommandHistory#addCommand` once with their respective command texts.
+
+Step 3. The user decides to navigate to a previous command by clicking the `UP` arrow key. `CommandHistory#getPreviousCommmand()` will be called.
+
+Step 4. The user decides to navigate to a next command by clicking the `DOWN` arrow key. `CommandHistory#getNextCommmand()` will be called.
+
+The following sequence diagram shows how the next command history navigation works, if there is a next command to navigate to:
+
+![NextCommandHistorySequenceDiagram](images/NextCommandHistorySequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Saving invalid commands:**
+
+* **Alternative 1 (chosen choice):** Invalid commands are saved in the command history.
+    * Pros: Allows the user to navigate to an invalid command and modify it, before re-executing it.
+    * Cons: May clutter the command history.
+
+* **Alternative 2:** Invalid commands are not saved in the command history, only valid commands are saved.
+    * Pros: Will use less memory.
+    * Cons: Does not allow the user to modify an incorrect command.
+
+**Aspect: Saving empty commands:**
+
+* **Current choice:** Empty commands are not saved in the command history.
+    * Rationale: Does not clutter the command history.
+
+**Aspect: How many commands to be supported:**
+
+* **Current choice:** 1000 commands.
+    * Rationale: To keep memory usage low, minimise the number of commands saved in the history. 1000 commands is a reasonably large enough number of commands to store and is sufficient for even advanced users.
+
+### Sorting Task List
+
+#### Sorting Implementation
+
+This section details how the sorting of the tasks is implemented.
+
+The sorting of task list is facilitated by `ModelManager`. It implements `Model`, and contains a `filteredTasks` list which is the task list of TaskBook in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. A second field, `sortedList`, then stores `filteredList` wrapped in a `SortedList` from `javafx.collections.transformation`. Operations done on `filteredList` will be reflected in `sortedList` as the latter is the former with a `SortedList` wrapper.
+
+`SortedList` has the method `SortedList#setComparator(Comparator<? super E> comparator)` that will take in a comparator to sort the task list with. We thus implement the method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` to allow for setting of a comparator in `sortedList`.
+
+When the comparator is null, `sortedList` will be of the same order as `filteredList`. The default list order is chronological, by date and time the tasks were added.
+
+The `Ui` displays the `sortedList` version of the task list by default on the right side panel.
+
+#### Sorting Execution
+
+When the command `task sort s/SORT_TYPE` is entered, the `Ui` sends the command to `Logic`. `Logic` then identifies the correct type `TaskSortCommand` that was entered, and creates an instance of it. Each `TaskSortCommand` contains a `comparator` to set in `sortedList` in the `Model`. `Logic` finally executes the command, which then correctly sets the comparator in `sortedList` in `Model`.
+
+#### Example Usage
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1: The user launches the application, which already contains a task list from previous usage. `sortedList` will be initialized in `ModelManager`. The initial `comparator` in `sortedList` will be null, so the tasks are sorted by the date and time they were added.
+
+Step 2: The user executes `task sort s/a` command to sort the tasks descriptions in alphabetical order. The `TaskSortCommandParser` uses `s/a` to determine that the command is a `TaskSortDescriptionAlphabeticalCommand`. This command calls `Model#updateSortedTaskList(Comparator<Task> comparator)`, which sets the comparator in `sortedList` to one that compares the strings of tasks, and the `Ui` displays the new ordering of the tasks given by `sortedList`, where tasks are alphabetically ordered by their descriptions.
+
+Step 3: The user executes `task sort s/ca` command to sort the tasks by when they were added in Task Book. The `TaskSortCommandParser` uses `s/ca` to determine that the command is a `TaskSortAddedChronologicalCommand`. This command calls `Model#resetSortedTaskList()`, which sets the comparator in `sortedList` to null, and the `Ui` displays the new ordering of the tasks given by `sortedList`, which will be the same ordering as the one that would be given by `filteredList`.
+
+The following sequence diagram shows how a sort by description alphabetical command is executed:
+
+![SortDescriptionAlphabeticalSequenceDiagram.png](images/SortDescriptionAlphabeticalSequenceDiagram.png)
+
+#### Design considerations:
+
+#### Aspect: Sorting command structure:
+
+* **Alternative 1 (current choice):** Have an abstract sort command from which all other sort commands must inherit from.
+    * Pros: Follows Open-Closed Principle
+    * Cons: More code required
+* **Alternative 2:** Have only 1 sort command that has multiple methods, and the parser will choose which to execute.
+    * Pros: Less code required
+    * Cons: Violates Open-Closed Principle
+
+#### Aspect: Sorted List structure:
+
+* **Current choice:** Wrap the task list with a `FilteredList`, and the `FilteredList` with a `SortedList`.
+    * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedList` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedTaskBook`. It extends `TaskBook` with an undo/redo history, stored internally as an `taskBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedTaskBook#commit()` — Saves the current task book state in its history.
+* `VersionedTaskBook#undo()` — Restores the previous task book state from its history.
+* `VersionedTaskBook#redo()` — Restores a previously undone task book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitTaskBook()`, `Model#undoTaskBook()` and `Model#redoTaskBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedTaskBook` will be initialized with the initial task book state, and the `currentStatePointer` pointing to that single task book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the task book. The `delete` command calls `Model#commitTaskBook()`, causing the modified state of the task book after the `delete 5` command executes to be saved in the `taskBookStateList`, and the `currentStatePointer` is shifted to the newly inserted task book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitTaskBook()`, causing another modified task book state to be saved into the `taskBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTaskBook()`, so the task book state will not be saved into the `taskBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous task book state, and restores the task book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial TaskBook state, then there are no previous TaskBook states to restore. The `undo` command uses `Model#canUndoTaskBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -202,17 +309,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoTaskBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the task book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `taskBookStateList.size() - 1`, pointing to the latest task book state, then there are no undone TaskBook states to restore. The `redo` command uses `Model#canRedoTaskBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the task book, such as `list`, will usually not call `Model#commitTaskBook()`, `Model#undoTaskBook()` or `Model#redoTaskBook()`. Thus, the `taskBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitTaskBook()`. Since the `currentStatePointer` is not pointing at the end of the `taskBookStateList`, all task book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -224,7 +331,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire task book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -233,13 +340,102 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+**Aspect: How many undo operations to be supported:**
 
-### \[Proposed\] Data archiving
+* **Current choice:** 15 commands.
+  * Rationale: With the current choice of execution, would have to store `x` copies of the task book for `x` operations supported. Thus, the number of operations is kept low to ensure that memory usage remains low.
 
-_{Explain here how the data archiving feature will be implemented}_
+**Aspect: How many redo operations to be supported:**
 
+* **Current choice:** 15 commands.
+    * Rationale: Since the current choice of undo operations to be supported is 15, the number of redo operations supported is also 15.
 
+### \[Proposed\] Mark/Unmark Task Command
+
+#### Proposed Implementation
+
+The proposed mark and unmark task command mechanism is facilitated by `TaskMarkCommand` and `TaskUnmarkCommand` which extend `Command`, `TaskMarkCommandParser`, `TaskUnmarkCommandParser` and `EditTaskDescriptor`. 
+
+Additionally, it implements the following operations:
+
+* `MarkTaskCommand#execute()` — Executes the chain of instructions to change the status of the task to done.
+* `MarkTaskCommandParser#parse()` — Parses user input and creates a TaskMarkCommand object.
+* `UnmarkTaskCommand#execute()` — Executes the chain of instructions to change the status of the task to undone.
+* `UnmarkTaskCommandParser#parse()` — Parses user input and creates a TaskUnmarkCommand object.
+
+The methods will handle cases where the index from the user input is out of bounds. 
+
+Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
+
+Given below is an example usage scenario for how the task mark command mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2: The user adds a task.
+
+Step 3. The user executes the task mark command on the first task.
+
+The steps can be applied to task unmark command in the same way.
+
+The following sequence diagram shows how the task mark command works:
+
+![TaskMarkCommandSequenceDiagram](images/TaskMarkCommandSequenceDiagram.png)
+
+The task unmark command follows a similar sequence diagram.
+
+#### Design considerations:
+
+**Aspect: Mutability of boolean isDone field:**
+
+* **Alternative 1 (current choice):** Immutable isDone field in Task object.
+    * Pros: Reuse the same component from task edit command, reducing chance of breaking.
+    * Cons: Extra overhead as a new task is created when the user marks it as done.
+
+* **Alternative 2:** Mutable isDone field in the Task object.
+    * Pros: Less overhead as it will only involve changing the isDone field in the object.
+    * Cons: Mutable field may result in regression with other components such as Storage and UI.
+
+### \[Proposed\] Tagging/Untagging tasks
+
+#### Proposed Implementation
+
+The tag and untag task mechanism is facilitated by `TaskTagCommand`, which extends from `Command`.
+
+It implements the following operations:
+
+* `TaskTagCommand#execute()` — Executes and coordinates the necessary objects and methods to tag a task.
+* `TaskTagCommandParser#parse()` — Parses user input from UI and initializes a TaskTagCommand object.
+
+Cases such as where the index from the user input is out of bounds, are handled by the methods.
+
+Given below is an example usage scenario for how the `TaskTagCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2: The user adds a task.
+
+Step 3. The user tags their task with the command `task tag i/1 t/work`. 
+
+The following sequence diagram shows how the `TaskTagCommand` works:
+
+![TagTaskSequenceDiagram](images/TagTaskSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Untagging tasks:**
+
+* **Current choice:** Use the same command to untag a task but without the `t/` modifier, i.e. `task tag i/1`.
+    * Rationale: Reduce unnecessary number of commands for both user and developer's mental health.
+
+**Aspect: Saving empty tags:**
+
+* **Current choice:** Empty tags are not saved.
+    * Rationale: Does not unnecessarily clutter the number of tags saved to a task.
+  
+**Aspect: How many tags can be saved:**
+
+* **Current choice:** A maximum of 5 tags can be saved.
+    * Rationale: Reduce clutter of tags saved to a task. Too many tags would defeat the purpose of a tag itself.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -463,3 +659,11 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### UI for Command History Navigation
+
+1. Execute a few commands, preferably distinct ones. They need not be valid commands. Take note of the order of execution.
+
+   * A quick way to test is to execute `1`, `12`, `123`, etc...
+
+1. Ensure that the input field is selected and in focus. Press `UP` and `DOWN` arrow keys and ensure that the command history displayed is per the order of execution.

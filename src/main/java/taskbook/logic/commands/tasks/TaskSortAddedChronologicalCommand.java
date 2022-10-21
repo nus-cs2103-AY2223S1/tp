@@ -13,7 +13,7 @@ public class TaskSortAddedChronologicalCommand extends TaskSortCommand {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.updateSort(super.getComparator());
+        model.resetSortedTaskList();
         return new CommandResult(String.format(MESSAGE_SORT_TASK_SUCCESS));
     }
 

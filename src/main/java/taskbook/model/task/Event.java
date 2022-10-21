@@ -79,4 +79,13 @@ public class Event extends Task {
         return Objects.hash(super.hashCode(), date);
     }
 
+    @Override
+    public String toString() {
+        String taskString = super.toString();
+        int newLineIndex = taskString.indexOf("\n");
+        return taskString.substring(0, newLineIndex)
+                + String.format("[%s]", getDate().toString())
+                + taskString.substring(newLineIndex);
+    }
+
 }

@@ -11,14 +11,15 @@ import taskbook.commons.util.AppUtil;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Descriptions should only contain alphanumeric characters and spaces, "
+            "Descriptions should only contain ASCII characters and spaces, "
             + "and it should not be blank";
 
     /*
+     * Supports all ASCII characters.
      * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}'. ]*";
+    public static final String VALIDATION_REGEX = "[\\p{ASCII}][\\p{ASCII}'. ]*";
 
     public final String description;
 
@@ -37,7 +38,7 @@ public class Description {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.trim().length() > 0;
     }
 
     @Override
