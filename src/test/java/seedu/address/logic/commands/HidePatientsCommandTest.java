@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_RESULTS_LISTED_OVERVIEW;
@@ -56,7 +55,6 @@ public class HidePatientsCommandTest {
         assertFalse(hideFirstCommand.equals(hideSecondCommand));
     }
 
-
     @Test
     public void execute_multipleKeywords_multiplePersonsHidden() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 6, 2);
@@ -77,20 +75,5 @@ public class HidePatientsCommandTest {
      */
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
-
-    @Test
-    public void execute_hideByTag_success() {
-        requireNonNull(model);
-        String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 4, 2);
-        Predicate<Person> predicate = new TagContainsKeywordsPredicate("friends owesMoney");
-        HidePatientsCommand command = new HidePatientsCommand(predicate);
-        expectedModel.updateFilteredPersonList(Predicate.not(predicate));
-        List<Person> validPersons = expectedModel.getFilteredPersonList();
-        AppointmentOfFilteredPersonsPredicate appointmentPredicate =
-                new AppointmentOfFilteredPersonsPredicate(validPersons);
-        expectedModel.updateFilteredAppointmentList(appointmentPredicate);
-
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }
