@@ -289,7 +289,7 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 
 #### Implementation
 
-The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file. 
+The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file.
 
 The following commands are provided:
 
@@ -297,7 +297,7 @@ The following commands are provided:
 
 `delete`  — Delete the specified message template
 
-`generate`  — Using the specified message template and client, generate a message for client. 
+`generate`  — Using the specified message template and client, generate a message for client.
 
 Creation and deletion are exposed in the `Model` interface as `Model#createMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
 
@@ -330,17 +330,17 @@ message delete 1
 #### Design considerations:
 
 - **Aspect: Allow editing**
-  
+
   - Alternative 1 (current choice): Don't allow editing
-    
+
     - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
-    
+
     - Cons: Less convenient when user actually wants to edit message templates
-  
+
   - Alternative 2: Allow editing
-    
+
     - Pros: (Slightly) more convenient
-    
+
     - Cons: More complicated command set
 
 ### Tag command
@@ -381,7 +381,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * `add` and `edit` commands will be slightly messier and may contain ambiguities.
         * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
           wish to add or edit one of the many tags the client possesses.
-        
+
 ### \[Proposed\] Filter command
 =======
 ### Filter Command
@@ -499,14 +499,14 @@ tag friends
 #### Design considerations:
 - **Aspect: How to access the `TargetPerson`.**
   - Alternative 1 (current choice): Allow the index to not be specified
-      - Pros: 
+      - Pros:
         - The user does not have to provide an index (less to type).
       - Cons:
         - Implementation will have to account for no index provided for the various commands.
   - Alternative 2: Index 0 to denote `TargetPerson`
       - Pros:
         - (Slightly) Easier to implement.
-      - Cons: 
+      - Cons:
         - User has to provide an index (more to type).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -631,29 +631,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Rapportbook shows an error message.
     * Use case resumes at step 2.
 
-#### Use case: Filter contacts
+#### Use case: List filters applied
 
 **MSS**
 
-1. User requests to filter contacts of a certain tag and/or name.
-2. Rapportbook shows a list of contacts that contains the tag **and** name specified in the filter query.
+1. User requests to show a list of filters already applied.
+2. Rapporbook displays a list of filters applied.
+
+    Use case ends
+**Extensions**
+
+* 1a. No filters are applied.
+* 2a1. Rapportbook shows a message to indicate there are no filters applied.
+#### Use case: Filter clients
+
+**MSS**
+
+1. User requests to filter clients of a certain tag and/or name.
+2. Rapportbook shows a list of clients that contains the tag **and** name specified in the filter query.
 
    Use case ends.
 
 
-#### Use case: Clearing filters
+#### Use case: Clear filters
 
 **MSS**
 
-1. User requests to clear filters that were originally applied.
-2. Rapportbook shows a list of contacts that without the filters applied.
+1. User requests to show a [list of filters already applied](#use-case-list-filters-applied).
+2. Rapporbook displays a list of filters applied.
+3. User requests to clear filters that were originally applied.
+4. Rapportbook shows a list of contacts without the filters applied.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Some filters specified were not previously applied.
-* 1a1. Rapportbook only clears the filters that were applied.
+* 3a. Some filters specified were not previously applied.
+* 3a1. Rapportbook only clears the filters that were applied.
 
 
 #### Use case: Show contact
