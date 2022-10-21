@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes Sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([attribute is name or module code])
+    :build sort order and attribute;
+    :sort UniquePersonList in specified order;
+    :UI changes to show sorted list;
+    else ([else])
+endif
+stop
+@enduml
