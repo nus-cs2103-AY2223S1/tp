@@ -16,14 +16,14 @@ end box
 activate FindCommandParser
 
 create AddressContainsKeywordsPredicate
-FindCommandParser -> AddressContainsKeywordsPredicate : new \nAddressContainsKeywordsPredicate\n(keywords)
+FindCommandParser -> AddressContainsKeywordsPredicate : new AddressContainsKeywordsPredicate(keywords)
 activate AddressContainsKeywordsPredicate
 
 AddressContainsKeywordsPredicate --> FindCommandParser : predicate
 deactivate AddressContainsKeywordsPredicate
 
 create FindCommand
-FindCommandParser -> FindCommand : new \nFindCommand\n(predicate)
+FindCommandParser -> FindCommand : new FindCommand(predicate)
 activate FindCommand
 
 FindCommand --> FindCommandParser : command
@@ -32,14 +32,14 @@ deactivate FindCommand
 [<--FindCommandParser : command
 deactivate FindCommandParser
 
-[->FindCommand : execute\n(model)
+[->FindCommand : execute(model)
 activate FindCommand
 
-FindCommand -> Model : updateFilteredStudentList\n(predicate)
+FindCommand -> Model : updateFilteredStudentList(predicate)
 activate Model
 
 create CommandResult
-FindCommand -> CommandResult : new \nCommandResult\n (feedBackToUser)
+FindCommand -> CommandResult : new CommandResult (feedBackToUser)
 activate CommandResult
 
 CommandResult --> FindCommand : commandResult
