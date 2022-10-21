@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import static seedu.address.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +34,6 @@ public class PriorityTest {
         assertTrue(Priority.isValidPriority("high")); //all lowercase
         assertTrue(Priority.isValidPriority("LOW")); //all uppercase
         assertTrue(Priority.isValidPriority("NormaL")); //upper and lowercase
-     }
+    }
 
 }

@@ -1,16 +1,13 @@
 package seedu.address.model.property;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Phone;
-import seedu.address.testutil.PropertyBuilder;
-import seedu.address.model.person.Name;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.testutil.PropertyBuilder;
 
 public class FilterPropsByOwnerNamePredicteTest {
 
@@ -28,7 +25,7 @@ public class FilterPropsByOwnerNamePredicteTest {
 
         // same values -> returns true
         FilterPropsByOwnerNamePredicate firstPredicateCopy =
-                new  FilterPropsByOwnerNamePredicate(name1);
+                new FilterPropsByOwnerNamePredicate(name1);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -43,37 +40,37 @@ public class FilterPropsByOwnerNamePredicteTest {
 
     @Test
     public void test_propertyOwnerNameMatch_returnsTrue() {
-        Owner Rick = new Owner(new Name("Ricky Tan"), new Phone("1324019384"));
-        Owner Kim = new Owner(new Name("Kim"), new Phone("124801324"));
+        Owner rickyTan = new Owner(new Name("Ricky Tan"), new Phone("1324019384"));
+        Owner kim = new Owner(new Name("Kim"), new Phone("124801324"));
 
         // Owner Name matches
         FilterPropsByOwnerNamePredicate predicate =
                 new FilterPropsByOwnerNamePredicate(new Name("Ricky Tan"));
-        assertTrue(predicate.test(new PropertyBuilder().withOwner(Rick).build()));
+        assertTrue(predicate.test(new PropertyBuilder().withOwner(rickyTan).build()));
 
         // Owner Name partially matches
         predicate = new FilterPropsByOwnerNamePredicate(new Name("Ricky"));
-        assertTrue(predicate.test(new PropertyBuilder().withOwner(Rick).build()));
+        assertTrue(predicate.test(new PropertyBuilder().withOwner(rickyTan).build()));
 
         // Different case
         predicate = new FilterPropsByOwnerNamePredicate(new Name("KIM"));
-        assertTrue(predicate.test(new PropertyBuilder().withOwner(Kim).build()));
+        assertTrue(predicate.test(new PropertyBuilder().withOwner(kim).build()));
 
         //Mixed Case
         predicate = new FilterPropsByOwnerNamePredicate(new Name("RickY TAN"));
-        assertTrue(predicate.test(new PropertyBuilder().withOwner(Rick).build()));
+        assertTrue(predicate.test(new PropertyBuilder().withOwner(rickyTan).build()));
     }
 
     @Test
     public void test_propertyOwnerNameDoesNotMatch_returnsFalse() {
-        Owner Rick = new Owner(new Name("Ricky Tan"), new Phone("1324019384"));
-        Owner Kim = new Owner(new Name("Kim"), new Phone("124801324"));
+        Owner rickyTan = new Owner(new Name("Ricky Tan"), new Phone("1324019384"));
+        Owner kim = new Owner(new Name("Kim"), new Phone("124801324"));
         // Owner name does not match
         FilterPropsByOwnerNamePredicate predicate =
                 new FilterPropsByOwnerNamePredicate(new Name("Ricky Tan"));
-        assertFalse(predicate.test(new PropertyBuilder().withOwner(Kim).build()));
+        assertFalse(predicate.test(new PropertyBuilder().withOwner(kim).build()));
 
         predicate = new FilterPropsByOwnerNamePredicate(new Name("Ricky Tan Hi"));
-        assertFalse(predicate.test(new PropertyBuilder().withOwner(Rick).build()));
+        assertFalse(predicate.test(new PropertyBuilder().withOwner(rickyTan).build()));
     }
 }

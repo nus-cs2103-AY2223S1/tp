@@ -13,8 +13,8 @@ import seedu.address.model.person.AbstractFilterBuyerPredicate;
 import seedu.address.model.person.FilterBuyerByCharacteristicsPredicate;
 import seedu.address.model.person.FilterBuyerByPricePredicate;
 import seedu.address.model.person.FilterBuyerByPriorityPredicate;
-import seedu.address.model.property.Price;
 import seedu.address.model.person.Priority;
+import seedu.address.model.property.Price;
 
 
 /**
