@@ -126,7 +126,8 @@ class JsonAdaptedPerson {
         final Role modelRole = role != null ? new Role(role) : null;
 
         if (timezone != null && !Timezone.isValidTimezone(timezone)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Timezone.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Timezone.class.getSimpleName()));
         }
 
         final Timezone modelTimezone = timezone != null ? new Timezone(timezone) : null;
