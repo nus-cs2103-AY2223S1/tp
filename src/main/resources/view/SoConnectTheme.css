@@ -7,14 +7,14 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Karla";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Karla";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -50,9 +50,9 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: #3b2c72;
+    -fx-control-inner-background: #3b2c72;
+    -fx-background-color: #3b2c72;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -87,14 +87,14 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#3b2c72, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#3b2c72, 20%);
 }
 
 .list-view {
@@ -110,11 +110,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #047BAE;
+    -fx-background-color: #341671;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #422680;
 }
 
 .list-cell:filled:selected {
@@ -128,20 +128,6 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: #C3E0FF;
-}
-
-.cell_big_label_person {
-    -fx-font-family: "Karla";
-    -fx-font-size: 24px;
-    -fx-font-weight: 700;
-    -fx-text-fill: #C3E0FF;
-}
-
-.cell_small_label_person {
-    -fx-font-family: "Karla";
-    -fx-font-size: 18px;
-    -fx-font-weight: 600;
     -fx-text-fill: #C3E0FF;
 }
 
@@ -166,9 +152,7 @@
 }
 
 .pane-with-border {
-    -fx-background-color: #3b2c72;
-    -fx-border-radius: 10px;
-    -fx-border-color: #3b2c72;
+    -fx-background-color: #280659;
 }
 
 .status-bar {
@@ -207,8 +191,8 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#3b2c72, 30%);
+    -fx-border-color: derive(#3b2c72, 30%);
     -fx-border-width: 1px;
 }
 
@@ -217,7 +201,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#3b2c72, 50%);
 }
 
 .context-menu .label {
@@ -225,7 +209,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: #3C3C3C;
+    -fx-background-color: #3b2c72;
     -fx-selection-bar:#707BE3;
 }
 
@@ -258,7 +242,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #3b2c72;
 }
 
 .button:pressed, .button:default:hover:pressed {
@@ -392,6 +376,7 @@
     -fx-vgap: 3;
 }
 
+/* Handle style of Person List Card */
 .people-heading {
     -fx-font-size: 28pt;
     -fx-font-family: "Karla";
@@ -399,4 +384,18 @@
     -fx-font-weight: 900;
     -fx-opacity: 1;
     -fx-padding: 2px;
+}
+
+.cell_big_label_person {
+    -fx-font-family: "Karla";
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #C3E0FF;
+}
+
+.cell_small_label_person {
+    -fx-font-family: "Karla";
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #C3E0FF;
 }
