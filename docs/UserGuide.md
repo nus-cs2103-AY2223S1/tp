@@ -77,6 +77,7 @@ RC4HDB provides these main features:
 RC4HDB is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User 
 Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day 
 workflow as a RC4 housing management staff.
+</div>
 
 ---
 
