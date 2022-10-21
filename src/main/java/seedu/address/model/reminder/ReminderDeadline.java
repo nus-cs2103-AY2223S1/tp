@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Reminder's deadline in the ModQuik.
- * Guarantees: immutable;
+ * Guarantees: immutable; is valid as declared in {@link #isValidTimeslot(String)}
  */
 public class ReminderDeadline {
 

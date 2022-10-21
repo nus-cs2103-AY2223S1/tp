@@ -2,7 +2,7 @@ package seedu.address.model.reminder;
 
 /**
  * Represents a Reminder's description in ModQuik.
- * Guarantees: immutable;
+ * Guarantees: immutable; 
  */
 public class ReminderDescription {
     public final String description;
