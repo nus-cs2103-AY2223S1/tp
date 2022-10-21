@@ -1,6 +1,5 @@
 package seedu.trackascholar.logic.parser;
 
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
