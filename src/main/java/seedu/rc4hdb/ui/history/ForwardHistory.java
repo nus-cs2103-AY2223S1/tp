@@ -1,11 +1,15 @@
 package seedu.rc4hdb.ui.history;
 
 import java.util.Deque;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The component responsible for executing UP arrow key press in viewing recent commands.
  */
 public class ForwardHistory extends CommandHistory {
+
+    private static Logger logger = Logger.getLogger("CommandHistoryParser");
 
     public ForwardHistory() {
         super();
@@ -27,12 +31,14 @@ public class ForwardHistory extends CommandHistory {
      */
     @Override
     public String execute() {
+        logger.log(Level.INFO, "Moving up the command history stack.");
         if (this.forwardStack.isEmpty()) {
             return EMPTY_TEXT;
         }
         if (isLastCommand(forwardStack)) {
             return forwardStack.getLast();
         }
+        logger.log(Level.INFO, "Transferring from forward stack to backward stack.");
         return transfer(this.forwardStack, this.backwardStack);
     }
 

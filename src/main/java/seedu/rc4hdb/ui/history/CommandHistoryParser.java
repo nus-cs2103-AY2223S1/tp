@@ -1,5 +1,8 @@
 package seedu.rc4hdb.ui.history;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.scene.input.KeyCode;
 
 /**
@@ -8,6 +11,7 @@ import javafx.scene.input.KeyCode;
  */
 public class CommandHistoryParser {
 
+    private static Logger logger = Logger.getLogger("CommandHistoryParser");
     private static CommandHistoryParser commandHistoryParser = null;
     private static ForwardHistory forwardHistory;
     private static BackwardHistory backwardHistory;
@@ -26,6 +30,7 @@ public class CommandHistoryParser {
         if (commandHistoryParser == null) {
             commandHistoryParser = new CommandHistoryParser();
         }
+        assert(commandHistoryParser != null);
         return commandHistoryParser;
     }
 
@@ -35,6 +40,7 @@ public class CommandHistoryParser {
      * @return CommandHistory object for the specific key press.
      */
     public CommandHistory parse(KeyCode key) {
+        logger.log(Level.INFO, "Parsing user key press.");
         if (key == KeyCode.DOWN) {
             return this.backwardHistory;
         } else {
@@ -47,6 +53,8 @@ public class CommandHistoryParser {
      * @param commandText user input.
      */
     public void parse(String commandText) {
+        logger.log(Level.INFO, "Adding command to history stack");
+        assert(commandText != null);
         this.forwardHistory.add(commandText);
     }
 
