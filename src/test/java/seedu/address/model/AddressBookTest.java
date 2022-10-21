@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalStudents.STUDENT2;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
@@ -15,7 +14,6 @@ import static seedu.address.testutil.TypicalTutors.TUTOR2;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -38,18 +36,13 @@ public class AddressBookTest {
     private final AddressBook addressBook = new AddressBook();
 
     @Test
-    public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
-    }
-
-    @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = getTypicalStudentsAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -95,7 +88,7 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasPerson(STUDENT1));
     }
 
     @Test
@@ -185,11 +178,6 @@ public class AddressBookTest {
             this.students.setAll(students);
             this.tutors.setAll(tutors);
             this.tuitionClasses.setAll(tuitionClasses);
-        }
-
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
         }
 
         @Override
