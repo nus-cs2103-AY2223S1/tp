@@ -20,6 +20,7 @@ import seedu.address.ui.UiPart;
  * Controller for to add or edit a Customer by the GUI.
  */
 public abstract class CustomerWindow extends UiPart<Stage> {
+
     private static final Logger logger = LogsCenter.getLogger(CustomerWindow.class);
     private static final String FXML = "CustomerWindow.fxml";
 
@@ -86,35 +87,35 @@ public abstract class CustomerWindow extends UiPart<Stage> {
     /**
      * Returns the user Customer Name input.
      */
-    public String getCustomerNameInput() {
+    String getCustomerNameInput() {
         return name.getText();
     }
 
     /**
      * Returns the user Customer Tags input as a HashSet.
      */
-    public HashSet<String> getCustomerTagsInput() {
+    HashSet<String> getCustomerTagsInput() {
         return tagsHandler.getTags();
     }
 
     /**
      * Returns the user Customer Address input.
      */
-    public String getCustomerAddressInput() {
+    String getCustomerAddressInput() {
         return address.getText();
     }
 
     /**
      * Returns the user Customer Phone input.
      */
-    public String getCustomerPhoneInput() {
+    String getCustomerPhoneInput() {
         return phone.getText();
     }
 
     /**
      * Returns the user Customer Email input.
      */
-    public String getCustomerEmailInput() {
+    String getCustomerEmailInput() {
         return email.getText();
     }
 
@@ -135,7 +136,7 @@ public abstract class CustomerWindow extends UiPart<Stage> {
      * Tries to create or edit a Customer with the given user inputs.
      */
     @FXML
-    public abstract void handleCustomerCommand();
+    abstract void handleCustomerCommand();
 
     @FXML
     private void handleCloseCustomerWindow() {

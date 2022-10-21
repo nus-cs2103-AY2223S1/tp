@@ -14,7 +14,7 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
-         xmlns:fx="http://javafx.com/fxml/1" width="720" height="500" onCloseRequest="#handleCloseAddCommissionWindow">
+         xmlns:fx="http://javafx.com/fxml/1" width="720" height="500" onCloseRequest="#handleCloseCommissionWindow">
     <scene>
         <Scene>
             <stylesheets>
@@ -24,8 +24,9 @@
             <BorderPane fx:id="addCommissionContainer" style="-fx-background-color: #3C424B;">
                 <top>
                     <HBox style="-fx-background-color: #1E2229;">
-                        <Label text="Add Commission" style="-fx-font-size: 24px; -fx-text-fill: #E8E8E8;
-                            -fx-font-family: Arial; -fx-font-weight: bold;"/>
+                        <Label fx:id="customerWindowHeader" text="Add Commission"
+                               style="-fx-font-size: 24px; -fx-text-fill: #E8E8E8;
+                            -fx-font-family: Arial; -fx-font-weight: bold;" wrapText="true"/>
                         <padding>
                             <Insets top="16" bottom="16" left="36" right="36"/>
                         </padding>
@@ -111,7 +112,7 @@
                     <HBox alignment="BOTTOM_RIGHT">
                         <Button fx:id="addCommissionButton" mnemonicParsing="false"
                                 text="+   Add Commission" styleClass="addCommissionWindowButton"
-                                onAction="#addCommission">
+                                onAction="#handleCommissionCommand">
                             <HBox.margin>
                                 <Insets left="5.0"/>
                             </HBox.margin>

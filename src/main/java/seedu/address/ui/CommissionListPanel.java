@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
@@ -35,10 +36,11 @@ public class CommissionListPanel extends UiPart<Region> {
     public CommissionListPanel(ObservableObject<Pair<Customer, FilteredList<Commission>>> observableCommissionList,
                                Consumer<Commission> selectCommission,
                                ObservableObject<Commission> selectedCommission,
-                               MainWindow mainWindow, CommandBox.CommandExecutor commandExecutor) {
+                               Consumer<UiPart<Stage>> addChildWindow,
+                               CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         commissionPanelControlsPlaceholder.getChildren()
-                .add(new CommissionListPanelControlBar(mainWindow, commandExecutor).getRoot());
+                .add(new CommissionListPanelControlBar(addChildWindow, commandExecutor).getRoot());
         this.updateUI(observableCommissionList.getValue().getValue());
         this.selectCommission = selectCommission;
 

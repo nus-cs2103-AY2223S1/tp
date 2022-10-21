@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.function.Consumer;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
@@ -21,9 +23,10 @@ public class CommissionListPanelControlBar extends UiPart<Region> {
     /**
      * Constructs a {@code CommissionListPanelControlBar}.
      */
-    public CommissionListPanelControlBar(MainWindow mainStage, CommandBox.CommandExecutor commandExecutor) {
+    public CommissionListPanelControlBar(Consumer<UiPart<Stage>> addChildWindow,
+                                         CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
-        addCommissionWindow = new AddCommissionWindow(mainStage, commandExecutor, new Stage());
+        addCommissionWindow = new AddCommissionWindow(addChildWindow, commandExecutor, new Stage());
     }
 
     /**

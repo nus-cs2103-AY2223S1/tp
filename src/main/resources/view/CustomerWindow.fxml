@@ -42,7 +42,7 @@
                         <HBox>
                             <Label text="Name" styleClass="addCommissionWindowLabel">
                                 <HBox.margin>
-                                    <Insets top ="10" right="82.0"/>
+                                    <Insets top ="10" right="68.0"/>
                                 </HBox.margin>
                             </Label>
                             <TextField fx:id="name" styleClass="addCommissionTextField" minWidth="500"/>
@@ -91,7 +91,7 @@
                         <HBox>
                             <Label text="Email" styleClass="addCommissionWindowLabel">
                                 <HBox.margin>
-                                    <Insets right="36.0"/>
+                                    <Insets right="70.0"/>
                                 </HBox.margin>
                             </Label>
                             <TextField fx:id="email" styleClass="addCommissionTextField"/>
