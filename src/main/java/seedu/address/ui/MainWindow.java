@@ -1,13 +1,10 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -22,12 +19,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -130,27 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        ObservableList<Meeting> internalList = FXCollections.observableArrayList();
-        ObservableList<Meeting> internalUnmodifiableList =
-                FXCollections.unmodifiableObservableList(internalList);
-        ArrayList<Person> myArray = new ArrayList<>();
-
-        myArray.add(new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")));
-
-        myArray.add(new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")));
-
-        try {
-            internalList.add(new Meeting(myArray, "Study Session", "06-10-2022 2015", "UTown"));
-            internalList.add(new Meeting(myArray, "Ice Skating", "15-10-2022 2000", "Jurong East"));
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
-        }
-
-        meetingListPanel = new MeetingListPanel(internalUnmodifiableList);
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -218,7 +189,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            java.text.ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -233,7 +205,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | java.text.ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
