@@ -6,39 +6,40 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.GetCommand;
 import seedu.address.model.Model;
-import seedu.address.model.person.NextOfKinPredicate;
+import seedu.address.model.person.AppointmentByDatePredicate;
 
 /**
- * Finds the next-of-kin data of the given patient.
- * Keyword matching is case insensitive.
+ * Finds and lists all patients on the same appointment date.
+ *
  */
-public class GetNextOfKinCommand extends GetCommand {
+public class GetAppointmentByDateCommand extends GetCommand {
 
-    public static final String NEXT_OF_KIN_PREFIX = "/nok";
+    public static final String APPOINTMENT_BY_DATE_PREFIX = "/apptbd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the next-of-kin data with the given  "
-            + "specified keywords (patient name; case insensitive) \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all patients who are on the same appointment"
+            + "date "
+            + "and displays them as a list with index numbers. \n"
             + "Parameters: "
-            + NEXT_OF_KIN_PREFIX + " PATIENT NAME\n"
+            + APPOINTMENT_BY_DATE_PREFIX + " DATE [dd-MM-yyyy]\n"
             + "Example: "
             + COMMAND_WORD + " "
-            + NEXT_OF_KIN_PREFIX
-            + " alice ";
+            + APPOINTMENT_BY_DATE_PREFIX
+            + " 21-12-2020";
 
-    private final NextOfKinPredicate predicate;
+    private final AppointmentByDatePredicate predicate;
 
     /**
-     * Constructor for GetNextOfKinCommand
-     * @param predicate next-of-kin command.
+     * Constructor for GetAppointmentByDateCommand
+     * @param predicate predicate for appointments.
      */
-    public GetNextOfKinCommand(NextOfKinPredicate predicate) {
+    public GetAppointmentByDateCommand(AppointmentByDatePredicate predicate) {
         this.predicate = predicate;
     }
 
     /**
      * Executes the command.
      * @param model {@code Model} which the command should operate on.
-     * @return the result of the command being executed.
+     * @return the result of the executed command.
      */
     @Override
     public CommandResult execute(Model model) {
@@ -56,7 +57,8 @@ public class GetNextOfKinCommand extends GetCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof GetNextOfKinCommand // instanceof handles nulls
-                && predicate.equals(((GetNextOfKinCommand) other).predicate)); // state check
+                || (other instanceof GetAppointmentByDateCommand // instanceof handles nulls
+                && predicate.equals(((GetAppointmentByDateCommand) other).predicate)); // state check
     }
 }
+
