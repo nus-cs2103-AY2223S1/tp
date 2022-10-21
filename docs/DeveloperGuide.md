@@ -153,6 +153,39 @@ Classes used by multiple components are in the `gimbook.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Sorting Exercise List
+#### Sorting Implementation
+The sorting of exercise list is facilitated by `ModelManager` which implements `Model`. `ModelManager` contains a `filteredExercises`
+list which is the list of exercises in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. `filteredExercises` 
+gets the list of exercises to be displayed from method `getExerciseList()` in `ExerciseTracker`.
+
+`ExerciseTracker` has method `sortDisplayedList()` which calls `sortDisplayedList()` in `ExerciseList`.
+
+`ExerciseList` contains a `displayedList` of type `ObservableList<Exercise>` and is the list that will be displayed by the `Ui`. 
+It is a duplicated copy of the `internalUnmodifiableList` of type `unmodifiableObservableList`. `ExerciseList` has method 
+`sortDisplayedList()` which sorts the `displayedList` using the `sort()` method in `java.util.Collections`.
+
+`Exercise` implements `Comparable<Exercise>` and has overridden the method `compareTo` which compares two
+exercises primarily by their respective `Date`. Should the two exercises have the same `Date`, they will then be
+compared lexicographically.
+
+####Sorting Execution
+When the command `:sort` is entered, the `Ui` sends the command to `Logic`. `Logic` parses and identifies the `:sort` command that was entered, and creates 
+an instance of it. `Logic` then executes the command. `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
+
+####Example Usage
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1: The user launches the application which loads the set of exercises previously keyed. `displayedList` will be initialised
+to be the same as the `internalUnmodifiableList` in `ExerciseList` where the exercises are sorted by the date of input.
+
+Step 2: The user executes `:sort` command to sort the exercises based on date of exercises done. The `ExerciseTrackerParser`
+identifies that the command is a `SortCommand`. The command calls `Model` to `sortDisplayedList` and the `Ui` displays the 
+`displayedList` which has the exercises sorted by their respective dates.
+
+The following sequence diagram shows how the sort command is executed.
+
+<img src="images/SortSequenceDiagram.png" width="1000" />
 
 ### \[Proposed\] Undo/redo feature
 
