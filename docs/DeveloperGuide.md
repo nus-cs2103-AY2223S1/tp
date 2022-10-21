@@ -216,7 +216,7 @@ Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated
 
 The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
-![ViewSequenceDiagram](./images/ViewSequenceDiagram.png)
+![SortSequenceDiagram](./images/SortSequenceDiagram.png)
 
 <ins>Design Considerations</ins>
 

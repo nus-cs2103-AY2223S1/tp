@@ -1,12 +1,89 @@
 @startuml
 !include style.puml
-'https://plantuml.com/sequence-diagram
 
-autonumber
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":TutorListPanel" as TutorListPanel LOGIC_COLOR
+end box
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TuthubParser" as TuthubParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("sort a r/")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("sort a r/")
+activate LogicManager
+
+LogicManager -> TuthubParser : parseCommand("delete 1")
+activate TuthubParser
+
+create SortCommandParser
+TuthubParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> TuthubParser
+deactivate SortCommandParser
+
+TuthubParser -> SortCommandParser : parse("a r/")
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand
+activate SortCommand
+
+SortCommand --> SortCommandParser
+deactivate SortCommand
+
+SortCommandParser --> TuthubParser
+deactivate SortCommandParser
+
+TuthubParser --> LogicManager
+deactivate TuthubParser
+
+LogicManager --> SortCommand : execute()
+activate SortCommand
+
+SortCommand -> Model : updateSortedTutorList(SortByRatingComparator)
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
+
+SortCommand --> LogicManager : result
+deactivate SortCommand
+
+MainWindow <-- LogicManager
+deactivate LogicManager
+
+MainWindow --> MainWindow : fillInnerParts()
+activate MainWindow
+
+create TutorListPanel
+MainWindow -> TutorListPanel
+activate TutorListPanel
+
+TutorListPanel -> MainWindow
+deactivate TutorListPanel
+
+MainWindow --> MainWindow
+deactivate MainWindow
+[<- MainWindow
+deactivate MainWindow
 @enduml
