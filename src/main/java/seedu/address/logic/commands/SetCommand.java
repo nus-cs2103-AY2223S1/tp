@@ -249,8 +249,7 @@ public class SetCommand extends Command {
                    && this.address.equals(s.address)
                    && this.tags.equals(s.tags)
                    && this.role.equals(s.role)
-                   && this.timezone.equals(s.timezone)
-                   && this.user.equals(s.user);
+                   && this.timezone.equals(s.timezone);
         }
     }
 }

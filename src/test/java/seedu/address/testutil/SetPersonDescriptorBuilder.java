@@ -28,7 +28,7 @@ public class SetPersonDescriptorBuilder {
     }
 
     public SetPersonDescriptorBuilder(SetPersonDescriptor descriptor) {
-        this.descriptor = descriptor;
+        this.descriptor = new SetPersonDescriptor(descriptor);
     }
 
     /**
