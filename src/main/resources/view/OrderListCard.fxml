@@ -37,6 +37,8 @@
           <HBox>
             <Label fx:id="paidStatus" styleClass="status-labels"/>
             <Label fx:id="deliveryStatus" styleClass="status-labels"/>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="10.0">
             <Region styleClass="icon-button" id="timeCreatedIcon"/>
             <Label fx:id="timeCreated" styleClass="cell_small_label_order" text="\$timeCreated" />
           </HBox>
