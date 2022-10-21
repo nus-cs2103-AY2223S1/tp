@@ -10,7 +10,7 @@ endBox
 
 box Model MODEL_COLOR_T1
 Participant "model:Model" as model MODEL_COLOR_T3
-Participant "filteredProfiles:FilteredList" as filteredList MODEL_COLOR_T3
+Participant ":FilteredList" as filteredList MODEL_COLOR_T3
 endBox
 
 -> logicManager ++: execute("profile -v")

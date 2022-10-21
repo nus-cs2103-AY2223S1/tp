@@ -248,8 +248,6 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 ![ViewProfileCommandActivityDiagram](images/commands/ViewProfileCommandActivityDiagram.png)
 
-#### Description
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
