@@ -15,6 +15,9 @@ public class HideCommandParser implements Parser<HideCommand> {
     public static final String INTENDED_USAGE = "Please (only) enter some fields after the hide command\n"
             + "Example: hide room gender matric";
 
+    public static final String ERROR_MESSAGE = "Please only specify fields that correspond to resident data, "
+            + "or check if you have made a typo.";
+
     @Override
     public HideCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -40,11 +43,14 @@ public class HideCommandParser implements Parser<HideCommand> {
         return args.trim().toLowerCase().split(" ");
     }
 
-    private void populateFieldLists(String[] specifiedFields, List<String> fieldsToInclude, List<String> allFields) {
+    private void populateFieldLists(String[] specifiedFields,
+                                    List<String> fieldsToInclude,
+                                    List<String> allFields) throws ParseException {
         for (String field : specifiedFields) {
-            if (allFields.contains(field)) {
-                fieldsToInclude.add(field);
+            if (!allFields.contains(field)) {
+                throw new ParseException(ERROR_MESSAGE);
             }
+            fieldsToInclude.add(field);
         }
     }
 }
