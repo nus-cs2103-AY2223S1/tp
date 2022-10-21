@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -29,8 +30,30 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
+    private final Session timeNowSession;
+    private final ArrayList<Session> toSortList;
+    private final HashMap<Session, Person> sessionPersonHashMap;
     private boolean fullView;
+
+    /**
+     * Class implementing Consumer acting as a helper to add Sessions later
+     * than current time in the week to the list to be sorted.
+     */
+    private Consumer<Person> toSortListAdder = new Consumer<Person>() {
+        @Override
+        public void accept(Person person) {
+            if (person.getSessionList().sessionList.isEmpty()) {
+                return;
+            }
+            for (int i = 0; i < person.getSessionList().sessionList.size(); i++) {
+                Session currSession = person.getSessionList().sessionList.get(i);
+                if (timeNowSession.compareTo(currSession) <= 0) {
+                    toSortList.add(currSession);
+                    sessionPersonHashMap.put(currSession, person);
+                }
+            }
+        }
+    };
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,6 +67,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         fullView = false;
+        toSortList = new ArrayList<>();
+        sessionPersonHashMap = new HashMap<>();
+        timeNowSession = getTimeNowAsSession();
     }
 
     public ModelManager() {
@@ -173,34 +199,29 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    public String getNextSession() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE HH:mm")
-                .withResolverStyle(ResolverStyle.STRICT);
+    /**
+     * Helper method to get the system time now as a Session for constructor to help getNextSession.
+     * @return the system time now as a Session.
+     */
+    private static Session getTimeNowAsSession() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE HH:mm").withResolverStyle(ResolverStyle.STRICT);
         String timeNow = LocalDateTime.now().format(dtf);
-        Session nowSession = new Session(timeNow);
-        HashMap<Session, Person> sessionPersonHashMap = new HashMap<>();
-        ArrayList<Session> compareList = new ArrayList<>();
+        return new Session(timeNow);
+    }
+
+    public String getNextSession() {
         this.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         if (getFilteredPersonList().isEmpty()) {
             return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
-        this.getFilteredPersonList().forEach(person -> {
-            if (!person.getSessionList().sessionList.isEmpty()) {
-                for (int i = 0; i < person.getSessionList().sessionList.size(); i++) {
-                    Session currSession = person.getSessionList().sessionList.get(i);
-                    if (nowSession.compareTo(currSession) <= 0) {
-                        compareList.add(currSession);
-                        sessionPersonHashMap.put(currSession, person);
-                    }
-                }
-            }
-        });
-        if (compareList.isEmpty()) {
+        toSortList.clear();
+        this.getFilteredPersonList().forEach(toSortListAdder);
+        if (toSortList.isEmpty()) {
             return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
-        compareList.sort(Session::compareTo);
-        String res = "Next Session: " + sessionPersonHashMap.get(compareList.get(0)).getName()
-                + " " + compareList.get(0).toString();
+        toSortList.sort(Session::compareTo);
+        String res = "Next Session: " + sessionPersonHashMap.get(toSortList.get(0)).getName()
+                + " " + toSortList.get(0).toString();
         return res;
     }
 
