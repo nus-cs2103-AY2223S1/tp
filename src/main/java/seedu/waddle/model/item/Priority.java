@@ -55,4 +55,8 @@ public class Priority {
     public int hashCode() {
         return priority.hashCode();
     }
+
+    public int compareTo(Priority p) {
+        return this.priority.compareToIgnoreCase(p.priority);
+    }
 }
