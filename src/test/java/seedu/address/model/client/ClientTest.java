@@ -18,6 +18,13 @@ import seedu.address.testutil.ClientBuilder;
 public class ClientTest {
 
     @Test
+    public void constructor() {
+
+        // throws error if name, phone, email, address, or tags is null
+        assertThrows(NullPointerException.class, () -> new Client(null, null, null, null, null, null, null));
+    }
+
+    @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Client client = new ClientBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> client.getProducts().remove(0));

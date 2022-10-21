@@ -1,9 +1,13 @@
 {
-  "clients": [ {
+  "clients" : [ {
     "@UUID" : "c4fa6f3d-a49f-495d-a5eb-d282b344a36d",
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+    "name" : "Hans Muster",
+    "phone" : "9482424",
+    "email" : "invalid@email!3e",
+    "address" : "4th street",
+    "birthday" : "",
+    "tagged" : [ ],
+    "meetings" : [ ],
+    "products": [ ]
   } ]
 }

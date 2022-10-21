@@ -3,9 +3,11 @@ package seedu.address.testutil;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -28,6 +30,7 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Optional<Birthday> birthday;
     private Set<Product> products;
     private List<Meeting> meetings;
 
@@ -39,6 +42,7 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        birthday = Optional.empty();
         meetings = new ArrayList<>();
         products = new HashSet<>();
     }
@@ -51,6 +55,7 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
+        birthday = clientToCopy.getBirthday();
         meetings = new ArrayList<>(clientToCopy.getMeetings());
         products = new HashSet<>(clientToCopy.getProducts());
     }
@@ -104,7 +109,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, meetings, products);
+        return new Client(name, phone, email, address, birthday, meetings, products);
     }
 
 }
