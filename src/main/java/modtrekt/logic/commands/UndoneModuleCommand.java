@@ -21,6 +21,11 @@ public class UndoneModuleCommand extends Command {
 
     private final ModCode moduleCode;
 
+    /**
+     * Returns a new UndoneModuleCommand object.
+     *
+     * @param moduleCode the module code of the module that wants to be marked as undone.
+     */
     public UndoneModuleCommand(ModCode moduleCode) {
         this.moduleCode = moduleCode;
     }

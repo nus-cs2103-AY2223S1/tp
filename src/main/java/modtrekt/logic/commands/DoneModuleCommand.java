@@ -21,6 +21,11 @@ public class DoneModuleCommand extends Command {
 
     private final ModCode moduleCode;
 
+    /**
+     * Returns a new DoneModuleCommand object.
+     *
+     * @param moduleCode the module code of the module that wants to be marked as done.
+     */
     public DoneModuleCommand(ModCode moduleCode) {
         requireNonNull(moduleCode);
         this.moduleCode = moduleCode;

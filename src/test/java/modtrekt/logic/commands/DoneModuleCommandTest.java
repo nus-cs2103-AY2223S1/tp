@@ -1,15 +1,11 @@
 package modtrekt.logic.commands;
 
 import static modtrekt.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-import modtrekt.model.Model;
-import modtrekt.model.ModelManager;
-import modtrekt.model.module.ModCode;
-import modtrekt.model.module.Module;
 
 import org.junit.jupiter.api.Test;
+
+import modtrekt.model.Model;
+import modtrekt.model.module.ModCode;
 
 public class DoneModuleCommandTest {
     @Test
