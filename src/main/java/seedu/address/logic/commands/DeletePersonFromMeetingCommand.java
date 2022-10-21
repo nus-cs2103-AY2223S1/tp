@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Creates a meeting with a person in the address book
@@ -23,7 +24,7 @@ public class DeletePersonFromMeetingCommand extends Command {
             + "Parameters: Meeting index ; NAMES OF PEOPLE (from address book) YOU WANT TO DELETE, (split names by ,)\n"
             + "Example: " + COMMAND_WORD + "1 ; Alex Yeoh, Anna Lim";
 
-    public static final String MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS = "Deleted the list of persons";
+    public static final String MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS = "Deleted the list of persons";
 
     private final String info;
 
@@ -35,6 +36,11 @@ public class DeletePersonFromMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String[] newPeopleInformation = this.info.split(";");
+
+        if (newPeopleInformation.length != 2) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+
         String[] newPeople = newPeopleInformation[1].strip().split(",");
         int meetingIndex = parseInt(newPeopleInformation[0].strip());
 
@@ -42,16 +48,27 @@ public class DeletePersonFromMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        ArrayList<Person> arrayOfPeopleToDelete = Meeting.convertNameToPerson(model, newPeople);
-        Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex);
-        if (meetingToUpdate.getNumPersons() == 1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_ONLY_ONE_LEFT);
+        try {
+            ArrayList<Person> arrayOfPeopleToDelete = Meeting.convertNameToPerson(model, newPeople);
+            Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex);
+            if (meetingToUpdate.getNumPersons() <= arrayOfPeopleToDelete.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_MEETING_ONLY_ONE_LEFT);
+            }
+            meetingToUpdate.deletePersons(arrayOfPeopleToDelete);
+            model.deleteMeeting(meetingToUpdate);
+            model.addMeeting(meetingToUpdate);
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
         }
-        model.deleteMeeting(meetingToUpdate);
-        meetingToUpdate.deletePersons(arrayOfPeopleToDelete);
-        model.addMeeting(meetingToUpdate);
 
-        return new CommandResult(String.format(MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeletePersonFromMeetingCommand // instanceof handles nulls
+                && this.info.equals(((DeletePersonFromMeetingCommand) other).info)); // state check
     }
 
 }

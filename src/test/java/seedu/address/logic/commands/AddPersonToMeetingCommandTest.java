@@ -1,18 +1,17 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingList;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -22,7 +21,6 @@ import static seedu.address.testutil.TypicalPersons.FIONA;
 
 public class AddPersonToMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalMeetingList(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -70,13 +68,20 @@ public class AddPersonToMeetingCommandTest {
     public void execute_add_existingPerson() {
         String expectedMessage = CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET;
         AddPersonToMeetingCommand command = new AddPersonToMeetingCommand("0; Alice");
-        assertCommandSuccess(command, model, expectedMessage);
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void execute_add_nonExistentPerson() {
         String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND;
         AddPersonToMeetingCommand command = new AddPersonToMeetingCommand("0; test");
-        assertCommandSuccess(command, model, expectedMessage);
+        assertCommandFailure(command, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_add_duplicatePerson() {
+        String expectedMessage = CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET;
+        AddPersonToMeetingCommand command = new AddPersonToMeetingCommand("0; Alice, Alice");
+        assertCommandFailure(command, model, expectedMessage);
     }
 }

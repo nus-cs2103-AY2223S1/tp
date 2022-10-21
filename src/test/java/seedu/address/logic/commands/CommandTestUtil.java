@@ -16,7 +16,9 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -95,10 +97,6 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
-    /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult)}
-     * that takes a string {@code expectedMessage}.
-     */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, actualModel);
@@ -115,9 +113,12 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        MeetingList expectedMeetingList = new MeetingList(actualModel.getMeetingList());
+        List<Meeting> exoectedFilteredMeetingList = new ArrayList<>(actualModel.getFilteredMeetingList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedMeetingList, actualModel.getMeetingList());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

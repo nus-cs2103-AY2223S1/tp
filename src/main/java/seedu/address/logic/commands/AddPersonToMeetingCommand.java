@@ -4,7 +4,6 @@ import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -57,9 +56,9 @@ public class AddPersonToMeetingCommand extends Command {
             model.deleteMeeting(meetingToUpdate);
             model.addMeeting(meetingToUpdate);
         } catch (PersonNotFoundException e) {
-            return new CommandResult(CreateMeetingCommand.PERSON_NOT_FOUND);
+            throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
         } catch (DuplicatePersonException e) {
-            return new CommandResult(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
+            throw new CommandException(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
         }
 
         return new CommandResult(String.format(MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS));
