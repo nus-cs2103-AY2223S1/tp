@@ -288,6 +288,41 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Amending Representation of Various Servers
+
+The proposed representation of various Minecraft servers is in the format 
+of `server name@IP address`. Each server can have duplicate names but each 
+server will have a unique IP address.
+
+#### Reason for Implementation
+The current representation of Minecraft servers is in the format of solely 
+an IP address e.g. `111.111.111.111`
+
+This is much less user-friendly as compared to the proposed representation 
+where users are able to remember various servers by their server names, 
+and distinguish servers with the same names by their IP addresses 
+e.g. `Mineplex @ 111.111.111.111`
+
+
+#### Proposed Implementation
+
+The server class currently only allows the server to be documented in the 
+format of an IP address.
+
+With the input `ms/ 111.111.111.111`, <br>
+1) The `Parse` method in `AddCommandParser` will recognize the `prefix_minecraft_server`.<br>
+2) The method will then call `parseServers` method of `ParserUtil`. <br>
+3) `parseServers` method of `ParserUtil` will examine the validity of the 
+server name by calling the `parseServer` method of `ParserUtil`. <br>
+4) If it is a valid server name, a new server class will be created and 
+added into the set of Server. <br>
+5) The set of Server will then be an attribute of the new `Person` created.
+
+![MSRepSeqDiagram](images/MSRepSeqDiagram.png)
+
+Substantial changes will be made to the server class with constraints such as
+validation regex being amended.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
