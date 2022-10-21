@@ -21,6 +21,8 @@ done faster and more securely than traditional GUI apps.
     * [Exiting the application: `exit`](#exiting-the-application--exit)
     * [Saving the data](#saving-the-data)
     * [Importing data: `import`](#importing-data--import)
+    * [Exporting data: `export`](#exporting-data--export)
+    * [Locking the application: `lock`](#locking-the-application--lock)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -134,6 +136,7 @@ Examples:
 ### Deleting a client : `delete`
 
 Four formats of deleting a client.
+
 1. `delete INDEX`
 2. `delete INDEX1, INDEX2, …`
 3. `delete STARTINDEX - ENDINDEX`
@@ -156,6 +159,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 #### Deleting multiple clients
+
 Deletes multiple specified clients from the FinBook.
 
 Format: `delete INDEX1, INDEX2, …`
@@ -187,7 +191,6 @@ Format: `delete all`
 Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
-
 
 ---
 
@@ -241,8 +244,8 @@ Imports data from a `JSON` or `CSV` file
         * `tags`
         * `risk`
         * `plans`
-    * The data in each corresponding column must be valid
-        * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
+        * The data in each corresponding column must be valid
+            * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
 
 Format: `import PATH`
 
@@ -254,6 +257,31 @@ Examples:
 
 * `import ./data.json` imports data from the file `data.json` which is located in the same directory as the FinBook executable
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the FinBook executable
+
+---
+
+### Exporting data : `export`
+
+Exports data to a `CSV` file
+
+Format: `export PATH`
+
+* Exports data to the file at the specified `PATH`
+* `PATH` can be a relative or full path
+* `PATH` must end in `.csv`
+
+Examples:
+
+* `export ./data.csv` exports data to the file `data.csv` which is located in the same directory as the FinBook executable
+* `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the FinBook executable
+
+---
+
+### Locking the application : `lock`
+
+Locks the application. If a password has not been set, leave the password field empty to unlock the application.
+
+Format: `lock`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -275,3 +303,5 @@ the data of your previous FinBook home folder. Alternatively, you may use the `i
 | **List**             | `list`                                                                                                                                                                                                                                                                                    |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                    |
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
+| **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                               |
+| **Lock application** | `lock`                                                                                                                                                                                                                                                                                    |

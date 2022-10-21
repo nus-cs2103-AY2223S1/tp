@@ -20,7 +20,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
      */
     public ImportCommand parse(String args) throws ParseException {
         try {
-            Path path = ParserUtil.parsePath(args);
+            Path path = ParserUtil.parseImportPath(args);
             return new ImportCommand(path);
         } catch (ParseException pe) {
             throw new ParseException(

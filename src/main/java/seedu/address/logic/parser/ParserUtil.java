@@ -201,6 +201,7 @@ public class ParserUtil {
      * Parses a {@code String meetingDate} into an {@code MeetingDate}.
      * Leading and trailing whitespaces will be trimmed.
      * MeetingDate can be null.
+     *
      * @throws ParseException if the given {@code meetingDate} is invalid.
      */
     public static MeetingDate parseMeetingDate(String meetingDate) throws ParseException {
@@ -289,13 +290,28 @@ public class ParserUtil {
      * Parses {@code filePath} into an {@code Path} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      *
-     * @throws ParseException if the specified path is invalid.
+     * @throws ParseException if the specified path is invalid (not JSON or CSV, or not readable)
      */
-    public static Path parsePath(String filePath) throws ParseException {
+    public static Path parseImportPath(String filePath) throws ParseException {
         String trimmedPath = filePath.trim();
         File file = new File(trimmedPath);
         if (!(file.getName().toLowerCase().endsWith(".json") || file.getName().toLowerCase().endsWith(".csv"))
                 || !Files.isReadable(file.toPath())) {
+            throw new ParseException(MESSAGE_INVALID_PATH);
+        }
+        return file.toPath();
+    }
+
+    /**
+     * Parses {@code filePath} into an {@code Path} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified path is invalid (not CSV)
+     */
+    public static Path parseExportPath(String filePath) throws ParseException {
+        String trimmedPath = filePath.trim();
+        File file = new File(trimmedPath);
+        if (!file.getName().toLowerCase().endsWith(".csv")) {
             throw new ParseException(MESSAGE_INVALID_PATH);
         }
         return file.toPath();

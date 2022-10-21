@@ -38,10 +38,10 @@ public class CsvAdaptedPerson {
     private final String address;
     @CsvBindByName(required = true)
     private final String income;
-    @CsvBindByName(column = "meeting date", required = true)
+    @CsvBindByName(column = "meeting date")
     private final String meetingDate;
-    @CsvBindAndSplitByName(column = "tags", required = true,
-            elementType = Tag.class, splitOn = ",", converter = StringToTag.class)
+    @CsvBindAndSplitByName(column = "tags",
+            elementType = Tag.class, splitOn = ",", converter = StringToTag.class, writeDelimiter = ",")
     private final List<Tag> tagged = new ArrayList<>();
     @CsvBindByName(column = "risk", required = true)
     private final String risk;
@@ -119,7 +119,9 @@ public class CsvAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (Tag tag : tagged) {
-            personTags.add(tag);
+            if (!tag.tagName.equals("null")) {
+                personTags.add(tag);
+            }
         }
 
         final List<Plan> personPlans = new ArrayList<>();

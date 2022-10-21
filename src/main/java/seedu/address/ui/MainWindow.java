@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.LockCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PortfolioWindow portfolioWindow;
+    private LockWindow lockWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -74,6 +76,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
         getTotalClient();
         helpWindow = new HelpWindow();
+        lockWindow = new LockWindow(new Stage(), this);
     }
 
     public Stage getPrimaryStage() {
@@ -90,6 +93,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -176,6 +180,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Locks the application.
+     */
+    @FXML
+    public void handleLock() {
+        helpWindow.hide();
+        primaryStage.hide();
+        resultDisplay.setFeedbackToUser(LockCommand.SHOWING_UNLOCK_MESSAGE);
+        lockWindow.show();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -197,6 +212,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isLock()) {
+                handleLock();
             }
 
             getTotalClient();
