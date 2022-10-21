@@ -14,12 +14,12 @@ title: Developer Guide
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [Implementation](#implementation)
-  - [[Proposed] Add](#proposed-add)
-  - [[Proposed] Delete](#proposed-delete)
-  - [[Proposed] List](#proposed-list)
-  - [[Proposed] Find](#proposed-find)
-  - [[Proposed] Loan](#proposed-loan)
-  - [[Proposed] Return](#proposed-return)
+  - [Add](#add-feature)
+  - [Delete](#delete-feature)
+  - [List](#list-feature)
+  - [Find](#find-feature)
+  - [Loan](#loan-feature)
+  - [Return](#return-feature)
 - [Documentation, logging, testing, configuration](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -148,8 +148,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores BookFace data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores BookFace data i.e., all `Person` objects and all `Book` objects (which are contained in a `UniquePersonList` object and a `BookList` object respectively).
+* stores the currently 'selected' `Person` and `Book` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Book>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -181,16 +181,19 @@ Classes used by multiple components are in the `bookface.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Proposed] Add
-
-
-### [Proposed] Delete
+### Add feature
 
 
 
-### [Proposed] List
+### Delete feature
 
-### Find
+
+
+### List feature
+
+
+
+### Find feature
 #### Implementation
 
 The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books. 
@@ -253,13 +256,143 @@ The following activity diagram summarizes what happens when the librarian execut
 The find command is designed such that the matches within `BookList` and `UniquePersonList` are easily found and listed onto the UI of BookFace. 
 
 
---------------------------------------------------------------------------------------------------------------------
+### List feature
 
-### [Proposed] Loan
+#### Implementation
 
+The list mechanism is facilitated by `LogicManager`. During its process of parsing the command by `PrimaryParser`,
+a new `ListCommandParser` will be created to internally parse the argument of the command
+through `ListSubcommand`.
 
-### [Proposed] Return
+Currently, there are 2 possible `Command` classes that can be returned from `ListSubcommand`, and 
+they are created in respect to the subcommand that is parsed:
+* `ListBooksCommand` for `Book` upon the command `list books`
+* `ListUsersCommand` for `Person` upon the command `list users`
 
+Given below is an example usage scenario and how the list mechanism behaves
+at each step.
+
+Step 1. The librarian has executed a `FindUserCommand`, which filtered certain user records to display in BookFace. The librarian 
+then wants to return the display state to show all user records by entering the `list users` command, which attempts to list all users
+in BookFace.
+
+Step 2. `LogicManager` executes the command.
+
+Step 3. `PrimaryParser` then creates a new `ListCommandParser` object, which internally creates a `ListSubcommand` object 
+to parse the second part of the command (which is `users`).
+
+Step 4. `ListSubcommand` parses the subcommand as an argument and creates a new `ListUsersCommand`.
+
+Step 5. `LogicManager` executes `ListUsersCommand`, which then calls `Model#updateFilteredPersonList()` with a predicate to show all users.
+
+The following sequence diagram shows how the list operation works
+(following the steps mentioned above):
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand` 
+and `ListUsersCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches 
+the end of diagram.</div>
+
+The following activity diagram summarizes what happens when a user executes a list command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+### Loan feature
+
+#### Implementation
+
+The loan mechanism is facilitated by `LoanCommandParser` and `LoanCommand`. It implements the following operation:
+* `BookFace#loan()` — Loans to the specified user a specified book.
+
+This operation is exposed in the `Model` interface as `Model#loan()`.
+
+Given below is an example usage scenario and how the loan mechanism behaves at each step.
+
+Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
+executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
+in the book list. 
+
+Step 2. `LogicManager` executes the librarian's `loan 2 2` command.
+
+Step 3. `PrimaryParser` then creates a new `LoanCommandParser` after parsing `loan 2 2`.
+
+Step 4. `LoanCommandParser` parses `2 2` and creates a new `LoanCommand`.
+
+Step 5. `LogicManager` executes `LoanCommand`.
+
+Step 6. `LoanCommand` calls `Model#Loan()` and loans the 2nd user in the user list the 2nd book
+in the book list.
+
+Step 7. `LoanCommand` creates a new `CommandResult` and returns the result to `LogicManager`.
+
+The following sequence diagram shows how the loan operation works:
+
+![LoanSequenceDiagram](images/LoanSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
+
+The following activity diagram summarizes what happens when the librarian executes a loan command:
+
+![LoanActivityDiagram](images/LoanActivityDiagram.png)
+
+#### Design considerations:
+The loan command is designed such that the `BookList` and `UniquePersonList`
+are updated sequentially rather than concurrently, such that there are 
+separate loan commands in both `BookList` and `UniquePersonList` that are called 
+by `BookFace` that updates the `BookList` and `UniquePersonList` respectively.
+
+It may be possible to make it such that only one loan command is ever called,
+but it may be easier to keep it separate to reduce access of `BookList`
+to `UniquePersonList` and vice versa, resulting in less coupling and ease of introducing changes
+in the future.
+
+One issue is that the `UniquePersonList` and `BookList` do not refresh their UI
+automatically and we resorted to getting the index of each list to set their
+internal `ObservableLists` to 'refresh' their UI. 
+
+### Return feature
+
+#### Implementation
+
+Similarly to the loan mechanism, the return mechanism is facilitated by `ReturnCommandParser` and `ReturnCommand`. It implements the following operation:
+* `BookFace#returnLoanedBook()` — returns a loaned book.
+
+This operation is exposed in the `Model` interface as `Model#returnLoanedBook()`.
+
+Given below is an example usage scenario and how the return mechanism behaves at each step.
+
+Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
+executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
+in the book list. The librarian now wants to return the 2nd book that was previously loaned out. 
+The librarian enters `return 2` command.
+
+Step 2. `LogicManager` executes the librarian's `return 2` command.
+
+Step 3. `PrimaryParser` then creates a new `ReturnCommandParser` after parsing `return 2`.
+
+Step 4. `ReturnCommandParser` parses `2` and creates a new `ReturnCommand`.
+
+Step 5. `LogicManager` executes `ReturnCommand`.
+
+Step 6. `ReturnCommand` calls `Model#returnLoanedBook()` and returns the 2nd book in the book list.
+
+Step 7. `ReturnCommand` creates a new `CommandResult` and returns the result to `LogicManager`.
+
+The following sequence diagram shows how the return operation works:
+
+![ReturnSequenceDiagram](images/ReturnSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
+
+The following activity diagram summarizes what happens when a user executes a return command:
+
+![ReturnActivityDiagram](images/ReturnActivityDiagram.png)
+
+#### Design considerations:
+Similar to Design considerations for the loan command.
 
 ### \[Proposed\] Undo/redo feature
 
