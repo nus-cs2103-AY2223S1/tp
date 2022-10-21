@@ -154,6 +154,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Add record feature
+
+#### Patient Records
+OmniHealth manages patient records generated during patient consultations.  Each `Patient` holds a list of 
+medical records that the user is able to modify and edit. The `Record` class encapsulates a medical
+record that comprises a date, medical information and medicine prescribed (if any).
+
+#### Implementation
+
+Following the command execution pathway, the implementation of adding records uses the exposed `Model#addRecord(Record)`
+operation in the `Model` API which operates through a `DisplayedPerson` which encapsulates the current patient whose list of records is being 
+displayed to the user. Record operations are performed through the displayed person, for example,`DisplayedPerson#addRecord(Record)`.
+The current patient can be set by `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+The parsing of user input is facilitated by `AddRecordCommandParser`. `AddRecordCommandParser#parse()` parses user 
+input string to return a `AddRecordCommand` object with a `Record` derived from the given inputs.
+
+Given below is an example usage scenario.
+
+Precondition. User should be current viewing a specific patient's record list using the `rlist` command. The current
+patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+Execution. User executes `radd d/01-02-2013 1230 r/Patient developed fever. m/Paracetamol` to add a new record containing 
+the date/time of `01-02-2013 1230`, medication remark of `Patient developed fever.` and medication prescription of
+`Paracetamol` into the current displayed person's record list. The `radd` command calls `Model#addRecord(Record)` 
+which performs the adding of records to the `DisplayedPerson` held by the `Model`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The medication field is an optional input
+</div>
+
+The following sequence diagram shows how the add record operation works:
+
+![AddRecordCommand](images/AddRecordCommandSequenceDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: Model-Person Interaction:**
+
+* **Alternative 1 (current choice):** Use DisplayedPerson as a wrapper class.
+    * Pros: Maintain immutability within Person and Model classes, Easy to set current person whose record list is being
+displayed
+    * Cons: Longer command execution pathway as DisplayedPerson acts as an intermediary class between Model and Person.
+  
+* **Alternative 2:** Allow model to directly interact with Person's record list.
+  * Pros: Easy to implement, simpler command execution pathway.
+  * Cons: Potentially violates OOP.
+  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -242,7 +291,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation: 
 The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
-which extends `Predicate` and `AddressbookParser` repectively. 
+which extends `Predicate` and `AddressbookParser` respectively. 
 
 `FindRecordCommandParser` implements the following operations:
 * `FindRecordCommandParser#parse()` - Parses the input arguments by storing each prefix and its respective
@@ -278,6 +327,75 @@ The Sequence Diagram below shows how the list record operation works:
 Example usage scenario:
 - Precondition: The user should be viewing the patient list by using the `list` command.
 - Execution: The user executes `rlist 1` to list the records of the 1st patient in the displayed patient list.
+
+### \[Implemented\] Clear Records
+
+The clear record command `rclear` allows the application to clear all the existing records in the current active record
+list.
+
+#### Implementation:
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `rlist INDEX` command to show the record list of a specified patient. 
+
+**Step 3:** The user executes the `rclear` command to clear all existing records in the record list.
+
+### \[Implemented\] Add appointment
+
+The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
+reference for record keeping that the user is able to edit and clear.
+
+#### Implementation:
+The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
+
+`AddAppointmentParser` implements the following operations:
+* `AddAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as 
+an `ArgumentMultimap.`
+
+`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `appt INDEX d/ dd-MM-yyyy` command in the CLI.
+
+**Step 3:** An appointment will be assigned to the patient specified with the index input.
+
+### \[Implemented\] Clear appointment
+
+#### Implementation:
+The add appointment mechanism is facilitated by `ClearAppointmentCommandParser`  which extends `AddressbookParser`.
+
+`ClearAppointmentParser` implements the following operations:
+* `ClearAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as
+  an `ArgumentMultimap.`
+
+`ClearAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `apptcl INDEX ` command in the CLI.
+
+**Step 3:** The patient's appointment(if any) will be cleared. 
+
+###\[Proposed\] Upcoming appointment tracker
+
+The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
+
+####Proposed Implementation
+The proposed implementation is facilitated by `AppointmentWindow`. It extends `UiPart<Stage>` with a new window.
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** A additional window appears, showing the current upcoming appointments.
 
 
 --------------------------------------------------------------------------------------------------------------------

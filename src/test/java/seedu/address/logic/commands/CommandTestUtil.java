@@ -49,6 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_RECORD_DATA = "fever";
     public static final String VALID_RECORD_DATA_2 = "abdominal pain";
     public static final String VALID_RECORD_MEDICATION = "Paracetamol 250mg";
+    public static final String VALID_APPOINTMENT_DATE_AMY = "01-01-2023 1200";
+    public static final String VALID_APPOINTMENT_DATE_BOB = "02-02-2023 1300";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -64,6 +66,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String RECORD_DATE_DESC = " " + PREFIX_DATE + VALID_RECORD_DATE;
     public static final String RECORD_DATA_DESC = " " + PREFIX_RECORD + VALID_RECORD_DATA;
+    public static final String APPOINTMENT_DATE_AMY = " " + PREFIX_DATE + VALID_APPOINTMENT_DATE_AMY;
+    public static final String APPOINTMENT_DATE_BOB = " " + PREFIX_DATE + VALID_APPOINTMENT_DATE_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_BIRTHDATE_DESC = " " + PREFIX_BIRTHDATE + "99-99-99"; // Incorrect date format
@@ -73,6 +77,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_RECORD_DATE_DESC = " " + PREFIX_DATE + "99-99-99"; // Incorrect date format
     public static final String INVALID_RECORD_DATA_DESC = " " + PREFIX_RECORD + " "; // Cannot be blank
+    public static final String INVALID_APPOINTMENT_DATE = "" + PREFIX_DATE + "02-02-2023 3000"; // incorrect time format
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
