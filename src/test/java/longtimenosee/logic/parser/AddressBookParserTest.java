@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import longtimenosee.logic.commands.AddCommand;
 import longtimenosee.logic.commands.ClearCommand;
 import longtimenosee.logic.commands.DeleteCommand;
-import longtimenosee.logic.commands.EditCommand;
-import longtimenosee.logic.commands.EditCommand.EditPersonDescriptor;
+// import longtimenosee.logic.commands.EditCommand;
+// import longtimenosee.logic.commands.EditCommand.EditPersonDescriptor;
 import longtimenosee.logic.commands.ExitCommand;
 import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.commands.HelpCommand;
@@ -25,7 +25,7 @@ import longtimenosee.logic.commands.ListCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
-import longtimenosee.testutil.EditPersonDescriptorBuilder;
+// import longtimenosee.testutil.EditPersonDescriptorBuilder;
 import longtimenosee.testutil.PersonBuilder;
 import longtimenosee.testutil.PersonUtil;
 
@@ -53,7 +53,7 @@ public class AddressBookParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
-    /**
+    /*
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
