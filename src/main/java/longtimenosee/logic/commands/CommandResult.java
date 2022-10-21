@@ -53,7 +53,7 @@ public class CommandResult {
      */
 
     public CommandResult(String feedbackToUser, boolean showPolicy, boolean showClients, boolean showEvent) {
-        this(feedbackToUser, false, false, showPolicy, showClients, showEvent, showIncome);
+        this(feedbackToUser, false, false, showPolicy, showClients, showEvent, false);
 
     }
 
@@ -106,7 +106,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showPolicy, showClients, showEvent);
+        return Objects.hash(feedbackToUser, showHelp, exit, showPolicy, showClients, showEvent, showIncome);
     }
 
 }

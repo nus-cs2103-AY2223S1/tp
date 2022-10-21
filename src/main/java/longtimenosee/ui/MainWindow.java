@@ -153,6 +153,7 @@ public class MainWindow extends UiPart<Stage> {
 
         case "event":
             personListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+            break;
 
         case "income":
             personListPanelPlaceholder.getChildren().add(incomeChart.lineChart);

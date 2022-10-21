@@ -44,7 +44,8 @@ public class DeleteCommand extends Command {
 
         //Additional function to purge eventList
         model.removeEventsUnderPerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), false, true, false, false);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
+                false, true, false);
     }
 
     @Override
