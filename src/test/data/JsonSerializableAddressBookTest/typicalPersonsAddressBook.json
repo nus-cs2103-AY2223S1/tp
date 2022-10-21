@@ -5,6 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "github" : "alice-pauline",
     "tagged" : [ "friends" ],
     "currModules" : [ "CS2103T" ],
     "prevModules" : [ "CS2040S" ],
@@ -14,6 +15,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "github" : "BensonMeier",
     "tagged" : [ "owesMoney", "friends" ],
     "currModules" : [ "CS2103T" ],
     "prevModules" : [ "CS2040S" ],
@@ -23,30 +25,35 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "github" : "Kurz-Carl",
     "tagged": [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "github" : "danMeier",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "github" : "elleeee",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "github" : "fiona-kunz",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "github" : "George-the-b3st",
     "tagged" : [ ]
   } ],
   "jsonAdaptedUser" : {
@@ -54,6 +61,7 @@
     "phone" : "empty",
     "email" : "",
     "address" : "",
+    "github" : "",
     "currModules" : [ ],
     "prevModules" : [ ],
     "planModules" : [ ],
