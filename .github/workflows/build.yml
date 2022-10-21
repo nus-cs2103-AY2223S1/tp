@@ -34,9 +34,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: Auto-created release from ${{ github.ref }}
+          tag_name: ${{ steps.time.outputs.NOW }}
+          release_name: Auto-release ${{ github.event.repository.updated_at}}
+          body: 'Auto-created release from branch "${{ github.ref_name }}"'
       - name: Upload JAR file to GitHub releases
         uses: actions/upload-release-asset@v1
         env:
