@@ -1,9 +1,15 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import seedu.address.model.question.ImportantTag;
 import seedu.address.model.question.Question;
 
 /**
@@ -29,7 +35,8 @@ public class QuestionCard extends UiPart<Region> {
     private Label description;
     @FXML
     private Label id;
-
+    @FXML
+    private Label importantTag;
 
     /**
      * Creates a {@code QuestionCode} with the given {@code Question} and index to display.
@@ -39,7 +46,23 @@ public class QuestionCard extends UiPart<Region> {
         this.question = question;
         id.setText(displayedIndex + ". ");
         description.setText(question.getDescription().descriptionString);
+        if (question.isImportant()) {
+            applyStyleToImportantTag();
+        } else {
+            importantTag.setVisible(false);
+        }
     }
+
+
+    private void applyStyleToImportantTag() {
+        importantTag.setText(ImportantTag.IMPORTANT);
+
+        //to be transferred to DarkTheme.css if possible
+        importantTag.setBackground(new Background(
+                new BackgroundFill(Color.rgb(241, 88, 88), new CornerRadii(2), Insets.EMPTY)));
+        importantTag.setPadding(new Insets(1, 5, 1, 5));
+    }
+
 
     @Override
     public boolean equals(Object other) {

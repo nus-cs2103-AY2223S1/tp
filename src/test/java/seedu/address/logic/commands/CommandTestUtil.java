@@ -19,7 +19,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.StuNameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -43,6 +46,7 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_BOB = "@Bob";
     public static final String VALID_RESPONSE_AMY = "2";
     public static final String VALID_RESPONSE_BOB = "3";
+    public static final String VALID_ATTENDANCE_AMY = "1";
     public static final String VALID_ATTENDANCE_BOB = "2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -68,6 +72,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditStuCommand.EditStudentDescriptor DESC_STU_AMY;
+    public static final EditStuCommand.EditStudentDescriptor DESC_STU_BOB;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -75,6 +82,15 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_STU_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withTelegram(VALID_TELEGRAM_AMY).withEmail(VALID_EMAIL_AMY)
+                .withAttendance(VALID_ATTENDANCE_AMY).build();
+        DESC_STU_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
+                .withAttendance(VALID_ATTENDANCE_BOB).build();
     }
 
     /**
@@ -131,6 +147,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
+     * {@code model}'s student list.
+     */
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
+        final String[] splitName = student.getName().fullName.split("\\s+");
+        model.updateFilteredStudentList(new StuNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredStudentList().size());
     }
 
 }
