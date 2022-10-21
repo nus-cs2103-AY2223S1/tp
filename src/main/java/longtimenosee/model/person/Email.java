@@ -15,6 +15,7 @@ public class Email {
 
 
     public static final Comparator<Person> EMAIL_COMPARATOR = new Comparator<Person>() {
+        @Override
         public int compare(Person p1, Person p2) {
             int platformCompare = p1.getEmail().getPlatform().compareTo(p2.getEmail().getPlatform());
             int nameCompare = p1.getEmail().getEmailName().toLowerCase()

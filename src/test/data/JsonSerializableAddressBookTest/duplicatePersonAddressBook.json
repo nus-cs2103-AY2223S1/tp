@@ -4,11 +4,17 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "birthday": "2020-05-05",
+    "income": "100.00",
+    "riskAppetite": "H"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "birthday": "2020-05-05",
+    "income": "100.00",
+    "riskAppetite": "H"
   } ]
 }

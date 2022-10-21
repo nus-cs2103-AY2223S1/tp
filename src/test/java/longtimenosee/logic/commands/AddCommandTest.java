@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,12 @@ import longtimenosee.model.AddressBook;
 import longtimenosee.model.Model;
 import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.ReadOnlyUserPrefs;
-import longtimenosee.model.client.Client;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.testutil.PersonBuilder;
+
 
 public class AddCommandTest {
 
@@ -78,7 +81,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -86,6 +89,9 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public FinancialAdvisorIncome getIncome() {
+            return new FinancialAdvisorIncome();
+        }
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -111,11 +117,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void addClient(Client client) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,24 +141,9 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public boolean hasClient(Client client) {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void deleteClient(Client target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setClient(Client target, Client editedClient) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
@@ -167,17 +153,6 @@ public class AddCommandTest {
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public ObservableList<Client> getFilteredClientList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredClientList(Predicate<Client> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
@@ -210,6 +185,50 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPolicyList(Predicate<Policy> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void addEvent(Event toAdd, String personName) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasEventOverlap(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public List<Event> listEventsOverlap(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasEvent(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void deleteEvent(Event toDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public List<Event> listEventsSameDay(Event toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        public List<Event> calendarView() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void removeEventsUnderPerson(Person personToDelete) {
             throw new AssertionError("This method should not be called.");
         }
     }

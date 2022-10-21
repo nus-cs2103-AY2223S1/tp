@@ -8,8 +8,9 @@ import longtimenosee.logic.commands.CommandResult;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.ReadOnlyAddressBook;
-import longtimenosee.model.client.Client;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 
 /**
@@ -35,8 +36,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered list of Clients */
-    ObservableList<Client> getFilteredClientList();
 
     /** Returns an unmodifiable view of the filtered list of policies */
     ObservableList<Policy> getFilteredPolicyList();
@@ -45,6 +44,7 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+    FinancialAdvisorIncome getIncome();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -56,4 +56,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    ObservableList<Event> getFilteredEventList();
 }

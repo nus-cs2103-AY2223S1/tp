@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import longtimenosee.model.policy.AssignedPolicy;
 import longtimenosee.model.tag.Tag;
 
 /**
@@ -37,30 +38,65 @@ public class Person {
     // indicate pinned client
     private Boolean pin = false;
 
+    private Set<AssignedPolicy> assignedPolicies = new HashSet<>();
+    private Birthday birthday;
+    //private PersonNotes notes; //TODO: Just a string
+    private Income income;
+    private RiskAppetite ra;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Birthday birthday, Income income, RiskAppetite ra) {
+        requireAllNonNull(name, phone, email, address, tags, birthday, income, ra);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.timeStamp = LocalDateTime.now();
         this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.income = income;
+        this.ra = ra;
     }
     /**
      * Constructor for person with pin.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean pin) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Birthday birthday, Income income, RiskAppetite ra,
+                  boolean pin) {
+        requireAllNonNull(name, phone, email, address, tags, birthday, income, ra);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.timeStamp = LocalDateTime.now();
         this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.income = income;
+        this.ra = ra;
         this.pin = pin;
+    }
+
+    /**
+     * Constructor for person with assigned policies.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Birthday birthday, Income income, RiskAppetite ra,
+                  Set<AssignedPolicy> policies, boolean pin) {
+        requireAllNonNull(name, phone, email, address, tags, birthday, income, ra);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.timeStamp = LocalDateTime.now();
+        this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.income = income;
+        this.ra = ra;
+        this.pin = pin;
+        this.assignedPolicies = policies;
     }
 
     public Name getName() {
@@ -84,6 +120,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable policy set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<AssignedPolicy> getAssignedPolicies() {
+        return Collections.unmodifiableSet(assignedPolicies);
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -97,6 +141,22 @@ public class Person {
 
     public boolean getPin() {
         return this.pin;
+    }
+
+    public boolean addPolicy(AssignedPolicy assignedPolicy) {
+        return assignedPolicies.add(assignedPolicy);
+    }
+
+    public Birthday getBirthday() {
+        return this.birthday;
+    }
+
+    public RiskAppetite getRiskAppetite() {
+        return this.ra;
+    }
+
+    public Income getIncome() {
+        return this.income;
     }
 
     /**
@@ -131,13 +191,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getRiskAppetite().equals(getRiskAppetite())
+                && otherPerson.getIncome().equals(getIncome());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, birthday, income, ra);
     }
 
     @Override
@@ -149,7 +211,13 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append(", Birthday: ")
+                .append(getBirthday())
+                .append(", Income: ")
+                .append(getIncome())
+                .append(", RiskLevel: ")
+                .append(getRiskAppetite());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

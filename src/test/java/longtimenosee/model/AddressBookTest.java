@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import longtimenosee.model.client.Client;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.exceptions.DuplicatePersonException;
 import longtimenosee.model.policy.Policy;
@@ -52,9 +52,8 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        List<Client> newClients = new ArrayList<>();
         List<Policy> newPolicies = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(newPersons, newClients, newPolicies);
+        AddressBookStub newData = new AddressBookStub(newPersons, newPolicies);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -93,13 +92,13 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
 
-        private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Policy> policies = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Client> clients, Collection<Policy> policies) {
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
+
+        AddressBookStub(Collection<Person> persons, Collection<Policy> policies) {
             this.persons.setAll(persons);
-            this.clients.setAll(clients);
             this.policies.setAll(policies);
         }
 
@@ -108,14 +107,15 @@ public class AddressBookTest {
             return persons;
         }
 
-        @Override
-        public ObservableList<Client> getClientList() {
-            return clients;
-        }
 
         @Override
         public ObservableList<Policy> getPolicyList() {
             return policies;
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            return events;
         }
     }
 

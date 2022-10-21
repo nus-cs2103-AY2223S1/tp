@@ -9,16 +9,21 @@ import java.util.Set;
 import longtimenosee.commons.core.index.Index;
 import longtimenosee.commons.util.StringUtil;
 import longtimenosee.logic.parser.exceptions.ParseException;
-import longtimenosee.model.client.Birthday;
-import longtimenosee.model.client.Income;
-import longtimenosee.model.client.RiskAppetite;
+import longtimenosee.model.event.Date;
+import longtimenosee.model.event.Description;
+import longtimenosee.model.event.Duration;
+import longtimenosee.model.event.PersonName;
 import longtimenosee.model.person.Address;
+import longtimenosee.model.person.Birthday;
 import longtimenosee.model.person.Email;
+import longtimenosee.model.person.Income;
 import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Phone;
+import longtimenosee.model.person.RiskAppetite;
 import longtimenosee.model.policy.Commission;
 import longtimenosee.model.policy.Company;
 import longtimenosee.model.policy.Coverage;
+import longtimenosee.model.policy.PolicyDate;
 import longtimenosee.model.policy.Title;
 import longtimenosee.model.tag.Tag;
 
@@ -192,7 +197,7 @@ public class ParserUtil {
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
         String trimmedCompanyTag = company.trim();
-        if (!Title.isValidTitle(trimmedCompanyTag)) {
+        if (!Company.isValidCompany(trimmedCompanyTag)) {
             throw new ParseException(Company.MESSAGE_FORMAT_CONSTRAINTS);
         }
         return new Company(trimmedCompanyTag);
@@ -237,5 +242,85 @@ public class ParserUtil {
         }
         return coverageSet;
     }
+    // Parse functions related to Event //
+    /**
+     * Parses a {@code String startTime, endTime} into a {@code Duration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code startTime, endTime} is invalid.
+     */
+    public static Duration parseDuration(String startTime, String endTime) throws ParseException {
+        requireNonNull(startTime);
+        requireNonNull(endTime);
+        String strippedStartTime = startTime.strip();
+        String strippedEndTime = endTime.strip();
+        if (!Duration.isValidTime(strippedStartTime) || !Duration
+                .isValidTime((strippedEndTime))) {
+            throw new ParseException(Duration.FORMAT_CONSTRAINTS);
+        }
+        String finalInput = strippedStartTime + "__" + strippedEndTime;
+        if (!Duration.isValidStartAndEnd(finalInput)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+        }
+        return new Duration(finalInput);
+    }
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String strippedDate = date.strip();
+        if (!Date.isValidFormat(strippedDate)) {
+            throw new ParseException(Date.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new Date(strippedDate);
+    }
+    /**
+     * Parses a {@code String personName} into a {@code PersonName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code personName} is invalid.
+     */
 
+    public static PersonName parsePersonName(String personName) throws ParseException {
+        requireNonNull(personName);
+        String strippedName = personName.strip();
+        if (!PersonName.isValidPersonName(strippedName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
+        }
+        return new PersonName(strippedName);
+    }
+
+    /**
+     * Parses {@code String policyDate} into a {@code PolicyDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static PolicyDate parsePolicyDate(String policyDate) throws ParseException {
+        requireNonNull(policyDate);
+        String trimmedPolicyDate = policyDate.trim();
+        if (!PolicyDate.isValidFormat(trimmedPolicyDate)) {
+            throw new ParseException(PolicyDate.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new PolicyDate(policyDate);
+    }
+
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String strippedDescription = description.strip();
+        if (!Description.isValidDescription(strippedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(strippedDescription);
+    }
 }

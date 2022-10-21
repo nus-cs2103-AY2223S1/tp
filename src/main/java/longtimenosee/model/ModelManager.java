@@ -5,6 +5,7 @@ import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,8 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import longtimenosee.commons.core.GuiSettings;
 import longtimenosee.commons.core.LogsCenter;
-import longtimenosee.model.client.Client;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.person.exceptions.PersonNotFoundException;
+import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 
 /**
@@ -24,8 +27,10 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Client> filteredClients;
     private final FilteredList<Policy> filteredPolicies;
+    private final FinancialAdvisorIncome income;
+
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,8 +43,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredPolicies = new FilteredList<>(this.addressBook.getPolicyList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        this.income = new FinancialAdvisorIncome();
 
     }
 
@@ -116,40 +122,10 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
-    //=========== Client stuff =============================================================
-    @Override
-    public boolean hasClient(Client client) {
-        requireNonNull(client);
-        return addressBook.hasClient(client);
-    }
-    @Override
-    public void addClient(Client client) {
-        addressBook.addClient(client);
-        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-    }
 
-    @Override
-    public void setClient(Client target, Client editedClient) {
-        requireAllNonNull(target, editedClient);
-        addressBook.setClient(target, editedClient);
+    public FinancialAdvisorIncome getIncome() {
+        return income;
     }
-    @Override
-    public void deleteClient(Client client) {
-        requireNonNull(client);
-        addressBook.removeClient(client);
-    }
-
-    @Override
-    public ObservableList<Client> getFilteredClientList() {
-        return filteredClients;
-    }
-
-    @Override
-    public void updateFilteredClientList(Predicate<Client> predicate) {
-        requireNonNull(predicate);
-        filteredClients.setPredicate(predicate);
-    }
-
 
     @Override
     public void sort(Comparator<Person> comparator) {
@@ -192,7 +168,6 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredClients.equals(other.filteredClients)
                 && filteredPolicies.equals(other.filteredPolicies);
     }
 
@@ -231,4 +206,68 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPolicies.setPredicate(predicate);
     }
+    //=========== Event stuff =============================================================
+    @Override
+    public void addEvent(Event e, String personName) throws PersonNotFoundException {
+        if (!addressBook.hasPersonByName(personName)) {
+            throw new PersonNotFoundException();
+        }
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        addressBook.addEvent(e);
+    }
+
+    /**
+     * Updates the filtered event list
+     * @param predicate predicate to filter the list by
+     */
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+    @Override
+    public void removeEventsUnderPerson(Person personToDelete) {
+        requireNonNull(personToDelete);
+        addressBook.removeEventsUnderPerson(personToDelete);
+    }
+
+    @Override
+    public boolean hasEventOverlap(Event toAdd) {
+        return addressBook.checkOverlapEvent(toAdd);
+    }
+    @Override
+    public List<Event> listEventsOverlap(Event toAdd) {
+        return addressBook.listEventOverlap(toAdd);
+    }
+
+    @Override
+    public boolean hasEvent(Event toAdd) {
+        requireNonNull(toAdd);
+        return addressBook.hasEvent(toAdd);
+    }
+
+    @Override
+    public void deleteEvent(Event e) {
+        requireNonNull(e);
+        addressBook.removeEvent(e);
+    }
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    /**
+     * @param toAdd
+     * @return
+     */
+    @Override
+    public List<Event> listEventsSameDay(Event toAdd) {
+        requireNonNull(toAdd);
+        return addressBook.listEventsSameDay(toAdd);
+    }
+
+    @Override
+    public List<Event> calendarView() {
+        return addressBook.calendarView();
+    }
+
 }

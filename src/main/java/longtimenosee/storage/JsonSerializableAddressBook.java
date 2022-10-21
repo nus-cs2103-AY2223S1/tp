@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import longtimenosee.commons.exceptions.IllegalValueException;
 import longtimenosee.model.AddressBook;
 import longtimenosee.model.ReadOnlyAddressBook;
-import longtimenosee.model.client.Client;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 
@@ -22,12 +22,14 @@ import longtimenosee.model.policy.Policy;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate clients(s).";
     public static final String MESSAGE_DUPLICATE_POLICY = "Policies list contains duplicate policy(s).";
 
+    public static final String MESSAGE_DUPLICATE_EVENT = "Event list contains duplicate event(s).";
+
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
-    private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
+
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -37,6 +39,7 @@ class JsonSerializableAddressBook {
         this.persons.addAll(persons);
     }
 
+
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
@@ -44,8 +47,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
         policies.addAll(source.getPolicyList().stream().map(JsonAdaptedPolicy::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -62,21 +65,19 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
-
-        for (JsonAdaptedClient jsonAdaptedClient : clients) {
-            Client client = jsonAdaptedClient.toModelType();
-            if (addressBook.hasClient(client)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
-            }
-            addressBook.addClient(client);
-        }
-
         for (JsonAdaptedPolicy jsonAdaptedPolicy : policies) {
             Policy policy = jsonAdaptedPolicy.toModelType();
             if (addressBook.hasPolicy(policy)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_POLICY);
             }
             addressBook.addPolicy(policy);
+        }
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (addressBook.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+            }
+            addressBook.addEvent(event);
         }
 
         return addressBook;

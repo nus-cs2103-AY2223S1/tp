@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User executes command;
+
+:AddressBookParser parses command;
+
+if () then ([command is valid])
+    :FindXYZCommandParser parses command;
+    if () then ([command is valid])
+        :FindXYZCommand executes command;
+        :Model updates the list of contacts;
+    else ([else])
+    endif
+else ([else])
+endif
+stop
+@enduml

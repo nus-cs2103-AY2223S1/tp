@@ -1,7 +1,7 @@
 package longtimenosee.model;
 
 import javafx.collections.ObservableList;
-import longtimenosee.model.client.Client;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 
@@ -16,7 +16,7 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
-    ObservableList<Client> getClientList();
-
     ObservableList<Policy> getPolicyList();
+
+    ObservableList<Event> getEventList();
 }
