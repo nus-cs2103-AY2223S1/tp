@@ -32,15 +32,15 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withModuleCode("ma2001").build();
+            .withEmail("heinz@example.com").withModuleCode("MA2001").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withModuleCode("cs101").withTags("friends").build();
+            .withEmail("cornelia@example.com").withModuleCode("CS1101s").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withModuleCode("cs1010s").build();
+            .withEmail("werner@example.com").withModuleCode("CS1010s").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withModuleCode("gea1000").build();
+            .withEmail("lydia@example.com").withModuleCode("GEA1000").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withModuleCode("ac5001").build();
+            .withEmail("anna@example.com").withModuleCode("MA1521").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
