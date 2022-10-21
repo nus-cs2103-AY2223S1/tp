@@ -63,9 +63,15 @@ public class DetailPanel extends MainPanel {
         Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
         profileImageContainer.setFill(new ImagePattern(placeholder));
 
-        // These are mock data, to be implemented in future
-        roleLabel.setText("DevOps Engineer");
-        timezoneLabel.setText("Local Time: 10.00 am (UTC+8)");
+        roleLabel.setVisible(person.getRole() != null);
+        if (person.getRole() != null) {
+            roleLabel.setText(person.getRole().toString());
+        }
+
+        timezoneLabel.setVisible(person.getTimezone() != null);
+        if (person.getTimezone() != null) {
+            timezoneLabel.setText("Local Time: " + person.getTimezone().toString());
+        }
 
 
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
