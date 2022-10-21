@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.classify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.classify.logic.commands.CommandTestUtil.VALID_EXAM_1;
 import static seedu.classify.testutil.Assert.assertThrows;
 import static seedu.classify.testutil.TypicalStudents.ALICE;
 import static seedu.classify.testutil.TypicalStudents.getTypicalStudentRecord;
@@ -46,7 +46,7 @@ public class StudentRecordTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withExams(VALID_EXAM_1)
                 .build();
         List<Student> newPersons = Arrays.asList(ALICE, editedAlice);
         StudentRecordStub newData = new StudentRecordStub(newPersons);
@@ -73,7 +73,7 @@ public class StudentRecordTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInStudentRecord_returnsTrue() {
         studentRecord.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withExams(VALID_EXAM_1)
                 .build();
         assertTrue(studentRecord.hasStudent(editedAlice));
     }

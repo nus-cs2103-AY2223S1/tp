@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.classify.logic.commands.CommandTestUtil.VALID_EXAM_1;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_PARENT_NAME_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
-import static seedu.classify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.classify.testutil.Assert.assertThrows;
 import static seedu.classify.testutil.TypicalStudents.ALICE;
 import static seedu.classify.testutil.TypicalStudents.BOB;
@@ -23,7 +23,7 @@ public class StudentTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Student student = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> student.getExams().remove(0));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class StudentTest {
                 .withParentName(VALID_PARENT_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withExams(VALID_EXAM_1).build();
         assertTrue(ALICE.hasSameNameOrId(editedAlice));
 
         // different name, different id, all other attributes same -> returns false
@@ -96,7 +96,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new StudentBuilder(ALICE).withExams(VALID_EXAM_1).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

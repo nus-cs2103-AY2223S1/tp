@@ -5,6 +5,7 @@
     "className" : "1A",
     "parentName": "Joe Muster",
     "phone": "91234567",
-    "email": "testing@example.com"
+    "email": "testing@example.com",
+    "exams" : [ ]
   }]
 }

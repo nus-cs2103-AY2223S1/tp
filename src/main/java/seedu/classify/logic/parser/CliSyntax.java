@@ -13,6 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PARENT_NAME = new Prefix("pn/");
     public static final Prefix PREFIX_PHONE = new Prefix("hp/");
     public static final Prefix PREFIX_STUDENT_NAME = new Prefix("nm/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_EXAM = new Prefix("exam/");
 
 }

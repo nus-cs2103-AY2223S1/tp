@@ -1,9 +1,15 @@
 package seedu.classify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 
 import seedu.classify.logic.commands.exceptions.CommandException;
-import seedu.classify.logic.parser.CliSyntax;
 import seedu.classify.model.Model;
 import seedu.classify.model.student.Student;
 
@@ -17,21 +23,21 @@ public class AddStudCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student into the record. "
             + "Parameters: "
-            + CliSyntax.PREFIX_STUDENT_NAME + "STUDENT NAME "
-            + CliSyntax.PREFIX_ID + "ID "
-            + CliSyntax.PREFIX_CLASS + "CLASS "
-            + "[" + CliSyntax.PREFIX_PARENT_NAME + "PARENT NAME] "
-            + "[" + CliSyntax.PREFIX_PHONE + "PARENT PHONE NUMBER] "
-            + "[" + CliSyntax.PREFIX_EMAIL + "PARENT EMAIL] "
-            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
+            + PREFIX_STUDENT_NAME + "STUDENT NAME "
+            + PREFIX_ID + "ID "
+            + PREFIX_CLASS + "CLASS "
+            + "[" + PREFIX_PARENT_NAME + "PARENT NAME] "
+            + "[" + PREFIX_PHONE + "PARENT PHONE NUMBER] "
+            + "[" + PREFIX_EMAIL + "PARENT EMAIL] "
+            + "[" + PREFIX_EXAM + "NAME SCORE]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_STUDENT_NAME + "John Doe "
-            + CliSyntax.PREFIX_ID + "928C "
-            + CliSyntax.PREFIX_CLASS + "1A "
-            + CliSyntax.PREFIX_PARENT_NAME + "Bob Doe "
-            + CliSyntax.PREFIX_PHONE + "98765432 "
-            + CliSyntax.PREFIX_EMAIL + "bobdoe@gmail.com "
-            + CliSyntax.PREFIX_TAG + "Allergy";
+            + PREFIX_STUDENT_NAME + "John Doe "
+            + PREFIX_ID + "928C "
+            + PREFIX_CLASS + "1A "
+            + PREFIX_PARENT_NAME + "Bob Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "bobdoe@gmail.com "
+            + PREFIX_EXAM + "CA1 50";
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the record";
 

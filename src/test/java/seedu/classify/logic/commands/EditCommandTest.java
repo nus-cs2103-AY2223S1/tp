@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.classify.logic.commands.CommandTestUtil.VALID_EXAM_1;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
-import static seedu.classify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.classify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.classify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.classify.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -36,7 +36,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Student editedPerson = new StudentBuilder().build();
+        Student editedPerson = new StudentBuilder().withExams("CA2 90", "SA1 60").build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -54,10 +54,10 @@ public class EditCommandTest {
 
         StudentBuilder personInList = new StudentBuilder(lastPerson);
         Student editedPerson = personInList.withStudentName(VALID_STUDENT_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withExams(VALID_EXAM_1).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withStudentName(VALID_STUDENT_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withExams(VALID_EXAM_1).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedPerson);

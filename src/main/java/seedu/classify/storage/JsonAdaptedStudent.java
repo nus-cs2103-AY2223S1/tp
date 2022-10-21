@@ -16,7 +16,7 @@ import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Tag;
+import seedu.classify.model.tag.Exam;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -31,7 +31,7 @@ class JsonAdaptedStudent {
     private final String parentName;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedExam> exams = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -41,15 +41,15 @@ class JsonAdaptedStudent {
                               @JsonProperty("className") String className,
                               @JsonProperty("parentName") String parentName,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("exams") List<JsonAdaptedExam> exams) {
         this.studentName = studentName;
         this.id = id;
         this.className = className;
         this.parentName = parentName;
         this.phone = phone;
         this.email = email;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (exams != null) {
+            this.exams.addAll(exams);
         }
     }
 
@@ -63,8 +63,8 @@ class JsonAdaptedStudent {
         parentName = source.getParentName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        exams.addAll(source.getExams().stream()
+                .map(JsonAdaptedExam::new)
                 .collect(Collectors.toList()));
     }
 
@@ -74,9 +74,9 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Tag> studentTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            studentTags.add(tag.toModelType());
+        final List<Exam> studentExams = new ArrayList<>();
+        for (JsonAdaptedExam exam : exams) {
+            studentExams.add(exam.toModelType());
         }
 
         if (studentName == null) {
@@ -101,36 +101,36 @@ class JsonAdaptedStudent {
         if (!Class.isValidClassName(className)) {
             throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
         }
-
         final Class modelClassName = new Class(className);
+
         if (parentName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(parentName)) {
+        if (!parentName.isEmpty() && !Name.isValidName(parentName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelParentName = new Name(parentName);
+        final Name modelParentName = parentName.isEmpty() ? new Name() : new Name(parentName);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        if (!phone.isEmpty() && !Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Phone modelPhone = phone.isEmpty() ? new Phone() : new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Email.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
+        if (!email.isEmpty() && !Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Email modelEmail = email.isEmpty() ? new Email() : new Email(email);
 
-        final Set<Tag> modelTags = new HashSet<>(studentTags);
+        final Set<Exam> modelExams = new HashSet<>(studentExams);
         return new Student(modelStudentName, modelId, modelClassName, modelParentName, modelPhone,
-                modelEmail, modelTags);
+                modelEmail, modelExams);
     }
 
 }

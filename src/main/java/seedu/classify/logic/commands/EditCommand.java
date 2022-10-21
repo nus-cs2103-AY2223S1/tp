@@ -1,8 +1,14 @@
 package seedu.classify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +18,6 @@ import seedu.classify.commons.core.Messages;
 import seedu.classify.commons.core.index.Index;
 import seedu.classify.commons.util.CollectionUtil;
 import seedu.classify.logic.commands.exceptions.CommandException;
-import seedu.classify.logic.parser.CliSyntax;
 import seedu.classify.model.Model;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
@@ -20,7 +25,7 @@ import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Tag;
+import seedu.classify.model.tag.Exam;
 
 /**
  * Edits the details of an existing student in the student record.
@@ -33,15 +38,15 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + CliSyntax.PREFIX_STUDENT_NAME + "STUDENT NAME] "
-            + "[" + CliSyntax.PREFIX_ID + "ID] "
-            + "[" + CliSyntax.PREFIX_CLASS + "CLASS] "
-            + "[" + CliSyntax.PREFIX_PARENT_NAME + "PARENT NAME] "
-            + "[" + CliSyntax.PREFIX_PHONE + "PARENT PHONE NUMBER] "
-            + "[" + CliSyntax.PREFIX_EMAIL + "PARENT EMAIL] "
-            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_STUDENT_NAME + "STUDENT NAME] "
+            + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_CLASS + "CLASS] "
+            + "[" + PREFIX_PARENT_NAME + "PARENT NAME] "
+            + "[" + PREFIX_PHONE + "PARENT PHONE NUMBER] "
+            + "[" + PREFIX_EMAIL + "PARENT EMAIL] "
+            + "[" + PREFIX_EXAM + "NAME SCORE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_PHONE + "91234567 ";
+            + PREFIX_PHONE + "91234567 ";
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student record.";
@@ -96,10 +101,11 @@ public class EditCommand extends Command {
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Set<Exam> updatedExams = editStudentDescriptor.getExams().orElse(new HashSet<>());
+        updatedExams.addAll(studentToEdit.getExams());
 
         return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,
-                updatedEmail, updatedTags);
+                updatedEmail, updatedExams);
     }
 
     @Override
@@ -131,7 +137,7 @@ public class EditCommand extends Command {
         private Name parentName;
         private Phone phone;
         private Email email;
-        private Set<Tag> tags;
+        private Set<Exam> exams;
 
         public EditStudentDescriptor() {}
 
@@ -146,14 +152,14 @@ public class EditCommand extends Command {
             setParentName(toCopy.parentName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setTags(toCopy.tags);
+            setExams(toCopy.exams);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentName, id, className, parentName, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(studentName, id, className, parentName, phone, email, exams);
         }
 
         public void setStudentName(Name studentName) {
@@ -205,20 +211,19 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code exams} to this object's {@code exams}.
+         * A defensive copy of {@code exams} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setExams(Set<Exam> exams) {
+            this.exams = (exams != null) ? new HashSet<>(exams) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns an exam set.
+         * Returns {@code Optional#empty()} if {@code exams} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Exam>> getExams() {
+            return (exams != null) ? Optional.of(exams) : Optional.empty();
         }
 
         @Override
@@ -242,7 +247,7 @@ public class EditCommand extends Command {
                     && getParentName().equals(e.getParentName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+                    && getExams().equals(e.getExams());
         }
     }
 }

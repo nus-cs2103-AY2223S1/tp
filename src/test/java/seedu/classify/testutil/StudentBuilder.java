@@ -9,7 +9,7 @@ import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Tag;
+import seedu.classify.model.tag.Exam;
 import seedu.classify.model.util.SampleDataUtil;
 
 /**
@@ -23,6 +23,8 @@ public class StudentBuilder {
     public static final String DEFAULT_PARENT_NAME = "John Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amybee@gmail.com";
+    public static final String DEFAULT_EXAM_1 = "CA2 90";
+    public static final String DEFAULT_EXAM_2 = "SA1 60";
 
     private Name studentName;
     private Id id;
@@ -30,7 +32,7 @@ public class StudentBuilder {
     private Name parentName;
     private Phone phone;
     private Email email;
-    private Set<Tag> tags;
+    private Set<Exam> exams;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -42,7 +44,7 @@ public class StudentBuilder {
         parentName = new Name(DEFAULT_PARENT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
+        exams = new HashSet<>();
     }
 
     /**
@@ -55,7 +57,7 @@ public class StudentBuilder {
         parentName = studentToCopy.getParentName();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
-        tags = new HashSet<>(studentToCopy.getTags());
+        exams = new HashSet<>(studentToCopy.getExams());
     }
 
     /**
@@ -79,10 +81,10 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
+     * Parses the {@code exams} into a {@code Set<Exam>} and set it to the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public StudentBuilder withExams(String ... exams) {
+        this.exams.addAll(SampleDataUtil.getExamSet(exams));
         return this;
     }
 
@@ -126,7 +128,7 @@ public class StudentBuilder {
         return this;
     }
     public Student build() {
-        return new Student(studentName, id, className, parentName, phone, email, tags);
+        return new Student(studentName, id, className, parentName, phone, email, exams);
     }
 
 }

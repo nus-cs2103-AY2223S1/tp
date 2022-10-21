@@ -14,7 +14,7 @@ import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
-import seedu.classify.model.tag.Tag;
+import seedu.classify.model.tag.Exam;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -112,29 +112,41 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String exam} into a {@code Exam}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code exam} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Exam parseExam(String exam) throws ParseException {
+        requireNonNull(exam);
+        String trimmedExam = exam.trim();
+        if (!Exam.isValidFormat(trimmedExam)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        String[] args = trimmedExam.split("\\s+");
+        String name = args[0];
+        String score = args[1];
+        if (!Exam.isValidName(name)) {
+            throw new ParseException(Exam.MESSAGE_NAME_CONSTRAINTS);
+        }
+        if (!Exam.isValidScore(score)) {
+            throw new ParseException(Exam.MESSAGE_SCORE_CONSTRAINTS);
+        }
+        return new Exam(trimmedExam);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> exams} into a {@code Set<Exam>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Exam> parseExams(Collection<String> exams) throws ParseException {
+        requireNonNull(exams);
+        Set<Exam> examSet = new HashSet<>();
+        for (String exam : exams) {
+            Exam temp = parseExam(exam);
+            examSet.remove(temp); // Removes duplicate exam and overrides it with the latest one.
+            examSet.add(temp);
         }
-        return tagSet;
+        return examSet;
     }
+
 }

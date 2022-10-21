@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.classify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.classify.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -40,8 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_CLASS_BOB = "20A70";
     public static final String VALID_EMAIL_AMY = "amy@gmail.com";
     public static final String VALID_EMAIL_BOB = "bob@gmail.com";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_EXAM_1 = "CA1 50";
+    public static final String VALID_EXAM_2 = "SA2 80";
 
     public static final String STUDENT_NAME_DESC_AMY = " " + PREFIX_STUDENT_NAME + VALID_STUDENT_NAME_AMY;
     public static final String STUDENT_NAME_DESC_BOB = " " + PREFIX_STUDENT_NAME + VALID_STUDENT_NAME_BOB;
@@ -55,8 +55,8 @@ public class CommandTestUtil {
     public static final String CLASS_DESC_BOB = " " + PREFIX_CLASS + VALID_CLASS_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_EXAM_1 = " " + PREFIX_EXAM + VALID_EXAM_1;
+    public static final String TAG_DESC_EXAM_2 = " " + PREFIX_EXAM + VALID_EXAM_2;
 
     public static final String INVALID_STUDENT_NAME_DESC = " " + PREFIX_STUDENT_NAME + "A&"; // '&' not allowed in names
     public static final String INVALID_PARENT_NAME_DESC = " " + PREFIX_PARENT_NAME + "JC!"; // '!' not allowed in names
@@ -65,7 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_CLASS_DESC = " " + PREFIX_CLASS; // empty string not allowed in class names
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL
             + "test@@gmail.com"; // only a single @ is allowed for emails
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_EXAM_DESC = " " + PREFIX_EXAM + "CA2 1*0"; // '*' not allowed in exam score
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -81,14 +81,14 @@ public class CommandTestUtil {
                 .withParentName(VALID_PARENT_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withExams(VALID_EXAM_2).build();
         DESC_BOB = new EditStudentDescriptorBuilder()
                 .withStudentName(VALID_STUDENT_NAME_BOB)
                 .withId(VALID_ID_BOB)
                 .withParentName(VALID_PARENT_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withExams(VALID_EXAM_1, VALID_EXAM_2).build();
     }
 
     /**

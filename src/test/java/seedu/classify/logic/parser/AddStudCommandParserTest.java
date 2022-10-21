@@ -9,11 +9,11 @@ import static seedu.classify.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
 import static seedu.classify.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.classify.logic.commands.CommandTestUtil.INVALID_EXAM_DESC;
 import static seedu.classify.logic.commands.CommandTestUtil.INVALID_ID_DESC;
 import static seedu.classify.logic.commands.CommandTestUtil.INVALID_PARENT_NAME_DESC;
 import static seedu.classify.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.classify.logic.commands.CommandTestUtil.INVALID_STUDENT_NAME_DESC;
-import static seedu.classify.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.classify.logic.commands.CommandTestUtil.PARENT_NAME_DESC_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.PARENT_NAME_DESC_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -22,15 +22,15 @@ import static seedu.classify.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.classify.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.classify.logic.commands.CommandTestUtil.STUDENT_NAME_DESC_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.STUDENT_NAME_DESC_BOB;
-import static seedu.classify.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.classify.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.classify.logic.commands.CommandTestUtil.TAG_DESC_EXAM_1;
+import static seedu.classify.logic.commands.CommandTestUtil.TAG_DESC_EXAM_2;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.classify.logic.commands.CommandTestUtil.VALID_EXAM_1;
+import static seedu.classify.logic.commands.CommandTestUtil.VALID_EXAM_2;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
-import static seedu.classify.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.classify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.classify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.classify.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.classify.testutil.TypicalStudents.AMY;
@@ -45,7 +45,7 @@ import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Tag;
+import seedu.classify.model.tag.Exam;
 import seedu.classify.testutil.StudentBuilder;
 
 public class AddStudCommandParserTest {
@@ -53,50 +53,50 @@ public class AddStudCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedPerson = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Student expectedPerson = new StudentBuilder(BOB).withExams(VALID_EXAM_2).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + TAG_DESC_FRIEND, new AddStudCommand(expectedPerson));
+                + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
 
         // multiple ids - last id accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_AMY + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
 
         // multiple class - last class accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_AMY + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_AMY + EMAIL_DESC_BOB + TAG_DESC_FRIEND, new AddStudCommand(expectedPerson));
+                + EMAIL_DESC_AMY + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Student expectedPersonMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Student expectedPersonMultipleTags = new StudentBuilder(BOB).withExams(VALID_EXAM_2, VALID_EXAM_1)
                 .build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                         + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, new AddStudCommand(expectedPersonMultipleTags));
+                        + TAG_DESC_EXAM_2 + TAG_DESC_EXAM_1, new AddStudCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Student expectedPerson = new StudentBuilder(AMY).withTags().build();
+        Student expectedPerson = new StudentBuilder(AMY).withExams().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
                 + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY, new AddStudCommand(expectedPerson));
         // missing parent name
@@ -116,7 +116,7 @@ public class AddStudCommandParserTest {
                 .withParentName("")
                 .withEmail("")
                 .withPhone("")
-                .withTags().build();
+                .withExams().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY,
                 new AddStudCommand(expectedPersonWithoutOptional));
     }
@@ -147,41 +147,42 @@ public class AddStudCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_STUDENT_NAME_DESC + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_EXAM_2, Name.MESSAGE_CONSTRAINTS);
 
         // invalid class
         assertParseFailure(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + INVALID_CLASS_DESC
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, Class.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_EXAM_2, Class.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB + PARENT_NAME_DESC_BOB
-                + INVALID_PHONE_DESC + EMAIL_DESC_BOB + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + INVALID_PHONE_DESC + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid parent name
         assertParseFailure(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB + INVALID_PARENT_NAME_DESC
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, Name.MESSAGE_CONSTRAINTS);
 
         // invalid id
         assertParseFailure(parser, STUDENT_NAME_DESC_BOB + INVALID_ID_DESC + CLASS_DESC_BOB
-                + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_FRIEND, Id.MESSAGE_CONSTRAINTS);
+                + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, Id.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB + PARENT_NAME_DESC_BOB
-                + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TAG_DESC_EXAM_2, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
-        assertParseFailure(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB + PARENT_NAME_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        // invalid exam
+        assertParseFailure(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
+                + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_EXAM_DESC
+                + TAG_DESC_EXAM_2, Exam.MESSAGE_SCORE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_STUDENT_NAME_DESC + ID_DESC_BOB + CLASS_DESC_BOB
-                        + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TAG_DESC_FRIEND,
+                        + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TAG_DESC_EXAM_2,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
-                        + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TAG_DESC_FRIEND,
+                        + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TAG_DESC_EXAM_2,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudCommand.MESSAGE_USAGE));
 
     }

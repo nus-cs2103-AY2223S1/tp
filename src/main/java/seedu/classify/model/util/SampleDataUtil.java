@@ -12,7 +12,7 @@ import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Tag;
+import seedu.classify.model.tag.Exam;
 
 /**
  * Contains utility methods for populating {@code StudentRecord} with sample data.
@@ -22,16 +22,16 @@ public class SampleDataUtil {
         return new Student[]{
             new Student(new Name("Alex Yeoh"), new Id("123A"), new Class("1A"), new Name("Bernice Yu"),
                     new Phone("99272758"), new Email("berniceyu@gmail.com"),
-                    getTagSet("siblings")),
+                    getExamSet("CA1 50", "CA2 70")),
             new Student(new Name("David Yeoh"), new Id("456B"), new Class("1A"), new Name("Bernice Yu"),
                     new Phone("87438807"), new Email("berniceyu@gmail.com"),
-                    getTagSet("siblings")),
+                    getExamSet("SA1 20", "SA2 50")),
             new Student(new Name("Charlotte Oliveiro"), new Id("435A"), new Class("2A"),
                     new Name("Dean Oliveiro"), new Phone("93210283"), new Email("deanoliveiro@hotmail.com"),
-                    getTagSet("peanutallergy")),
+                    getExamSet("CA1 80")),
             new Student(new Name("Irfan Ibrahim"), new Id("189A"), new Class("3A"),
                     new Name("Roy Balakrishnan"), new Phone("91031282"),
-                    new Email("RoyBalakrishnan@gmail.com"), getTagSet("shy")),
+                    new Email("RoyBalakrishnan@gmail.com"), getExamSet("CA1 60", "CA2 100", "SA1 60", "SA2 70")),
         };
     }
 
@@ -44,11 +44,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a exam set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Exam> getExamSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Exam::new)
                 .collect(Collectors.toSet());
     }
 

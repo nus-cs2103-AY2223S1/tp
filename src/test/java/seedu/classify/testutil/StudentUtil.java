@@ -2,18 +2,18 @@ package seedu.classify.testutil;
 
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
-import static seedu.classify.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.classify.logic.commands.AddStudCommand;
 import seedu.classify.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Tag;
+import seedu.classify.model.tag.Exam;
 
 /**
  * A utility class for Student.
@@ -38,8 +38,8 @@ public class StudentUtil {
         sb.append(PREFIX_PARENT_NAME + student.getParentName().fullName + " ");
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
-        student.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        student.getExams().stream().forEach(
+            s -> sb.append(PREFIX_EXAM + s.toString() + " ")
         );
         return sb.toString();
     }
@@ -55,12 +55,12 @@ public class StudentUtil {
         descriptor.getParentName().ifPresent(name -> sb.append(PREFIX_PARENT_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
+        if (descriptor.getExams().isPresent()) {
+            Set<Exam> tags = descriptor.getExams().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_EXAM);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_EXAM).append(s.toString()).append(" "));
             }
         }
         return sb.toString();

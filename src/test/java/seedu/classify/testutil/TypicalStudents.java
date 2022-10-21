@@ -4,6 +4,7 @@ import static seedu.classify.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.classify.logic.commands.CommandTestUtil.VALID_EXAM_2;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_PARENT_NAME_AMY;
@@ -12,8 +13,6 @@ import static seedu.classify.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_AMY;
 import static seedu.classify.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
-import static seedu.classify.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.classify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +33,7 @@ public class TypicalStudents {
             .withParentName("May Pauline")
             .withEmail("alice.pauline@gmail.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withExams("CA2 90", "SA1 60").build();
     public static final Student BENSON = new StudentBuilder()
             .withStudentName("Benson Meier")
             .withId("345B")
@@ -42,7 +41,7 @@ public class TypicalStudents {
             .withParentName("Johnson Meier")
             .withPhone("98765432")
             .withEmail("bensonmeier@gmail.com")
-            .withTags("owesMoney", "friends").build();
+            .withExams("CA1 90", "SA2 60").build();
     public static final Student CARL = new StudentBuilder()
             .withStudentName("Carl Kurz")
             .withId("567F")
@@ -57,7 +56,7 @@ public class TypicalStudents {
             .withParentName("Benn Meier")
             .withPhone("87652533")
             .withEmail("daniel.meier@gmail.com")
-            .withTags("friends").build();
+            .withExams("CA1 50", "CA2 70", "SA1 90", "SA2 60").build();
     public static final Student ELLE = new StudentBuilder()
             .withStudentName("Elle Meyer")
             .withId("890A")
@@ -104,7 +103,7 @@ public class TypicalStudents {
             .withParentName(VALID_PARENT_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
-            .withTags().build();
+            .withExams().build();
     public static final Student BOB = new StudentBuilder()
             .withStudentName(VALID_STUDENT_NAME_BOB)
             .withId(VALID_ID_BOB)
@@ -112,7 +111,7 @@ public class TypicalStudents {
             .withParentName(VALID_PARENT_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withExams(VALID_EXAM_2).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
