@@ -191,11 +191,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Add Student feature
+### Add Student feature
 
-#### Proposed Implementation
+The Add Student feature allows CS2103T TAs to add a new `Student` object to the student list. When successfully added, 
+the student will be added on the Graphical User Interface.
 
-The proposed add student mechanism is facilitated by `AddressBook`. 
+#### Implementation
+
+The Add Student mechanism is facilitated by `AddressBook`. 
 It implements the following operations:
 * `AddressBook#hasStudent(Student s)` - Returns true if a student with the same identity as Student s exists in the address book.
 * `AddressBook#addStudent(Student student)` - Adds a student to the address book.
@@ -203,23 +206,27 @@ It implements the following operations:
 These operations are exposed in the Model interface as `Model#hasStudent(Student student)` 
 and `Model#addStudent(Student student)` respectively.
 
-Given below is an example usage scenario and how the addstu mechanism behaves at each step.
+Given below is an example usage scenario and how the `addstu` mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial 
-address book state, and the `currentStatePointer` pointing to that single address book state.
+json data stored.
 
-Step 2. The user execute `addstu n/John Doe h/@john...` command to add student called John Doe to the address book.
-The `addstu` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified 
-state of the address book after the `addtu n/John Doe h/@john...` command executes to be saved in the 
-`addressBookStateList` and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user execute `addstu n/John Doe...` command to add student called John Doe to the address book.
+The `addstu` command calls `AddStuCommandParser#parse()` which parses the string keyed into the command line of the GUI.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution 
-due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
-so the address book state will not be saved into the `addressBookStateList`. User will retype their command.
+Step 3. `AddStuCommandParser#parse()` invokes the creation of an `AddStuCommand` object. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If upon invoking `AddressBook#hasStudent` 
-method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
-so the address book state will not be saved into the `addressBookStateList`. 
+**Note:** If a command fails its execution due to incorrect command format, it will not create a `AddStuCommand` object,
+User will retype their command.
+
+Step 4. Upon creation of `AddStuCommand` object, `Model#hasStudent(Student student)` and `Model#addStudent(Student student)`
+methods are called.
+
+**Note:** If upon invoking `Model#hasStudent(Student s)` method and return value is `true`, it will not call `Model#addStudent(Student student)`,
+so the student will not be added into the student list as student already exist in the list.
+
+Step 5. After successfully adding student to the student list, a `CommandResult` object will be created to tell the user 
+that the student has been successfully added.
 
 The following sequence diagram shows how the add student operation works:
 ![AddStuSequenceDiagram](images/AddStuSequenceDiagram.png)

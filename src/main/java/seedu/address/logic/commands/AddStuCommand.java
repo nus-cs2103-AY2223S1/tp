@@ -22,12 +22,10 @@ public class AddStuCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_TELEGRAM + "TELEGRAM_HANDLE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ATTENDANCE + "ATTENDANCE "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_TELEGRAM + "@johndoe "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ATTENDANCE + "3 ";
+            + PREFIX_EMAIL + "johnd@example.com ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_QUESTION = "This student already exists in the address book";
