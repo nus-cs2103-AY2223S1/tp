@@ -28,7 +28,7 @@
             </minWidth>
           </Label>
         </VBox>
-        <HBox style="-fx-background-color: #CAEFFF">
+        <HBox>
           <padding>
             <Insets left="1"/>
           </padding>
