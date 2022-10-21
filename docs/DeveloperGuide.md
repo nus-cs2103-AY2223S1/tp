@@ -233,6 +233,57 @@ The following diagram summarizes what happens when the user executes the `AddTag
     * Pros: Remove dependency on other commands which reduces coupling.
     * Cons: Possible duplication of the code. Changes in `setTags` of the `Student` needs to be updated in both places.
 
+### Mark feature
+
+#### Current Implementation
+
+The `mark` feature is implemented through the `MarkCommand` which extends the `Command` abstract class. 
+
+`MarkCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
+The implementation of the execute command is contained in the parent class `EditStudentCommand#execute`, which 
+`MarkCommand` calls from. A brief summary of the class structure is illustrated in the class diagram below.
+
+![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
+
+`IndexListGenerator` is an abstract class representing the list of indexes to modify. 
+The instance of `IndexListGenerator` can be either 
+* `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
+* `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
+
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. MarkCommand implements an
+unique subclass of `StudentEditor` called `MarkCommandStudentEditor`.
+
+Both `IndexListGenerator` and `MarkCommandStudentEditor` are passed to `MarkCommand` in its constructor via the 
+`MarkCommandParser`. Details of the class structure for `MarkCommandParser` are illustrated in the class diagram 
+below.
+
+![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
+
+Given below is the flow for `MarkCommand#execute`.
+
+Step 1. The mark command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
+
+Step 2. The mark command modifies the student through `MarkCommandStudentEditor#editStudent`, marking the student as
+absent or present for the class
+
+Step 3. The mark command replaces the old student with the newly edited student in the `Model`.
+
+Below is a more detailed sequence diagram for the execution of the command.
+
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How mark command executes:**
+
+* **Alternative 1 (current choice):** Update the students using StudentEditor.
+    * Pros: Easy to extend functionality to other classes, more OOP-oriented
+    * Cons: May decrease readability for new users due to many classes involved
+
+* **Alternative 2:** Update the students in MarkCommand itself
+    * Pros: More intuitive and easy to understand
+    * Cons: Makes code harder to maintain, more code duplication.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
