@@ -60,7 +60,7 @@ public class EditItemCommand extends Command {
         String updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
         Priority updatedPriority = editItemDescriptor.getPriority().orElse(itemToEdit.getPriority());
 
-        return new Item(updatedDescription, updatedPriority);
+        return new Item(updatedDescription, updatedPriority, itemToEdit.getCost(), itemToEdit.getDuration());
     }
 
     @Override

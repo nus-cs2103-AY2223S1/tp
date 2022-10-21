@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.util.StringUtil;
 import seedu.waddle.logic.parser.exceptions.ParseException;
+import seedu.waddle.model.item.Cost;
+import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
@@ -123,6 +125,36 @@ public class ParserUtil {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
         return new Priority(trimmedPriority);
+    }
+
+    /**
+     * Parses a {@code String cost} into a {@code Cost}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cost} is invalid.
+     */
+    public static Cost parseCost(String cost) throws ParseException {
+        requireNonNull(cost);
+        String trimmedCost = cost.trim();
+        if (!Cost.isValidCost(trimmedCost)) {
+            throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
+        }
+        return new Cost(trimmedCost);
+    }
+
+    /**
+     * Parses a {@code String duration} into a {@code Duration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code duration} is invalid.
+     */
+    public static Duration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!Duration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+        }
+        return new Duration(trimmedDuration);
     }
 
 }

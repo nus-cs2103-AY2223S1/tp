@@ -1,4 +1,4 @@
-package seedu.waddle.model.itinerary.exceptions;
+package seedu.waddle.model.item.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Items.

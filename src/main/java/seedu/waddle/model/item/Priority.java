@@ -21,7 +21,7 @@ public class Priority {
     public final String priority;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Priority}.
      *
      * @param priority A valid priority.
      */
