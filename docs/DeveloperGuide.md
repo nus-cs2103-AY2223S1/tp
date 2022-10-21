@@ -254,7 +254,7 @@ Step 1. The user launches the application. The `UiManager` will call on the `Mai
 
 ![FilterTransState0](images/FilterTransState0.png)
 
-Step 2. The user executes `filter buy` command to filter all the buy transactions from all the clients. This is done by calling the 
+Step 2. The user executes `filter buy` command to filter all the buy transactions from all the clients. This is done by calling the
 `Client#getBuyTransactionList()` which returns an unmodifiable view of the buy transaction list.
 
 
@@ -335,6 +335,37 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: Users may be overwhelmed if there are too many transactions. Also cannot distintively see which buy transaction belongs to which client.
 
 _{more aspects and alternatives to be added}_
+
+--------------------------------------------------------------------------------------------------------------
+### \[Proposed\] Editing feature for transactions
+#### Implementation
+The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
+`EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
+`EditCommandParser#parse()` and returns the edit command if the arguments are valid.
+
+`EditTransactionCommand` implements the `EditTransactionCommand#execute()` operation which executes the command and returns the result
+message in a `CommandResult` object.
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Give below is the usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+Step 2. The user executes `view 1` command to focus on the client at index 1 and see the client's list of transactions.
+
+Step 3. The user executes `edit 2 m/transaction q/10` command to edit the information of transaction at index 2 in the focused client's transaction list.
+This is done by accessing the `TransactionLog` of the focused client, and executing `TransactionLog#setTransaction(index, editedTransaction)`
+
+The following sequence diagram shows how the edit operation works in Logic Manager:
+
+![EditTransactionSequenceDiagram](images/EditTransactionSequenceDiagram.png)
+
+_{more aspects and alternatives to be added}_
+
+--------------------------------------------------------------------------------------------------------------------
+=======
+>>>>>>> 603a3ffa50adbaa8fe3b88806f6eb85969e07a05
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
