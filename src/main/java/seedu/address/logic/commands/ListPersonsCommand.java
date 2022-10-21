@@ -10,9 +10,9 @@ import seedu.address.model.person.SortField;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListCommand extends Command {
+public class ListPersonsCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "listPersons";
 
     // MESSAGE_USAGE is currently unused
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons in the address book."
@@ -30,7 +30,7 @@ public class ListCommand extends Command {
      *
      * @param sortField Field to sort by.
      */
-    public ListCommand(SortField sortField) {
+    public ListPersonsCommand(SortField sortField) {
         requireNonNull(sortField);
         this.sortField = sortField;
     }
@@ -49,7 +49,7 @@ public class ListCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ListCommand // instanceof handles nulls
-            && sortField.equals(((ListCommand) other).sortField));
+            || (other instanceof ListPersonsCommand // instanceof handles nulls
+            && sortField.equals(((ListPersonsCommand) other).sortField));
     }
 }

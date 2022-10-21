@@ -27,7 +27,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`listPersons`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the application.
 
@@ -62,7 +62,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listPersons`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -113,11 +113,11 @@ __Additional Parameter 2: Date of Birth__
 
 - Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
 
-### Listing all persons : `list`
+### Listing all persons : `listPersons`
 
 Shows a list of all persons in the application.
 
-Format: `list [s/FIELD]`
+Format: `listPersons [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
   * `n` or `N` sort by name ignoring case differences
@@ -130,14 +130,14 @@ Format: `list [s/FIELD]`
 
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The sorted result is persistent on the underlying contacts list.<br><br>
+:information_source: **Note:** The sorted result is permanent on the underlying contacts list.<br><br>
 
-For example, if `list s/n` and `list` are executed back-to-back, the result of the second `list` command will still display the sorted results from the first `list s/n` command since the sorted result is persistent.
+For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will display the sorted results from the first `listPersons s/n` command since the sorted result is permanent.
 </div>
 
 Examples:
-* `list` Lists all persons in the order they were inserted.
-* `list s/n` Lists all persons sorted by their names.
+* `listPersons` Lists all persons in the order they were inserted.
+* `listPersons s/n` Lists all persons sorted by their names.
 
 
 ### Editing a contact : `edit`
@@ -217,7 +217,7 @@ Format: `deletePerson INDEX`
 * The index must be **a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `deletePerson 2` deletes the 2nd person in the application.
+* `listPersons` followed by `deletePerson 2` deletes the 2nd person in the application.
 * `find Betsy` followed by `deletePerson 1` deletes the 1st person in the results of the `find` command.
 
 ### Add an event: `addEvent`
@@ -297,7 +297,7 @@ _Details coming soon ..._
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
-| **List**        | `list  [s/FIELD]` <br> e.g., `list s/n`                                                                                                                                                |
+| **ListPersons**        | `listPersons  [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
 | **AddEvent**    | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent** | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
 | **ListEvents**  | `listEvents`                                                                                                                                                                           |

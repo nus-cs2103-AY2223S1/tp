@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
 
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListPersonsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.SortField;
 
@@ -10,7 +10,7 @@ import seedu.address.model.person.SortField;
 /**
  * Parses input arguments and creates a new ListCommand object
  */
-public class ListCommandParser implements Parser<ListCommand> {
+public class ListPersonsCommandParser implements Parser<ListPersonsCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
@@ -18,7 +18,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      *
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public ListCommand parse(String args) throws ParseException {
+    public ListPersonsCommand parse(String args) throws ParseException {
 
         SortField sortField;
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_SORT);
@@ -33,7 +33,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             sortField = ParserUtil.parseSortField(argMultiMap.getValue(PREFIX_SORT).get());
         }
 
-        return new ListCommand(sortField);
+        return new ListPersonsCommand(sortField);
     }
 
 }

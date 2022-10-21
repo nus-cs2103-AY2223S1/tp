@@ -16,7 +16,7 @@ import seedu.address.model.person.SortField;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListCommandTest {
+public class ListPersonsCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -31,14 +31,14 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        String successMessage = String.format(ListCommand.MESSAGE_SUCCESS, dummySortField.getField());
-        assertCommandSuccess(new ListCommand(dummySortField), model, successMessage, expectedModel);
+        String successMessage = String.format(ListPersonsCommand.MESSAGE_SUCCESS, dummySortField.getField());
+        assertCommandSuccess(new ListPersonsCommand(dummySortField), model, successMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        String successMessage = String.format(ListCommand.MESSAGE_SUCCESS, dummySortField.getField());
+        String successMessage = String.format(ListPersonsCommand.MESSAGE_SUCCESS, dummySortField.getField());
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(dummySortField), model, successMessage, expectedModel);
+        assertCommandSuccess(new ListPersonsCommand(dummySortField), model, successMessage, expectedModel);
     }
 }
