@@ -1,4 +1,4 @@
-package seedu.address.model.tag.exceptions;
+package seedu.address.model.product.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Products.

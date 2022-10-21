@@ -13,7 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Represents the in-memory model of the client book data.
@@ -140,19 +140,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addProduct(Tag product) {
+    public void addProduct(Product product) {
         requireNonNull(product);
         myInsuRec.addProduct(product);
     }
 
     @Override
-    public void removeProduct(Tag product) {
+    public void removeProduct(Product product) {
         requireNonNull(product);
         myInsuRec.removeProduct(product);
     }
 
     @Override
-    public boolean hasProduct(Tag product) {
+    public boolean hasProduct(Product product) {
         requireNonNull(product);
         return myInsuRec.hasProduct(product);
     }

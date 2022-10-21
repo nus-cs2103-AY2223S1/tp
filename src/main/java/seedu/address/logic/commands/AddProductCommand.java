@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Adds a product to MyInsuRec.
@@ -23,12 +23,12 @@ public class AddProductCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New product added: %1$s";
     public static final String MESSAGE_DUPLICATE_PRODUCT = "This product already exists in MyInsuRec";
 
-    private final Tag toAdd;
+    private final Product toAdd;
 
     /**
      * Creates an AddProductCommand to add the specified {@code Product}.
      */
-    public AddProductCommand(Tag product) {
+    public AddProductCommand(Product product) {
         requireNonNull(product);
         toAdd = product;
     }

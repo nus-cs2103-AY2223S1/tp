@@ -12,7 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MyInsuRec;
 import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Client;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * An Immutable MyInsuRec that is serializable to JSON format.
@@ -24,16 +25,16 @@ class JsonSerializableMyInsuRec {
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
-    private final List<JsonAdaptedTag> products = new ArrayList<>();
+    private final List<JsonAdaptedProduct> products = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableMyInsuRec} with the given clients.
      */
     @JsonCreator
     public JsonSerializableMyInsuRec(@JsonProperty("clients") List<JsonAdaptedClient> clients,
-                                     @JsonProperty("products") List<JsonAdaptedTag> tags) {
+                                     @JsonProperty("products") List<JsonAdaptedProduct> products) {
         this.clients.addAll(clients);
-        this.products.addAll(tags);
+        this.products.addAll(products);
     }
 
     /**
@@ -43,7 +44,7 @@ class JsonSerializableMyInsuRec {
      */
     public JsonSerializableMyInsuRec(ReadOnlyMyInsuRec source) {
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
-        products.addAll(source.getProductList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        products.addAll(source.getProductList().stream().map(JsonAdaptedProduct::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,17 +55,17 @@ class JsonSerializableMyInsuRec {
     public MyInsuRec toModelType() throws IllegalValueException {
         MyInsuRec myInsuRec = new MyInsuRec();
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
-            Client person = jsonAdaptedClient.toModelType();
-            if (myInsuRec.hasClient(person)) {
+            Client client = jsonAdaptedClient.toModelType();
+            if (myInsuRec.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            myInsuRec.addClient(person);
-            if (person.hasMeeting()) {
-                myInsuRec.addMeeting(person.getMeeting());
+            myInsuRec.addClient(client);
+            for (Meeting meeting : client.getMeetings()) {
+                myInsuRec.addMeeting(meeting);
             }
         }
-        for (JsonAdaptedTag jsonAdaptedTag : products) {
-            Tag product = jsonAdaptedTag.toModelType();
+        for (JsonAdaptedProduct jsonAdaptedProduct : products) {
+            Product product = jsonAdaptedProduct.toModelType();
             myInsuRec.addProduct(product);
         }
         return myInsuRec;

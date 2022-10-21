@@ -53,23 +53,16 @@ public class AddMeetingCommand extends Command {
         if (linkedClientIndex.getZeroBased() > clientList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
-        Client oldClient = clientList.get(linkedClientIndex.getZeroBased());
-        Client newClient = new Client(
-                oldClient.getName(),
-                oldClient.getPhone(),
-                oldClient.getEmail(),
-                oldClient.getAddress(),
-                oldClient.getTags());
-        Meeting meetingToAdd = new Meeting(newClient, description, meetingDate, meetingTime);
+
+        Client clientToUpdate = clientList.get(linkedClientIndex.getZeroBased());
+        Meeting meetingToAdd = new Meeting(clientToUpdate, description, meetingDate, meetingTime);
 
         if (model.hasMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        newClient.setMeeting(meetingToAdd);
+        clientToUpdate.addMeeting(meetingToAdd);
         model.addMeeting(meetingToAdd);
-        model.setClient(oldClient, newClient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd), CommandSpecific.MEETING);
     }
-
 }

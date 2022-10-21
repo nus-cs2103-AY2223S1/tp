@@ -9,8 +9,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.NoConflictMeetingList;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueProductList;
+import seedu.address.model.product.Product;
+import seedu.address.model.product.UniqueProductList;
 
 /**
  * Wraps all data at the client-book level
@@ -67,7 +67,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
      * Replaces the contents of the product list with {@code products}.
      * {@code products} must not contain duplicate products.
      */
-    public void setProducts(List<Tag> products) {
+    public void setProducts(List<Product> products) {
         this.products.setProducts(products);
     }
 
@@ -146,11 +146,13 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     }
 
     //// product-level operations
+
     /**
      * Adds a product to the product list.
      * There must not be any naming conflicts with any other product on the list.
      */
-    public void addProduct(Tag product) {
+    public void addProduct(Product product) {
+        requireNonNull(product);
         products.add(product);
     }
 
@@ -158,14 +160,16 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
      * Removes product.
      * The meeting must exist in the product list in MyInsuRec.
      */
-    public void removeProduct(Tag product) {
+    public void removeProduct(Product product) {
+        requireNonNull(product);
         products.remove(product);
     }
 
     /**
      * Returns true if a product with the same identity as {@code product} exists in the products book.
      */
-    public boolean hasProduct(Tag product) {
+    public boolean hasProduct(Product product) {
+        requireNonNull(product);
         return products.contains(product);
     }
 
@@ -188,7 +192,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     }
 
     @Override
-    public ObservableList<Tag> getProductList() {
+    public ObservableList<Product> getProductList() {
         return products.asUnmodifiableObservableList();
     }
 

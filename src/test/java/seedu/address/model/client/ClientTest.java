@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_2;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BOB;
@@ -18,9 +18,16 @@ import seedu.address.testutil.ClientBuilder;
 public class ClientTest {
 
     @Test
+    public void constructor() {
+
+        // throws error if name, phone, email, address, or tags is null
+        assertThrows(NullPointerException.class, () -> new Client(null, null, null, null, null, null, null));
+    }
+
+    @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Client client = new ClientBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> client.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> client.getProducts().remove(0));
     }
 
     @Test
@@ -33,7 +40,7 @@ public class ClientTest {
 
         // same name, all other attributes different -> returns true
         Client editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withProducts(VALID_PRODUCT_2).build();
         assertTrue(ALICE.isSameClient(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -84,8 +91,8 @@ public class ClientTest {
         editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        // different Products -> returns false
+        editedAlice = new ClientBuilder(ALICE).withProducts(VALID_PRODUCT_2).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

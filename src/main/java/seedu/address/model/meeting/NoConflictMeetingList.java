@@ -23,7 +23,6 @@ import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
  * @see Meeting#willConflict(Meeting)
  */
 public class NoConflictMeetingList implements Iterable<Meeting> {
-
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -105,6 +104,10 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
      */
     public ObservableList<Meeting> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
 
     @Override

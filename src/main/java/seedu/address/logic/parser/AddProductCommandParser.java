@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddProductCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Parses input arguments and creates a new AddProductCommand object.
@@ -24,8 +24,8 @@ public class AddProductCommandParser implements Parser<AddProductCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProductCommand.MESSAGE_USAGE));
         }
 
-        Tag clientIndex = ParserUtil.parseTag(argMultimap.getValue(PREFIX_NAME).get());
-        return new AddProductCommand(clientIndex);
+        Product product = ParserUtil.parseProduct(argMultimap.getValue(PREFIX_NAME).get());
+        return new AddProductCommand(product);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

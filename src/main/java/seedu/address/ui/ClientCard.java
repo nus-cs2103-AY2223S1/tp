@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -41,11 +42,13 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane products;
     @FXML
     private VBox vbox;
     @FXML
     private VBox meetingsBox;
+    @FXML
+    private Label numMeetings;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -58,19 +61,22 @@ public class ClientCard extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
-        if (client.getMeeting() != null) {
-            Meeting clientMeeting = client.getMeeting();
-            String meetingSummary = String.format("•  %s, %s - %s", clientMeeting.getMeetingDate(),
-                    clientMeeting.getMeetingTime(), clientMeeting.getDescription());
-            Label label = new Label(meetingSummary);
-            label.getStyleClass().add("cell_small_label");
-            meetingsBox.getChildren().add(label);
+        client.getProducts().stream()
+                .sorted(Comparator.comparing(product -> product.productName))
+                .forEach(product -> products.getChildren().add(new Label(product.productName)));
+        if (client.hasMeeting()) {
+            List<Meeting> clientMeetings = client.getMeetings();
+            numMeetings.setText(Integer.toString(clientMeetings.size()));
+            for (Meeting meeting : clientMeetings) {
+                String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),
+                        meeting.getMeetingTime(), meeting.getDescription());
+                Label label = new Label(meetingSummary);
+                label.getStyleClass().add("cell_small_label");
+                meetingsBox.getChildren().add(label);
+            }
         } else {
             meetingsBox.getChildren().clear();
         }
-        client.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

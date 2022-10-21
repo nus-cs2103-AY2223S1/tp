@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.MyInsuRec;
+import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -32,11 +33,14 @@ public class TypicalMeetings {
      * Returns an {@code MyInsuRec} with all the typical clients with their repesctive meetings.
      */
     public static MyInsuRec getTypicalMyInsuRec() {
-        MyInsuRec cb = TypicalClients.getTypicalMyInsuRec();
+        MyInsuRec myInsuRec = TypicalClients.getTypicalMyInsuRec();
         for (Meeting meeting : getTypicalMeetings()) {
-            cb.addMeeting(meeting);
+            myInsuRec.addMeeting(meeting);
+            Client oldClient = meeting.getClient();
+            Client newClient = new ClientBuilder(oldClient).withMeeting(meeting).build();
+            myInsuRec.setClient(oldClient, newClient);
         }
-        return cb;
+        return myInsuRec;
     }
 
     public static List<Meeting> getTypicalMeetings() {

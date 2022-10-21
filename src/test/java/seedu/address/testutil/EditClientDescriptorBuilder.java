@@ -10,7 +10,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * A utility class to help with building EditClientDescriptor objects.
@@ -36,7 +36,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
         descriptor.setAddress(client.getAddress());
-        descriptor.setTags(client.getTags());
+        descriptor.setProducts(client.getProducts());
     }
 
     /**
@@ -72,14 +72,15 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditClientDescriptor}
+     * Parses the {@code Products} into a {@code Set<Product>} and set it to the {@code EditClientDescriptor}
      * that we are building.
      */
-    public EditClientDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditClientDescriptorBuilder withProducts(String... products) {
+        Set<Product> productsSet = Stream.of(products).map(Product::new).collect(Collectors.toSet());
+        descriptor.setProducts(productsSet);
         return this;
     }
+
 
     public EditClientDescriptor build() {
         return descriptor;
