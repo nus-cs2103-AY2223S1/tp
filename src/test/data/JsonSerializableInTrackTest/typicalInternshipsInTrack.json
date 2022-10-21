@@ -19,7 +19,7 @@
     "position": "Data Analyst",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "status" : "Offered",
+    "status" : "Rejected",
     "address" : "311, Clementi Ave 2, #02-25",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
@@ -45,7 +45,7 @@
     "position": "Backend Engineer",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "status" : "Offered",
+    "status" : "Rejected",
     "address" : "10th street",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
@@ -93,7 +93,7 @@
     "position": "Algorithm Engineer",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "status" : "Offered",
+    "status" : "Progress",
     "address" : "4th street",
     "taskFilled" : [ {
       "taskName" : "Application submitted",

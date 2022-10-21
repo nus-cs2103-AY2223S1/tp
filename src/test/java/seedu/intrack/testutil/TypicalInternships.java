@@ -38,7 +38,7 @@ public class TypicalInternships {
     public static final Internship BENSON = new InternshipBuilder().withName("Benson Meier")
             .withPosition("Data Analyst")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withStatus("Offered")
+            .withEmail("johnd@example.com").withPhone("98765432").withStatus("Rejected")
             .withTasks("Application submitted /at 20-10-2022 12:00")
             .withTags("owesMoney", "friends").build();
     public static final Internship CARL = new InternshipBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -47,7 +47,7 @@ public class TypicalInternships {
             .withTasks("Application submitted /at 19-10-2022 11:38")
             .build();
     public static final Internship DANIEL = new InternshipBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withPosition("Backend Engineer").withEmail("cornelia@example.com").withStatus("Offered")
+            .withPosition("Backend Engineer").withEmail("cornelia@example.com").withStatus("Rejected")
             .withAddress("10th street")
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .withTags("friends")
@@ -64,7 +64,7 @@ public class TypicalInternships {
             .build();
     public static final Internship GEORGE = new InternshipBuilder().withName("George Best").withPhone("9482442")
             .withPosition("Algorithm Engineer").withEmail("anna@example.com").withAddress("4th street")
-            .withStatus("Offered")
+            .withStatus("Progress")
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .build();
 

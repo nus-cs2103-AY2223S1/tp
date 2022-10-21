@@ -68,7 +68,6 @@ public class InternshipCard extends UiPart<Region> {
         phone.setText(internship.getPhone().value);
         address.setText(internship.getAddress().value);
         email.setText(internship.getEmail().value);
-        status.getChildren().add(new Label(internship.getStatus().toString()));
         internship.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskTime))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName + " at "
