@@ -37,10 +37,12 @@
 //    @Test
 //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
 //        Transaction editedTransaction = new TransactionBuilder().build();
-//        EditTransactionCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(editedTransaction).build();
+//        EditTransactionCommand.EditTransactionDescriptor descriptor =
+//        new EditTransactionDescriptorBuilder(editedTransaction).build();
 //        EditTransactionCommand editTransactionCommand = new EditTransactionCommand(INDEX_FIRST_CLIENT, descriptor);
 //
-//        String expectedMessage = String.format(EditTransactionCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
+//        String expectedMessage =
+//        String.format(EditTransactionCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
 //
 //        Model expectedModel = new ModelManager(new JeeqTracker(model.getJeeqTracker()), new UserPrefs());
 //        Client expectedClient = model.getFilteredClientList().get(0);
@@ -73,7 +75,8 @@
 //
 //    @Test
 //    public void execute_noFieldSpecifiedUnfilteredList_success() {
-//        EditTransactionCommand editTransactionCommand = new EditTransactionCommand(INDEX_FIRST_CLIENT, new EditTransactionDescriptor());
+//        EditTransactionCommand editTransactionCommand =
+//        new EditTransactionCommand(INDEX_FIRST_CLIENT, new EditTransactionDescriptor());
 //        Transaction editedTransaction = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
 //
 //        String expectedMessage = String.format(EditTransactionCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedTransaction);
