@@ -234,6 +234,32 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Person Enhancement
+
+The person model now contains a `Net Worth` field.
+`Net Worth` is implemented as a class where it contains a `final string` `value`, `final static string` 
+`MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
+
+#### Design Considerations
+- Net Worth accepts a Net Worth object that has an immutable value. This follows ____ principle
+- Net Worth is a compulsory field. A user will only engage with a client if they know their net worth.
+- Net Worth `VALIDATION_REGEX` ensures that clients of more than 1000 dollars is engaged and the currency is 
+  standardise to be in dollars
+
+#### Alternatives
+
+* **Alternative 1 (current choice):** Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in 
+  dollars and must be more than 4 digits.
+    * Pros: Standardisation of currency and minimum net worth.
+    * Cons: Unable to create a contact without knowing the client's net worth and net worth must be more than a 
+      minimum amount.
+
+* **Alternative 2:** Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum 
+  amount. 
+    * Pros: Flexibility in creating a contact.
+    * Cons: No means of comparison between a contact of different currency.
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
