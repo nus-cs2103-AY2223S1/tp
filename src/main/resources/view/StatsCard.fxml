@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="NEVER" spacing="6">
+        <padding>
+            <Insets top="5" right="5" left="15" />
+        </padding>
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Inventory Status" styleClass="status_label"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Low" styleClass="stats_big_label"/>
+            <Circle radius="7" styleClass="circle_low"/>
+            <Label fx:id="itemsLowInStock" text="\$itemsLowInStock" styleClass="stats_big_label"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Moderate" styleClass="stats_big_label"/>
+            <Circle radius="7" styleClass="circle_medium"/>
+            <Label fx:id="itemsMediumInStock" text="\$itemsMediumInStock" styleClass="stats_big_label"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Healthy" styleClass="stats_big_label"/>
+            <Circle radius="7" styleClass="circle_high"/>
+            <Label fx:id="itemsHighInStock" text="\$itemsHighInStock" styleClass="stats_big_label"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Tasks Status" styleClass="status_label"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label fx:id="imcompleteTasks" text="\$imcompleteTasks" styleClass="stats_big_label"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label fx:id="upcomingTask" text="\$upcomingTask" styleClass="stats_big_label"/>
+        </HBox>
+</VBox>

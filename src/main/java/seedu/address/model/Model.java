@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -93,6 +94,21 @@ public interface Model {
      * Returns true if there is a duplicated supply item in the inventory.
      */
     boolean hasSupplyItem(SupplyItem item);
+
+    /**
+     * Returns true if there is a duplicated supply item in the inventory, ignoring {@code excludedItem}.
+     */
+    boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem);
+
+    /**
+     * Returns true if {@supplier} is a supplier for some supply item in the inventory.
+     */
+    boolean hasSupplyItemSuppliedBy(Person supplier);
+
+    /**
+     * Returns the SupplyItem that is supplied by {@code supplier}, if any.
+     */
+    Optional<SupplyItem> supplyItemSuppliedBy(Person supplier);
 
     /**
      * Replaces the given supply item {@code target} with {@code editedSupplyItem}.
