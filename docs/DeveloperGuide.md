@@ -21,9 +21,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind, 
+RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind,
 we are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
-This gives rise to the following main guiding principles for RC4HDB: 
+This gives rise to the following main guiding principles for RC4HDB:
 
 **Maintainability**
 
@@ -171,18 +171,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### The Resident Class
-`RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the 
-existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful 
-information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`, 
+`RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
+existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful
+information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
 `Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
-we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the 
+we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the
 housing management staff.
 
 <br>
 
 #### Refactoring of Classes
-Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial 
-stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that 
+Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial
+stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that
 required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
 `Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below 
 shows the updated Sequence diagram for the executing of our `delete` command.
@@ -192,34 +192,33 @@ shows the updated Sequence diagram for the executing of our `delete` command.
 
 #### Changes in Data Representation
 In `AddressBook`, the Graphical User Interface (GUI) for displaying results from a command was implemented using
-`PersonListPanel` and `PersonCard`. 
+`PersonListPanel` and `PersonCard`.
 
 <img src="images/UiClassDiagram.png" width="550" />
 
-Graphically, the `PersonListPanel` is a single-column list, with each row corresponding to a `PersonCard`. The 
+Graphically, the `PersonListPanel` is a single-column list, with each row corresponding to a `PersonCard`. The
 `PersonCard` represents a `Person`, and contains all fields which belongs to that `Person`. These fields include,
 `Name`, `Phone`, `Email`, and `Tags`.
 
 In `RC4HDB`,`PersonListPanel` and `PersonCard` is replaced by `ResidentTableView` which reworks the entire layout
-for displaying results. 
+for displaying results.
 
 <!-- CREATE NEW UICLASSDIAGRAM AND INSERT HERE -->
 
-As opposed to the prior implementation, `ResidentTableView` is a Table. Each row in the Table corresponds to a 
+As opposed to the prior implementation, `ResidentTableView` is a Table. Each row in the Table corresponds to a
 `Resident`, and each column corresponds to a Field in `Resident`.
 
-`ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Collectively, the `ResidentTableView` is a 
-single component, but it is logically separated into two distinct units. The first unit being the first column which 
+`ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Collectively, the `ResidentTableView` is a
+single component, but it is logically separated into two distinct units. The first unit being the first column which
 is the `IndexColumn` and the second unit being all other columns, also known as `FieldColumns`.
 
-The main reason for this distinction is *how the values are obtained in relation to its dependence on `Resident`*. 
-- The indices in the `IndexColumn` are generated independently to the `FieldColumns` as the fields within 
+The main reason for this distinction is *how the values are obtained in relation to its dependence on `Resident`*.
+- The indices in the `IndexColumn` are generated independently to the `FieldColumns` as the fields within
   `Resident` do not affect its position within the Table. The same `Resident` displayed could have different indices
   in the results of two commands.
-    
-- In contrast, in the generation of values for each cell in a `FieldColumn`, the values are obtained by iterating 
+- In contrast, in the generation of values for each cell in a `FieldColumn`, the values are obtained by iterating
 through the list of `Residents` and setting each cell to it. This process does not modify the ordering of `Residents`
-  in the list, and the same method can be used for other `FieldColumns`. 
+  in the list, and the same method can be used for other `FieldColumns`.
 
 As a result, the fields of a `Resident` will always collectively be together in the same row, though it may appear in
 two different indices in the results of two different commands.
@@ -229,14 +228,14 @@ two different indices in the results of two different commands.
 #### Obtaining `Resident` fields
 
 From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a 
-`TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to 
-`setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically. 
+`TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to
+`setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically.
 
 In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of 
-`PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching* [functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html). 
+`PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching* [functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html).
 
 By constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`, the "name" string is 
-used as a reference to an assumed `Resident::getName`. By fitting an appropriate parameter, we were able to get the 
+used as a reference to an assumed `Resident::getName`. By fitting an appropriate parameter, we were able to get the
 fields with little effort.
 
 
@@ -244,10 +243,10 @@ fields with little effort.
 
 #### Differences in Updating Data
 Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in handling updates to a 
-`Resident`. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit 
+`Resident`. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit
 invocation of a method to update the Ui. This design was possible as `TableView` automatically adds an observer
-to the returned value from `setCellValueFactory` which was used to obtain the `Resident` fields as mentioned in the 
-[section above](#obtaining-resident-fields). As a result, any updates to `ObservableList<Resident>` would be reflected 
+to the returned value from `setCellValueFactory` which was used to obtain the `Resident` fields as mentioned in the
+[section above](#obtaining-resident-fields). As a result, any updates to `ObservableList<Resident>` would be reflected
 immediately in all cells of the Table.
 
 The caveat to this is that in the implementation of `Resident` fields, we have to ensure the presence of a 
@@ -269,7 +268,7 @@ To achieve this, we modified our UI to use a `TableView`, where using `setVisibl
 
 <br>
 
-**Challenges faced with linking components:**
+**Challenges faced with linking components:** 
 
 The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
 
@@ -532,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
   
-  <br>
+<br>
 
 **Use case: UC3. Listing out information of all residents**
 
