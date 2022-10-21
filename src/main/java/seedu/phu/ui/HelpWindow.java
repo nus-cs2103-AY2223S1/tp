@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.phu.commons.core.LogsCenter;
 
