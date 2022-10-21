@@ -246,7 +246,7 @@ The Edit Gender feature allows users to edit a gender field (Male / Female) of a
 It is performed as a part of `editPersonCommand#execute()`.
 
 These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
-`AddressBook#setPerson()` which calls `UniquePersonList#setPerson` to replace an existing person with a new person
+`AddressBook#setPerson()` which calls `UniquePersonList#setPerson()` to replace an existing person with a new person
 object with edited fields in the person list stored in AddressBook.
 
 The following sequence diagram shows the methods calls related to edit person operation:
