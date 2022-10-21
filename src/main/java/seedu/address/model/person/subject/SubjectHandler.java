@@ -17,6 +17,9 @@ public class SubjectHandler {
         subjectsTaken = new HashMap<>();
     }
 
+    /**
+     * Constructs a {@code SubjectHandler} with a specified Set of Subjects.
+     */
     public SubjectHandler(Set<Subject> subjects) {
         subjectsTaken = new HashMap<>();
         for (Subject subject : subjects) {

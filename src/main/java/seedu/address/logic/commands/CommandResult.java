@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.security.PublicKey;
 import java.util.Objects;
 
 /**

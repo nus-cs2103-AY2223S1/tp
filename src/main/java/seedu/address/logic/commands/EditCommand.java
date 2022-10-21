@@ -83,8 +83,6 @@ public class EditCommand extends Command {
         StudentClass updatedStudentClass =
             editPersonDescriptor.getStudentClass().orElse(personToEdit.getStudentClass());
         Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
-        // SubjectHandler updatedSubjects = editPersonDescriptor.getSubject().orElse(personToEdit.getSubjectsTaken());
-        // Temporary solution to edit subjects
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjectsTaken());

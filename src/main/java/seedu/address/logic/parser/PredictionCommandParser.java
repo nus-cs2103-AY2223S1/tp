@@ -10,6 +10,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.subject.Subject;
 
+/**
+ * Parses input arguments and creates a new PredictionCommand object
+ */
 public class PredictionCommandParser implements Parser<PredictionCommand> {
 
     /**

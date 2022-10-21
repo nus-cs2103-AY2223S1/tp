@@ -25,8 +25,8 @@ public class FindCommandPredicate implements Predicate<Person> {
                                          keyword -> StringUtil.containsWordIgnoreCase(person.getStudentClass().value,
                                                                                       keyword));
         boolean checkSubject = keywords.stream()
-                                       .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                                           person.getSubjectHandler().toString(), keyword));
+                                       .anyMatch(keyword ->
+                person.getSubjectsTaken().toString().toLowerCase().contains(keyword));
         return checkName || checkClass || checkSubject;
     }
 

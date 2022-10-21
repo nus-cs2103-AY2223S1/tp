@@ -2,6 +2,9 @@ package seedu.address.logic.algorithm;
 
 import seedu.address.model.person.subject.Grades;
 
+/**
+ * Utility class to handle grade prediction algorithm
+ */
 public class PredictionUtil {
 
     /**
