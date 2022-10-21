@@ -174,9 +174,9 @@ public class ModelManager implements Model {
     }
 
     public String getNextSession() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd EEE HH:mm")
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE HH:mm")
                 .withResolverStyle(ResolverStyle.STRICT);
-        String timeNow = LocalDateTime.now().format(dtf).substring(11);
+        String timeNow = LocalDateTime.now().format(dtf);
         Session nowSession = new Session(timeNow);
         HashMap<Session, Person> sessionPersonHashMap = new HashMap<>();
         ArrayList<Session> compareList = new ArrayList<>();
