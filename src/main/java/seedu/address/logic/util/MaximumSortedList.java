@@ -2,11 +2,11 @@ package seedu.address.logic.util;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.util.exceptions.SortedListException;
 
 /**
@@ -20,7 +20,7 @@ import seedu.address.logic.util.exceptions.SortedListException;
  * Supports a minimal set of list operations.
  */
 public class MaximumSortedList<T extends Comparable<T>> {
-    private final List<T> internalMaximumSortedList;
+    private final ObservableList<T> internalMaximumSortedList;
     private final int maxSize;
 
     /**
@@ -30,7 +30,7 @@ public class MaximumSortedList<T extends Comparable<T>> {
      * @param maxSize the maximum number of elements allowed.
      */
     public MaximumSortedList(int maxSize) {
-        internalMaximumSortedList = new ArrayList<>();
+        internalMaximumSortedList = FXCollections.observableArrayList();
         this.maxSize = maxSize;
     }
 
@@ -43,8 +43,12 @@ public class MaximumSortedList<T extends Comparable<T>> {
      */
     public MaximumSortedList(MaximumSortedList<T> previousMaximumSortedList) {
         this.maxSize = previousMaximumSortedList.maxSize;
-        internalMaximumSortedList = new ArrayList<>();
+        internalMaximumSortedList = FXCollections.observableArrayList();
         previousMaximumSortedList.forEach(internalMaximumSortedList::add);
+    }
+
+    public ObservableList<T> getObservableList() {
+        return internalMaximumSortedList;
     }
 
     /**

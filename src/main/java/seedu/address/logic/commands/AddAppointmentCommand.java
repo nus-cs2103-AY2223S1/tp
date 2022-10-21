@@ -72,7 +72,6 @@ public class AddAppointmentCommand extends Command {
 
         appointmentSet.add(appointment);
 
-        model.setPerson(personWithAppointmentToAdd, personWithAppointmentToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
     }

@@ -1,11 +1,11 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -18,8 +18,6 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static final String DOT = ". ";
-    private static final String COMMA = ", ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -28,6 +26,8 @@ public class PersonCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
+
+    private static final String TRANSPARENT_BACKGROUND = "-fx-background-color: transparent;";
 
     public final Person person;
 
@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane appointments;
+    private ListView<Appointment> appointments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -66,16 +66,27 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         addTagLabels(person);
-        addAppointmentLabels(person);
+        appointments.setStyle(TRANSPARENT_BACKGROUND);
+        appointments.setItems(person.getAppointments().getObservableList());
+        appointments.setCellFactory(listView -> new AppointmentListViewCell());
     }
 
-    private void addAppointmentLabels(Person person) {
-        List<Appointment> appointmentList = person.getAppointments().stream()
-                .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
-        int listSize = appointmentList.size();
-        for (int i = 0; i < listSize; i++) {
-            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
-                    + "                                                                                 "));
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     */
+    class AppointmentListViewCell extends ListCell<Appointment> {
+        protected void updateItem(Appointment appointment, boolean empty) {
+            super.updateItem(appointment, empty);
+
+            if (empty || appointment == null) {
+                setGraphic(null);
+                setText(null);
+                setPrefWidth(0);
+                setStyle(TRANSPARENT_BACKGROUND);
+            } else {
+                setGraphic(new AppointmentFlowPane(getIndex() + 1, appointment));
+                setStyle(TRANSPARENT_BACKGROUND);
+            }
         }
     }
 
