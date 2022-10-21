@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ShowCommand;
-import seedu.address.model.person.DayIsKeywordPredicate;
 
 public class ShowCommandParserTest {
 
@@ -24,8 +23,7 @@ public class ShowCommandParserTest {
     @Test
     public void parse_validArgs_returnsShowCommand() {
         // no leading and trailing whitespaces
-        ShowCommand expectedShowCommand =
-                new ShowCommand(new DayIsKeywordPredicate("Mon"));
+        ShowCommand expectedShowCommand = new ShowCommand("Mon");
         assertParseSuccess(parser, "Mon", expectedShowCommand);
 
         // multiple whitespaces between keywords

@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
     //boolean toggle for fullView format.
-    private boolean fullView;
+    private boolean isFullView;
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -37,7 +37,7 @@ public class Person {
                   SessionList sessionList, GradeProgressList gradeProgressList,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
-        this.fullView = false;
+        this.isFullView = false;
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
@@ -84,21 +84,21 @@ public class Person {
      * Sets the person's details to be listed in full.
      */
     public void setFullView() {
-        fullView = true;
+        isFullView = true;
     }
 
     /**
      * Sets the person's details to be truncated in list mode.
      */
     public void setListView() {
-        fullView = false;
+        isFullView = false;
     }
 
     /**
      * Returns whether the person's details are fully listed.
      */
     public boolean isFullView() {
-        return fullView;
+        return isFullView;
     }
 
     /**

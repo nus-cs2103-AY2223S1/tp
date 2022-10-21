@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Person's homework in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Homework {

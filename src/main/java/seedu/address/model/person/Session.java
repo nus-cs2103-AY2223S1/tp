@@ -10,7 +10,7 @@ import java.time.temporal.ChronoField;
 
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Person's session in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Session implements Comparable<Session> {
