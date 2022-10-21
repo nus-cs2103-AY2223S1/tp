@@ -140,12 +140,9 @@ public class Social {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Social // instanceof handles nulls
-                && links.equals(((Social) other).links)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return links.hashCode();
+                && links.equals(((Social) other).links)) // state check
+                || (other == null
+                && this == null);
     }
 
     @Override

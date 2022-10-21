@@ -113,8 +113,6 @@ public class IncludeCommand extends Command {
         include(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

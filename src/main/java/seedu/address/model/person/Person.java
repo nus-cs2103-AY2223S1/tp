@@ -25,7 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Social social;
+    private static Social social = new Social();
 
     /**
      * Every field must be present and not null.
@@ -38,7 +38,6 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.social = new Social();
     }
 
     public Occupation getOccupation() {
@@ -113,7 +112,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(occupation, name, phone, email, address, tags, social);
+        return Objects.hash(occupation, name, phone, email, address, tags);
     }
 
     @Override
