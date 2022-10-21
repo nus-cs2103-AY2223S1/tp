@@ -163,7 +163,7 @@ The field to sort persons by is encapsulated within the `SortField` class. `Sort
 The following class diagram shows how the `SortField` class integrates with the other components:
 
 ![SortFieldClassDiagram](images/SortFieldClassDiagram.png)
-
+<br><br>
 
 Sorting is performed as part of `listPersonsCommand#execute()`. The sorting operation is exposed in the `Model` interface as `Model#sortPersons()` which calls `AddressBook#sortPersons()` which in turn calls `UniquePersonList#sort()` to sort the underlying `ObservableList<Person>`.
 
