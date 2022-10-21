@@ -27,6 +27,10 @@ public class SetPersonDescriptorBuilder {
         this.descriptor = new SetPersonDescriptor();
     }
 
+    public SetPersonDescriptorBuilder(SetPersonDescriptor descriptor) {
+        this.descriptor = descriptor;
+    }
+
     /**
      * Instantiates a SetPersonDescriptor with fields containing a given Person's details.
      */
