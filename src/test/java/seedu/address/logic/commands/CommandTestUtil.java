@@ -35,6 +35,14 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_BOB = "Product Manager";
     public static final String VALID_TIMEZONE_AMY = "+8";
     public static final String VALID_TIMEZONE_BOB = "-8";
+    public static final String VALID_TELEGRAM_AMY = "@amybee123";
+    public static final String VALID_TELEGRAM_BOB = "@bobch00";
+    public static final String VALID_EMAIL_AMY = "amyb@u.nus.edu";
+    public static final String VALID_EMAIL_BOB = "bob@gmail.com";
+    public static final String VALID_PHONE_AMY = "87654321";
+    public static final String VALID_PHONE_BOB = "98765432";
+    public static final String VALID_SLACK_AMY = "amybee123";
+    public static final String VALID_SLACK_BOB = "bobch00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -56,14 +64,27 @@ public class CommandTestUtil {
     public static final SetCommand.SetPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new SetPersonDescriptorBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY)
-                                                   .withTags(VALID_TAG_FRIEND).withRole(VALID_ROLE_AMY)
-                                                   .withTimezone(VALID_TIMEZONE_AMY).build();
+        DESC_AMY = new SetPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND)
+                .withRole(VALID_ROLE_AMY)
+                .withTelegram(VALID_TELEGRAM_AMY)
+                .withEmail(VALID_EMAIL_AMY)
+                .withPhone(VALID_PHONE_AMY)
+                .withSlack(VALID_SLACK_AMY)
+                .withTimezone(VALID_TIMEZONE_AMY)
+                .build();
 
-        DESC_BOB = new SetPersonDescriptorBuilder().withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
-                                                   .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                                                   .withRole(VALID_ROLE_BOB)
-                                                   .withTimezone(VALID_TIMEZONE_BOB).build();
+        DESC_BOB = new SetPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withRole(VALID_ROLE_BOB)
+                .withTelegram(VALID_TELEGRAM_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withSlack(VALID_SLACK_BOB)
+                .withTimezone(VALID_TIMEZONE_BOB)
+                .build();
     }
 
     /**
