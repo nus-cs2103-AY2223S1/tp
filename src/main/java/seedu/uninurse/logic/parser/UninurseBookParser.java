@@ -17,7 +17,9 @@ import seedu.uninurse.logic.commands.HelpCommand;
 import seedu.uninurse.logic.commands.ListCommand;
 import seedu.uninurse.logic.commands.ListTaskCommand;
 import seedu.uninurse.logic.commands.PatientsTodayCommand;
+import seedu.uninurse.logic.commands.RedoCommand;
 import seedu.uninurse.logic.commands.TasksOnCommand;
+import seedu.uninurse.logic.commands.UndoCommand;
 import seedu.uninurse.logic.commands.ViewTaskCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
@@ -84,6 +86,12 @@ public class UninurseBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

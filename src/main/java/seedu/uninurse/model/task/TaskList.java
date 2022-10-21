@@ -137,8 +137,8 @@ public class TaskList implements GenericList<Task> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        filteredTaskLists.forEach(t -> {
-            int index = filteredTaskLists.indexOf(t);
+        for (int index = 0; index < filteredTaskLists.size(); index++) {
+            Task t = filteredTaskLists.get(index);
             if (index == 0) {
                 builder.append(index + 1)
                         .append(". ")
@@ -149,7 +149,7 @@ public class TaskList implements GenericList<Task> {
                         .append(". ")
                         .append(t);
             }
-        });
+        }
         return builder.toString();
     }
 
