@@ -34,7 +34,12 @@ public class StudentClass {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Adds a student to the class
+     * @param student to be added
+     */
     public void add(Person student) {
+        assert student != null : "Student cannot be null";
         personsInClass.add(student);
     }
 

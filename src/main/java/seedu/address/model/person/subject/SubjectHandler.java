@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.util.StringUtil;
+
 /**
  * Handles a Student's subjects in the application.
  */
@@ -15,6 +17,10 @@ public class SubjectHandler {
      */
     public SubjectHandler() {
         subjectsTaken = new HashMap<>();
+    }
+
+    public HashMap<String, Subject> getSubjectsTaken() {
+        return subjectsTaken;
     }
 
     /**
@@ -48,6 +54,26 @@ public class SubjectHandler {
     public Set<Subject> getSubjectsTaken() {
         return subjectsTaken.keySet().stream().map(subjectsTaken::get).collect(
             Collectors.toSet());
+    }
+    
+    /**
+     * Checks if the HashMap containing subjects taken by a person contains the subject(s) given as
+     * keyword(s) in the find command.
+     *
+     * @param keywords Keywords separated by spaces and are given by user using the find command.
+     * @return A boolean for if keyword(s) is contained in sentence.
+     */
+    public boolean subjectsTakenContainsWord(String keywords) {
+        Set<String> subjectsSet = subjectsTaken.keySet();
+        String subjectsString = String.join(" ", subjectsSet);
+
+        String[] keywordArr = keywords.split(" ");
+        for (String keyword: keywordArr) {
+            if (StringUtil.containsWordIgnoreCase(subjectsString, keyword)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
