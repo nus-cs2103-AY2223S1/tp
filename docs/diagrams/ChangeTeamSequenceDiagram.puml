@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "c:ChangeTeamCommand" as ChangeTeamCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("cg ..")
+activate LogicManager
+
+LogicManager -> ChangeTeamCommand : execute()
+
+activate ChangeTeamCommand
+
+alt Go back to previous context
+
+    ChangeTeamCommand -> Model : getContextContainerParent()
+    activate Model
+    Model --> ChangeTeamCommand : toSwitch
+    deactivate Model
+
+else else
+
+    ChangeTeamCommand -> Model : getTeamAtIndex()
+    activate Model
+    Model --> ChangeTeamCommand : toSwitch
+    deactivate Model
+
+end
+
+ChangeTeamCommand -> Model : updateContextContainer(toSwitch)
+activate Model
+Model --> ChangeTeamCommand
+deactivate Model
+
+create CommandResult
+ChangeTeamCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ChangeTeamCommand
+deactivate CommandResult
+
+ChangeTeamCommand --> LogicManager : result
+deactivate ChangeTeamCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
