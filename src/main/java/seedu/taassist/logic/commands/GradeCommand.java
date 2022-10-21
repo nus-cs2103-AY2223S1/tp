@@ -60,9 +60,9 @@ public class GradeCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
-        ModuleClass moduleClass = model.getFocusedClass();
-        if (!moduleClass.hasSession(session)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session, moduleClass));
+        ModuleClass focusedClass = model.getFocusedClass();
+        if (!focusedClass.hasSession(session)) {
+            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session, focusedClass));
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
@@ -73,7 +73,7 @@ public class GradeCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX));
         }
 
-        Student newStudent = Student.getUpdatedStudent(oldStudent, moduleClass, session, grade);
+        Student newStudent = Student.getUpdatedStudent(oldStudent, focusedClass, session, grade);
 
         model.setStudent(oldStudent, newStudent);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newStudent));

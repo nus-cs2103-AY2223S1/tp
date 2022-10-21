@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":ViewCommand" as ViewCommand LOGIC_COLOR
+participant "<<class>>\nParserStudentIndexUtil" as Util LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "student:Student" as Student LOGIC_COLOR
+participant "s:StudentModuleData" as SMD LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ViewCommand: execute()
+activate ViewCommand
+
+ViewCommand -> Model: getFocusedClass()
+activate Model
+Model --> ViewCommand: focusedClass
+deactivate Model
+
+ViewCommand -> Model: getFilteredStudentList()
+activate Model
+Model --> ViewCommand: lastShownList
+deactivate Model
+
+ViewCommand -> Util: parseStudentFromIndex
+activate Util
+Util --> ViewCommand: student
+deactivate Util
+
+ViewCommand -> Student: findStudentModuleData(focusedClass)
+activate Student
+Student --> ViewCommand: s
+deactivate Student
+
+ViewCommand -> SMD: getSessionDataList()
+activate SMD
+SMD --> ViewCommand
+deactivate SMD
+
+
+create CommandResult
+ViewCommand -> CommandResult: Constructed response from List of SessionData
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand -->[: result
+
+@enduml
