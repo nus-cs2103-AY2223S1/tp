@@ -24,14 +24,14 @@
       </stylesheets>
 
       <VBox maxWidth="1600.0" prefHeight="66.0" prefWidth="1200.0">
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="Contacts">
+        <MenuBar fx:id="menuBar" translateX="-6.0" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" text="CONTACTS">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Tasks">
+          <Menu mnemonicParsing="false" text="TASKS">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="HELP">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>

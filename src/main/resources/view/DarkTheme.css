@@ -136,8 +136,9 @@
 }
 
 .sub_heading {
-    -fx-font-family: "Tahoma";
-    -fx-font-size: 11px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
     -fx-text-fill: #A1A1AA;
     -fx-background-color: transparent;
 }
@@ -249,7 +250,7 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 12pt;
+    -fx-font-size: 9pt;
     -fx-font-family: "Arial";
     -fx-font-weight: bold;
     -fx-text-fill: #A1A1AA;
@@ -336,11 +337,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#164748B, 85%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#E0DCE5, 50%);
     -fx-background-insets: 3;
 }
 
@@ -378,7 +379,7 @@
     -fx-border-width: 1;
     -fx-font-family: "Georgia";
     -fx-font-size: 13pt;
-    -fx-text-fill: #6a7a91;
+    -fx-text-fill: #1D1D1D;
 }
 
 #filterField, #personListPanel, #personWebpage {
