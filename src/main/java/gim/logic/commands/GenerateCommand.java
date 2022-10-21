@@ -4,6 +4,7 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import gim.commons.core.Messages;
@@ -56,18 +57,23 @@ public class GenerateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Exercise> lastShownList = model.getFilteredExerciseList();
-        StringBuilder feedback = new StringBuilder();
+        StringBuilder suggestion = new StringBuilder();
+        HashSet<Name> nameSet = new HashSet<>();
         for (Index index : indices) {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
             }
             Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
             Name exerciseName = exerciseToEdit.getName();
+            if (nameSet.contains(exerciseName)) {
+                continue;
+            }
+            nameSet.add(exerciseName);
             Generator generator = GeneratorFactory.getGenerator(exerciseName, level);
             assert generator != null;
-            feedback.append(generator.suggest()).append("\n");
+            suggestion.append(generator.suggest()).append("\n");
         }
-        return new CommandResult(feedback.toString());
+        return new CommandResult(suggestion.toString());
     }
 
     @Override
