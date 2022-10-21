@@ -39,45 +39,45 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' NUS scheduler file path.
      */
-    Path getAddressBookFilePath();
+    Path getNuSchedulerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' NUS scheduler file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setNuSchedulerFilePath(Path nuSchedulerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces NUS scheduler data with the data in {@code nuScheduler}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setNuScheduler(ReadOnlyNuScheduler nuScheduler);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the NuScheduler */
+    ReadOnlyNuScheduler getNuScheduler();
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     * Returns true if a profile with the same identity as {@code profile} exists in the NUS scheduler.
      */
     boolean hasProfile(Profile profile);
 
     /**
      * Deletes the given profile.
-     * The profile must exist in the address book.
+     * The profile must exist in the NUS scheduler.
      */
     void deleteProfile(Profile target);
 
     /**
      * Adds the given profile.
-     * {@code profile} must not already exist in the address book.
+     * {@code profile} must not already exist in the NUS scheduler.
      */
     void addProfile(Profile profile);
 
     /**
      * Replaces the given profile {@code target} with {@code editedProfile}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the NUS scheduler.
      * The profile identity of {@code editedProfile} must not be the same as another existing
-     * profile in the address book.
+     * profile in the NUS scheduler.
      */
     void setProfile(Profile target, Profile editedProfile);
 
@@ -91,27 +91,27 @@ public interface Model {
     void updateFilteredProfileList(Predicate<Profile> predicate);
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the NUS scheduler.
      */
     boolean hasEvent(Event event);
 
     /**
      * Deletes the given event.
-     * The event must exist in the address book.
+     * The event must exist in the NUS scheduler.
      */
     void deleteEvent(Event target);
 
     /**
      * Adds the given event.
-     * {@code event} must not already exist in the address book.
+     * {@code event} must not already exist in the NUS scheduler.
      */
     void addEvent(Event event);
 
     /**
      * Replaces the given event {@code target} with {@code editedEvent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the NUS scheduler.
      * The event identity of {@code editedEvent} must not be the same as another existing
-     * event in the address book.
+     * event in the NUS scheduler.
      */
     void setEvent(Event target, Event editedEvent);
 

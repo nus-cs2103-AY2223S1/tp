@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProfileAtIndex;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +20,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand.EditProfileDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.NuScheduler;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
@@ -33,7 +33,7 @@ import seedu.address.testutil.ProfileBuilder;
  */
 public class EditProfileCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalNuScheduler(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class EditProfileCommandTest {
 
         String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setProfile(model.getFilteredProfileList().get(0), editedProfile);
 
         assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ public class EditProfileCommandTest {
 
         String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setProfile(lastProfile, editedProfile);
 
         assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class EditProfileCommandTest {
 
         String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
 
         assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
     }
@@ -94,7 +94,7 @@ public class EditProfileCommandTest {
 
         String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setProfile(model.getFilteredProfileList().get(0), editedProfile);
 
         assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
@@ -114,7 +114,7 @@ public class EditProfileCommandTest {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
         // edit profile in filtered list into a duplicate in address book
-        Profile profileInList = model.getAddressBook().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
+        Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
                 new EditProfileDescriptorBuilder(profileInList).build());
 
@@ -139,7 +139,7 @@ public class EditProfileCommandTest {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
         Index outOfBoundIndex = INDEX_SECOND_PROFILE;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getProfileList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getProfileList().size());
 
         EditProfileCommand editProfileCommand = new EditProfileCommand(outOfBoundIndex,
                 new EditProfileDescriptorBuilder().withName(VALID_NAME_BOB).build());

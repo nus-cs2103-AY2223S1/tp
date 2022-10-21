@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CCA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 
 import java.util.ArrayList;
@@ -27,25 +27,25 @@ import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ProfileBuilder;
 
-public class AddressBookTest {
+public class NuSchedulerTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final NuScheduler nuScheduler = new NuScheduler();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getProfileList());
+        assertEquals(Collections.emptyList(), nuScheduler.getProfileList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyNuScheduler_replacesData() {
+        NuScheduler newData = getTypicalNuScheduler();
+        nuScheduler.resetData(newData);
+        assertEquals(newData, nuScheduler);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class AddressBookTest {
                 .build();
         List<Profile> newProfiles = Arrays.asList(ALICE, editedAlice);
         List<Event> emptyEvents = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
-        assertThrows(DuplicateProfileException.class, () -> addressBook.resetData(newData));
+        NuSchedulerStub newData = new NuSchedulerStub(newProfiles, emptyEvents);
+        assertThrows(DuplicateProfileException.class, () -> nuScheduler.resetData(newData));
     }
 
     @Test
@@ -66,76 +66,76 @@ public class AddressBookTest {
                 .withTags(VALID_TAG_CCA).build();
         List<Event> newEvents = Arrays.asList(PRESENTATION, editedPresentation);
         List<Profile> emptyProfiles = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(emptyProfiles, newEvents);
-        assertThrows(DuplicateEventException.class, () -> addressBook.resetData(newData));
+        NuSchedulerStub newData = new NuSchedulerStub(emptyProfiles, newEvents);
+        assertThrows(DuplicateEventException.class, () -> nuScheduler.resetData(newData));
     }
 
     @Test
     public void hasProfile_nullProfile_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasProfile(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasProfile(null));
     }
 
     @Test
     public void hasEvent_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEvent(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasEvent(null));
     }
 
     @Test
-    public void hasProfile_profileNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasProfile(ALICE));
+    public void hasProfile_profileNotInNuScheduler_returnsFalse() {
+        assertFalse(nuScheduler.hasProfile(ALICE));
     }
 
     @Test
-    public void hasEvent_eventNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEvent(PRESENTATION));
+    public void hasEvent_eventNotInNuScheduler_returnsFalse() {
+        assertFalse(nuScheduler.hasEvent(PRESENTATION));
     }
 
     @Test
-    public void hasProfile_profileInAddressBook_returnsTrue() {
-        addressBook.addProfile(ALICE);
-        assertTrue(addressBook.hasProfile(ALICE));
+    public void hasProfile_profileInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(ALICE);
+        assertTrue(nuScheduler.hasProfile(ALICE));
     }
 
     @Test
-    public void hasEvent_eventInAddressBook_returnsTrue() {
-        addressBook.addEvent(PRESENTATION);
-        assertTrue(addressBook.hasEvent(PRESENTATION));
+    public void hasEvent_eventInNuScheduler_returnsTrue() {
+        nuScheduler.addEvent(PRESENTATION);
+        assertTrue(nuScheduler.hasEvent(PRESENTATION));
     }
 
     @Test
-    public void hasProfile_profileWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addProfile(ALICE);
+    public void hasProfile_profileWithSameIdentityFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(ALICE);
         Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasProfile(editedAlice));
+        assertTrue(nuScheduler.hasProfile(editedAlice));
     }
 
     @Test
-    public void hasEvent_eventWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEvent(PRESENTATION);
+    public void hasEvent_eventWithSameIdentityFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addEvent(PRESENTATION);
         Event editedPresentation = new EventBuilder(PRESENTATION).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasEvent(editedPresentation));
+        assertTrue(nuScheduler.hasEvent(editedPresentation));
     }
 
     @Test
     public void getProfileList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getProfileList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> nuScheduler.getProfileList().remove(0));
     }
 
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEventList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> nuScheduler.getEventList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose profiles list can violate interface constraints.
+     * A stub ReadOnlyNuScheduler whose profiles list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class NuSchedulerStub implements ReadOnlyNuScheduler {
         private final ObservableList<Profile> profiles = FXCollections.observableArrayList();
         private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Profile> profiles, Collection<Event> events) {
+        NuSchedulerStub(Collection<Profile> profiles, Collection<Event> events) {
             this.profiles.setAll(profiles);
             this.events.setAll(events);
         }

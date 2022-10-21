@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.NuScheduler;
+import seedu.address.model.ReadOnlyNuScheduler;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
@@ -17,7 +17,7 @@ import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code NuScheduler} with sample data.
  */
 public class SampleDataUtil {
     public static Profile[] getSampleProfiles() {
@@ -50,8 +50,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyNuScheduler getSampleNuScheduler() {
+        NuScheduler sampleAb = new NuScheduler();
         for (Profile sampleProfile : getSampleProfiles()) {
             sampleAb.addProfile(sampleProfile);
         }

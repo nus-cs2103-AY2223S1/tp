@@ -15,32 +15,32 @@ import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the NUS scheduler data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final NuScheduler nuScheduler;
     private final UserPrefs userPrefs;
     private final FilteredList<Profile> filteredProfiles;
     private final FilteredList<Event> filteredEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given nuScheduler and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyNuScheduler nuScheduler, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(nuScheduler, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with NUS scheduler: " + nuScheduler + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.nuScheduler = new NuScheduler(nuScheduler);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredProfiles = new FilteredList<>(this.addressBook.getProfileList());
-        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        filteredProfiles = new FilteredList<>(this.nuScheduler.getProfileList());
+        filteredEvents = new FilteredList<>(this.nuScheduler.getEventList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new NuScheduler(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -68,79 +68,79 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getNuSchedulerFilePath() {
+        return userPrefs.getNuSchedulerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setNuSchedulerFilePath(Path nuSchedulerFilePath) {
+        requireNonNull(nuSchedulerFilePath);
+        userPrefs.setNuSchedulerFilePath(nuSchedulerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== NuScheduler ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setNuScheduler(ReadOnlyNuScheduler nuScheduler) {
+        this.nuScheduler.resetData(nuScheduler);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyNuScheduler getNuScheduler() {
+        return nuScheduler;
     }
 
     @Override
     public boolean hasProfile(Profile profile) {
         requireNonNull(profile);
-        return addressBook.hasProfile(profile);
+        return nuScheduler.hasProfile(profile);
     }
 
     @Override
     public void deleteProfile(Profile target) {
-        addressBook.removeProfile(target);
+        nuScheduler.removeProfile(target);
     }
 
     @Override
     public void addProfile(Profile profile) {
-        addressBook.addProfile(profile);
+        nuScheduler.addProfile(profile);
         updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
     }
 
     @Override
     public void setProfile(Profile target, Profile editedProfile) {
         requireAllNonNull(target, editedProfile);
-        addressBook.setProfile(target, editedProfile);
+        nuScheduler.setProfile(target, editedProfile);
     }
 
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return addressBook.hasEvent(event);
+        return nuScheduler.hasEvent(event);
     }
 
     @Override
     public void deleteEvent(Event target) {
-        addressBook.removeEvent(target);
+        nuScheduler.removeEvent(target);
     }
 
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        nuScheduler.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-        addressBook.setEvent(target, editedEvent);
+        nuScheduler.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Profile List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Profile} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedNuScheduler}
      */
     @Override
     public ObservableList<Profile> getFilteredProfileList() {
@@ -178,7 +178,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return nuScheduler.equals(other.nuScheduler)
                 && userPrefs.equals(other.userPrefs)
                 && filteredProfiles.equals(other.filteredProfiles)
                 && filteredEvents.equals(other.filteredEvents);

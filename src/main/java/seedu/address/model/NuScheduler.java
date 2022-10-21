@@ -12,10 +12,10 @@ import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.UniqueProfileList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the nus-scheduler level
  * Duplicates are not allowed (by .isSameProfile comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class NuScheduler implements ReadOnlyNuScheduler {
 
     private final UniqueProfileList profiles;
     private final UniqueEventList events;
@@ -32,12 +32,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         events = new UniqueEventList();
     }
 
-    public AddressBook() {}
+    public NuScheduler() {}
 
     /**
-     * Creates an AddressBook using the Profiles in the {@code toBeCopied}
+     * Creates a NUS scheduler using the Profiles in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public NuScheduler(ReadOnlyNuScheduler toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -61,9 +61,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code NuScheduler} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyNuScheduler newData) {
         requireNonNull(newData);
         setProfiles(newData.getProfileList());
         setEvents(newData.getEventList());
@@ -72,7 +72,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// profile-level operations
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     * Returns true if a profile with the same identity as {@code profile} exists in the NUS scheduler.
      */
     public boolean hasProfile(Profile profile) {
         requireNonNull(profile);
@@ -80,8 +80,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a profile to the address book.
-     * The profile must not already exist in the address book.
+     * Adds a profile to the NUS scheduler.
+     * The profile must not already exist in the NUS scheduler.
      */
     public void addProfile(Profile p) {
         profiles.add(p);
@@ -89,8 +89,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given profile {@code target} in the list with {@code editedProfile}.
-     * {@code target} must exist in the address book.
-     * The profile identity of {@code editedProfile} must not be the same as an existing profile in the address book.
+     * {@code target} must exist in the NUS scheduler.
+     * The profile identity of {@code editedProfile} must not be the same as an existing profile in the NUS scheduler.
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireNonNull(editedProfile);
@@ -99,8 +99,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code NuScheduler}.
+     * {@code key} must exist in the NUS scheduler.
      */
     public void removeProfile(Profile key) {
         profiles.remove(key);
@@ -109,7 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// event-level operations
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the NUS scheduler.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -117,8 +117,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an event to the address book.
-     * The event must not already exist in the address book.
+     * Adds an event to the NUS scheduler.
+     * The event must not already exist in the NUS scheduler.
      */
     public void addEvent(Event p) {
         events.add(p);
@@ -126,8 +126,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The event identity of {@code editedEvent} must not be the same as an existing event in the address book.
+     * {@code target} must exist in the NUS scheduler.
+     * The event identity of {@code editedEvent} must not be the same as an existing event in the NUS scheduler.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
@@ -135,8 +135,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code NuScheduler}.
+     * {@code key} must exist in the NUS scheduler.
      */
     public void removeEvent(Event key) {
         events.remove(key);
@@ -166,9 +166,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && profiles.equals(((AddressBook) other).profiles)
-                && events.equals(((AddressBook) other).events));
+                || (other instanceof NuScheduler // instanceof handles nulls
+                && profiles.equals(((NuScheduler) other).profiles)
+                && events.equals(((NuScheduler) other).events));
     }
 
     @Override

@@ -7,7 +7,7 @@ import seedu.address.model.profile.Profile;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyNuScheduler {
 
     /**
      * Returns an unmodifiable view of the profiles list.

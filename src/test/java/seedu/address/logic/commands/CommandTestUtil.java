@@ -18,8 +18,8 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.profile.EditProfileCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.NuScheduler;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
@@ -135,11 +135,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        NuScheduler expectedNuScheduler = new NuScheduler(actualModel.getNuScheduler());
         List<Profile> expectedFilteredList = new ArrayList<>(actualModel.getFilteredProfileList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedNuScheduler, actualModel.getNuScheduler());
         assertEquals(expectedFilteredList, actualModel.getFilteredProfileList());
     }
     /**
