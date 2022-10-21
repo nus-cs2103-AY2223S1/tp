@@ -31,11 +31,6 @@ public class JobTest {
         editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
         editedAliceJob = editedAlice.getJob();
         assertFalse(ALICE.getJob().isSameJob(editedAliceJob));
-
-        // job ID differs in case, same job title -> returns false
-        Person editedBob = new PersonBuilder(BOB).withId(VALID_JOB_ID_BOB.toLowerCase()).build();
-        Job editedBobJob = editedBob.getJob();
-        assertFalse(BOB.getJob().isSameJob(editedBobJob));
     }
 
     @Test

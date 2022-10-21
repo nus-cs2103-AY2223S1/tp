@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" />
 
 
 The `Model` component,
@@ -128,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" />
 
 </div>
 
@@ -279,7 +279,7 @@ The following activity diagram summarizes what happens when a user executes a ch
 
 ![BranchActivityDiagram](images/deeyonn.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How checkout executes:**
 
@@ -295,6 +295,29 @@ The following activity diagram summarizes what happens when a user executes a ch
 
 _{more aspects and alternatives to be added}_
 
+### View Feature
+
+#### Implementation
+
+To facilitate users to view the details of an applicant, a new class `ViewCommand` is added that extends `Command`.
+
+It implements the following operations:
+
+- `ViewCommand#execute()` — Executes the command to view a particular person in the address book based on the `index` that was parsed from the user input using the `parse` method of `ViewCommandParser`.
+- `ViewCommand#equals()` — Checks whether an instance of a `ViewCommand` is equal to another, by checking:
+    - Whether they are the same instance
+    - Whether the viewed person is the same in two different instances
+
+#### Design considerations
+
+**Aspect: How the UI window is split to show a panel of list of all persons and another panel to view details of a person:**
+
+- **Alternative 1 (current choice):** Window is splitted into half below the ResultDisplay box.
+    - Pros: Symmetrical and looks more regular.
+    - Cons: Pane to view details of a person is smaller.
+- **Alternative 2:** Window is splitted from the top, so both CommandTextField and ResultDisplay boxes are halved.
+    - Pros: Can have a larger pane to view details of a person.
+    - Cons: Need to scroll more to see typed command and result displayed.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -333,44 +356,44 @@ focus on what matters more: matching the right people for the right job.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                           | I want to …​                                                                             | So that I can…​                                                                                                                  |
-|----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
-| `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
-| `* * *`  | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
-| `* * *`  | user                              | delete fields and data                                                                   |                                                                                                                                  | 
-| `* * *`  | user                              | add applicants                                                                           |                                                                                                                                  |
-| `* * *`  | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
-| `* * *`  | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
-| `* * *`  | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                                                             |
-| `* * *`  | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
-| `* * *`  | user                              | close the app by inputing "exit" command                                                 |                                                                                                                                  |
-| `* * *`  | user                              | add an additional value to the field I am inserting                                      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
-| `* * *`  | user                              | delete the existing values in a field                                                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
-| `* *`    | user                              | add an open Role                                                                         | keep track of who applied to the role                                                                                            |
-| `* * *`  | user                              | search for applicants by name                                                            | quickly find what I need                                                                                                         |
-| `* *`    | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                                                           |
-| `* *`    | user                              | archive old data                                                                         | see the last few months/years data only                                                                                          |
-| `* * `   | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to                                                      |
-| `* * `   | user                              | see the archived data                                                                    | see how the applicants progress over the time                                                                                    |
-| `* *`    | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                                                              |
-| `*`      | user                              | give KIV tag to applicants                                                               |                                                                                                                                  |
-| `*`      | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                                                                |
-| `*`      | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                                                              |
-| `* *`    | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                                                                  |
-| `* * *`  | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
-| `*`      | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
-| `* * *`  | user                               | edit my data manually just by inputting a command to the query                          | so that I can modify it in a shorter time in case of a typo.                                                                     |
-| `* *  `  | user                               | edit key information that I care about conveniently from my high-level view             | so that I can keep my focus to do what matters                                                                                   |
-| `* * *`  | user                               | update my data for existing applicants                                                  | so that I can view their latest details in case of reapplication                                                                 |
-| `*    `  | user                               | delete applicants that I note as unqualified                                            | so that I do not waste too much space                                                                                            |
-| `* *  `  | user                               | create new applicant attributes                                                         | so that I can easily describe applicants based on my preference                                                                  |
-| `*    `  | user                               | view a data visualization/dashboard                                                     | so that I can easily and visually get the key information I need and care about                                                  |
-| `* *  `  | user                               | customize my UI/UX settings e.g., Color settings, font size                             | so that the application can cater to my needs                                                                                    |
-| `*    `  | user                               | make my own pseudo commands/macros                                                      | so that I can improve my efficiency with the app                                                                                 |
-| `* * *`  | user                               | import data from others                                                                 | so that I can receive resources from other users                                                                                 |
-| `* * *`  | user                               | export my data                                                                          | so that I can share resources with others                                                                                        |
-| `* *  `  | user                               | add a custom field to my data                                                           | so that I can have more flexible records                                                                                         |
-| `*    `  | user                               | add profile pictures to my records                                                      | so that I can see who I’m looking at                                                                                             |
+|---------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `* * *` | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
+| `* * *` | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
+| `* * *` | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
+| `* * *` | user                              | delete fields and data                                                                   |                                                                                                                                  | 
+| `* * *` | user                              | add applicants                                                                           |                                                                                                                                  |
+| `* * *` | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
+| `* * *` | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
+| `* * *` | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                                                             |
+| `* * *` | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
+| `* * *` | user                              | close the app by inputing "exit" command                                                 |                                                                                                                                  |
+| `* * *` | user                              | add an additional value to the field I am inserting                                      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
+| `* * *` | user                              | delete the existing values in a field                                                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
+| `* *`   | user                              | add an open Role                                                                         | keep track of who applied to the role                                                                                            |
+| `* * *` | user                              | search for applicants by name                                                            | quickly find what I need                                                                                                         |
+| `* *`   | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                                                           |
+| `* *`   | user                              | archive old data                                                                         | see the last few months/years data only                                                                                          |
+| `* * `  | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to                                                      |
+| `* * `  | user                              | see the archived data                                                                    | see how the applicants progress over the time                                                                                    |
+| `* *`   | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                                                              |
+| `*`     | user                              | give KIV tag to applicants                                                               |                                                                                                                                  |
+| `*`     | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                                                                |
+| `*`     | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                                                              |
+| `* *`   | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                                                                  |
+| `* * *` | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
+| `*`     | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
+| `* * *` | user                               | edit my data manually just by inputting a command to the query                          | so that I can modify it in a shorter time in case of a typo.                                                                     |
+| `* *  ` | user                               | edit key information that I care about conveniently from my high-level view             | so that I can keep my focus to do what matters                                                                                   |
+| `* * *` | user                               | update my data for existing applicants                                                  | so that I can view their latest details in case of reapplication                                                                 |
+| `*    ` | user                               | delete applicants that I note as unqualified                                            | so that I do not waste too much space                                                                                            |
+| `* *  ` | user                               | create new applicant attributes                                                         | so that I can easily describe applicants based on my preference                                                                  |
+| `*    ` | user                               | view a data visualization/dashboard                                                     | so that I can easily and visually get the key information I need and care about                                                  |
+| `* *  ` | user                               | customize my UI/UX settings e.g., Color settings, font size                             | so that the application can cater to my needs                                                                                    |
+| `*    ` | user                               | make my own pseudo commands/macros                                                      | so that I can improve my efficiency with the app                                                                                 |
+| `* * *` | user                               | import data from others                                                                 | so that I can receive resources from other users                                                                                 |
+| `* * *` | user                               | export my data                                                                          | so that I can share resources with others                                                                                        |
+| `* *  ` | user                               | add a custom field to my data                                                           | so that I can have more flexible records                                                                                         |
+| `*    ` | user                               | add profile pictures to my records                                                      | so that I can see who I’m looking at                                                                                             |
 
 *{More to be added}*
 
