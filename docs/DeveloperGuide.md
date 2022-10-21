@@ -367,7 +367,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC04 - Clear list of internship applications**
+**Use case: UC04 - Sort the list of internship applications**
+
+**Main Success Scenario (MSS)**
+
+1. User requests to sort their applications by date and time.
+2. WorkBook displays the sorted list, with the nearest **upcoming** date and time at the top and the application that is furthest away at the bottom.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+   Use case ends.
+
+* 1b. Some internship applications do not have a date and time field.
+
+    * 1b1. WorkBook places such applications after the sorted section of **upcoming** date and times, in no particular order
+
+      Use case ends.
+
+* 1c. Some internship applications have a date and time field that has already passed. 
+
+    * 1c1. WorkBook places such applications at the very bottom (after any applications that do not have a date and time field).
+
+      Use case ends.
+
+**Use case: UC05 - Clear list of internship applications**
 
 **Main Success Scenario (MSS)**
 
@@ -384,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC05 - Display help message**
+**Use case: UC06 - Display help message**
 
 **Main Success Scenario (MSS)**
 
@@ -393,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC06 - Exit application**
+**Use case: UC07 - Exit application**
 
 **Main Success Scenario (MSS)**
 
@@ -412,6 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  Data should be persisted locally and be in a human-readable format, for e.g `json`. 
 6.  User interface and documentation should be intuitive enough so that new users can add an internship application within 15 minutes of installation.
+
 *{More to be added}*
 
 ### Glossary
@@ -420,6 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **OA/Online Assessment**: A common stage in a Software Engineering related internship application, where applicants are required to solve several theory and/or algorithmic questions under a timed and controlled environment
 
 *{More to be added}*
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
