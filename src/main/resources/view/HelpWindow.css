@@ -1,6 +1,15 @@
-#copyButton, #helpMessage {
+#copyButton, #helpMessage, #copyTitle, #copyContent {
     -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
 }
+
+#title, #userGuideTitle {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15px;
+}
+
 
 #copyButton {
     -fx-background-color: dimgray;
