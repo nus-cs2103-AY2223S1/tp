@@ -241,11 +241,44 @@ The following classes had to be extended in order to support meeting list
 - `LogicManager`
 - `AddressBookParser`
 
+<<<<<<< HEAD
+=======
+### [Implemented] Storage for meetings
+#### Implementation
+<img src="images/ModifiedStorageClassDiagram.png" width="550" />
+The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
+that had to be copied, and they included
+- `MeetingList`
+- `ReadOnlyMeetingList`
+- `JsonMeetingListStorage`
+- `JsonAdaptedMeeting`
+- `JsonSerializableMeetingList`
+- `MeetingListStorage`
+
+The following classes had to be extended in order to support meeting list
+- `MainApp`
+- `UserPrefs`
+- `ReadOnlyUserPrefs`
+- `SampleDataUtil`
+- `Storage`
+- `StorageManager`
+- `Model`
+- `ModelManager`
+- `Logic`
+- `LogicManager`
+- `AddressBookParser`
+
+>>>>>>> 6d2aa7a273201545f5eb8bd53fb4abda9e5ade63
 The app maintained its own internal list of meetings in the `ModelManager` and the 
 `LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
 was no need of having to create additional classes to support the model or logic classes
 <img src="images/ModifiedModelClassDiagram.png" width="450" />
+<<<<<<< HEAD
 >>>>>>> 29698f5e5cf2386ecdc1f4ca42d5eca87cfe51be
+=======
+
+
+>>>>>>> 6d2aa7a273201545f5eb8bd53fb4abda9e5ade63
 ### [Implemented] Filter Meetings between Dates
 #### Implementation
 
