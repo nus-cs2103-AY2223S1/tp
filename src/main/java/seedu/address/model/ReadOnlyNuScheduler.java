@@ -5,7 +5,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a NUS scheduler
  */
 public interface ReadOnlyNuScheduler {
 

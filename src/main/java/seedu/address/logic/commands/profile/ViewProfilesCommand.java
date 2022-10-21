@@ -7,7 +7,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Shows a list of all the profiles in the address book.
+ * Shows a list of all the profiles in the NUS scheduler.
  */
 public class ViewProfilesCommand extends ProfileCommand {
 

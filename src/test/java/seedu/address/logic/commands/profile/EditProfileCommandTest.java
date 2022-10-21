@@ -113,7 +113,7 @@ public class EditProfileCommandTest {
     public void execute_duplicateProfileFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
-        // edit profile in filtered list into a duplicate in address book
+        // edit profile in filtered list into a duplicate in NUS scheduler
         Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
                 new EditProfileDescriptorBuilder(profileInList).build());
@@ -132,13 +132,13 @@ public class EditProfileCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of NUS scheduler
      */
     @Test
     public void execute_invalidProfileIndexFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
         Index outOfBoundIndex = INDEX_SECOND_PROFILE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of NUS scheduler list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getProfileList().size());
 
         EditProfileCommand editProfileCommand = new EditProfileCommand(outOfBoundIndex,

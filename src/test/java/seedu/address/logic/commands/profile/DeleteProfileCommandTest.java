@@ -68,7 +68,7 @@ public class DeleteProfileCommandTest {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
         Index outOfBoundIndex = INDEX_SECOND_PROFILE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of NUS scheduler list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getProfileList().size());
 
         DeleteProfileCommand deleteCommand = new DeleteProfileCommand(outOfBoundIndex);

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a Profile's start or end datetime in the address book.
+ * Represents a Profile's start or end datetime in the NUS scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {

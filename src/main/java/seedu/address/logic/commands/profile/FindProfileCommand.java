@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all profiles in address book whose name contains any of the argument keywords.
+ * Finds and lists all profiles in NUS scheduler whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindProfileCommand extends ProfileCommand {

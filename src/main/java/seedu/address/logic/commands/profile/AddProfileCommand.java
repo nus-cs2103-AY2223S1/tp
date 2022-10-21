@@ -14,14 +14,14 @@ import seedu.address.model.Model;
 import seedu.address.model.profile.Profile;
 
 /**
- * Adds a profile to the address book.
+ * Adds a profile to the NUS scheduler.
  */
 public class AddProfileCommand extends ProfileCommand {
 
     public static final String COMMAND_OPTION = "a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
-            + ": Adds a profile to the address book. "
+            + ": Adds a profile to the NUS scheduler. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -37,7 +37,7 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New profile added:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the NUS scheduler";
 
     private final Profile toAdd;
 

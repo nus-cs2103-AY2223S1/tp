@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.profile.Profile;
 
 /**
- * Deletes a profile identified using it's displayed index from the address book.
+ * Deletes a profile identified using it's displayed index from the NUS scheduler.
  */
 public class DeleteProfileCommand extends ProfileCommand {
 

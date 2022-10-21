@@ -29,7 +29,7 @@ import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing profile in the address book.
+ * Edits the details of an existing profile in the NUS scheduler.
  */
 public class EditProfileCommand extends ProfileCommand {
 
@@ -53,7 +53,7 @@ public class EditProfileCommand extends ProfileCommand {
 
     public static final String MESSAGE_EDIT_PROFILE_SUCCESS = "Edited Profile:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the NUS scheduler.";
 
     private final Index index;
     private final EditProfileDescriptor editProfileDescriptor;
