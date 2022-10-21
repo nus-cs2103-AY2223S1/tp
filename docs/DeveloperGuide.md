@@ -164,7 +164,7 @@ Given below is an example usage scenario and how the add item mechanism behaves 
 
 Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `ItemsList` will contain sample data.
 
-Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into a `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
 
