@@ -85,7 +85,7 @@ public class ResidentTableView extends UiPart<Region> {
         indexColumn.setCellFactory(this::populateIndexColumn);
         genderColumn.setCellValueFactory(new PropertyValueFactory<>(Gender.IDENTIFIER.toLowerCase()));
         houseColumn.setCellValueFactory(new PropertyValueFactory<>(House.IDENTIFIER.toLowerCase()));
-        matricColumn.setCellValueFactory(new PropertyValueFactory<>(MatricNumber.IDENTIFIER.toLowerCase()));
+        matricColumn.setCellValueFactory(new PropertyValueFactory<>("matricNumber"));
         tagColumn.setCellValueFactory(new PropertyValueFactory<>(Tag.IDENTIFIER.toLowerCase()));
     }
 
