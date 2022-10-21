@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Filters the all the transaction by all the clients.
+ * Filters all the transaction by all the clients.
  */
 public class FilterTransCommand extends Command {
     public static final String COMMAND_WORD = "filter";
