@@ -240,6 +240,54 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Insurance feature
+
+#### Implementation
+The Insurance mechanism is facilitated by `InsuranceCommand` and `InsuranceCommandParser`. It allows users to store whether a contact in their contact list has the four main types of insurance.
+The four main types of insurances are modelled by the classes `LifeInsurance`, `DisabilityInsurance`, CriticalIllnessInsurance and `HealthInsurance` which inherit from the abstract `Insurance` class.
+
+The types of insurances are specified by prefixes inputted by the user:
+* li/ - Life Insurance
+* di/ - Disability Insurance
+* ci/ - Critical Illness Insurance
+* hi/ - Health Insurance
+
+`Insurance` fields are stored in the `Person` class, and consist of the boolean `hasInsurance` which is set to true if `Person` object has the type of insurance.
+
+Below is an example usage scenario.
+
+#### Example Usage
+
+Step 1: The user inputs `insurance 1 li/ di/`. This indicates that the user wants to update the first contact in the displayed contact list such that he only has life insurance and disability insurance.
+
+Step 2: `LogicManager` calls `AddressBookParser` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `InsuranceCommandParser` and call its function `parse` with the rest of the user input as the arguments.
+
+Step 4: The `InsuranceCommandParser#parse` will then parse the insurance prefixes to create a new `EditInsuranceDescriptor` object.
+
+Step 5: The `InsuranceCommandParser#parse` will then create a new `InsuranceCommand` object using the index and the `EditInsuranceDescriptor` object.
+
+Step 5: The `LogicManager` then calls `InsuranceCommand#execute` with the `Model` object.
+
+Step 6: The `InsuranceCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
+
+Step 7: The `InsuranceCommand` gets the `Person` to be edited from the `List`
+
+Step 8: The `InsuranceCommand` calls its `createEditedPerson` method with the `Person` to be edited and the `EditInsuranceDescriptor` which returns the new edited `Person` .
+
+Step 9: The `InsuranceCommand` calls the `setPerson` method of the `Model` object to replace the existing `Person` object with the new edited one.
+
+Step 10: The `InsuranceCommand` calls the `updateFilteredPersonList` method of the `Model` object to update the filtered list.
+
+Step 11: The `InsuranceCommand` then returns a new `CommandResult` object with the result of the execution.
+
+Step 12: The `LogicManager` then returns the `CommandResult` object.
+
+![Sequence diagram for the Insurance Command](images/InsuranceSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `InsuranceCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete feature
 
@@ -349,16 +397,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Friendnancial` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Friendnancial shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Friendnancial deletes the person
 
     Use case ends.
 
@@ -370,7 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Friendnancial shows an error message.
 
       Use case resumes at step 2.
 
@@ -379,9 +427,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Friendnancial shows a list of persons
 3.  User requests to edit a specific person in the list
-4.  AddressBook edits the information of the person
+4.  Friendnancial edits the information of the person
 
     Use case ends.
 
@@ -391,9 +439,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+* 3a. Friendnancial detects an error in the request.
+    * 3a1. Friendnancial shows an error message.
 
       Use case resumes at step 2.
 
