@@ -247,6 +247,10 @@ The following sequence diagram shows how the addT operation works:
 
 </div>
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/AddTaskActivityDiagram.png" width="250" />
+
 #### Design considerations:
 
 **Aspect: How add & delete task executes:**
