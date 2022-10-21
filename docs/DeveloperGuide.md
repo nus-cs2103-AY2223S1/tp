@@ -225,7 +225,7 @@ Given below is an example usage scenario and how the filter operation is handled
 3. After passing the check, `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning a `FilterCommand`
    with the new `ApplicationStatusPredicate` as an argument.
 
-4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of 
+4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
    applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
    is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
 
@@ -260,8 +260,8 @@ Given below is an example usage scenario and how the remove operation is handled
 
 4. `LogicManager#execute()` now calls `RemoveCommand#execute()`, which invokes `RemoveCommand#promptUserConfirmation()`. TrackAScholar now displays
    a window asking for the user's confirmation to remove the applicants. After the use confirms, `RemoveCommand#confirmRemove()` is called which
-   in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.  
-   
+   in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.
+
 5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
 
 The following sequence diagram shows how the remove operation works:
