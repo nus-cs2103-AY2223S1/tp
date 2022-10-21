@@ -6,8 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,22 +50,19 @@ public class DateTime {
             "(?<dateGroup>" + REGEX_DATE + ")(\\s(?<timeGroup>" + REGEX_TIME + "))?"
     );
 
-    // Not an exhaustive list
-    private static final Map<String, String> DATE_VALIDATION_REGEXS = new HashMap<>() {{
-            put("^\\d{1,2}-\\d{1,2}-\\d{4}$", "dd-MM-yyyy");
-            put("^\\d{1,2}-\\d{1,2}-\\d{2}$", "dd-MM-yy");
-            put("^\\d{4}-\\d{1,2}-\\d{1,2}$", "yyyy-MM-dd");
-            put("^\\d{1,2}/\\d{1,2}/\\d{4}$", "dd/MM/yyyy");
-            put("^\\d{1,2}/\\d{1,2}/\\d{2}$", "dd/MM/yy");
-            put("^\\d{4}/\\d{1,2}/\\d{1,2}$", "yyyy/MM/dd");
-            put("^\\d{1,2}\\s[a-z]{3}\\s\\d{4}$", "dd MMM yyyy");
-            put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}$", "dd MMMM yyyy");
-        }};
-
     private static final Pattern REGEX_TIME_GENERATOR = Pattern.compile(
             "((?<hoursGroup>" + REGEX_HOURS + ")(:?)"
                     + "(?<minutesGroup>" + REGEX_MINUTES + ")"
                     + "((:?)(?<secondsGroup>" + REGEX_SECONDS + "))?)");
+
+    private static final Pattern REGEX_DATE_DAY_GENERATOR = Pattern.compile(
+            "((?<dayGroup>" + REGEX_DAY + ")[\\s-/]"
+                    + "(?<monthGroup>" + REGEX_MONTH + ")[\\s-/]"
+                    + "(?<yearGroup>" + REGEX_YEAR + "))");
+    private static final Pattern REGEX_DATE_YEAR_GENERATOR = Pattern.compile(
+            "((?<yearGroup>" + REGEX_YEAR + ")[\\s-/]"
+                    + "(?<monthGroup>" + REGEX_MONTH + ")[\\s-/]"
+                    + "(?<dayGroup>" + REGEX_DAY + "))");
 
     public final LocalDate date;
     public final Optional<LocalTime> time;
@@ -102,15 +97,24 @@ public class DateTime {
     }
 
     /**
-     * Returns true if given string follows a valid datetime pattern.
+     * Returns a LocalDate object for an input date in the valid formats.
      */
-    public static String determineDateFormat(String dateString, Map<String, String> regexSet) {
-        for (String regexp : regexSet.keySet()) {
-            if (dateString.toLowerCase().matches(regexp)) {
-                return regexSet.get(regexp);
-            }
+    public static LocalDate generateLocalDate(String date) {
+        Matcher matcher;
+        if (date.matches(REGEX_YEAR + "[\\s-/](.*)")) {
+            matcher = REGEX_DATE_YEAR_GENERATOR.matcher(date);
+        } else {
+            matcher = REGEX_DATE_DAY_GENERATOR.matcher(date);
         }
-        return null;
+        matcher.matches();
+        String day = matcher.group("dayGroup");
+        String month = matcher.group("monthGroup");
+        String year = matcher.group("yearGroup");
+
+        if (month.length() == 3) {
+            return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern("d/MMM/yyyy"));
+        }
+        return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern("d/M/yyyy"));
     }
 
     /**
@@ -122,11 +126,6 @@ public class DateTime {
         return matcher.matches();
     }
 
-    // TODO
-    public static boolean isValidValues(String dateString) {
-        return false;
-    }
-
     /**
      * Returns a LocalDate from a given date time string.
      */
@@ -134,9 +133,7 @@ public class DateTime {
         Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
         matcher.matches();
         String date = matcher.group("dateGroup");
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(
-                requireNonNull(determineDateFormat(date, DATE_VALIDATION_REGEXS)));
-        return LocalDate.parse(date, dateFormat);
+        return generateLocalDate(date);
     }
 
     /**
