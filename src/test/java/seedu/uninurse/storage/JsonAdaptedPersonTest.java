@@ -116,11 +116,16 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-    // TODO: add tests for invalid and null conditions
+    @Test
+    public void toModelType_invalidConditions_throwsIllegalValueException() {
+        List<JsonAdaptedCondition> invalidConditions = new ArrayList<>(VALID_CONDITIONS);
+        invalidConditions.add(new JsonAdaptedCondition(INVALID_CONDITION));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        invalidConditions, VALID_TASKS, VALID_TAGS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 
-    // TODO: add tests for invalid and null tasks
-
-    // TODO: add test for null tags
+    // TODO: add tests for invalid tasks
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

@@ -13,7 +13,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "conditions" : [ ],
+    "conditions" : [ "Crohn's disease", "H1N1" ],
     "tasks" : [ {
       "taskDescription" : "Insert urinary catheter",
       "dateTime" : "16-12-2022 1245"
