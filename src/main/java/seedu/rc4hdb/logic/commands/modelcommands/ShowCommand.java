@@ -12,7 +12,7 @@ public class ShowCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "show";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all columns according to the fields specified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows only the columns specified "
             + "(case-insensitive) after the command word\n"
             + "Parameters: FIELD [MORE_FIELDS]...\n"
             + "Example: " + COMMAND_WORD + " name phone email";
@@ -27,7 +27,7 @@ public class ShowCommand implements ModelCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
         model.setObservableFields(fieldsToHide);

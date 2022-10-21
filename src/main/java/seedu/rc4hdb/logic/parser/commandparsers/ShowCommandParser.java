@@ -12,7 +12,7 @@ import seedu.rc4hdb.model.resident.fields.ResidentFields;
 
 public class ShowCommandParser implements Parser<ShowCommand> {
 
-    public static final String INTENDED_USAGE = "Please enter some fields after the show command\n"
+    public static final String INTENDED_USAGE = "Please (only) enter some fields after the show command\n"
             + "Example: show name phone email";
 
     @Override

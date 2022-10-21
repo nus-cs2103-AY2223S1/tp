@@ -27,7 +27,7 @@ public class HideCommandParser implements Parser<HideCommand> {
         List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
 
         // Create result list
-        List<String> fieldsToInclude = new ArrayList<>(allFields);
+        List<String> fieldsToInclude = new ArrayList<>();
 
         String[] specifiedFields = getSpecifiedFields(args);
 
