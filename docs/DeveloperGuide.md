@@ -264,6 +264,55 @@ a prefix for the `Status` field and the `edit` command will not work in this cas
 allows for the format to be kept short and simple which further increases the ease of updating the status of internship
 applications.
 
+### Add internship application task feature
+
+#### About this feature
+
+The add internship application task feature allows users to add a task associated to an internship application 
+in the tracker via the command `addtask INDEX TASKNAME /at TASKTIME`, where `INDEX` must be a positive integer within
+the list, `TASKNAME` must not be an empty string, and `TASKTIME` must be in the format `dd-MM-yyyy HH:mm`.
+
+#### How it is implemented
+
+The `addtask` command is facilitated by the `AddTaskCommand` and `AddTaskCommandParser`. It uses the 
+`List#get(int index)` on the list of internship applications returned from the `Model#getFilteredInternshipList()` to
+get the target `Internship` object to be updated. A new `Internship` object is then created with the new `Task` updated
+in the `List<Task>`. The `InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the
+`Model` interface as `Model#setInternship(Internship target, Internship editedInternship)` is called to replace the
+target `Internship` object with the updated one.
+
+#### Parsing user input
+
+1. The user inputs the `addtask` command.
+2. The `InTrackParser` processes the input and creates a new `AddTaskCommandParser`.
+3. The `AddTaskCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of
+`INDEX`. If `INDEX` is absent or invalid, a `ParseException` would be thrown.
+4. The `AddTaskCommandParser` then checks for the validity of `TASKNAME` and `TASKTIME`. If either `TASKNAME` or
+`TASKTIME` is absent or invalid, a `ParseException` would be thrown.
+5. The `AddTaskCommandParser` then creates the `AddTaskCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `AddTaskCommand`.
+2. The `AddTaskCommand` calls the `Model#getFilteredPersonList()` and `List#get(int index)` to get the target `Internship`
+   object to be updated based on the provided `INDEX`.
+3. The `AddTaskCommand` then creates a new `Internship` object with the same variables as the target and adds the new
+task to the `List<Task>`.
+4. The `AddTaskCommand` then calls `InTrack#setInternship(Internship target, Internship editedInternship)` to replace the
+   target `Internship` object with the updated one.
+
+#### Displaying of result
+
+1. Finally, the `AddTaskCommand` creates a `CommandResult` with a success message and returns it to the `Logic Manager`
+   to complete the command execution. The GUI would also be updated with the new task added.
+
+The following sequence diagram shows how the `addtask` command works:
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `addtask` command:
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
