@@ -53,7 +53,7 @@ public class ModtrektParser {
         JCommander jcommander = JCommander.newBuilder()
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
-                    .build();
+                .build();
         try {
             // This takes care of invalid commands, as well as missing or invalid arguments
             // via the ParameterException.
@@ -106,8 +106,6 @@ public class ModtrektParser {
             return new HelpCommand();
         case CdModuleCommand.COMMAND_WORD:
             return new CdCommandParser().parse(arguments);
-//        case EditTaskCommand.COMMAND_WORD:
-//            return new EditTaskCommandParser().parse(arguments);
         default:
             return null;
         }

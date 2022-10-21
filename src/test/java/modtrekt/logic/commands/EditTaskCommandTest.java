@@ -77,7 +77,8 @@ class EditTaskCommandTest {
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
                         new Description("study for exams"));
         Command actual =
-                new ModtrektParser().parseCommand("edit -t 1 -c CS2109S -d 2000-12-11 -ds study for exams");
+                new ModtrektParser()
+                        .parseCommand("edit -t 1 -c CS2109S -d 2000-12-11 -ds \"study for exams\"");
         assertEquals(expected, actual);
     }
 
@@ -91,8 +92,7 @@ class EditTaskCommandTest {
                         null, null);
 
         assertEquals(ai, new ModtrektParser().parseCommand("edit -t 1 -c CS2109S"));
-        Command a = new ModtrektParser().parseCommand("edit -t 1 -c CS2103T ");
-        assertEquals(swe, a);
+        assertEquals(swe, new ModtrektParser().parseCommand("edit -t 1 -c CS2103T"));
     }
 
     @Test
@@ -117,8 +117,8 @@ class EditTaskCommandTest {
         EditTaskCommand buy =
                 new EditTaskCommand(Index.fromOneBased(1), null, null,
                         new Description("buy book"));
-        assertEquals(read, new ModtrektParser().parseCommand("edit -t 1 -ds read book"));
-        assertEquals(buy, new ModtrektParser().parseCommand("edit -t 1 -ds buy book"));
+        assertEquals(read, new ModtrektParser().parseCommand("edit -t 1 -ds \"read book\""));
+        assertEquals(buy, new ModtrektParser().parseCommand("edit -t 1 -ds \"buy book\""));
     }
 
 

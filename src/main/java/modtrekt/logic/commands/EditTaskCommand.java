@@ -61,14 +61,14 @@ public class EditTaskCommand extends Command {
      * @param targetIndex the index of the task to prioritize
      * @param targetModule the ModCode that you want to change to
      * @param targetDeadline the Deadline that you want to change to
-     * @param targetDesciption the description that you want to change to
+     * @param targetDescription the description that you want to change to
      */
     public EditTaskCommand(Index targetIndex, ModCode targetModule, LocalDate targetDeadline,
-                           Description targetDesciption) {
+                           Description targetDescription) {
         this.targetIndex = targetIndex;
         this.targetModule = targetModule;
         this.targetDeadline = targetDeadline;
-        this.targetDescription = targetDesciption;
+        this.targetDescription = targetDescription;
     }
 
     @Override
