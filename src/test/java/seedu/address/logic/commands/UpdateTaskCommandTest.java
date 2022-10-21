@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.DateUtil.getLocalDate;
+import static seedu.address.logic.commands.CommandTestUtil.OVERDUE_DEADLINE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
@@ -36,6 +37,7 @@ public class UpdateTaskCommandTest {
             getTypicalTaskList(), getTypicalInventory());
     private final Index indexFirstTask = Index.fromOneBased(1);
     private final Index indexSecondTask = Index.fromOneBased(2);
+    private final Index indexFourthTask = Index.fromOneBased(4);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -83,6 +85,28 @@ public class UpdateTaskCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
                 getTypicalTaskList(), getTypicalInventory());
+
+        assertCommandSuccess(updateTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deadlinePastTodayFieldSpecifiedUnfilteredList_success() {
+        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
+        Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
+
+        TaskBuilder taskInList = new TaskBuilder(lastTask);
+        Task updatedTask = taskInList.withTitle(VALID_TITLE_OIL).withDeadline(getLocalDate(OVERDUE_DEADLINE))
+                .withTags(VALID_TAG_FOOD).build();
+
+        UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
+                .withDeadline(getLocalDate(OVERDUE_DEADLINE)).withTags(VALID_TAG_FOOD).build();
+        UpdateTaskCommand updateTaskCommand = new UpdateTaskCommand(indexLastTask, descriptor);
+
+        String expectedMessage = String.format(UpdateTaskCommand.MESSAGE_UPDATE_TASK_WARNING, updatedTask);
+
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalTaskList(), getTypicalInventory());
+        expectedModel.setTask(updatedTask, indexLastTask);
 
         assertCommandSuccess(updateTaskCommand, model, expectedMessage, expectedModel);
     }

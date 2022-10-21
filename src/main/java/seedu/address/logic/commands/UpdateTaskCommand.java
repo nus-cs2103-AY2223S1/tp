@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.DateUtil.dateIsBeforeToday;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDate;
@@ -31,6 +32,8 @@ public class UpdateTaskCommand extends Command {
     public static final String MESSAGE_UPDATE_TASK_SUCCESS = "Task update complete: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
+    public static final String MESSAGE_UPDATE_TASK_WARNING =
+            "WARNING: Deadline is past today!\nTask update complete: %1$s";
 
     private final Index index;
     private final UpdateTaskDescriptor updateTaskDescriptor;
@@ -64,6 +67,11 @@ public class UpdateTaskCommand extends Command {
 
         model.setTask(updatedTask, index);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
+        if (dateIsBeforeToday(updatedTask.getDeadline())) {
+            return new CommandResult(String.format(MESSAGE_UPDATE_TASK_WARNING, updatedTask));
+        }
+
         return new CommandResult(String.format(MESSAGE_UPDATE_TASK_SUCCESS, updatedTask));
     }
 

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.DateUtil.dateIsBeforeToday;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,7 +17,7 @@ public class AddTaskCommand extends Command {
             + "Parameters: Task\n"
             + "Example: " + COMMAND_WORD + " d/Purchase milk dl/2022-10-18 t/Food";
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Task added complete: %1$s";
-
+    public static final String MESSAGE_ADD_TASK_WARNING = "WARNING: Deadline is past today!\nTask added complete: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
 
     private final Task task;
@@ -36,7 +37,13 @@ public class AddTaskCommand extends Command {
         if (model.hasTask(task)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+
         model.addTask(task);
+
+        if (dateIsBeforeToday(task.getDeadline())) {
+            return new CommandResult(String.format(MESSAGE_ADD_TASK_WARNING, task));
+        }
+
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, task));
     }
 

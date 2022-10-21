@@ -47,6 +47,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         LocalDate deadline = getLocalDate(argMultimap.getValue(PREFIX_DEADLINE).get());
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Task newTask = new Task(description, deadline, tagList);
