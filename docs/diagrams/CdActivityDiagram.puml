@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes the command to change the current module;
+:ModtRekt parses the command looking for the argument;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([argument is `..`])
+    if () then ([current module is already null])
+        :display no current module error message;
+    else ([else])
+        :set current module to null;
+        :remove existing filter on module and task list;
+    endif
+else ([else])
+    if () then ([argument is a valid module code])
+        :set current module to specified module code;
+        :filter module and task list according to specified module code;
+    else ([else])
+        :display invalid argument error message;
+    endif
+endif
+stop
+@enduml
