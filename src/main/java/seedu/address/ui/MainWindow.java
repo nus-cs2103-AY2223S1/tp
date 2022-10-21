@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddCommandWithPopup;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -238,28 +239,28 @@ public class MainWindow extends UiPart<Stage> {
     public void handleList(String listType) {
         listType = listType.trim().toUpperCase();
         switch(listType) {
-        case "BUYER":
+        case ListCommand.LIST_BUYER:
             showBuyer();
             break;
-        case "SUPPLIER":
+        case ListCommand.LIST_SUPPLIER:
             showSupplier();
             break;
-        case "DELIVERER":
+        case ListCommand.LIST_DELIVERER:
             showDeliverer();
             break;
-        case "ORDER":
+        case ListCommand.LIST_ORDER:
             showOrder();
             break;
-        case "PET":
+        case ListCommand.LIST_PET:
             showPet();
             break;
-        case "ALL":
+        case ListCommand.LIST_ALL:
             showAll();
             break;
-        case "EMPTY":
-            //Fall through
+        case ListCommand.LIST_EMPTY:
+            // Fall through
         default:
-            //Do nothing
+            // Do nothing
         }
     }
 

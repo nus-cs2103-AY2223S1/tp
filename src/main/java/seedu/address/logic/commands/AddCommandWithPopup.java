@@ -7,7 +7,7 @@ public class AddCommandWithPopup extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = "Add a Buyer/Supplier with a pop-up window.\n"
             + "Example: add buyer/supplier";
-    public static final String MESSAGE_SUCCESS = "Listed all %1$s";
+    public static final String MESSAGE_SUCCESS = "Pop-up window for adding %1$s initialised";
 
     public static final String ADD_BUYER = "BUYER";
     public static final String ADD_SUPPLIER = "SUPPLIER";
