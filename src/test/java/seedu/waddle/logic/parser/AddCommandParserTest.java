@@ -1,7 +1,26 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.commands.CommandTestUtil.*;
+import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
@@ -9,7 +28,12 @@ import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.logic.commands.AddCommand;
-import seedu.waddle.model.itinerary.*;
+import seedu.waddle.model.itinerary.Country;
+import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.ItineraryDuration;
+import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.People;
 import seedu.waddle.testutil.ItineraryBuilder;
 
 public class AddCommandParserTest {

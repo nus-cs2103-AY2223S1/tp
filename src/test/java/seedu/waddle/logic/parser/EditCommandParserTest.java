@@ -39,7 +39,12 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.EditCommand;
 import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
-import seedu.waddle.model.itinerary.*;
+import seedu.waddle.model.itinerary.Budget;
+import seedu.waddle.model.itinerary.Country;
+import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.ItineraryDuration;
+import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.People;
 import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -83,7 +88,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_COUNTRY_DESC, Country.MESSAGE_CONSTRAINTS); // invalid country
         assertParseFailure(parser, "1" + INVALID_START_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid start date
-        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, ItineraryDuration.MESSAGE_CONSTRAINTS); // invalid duration
+        //invalid duration
+        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, ItineraryDuration.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_PEOPLE_DESC, People.MESSAGE_CONSTRAINTS); // invalid people
         assertParseFailure(parser, "1" + INVALID_BUDGET_DESC, Budget.MESSAGE_CONSTRAINTS); // invalid budget
 

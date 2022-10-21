@@ -1,13 +1,24 @@
 package seedu.waddle.testutil;
 
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_BUDGET_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_BUDGET_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.waddle.model.Waddle;
 import seedu.waddle.model.itinerary.Itinerary;
-
-import static seedu.waddle.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Itinerary} objects to be used in tests.

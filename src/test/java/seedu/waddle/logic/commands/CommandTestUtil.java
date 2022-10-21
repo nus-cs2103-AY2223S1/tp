@@ -2,7 +2,12 @@ package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.waddle.logic.parser.CliSyntax.*;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.waddle.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -70,7 +75,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Family Trip&"; // '&' not allowed in names
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
-    public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION + "3 days"; // only numbers allowed for duration
+    // only numbers allowed for duration
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION + "3 days";
     public static final String INVALID_PEOPLE_DESC = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for people
     public static final String INVALID_BUDGET_DESC = " " + PREFIX_BUDGET + "$100"; // only numbers allowed for budget
 

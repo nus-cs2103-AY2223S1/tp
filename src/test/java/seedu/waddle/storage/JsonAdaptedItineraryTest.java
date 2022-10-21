@@ -11,7 +11,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
-import seedu.waddle.model.itinerary.*;
+import seedu.waddle.model.itinerary.Country;
+import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.ItineraryDuration;
+import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.People;
 
 public class JsonAdaptedItineraryTest {
     private static final String INVALID_NAME = "S@mmer Trip";

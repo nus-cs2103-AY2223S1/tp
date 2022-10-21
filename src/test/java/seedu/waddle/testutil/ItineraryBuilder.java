@@ -1,6 +1,12 @@
 package seedu.waddle.testutil;
 
-import seedu.waddle.model.itinerary.*;
+import seedu.waddle.model.itinerary.Budget;
+import seedu.waddle.model.itinerary.Country;
+import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.ItineraryDuration;
+import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.People;
 
 /**
  * A utility class to help with building Itinerary objects.
