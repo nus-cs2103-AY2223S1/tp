@@ -13,12 +13,14 @@ import seedu.workbook.model.Model;
 import seedu.workbook.model.internship.Internship;
 
 /**
- * Adds a Internship to WorkBook.
+ * Adds an Internship to WorkBook.
  */
 public class AddCommand extends Command {
 
+    /** Command word to execute the add command */
     public static final String COMMAND_WORD = "add";
 
+    /** Help message to execute the add command */
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship application to WorkBook. "
             + "Parameters: "
             + PREFIX_COMPANY + "COMPANY "
@@ -36,9 +38,13 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
+    /** Message string displaying successful execution of the add command */
     public static final String MESSAGE_SUCCESS = "New internship application added: %1$s";
+
+    /** Message string displaying error message for unsuccessful execution of the add command for a duplicate */
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship application already exists in WorkBook";
 
+    /** Internship to be added to work book */
     private final Internship toAdd;
 
     /**

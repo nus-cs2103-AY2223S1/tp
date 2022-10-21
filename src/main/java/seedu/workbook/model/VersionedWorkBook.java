@@ -23,7 +23,7 @@ public class VersionedWorkBook extends WorkBook {
     }
 
     /**
-     * Saves a copy of the current {@code AddressBook} state at the end of the state list.
+     * Saves a copy of the current {@code WorkBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
     public void commit() {
@@ -37,7 +37,7 @@ public class VersionedWorkBook extends WorkBook {
     }
 
     /**
-     * Restores the address book to its previous state.
+     * Restores the WorkBook to its previous state.
      */
     public void undo() {
         if (!canUndo()) {
@@ -48,7 +48,7 @@ public class VersionedWorkBook extends WorkBook {
     }
 
     /**
-     * Returns true if {@code undo()} has address book states to undo.
+     * Returns true if {@code undo()} has WorkBook states to undo.
      */
     public boolean canUndo() {
         return currentStatePointer > 0;

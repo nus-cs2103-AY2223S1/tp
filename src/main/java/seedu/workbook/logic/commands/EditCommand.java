@@ -29,12 +29,14 @@ import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
 
 /**
- * Edits the details of an existing internship in the work book.
+ * Edits the details of an existing internship in the WorkBook.
  */
 public class EditCommand extends Command {
 
+    /** Command word to execute the edit command */
     public static final String COMMAND_WORD = "edit";
 
+    /** Help message to execute the edit command */
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified "
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -48,14 +50,29 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
+    /** Message string displaying successful execution of the edit command */
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
 
+    /**
+     * Message string displaying error message for unsuccessful execution of the edit command
+     * for invalid input field
+     */
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+    /**
+     * Message string displaying error message for unsuccessful execution of the edit command
+     * for a duplicate internship
+     */
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the work book.";
+
+    /** Index of the internship to be edited */
     private final Index index;
+
+    /** Description of edit */
     private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
+     * Updates an indexed internship in the filtered internship list.
      * @param index of the internship in the filtered internship list to edit
      * @param editInternshipDescriptor details to edit the internship with
      */

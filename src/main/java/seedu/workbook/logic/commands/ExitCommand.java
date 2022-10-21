@@ -7,8 +7,10 @@ import seedu.workbook.model.Model;
  */
 public class ExitCommand extends Command {
 
+    /** Command word to execute the exit command */
     public static final String COMMAND_WORD = "exit";
 
+    /** Message string displaying successful execution of the exit command */
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting WorkBook as requested ...";
 
     @Override

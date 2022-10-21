@@ -11,19 +11,23 @@ import seedu.workbook.model.Model;
 import seedu.workbook.model.internship.Internship;
 
 /**
- * Deletes a internship identified using it's displayed index from the work book.
+ * Deletes a internship identified using it's displayed index from the WorkBook.
  */
 public class DeleteCommand extends Command {
 
+    /** Command word to execute the delete command */
     public static final String COMMAND_WORD = "delete";
 
+    /** Help message to execute the delete command */
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the internship identified by the index number used in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    /** Message string displaying successful execution of the delete command */
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted Internship: %1$s";
 
+    /** Index of internship to be deleted */
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {

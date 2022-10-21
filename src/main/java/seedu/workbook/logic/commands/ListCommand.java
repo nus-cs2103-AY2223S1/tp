@@ -6,12 +6,14 @@ import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import seedu.workbook.model.Model;
 
 /**
- * Lists all internships in the address book to the user.
+ * Lists all internships in the WorkBook to the user.
  */
 public class ListCommand extends Command {
 
+    /** Command word to execute the list command */
     public static final String COMMAND_WORD = "list";
 
+    /** Message string displaying successful execution of the list command */
     public static final String MESSAGE_SUCCESS = "Listed all internships";
 
 

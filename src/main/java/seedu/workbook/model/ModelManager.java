@@ -14,7 +14,7 @@ import seedu.workbook.commons.core.LogsCenter;
 import seedu.workbook.model.internship.Internship;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the WorkBook data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final FilteredList<Internship> filteredInternships;
 
     /**
-     * Initializes a ModelManager with the given workBook and userPrefs.
+     * Initializes a ModelManager with the given WorkBook and userPrefs.
      */
     public ModelManager(ReadOnlyWorkBook workBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(workBook, userPrefs);
