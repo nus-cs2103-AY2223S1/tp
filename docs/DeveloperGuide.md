@@ -161,15 +161,20 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implemented by: Sun Yu Ting
 
-The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class facilitates the storing of various information related to a student's module that he/she is currently taking.
+#### Modified by: Tin Jingyao
+
+The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class facilitates the storing of various information related to a student's module that he/she is currently taking. 
 
 A `Module` Class contains
 
 * A `ModuleCode`
 * `TutorialDetails`
 * `LectureDetails`
-* A `ZoomLink`
+* A lecture `ZoomLink`
+* A tutorial `ZoomLink`
 * `AssignmentDetails`
+
+All fields except `ModuleCode` are optional since not every `Module` will have details for every field. Empty fields are represented by empty strings. Users can later modify the fields using the `EditCommand`.
 
 All the commands associated with the `Module` Class would have the keyword "Module" in their class name. For example, the command to add a `Module` is referred to as a `AddModuleCommand`.
 
@@ -180,12 +185,8 @@ All the classes contained within the `Module` Class all have a regex that checks
 For the five classes,
 
 * The `ModuleCode` should only contain alphanumeric characters and spaces, and it should not be blank.
-* `TutorialDetails` can take any values, and it should not be blank.
-* `LectureDetails` can take any values, and it should not be blank.
-* The `ZoomLink` should be a valid URL.
-* `AssignmentDetails` should only contain alphanumeric characters and spaces, and it should not be blank.
-
-In a future, among these five classes, only the `ModuleCode` will be a compulsory field, while the other fields will all be optional. The user would be able to add on more information to these existing `Modules` using the edit command.
+* The `ZoomLink` should be either blank, or a valid URL.
+* `AssignmentDetails` should only contain alphanumeric characters and spaces if added.
 
 <img src="images/ModuleClassDiagram.png" width="550" />
 
