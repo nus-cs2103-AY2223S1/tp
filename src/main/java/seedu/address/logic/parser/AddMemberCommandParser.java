@@ -16,7 +16,11 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public AddMemberCommand parse(String args) throws ParseException {
-        return new AddMemberCommand(new Name(args.trim()));
+        String name = args.trim();
+        if (!Name.isValidName(name)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new AddMemberCommand(new Name(name));
     }
 
 }

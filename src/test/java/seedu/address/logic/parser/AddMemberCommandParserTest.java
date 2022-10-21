@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -22,5 +23,10 @@ public class AddMemberCommandParserTest {
     public void parse_validArgs_returnsAddMemberCommand() {
         String name = "name";
         assertParseSuccess(parser, name, new AddMemberCommand(new Name(name)));
+    }
+
+    @Test
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "     ", Name.MESSAGE_CONSTRAINTS);
     }
 }
