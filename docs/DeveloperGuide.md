@@ -300,9 +300,12 @@ Step 7: The `ReminderCommand` gets the `Person` to be edited from the `List`
 
 Step 8: The `ReminderCommand` creates a new edited `Person`, with the given `Reminder`
 
-Step 10: `ReminderCommand` then returns a new `CommandResult` with the result of the execution.
+Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of the execution.
 
 ![Sequence diagram for the Remind Command](images/ReminderSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
