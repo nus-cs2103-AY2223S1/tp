@@ -288,6 +288,19 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: User would have to manually select each client and filter the transactions.
 
 _{more aspects and alternatives to be added}_
+
+### Delete Client/Transaction/Remark feature
+
+#### Current Implementation
+
+The deletion mechanism for `clients`, `transactions`, and `remarks` is facilitated by a `DeleteCommandParser` and `DeleteCommand`.
+
+The following class diagram shows the parent-child relation of `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` relative to the `DeleteCommand`. These concrete classes consists of the logic to delete an item stated by the name of their command.
+
+![DeleteCommandClassDiagram](images/DeleteCommandClassDiagram.png)
+
+The `DeleteCommandParser` will take in the user input, parse it, and return the correct concrete command type that is either `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand` which will be executed to achieve the deletion functionality. This process is depicted by the following sequence diagram (for user input `delete 1 m/client`):
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -325,17 +338,17 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                  | I want to …​                                        | So that I can…​                                                    |
-|----------|--------------------------|-----------------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | business owner           | choose which client and company to delete | save only relevant clients and company to remove clutter |
-| `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application     |
-| `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                         |
-| `* * *`  | new business owner       | view a client's details and company       | easily know who to contact for that client                        |
-| `* * *`  | busy business owner      | quickly retrieve the data of the client            | save time without having to go through multiple layers             |
-| `* * *`  | new business owner       | create a new client input                          | keep track of all the new clients I work with                    |
-| `* * *`  | new business owner       | add a company to a client                 | know who to contact in that client                                |
-| `* *`    | careless business owner  | edit the details of company                | correct the mistakes that I did                                    |
-| `* *`    | efficient business owner | sort the search result by price                     | quickly know which client I have made the most transaction with   |
+| Priority | As a …​                  | I want to …​                              | So that I can…​                                                 |
+|----------|--------------------------|-------------------------------------------|-----------------------------------------------------------------|
+| `* * *`  | business owner           | choose which client and company to delete | save only relevant clients and company to remove clutter        |
+| `* * *`  | forgetful business owner | see usage instructions                    | refer to instructions when I forget how to use the application  |
+| `* * *`  | new business owner       | simply search for contacts                | retrieve only the essential details I need                      |
+| `* * *`  | new business owner       | view a client's details and company       | easily know who to contact for that client                      |
+| `* * *`  | busy business owner      | quickly retrieve the data of the client   | save time without having to go through multiple layers          |
+| `* * *`  | new business owner       | create a new client input                 | keep track of all the new clients I work with                   |
+| `* * *`  | new business owner       | add a company to a client                 | know who to contact in that client                              |
+| `* *`    | careless business owner  | edit the details of company               | correct the mistakes that I did                                 |
+| `* *`    | efficient business owner | sort the search result by price           | quickly know which client I have made the most transaction with |
 
 *{More to be added}*
 
