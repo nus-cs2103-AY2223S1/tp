@@ -61,7 +61,7 @@
                </children>
             </HBox>
 
-          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="297.0" minHeight="100" prefHeight="297.0" prefWidth="858.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="297.0" minHeight="100" prefHeight="297.0" prefWidth="858.0" styleClass="pane-with-border" VBox.vgrow="SOMETIMES">
             <padding>
                 <Insets bottom="30" left="20" right="20" top="30" />
             </padding>
