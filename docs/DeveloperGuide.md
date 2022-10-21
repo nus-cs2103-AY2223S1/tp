@@ -167,7 +167,13 @@ Users can add their `UserModule` with the Command:
 - e.g. `add CS1101S s1`
 
 #### Parsing of commands 
-`PositionalParameter` will handle the position of each data to be parsed. 
+`PositionalParameter` manages parsing and error handling for parameters expected to be at a certain index in the 
+list of arguments. New parameter classes can extend from `PositionalParameter` to support repeated parameters across 
+commands, e.g module code.
+
+`ModuleCodeParameter` checks if the user's input fits the module code format. An exception is thrown
+if the module code supplied had an incorrect format.
+
 `SemesterParameter` will check for valid semester code input.
 An exception will be thrown if semester code is invalid.
 
