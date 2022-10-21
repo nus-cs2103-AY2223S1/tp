@@ -29,4 +29,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_START = new Prefix("sd/");
     public static final Prefix PREFIX_END = new Prefix("ed/");
 
+    /* Event prefix definitions */
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
+    public static final Prefix PREFIX_PERSON_NAME = new Prefix("pName/");
+    public static final Prefix PREFIX_DATE = new Prefix("date/");
+    public static final Prefix PREFIX_START_TIME = new Prefix("start/");
+    public static final Prefix PREFIX_END_TIME = new Prefix("end/");
+
+
 }

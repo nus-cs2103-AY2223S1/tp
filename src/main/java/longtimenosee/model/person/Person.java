@@ -40,7 +40,6 @@ public class Person {
 
     private Set<AssignedPolicy> assignedPolicies = new HashSet<>();
     private Birthday birthday;
-    //private ArrayList<Event> events; // TODO: EventList class
     //private PersonNotes notes; //TODO: Just a string
     private Income income;
     private RiskAppetite ra;
