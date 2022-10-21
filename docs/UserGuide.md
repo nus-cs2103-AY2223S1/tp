@@ -128,7 +128,39 @@ Example:
 ```
 delete-module m/CS2103T
 ```
-In the above example, we are deleting module CS2103T from Plannit.
+In the above example, we are deleting module `CS2103T` from Plannit.
+
+#### 2.1.2. Edit module
+You can edit a module on Plannit using the `edit-module` command.
+
+This command will require an index and at least one of the following flags:
+* `m/`: To be followed by the new module code of the module to be edited on Plannit.
+* `t/`: To be followed by the new module title of the module to be edited on Plannit.
+
+Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
+* `INDEX` is the currently displayed index number of the module you are editing for on the screen.
+* You cannot edit a module such that the new module code coincides with the module code of another 
+  module on Plannit (case-insensitive).
+* If `MODULE_TITLE` is empty, then the module title will be deleted from Plannit.
+
+Examples:
+
+```
+edit-module 3 m/CS2103T
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2103T`.
+
+```
+edit-module 3 m/CS2103T t/
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2103T`, 
+and at the same time, removing the module title.
+
+```
+edit-module 3 m/CS2103T t/Software Engineering
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2103T`,
+and at the same time, changing the module title to `Software Engineering`.
 
 #### 2.1.3. Find module
 You can find all modules in Plannit whose module code starts with a specific keyword.
