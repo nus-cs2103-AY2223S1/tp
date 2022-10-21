@@ -155,41 +155,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/Redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedWorkBook`. It extends `WorkBook` with an undo/redo history, stored internally as an `workBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedWorkBook#commit()` — Saves the current work book state in its history.
+* `VersionedWorkBook#undo()` — Restores the previous work book state from its history.
+* `VersionedWorkBook#redo()` — Restores a previously undone work book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitWorkBook()`, `Model#undoWorkBook()` and `Model#redoWorkBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedWorkBook` will be initialized with the initial work book state, and the `currentStatePointer` pointing to that single work book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th internship in the work book. The `delete` command calls `Model#commitWorkBook()`, causing the modified state of the work book after the `delete 5` command executes to be saved in the `workBookStateList`, and the `currentStatePointer` is shifted to the newly inserted work book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add c/COMPANY …​` to add a new internship. The `add` command also calls `Model#commitWorkBook()`, causing another modified work book state to be saved into the `workBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitWorkBook()`, so the work book state will not be saved into the `workBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the internship was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoWorkBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous work book state, and restores the work book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial WorkBook state, then there are no previous WorkBook states to restore. The `undo` command uses `Model#canUndoWorkBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -202,17 +202,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoWorkBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the work book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `workBookStateList.size() - 1`, pointing to the latest work book state, then there are no undone WorkBook states to restore. The `redo` command uses `Model#canRedoWorkBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the work book, such as `list`, will usually not call `Model#commitWorkBook()`, `Model#undoWorkBook()` or `Model#redoWorkBook()`. Thus, the `workBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitWorkBook()`. Since the `currentStatePointer` is not pointing at the end of the `workBookStateList`, all work book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/COMPANY …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -224,7 +224,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire work book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -273,22 +273,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                                                                                  | So that I can…​                                                                                               |
-|----------|-----------------------------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `* * *`  | student                                       | add an internship company and role that I have applied to                                     | keep track of which company and which roles I have applied for, especially when I have many applications      |
-| `* * *`  | student                                       | update an internship position that I have applied to                                          | keep the tracker updated on the current state of my internship application                                    |
-| `* * *`  | student                                       | add an interview date and time to an internship application                                   | track when my interview for that particular internship application is coming up                               |
-| `* * *`  | student                                       | view the list of commands for use                                                             | familiarize myself with them and increase efficiency when performing operations on the application            |
-| `* * *`  | student                                       | keep track of the stage of my application                                                     | know which stages I am at for each application and thereafter what to prepare for it                          |
-| `* * *`  | student                                       | delete an internship that I am not interested in anymore                                      | get rid of internship applications that are not relevant to me anymore                                        |
-| `* * *`  | forgetful student                             | sort the list of internship applications by dates                                             | see and remember which interviews are upcoming to better prepare for them in case I have forgotten about them |
-| `* * *`  | student preparing for upcoming internships    | view daily tips to aid in my learning                                                         | be better prepared for the technical interviews                                                               |
-| `* * *`  | student preparing for technical interviews    | conveniently do practice questions                                                            | be better prepared for my technical interviews                                                                |
-| `* * *`  | student who got rejected by all the companies | clear the list of internship applications                                                     | I can start anew                                                                                              |
-| `* * *`  | student                                       | add an expiry date and time to an application that is in the “Online Assessment” stage.       | keep track of when I have to complete the Online Assesment by                                                 |
-| `* * `   | student                                       | filter my internship applications according to position                                       | view all my internship applications for that particular position that I am interested in                      |
-| `*`      | student                                       | rank all my internship applications                                                           | decide which applications that I have to focus on more.                                                       |
-| `*`      | easily confused student                       | prevent myself from adding the same internship application twice                              | I dont get distracted by duplicate internships                                                                |
+| Priority | As a …​                                       | I want to …​                                                                           | So that I can…​                                                                                               |
+|----------|-----------------------------------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `* * *`  | student                                       | add an internship company and role that I have applied to                              | keep track of which company and which roles I have applied for, especially when I have many applications      |
+| `* * *`  | student                                       | update an internship position that I have applied to                                   | keep the tracker updated on the current state of my internship application                                    |
+| `* * *`  | student                                       | add an interview date and time to an internship application                            | track when my interview for that particular internship application is coming up                               |
+| `* * *`  | student                                       | view the list of commands for use                                                      | familiarize myself with them and increase efficiency when performing operations on the application            |
+| `* * *`  | student                                       | keep track of the stage of my application                                              | know which stages I am at for each application and thereafter what to prepare for it                          |
+| `* * *`  | student                                       | delete an internship that I am not interested in anymore                               | get rid of internship applications that are not relevant to me anymore                                        |
+| `* * *`  | forgetful student                             | sort the list of internship applications by dates                                      | see and remember which interviews are upcoming to better prepare for them in case I have forgotten about them |
+| `* * *`  | student preparing for upcoming internships    | view daily tips to aid in my learning                                                  | be better prepared for the technical interviews                                                               |
+| `* * *`  | student preparing for technical interviews    | conveniently do practice questions                                                     | be better prepared for my technical interviews                                                                |
+| `* * *`  | student who got rejected by all the companies | clear the list of internship applications                                              | I can start anew                                                                                              |
+| `* * *`  | student                                       | add an expiry date and time to an application that is in the “Online Assessment” stage.| keep track of when I have to complete the Online Assessment by                                                |
+| `* * *`  | student who constantly changes my mind        | redo an undone command                                                                 | revert back the changes I had originally made                                                                 |
+| `* * `   | student                                       | filter my internship applications according to position                                | view all my internship applications for that particular position that I am interested in                      |
+| `*`      | student                                       | rank all my internship applications                                                    | decide which applications that I have to focus on more.                                                       |
+| `*`      | easily confused student                       | prevent myself from adding the same internship application twice                       | I dont get distracted by duplicate internships                                                                |
 | `*`      | student                                       | move an existing application to the "Rejection" stage and provide a reason why I got rejected | keep track of common trends or reasons for my failed applications                                             |
 | `*`      | broke student                                 | sort the internships based on pay                                                             | determine which applications are more worth it in this current economic state.                                |
 | `*`      | less experienced student with CLI             | view the list of commands                                                                     | familiarise myself with the commands.                                                                         |
@@ -297,6 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                       | view stage specific prepatory tips                                                            | see how I can prepare before my stage specific deadline.
 | `*`      | student                                       | create a todo list for each internship entry                                                  | keep track of what I've done and what I've yet to do to prepare.
 | `* *`    | forgetful student                             | easily access tips specific to each internship based on the current stage                     | quickly see a list of things to prepare for an upcoming internship stage deadline.
+
 
 
 *{More to be added}*
@@ -418,8 +420,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. WorkBook displays an error message that no previous command has been entered.
 
        Use case ends.
+  
+**Use case: UC06 - Redo a command**
 
-**Use case: UC06 - Clear list of internship applications**
+**Main Success Scenario (MSS)**
+
+1. User requests to redo the latest command they have undone.
+2. Workbook reverts any changes made by the undo command and displays the previous state of the list of internship applications.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no previous command executed and the list is empty.
+
+    * 1a1. WorkBook displays an error message that no commands can be redone.
+
+      Use case ends.
+
+**Use case: UC07 - Clear list of internship applications**
 
 **Main Success Scenario (MSS)**
 
@@ -436,7 +455,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - Display help message**
+**Use case: UC08 - Display help message**
 
 **Main Success Scenario (MSS)**
 
@@ -445,7 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC08 - Exit application**
+**Use case: UC09 - Exit application**
 
 **Main Success Scenario (MSS)**
 

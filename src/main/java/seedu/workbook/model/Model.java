@@ -73,9 +73,19 @@ public interface Model {
     boolean canUndoWorkBook();
 
     /**
+     * Returns true if the model has undone WorkBook states to restore.
+     */
+    boolean canRedoWorkBook();
+
+    /**
      * Restores the model's WorkBook back to its previous state.
      */
     void undoWorkBook();
+
+    /**
+     * Restores the model's WorkBook to its previously undone state.
+     */
+    void redoWorkBook();
 
     /**
      * Saves the current WorkBook state for undo.
@@ -89,4 +99,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+
 }
