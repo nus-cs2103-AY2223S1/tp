@@ -155,9 +155,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<<<<<<< HEAD
-`editClient` and `editMeeting`:
-=======
 ### List Meeting feature
 
 Syntax: `listMeeting`
@@ -211,8 +208,7 @@ Below is a sequence diagram that illustrates the execution of `viewMeeting` comm
 
 ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
->>>>>>> b0324ef3d1318ca548a69edf21ad505fd32db47b
+#### `editClient` and `editMeeting` feature
 
 `editClient` and `editMeeting` execute in a similar manner to each other.
 Let the term entity refer to either a client or a meeting.
@@ -239,7 +235,7 @@ Aspect: Class that triggers model and storage update
 
 <img src="images/AlternativeEditActivityDiagram.png" width="250" />
 
-Rational for current choice:
+#### Rationale
 LogicManager is responsible for coordinating both Model and Storage updates because Model and Storage should be kept as separate entities.
 
 [Proposed] Multiple possible prefixes per command feature
@@ -262,23 +258,23 @@ From then on, the AddClientCommand can be built as expected.
 
 #### Design considerations
 
-**Aspect: How prefixes are stored:**
+Aspect: How prefixes are stored:
 
-**Alternative 1 (current choice):** Prefix::getPrefix() returns a Pattern that findPrefixPosition() can match against using Matcher class.
-* Pros: Matcher has several useful methods for validating a match.
-* Case-insensitive matches can be made easily by setting a flag in the Pattern.
-* Cons: Regex string used to define a pattern may be difficult to read.
-* e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
+-Alternative Solution 1 (current choice): Prefix::getPrefix() returns a Pattern that findPrefixPosition() can match against using Matcher class.
+- Pros: Matcher has several useful methods for validating a match.
+- Case-insensitive matches can be made easily by setting a flag in the Pattern.
+- Cons: Regex string used to define a pattern may be difficult to read.
+e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
 
-**Alternative 2:** Store each possible prefix as a String in a List maintained by Prefix.
-* Pros:   String matches are easier to understand than regexes
-* e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
-* Cons: List of String returned is cumbersome for pattern matching, i.e. Iterate through every String in patternsForBirthday to look for a match.
+- Alternative Solution 2: Store each possible prefix as a String in a List maintained by Prefix.
+- Pros:   String matches are easier to understand than regexes 
+e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
+- Cons: List of String returned is cumbersome for pattern matching, i.e. Iterate through every String in patternsForBirthday to look for a match.
 
-**Rationale for current choice:**
-* A single Pattern for each Prefix is more succinct that a List.
-* No need to iterate through a list of Strings to find a match.
-* Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
+#### Rationale 
+- A single Pattern for each Prefix is more succinct that a List.
+- No need to iterate through a list of Strings to find a match.
+- Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
 
 --------------------------------------------------------------------------------------------------------------------
 
