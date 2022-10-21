@@ -248,7 +248,9 @@ The `SavedExerciseListWindow` class implements the `Observer` interface as it is
 `ExerciseHashMap` class maintains an internal arraylistof observers, which can be modified through the 
 addUI and deleteUI methods. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
 UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions 
-which may occur when preloading data from a hashmap in storage. 
+which may occur when preloading data from a hashmap in storage.
+
+![ObserverPatternClass](images/ObserverPattern.png)
 
 ##### Subscribing to updates 
 Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`
