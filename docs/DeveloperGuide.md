@@ -329,7 +329,7 @@ Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/back
 
 Step 3. The user repeats step 2 to add more tasks to the tasklist with different deadlines.
 
-step 4. The user decides that he only wants to see the tasks due on 12 December 2022. The user executes `filter dl/2022-12-12` to filter the tasks that have 12 December 2022 as their deadline. After this, only tasks that have `TaskDeadline:2022-12-12` are displayed onto the application.
+step 4. The user decides that he only wants to see the tasks due on 12 December 2022. The user executes `filterByDeadline dl/2022-12-12` to filter the tasks that have 12 December 2022 as their deadline. After this, only tasks that have `TaskDeadline:2022-12-12` are displayed onto the application.
 
 The following sequence diagram shows how the filter operation works:
 
