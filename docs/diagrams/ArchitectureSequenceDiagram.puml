@@ -18,7 +18,7 @@ activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
 
-logic -[LOGIC_COLOR]> model : getAddressBook()
+logic -[LOGIC_COLOR]> model : getNuScheduler()
 model -[MODEL_COLOR]-> logic : a
 deactivate model
 
