@@ -28,7 +28,7 @@ public class DebtTimeTest {
         assertFalse(DebtTime.isValidTime(" ")); // spaces only
         assertFalse(DebtTime.isValidTime("       ")); // many white spaces
         assertFalse(DebtTime.isValidTime("24:01")); // invalid hour
-        assertFalse(DebtTime.isValidTime("24:61")); // invalid minute
+        assertFalse(DebtTime.isValidTime("20:61")); // invalid minute
         assertFalse(DebtTime.isValidTime("12.45")); // wrong format
         assertFalse(DebtTime.isValidTime("PM12.45")); // wrong format
         assertFalse(DebtTime.isValidTime("12:12:12")); // wrong format

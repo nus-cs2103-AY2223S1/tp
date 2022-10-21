@@ -27,7 +27,7 @@ public class DebtDateTest {
         assertFalse(DebtDate.isValidDate("")); // empty string
         assertFalse(DebtDate.isValidDate(" ")); // spaces only
         assertFalse(DebtDate.isValidDate("       ")); // many white spaces
-        assertFalse(DebtDate.isValidDate("2021-03-432")); // invalid day
+        assertFalse(DebtDate.isValidDate("2021-03-32")); // invalid day
         assertFalse(DebtDate.isValidDate("2021-111-01")); // invalid month
         assertFalse(DebtDate.isValidDate("2021/10/12")); // wrong format
         assertFalse(DebtDate.isValidDate("1-10-10")); // <4-digit year
