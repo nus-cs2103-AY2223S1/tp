@@ -65,15 +65,14 @@ public class InternshipCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(internship.getName().fullName);
         position.setText(internship.getPosition().positionName);
+        status.getChildren().add(lab);
         phone.setText(internship.getPhone().value);
         address.setText(internship.getAddress().value);
         email.setText(internship.getEmail().value);
-        status.getChildren().add(new Label(internship.getStatus().toString()));
         internship.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskTime))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName + " at "
                         + task.taskTime.format(Task.FORMATTER))));
-        status.getChildren().add(lab);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
