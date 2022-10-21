@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 
 import modtrekt.logic.commands.exceptions.CommandException;
-import modtrekt.logic.parser.CliSyntax;
 import modtrekt.model.Model;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
