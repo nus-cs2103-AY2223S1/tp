@@ -154,6 +154,42 @@ Classes used by multiple components are in the `tuthubbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View Feature
+**Implementation**
+
+Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details 
+panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the 
+following operations have been implemented:
+- `CommandResult#view` - Indicates if the current command will lead to a full tutor details panel being displayed 
+
+`MainWindow` will then process the `CommandResult` according to the type of command via the following methods:
+- `MainWindow#handleView(Tutor tutor)` handles a successful `view` command by setting the selected tutor's details panel 
+as visible.
+- `MainWindow#handleNotView()` sets the tutor details panel as invisible when a non-view command is successfully executed.
+
+A `view` command may also be created by clicking on a `TutorListCard` via the following method:
+- `TutorListCard#handleViewDetails()` calls an equivalent `view` command using the tutor's displayed index in the list.
+
+The tutor to be displayed is provided by `Model`, where the following field is added:
+- `ModelManager#tutorToView` specifies the current tutor whose full details are to be displayed.
+
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the view 
+mechanism behaves at each step.
+
+Step 1: The user enters the command `view 1`.
+
+Step 2: `TutHubParser` recognises the view command and creates a `ViewCommandParser` object.
+
+Step 3: `ViewCommandParser` creates a new `ViewCommand` based on the valid index.
+
+Step 4: Upon executing the `ViewCommand`, a new `CommandResult` of view type is created and `ModelManager#tutorToView` 
+is updated with the selected tutor.
+
+Step 5: `MainWindow` recognises that the command is of view type, and `MainWindow#handleView(Tutor tutor)` is called 
+which causes the details panel of the tutor specified in `Model` to be set as visible.
+
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
