@@ -121,6 +121,9 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            if (DateTime.isValidFormat(trimmedDateTime)) {
+                throw new ParseException(DateTime.MESSAGE_INVALID_DATETIME);
+            }
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
         return new DateTime(trimmedDateTime);

@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents a Event's start or end datetime in the address book.
+ * Represents an Event's start or end datetime in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
@@ -20,6 +20,8 @@ public class DateTime {
     public static final String RECOMMENDED_FORMAT = "dd/MM/yyyy";
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should follow a valid format. Try " + RECOMMENDED_FORMAT;
+    public static final String MESSAGE_INVALID_DATETIME =
+            "The values for date and time are invalid! Try " + RECOMMENDED_FORMAT;
 
     public static final String REGEX_YEAR = "(?<yearGroup>[0-9]{4})";
     public static final String REGEX_MONTH_DIGITS = "(((0)?[0-9])|((1)[0-2]))";
@@ -50,6 +52,14 @@ public class DateTime {
                     + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + "))"
                     + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
+        }
+    };
+
+    private static final HashSet<String> REGEX_FORMAT = new HashSet<>() {
+        {
+            add("(\\S+/\\S+/\\S+)\\s((\\d+{1,2}:\\d+{1,2}(:\\d+)?)|(\\d+{4}))?"); // checks for DATE_SLASH and any time format
+            add("(\\S+\\s\\S+\\s\\S+)\\s((\\d+{1,2}:\\d+{2}(:\\d+{2})?)|(\\d+{4}))?"); // checks for DATE_SPACE and any time format
+            add("(\\S+-\\S+-\\S+)\\s((\\d+{1,2}:\\d+{2}(:\\d+{2})?)|(\\d+{4}))?"); // checks for DATE_DASH and any time format
         }
     };
 
@@ -119,6 +129,18 @@ public class DateTime {
     public static boolean isValidDateTime(String dateString) {
         for (String regex : REGEX_DATES) {
             if (dateString.toLowerCase().matches(regex)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if an input date string follows any of the allowed formats.
+     */
+    public static boolean isValidFormat(String dateString) {
+        for (String regex : REGEX_FORMAT) {
+            if (dateString.matches(regex)) {
                 return true;
             }
         }
