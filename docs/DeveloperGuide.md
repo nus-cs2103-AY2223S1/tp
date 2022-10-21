@@ -153,6 +153,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit a Friend
+
+#### Description
+
+The "edit" feature allows users to edit details of their friends.
+
+#### Implementation
+
+The edit feature is facilitated through the `EditCommand` and `EditCommandParser` classes. In
+the `EditCommand` class, there is a `EditPersonDescriptor` nested class which takes in all
+the updated details of the friend to be edited.
+
+MineFriends will then call the "createEditedPerson" method which will create a new person
+with new details. This will then invoke a call to the `ModelManager` class to set the new person
+in the addressBook.
+
+The following class diagram shows the organization of the classes for "edit".
+
+<img src="images/editCommand.png" width="550" />
+
 ### Suggest a Friend
 
 #### Description

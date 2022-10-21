@@ -1,0 +1,21 @@
+@startuml
+abstract class Command
+abstract class Model
+
+Command <|- EditCommand
+Model <|- ModelManager
+EditCommand o-- "1" EditPersonDescriptor
+EditCommand <-up- ModelManager
+
+abstract class Model {
+    void setPerson(Person target, Person editedPerson)
+}
+
+abstract class Command {
+    CommandResult execute(Model model)
+}
+
+class EditCommand {
+    CommandResult execute(Model model
+}
+@enduml
