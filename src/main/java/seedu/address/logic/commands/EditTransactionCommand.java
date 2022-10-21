@@ -2,11 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,9 +12,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameEqualsKeywordPredicate;
-import seedu.address.model.company.UniqueCompanyList;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.transaction.*;
+import seedu.address.model.transaction.BuyTransaction;
+import seedu.address.model.transaction.Date;
+import seedu.address.model.transaction.Goods;
+import seedu.address.model.transaction.Price;
+import seedu.address.model.transaction.Quantity;
+import seedu.address.model.transaction.SellTransaction;
+import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.TransactionLog;
+
 
 /**
  * Edits the details of an existing transaction in one client in the address book.
@@ -71,7 +74,8 @@ public class EditTransactionCommand extends EditCommand {
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code editClientDescriptor}.
      */
-    private static Transaction createEditedTransaction(Transaction transactionToEdit, EditTransactionDescriptor editTransactionDescriptor) {
+    private static Transaction createEditedTransaction(Transaction transactionToEdit,
+                                                       EditTransactionDescriptor editTransactionDescriptor) {
         assert transactionToEdit != null;
 
         Goods updatedGoods = editTransactionDescriptor.getGoods().orElse(transactionToEdit.getGoods());
@@ -163,6 +167,7 @@ public class EditTransactionCommand extends EditCommand {
         public Optional<Date> getDate() {
             return Optional.ofNullable(date);
         }
+
 
         @Override
         public boolean equals(Object other) {
