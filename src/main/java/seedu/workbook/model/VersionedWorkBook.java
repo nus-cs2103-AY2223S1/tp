@@ -48,10 +48,28 @@ public class VersionedWorkBook extends WorkBook {
     }
 
     /**
+     * Restores the WorkBook to its previously undone state.
+     */
+    public void redo() {
+        if (!canRedo()) {
+            throw new NoRedoableStateException();
+        }
+        currentStatePointer++;
+        resetData(workBookStateList.get(currentStatePointer));
+    }
+
+    /**
      * Returns true if {@code undo()} has WorkBook states to undo.
      */
     public boolean canUndo() {
         return currentStatePointer > 0;
+    }
+
+    /**
+     * Returns true if {@code redo()} has WorkBook states to redo.
+     */
+    public boolean canRedo() {
+        return currentStatePointer < workBookStateList.size() - 1;
     }
 
     @Override
@@ -80,6 +98,15 @@ public class VersionedWorkBook extends WorkBook {
     public static class NoUndoableStateException extends RuntimeException {
         private NoUndoableStateException() {
             super("Current state pointer at the start of workBookState list, unable to undo changes.");
+        }
+    }
+
+    /**
+     * Thrown when trying to {@code redo()} but can't.
+     */
+    public static class NoRedoableStateException extends RuntimeException {
+        private NoRedoableStateException() {
+            super("Current state pointer at end of addressBookState list, unable to redo.");
         }
     }
 }

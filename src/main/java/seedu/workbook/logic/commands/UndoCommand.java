@@ -13,7 +13,7 @@ public class UndoCommand extends Command {
     /** Command word to execute the undo command */
     public static final String COMMAND_WORD = "undo";
 
-    /** Message string displaying successful execution of the list command */
+    /** Message string displaying successful execution of the undo command */
     public static final String MESSAGE_SUCCESS = "Undo previous changes successful!";
 
     /**
