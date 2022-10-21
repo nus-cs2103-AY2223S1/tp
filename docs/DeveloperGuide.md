@@ -252,29 +252,27 @@ which may occur when preloading data from a hashmap in storage.
 
 ![ObserverPatternClass](images/ObserverPattern.png)
 
-##### Subscribing to updates 
+##### Subscribing to updates
 Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`
 , it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as 
-well as the application, this can be generalised into two distinct scenarios. 
+well as the application, this can be generalised into two distinct scenarios.
 
 * **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
 * **Removing an exercise** - Whenever a new exercise has been removed, there is a possibility of a key being removed permanently.
 
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The current implementation subscribes to notification for any form of addition or deletion, regardless if the exercise is unique or already exists in the list.
-
 </div>
 
-##### Updating 
+##### Updating
 Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers
 method. All Observers in the list will run the update method that is individually specified in their class. As `SavedExerciseListWindow`
 keeps a copy of `ExerciseHashmap`, it is required to do its calculations and formatting to display the text. The logic behind the calculations
 and formatting of the display message is handled by the `ExerciseKeys` class.
 
 Let us use `SavedExerciseListWindow` update function as an example of how the system is updated. A notification would notify
-`SavedExerciseListWindow` that it needs to relook at the `ExerciseHashMap` it stores and regenerate the input. It calls 
+`SavedExerciseListWindow` that it needs to relook at the `ExerciseHashMap` it stores and regenerate the input. It calls
 the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in 
-natural alphabetical order, as defined in Collections.Sort . 
+natural alphabetical order, as defined in Collections.Sort .
 
 ```
     public String getDisplay() {
@@ -292,14 +290,14 @@ natural alphabetical order, as defined in Collections.Sort .
     }
 ```
 
-It then calls the getDisplay function in  `ExerciseKeys` takes the size of the ArrayList to decide the output to be generated. It returns the output as a string 
-which `SavedExerciseListWindow` can use to set the textarea of the UI to the most updated version. 
+It then calls the getDisplay function in  `ExerciseKeys` takes the size of the ArrayList to decide the output to be generated. It returns the output as a string
+which `SavedExerciseListWindow` can use to set the textarea of the UI to the most updated version.
 
 ### Design considerations
 
-##### Polymorphism 
-The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the 
-notifyObservers function in `ExerciseHashMap`. 
+##### Polymorphism
+The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the
+notifyObservers function in `ExerciseHashMap`.
 
 ```
     public void notifyObservers() {
@@ -309,17 +307,16 @@ notifyObservers function in `ExerciseHashMap`.
     }
 ```
 Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. 
-`ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update, 
-instead, the responsibility of deciding what to do is passed on to the Observers themselves. 
+`ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update,
+instead, the responsibility of deciding what to do is passed on to the Observers themselves.
 
-This allows for flexibility in having different types of objects having different forms of updating. This keeps the code 
+This allows for flexibility in having different types of objects having different forms of updating. This keeps the code
 in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an
 intermediary to help the UI communicate with `ExerciseHashMap`.
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
