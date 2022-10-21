@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents an Internship's company name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -43,9 +45,7 @@ public class Company {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Company // instanceof handles nulls
-                && fullName.equals(((seedu.address.model.person.Company) other).fullName)); // state check
+        return Objects.equals(fullName, ((Company) other).fullName);
     }
 
     @Override
