@@ -1,5 +1,6 @@
 package seedu.address.ui;
 import static seedu.address.commons.util.IntegerUtil.getStringFromInt;
+import static seedu.address.commons.util.StockUtil.determineStockHealthColor;
 
 import java.util.Comparator;
 
@@ -17,13 +18,7 @@ public class SupplyItemCard extends UiPart<Region> {
     /**
      * These colors are made public for possible accessibility in other Ui components.
      */
-    public static final String COLOR_HIGH = "#2ecc71";
-    public static final String COLOR_MEDIUM = "#f39c12";
-    public static final String COLOR_LOW = "#e74c3c";
-    private static final String COLOR_DEFAULT = "transparent";
     private static final String FXML = "SupplyItemCard.fxml";
-    private static final double MEDIUM_THRESHOLD = 1.65;
-    private static final double HIGH_THRESHOLD = 1.2;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -51,13 +46,13 @@ public class SupplyItemCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code SupplyItemCard} with the given {@code SupplyItem} and index to display.
      */
     public SupplyItemCard(SupplyItem supplyItem, int displayedIndex) {
         super(FXML);
         this.supplyItem = supplyItem;
         cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 6 0 0;",
-                determineStockHealth(supplyItem.getCurrentStock(), supplyItem.getMinStock())));
+                determineStockHealthColor(supplyItem.getCurrentStock(), supplyItem.getMinStock())));
         id.setText(displayedIndex + ". ");
         name.setText(supplyItem.getName());
         supplierName.setText(supplyItem.getSupplier().getName().fullName);
@@ -66,45 +61,6 @@ public class SupplyItemCard extends UiPart<Region> {
         supplyItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    /**
-     * Determines the color based on {@code currentStock} and {@code minStock}.
-     */
-    private String determineStockHealth(int currentStock, int minStock) {
-        double mediumStockThreshold = minStock * HIGH_THRESHOLD;
-        double lowStockThreshold = minStock * MEDIUM_THRESHOLD;
-        if (currentStock < lowStockThreshold) {
-            return translateStockLevelToColor(StockLevel.LOW);
-        } else if (currentStock < mediumStockThreshold) {
-            assert currentStock >= lowStockThreshold;
-            return translateStockLevelToColor(StockLevel.MEDIUM);
-        } else {
-            assert currentStock >= mediumStockThreshold;
-            return translateStockLevelToColor(StockLevel.HIGH);
-        }
-    }
-
-    /**
-     * Translates stock health to border colors.
-     */
-    private String translateStockLevelToColor(StockLevel level) {
-        switch (level) {
-        case LOW:
-            return COLOR_LOW;
-        case MEDIUM:
-            return COLOR_MEDIUM;
-        case HIGH:
-            return COLOR_HIGH;
-        default:
-            return COLOR_DEFAULT;
-        }
-    }
-
-    private enum StockLevel {
-        LOW,
-        MEDIUM,
-        HIGH
     }
 
     @Override
