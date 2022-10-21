@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` object and `Meeting` object residing in the `Model`.
 
 ### Logic component
 
@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, meeting list data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `AddressBookStorage`, `MeetingListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -217,6 +217,36 @@ The diagram below should sufficiently explain the main cases for the command.
 ![FilterMeetingsSequenceDiagram](images/CreateMeetingActivityDiagram.png)
 
 
+### [Implemented] Storage for meetings
+#### Implementation
+<img src="images/ModifiedStorageClassDiagram.png" width="550" />
+The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
+that had to be copied, and they included
+- `MeetingList`
+- `ReadOnlyMeetingList`
+- `JsonMeetingListStorage`
+- `JsonAdaptedMeeting`
+- `JsonSerializableMeetingList`
+- `MeetingListStorage`
+
+The following classes had to be extended in order to support meeting list
+- `MainApp`
+- `UserPrefs`
+- `ReadOnlyUserPrefs`
+- `SampleDataUtil`
+- `Storage`
+- `StorageManager`
+- `Model`
+- `ModelManager`
+- `Logic`
+- `LogicManager`
+- `AddressBookParser`
+
+The app maintained its own internal list of meetings in the `ModelManager` and the 
+`LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
+was no need of having to create additional classes to support the model or logic classes
+<img src="images/ModifiedModelClassDiagram.png" width="450" />
+>>>>>>> 29698f5e5cf2386ecdc1f4ca42d5eca87cfe51be
 ### [Implemented] Filter Meetings between Dates
 #### Implementation
 
@@ -250,6 +280,30 @@ The diagram below should sufficiently explain the main cases for the command.
 #### Sequence Diagram for Filter Meetings between Dates
 ![FilterMeetingsSequenceDiagram](images/FilterMeetingsSequenceDiagram.png)
 
+### [Implemented] Edit Meeting Details
+#### Implementation
+
+The filter meetings between dates command consists of these various classes:
+- `EditMeetingCommand` which extends `Command`
+- `EditMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
+
+
+As with all other commands in Yellow Pages, edit meeting has a `Parser` subclass that goes through the
+`AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
+
+`EditMeetingCommand` follows closely the implementation of the `EditCommand` where an `EditMeetingDescriptor` is created
+where only the edit fields are filled in. Next, a new `Meeting` object is created where the contents in the non-null 
+fields of the `EditMeetingDescriptor` are copied over, otherwise the contents of the field in the original `Meeting` 
+object would be copied over. Lastly, this new `Meeting` object would replace the targeted Meeting, resulting in the 
+relevant fields being updated.
+
+Command: `editmeeting meeting index [d/description] [dd/DateAndTime] [l/location]`, DateAndTime must follow the
+dd-MM-yyyy HHmm format. Do note that index starts from 1 starting from the first meeting listed. 
+
+Primarily there are 3 cases for this command,
+- all 3 fields are to be updated - e.g. `editmeeting 1 d/cs2104 dd/23-04-2022 l/nus 2334`
+- only 2 fields are to be updated - e.g. `editmeeting 1 d/cs2105 l/ntu`
+- only 1 field is to be updated - e.g. `editmeeting 1 d/cs2106`
 
 
 ### \[Proposed\] Undo/redo feature

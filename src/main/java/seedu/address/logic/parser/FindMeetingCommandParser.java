@@ -2,12 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingContainsKeywordsPredicate;
+import seedu.address.model.util.FindMeetingFunctionalInterface;
 
 /**
  * Parses input arguments and creates a new FindMeetingCommand object
@@ -29,6 +32,32 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMeetingCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        return new FindMeetingCommand(new MeetingContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        String parameter = nameKeywords[0];
+        ArrayList<String> stringList = new ArrayList<>(Arrays.asList(nameKeywords));
+        stringList.remove(0);
+        return new FindMeetingCommand(new MeetingContainsKeywordsPredicate(stringList, verifyParameters(parameter)));
+    }
+
+    /**
+     * verifies the parameters and returns the appropriate meeting field
+     * @param parameter user input to be parsed
+     * @return returns a FindMeetingFunctionalInterface which encapsulates a method
+     * @throws ParseException when parameter is wrong
+     */
+    private FindMeetingFunctionalInterface verifyParameters(String parameter) throws ParseException {
+        switch (parameter) {
+        case FindMeetingCommand.FIND_AT:
+            return Meeting::getLocation;
+
+        case FindMeetingCommand.FIND_DESCRIPTION:
+            return Meeting::getDescription;
+
+        case FindMeetingCommand.FIND_WITH:
+            return Meeting::getPeopleToMeetAsString;
+
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMeetingCommand.MESSAGE_USAGE));
+        }
     }
 }

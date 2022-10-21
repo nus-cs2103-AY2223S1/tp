@@ -14,6 +14,7 @@ import seedu.address.logic.commands.CreateMeetingCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeletePersonFromMeetingCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterMeetingCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
+import seedu.address.logic.commands.SortMeetingsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,6 +77,9 @@ public class AddressBookParser {
         case CreateMeetingCommand.COMMAND_WORD:
             return new CreateMeetingCommandParser().parse(arguments);
 
+        case EditMeetingCommand.COMMAND_WORD:
+            return new EditMeetingCommandParser().parse(arguments);
+
         case AddPersonToMeetingCommand.COMMAND_WORD:
             return new AddPersonToMeetingCommandParser().parse(arguments);
 
@@ -95,6 +100,9 @@ public class AddressBookParser {
 
         case FilterMeetingCommand.COMMAND_WORD:
             return new FilterMeetingCommandParser().parse(arguments);
+
+        case SortMeetingsCommand.COMMAND_WORD:
+            return new SortMeetingsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
