@@ -163,7 +163,7 @@ The following is an example usage scenario of how a task is marked as done:
 
 Precondition: Task index provided is valid.
 
-1. User keys in mark command with the specific index of the task. (eg. `mark 1`)
+1. User keys in mark command with the specific index of the task. (e.g. `mark 1`)
 2. The first task in the task list is marked as done.
 
 If any of the following occurs:
@@ -172,8 +172,7 @@ If any of the following occurs:
 2. Index given is out of range (i.e. There are fewer tasks than the specified index)
 3. Task has already been marked as done
 
-Then, an appropriate exception will be thrown and the respective error message will be
-shown to the user.
+Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
 The following activity diagram summarizes the action taken when markCommand is executed:
 
@@ -181,11 +180,10 @@ The following activity diagram summarizes the action taken when markCommand is e
 
 _Activity diagram of marking task as done_
 
-In the Logic component, once `LogicManager#execute()` is called, `TruthTableParser` and 
-`MarkCommandParser`
-parses the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
-`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component.
-A `CommandResult` is generated with `isCompleted` boolean value being true.
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses 
+the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the 
+`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. A 
+`CommandResult` is generated with `isCompleted` boolean value being true.
 
 The sequence diagram of the Mark command is shown below:
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
@@ -198,7 +196,7 @@ _Sequence diagram of marking tasks as done_
 #### Implementation
 
 The add member to team feature allows users to add a user to the current team based on the specified index. This index
-refers to the index of the user in the current view of persons in the application.
+refers to the index of the user in the current view of persons in the `PersonListPanel`.
 
 The following is an example usage scenario of how a member is added to a team:
 
@@ -226,6 +224,26 @@ In the `Logic` component, once `LogicManager#execute()` is called, `TruthTablePa
 parses the index of the person in the user input, and generates a `AddMemberCommand` object. `LogicManager` then
 executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
 `CommandResult` is generated with a message indicating the person being added to the team.
+
+
+### List Members Feature
+
+#### Implementation
+
+The list members feature allows users to view the members in their current team.
+
+The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in 
+the current team.
+
+
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` generates a 
+`ListMembersCommand`  object. `LogicManager` then executes the
+`ListMemberCommand` object, which updates the predicate in the `Model` component used to filter `Person` models to 
+display in the `PersonListPanel`. A `CommandResult` is generated with the number of members in the team.
+
+The following sequence diagram illustrates what happens within the `Logic` component when list members command is 
+executed:
+![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -345,7 +363,7 @@ Preconditions: The current working team is set to the team that the member shoul
 
 **Use case: UC03 - List all members of a team**
 
-Preconditions: The current working team is set to the team that the member should be deleted from.
+Preconditions: The current working team is set to the team that the members should be listed from.
 
 **MSS**
 
