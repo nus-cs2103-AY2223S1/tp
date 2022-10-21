@@ -9,7 +9,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
-participant ":FilteredList<Event>" as eventList MODEL_COLOR
+participant "filteredEvents:FilteredList" as eventList MODEL_COLOR
 
 end box
 [-> LogicManager : execute("listEvents")
