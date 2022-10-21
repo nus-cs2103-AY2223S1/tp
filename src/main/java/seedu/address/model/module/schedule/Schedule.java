@@ -142,6 +142,24 @@ public class Schedule {
         return module.equals(other.getModule()) && classType.equals(other.classType);
     }
 
+    /**
+     * Returns the integer start hour
+     */
+    public double getHour(String time) {
+        String hour = time.split(":")[0];
+        String halfHour = time.split(":")[1];
+        double hourDouble = Double.parseDouble(hour);
+        double halfDouble = Double.parseDouble(halfHour) == 30.0 ? 0.5 : 0;
+        return hourDouble + halfDouble;
+    }
+
+    /**
+     * Returns the duration of the schedule
+     */
+    public double getDuration() {
+        return getHour(endTime) - getHour(startTime);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

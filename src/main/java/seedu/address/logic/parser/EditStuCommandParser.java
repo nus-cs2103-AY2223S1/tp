@@ -25,7 +25,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditStuCommand object
  */
 public class EditStuCommandParser implements Parser<EditStuCommand> {
 

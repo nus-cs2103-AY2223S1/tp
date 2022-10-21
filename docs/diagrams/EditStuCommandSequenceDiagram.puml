@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditStuCommandParser" as EditStuCommandParser LOGIC_COLOR
+participant "d: EditStudentDescriptor" as EditStudentDescriptor LOGIC_COLOR
+participant "e:EditStuCommand" as EditStuCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "Student" as Student MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editstu 1 n/David c/CS1101S c/CS2107")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("editstu 1 n/David c/CS1101S c/CS2107")
+activate AddressBookParser
+
+create EditStuCommandParser
+AddressBookParser -> EditStuCommandParser
+activate EditStuCommandParser
+
+EditStuCommandParser --> AddressBookParser
+deactivate EditStuCommandParser
+
+AddressBookParser -> EditStuCommandParser : parse("n/David c/CS1101S c/CS2107")
+activate EditStuCommandParser
+
+create EditStudentDescriptor
+EditStuCommandParser -> EditStudentDescriptor
+activate "EditStudentDescriptor"
+
+EditStudentDescriptor --> EditStuCommandParser: d
+deactivate EditStudentDescriptor
+
+create EditStuCommand
+EditStuCommandParser -> EditStuCommand
+activate EditStuCommand
+
+EditStuCommand --> EditStuCommandParser
+deactivate EditStuCommand
+
+EditStuCommandParser --> AddressBookParser
+deactivate EditStuCommandParser
+
+AddressBookParser --> LogicManager: e
+deactivate AddressBookParser
+
+LogicManager -> EditStuCommand
+activate EditStuCommand
+
+
+EditStuCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> EditStuCommand
+deactivate Model
+
+EditStuCommand -> Student
+activate Student
+
+Student --> EditStuCommand
+deactivate Student
+
+EditStuCommand -> Model : setPerson(studentToEdit, editedStudent)
+activate Model
+
+Model -> EditStuCommand
+deactivate Model
+
+EditStuCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS)
+activate Model
+
+Model -> EditStuCommand
+deactivate Model
+
+EditStuCommand -> LogicManager : CommandResult
+deactivate EditStuCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

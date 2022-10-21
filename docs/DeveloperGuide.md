@@ -162,13 +162,87 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Person Model, Student Class and Student ID
+
+#### Implementation
+
+The class diagram below shows out current implementation of the `Student` class 
+which extends from the `Person` class.
+
+![StudentClassDiagram](images/StudentClassDiagram.png)
+
+Each `Student` in ProfNUS will contain the basic information in the `Person` class.
+Additionally, it will also contain these fields:
+- `StudentId`: A unique student id to identify each student.
+- `TelegramHandle`: The student's telegram handle.
+- `studentModuleInfo`: A set of ModuleCode's that the student is taking.
+- `teachingAssistantInfo`: A set of ModuleCode's that the student is a teaching assistant for.
+
+#### Design consideration:
+
+##### Aspect 1: Inheritance vs Refactoring of Code
+
+* **Alternative 1 (current choice):** Make `Student` inherit from `Person`
+    * Pros:
+      * More OOP since `Student` is a `Person`, thus allowing more flexibility through polymorphism.
+      * Improves the extensibility of the project since we are not constrained to 
+      having a single class to represent all the people in the project. Can include different types
+      of persons in the future such as other professors.
+    * Cons:
+      * Harder to implement, have to write more code and test cases.
+      * Have to consider Liskov Substitution Principle when writing code. 
+
+* **Alternative 2:** Refactor `Person` into `Student` class
+  * Pros:
+    * Easier to implement since it just involves the refactoring of code.
+  * Cons:
+    * Limits the extensibility of the project to just a student managing application.
+
+##### Aspect 2: How to ensure Student being added is unique
+
+* **Alternative 1 (current choice):** Ensure that the `StudentId` of each student is unique
+  * Pros:
+    * Convenient and easy to implement since all students have a unique studentId when they
+    matriculate into NUS
+  * Cons:
+    * The `StudentId` field is editable, and we cannot ensure that the `StudentId` that is added is 
+    a valid Id of a student in NUS. 
+
+* **Alternative 2:** Ensure that students do not have the same name/fields
+  * Pros:
+    * Already implemented in AB3, do not need to change much
+  * Cons:
+    * NUS has many students, and it is inevitable that some of them will share the exact same name
+
+### The edit student feature
+
+#### Implementation
+
+The edit student mechanism is facilitated by `EditStuCommand`, `EditStuCommandParser` and `EditStudentDescriptor` 
+classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a 
+`EditStudentDescriptor` and returns a `EditStuCommand`. When the `EditStuCommand` is executed, it modifies the student
+at the index provided by the user.
+
+The following sequence diagram shows how the `editstu` command works:
+![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
+
+
+
+
+
+
+
 ### Find module details by module code feature
+
 #### Implementation
 
 The find module details mechanism is facilitated by `ModuleViewCommand` and `ModuleViewCommandParser`. It allows users to search for modules based on module code.
@@ -240,7 +314,7 @@ After the ProfNUS receives the instruction to add a new `Scheudule`, it will fin
 
 During the execution, the following validity checks will be conducted:
 
-- Module existance check — The model will check if it can find the module indicated by the new schedule. If no module is found, then a `CommandException` will be thrown.
+- Module existence check — The model will check if it can find the module indicated by the new schedule. If no module is found, then a `CommandException` will be thrown.
 - Schedule conflict check — The model will check if the new schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.
@@ -251,7 +325,7 @@ During the execution, the following validity checks will be conducted:
 
 The proposed edit schedule functionality is accomplished by `EditScheduleCommand` which extends the `Command` class. The `EditScheduleCommand` overrides the following method:
 
-- `EditScheduleCommand#execute(Model model)` — Executes the command and edit the target schedule with new information
+- `EditScheduleCommand#execute(Model model)` — Executes the command and edits the target schedule with new information
 
 The following sequence diagram shows how add schedule operation works
 
@@ -266,6 +340,21 @@ During the execution, the following validity checks will be conducted:
 - Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.
+
+
+### [Proposed] ViewSchedule feature
+
+#### Proposed Implementation
+
+The proposed view schedule functionality is accomplished by `ViewScheduleCommand` which extends the `Command` class. The `ViewScheduleCommand` overrides the following method:
+
+- `ViewScheduleCommand#execute(Model model)` — Executes the command and displays the selected schedules / all schedules
+
+The following sequence diagram shows how view schedule operation works :
+
+![EditScheduleSequence](/Users/mr.yueng/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/2022_fall_sem_NUS/CS2103T Software Engineering/tp/docs/images/ViewScheduleSequenceDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
