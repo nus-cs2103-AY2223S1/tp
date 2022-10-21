@@ -4,15 +4,20 @@ start
 title Activity Diagram for Randomly Assign Task
 
 if () then ([else])
-    :Retrieve task at given index;
     if () then ([else])
-        :Insert all unassigned team members to a list;
-        :Assign task to one random member from list;
-    else ([all team members already assigned task])
-        :Throw CommandException;
+        :Retrieve task at given index;
+        if () then ([else])
+            :Assign task to randomly chosen
+            team member that has not been
+            assigned this task yet;
+        else ([all team members already assigned task])
+            :Throw CommandException;
+        endif
+    else ([task index is out of bounds])
+            :Throw CommandException;
     endif
-else ([task index is out of bounds])
-    :Throw CommandException;
+else ([task index is invalid])
+    :Throw ParseException;
 endif
 stop
 @enduml

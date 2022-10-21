@@ -19,10 +19,10 @@ object "__person2:Person__" as Person2 <<Person>>
 object "__person3:Person__" as Person3 <<Person>>
 object "__:Task__" as Task <<TaskType>>
 
-Team -- Person1
-Team -- Person2
-Team -- Person3
-Team -- Task
-Task -- Person2
+Team --> Person1
+Team --> Person2
+Team --> Person3
+Team --> Task
+Task --> Person2
 
 @end
