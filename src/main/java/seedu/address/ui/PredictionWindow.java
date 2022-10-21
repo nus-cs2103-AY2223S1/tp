@@ -60,9 +60,9 @@ public class PredictionWindow extends UiPart<Stage> {
      *                               </li>
      *                               </ul>
      */
-    public void show() {
+    public void show(String inputPrediction) {
         logger.fine("Showing help page about the application.");
-        prediction.setText("hello");
+        prediction.setText(inputPrediction);
         getRoot().show();
         getRoot().centerOnScreen();
     }

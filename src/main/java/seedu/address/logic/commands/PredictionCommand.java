@@ -4,9 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
+import javafx.collections.ObservableList;
+import seedu.address.logic.algorithm.PredictionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.subject.Subject;
 
 /**
@@ -38,6 +42,8 @@ public class PredictionCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true);
+        requireNonNull(model);
+        double gradePredicted = PredictionUtil.predictGrade(subject.getGrades());
+        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true, gradePredicted);
     }
 }

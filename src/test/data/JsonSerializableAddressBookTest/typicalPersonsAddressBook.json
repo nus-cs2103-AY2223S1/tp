@@ -9,6 +9,10 @@
       "studentClass": "1A",
       "tagged": [
         "friends"
+      ],
+      "subjects": [
+        "Maths",
+        "Science"
       ]
     },
     {
@@ -20,6 +24,10 @@
       "tagged": [
         "owesMoney",
         "friends"
+      ],
+      "subjects": [
+        "Maths",
+        "Science"
       ]
     },
     {
@@ -27,7 +35,10 @@
       "phone": "95352563",
       "email": "heinz@example.com",
       "address": "wall street",
-      "studentClass": "1A"
+      "studentClass": "1A",
+      "subjects": [
+        "English"
+      ]
     },
     {
       "name": "Daniel Meier",
@@ -40,6 +51,9 @@
       ],
       "tagged": [
         "friends"
+      ],
+      "subjects": [
+        "English"
       ]
     },
     {
@@ -49,7 +63,10 @@
       "address": "michegan ave",
       "studentClass": "1A",
       "remarks": [],
-      "tagged": []
+      "tagged": [],
+      "subjects": [
+        "English"
+      ]
     },
     {
       "name": "Fiona Kunz",
@@ -58,7 +75,10 @@
       "address": "little tokyo",
       "studentClass": "1A",
       "remarks": [],
-      "tagged": []
+      "tagged": [],
+      "subjects": [
+        "English"
+      ]
     },
     {
       "name": "George Best",
@@ -67,7 +87,10 @@
       "address": "4th street",
       "studentClass": "1A",
       "remarks": [],
-      "tagged": []
+      "tagged": [],
+      "subjects": [
+        "English"
+      ]
     }
   ]
 }

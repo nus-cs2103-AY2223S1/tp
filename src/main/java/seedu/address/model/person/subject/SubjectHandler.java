@@ -1,6 +1,7 @@
 package seedu.address.model.person.subject;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Handles a Student's subjects in the application.
@@ -13,6 +14,13 @@ public class SubjectHandler {
      */
     public SubjectHandler() {
         subjectsTaken = new HashMap<>();
+    }
+
+    public SubjectHandler(Set<Subject> subjects) {
+        subjectsTaken = new HashMap<>();
+        for (Subject subject : subjects) {
+            subjectsTaken.put(subject.getSubjectName(), subject);
+        }
     }
 
     /**
@@ -31,6 +39,10 @@ public class SubjectHandler {
      */
     public Subject getSubject(String subjectName) {
         return subjectsTaken.get(subjectName);
+    }
+
+    public Set<Subject> getSubjectsTaken() {
+        return (Set<Subject>) subjectsTaken.values();
     }
 
     @Override

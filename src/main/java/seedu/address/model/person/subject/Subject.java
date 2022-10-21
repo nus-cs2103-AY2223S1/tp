@@ -73,6 +73,10 @@ public class Subject {
         return attendance;
     }
 
+    public Grades getGrades() {
+        return grades;
+    }
+
     public void updateAttendance(String updatedAttendance) {
         attendance.updateAttendance(updatedAttendance);
     }
@@ -93,5 +97,4 @@ public class Subject {
     public String toString() {
         return subjectName;
     }
-
 }

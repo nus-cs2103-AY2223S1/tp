@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String studentClass;
     private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedSubject> subjects = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +45,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("studentClass") String studentClass,
                              @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("subjects") List<JsonAdaptedSubject> subjects) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,6 +57,9 @@ class JsonAdaptedPerson {
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (subjects != null) {
+            this.subjects.addAll(subjects);
         }
     }
 
@@ -71,10 +77,12 @@ class JsonAdaptedPerson {
         remarks.addAll(source.getRemarks().stream()
                              .map(JsonAdaptedRemark::new)
                              .collect(Collectors.toList()));
-        //        subject = source.getSubjectsTaken().toString();
         tagged.addAll(source.getTags().stream()
                             .map(JsonAdaptedTag::new)
                             .collect(Collectors.toList()));
+        subjects.addAll(source.getSubjectHandler().getSubjectsTaken().stream()
+                              .map(JsonAdaptedSubject::new)
+                              .collect(Collectors.toList()));
     }
 
     /**
@@ -92,6 +100,12 @@ class JsonAdaptedPerson {
         final List<Remark> personRemarks = new ArrayList<>();
         for (JsonAdaptedRemark remark : remarks) {
             personRemarks.add(remark.toModelType());
+        }
+
+        // So do Subjects
+        final List<Subject> personSubjects = new ArrayList<>();
+        for (JsonAdaptedSubject subject : subjects) {
+            personSubjects.add(subject.toModelType());
         }
 
         if (name == null) {
@@ -131,22 +145,15 @@ class JsonAdaptedPerson {
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentClass.class.getSimpleName()));
         }
         final StudentClass modelStudentClass = new StudentClass(studentClass);
-        //        if (subject == null) {
-        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-        //            SubjectHandler.class.getSimpleName()));
-        //        }
-        //        if (!Subject.isValidSubject(subject)) {
-        //            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
-        //        }
-
-        final SubjectHandler modelSubjectHandler = new SubjectHandler();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Set<Remark> modelRemarks = new HashSet<>(personRemarks);
 
+        final Set<Subject> modelSubjects = new HashSet<>(personSubjects);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStudentClass,
-                          modelRemarks, modelSubjectHandler, modelTags);
+                          modelRemarks, modelSubjects, modelTags);
     }
 
 }

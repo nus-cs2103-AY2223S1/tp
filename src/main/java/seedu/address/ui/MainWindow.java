@@ -151,9 +151,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    public void handlePrediction() {
+    public void handlePrediction(double predictedGrade) {
         if (!predictionWindow.isShowing()) {
-            predictionWindow.show();
+            predictionWindow.show(String.valueOf(predictedGrade));
         } else {
             predictionWindow.focus();
         }
@@ -196,7 +196,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowPrediction()) {
-                handlePrediction();
+                handlePrediction(commandResult.getGradePredicted());
             }
 
             if (commandResult.isExit()) {
