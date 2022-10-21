@@ -1,0 +1,43 @@
+{
+  "supplyItemList" : [ {
+    "name" : "Flour",
+    "currentStock" : "100",
+    "minStock" : "10",
+    "phone" : "85355255",
+    "price" : "$1.20",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [],
+    "supplierName" : "Amy Bee",
+    "personItem" : "Flour"
+  }, {
+    "name" : "Ginger",
+    "currentStock" : "99",
+    "minStock" : "1",
+    "phone" : "94351253",
+    "price" : "$1.50",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged": [],
+    "supplierName" : "Alice Pauline",
+    "personItem" : "Ginger"
+  }, {
+    "name" : "Beef",
+    "currentStock" : "99",
+    "minStock" : "1",
+    "phone" : "98765432",
+    "price" : "$3.50",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [],
+    "supplierName" : "Benson Meier",
+    "personItem" : "Beef"
+  }, {
+    "name" : "Lamb",
+    "currentStock" : "99",
+    "minStock" : "1",
+    "phone" : "95352563",
+    "price" : "$0.90",
+    "address" : "wall street",
+    "tagged" : [],
+    "supplierName" : "Carl Kurz",
+    "personItem" : "Lamb"
+  } ]
+}

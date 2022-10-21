@@ -53,6 +53,14 @@ public class AddTaskCommandParserTest {
     }
 
     @Test
+    public void parse_optionalFieldsMissing_success() {
+        // zero tags
+        Task expectedTask = new TaskBuilder().withTags().withDeadline(getLocalDate(VALID_DEADLINE))
+                .withStatus(VALID_STATUS_FALSE).withTitle(VALID_TITLE_CHICKEN).build();
+        assertParseSuccess(parser, TITLE_DESC_CHICKEN + DEADLINE_DESC, new AddTaskCommand(expectedTask));
+    }
+
+    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
@@ -61,9 +69,6 @@ public class AddTaskCommandParserTest {
 
         // missing deadline prefix
         assertParseFailure(parser, TITLE_DESC_CHICKEN + VALID_DEADLINE + TAG_DESC_FOOD, expectedMessage);
-
-        // missing tag prefix
-        assertParseFailure(parser, TITLE_DESC_CHICKEN + DEADLINE_DESC + VALID_TAG_FOOD, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_TITLE_CHICKEN + VALID_DEADLINE + VALID_TAG_FOOD, expectedMessage);

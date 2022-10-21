@@ -1,5 +1,6 @@
 package seedu.address.ui;
 import static seedu.address.commons.util.IntegerUtil.getStringFromInt;
+import static seedu.address.commons.util.StockUtil.determineStockHealthColor;
 
 import java.util.Comparator;
 
@@ -14,7 +15,9 @@ import seedu.address.model.item.SupplyItem;
  * An UI component that displays information of a {@code Person}.
  */
 public class SupplyItemCard extends UiPart<Region> {
-
+    /**
+     * These colors are made public for possible accessibility in other Ui components.
+     */
     private static final String FXML = "SupplyItemCard.fxml";
 
     /**
@@ -43,11 +46,13 @@ public class SupplyItemCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code SupplyItemCard} with the given {@code SupplyItem} and index to display.
      */
     public SupplyItemCard(SupplyItem supplyItem, int displayedIndex) {
         super(FXML);
         this.supplyItem = supplyItem;
+        cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 6 0 0;",
+                determineStockHealthColor(supplyItem.getCurrentStock(), supplyItem.getMinStock())));
         id.setText(displayedIndex + ". ");
         name.setText(supplyItem.getName());
         supplierName.setText(supplyItem.getSupplier().getName().fullName);

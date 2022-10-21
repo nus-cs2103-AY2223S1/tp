@@ -31,7 +31,7 @@ public class TypicalPersons {
             .withTags("friends").build();
     public static final Person ALICE_SUPPLIER = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withPrice("$1.50")
-            .withItem("Chicken").withPhone("94351253")
+            .withItem("Ginger").withPhone("94351253")
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
@@ -39,17 +39,17 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends").build();
     public static final Person BENSON_SUPPLIER = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withPrice("$3.50").withItem("Tuna").withPhone("98765432")
+            .withPrice("$3.50").withItem("Beef").withPhone("98765432")
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withPrice("$0.90").withItem("Rice").withAddress("wall street").build();
     public static final Person CARL_SUPPLIER = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withPrice("$0.90").withItem("Rice").withAddress("wall street").build();
+            .withPrice("$0.90").withItem("Lamb").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withPrice("$3.80").withItem("Tonic Water")
             .withAddress("10th street").withTags("friends").build();
     public static final Person DANIEL_SUPPLIER = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withPrice("$3.80").withItem("Tonic Water")
+            .withPrice("$3.80").withItem("Spinach")
             .withAddress("10th street").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withPrice("$0.60").withItem("Napkins").withAddress("michegan ave").build();
@@ -88,7 +88,22 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} with all the typical suppliers.
+     */
+    public static AddressBook getTypicalAddressBookWithSuppliers() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalSuppliers()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Person> getTypicalSuppliers() {
+        return new ArrayList<>(Arrays.asList(ALICE_SUPPLIER, BENSON_SUPPLIER, CARL_SUPPLIER, DANIEL_SUPPLIER));
     }
 }

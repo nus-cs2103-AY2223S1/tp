@@ -22,7 +22,7 @@ import seedu.address.model.task.Task;
  * Updates a task to the taskList at the specified index with specified details.
  */
 public class UpdateTaskCommand extends Command {
-    public static final String COMMAND_WORD = "updateTask";
+    public static final String COMMAND_WORD = "editTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Updates a task in the taskList\n"
@@ -77,7 +77,7 @@ public class UpdateTaskCommand extends Command {
 
         String updatedTitle = updateTaskDescriptor.getTitle().orElse(taskToUpdate.getTitle());
         LocalDate updatedDeadline = updateTaskDescriptor.getDeadline().orElse(taskToUpdate.getDeadline());
-        boolean updatedStatus = updateTaskDescriptor.getStatus().orElse(taskToUpdate.getStatus());
+        boolean updatedStatus = taskToUpdate.getStatus();
         Set<Tag> updatedTags = updateTaskDescriptor.getTags().orElse(taskToUpdate.getTags());
 
         return new Task(updatedTitle, updatedDeadline, updatedStatus, updatedTags);
@@ -98,7 +98,6 @@ public class UpdateTaskCommand extends Command {
     public static class UpdateTaskDescriptor {
         private String title;
         private LocalDate deadline;
-        private boolean status;
         private Set<Tag> tags;
 
         public UpdateTaskDescriptor() {}
@@ -110,7 +109,6 @@ public class UpdateTaskCommand extends Command {
         public UpdateTaskDescriptor(UpdateTaskCommand.UpdateTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setDeadline(toCopy.deadline);
-            setStatus(toCopy.status);
             setTags(toCopy.tags);
         }
 
@@ -118,7 +116,7 @@ public class UpdateTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, tags) || status;
+            return CollectionUtil.isAnyNonNull(title, deadline, tags);
         }
 
         public void setTitle(String title) {
@@ -135,14 +133,6 @@ public class UpdateTaskCommand extends Command {
 
         public Optional<LocalDate> getDeadline() {
             return Optional.ofNullable(deadline);
-        }
-
-        public void setStatus(boolean status) {
-            this.status = status;
-        }
-
-        public Optional<Boolean> getStatus() {
-            return Optional.ofNullable(status);
         }
 
         /**
@@ -179,7 +169,6 @@ public class UpdateTaskCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getDeadline().equals(e.getDeadline())
-                    && getStatus().equals(e.getStatus())
                     && getTags().equals(e.getTags());
         }
     }

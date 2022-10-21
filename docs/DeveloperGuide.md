@@ -276,6 +276,68 @@ As a result, editing a supplier's details necessitate a corresponding update to 
 
 <img src="images/SupplierAndSupplyItemClassDiagram.png" width="500" />
 
+### \[Developed\] AddTask feature
+
+**Implementation**
+
+This feature allow us to `Tasks` to be added to the `TaskList` for vendors to keep track of tasks they need to do.
+
+The proposed addTask feature is facilitated by `AddTaskCommand` and `AddTaskCommandParser` classes
+
+The `AddTaskCommandParser` parses the input given by the user and ensures that all input required to create the
+tasks are present and valid. Once inputs are parsed and are valid, a `Task` instance will be created and will be
+added to the taskList.
+
+The feature will be implemented with the help of the following operations:
+* `Model#addTask(Task task)` which adds a newly created `Task` instance to the taskList.
+* `AddTaskCommandParser#parse(String arg)` which will parse the input then create a new task then returns an 
+AddTaskCommand with the new task created.
+
+Given below is an example of how `AddTaskCommand` is being executed
+
+**Steps**
+
+Step 1. The user enters the `addTask d/Buy Chicken dl/2020-12-12 t/Food` command.
+d/ represents the task description, dl/ represents deadline and t/ represents tag.
+
+Step 2. The `AddTaskCommandParser` parses the input and ensures that command is valid.
+For it to be valid, all compulsory field such as deadline and descriptions must be present.
+Tag field is optional. Further checks are that date given are in the correct format of 
+`yyyy-mm-dd`. Also date given must be a valid gregorian calendar date.
+Which means **01 <= dd <= 28/29/30/31** depending on month especially February. 
+**01 <= mm <= 12** for month.
+If these checks are not valid, an exception will be thrown.
+If checks are valid, a new Task instance will be created and a `AddTaskCommand` with the argument
+containing the new Task will be created.
+
+Step 3. The execute method in `AddTaskCommand` is being called. Then `Model#addTask(Task task)`
+method is being called. Which will add the new Task into the `TaskList`.
+
+Step 4. `CommandResult` is then returned, notifying the user that the `Task` is successfully added.
+
+**Activity Diagram**
+The user flow is illustrated in the *Activity Diagram* below.
+
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+**Design considerations**
+
+**Aspect: How deadline should be handled**
+
+* **Alternative 1 (current choice):** Parser will convert String format of date into localDate
+    * Pros: More versatile, make it easier for us developer to compare between task should we want
+  to make any comparison using the date
+    * Cons: More strict input must be given by user in the current format `yyyy-mm-dd`
+
+* **Alternative 2:** Deadline remains as a string format.
+    * Pros: Simpler way of displaying deadline to user, lesser bugs since we do not have to 
+  parse the string into localDate which reduces the amount of bugs.
+    * Cons: More restrictive when it comes to using dateline to compare and sort the task
+  based on deadline. 
+
+_{more aspects and alternatives to be added}_
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
