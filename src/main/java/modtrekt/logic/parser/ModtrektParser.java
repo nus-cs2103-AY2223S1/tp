@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 
+import modtrekt.commons.core.Messages;
+import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.CdModuleCommand;
@@ -43,6 +45,9 @@ public class ModtrektParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
+        if (userInput.isBlank()) {
+            throw new ParseException(Messages.MESSAGE_MISSING_COMMAND);
+        }
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
         JCommander jcommander = JCommander.newBuilder()
@@ -50,9 +55,10 @@ public class ModtrektParser {
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                     .build();
         try {
-            // This takes care of missing or invalid commands, as well as missing or invalid arguments
+            // This takes care of invalid commands, as well as missing or invalid arguments
             // via the ParameterException.
-            jcommander.parse(userInput.strip().split(" "));
+            // Arguments with spaces MUST BE SURROUNDED BY QUOTES.
+            jcommander.parse(StringUtil.shellSplit(userInput.strip()));
             // This cast is safe since we only pass Command objects to jcommander::addCommand.
             return (Command) jcommander.getCommands()
                     .get(jcommander.getParsedCommand())

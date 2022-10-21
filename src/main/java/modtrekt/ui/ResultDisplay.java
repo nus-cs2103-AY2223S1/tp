@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
@@ -20,8 +21,12 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private ImageView avatarDisplay;
 
+    /**
+     * Creates a {@code ResultDisplay} with the avatar.
+     */
     public ResultDisplay() {
         super(FXML);
+        avatarDisplay.setImage(new Image("/images/snorlax.png"));
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
