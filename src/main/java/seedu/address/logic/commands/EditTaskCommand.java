@@ -77,7 +77,7 @@ public class EditTaskCommand extends Command {
         }
 
         try {
-            model.replaceTask(taskToEdit, editedTask);
+            model.replaceTask(taskToEdit, editedTask, false);
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
@@ -111,9 +111,6 @@ public class EditTaskCommand extends Command {
     public static class EditTaskDescriptor {
         private Module module;
         private TaskDescription description;
-
-        public EditTaskDescriptor() {
-        }
 
         /**
          * Returns true if at least one field is edited.

@@ -154,6 +154,51 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort Task Command
+
+#### How the feature works
+
+The `sort` command allows users to sort the task list by priority status,
+deadline, module code and task description with ease. The sort command operates
+directly on the `ObservableList` stored under `DistinctTaskList` in `AddressBook` so the
+`ObservableList` in `DistinctTaskList` will be permanently sorted to the criteria.
+* When sorting by priority, all tasks with `HIGH` priority status will be positioned at the top of the 
+displayed task list, followed by `MEDIUM`, `LOW` and 
+lastly all tasks with no priority tags.
+* When sorting by deadline, all tasks with deadline tags will be displayed 
+at the top of the displayed task list with the task with the earliest deadline
+being displayed at the top. All the remaining tasks with no deadline tags will
+be displayed below all tasks with deadline tags.
+
+`sort` command adheres to the following format: `sort c/CRITERIA`
+
+`CRITERIA` can be one of the following criteria:
+* `priority`
+* `deadline`
+* `module`
+* `description`
+
+#### Sequence of the SortTaskCommand
+
+Shown below is a sequence diagram of what occurs when the `excute` method of
+`LogicManager` is invoked.
+
+<img src="images/SortTaskCommandSequenceDiagram.png" />
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+1. `LogicManager` object takes in `"sort c/priority"` which the user keys into the command line. 
+2. `LogicManager` object calls the `parseCommand` of the `AddressBookParser` object created during the initialisation 
+of `LogicManager` object and passes the `"sort c/priority"` as the arguments of `parseCommand`
+3. `SortTaskCommandParser` object is created during execution of `parseCommand` of `AddressBookParser`
+4. `SortTaskCommandParser` object calls its `parse` method with `"c/priority"` being passed in as argument.
+5. `SortTaskCommand` object called st is created from `SortTaskCommandParser`
+6. `excute` method of `SortTaskCommand` object st is invoked and model is passed in as
+an argument.
+7. `sortTaskList` method of `Model` is called with `"priority"` being passed as an
+argument of the method
+8. `execute` method of `SortTaskCommand` object returns a `CommandResult` object with
+the sorted successfully message as argument to the `LogicManager` object. 
+
 ### Filter feature
 
 #### Implementation
@@ -326,8 +371,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS student | mark a task as complete                       | have a better idea of what I have completed.            |
 | `* *`    | NUS student | tag the priority of the tasks in the tasklist | prioritise the task that I would like to complete first |
 | `* * *`  | NUS student | delete the tasks in my tasklist               | remove them if added wrongly.                           |
-
-
+| `* * *`  | NUS student | delete the modules in my modulelist           | remove them if added wrongly.                           |
+| `* * *`  | NUS student | edit the modules in my modulelist             | remove them if added wrongly.                           |
 
 *{More to be added}*
 
@@ -401,6 +446,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The given index is invalid.
     * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+
+**Use case: Delete a module from the module list**
+
+**MSS**
+1. User requests to delete a specific module in the module list
+2. MODPRO deletes the module
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1b. The module at the given index is tied to multiple tasks thus cannot be deleted
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+
+**Use case: Edit a module in the module list**
+
+**MSS**
+1. User requests to edit a specific module in the module list
+2. MODPRO edits the module
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1b. The module at the given index is tied to multiple tasks thus cannot be edited
+    * 1b1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1c. The given module code is invalid 
+    * 1c1. MODPRO shows an error message. </br>
       Use case ends.
 
 *{More to be added}*
