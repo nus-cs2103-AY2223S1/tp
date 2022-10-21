@@ -22,6 +22,8 @@ public class AssignMemberParser {
      */
     public AssignMemberCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        Index memberIndex;
+        Index teamIndex;
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEMBER_INDEX, PREFIX_TEAM_INDEX);
 
@@ -30,8 +32,13 @@ public class AssignMemberParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignMemberCommand.MESSAGE_USAGE));
         }
 
-        Index memberIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MEMBER_INDEX).get());
-        Index teamIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TEAM_INDEX).get());
+        try {
+            memberIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MEMBER_INDEX).get());
+            teamIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TEAM_INDEX).get());
+        } catch (ParseException p) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignMemberCommand.MESSAGE_USAGE), p);
+        }
 
         return new AssignMemberCommand(memberIndex, teamIndex);
     }

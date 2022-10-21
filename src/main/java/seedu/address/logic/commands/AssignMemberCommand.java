@@ -19,7 +19,7 @@ public class AssignMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a person to the team. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a person to the team. \n"
             + "Parameters: "
             + PREFIX_MEMBER_INDEX + "MEMBER INDEX "
             + PREFIX_TEAM_INDEX + "TEAM INDEX \n"

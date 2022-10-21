@@ -28,7 +28,7 @@ public class UnAssignMemberCommand extends Command {
             + PREFIX_TEAM_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "Person removed: %1$s from team: %2$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the team";
+    public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "This person does not exist in the team";
     public static final String MESSAGE_ARGUMENTS = "Person: %1$s, Team: %2$s";
 
     private final Index personIndex;
@@ -47,6 +47,7 @@ public class UnAssignMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
+
         Team team = model.getTeamUsingIndex(teamIndex);
         Person person = model.getPersonUsingIndex(personIndex);
 
