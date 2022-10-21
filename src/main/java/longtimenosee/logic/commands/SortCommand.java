@@ -86,9 +86,9 @@ public class SortCommand extends Command {
         requireNonNull(comparator);
         model.sort(comparator);
         if (this.toSort.equals(SORT_DEFAULT)) {
-            return new CommandResult(DEFAULT_SUCCESS_MESSAGE, false, true);
+            return new CommandResult(DEFAULT_SUCCESS_MESSAGE, false, true, false);
         } else {
-            return new CommandResult(MESSAGE_SUCCESS + this.toSort, false, true);
+            return new CommandResult(MESSAGE_SUCCESS + this.toSort, false, true, false);
         }
     }
 

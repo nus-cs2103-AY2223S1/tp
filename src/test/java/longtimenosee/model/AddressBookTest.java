@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.exceptions.DuplicatePersonException;
 import longtimenosee.model.policy.Policy;
@@ -94,6 +95,8 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Policy> policies = FXCollections.observableArrayList();
 
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
+
         AddressBookStub(Collection<Person> persons, Collection<Policy> policies) {
             this.persons.setAll(persons);
             this.policies.setAll(policies);
@@ -108,6 +111,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Policy> getPolicyList() {
             return policies;
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            return events;
         }
     }
 

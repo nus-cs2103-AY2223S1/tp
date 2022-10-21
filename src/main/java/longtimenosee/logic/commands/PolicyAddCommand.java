@@ -14,7 +14,7 @@ import longtimenosee.model.policy.Policy;
  * Adds a policy to the address book.
  */
 public class PolicyAddCommand extends Command {
-    public static final String COMMAND_WORD = "newPolicy";
+    public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the address book. "
             + "Parameters: "
@@ -34,7 +34,7 @@ public class PolicyAddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New policy added: %1$s";
     public static final String MESSAGE_DUPLICATE_POLICY = "This policy already exists in the address book";
 
-    private final Policy toAdd;
+    final Policy toAdd;
 
     /**
      * Creates an PolicyAddCommand to add the specified {@code Policy}
@@ -55,7 +55,7 @@ public class PolicyAddCommand extends Command {
         }
 
         model.addPolicy(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true, false, false);
     }
 
     @Override

@@ -118,23 +118,24 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the following address book data
+  * all `Person` objects (which are contained in a `UniquePersonList` object)
+  * all `Policy` objects (which are contained in a `UniquePolicyList` object)
+  <img src="images/ModelPolicyClassDiagram.png" width="500" />
+  * all `Event` objects (which are contained in a `UniqueEventList` object)
+  <img src="images/ModelEventClassDiagram.png"  width="500"/>
+* stores the currently 'selected' `XYZ` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person, Policy or Event
 
 
 ### Storage component
@@ -150,7 +151,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `longtimenosee.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,25 +159,85 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sort Feature 
+### pin and viewPin feature
 
-#### Implementation 
+#### Implementation
 
-The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list. 
+Each person object has a boolean attribute known as pinned. When the user pins the person using the index. This attribute will be set to true. When the user pins that same person again, this attribute will be set to false.
+
+
+* `pin <Index>` — Sets the boolean pinned attribute to a value of true.
+* `pin <Index>` — If the boolean pinned attribute was previously set true, calling the command again will set it to false.
+* `viewPin` — Uses the predicate PinnedPersonPredicate to sort the full list of existing clients to display only clients with pinned attribute of true.
+
+The following sequence diagram summarizes how pin works:
+
+![PinSequenceDiagram](images/PinSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Pin activity dragram:
+<img src="images/PinActivityDiagram.png" width="250" />
+
+#### View Pin Activity diagram:
+<img src="images/ViewPinActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How pin and viewPin executes:**
+
+* **Alternative 1 (current choice):** Uses a predicate to sort through pinned clients.
+    * Pros: Easy to implement.
+    * Cons: Hard for additional extensions given that this method uses a boolean attribute.
+
+* **Alternative 2:** Saves the entire address book of clients pinned.
+  * Pros: More potential for further extensions.
+  * Cons: May result in performance issues in terms of memory usage.
+
+### viewIncome feature
+
+#### Implementation
+
+This feature builds on the new policy class created. Where each client has a set of policies assigned to them. In this case, a financial advisor’s income is treated as a class by itself. Where inside the class there are methods of retrieving the income based on different factors stated below.
+
+The main calculation done in class FinancialAdvisorIncome is a function called calculateIncome. This function iterates through a list of clients and for each client, it iterates through the list of policies they have. For each of the policies, LocalDate and Period are used to determine which commission (out of the 3 year differing rates) the assigned policy of the current person is in. Subsequently, all commissions are multiplied by policy premium with the duration of the policy (relative from start date to given date) and summed to give income for a particular year.
+
+* `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
+
+Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
+
+#### Design considerations:
+
+**Aspect: How viewIncome executes:**
+
+* **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
+    * Pros: By assigning FinanicialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
+    * Cons: Might pose a problem for retrival of values from class.
+
+* **Alternative 2:** Saves the entire address book of clients pinned.
+    * Pros: More potential for further extensions.
+    * Cons: May result in performance issues in terms of memory usage.
+
+
+### Sort Feature
+
+#### Implementation
+
+The Sort mechanism is facilitated by `UniquePersonList`, which utilizes Java's `ObservableList` library to store the client list.
 
 The method `FXCollections.sort()` is called by UniquePersonList, which takes in a comparator as an argument and sorts the client list based on the comparator supplied.
 Each attribute of a client which is considered a valid sorting metric has its own comparator within its class.
 
 This operation is exposed in the `Model` interface as `Model#sort()`.
 
-Given below is an example usage scenario and how the `Sort` mechanism behaves at each step. 
+Given below is an example usage scenario and how the `Sort` mechanism behaves at each step.
 
-Step 1.  The user executes `list` to view his current client list. 
+Step 1.  The user executes `list` to view his current client list.
 
 Step 2. The user executes `sort income` to view his client list by ascending income levels. This will pass the income comparator to `Model#sort()`. The list will be sorted and changes can be viewed immediately.
 
 
-The following sequence diagram shows how the sort operation works: 
+The following sequence diagram shows how the sort operation works:
 
 ![Sort Sequence Diagram](./images/SortSequenceDiagram.png)
 
@@ -184,13 +245,13 @@ The following activity diagram summarizes what happens when a user issues a `sor
 
 ![Sort Activity Diagram](./images/SortActivityDiagram.png)
 
-#### Design Considerations 
+#### Design Considerations
 
 **Aspect: How to manage saving changes to `Storage`**
 
 As any commands called which modifies the `AddressBook` will save these changes to storage, a major design consideration was whether to save these post-sort changes to the storage
 
-* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view 
+* **Alternative 1 (current choice):** save the changes as per normal but provide an option to return to the default sorting view
   * Pros: Easy to implement, less memory required to keep separate original list 
   * Cons: Client list remains in a particular order after `sort` command is called until `sort default` is issued
 
@@ -208,6 +269,7 @@ As any commands called which modifies the `AddressBook` will save these changes 
   * Pros: Easier to implement 
   * Cons: less abstraction; information about client attributes will have to be unnecessarily exposed to `Model` class 
 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -222,7 +284,7 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state/
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -273,7 +335,35 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+
+
+## AddEvent Feature 
+
+### Proposed Implementation 
+The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions. 
+
+* Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
+
+* No overlapping events: . If the event overlaps with another event (i.e: occurs on the same day, and has a start and end time that coincides with another event in `UniqueEventList`, the `AddEventParser` throws an: `OverlapEventException`.
+
+### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
+
+<B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`. 
+
+
+<B>Step 2</B>. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`. The event is added successfully.
+
+
+<B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time window of this event overlaps with the previously event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
+
+
+### The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
+
+<p align ="center"> <img src="images/AddEventActivityDiagram.png" width="650" /> </p>
+
+
+
+## Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -286,12 +376,131 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+
+**Aspect: Should events that occured in the past be auto-deleted on startup of app?:**
+* **Alternative 1 (current choice):** Don't delete, in fact allow users to add events that happened in the past. 
+   * Pros: Our target audience (Financial Advisors) might need to look up what past events or meetings have occured. Keeping past events serves as a good record.Increase in storage 
+   * Cons: More storage used by app
+
+* **Alternative 2 :** Delete all past events, users are not permitted to add events that happened in the past
+   * Pros: Less storage used up by app
+   * Cons: Difficult to implement without bugs.
+
+
+
+
 _{more aspects and alternatives to be added}_
+
+###\[Developed\] Assigning clients a policy
+
+Users can assign existing policies to a client, whilst providing uptake details
+such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
+and `PolicyAssignCommandParser` classes.
+
+The `PolicyAssignCommandParser` parses the input from the user and identifies which policy has to be assigned to
+which client. The appropriate AssignedPolicy object is created with details given in the input 
+and is then assigned to the respective client in `PolicyAssignCommand`.
+
+* `Person#addPolicy(assignedPolicy)` - Attempts to add an assigned policy to a set of assigned policies stored within
+the person object. It also returns a boolean describing if the assigned policy already exists in the set.
+
+Given below is an example usage scenario and how an `assign` command is executed.
+
+The interactions between the components during the usage scenario is shown in the *Sequence Diagram* below.
+
+<p align="center" >
+  <img src="images/AssignPolicySequenceDiagram.png" width="700"/>
+</p>
+
+Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
+to the first person. The policy has a yearly premium of $200 and lasts for 2 years, from 2020 to 2022.
+
+Step 2: The `PolicyAssignCommandParser` parses the input and confirm that the indices are valid. 
+A `PolicyAssignCommand` object with all parameters is constructed. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Policy and Person indices that are not found in the `UniquePersonList` and `UniquePolicyList` respectively
+would be regarded as invalid indices. 
+</div>
+
+Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and the 
+if not already assigned, the policy is assigned to the person.
+
+#### Design considerations
+
+**Aspect: Whether to allow users to assign policies to persons using names:**
+
+* **Alternative 1:** Allows assignment using policy/persons names.
+  * Pros: More flexible and quicker assigning if user knows exactly who and which policy they want to assign.
+  * Cons: More-bug prone, and would require the user to accurately provide the exact name of the policy/person. 
+  Hard to get used to for new users, and complicated for established users with lots of contacts and policies.
+
+* **Alternative 2: (Current implementation)** Allow assignment using policy/person indices.
+  * Pros: Easy to implement and avoids confusion for new users.
+  * Cons: Would require the user to check out the list and find out the indices of their target person/policy.
+  This is overcome by the functionality of the `find` command, which allows users to filter the lists for specific 
+  persons/policies.
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### `Find` feature
+
+#### Implementation
+
+The find mechanism is facilitated by `FilteredList` from the JavaFx library, by using `FilteredList#setPredicate()` to update the list of contacts being displayed based on the specified metrics.
+
+Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+
+Step 1. The user executes a `find` command to find any contacts matching the given metrics. The `find` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindCommandParser#parse()` with the obtained results
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the arguments to the command is invalid, the execution will stop at this step.
+</div>
+
+Step 2. `FindCommandParser#parse()` goes through the arguments and check which prefixes are present and creates a `FindCommand` object with the corresponding predicates.
+
+Step 3. `LogicManager` executes the `FindCommand` using the combined predicates, which calls `Model#updateFilteredPersonList()` and updates the list of contacts displayed
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindXYZCommandParser` and `FindXYZCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindSequenceDiagram](images/FindActivityDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: How `find` executes:**
+
+* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the address book by making use of the JavaFx filteredList library.
+    * Pros: 
+      * Easy extension for additional predicates, by adding predicate classes
+      * Lesser user implementation
+    * Cons: 
+      * If there are too many predicates, there could be an excessive number of classes to manage
+      * Lesser control over lower level details of predicate testing
+
+* **Alternative 2:** Take in user conditions and test for each person in the address book
+    * Pros: 
+      * More control over lower level details.
+      * More efficient algorithms can be used for searching which can improve the overall runtime
+    * Cons: 
+      * Testing required to ensure that the predicate testing algorithms are implemented correctly
+      * Larger overhead in writing code
+
+Alternative 1 was preferred over alternative 2 due to the following reasons:
+  * We could make use of the existing JavaFx library and reduce the amount of additional code that is required.
+  * In addition, there is also a greater guarantee on the correctness of the code as compared to if we were to implement our own algorithms
+  * Lesser testing overhead, which meant that we can focus more testing on the features implementation and reduce more potential bugs
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A similar execution path can be observed for other find related operations like findPolicy and findEvent.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -388,22 +597,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. LTNS shows a list of clients stored in the database
 
    Use case ends.
-    
-**Use case 5: Sort a list**
-
-**MSS**
-
-1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
-2. User requests to sort the list based on name (or any other metric)
-3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
-
-   Use case ends
-
-**Extensions**
-
-* 2a. Given sorting metric does not exist.
-
-  Use case ends.
 
 **Use case 6: Delete a person**
 
@@ -426,8 +619,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case 7: Sort a list**
 
-**Use case 7: Pin a client**
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
+2. User requests to sort the list based on name (or any other metric)
+3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
+
+   Use case ends
+
+**Extensions**
+
+* 2a. Given sorting metric does not exist.
+
+  Use case ends.
+
+**Use case 8: Delete a person**
+
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>
+2. User requests to delete a specific person in the list
+3. LTNS deletes the person
+
+   Use case ends
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 8: Pin a client**
 
 **MSS**
 
@@ -443,7 +674,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case 8: Find a contact**
+**Use case 9: Find a contact**
 
 **MSS**
 
