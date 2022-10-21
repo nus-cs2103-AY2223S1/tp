@@ -333,7 +333,7 @@ The unAssign Member Feature allows the user to assign a person to a pre-existing
 
 Given below is an example usage scenario and how the unAssign Member mechanism behaves at each step.
 
-Step 1. The user executes `unassign m/1 t/1` to unAssign the first person as a member from the first team.
+Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign the first person as a member from the first team.
 
 Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and 
 team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
