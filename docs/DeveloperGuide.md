@@ -277,6 +277,50 @@ Alternatives:
     - Pros: Easy to remember
     - Cons: May be confusing to the user
 
+### Select Feature
+
+#### Current Implementation
+
+The select commands simulates a click on the 'PatientCard' or 'AppointmentCard' in the UI.
+
+The select methods are separated for patients and appointments, with command word 'selectpatient'
+and 'selectappointment' respectively. 
+
+The select commands makes use of the index of a patient or an appointment in the 'FilteredList's
+to identify whose information to show.
+
+The 'SelectPatientCommandParser' and 'SelectAppointmentCommandParser' converts
+input String containing target index to the SelectCommand objects.
+
+On execution, the SelectPatientCommand will invoke the selectPatient() and selectAppointment() in the Model to
+update the FilteredAppointmentList and FilteredBillList to contain selected patient's information only.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+of the application as indexed lists.
+
+Step 2. The user executes `selectpatient 1` command to show all appointments and bills 
+corresponding to the first listed patient.
+The `SelectPatient` command calls `Model#selectPatient(index)` to update the list of appointments
+and bills in the application.
+
+Step 3. The application displays the list of appointments and bills with the name equals to
+the first patient on the patient list panel.
+
+The select feature is now seperated for the patients, appointments and bills sections.
+
+Design considerations:
+1. Length of command word
+2. Whether to use a prefix for the search term
+3. Number of keywords used for the search term
+
+Alternatives:
+
+1. Use a shorter command word (e.g. slp instead of selectpatient, sla instead of selectappointment)
+    - Pros: Easy to type
+    - Cons: May be confused with the select command for patients and appointments
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
