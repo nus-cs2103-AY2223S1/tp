@@ -61,13 +61,16 @@
                 <Insets />
               </opaqueInsets>
               <children>
-                <Label fx:id="healthInsurance" styleClass="cell_small_label" text="\$healthInsurance" />
-                <Label fx:id="disabilityInsurance" styleClass="cell_small_label" text="\$disabilityInsurance" />
-                <Label fx:id="criticalIllnessInsurance" styleClass="cell_small_label" text="\$criticalIllnessInsurance" />
-                <Label fx:id="lifeInsurance" styleClass="cell_small_label" text="\$lifeInsurance" />
+                <Label fx:id="healthInsurance" styleClass="cell_small_label" text="\$healthInsurance" >
+                <Label fx:id="disabilityInsurance" styleClass="cell_small_label" text="\$disabilityInsurance" >
+                <Label fx:id="criticalIllnessInsurance" styleClass="cell_small_label" text="\$criticalIllnessInsurance" >
+                <Label fx:id="lifeInsurance" styleClass="cell_small_label" text="\$lifeInsurance" >
                   <HBox.margin>
                     <Insets />
                   </HBox.margin>
+                </Label>
+                </Label>
+                </Label>
                 </Label>
               </children>
             </HBox>

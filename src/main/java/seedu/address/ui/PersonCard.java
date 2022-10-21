@@ -48,6 +48,7 @@ public class PersonCard extends UiPart<Region> {
     private Label criticalIllnessInsurance;
     @FXML
     private Label lifeInsurance;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -63,10 +64,12 @@ public class PersonCard extends UiPart<Region> {
         email.setText("\uD83D\uDCE7\t" + person.getEmail().value);
         // replace birthday and insurance once implemented.
         // insurance.setText("\uD83D\uDCC4\t" + "something something");
-        healthInsurance.setText(person.getHealthInsurance().getHasInsurance() ? "yes" : "no");
-        disabilityInsurance.setText(person.getDisabilityInsurance().getHasInsurance() ? "yes" : "no");
-        criticalIllnessInsurance.setText(person.getCriticalIllnessInsurance().getHasInsurance() ? "yes" : "no");
-        lifeInsurance.setText(person.getLifeInsurance().getHasInsurance() ? "yes" : "no");
+        healthInsurance.setText("\uD83D\uDCDE\t" + (person.getHealthInsurance().getHasInsurance() ? "yes" : "no"));
+        disabilityInsurance.setText("\uD83D\uDCDE\t" +
+                (person.getDisabilityInsurance().getHasInsurance() ? "yes" : "no"));
+        criticalIllnessInsurance.setText("\uD83D\uDCDE\t" +
+                (person.getCriticalIllnessInsurance().getHasInsurance() ? "yes" : "no"));
+        lifeInsurance.setText("\uD83D\uDCDE\t" + (person.getLifeInsurance().getHasInsurance() ? "yes" : "no"));
         birthday.setText("\uD83C\uDF82\t" + person.getBirthday().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
