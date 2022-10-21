@@ -40,7 +40,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_BIRTHDAY,
                         PREFIX_TAG, PREFIX_REMINDER, PREFIX_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                PREFIX_BIRTHDAY, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -53,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Reminder reminders = ParserUtil.parseReminders(argMultimap.getValue(PREFIX_REMINDER).get());
 
-        Person person = new Person(name, phone, email, address, birthday, tagList, reminders);
+        Person person = new Person(name, phone, email, address, birthday, reminders, tagList);
 
         return new AddCommand(person);
     }

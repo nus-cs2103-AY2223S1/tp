@@ -12,7 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.CriticalIllnessInsurance;
+import seedu.address.model.person.DisabilityInsurance;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.HealthInsurance;
+import seedu.address.model.person.Insurance;
+import seedu.address.model.person.LifeInsurance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,6 +36,10 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String birthday;
+    private final String healthInsurance;
+    private final String disabilityInsurance;
+    private final String criticalIllnessInsurance;
+    private final String lifeInsurance;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String reminders;
 
@@ -41,13 +50,21 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("birthday") String birthday,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("reminders") String reminders) {
+                             @JsonProperty("healthInsurance") String healthInsurance,
+                             @JsonProperty("disabilityInsurance") String disabilityInsurance,
+                             @JsonProperty("criticalIllnessInsurance") String criticalIllnessInsurance,
+                             @JsonProperty("lifeInsurance") String lifeInsurance,
+                             @JsonProperty("reminders") String reminders,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.healthInsurance = healthInsurance;
+        this.disabilityInsurance = disabilityInsurance;
+        this.criticalIllnessInsurance = criticalIllnessInsurance;
+        this.lifeInsurance = lifeInsurance;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,10 +80,14 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().value;
+        healthInsurance = Boolean.toString(source.getHealthInsurance().getHasInsurance());
+        disabilityInsurance = Boolean.toString(source.getDisabilityInsurance().getHasInsurance());
+        criticalIllnessInsurance = Boolean.toString(source.getCriticalIllnessInsurance().getHasInsurance());
+        lifeInsurance = Boolean.toString(source.getLifeInsurance().getHasInsurance());
+        reminders = source.getReminders().task;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        reminders = source.getReminders().task;
     }
 
     /**
@@ -114,11 +135,17 @@ class JsonAdaptedPerson {
 
         final Birthday modelBirthday = new Birthday(birthday);
 
+        final Insurance modelHealthInsurance = new HealthInsurance(Boolean.valueOf(healthInsurance));
+        final Insurance modelDisabilityInsurance = new DisabilityInsurance(Boolean.valueOf(disabilityInsurance));
+        final Insurance modelCriticalIllnessInsurance = new CriticalIllnessInsurance(Boolean
+                .valueOf(criticalIllnessInsurance));
+        final Insurance modelLifeInsurance = new LifeInsurance(Boolean.valueOf(lifeInsurance));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-
         final Reminder modelReminder = new Reminder(reminders);
-
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelReminder);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
+                modelHealthInsurance, modelDisabilityInsurance, modelCriticalIllnessInsurance,
+                modelLifeInsurance, modelReminder, modelTags);
     }
 
 }

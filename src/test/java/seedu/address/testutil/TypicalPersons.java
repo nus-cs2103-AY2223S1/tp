@@ -27,35 +27,56 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withPhone("94351253").withBirthday("2 February 2000")
+            .withHealthInsurance(false).withDisabilityInsurance(false)
+            .withCriticalIllnessInsurance(false).withLifeInsurance(false)
             .withPhone("94351253").withBirthday("2 February 2000").withReminders("remind alice")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withBirthday("1 December 1999")
-            .withReminders("remind benson").withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withHealthInsurance(false).withDisabilityInsurance(true)
+            .withCriticalIllnessInsurance(false).withLifeInsurance(true).withReminders("remind benson")
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withBirthday("20 March 2010")
-            .withReminders("remind carl").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withReminders("remind carl")
+            .withBirthday("20 March 2010").withAddress("wall street")
+            .withHealthInsurance(true).withDisabilityInsurance(true)
+            .withCriticalIllnessInsurance(true).withLifeInsurance(false).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withBirthday("1 November 2000").withReminders("remind daniel")
-            .withAddress("10th street").withTags("friends").build();
+            .withEmail("cornelia@example.com")
+            .withBirthday("1 November 2000").withAddress("10th street").withTags("friends")
+            .withHealthInsurance(false).withDisabilityInsurance(false).withReminders("remind daniel")
+            .withCriticalIllnessInsurance(false).withLifeInsurance(false).build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withBirthday("1 October 2000")
-            .withReminders("remind elle").withAddress("michegan ave").build();
+            .withEmail("werner@example.com").withReminders("remind elle")
+            .withBirthday("1 October 2000").withAddress("michegan ave")
+            .withHealthInsurance(true).withDisabilityInsurance(true)
+            .withCriticalIllnessInsurance(true).withLifeInsurance(true).build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withBirthday("1 January 2000").withAddress("little tokyo")
-            .withReminders("remind fiona").build();
+            .withEmail("lydia@example.com").withReminders("remind fiona")
+            .withBirthday("1 January 2000").withAddress("little tokyo")
+            .withHealthInsurance(true).withDisabilityInsurance(false)
+            .withCriticalIllnessInsurance(true).withLifeInsurance(false).build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withBirthday("1 January 2000").withReminders("remind george")
-            .withAddress("4th street").build();
+            .withEmail("anna@example.com")
+            .withBirthday("1 January 2000").withAddress("4th street").withReminders("remind george")
+            .withHealthInsurance(true).withDisabilityInsurance(false)
+            .withCriticalIllnessInsurance(false).withLifeInsurance(false).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withReminders("remind hoon")
-            .withBirthday("1 May 2000").withAddress("little india").build();
+            .withEmail("stefan@example.com")
+            .withBirthday("1 May 2000").withAddress("little india")
+            .withHealthInsurance(true).withDisabilityInsurance(true).withReminders("remind hoon")
+            .withCriticalIllnessInsurance(false).withLifeInsurance(true).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withBirthday("10 July 2000").withReminders("remind ida")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withBirthday("10 July 2000")
+            .withEmail("hans@example.com").withAddress("chicago ave")
+            .withHealthInsurance(false).withDisabilityInsurance(false).withReminders("remind ida")
+            .withCriticalIllnessInsurance(true).withLifeInsurance(false).build();
+
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

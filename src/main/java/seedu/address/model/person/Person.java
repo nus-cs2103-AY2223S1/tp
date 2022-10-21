@@ -23,14 +23,18 @@ public class Person {
     // Data fields
     private final Address address;
     private final Birthday birthday;
+    private final Insurance healthInsurance;
+    private final Insurance disabilityInsurance;
+    private final Insurance criticalIllnessInsurance;
+    private final Insurance lifeInsurance;
     private final Set<Tag> tags = new HashSet<>();
     private final Reminder reminders;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except for Insurance fields which are added by overloaded method.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
-                  Set<Tag> tags, Reminder reminders) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Birthday birthday, Reminder reminders, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -38,6 +42,31 @@ public class Person {
         this.address = address;
         this.birthday = birthday;
         this.tags.addAll(tags);
+        this.reminders = reminders;
+        this.healthInsurance = new HealthInsurance(false);
+        this.disabilityInsurance = new DisabilityInsurance(false);
+        this.criticalIllnessInsurance = new CriticalIllnessInsurance(false);
+        this.lifeInsurance = new LifeInsurance(false);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Birthday birthday, Insurance healthInsurance, Insurance disabilityInsurance,
+                  Insurance criticalIllnessInsurance, Insurance lifeInsurance,
+                  Reminder reminders, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.birthday = birthday;
+        this.tags.addAll(tags);
+        this.healthInsurance = healthInsurance;
+        this.disabilityInsurance = disabilityInsurance;
+        this.criticalIllnessInsurance = criticalIllnessInsurance;
+        this.lifeInsurance = lifeInsurance;
         this.reminders = reminders;
     }
 
@@ -60,6 +89,23 @@ public class Person {
     public Birthday getBirthday() {
         return birthday;
     }
+
+    public Insurance getHealthInsurance() {
+        return healthInsurance;
+    }
+
+    public Insurance getDisabilityInsurance() {
+        return disabilityInsurance;
+    }
+
+    public Insurance getCriticalIllnessInsurance() {
+        return criticalIllnessInsurance;
+    }
+
+    public Insurance getLifeInsurance() {
+        return lifeInsurance;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -106,13 +152,18 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getBirthday().equals(getBirthday())
+                && otherPerson.getHealthInsurance().equals(getHealthInsurance())
+                && otherPerson.getDisabilityInsurance().equals(getDisabilityInsurance())
+                && otherPerson.getCriticalIllnessInsurance().equals(getCriticalIllnessInsurance())
+                && otherPerson.getLifeInsurance().equals(getLifeInsurance())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, birthday, tags);
+        return Objects.hash(name, phone, email, address, birthday,
+                healthInsurance, disabilityInsurance, criticalIllnessInsurance, lifeInsurance, tags);
     }
 
     @Override
@@ -126,7 +177,15 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Birthday: ")
-                .append(getBirthday());
+                .append(getBirthday())
+                .append("; Health Insurance:")
+                .append(getHealthInsurance())
+                .append("; Disability Insurance:")
+                .append(getDisabilityInsurance())
+                .append("; Critical Illness Insurance:")
+                .append(getCriticalIllnessInsurance())
+                .append("; Life Insurance:")
+                .append(getLifeInsurance());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -135,5 +194,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }
