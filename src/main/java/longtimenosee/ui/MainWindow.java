@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private PolicyListPanel policyListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private IncomeChart incomeChart;
@@ -86,6 +87,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -133,11 +135,13 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Updates the content placeholders to display either policies or persons.
+     *
      * @param tab The specified tab type. Either "policy" or "client".
      */
     void updateInnerContent(String tab) {
         policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
         personListPanelPlaceholder.getChildren().removeAll();
 
         incomeChart = new IncomeChart(logic.getIncome());
@@ -146,6 +150,11 @@ public class MainWindow extends UiPart<Stage> {
         case "policy":
             personListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
             break;
+
+        case "event":
+            personListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+            break;
+
         case "income":
             personListPanelPlaceholder.getChildren().add(incomeChart.lineChart);
             break;
@@ -228,11 +237,16 @@ public class MainWindow extends UiPart<Stage> {
                 updateInnerContent("policy");
             }
 
+            if (commandResult.isShowEvent()) {
+                updateInnerContent("event");
+            }
+
             if (commandResult.isShowIncome()) {
                 updateInnerContent("income");
             }
 
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
@@ -240,3 +254,4 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 }
+

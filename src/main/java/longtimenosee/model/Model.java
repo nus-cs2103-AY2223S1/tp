@@ -2,10 +2,12 @@ package longtimenosee.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import longtimenosee.commons.core.GuiSettings;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
@@ -20,6 +22,9 @@ public interface Model {
 
     Predicate<Policy> PREDICATE_SHOW_ALL_POLICIES = unused -> true;
     Predicate<Policy> PREDICATE_SHOW_NO_POLICIES = unused -> true;
+
+    //TODO: Determine if we should use show all events like this?
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -98,10 +103,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-
-
-
     /**
      * Returns true if a policy with the same identity as {@code Policy} exists in the address book.
      */
@@ -136,4 +137,58 @@ public interface Model {
      */
     void updateFilteredPolicyList(Predicate<Policy> predicate);
 
+    /**
+     * Adds the Event specified.
+     */
+    void addEvent(Event toAdd, String personName);
+
+    /**
+     * Checks if there is an overlapping
+     * @param toAdd Event to be added
+     * @return
+     */
+    boolean hasEventOverlap(Event toAdd);
+
+    /**
+     * List overlapping events with event passed into param
+     * @param toAdd
+     * @return
+     */
+    List<Event> listEventsOverlap(Event toAdd);
+    /**
+     * Checks if there is already an existing event
+     * @param toAdd
+     * @return
+     */
+    boolean hasEvent(Event toAdd);
+
+    /**
+     * Deletes an event from event list
+     * @param toDelete event to delete
+     */
+    void deleteEvent(Event toDelete);
+
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Lists events on the same day as an event to add
+     * @param toAdd
+     * @return
+     */
+    List<Event> listEventsSameDay(Event toAdd);
+
+    /**
+     * Shows upcoming events in the next 7 days
+     */
+    List<Event> calendarView();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
+
+
+    void removeEventsUnderPerson(Person personToDelete);
 }

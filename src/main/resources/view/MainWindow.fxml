@@ -52,6 +52,11 @@
 
 
 
+
+        <StackPane fx:id="eventList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </StackPane>
+
         <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: FFCFC0; -fx-min-width: 300" styleClass="command-box" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />

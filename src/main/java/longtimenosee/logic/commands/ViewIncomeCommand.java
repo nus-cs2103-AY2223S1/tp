@@ -26,7 +26,8 @@ public class ViewIncomeCommand extends Command {
         i.threeYearIncome(date, model);
         float result = i.calculateIncome(date, model);
         String message = "Income for year " + targetYear + " is " + result;
-        return new CommandResult(message, false, false, true);
+        return new CommandResult(message, false, false, false,
+                false, false, true);
     }
 }
 
