@@ -127,7 +127,8 @@
 //    @Test
 //    public void execute_invalidClientIndexUnfilteredList_failure() {
 //        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
-//        EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder().withName(VALID_NAME_BOB).build();
+//        EditTransactionDescriptor descriptor =
+//        new EditTransactionDescriptorBuilder().withName(VALID_NAME_BOB).build();
 //        EditTransactionCommand editTransactionCommand = new EditTransactionCommand(outOfBoundIndex, descriptor);
 //
 //        assertCommandFailure(editTransactionCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);

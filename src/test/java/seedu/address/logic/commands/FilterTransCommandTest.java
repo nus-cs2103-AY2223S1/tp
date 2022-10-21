@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.transaction.TransactionLog;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 
 class FilterTransCommandTest {
     private TransactionLog transactionLog = new TransactionLog();
@@ -44,7 +46,8 @@ class FilterTransCommandTest {
         assertTrue(command.equals(command));
 
         // another object
-        assertFalse(command.equals(new EditCommandTest()));
+        assertFalse(command.equals(new EditClientCommand(INDEX_FIRST_CLIENT,
+                new EditClientDescriptorBuilder().build())));
         // same values -> returns true
         assertTrue(command.equals(new FilterTransCommand(true)));
 

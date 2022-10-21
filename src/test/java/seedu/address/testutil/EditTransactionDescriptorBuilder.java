@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditTransactionCommand;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
-import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Transaction;
 
 /**
