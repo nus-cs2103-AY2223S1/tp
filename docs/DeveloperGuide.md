@@ -257,7 +257,7 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
     the patient's state in the appointment, and is input using the `diag/` prefix.
   * Exposed using the `PastAppointment#getDiagnosis()` method for use in `JsonAdaptedPastAppointment`.
 * `medication`
-  * Stored as a set of medication tags, a `PastAppointment` may contain 0 or more medicine tags. Each medicine tag is 
+  * Stored as a set of medication tags, a `PastAppointment` may contain 0 or more medicine tags. Each medicine tag is
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
 
@@ -279,7 +279,7 @@ assistant notices John is at index 2. John Davis currently has 0 `PastAppointmen
 The values of John's default details have been hidden in the above diagram.
 
 Step 2. The medical assistant creates a `PastAppointment` for John by executing `appt 2 on/12-06-2022 diag/headache
-m/paracetamol`. The `PastAppointment` count is now at `1`. 
+m/paracetamol`. The `PastAppointment` count is now at `1`.
 
 ![AppointmentObjectDiagramWithPastAppt](images/AppointmentObjectDiagramWithPastAppt.png)
 

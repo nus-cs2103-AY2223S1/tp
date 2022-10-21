@@ -212,14 +212,14 @@ Format: `clear`
 
 Edits a patient in checkUp.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT TYPE] [hw/HOSPITAL WING] 
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT TYPE] [hw/HOSPITAL WING]
         [fn/FLOOR NUMBER] [wn/WARD NUMBER] [upcoming/DATE] [m/MEDICATION]...`
 
-* Edits the details of the patient at the specified `INDEX`. The index refers to the index number shown in the 
+* Edits the details of the patient at the specified `INDEX`. The index refers to the index number shown in the
 displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing medication, the existing medication of the person will be removed i.e adding of medication is not 
+* When editing medication, the existing medication of the person will be removed i.e adding of medication is not
 cumulative.
 * You can remove all the person’s tags by typing m/ without specifying any medication after it.
 * When editing upcoming appointment dates, the date must be in `dd-MM-yyyy` format, eg. `12-06-2022`.
