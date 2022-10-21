@@ -20,7 +20,7 @@ public class Duration {
     public static final String MESSAGE_CONSTRAINTS =
             "Start cannot be before end.";
     public static final String FORMAT_CONSTRAINTS =
-            "Dates input must follow : HH:MM";
+            "Time input must follow format : HH:MM";
     private static final double MINUTES_IN_HOUR = 60;
     public final String value;
     private LocalTime startTime;
