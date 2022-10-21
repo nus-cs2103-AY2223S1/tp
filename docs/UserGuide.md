@@ -153,7 +153,7 @@ Format: `loan <user index> <book index>`
 * Loans the book to some user at their respective specified `INDEXES`.
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
-* The respective specified `INDEXES` **must be present in their lists**. 
+* The respective specified `INDEXES` **must be present in their lists**.
 * The books that are loaned out will appear at the top of the book list.
 
 Examples:
@@ -195,8 +195,8 @@ BookFace data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-BookFace data are saved as a JSON file `[JAR file location]/data/bookface.json`. Advanced users are welcome to update 
-data 
+BookFace data are saved as a JSON file `[JAR file location]/data/bookface.json`. Advanced users are welcome to update
+data
 directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
