@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
-    public static final int LENGTH_LIMIT = 30;
+    public static final int LENGTH_LIMIT = 50;
 
     public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and "
             + "replacing multiple spaces with a single space, "
