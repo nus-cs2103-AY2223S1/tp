@@ -125,7 +125,7 @@ public class JsonAdaptedOrderTest {
                 new JsonAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null,
                         VALID_ITEM_LIST, VALID_PAID_STATUS, VALID_DELIVERY_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(VALID_INVENTORY_LIST));
     }
 
     @Test
