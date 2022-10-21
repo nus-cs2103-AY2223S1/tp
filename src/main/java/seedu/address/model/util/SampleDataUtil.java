@@ -1,9 +1,7 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import seedu.address.model.MyInsuRec;
@@ -15,11 +13,23 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.product.Product;
+import seedu.address.model.product.UniqueProductList;
 
 /**
  * Contains utility methods for populating {@code MyInsuRec} with sample data.
  */
 public class SampleDataUtil {
+    private static Product[] getSampleProducts() {
+        return new Product[] {
+                new Product("Product1"),
+                new Product("Product2"),
+                new Product("Product3"),
+                new Product("Product4"),
+                new Product("Product5"),
+                new Product("Product6")
+        };
+    }
+
     public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -51,6 +61,9 @@ public class SampleDataUtil {
 
     public static ReadOnlyMyInsuRec getSampleMyInsuRec() {
         MyInsuRec sampleAb = new MyInsuRec();
+        for (Product sampleProduct : getSampleProducts()) {
+            sampleAb.addProduct(sampleProduct);
+        }
         for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);
         }

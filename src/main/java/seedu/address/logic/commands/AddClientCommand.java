@@ -38,6 +38,7 @@ public class AddClientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in MyInsuRec";
+    public static final String MESSAGE_NON_EXISTING_PRODUCT = "There are products not already added into MyInsuRec";
 
     private final Client toAdd;
 
@@ -55,6 +56,13 @@ public class AddClientCommand extends Command {
 
         if (model.hasClient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+        }
+
+        if (toAdd.getProducts()
+                .stream()
+                .map(model::hasProduct)
+                .anyMatch(entry -> !entry)) {
+            throw new CommandException(MESSAGE_NON_EXISTING_PRODUCT);
         }
 
         model.addClient(toAdd);
