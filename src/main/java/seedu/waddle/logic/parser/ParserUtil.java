@@ -8,10 +8,7 @@ import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Name;
-import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.itinerary.*;
 
 
 /**
@@ -92,6 +89,21 @@ public class ParserUtil {
             throw new ParseException(People.MESSAGE_CONSTRAINTS);
         }
         return new People(trimmedPeople);
+    }
+
+    /**
+     * Parses a {@code String budget} into an {@code Budget}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code budget} is invalid.
+     */
+    public static Budget parseBudget(String budget) throws ParseException {
+        requireNonNull(budget);
+        String trimmedBudget = budget.trim();
+        if (!People.isValidPeople(trimmedBudget)) {
+            throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
+        }
+        return new Budget(trimmedBudget);
     }
 
     /**

@@ -1,11 +1,7 @@
 package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.waddle.logic.parser.CliSyntax.*;
 import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
 
 import java.util.List;
@@ -16,11 +12,7 @@ import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.util.CollectionUtil;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.itinerary.Name;
-import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.itinerary.*;
 
 /**
  * Edits the details of an existing itinerary.
@@ -37,7 +29,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_START_DATE + "START DATE] "
             + "[" + PREFIX_END_DATE + "END DATE] "
-            + "[" + PREFIX_PEOPLE + "PEOPLE]...\n"
+            + "[" + PREFIX_PEOPLE + "PEOPLE] "
+            + "[" + PREFIX_BUDGET + "BUDGET]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COUNTRY + "Australia "
             + PREFIX_START_DATE + "2022-07-30 ";
@@ -74,9 +67,9 @@ public class EditCommand extends Command {
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
         Date updatedEndDate = editItineraryDescriptor.getEndDate().orElse(itineraryToEdit.getEndDate());
         People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
+        Budget updatedBudget = editItineraryDescriptor.getBudget().orElse(itineraryToEdit.getBudget());
 
-
-        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedEndDate, updatedPeople);
+        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedEndDate, updatedPeople, updatedBudget);
     }
 
     @Override
@@ -128,6 +121,7 @@ public class EditCommand extends Command {
         private Date startDate;
         private Date endDate;
         private People people;
+        private Budget budget;
 
         public EditItineraryDescriptor() {
         }
@@ -142,6 +136,7 @@ public class EditCommand extends Command {
             setStartDate(toCopy.startDate);
             setEndDate(toCopy.endDate);
             setPeople(toCopy.people);
+            setBudget(toCopy.budget);
         }
 
         /**
@@ -191,6 +186,14 @@ public class EditCommand extends Command {
             this.people = people;
         }
 
+        public Optional<Budget> getBudget() {
+            return Optional.ofNullable(budget);
+        }
+
+        public void setBudget(Budget budget) {
+            this.budget = budget;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -210,7 +213,8 @@ public class EditCommand extends Command {
                     && getCountry().equals(e.getCountry())
                     && getStartDate().equals(e.getStartDate())
                     && getEndDate().equals(e.getEndDate())
-                    && getPeople().equals(e.getPeople());
+                    && getPeople().equals(e.getPeople())
+                    && getBudget().equals(e.getBudget());
         }
     }
 }

@@ -5,17 +5,14 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import java.util.stream.Stream;
 
 import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.itinerary.Name;
-import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.itinerary.*;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -30,10 +27,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COUNTRY, PREFIX_START_DATE,
-                        PREFIX_END_DATE, PREFIX_PEOPLE);
+                        PREFIX_END_DATE, PREFIX_PEOPLE, PREFIX_BUDGET);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_COUNTRY, PREFIX_START_DATE,
-                PREFIX_END_DATE, PREFIX_PEOPLE)
+                PREFIX_END_DATE, PREFIX_PEOPLE, PREFIX_BUDGET)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -43,8 +40,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
         Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         People people = ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get());
+        Budget budget = ParserUtil.parseBudget(argMultimap.getValue(PREFIX_BUDGET).get());
 
-        Itinerary itinerary = new Itinerary(name, country, startDate, endDate, people);
+        Itinerary itinerary = new Itinerary(name, country, startDate, endDate, people, budget);
 
         return new AddCommand(itinerary);
     }
