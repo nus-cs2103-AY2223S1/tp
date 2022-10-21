@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -28,6 +29,10 @@ public class PersonCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private VBox personDetails;
+    @FXML
+    private VBox rightBox;
     @FXML
     private Label name;
     @FXML
@@ -52,6 +57,7 @@ public class PersonCard extends UiPart<Region> {
         cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
+
         this.patient = patient;
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
@@ -61,9 +67,6 @@ public class PersonCard extends UiPart<Region> {
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-
-
     }
 
     @Override

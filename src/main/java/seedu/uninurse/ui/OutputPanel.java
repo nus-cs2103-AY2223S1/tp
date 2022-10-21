@@ -33,7 +33,7 @@ public class OutputPanel extends UiPart<Region> {
      */
     public void handleTask(Patient patient) {
         output.getChildren().clear();
-        output.getChildren().add(new TaskListCard(patient.getTasks().toString()).getRoot());
+        output.getChildren().add(new TaskListPanel(patient).getRoot());
     }
 
     /**
@@ -62,6 +62,8 @@ public class OutputPanel extends UiPart<Region> {
         output.getChildren().clear();
         output.getChildren().add(new UpdatedPersonCard(patient, "Deleted Patient:").getRoot());
     }
+
+
 
 
 }

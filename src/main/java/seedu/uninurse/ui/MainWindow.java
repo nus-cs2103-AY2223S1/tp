@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private OutputPanel outputPanel;
+    //private SchedulePanel schedulePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -60,6 +61,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane outputPanelPlaceholder;
+
+    @FXML
+    private StackPane schedulePanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -138,6 +142,9 @@ public class MainWindow extends UiPart<Stage> {
 
         outputPanel = new OutputPanel();
         outputPanelPlaceholder.getChildren().add(outputPanel.getRoot());
+
+        //schedulePanel = new SchedulePanel();
+        //schedulePanelPlaceholder.getChildren().add(schedulePanel.getRoot());
     }
 
     /**
@@ -206,6 +213,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isTaskRelated()) {
                 outputPanel.handleTask(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isSchedule()) {
+               // schedulePanel.handleSchedule(logic.getPatientTaskPairList); Possible implementation
             }
 
             if (commandResult.isAddPatient()) {
