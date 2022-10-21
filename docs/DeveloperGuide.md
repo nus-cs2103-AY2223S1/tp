@@ -209,7 +209,7 @@ initial json data stored.
 Step 2. The user executes `addresponse 1 m/7` command to add a response count to the first student in the 
 one-indexed `UniqueStudentList`. The `addresponse` command will call `AddResponseCommandParser#parse()`.
 
-***NOTE:***  
+**Note:**  
 1. If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather
 than attempting to execute the command.
 2. If the review is missing an `index`, or a category (`m/`), `AddResponseCommandParser` will throw an `ParseException`
@@ -224,9 +224,11 @@ attribute of the `Student`.
 Step 5. After successfully editing the response attribute, `AddResponseCommand` will return the `CommandResult` to the 
 `Ui`.
 
-The following sequence diagram shows how the add response feature is executed.
+The following sequence diagram shows how the add response feature is executed:
+<img src="images/AddResponseSequenceDiagram.png" width="574" />
 
-The following sequence diagram shows the reference sequence diagram for creating `Response response`.
+The following activity diagram summarizes what happens when a user executes a new command:
+![AddResponseActivityDiagram](images/AddResponseActivityDiagram.png)
 
 #### Design Considerations 
 
