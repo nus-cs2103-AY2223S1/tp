@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+skinparam sequenceReferenceBackgroundColor AntiqueWhite
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExerciseTrackerParser" as ExerciseTrackerParser LOGIC_COLOR
+participant ":GenerateCommandParser" as GenerateCommandParser LOGIC_COLOR
+participant "g:GenerateCommand" as GenerateCommand LOGIC_COLOR
+participant GeneratorFactory as "<<class>>\nGeneratorFactory" LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+'box Model MODEL_COLOR_T1
+'participant ":Model" as Model MODEL_COLOR
+'end box
+
+[-> LogicManager : execute(":gen 1,2 l/easy")
+activate LogicManager
+
+LogicManager -> ExerciseTrackerParser : parseCommand(":gen 1,2 l/easy")
+activate ExerciseTrackerParser
+
+create GenerateCommandParser
+ExerciseTrackerParser -> GenerateCommandParser
+activate GenerateCommandParser
+
+GenerateCommandParser --> ExerciseTrackerParser
+deactivate GenerateCommandParser
+
+ExerciseTrackerParser -> GenerateCommandParser : parse("1,2 l/easy")
+activate GenerateCommandParser
+
+create GenerateCommand
+GenerateCommandParser -> GenerateCommand
+activate GenerateCommand
+
+GenerateCommand --> GenerateCommandParser : g
+deactivate GenerateCommand
+
+GenerateCommandParser --> ExerciseTrackerParser : g
+deactivate GenerateCommandParser
+
+GenerateCommandParser -[hidden]-> ExerciseTrackerParser
+destroy GenerateCommandParser
+
+ExerciseTrackerParser --> LogicManager : g
+deactivate ExerciseTrackerParser
+
+LogicManager -> GenerateCommand : execute()
+activate GenerateCommand
+
+ref over GenerateCommand, GeneratorFactory
+get suggested workouts
+end ref
+
+create CommandResult
+GenerateCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GenerateCommand
+deactivate CommandResult
+
+GenerateCommand --> LogicManager : result
+deactivate GenerateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box LOGIC_COLOR_T1
+
+participant "g:GenerateCommand" as GenerateCommand LOGIC_COLOR
+participant GeneratorFactory as "<<class>>\nGeneratorFactory" LOGIC_COLOR
+participant "s:EasyGenerator" as EasyGeneratorSquat LOGIC_COLOR
+participant "d:EasyGenerator" as EasyGeneratorDeadlift LOGIC_COLOR
+
+activate GenerateCommand
+GenerateCommand -> GeneratorFactory : getGenerator(squat, EASY)
+
+activate GeneratorFactory
+create EasyGeneratorSquat
+
+GeneratorFactory -> EasyGeneratorSquat : EasyGenerator(squat)
+activate EasyGeneratorSquat
+
+EasyGeneratorSquat --> GeneratorFactory : s
+deactivate EasyGeneratorSquat
+
+GeneratorFactory --> GenerateCommand : s
+deactivate GeneratorFactory
+
+GenerateCommand -> EasyGeneratorSquat : suggest()
+activate EasyGeneratorSquat
+
+EasyGeneratorSquat --> GenerateCommand : suggested workout for squat
+deactivate EasyGeneratorSquat
+
+EasyGeneratorSquat -[hidden]> GenerateCommand
+destroy EasyGeneratorSquat
+
+GenerateCommand -> GeneratorFactory : getGenerator(deadlift, EASY)
+
+activate GeneratorFactory
+create EasyGeneratorDeadlift
+
+GeneratorFactory -> EasyGeneratorDeadlift : EasyGenerator(deadlift)
+activate EasyGeneratorDeadlift
+
+EasyGeneratorDeadlift --> GeneratorFactory : d
+deactivate EasyGeneratorDeadlift
+
+GeneratorFactory --> GenerateCommand : d
+deactivate GeneratorFactory
+
+GenerateCommand -> EasyGeneratorDeadlift : suggest()
+activate EasyGeneratorDeadlift
+
+EasyGeneratorDeadlift --> GenerateCommand : suggested workout for deadlift
+deactivate EasyGeneratorDeadlift
+
+EasyGeneratorDeadlift -[hidden]> GenerateCommand
+destroy EasyGeneratorDeadlift
+
+@enduml
