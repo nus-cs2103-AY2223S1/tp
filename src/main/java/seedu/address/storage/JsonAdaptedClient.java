@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,12 +13,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Jackson-friendly version of {@link Client}.
@@ -31,8 +34,10 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
+    private final String birthday;
+    private final List<JsonAdaptedProduct> products = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -40,8 +45,9 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
+                             @JsonProperty("birthday") String birthday,
+                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings,
+                             @JsonProperty("products") List<JsonAdaptedProduct> products) {
         if (meetings != null) {
             this.meetings.addAll(meetings);
         }
@@ -49,8 +55,9 @@ class JsonAdaptedClient {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.birthday = birthday;
+        if (products != null) {
+            this.products.addAll(products);
         }
     }
 
@@ -62,11 +69,15 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        Optional<Birthday> sourceBirthday = source.getBirthday();
+        birthday = sourceBirthday.isEmpty()
+            ? ""
+            : sourceBirthday.get().toString();
         meetings.addAll(source.getMeetings().stream()
                 .map(meeting -> new JsonAdaptedMeeting(meeting, this))
+                .collect(Collectors.toList()));
+        products.addAll(source.getProducts().stream()
+                .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
     }
 
@@ -79,8 +90,12 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        Optional<Birthday> sourceBirthday = source.getBirthday();
+        birthday = sourceBirthday.isEmpty()
+                ? ""
+                : sourceBirthday.toString();
+        products.addAll(source.getProducts().stream()
+                .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
     }
 
@@ -90,11 +105,12 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> clientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            clientTags.add(tag.toModelType());
+
+        final List<Product> clientProducts = new ArrayList<>();
+        for (JsonAdaptedProduct product : products) {
+            clientProducts.add(product.toModelType());
         }
-        final Set<Tag> modelTags = new HashSet<>(clientTags);
+        final Set<Product> modelProducts = new HashSet<>(clientProducts);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -127,8 +143,16 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+        final Optional<Birthday> modelBirthday;
 
-        Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
+        modelBirthday = birthday.equals("")
+                ? Optional.empty()
+                : Optional.of(new Birthday(ParserUtil.parseDate(birthday)));
+        Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelProducts);
 
         if (meetings.isEmpty()) {
             return client;

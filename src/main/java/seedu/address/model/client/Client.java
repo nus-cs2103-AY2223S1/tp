@@ -7,14 +7,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Represents a Client in MyInsuRec.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: all details except birthday are present and not null, field values are validated, immutable.
  */
 public class Client {
 
@@ -22,38 +23,45 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Optional<Birthday> birthday;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Product> products = new HashSet<>();
     private final List<Meeting> meetings;
 
-
     /**
-     * Every field must be present and not null.
+     * Every field must be present.
+     * Birthday may be null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, Address address,
+                  Optional<Birthday> birthday, Set<Product> products) {
+        requireAllNonNull(name, phone, products);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.products.addAll(products);
         this.meetings = new ArrayList<>();
     }
 
     /**
      * Construct a client with meetings
+     * Birthday may be null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Meeting> meetings) {
-        requireAllNonNull(name, phone, email, address, tags, meetings);
+    public Client(Name name, Phone phone, Email email, Address address,
+                  Optional<Birthday> birthday, List<Meeting> meetings, Set<Product> products) {
+        requireAllNonNull(name, phone, email, address, meetings, products);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.birthday = birthday;
         this.meetings = meetings;
+        this.products.addAll(products);
     }
+
 
     public Name getName() {
         return name;
@@ -71,6 +79,10 @@ public class Client {
         return address;
     }
 
+    public Optional<Birthday> getBirthday() {
+        return birthday;
+    }
+
     public boolean hasMeeting() {
         return !meetings.isEmpty();
     }
@@ -78,6 +90,7 @@ public class Client {
     public List<Meeting> getMeetings() {
         return Collections.unmodifiableList(meetings);
     }
+
 
     /**
      * Adds a meeting to the client's meeting list.
@@ -96,11 +109,11 @@ public class Client {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable product set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Product> getProducts() {
+        return Collections.unmodifiableSet(products);
     }
 
     /**
@@ -135,13 +148,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getBirthday().equals(getBirthday())
+                && otherClient.getProducts().equals(getProducts());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, birthday, products);
     }
 
     @Override
@@ -149,16 +163,27 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getPhone());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        if (!getEmail().isEmpty()) {
+            builder.append("; Email: ").append(getEmail());
+        }
+
+        if (!getAddress().isEmpty()) {
+            builder.append("; Address: ").append(getAddress());
+        }
+
+        Optional<Birthday> birthday = getBirthday();
+        if (!birthday.isEmpty()) {
+            builder.append("; Birthday: ").append(birthday.get());
+        } else {
+            builder.append("; Birthday: ");
+        }
+
+        Set<Product> products = getProducts();
+        if (!products.isEmpty()) {
+            builder.append("; Products: ");
+            products.forEach(builder::append);
         }
         return builder.toString();
     }

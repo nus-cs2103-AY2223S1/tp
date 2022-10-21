@@ -42,7 +42,7 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane products;
     @FXML
     private VBox vbox;
     @FXML
@@ -61,9 +61,9 @@ public class ClientCard extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
-        client.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        client.getProducts().stream()
+                .sorted(Comparator.comparing(product -> product.productName))
+                .forEach(product -> products.getChildren().add(new Label(product.productName)));
         if (client.hasMeeting()) {
             List<Meeting> clientMeetings = client.getMeetings();
             numMeetings.setText(Integer.toString(clientMeetings.size()));

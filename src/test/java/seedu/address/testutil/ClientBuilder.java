@@ -3,15 +3,17 @@ package seedu.address.testutil;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,7 +30,8 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Optional<Birthday> birthday;
+    private Set<Product> products;
     private List<Meeting> meetings;
 
     /**
@@ -39,8 +42,9 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        birthday = Optional.empty();
         meetings = new ArrayList<>();
+        products = new HashSet<>();
     }
 
     /**
@@ -51,8 +55,9 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
-        tags = new HashSet<>(clientToCopy.getTags());
+        birthday = clientToCopy.getBirthday();
         meetings = new ArrayList<>(clientToCopy.getMeetings());
+        products = new HashSet<>(clientToCopy.getProducts());
     }
 
     /**
@@ -60,14 +65,6 @@ public class ClientBuilder {
      */
     public ClientBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Client} that we are building.
-     */
-    public ClientBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -96,6 +93,14 @@ public class ClientBuilder {
     }
 
     /**
+     * Parses the {@code products} into a {@code Set<Product>} and set it to the {@code Client} that we are building.
+     */
+    public ClientBuilder withProducts(String ... products) {
+        this.products = SampleDataUtil.getProductSet(products);
+        return this;
+    }
+
+    /**
      * Appends new meeting to the {@code meetings} of the {@code Client} that we are building.
      */
     public ClientBuilder withMeeting(Meeting meeting) {
@@ -104,7 +109,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, tags, meetings);
+        return new Client(name, phone, email, address, birthday, meetings, products);
     }
 
 }

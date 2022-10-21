@@ -189,6 +189,59 @@ Aspect: How many meetings to delete in one command
 where we should only build to the point where every iteration is a working product,
 **Solution 1** is thus chosen as it is easier to implement.
 
+### List Meeting feature
+
+Syntax: `listMeeting`
+
+Purpose: View all `Meeting` from the Meeting List in `Model`.
+
+#### Implementation
+
+Usage Scenario of `listMeeting`:
+
+1) User inputs `listMeeting` to view the current meetings in the `Model`.
+
+Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
+
+![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
+
+### Different view panels
+
+The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
+
+#### Implementation
+
+Below is a sequence diagram that illustrates the execution of `listMeeting` command and the interaction with `Model`.
+
+![DifferentViewPanelsSequenceDiagram](images/DifferentViewPanelsSequenceDiagram.png)
+
+#### Rationale
+
+We chose to implement the changing of view panels through `CommandResult` due to its simplicity and the intended effects are clear. Furthermore, this is in line with how `HelpCommand` and `ExitCommand` is implemented.
+
+#### Proposed future changes
+
+We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. We are currently exploring the use of event listeners on the Model, such that when a command is executed, the Model can listen for the specific view for the UI to display. This however causes the Model to have to depend on UI which results in more coupling of compartments. Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
+
+
+### View Meeting feature
+
+Syntax: `viewMeeting i/INDEX`
+
+Purpose: View details associated with a meeting, such as meeting’s date and time.
+
+#### Implementation
+
+Usage Scenario of `viewMeeting`:
+
+1) User inputs `viewMeeting i/1` to view the first meeting in the `Model`.
+
+:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
+
+Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
+
+![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
