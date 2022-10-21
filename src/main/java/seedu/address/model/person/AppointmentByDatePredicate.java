@@ -15,7 +15,7 @@ public class AppointmentByDatePredicate implements Predicate<Person> {
      * @param appointments patients' appointments
      */
     public AppointmentByDatePredicate(List<LocalDate> appointments) {
-       this.appointments = appointments;
+        this.appointments = appointments;
     }
 
     /**
@@ -27,12 +27,10 @@ public class AppointmentByDatePredicate implements Predicate<Person> {
     public boolean test(Person person) {
         Boolean pastAppointments = appointments.stream().anyMatch(keyword -> person.getPastAppointments().stream()
                 .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
-
-       Boolean upcomingAppointments = appointments.stream().anyMatch(keyword -> person.getUpcomingAppointment().isPresent())
-               && appointments.stream().anyMatch(keyword -> person.getUpcomingAppointment().stream()
-                       .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
-
-       return pastAppointments || upcomingAppointments;
+        Boolean upcomingAppointments = appointments.stream().anyMatch(keyword -> person.getUpcomingAppointment().isPresent())
+                && appointments.stream().anyMatch(keyword -> person.getUpcomingAppointment().stream()
+                .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
+        return pastAppointments || upcomingAppointments;
     }
 
     /**
