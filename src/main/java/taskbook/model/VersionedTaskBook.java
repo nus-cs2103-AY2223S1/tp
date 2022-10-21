@@ -5,10 +5,8 @@ import java.util.ArrayList;
 /**
  * TaskBook with version history.
  */
-public class VersionedTaskBook {
+public class VersionedTaskBook extends TaskBook {
 
-    protected static final String INVALID_UNDO_ACTION = "There are no actions left to undo.";
-    protected static final String INVALID_REDO_ACTION = "There are no actions left to redo.";
     private static final int DEFAULT_CAPACITY = 15;
     private static final int MAXIMUM_CAPACITY = 100;
     private final int capacity;
@@ -17,8 +15,11 @@ public class VersionedTaskBook {
 
     /**
      * Creates a VersionedTaskBook with the given {@code capacity} and {@code initialState}.
+     * Defensively creates a copy of the {@code initialState}.
      */
     public VersionedTaskBook(int capacity, TaskBook initialState) {
+        super(initialState);
+
         // Defensively ensure that the capacity does not ensure a certain threshold.
         if (capacity > MAXIMUM_CAPACITY) {
             capacity = MAXIMUM_CAPACITY;
@@ -26,7 +27,7 @@ public class VersionedTaskBook {
 
         this.capacity = capacity;
         taskBookStateList = new ArrayList<>();
-        taskBookStateList.add(initialState);
+        taskBookStateList.add(new TaskBook(initialState));
         pointer = 0;
     }
 
@@ -59,20 +60,18 @@ public class VersionedTaskBook {
      * Returns true if the given state matches the newest state in the version history.
      * Ensure that commits that with no state change do not clog the version history.
      */
-    private boolean isDuplicateCommit(TaskBook state) {
-        assert state != null;
-
+    private boolean isDuplicateCommit() {
         TaskBook newestState = taskBookStateList.get(pointer);
-        return state.equals(newestState);
+        return newestState.equals(this);
     }
 
     private void pruneFutureStatesIfRequired() {
-        if (pointer + 1 == taskBookStateList.size() - 1) {
+        if (pointer == taskBookStateList.size() - 1) {
             return;
         }
 
         ArrayList<TaskBook> prunedList = new ArrayList<>(capacity);
-        for (int i = 0; i < pointer; i++) {
+        for (int i = 0; i <= pointer; i++) {
             TaskBook state = taskBookStateList.get(i);
             prunedList.add(state);
         }
@@ -98,25 +97,30 @@ public class VersionedTaskBook {
 
     /**
      * Commits a copy of the given state into the version history.
-     * If the state of the TaskBook remains the same, nothing is committed.
+     * If the state of the TaskBook is the same, nothing is added to the version history.
      * After committing, all states in the "future" are removed.
-     * In other words, after committing, an immediate redo would do nothing.
+     * In other words, after committing, an immediate redo always does nothing.
      */
-    public void commit(TaskBook state) {
-        assert taskBookStateList != null && state != null;
+    public void commit() {
+        assert taskBookStateList != null;
 
-        if (isDuplicateCommit(state)) {
+        if (isDuplicateCommit()) {
             return;
         }
 
-        // Defensively commit a copy of the state instead.
-        TaskBook copy = new TaskBook(state);
-        taskBookStateList.add(copy);
         pruneFutureStatesIfRequired();
+        // Defensively commit a copy of the state instead.
+        TaskBook copy = new TaskBook(this);
+        taskBookStateList.add(copy);
         pruneToCapacityIfRequired();
 
         // Set the pointer to point to the newest command.
         pointer = taskBookStateList.size() - 1;
+    }
+    private void setPointedAsCurrentData() {
+        TaskBook pointedState = taskBookStateList.get(pointer);
+        TaskBook copy = new TaskBook(pointedState);
+        resetData(copy);
     }
 
     /**
@@ -128,18 +132,17 @@ public class VersionedTaskBook {
 
     /**
      * Reverts the state to the previous state and returns it.
-     *
-     * @throws InvalidActionException if there are no actions left to undo.
+     * Does nothing if there is no state to revert to.
      */
-    public TaskBook undo() throws InvalidActionException {
+    public void undo() {
         assert taskBookStateList != null;
 
         if (!canUndo()) {
-            throw new InvalidActionException(INVALID_UNDO_ACTION);
+            return;
         }
 
         pointer--;
-        return taskBookStateList.get(pointer);
+        setPointedAsCurrentData();
     }
 
     /**
@@ -151,38 +154,40 @@ public class VersionedTaskBook {
 
     /**
      * Reverts the state to a previously undone state and returns it.
-     *
-     * @throws InvalidActionException if there are no actions left to redo.
+     * Does nothing if there is no state to revert to.
      */
-    public TaskBook redo() throws InvalidActionException {
+    public void redo() {
         assert taskBookStateList != null;
 
         if (!canRedo()) {
-            throw new InvalidActionException(INVALID_REDO_ACTION);
+            return;
         }
 
         pointer++;
-        return taskBookStateList.get(pointer);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof VersionedTaskBook // instanceof handles nulls
-            && taskBookStateList.equals(((VersionedTaskBook) other).taskBookStateList)
-            && pointer == ((VersionedTaskBook) other).pointer);
+        setPointedAsCurrentData();
     }
 
     /**
-     * Represents an error due to an invalid action on a {@link VersionedTaskBook}.
+     * Returns true if the underlying TaskBook at the current pointer is equivalent to the given {@code other} object.
+     * @see TaskBook#equals(Object) TaskBook's equality comparison for how it is determined.
      */
-    public static class InvalidActionException extends Exception {
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other);
+    }
 
-        /**
-         * Constructs an {@code InvalidActionException} with the given {@code message}.
-         */
-        public InvalidActionException(String message) {
-            super(message);
+    /**
+     * Returns true if the given {@code other} is equivalent.
+     * They are equivalent iff they share the same state list and pointer position.
+     * Capacity is ignored.
+     */
+    public boolean isEquivalentTo(VersionedTaskBook other) {
+        if (other == null) {
+            return false;
+        } else if (other == this) {
+            return true;
         }
+
+        return taskBookStateList.equals(other.taskBookStateList) && pointer == other.pointer;
     }
 }

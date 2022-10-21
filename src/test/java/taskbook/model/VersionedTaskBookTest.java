@@ -1,13 +1,8 @@
 package taskbook.model;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taskbook.model.VersionedTaskBook.INVALID_REDO_ACTION;
-import static taskbook.model.VersionedTaskBook.INVALID_UNDO_ACTION;
-import static taskbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,26 +17,19 @@ public class VersionedTaskBookTest {
     private static final Person P1 = new PersonBuilder().withName("Person 1").build();
     private static final Person P2 = new PersonBuilder().withName("Person 2").build();
     private static final Person P3 = new PersonBuilder().withName("Person 3").build();
+    private static final Person P4 = new PersonBuilder().withName("Person 4").build();
     private static final Task T1 = new TodoBuilder().withDescription("Task 1").build();
     private static final Task T2 = new TodoBuilder().withDescription("Task 2").build();
     private static final Task T3 = new TodoBuilder().withDescription("Task 3").build();
-    private static final TaskBook ONE = new TaskBookBuilder().withPerson(P1).build();
-    private static final TaskBook TWO = new TaskBookBuilder().withPerson(P2).build();
-    private static final TaskBook THREE = new TaskBookBuilder().withPerson(P3).build();
-    private static final TaskBook FOUR = new TaskBookBuilder().withTask(T1).build();
-    private static final TaskBook FIVE = new TaskBookBuilder().withTask(T2).build();
-    private static final TaskBook SIX = new TaskBookBuilder().withTask(T3).build();
 
     @Test
-    public void equals() {
+    public void isEquivalentTo() {
         VersionedTaskBook versioned = new VersionedTaskBook();
         TaskBook initialState = new TaskBookBuilder().withPerson(P1).build();
         VersionedTaskBook differentVersioned = new VersionedTaskBook(initialState);
 
-        assertEquals(versioned, versioned);
-        assertNotEquals(versioned, differentVersioned);
-        assertNotEquals(versioned, null);
-        assertNotEquals(versioned, 0.1);
+        assertTrue(versioned.isEquivalentTo(versioned));
+        assertFalse(versioned.isEquivalentTo(differentVersioned));
     }
 
     @Test
@@ -49,65 +37,106 @@ public class VersionedTaskBookTest {
         VersionedTaskBook versioned = new VersionedTaskBook();
         VersionedTaskBook copied = new VersionedTaskBook(versioned);
 
-        assertEquals(versioned, copied);
+        assertTrue(versioned.isEquivalentTo(copied));
     }
 
     @Test
     public void commit_differentState_success() {
-        TaskBook initialState = new TaskBook();
-        VersionedTaskBook versioned = new VersionedTaskBook(initialState);
-        TaskBook toCommit = new TaskBook(initialState);
-        toCommit.addPerson(P1);
-        assertDoesNotThrow(() -> versioned.commit(toCommit));
+        VersionedTaskBook initialState = new VersionedTaskBook();
+        VersionedTaskBook newState = new VersionedTaskBook(initialState);
+        newState.addPerson(P2);
+        newState.commit();
+
+        assertFalse(newState.isEquivalentTo(initialState));
     }
 
     @Test
     public void commit_sameState_noChange() {
-        TaskBook initialState = new TaskBook();
-        VersionedTaskBook original = new VersionedTaskBook(initialState);
-        VersionedTaskBook versioned = new VersionedTaskBook(original);
-        TaskBook toCommit = new TaskBook(initialState);
-        toCommit.addPerson(P1);
-        assertEquals(original, versioned);
+        VersionedTaskBook initialState = new VersionedTaskBook();
+        VersionedTaskBook newState = new VersionedTaskBook(initialState);
+        // Commit with no changes should not add to history.
+        newState.commit();
+
+        assertTrue(newState.isEquivalentTo(initialState));
     }
 
     @Test
     public void commit_commitPastEvenCapacity_pruneHistory() {
-        VersionedTaskBook versioned = new VersionedTaskBook(2, new TaskBook());
-        versioned.commit(ONE);
-        versioned.commit(TWO);
-        versioned.commit(THREE);
-        versioned.commit(FOUR);
-        assertUndoEquals(THREE, versioned);
-        assertRedoEquals(FOUR, versioned);
+        TaskBook initialState = new TaskBook();
+        VersionedTaskBook versioned = new VersionedTaskBook(2, initialState);
+        versioned.addPerson(P1);
+        versioned.commit();
+        versioned.addPerson(P2);
+        versioned.commit();
+        versioned.addPerson(P3);
+        versioned.commit();
+        versioned.addPerson(P4);
+        versioned.commit();
+
+        TaskBook halfwayState = new TaskBook(initialState);
+        halfwayState.addPerson(P1);
+        halfwayState.addPerson(P2);
+        halfwayState.addPerson(P3);
+        VersionedTaskBook expected = new VersionedTaskBook(halfwayState);
+        expected.addPerson(P4);
+        expected.commit();
+
+        // Should be equivalent to another VersionedTaskBook that only has 2 commits in it.
+        // Note that there is already a commit in the VersionedTaskBook on instantiation.
+        assertTrue(expected.isEquivalentTo(versioned));
     }
 
     @Test
     public void commit_commitPastOddCapacity_pruneHistory() {
-        VersionedTaskBook versioned = new VersionedTaskBook(3, new TaskBook());
-        versioned.commit(ONE);
-        versioned.commit(TWO);
-        versioned.commit(THREE);
-        versioned.commit(FOUR);
-        versioned.commit(FIVE);
-        versioned.commit(SIX);
-        assertUndoEquals(FIVE, versioned);
-        assertRedoEquals(SIX, versioned);
+        TaskBook initialState = new TaskBook();
+        VersionedTaskBook versioned = new VersionedTaskBook(3, initialState);
+        versioned.addPerson(P1);
+        versioned.commit();
+        versioned.addPerson(P2);
+        versioned.commit();
+        versioned.addPerson(P3);
+        versioned.commit();
+        versioned.addTask(T1);
+        versioned.commit();
+        versioned.addTask(T2);
+        versioned.commit();
+        versioned.addTask(T3);
+        versioned.commit();
+
+        TaskBook halfwayState = new TaskBook(initialState);
+        halfwayState.addPerson(P1);
+        halfwayState.addPerson(P2);
+        halfwayState.addPerson(P3);
+        halfwayState.addTask(T1);
+        VersionedTaskBook expected = new VersionedTaskBook(halfwayState);
+        expected.addTask(T2);
+        expected.commit();
+        expected.addTask(T3);
+        expected.commit();
+
+        // Should be equivalent to another VersionedTaskBook that only has 3 commits in it.
+        // Note that there is already a commit in the VersionedTaskBook on instantiation.
+        assertTrue(expected.isEquivalentTo(versioned));
     }
 
     @Test
     public void commit_commitAfterUndo_cannotRedo() {
         VersionedTaskBook versioned = new VersionedTaskBook();
-        versioned.commit(ONE);
-        assertDoesNotThrow(versioned::undo);
-        versioned.commit(TWO);
-        assertFalse(versioned.canUndo());
+        versioned.addTask(T1);
+        versioned.commit();
+        versioned.undo();
+        assertTrue(versioned.canRedo());
+        versioned.addTask(T1);
+        versioned.commit();
+        // Commit blocks redo because future history is removed.
+        assertFalse(versioned.canRedo());
     }
 
     @Test
     public void canUndo_canUndo_true() {
         VersionedTaskBook versioned = new VersionedTaskBook();
-        versioned.commit(ONE);
+        versioned.addTask(T1);
+        versioned.commit();
         assertTrue(versioned.canUndo());
     }
 
@@ -120,25 +149,20 @@ public class VersionedTaskBookTest {
     @Test
     public void undo_success() {
         TaskBook initialState = new TaskBook();
-        TaskBook newState = new TaskBook(initialState);
-        newState.addTask(T1);
         VersionedTaskBook versioned = new VersionedTaskBook(initialState);
-        versioned.commit(newState);
-        assertUndoEquals(initialState, versioned);
-    }
+        versioned.addTask(T1);
+        versioned.commit();
+        versioned.undo();
 
-    @Test
-    public void undo_noActionsLeft_throwsInvalidActionsException() {
-        TaskBook initialState = new TaskBook();
-        VersionedTaskBook versioned = new VersionedTaskBook(initialState);
-        assertThrows(VersionedTaskBook.InvalidActionException.class, INVALID_UNDO_ACTION, versioned::undo);
+        assertEquals(initialState, versioned);
     }
 
     @Test
     public void canRedo_canRedo_true() {
         VersionedTaskBook versioned = new VersionedTaskBook();
-        versioned.commit(ONE);
-        assertDoesNotThrow(versioned::undo);
+        versioned.addTask(T3);
+        versioned.commit();
+        versioned.undo();
         assertTrue(versioned.canRedo());
     }
 
@@ -151,32 +175,38 @@ public class VersionedTaskBookTest {
     @Test
     public void redo_success() {
         TaskBook initialState = new TaskBook();
-        TaskBook newState = new TaskBook(initialState);
-        newState.addTask(T1);
+
+        TaskBook expected = new TaskBook(initialState);
+        expected.addTask(T1);
+
         VersionedTaskBook versioned = new VersionedTaskBook(initialState);
-        versioned.commit(newState);
-        assertDoesNotThrow(versioned::undo);
-        assertRedoEquals(newState, versioned);
+        versioned.addTask(T1);
+        versioned.commit();
+        versioned.undo();
+        versioned.redo();
+
+        assertEquals(expected, versioned);
     }
 
     @Test
-    public void redo_noActionsLeft_throwsInvalidActionsException() {
-        TaskBook initialState = new TaskBook();
-        VersionedTaskBook versioned = new VersionedTaskBook(initialState);
-        assertThrows(VersionedTaskBook.InvalidActionException.class, INVALID_REDO_ACTION, versioned::redo);
-    }
+    public void undoRedoCommit() {
+        TaskBook initial = new TaskBook();
 
-    private void assertUndoEquals(TaskBook expected, VersionedTaskBook versioned) {
-        assertDoesNotThrow(() -> {
-            TaskBook actual = versioned.undo();
-            assertEquals(expected, actual);
-        });
-    }
+        TaskBook expected = new TaskBook(initial);
+        expected.addPerson(P2);
 
-    private void assertRedoEquals(TaskBook expected, VersionedTaskBook versioned) {
-        assertDoesNotThrow(() -> {
-            TaskBook actual = versioned.redo();
-            assertEquals(expected, actual);
-        });
+        VersionedTaskBook versioned = new VersionedTaskBook(initial);
+        versioned.addPerson(P1);
+        versioned.commit();
+        versioned.undo();
+        versioned.addPerson(P2);
+        versioned.commit();
+        versioned.undo();
+        versioned.redo();
+
+        assertEquals(expected, versioned);
+
+        versioned.undo();
+        assertEquals(initial, versioned);
     }
 }

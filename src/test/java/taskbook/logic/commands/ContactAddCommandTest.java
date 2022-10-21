@@ -22,7 +22,6 @@ import taskbook.model.Model;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.ReadOnlyUserPrefs;
 import taskbook.model.TaskBook;
-import taskbook.model.VersionedTaskBook;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Task;
@@ -116,7 +115,7 @@ public class ContactAddCommandTest {
 
         @Override
         public void commitTaskBook() {
-            throw new AssertionError("This method should not be called.");
+            // Intentionally empty method.
         }
 
         @Override
@@ -125,7 +124,7 @@ public class ContactAddCommandTest {
         }
 
         @Override
-        public void undoTaskBook() throws VersionedTaskBook.InvalidActionException {
+        public void undoTaskBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,7 +134,7 @@ public class ContactAddCommandTest {
         }
 
         @Override
-        public void redoTaskBook() throws VersionedTaskBook.InvalidActionException {
+        public void redoTaskBook() {
             throw new AssertionError("This method should not be called.");
         }
 

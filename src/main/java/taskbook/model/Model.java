@@ -64,7 +64,7 @@ public interface Model {
      * Reverts the TaskBook to the previous state in the version history.
      * @see VersionedTaskBook#undo()
      */
-    void undoTaskBook() throws VersionedTaskBook.InvalidActionException;
+    void undoTaskBook();
 
     /**
      * Returns true if possible to revert the TaskBook to the previously undone state in the version history.
@@ -76,7 +76,7 @@ public interface Model {
      * Reverts the TaskBook to the previously undone state in the version history.
      * @see VersionedTaskBook#redo()
      */
-    void redoTaskBook() throws VersionedTaskBook.InvalidActionException;
+    void redoTaskBook();
 
     /**
      * Replaces task book data with the data in {@code taskBook}.

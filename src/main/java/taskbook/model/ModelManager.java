@@ -23,8 +23,7 @@ import taskbook.model.task.Task;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedTaskBook taskBookVersions;
-    private final TaskBook taskBook;
+    private final VersionedTaskBook versionedTaskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
@@ -38,11 +37,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs);
 
-        this.taskBook = new TaskBook(taskBook);
-        this.taskBookVersions = new VersionedTaskBook(this.taskBook);
+        versionedTaskBook = new VersionedTaskBook(new TaskBook(taskBook));
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.taskBook.getPersonList());
-        filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
+        filteredPersons = new FilteredList<>(versionedTaskBook.getPersonList());
+        filteredTasks = new FilteredList<>(versionedTaskBook.getTaskList());
         sortedTasks = new SortedList<>(filteredTasks);
     }
 
@@ -89,49 +87,49 @@ public class ModelManager implements Model {
 
     @Override
     public void commitTaskBook() {
-        taskBookVersions.commit(taskBook);
+        versionedTaskBook.commit();
     }
 
     @Override
     public boolean canUndoTaskBook() {
-        return taskBookVersions.canUndo();
+        return versionedTaskBook.canUndo();
     }
 
     @Override
-    public void undoTaskBook() throws VersionedTaskBook.InvalidActionException {
-        taskBookVersions.undo();
+    public void undoTaskBook() {
+        versionedTaskBook.undo();
     }
 
     @Override
     public boolean canRedoTaskBook() {
-        return taskBookVersions.canRedo();
+        return versionedTaskBook.canRedo();
     }
 
     @Override
-    public void redoTaskBook() throws VersionedTaskBook.InvalidActionException {
-        taskBookVersions.redo();
+    public void redoTaskBook() {
+        versionedTaskBook.redo();
     }
 
     @Override
     public void setTaskBook(ReadOnlyTaskBook taskBook) {
-        this.taskBook.resetData(taskBook);
+        versionedTaskBook.resetData(taskBook);
     }
 
     @Override
     public ReadOnlyTaskBook getTaskBook() {
-        return taskBook;
+        return versionedTaskBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return taskBook.hasPerson(person);
+        return versionedTaskBook.hasPerson(person);
     }
 
     @Override
     public Person findPerson(Name name) {
         requireNonNull(name);
-        return taskBook.findPerson(name);
+        return versionedTaskBook.findPerson(name);
     }
 
     /**
@@ -140,17 +138,17 @@ public class ModelManager implements Model {
      */
     @Override
     public boolean canDeletePerson(Person person) {
-        return taskBook.canDeletePerson(person);
+        return versionedTaskBook.canDeletePerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        taskBook.removePerson(target);
+        versionedTaskBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        taskBook.addPerson(person);
+        versionedTaskBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -158,30 +156,30 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        taskBook.setPerson(target, editedPerson);
+        versionedTaskBook.setPerson(target, editedPerson);
     }
 
     @Override
     public void addTask(Task task) {
-        taskBook.addTask(task);
+        versionedTaskBook.addTask(task);
     }
 
     @Override
     public void deleteTask(Task task) {
-        taskBook.deleteTask(task);
+        versionedTaskBook.deleteTask(task);
     }
 
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return taskBook.hasTask(task);
+        return versionedTaskBook.hasTask(task);
     }
 
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        taskBook.setTask(target, editedTask);
+        versionedTaskBook.setTask(target, editedTask);
     }
 
     //=========== Filtered Person & Task List Accessors =============================================================
@@ -256,7 +254,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return taskBook.equals(other.taskBook)
+        return versionedTaskBook.equals(other.versionedTaskBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredTasks.equals(other.filteredTasks);
