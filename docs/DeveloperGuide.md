@@ -121,7 +121,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Note` objects (contained in a `NoteBook` object)
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -153,6 +153,89 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### addNote feature
+
+#### Implementation
+
+The addNote mechanism is facilitated by `AddNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `AddNoteCommand#execute()` : adds the specified note with its associated title and content into the list of notes to be kept track of.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to keep track of a note with the following attributes :
+1. Title : Club meeting
+2. Content : 3rd October 9pm, brief everybody on upcoming events.
+
+Step 2. The user executes `addNote n_t/Meeting n_c/3rd October 9pm`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `AddNoteCommandParser` object and call `AddNoteCommandParser#parse()`. This method will take the user's input and make sense of it to create a `Note` object.
+
+Step 3. An `AddNoteCommand` will be created and `AddNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `AddNoteCommand#execute()` will call the following method from `Model` :
+- `addNote(toAdd)`
+
+Step 5. `AddNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> New note added: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How Title and Content are represented:**
+
+* **Alternative 1 (current choice):** Title and Content as separate objects.
+    * Pros: Easy to validate Title/Content. (In the respective classes)
+    * Cons: May have performance issues in terms of memory usage(Many objects might be created).
+
+* **Alternative 2:** Title and Content as fields of Note
+    * Pros: Will use less memory (Fewer objects created).
+    * Cons: Harder to validate Title/Content. Better OOP(Object-oriented programming) design.
+
+### deleteNote feature
+
+#### Proposed implementation
+
+The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `DeleteNoteCommand#execute()` : deletes the note at the specified index from the note list.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to delete a note that no longer needs to be kept track of. The user lists the current notes:
+1. Title: Meeting, Content: 3rd October 9pm 
+2. Title: Event, Content: Remind club members to attend.
+
+The user has decided to delete note 1.
+
+Step 2. The user executes `deleteNote 1`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `DeleteNoteCommandParser` object and call `DeleteNoteCommandParser#parse()`. This method will take the user's input and make sense of it to get the index of note to be deleted.
+
+Step 3. A `DeleteNoteCommand` object will be created and `DeleteNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `DeleteNoteCommand#execute()` will call the following method from `Model` :
+- `getAddressBook()`
+- `deleteNote(noteToDelete)`
+
+Step 5. `DeleteNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> Deleted Note: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How the note to be deleted is specified:**
+
+* **Alternative 1 (current choice):** Note is specified by index.
+    * Pros: Easy to implement.
+    * Cons: Would need to use listNote command or gui to allow easy identification of index of note.
+
+* **Alternative 2:** Note is specified by Title.
+    * Pros: Would be more precise (Title of notes are unique).
+    * Cons: Long command would be needed to delete a note with a long Title.
 
 ### \[Proposed\] Undo/redo feature
 
