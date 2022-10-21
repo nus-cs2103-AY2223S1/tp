@@ -187,6 +187,15 @@ The following sequence diagram shows how the sort command is executed.
 
 <img src="images/SortSequenceDiagram.png" width="1000" />
 
+####Design considerations:
+**Aspect: Displayed List structure**
+* **Current choice**: `displayedList` is a duplicated copy of the list of exercises in `internalUnmodifiableList` of type 
+`UnmodifiableObservableList`in `ExerciseList` class
+  * Rationale: The sort command will sort the `diplayedList`, not affecting the `internalUnmodifiableList`. This allows
+users to view the sorted list of exercises while maintaining a defensive copy of exercises keyed by user.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
