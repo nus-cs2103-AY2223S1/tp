@@ -69,6 +69,7 @@ public class GuestCard extends UiPart<Region> {
         setPhoneImage.setFitWidth(16);
         setPhoneImage.setFitHeight(16);
         phone.setGraphic(setPhoneImage);
+        phone.setGraphicTextGap(7);
         phone.setWrapText(true);
         Tooltip phoneTT = new Tooltip("Phone Number");
         phone.setTooltip(phoneTT);
@@ -79,6 +80,7 @@ public class GuestCard extends UiPart<Region> {
         setEmailImage.setFitWidth(16);
         setEmailImage.setFitHeight(16);
         email.setGraphic(setEmailImage);
+        email.setGraphicTextGap(7);
         email.setWrapText(true);
         Tooltip emailTT = new Tooltip("Email");
         email.setTooltip(emailTT);
@@ -89,6 +91,7 @@ public class GuestCard extends UiPart<Region> {
         setRoomImage.setFitWidth(16);
         setRoomImage.setFitHeight(16);
         room.setGraphic(setRoomImage);
+        room.setGraphicTextGap(7);
         room.setWrapText(true);
         Tooltip roomTT = new Tooltip("Room Number");
         room.setTooltip(roomTT);
@@ -99,6 +102,7 @@ public class GuestCard extends UiPart<Region> {
         setDateRangeImage.setFitWidth(16);
         setDateRangeImage.setFitHeight(16);
         dateRange.setGraphic(setDateRangeImage);
+        dateRange.setGraphicTextGap(7);
         dateRange.setWrapText(true);
         Tooltip dateRangeTT = new Tooltip("Date of Stay");
         dateRange.setTooltip(dateRangeTT);
@@ -109,6 +113,7 @@ public class GuestCard extends UiPart<Region> {
         setNumberOfGuestsImage.setFitWidth(16);
         setNumberOfGuestsImage.setFitHeight(16);
         numberOfGuests.setGraphic(setNumberOfGuestsImage);
+        numberOfGuests.setGraphicTextGap(7);
         Tooltip numberOfGuestsTT = new Tooltip("Number of Guests");
         numberOfGuests.setTooltip(numberOfGuestsTT);
 
@@ -145,6 +150,7 @@ public class GuestCard extends UiPart<Region> {
         setBillImage.setFitWidth(16);
         setBillImage.setFitHeight(16);
         bill.setGraphic(setBillImage);
+        bill.setGraphicTextGap(7);
         bill.setWrapText(true);
         Tooltip billTT = new Tooltip("Bill");
         bill.setTooltip(billTT);
@@ -155,6 +161,7 @@ public class GuestCard extends UiPart<Region> {
         setRequestImage.setFitWidth(16);
         setRequestImage.setFitHeight(16);
         request.setGraphic(setRequestImage);
+        request.setGraphicTextGap(7);
         request.setWrapText(true);
         Tooltip requestTT = new Tooltip("Request");
         request.setTooltip(requestTT);
