@@ -6,6 +6,10 @@ import java.util.List;
 
 import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 import seedu.trackascholar.logic.commands.SortCommand;
 import seedu.trackascholar.logic.parser.exceptions.ParseException;
 import seedu.trackascholar.model.applicant.Applicant;
