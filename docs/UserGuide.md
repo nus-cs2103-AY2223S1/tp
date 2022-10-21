@@ -203,4 +203,4 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice` |
 | **sDel**  | `sdel INDEX`                                                                                            |
 | **sList** | `slist`                                                                                                 |
-| **sFind** | `sFind KEYWORD [MORE_KEYWORDS]…`                                                                         |
+| **sFind** | `sfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
