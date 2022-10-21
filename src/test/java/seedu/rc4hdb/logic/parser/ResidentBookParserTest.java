@@ -1,12 +1,14 @@
 package seedu.rc4hdb.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.rc4hdb.logic.commands.modelcommands.*;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
+import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
@@ -18,13 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ClearCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
@@ -90,6 +85,15 @@ public class ResidentBookParserTest {
     }
 
     @Test
+    public void parseCommand_hide() throws Exception {
+        assertThrows(ParseException.class, String.format(HideCommandParser.INTENDED_USAGE), ()
+                -> parser.parseCommand(HideCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, String.format(HideCommandParser.ERROR_MESSAGE), ()
+                -> parser.parseCommand(HideCommand.COMMAND_WORD + " jibbitz"));
+        assertTrue(parser.parseCommand(HideCommand.COMMAND_WORD + " name phone email") instanceof HideCommand);
+    }
+
+    @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertThrows(ParseException.class, String.format(ListCommandParser.INTENDED_USAGE), ()
@@ -113,6 +117,15 @@ public class ResidentBookParserTest {
         FileCommand fileCommand = (FileCommand) parser.parseCommand(FileCommand.COMMAND_WORD
                 + " " + FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING);
         assertEquals(new FileCreateCommand(VALID_FILE_NAME_PATH), fileCommand);
+    }
+
+    @Test
+    public void parseCommand_show() throws Exception {
+        assertThrows(ParseException.class, String.format(ShowCommandParser.INTENDED_USAGE), ()
+                -> parser.parseCommand(ShowCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, String.format(ShowCommandParser.ERROR_MESSAGE), ()
+                -> parser.parseCommand(HideCommand.COMMAND_WORD + " crocs with socks"));
+        assertTrue(parser.parseCommand(ShowCommand.COMMAND_WORD + " room gender") instanceof ShowCommand);
     }
 
     @Test
