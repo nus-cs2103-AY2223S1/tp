@@ -302,6 +302,55 @@ Below is a more detailed sequence diagram for the execution of the command.
     * Pros: More intuitive and easy to understand
     * Cons: Makes code harder to maintain, more code duplication.
 
+
+### Sort feature (Draft)
+
+#### Implementation
+
+The sort feature is implemented by `SortCommand` which extends the `Command` class. Since sorting is done according to the specified `attribute`, the abstract `Attribute` class is used to handle the input attribute and provide the corresponding `Comparator` to sort the student list.
+`SortCommand` supports the following operation:
+
+* `SortCommand#execute()` — Sorts the current working list by the specified comparator and order in the `SortCommand`.
+
+
+This operation is exposed in the `Model` interface as `sortFilteredStudentList()`.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+
+
+Step 1. The user executes `sort asc a/name` to sort the students in the address book by their names in ascending order.
+
+Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()` and `ParserUtil#ParseOrder()` to create a `SortCommand`.
+
+Step 3. `SortCommand` calls `Model#sortFilteredStudentList()` with the `Comparator` for sorting names and the `Order` required.
+
+Step 4. The ModelManager containing the `studMap` passes on the `Comparator` and `Order` to `StudMap#sort()`.
+
+Step 5. Note that StudMap stores the student list in a `UniqueStudentList`. `UniqueStudentList#sort()` is called with the `Comparator` and the boolean `isDescending` according to the `Order` specified.
+
+Step 6. The `internalList` is an `FXCollections.observableArrayList` of `UniqueStudentList` which will then be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()` when `isDescending` is true.
+
+Step 5. The sorted list is displayed to the user.
+
+The following sequence diagram shows how the sort operation works:
+
+_{sequence diagram to be inserted here}_
+
+
+
+#### Design considerations:
+
+**Aspect: How sort executes:**
+
+* **Alternative 1 (current choice):** Valid attributes to sort are specified in the abstract `Attribute` class with its respective `Comparator`.
+    * Pros: Easy to implement. Any new attributes to be enabled for sorting could be specified in the `Attribute` class.
+    * Cons: May not be appropriate to specify the `Comparator` for different Attributes here instead of their own respective class.
+
+* **Alternative 2:** `Attribute` as a superclass inherited by each respective attribute. Each attribute specifies its own `Comparator` to be used for sorting and can be retrieved using `getAttributeComparator()`
+    * Pros: Aligns more to OOP where the `Comparator` is contained within each attribute. Make use of polymorphism to call the correct `getAttributeComparator()` for different attributes.
+    * Cons: Attribute subclasses must be instantiated possibly through a factory method just to get the `Comparator` used in sorting.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
