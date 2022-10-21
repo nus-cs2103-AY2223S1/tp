@@ -105,6 +105,22 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+#### Teams
+
+Commands for teams (e.g., `AddTeamCommand`, `ChangeTeamCommand`, ...) follow a similar sequence of interactions within
+the `Logic` component as the other commands described above.
+
+However, during execution, team commands may update the context of the current team scope. To understand teams better,
+Teams are analogous to folders in a basic file system, which can contain other folders (`Team`), or other 
+files (`Person` or `Task`).
+
+The Sequence Diagram below shows the interaction between the `Logic` and `Model` component when `execute("cg ..")` 
+is called.
+
+![Interactions Inside the Logic Component for the `cg ..` Command](images/)
+
+#### Parsing
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
