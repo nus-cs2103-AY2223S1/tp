@@ -184,6 +184,51 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Summary Feature
+
+The `summary` command is implemented by the `SummaryCommandParser` and `SummaryCommand` classes
+
+`SummaryCommandParser` class is responsible for parsing the parameter received from the user
+
+`SummaryCommand` class is responsible for generating the summary statistic for the specified duration
+
+Below is a sequence diagram and explanation of how the SummaryCommand is executed.
+![Interactions Inside the Logic Component for the `summary mo/08-2022` Command](images/SummarySequenceDiagram.png)
+
+Step 1.The user enters `summary mo/08-2022` command in the main window
+
+Step 2. The command is handled by `LogicManager#execute` method,
+which then calls the `PennyWiseParser#parseCommand` method
+
+Step 3. The `PennyWiseParser` matches the word summary in the string and extracts the argument string `mo/08-2022`
+
+Step 4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
+and the argument string is converted to a List
+
+Step 5. The `SummaryCommandParser` creates a new MonthPredicate instance to handle the filter
+
+Step 6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `MonthPredicate` instance and
+returns it to `PennyWiseParser`, which in turn returns to `LogicManger`.
+
+Step 7. The `LogicManager` calls the `SummaryCommand#execute` method.
+
+Step 8. The `SummaryCommand` calls the `Model#updateFilteredEntry` method and
+filters the income and expenditure entries by the month
+
+Step 9. The application calculates the summary statistics for the filtered income and expenditure entries.
+
+Step 10. The `SummaryCommand` then creates a CommandResult and returns it to `LogicManager`.
+
+#### Design considerations:
+* **Alternative 1 (current choice):** Only allow users to generate summary statistic either by month or all entries
+  * Pros: Easier to implement. The statistics by month is also logical as
+  users will generally budget based on a monthly basis
+  * Cons: Users will not be able to customise the scope of the summary
+  statistic further (e.g summarising entries for the past week)
+
+* **Alternative 2:** Provide the option to specify a start and end date to generate summary statistic
+  * Pros: Allows more customisation to the scope of the summary statistics
+  * Cons: Harder to implement and the command will be more complex as it will require more parameters
 
 ### Add feature
 
