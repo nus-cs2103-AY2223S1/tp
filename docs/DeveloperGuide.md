@@ -285,7 +285,7 @@ Alternatives:
 The delete mechanism deletes a patient, appointment or bill identified by their index in the list. The deletion is done
 through the `deletePatient`, `deleteAppointment` and `deleteBill` functions in `ModelManager`. 
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
 Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
 of the application as indexed lists.
