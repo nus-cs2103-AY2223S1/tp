@@ -319,7 +319,7 @@ Step 5. After looking through all the tasks that are related to backend, the use
 #### Proposed Implementation
 
 The proposed filter mechanism allows A `Task` to be filtered based on its `TaskDeadline`. 
-The command is executed using the `FilterTaskDeadlineCommand` class which extends the `Command` class and the deadline is determined from the `FilterTaskDeadlineParser` class which parses the user input. The `TaskDeadlineContainsDatePredicate` class will filter the existing task list based on the date parsed from the `FilterTaskDeadlineParser` class and return the filtered tasklist, which will be displayed on the application.
+The command is executed using the `FilterTaskDeadlineCommand` class which extends the `Command` class and the deadline is determined from the `FilterTaskDeadlineParser` class which parses the user input. The `TaskDeadlineBeforeDatePredicate` class will filter the existing task list based on the date parsed from the `FilterTaskDeadlineParser` class and return the filtered tasklist, which will be displayed on the application.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
@@ -329,11 +329,11 @@ Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/back
 
 Step 3. The user repeats step 2 to add more tasks to the tasklist with different deadlines.
 
-step 4. The user decides that he only wants to see the tasks due on 12 December 2022. The user executes `filterByDeadline dl/2022-12-12` to filter the tasks that have 12 December 2022 as their deadline. After this, only tasks that have `TaskDeadline:2022-12-12` are displayed onto the application.
+step 4. The user decides that he only wants to see the tasks due on 12 December 2022. The user executes `filterByDeadline dl/2022-12-12` to filter the tasks that have 12 December 2022 as their deadline. After this, only tasks that have `TaskDeadline:2022-12-12` and earlier are displayed onto the application.
 
 The following sequence diagram shows how the filter operation works:
 
-Step 5. After looking through all the tasks with 12 December 2022 as their deadline, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
+Step 5. After looking through all the tasks with deadlines of 12 December 2022 and earlier, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
 
 #### Design considerations:
 
