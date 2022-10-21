@@ -37,8 +37,8 @@ public class EditTransactionCommand extends EditCommand {
     private final EditTransactionDescriptor editTransactionDescriptor;
 
     /**
-     * @param index of the transaction in the viewed client to edit
-     * @param editTransactionDescriptor details to edit the transaction with
+     * @param index of the transaction in the viewed client to edit.
+     * @param editTransactionDescriptor details to edit the transaction with.
      */
     public EditTransactionCommand(Index index, EditTransactionDescriptor editTransactionDescriptor) {
         requireNonNull(index);

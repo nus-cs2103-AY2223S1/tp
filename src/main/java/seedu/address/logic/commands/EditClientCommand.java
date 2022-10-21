@@ -36,8 +36,8 @@ public class EditClientCommand extends EditCommand {
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index of the client in the filtered client list to edit
-     * @param editClientDescriptor details to edit the client with
+     * @param index of the client in the filtered client list to edit.
+     * @param editClientDescriptor details to edit the client with.
      */
     public EditClientCommand(Index index, EditClientDescriptor editClientDescriptor) {
         requireNonNull(index);

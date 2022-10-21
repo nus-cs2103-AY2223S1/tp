@@ -28,8 +28,6 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.testutil.ClientBuilder;
 
-
-
 class CreateCommandTest {
 
     private final Model model = new ModelManager(getTypicalJeeqTracker(), new UserPrefs());
@@ -184,6 +182,10 @@ class CreateCommandTest {
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
 
+        }
+        @Override
+        public double calculateTotalTransaction(ObservableList<Client> filteredClientList) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 }

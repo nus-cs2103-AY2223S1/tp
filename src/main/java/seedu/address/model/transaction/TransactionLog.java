@@ -52,6 +52,10 @@ public class TransactionLog {
         transactionList.add(transaction);
     }
 
+    public Transaction deleteTransaction(int index) {
+        return transactionList.remove(index);
+    }
+
     /**
      * Checks if the transaction list is empty.
      * @return the boolean value true if the list is empty.
@@ -73,7 +77,7 @@ public class TransactionLog {
     }
 
     /**
-     * @return the number of transactions in the transaction log
+     * @return the number of transactions in the transaction log.
      */
     public int size() {
         return transactionList.size();
@@ -82,7 +86,7 @@ public class TransactionLog {
     /**
      * Retrieves a transaction at specified index.
      *
-     * @param index of transaction to be retrieved
+     * @param index of transaction to be retrieved.
      * @return transaction at the index
      */
     public Transaction getTransaction(int index) {
@@ -104,4 +108,31 @@ public class TransactionLog {
         transactionList.set(index, editedTransaction);
     }
 
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of sell transactions.
+     */
+    public ObservableList<Transaction> getSellTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        for (Transaction transaction : transactionList) {
+            if (transaction instanceof SellTransaction) {
+                internalList.add(transaction);
+            }
+        }
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of buy transactions.
+     */
+    public ObservableList<Transaction> getBuyTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        for (Transaction transaction : transactionList) {
+            if (transaction instanceof BuyTransaction) {
+                internalList.add(transaction);
+            }
+        }
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
 }

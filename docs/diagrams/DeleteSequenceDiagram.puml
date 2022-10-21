@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":JeeqTrackerParser" as JeeqTrackerParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "d:DeleteClientCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete 1 m/client")
 activate LogicManager
 
-LogicManager -> JeeqTrackerParser : parseCommand("delete 1")
+LogicManager -> JeeqTrackerParser : parseCommand("delete 1 m/client")
 activate JeeqTrackerParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> JeeqTrackerParser
 deactivate DeleteCommandParser
 
-JeeqTrackerParser -> DeleteCommandParser : parse("1")
+JeeqTrackerParser -> DeleteCommandParser : parse("1 m/client")
 activate DeleteCommandParser
 
 create DeleteCommand

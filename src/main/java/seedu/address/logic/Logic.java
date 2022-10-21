@@ -47,4 +47,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the net amount transacted by all clients in the current list.
+     */
+    double calculateTotalTransaction(ObservableList<Client> filteredClientList);
 }

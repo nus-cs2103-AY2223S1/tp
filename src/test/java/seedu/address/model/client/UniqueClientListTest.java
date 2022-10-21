@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.BENSON;
 import static seedu.address.testutil.TypicalClients.BOB;
 
 import java.util.Arrays;
@@ -166,5 +167,12 @@ public class UniqueClientListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueClientList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void calculateTotalTransaction() {
+        uniqueClientList.add(ALICE);
+        uniqueClientList.add(BENSON);
+        assertEquals(uniqueClientList.calculateTotalTransaction(), -423);
     }
 }

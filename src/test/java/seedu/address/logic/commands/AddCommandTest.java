@@ -147,6 +147,10 @@ public class AddCommandTest {
         public void updateFilteredClientList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public double calculateTotalTransaction(ObservableList<Client> filteredClientList) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -84,4 +84,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    /**
+     * Updates the total transaction of the filtered client list.
+     */
+    double calculateTotalTransaction(ObservableList<Client> filteredClientList);
 }

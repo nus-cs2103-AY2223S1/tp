@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -145,6 +146,20 @@ public class ModelManager implements Model {
         return jeeqTracker.equals(other.jeeqTracker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClientsList.equals(other.filteredClientsList);
+    }
+
+    /**
+     * Calculate the total transactions made with clients in the given filtered client list.
+     *
+     * @param filteredClientList list of clients.
+     * @return double value of total transactions.
+     */
+    public double calculateTotalTransaction(ObservableList<Client> filteredClientList) {
+        UniqueClientList filteredList = new UniqueClientList();
+        for (Client client : filteredClientList) {
+            filteredList.add(client);
+        }
+        return filteredList.calculateTotalTransaction();
     }
 
 }
