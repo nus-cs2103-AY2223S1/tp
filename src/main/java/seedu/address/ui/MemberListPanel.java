@@ -22,7 +22,7 @@ public class MemberListPanel extends UiPart<Region> {
     private ListView<Person> memberListView;
 
     /**
-     * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
+     * Creates a {@code MemberListPanel} with the given {@code ObservableList}.
      */
     public MemberListPanel(ObservableList<Person> memberList) {
         super(FXML);
