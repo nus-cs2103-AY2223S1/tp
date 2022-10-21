@@ -93,12 +93,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         if (person instanceof Student) {
             return students.contains((Student) person);
-        } else if (person instanceof Tutor) {
-            return tutors.contains((Tutor) person);
         } else {
-            // this method should not be called with other Person objects
-            assert(false);
-            return false;
+            assert(person instanceof Tutor);
+            return tutors.contains((Tutor) person);
         }
     }
 
@@ -109,11 +106,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(Person p) {
         if (p instanceof Student) {
             students.add((Student) p);
-        } else if (p instanceof Tutor) {
-            tutors.add((Tutor) p);
         } else {
-            // this method should not be called with other Person objects
-            assert (false);
+            assert(p instanceof Tutor);
+            tutors.add((Tutor) p);
         }
     }
 
@@ -126,11 +121,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
         if (target instanceof Student && editedPerson instanceof Student) {
             students.setStudent((Student) target, (Student) editedPerson);
-        } else if (target instanceof Tutor && editedPerson instanceof Tutor) {
-            tutors.setTutor((Tutor) target, (Tutor) editedPerson);
         } else {
-            // this method should not be called with other Person objects
-            assert(false);
+            assert(target instanceof Tutor && editedPerson instanceof Tutor);
+            tutors.setTutor((Tutor) target, (Tutor) editedPerson);
         }
     }
 
@@ -143,13 +136,11 @@ public class AddressBook implements ReadOnlyAddressBook {
             Student student = (Student) key;
             student.minusId();
             students.remove(student);
-        } else if (key instanceof Tutor) {
+        } else {
+            assert(key instanceof Tutor);
             Tutor tutor = (Tutor) key;
             tutor.minusId();
             tutors.remove(tutor);
-        } else {
-            // this method should not be called with other Person objects
-            assert(false);
         }
     }
 
