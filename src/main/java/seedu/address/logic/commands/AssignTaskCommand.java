@@ -24,7 +24,7 @@ public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a group"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a group. "
             + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
             + "Example: " + COMMAND_WORD + " alice g/Group Alpha task/Coursework 0";
 
