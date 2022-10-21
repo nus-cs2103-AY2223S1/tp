@@ -26,6 +26,12 @@ public class TaskFindCommand extends Command {
             + "Only tasks with exact matches with QUERY will be displayed. Can be multiple words.";
     private final Predicate<Task> predicate;
     private final String query;
+
+    /**
+     * Creates a TaskMarkCommand to mark a task with the specified {@code String query}.
+     *
+     * @param query
+     */
     public TaskFindCommand(String query) {
         requireNonNull(query);
         predicate = (t1) -> t1.isWordInTask(query);

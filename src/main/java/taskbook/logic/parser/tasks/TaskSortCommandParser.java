@@ -7,7 +7,6 @@ import taskbook.commons.core.Messages;
 import taskbook.logic.commands.tasks.TaskSortAddedChronologicalCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.commands.tasks.TaskSortDescriptionAlphabeticalCommand;
-import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
 import taskbook.logic.parser.CliSyntax;
