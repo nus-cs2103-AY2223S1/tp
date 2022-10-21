@@ -58,6 +58,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        gender.setText(person.getGender().value.toString());
         if (!person.getDob().isEmpty()) { //if DateOfBirth is not empty
             dob.setManaged(true); //Show label
             dob.setText(person.getDob().toString());
@@ -67,12 +68,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        if (Gender.isValidGender(person.getGender(), Boolean.FALSE)) { // invalid gender (NA is considered invalid)
-            gender.setManaged(true); //Show label
-            gender.setText(person.getGender().value.toString());
-        } else {
-            gender.setManaged(false); //Hide and minimises label
-        }
     }
 
     @Override
