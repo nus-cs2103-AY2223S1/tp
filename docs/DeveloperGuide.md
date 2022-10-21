@@ -234,10 +234,60 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] `MarkCommand` Feature
+#### Proposed Implementation
+The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses 
+{***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
+later on if there are other meaningful statuses.
 
-_{Explain here how the data archiving feature will be implemented}_
+The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the 
+MarkCommand allows us to accordingly the project Status to either `IP` if the student is still
+working on the FYP project, or `DONE` once the FYP project has been completed. 
 
+Given below is an example usage scenario and how MarkCommand is utilised:
+
+Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the 
+current Fyp Manager state.
+
+Step 2: The Professor tries adding a student to the Fyp Manager by executing the command 
+`add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
+the project has just been added. 
+
+![MarkCommandState1](images/MarkCommandState1.png)
+
+Step 3: Suppose that the student Jane Doe has now started on the project. The Professor wishes to update the 
+project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command 
+`mark id/A0123456G s/IP` to update the status accordingly.
+
+![MarkCommandState2](images/MarkCommandState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the 
+status is not one of the statuses {`YTS`, `IP`, `DONE`}, then the command will not be executed and an appropriate
+error message will be shown.
+
+</div>
+
+The following sequence diagram shows how the MarkCommand operation works:
+
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Implementation Choice: Why MarkCommand is implemented this way**
+* We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general 
+labels that the Professor can use to identify the current status of an FYP project. This makes it very user friendly
+  since there are a fixed number of statuses that can be used.
+  
+* We have also used the studentId to uniquely identify the project of the student the Professor
+is trying to find. Here we have made an assumption that there the StudentId uniquely identifies the FYP project
+  (i.e. a student can only take exactly 1 FYP project under a certain Professor)
+  This makes the Mark Command relatively easy to use in practice.
+
+**Other Alternatives:**
+
+* **Alternative 1:** Extend the Edit command to include the MarkCommand 
+    * Pros: Harder to implement.
+    * Cons: No clear distinction between tags and project status
 
 --------------------------------------------------------------------------------------------------------------------
 
