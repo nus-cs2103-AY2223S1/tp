@@ -16,13 +16,13 @@ public class TypicalItineraries {
 
     public static final Itinerary SPRING = new ItineraryBuilder().withName("Spring Trip")
             .withCountry("Australia").withStartDate("2022-01-01")
-            .withDuration("14").withPeople("1").build();
+            .withDuration("14").withPeople("1").withBudget("300").build();
     public static final Itinerary AUTUMN = new ItineraryBuilder().withName("Autumn Hiking")
             .withCountry("Canada").withStartDate("2022-02-02")
-            .withDuration("22").withPeople("2").build();
+            .withDuration("22").withPeople("2").withBudget("700").build();
     public static final Itinerary GRADUATION = new ItineraryBuilder().withName("Graduation Trip")
             .withCountry("France").withStartDate("2022-03-03")
-            .withDuration("4").withPeople("4").build();
+            .withDuration("4").withPeople("4").withBudget("2200").build();
 
     // Manually added - Itinerary's details found in {@code CommandTestUtil}
     public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_NAME_SUMMER)

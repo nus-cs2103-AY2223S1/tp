@@ -3,7 +3,7 @@
     "name" : "Spring Trip",
     "country" : "Australia",
     "startDate" : "10",
-    "endDate" : "20",
+    "duration" : "20d",
     "people" : "1",
     "items" : [ ]
   } ]

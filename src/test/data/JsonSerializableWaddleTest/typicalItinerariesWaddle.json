@@ -4,22 +4,25 @@
     "name" : "Spring Trip",
     "country" : "Australia",
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-15",
+    "duration" : "14",
     "people" : "1",
+    "budget" : "300",
     "items" : [ ]
   }, {
     "name" : "Autumn Hiking",
     "country" : "Canada",
     "startDate" : "2022-02-02",
-    "endDate" : "2022-02-23",
+    "duration" : "22",
     "people" : "2",
+    "budget" : "700",
     "items" : [ ]
   }, {
     "name" : "Graduation Trip",
     "country" : "France",
     "startDate" : "2022-03-03",
-    "endDate" : "2022-03-07",
+    "duration" : "4",
     "people" : "4",
+    "budget" : "2200",
     "items" : [ ]
   } ]
 }
