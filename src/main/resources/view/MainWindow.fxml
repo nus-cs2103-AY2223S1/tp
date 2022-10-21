@@ -10,85 +10,75 @@
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="TruthTable" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+    <icons>
+        <Image url="@/images/address_book_32.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@LightTheme.css"/>
+                <URL value="@LightThemeExtensions.css"/>
+            </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-        <HBox VBox.vgrow="ALWAYS">
-          <children>
-            <VBox HBox.hgrow="ALWAYS">
-              <children>
-                <VBox fx:id="teamList" minWidth="125.0" prefWidth="150"  styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                  <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                  </padding>
-                  <children>
-                    <StackPane fx:id="teamListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                  </children></VBox>
-              </children>
+            <VBox>
+                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                    <Menu mnemonicParsing="false" text="File">
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
+                    </Menu>
+                </MenuBar>
+                <HBox VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <VBox fx:id="teamList" minWidth="125.0" prefWidth="150" styleClass="pane-with-border"
+                                      VBox.vgrow="ALWAYS">
+                                    <padding>
+                                        <Insets bottom="10" left="10" right="10" top="10"/>
+                                    </padding>
+                                    <children>
+                                        <StackPane fx:id="teamListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+                                <StackPane fx:id="teamDetailsCardPlaceHolder" minWidth="145.0" prefWidth="200.0"
+                                           styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                    <padding>
+                                        <Insets bottom="10" left="10" right="10" top="10"/>
+                                    </padding>
+                                </StackPane>
+                                <StackPane fx:id="resultDisplayPlaceholder" minHeight="-Infinity" prefHeight="100"
+                                           styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                    <padding>
+                                        <Insets bottom="5" left="10" right="10" top="5"/>
+                                    </padding>
+                                </StackPane>
+                                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border"
+                                           VBox.vgrow="NEVER">
+                                    <padding>
+                                        <Insets bottom="5" left="10" right="10" top="5"/>
+                                    </padding>
+                                </StackPane>
+                            </children>
+                        </VBox>
+
+                        <VBox fx:id="personList" minWidth="145.0" prefWidth="200" styleClass="pane-with-border"
+                              VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10"/>
+                            </padding>
+                            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </children>
+                </HBox>
             </VBox>
-
-            <VBox HBox.hgrow="ALWAYS">
-              <children>
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                  <padding>
-                    <Insets bottom="5" left="10" right="10" top="5" />
-                  </padding>
-                </StackPane>
-
-                <StackPane fx:id="resultDisplayPlaceholder" minHeight="-Infinity" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                  <padding>
-                    <Insets bottom="5" left="10" right="10" top="5" />
-                  </padding>
-                </StackPane>
-
-                <VBox fx:id="personList" minWidth="145.0" prefWidth="200" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                  <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                  </padding>
-                  <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                </VBox>
-
-                <VBox fx:id="taskList" minWidth="145.0" prefWidth="200" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                  <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                  </padding>
-                  <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                </VBox>
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-              </children>
-            </VBox>
-
-          <VBox HBox.hgrow="ALWAYS">
-            <children>
-
-              <StackPane fx:id="teamDetailsCardPlaceHolder" minWidth="145.0" prefWidth="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-              </StackPane>
-
-
-            </children>
-          </VBox>
-
-          </children></HBox>
-      </VBox>
-    </Scene>
-  </scene>
+        </Scene>
+    </scene>
 </fx:root>
