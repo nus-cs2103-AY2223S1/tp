@@ -395,14 +395,29 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `findSubject math`<br>
+    2. Test case: `findSubject math`<br>
        Expected: All persons that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
 
-    1. Test case: `findSubject engrish`<br>
+    3. Test case: `findSubject engrish`<br>
        Expected: No person will be shown in a new list. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
+    4. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
        Expected: Similar to previous.
+2. Finding persons that belongs in the same class.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case 1: `find c/1A`<br>
+        Expected: All persons that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
+
+    3. Test case 2: `find c/1a`<br>
+       Expected: Same result as Test case 1. Keywords given by user after `c/` are not case sensitive.
+
+    4. Test case 3: `find c/2b`<br>
+       Expected: No person will be shown in a new list as no one is in class 2B. Status bar remains the same.
+
+    5. Other incorrect find commands to try: `find c/`, `find c/ `, `find c/x` (where x is a non-existent class)<br>
+       Expected: Similar to Test case 3.
 
 ### Deleting a person
 
