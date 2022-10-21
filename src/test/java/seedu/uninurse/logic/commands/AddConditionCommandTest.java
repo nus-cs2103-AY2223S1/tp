@@ -121,7 +121,8 @@ public class AddConditionCommandTest {
         assertEquals(addConditionFirstDiabetes, addConditionFirstDiabetes);
 
         // same values -> returns true
-        AddConditionCommand addConditionFirstDiabetesCopy = new AddConditionCommand(INDEX_FIRST_PERSON, CONDITION_DIABETES);
+        AddConditionCommand addConditionFirstDiabetesCopy =
+                new AddConditionCommand(INDEX_FIRST_PERSON, CONDITION_DIABETES);
         assertEquals(addConditionFirstDiabetes, addConditionFirstDiabetesCopy);
 
         // different types -> returns false
