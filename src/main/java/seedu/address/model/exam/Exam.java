@@ -1,7 +1,12 @@
 package seedu.address.model.exam;
 
-import seedu.address.model.module.Module;
+import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * Exam class represents an exam which stores the module code, the
@@ -11,6 +16,7 @@ public class Exam {
     private final Module module;
     private final ExamDescription examDescription;
     private final ExamDate examDate;
+    private final List<Task> tasksLinked;
 
 
     /**
@@ -26,6 +32,25 @@ public class Exam {
         this.module = module;
         this.examDescription = examDescription;
         this.examDate = examDate;
+        this.tasksLinked = new ArrayList<>();
+    }
+
+    /**
+     * The constructor of the Exam class. Sets the module,
+     * exam description, exam date and the tasks associated with the exam.
+     *
+     * @param module The module being added.
+     * @param examDescription The description of the exam.
+     * @param examDate The date of the exam.
+     * @param tasksLinked The list of task the exam is linked to.
+     *
+     */
+    public Exam(Module module, ExamDescription examDescription, ExamDate examDate,
+            List<Task> tasksLinked) {
+        this.module = module;
+        this.examDescription = examDescription;
+        this.examDate = examDate;
+        this.tasksLinked = tasksLinked;
     }
 
     public ExamDescription getDescription() {
@@ -40,12 +65,28 @@ public class Exam {
         return examDate;
     }
 
+    public List<Task> getTasksLinked() {
+        return tasksLinked;
+    }
+
 
     /**
      * Returns true if both exams have the same data fields.
      */
     public boolean isSameExam(Exam otherExam) {
         return this.equals(otherExam);
+    }
+
+    /**
+     * Links the exam to the task in the task list.
+     *
+     * @param task The task which will be linked to the exam.
+     * @return The {@code Exam} object which contains the newly linked task.
+     */
+    public Exam linkExam(Task task) {
+        requireNonNull(task);
+        tasksLinked.add(task);
+        return new Exam(module, examDescription, examDate, tasksLinked);
     }
 
 

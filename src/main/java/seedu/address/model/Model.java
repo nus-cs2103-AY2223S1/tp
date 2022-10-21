@@ -179,12 +179,6 @@ public interface Model {
      */
     void addExam(Exam exam);
 
-    /**
-     * Replaces the given exam {@code target} with {@code editedExam}.
-     * {@code target} must exist in the exam list.
-     * The task identity of {@code editedExam} must be the same as exam identity of {@code target}.
-     */
-    void setExam(Exam target, Exam editedExam);
 
     /**
      * Replaces the given exam {@code target} with {@code editedExam}.
@@ -193,7 +187,7 @@ public interface Model {
      * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
      *     in the list (other than {@code target}).
      */
-    void replaceExam(Exam target, Exam editedExam) throws DuplicateExamException;
+    void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException;
 
     /** Returns an unmodifiable view of the filtered exam list */
     ObservableList<Exam> getFilteredExamList();
