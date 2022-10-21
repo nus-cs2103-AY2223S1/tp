@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import foodwhere.logic.commands.CommandTestUtil;
 import foodwhere.model.review.exceptions.DuplicateReviewException;
 import foodwhere.model.review.exceptions.ReviewNotFoundException;
-import foodwhere.testutil.ReviewBuilder;
 import foodwhere.testutil.TypicalReviews;
 
 public class UniqueReviewListTest {

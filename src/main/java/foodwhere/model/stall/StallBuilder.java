@@ -9,6 +9,7 @@ import java.util.Set;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
+import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.review.exceptions.ReviewNotFoundException;
 import foodwhere.model.util.SampleDataUtil;
 
@@ -17,8 +18,8 @@ import foodwhere.model.util.SampleDataUtil;
  */
 public class StallBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "Unnamed Stall";
+    public static final String DEFAULT_ADDRESS = "Unknown Location";
 
     private Name name;
     private Address address;
@@ -107,6 +108,12 @@ public class StallBuilder {
      * @return Stall with the stored data.
      */
     public Stall build() {
-        return new Stall(name, address, tags, reviews);
+        HashSet<Review> namedReviews = new HashSet<>();
+        for (Review review : reviews) {
+            Review namedReview = new ReviewBuilder(review)
+                    .withName(name.fullName).build();
+            namedReviews.add(namedReview);
+        }
+        return new Stall(name, address, tags, namedReviews);
     }
 }

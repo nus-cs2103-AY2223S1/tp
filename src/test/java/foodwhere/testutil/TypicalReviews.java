@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import foodwhere.model.review.Review;
+import foodwhere.model.review.ReviewBuilder;
 
 /**
  * A utility class containing a list of {@code Review} objects to be used in tests.
