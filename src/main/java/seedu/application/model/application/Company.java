@@ -7,7 +7,7 @@ import static seedu.application.commons.util.AppUtil.checkArgument;
  * Represents a Company in the application list.
  * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
  */
-public class Company {
+public class Company implements Comparable<Company> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Company names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -56,4 +56,8 @@ public class Company {
         return company.hashCode();
     }
 
+    @Override
+    public int compareTo(Company other) {
+        return company.toLowerCase().compareTo(other.company.toLowerCase());
+    }
 }

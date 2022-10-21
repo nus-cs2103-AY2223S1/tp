@@ -17,7 +17,10 @@ import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
 import seedu.application.logic.commands.HelpCommand;
 import seedu.application.logic.commands.ListCommand;
+import seedu.application.logic.commands.RedoCommand;
 import seedu.application.logic.commands.RemindCommand;
+import seedu.application.logic.commands.SortCommand;
+import seedu.application.logic.commands.UndoCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,8 +70,17 @@ public class ApplicationBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

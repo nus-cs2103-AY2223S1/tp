@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_POSITION + "POSITION] "
-            + "[" + PREFIX_DATE + "DATE]..\n"
+            + "[" + PREFIX_DATE + "DATE_APPLIED]..\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CONTACT + "91234567 "
@@ -87,13 +87,15 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
-        model.setApplication(applicationToEdit, editedApplication);
         Optional<Interview> interview = applicationToEdit.getInterview();
         if (interview.isPresent()) {
             Application editedApplicationWithInterview = new Application(editedApplication, interview.get());
-            model.setApplication(editedApplication, editedApplicationWithInterview);
+            model.setApplication(applicationToEdit, editedApplicationWithInterview);
+        } else {
+            model.setApplication(applicationToEdit, editedApplication);
         }
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        model.updateApplicationListWithInterview();
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
 

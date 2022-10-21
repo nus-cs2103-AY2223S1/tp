@@ -25,7 +25,7 @@ public class AddCommand extends Command {
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_POSITION + "POSITION "
-            + PREFIX_DATE + "DATE "
+            + PREFIX_DATE + "DATE_APPLIED "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "ByteDance "
