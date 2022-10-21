@@ -93,7 +93,7 @@ public class EditItemCommand extends Command {
         assert itemToEdit != null;
 
         ItemName updatedItemName = editItemDescriptor.getItemName().orElse(itemToEdit.getItemName());
-        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
+        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getTotalQuantity());
         Description updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
         Price sellPrice = editItemDescriptor.getSellPrice().orElse(itemToEdit.getSellPrice());

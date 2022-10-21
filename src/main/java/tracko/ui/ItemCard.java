@@ -63,7 +63,7 @@ public class ItemCard extends UiPart<Region> {
         id.prefHeightProperty().bind(itemName.heightProperty());
         id.setAlignment(Pos.TOP_LEFT);
 
-        quantity.setText(item.getQuantity().toString());
+        quantity.setText(item.getTotalQuantity().toString());
         quantityRow.setMaxSize(HBox.USE_PREF_SIZE, HBox.USE_PREF_SIZE);
 
         description.setText(item.getDescription().value);

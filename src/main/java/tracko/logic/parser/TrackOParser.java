@@ -19,6 +19,7 @@ import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.commands.order.DeleteOrderCommand;
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.commands.order.ListOrdersCommand;
+import tracko.logic.commands.order.MarkOrderCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.logic.parser.item.AddItemCommandParser;
 import tracko.logic.parser.item.DeleteItemCommandParser;
@@ -27,6 +28,7 @@ import tracko.logic.parser.item.FindItemCommandParser;
 import tracko.logic.parser.order.AddOrderCommandParser;
 import tracko.logic.parser.order.DeleteOrderCommandParser;
 import tracko.logic.parser.order.FindOrderCommandParser;
+import tracko.logic.parser.order.MarkOrderCommandParser;
 
 /**
  * Parses user input.
@@ -78,26 +80,9 @@ public class TrackOParser {
             return new ListOrdersCommand();
         case FindOrderCommand.COMMAND_WORD:
             return new FindOrderCommandParser().parse(arguments);
-        // (commands kept for reference)
-        // case AddCommand.COMMAND_WORD:
-        //     return new AddCommandParser().parse(arguments);
-        //
-        // case EditCommand.COMMAND_WORD:
-        //     return new EditCommandParser().parse(arguments);
-        //
         case DeleteOrderCommand.COMMAND_WORD:
             return new DeleteOrderCommandParser().parse(arguments);
 
-        //
-        // case ClearCommand.COMMAND_WORD:
-        //     return new ClearCommand();
-        //
-        // case FindCommand.COMMAND_WORD:
-        //     return new FindCommandParser().parse(arguments);
-        //
-        // case ListCommand.COMMAND_WORD:
-        //     return new ListCommand();
-        //
         // case HelpCommand.COMMAND_WORD:
         //     return new HelpCommand();
 
@@ -115,6 +100,9 @@ public class TrackOParser {
 
         case EditItemCommand.COMMAND_WORD:
             return new EditItemCommandParser().parse(arguments);
+
+        case MarkOrderCommand.COMMAND_WORD:
+            return new MarkOrderCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
