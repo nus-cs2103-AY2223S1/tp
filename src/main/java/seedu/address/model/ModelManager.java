@@ -31,10 +31,11 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final SortedList<Customer> sortedFilteredCustomers;
     private final FilteredList<Customer> filteredCustomers;
-    private final ObservableObject<Pair<Customer, FilteredList<Commission>>> observableFilteredCommissions =
-            new ObservableObject<>();
     private final ObservableObject<Pair<Customer, UniqueCommissionList>> observableUniqueCommissions =
-            new ObservableObject<>();
+            new ObservableObject<>(new Pair<>(null, new UniqueCommissionList()));
+    private final ObservableObject<Pair<Customer, FilteredList<Commission>>> observableFilteredCommissions =
+            new ObservableObject<>(new Pair<>(null, new FilteredList<>(
+                    observableUniqueCommissions.getValue().getValue().asUnmodifiableObservableList())));
     private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
     private final ObservableObject<Commission> selectedCommission = new ObservableObject<>();
 
