@@ -161,7 +161,7 @@ Edits an existing student in the list.
 - Amount owed
 - Additional notes
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow 
+1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow
 the same convention as [adding a student](#adding-a-student-add).
 
 2. Amount paid:
@@ -184,7 +184,7 @@ Note: Amount paid, Amount owed can only be between $0 and $2147483647.
 Important: Note **at least one** of these fields must exist in order to make the `edit` command valid.
 ```
 
-Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
 Example:
