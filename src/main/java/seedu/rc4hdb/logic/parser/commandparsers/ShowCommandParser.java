@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
@@ -22,6 +24,8 @@ public class ShowCommandParser implements Parser<ShowCommand> {
     public static final String ERROR_MESSAGE = "Please only specify fields that correspond to resident data, "
             + "or check if you have made a typo.";
 
+    private static Logger logger = Logger.getLogger("ShowCommandParser");
+
     /**
      * Implements the parse method in the Parser interface.
      * @param args The arguments read from the user
@@ -31,8 +35,10 @@ public class ShowCommandParser implements Parser<ShowCommand> {
     @Override
     public ShowCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        logger.log(Level.INFO, "Going to start parsing.");
 
         if (args.isEmpty()) {
+            logger.log(Level.WARNING, "Empty arguments when parsing.");
             throw new ParseException(INTENDED_USAGE);
         }
 
@@ -46,6 +52,7 @@ public class ShowCommandParser implements Parser<ShowCommand> {
 
         populateFieldLists(specifiedFields, fieldsToHide, allFields);
 
+        logger.log(Level.INFO, "Parsing completed, returning ShowCommand");
         return new ShowCommand(fieldsToHide);
     }
 
