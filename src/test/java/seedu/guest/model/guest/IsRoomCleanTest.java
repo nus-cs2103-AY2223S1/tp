@@ -29,12 +29,17 @@ public class IsRoomCleanTest {
         assertFalse(IsRoomClean.isValidIsRoomClean(" ")); // spaces only
         assertFalse(IsRoomClean.isValidIsRoomClean("maybe")); // not yes or no
         assertFalse(IsRoomClean.isValidIsRoomClean("yess")); // misspelt yes
-        assertFalse(IsRoomClean.isValidIsRoomClean("No")); // first letter capitalised
         assertFalse(IsRoomClean.isValidIsRoomClean("yesno")); // not yes or no
+        assertFalse(IsRoomClean.isValidIsRoomClean("true")); // synonym of yes
 
         // valid is room clean
-        assertTrue(IsRoomClean.isValidIsRoomClean("yes")); // only yes and no are valid
-        assertTrue(IsRoomClean.isValidIsRoomClean("no"));
+        assertTrue(IsRoomClean.isValidIsRoomClean("yes")); // yes is valid
+        assertTrue(IsRoomClean.isValidIsRoomClean("y")); // y is valid
+        assertTrue(IsRoomClean.isValidIsRoomClean("no")); // no is valid
+        assertTrue(IsRoomClean.isValidIsRoomClean("n")); // n is valid
+        assertTrue(IsRoomClean.isValidIsRoomClean("No")); // first letter capitalised
+        assertTrue(IsRoomClean.isValidIsRoomClean("yEs")); // case-insensitive
+
     }
 }
 

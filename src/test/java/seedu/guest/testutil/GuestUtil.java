@@ -35,7 +35,6 @@ public class GuestUtil {
         sb.append(PREFIX_ROOM + guest.getRoom().value + " ");
         sb.append(PREFIX_DATE_RANGE + guest.getDateRange().value + " ");
         sb.append(PREFIX_NUMBER_OF_GUESTS + guest.getNumberOfGuests().value + " ");
-        sb.append(PREFIX_IS_ROOM_CLEAN + guest.getIsRoomClean().value + " ");
         return sb.toString();
     }
 
