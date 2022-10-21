@@ -21,24 +21,35 @@ public class DateTime {
     public static final String RECOMMENDED_FORMAT = "dd/MM/yyyy";
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should follow a valid format. Try " + RECOMMENDED_FORMAT;
-    public static final String REGEX_DAY_SLASH = "(([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4})";
-    public static final String REGEX_DAY_SPACE = "(([1-9]|[0-2][0-9]|(3)[0-1])\\s(((0)?[0-9])|((1)[0-2]))\\s[0-9]{4})";
-    public static final String REGEX_DAY_DASH = "(([1-9]|[0-2][0-9]|(3)[0-1])-(((0)?[0-9])|((1)[0-2]))-[0-9]{4})";
-    public static final String REGEX_TIME_COLON = "(([01][0-9]|2[0-3]):([0-5][0-9])(:[0-5]?[0-9])?)";
-    public static final String REGEX_TIME_NO_SPACE = "(([01][0-9]|2[0-3])([0-5][0-9])([0-5]?[0-9])?)";
-    public static final String MONTHS_REGEX =
+
+    public static final String REGEX_YEAR = "([0-9]{4})";
+    public static final String REGEX_MONTH_DIGITS = "(((0)?[0-9])|((1)[0-2]))";
+    public static final String REGEX_MONTH_LETTERS =
             "((jan)|(feb)|(mar)|(apr)|(may)|(jun)|(jul)|(aug)|(sep)|(oct)|(nov)|(dec))";
-    public static final String REGEX_DAY_LETTER =
-            "(([1-9]|[0-2][0-9]|(3)[0-1])\\s" + MONTHS_REGEX + "\\s[0-9]{4})";
-    public static final String REGEX_YEAR_SLASH =
-            "([0-9]{4}/(((0)?[0-9])|((1)[0-2]))/([1-9]|[0-2][0-9]|(3)[0-1]))";
-    public static final String REGEX_YEAR_DASH =
-            "([0-9]{4}-(((0)?[0-9])|((1)[0-2]))-([1-9]|[0-2][0-9]|(3)[0-1]))";
+    public static final String REGEX_MONTH = "(" + REGEX_MONTH_LETTERS + "|" + REGEX_MONTH_DIGITS + ")";
+    public static final String REGEX_DAY = "([1-9]|[0-2][0-9]|(3)[0-1])";
+    public static final String REGEX_DATE_DAY_SLASH =
+            "(" + REGEX_DAY + "/" + REGEX_MONTH + "/" + REGEX_YEAR + ")|"
+                    + "(" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + ")";
+    public static final String REGEX_DATE_DAY_SPACE =
+            "(" + REGEX_DAY + "\\s" + REGEX_MONTH + "\\s" + REGEX_YEAR + ")|"
+                    + "(" + REGEX_YEAR + "\\s" + REGEX_MONTH + "\\s" + REGEX_DAY + ")";
+    public static final String REGEX_DATE_DAY_DASH =
+            "(" + REGEX_DAY + "-" + REGEX_MONTH + "-" + REGEX_YEAR + ")|"
+                    + "(" + REGEX_YEAR + "-" + REGEX_MONTH + "-" + REGEX_DAY + ")";
+    public static final String REGEX_DATE =
+            REGEX_DATE_DAY_SLASH + "|" + REGEX_DATE_DAY_SPACE + "|" + REGEX_DATE_DAY_DASH;
+    public static final String REGEX_SECONDS = "[0-5]?[0-9]";
+    public static final String REGEX_MINUTES = "([0-5][0-9])";
+    public static final String REGEX_HOURS = "([01][0-9]|2[0-3])";
+    public static final String REGEX_TIME_COLON =
+            "(" + REGEX_HOURS + ":" + REGEX_MINUTES + "(:" + REGEX_SECONDS + ")?)";
+    public static final String REGEX_TIME_NO_SPACE =
+            "(" + REGEX_HOURS + REGEX_MINUTES + "(" + REGEX_SECONDS + ")?)";
+    public static final String REGEX_TIME = REGEX_TIME_COLON + "|" + REGEX_TIME_NO_SPACE;
 
     public static final Pattern VALIDATION_PATTERN = Pattern.compile(
-            "(?<dateGroup>" + REGEX_DAY_SLASH + "|" + REGEX_DAY_SPACE + "|" + REGEX_DAY_DASH + "|"
-                    + REGEX_DAY_LETTER + "|" + REGEX_YEAR_SLASH + "|" + REGEX_YEAR_DASH + ")"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "|" + REGEX_TIME_NO_SPACE + "))?"
+            "(?<dateGroup>" + REGEX_DATE + ")(\\s(?<timeGroup>" + REGEX_TIME + "))?"
     );
 
     // Not an exhaustive list
@@ -94,6 +105,11 @@ public class DateTime {
     public static boolean isValidDateTime(String dateString) {
         Matcher matcher = VALIDATION_PATTERN.matcher(dateString.toLowerCase());
         return matcher.matches();
+    }
+
+    // TODO
+    public static boolean isValidValues(String dateString) {
+        return false;
     }
 
     /**
