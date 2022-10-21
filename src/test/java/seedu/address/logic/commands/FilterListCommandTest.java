@@ -41,8 +41,8 @@ public class FilterListCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different comand -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        // same value -> returns true
+        assertTrue(findFirstCommand.equals(findSecondCommand));
     }
 
 

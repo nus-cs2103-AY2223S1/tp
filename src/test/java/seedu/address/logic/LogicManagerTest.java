@@ -69,7 +69,7 @@ public class LogicManagerTest {
                 String.format("%s %s", FilterClearCommand.COMMAND_WORD, FilterClearCommand.COMMAND_SPECIFIER);
 
         String expectedMesasge =
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size());
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()) + "\n";
 
         assertCommandSuccess(filterClearCommand, expectedMesasge, model);
     }
