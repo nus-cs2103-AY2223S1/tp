@@ -19,7 +19,6 @@ public class FilterBuyerByPriorityPredicate extends AbstractFilterBuyerPredicate
 
     @Override
     public boolean test(Person p) {
-        // N.B.: Returns true if the target person does not have a PriceRange object in their attributes.
         return p.getPriority().equals(priority);
     }
 

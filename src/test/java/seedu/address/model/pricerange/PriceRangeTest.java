@@ -1,5 +1,6 @@
 package seedu.address.model.pricerange;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -7,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Name;
+import seedu.address.model.property.Price;
 
 public class PriceRangeTest {
 
@@ -24,7 +26,7 @@ public class PriceRangeTest {
     }
 
     @Test
-    public void isValidName() {
+    public void isValidPriceRange() {
         // null price range
         assertThrows(NullPointerException.class, () -> PriceRange.isValidPriceRange(null));
 
@@ -37,6 +39,29 @@ public class PriceRangeTest {
 
         // valid price range
         assertTrue(PriceRange.isValidPriceRange("200 - 500"));
+        assertTrue(PriceRange.isValidPriceRange("200 - 200")); // upper = lower
         assertTrue(PriceRange.isValidPriceRange("200-500")); // no spacing
+    }
+
+    @Test
+    public void isWithinPriceRange() {
+
+        PriceRange targetPriceRange = new PriceRange("200 - 500");
+
+        //null price
+        assertThrows(NullPointerException.class, () -> targetPriceRange.isWithinPriceRange(null));
+
+        //price out of bound
+        assertFalse(targetPriceRange.isWithinPriceRange(new Price("0")));
+
+        //price within range
+        assertTrue(targetPriceRange.isWithinPriceRange(new Price("300")));
+
+        //price on range upperbound
+        assertTrue(targetPriceRange.isWithinPriceRange(new Price("500")));
+
+        //price on range lowerbound
+        assertTrue(targetPriceRange.isWithinPriceRange(new Price("200")));
+
     }
 }
