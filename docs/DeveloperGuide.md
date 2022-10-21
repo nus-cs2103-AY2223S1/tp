@@ -318,14 +318,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
-**Use case: Delete a module**
+**Use case: Delete a tutorial slot**
 
 **MSS**
 
-1. User requests the list of modules
-2. System shows the list of modules
-3. User requests to delete a certain module
-4. System deletes the specific module
+1. User requests the list of tutorial slot
+2. System shows the list of tutorial slot
+3. User requests to delete a certain tutorial slot
+4. System deletes the specified tutorial slot 
 5. System displays the success message
 
     Use case ends.
