@@ -1,14 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.FindCommandParser;
-import seedu.address.model.person.subject.Subject;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
