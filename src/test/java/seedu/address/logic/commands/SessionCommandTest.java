@@ -27,6 +27,7 @@ import seedu.address.testutil.PersonBuilder;
 class SessionCommandTest {
 
     private static final String SESSION_STUB = "Mon 08:00";
+    private static final String SESSION_IGNORE_CASE = "mON 08:00";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -111,6 +112,31 @@ class SessionCommandTest {
         SessionCommand sessionCommand = new SessionCommand(
                 outOfBoundIndex, new Session(SESSION_STUB));
         assertCommandFailure(sessionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_addSessionIgnoreCase_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        final SessionCommand standardCommand = new SessionCommand(INDEX_FIRST_PERSON,
+                new Session(SESSION_STUB));
+        final SessionCommand ignoreCaseCommand = new SessionCommand(INDEX_FIRST_PERSON,
+                new Session(SESSION_IGNORE_CASE));
+        assertTrue(standardCommand.equals(ignoreCaseCommand));
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+                .withSession(SESSION_STUB).build();
+        firstPerson.clearSessionList();
+
+        String expectedMessage = String.format(SessionCommand.MESSAGE_ADD_SESSION_SUCCESS, editedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        assertCommandSuccess(ignoreCaseCommand, model, expectedMessage, expectedModel);
+
     }
 
     @Test
