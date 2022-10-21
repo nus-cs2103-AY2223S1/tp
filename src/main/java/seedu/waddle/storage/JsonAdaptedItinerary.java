@@ -8,11 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Item;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.itinerary.Name;
-import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.itinerary.*;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.
@@ -27,6 +23,7 @@ class JsonAdaptedItinerary {
     private final String startDate;
     private final String endDate;
     private final String people;
+    private final String budget;
 
     private final List<JsonAdaptedItem> items = new ArrayList<>();
 
@@ -38,12 +35,14 @@ class JsonAdaptedItinerary {
     public JsonAdaptedItinerary(@JsonProperty("name") String name, @JsonProperty("country") String country,
                                 @JsonProperty("startDate") String startDate, @JsonProperty("endDate") String endDate,
                                 @JsonProperty("people") String people,
+                                @JsonProperty("budget") String budget,
                                 @JsonProperty("items") List<JsonAdaptedItem> items) {
         this.name = name;
         this.country = country;
         this.startDate = startDate;
         this.endDate = endDate;
         this.people = people;
+        this.budget = budget;
         this.items.addAll(items);
     }
 
@@ -56,6 +55,7 @@ class JsonAdaptedItinerary {
         startDate = source.getStartDate().date;
         endDate = source.getEndDate().date;
         people = source.getPeople().numOfPeople;
+        budget = source.getBudget().toString();
         for (Item item : source.getItemList()) {
             items.add(new JsonAdaptedItem(item));
         }
@@ -108,7 +108,15 @@ class JsonAdaptedItinerary {
         }
         final People modelPeople = new People(people);
 
-        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelEndDate, modelPeople);
+        if (budget == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Budget.class.getSimpleName()));
+        }
+        if (!Budget.isValidBudget(budget)) {
+            throw new IllegalValueException(Budget.MESSAGE_CONSTRAINTS);
+        }
+        final Budget modelBudget = new Budget(budget);
+
+        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelEndDate, modelPeople, modelBudget);
         for (JsonAdaptedItem jsonAdaptedItem : items) {
             Item item = jsonAdaptedItem.toModelType();
             if (itinerary.hasItem(item)) {
