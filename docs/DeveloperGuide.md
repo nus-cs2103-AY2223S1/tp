@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` objects and `Event` objects residing in the `Model`.
 
 ### Logic component
 
@@ -121,8 +121,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` and `Events` objects (which are contained in the `UniquePersonList` and `UniqueEventList` objects).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -354,6 +355,46 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+
+### Listing Events
+
+The List Events feature allows users to enter `listEvents` and update the UI display for events, showing a list of all 
+events sorted in their current order inside `ModelManager`. In the future, the command will take in a parameter,
+which specifies the field that the events list can be permanently sorted by.
+
+The List Events feature is facilitated by `ListEventsCommand` which extends from `Command`. Additionally, it implements
+the following operation:
+
+* `ModelManager#updateFilteredEventList()`  — Updates the predicate inside `ModelManager`'s filtered event list 
+to modify and sort which and how events are shown.
+
+This operation is exposed in the `Model` interface as the method `Model#updateFilteredEventList()`.
+
+The following sequence diagram shows how the `listEvents` operation works.
+
+![ListEventsSequenceDiagram](images/ListEventsSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the activities related to events are
+considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListEventsCommand` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+</div>
+
+#### Design Considerations:
+
+**Aspect: If `listEvents` should sort events permanently:**
+* **Alternative 1 (current choice):** Sort all events permanently.
+  * Pros: Easy to implement.
+  * Cons: Whenever events are added, they are always added as the last event in the event list. Once sorted, the order 
+  cannot be returned to the order which events were added.
+* **Alternative 2:** Sort all events temporarily.
+  * Pros: When users sort their events, the ordering of the events in `ModelManager` stays constant.
+  * Cons: Hard to implement as a new form of storage or memory has to be created to maintain the relative ordering of
+    events.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
