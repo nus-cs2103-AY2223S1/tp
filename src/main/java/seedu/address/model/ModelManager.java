@@ -29,8 +29,6 @@ public class ModelManager implements Model {
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Issue> filteredIssues;
     private final FilteredList<Client> filteredClients;
-    private final FilteredList<Project> filteredSortedProjects;
-    private final FilteredList<Issue> filteredSortedIssues;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,8 +44,6 @@ public class ModelManager implements Model {
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
         filteredIssues = new FilteredList<>(this.addressBook.getIssueList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
-        filteredSortedProjects = new FilteredList<>(this.addressBook.getSortedProjectList());
-        filteredSortedIssues = new FilteredList<>(this.addressBook.getSortedIssueList());
     }
 
     public ModelManager() {
@@ -270,18 +266,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Project> getFilteredSortedProjectList() {
-        return filteredSortedProjects;
-    }
-
-    @Override
     public ObservableList<Issue> getFilteredIssueList() {
         return filteredIssues;
-    }
-
-    @Override
-    public ObservableList<Issue> getFilteredSortedIssueList() {
-        return filteredSortedIssues;
     }
 
     @Override
@@ -303,21 +289,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredSortedProjectList(Predicate<Project> predicate) {
-        requireNonNull(predicate);
-        filteredSortedProjects.setPredicate(predicate);
-    }
-
-    @Override
     public void updateFilteredIssueList(Predicate<Issue> predicate) {
         requireNonNull(predicate);
         filteredIssues.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredSortedIssueList(Predicate<Issue> predicate) {
-        requireNonNull(predicate);
-        filteredSortedIssues.setPredicate(predicate);
     }
 
     @Override
@@ -351,30 +325,30 @@ public class ModelManager implements Model {
     @Override
     public void sortProjectsByDeadline(int key) {
         addressBook.sortProjectsByDeadline(key);
-        updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
     public void sortProjectsByIssueCount(int key) {
         addressBook.sortProjectsByIssueCount(key);
-        updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
     public void sortProjectsByName(int key) {
         addressBook.sortProjectsByName(key);
-        updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
     public void sortIssuesByDeadline(int key) {
         addressBook.sortIssuesByDeadline(key);
-        updateFilteredSortedIssueList(PREDICATE_SHOW_ALL_ISSUES);
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
     }
 
     @Override
     public void sortIssuesByPriority(int key) {
         addressBook.sortIssuesByPriority(key);
-        updateFilteredSortedIssueList(PREDICATE_SHOW_ALL_ISSUES);
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
     }
 }

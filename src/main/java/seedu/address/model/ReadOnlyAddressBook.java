@@ -43,10 +43,6 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Client> getClientList();
 
-    ObservableList<Project> getSortedProjectList();
-
-    ObservableList<Issue> getSortedIssueList();
-
     /**
      * Get a project object via its id
      * @param id id to retrieve

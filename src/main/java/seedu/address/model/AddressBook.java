@@ -28,8 +28,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueEntityList<Project> projects;
     private final UniqueEntityList<Person> persons;
     private final UniqueEntityList<Issue> issues;
-    private final UniqueEntityList<Project> sortedProjects;
-    private final UniqueEntityList<Issue> sortedIssues;
 
     /**
      * Creates an empty addressbook
@@ -39,8 +37,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects = new UniqueEntityList<>();
         persons = new UniqueEntityList<>();
         issues = new UniqueEntityList<>();
-        sortedProjects = new UniqueEntityList<>();
-        sortedIssues = new UniqueEntityList<>();
     }
 
     /**
@@ -85,14 +81,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.clients.setList(clients);
     }
 
-    public void setSortedProjects(List<Project> projects) {
-        this.sortedProjects.setList(projects);
-    }
-
-    public void setSortedIssues(List<Issue> issues) {
-        this.sortedIssues.setList(issues);
-    }
-
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -103,8 +91,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setIssues(newData.getIssueList());
         setProjects(newData.getProjectList());
         setClients(newData.getClientList());
-        setSortedProjects(newData.getProjectList());
-        setSortedIssues(newData.getIssueList());
     }
 
     //// client-level operations
@@ -296,7 +282,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             sortedProjectsByDeadline = getModifiableProjectList().sorted((p1, p2) ->
                 p2.getDeadline().getLocalDate().compareTo(p1.getDeadline().getLocalDate()));
         }
-        setSortedProjects(sortedProjectsByDeadline);
+        setProjects(sortedProjectsByDeadline);
     }
 
     /**
@@ -315,7 +301,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             sortedProjectsByIssueCount = getModifiableProjectList().sorted((p1, p2) ->
                     p2.getIssueList().size() - p1.getIssueList().size());
         }
-        setSortedProjects(sortedProjectsByIssueCount);
+        setProjects(sortedProjectsByIssueCount);
     }
 
     /**
@@ -334,7 +320,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             sortedProjectsByName = getModifiableProjectList().sorted((p1, p2) ->
                     p2.getProjectName().toString().compareTo(p1.getProjectName().toString()));
         }
-        setSortedProjects(sortedProjectsByName);
+        setProjects(sortedProjectsByName);
     }
 
     /**
@@ -353,7 +339,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             sortedIssuesByDeadline = getModifiableIssueList().sorted((i1, i2) ->
                     i2.getDeadline().getLocalDate().compareTo(i1.getDeadline().getLocalDate()));
         }
-        setSortedIssues(sortedIssuesByDeadline);
+        setIssues(sortedIssuesByDeadline);
     }
 
     /**
@@ -372,7 +358,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             sortedIssuesByPriority = getModifiableIssueList().sorted((i1, i2) ->
                     i2.getPriority().compareTo(i1.getPriority()));
         }
-        setSortedIssues(sortedIssuesByPriority);
+        setIssues(sortedIssuesByPriority);
     }
 
     //// util methods
@@ -413,16 +399,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Project> getSortedProjectList() {
-        return sortedProjects.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Issue> getSortedIssueList() {
-        return sortedIssues.asUnmodifiableObservableList();
     }
 
     @Override

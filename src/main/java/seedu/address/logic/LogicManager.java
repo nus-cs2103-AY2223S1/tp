@@ -77,19 +77,10 @@ public class LogicManager implements Logic {
     public ObservableList<Project> getFilteredProjectList() {
         return model.getFilteredProjectList();
     }
-    @Override
-    public ObservableList<Project> getFilteredSortedProjectList() {
-        return model.getFilteredSortedProjectList();
-    }
 
     @Override
     public ObservableList<Issue> getFilteredIssueList() {
         return model.getFilteredIssueList();
-    }
-
-    @Override
-    public ObservableList<Issue> getFilteredSortedIssueList() {
-        return model.getFilteredSortedIssueList();
     }
 
     @Override

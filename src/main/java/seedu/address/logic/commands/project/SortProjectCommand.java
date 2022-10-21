@@ -69,8 +69,8 @@ public class SortProjectCommand extends ProjectCommand {
             sortKeyString = "names.";
         }
 
-        ui.showSortedProjects();
-        model.updateFilteredSortedProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        ui.showProjects();
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(MESSAGE_SUCCESS + " according to " + sortKeyString);
     }
 }

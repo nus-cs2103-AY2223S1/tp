@@ -200,7 +200,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 A key functionality of DevEnable is the ability to add projects, issues, and clients into the system. The command word for adding will be `project`, `issue`, or `client`, depending on which entity is being added.
 This is followed by the flag `-a`, representing an Add command. Next, it is followed by a series of prefixes-value pairs to initialise the entity, some of which are compulsory while others are optional.
-When a user enters a valid Add command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser, and calls the `projectCommandParser#parse`,
+When a user enters a valid Add command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser, and calls the `ProjectCommandParser#parse`,
 `IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being added. Within this method, the flag `-a` will be detected, calling `ProjectCommandParser#parseAddProjectCommand`, 
 `IssueCommandParser#parseAddIssueCommand`, or `ClientCommandParser#parseAddClientCommand`, depending on which entity is added, which checks for input and prefix-value pair validity with methods in `ParserUtil`.
 Finally, the parsed arguments are passed into and returned in an instance of the Add Command entity and the `AddProjectCommand#execute`, `AddIssueCommand#execute`, or `AddClientCommand#execute` is called depending
@@ -212,8 +212,8 @@ Optional prefixes: cid/<valid client id>, r/<valid repository>, d/<valid deadlin
 Example Use: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
 
 #### Add Issue Command
-Compulsory prefixes: n/<valid name>, desc/<valid description>
-Optional prefixes: pid/<valid project id> d/<valid deadline> p/<valid priority>
+Compulsory prefixes: pid/<valid project id>, desc/<valid description>
+Optional prefixes: d/<valid deadline> p/<valid priority>
 Example Use: `issue pid/1 desc/To create a person class which stores all relevant person data d/2022-12-10 p/0`
 
 #### Add Client Command

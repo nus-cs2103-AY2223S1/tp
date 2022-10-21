@@ -140,11 +140,7 @@ public interface Model {
 
     ObservableList<Project> getFilteredProjectList();
 
-    ObservableList<Project> getFilteredSortedProjectList();
-
     ObservableList<Issue> getFilteredIssueList();
-
-    ObservableList<Issue> getFilteredSortedIssueList();
 
     ObservableList<Client> getFilteredClientList();
 
@@ -156,13 +152,9 @@ public interface Model {
 
     void updateFilteredProjectList(Predicate<Project> predicate);
 
-    void updateFilteredSortedIssueList(Predicate<Issue> predicate);
-
     void updateFilteredIssueList(Predicate<Issue> predicate);
 
     void updateFilteredClientList(Predicate<Client> predicate);
-
-    void updateFilteredSortedProjectList(Predicate<Project> predicate);
 
     void sortProjectsByDeadline(int sortByDeadlineKey);
 
