@@ -22,12 +22,11 @@ public class JsonAdaptedPersonDeserializer extends JsonDeserializer<JsonAdaptedP
                     root.email, root.gender, root.tagged, root.location, root.username, root.rating,
                     root.specialisation, root.officeHour);
         } else if (root.type.equals("s")) {
-            return new JsonAdaptedStudent(root.type, root.name, "", root.moduleCodes, root.phone,
+            return new JsonAdaptedStudent(root.type, root.name, root.moduleCodes, root.phone,
                     root.email, root.gender, root.tagged, root.location, root.username, root.year);
         } else if (root.type.equals("t")) {
             return new JsonAdaptedTeachingAssistant(root.type, root.name, root.moduleCode, root.phone,
-                    root.email, root.gender, root.tagged, root.location, root.username, root.rating,
-                    "");
+                    root.email, root.gender, root.tagged, root.location, root.username, root.rating);
         } else {
             throw new IOException("Invalid type found in Json file!");
         }
