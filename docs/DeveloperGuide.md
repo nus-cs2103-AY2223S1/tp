@@ -205,7 +205,7 @@ The following sequence diagram shows how the add tag operation works:
     * Pros: Requires no additional code.
     * Cons: Increases coupling. Will fail if the associated classes stop working.
 
-### Add/Delete task feature
+### Add/delete task feature
 
 #### Proposed Implementation
 
