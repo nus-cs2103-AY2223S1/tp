@@ -300,6 +300,7 @@ The following class diagram shows the parent-child relation of `DeleteClientComm
 ![DeleteCommandClassDiagram](images/DeleteCommandClassDiagram.png)
 
 The `DeleteCommandParser` will take in the user input, parse it, and return the correct concrete command type that is either `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand` which will be executed to achieve the deletion functionality. This process is depicted by the following sequence diagram (for user input `delete 1 m/client`):
+![DeleteCommandClassDiagram]()
 
 --------------------------------------------------------------------------------------------------------------------
 
