@@ -313,13 +313,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                        | So that I can…​                                 |
-| ------ |--------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------|
-| `* * *` | student                                    | mark the internship as rejected, interviewing, accepted or no reply | know the status of the internship application   |
-| `* * *` | user                                       | automatically save any edits made                                   | save edits even if I accidentally close the app |
-| `* * *` | busy student                               | add internship applications quickly using CLI                       | have more time for other things                 |
-| `* *`  | lazy student                               | search for a specific internship using keywords                     | get matching results more quickly               |
-| `* *`  | student                                    | filter the internships that I have applied to by application status | easily view the statuses of my applications     |
+| Priority | As a …​      | I want to …​                                                                   | So that I can…​                                      |
+| ------ |--------------|--------------------------------------------------------------------------------|------------------------------------------------------|
+| `* * *` | new user     | utilise the help function                                                      | see the instructions on how to use the app           |
+| `* * *` | student      | mark the internship as rejected, interviewing, accepted or no reply            | know the status of the internship application        |
+| `* * *` | user         | automatically save any edits made                                              | save edits even if I accidentally close the app      |
+| `* * *` | busy student | add internship applications quickly using CLI                                  | have more time for other things                      |
+| `* *`  | lazy student | search for a specific internship using keywords                                | get matching results more quickly                    |
+| `* *`  | student      | filter the internships that I have applied to by application status            | easily view the statuses of my applications          |
+| `* *`  | student      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications in a chronological order |
+
+
 
 *{More to be added}*
 
@@ -382,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
-**Use Case: UC4 - Filter internship by application status**
+**Use Case: UC4 - Filter internship applications by application status**
 
 **MSS**:
 1. User wants to filter internship applications by application status.
@@ -402,6 +406,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. FindMyIntern shows an empty list.
 
     Use case ends.
+
+**Use Case: UC5 - Sort internship applications by sort criteria**
+
+**MSS**:
+1. User wants to sort internship applications by sort criteria.
+2. User enters the desired sort criteria (applied date or interview date).
+3. FindMyIntern shows a list of internship applications sorted by the desired sort criteria.
+
+   Use case ends.
+
+**Extensions**:
+* 2a. User enters the details in the wrong format.
+    * 2a1. FindMyIntern shows an error message.
+
+      Use case ends.
+
+
+* 3a. There were no internship applications that could be sorted by the sort criteria (interview date).
+    * 3a1. FindMyIntern shows the list of internship applications in the original order.
+
+      Use case ends.
 
 *{More to be added}*
 
