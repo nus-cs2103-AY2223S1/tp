@@ -39,4 +39,21 @@ public class TasksOnCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, dayToCheck.getDate()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof TasksOnCommand)) {
+            return false;
+        }
+
+        // state check
+        TasksOnCommand e = (TasksOnCommand) other;
+        return dayToCheck.equals(e.dayToCheck);
+    }
 }
