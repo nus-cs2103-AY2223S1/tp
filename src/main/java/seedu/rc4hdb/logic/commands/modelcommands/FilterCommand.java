@@ -1,6 +1,5 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_HOUSE;
@@ -53,14 +52,14 @@ public class FilterCommand implements ModelCommand {
      * @param filterPersonDescriptor description object to filter the resident with
      */
     public FilterCommand(ResidentDescriptor filterPersonDescriptor, FilterSpecifier specifier) {
-        requireNonNull(filterPersonDescriptor);
+        assert filterPersonDescriptor != null : "Descriptor object is null";
         this.filterPersonDescriptor = new ResidentDescriptor(filterPersonDescriptor);
         this.specifier = specifier;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        assert model != null : "Model object is null";
         Predicate<Resident> predicate;
         if (specifier.getSpecifier() == "any") {
             predicate = new AttributesMatchAnyKeywordPredicate(filterPersonDescriptor);

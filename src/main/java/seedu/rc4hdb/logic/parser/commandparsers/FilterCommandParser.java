@@ -1,6 +1,5 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_FILTER_ALL;
@@ -41,7 +40,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+        assert args != null : "Argument for parser is null";
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOM, PREFIX_GENDER,
                         PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG, PREFIX_FILTER_ALL, PREFIX_FILTER_ANY);

@@ -267,6 +267,122 @@ Currently, the commands for showing and hiding columns are extensions of the `li
 
 <br>
 
+### Filter feature to filter residents according to fields
+
+The previous AddressBook implementation only had a find command to search for specific residents according to the field.
+Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
+used to describe the resident.
+
+<br>
+
+#### Structure of the Command 
+A ```FilterCommand``` class and a ```FilterCommandParser``` class was implemented to follow the structure of the
+```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the 
+```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be 
+added without changing any of the Logic class components other than adding the cases to create a ```FilterCommand``` 
+object
+
+<br>
+
+#### Creating a new ```ResidentDescriptor``` class
+
+Previously, the edit feature utilized an ```EditDescriptor``` class to create an object that will store the parsed
+information of the command to edit the specific Resident. Since the handler for the information was similar for the 
+filter feature, a new general ```ResidentDescriptor``` class was created which is used for both the edit and filter
+features.
+
+This makes it easier to update the features if there is a change in the structure of the fields or if there
+is a new field added for the ```Resident```.
+
+<br>
+
+#### Creating a new ```FilterSpecifier``` class
+
+There is a specifier after the filter keyword in the command that is used to select whether all or any of
+the fields should match the residents' information in the database. A ```FilterSpecifier``` class is  used to
+represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less 
+prone to errors.
+
+<br>
+
+#### Creating new predicate classes for filter
+
+In order to check if the ```Resident``` objects passes matching the filter instructed by the user, a class
+implementing the ```Predicate``` class needs to be created to handle this. Thus, two new classes 
+```AttributesMatchAllKeywords``` and ```AttributesMatchAnyKeyword``` hae been implemented to handle the logic of the
+filtering for each type of specifier. Through this implementation, even more specifiers can be added during later cycles
+of this project if required without any major restructuring of the initial classes created in this cycle.
+
+<br>
+
+<img src="images/FilterCommandSequenceDiagram.png" width="600" />
+
+#### Considerations
+
+There was a choice to make the filter feature accept either only the exact string entered by the user or also
+accept a field that contains the filter attribute given by the user. It is clear that the filter command would be more 
+flexible id the contains option is implemented as the user can use a prefix or a suffix of the actual field to filter
+out residents. Thus, while keeping this advantage in mind, we have decided to make the filter feature accept fields
+that contain the attributes instead of having it exactly equal. 
+
+However, implementing contains for the tags feature may make the application a lot slower. It is not worth the cost
+considering that this additional benefit does not give our application a boost in usability. Thus, the substring 
+filtering has been omitted for the tags to accommodate for a faster filtering process. 
+
+<br>
+
+### Multiple data files
+
+#### Background
+
+In the original `AddressBook`, the `Storage` component was implemented with the intent of users only being able to use a single data file. However, in `RC4HDB`, our target users would potentially benefit from being able to store their data in multiple files. Thus, we have decided to implement **file commands** which will provide users a way to **create**, **delete** and **switch** data files.
+
+<br>
+
+#### Storage command
+
+The original `AddressBook` makes use of the [Command pattern](https://refactoring.guru/design-patterns/command), where the `Logic` component is in charge of executing commands. However, with the `AddressBook` implementation of the Command pattern, commands only have a reference to `Model`, which limits the command's ability to manipulate the `Storage`. Hence, in order to get around this, we came up with two different implementations which enable the manipulation of `Storage`, while retaining the ability of `Command` to manipulate `Model`.
+
+<br>
+
+##### Modifying the execute method for all commands
+
+This implementation involves altering `Command` class the `execute(Model)` method to `execute(Model, Storage)`. This implementation is simple to implement, however it does not adhere to the [separation of concerns principle](https://deviq.com/principles/separation-of-concerns), potentially decreasing cohesion and increasing coupling.
+
+<img src="images/StorageCommandImplementation1.png" width="550" />
+
+As seen from the diagram above, there will be associations between `Storage` and `Model` for all commands, allowing for commands, such as `AddCommand` which only modifies `Model` to be able to modify `Storage`. Due to the flaw in this design, we decided to think of a better implementation.
+
+<br>
+
+##### Splitting the general command into specialized commands
+
+This implementation involves splitting `Command` further into specialized `Command`s, which are only able to manipulate components that they are supposed to manipulate. After deliberation, we decided to split `Command` into `MiscCommand`, `ModelCommand`, `StorageCommand` and `StorageModelCommand`, which are only able to execute on their respective components, with `MiscCommand` executing on nothing. All of these specialized commands extend the base `Command`, which is kept for polymorphism purposes. Taking it a step further, we realized that `Command` only enforces the `execute` method in its subclasses, thus, we converted `Command` and the specialized commands into interfaces.
+
+<img src="images/StorageCommandImplementation2.png" width="550" />
+
+Comparing the diagram above with the diagram from the [other option](#modifying-the-execute-method-for-all-commands), `Command` is no longer associated with `Model` and `Storage`. Instead, `Model` and `Storage` are only associated with their respective specialized commands. While this effectively divides the responsibility of manipulating the `Model` and `Storage` amongst the specialized commands, it results in higher complexity. Weighing between our options, we decided to stick with this option due to it setting clear boundaries of what each command can and cannot do.
+
+<br>
+
+#### File commands
+
+With our earlier issue of a lack of `Storage` reference in `Command` resolved, along with our new implementation of specialized commands, we decided to create an abstract `FileCommand` class which encapsulates commands which deal with files. Such commands will require a file path to be provided by the user, thus, we included logic that would likely be used by all `FileCommand` subclasses, to avoid repetition of common logic. We then proceeded with implementing a command that creates a new data file, a command that deletes an existing data file and a command that switches the current data file to another existing data file.
+
+<br>
+
+#### Create and delete file commands
+
+Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, which saw new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
+
+<br>
+
+#### Switch file command
+
+Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
+
+<br>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
