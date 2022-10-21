@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value propositions**: 
+**Value propositions**:
 * manage clients faster than a typical mouse/GUI driven app
 * Real-Estate agents with many clients may struggle to juggle their viewings and manage meetings.
 * Track properties to their owners as well as potential buyers
@@ -275,13 +275,15 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- |--------------------------------------------|------------------------------|------------------------------------------------------------------------|
+|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add a new client             | see all my clients in one list                                         |
+| `* * *`  | user                                       | add my client's offer        | track all my clients' current offers                                   |
+| `* * *`  | user                                       | delete a client              | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a client by name        | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `*`      | user with many persons in the address book | sort client by name          | locate a person easily                                                 |
+| `*`      | user with many offers in the address book  | sort offers by listings      | locate offers easily                                                   |
 | `*`      | intermediate user                          | view reminders               | be informed of urgent meetings                                         |
 | `*`      | intermediate user                          | reorder the list             | place important contacts near the top                                  |
 | `*`      | user                                       | save my data                 | store my data for future use                                           |
@@ -294,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: reorder the list**
+**Use case: UC01 - Reorder the list**
 
 **MSS**
 
@@ -318,7 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: Delete a person**
+**Use case: UC02 - Delete a person**
 
 **MSS**
 
@@ -340,6 +342,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC03 - Add an offer**
+
+**MSS**
+1. User requests to add an offer.
+2. AddressBook adds the offer.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters invalid input
+  * 1a1. AddressBook shows an error message.
+    
+    Use case resumes at Step 1.
 
 *{More to be added}*
 
@@ -427,3 +444,19 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+### Deleting a client
+
+1. Deleting a person while all client are being shown
+
+   1. Prerequisites: List all client using the `list` command. Multiple client in the list.
+
+   1. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      
+   1. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
