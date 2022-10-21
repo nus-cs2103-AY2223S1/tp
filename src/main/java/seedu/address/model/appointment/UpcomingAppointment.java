@@ -30,6 +30,11 @@ public class UpcomingAppointment extends Appointment {
         this.value = dateString;
     }
 
+    /**
+     * Check if current date is valid
+     * @param test date to be tested
+     * @return true if it is a valid date, otherwise false
+     */
     public static boolean isValidDate(String test) {
         if (test == null) {
             return true;
