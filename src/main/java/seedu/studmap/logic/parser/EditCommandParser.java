@@ -1,7 +1,5 @@
 package seedu.studmap.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,55 +11,49 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.studmap.commons.core.index.Index;
+import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.logic.commands.EditCommand;
-import seedu.studmap.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
+import seedu.studmap.logic.commands.EditStudentCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditCommandParser extends EditStudentCommandParser<EditCommandStudentEditor> {
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public EditCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+    @Override
+    public Prefix[] getPrefixes() {
+        return new Prefix[]{PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG};
+    }
 
-        Index index;
+    @Override
+    public String getUsageMessage() {
+        return EditCommand.MESSAGE_USAGE;
+    }
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
+    @Override
+    public EditStudentCommand<EditCommandStudentEditor> getIndexCommand(
+            ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator) throws ParseException {
 
-        EditCommand.EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        EditCommand.EditCommandStudentEditor editor = new EditCommand.EditCommandStudentEditor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editStudentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editor::setTags);
 
-        if (!editStudentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditCommand(index, editStudentDescriptor);
+        return new EditCommand(indexListGenerator, editor);
     }
 
     /**

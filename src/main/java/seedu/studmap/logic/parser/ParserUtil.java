@@ -40,6 +40,13 @@ public class ParserUtil {
     }
 
     /**
+     * Separates {@code preamble} into an array of strings for processing.
+     */
+    public static String[] separatePreamble(String preamble) {
+        return preamble.split("\\s+");
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

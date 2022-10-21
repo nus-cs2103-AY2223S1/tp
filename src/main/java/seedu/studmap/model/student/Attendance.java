@@ -39,10 +39,10 @@ public class Attendance {
     }
 
     public String getString() {
-        return className + ':' + getAttendance();
+        return className + ':' + getAttendanceString();
     }
 
-    public String getAttendance() {
+    public String getAttendanceString() {
         return (hasAttended ? ATTENDANCE_TRUE : ATTENDANCE_FALSE);
     }
 

@@ -191,6 +191,166 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Filter feature
+
+#### Current Implementation
+
+The 'filter' feature is implemented by the 'FilterCommand' class which extends its parent 'Command' class. The structure
+of the 'filter' feature can be summarized via the sequence diagram shown below.
+
+![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png)
+
+This method is implemented to support the feature of filtering students by the tags that is assigned to them.
+
+The 'FilterCommand' supports one operation:
+
+- 'FilterCommand#execute()' - Overrides the 'execute()' method of its parents 'Command' class and is the default
+  operation to be executed. This will update the filtered list in the dashboard shown to the user based on the tag set
+  by the user
+
+The flow for 'FilterCommand#execute' is as such:
+
+Step 1: The tag to be used for filtering is retrieved from the user input
+
+Step 2: The tag input will then be parsed into the filter parser which will then return a new Filter Command
+
+Step 3: The filter command will then be immediately executed to filter the current list of students via their assigned
+tags
+
+Step 4: The result list of students will then be shown back to the user via the dashboard
+
+### Addtag feature
+
+#### Current Implementation
+The `addtag` feature is implemented by the `AddTagCommand` class which extends the more general `EditStudentCommand` class. 
+`AddTagCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
+The execution of this command is handled by `EditStudentCommand#execute`, which calls `AddTagCommand.AddTagStudentEditor#editStudent`,
+which in turn adds the tags. `EditStudentCommand#execute` handles the re-insert of the edited `Student` back into `Model`.
+
+The flow for `AddTagCommand.AddTagStudentEditor#editStudent` is as follows
+
+1. Given the student to be edited (`studentToEdit`), we copy `studentToEdit.StudentData` as `studentData`.
+2. The current set of tags is retrieved from `studentData`.
+3. The retrieved tag set is combined with the new tags to be added.
+4. The combined tag set will then replace the existing one in `studentData`.
+5. We rebuild a new student using this edited `studentData` and return it.
+
+#### Design considerations:
+
+**Aspect: How `addtag` executes:**
+
+* **Alternative 1:** Update the students' tags set using `EditStudentCommand`.
+    * Pros: Easy to implement (after refactoring), is flexible and has minimal duplicated code.
+    * Cons: Requires refactoring of existing EditCommand code.
+
+* **Alternative 2:** Update the students' tags set using `EditCommand`.
+    * Pros: Easy to implement. Shares optimization with `EditCommand`.
+    * Cons: Increasing coupling of the code.
+
+* **Alternative 3:** Interact with the model directly to modify the tag set for the student.
+    * Pros: Remove dependency on other commands which reduces coupling.
+    * Cons: Possible duplication of the code. Changes in `setTags` of the `Student` needs to be updated in both places.
+
+### Mark feature
+
+#### Current Implementation
+
+The `mark` feature is implemented through the `MarkCommand` which extends the `Command` abstract class. 
+
+`MarkCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
+The implementation of the execute command is contained in the parent class `EditStudentCommand#execute`, which 
+`MarkCommand` calls from. A brief summary of the class structure is illustrated in the class diagram below.
+
+![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
+
+`IndexListGenerator` is an abstract class representing the list of indexes to modify. 
+The instance of `IndexListGenerator` can be either 
+* `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
+* `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
+
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. MarkCommand implements an
+unique subclass of `StudentEditor` called `MarkCommandStudentEditor`.
+
+Both `IndexListGenerator` and `MarkCommandStudentEditor` are passed to `MarkCommand` in its constructor via the 
+`MarkCommandParser`. Details of the class structure for `MarkCommandParser` are illustrated in the class diagram 
+below.
+
+![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
+
+Given below is the flow for `MarkCommand#execute`.
+
+Step 1. The mark command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
+
+Step 2. The mark command modifies the student through `MarkCommandStudentEditor#editStudent`, marking the student as
+absent or present for the class
+
+Step 3. The mark command replaces the old student with the newly edited student in the `Model`.
+
+Below is a more detailed sequence diagram for the execution of the command.
+
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How mark command executes:**
+
+* **Alternative 1 (current choice):** Update the students using StudentEditor.
+    * Pros: Easy to extend functionality to other classes, more OOP-oriented
+    * Cons: May decrease readability for new users due to many classes involved
+
+* **Alternative 2:** Update the students in MarkCommand itself
+    * Pros: More intuitive and easy to understand
+    * Cons: Makes code harder to maintain, more code duplication.
+
+
+### Sort feature (Draft)
+
+#### Implementation
+
+The sort feature is implemented by `SortCommand` which extends the `Command` class. Since sorting is done according to the specified `attribute`, the abstract `Attribute` class is used to handle the input attribute and provide the corresponding `Comparator` to sort the student list.
+`SortCommand` supports the following operation:
+
+* `SortCommand#execute()` — Sorts the current working list by the specified comparator and order in the `SortCommand`.
+
+
+This operation is exposed in the `Model` interface as `sortFilteredStudentList()`.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+
+
+Step 1. The user executes `sort asc a/name` to sort the students in the address book by their names in ascending order.
+
+Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()` and `ParserUtil#ParseOrder()` to create a `SortCommand`.
+
+Step 3. `SortCommand` calls `Model#sortFilteredStudentList()` with the `Comparator` for sorting names and the `Order` required.
+
+Step 4. The ModelManager containing the `studMap` passes on the `Comparator` and `Order` to `StudMap#sort()`.
+
+Step 5. Note that StudMap stores the student list in a `UniqueStudentList`. `UniqueStudentList#sort()` is called with the `Comparator` and the boolean `isDescending` according to the `Order` specified.
+
+Step 6. The `internalList` is an `FXCollections.observableArrayList` of `UniqueStudentList` which will then be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()` when `isDescending` is true.
+
+Step 5. The sorted list is displayed to the user.
+
+The following sequence diagram shows how the sort operation works:
+
+_{sequence diagram to be inserted here}_
+
+
+
+#### Design considerations:
+
+**Aspect: How sort executes:**
+
+* **Alternative 1 (current choice):** Valid attributes to sort are specified in the abstract `Attribute` class with its respective `Comparator`.
+    * Pros: Easy to implement. Any new attributes to be enabled for sorting could be specified in the `Attribute` class.
+    * Cons: May not be appropriate to specify the `Comparator` for different Attributes here instead of their own respective class.
+
+* **Alternative 2:** `Attribute` as a superclass inherited by each respective attribute. Each attribute specifies its own `Comparator` to be used for sorting and can be retrieved using `getAttributeComparator()`
+    * Pros: Aligns more to OOP where the `Comparator` is contained within each attribute. Make use of polymorphism to call the correct `getAttributeComparator()` for different attributes.
+    * Cons: Attribute subclasses must be instantiated possibly through a factory method just to get the `Comparator` used in sorting.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -12,15 +12,15 @@ import static seedu.studmap.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.studmap.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
 import seedu.studmap.testutil.EditStudentDescriptorBuilder;
 
-public class EditStudentDescriptorTest {
+public class EditCommandStudentEditorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditStudentDescriptor descriptorWithSameValues = new EditStudentDescriptor(DESC_AMY);
+        EditCommandStudentEditor descriptorWithSameValues = new EditCommandStudentEditor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +36,8 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCommandStudentEditor editedAmy =
+                new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

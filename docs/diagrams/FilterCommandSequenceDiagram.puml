@@ -1,0 +1,56 @@
+@startuml
+skinparam style strictuml
+box "Logic" #LightBlue
+participant ":LogicManager" as LM
+participant ":AddressBookParser" as ABParser
+participant ":FilterParser" as FParser
+participant ":FilterCommand" as FilterCommand
+end box
+
+box "Model" #Pink
+participant ":Model" as Model
+participant ":FilteredList" as FL
+end box
+
+[-> LM : execute(filter)
+activate LM
+
+LM -> ABParser : parseCommand(filter)
+activate ABParser
+
+ABParser -> FParser ** : parse(args)
+activate FParser
+
+FParser -> FilterCommand **
+activate FilterCommand
+
+FilterCommand --> FParser
+deactivate FilterCommand
+
+FParser --> ABParser
+deactivate FParser
+
+ABParser --> LM
+deactivate ABParser
+
+LM -> FilterCommand : execute(args)
+activate FilterCommand
+
+FilterCommand -> Model : filterPersonListWithTag(predicate)
+activate Model
+
+Model -> FL : setPredicate(predicate)
+activate FL
+
+FL --> Model
+deactivate FL
+
+Model --> FilterCommand
+deactivate Model
+
+FilterCommand --> LM : Result
+deactivate FilterCommand
+
+[<--LM
+deactivate LM
+@enduml
