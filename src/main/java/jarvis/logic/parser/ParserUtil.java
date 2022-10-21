@@ -195,4 +195,17 @@ public class ParserUtil {
         return studentIndexSet;
     }
 
+    /**
+     * Parses a {@code String participation} into an {@code int} indicating the participation amount.
+     *
+     * @throws ParseException if the given {@code participation} is invalid.
+     */
+    public static int parseParticipation(String participation) throws ParseException {
+        String trimmedParticipation = participation.trim();
+        try {
+            return Integer.parseInt(trimmedParticipation);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(Messages.MESSAGE_INVALID_PARTICIPATION);
+        }
+    }
 }
