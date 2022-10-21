@@ -34,7 +34,7 @@ import friday.testutil.PersonBuilder;
 import friday.testutil.PersonUtil;
 */
 
-public class MasteryCheckBookParserTest {
+public class FridayParserTest {
 
     private final FridayParser parser = new FridayParser();
 
