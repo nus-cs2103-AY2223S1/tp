@@ -116,6 +116,8 @@ public class Person {
             && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getTags().equals(getTags())
             && otherPerson.getContacts().equals(getContacts())
+            && otherPerson.getRole().equals(getRole())
+            && otherPerson.getTimezone().equals(getTimezone())
             && otherPerson.getGitHubUser().equals(getGitHubUser());
     }
 
