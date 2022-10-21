@@ -113,5 +113,8 @@ public class NutriGoalsTest {
         public Map<Name, Calorie> getFoodCalorieList() {
             return new HashMap<>();
         }
+
+        @Override
+        public String getTip() { return new TipList().generateTip(); }
     }
 }

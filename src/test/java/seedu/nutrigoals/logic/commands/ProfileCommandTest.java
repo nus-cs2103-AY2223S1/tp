@@ -190,6 +190,11 @@ public class ProfileCommandTest {
         public Map<Name, Calorie> getFoodCalorieList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String getTip() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private static class ModelStubWithUser extends ModelStub {

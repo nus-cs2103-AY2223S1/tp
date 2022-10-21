@@ -20,6 +20,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
 
     private final FoodList foods;
     private final FoodCalorieList foodCalorieList;
+    private final TipList tipList;
     private User user = new User();
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
@@ -46,6 +47,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
             new Location("KENT RIDGE HALL", "1.2918512226940035, 103.77477995285786"))
         );
         foodCalorieList = new FoodCalorieList();
+        tipList = new TipList();
     }
 
     public NutriGoals() {
@@ -165,6 +167,11 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     @Override
     public Map<Name, Calorie> getFoodCalorieList() {
         return foodCalorieList.asUnmodifiableMap();
+    }
+
+    @Override
+    public String getTip() {
+        return tipList.generateTip();
     }
 
     //// util methods

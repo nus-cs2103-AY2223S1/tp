@@ -25,4 +25,9 @@ public interface ReadOnlyNutriGoals {
     List<Location> getGymLocations();
 
     Map<Name, Calorie> getFoodCalorieList();
+
+    /**
+     * Returns a random tip from a list of tips.
+     */
+    String getTip();
 }
