@@ -4,14 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.logic.commands.AllTagCustomerCommand;
 import seedu.address.logic.commands.AnyTagCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.customer.CustomerContainsAllTagPredicate;
 import seedu.address.model.customer.CustomerContainsAnyTagPredicate;
 import seedu.address.model.tag.Tag;
 
