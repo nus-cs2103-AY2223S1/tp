@@ -177,6 +177,15 @@ Step 4: The `AddCommand` object is executed. The `Tutor` object created in step 
 
 Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
 
+Design considerations:
+* Alternative 1 (current choice): Add the tutor to a list that is maintained by the `Model` class
+  * Pros: Tutor can be viewed in the GUI once added without requiring any additional reading from storage.
+  * Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
+* Alternative 2: Add the tutor directly to the `Storage` class as a JSON object
+  * Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
+  * Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles. 
+
+
 ### View Feature
 <ins>Implementation</ins>
 
