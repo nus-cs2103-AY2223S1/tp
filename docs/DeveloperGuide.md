@@ -253,11 +253,15 @@ These operations will be exposed in the `Model` interface.
 
 <img src="images/PersonTaskBridgeDiagram.png" width="250" />
 
-### Find tasks
+### Find contacts/tasks
 
-- Predicate
-- test
-- ***
+Execution of the `find_task` and `find_contact` commands are similar to other commands, as per described in the [Logic component](#logic-component).
+
+The implementation of finding the contacts/tasks from our model is facilitated by `ContactNameContainsKeywordsPredicate` and `TaskNameContainsKeywordsPredicate`.
+
+`ContactNameContainsKeywordsPredicate` and `TaskNameContainsKeywordsPredicate` implement the interface `Predicate` and test if a contact/task's name contains the given keywords.
+
+The predicates are passed into `Model#updateFilteredContactList` and `Model#updateFilteredTaskList` respectively, which then uses the predicates to filter contacts/tasks containing the given keywords.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
