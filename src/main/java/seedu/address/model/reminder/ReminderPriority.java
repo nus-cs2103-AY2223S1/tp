@@ -3,8 +3,12 @@ package seedu.address.model.reminder;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Reminder's priority in the ModQuik.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
+ */
 public class ReminderPriority {
-    
+
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should only be either HIGH, MEDIUM or LOW";
 

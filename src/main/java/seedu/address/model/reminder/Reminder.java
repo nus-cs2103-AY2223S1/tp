@@ -21,7 +21,8 @@ public class Reminder {
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDescription details, ReminderPriority priority) {
+    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDescription details,
+                    ReminderPriority priority) {
         requireAllNonNull(name, deadline, details);
         this.name = name;
         this.deadline = deadline;
