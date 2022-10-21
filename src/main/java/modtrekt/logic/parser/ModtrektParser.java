@@ -11,7 +11,16 @@ import com.beust.jcommander.ParameterException;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.util.StringUtil;
-import modtrekt.logic.commands.*;
+import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.AddTaskCommand;
+import modtrekt.logic.commands.CdModuleCommand;
+import modtrekt.logic.commands.Command;
+import modtrekt.logic.commands.DoneModuleCommand;
+import modtrekt.logic.commands.EditTaskCommand;
+import modtrekt.logic.commands.ExitCommand;
+import modtrekt.logic.commands.HelpCommand;
+import modtrekt.logic.commands.RemoveCommand;
+import modtrekt.logic.commands.UndoneModuleCommand;
 import modtrekt.logic.commands.tasks.ArchiveTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
