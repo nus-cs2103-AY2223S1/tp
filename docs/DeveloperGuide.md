@@ -197,7 +197,7 @@ The following is an example usage scenario of how a task is marked as done:
 
 Precondition: Task index provided is valid.
 
-1. User keys in mark command with the specific index of the task. (eg. `mark 1`)
+1. User keys in mark command with the specific index of the task. (e.g. `mark 1`)
 2. The first task in the task list is marked as done.
 
 If any of the following occurs:
@@ -206,8 +206,7 @@ If any of the following occurs:
 2. Index given is out of range (i.e. There are fewer tasks than the specified index)
 3. Task has already been marked as done
 
-Then, an appropriate exception will be thrown and the respective error message will be
-shown to the user.
+Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
 The following activity diagram summarizes the action taken when markCommand is executed:
 
@@ -215,17 +214,71 @@ The following activity diagram summarizes the action taken when markCommand is e
 
 _Activity diagram of marking task as done_
 
-In the Logic component, once `execute` is called in `LogicManager`, `TruthTableParser` and `MarkCommandParser`
-parses the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
-`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component.
-A `CommandResult` is generated with `isCompleted` boolean value being true.
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses 
+the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the 
+`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. A 
+`CommandResult` is generated with `isCompleted` boolean value being true.
 
 The sequence diagram of the Mark command is shown below:
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
 
 _Sequence diagram of marking tasks as done_
 
----
+### Add Member to Team Feature
+
+#### Implementation
+
+The add member to team feature allows users to add a user to the current team based on the specified index. This index
+refers to the index of the user in the current view of persons in the `PersonListPanel`.
+
+The following is an example usage scenario of how a member is added to a team:
+
+Precondition: Index of person provided is valid and the current working team is set to the team that the member should 
+be added to.
+
+1. User keys in `add_member` command with the specific index of the person. (e.g. `add_member 1`)
+2. The person with the specified index in the list is added to the team.
+
+If any of the following occurs:
+
+1. Index given is negative
+2. Index given is out of range (i.e. There are fewer people than the specified index)
+3. Person at specified index is already in the team
+
+Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
+
+The following activity diagram summarizes the action taken when the add member command is executed:
+
+![AddMemberActivityDiagram](images/AddMemberActivityDiagram.png)
+
+_Activity diagram of adding member to team_
+
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `AddMemberCommandParser`
+parses the index of the person in the user input, and generates a `AddMemberCommand` object. `LogicManager` then
+executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
+`CommandResult` is generated with a message indicating the person being added to the team.
+
+
+### List Members Feature
+
+#### Implementation
+
+The list members feature allows users to view the members in their current team.
+
+The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in 
+the current team.
+
+Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the 
+`filteredPersons` in `ModelManager`. 
+
+Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding 
+members of the team is shown. 
+
+The following sequence diagram illustrates what happens within the `Logic` component when the list members command is 
+executed:
+![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -338,7 +391,7 @@ Preconditions: The current working team is set to the team that the member shoul
 
 **Use case: UC03 - List all members of a team**
 
-Preconditions: The current working team is set to the team that the member should be deleted from.
+Preconditions: The current working team is set to the team that the members should be listed from.
 
 **MSS**
 
