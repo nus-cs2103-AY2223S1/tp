@@ -235,6 +235,17 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AddStuActivityDiagram.png" width="250" />
 
+#### Design Considerations
+
+**Aspect: How AddStu executes::**
+
+- **Alternative 1: Require user to key in response and attendance number in when adding student**
+  - Pros: More details of a student can be viewed right after adding a student
+  - Cons: Troublesome for CS2103T TAs to add a student quickly as many details have to be keyed in if what they want is to just keep track of the students name and contact name.
+- **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding student**
+  - Pros: Faster to add a student
+  - Cons: CS2103T TA has to use another command to change the response and attendance number of the student.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
