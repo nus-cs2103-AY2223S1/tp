@@ -1,11 +1,13 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointments.*;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_BENSON;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_CARL;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_DAVID;
+import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_CARL;
 
 import org.junit.jupiter.api.Test;
 
