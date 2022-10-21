@@ -22,7 +22,7 @@ You can reach us at our emails:
 [[portfolio](team/peiyee88.md)]
 
 * Role: Developer
-* Responsibilities: Scheduling, Testing, Model 
+* Responsibilities: Scheduling, Testing, Model
 
 ### Kartikeya
 
@@ -33,7 +33,7 @@ You can reach us at our emails:
 
 
 * Role: Developer, Team Lead
-* Responsibilities: Integration, Git, UI 
+* Responsibilities: Integration, Git, UI
 
 ### Zhehao
 
@@ -53,7 +53,7 @@ You can reach us at our emails:
 [[portfolio](team/ryan-tan00.md)]
 
 * Role: Developer
-* Responsibilities: Documentation, Commons 
+* Responsibilities: Documentation, Commons
 
 ### Huang Yuchen
 

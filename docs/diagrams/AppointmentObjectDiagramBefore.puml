@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+show members
+'https://plantuml.com/object-diagram
+
+object "<u>John Davis:Person" as John
+
+object "<u>:Name" as Name
+object "<u>:Phone" as Phone
+object "<u>:NextofKin" as NextofKin
+object "<u>:PatientType" as PatientType
+object "<u>:Email" as Email
+
+John : ...
+Name : ...
+Email : ...
+NextofKin : ...
+PatientType : ...
+Phone : ...
+
+Name -left-> John
+Phone -up-> John
+NextofKin -down-> John
+PatientType -right-> John
+Email -down-> John
+@enduml
