@@ -319,7 +319,7 @@ Getting the ward number of a patient involves the following steps:
 1. prefix "/wn" is matched in `GetCommandParser` class
 2. a new `GetWardNumberCommandParser` instance is created and parses the user input
 3. a `GetWardNumberCommand` instance is returned
-4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified 
+4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified
 ward number
 
 Strict restrictions are placed to prevent too many varieties of ward number inputs. This way the regex for searching
@@ -330,15 +330,15 @@ have standardised it to be in the format of `Alphabet` + `3 Numbers`. For exampl
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### New Add Command 
-The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`, 
-`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber` and `Medications` fields. The new command still follows the 
+### New Add Command
+The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
+`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber` and `Medications` fields. The new command still follows the
 flow of the old command, as illustrated in the Activity Diagram below.
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 ![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
 
-As the Add Command now includes more fields for the patients, the Person class has also been updated to store these 
+As the Add Command now includes more fields for the patients, the Person class has also been updated to store these
 fields, as shown in the class diagram below.
 
 ![PersonClassDiagram](images/PersonClassDiagram.png)
