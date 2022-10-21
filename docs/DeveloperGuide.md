@@ -372,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS)**
 
 1. User requests to sort their applications by date and time.
-2. WorkBook displays the sorted list, with the nearest **upcoming** date and time at the top and the application furthest away at the bottom.
+2. WorkBook displays the sorted list, with the nearest **upcoming** date and time at the top and the application that is furthest away at the bottom.
 
    Use case ends.
 
