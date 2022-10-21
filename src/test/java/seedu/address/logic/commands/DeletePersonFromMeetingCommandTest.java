@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -11,13 +12,12 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingList;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 
 public class DeletePersonFromMeetingCommandTest {
@@ -73,15 +73,15 @@ public class DeletePersonFromMeetingCommandTest {
     }
 
     @Test
-    public void execute_delete_more_than_meetingSize() {
-        String expectedMessage = Messages.MESSAGE_INVALID_MEETING_ONLY_ONE_LEFT ;
+    public void execute_delete_moreThan_meetingSize() {
+        String expectedMessage = Messages.MESSAGE_INVALID_MEETING_ONLY_ONE_LEFT;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("0; Alice, Carl");
         assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void execute_delete_samePerson() {
-        String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND ;
+        String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; Alice, Alice");
         assertCommandFailure(command, model, expectedMessage);
     }
