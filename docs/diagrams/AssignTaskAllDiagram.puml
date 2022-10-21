@@ -15,7 +15,8 @@ if () then ([input is properly formatted])
 
         if () then ([group has members])
             : Members are iterated over
-            and task is added;
+            and task is added
+            (REFER TO NEXT DIAGRAM);
 
             if () then ([at least one member did not have task])
                 : Model updates its displayed

@@ -16,6 +16,7 @@ Below is an activity diagram reflecting the operation of the `assigntaskall` com
 `deletetaskall` operates similarly. 
 
 ![AssignTaskAllDiagram](images/AssignTaskAllDiagram.png)
+![AssignTaskAllDiagramAddendum](images/AssignTaskAllDiagramAddendum.png)
 
 #### Implementation Details
 1. User input is parsed in the context of `assigntaskall` and `deletetaskall` commands
