@@ -184,6 +184,43 @@ An exception will be thrown if semester code is invalid.
 
 // Keep this part for future reference
 
+### Command History - `<Up>/<Down>` command
+
+The command history feature allows user to traverse and scroll through the command history that is
+recorded when he/she uses `CliMods`. The goal is to mirror the behavior of a terminal/shell
+interface where user can easily access his/her previous command by using the up and down arrow keys.
+
+#### Implementation
+
+The command history is facilitated by `CommandSession`. The aim of `CommandSession` is to act as a
+lightweight wrapper around the command execution process, handling the reading and writing to and
+from the command history.
+
+Within `CommandSession`, we make use of a `ListIterator` to keep track of which position the user is
+currently at in the command history. Additionally, the use of `ListIterator` allows us to create a
+generator-like method to update and retrieve the user position in the command history.
+
+- `CommandSession::getPreviousCommand()`
+    - Retrieves the previous command in the command history, and updates the internal `ListIterator`
+      to the next position (upward) in the command history.
+
+- `CommandSession::getNextCommand()`
+    - Retrieves the next command in the command history, and updates the internal `ListIterator` to
+      the next position (downwards) in the command history.
+
+> Note that both of these operations are not pure, since the internal `ListIterator`
+> is updated after an invocation of either operations.t p
+
+#### Design considerations
+
+Depending on the shell, the behavior of how command history is being stored is different. For
+example, all commands are recorded in `bash`, while in `zsh`, no consecutive duplicate commands will
+be recorded.
+
+`CLiMods` chose to emulate the `zsh` behavior instead as it reduces clutter in the command history.
+We also hope that this would improve user experience as it aims to also speed up the traversal of
+the command history.
+
 ### UserGuide - `help` command
 The `help` command displays our User Guide in a new window, using javafx WebViewer.  It acts as a browser, so we prevent
 the user from connecting to other websites that is not within our control.
