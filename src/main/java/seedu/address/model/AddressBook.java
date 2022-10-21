@@ -204,7 +204,8 @@ public class AddressBook implements ReadOnlyAddressBook {
                     p.getEmail(),
                     p.getPhone(),
                     i.getInternshipId(),
-                    p.getTags()
+                    p.getTags(),
+                    p.getCompany()
             );
             setPerson(p, linkedP);
         }
@@ -263,7 +264,8 @@ public class AddressBook implements ReadOnlyAddressBook {
                     p.getEmail(),
                     p.getPhone(),
                     null,
-                    p.getTags()
+                    p.getTags(),
+                    p.getCompany()
             );
             setPerson(p, linkedP);
         }

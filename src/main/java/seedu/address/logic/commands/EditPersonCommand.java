@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.InternshipId;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -42,7 +44,8 @@ public class EditPersonCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_COMPANY + "COMPANY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -103,6 +106,7 @@ public class EditPersonCommand extends Command {
         InternshipId updatedInternshipId =
                 editPersonDescriptor.getInternshipId().orElse(personToEdit.getInternshipId());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
 
         return new Person(
                 personId,
@@ -110,7 +114,8 @@ public class EditPersonCommand extends Command {
                 updatedEmail,
                 updatedPhone,
                 updatedInternshipId,
-                updatedTags);
+                updatedTags,
+                updatedCompany);
     }
 
     @Override
@@ -142,6 +147,7 @@ public class EditPersonCommand extends Command {
         private InternshipId internshipId;
         private Set<Tag> tags;
         private Index linkIndex;
+        private Company company;
 
         public EditPersonDescriptor() {
         }
@@ -157,13 +163,14 @@ public class EditPersonCommand extends Command {
             setInternshipId(toCopy.internshipId);
             setTags(toCopy.tags);
             setLinkIndex(toCopy.linkIndex);
+            setCompany(toCopy.company);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags, company);
         }
 
         public void setName(Name name) {
@@ -223,6 +230,14 @@ public class EditPersonCommand extends Command {
             return Optional.ofNullable(linkIndex);
         }
 
+        public void setCompany(Company company) {
+            this.company = company;
+        }
+
+        public Optional<Company> getCompany() {
+            return Optional.ofNullable(company);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -241,7 +256,8 @@ public class EditPersonCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getCompany().equals((e.getCompany()));
         }
     }
 }

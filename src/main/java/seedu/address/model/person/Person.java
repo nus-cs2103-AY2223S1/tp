@@ -22,6 +22,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final InternshipId internshipId;
+    private final Company company;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -35,7 +36,8 @@ public class Person {
             Email email,
             Phone phone,
             InternshipId internshipId,
-            Set<Tag> tags) {
+            Set<Tag> tags,
+            Company company) {
         requireAllNonNull(name, tags);
         this.personId = personId;
         this.name = name;
@@ -43,6 +45,7 @@ public class Person {
         this.email = email;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
+        this.company = company;
     }
 
     public PersonId getPersonId() {
@@ -71,6 +74,12 @@ public class Person {
         return internshipId;
     }
 
+    public Company getCompany() {
+        if (company == null) {
+            return new Company(null);
+        }
+        return company;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -119,7 +128,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, tags, company);
     }
 
     @Override
@@ -133,6 +142,7 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append(("; Company: ")).append(getCompany());
         return builder.toString();
     }
 

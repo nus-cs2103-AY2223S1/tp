@@ -12,6 +12,7 @@ import seedu.address.model.internship.InternshipId;
 import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,42 +32,48 @@ public class SampleDataUtil {
                     new Email("alexyeoh@example.com"),
                     new Phone("87438807"),
                     new InternshipId(0),
-                    getTagSet("Manager")),
+                    getTagSet("Manager"),
+                    null),
             new Person(
                     new PersonId(1),
                     new Name("Bernice Yu"),
                     new Email("berniceyu@example.com"),
                     new Phone("99272758"),
                     null,
-                    getTagSet("Supervisor")),
+                    getTagSet("Supervisor"),
+                    new Company("Meta")),
             new Person(
                     new PersonId(2),
                     new Name("Charlotte Oliveiro"),
                     new Email("charlotte@example.com"),
                     new Phone("93210283"),
                     null,
-                    getTagSet("HR")),
+                    getTagSet("HR"),
+                    null),
             new Person(
                     new PersonId(3),
                     new Name("David Li"),
                     new Email("lidavid@example.com"),
                     new Phone("91031282"),
                     null,
-                    getTagSet("HR")),
+                    getTagSet("HR"),
+                    null),
             new Person(
                     new PersonId(4),
                     new Name("Irfan Ibrahim"),
                     new Email("irfan@example.com"),
                     new Phone("92492021"),
                     null,
-                    getTagSet("HR")),
+                    getTagSet("HR"),
+                    null),
             new Person(
                     new PersonId(5),
                     new Name("Roy Balakrishnan"),
                     new Email("royb@example.com"),
                     new Phone("92624417"),
                     new InternshipId(1),
-                    getTagSet("HR"))
+                    getTagSet("HR"),
+                    null)
         };
     }
 

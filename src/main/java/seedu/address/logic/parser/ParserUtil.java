@@ -14,6 +14,7 @@ import seedu.address.model.internship.InternshipId;
 import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonId;
@@ -108,7 +109,6 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
-
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -154,6 +154,23 @@ public class ParserUtil {
             }
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        if (company == null || company.isBlank()) {
+            return new Company(null);
+        }
+        String trimmedCompany = company.trim();
+        if (!Company.isValidName(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
     }
 
     // TODO: Remove this method.

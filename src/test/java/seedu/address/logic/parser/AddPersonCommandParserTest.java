@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.PersonCommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.address.logic.commands.PersonCommandTestUtil.COMPANY_DESC_BOB;
 import static seedu.address.logic.commands.PersonCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.PersonCommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.PersonCommandTestUtil.INVALID_ADDRESS_DESC;
@@ -43,50 +45,56 @@ public class AddPersonCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
+                + TAG_DESC_FRIEND + COMPANY_DESC_BOB, new AddPersonCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
+                + TAG_DESC_FRIEND + COMPANY_DESC_BOB, new AddPersonCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
+                + TAG_DESC_FRIEND + COMPANY_DESC_BOB, new AddPersonCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
+                + TAG_DESC_FRIEND + COMPANY_DESC_BOB, new AddPersonCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
+                + TAG_DESC_FRIEND + COMPANY_DESC_BOB, new AddPersonCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddPersonCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + COMPANY_DESC_BOB,
+                new AddPersonCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPersonTags = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + COMPANY_DESC_AMY,
                 new AddPersonCommand(expectedPersonTags));
         // zero phone
         Person expectedPersonPhone = new PersonBuilder(AMY).withPhone(null).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + COMPANY_DESC_AMY,
                 new AddPersonCommand(expectedPersonPhone));
         // zero email
         Person expectedPersonEmail = new PersonBuilder(AMY).withEmail(null).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + COMPANY_DESC_AMY,
                 new AddPersonCommand(expectedPersonEmail));
 
         // zero email and phone
         Person expectedPersonEmailAndPhone = new PersonBuilder(AMY).withEmail(null).withPhone(null).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + COMPANY_DESC_AMY,
                 new AddPersonCommand(expectedPersonEmailAndPhone));
+
+        // zero company
+        Person expectedPersonCompany = new PersonBuilder(AMY).withCompany(null).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
+                new AddPersonCommand(expectedPersonCompany));
     }
 
     @Test

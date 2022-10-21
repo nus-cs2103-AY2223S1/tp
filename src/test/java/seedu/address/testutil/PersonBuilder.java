@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.internship.InternshipId;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -19,8 +20,9 @@ public class PersonBuilder {
 
     public static final Integer DEFAULT_PERSON_ID = 0;
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "11111111";
-    public static final String DEFAULT_EMAIL = "amy@example.com";
+    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_COMPANY = "Meta";
 
     private PersonId personId;
     private Name name;
@@ -28,6 +30,7 @@ public class PersonBuilder {
     private Email email;
     private InternshipId internshipId;
     private Set<Tag> tags;
+    private Company company;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         internshipId = null;
         tags = new HashSet<>();
+        company = new Company(DEFAULT_COMPANY);
     }
 
     /**
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         internshipId = personToCopy.getInternshipId();
         tags = new HashSet<>(personToCopy.getTags());
+        company = personToCopy.getCompany();
     }
 
     /**
@@ -110,8 +115,20 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCompany(String company) {
+        if (company == null || company.isBlank()) {
+            this.company = new Company(null);
+        } else {
+            this.company = new Company(company);
+        }
+        return this;
+    }
+
     public Person build() {
-        return new Person(personId, name, email, phone, internshipId, tags);
+        return new Person(personId, name, email, phone, internshipId, tags, company);
     }
 
 }
