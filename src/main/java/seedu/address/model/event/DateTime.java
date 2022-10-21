@@ -38,11 +38,11 @@ public class DateTime {
             "(" + REGEX_HOURS + REGEX_MINUTES + "(" + REGEX_SECONDS + ")?)";
     public static final String REGEX_TIME = REGEX_TIME_COLON + "|" + REGEX_TIME_NO_SPACE;
 
-    public static final String REGEX_RELAXED_YEAR = "([0-9]{4})";
-    public static final String REGEX_RELAXED_MONTH = "([0-9]{1,2}|[a-zA-z]{3})";
-    public static final String REGEX_RELAXED_DAY = "([0-9]{1,2})";
+    public static final String REGEX_RELAXED_YEAR = "([0-9]+)";
+    public static final String REGEX_RELAXED_MONTH = "([0-9]+|[a-zA-z]{3})";
+    public static final String REGEX_RELAXED_DAY = "([0-9]+)";
     public static final String REGEX_RELAXED_HOUR = "(\\d{1,2})";
-    public static final String REGEX_RELAXED_MINUTE = "(\\d{1,2})";
+    public static final String REGEX_RELAXED_MINUTE = "(\\d{2})";
     public static final String REGEX_RELAXED_SECOND = "(\\d{2})";
     public static final String REGEX_RELAXED_TIME =
             REGEX_RELAXED_HOUR + "(:?)" + REGEX_RELAXED_MINUTE + "(:?" + REGEX_RELAXED_SECOND + ")?";
@@ -67,11 +67,11 @@ public class DateTime {
     private static final HashSet<String> REGEX_FORMAT = new HashSet<>() {
         {
             add("(" + REGEX_RELAXED_DAY + "/" + REGEX_RELAXED_MONTH + "/" + REGEX_RELAXED_YEAR + ")"
-                    + "(\\s" + REGEX_RELAXED_TIME + ")");
+                    + "(\\s" + REGEX_RELAXED_TIME + ")?");
             add("(" + REGEX_RELAXED_DAY + "\\s" + REGEX_RELAXED_MONTH + "\\s" + REGEX_RELAXED_YEAR + ")"
-                    + "(\\s" + REGEX_RELAXED_TIME + ")");
+                    + "(\\s" + REGEX_RELAXED_TIME + ")?");
             add("(" + REGEX_RELAXED_DAY + "-" + REGEX_RELAXED_MONTH + "-" + REGEX_RELAXED_YEAR + ")"
-                    + "(\\s" + REGEX_RELAXED_TIME + ")");
+                    + "(\\s" + REGEX_RELAXED_TIME + ")?");
         }
     };
 
@@ -98,13 +98,13 @@ public class DateTime {
     /**
      * Returns a LocalTime object for an input time in the valid formats.
      */
-    public static LocalTime generateLocalTime(String time) {
+    private static LocalTime generateLocalTime(String time) {
         Matcher matcher = REGEX_TIME_GENERATOR.matcher(time);
         matcher.matches();
         String hours = matcher.group("hoursGroup");
         String minutes = matcher.group("minutesGroup");
         String seconds = matcher.group("secondsGroup");
-        String formatterString = "H:m";
+        String formatterString = "H:mm";
         if (seconds != null) {
             formatterString += ":ss";
             return LocalTime.parse(hours + ":" + minutes + ":" + seconds,
@@ -116,7 +116,7 @@ public class DateTime {
     /**
      * Returns a LocalDate object for an input date in the valid formats.
      */
-    public static LocalDate generateLocalDate(String date) {
+    private static LocalDate generateLocalDate(String date) {
         Pattern pattern = Pattern.compile("");
         for (String regex : REGEX_DATES) {
             if (date.toLowerCase().matches(regex)) {
@@ -149,7 +149,8 @@ public class DateTime {
     }
 
     /**
-     * Checks if an input date string follows any of the allowed formats.
+     * Checks if an input date string follows any of the allowed formats,
+     * without checking the values.
      */
     public static boolean isValidFormat(String dateString) {
         for (String regex : REGEX_FORMAT) {
