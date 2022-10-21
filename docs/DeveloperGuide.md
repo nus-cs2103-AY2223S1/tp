@@ -157,8 +157,26 @@ Classes used by multiple components are in the `bookface.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add book/user
-The add command works as a 
+### Adding a book/user
+The `add` command is an important command that is commonly used in BookFace. It allows the user to add a new book or a user to the system.
+
+#### Design consideration:
+Since `add` is used for the operations of both adding a book and adding a user, `AddSubCommand` is created to handle differentiating between adding a book and adding a user.
+
+#### Adding a book with `add book`
+`add book` adds a new book to the model. Specifically, `ModelManager` maintains a list of books and contains the method `addbook()` that is invoked by `AddBookCommand` to perform this adding operation.
+
+The updating of the model is represented in the following diagram:
+
+![AddBookSimpleDiagram](images/AddBookSimpleDiagram.png)
+
+*Teh above will be updated with a more accurate diagram*
+
+The following is the sequence diagram for this operation:
+*To be updated with sequence diagram.*
+
+#### Adding a user with `add user`
+*To be updated.*
 
 ### List feature
 

@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+
+Title Adding a book
+
+package Logic <<Rectangle>> {
+    Class AddCommand UI_COLOR
+    Class AddSubCommand UI_COLOR
+    Class AddBookCommand UI_COLOR
+}
+
+package Model <<Rectangle>> {
+    Class ModelManager UI_COLOR
+}
+
+AddBookCommand -> AddCommand
+Logic -> Model
+note right on link: invoke addbook() command
+
+@enduml
