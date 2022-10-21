@@ -174,6 +174,47 @@ Classes used by multiple components are in the `seedu.guest.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### DateRange Field
+
+#### Implementation:
+
+* The `DateRange` class holds the period of stay of a `Guest`.
+* Its constructor takes in a string representing a check-in date and a check-out date.
+
+#### Design Considerations:
+
+**Aspect: How to represent dates**
+* **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
+  * Pros: Easier to parse and edit dates separately.
+  * Cons: Depend on each other for validation (check-in must be earlier than check-out), increases coupling.
+* **Alternative 2 (current choice):** Single class representing both dates.
+  * Pros: Validation can be done within the class itself, reduces coupling. More intuitive as the dates are often displayed together.
+  * Cons: Parsing, editing, and other operations on the dates are more complex.
+
+Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
+
+### Bill Field
+
+#### Implementation:
+
+* The `Bill` class holds the value that a `Guest` owes.
+* Its constructor takes in a string representing a signed `double` with up to 2 decimal places.
+
+#### Design Considerations:
+
+**Aspect: `add()` method of the `Bill` class**
+* As `Bill`s can be added to each other, we abstracted this behaviour into the `add` method.
+
+**Aspect: How to deduct from bills**
+* **Alternative 1:** Create a `subtract` method.
+  * Pros: More understandable code.
+  * Cons: Requires knowledge of which method to call (`add` or `subtract`).
+* **Alternative 2 (current choice):** Use `add()` with a negative `Bill`.
+  * Pros: Less code, more flexibility.
+  * Cons: `Bill` must be allowed to hold negative values, but `Guest`s cannot (more checks required).
+
+Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
+
 ### Add Command
 
 #### Implementation:
@@ -252,9 +293,6 @@ The following activity diagrams summarizes what happens when a user enters a `bi
 
 Taking into consideration the much higher probability of the user using the bill command to add a value as compared to setting the value,
 and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE`), we decided to proceed with Alternative 2.
-
-**Aspect: Accepting negative values**
-* As the user may want to give the guest a discount or fix an erroneous charge, we allow the user to input a negative value.
 
 **Aspect: Accepting signed and unsigned positive values**
 * As the user may prefer to see `+` differentiating positive and negative values, or leave out the `+` sign for convenience, we decided to accept both formats for positive values.
