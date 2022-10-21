@@ -17,7 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 
