@@ -54,16 +54,23 @@ public class Person {
     }
 
     public Phone getPhone() {
+        if (phone == null) {
+            return new Phone(null);
+        }
         return phone;
     }
 
     public Email getEmail() {
+        if (email == null) {
+            return new Email(null);
+        }
         return email;
     }
 
     public InternshipId getInternshipId() {
         return internshipId;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -118,15 +125,9 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-        Email email = getEmail();
-        if (email != null) {
-            builder.append(("; Email: "));
-        }
-        Phone phone = getPhone();
-        if (phone != null) {
-            builder.append(("; Phone: "));
-        }
+        builder.append(getName())
+                .append(("; Email: ")).append(getEmail())
+                .append(("; Phone: ")).append(getPhone());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

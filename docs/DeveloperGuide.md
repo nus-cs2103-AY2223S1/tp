@@ -94,11 +94,11 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeletePersonCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -111,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort Person list
+
+#### Implementation
+
+1. When the user sorts the person list, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
+2. The `AddressBookParser` will then create the corresponding parser for the command, which is `SortPersonCommandParser`.
+3. After which, it will pass the argument (the full command excluding the command word) to this parser.
+4. The command parser will then create a `SortPersonCommand` with the corresponding internal variable (`n/` means sort by name, `c/` means sort by associated company name). This is facilitated by the `Criteria` enumeration.
+5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
+6. Then, the command is executed by calling the `execute()` method of `SortPersonCommand` (the command that was returned earlier) directly.
+7. Based on its internal variable, it will call `sortPersonlist()` in the `Model` class on the person list, and passes the sort criteria.
+8. The person list will then set the comparator based on the criteria that was passed earlier, and the list is sorted based on that comparator.
+9. Afterwards, `SortPersonCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![SortPersonSequence](images/SortPersonSequence.png)
+
+#### Design considerations
+
+The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -172,11 +193,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete -p 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add -p n/David …​` to add a new person. The `add -p` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -207,7 +228,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list -p`. Commands that do not modify the address book, such as `list -p`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -229,7 +250,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete -p`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -380,10 +401,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User adds an internship to the internship list
-2. InterNUS creates a new internship entry
-3. User adds a person to the contact list
-4. InterNUS creates a new person contact
+1. User adds an internship to InterNUS
+2. InterNUS creates a new internship entry in the displayed internship list
+3. User adds a person to InterNUS
+4. InterNUS creates a new person contact the displayed contact list
 5. User requests to set a specific person as the contact person for a specific internship
 6. InterNUS sets the person as the contact person for the internship
 
@@ -443,6 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. The data should be stored in a human editable text file
 8. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
 9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+10. Each contact person can only link to one internship and each internship is only linked to one contact person
 
 
 *{More to be added}*

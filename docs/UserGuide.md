@@ -211,6 +211,25 @@ Examples:
 * `listi` followed by `deletei 2` deletes the 2nd internship in InterNUS.
 * `findi ABC Pte Ltd` followed by `deletei 1` deletes the 1st internship in the results of the `find` command.
 
+### Sorting persons by name: `sortp n/`
+
+Sorts the persons list by their names in alphabetical order, ignoring upper and lower cases.
+
+Format: `sortp n/`
+
+Note:
+* The list will remain sorted by names in alphabetical order, until InterNUS is closed or if it is changed to sort by associated company names instead.
+
+### Sorting persons by associated company name: `sortp c/`
+
+Sorts the persons list by their associated company names in alphabetical order, ignoring upper and lower cases.
+
+Format: `sortp c/`
+
+Note:
+* For persons that are not associated with a company yet, they will be listed at the bottom of the list.
+* The list will remain sorted by associated company names in alphabetical order, until InterNUS is closed or if it is changed to sort by person names instead.
+
 ### Clearing all entries : `clear`
 
 Clears all person and internship entries from InterNUS.

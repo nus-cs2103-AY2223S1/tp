@@ -41,6 +41,10 @@ public class Internship {
         this.interviewDate = interviewDate;
     }
 
+    public String getDisplayName() {
+        return companyName.toString() + " " + internshipRole.toString();
+    }
+
     public InternshipId getInternshipId() {
         return internshipId;
     }
@@ -62,6 +66,9 @@ public class Internship {
     }
 
     public InterviewDate getInterviewDate() {
+        if (interviewDate == null) {
+            return new InterviewDate(null);
+        }
         return interviewDate;
     }
 

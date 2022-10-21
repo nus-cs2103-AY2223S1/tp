@@ -162,9 +162,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String findInternshipNameById(InternshipId internshipId) {
-        // TODO: Update getCompanyName to the auto generated Internship Name to be displayed
         Internship i = findInternshipById(internshipId);
-        return i == null ? null : i.getCompanyName().toString();
+        return i == null ? null : i.getDisplayName().toString();
     }
 
     /**

@@ -102,7 +102,11 @@ public class InternshipBuilder {
      * Sets the {@code Interview Date} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withInterviewDate(String date) {
-        this.interviewDate = new InterviewDate(date);
+        if (date == null || date.isBlank()) {
+            this.interviewDate = new InterviewDate(null);
+        } else {
+            this.interviewDate = new InterviewDate(date);
+        }
         return this;
     }
 
