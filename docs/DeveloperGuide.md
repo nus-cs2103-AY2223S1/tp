@@ -117,7 +117,9 @@ files (`Person` or `Task`).
 The Sequence Diagram below shows the interaction between the `Logic` and `Model` component when `execute("cg ..")` 
 is called.
 
-![Interactions Inside the Logic Component for the `cg ..` Command](images/)
+![Interactions Inside the Logic Component for the `cg ..` Command](images/ChangeTeamSequenceDiagram.png)
+
+This way of implementation maintains abstraction of details within the `Model` component from the `Logic` component.
 
 #### Parsing
 
@@ -158,7 +160,28 @@ The `Model` component,
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+* that belong to the `Model`).
+
+#### Storage of different classes from the `Model` component
+
+To store the different classes from the `Model` component, different Json adapted classes (e.g. `JsonAdaptedPerson`,
+`JsonAdaptedGroup`, ...) will be used to format, store and retrieve from Json files. These classes can then be
+converted back into its `Model` based counterpart easily. 
+
+For example, `JsonAdaptedPerson` can be converted back into a `Person` class.
+
+Here are the other classes in the `Storage` component used to store the `Model` component classes. The class
+structure follows closely to the class structure within the `Model` component:
+
+![Json adapted version of model classes](images/StorageJsonSerializableAddressBookClassDiagram.png)
+
+These Json adapted classes are able to convert any `String`
+representation of attributes within the json files to its proper class attributes using the `toModelType` method.
+
+The Sequence Diagram below illustrates how the Json file is converted back into an AddressBook.
+
+![Sequence Diagram reading a Json file to AddressBook](images/PersonRetrievalSequenceDiagram.png)
 
 ### Common classes
 

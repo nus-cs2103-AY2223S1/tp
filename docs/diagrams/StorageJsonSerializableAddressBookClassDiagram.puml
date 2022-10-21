@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package "AddressBook Storage" #F4F6F6{
+package "JsonSerializableAddressBook Storage" #F4F6F6{
 Class JsonSerializableAddressBook
 abstract Class JsonAdaptedAbstractContainerItem
 abstract Class JsonAdaptedDisplayItem
@@ -20,6 +20,8 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> JsonSerializableAddressBook
 
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonSerializableAddressBook --> "*" JsonAdaptedTask
+JsonSerializableAddressBook --> "*" JsonAdaptedTeam
 JsonAdaptedPerson -up-|> JsonAdaptedDisplayItem
 JsonAdaptedTask -up-|> JsonAdaptedDisplayItem
 JsonAdaptedTask --> "1" JsonAdaptedFields
