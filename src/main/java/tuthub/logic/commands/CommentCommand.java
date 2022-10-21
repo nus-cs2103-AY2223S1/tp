@@ -11,25 +11,25 @@ import tuthub.commons.core.index.Index;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.model.Model;
 import tuthub.model.tutor.Comment;
-import tuthub.model.tutor.CommentList;
 import tuthub.model.tutor.Tutor;
 
 /**
- * Adds a comment to an existing tutor in tuthub.
+ * Changes the comment of an existing tutor in tuthub.
  */
 public class CommentCommand extends Command {
 
     public static final String COMMAND_WORD = "comment";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a comment to the tutor identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the comment of the tutor identified "
             + "by the index number used in the last tutor listing. "
+            + "Existing comment will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_COMMENT + "[COMMENT]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMMENT + "Good class management";
 
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Tutor: %1$s";
-    public static final String MESSAGE_ADD_COMMENT_FAILURE = "There is no comment!";
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Removed comment from Tutor: %1$s";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Comment: %2$s";
 
@@ -74,12 +74,10 @@ public class CommentCommand extends Command {
         }
 
         Tutor tutorToEdit = lastShownList.get(index.getZeroBased());
-        CommentList comments = tutorToEdit.getComments();
-        comments = comments.addComment(comment);
         Tutor editedTutor = new Tutor(
                 tutorToEdit.getName(), tutorToEdit.getPhone(), tutorToEdit.getEmail(),
                 tutorToEdit.getModules(), tutorToEdit.getYear(), tutorToEdit.getStudentId(),
-                comments, tutorToEdit.getTeachingNomination(), tutorToEdit.getRating(), tutorToEdit.getTags());
+                comment, tutorToEdit.getTeachingNomination(), tutorToEdit.getRating(), tutorToEdit.getTags());
 
         model.setTutor(tutorToEdit, editedTutor);
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
@@ -94,7 +92,7 @@ public class CommentCommand extends Command {
      * {@code tutorToEdit}.
      */
     private String generateSuccessMessage(Tutor tutorToEdit) {
-        String message = !comment.value.isEmpty() ? MESSAGE_ADD_COMMENT_SUCCESS : MESSAGE_ADD_COMMENT_FAILURE;
+        String message = !comment.value.isEmpty() ? MESSAGE_ADD_COMMENT_SUCCESS : MESSAGE_DELETE_COMMENT_SUCCESS;
         return String.format(message, tutorToEdit);
     }
 }
