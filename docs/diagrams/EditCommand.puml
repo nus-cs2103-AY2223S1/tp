@@ -5,7 +5,7 @@ abstract class Model
 Command <|- EditCommand
 Model <|- ModelManager
 EditCommand o-- "1" EditPersonDescriptor
-EditCommand <-up- ModelManager
+ModelManager <-down- EditCommand
 
 abstract class Model {
     void setPerson(Person target, Person editedPerson)
@@ -18,4 +18,5 @@ abstract class Command {
 class EditCommand {
     CommandResult execute(Model model
 }
+
 @enduml
