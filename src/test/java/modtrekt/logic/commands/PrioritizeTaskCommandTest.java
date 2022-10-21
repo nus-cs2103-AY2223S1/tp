@@ -80,6 +80,16 @@ public class PrioritizeTaskCommandTest {
     }
 
     @Test
+    public void testParser_duplicateFlags_throwsParseException() {
+        assertThrows(ParseException.class, () -> new ModtrektParser()
+                .parseCommand("prioritize -t 1 -t 2 -t 3 -p high"));
+        assertThrows(ParseException.class, () -> new ModtrektParser()
+                .parseCommand("prioritize -t 1 -p high -p medium -p low"));
+        assertThrows(ParseException.class, () -> new ModtrektParser()
+                .parseCommand("prioritize -t 1 -2 -t 3 -p high -p medium -p low"));
+    }
+
+    @Test
     public void testParser_missingFlags_throwsParseException() {
         assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("prioritize"));
     }
