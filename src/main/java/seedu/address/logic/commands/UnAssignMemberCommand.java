@@ -21,7 +21,7 @@ public class UnAssignMemberCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": removes a person from the team. "
             + "Parameters: "
-            + PREFIX_MEMBER_INDEX + "MEMBER INDEX "
+            + PREFIX_MEMBER_INDEX + "MEMBER INDEX (Global person index) "
             + PREFIX_TEAM_INDEX + "TEAM INDEX \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MEMBER_INDEX + "1 "
@@ -37,7 +37,7 @@ public class UnAssignMemberCommand extends Command {
     /**
      * Creates an UnAssignMemberCommand to remove the specified {@code Person} from specified {@code Team}
      */
-    public UnAssignMemberCommand(Index teamIndex, Index personIndex) {
+    public UnAssignMemberCommand(Index personIndex, Index teamIndex) {
         requireAllNonNull(personIndex, teamIndex);
         this.personIndex = personIndex;
         this.teamIndex = teamIndex;

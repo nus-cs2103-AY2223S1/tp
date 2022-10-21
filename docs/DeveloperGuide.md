@@ -268,6 +268,36 @@ Step 3. The user realised that there is some error in the task and wants to unma
 The following sequence diagram shows how the mark task operation works:
 ![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
 
+### Edit Task Feature
+
+#### Implementation
+
+The edit task feature updates the name of the task to the new name given by the user and this change is reflected in the Graphical User Interface.
+
+Given below is an example usage scenario:
+
+Step 1. The user creates the task and assign it to a team using `taskadd` command. The name of the task provided by the user is stored as Name in the Task class.
+
+Step 2. The user might want to update the name of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the name of the task from the previous name to the new name provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the new name by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task name and this would be reflected in the gui.
+
+The following sequence diagram shows how the edit task operation works:
+![TaskEditSequenceDiagram](images/TaskEditSequenceDiagram.png)
+
+### Delete Task Feature
+
+#### Implementation
+
+The delete task feature deletes the task from the specified team given by the user and this change is reflected in the Graphical User Interface.
+
+Given below is an example usage scenario:
+
+Step 1. The user creates the task and assign it to a team using `taskadd` command. The tasks are stored in the UniqueTaskList for each Team. 
+
+Step 2. The user might want to delete the task to remove the unwanted task in the future. The user then executes `taskdelete t/1 task/1` to delete the task from the specified team. The `taskdelete` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be deleted from the taskList. `Model#updateFilterPersonList` is called to update the team with the new deletions and this would be reflected in the gui.
+
+The following sequence diagram shows how delete task operation works:
+![TaskDeleteSequenceDiagram](images/TaskDeleteSequenceDiagram.png)
+
 ### Edit Person Feature
 
 #### Implementation
@@ -318,6 +348,45 @@ Step 3. The user realises that the team has completed their work and is no longe
 
 The following sequence diagram shows how the delete team operation works:
 ![DeleteTeamSequenceDaigram](images/DeleteTeamSequenceDiagram.png)
+
+### Edit Team Feature
+
+#### Implementation
+
+The Edit Team Feature allows the user to edit the name of a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the Edit Team mechanism behaves at each step.
+
+Step 1. The user executes `editteam t/1 n/Team1` to change the name of first team to Team1.
+
+Step 2. The `editTeam` command is created by the parser using the given team index and new name. It calls
+`Model#setTeamName`to change the name of the required team.
+
+### Assign Member Feature
+
+#### Implementation
+
+The Assign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the Assign Member mechanism behaves at each step.
+
+Step 1. The user executes `assign m/1 t/1` to assign the first person as a member in the first team.
+
+Step 2. The `assignMember` command is created by the parser using the given member's index (global person index) and 
+team's index. It calls `Model#addPersonToTeam` to add the person to given team.
+
+### unAssign Member Feature
+
+#### Implementation
+
+The unAssign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the unAssign Member mechanism behaves at each step.
+
+Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign the first person as a member from the first team.
+
+Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and 
+team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
 
 _{more aspects and alternatives to be added}
 

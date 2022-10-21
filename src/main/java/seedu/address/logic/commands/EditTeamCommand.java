@@ -51,7 +51,6 @@ public class EditTeamCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        //Team teamToEdit = lastShownList.get(targetIndex.getZeroBased());
         model.setTeamName(targetIndex, newTeamName);
         return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, newTeamName));
     }
