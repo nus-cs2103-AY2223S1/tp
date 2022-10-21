@@ -24,10 +24,14 @@ import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
@@ -90,6 +94,15 @@ public class ResidentBookParserTest {
     }
 
     @Test
+    public void parseCommand_hide() throws Exception {
+        assertThrows(ParseException.class, String.format(HideCommandParser.INTENDED_USAGE), ()
+                -> parser.parseCommand(HideCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, String.format(HideCommandParser.ERROR_MESSAGE), ()
+                -> parser.parseCommand(HideCommand.COMMAND_WORD + " jibbitz"));
+        assertTrue(parser.parseCommand(HideCommand.COMMAND_WORD + " name phone email") instanceof HideCommand);
+    }
+
+    @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertThrows(ParseException.class, String.format(ListCommandParser.INTENDED_USAGE), ()
@@ -113,6 +126,15 @@ public class ResidentBookParserTest {
         FileCommand fileCommand = (FileCommand) parser.parseCommand(FileCommand.COMMAND_WORD
                 + " " + FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING);
         assertEquals(new FileCreateCommand(VALID_FILE_NAME_PATH), fileCommand);
+    }
+
+    @Test
+    public void parseCommand_show() throws Exception {
+        assertThrows(ParseException.class, String.format(ShowCommandParser.INTENDED_USAGE), ()
+                -> parser.parseCommand(ShowCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, String.format(ShowCommandParser.ERROR_MESSAGE), ()
+                -> parser.parseCommand(HideCommand.COMMAND_WORD + " crocs with socks"));
+        assertTrue(parser.parseCommand(ShowCommand.COMMAND_WORD + " room gender") instanceof ShowCommand);
     }
 
     @Test
