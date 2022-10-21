@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 import paymelah.commons.core.index.Index;
 import paymelah.commons.util.StringUtil;
 import paymelah.logic.parser.exceptions.ParseException;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
@@ -181,6 +183,40 @@ public class ParserUtil {
             throw new ParseException(Money.MESSAGE_CONSTRAINTS);
         }
         return new Money(trimmedMoney);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code DebtDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param date The date to turn into a {@code DebtDate} object.
+     * @return The corresponding {@code DebtDate}.
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static DebtDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DebtDate.isValidDate(trimmedDate)) {
+            throw new ParseException(DebtDate.MESSAGE_CONSTRAINTS);
+        }
+        return new DebtDate(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code DebtTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param time The time to turn into a {@code DebtTime} object.
+     * @return The corresponding {@code DebtTime}.
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static DebtTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!DebtTime.isValidTime(trimmedTime)) {
+            throw new ParseException(DebtTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DebtTime(trimmedTime);
     }
 
     /**

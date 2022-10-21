@@ -3,6 +3,7 @@ package paymelah.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,6 +11,7 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -91,6 +93,10 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_SUPPER = "supper jio";
     public static final String VALID_MONEY_MCDONALDS = "10.80";
     public static final String VALID_MONEY_SUPPER = "$4.5";
+    public static final String VALID_DATE_MCDONALDS = "2022-10-11";
+    public static final String VALID_DATE_SUPPER = "2022-9-12";
+    public static final String VALID_TIME_MCDONALDS = "12:34";
+    public static final String VALID_TIME_SUPPER = "00:00";
 
     public static final String DESCRIPTION_DESC_MCDONALDS = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MCDONALDS;
     public static final String DESCRIPTION_DESC_SUPPER = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SUPPER;
@@ -98,8 +104,16 @@ public class CommandTestUtil {
     public static final String MONEY_DESC_MCDONALDS = " " + PREFIX_MONEY + VALID_MONEY_MCDONALDS;
     public static final String MONEY_DESC_SUPPER = " " + PREFIX_MONEY + VALID_MONEY_SUPPER;
 
+    public static final String DATE_DESC_MCDONALDS = " " + PREFIX_DATE + VALID_DATE_MCDONALDS;
+    public static final String DATE_DESC_SUPPER = " " + PREFIX_DATE + VALID_DATE_SUPPER;
+
+    public static final String TIME_DESC_MCDONALDS = " " + PREFIX_TIME + VALID_TIME_MCDONALDS;
+    public static final String TIME_DESC_SUPPER = " " + PREFIX_TIME + VALID_TIME_SUPPER;
+
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
     public static final String INVALID_MONEY_DESC = " " + PREFIX_MONEY + "one hundred";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "invalid date";
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "invalid time";
 
     public static final String VALID_DEBT_INDEX = " " + PREFIX_DEBT + "1";
     public static final String VALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1 2 3";

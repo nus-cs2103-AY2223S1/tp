@@ -1,5 +1,6 @@
 package paymelah.model.debt;
 
+import static java.time.temporal.ChronoUnit.MINUTES;
 import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.AppUtil.checkArgument;
 
@@ -28,6 +29,13 @@ public class DebtTime {
         requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         this.time = LocalTime.parse(time, TIME_INPUT_FORMAT);
+    }
+
+    /**
+     * Constructs a {@code DebtTime} with the current time.
+     */
+    public DebtTime() {
+        this.time = LocalTime.now().truncatedTo(MINUTES);
     }
 
     /**

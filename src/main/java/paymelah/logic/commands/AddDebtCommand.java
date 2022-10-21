@@ -2,8 +2,10 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.List;
 
@@ -24,9 +26,13 @@ public class AddDebtCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + PREFIX_DESCRIPTION + "<description> "
             + PREFIX_MONEY + "<money> "
+            + "[" + PREFIX_DATE + "<date>] "
+            + "[" + PREFIX_TIME + "<time>]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Carl's Jr "
-            + PREFIX_MONEY + "97.40";
+            + PREFIX_MONEY + "97.40"
+            + PREFIX_DATE + "2022-10-12 "
+            + PREFIX_TIME + "09:00";
 
     public static final String MESSAGE_ADD_DEBT_SUCCESS = "Added debt %1$s to %2$s";
 

@@ -86,6 +86,8 @@ public class Debt {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDate())
+                .append(" ")
+                .append(getTime())
                 .append(": ")
                 .append(getDescription())
                 .append("; $")

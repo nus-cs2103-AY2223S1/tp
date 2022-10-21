@@ -32,6 +32,13 @@ public class DebtDate {
     }
 
     /**
+     * Constructs a {@code DebtDate} with the current date.
+     */
+    public DebtDate() {
+        this.date = LocalDate.now();
+    }
+
+    /**
      * Returns true if a given string is a valid date in the correct format.
      *
      * @param test The string to test for validity.

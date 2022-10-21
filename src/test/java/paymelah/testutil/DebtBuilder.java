@@ -2,6 +2,7 @@ package paymelah.testutil;
 
 import java.time.format.DateTimeParseException;
 
+import paymelah.logic.parser.AddDebtCommandParser;
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtDate;
 import paymelah.model.debt.DebtTime;
@@ -15,7 +16,7 @@ public class DebtBuilder {
     public static final String DEFAULT_DESCRIPTION = "Manicure";
     public static final String DEFAULT_MONEY = "100";
     public static final String DEFAULT_DATE = "2022-10-12";
-    public static final String DEFAULT_TIME = "00:00";
+    public static final String DEFAULT_TIME = AddDebtCommandParser.DEFAULT_TIME;
 
     private Description description;
     private Money money;
@@ -71,10 +72,26 @@ public class DebtBuilder {
     }
 
     /**
+     * Sets the date of the {@code Debt} that we are building to the current date.
+     */
+    public DebtBuilder withCurrentDate() {
+        this.date = new DebtDate();
+        return this;
+    }
+
+    /**
      * Sets the time of the {@code Debt} that we are building.
      */
     public DebtBuilder withTime(String time) {
         this.time = new DebtTime(time);
+        return this;
+    }
+
+    /**
+     * Sets the time of the {@code Debt} that we are building to the current time.
+     */
+    public DebtBuilder withCurrentTime() {
+        this.time = new DebtTime();
         return this;
     }
 
