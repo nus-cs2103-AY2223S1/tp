@@ -26,7 +26,6 @@ public class TaskListPanel extends UiPart<Region> {
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
-
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }

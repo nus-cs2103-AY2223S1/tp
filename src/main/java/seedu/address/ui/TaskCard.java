@@ -65,6 +65,7 @@ public class TaskCard extends UiPart<Region> {
 
     public String booleanConvertor(boolean isDone) {
         return isDone ? "Completed" : "Not Completed";
+
     }
 
     @Override

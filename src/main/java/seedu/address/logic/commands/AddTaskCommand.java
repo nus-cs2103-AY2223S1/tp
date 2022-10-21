@@ -16,13 +16,12 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-
-
 /**
  * Adds a task to the address book.
  */
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addTask";
+    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. \n"
             + "Parameters: "
@@ -42,9 +41,8 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
-
-    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
     private final Task toAdd;
+
     private final Email personEmailAddress;
 
     /**
@@ -75,6 +73,7 @@ public class AddTaskCommand extends Command {
         model.addTask(toAdd);
         model.update();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
     }
 
     @Override
