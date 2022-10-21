@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes the command to archive a task;
+:ModtRekt parses the command looking for tags;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([contains all valid tags])
+    :check if task index argument is valid;
+    if () then ([valid task index])
+        if () then ([task is not already archived])
+            :archive task;
+            :display archival success message;
+        else ([else])
+            :display invalid archival state error message;
+        endif
+    else ([else])
+        :display invalid input error message;
+    endif
+else ([else])
+    :display invalid format message;
+endif
+stop
+@enduml

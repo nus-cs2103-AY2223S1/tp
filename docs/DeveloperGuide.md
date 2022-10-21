@@ -221,13 +221,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Implementation**
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1. Module Features
+### Module Features
 
-### 3.1.1. Add module
+### Add module
 
 In this section, the functionality of `add` module feature, expected execution path, and the interactions between
 `AddCommand`, `AddCommandParser`, and other objects will be discussed.
@@ -290,7 +290,7 @@ obtaining the module code, the argument would be passed to static method `Module
 the module details from NUSMods and return a `Module`. The module would be used to instantiate an `AddCommand`. When the
 `AddCommand` is executed, the `Model` would add the module to the `ModuleList`.
 
-### 3.1.2. Remove Module
+### Remove Module
 
 In this section, the functionality of `remove` module feature, expected execution path, and the interactions between the
 `RemoveCommand`, `RemoveCommandParser`, and other objects will be discussed.
@@ -380,6 +380,89 @@ The sequence diagram below shows the flow of the interactions between the differ
 In the diagram, the predicates `modulePredicate` and `taskPredicate` are the custom predicates used to filter the module and task lists, respectively. They are within the `setCurrentModule` method in `Model`.
 
 <img src="images/CdSequenceDiagram.png" width="1000" />
+
+### Tasks
+
+#### Task archival
+
+Task archival allows users to selectively hide tasks that they have completed.
+
+Every task in the task book will be in either the archived or unarchived state.
+New tasks will be created in the unarchived state.
+
+In this section, we will discuss the management of archived/unarchived state, as well as the
+interactions between the commands, their parsers, and the UI.
+
+The relevant commands for this section are:
+* **`archive -t <task index>`**  archives the task visible in the UI with the specified index.
+* **`unarchive -t <task index>`** unarchives the task visible in the UI with the specified index.
+
+##### Design considerations
+
+There was an alternative we considered for users to select the task to archive:
+
+* **Alternative 1:** Using the task name:
+    * Pro: Users do not have to search for a task and its index.
+    * Pro: Users can archive tasks that aren't visible in the UI.
+    * Con: Users have to type a significant amount to disambiguate tasks by their name.
+    * Con: Users have to remember the task names which may be difficult if there are many tasks.
+
+* **Alternative 2:** Using the task index of the current module (current implementation):
+    * Pro: Users can archive tasks by their index easily without much typing.
+    * Con: Users now have to use `cd` to change the current module tied to the task they want to archive.
+    * Con: Users now have to use `ls` and `ls -A` to view the tasks to archive or unarchive respectively.
+
+Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
+even though the `cd` and `ls` commands add a bit of overhead.
+
+##### Current implementation
+
+Archival state is handled in the `Task` class via a boolean flag `isArchived`.
+Because `Task` is immutable, the methods `Task::archive` and `Task::unarchive` return a new `Task`
+with the archival state changed instead of mutating the `isArchived` variable directly.
+
+The following activity diagram shows the execution and control flow of the `archive` command.
+
+<img src="images/tasks/ArchivalActivityDiagram.png" width="1000" />
+
+Notice how we explicitly prevent an archived task from being archived again. Even though archiving an archived task
+is inconsequential from a data perspective (nothing in a `Task` changes other than the creation of a new instance),
+it is still a user error that should be handled:
+
+> Suppose that a user intended to _unarchive_ a task, but accidentally entered the `archive` command instead.
+By displaying an error instead of silently accepting the erroneous command, the user is notified and
+can enter the correct command next—this results in better UX!
+
+The classes directly involved in setting the archival state from user input are:
+* `ArchiveTaskCommand` and `UnarchiveTaskCommand` which are the commands that when executed, archive and unarchive tasks respectively.
+* `ArchiveTaskCommandParser` and `UnarchiveTaskCommandParser` which parse user input for their respective commands.
+* `ModtrektParser` which parses the command word and delegates the parsing to the correct parser.
+* `LogicManager` which executes the commands.
+
+For brevity, we omit the diagrams and explanations for task unarchival—it is the direct inverse of archival,
+such that the control flow is exactly the same: just replace "archive" and its derivatives
+with "unarchive", and vice versa.
+
+#### Task listing
+
+Task listing allows users to view the tasks they have created which belong to a module.
+
+The relevant commands for this section are:
+* **`cd`** sets the current module to view tasks for.
+* **`ls`** displays only the unarchived tasks for the current module in the UI.
+* **`ls -a`** displays all the tasks for the current module, including the ones archived, in the UI.
+
+##### Current implementation
+
+We check for the presence of the `-a` flag to decide whether to display archived tasks.
+
+The predicates defined by `Model.SHOW_ALL_TASKS` and `Model.HIDE_ARCHIVED_TASKS` are used to filter
+the tasks displayed in the UI via the `updateFilteredTaskList` method in the `Model` interface.
+
+The sequence diagram below details the interactions between the command, parser, and the model
+for the`ls` and `ls -a` commands:
+
+<img src="images/tasks/ListingSequenceDiagram.png" width="1000" />
 
 --------------------------------------------------------------------------------------------------------------------
 

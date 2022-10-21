@@ -1,7 +1,6 @@
 package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static modtrekt.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static modtrekt.testutil.Assert.assertThrows;
 import static modtrekt.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,6 +55,6 @@ public class ModtrektParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("unknownCommand"));
     }
 }
