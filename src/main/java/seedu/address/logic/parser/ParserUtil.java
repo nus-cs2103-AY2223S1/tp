@@ -27,14 +27,12 @@ import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
 
 
-
-
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -177,7 +175,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String priority} into a {@code Priority}.
-     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code priority} is invalid.
      */
@@ -193,7 +190,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String taskCategory} into a {@code TaskCategory}.
-     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code taskCategory} is invalid.
      */
@@ -220,8 +216,26 @@ public class ParserUtil {
         try {
             localDate = LocalDate.parse(trimmedDeadline);
         } catch (DateTimeParseException e) {
-            throw new ParseException(e.getMessage());
+            throw new ParseException("Deadline must be of the form YYYY-MM-DD");
         }
         return new TaskDeadline(localDate);
+    }
+
+    /**
+     * Parses a {@code String taskDone} into a {@code Boolean} representing whether the task is completed.
+     *
+     * @throws ParseException if the given {@code taskDeadline} is does not follow the format YYYY-MM-DD.
+     */
+    public static Boolean parseTaskIsDone(String taskDone) throws ParseException {
+        requireNonNull(taskDone);
+        String trimmedDeadline = taskDone.trim();
+        String trimmedLowerCasedDeadline = trimmedDeadline.toLowerCase();
+        if (trimmedLowerCasedDeadline.equals("t") || trimmedLowerCasedDeadline.equals("true")) {
+            return true;
+        } else if (trimmedLowerCasedDeadline.equals("f") || trimmedLowerCasedDeadline.equals("false")) {
+            return false;
+        } else {
+            throw new ParseException("Invalid DONE format");
+        }
     }
 }

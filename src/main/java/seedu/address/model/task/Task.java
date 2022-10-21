@@ -280,7 +280,7 @@ public class Task {
      * @param isDone in Boolean form.
      * @return isDone in String form.
      */
-    public static String covertIsDoneFromBooleanToString(boolean isDone) {
+    public static String convertIsDoneFromBooleanToString(boolean isDone) {
         return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
     }
 
@@ -291,7 +291,7 @@ public class Task {
      * @return isDone in Boolean form.
      */
     public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
-        return isDone == IS_DONE_TRUE_STRING;
+        return isDone.equals(IS_DONE_TRUE_STRING);
     }
 
     /**
@@ -301,6 +301,6 @@ public class Task {
      * @return Whether the String is a valid isDone value.
      */
     public static boolean isValidIsDone(String test) {
-        return test == IS_DONE_TRUE_STRING || test == IS_DONE_FALSE_STRING;
+        return test.equals(IS_DONE_TRUE_STRING) || test.equals(IS_DONE_FALSE_STRING);
     }
 }

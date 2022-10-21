@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
@@ -27,14 +28,16 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_CATEGORY,
-                        PREFIX_DEADLINE);
+                        PREFIX_DEADLINE, PREFIX_DONE);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    pe.getMessage() + "\n" + EditTaskCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
@@ -53,6 +56,9 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
+            editTaskDescriptor.setDone(ParserUtil.parseTaskIsDone(argMultimap.getValue(PREFIX_DONE).get()));
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {

@@ -14,16 +14,21 @@ public enum TaskCategoryType {
     PRESENTATION("presentation"),
     OTHERS("others");
 
-    private String name;
+    private final String name;
 
     TaskCategoryType(String name) {
         this.name = name;
     }
 
+    /**
+     * Returns String of valid task categories as user input arguments
+     *
+     * @return String of valid task categories
+     */
     public static String getValidTaskCategories() {
         StringBuilder str = new StringBuilder();
         for (TaskCategoryType c : TaskCategoryType.values()) {
-            str.append(" " + c.name);
+            str.append(" ").append(c.name);
         }
         return str.toString();
     }

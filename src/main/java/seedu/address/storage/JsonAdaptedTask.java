@@ -65,7 +65,7 @@ public class JsonAdaptedTask {
         priority = source.getPriority().toString();
         deadline = source.getDeadline().toString();
         email = source.getPersonEmailAddress().toString();
-        isDone = Task.covertIsDoneFromBooleanToString(source.isDone());
+        isDone = Task.convertIsDoneFromBooleanToString(source.isDone());
     }
 
     /**
