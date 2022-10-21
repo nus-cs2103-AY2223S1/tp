@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":BookFaceParser" as BookFaceParser LOGIC_COLOR
+participant ":PrimaryParser" as PrimaryParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -14,18 +14,18 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> BookFaceParser : parse(undo)
-activate BookFaceParser
+LogicManager -> PrimaryParser : parse(undo)
+activate PrimaryParser
 
 create UndoCommand
-BookFaceParser -> UndoCommand
+PrimaryParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> BookFaceParser
+UndoCommand --> PrimaryParser
 deactivate UndoCommand
 
-BookFaceParser --> LogicManager : u
-deactivate BookFaceParser
+PrimaryParser --> LogicManager : u
+deactivate PrimaryParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand

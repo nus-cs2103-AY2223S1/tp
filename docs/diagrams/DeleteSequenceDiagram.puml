@@ -3,9 +3,10 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":BookFaceParser" as BookFaceParser LOGIC_COLOR
+participant ":PrimaryParser" as PrimaryParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteUserCommand" as DeleteUserCommand LOGIC_COLOR
+participant ":DeleteUserArgumentsParser" as DeleteUserArgumentsParser LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,37 +14,36 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete user 1")
 activate LogicManager
 
-LogicManager -> BookFaceParser : parse("delete 1")
-activate BookFaceParser
+LogicManager -> PrimaryParser : parse("delete user 1")
+activate PrimaryParser
 
 create DeleteCommandParser
-BookFaceParser -> DeleteCommandParser
+PrimaryParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> BookFaceParser
+create DeleteUserArgumentsParser
+DeleteCommandParser --> DeleteUserArgumentsParser : parse("user 1")
+activate DeleteUserArgumentsParser
+DeleteCommand --> DeleteCommandParser
+
+
+deactivate DeleteUserArgumentsParser
 deactivate DeleteCommandParser
 
-BookFaceParser -> DeleteCommandParser : parse("1")
+PrimaryParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
-
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
-
-DeleteCommandParser --> BookFaceParser : d
+DeleteCommandParser --> PrimaryParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> BookFaceParser
+DeleteCommandParser -[hidden]-> PrimaryParser
 destroy DeleteCommandParser
 
-BookFaceParser --> LogicManager : d
-deactivate BookFaceParser
+PrimaryParser --> LogicManager : d
+deactivate PrimaryParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
