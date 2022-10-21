@@ -235,13 +235,13 @@ The list members feature allows users to view the members in their current team.
 The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in 
 the current team.
 
+Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the 
+`filteredPersons` in `ModelManager`. 
 
-In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` generates a 
-`ListMembersCommand`  object. `LogicManager` then executes the
-`ListMemberCommand` object, which updates the predicate in the `Model` component used to filter `Person` models to 
-display in the `PersonListPanel`. A `CommandResult` is generated with the number of members in the team.
+Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding 
+members of the team is shown. 
 
-The following sequence diagram illustrates what happens within the `Logic` component when list members command is 
+The following sequence diagram illustrates what happens within the `Logic` component when the list members command is 
 executed:
 ![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
 
