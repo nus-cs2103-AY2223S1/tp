@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.CommandResult.CommandType;
 import seedu.address.model.Model;
 import seedu.address.model.Model.ListType;
 
@@ -22,9 +21,11 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "List sorted %s";
 
-    private static final String DEFAULT_SORT_SUCCESS = "from oldest to newest entry";
-    private static final String ALPHA_SORT_SUCCESS = "alphabetically";
-    private static final String REVERSE_SORT_SUCCESS = "in reverse order";
+    public static final String DEFAULT_SORT_SUCCESS = "from oldest to newest entry";
+
+    public static final String ALPHA_SORT_SUCCESS = "alphabetically";
+
+    public static final String REVERSE_SORT_SUCCESS = "in reverse order";
 
     private SortBy method;
     private String successMsg;
@@ -54,7 +55,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         ListType type = model.getCurrentListType();
         model.sortList(type, this.method);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.successMsg), CommandType.LIST);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.successMsg));
     }
 
     @Override

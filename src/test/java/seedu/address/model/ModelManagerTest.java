@@ -11,12 +11,23 @@ import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TuitionClassBuilder;
+import seedu.address.testutil.TutorBuilder;
 
 public class ModelManagerTest {
 
@@ -153,6 +164,61 @@ public class ModelManagerTest {
     public void getCurrentListType_getListType() {
         modelManager.updateCurrentListType(Model.ListType.STUDENT_LIST);
         assertEquals(Model.ListType.STUDENT_LIST, modelManager.getCurrentListType());
+    }
+
+    @Test
+    public void sortList_executeForStudentList_sortAlpha() {
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(new StudentBuilder().withName("Mary").build());
+        studentList.add(new StudentBuilder().withName("Charlie").build());
+        studentList.add(new StudentBuilder().withName("Sam").build());
+        studentList.add(new StudentBuilder().withName("Wendy").build());
+        studentList.add(new StudentBuilder().withName("Mike").build());
+
+        Model studentModel = new ModelManager();
+        for (Student s : studentList) {
+            studentModel.addPerson(s);
+        }
+        studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.ALPHA);
+        studentList.sort(Comparator.comparing(student -> student.getName().fullName));
+        assertEquals(studentList, studentModel.getFilteredStudentList());
+    }
+
+    @Test
+    public void sortList_executeForTutorList_sortReverse() {
+        List<Tutor> tutorList = new ArrayList<>();
+        tutorList.add(new TutorBuilder().withName("Mary").build());
+        tutorList.add(new TutorBuilder().withName("Charlie").build());
+        tutorList.add(new TutorBuilder().withName("Sam").build());
+        tutorList.add(new TutorBuilder().withName("Wendy").build());
+        tutorList.add(new TutorBuilder().withName("Mike").build());
+
+        Model tutorModel = new ModelManager();
+        for (Tutor s : tutorList) {
+            tutorModel.addPerson(s);
+        }
+        tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.REVERSE);
+        Collections.reverse(tutorList);
+        assertEquals(tutorList, tutorModel.getFilteredTutorList());
+    }
+
+    @Test
+    public void sortList_executeForTuitionClassList_sortDefault() {
+        List<TuitionClass> tuitionClassList = new ArrayList<>();
+        tuitionClassList.add(new TuitionClassBuilder().withName("P5MATH").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("P2SCIENCE").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("P4ENG").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("SEC2GEOG").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("P1ARTS").build());
+
+        Model tuitionClassModel = new ModelManager();
+        for (TuitionClass tc : tuitionClassList) {
+            tuitionClassModel.addTuitionClass(tc);
+        }
+        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.ALPHA);
+        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.REVERSE);
+        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.DEFAULT);
+        assertEquals(tuitionClassList, tuitionClassModel.getFilteredTuitionClassList());
     }
 
     @Test
