@@ -41,7 +41,6 @@ public class UpcomingAppointment extends Appointment {
         }
         return true;
     }
-    
     @Override
     public String toString() {
         return "Upcoming Appointment Date: " + (value == null ? "None" : value);
