@@ -13,6 +13,11 @@ public class CommandSuggestorTest {
     private final CommandSuggestor commandSuggestor = new CommandSuggestor();
 
     @Test
+    public void autocomplete_emptyString_failure() {
+        assertThrows(AssertionError.class, () -> commandSuggestor.suggestCommand(""));
+    }
+
+    @Test
     public void autocomplete_validCommand_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
                                         + PREFIX_CONTACT + "<contact_index>" + " "
