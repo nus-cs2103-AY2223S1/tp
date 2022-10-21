@@ -64,12 +64,10 @@ public class DateTime {
             put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}$", "dd MMMM yyyy");
         }};
 
-    private static final Map<String, String> TIME_REGEXES = new HashMap<>() {{
-            put("^\\d{1,2}:\\d{2}$", "HH:mm");
-            put("^\\d{1,2}:\\d{2}:\\d{2}$", "HH:mm:ss");
-            put("^\\d{1,2}\\d{2}$", "HHmm");
-            put("^\\d{1,2}\\d{2}\\d{2}$", "HHmmss");
-        }};
+    private static final Pattern REGEX_TIME_GENERATOR = Pattern.compile(
+            "((?<hoursGroup>" + REGEX_HOURS + ")(:?)"
+                    + "(?<minutesGroup>" + REGEX_MINUTES + ")"
+                    + "((:?)(?<secondsGroup>" + REGEX_SECONDS + "))?)");
 
     public final LocalDate date;
     public final Optional<LocalTime> time;
@@ -84,6 +82,23 @@ public class DateTime {
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.date = parseDate(dateTime);
         this.time = parseTime(dateTime);
+    }
+
+    /**
+     * Returns a LocalTime object for an input time in the valid formats.
+     */
+    public static LocalTime generateLocalTime(String time) {
+        Matcher matcher = REGEX_TIME_GENERATOR.matcher(time);
+        matcher.matches();
+        String hours = matcher.group("hoursGroup");
+        String minutes = matcher.group("minutesGroup");
+        String seconds = matcher.group("secondsGroup");
+        String formatterString = "HHmm";
+        if (seconds != null) {
+            formatterString += "ss";
+            return LocalTime.parse(hours + minutes + seconds, DateTimeFormatter.ofPattern(formatterString));
+        }
+        return LocalTime.parse(hours + minutes, DateTimeFormatter.ofPattern(formatterString));
     }
 
     /**
@@ -136,9 +151,7 @@ public class DateTime {
         if (time == null) {
             return Optional.empty();
         }
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(
-                requireNonNull(determineDateFormat(time, TIME_REGEXES)));
-        return Optional.ofNullable(LocalTime.parse(time, dateFormat));
+        return Optional.ofNullable(generateLocalTime(time));
     }
 
     @Override
