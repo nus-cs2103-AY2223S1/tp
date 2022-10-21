@@ -57,7 +57,7 @@ public class Characteristics {
      */
     public boolean containsCharacteristic(String characteristic) {
         return Arrays.stream(characteristicsArray)
-                .anyMatch(c -> c.toLowerCase().contains(characteristic));
+                .anyMatch(c -> c.toLowerCase().contains(characteristic.toLowerCase()));
     }
 
     /**
