@@ -238,6 +238,11 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Get inpatients and outpatients feature (get /inp & get /outp)
+
+#### Current implementation
+
+The current implementation of get /inp and get /outp is similar to how other commands are executed 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -271,18 +276,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                                      | So that I can…​                                                        |
-| -------- | ---------------------- | ------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | doctor                 | search for patients by name                       | view medication patient is currently taking and prescribe new medication based on that info |
-| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data| quickly and efficiently contact the patient or someone near them                                                                     |
-| `* * *`  | hospital administrator | check the total number of patients in my hospital | know when my hospital is oversubscribed
-| `* * *`  | hospital staff         | retrieve patients by ward number                  | attend to them quickly |
-| `* * *`  | hospital staff         | retrieve patients by floor number                 | attend to them quickly |
-| `* * *`  | hospital staff         | retrieve patients by hospital wings               | attend to them quickly |
-| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup| knows where to direct them  |
-| `* * *`  | hospital staff         | create patient profiles                           | store new patients into the system                          |
-| `* * *`  |nurse                   | retrieve patients by medication                   | find out a list of patients under each medication             |
-| `* * *`  | hospital staff         | remove patients from the database                 | remove redundant entries that are no longer necessary                |
+| Priority | As a …                 | I want to …                                        | So that I can…                                                                              |
+|----------|------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | doctor                 | search for patients by name                        | view medication patient is currently taking and prescribe new medication based on that info |
+| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
+| `* * *`  | hospital administrator | check the total number of patients in my hospital  | know when my hospital is oversubscribed                                                     |
+| `* * *`  | hospital staff         | retrieve patients by ward number                   | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by floor number                  | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by hospital wings                | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | have a list of inpatients and outpatients          | easily see which patients are staying in the hospital                                       |
+| `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
+| `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
+| `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
 
 *{More to be added}*
 
