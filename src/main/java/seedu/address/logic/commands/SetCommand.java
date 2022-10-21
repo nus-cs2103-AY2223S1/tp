@@ -44,6 +44,7 @@ public class SetCommand extends Command {
             + PREFIX_TELEGRAM + "@johndoe";
 
     public static final String MESSAGE_UPDATE_SUCCESS = "Contact updated.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final SetPersonDescriptor setPersonDescriptor;
 
@@ -65,6 +66,9 @@ public class SetCommand extends Command {
         // Create the updated person
         Person updatedPerson = createUpdatedPerson(toUpdate, setPersonDescriptor);
 
+        if (!toUpdate.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
         // Updates the current person
         model.setPerson(toUpdate, updatedPerson);
 
