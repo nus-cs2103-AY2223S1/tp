@@ -1,6 +1,7 @@
 package swift.ui;
 
 import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -20,10 +21,9 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final Logger logger = LogsCenter.getLogger(CommandBox.class);
 
     private final CommandExecutor commandExecutor;
-
-    private static final Logger logger = LogsCenter.getLogger(CommandBox.class);
 
     @FXML
     private TextField commandTextField;
