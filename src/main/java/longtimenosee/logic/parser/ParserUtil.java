@@ -197,7 +197,7 @@ public class ParserUtil {
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
         String trimmedCompanyTag = company.trim();
-        if (!Title.isValidTitle(trimmedCompanyTag)) {
+        if (!Company.isValidCompany(trimmedCompanyTag)) {
             throw new ParseException(Company.MESSAGE_FORMAT_CONSTRAINTS);
         }
         return new Company(trimmedCompanyTag);

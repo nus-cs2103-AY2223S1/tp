@@ -3,6 +3,9 @@ package longtimenosee.model.policy;
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.AppUtil.checkArgument;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Represents what a given policy covers.
  * Guarantees: immutable; name is valid as declared in {@link #isValidCoverageName(String)}
@@ -12,7 +15,8 @@ public class Coverage {
             + "of the following types: "
             + "{LIFE, MOTOR, HEALTH, TRAVEL, PROPERTY, MOBILE, BITE}";
 
-    public static final String CONSTRAINTS = "LIFE, MOTOR, HEALTH, TRAVEL, PROPERTY, MOBILE, BITE";
+    public static final List<String> CONSTRAINTS =
+            Collections.unmodifiableList(List.of("LIFE", "MOTOR", "HEALTH", "TRAVEL", "PROPERTY", "MOBILE", "BITE"));
 
     public final String coverageType;
 
