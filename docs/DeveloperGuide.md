@@ -168,6 +168,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### \[Insert Numbering\] Add feature
+The Add feature is facilitated by `LogicManager`. The `AddCommandParser` parses the command arguments, and returns
+an `AddCommand` that is executed by the `LogicManager`.
+
+This feature allows the user to add a new Customer.
+
+**Below is a sample usage and how the add sequence behaves at each step.**
+
+1. User chooses the Customer he/she wants to add and enters the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`
+2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `AddCommandParser` and
+   returns the `AddCommand` containing the Customer with all the required fields
+3. The `LogicManager` executes the `AddCommand` and Customer is added to database
+4. The `CommandResult` reflects this Customer
+
+The following sequence diagram shows how the add feature works, following the flow of entering the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+The following activity diagram summarizes the flow of when a user enters an add command:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+**Aspect: How `add` is executed**
+* **Alternative 1 (current choice):** User can only add a customer with unique `PHONE_NUMBER` and `EMAIL` that does not already exist in database.
+
+  | Pros/Cons | Description                                                                                                                                 | Examples                                                                                                                                                                      |
+      |---------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user to add customers with same names but different phone numbers and email addresses                                                | The user can add Alex with phone number `99999999` and a different Alex with phone number `88888888`, where Alex is not a unique name.                                        |
+  | Cons      | If an existing customer changes phone number, and a new customer uses this customer's previous phone number, we cannot add the new customer | Alex changes his phone number from `99999999` to `88888888`, Bob got Alex's old phone number `99999999`, we cannot sign Bob up for membership without editing Alex's details. |
+
+* **Alternative 2:** User can only add a customer with unique `NAME`.
+
+  | Pros/Cons | Description                                                                                  | Examples                                                                                                       |
+      |----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Customers can choose not to disclose private details such as phone number and email address. | The user just needs to `add n/Bob` without asking for phone number or email address.                           |
+  | Cons      | User cannot add customers that have same names.                                              | The user cannot `add n/Alex` if there already exists an `Alex` in the database, since `Alex` is a common name. |
+
+* **Future Extension:** bobaBot can support adding more customer details such as birthday month to provide more timely deals for customers.
+
+
 ### \[Insert Numbering\] Edit feature
 The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
 an `EditCommand` that is executed by the `LogicManager`.
@@ -240,6 +280,45 @@ The activity diagram below illustrates how the `delete` operation works.
   | Cons      | Identifying the customer via `index` might be slow especially when there are customers with similar names | The user has to find out the `index` of the customer to delete before typing the command. Supposed that we want to delete Alex and there exists an Alex and alex, identifying the correct customer takes time and thus delay the execution of the command.  |
 
 * **Future Extension:** bobaBot can support multiple deletions so user do not have to delete customers one by one.
+
+
+### \[Insert Numbering\] Find feature
+The Find feature is facilitated by `LogicManager`. The `FindCommandParser` parses the command arguments, and returns
+an `FindCommand` that is executed by the `LogicManager`.
+
+This feature allows the user to find a specific user by field, or generally search for occurrences of keywords in all fields.
+The feature also supports fuzzy search based on `Soundex` when searching by names.
+
+**Below is a sample usage and how the find sequence behaves at each step.**
+
+1. User chooses the Customer he/ she wants to find and enters the command `find Aschcroft`
+2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `FindCommandParser` and
+   returns the `FindCommand` containing the predicate
+3. The `LogicManager` executes the `FindCommand` and update the filtered list with matching `Person`
+4. The `CommandResult` reflects the number of persons listed
+
+The following sequence diagram shows how the find feature works, following the flow of entering the command `find Aschcroft`:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes the flow of when a user enters a find command:
+
+![FindActivityDiagram](images/FindCommandActivityDiagram.png)
+
+**Aspect: How `find` is executed**
+* User can search for a specific customer via `PHONE_NUMBER` or `EMAIL`,
+or just search for occurrence of keywords (including name) vaguely.
+
+  | Pros/Cons | Description                                                                     | Examples                                                                                    |
+      |---------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | User can find the desired entry easily with a short command                     | For searching a customer with phone number `88888888`, the command `find 88888888` will do. |
+  | Pros      | User can also search for a specific entry when needed.                          | For searching the specific customer with email address, use `find e/address@example.com`.   |
+  | Cons      | User can exploit the software and get access to irrelevant customer information | User can list out all customers with digit `8` in their phone number by `find 8`.           |
+
+
+
+* **Future Extension:** bobaBot can support priority in listing of search results.
+
 
 ### \[Proposed\] Undo/redo feature
 
