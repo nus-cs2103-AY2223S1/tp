@@ -327,15 +327,14 @@ public class Task {
         return copy;
     }
 
-    public static String convertIsDoneFromBooleanToString(boolean isDone) {
-        return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
-    }
-
     /**
      * Returns the Boolean representation of isDone.
      *
      * @param isDone in String form.
      * @return isDone in Boolean form.
      */
+    public static String convertIsDoneFromBooleanToString(boolean isDone) {
+        return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
+    }
 
 }
