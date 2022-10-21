@@ -1,0 +1,20 @@
+@startuml
+start
+:User enters a List Command;
+:ListCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid format])
+    if () then ([subcommand is 'users'])
+        :Create and execute ListUsersCommand;
+        :UI updates to show all users;
+    else ([subcommand is 'books'])
+        :Create and execute ListBooksCommand;
+        :UI updates to show all books;
+    endif
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml
