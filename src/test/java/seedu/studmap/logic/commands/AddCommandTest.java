@@ -9,12 +9,14 @@ import static seedu.studmap.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.studmap.commons.core.GuiSettings;
+import seedu.studmap.commons.core.index.Index;
 import seedu.studmap.logic.commands.exceptions.CommandException;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ReadOnlyStudMap;
@@ -142,6 +144,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Student> getFilteredStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Index> getFilteredStudentIndices() {
             throw new AssertionError("This method should not be called.");
         }
 

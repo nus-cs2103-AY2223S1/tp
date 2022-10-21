@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.studmap.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
 import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.Name;
@@ -17,21 +17,21 @@ import seedu.studmap.model.tag.Tag;
  */
 public class EditStudentDescriptorBuilder {
 
-    private EditStudentDescriptor descriptor;
+    private EditCommandStudentEditor descriptor;
 
     public EditStudentDescriptorBuilder() {
-        descriptor = new EditStudentDescriptor();
+        descriptor = new EditCommandStudentEditor();
     }
 
-    public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {
-        this.descriptor = new EditStudentDescriptor(descriptor);
+    public EditStudentDescriptorBuilder(EditCommandStudentEditor descriptor) {
+        this.descriptor = new EditCommandStudentEditor(descriptor);
     }
 
     /**
      * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details
      */
     public EditStudentDescriptorBuilder(Student student) {
-        descriptor = new EditStudentDescriptor();
+        descriptor = new EditCommandStudentEditor();
         descriptor.setName(student.getName());
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
@@ -81,7 +81,7 @@ public class EditStudentDescriptorBuilder {
         return this;
     }
 
-    public EditStudentDescriptor build() {
+    public EditCommandStudentEditor build() {
         return descriptor;
     }
 }
