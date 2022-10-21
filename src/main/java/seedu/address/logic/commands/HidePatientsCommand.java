@@ -26,7 +26,7 @@ public class HidePatientsCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them and their appointments as 2 lists with\n"
             + "index numbers. Also able to hide by patient tags.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            +  "OR: " + "[" + PREFIX_TAG + "TAG [MORE_TAGS]]...\n"
+            + "OR: " + "[" + PREFIX_TAG + "TAG [MORE_TAGS]]...\n"
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " alice bob charlie";
 
     private Predicate<Person> predicate;
