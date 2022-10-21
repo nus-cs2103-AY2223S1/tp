@@ -147,7 +147,7 @@
 }
 
 .stack-pane {
-     -fx-background-color: white;
+     -fx-background-color: transparent;
 }
 
 .pane-with-border {
@@ -334,11 +334,12 @@
     -fx-background-color: #f0f1f2;
     -fx-background-insets: 0;
     -fx-padding: 12 10 12 10;
-    -fx-border-radius: 1px;
     -fx-border-color: grey;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #383838;
+    -fx-border-radius: 10, 10, 10, 10;
+    -fx-background-radius: 10, 10, 10, 10;
 }
 
 #resultDisplay .content {
