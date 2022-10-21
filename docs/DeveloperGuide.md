@@ -382,27 +382,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
           wish to add or edit one of the many tags the client possesses.
 
-### \[Proposed\] Filter command
-=======
 ### Filter Command
-**Aspect: How tags can be implemented:**
->>>>>>> ad384bb8de0efdc505c9ded5adb05374915a7164
-
-* **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
-    * Pros:
-        * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
-    * Cons:
-        * Forces the creation of a few unique commands. Not user-friendly as the user is expected
-          to memorise all commands.
-
-* **Alternative 2:** Building on top of the `add` and `edit` commands.
-    * Pros:
-        * It allows a more concise set of operations.
-    * Cons:
-        * `add` and `edit` commands will be slightly messier and may contain ambiguities.
-        * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
-          wish to add or edit one of the many tags the client possesses.
-
 #### Implementation
 
 The `filter`command provides a way for users to search for clients in Rapportbook. It extends from the `Command` class and results in an update of the `FilteredList<Person>` filtered list of the model.
