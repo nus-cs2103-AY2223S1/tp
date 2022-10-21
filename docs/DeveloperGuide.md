@@ -155,17 +155,41 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-Usage of `editClient` and `editMeeting`:
+`editClient` and `editMeeting`:
 
 `editClient` and `editMeeting` execute in a similar manner to each other.
 Let the term entity refer to either a client or a meeting.
-Every entity is uniquely identified by a UUID in storage, so essentially all fields in an entity can be edited without loss of uniqueness of the entity.
+Every entity is uniquely identified by a UUID in storage, so essentially all fields in an entity can be edited without loss of its uniqueness.
+
+Below is an activity diagram that summarizes how the updates are reflected in MyInsuRec.
+EditCommand::execute() caused the model to be updated first and then the storage
+
+<img src="images/EditActivityDiagram.png" width="200" />
+
+#### Design Considerations
+
+Aspect: Class that triggers model and storage update
+
+- Alternative Solution 1 (Current choice):
+- LogicManager::execute() causes both updates
+- Pros: Any error in updating storage or model can be identified within execute() 
+- Cons: execute command performs two functions, update model and update storage, which is not ideal for separating responsibilities.
+
+- Alternative Solution 2:
+- LogicManager causes Model update which internally triggers Storage update
+- Pros: Removes one instance of cohesion between Logic and Storage (Logic can access Storage via Model only)
+- Cons: Model is a single point of failure in this scheme.
+
+<img src="images/AlternativeEditActivityDiagram.png" width="250" />
+
+Rational for current choice:
+LogicManager is responsible for coordinating both Model and Storage updates because Model and Storage should be kept as separate entities.
 
 [Proposed] Multiple possible prefixes per command feature
 
 In this proposed feature, the user is provided with  multiple possible prefixes for defining fields in a command.
-For example, currently we can define a client's birthday using the `\b` prefix.
-However, since a birthday is essentially a date, a user may prefer to reuse the `\d` prefix instead (see `addMeeting` command).
+For example, currently we can define a client's birthday using the `b/` prefix.
+However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead (see `addMeeting` command).
 
 Proposed implementation 
 
@@ -181,18 +205,23 @@ From then on, the AddClientCommand can be built as expected.
 
 #### Design considerations
 
-Alternatives for storing prefixes:
+**Aspect: How prefixes are stored:**
 
-**Alternative 1:** Store each possible prefix as a String in a List.
+**Alternative 1 (current choice):** Prefix::getPrefix() returns a Pattern that findPrefixPosition() can match against using Matcher class.
+* Pros: Matcher has several useful methods for validating a match.
+* Case-insensitive matches can be made easily by setting a flag in the Pattern.
+* Cons: Regex string used to define a pattern may be difficult to read.
+* e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
 
-- Pros:
+**Alternative 2:** Store each possible prefix as a String in a List maintained by Prefix.
+* Pros:   String matches are easier to understand than regexes
+* e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
+* Cons: List of String returned is cumbersome for pattern matching, i.e. Iterate through every String in patternsForBirthday to look for a match.
 
-No need to import handle Pattern, and Matcher classes.
-String matches are easier to understand than regexes.
-- Cons:
-
-Do not offer as much flexibility as regexes.
-List of String returned by getPrefix() cumbersome to use.
+**Rationale for current choice:**
+* A single Pattern for each Prefix is more succinct that a List.
+* No need to iterate through a list of Strings to find a match.
+* Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes command;
+
+:Create and execute EditCommand;
+
+:Update model;
+
+if () then ([successful])
+    :Model causes storage update;
+    :Update storage;
+    endif
+    stop
+
+@enduml
