@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.FilterTaskDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskDeadlineContainsDatePredicate;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new FilterTaskDeadlineCommand object
