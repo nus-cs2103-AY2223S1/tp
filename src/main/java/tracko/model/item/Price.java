@@ -28,7 +28,7 @@ public class Price {
     /**
      * Checks if {@code test} is a valid Price.
      * @param test The price to validate.
-     * @boolean Representing if the input is a valid price.
+     * @return True if input is a valid price
      */
     public static boolean isValidPrice(Double test) {
         // BigDecimal bigDecimalTest = new BigDecimal(test);
