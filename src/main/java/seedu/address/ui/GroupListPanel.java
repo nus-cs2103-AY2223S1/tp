@@ -30,7 +30,8 @@ public class GroupListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using
+     * a {@code PersonCard}.
      */
     class TeamListViewCell extends ListCell<Group> {
         @Override
@@ -41,7 +42,7 @@ public class GroupListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TeamCard(group, getIndex() + 1).getRoot());
+                setGraphic(new GroupCard(group, getIndex() + 1).getRoot());
             }
         }
     }
