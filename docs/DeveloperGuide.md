@@ -598,7 +598,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least 1 entry in the specified list.
 
     1. Test case: `edit 1 t/e d/Edited Description`<br>
-       Expected: First contact is edit from the list. Details of the edited contact shown in the status message.
+       Expected: First contact is edited from the list. Details of the edited contact shown in the status message.
 
     1. Test case: `edit 0 t/e d/Edited Description`<br>
        Expected: No entry is edited. Error details shown in the status message.
@@ -606,6 +606,39 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `edit`, `edit x t/e`, `...` (where x is larger than the list size),
     `edit 1 y` (where y is a string that does not follow the command format)<br>
        Expected: Similar to previous.
+
+### View PieChart
+
+1. Viewing the PieChart for a list of entry
+
+    1. Prerequisites: At least 1 entry in the specified list.
+
+    1. Test case: `view t/e g/c`<br>
+       Expected: Updated PieChart of expenditures is displayed. Success details shown in the status message. 
+
+    1. Test case: `view t/e`<br>
+       Expected: Old Diagram remains shown. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is a string that does not follow the command format)<br>
+       Expected: Similar to previous.
+
+### Summary statistics
+
+1. Viewing the PieChart for a list of entry
+
+    1. Prerequisites: Multiple entries in expenditure and income lists.
+
+    1. Test case: `summary`<br>
+       Expected: Status message shows the total expenditure, total income and total balance.
+
+    1. Test case: `summary da/01-10-2022`<br>
+       Expected: Status message shows the total expenditure, total income and total balance for the 01-10-2022
+
+    1. Other correct summary commands to try: `summary da/x`, `...` (where x is a string that follows the date format)<br>
+       Expected: Similar to previous, but for the specific date `x`.    
+
+    1. Other incorrect delete commands to try: `summary x`, `...` (where x is a string that does not follow the command format)<br>
+       Expected: Error details shown in the status message.
 
 1. _{ more test cases …​ }_
 
