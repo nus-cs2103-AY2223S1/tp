@@ -10,8 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SELL_P
 
 import seedu.address.model.transaction.Transaction;
 
-
-
 /**
  * A utility class containing a list of {@code Company} objects to be used in tests.
  */
