@@ -430,6 +430,25 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding an appointment 
+1. Adding valid appointments until maximum appointment limit for a client is reached while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. No person has existing appointments scheduled.
+
+    1. Test case: `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+       Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
+
+    1. Test case: `aa 1 d/23-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+       Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message. 
+       The GUI correctly reorders the appointment list by date and time. 
+
+    1. Test case: `aa 1 d/22-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+      Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
+      The GUI correctly reorders the appointment list by date and time.
+    
+    1. Test case: `aa 1 d/24-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+       Expected: No appointment is added. Error details will show that the user has reached the maximum number of appointments(3) scheduled for this client
+    
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
