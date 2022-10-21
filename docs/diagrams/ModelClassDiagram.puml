@@ -5,31 +5,35 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nDisplayItem" as DisplayItem
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class "{{abstract}}\nDisplayItemList" as DisplayItemList<? extend DisplayItem>
-Class "{{abstract}}\nAbstractContainerItem" as AbstractContainerItem
-' Class AbstractContainerItem
+    Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+    Class "<<interface>>\nDisplayItem" as DisplayItem
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<interface>>\nAttribute" as Attribute
+    Class "<<interface>>\nModel" as Model
+    Class "{{abstract}}\nDisplayItemList" as DisplayItemList<? extend DisplayItem>
+    Class "{{abstract}}\nAbstractContainerItem" as AbstractContainerItem
+    Class "{{abstract}}\nAbstractDisplayItem" as AbstractDisplayItem
+    Class "{{abstract}}\nAbstractAttribute" as AbstractAttribute
+    
 
-Class AddressBook
-Class ModelManager
-Class UserPrefs
+    Class AddressBook
+    Class ModelManager
+    Class UserPrefs
 
-Class UniquePersonList
-Class UniqueTaskList
-Class UniqueGroupList
+    Class UniquePersonList
+    Class UniqueTaskList
+    Class UniqueGroupList
 
-Class Person
-Class Task
-Class Group
-' Class Address
-' Class Email
-' Class Name
-' Class Phone
-' Class Tag
-
+    Class Person
+    Class Task
+    Class Group
+    Class Address
+    Class Email
+    Class Name
+    Class Phone
+    Class Tag
+    Class Title
+    Class Description
 }
 
 Class HiddenOutside #FFFFFF
@@ -37,24 +41,44 @@ HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-Task ..|> DisplayItem
-Person .|> DisplayItem
+DisplayItem ..> Attribute
+
+Task --|> AbstractDisplayItem
+Person --|> AbstractDisplayItem
 Group --|> AbstractContainerItem
 
-AbstractContainerItem ..|> DisplayItem
-AbstractContainerItem -down-|> DisplayItemList
+AbstractDisplayItem ..|> DisplayItem
+AbstractDisplayItem --> "0..*" Attribute
+AbstractDisplayItem --> "0..1" DisplayItem
+AbstractContainerItem --|> AbstractDisplayItem
 
-DisplayItemList *-left-> "*" DisplayItem
+AbstractAttribute .left.|> Attribute
+
+Name --|> AbstractAttribute
+Address --|> AbstractAttribute
+Email --|> AbstractAttribute
+Phone --|> AbstractAttribute
+Tag --|> AbstractAttribute
+Title --|> AbstractAttribute
+Description --|> AbstractAttribute
+
+AbstractDisplayItem *--> "1" Name
+Task *--> "1" Title
+Task *--> "1" Description
+
+DisplayItemList *--> "*" DisplayItem
 
 UniqueGroupList --|> DisplayItemList
 UniqueTaskList --|> DisplayItemList
 UniquePersonList --|> DisplayItemList
 
+DisplayItemList -[hidden]right-> Person
+
 ModelManager .up.|> Model
 ModelManager -right-> "1" AddressBook
 Model ..> ReadOnlyUserPrefs
 Model ..> ReadOnlyAddressBook
-ModelManager --> "1" UserPrefs
+ModelManager -left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -64,15 +88,8 @@ AddressBook *--> "1" UniqueGroupList
 UniqueTaskList --> "~* all" Task
 UniqueGroupList --> "~* all" Group
 UniquePersonList --> "~* all" Person
-' Person *--> Name
-' Person *--> Phone
-' Person *--> Email
-' Person *--> Address
-' Person *--> "*" Tag
 
-' Name -[hidden]right-> Phone
-' Phone -[hidden]right-> Address
-' Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Person
+ModelManager --->"~* filtered" Person
+ModelManager --->"~* filtered" Task
+ModelManager --->"~* filtered" Group
 @enduml
