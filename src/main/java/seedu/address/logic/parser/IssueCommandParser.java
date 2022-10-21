@@ -19,8 +19,10 @@ import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
+import seedu.address.logic.commands.issue.MarkIssueCommand;
 import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
 import seedu.address.logic.commands.issue.SortIssueCommand;
+import seedu.address.logic.commands.issue.UnmarkIssueCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByDescriptionCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByPriorityCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByProjectCommand;
@@ -64,6 +66,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseSortIssueCommand(arguments);
         case ListIssueCommand.COMMAND_FLAG:
             return parseListIssueCommand(arguments);
+        case MarkIssueCommand.COMMAND_FLAG:
+            return parseMarkIssueCommand(arguments);
+        case UnmarkIssueCommand.COMMAND_FLAG:
+            return parseUnmarkIssueCommand(arguments);
         case SetIssueDefaultViewCommand.COMMAND_FLAG:
             return parseSetIssueDefaultViewCommand(arguments);
         case FindIssueCommand.COMMAND_FLAG:
@@ -257,7 +263,30 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return new ListIssueCommand();
     }
 
+    private MarkIssueCommand parseMarkIssueCommand(String arguments) throws ParseException {
+        try {
+            Status newStatus = new Status(true);
+            IssueId newIssueId = ParserUtil.parseIssueId(arguments);
+            return new MarkIssueCommand(newStatus, newIssueId);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkIssueCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
+    private UnmarkIssueCommand parseUnmarkIssueCommand(String arguments) throws ParseException {
+        try {
+            Status newStatus = new Status(false);
+            IssueId newIssueId = ParserUtil.parseIssueId(arguments);
+            return new UnmarkIssueCommand(newStatus, newIssueId);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkIssueCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
     private IssueCommand parseSetIssueDefaultViewCommand(String arguments) {
         return new SetIssueDefaultViewCommand();
+
     }
 }
