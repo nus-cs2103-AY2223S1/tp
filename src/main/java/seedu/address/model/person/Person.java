@@ -70,6 +70,10 @@ public class Person {
     }
 
     public HashMap<String, ArrayList<Assignment>> getAssignments() {
+        //Sort based on task workload and deadline
+        this.assignments.forEach((key, value) -> {
+            Collections.sort(value);
+        });
         return this.assignments;
     }
 

@@ -21,17 +21,17 @@ import seedu.address.model.person.PersonGroup;
 /**
  * Adds a person to a group in the address book.
  */
-public class AddGroupMemberCommand extends Command {
+public class DeleteGroupMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "addmember";
+    public static final String COMMAND_WORD = "deletemember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds member to a specified group. "
-            + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
-            + "Example: " + COMMAND_WORD + " g/Group Alpha n/Alice Chee";
-    public static final String MESSAGE_DUPLICATE_PERSON_IN_GROUP = "%1$s already exists in the group.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes member from the specified group"
+            + " Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
+            + "Example: " + COMMAND_WORD + " g/Group 1 n/Bobby Chua";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
-    public static final String MESSAGE_INVALID_PERSON = "%1$s is not in the address book.";
-    public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "%1$s was added to group: %2$s";
+    public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
+    public static final String MESSAGE_PERSON_NOT_IN_GROUP = "%1$s is not in group %2$s";
+    public static final String MESSAGE_DELETE_MEMBER_SUCCESS = "%1$s was deleted from group: %2$s";
 
     private final Name name;
     private final PersonGroup personGroup;
@@ -40,7 +40,7 @@ public class AddGroupMemberCommand extends Command {
      * @param name of the person in the filtered person list to add to group
      * @param group of the person to be added to
      */
-    public AddGroupMemberCommand(String group, String name) {
+    public DeleteGroupMemberCommand(String group, String name) {
         requireAllNonNull(name, group);
         this.name = new Name(name);
         this.personGroup = new PersonGroup(group);
@@ -55,43 +55,42 @@ public class AddGroupMemberCommand extends Command {
         try {
             personToGroup = personList.get(0);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PERSON, this.name));
+            throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
         // check if group exist
         ObservableList<Group> groupList = model.getGroupWithName(new GroupName(this.personGroup.getGroupName()));
-        Group groupToAddPerson;
+        Group groupToDeletePerson;
         try {
-            groupToAddPerson = groupList.get(0);
+            groupToDeletePerson = groupList.get(0);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_GROUP, this.personGroup));
+            throw new CommandException(MESSAGE_INVALID_GROUP);
         }
 
-        // check if person already in group
-        if (groupToAddPerson.contains(personToGroup)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_IN_GROUP, this.name, this.personGroup));
+        if (!groupToDeletePerson.contains(personToGroup)) {
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_IN_GROUP, this.name));
         }
-
         //change field
         ArrayList<PersonGroup> personGroupArrayList = personToGroup.getPersonGroups();
-        personGroupArrayList.add(this.personGroup);
+        personGroupArrayList.remove(this.personGroup);
 
         Person editedPerson = new Person(
                 personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
                 personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
                 personGroupArrayList);
 
-        //add person to the group
+        //deletes person from the group
         Set<Person> groupMembers = new HashSet<>();
-        groupMembers.addAll(groupToAddPerson.getMembers());
-        groupMembers.add(editedPerson);
-        Group editedGroup = new Group(groupToAddPerson.getName(), groupMembers);
+        groupMembers.addAll(groupToDeletePerson.getMembers());
+        groupMembers.remove(editedPerson);
+        Group editedGroup = new Group(groupToDeletePerson.getName(), groupMembers);
 
-        model.setGroup(groupToAddPerson, editedGroup);
+
+        model.setGroup(groupToDeletePerson, editedGroup);
         model.setPerson(personToGroup, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ASSIGN_GROUP_SUCCESS, this.name, editedGroup));
+        return new CommandResult(String.format(MESSAGE_DELETE_MEMBER_SUCCESS, this.name, editedGroup));
     }
 
     @Override
@@ -102,12 +101,12 @@ public class AddGroupMemberCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddGroupMemberCommand)) {
+        if (!(other instanceof DeleteGroupMemberCommand)) {
             return false;
         }
 
         // state check
-        AddGroupMemberCommand e = (AddGroupMemberCommand) other;
+        DeleteGroupMemberCommand e = (DeleteGroupMemberCommand) other;
         return name.equals(e.name)
                 && personGroup.equals(e.personGroup);
     }
