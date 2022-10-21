@@ -100,11 +100,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code person} from this {@code AddressBook}.
+     * {@code person} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removePerson(Person person) {
+        modules.removePersonFromModules(person);
+        persons.remove(person);
     }
 
     //// module-level operations

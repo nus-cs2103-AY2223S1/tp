@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of module that enforces uniqueness between its elements and does not allow nulls.
@@ -116,6 +117,20 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.setAll(modules);
+    }
+
+    /**
+     * Removes the provided person object from every module's set of persons.
+     *
+     * @param person The person to be removed from every module's set of persons.
+     */
+    public void removePersonFromModules(Person person) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Module module = internalList.get(i);
+            if (module.containsPerson(person)) {
+                module.removePerson(person);
+            }
+        }
     }
 
     /**

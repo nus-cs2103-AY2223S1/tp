@@ -149,6 +149,25 @@ public class Module {
     }
 
     /**
+     * Returns a boolean indicating if the specified person is contained in the module.
+     *
+     * @param person The person that is being checked for.
+     * @return Boolean indicating if the specified person is contained in the module.
+     */
+    public boolean containsPerson(Person person) {
+        return persons.contains(person);
+    }
+
+    /**
+     * Removes the specified person from the module's set of persons.
+     *
+     * @param person The person to be removed from the module's set of persons.
+     */
+    public void removePerson(Person person) {
+        persons.remove(person);
+    }
+
+    /**
      * Returns true if both modules have the same identity and data fields.
      * This defines a stronger notion of equality between two modules.
      */
