@@ -70,8 +70,8 @@ public class Class {
     public Class(LocalDate date, LocalTime startTime, LocalTime endTime) {
         requireAllNonNull(date, startTime, endTime);
         String stringOfDateTime = String.format("%s %s-%s", date.toString(),
-                startTime.format(DateTimeFormatter.ofPattern("hhmm")),
-                endTime.format(DateTimeFormatter.ofPattern("hhmm")));
+                startTime.format(DateTimeFormatter.ofPattern("HHmm")),
+                endTime.format(DateTimeFormatter.ofPattern("HHmm")));
 
         this.date = date;
         this.startTime = startTime;
