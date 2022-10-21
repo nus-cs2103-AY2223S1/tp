@@ -33,7 +33,7 @@ public class AddTaskCommand extends Command {
      * @throws ParseException when the task name does not follow the format specified.
      */
     public AddTaskCommand(String taskName) {
-        this.task = new Task(taskName, List.of());
+        this.task = new Task(taskName, List.of(), false);
     }
 
     @Override

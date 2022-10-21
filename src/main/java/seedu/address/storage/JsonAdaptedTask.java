@@ -19,17 +19,20 @@ class JsonAdaptedTask {
 
     private final String taskName;
     private final List<JsonAdaptedPerson> assignees = new ArrayList<>();
+    private boolean isComplete;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
-                           @JsonProperty("assignees") List<JsonAdaptedPerson> assignees) {
+                           @JsonProperty("assignees") List<JsonAdaptedPerson> assignees,
+                           @JsonProperty("isComplete") boolean isComplete) {
         this.taskName = taskName;
         if (assignees != null) {
             this.assignees.addAll(assignees);
         }
+        this.isComplete = isComplete;
     }
 
     /**
@@ -60,7 +63,7 @@ class JsonAdaptedTask {
         if (!Task.isValidName(taskName)) {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
         }
-        return new Task(taskName, assigneeList);
+        return new Task(taskName, assigneeList, isComplete);
     }
 
 }

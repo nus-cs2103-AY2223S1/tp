@@ -50,11 +50,12 @@ public class Task {
      *
      * @param name A valid task name.
      */
-    public Task(String name, List<Person> assignees) {
+    public Task(String name, List<Person> assignees, boolean completionStatus) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.assignees.setPersons(assignees);
+        this.completionStatus = completionStatus;
         deadline = null;
     }
 
