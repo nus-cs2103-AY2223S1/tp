@@ -16,7 +16,7 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Deleting a client: `delete`](#deleting-a-client--delete)
   * [Editing a client: `edit`](#editing-a-client--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
-  * [Filtering the address book display: `filter`](#filtering-the-address-book-display--filter)
+  * [Filtering buy or sell transactions: `filter`](#filtering-the-address-book-display--filter)
   * [Listing all clients: `list`](#listing-all-clients--list)
   * [Locating clients by name: `find`](#locating-clients-by-name-find)
   * [Viewing help: `help`](#viewing-help--help)
@@ -164,9 +164,16 @@ Exits the program.
 
 Format: `exit`
 
-### Filtering the address book display : `filter`
+### Filtering the transaction display : `filter`
 
-Coming Soon.
+Filters the buy or sell transactions of all the clients.
+
+Format: `filter buy` or `filter sell`
+
+* If no clients made any transactions, the transaction section will be blank.
+
+Examples:
+* `filter buy` Displays all buy transactions.
 
 ### Listing all clients : `list`
 
@@ -282,7 +289,7 @@ _Details coming soon ..._
 | **Edit**       | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG] `<br> e.g.,`edit 1 a/Blk 221 Yishun St 81`                   |
 | **Exit**       | `exit`                                                                                                                    |
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                |
-| **Filter**     | Coming Soon                                                                                                               |
+| **Filter**     | `filter buy` or `filter sell` <br> e.g., `filter sell`                                                                    |
 | **List**       | `list`                                                                                                                    |
 | **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                  |
 | **Sort**       | Coming Soon                                                                                                               |
