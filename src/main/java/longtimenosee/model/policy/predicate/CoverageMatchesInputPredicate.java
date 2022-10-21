@@ -13,6 +13,11 @@ import longtimenosee.model.policy.Policy;
 public class CoverageMatchesInputPredicate implements Predicate<Policy> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a CoverageMatchesInputPredicate object, which consists of a keywords input.
+     *
+     * @param keywords is the keywords input by the user to be compared.
+     */
     public CoverageMatchesInputPredicate(List<String> keywords) {
         assert !keywords.isEmpty();
         this.keywords = keywords;

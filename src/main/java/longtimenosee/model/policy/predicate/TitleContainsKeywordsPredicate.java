@@ -12,6 +12,11 @@ import longtimenosee.model.policy.Policy;
 public class TitleContainsKeywordsPredicate implements Predicate<Policy> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a TitleContainsKeywordsPredicate object, which consists of a keywords input.
+     *
+     * @param keywords is the keywords input by the user to be compared.
+     */
     public TitleContainsKeywordsPredicate(List<String> keywords) {
         assert !keywords.isEmpty();
         this.keywords = keywords;

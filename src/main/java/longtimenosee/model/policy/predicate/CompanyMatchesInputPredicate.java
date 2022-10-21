@@ -10,6 +10,11 @@ import longtimenosee.model.policy.Policy;
 public class CompanyMatchesInputPredicate implements Predicate<Policy> {
     private final String input;
 
+    /**
+     * Constructs a CompanyMatchesInputPredicate object, which consists of an input.
+     *
+     * @param input is the input by the user to be compared.
+     */
     public CompanyMatchesInputPredicate(String input) {
         assert input.length() != 0;
         this.input = input;
