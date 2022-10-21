@@ -199,6 +199,54 @@ argument of the method
 8. `execute` method of `SortTaskCommand` object returns a `CommandResult` object with
 the sorted successfully message as argument to the `LogicManager` object. 
 
+### Filter feature
+
+#### Implementation
+
+The proposed filter mechanism is facilitated by `FilterPredicate`. It implements `Predicate` with module and tast status conditions, stored as `moduleToCheck` and `statusToCheck`. Additionally, it implements the following operations:
+
+* `FilterPredicate#test(Task)` — Checks if a task fulfils the given module and/or completion status requirements.
+* `FilterPredicate#toString()` — Returns a string representing all the conditions used during the filter operation.
+
+These operations are exposed in the `Model` interface as `Model#updateFilteredTaskList`.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `filter m/CS2103T s/complete` command to filter the task list to show all CS2103T tasks that have been marked complete. The `filter` command calls `Model#UpdateFilteredTaskList`, causing the task list to be filtered with the given conditions for `moduleToCheck` and `statusToCheck`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `moduleToCheck` or `statusToCheck` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
+
+</div>
+
+Step 3. The user executes `filter m/CS2103T s/imcomplete` command to filter the task list to show all CS2103T tasks that have been marked incomplete. The updated `taskFilterdList` will be filtered based on all the tasks, not only the ones which have been filtered out in the previous filter command from step 2.
+
+Step 4. The user executes `mark 1`. The first task is no longer in `taskFilteredList` since its `statusToCheck` is now complete and no longer fulfils the conditions.
+
+The following sequence diagram shows how the filter operation works:
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the filter command:
+
+<img src="images/FilterActivityDiagram.png" width="750" />
+
+#### Design considerations:
+
+**Aspect: User command input format:**
+
+* **Alternative 1 (current choice):** Optional condition fields.
+    * Pros: Easier to extend and add more conditions.
+    * Cons: Harder to implement.
+
+* **Alternative 2:** Compulsory condition fields.
+    * Pros: Easier to implement.
+    * Cons: Users have to type unnecessary details in command.
 
 ### \[Proposed\] Undo/redo feature
 
