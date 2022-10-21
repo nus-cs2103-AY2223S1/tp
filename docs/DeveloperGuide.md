@@ -93,9 +93,9 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `TuthubParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a tutor).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TuthubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TuthubParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores tuthub data i.e., all `Tutor` objects (which are contained in a `UniqueTutorList` object).
+* stores the currently 'selected' `Tutor` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Tutor>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Tuthub`, which `Person` references. This allows `Tuthub` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Tuthub`, which `Tutor` references. This allows `Tuthub` to only require one `Tag` object per unique tag, instead of each `Tutor` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both tuthub data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TuthubStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,90 +154,40 @@ Classes used by multiple components are in the `tuthubbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### View Feature
+<ins>Implementation</ins>
 
-#### Proposed Implementation
+Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
+- `CommandResult#isView` - Indicates if the current command is a `view` command.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Tuthub` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step (omitting the parsing details).
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Step 1: The user enters the command `view 1`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Step 2: Upon parsing, a new `ViewCommand` based on the valid index.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Step 3: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 4: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed, which is passed into `MainWindow#handleView(Tutor tutor)`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 5: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![ViewSequenceDiagram](./images/ViewSequenceDiagram.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+<ins>Design Considerations</ins>
 
-![UndoRedoState2](images/UndoRedoState2.png)
+**Aspect: Method to pass a `Tutor` to UI**
+- **Alternative 1:** Store the tutor to be viewed as a field in `Model` **(chosen)**.
+  - Pros: Better OOP practice since `Model` handles all the data related to tutors. 
+  - Cons: The `tutorToView` may be null if there are no tutors in the list to be displayed, so more checks may be needed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Tuthub state, then there are no previous Tuthub states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone Tuthub states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+- **Alternative 2:** Store the tutor in `CommandResult`.
+  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to 
+  the `MainWindow` directly through `CommandResult`.
+  - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not 
+  require a `Tutor` object to be stored.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,10 +217,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 * _Problem_: Multiple entries of the same tutor information as they have to repeatedly enter the same information when applying for different jobs
-* _Solution_: Our address book detects duplicate tutor profiles and merges the additional information into the existing profile.
+* _Solution_: Our tuthub detects duplicate tutor profiles and merges the additional information into the existing profile.
   <br/><br/>
 * _Problem_: Too many tutors with no specific way to organise them systematically.
-* _Solution_: Our address book can categorise the tutors based on different criteria and provides features to search for profiles easily.
+* _Solution_: Our tuthub can categorise the tutors based on different criteria and provides features to search for profiles easily.
 
 ### User stories
 
@@ -278,30 +228,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                               | I can …​                             | So that I can…​                                                                   |
 |--------| --------------------------------------|--------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *` | user                                  | list all tutor profiles              | get a quick view of all available tutors                                                  |
-| `* * *` | user                                  | add a new tutor                      | track their profiles                                                                      |
-| `* * *` | user                                  | find a specific tutor by name easily | filter tutor names                                                                        |
-| `* * *` | user                                  | delete a tutor profile               | remove tutors that are no longer available for work                                       |
-| `* * *` | user                                  | save data                            | there is a local backup on the computer                                                   |
-| `* * *` | user                                  | exit the program                     |                                                                                           |
-| `* *`  | user                                  | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
+| `* * *` | NUS Computing Professor                                  | list all tutor profiles              | get a quick view of all available tutors                                                  |
+| `* * *` | NUS Computing Professor                                  | add a new tutor                      | track their profiles                                                                      |
+| `* * *` | NUS Computing Professor                                  | find a specific tutor by name easily | filter tutor names                                                                        |
+| `* * *` | NUS Computing Professor                                  | delete a tutor profile               | remove tutors that are no longer available for work                                       |
+| `* * *` | NUS Computing Professor                                  | save data                            | there is a local backup on the computer                                                   |
+| `* * *` | NUS Computing Professor                                  | exit the program                     |                                                                                           |
+| `* *`  | NUS Computing Professor                                  | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
 
 
 ### Use cases
 
-(For all use cases below, the **System** is `Tuthub` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Tuthub` and the **Actor** is the `NUS Computing Professor`, unless specified otherwise)
 
 **Use case: UC1 - Listing all tutor profiles**
 
-System: TutHub <br>
-Use case: UC1 - Listing all tutor profiles <br>
-Actor: User <br>
-Guarantees: All stored user profiles to be shown. (if any)
-
 **MSS**
 
-1.  User requests to list persons.
-2.  Tuthub shows a list of persons.
+1.  User requests to list all tutors.
+2.  Tuthub shows a list of tutors.
 
     Use case ends.
 
@@ -311,12 +256,25 @@ Guarantees: All stored user profiles to be shown. (if any)
 
   Use case ends.
 
-**Use case: UC2 - Add a person**
+**Use case: UC2 - Viewing a specific tutor profile**
 
-System: TutHub <br>
-Use case: UC2 - Add tutor profile <br>
-Actor: User <br>
-Guarantees: Tutor profile will be stored when user correctly inputs details.
+**MSS**
+
+1. User requests to list all tutors.
+2. User requests to view a specific tutor's details using their displayed index on the list.
+3. Tuthub displays the full details of the Tutor on a side panel and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The input index is invalid.
+    * Tuthub displays an error message.
+
+      Use case resumes from step 2.  
+    
+
+**Use case: UC3 - Add a tutor**
 
 **MSS**
 
@@ -335,19 +293,14 @@ Guarantees: Tutor profile will be stored when user correctly inputs details.
 
     Use case ends.
 
-**Use case: UC3 - Delete a person**
-
-System: TutHub <br>
-Use case: UC3 - Deleting a tutor profile <br>
-Actor: User <br>
-Guarantees: Tutor profile will be deleted.
+**Use case: UC4 - Delete a tutor**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Tuthub shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  Tuthub deletes the person.
+1.  User requests to list tutors.
+2.  Tuthub shows a list of tutors.
+3.  User requests to delete a specific tutor in the list.
+4.  Tuthub deletes the tutor.
 
     Use case ends.
 
@@ -363,12 +316,7 @@ Guarantees: Tutor profile will be deleted.
 
       Use case resumes at step 2.
 
-**Use case: UC4 - Exit the program**
-
-System: TutHub <br>
-Use case: UC4 - Exit TutHub <br>
-Actor: User <br>
-Guarantees: TutHub application will close.
+**Use case: UC5 - Exit the program**
 
 **MSS**
 
@@ -377,12 +325,11 @@ Guarantees: TutHub application will close.
 
     Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 tutors without a noticeable sluggishness in performance for typical usage.
 3. Should work without internet connection.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. Performance requirement: The system should respond within a second.
@@ -397,7 +344,6 @@ Guarantees: TutHub application will close.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `GENDER`, `EMAIL`, etc.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -419,26 +365,44 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
-### Deleting a person
+### Viewing a tutor's full details
 
-1. Deleting a person while all persons are being shown
+1. Viewing a tutor's full details
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `view 1`<br>
+        Expected: Details panel of the first tutor in the list is displayed. Details of the tutor viewed shown in the status message.
+
+    3. Test case: Click on the first tutor card in the list with mouse.<br>
+       Expected: Details panel of the first tutor in the list is displayed. Details of the tutor viewed shown in the status message.
+   
+    4. Test case: `view 0`<br>
+       Expected: No tutor panel displayed. Error details shown in the status message.
+
+    5. Other incorrect view commands to try: `view`, `view x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Deleting a tutor
+
+1. Deleting a tutor while all tutors are being shown
+
+   1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No tutor is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
