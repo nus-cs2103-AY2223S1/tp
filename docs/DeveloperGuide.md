@@ -154,6 +154,69 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### [Implemented] Create Meetings with Persons in the Address Book
+#### Implementation
+
+The command to create meetings consists of these various classes:
+- Class `CreateMeetingCommand` which extends the abstract class `Command`
+- Class `CreateMeetingCommandParser` which implements the interface `Parser<CreateMeetingCommand>`
+- Class `Meeting`
+- Interface `ReadOnlyMeetingList`
+- Class `MeetingList` which implements the interface `ReadOnlyMeetingList`
+- Class `UniqueMeetingList` which implements the interface `Iterable<Meeting>`
+
+As with all other commands in Yellow Pages, the create meeting feature contains a subclass of `Parser` which is
+involved in `AddressBookParser` and a subclass of `Command` that returns an appropriate new `CommandResult` Object.
+
+Creating the `ReadOnlyMeetingList` interface and implementing it in the class `MeetingList` allows meetings to be stored
+can be stored in a system similar to how Persons are stored in the `Addressbook`, which involves a set of list methods
+similar to those in `AddressBook`. `MeetingList` allows meetings to be stored in a centralised location while the 
+software is running. 
+
+The class `UniqueMeetingList` mirrors the class `UniquePersonList`, where a list of distinct meetings are stored in 
+an `ObservableList<Meeting>`. Every distinct `Meeting` Object created will be stored in a `UniqueMeetingList` 
+encapsulated by `MeetingList`.
+
+The class `Meeting` encapsulates the information of a meeting created by the user, which includes:
+- `peopleToMeetArray`: an `ArrayList` of the Persons to meet
+- `peopleToMeetList`: a `UniquePersonList` of the Persons to meet
+- `meetingDescription`: a `String` containing the title/ description of the meeting
+- `meetingDateAndTime`: a `String` containing the date and time of the meeting
+- `meetingLocation`: a `String` containing the location of the meeting
+
+Command: `<Names of people to meet (from address book, split names by }} )> ;;; <Title of meeting> ;;; 
+<Date and time of meeting (in dd-MM-yyyy HHmm format, time is optional)> ;;; <location of meeting>`
+
+Example:
+`meet Alex Yeoh }} Bernice Yu ;;; Study Session ;;; 06-10-2022 2015 ;;; UTown`
+
+// TODO
+Primarily there are ??? main cases for this command:
+- The name(s) input by the user match existing Person(s) in the `AddressBook` 
+and the date and time of the meeting in the user input is in the correct format
+-- this is the intended usage of the command and a new Meeting object is created
+1. Arguments after the command word `meet` is empty
+-- Throws a `ParseException` and an error message will be displayed
+2. Name of person to meet does not match any name in the `AddressBook `
+-- Throws a `PersonNotFoundException` and an error message will be displayed
+3. The date and time of the meeting is not in `dd-MM-yyyy HHmm (time is optional) format`
+  -- Throws a `ParseException` and an error message will be displayed
+4. The user adds duplicate Persons to meet to the meeting
+  -- Throws a `DuplicatePersonException` and an error message will be displayed
+5. The user adds the wrong number of information to the create meeting command
+  -- Throws an `IndexOutOfBoundsException` and an error message will be displayed
+6. The user adds a meeting with the same Persons and at the same date and time as an existing meeting
+  -- Throws a `DuplicateMeetingException` and an error message will be displayed
+
+
+The diagram below should sufficiently explain the main cases for the command.
+
+![FilterMeetingsActivityDiagram](images/CreateMeetingSequenceDiagram.png)
+
+#### Sequence Diagram for Filter Meetings between Dates
+![FilterMeetingsSequenceDiagram](images/CreateMeetingActivityDiagram.png)
+
+
 ### [Implemented] Filter Meetings between Dates
 #### Implementation
 

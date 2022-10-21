@@ -3,13 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.CreateMeetingCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new CreateMeetingCommand object
  */
-public class CreateMeetingCommandParser implements Parser<FindCommand> {
+public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the CreateMeetingCommand

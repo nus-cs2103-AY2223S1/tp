@@ -23,9 +23,9 @@ public class CreateMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Schedules a new meeting between you and another user.\n"
-        + "Parameters: NAMES OF PEOPLE (from address book) YOU ARE MEETING, (split names by }} ) ;;;\n"
+        + "Parameters: Names of people to meet (from address book, split names by }} ) ;;;\n"
         + "Title of meeting;;;\n"
-        + "Date and time of meeting (in dd-MM-yyyy HHmm) format;;;\n"
+        + "Date and time of meeting (in dd-MM-yyyy HHmm format);;;\n"
         + "location of meeting\n"
         + "Example: " + COMMAND_WORD + " Alex Yeoh }} Bernice Yu ;;; Study Session ;;; 06-10-2022 2015 ;;; UTown";
 
