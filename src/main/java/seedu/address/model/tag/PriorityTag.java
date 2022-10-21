@@ -1,12 +1,14 @@
 package seedu.address.model.tag;
 
+
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Priority Tag represents a tag which contains the priority status of the task.
  */
-public class PriorityTag {
+public class PriorityTag implements Comparable<PriorityTag> {
     public static final String PRIORITY_TAG_CONSTRAINTS =
             "Priority status of tag should only be HIGH, MEDIUM or LOW";
     public static final String VALIDATION_REGEX = "high|low|medium";
@@ -36,6 +38,32 @@ public class PriorityTag {
         }
         String testTagStatus = testTag.toLowerCase();
         return testTagStatus.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(PriorityTag otherPriorityTag) {
+        if (this.status.equalsIgnoreCase("high")) {
+            if (otherPriorityTag.status.equalsIgnoreCase("high")) {
+                return 0;
+            }
+            return -1;
+        }
+        if (this.status.equalsIgnoreCase("medium")) {
+            if (otherPriorityTag.status.equalsIgnoreCase("high")) {
+                return 1;
+            }
+            if (otherPriorityTag.status.equalsIgnoreCase("medium")) {
+                return 0;
+            }
+            return -1;
+        }
+        if (this.status.equalsIgnoreCase("low")) {
+            if (otherPriorityTag.status.equalsIgnoreCase("low")) {
+                return 0;
+            }
+            return 1;
+        }
+        return -1;
     }
 
     @Override

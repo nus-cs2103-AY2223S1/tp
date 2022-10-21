@@ -71,7 +71,7 @@ public class Exam {
 
 
     /**
-     * Returns true if both exam have the same data fields.
+     * Returns true if both exams have the same data fields.
      */
     public boolean isSameExam(Exam otherExam) {
         return this.equals(otherExam);
@@ -110,7 +110,8 @@ public class Exam {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getModule())
+        builder.append("Module: ")
+                .append(getModule())
                 .append("; ExamDescription: ")
                 .append(getDescription())
                 .append("; ExamDate: ")

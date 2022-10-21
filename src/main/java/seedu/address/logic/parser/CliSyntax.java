@@ -21,5 +21,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
     public static final Prefix PREFIX_EXAM_INDEX = new Prefix("e/");
     public static final Prefix PREFIX_TASK_INDEX = new Prefix("t/");
+    public static final Prefix PREFIX_CRITERIA = new Prefix("c/");
 
 }

@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.ModuleCode;
@@ -205,6 +206,22 @@ public class ParserUtil {
             throw new ParseException(TaskDescription.DESCRIPTION_CONSTRAINTS);
         }
         return new TaskDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses the criteria given to create a new Criteria object.
+     *
+     * @param criteria The criteria given for sorting.
+     * @return The criteria object which contains the criteria used for sorting.
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static Criteria parseCriteria(String criteria) throws ParseException {
+        requireNonNull(criteria);
+        String strippedCriteria = criteria.strip();
+        if (!Criteria.isValidCriteria(strippedCriteria)) {
+            throw new ParseException(Criteria.CRITERIA_CONSTRAINTS);
+        }
+        return new Criteria(strippedCriteria);
     }
 
     /**

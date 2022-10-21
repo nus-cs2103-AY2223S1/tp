@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.DistinctExamList;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
@@ -141,7 +142,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTask(Task task) {
         tasks.addTask(task);
+        modules.updateTotalNumOfTasks(task.getModule(), tasks);
+        modules.updateNumOfCompletedTasks(task.getModule(), tasks);
     }
+
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
@@ -157,6 +161,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void replaceTask(Task target, Task editedTask, boolean isSameTask) throws DuplicateTaskException {
         requireAllNonNull(target, editedTask, isSameTask);
         tasks.replaceTask(target, editedTask, isSameTask);
+        modules.updateNumOfCompletedTasks(target.getModule(), tasks);
+        modules.updateTotalNumOfTasks(target.getModule(), tasks);
+        modules.updateNumOfCompletedTasks(editedTask.getModule(), tasks);
+        modules.updateTotalNumOfTasks(editedTask.getModule(), tasks);
     }
 
     public void setTasks(List<Task> tasks) {
@@ -169,6 +177,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+        modules.updateNumOfCompletedTasks(key.getModule(), tasks);
+        modules.updateTotalNumOfTasks(key.getModule(), tasks);
     }
 
     //// util methods
@@ -223,6 +233,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(target, editedModule);
 
         modules.replaceModule(target, editedModule);
+    }
+
+    /**
+     * Sorts the task list in the address book.
+     *
+     * @param criteria The criteria used for sorting the task list.
+     */
+    public void sortTaskList(Criteria criteria) {
+        requireNonNull(criteria);
+        tasks.sortTasks(criteria);
     }
 
     @Override
