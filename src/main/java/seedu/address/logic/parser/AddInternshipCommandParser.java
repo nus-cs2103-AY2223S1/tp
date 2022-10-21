@@ -51,11 +51,7 @@ public class AddInternshipCommandParser implements Parser<AddInternshipCommand> 
                 ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_INTERNSHIP_STATUS).get());
 
         String interviewDateStr = argMultimap.getValue(PREFIX_INTERVIEW_DATE).orElse(null);
-        InterviewDate interviewDate = null;
-        if (interviewDateStr != null) {
-            interviewDate = ParserUtil.parseInterviewDate(interviewDateStr);
-        }
-
+        InterviewDate interviewDate = ParserUtil.parseInterviewDate(interviewDateStr);
         String linkIndexStr = argMultimap.getValue(PREFIX_LINK_INDEX).orElse(null);
         Index linkIndex = null;
         if (linkIndexStr != null) {

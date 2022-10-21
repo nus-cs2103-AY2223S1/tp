@@ -95,8 +95,8 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        if (phone == null) {
-            this.phone = null;
+        if (phone == null || phone.isBlank()) {
+            this.phone = new Phone(null);
         } else {
             this.phone = new Phone(phone);
         }
@@ -107,8 +107,8 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        if (email == null) {
-            this.email = null;
+        if (email == null || email.isBlank()) {
+            this.email = new Email(null);
         } else {
             this.email = new Email(email);
         }

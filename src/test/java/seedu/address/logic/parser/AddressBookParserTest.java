@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -22,6 +24,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListPersonCommand;
+import seedu.address.logic.commands.SortPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -86,6 +89,20 @@ public class AddressBookParserTest {
     public void parseCommand_listPerson() throws Exception {
         assertTrue(parser.parseCommand(ListPersonCommand.COMMAND_WORD) instanceof ListPersonCommand);
         assertTrue(parser.parseCommand(ListPersonCommand.COMMAND_WORD + " 3") instanceof ListPersonCommand);
+    }
+
+    @Test
+    public void parseCommand_sortPerson_incorrectFormat() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SortPersonCommand.MESSAGE_USAGE), () -> parser.parseCommand(SortPersonCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_sortPerson_correctFormat() throws Exception {
+        assertTrue(parser.parseCommand(
+                SortPersonCommand.COMMAND_WORD + " " + PREFIX_NAME) instanceof SortPersonCommand);
+        assertTrue(parser.parseCommand(
+                SortPersonCommand.COMMAND_WORD + " " + PREFIX_COMPANY_NAME) instanceof SortPersonCommand);
     }
 
     @Test

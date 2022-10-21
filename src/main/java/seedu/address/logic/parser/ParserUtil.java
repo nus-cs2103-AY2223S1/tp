@@ -107,7 +107,6 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
-
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -115,7 +114,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        if (email == null || email.isBlank()) {
+            return new Email(null);
+        }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -130,7 +131,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
+        if (tag == null || tag.isBlank()) {
+            return null;
+        }
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
@@ -145,9 +148,7 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            if (!tagName.isBlank()) {
-                tagSet.add(parseTag(tagName));
-            }
+            tagSet.add(parseTag(tagName));
         }
         return tagSet;
     }
@@ -237,7 +238,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code interviewDate} is invalid.
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
-        requireNonNull(interviewDate);
+        if (interviewDate == null || interviewDate.isBlank()) {
+            return new InterviewDate(null);
+        }
         String trimmedInterviewDate = interviewDate.trim();
         if (!InterviewDate.isValidDatetimeStr(trimmedInterviewDate)) {
             throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);

@@ -48,15 +48,9 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         }
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         String emailStr = argMultimap.getValue(PREFIX_EMAIL).orElse(null);
-        Email email = null;
-        if (emailStr != null) {
-            email = ParserUtil.parseEmail(emailStr);
-        }
+        Email email = ParserUtil.parseEmail(emailStr);
         String phoneStr = argMultimap.getValue(PREFIX_PHONE).orElse(null);
-        Phone phone = null;
-        if (phoneStr != null) {
-            phone = ParserUtil.parsePhone(phoneStr);
-        }
+        Phone phone = ParserUtil.parsePhone(phoneStr);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String linkIndexStr = argMultimap.getValue(PREFIX_LINK_INDEX).orElse(null);
         Index linkIndex = null;

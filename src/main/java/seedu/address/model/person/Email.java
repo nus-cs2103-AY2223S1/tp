@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -53,14 +55,15 @@ public class Email {
 
     @Override
     public String toString() {
+        if (value == null) {
+            return "No email";
+        }
         return value;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+        return Objects.equals(value, ((Email) other).value);
     }
 
     @Override
