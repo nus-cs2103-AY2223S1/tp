@@ -51,9 +51,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
-
-    @FXML
     private StackPane reminderbarPlaceholder;
 
     @FXML
@@ -133,9 +130,6 @@ public class MainWindow extends UiPart<Stage> {
 
         reminderBarFooter = new ReminderBarFooter(logic.getInternshipBook());
         reminderbarPlaceholder.getChildren().add(reminderBarFooter.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInternshipBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
