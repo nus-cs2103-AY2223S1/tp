@@ -7,6 +7,40 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 
 ## Table of Contents
 
+* [Introduction to RC4HDB]()
+* [Using this guide]()
+* [Quick start]()
+* [Features]()
+  * [Getting help]()
+  * [Modifying residents]()
+    * [Adding a resident `add`]()
+    * [Editing an existing resident `edit`]()
+    * [Deleting an existing resident `delete`]()
+    * [Clearing all residents `clear`]()
+    * [Resident field format]()
+  * [Viewing residents]()
+    * [Listing all residents `list`]()
+    * [Finding residents `find`]()
+    * [Showing resident fields `show`]()
+    * [Hiding resident fields `hide`]()
+  * [File management]()
+    * [Creating a new data file `file create`]()
+    * [Deleting an existing data file `file delete`]()
+    * [Switching data file `file switch`]()
+    * [Importing from CSV file `import`]()
+    * [Exporting to CSV file `export`]()
+    * [CSV file format]()
+  * [Data management]()
+    * [Saving data]()
+    * [Editing data file]()
+  * [Keyboard shortcuts]()
+  * [Accessing command history]()
+  * [Exiting RC4HDB `exit`]()
+* [FAQ]()
+* [Glossary]()
+* [Authors]()
+* [Command Summary]()
+
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help : help](ug-pages/help/help.md#viewing-help--help)
@@ -28,7 +62,6 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 * [Keyboard Shortcuts](#keyboard-shortcuts)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
