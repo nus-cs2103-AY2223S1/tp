@@ -335,6 +335,52 @@ obtaining the index, it would be used to instantiate a `RemoveCommand`. When the
 first obtain the `Module` using the index. Then it would remove the `Module` from the `ModuleList`. Using the saved
 `Module` it would then remove all `Task` in the `TaskBook` with the `Module`.
 
+### Navigation
+
+#### Change Current Module
+
+The `cd` command allows users to set a module as the **current module**, which accomplishes two things:
+* Firstly, it filters the current task list in the UI to only show tasks from the corresponding module
+* Additionally, all further commands are parsed in the context of the corresponding module. For instance, commands that require a task index, such as `remove -t 1`, will now base the index on the *updated filtered* task list.
+
+The relevant commands are:
+* **`cd <module code>`** sets the current module to the module with the specified module code
+* **`cd ..`** sets the current module to `null`, if it is not already `null`
+
+#### Design Considerations
+
+The syntax and command word were aspects that we took into consideration in the design process.
+
+1. **Using the shorthand word `cd` and similar syntax e.g. `cd ..` (Current Implementation)**
+  * Pro: Users who are familiar with CLI applications will be able to use similar syntax for navigation inside the application
+  * Pro: Users will be able to navigate through the application faster, due to the shorter command word and syntax
+  * Con: Users who are not familiar with CLI applications would have to remember a specific command word that may not be very intuitive
+
+2. **Using a longer command word e.g. `enter` and `exit`**
+  * Pro: The command word is more universally intuitive, especially for users who are not familiar with CLI applications
+  * Con: Users who are already familiar with CLI applications will have to relearn navigation using a different command
+  * Con: Users will have to type out a longer command word and syntax, which will reduce the speed at which a user can navigate through the application
+
+Taking into account that our [target user profile](#product-scope) is one that is familiar with using CLI apps, we chose option 1 as it provided the most benefit for such a user. In particular, it contributes to the goal of allowing the user to accomplish tasks (in this case navigation) in a shorter time using the CLI.
+
+#### Current implementation
+
+The current module is a `ModCode` stored as a variable in [ModelManager](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/model/ModelManager.java). Its value is used as part of a custom predicate that is used to call `Model::updateFilteredTaskList`, in order to filter the tasks to only display those belonging to the corresponding module.
+
+The following activity diagram shows the execution and control flow for the `cd` command.
+
+<img src="images/CdActivityDiagram.png" width="1000" />
+
+As seen from the diagram, when the user enters the command `cd ..` to exit from the currently selected module, a check is performed to determine whether there *is* a current module.
+
+In the case where there is no current module, i.e. the user is already at the 'root' (and all modules/tasks are listed), an error message is shown to the user alerting them of this fact. This improves the user experience as it prevents the case of a user repeatedly entering the `cd ..` command and wondering why the display never changes.
+
+The sequence diagram below shows the flow of the interactions between the different components upon execution of the command `cd CS2106`.
+
+In the diagram, the predicates `modulePredicate` and `taskPredicate` are the custom predicates used to filter the module and task lists, respectively. They are within the `setCurrentModule` method in `Model`.
+
+<img src="images/CdSequenceDiagram.png" width="1000" />
+
 ### Tasks
 
 #### Task archival
