@@ -26,7 +26,7 @@ public class Company {
      * @param name A valid company name.
      */
     public Company(String name) {
-        if (name != null) {
+        if (name != null && !name.isBlank()) {
             checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
             fullName = name;
         } else {
