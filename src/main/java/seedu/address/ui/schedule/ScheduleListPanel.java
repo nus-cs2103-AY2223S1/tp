@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.schedule;
 
 import java.util.logging.Logger;
 
@@ -9,12 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.ui.UiPart;
 
 /**
  * Panel containing the list of module schedules.
  */
 public class ScheduleListPanel extends UiPart<Region> {
-    private static final String FXML = "ScheduleListPanel.fxml";
+    private static final String FXML = "schedule/ScheduleListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ScheduleListPanel.class);
 
     @FXML

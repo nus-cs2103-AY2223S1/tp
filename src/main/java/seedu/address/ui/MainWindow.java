@@ -17,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.schedule.ScheduleGridPanel;
+import seedu.address.ui.schedule.ScheduleListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -43,6 +45,7 @@ public class MainWindow extends UiPart<Stage> {
     private ModuleInfoPanel moduleInfoPanel;
     private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
+    private ScheduleGridPanel scheduleGridPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -258,6 +261,17 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser("Show all schedules!");
     }
 
+    /**
+     * Switch to Schedules page with timetable shown.
+     */
+    @FXML
+    public void handleShowTabScheduleGrid() {
+        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
+        scheduleGridPanel.construct();
+        scheduleListPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+        tabPane.getSelectionModel().select(SCHEDULE);
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -310,7 +324,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowScheduleList()) {
-                handleShowTabSchedule();
+                handleShowTabScheduleGrid();
             }
 
             return commandResult;
