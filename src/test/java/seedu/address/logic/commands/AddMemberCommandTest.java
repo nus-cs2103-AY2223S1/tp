@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AddMemberCommand.MESSAGE_PERSON_NOT_EXISTS;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.NON_EXISTENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -26,7 +26,7 @@ public class AddMemberCommandTest {
 
     @Test
     public void execute_invalidName_throwsCommandException() {
-        AddMemberCommand addMemberCommand = new AddMemberCommand(new Name(INVALID_NAME));
+        AddMemberCommand addMemberCommand = new AddMemberCommand(new Name(NON_EXISTENT_NAME));
 
         assertCommandFailure(addMemberCommand, model, MESSAGE_PERSON_NOT_EXISTS);
     }
