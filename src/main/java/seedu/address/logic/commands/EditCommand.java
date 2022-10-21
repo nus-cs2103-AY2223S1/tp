@@ -27,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,8 +106,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Social updatedSocial = editPersonDescriptor.getSocial().orElse(personToEdit.getSocial());
 
-        return new Person(updatedOccupation, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedOccupation, updatedName, updatedPhone,
+                updatedEmail, updatedAddress, updatedTags, updatedSocial);
     }
 
     @Override
@@ -132,6 +135,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private Social social;
         private Occupation occupation;
         private Name name;
         private Phone phone;
@@ -146,6 +150,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            setSocial(toCopy.social);
             setOccupation(toCopy.occupation);
             setName(toCopy.name);
             setPhone(toCopy.phone);
@@ -158,7 +163,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(occupation, name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(occupation, name, phone, email, address, tags, social);
+        }
+
+        public void setSocial(Social social) {
+            this.social = social;
+        }
+
+        public Optional<Social> getSocial() {
+            return Optional.ofNullable(social);
         }
 
         public void setOccupation(Occupation occupation) {

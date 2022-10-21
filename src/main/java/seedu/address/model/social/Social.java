@@ -81,6 +81,34 @@ public class Social {
     }
 
     /**
+     * Sets the Whatsapp link to null
+     */
+    public void deleteWhatsapp() {
+        links[0] = null;
+    }
+
+    /**
+     * Sets the Telegram link to null
+     */
+    public void deleteTelegram() {
+        links[1] = null;
+    }
+
+    /**
+     * Sets the Email link to null
+     */
+    public void deleteEmail() {
+        links[2] = null;
+    }
+
+    /**
+     * Sets the Instagram link to null
+     */
+    public void deleteInstagram() {
+        links[3] = null;
+    }
+
+    /**
      * Returns Whatsapp link of the person.
      *
      * @return Whatsapp link of the person.
@@ -140,9 +168,7 @@ public class Social {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Social // instanceof handles nulls
-                && links.equals(((Social) other).links)) // state check
-                || (other == null
-                && this == null);
+                && this.toString().equals(((Social) other).toString())); // state check
     }
 
     @Override
@@ -151,6 +177,7 @@ public class Social {
         for (String s : links) {
             if (s != null) {
                 builder.append(s);
+                builder.append(" ");
             }
         }
         return '[' + builder.toString() + ']';

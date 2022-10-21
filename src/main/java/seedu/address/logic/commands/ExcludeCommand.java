@@ -13,9 +13,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
 /**
- * Includes a Social media to an existing person in uNivUSal.
+ * Excludes a Social media to an existing person in uNivUSal.
  */
-public class IncludeCommand extends Command {
+public class ExcludeCommand extends Command {
 
     enum Socials {
         WHATSAPP,
@@ -24,32 +24,28 @@ public class IncludeCommand extends Command {
         INSTAGRAM
     }
 
-    public static final String COMMAND_WORD = "include";
+    public static final String COMMAND_WORD = "exclude";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Includes a Social media link to a specified entry in uNivUSal.\n"
-            + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM #/t.me/JohnDoe321";
+            + "Excludes the Social media LInk to a specified entry in uNivUSal.\n"
+            + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM";
 
-    public static final String MESSAGE_SUCCESS = "New link added";
+    public static final String MESSAGE_SUCCESS = "Link deleted";
     public static final String MESSAGE_WRONG_SOCIAL = "No such Social media";
 
     private final Index index;
     private final String social;
-    private final String link;
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param social details to edit the person with
-     * @param link details to edit the person with
      */
-    public IncludeCommand(Index index, String social, String link) {
+    public ExcludeCommand(Index index, String social) {
         requireNonNull(index);
         requireNonNull(social);
-        requireNonNull(link);
 
         this.index = index;
         this.social = social;
-        this.link = link;
     }
 
     /**
@@ -68,28 +64,28 @@ public class IncludeCommand extends Command {
     }
 
     /**
-     * Includes the link to the Socials s of the person p
+     * Excludes the link to the Socials s of the Person p
      * @param p Person to be edited
      * @param s Socials to be edited
      * @throws CommandException
      */
-    public void include(Person p, Socials s) throws CommandException {
+    public void exclude(Person p, Socials s) throws CommandException {
         switch(s) {
 
         case WHATSAPP:
-            p.getSocial().addWhatsapp(link);
+            p.getSocial().deleteWhatsapp();
             break;
 
         case TELEGRAM:
-            p.getSocial().addTelegram(link);
+            p.getSocial().deleteTelegram();
             break;
 
         case EMAIL:
-            p.getSocial().addEmail(link);
+            p.getSocial().deleteEmail();
             break;
 
         case INSTAGRAM:
-            p.getSocial().addInstagram(link);
+            p.getSocial().deleteInstagram();
             break;
 
         default:
@@ -108,7 +104,7 @@ public class IncludeCommand extends Command {
         //gets the person to be edited;
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Socials socialToEdit = findSocial(social);
-        include(personToEdit, socialToEdit); //Includes the new social to the person to edit.
+        exclude(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

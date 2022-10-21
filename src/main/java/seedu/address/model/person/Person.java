@@ -16,14 +16,12 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-
-    private static Social social = new Social();
-
     // Identity fields
     private final Occupation occupation;
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Social social;
 
     // Data fields
     private final Address address;
@@ -32,14 +30,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Occupation occupation, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Occupation occupation, Name name, Phone phone, Email email,
+                  Address address, Set<Tag> tags, Social social) {
+        requireAllNonNull(name, phone, email, address, tags, social);
         this.occupation = occupation;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.social = social;
     }
 
     public Occupation getOccupation() {
@@ -114,7 +114,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(occupation, name, phone, email, address, tags);
+        return Objects.hash(occupation, name, phone, email, address, tags, social);
     }
 
     @Override

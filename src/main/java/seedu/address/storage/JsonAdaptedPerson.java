@@ -47,7 +47,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.social = new Social().toString();
+        this.social = null;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -120,15 +120,10 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (social == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Social.class.getSimpleName()));
-        }
-        if (!Social.isValidSocial(social)) {
-            throw new IllegalValueException(Social.MESSAGE_CONSTRAINTS);
-        }
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Social modelSocial = new Social();
+        return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSocial);
     }
 
 }
