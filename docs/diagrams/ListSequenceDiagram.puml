@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PrimaryParser" as PrimaryParser LOGIC_COLOR
 participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
-participant ":ListUsersCommand" as ListUsersCommand LOGIC_COLOR
+participant "lu:ListUsersCommand" as ListUsersCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -30,10 +30,13 @@ activate ListUsersCommand
 ListUsersCommand --> ListCommandParser
 deactivate ListUsersCommand
 
-ListCommandParser --> PrimaryParser
+ListCommandParser --> PrimaryParser: lu
 deactivate ListCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListCommandParser -[hidden]-> PrimaryParser
+destroy ListCommandParser
 
-PrimaryParser --> LogicManager : l
+PrimaryParser --> LogicManager : lu
 deactivate PrimaryParser
 
 LogicManager -> ListUsersCommand : execute()
@@ -57,6 +60,7 @@ deactivate ListUsersCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ListUsersCommand -[hidden]-> PrimaryParser
 destroy ListUsersCommand
+
 
 [<--LogicManager
 deactivate LogicManager
