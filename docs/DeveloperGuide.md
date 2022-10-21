@@ -154,6 +154,42 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Items feature
+
+#### Implementation
+
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
+
+Given below is an example usage scenario and how the add item mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `ItemsList` will contain sample data.
+
+Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into a `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
+
+</div>
+
+The following sequence diagram shows how the add item operation works:
+
+_{insert sequence diagram}_
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+_{insert activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How add item executes:**
+
+_{add design considerations}_
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
