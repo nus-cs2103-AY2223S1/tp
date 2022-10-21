@@ -245,6 +245,57 @@ The following activity diagram summarizes what happens when a user executes a ne
 - **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding student**
   - Pros: Faster to add a student
   - Cons: CS2103T TA has to use another command to change the response and attendance number of the student.
+=======
+### Add Response feature 
+
+The `AddResponse` feature allows users to edit the response count of a `Student` object. When successfully edited,
+the response count will be updated on the Graphical User Interface.
+
+#### Implementation
+
+The  response mechanism is facilitated by `UniqueStudentList`. It is stored internally as a `Response` along with other 
+attributes of a `Student`. It is first initialized upon creation of a `Student` object and set as a `null`. 
+
+Given below is an example usage scenario and how the response mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `UniqueStudentList` will be initialized with the 
+initial json data stored.
+
+Step 2. The user executes `addresponse 1 m/7` command to add a response count to the first student in the 
+one-indexed `UniqueStudentList`. The `addresponse` command will call `AddResponseCommandParser#parse()`.
+
+**Note:**  
+1. If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather
+than attempting to execute the command.
+2. If the review is missing an `index`, or a category (`m/`), `AddResponseCommandParser` will throw an `ParseException`
+to the user with an error message specifying that the command parameters are incorrect, and an example usage of the 
+command.
+
+Step 3. `AddResponseCommandParser` returns an `AddResponseCommand` with the newly created `Response` as a parameter.
+
+Step 4. `AddResponseCommand` calls `Model#setStudent` and `Model#updateFilteredStudentList` to edit the response 
+attribute of the `Student`.
+
+Step 5. After successfully editing the response attribute, `AddResponseCommand` will return the `CommandResult` to the 
+`Ui`.
+
+The following sequence diagram shows how the add response feature is executed:
+<img src="images/AddResponseSequenceDiagram.png" width="574" />
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![AddResponseActivityDiagram](images/AddResponseActivityDiagram.png)
+
+#### Design Considerations 
+
+**Aspect: How AddResponse executes:**  
+
+- **Alternative 1**: Only the number of responses on zoom recorded 
+  - Pros: Easy to implement
+  - Cons: No check on quality of messages sent, which might be factored in to give participation marks for CS2103T
+- **Alternative 2**: Number of responses and content of responses on zoom recorded
+  - Pros: More comprehensive, users can check the quality of responses to award participation marks correspondingly
+  - Cons: More memory consumed, takes quite long to implement on top of other features to be implemented in 4 weeks 
+before feature freeze.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -411,7 +462,7 @@ otherwise)
 **MSS**
 
 1. User requests to add a student.
-2. SETA adds the student with his or her details into the student list.  
+2. SETA adds the student with his or her details into the student list.
    Use case ends.
 
 **Extensions**
