@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
@@ -85,6 +84,12 @@ public class ItemCard extends UiPart<Region> {
         tags.setPadding(new Insets(0, 10, 5, 0));
     }
 
+    /**
+     * Constructs a label for {@code tagName} with customized styles.
+     *
+     * @param tagName Name of the tag.
+     * @return The label containing the tag name.
+     */
     public Label constructTags(String tagName) {
         Label tagLabel = new Label();
         tagLabel.setText(tagName);
