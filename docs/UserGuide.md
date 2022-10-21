@@ -20,12 +20,12 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the
-app contains some sample data.<br>
-![Ui](images/Ui.png)
+   app contains some sample data.<br>
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-open the help window.<br>
-Some example commands you can try:
+   open the help window.<br>
+   Some example commands you can try:
 
     * `list_members`
     * `list_tasks`
@@ -74,8 +74,8 @@ Examples:
 ### Delete an existing team `delete_team`
 
 Delete an existing team from the user's list of teams. Throws an error under these conditions.
- - The target team does not exist.
- - The target team is the only existing team.
+- The target team does not exist.
+- The target team is the only existing team.
 
 Format:
 * `delete_team TEAM_NAME`
@@ -184,6 +184,35 @@ View the number of tasks assigned to each user in the team.
 Format:
 * `summary`
 
+### Add a new link : `add_link`
+
+Add a new link to the user's currently selected team.
+
+Format:
+* `add_link -n NAME -l URL`
+
+Examples:
+* `add_link -n google -l "https://google.com`
+
+### Edit an existing link : `edit_link`
+
+Edit an exisitng link in the user's currently selected team.
+
+Format:
+* `edit_link INDEX [-n NAME] [-l URL]`
+
+Examples:
+* `edit_link 1 -n facebook -l "https://facebook.com`
+
+* ### Delete an existing link : `delete_link`
+
+Delete the specified link from the user's currently selected team.
+
+Format:
+* `delete_link INDEX`
+
+Examples:
+* `delete_link 1`
 
 ### Clearing all entries : `clear`
 
