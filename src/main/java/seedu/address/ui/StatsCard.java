@@ -95,7 +95,10 @@ public class StatsCard extends UiPart<Region> {
                 .filter(task -> task.getStatus() == false && dateIsEqualAndAfterToday(task.getDeadline()))
                 .collect(Collectors.toList());
 
-        if (result.size() == 0) return Optional.empty();
+        if (result.size() == 0) {
+            return Optional.empty();
+        }
+
         return Optional.ofNullable(result.get(0));
     }
 
