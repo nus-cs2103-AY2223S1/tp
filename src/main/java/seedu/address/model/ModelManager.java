@@ -147,7 +147,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return new SortedList<>(filteredPersons, (p1,p2) -> p1.compareTo(p2));
+        return new SortedList<>(filteredPersons, (p1, p2) -> p1.compareTo(p2));
     }
 
     @Override
@@ -165,7 +165,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
-        return new SortedList<>(filteredAppointments, (a1,a2) -> a1.compareTo(a2));
+        return new SortedList<>(filteredAppointments, (a1, a2) -> a1.compareTo(a2));
     }
 
     @Override
