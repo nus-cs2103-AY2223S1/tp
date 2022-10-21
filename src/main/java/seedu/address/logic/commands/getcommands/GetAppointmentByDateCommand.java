@@ -14,7 +14,7 @@ import seedu.address.model.person.AppointmentByDatePredicate;
  */
 public class GetAppointmentByDateCommand extends GetCommand {
 
-    public static final String APPOINTMENT_BY_DATE_PREFIX = "/apptbd";
+    public static final String APPOINTMENT_BY_DATE_PREFIX = "/appton";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all patients who are on the same appointment"
             + "date "
