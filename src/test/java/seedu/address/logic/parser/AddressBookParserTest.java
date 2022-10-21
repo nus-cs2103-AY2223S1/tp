@@ -45,10 +45,8 @@ import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.HideAppointmentPredicate;
-import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.testutil.AppointmentUtil;
@@ -192,7 +190,7 @@ public class AddressBookParserTest {
                 HideAppointmentsCommand.COMMAND_WORD + " appts" + " r/ear nose");
         assertEquals(new HideAppointmentsCommand(
                 new HideAppointmentPredicate(
-                        HideAppointmentPredicate.hideBy.KEYWORD, "ear nose")), command);
+                        HideAppointmentPredicate.HideBy.KEYWORD, "ear nose")), command);
     }
 
     @Test

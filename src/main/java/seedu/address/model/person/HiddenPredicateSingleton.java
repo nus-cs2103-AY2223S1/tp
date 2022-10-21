@@ -62,16 +62,27 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
         return currPersonPredicate;
     }
 
+    /**
+     * Combines current predicate with the new appointment predicate.
+     * @param a Predicate to exclude the appointment.
+     * @return The predicate result of combining the appointment predicate with the current predicate.
+     */
     public static Predicate<Appointment> combineWithApptPredicate(Predicate<Appointment> a) {
         currApptPredicate = currApptPredicate.and(Predicate.not(a));
         return currApptPredicate;
     }
 
+    /**
+     * Resets the list of hidden patients to empty.
+     */
     public static void clearHiddenPatients() {
         currPersonPredicate = Model.PREDICATE_SHOW_ALL_PERSONS;
         hiddenPersons.clear();
     }
 
+    /**
+     * Resets the list of hidden appointments to empty.
+     */
     public static void clearHiddenAppts() {
         currApptPredicate = Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
         hiddenAppts.clear();

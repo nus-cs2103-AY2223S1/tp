@@ -31,26 +31,22 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
         }
 
-        HideAppointmentPredicate.hideBy cond;
+        HideAppointmentPredicate.HideBy cond;
         String val;
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             val = argMultimap.getValue(PREFIX_REASON).orElse("");
-            cond = HideAppointmentPredicate.hideBy.KEYWORD;
-        }
-        else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            cond = HideAppointmentPredicate.HideBy.KEYWORD;
+        } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             val = argMultimap.getValue(PREFIX_TAG).orElse("");
-            cond = HideAppointmentPredicate.hideBy.TAG;
-        }
-        else if (argMultimap.getValue(PREFIX_STATUS).isPresent()
+            cond = HideAppointmentPredicate.HideBy.TAG;
+        } else if (argMultimap.getValue(PREFIX_STATUS).isPresent()
                 && isValidStatusInput(argMultimap.getValue(PREFIX_STATUS).orElse(""))) {
             val = argMultimap.getValue(PREFIX_STATUS).orElse("");
-            cond = HideAppointmentPredicate.hideBy.IS_MARKED;
-        }
-        else {
+            cond = HideAppointmentPredicate.HideBy.IS_MARKED;
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
         }
-
         return new HideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 

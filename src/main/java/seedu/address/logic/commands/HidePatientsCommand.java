@@ -9,9 +9,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.HiddenPredicateSingleton;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 
 /**
  * Hides all persons and their appointments in address book whose name contains any of the argument keywords.
@@ -34,7 +34,6 @@ public class HidePatientsCommand extends Command {
     public HidePatientsCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
-
 
     @Override
     public CommandResult execute(Model model) {

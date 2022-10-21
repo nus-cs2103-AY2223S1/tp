@@ -13,6 +13,10 @@ import seedu.address.model.tag.Tag;
 public class TagContainsKeywordsPredicate implements Predicate<Person> {
     private final String keywords;
 
+    /**
+     * Constructor for the tag predicate.
+     * @param keywords
+     */
     public TagContainsKeywordsPredicate(String keywords) {
         System.out.println(keywords);
         this.keywords = keywords;

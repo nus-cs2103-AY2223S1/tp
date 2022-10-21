@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -13,13 +12,21 @@ import seedu.address.model.tag.Tag;
  */
 public class HideAppointmentPredicate implements Predicate<Appointment> {
 
-    public enum hideBy {
+    /**
+     * The conditions that we can hide the appointments by.
+     */
+    public enum HideBy {
         TAG, KEYWORD, IS_MARKED
     }
-    private final hideBy condition;
+    private final HideBy condition;
     private final String keywords;
 
-    public HideAppointmentPredicate(hideBy condition, String keywords) {
+    /**
+     * Constructor to initialise the hide appointment predicate.
+     * @param condition The condition to hide appointment by.
+     * @param keywords The keywords to search for within the tag/reason/status.
+     */
+    public HideAppointmentPredicate(HideBy condition, String keywords) {
         this.condition = condition;
         this.keywords = keywords;
     }

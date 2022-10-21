@@ -20,13 +20,13 @@ public class HideAppointmentsCommandParserTest {
     @Test
     public void parse_validReasonArgs_returnHideCommand() {
         assertParseSuccess(parser, " r/ear", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.hideBy.KEYWORD, "ear")));
+                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.KEYWORD, "ear")));
     }
 
     @Test
     public void parse_validIsMarkedArgs_returnHideCommand() {
         assertParseSuccess(parser, " s/marked", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.hideBy.IS_MARKED, "marked")));
+                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.IS_MARKED, "marked")));
     }
 
     @Test

@@ -5,11 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FilterPatientCommand object
