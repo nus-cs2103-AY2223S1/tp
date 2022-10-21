@@ -131,6 +131,13 @@ public class Person {
         return this.getName().compareTo(person.getName());
     }
 
+    public int getGroupNumber() {
+        if (this.getTags().isEmpty()) {
+            return 0;
+        }
+        int value = 0;
+        return value;
+    }
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.

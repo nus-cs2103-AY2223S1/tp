@@ -44,7 +44,7 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
         case TAG:
             Set<Tag> tags = appt.getTags();
             for (Tag t: tags) {
-                if (keywordsParts.stream().anyMatch(t.getTagName()::equalsIgnoreCase)) {
+                if (keywordsParts.stream().anyMatch(t.toString()::equalsIgnoreCase)) {
                     passed = true;
                 }
             }

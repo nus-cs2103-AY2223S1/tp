@@ -27,7 +27,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         List<String> tagKeywords = Arrays.asList(keywords.split(" "));
         Set<Tag> tags = person.getTags();
         for (Tag t: tags) {
-            if (tagKeywords.stream().anyMatch(t.getTagName()::equalsIgnoreCase)) {
+            if (tagKeywords.stream().anyMatch(t.toString()::equalsIgnoreCase)) {
                 HiddenPredicateSingleton.addToHiddenPersonList(person);
                 return true;
             }
