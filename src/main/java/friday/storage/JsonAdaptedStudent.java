@@ -1,5 +1,7 @@
 package friday.storage;
 
+import static friday.model.grades.GradesList.EXAMS_COUNT;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -153,7 +155,7 @@ class JsonAdaptedStudent {
 
         final GradesList modelGradesList = new GradesList();
 
-        if (gradesList == null || gradesList.size() != 5) {
+        if (gradesList == null || gradesList.size() != EXAMS_COUNT) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GradesList.class.getSimpleName()));
         }

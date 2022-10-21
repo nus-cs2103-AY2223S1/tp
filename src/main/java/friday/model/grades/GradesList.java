@@ -12,6 +12,7 @@ public class GradesList {
 
     // Names of assessments and exams
     public static final String[] EXAMS = {"RA1", "RA2", "Mid-Term", "Practical", "Finals"};
+    public static final int EXAMS_COUNT = 5;
 
     public final Map<String, Grade> gradesMap;
 
@@ -58,6 +59,16 @@ public class GradesList {
         gradesList.add(gradesMap.get("Practical"));
         gradesList.add(gradesMap.get("Finals"));
         return gradesList;
+    }
+
+    /**
+     * Returns the Grade associated with the specified name of the exam.
+     *
+     * @param examName the name of the exam
+     * @return the Grade received for that exam
+     */
+    public Grade getGrade(String examName) {
+        return gradesMap.get(examName);
     }
 
     @Override

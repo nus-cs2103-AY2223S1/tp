@@ -90,11 +90,11 @@ public class GradeCommand extends Command {
         assert studentToEdit != null;
         GradesList gradesList = studentToEdit.getGradesList();
         GradesList newGradesList = new GradesList();
-        GradesList.editGrade(newGradesList, gradesList.gradesMap.get("RA1"));
-        GradesList.editGrade(newGradesList, gradesList.gradesMap.get("RA2"));
-        GradesList.editGrade(newGradesList, gradesList.gradesMap.get("Mid-Term"));
-        GradesList.editGrade(newGradesList, gradesList.gradesMap.get("Practical"));
-        GradesList.editGrade(newGradesList, gradesList.gradesMap.get("Finals"));
+        GradesList.editGrade(newGradesList, gradesList.getGrade("RA1"));
+        GradesList.editGrade(newGradesList, gradesList.getGrade("RA2"));
+        GradesList.editGrade(newGradesList, gradesList.getGrade("Mid-Term"));
+        GradesList.editGrade(newGradesList, gradesList.getGrade("Practical"));
+        GradesList.editGrade(newGradesList, gradesList.getGrade("Finals"));
         editGradeDescriptor.getRa1().ifPresent(t -> GradesList.editGrade(newGradesList, t));
         editGradeDescriptor.getRa2().ifPresent(t -> GradesList.editGrade(newGradesList, t));
         editGradeDescriptor.getPa().ifPresent(t -> GradesList.editGrade(newGradesList, t));

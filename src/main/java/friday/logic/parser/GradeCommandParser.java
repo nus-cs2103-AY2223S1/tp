@@ -17,7 +17,7 @@ import friday.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new GradeCommand object
  */
-public class GradeCommandParser {
+public class GradeCommandParser implements Parser<GradeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code GradeCommand}

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import friday.model.grades.Grade;
 import friday.model.grades.GradesList;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
@@ -110,8 +111,8 @@ public class StudentBuilder {
     /**
      * Sets the {@code GradesList} of the {@code Student} that we are building.
      */
-    public StudentBuilder withGradesList(String remark) {
-        this.gradesList = new GradesList();
+    public StudentBuilder withGradesList(String examName, String score) {
+        GradesList.editGrade(this.gradesList, new Grade(examName, score));
         return this;
     }
 
