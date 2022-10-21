@@ -40,7 +40,7 @@ public class ModelManager implements Model {
         this.taskPanel = new TaskPanel(taskPanel);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTasks = new FilteredList<>(this.taskPanel.getTaskList());
+        filteredTasks = new FilteredList<>(this.taskPanel.getTaskList(), PREDICATE_INCOMPLETE_TASKS);
     }
 
     public ModelManager() {

@@ -2,7 +2,6 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -62,7 +61,6 @@ public class UnmarkTaskCommand extends TaskCommand {
                         taskToUnmark.getAssignedContacts());
 
         model.setTask(taskToUnmark, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
     }
