@@ -17,10 +17,7 @@ import static seedu.trackascholar.testutil.TypicalApplicants.ELLE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.trackascholar.model.tag.Tag;
 import seedu.trackascholar.testutil.ApplicantBuilder;
-
-import java.util.Set;
 
 public class ApplicantTest {
 
@@ -128,8 +125,8 @@ public class ApplicantTest {
 
     @Test
     public void toStringTest() {
-        String expectedString = "Benson Meier; Phone: 98765432; Email: johnd@example.com; " +
-                "Scholarship: Merit; Application Status: accepted; Tags: [owesMoney][friends]";
+        String expectedString = "Benson Meier; Phone: 98765432; Email: johnd@example.com; "
+                + "Scholarship: Merit; Application Status: accepted; Tags: [owesMoney][friends]";
         assertTrue(BENSON.toString().equals(expectedString));
 
     }
