@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.function.Consumer;
 
 import javafx.stage.Stage;
@@ -44,11 +45,12 @@ public class AddCustomerWindow extends CustomerWindow {
         addCustomerCommandInput += PREFIX_PHONE + getCustomerPhoneInput() + " ";
         addCustomerCommandInput += PREFIX_EMAIL + getCustomerEmailInput() + " ";
 
-        for (String tagName : getCustomerTagsInput()) {
+        HashSet<String> uniqueTags = getCustomerTagsInput();
+        for (String tagName : uniqueTags) {
             addCustomerCommandInput += PREFIX_TAG + tagName + " ";
         }
 
-        if (getCustomerAddressInput().isBlank()) {
+        if (!getCustomerAddressInput().isBlank()) {
             addCustomerCommandInput += PREFIX_ADDRESS + getCustomerAddressInput();
         }
 

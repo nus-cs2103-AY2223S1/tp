@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,11 +33,7 @@ class TagsHandler {
 
         tagField.setOnKeyPressed(keyPressed -> {
             if (keyPressed.getCode() == KeyCode.ENTER) {
-                try {
-                    handleAddTag();
-                } catch (ParseException e) {
-                    errorDisplay.setError(e.getMessage());
-                }
+                handleAddTag();
             }
         });
     }
@@ -53,22 +48,25 @@ class TagsHandler {
         return uniqueTags;
     }
 
-    void handleAddTag() throws ParseException {
+    void handleAddTag() {
         String tagName = tagField.getText().trim();
 
         if (tagName.isEmpty()) {
-            throw new ParseException(ERROR_BLANK_TAG_NAME);
+            errorDisplay.setError(ERROR_BLANK_TAG_NAME);
+            return;
         }
 
         if (!Tag.isValidTagName(tagName)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            errorDisplay.setError(Tag.MESSAGE_CONSTRAINTS);
+            return;
         }
 
         if (uniqueTags.add(tagName)) {
             HBox newTag = constructNewTag(tagName);
             tags.getChildren().add(newTag);
+            errorDisplay.clearError();
         } else {
-            throw new ParseException(ERROR_DUPLICATED_TAG_NAME);
+            errorDisplay.setError(ERROR_DUPLICATED_TAG_NAME);
         }
 
         tagField.clear();

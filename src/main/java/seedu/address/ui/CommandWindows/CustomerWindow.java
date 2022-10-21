@@ -24,8 +24,9 @@ public abstract class CustomerWindow extends UiPart<Stage> {
     private static final String FXML = "CustomerWindow.fxml";
 
     private final Stage windowStage;
-    private final HashSet<String> uniqueTags;
     private final CommandBox.CommandExecutor commandExecutor;
+    private final ErrorDisplay errorDisplay;
+    private final TagsHandler tagsHandler;
 
     @FXML
     private Label customerWindowHeader;
@@ -53,8 +54,10 @@ public abstract class CustomerWindow extends UiPart<Stage> {
         windowStage = stage;
         addChildWindow.accept(this);
         customerWindowHeader.setText(customerWindowHeaderName);
-        uniqueTags = new HashSet<>(10);
         this.commandExecutor = commandExecutor;
+
+        errorDisplay = new ErrorDisplay(errorMessagePlaceholder);
+        tagsHandler = new TagsHandler(tagField, tags, errorDisplay);
     }
 
     /**
@@ -91,7 +94,7 @@ public abstract class CustomerWindow extends UiPart<Stage> {
      * Returns the user Customer Tags input as a HashSet.
      */
     public HashSet<String> getCustomerTagsInput() {
-        return uniqueTags;
+        return tagsHandler.getTags();
     }
 
     /**
@@ -124,7 +127,7 @@ public abstract class CustomerWindow extends UiPart<Stage> {
             handleCloseCustomerWindow();
             windowStage.close();
         } catch (CommandException | ParseException e) {
-            setErrorLabel(e.getMessage());
+            errorDisplay.setError(e.getMessage());
         }
     }
 
@@ -137,21 +140,10 @@ public abstract class CustomerWindow extends UiPart<Stage> {
     @FXML
     private void handleCloseCustomerWindow() {
         name.clear();
-        tagField.clear();
-        tags.getChildren().clear();
-        uniqueTags.clear();
+        tagsHandler.clear();
         phone.clear();
         email.clear();
         address.clear();
-        errorMessagePlaceholder.getChildren().clear();
-    }
-
-    private void setErrorLabel(String errorMessage) {
-        Label errorLabel = new Label(errorMessage);
-        errorLabel.getStyleClass().add("commandWindowErrorMessage");
-        errorLabel.setWrapText(true);
-        errorLabel.setPrefWidth(688);
-        errorMessagePlaceholder.getChildren().clear(); // clear previous error message
-        errorMessagePlaceholder.getChildren().add(errorLabel);
+        errorDisplay.clearError();
     }
 }
