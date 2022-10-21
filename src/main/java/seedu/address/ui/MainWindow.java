@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddCommandWithPopup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -234,9 +235,9 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Handles the behaviour of window to display for list command.
      */
-    public void handleList(String list) {
-        list = list.trim().toUpperCase();
-        switch(list) {
+    public void handleList(String listType) {
+        listType = listType.trim().toUpperCase();
+        switch(listType) {
         case "BUYER":
             showBuyer();
             break;
@@ -262,6 +263,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void handleAddByPopup(String addType) {
+        AddCommandPopupWindow addCommandPopupWindow = new AddCommandPopupWindow(logic, addType);
+        addCommandPopupWindow.show();
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -283,6 +289,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isList()) {
                 handleList(commandResult.getListType());
+            }
+
+            if (commandResult.isAddByPopup()) {
+
             }
 
             return commandResult;

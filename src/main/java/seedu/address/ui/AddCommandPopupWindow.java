@@ -96,8 +96,4 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
-    public boolean isShowing() {
-        return getRoot().isShowing();
-    }
-
 }

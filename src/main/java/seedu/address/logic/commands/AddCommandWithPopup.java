@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.model.Model;
 
 public class AddCommandWithPopup extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String MESSAGE_USAGE = "Add a Buyer/Supplier with a pop-up window.\n"
+            + "Example: add buyer/supplier";
+    public static final String MESSAGE_SUCCESS = "Listed all %1$s";
+
     public static final String ADD_BUYER = "BUYER";
     public static final String ADD_SUPPLIER = "SUPPLIER";
     public static final String ADD_DELIVERER = "DELIVERER";
@@ -19,9 +21,9 @@ public class AddCommandWithPopup extends Command {
         this.typeToAdd = typeToAdd;
     }
 
-
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
+        return CommandResult.createAddByPopupCommandResult(String.format(MESSAGE_SUCCESS, typeToAdd), typeToAdd);
     }
+
 }
