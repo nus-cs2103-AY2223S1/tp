@@ -36,26 +36,9 @@ end
 
 ChangeTeamCommand -> Model : updateContextContainer(toSwitch)
 activate Model
+Model --> ChangeTeamCommand
+deactivate Model
 
-
-'DeleteCommandParser --> AddressBookParser : d
-'deactivate DeleteCommandParser
-''Hidden arrow to position the destroy marker below the end of the activation bar.
-'DeleteCommandParser -[hidden]-> AddressBookParser
-'destroy DeleteCommandParser
-'
-'AddressBookParser --> LogicManager : d
-'deactivate AddressBookParser
-'
-'LogicManager -> DeleteCommand : execute()
-'activate DeleteCommand
-'
-'DeleteCommand -> Model : deletePerson(1)
-'activate Model
-'
-'Model --> DeleteCommand
-'deactivate Model
-'
 create CommandResult
 ChangeTeamCommand -> CommandResult
 activate CommandResult
