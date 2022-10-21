@@ -50,13 +50,13 @@ public class Task {
      *
      * @param name A valid task name.
      */
-    public Task(String name, List<Person> assignees, boolean completionStatus) {
+    public Task(String name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.assignees.setPersons(assignees);
         this.completionStatus = completionStatus;
-        deadline = null;
+        this.deadline = deadline;
     }
 
     /**
@@ -102,6 +102,14 @@ public class Task {
             return "";
         } else {
             return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        }
+    }
+
+    public String deadlineStorage() {
+        if (deadline == null) {
+            return "";
+        } else {
+            return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         }
     }
 

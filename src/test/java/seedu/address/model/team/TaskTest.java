@@ -16,12 +16,12 @@ public class TaskTest {
 
     @Test
     public void null_constructor_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Task(null, List.of(), false));
+        assertThrows(NullPointerException.class, () -> new Task(null, List.of(), false, null));
     }
 
     @Test
     public void invalidName_constructor_throwsInvalidArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Task(" ", List.of(), false));
+        assertThrows(IllegalArgumentException.class, () -> new Task(" ", List.of(), false, null));
     }
 
     @Test

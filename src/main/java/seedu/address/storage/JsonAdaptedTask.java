@@ -8,6 +8,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +22,7 @@ class JsonAdaptedTask {
     private final String taskName;
     private final List<JsonAdaptedPerson> assignees = new ArrayList<>();
     private boolean isComplete;
+    private final String deadline;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
@@ -27,12 +30,14 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
                            @JsonProperty("assignees") List<JsonAdaptedPerson> assignees,
-                           @JsonProperty("isComplete") boolean isComplete) {
+                           @JsonProperty("isComplete") boolean isComplete,
+                           @JsonProperty("deadline") String deadline) {
         this.taskName = taskName;
         if (assignees != null) {
             this.assignees.addAll(assignees);
         }
         this.isComplete = isComplete;
+        this.deadline = deadline;
     }
 
     /**
@@ -43,6 +48,8 @@ class JsonAdaptedTask {
         assignees.addAll(source.getAssigneesList().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
+        isComplete = source.isComplete();
+        deadline = source.deadlineStorage();
     }
 
     @JsonValue
@@ -63,7 +70,9 @@ class JsonAdaptedTask {
         if (!Task.isValidName(taskName)) {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
         }
-        return new Task(taskName, assigneeList, isComplete);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime deadline = LocalDateTime.parse(this.deadline, formatter);
+        return new Task(taskName, assigneeList, isComplete, deadline);
     }
 
 }
