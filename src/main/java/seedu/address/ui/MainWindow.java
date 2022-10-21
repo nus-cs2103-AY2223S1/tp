@@ -293,7 +293,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isAddByPopup()) {
-
+                handleAddByPopup(commandResult.getAddType());
             }
 
             return commandResult;

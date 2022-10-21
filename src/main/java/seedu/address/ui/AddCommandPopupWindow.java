@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddCommandWithPopup;
 
 public class AddCommandPopupWindow extends UiPart<Stage> {
 
@@ -26,6 +27,7 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
     private Logic logic;
     private PopupPanelForOrder popupPanelForOrder;
     private PopupPanelForBuyer popupPanelForBuyer;
+    private PopupPanelForSupplier popupPanelForSupplier;
     private PopupPanelForPet popupPanelForPet;
 
     @FXML
@@ -52,8 +54,16 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
 
     public void fillContentPlaceholder(String typeToBeAdded) {
         typeToBeAdded = typeToBeAdded.trim().toUpperCase();
+        popupContentPlaceholder.getChildren().clear();
         switch (typeToBeAdded) {
-            // TODO: implement this
+        case AddCommandWithPopup.ADD_BUYER:
+            popupPanelForBuyer = new PopupPanelForBuyer();
+            popupContentPlaceholder.getChildren().add(popupPanelForBuyer.getRoot());
+        case AddCommandWithPopup.ADD_SUPPLIER:
+            popupPanelForSupplier = new PopupPanelForSupplier();
+            popupContentPlaceholder.getChildren().add(popupPanelForSupplier.getRoot());
+        default:
+            // Do nothing
         }
     }
 
