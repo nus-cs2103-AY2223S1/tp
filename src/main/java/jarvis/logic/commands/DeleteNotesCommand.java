@@ -15,6 +15,7 @@ import jarvis.model.Lesson;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.exceptions.NoteNotFoundException;
+import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Deletes notes from a lesson.
@@ -67,28 +68,26 @@ public class DeleteNotesCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
         }
         Lesson lessonToDelete = lastShownLessonList.get(lessonIndex.getZeroBased());
-        String successMessage;
 
-        if (studentIndex != null) {
-            List<Student> lastShownStudentList = model.getFilteredStudentList();
-            if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-            }
-            Student studentToDelete = lastShownStudentList.get(studentIndex.getZeroBased());
-            try {
+        String successMessage;
+        List<Student> lastShownStudentList = model.getFilteredStudentList();
+        if (studentIndex != null && studentIndex.getZeroBased() >= lastShownStudentList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+        try {
+            if (studentIndex != null) {
+                Student studentToDelete = lastShownStudentList.get(studentIndex.getZeroBased());
                 String deletedNote = lessonToDelete.deleteStudentNotes(studentToDelete, noteIndex);
                 successMessage = String.format(MESSAGE_DELETE_STUDENT_NOTES_SUCCESS, studentToDelete, lessonToDelete,
                         deletedNote);
-            } catch (NoteNotFoundException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_NOTE_INDEX);
-            }
-        } else {
-            try {
+            } else {
                 String deletedNote = lessonToDelete.deleteOverallNotes(noteIndex);
                 successMessage = String.format(MESSAGE_DELETE_OVERALL_NOTES_SUCCESS, lessonToDelete, deletedNote);
-            } catch (NoteNotFoundException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_NOTE_INDEX);
             }
+        } catch (NoteNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_NOTE_INDEX);
+        } catch (StudentNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
         model.setLesson(lessonToDelete, lessonToDelete);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
