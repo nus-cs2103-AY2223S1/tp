@@ -231,41 +231,6 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
-### \[In progress\] Patients archiving
-
-#### In progress
-
-The archive mechanism implements the following operations:
-
-* `idENTify#archive()` — Archive patients according to their tags.
-
-The operation is exposed in the `Command` interface as `Command#ArchivePatientCommand()`.
-
-Given below is an example usage scenario and how the archive mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
-patient list.
-
-Step 2. The user executes `archive patient` command to archive patients by their tags, causing the modified list of
-patients after the `archive patient` command executes to show on the screen.
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
-("archive patient")` API 
-call.
-
-![Interactions Inside the Logic Component for the `archive patient` Command](images/ArchivePatientSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/ArchivePatientCommand.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How archive patient executes:**
-
-* **Current choice:** Create multiple patient lists according to tags and merge all the lists to show the merged
-  list on the screen.
-
 ### \[In progress\] Appointments archiving
 
 #### In progress
@@ -383,12 +348,12 @@ It also lacks the logic to add recurring appointments.
 
 **Aspect: How mark & unmark executes:**
 * **Alternative 1 (current choice):** `MarkCommand` and `UnmarkCommand` takes in an `Index` denoting the appointment to 
-* mark/unmark.
+mark/unmark.
     * Pros: Easy to implement.
     * Cons: Will have to compute the actual appointment to mark `MarkCommand`/`UnmarkCommand` itself.
 
 * **Alternative 2:** `MarkCommand` and `UnmarkCommand` takes in the `Appointment` to be marked as a parameter in its
-* constructor directly
+constructor directly
     * Pros: Cohesiveness is increased, as it only needs to concern itself with marking/unmarking the appointment.
     * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment 
   recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
@@ -413,6 +378,7 @@ and appointments.
 the search predicates.
     * Pros: Easy and quick to implement. No extra classes needed.
     * Cons: There is no way to override the `Predicate#equals()`. Testability of `FindCommand` would be low.
+
 * **Alternative 2:** Create 1 class for each search term
 (E.g `NameContainsSequencePredicate`, `AppointmentContainsReasonPredicate` etc.). Create a `CombinedPersonPredicate`
 and a `CombinedAppointmentPredicate` that takes in all these 'lesser' predicates and combine them to form the actual
@@ -421,6 +387,7 @@ predicate to filter the list with.
     * Cons: Large amount of classes needed. There would also be the issue of excessive duplication of code.
 It would also be time-consuming to add in potential new predicates in the future as much more test cases would be needed
 to test each individual class.
+
 * **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`, 
 and store the relevant search terms into each predicate. Combine those search terms in the predicate class itself.
     * Pros: Testability of `FindCommand` would be high. Extending the method features in the future would also be
