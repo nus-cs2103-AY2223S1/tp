@@ -236,7 +236,7 @@ _{more aspects and alternatives to be added}_
 
 ### Listing of unique stored Exercises in a graphical UI
 
-#### Proposed implementation 
+#### Implementation 
 
 The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer pattern in mind.
 
