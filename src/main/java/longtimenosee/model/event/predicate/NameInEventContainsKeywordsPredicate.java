@@ -25,4 +25,17 @@ public class NameInEventContainsKeywordsPredicate implements Predicate<Event> {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof NameInEventContainsKeywordsPredicate) {
+                return keywords.equals(((NameInEventContainsKeywordsPredicate) other).keywords);
+            } else {
+                return false;
+            }
+        }
+    }
 }

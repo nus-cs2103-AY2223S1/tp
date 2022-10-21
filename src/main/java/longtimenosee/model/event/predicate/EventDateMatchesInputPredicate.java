@@ -28,5 +28,18 @@ public class EventDateMatchesInputPredicate implements Predicate<Event> {
         LocalDate inputDate = LocalDate.parse(date);
         return eventDate.equals(inputDate);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof EventDateMatchesInputPredicate) {
+                return date.equals(((EventDateMatchesInputPredicate) other).date);
+            } else {
+                return false;
+            }
+        }
+    }
 }
 
