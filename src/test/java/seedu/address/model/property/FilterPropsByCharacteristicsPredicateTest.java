@@ -62,10 +62,6 @@ public class FilterPropsByCharacteristicsPredicateTest {
         predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB"));
         assertTrue(predicate.test(new PropertyBuilder().withCharacteristics("hdb").build()));
 
-        // No characteristics
-        predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
-        assertTrue(predicate.test(new PropertyBuilder().withNoCharacteristics().build()));
-
         // Multiple characteristics
         predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
         assertTrue(predicate.test(new PropertyBuilder().withCharacteristics("HDB ; 5-room").build()));
@@ -77,6 +73,10 @@ public class FilterPropsByCharacteristicsPredicateTest {
         FilterPropsByCharacteristicsPredicate predicate =
                 new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB"));
         assertFalse(predicate.test(new PropertyBuilder().withCharacteristics("Condo").build()));
+
+        // No characteristics
+        predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
+        assertFalse(predicate.test(new PropertyBuilder().withNoCharacteristics().build()));
 
     }
 }

@@ -61,10 +61,6 @@ public class FilterBuyerByCharacteristicsPredicateTest {
         predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB"));
         assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("hdb").build()));
 
-        // No characteristics
-        predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
-        assertTrue(predicate.test(new PersonBuilder().withNoDesiredCharacteristics().build()));
-
         // Multiple characteristics
         predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
         assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
@@ -77,5 +73,8 @@ public class FilterBuyerByCharacteristicsPredicateTest {
                 new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB"));
         assertFalse(predicate.test(new PersonBuilder().withDesiredCharacteristics("Condo").build()));
 
+        // No characteristics
+        predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
+        assertFalse(predicate.test(new PersonBuilder().withNoDesiredCharacteristics().build()));
     }
 }

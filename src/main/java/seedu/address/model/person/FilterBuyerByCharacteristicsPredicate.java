@@ -23,7 +23,7 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
     public boolean test(Person p) {
         // N.B.: Returns true if the target person does not have a DesiredCharacteristics object in their attributes.
         if (p.getDesiredCharacteristics().isEmpty()) {
-            return true;
+            return false;
         }
         return p.getDesiredCharacteristics().get().containsAnyGivenCharacteristics(givenCharacteristics);
     }
