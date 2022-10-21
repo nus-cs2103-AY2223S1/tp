@@ -12,9 +12,9 @@ import javafx.scene.layout.Region;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class StudentCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "StudentListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,15 +46,15 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Student student, int displayedIndex) {
+    public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        telegramHandle.setText(student.getTelegramHandle().toString());
-        masteryCheck.setText(String.format("Mastery Check: %s", student.getMasteryCheck().toString()));
-        consultation.setText(String.format("Consultation: %s", student.getConsultation().toString()));
-        remark.setText(String.format("Remark(s): %s", student.getRemark().toString()));
+        telegramHandle.setText(String.format("Telegram: %s", student.getTelegramHandle().toString()));
+        masteryCheck.setText(student.getMasteryCheck().toString());
+        consultation.setText(student.getConsultation().toString());
+        remark.setText(student.getRemark().toString());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -68,12 +68,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof StudentCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        StudentCard card = (StudentCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }

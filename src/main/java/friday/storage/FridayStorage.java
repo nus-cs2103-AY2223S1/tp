@@ -11,36 +11,36 @@ import friday.model.ReadOnlyFriday;
 /**
  * Represents a storage for {@link Friday}.
  */
-public interface AddressBookStorage {
+public interface FridayStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getFridayFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyFriday}.
+     * Returns Friday data as a {@link ReadOnlyFriday}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyFriday> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFriday> readFriday() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getFridayFilePath()
      */
-    Optional<ReadOnlyFriday> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyFriday> readFriday(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyFriday} to the storage.
-     * @param addressBook cannot be null.
+     * @param friday cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyFriday addressBook) throws IOException;
+    void saveFriday(ReadOnlyFriday friday) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyFriday)
+     * @see #saveFriday(ReadOnlyFriday)
      */
-    void saveAddressBook(ReadOnlyFriday addressBook, Path filePath) throws IOException;
+    void saveFriday(ReadOnlyFriday friday, Path filePath) throws IOException;
 
 }

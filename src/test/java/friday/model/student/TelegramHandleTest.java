@@ -27,11 +27,11 @@ public class TelegramHandleTest {
         // invalid Telegram handles
         assertFalse(TelegramHandle.isValidTelegramHandle("")); // empty handle is not allowed
         assertFalse(TelegramHandle.isValidTelegramHandle("john+doe")); // symbols are not allowed
-        assertFalse(TelegramHandle.isValidTelegramHandle("JohnDoe")); // capital letters are not allowed
 
         // valid Telegram handles
         assertTrue(TelegramHandle.isValidTelegramHandle("john123")); // letters and numbers
         assertTrue(TelegramHandle.isValidTelegramHandle("john_doe")); // with an underscore
+        assertTrue(TelegramHandle.isValidTelegramHandle("John_Doe")); // capital letters are allowed
     }
 
     @Test

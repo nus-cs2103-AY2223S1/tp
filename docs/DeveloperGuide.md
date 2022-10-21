@@ -37,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -70,31 +70,31 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `FridayParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -111,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `FridayParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FridayParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -240,6 +240,73 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### \[Proposed\] Sort feature
+
+#### Proposed Implementation
+
+_{To add sequence diagram}_
+
+_{To add activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How sort command is implemented:**
+
+_{To add other design considerations}_
+
+
+### \[Proposed\] Alias feature
+
+#### Proposed Implementation
+
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `UniqueAliasList`, while
+in-built command names (e.g. add, delete) will be stored in a constant `reservedCommandList`.
+
+Given below is an example usage scenario and how the alias mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager` 
+with an empty `UniqueAliasList`.
+
+Step 2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command 
+will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
+are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
+`Model#addAlias(Alias toadd)`.
+
+Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that 
+the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in 
+`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand` 
+is then executed.
+
+_{To add sequence diagram}_
+
+_{To add activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How alias command is implemented:**
+
+_{To add other design considerations}_
+
+### \[Proposed\] Find feature
+
+#### Proposed Implementation
+The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
+logic established. However, it is unique in the sense that it will look through all the possible fields and data
+and return matches.
+
+Example of current implementation of find feature
+
+Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
+and their data. e.g. mastery check field will have a corresponding list with the dates of all mastery check etc.
+
+Step 2. When user types in the find command the logic will tell the program to go through all these lists and display
+all matches
+
+#### Design considerations:
+
+**Aspect: How find command is implemented:**
+
+_{To add other design considerations}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -276,36 +343,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                      | So that I can…​                                                        |
-|----------| ------------------------------------------ |-------------------------------------------------------------------| ---------------------------------------------------------------------- |
-| `* * *`  | user              | add students                                                      |                                                                  |
-| `* * *`  | user              | remove students                                                   |                                                                  |
-| `* * *`  | user              | add my students’ contact details                                  | contact them when I need to                                      |
-| `* * *`  | user              | delete my students’ contact details                               | remove outdated information                                      |
-| `* * *`  | user              | add my students’ grades and marks for tests                       | assess and see how well they are performing                      |
-| `* * *`  | user              | delete my students’ grades and marks for tests                    | remove outdated results                                          |
-| `* * *`  | user              | add queries from students                                         | keep track of any queries i need to masteryCheck                      |
-| `* * *`  | user              | delete certain comments that are no longer relevant               | Not clutter up space with old comments                           |
-| `* * *`  | user              | add comments for a specific student                               | take note of their progress                                      |
-| `* * *`  | user              | view the information of a specific student                        | retrieve details about the student                               |
-| `* * *`  | user              | search for keywords                                               | look for information i need from my students                     |
-| `* * *`  | user              | be given helpful error messages when I give an invalid command    | troubleshoot easily without consulting the User Guide every time |
-| `* * *`  | user              | add dates for my students’ Mastery Checks                         | schedule the meetings                                            |
-| `* * *`  | user              | delete dates for my students’ Mastery Checks                      | remove outdated dates and Mastery Checks                         |
-| `* *`    | user              | get help in the app itself                                        | get help without consulting the User Guide                       |
-| `* *`    | user              | edit my students’ grades and marks for tests                      | update the student’s results                                     |
-| `* *`    | user              | edit the contact details of a specific student                    | update the student’s contact details                             |
-| `* *`    | user              | edit the information of a specific student                        | update the student’s details.                                    |
-| `* *`    | user              | edit previously added comments                                    | update my comments for a student.                                |
-| `* *`    | new user          | see the app populated with sample data                            | easily see how the app will look when it is in use               |
-| `* *`    | new user          | purge all current data                                            | get rid of sample/experimental data I used for exploring the app |
-| `* *`    | expert user       | create custom alias for my commands                               | enter commands more efficiently                                  |
-| `* *`    | expert user       | delete a custom alias                                             | remove aliases I no longer need                                  |
-| `* *`    | intermediate user | generate random pairs to group my students into pairs             | split my students for pair work                                  |
-| `*`      | expert user       | view all my current macros                                        | view all my macros and know what they do                         |
-| `*`      | expert user       | create my own macros to  perform certain functions                | be more efficient using the app                                  |
+| Priority | As a …​           | I want to …​                                                        | So that I can…​                                                  |
+|----------|-------------------|---------------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | user              | add students                                                        |                                                                  |
+| `* * *`  | user              | remove students                                                     |                                                                  |
+| `* * *`  | user              | add my students’ contact details                                    | contact them when I need to                                      |
+| `* * *`  | user              | delete my students’ contact details                                 | remove outdated information                                      |
+| `* * *`  | user              | add my students’ grades and marks for tests                         | assess and see how well they are performing                      |
+| `* * *`  | user              | delete my students’ grades and marks for tests                      | remove outdated results                                          |
+| `* * *`  | user              | add queries from students                                           | keep track and be reminded of the students' questions            |
+| `* * *`  | user              | delete certain comments that are no longer relevant                 | not clutter up space with old comments                           |
+| `* * *`  | user              | add comments for a specific student                                 | take note of their progress                                      |
+| `* * *`  | user              | view the information of a specific student                          | retrieve details about the student                               |
+| `* * *`  | user              | search for keywords                                                 | look for information i need from my students                     |
+| `* * *`  | user              | be given helpful error messages when I give an invalid command      | troubleshoot easily without consulting the User Guide every time |
+| `* * *`  | user              | add dates for my students’ Mastery Checks                           | schedule the meetings                                            |
+| `* * *`  | user              | delete dates for my students’ Mastery Checks                        | remove outdated dates and Mastery Checks                         |
+| `* *`    | user              | get help in the app itself                                          | get help without consulting the User Guide                       |
+| `* *`    | user              | edit my students’ grades and marks for tests                        | update the student’s results                                     |
+| `* *`    | user              | edit the contact details of a specific student                      | update the student’s contact details                             |
+| `* *`    | user              | edit the information of a specific student                          | update the student’s details.                                    |
+| `* *`    | user              | edit previously added comments                                      | update my comments for a student.                                |
+| `* *`    | user              | sort my students by Mastery Check dates                             | easily see when is the next Mastery Check.                       |
+| `* *`    | user              | sort my students by consultation dates                              | easily see when is the next consultation.                        |
+| `* *`    | new user          | see the app populated with sample data                              | easily see how the app will look when it is in use               |
+| `* *`    | new user          | purge all current data                                              | get rid of sample/experimental data I used for exploring the app |
+| `* *`    | expert user       | create custom alias for my commands                                 | enter commands more efficiently                                  |
+| `* *`    | expert user       | delete a custom alias                                               | remove aliases I no longer need                                  |
+| `* *`    | intermediate user | generate random pairs to group my students into pairs               | split my students for pair work                                  |
+| `*`      | expert user       | view all my current macros                                          | view all my macros and know what they do                         |
+| `*`      | expert user       | create my own macros to  perform certain functions                  | be more efficient using the app                                  |
 | `*`      | intermediate user | have suggestions on comments to give students for generic  feedback | provide fast feedback                                            |
-| `*`      | intermediate user | customize the look and feel of the software                       | make the software feel like my own                               |
+| `*`      | intermediate user | customize the look and feel of the software                         | make the software feel like my own                               |
 
 *{More to be added}*
 
@@ -418,6 +487,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit remarks for a student**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to edit remarks for a specific student in the list
+4. FRIDAY edits details for the student
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given remark is empty.
+
+    * 3b1. FRIDAY removes remarks for the specified student.
+
+      Use case ends.
+
 **Use case: Delete details of a student**
 
 **MSS**
@@ -447,6 +545,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Sort students**
+
+**MSS**
+
+1. User requests to sort students with a specific criteria and order
+2. FRIDAY displays the students in sorted order
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given criteria is invalid.
+
+    * 1a1. FRIDAY shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The given order is invalid.
+
+    * 1b1. FRIDAY shows an error message. 
+
+      Use case resumes at step 1.
+
+* 1c. More than one criterion is given. 
+
+    * 1c1. FRIDAY displays the students according to the first criteria. 
+
+      Use case ends.
 
 *{More to be added}*
 
@@ -462,7 +588,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY. 
+* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants). 
+There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
+Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

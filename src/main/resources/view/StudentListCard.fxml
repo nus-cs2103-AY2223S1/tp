@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+         <ColumnConstraints />
+    </columnConstraints>
+    <VBox minHeight="50.0" style="-fx-spacing: 5;" GridPane.rowSpan="2">
+      <padding>
+        <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+      </HBox>
+      <Label fx:id="telegramHandle" styleClass="cell_small_label" text="\$telegramHandle">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets></Label>
+      <FlowPane fx:id="tags">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets></FlowPane>
+    </VBox>
+      <VBox minHeight="50.0" GridPane.columnIndex="1">
+         <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+         </padding>
+         <children>
+            <Label text="Mastery Check" />
+            <Label fx:id="masteryCheck" styleClass="cell_small_label" text="\$masteryCheck" />
+         </children>
+      </VBox>
+      <VBox prefHeight="100.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowSpan="2">
+         <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+         </padding>
+         <children>
+            <Label text="Remark" />
+            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true" />
+         </children>
+      </VBox>
+      <VBox minHeight="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+         </padding>
+         <children>
+            <Label text="Consultation" />
+            <Label fx:id="consultation" styleClass="cell_small_label" text="\$consultation" />
+         </children>
+      </VBox>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>
