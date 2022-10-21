@@ -154,6 +154,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add internship application feature
+
+#### About this feature
+
+The add internship application feature allows users to quickly add an internship application  in the tracker via the 
+command `add n/NAME p/POSITION hp/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
+
+#### How it is implemented
+
+The `add` command is facilitated by the `AddCommand` and the `AddCommandParser`. It uses the `ArgumentTokenizer#tokenize(String argString, Prefix... prefixes)`
+to extract the relevant inputs for each field. A new `Internship` object is then created with the corresponding name, position, phone, email, address and tag.
+The status field, by default, will be set to `Progress`. The `InTrack#addInternship(Internship target)` which is exposed in the `Model` interface as
+`Model#addInternship(Internship target, Internship editedInternship)` is called to add the new `Internship` object to the list of internship applications.
+
+#### Parsing user input
+
+1. The user inputs the `add` command.
+2. The `InTrackParser` processes the input and creates a new `AddCommandParser`.
+3. The `AddCommandParser` then calls `ArgumentTokenizer#tokenize(String argString, Prefix... prefixes)` to extract the relevant inputs for each field.
+   If any prefix is absent but compulsory or invalid, a `ParseException` would be thrown.
+4. The respective `Name`, `Position`, `Phone`, `Email`, `Address` and `Tag` constructors then check for the validity of parsed inputs. 
+   If any of the parsed inputs are absent but compulsory or invalid, a `ParseException` would be thrown.
+5. The `AddCommandParser` then creates the `AddCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `AddCommand`.
+2. The `AddCommand` then creates a new `Internship` object with the corresponding parsed inputs for each field.
+3. The `AddCommand` then calls `InTrack#addInternship(Internship target, Internship editedInternship)` to add the
+   new `Internship` object to the list of internship applications.
+
+#### Displaying of result
+
+1. Finally, the `AddCommand` creates a `CommandResult` with a success message and returns it to the `Logic Manager`
+   to complete the command execution. The GUI would also be updated with the change of status.
+
+The following sequence diagram shows how the `add` command works:
+
+![StatusSequenceDiagram](images/AddSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `add` command:
+
+![StatusActivityDiagram](images/AddActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: Command to add status of an internship application**
+Most internship applications added by users would still be in progress, so a default "Progress" status is provided for
+each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for
+a prefix for the `Status` field.
+
 ### Update internship application status feature
 
 #### About this feature
