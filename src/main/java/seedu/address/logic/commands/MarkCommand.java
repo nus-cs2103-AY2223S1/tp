@@ -45,7 +45,13 @@ public class MarkCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a new MarkCommand for marking a student as present.
+     *
+     * @param targetIndex the index of the student in the schedule list.
+     */
     public MarkCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -79,7 +85,7 @@ public class MarkCommand extends Command {
     /**
      * Creates and returns a marked {@code Person} with the details of {@code personToMark}.
      */
-    private static Person createMarkedPerson(Person personToMark) throws CommandException {
+    static Person createMarkedPerson(Person personToMark) throws CommandException {
         assert personToMark != null;
 
         if (personToMark.getMarkStatus().isMarked() == true) {
