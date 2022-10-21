@@ -29,7 +29,7 @@ public class EventBuilder {
         name = new Name(DEFAULT_NAME);
         assignment = Assignment.FROM;
         description = new Description(DEFAULT_DESCRIPTION);
-        isDone = true;
+        isDone = false;
     }
 
     /**
