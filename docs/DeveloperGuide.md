@@ -189,6 +189,55 @@ The following sequence diagram demonstrates the above operations (excluding the 
   - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not 
   require a `Tutor` object to be stored.
 
+### Sort Feature
+
+This command sorts `Tuthub`'s displayed list based on quantitative measures, such as teaching nominations and ratings. Users are allowed to choose to sort in ascending or descending order.
+
+<ins>Implementation</ins>
+
+The `sort` command involves the logic, model, and UI part of Tuthub. Most updates are made within the `ModelManager`, which are:
+- `ModelManager#sortedFilteredTutors` - A `javafx.collections.transformation.SortedList` that contains `ModelManager#filteredTutors`. 
+- `ModelManager#getFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
+- `ModelManager#updateSortedTutorList(Comparator<Tutor>)` - Similar to `ModelManager#updateFilteredTutorList`, but updates the Comparator instead of predicate.
+
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the sort mechanism behaves at each step.
+
+Step 1: The user enters the command `sort a r/`.
+
+Step 2: The `TuthubParser` verifies the `SortCommand#COMMAND_WORD`, and requests `SortCommandParser` to parse. The `SortCommandParser` verifies the appropriateness of the user input (`order` and `prefix`) and creates the proper `Comparator` based on the user request.
+
+Step 3: Upon parsing, a new `SortCommand` is created based on the order, prefix, and comparator. 
+
+Step 4: In the `SortCommand` execution, the `model#updateSortedTutorList(Comparator<Tutor>)` is called upon with the proper `Comparator`. Then, a new `CommandResult` is created and stored in `LogicManager`.
+
+Step 5: Upon recognising the `CommandResult`, `MainWindow` calls `logic#getFilteredTutorList()` to get the tutor cards to be displayed, which is passed as a constructor variable into `TutorListPanel`.
+
+Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated `sortedFilteredTutors` list. 
+
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![ViewSequenceDiagram](./images/ViewSequenceDiagram.png)
+
+<ins>Design Considerations</ins>
+
+**Aspect: The scope of `sort` (should it be able to sort filtered tutors or not?)**
+- **Alternative 1:** Able to sort any `FilteredList` (i.e. the original tutor list or a tutor list after executing a `find` command) **(chosen)**.
+    - Pros: The `sort` feature achieves its primary purpose while also having a defensive implementation, as it does not directly access and affect `Tuthub#UniqueTutorList`
+    - Cons: Took more time to think of and implement.
+
+- **Alternative 2:** `sort` redefines the original `Tuthub#UniqueTutorList`.
+    - Pros: Easier to implement.
+    - Cons: Feature becomes limited and lacking of purpose. Direct changes to original `Tuthub#UniqueTutorList` is less defensive.
+
+**Aspect: Keeping track of sorting and filtering of the tutor list**
+- **Alternative 1:** Store the `FilteredList` in the `SortedList` **(chosen)**.
+    - Pros: Better OOP practice since the `FilteredList` and `SortedList` variables can be kept `final`.
+    - Cons: Implementation is easy, but may be confusing to understand why and how it works.
+
+- **Alternative 2:** Store two lists, one for `FilteredList` and one for `SortedList`.
+    - Pros: Idea is more simply understood. Serves the main purpose of `sort` if implemented correctly.
+    - Cons: Complicated to implement and possibility of many bugs. Poor OOP practice as it may require reassigning of the `FilteredList` and `SortedList` variables.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
