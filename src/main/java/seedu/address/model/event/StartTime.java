@@ -16,7 +16,6 @@ public class StartTime {
     public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM, hh/mm/PM or hh:mm";
 
     //for checking if valid input date format
-    //The [HH:MM]
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
             .ofPattern("[HH:MM][hh/mm/a][h/mm/a][hh/m/a][h/m/a]");
 
