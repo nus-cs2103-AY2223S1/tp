@@ -184,16 +184,6 @@ Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
 
-### Removing Tasks: `deleteT`
-
-Removes the specified task from the task list. Throws an exception if task does not exist.
-
-Format: `deleteT INDEX`
-
-Example:
-
-* `deleteT 12` will delete the 12th task in the task list.
-
 ### Marking task as done: `markT`
 
 Marks a task in the task list as done.
