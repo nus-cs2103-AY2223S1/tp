@@ -253,7 +253,10 @@ public class ParserUtil {
         Path srcPath = Path.of(trimmedImagePath);
         if (Files.exists(srcPath)) {
             try {
-                if (Files.probeContentType(srcPath).split("/")[0].equals("image")) {
+                String fileContentType = Files.probeContentType(srcPath);
+                // fileContentType is null if the content type cannot be determined
+                if (fileContentType != null
+                        && fileContentType.split("/")[0].equals("image")) {
                     return new ImagePath(trimmedImagePath);
                 }
                 throw new ParseException(Messages.MESSAGE_NOT_AN_IMAGE);
