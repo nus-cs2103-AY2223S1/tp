@@ -23,6 +23,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 
 public class PersonListPanelTest extends GuiUnitTest {
     private static final ObservableList<Person> TYPICAL_PERSONS =
@@ -84,7 +85,8 @@ public class PersonListPanelTest extends GuiUnitTest {
             Email email = new Email("a@aa");
             Address address = new Address("a");
             Birthday birthday = new Birthday("2 February 2000");
-            Person person = new Person(name, phone, email, address, birthday, Collections.emptySet());
+            Reminder reminder = new Reminder("testreminder");
+            Person person = new Person(name, phone, email, address, birthday, reminder, Collections.emptySet());
             backingList.add(person);
         }
         return backingList;
