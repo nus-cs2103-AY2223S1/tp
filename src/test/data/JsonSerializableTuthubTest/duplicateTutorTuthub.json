@@ -1,0 +1,24 @@
+{
+  "tutors": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "module": [ "CS2103T" ],
+    "year": "4",
+    "studentId": "A1234567X",
+    "teachingNomination": "1",
+    "rating": "4.2",
+    "comment" : "",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "module": [ "CS2100" ],
+    "year": "3",
+    "studentId": "A1234566P",
+    "teachingNomination": "0",
+    "rating": "4.2",
+    "comment" : ""
+  } ]
+}

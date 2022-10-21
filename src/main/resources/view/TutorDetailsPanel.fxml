@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.TextFlow?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" minWidth="400" prefWidth="400" styleClass="details-base" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <ScrollBar style="-fx-background-color: #D7DEDD;" />
+    <VBox alignment="TOP_LEFT" minWidth="400" prefWidth="400" styleClass="details-pane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="10" left="20" right="20" top="20" />
+        </padding>
+        <Label fx:id="name" styleClass="cell_name_label" text="\$first" />
+        <VBox spacing="3">
+            <padding>
+                <Insets left="5" />
+            </padding>
+            <FlowPane fx:id="modules"/>
+            <FlowPane fx:id="tags"/>
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+        </VBox>
+        <Label styleClass="cell_header_label" text="PARTICULARS" />
+        <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
+        <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+
+        <Label styleClass="cell_header_label" text="CONTACT" />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+
+        <Label styleClass="cell_header_label" text="REVIEW" />
+        <Label fx:id="rating" styleClass="cell_small_label" text="\$rating" />
+        <Label fx:id="teachingNomination" styleClass="cell_small_label" text="\$teachingNomination" />
+        <Label fx:id="feedback" styleClass="cell_small_label" text="Additional feedback:" />
+        <children>
+            <TextFlow fx:id="comment" styleClass="cell_small_label"/>
+        </children>
+    </VBox>
+</ScrollPane>
