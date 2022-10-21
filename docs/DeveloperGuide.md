@@ -406,6 +406,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Import applicants from an external json file**
+
+**MSS**
+
+1.  User requests to import applicants from a json file
+2.  InternConnect adds all applicants
+3.  InternConnect shows the updated list of applicants
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given file path is invalid or is not a json file.
+
+    * 1a1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 1b. The given file has invalid value, incorrect format, and/or duplicate persons.
+
+    * 1b1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 1b. The given file has invalid value, incorrect format, and/or duplicate persons.
+
+    * 1b1. InternConnect shows an error message.
+
+      Use case ends.
+
 **Use case: Exit**
 
 **MSS**
