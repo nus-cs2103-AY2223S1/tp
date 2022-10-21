@@ -130,10 +130,10 @@ public class AddTaskCommandTest {
         // null -> returns false
         assertNotEquals(null, addTaskFirstCommand);
 
-        // different person index -> returns false
+        // different task -> returns false
         assertNotEquals(addTaskFirstCommand, addTaskSecondCommand);
 
-        // different task index -> returns false
+        // different patient index -> returns false
         assertNotEquals(addTaskFirstCommand, addTaskThirdCommand);
     }
 }

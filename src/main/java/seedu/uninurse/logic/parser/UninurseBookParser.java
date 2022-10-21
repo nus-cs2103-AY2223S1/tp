@@ -6,6 +6,7 @@ import static seedu.uninurse.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.uninurse.logic.commands.AddConditionCommand;
 import seedu.uninurse.logic.commands.AddGenericCommand;
 import seedu.uninurse.logic.commands.ClearCommand;
 import seedu.uninurse.logic.commands.Command;
@@ -56,6 +57,9 @@ public class UninurseBookParser {
 
         case DeleteGenericCommand.COMMAND_WORD:
             return new DeleteGenericCommandParser().parse(arguments);
+
+        case AddConditionCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
+            return new AddConditionCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

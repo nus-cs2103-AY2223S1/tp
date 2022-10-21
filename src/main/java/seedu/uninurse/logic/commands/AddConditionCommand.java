@@ -2,7 +2,6 @@ package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
-import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -18,12 +17,15 @@ import seedu.uninurse.model.person.Patient;
  * Add a medical condition to an existing patient in the patient list.
  */
 public class AddConditionCommand extends AddGenericCommand {
+    // tentative syntax; TODO: integrate with AddGenericCommand
+    public static final String COMMAND_WORD = "addCondition";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a medical condition to the patient identified "
             + "by the index number used in the last patient listing.\n"
             + "Parameters: PATIENT_INDEX (must be a positive integer) "
             + PREFIX_CONDITION + "CONDITION\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + "Example: " + COMMAND_WORD
             + " 2 " + PREFIX_CONDITION + "Hypertension";
 
     public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
