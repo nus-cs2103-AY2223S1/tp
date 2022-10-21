@@ -12,10 +12,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
+
 /**
- * Excludes a Social media to an existing person in uNivUSal.
+ * Sets a preferred Social Media of an existing person in uNivUSal.
  */
-public class ExcludeCommand extends Command {
+public class PreferCommand extends Command {
 
     enum Socials {
         WHATSAPP,
@@ -24,13 +25,13 @@ public class ExcludeCommand extends Command {
         INSTAGRAM
     }
 
-    public static final String COMMAND_WORD = "exclude";
+    public static final String COMMAND_WORD = "prefer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + "Excludes the Social media Link to a specified entry in uNivUSal.\n"
+            + "Sets the preferred Social media of a specified entry in uNivUSal.\n"
             + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM";
 
-    public static final String MESSAGE_SUCCESS = "Link deleted";
+    public static final String MESSAGE_SUCCESS = "Preferred Social set";
     public static final String MESSAGE_WRONG_SOCIAL = "No such Social media";
 
     private final Index index;
@@ -40,7 +41,7 @@ public class ExcludeCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param social details to edit the person with
      */
-    public ExcludeCommand(Index index, String social) {
+    public PreferCommand(Index index, String social) {
         requireNonNull(index);
         requireNonNull(social);
 
@@ -64,33 +65,13 @@ public class ExcludeCommand extends Command {
     }
 
     /**
-     * Excludes the link to the Socials s of the Person p
+     * Sets the Socials s of the Person p to be the preferred social.
      * @param p Person to be edited
      * @param s Socials to be edited
      * @throws CommandException
      */
-    public void exclude(Person p, Socials s) throws CommandException {
-        switch(s) {
-
-        case WHATSAPP:
-            p.getSocial().deleteWhatsapp();
-            break;
-
-        case TELEGRAM:
-            p.getSocial().deleteTelegram();
-            break;
-
-        case EMAIL:
-            p.getSocial().deleteEmail();
-            break;
-
-        case INSTAGRAM:
-            p.getSocial().deleteInstagram();
-            break;
-
-        default:
-            throw new CommandException(MESSAGE_WRONG_SOCIAL);
-        }
+    public void prefer(Person p, Socials s) throws CommandException {
+        p.getSocial().prefer(s.toString());
     }
 
     @Override
@@ -104,10 +85,11 @@ public class ExcludeCommand extends Command {
         //gets the person to be edited;
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Socials socialToEdit = findSocial(social);
-        exclude(personToEdit, socialToEdit); //Includes the new social to the person to edit.
+        prefer(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        System.out.println(personToEdit.getSocial().getPreferred());
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

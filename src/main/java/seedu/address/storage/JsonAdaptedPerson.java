@@ -41,13 +41,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("occupation") String occupation,
                              @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("social") String social) {
         this.occupation = occupation;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.social = null;
+        this.social = social;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -66,6 +67,38 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+    }
+
+    /**
+     * Gets the Social from String input
+     * @param input
+     * @return Social of the Person
+     */
+    public Social getModelSocial(String input) {
+        String[] socialArray = input.split(" ");
+        Social modelSocial = new Social();
+        String whatsapp = socialArray[0];
+        String telegram = socialArray[1];
+        String email = socialArray[2];
+        String instagram = socialArray[3];
+        String preferred = socialArray[4];
+        if (whatsapp != "null") {
+            modelSocial.addWhatsapp(whatsapp);
+        }
+        if (telegram != "null") {
+            modelSocial.addTelegram(telegram);
+        }
+        if (email != "null") {
+            modelSocial.addEmail(email);
+        }
+        if (instagram != "null") {
+            modelSocial.addInstagram(instagram);
+        }
+        if (preferred != "null") {
+            modelSocial.prefer(preferred);
+        }
+
+        return modelSocial;
     }
 
     /**
@@ -122,7 +155,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Social modelSocial = new Social();
+        final Social modelSocial = getModelSocial(social);
         return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSocial);
     }
 

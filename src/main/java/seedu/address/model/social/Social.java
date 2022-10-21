@@ -174,12 +174,11 @@ public class Social {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (String s : links) {
-            if (s != null) {
-                builder.append(s);
-                builder.append(" ");
-            }
+        for (int i = 1; i < 5; i++) {
+            builder.append(links[i - 1]);
+            builder.append(" ");
         }
-        return '[' + builder.toString() + ']';
+        builder.append(preferred);
+        return builder.toString();
     }
 }
