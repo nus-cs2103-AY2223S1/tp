@@ -14,6 +14,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -25,6 +26,7 @@ import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
@@ -58,45 +60,36 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        ResidentDescriptor filterResidentDescriptor = new ResidentDescriptor();
+        ResidentStringDescriptor filterResidentDescriptor = new ResidentStringDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            filterResidentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            filterResidentDescriptor.setName(argMultimap.getValue(PREFIX_NAME).get());
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            filterResidentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            filterResidentDescriptor.setPhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            filterResidentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            filterResidentDescriptor.setEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
         if (argMultimap.getValue(PREFIX_ROOM).isPresent()) {
-            filterResidentDescriptor.setRoom(ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get()));
+            filterResidentDescriptor.setRoom(argMultimap.getValue(PREFIX_ROOM).get());
         }
         if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            filterResidentDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+            filterResidentDescriptor.setGender(argMultimap.getValue(PREFIX_GENDER).get());
         }
         if (argMultimap.getValue(PREFIX_HOUSE).isPresent()) {
-            filterResidentDescriptor.setHouse(ParserUtil.parseHouse(argMultimap.getValue(PREFIX_HOUSE).get()));
+            filterResidentDescriptor.setHouse(argMultimap.getValue(PREFIX_HOUSE).get());
         }
         if (argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent()) {
-            filterResidentDescriptor.setMatricNumber(ParserUtil.parseMatricNumber(
-                    argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
+            filterResidentDescriptor.setMatricNumber(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
         }
-        parseTagsForfilter(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(filterResidentDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            filterResidentDescriptor.setTags(new HashSet<>(argMultimap.getAllValues(PREFIX_TAG)));
+        }
 
         if (!filterResidentDescriptor.isAnyFieldNonNull()) {
             throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
         }
 
         return new FilterCommand(filterResidentDescriptor, specifier);
-    }
-
-    private Optional<Set<Tag>> parseTagsForfilter(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }

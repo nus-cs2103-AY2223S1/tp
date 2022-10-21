@@ -1,21 +1,25 @@
 package seedu.rc4hdb.model.resident.predicates;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
+import seedu.rc4hdb.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches all of the keywords given.
  */
 public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> {
-    private final ResidentDescriptor descriptor;
+    private final ResidentStringDescriptor descriptor;
 
     /**
      * Constructor to create predicate object for filter with an all specifier.
      * @param keywords the description to filter the residents with
      */
-    public AttributesMatchAllKeywordsPredicate(ResidentDescriptor keywords) {
+    public AttributesMatchAllKeywordsPredicate(ResidentStringDescriptor keywords) {
         this.descriptor = keywords;
     }
 
@@ -29,7 +33,14 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
                 && descriptor.getGender().map(gender -> resident.getGender().contains(gender)).orElse(true)
                 && descriptor.getHouse().map(house -> resident.getHouse().contains(house)).orElse(true)
                 && descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().contains(matric))
-                .orElse(true) && resident.getTags().containsAll(descriptor.getTags().orElse(resident.getTags()));
+                .orElse(true)
+                && resident.getTags().containsAll(makeTag(descriptor.getTags().get()));
+    }
+
+    public Set<Tag> makeTag(Set<String> tags) {
+        HashSet<Tag> newTags =  new HashSet<>();
+        tags.stream().map(str -> newTags.add(new Tag(str)));
+        return newTags;
     }
 
     @Override

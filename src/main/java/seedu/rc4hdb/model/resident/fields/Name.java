@@ -55,12 +55,12 @@ public class Name extends Field {
 
     /**
      * Returns true if given {@code Name} string is contained in name
-     * @param name the name that is checked to be contained in this name
+     * @param name the name substring that is checked to be contained in this name
      * @return true if the name is contained in the fullName
      */
-    public boolean contains(Name name) {
+    public boolean contains(String name) {
         return StringUtil.containsWordIgnoreCase(this.fullName.replaceAll("\\s", ""),
-                name.fullName.replaceAll("\\s", ""));
+                name.replaceAll("\\s", ""));
     }
 
     @Override

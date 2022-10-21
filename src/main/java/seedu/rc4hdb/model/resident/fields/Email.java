@@ -60,11 +60,11 @@ public class Email {
 
     /**
      * Returns true if given {@code Email} is contained in this email
-     * @param email a valid email object
+     * @param email a substring of an email
      * @return true if the email is a substring of value
      */
-    public boolean contains(Email email) {
-        return StringUtil.containsWordIgnoreCase(this.value, email.value);
+    public boolean contains(String email) {
+        return StringUtil.containsWordIgnoreCase(this.value, email);
     }
 
     @Override

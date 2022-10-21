@@ -48,11 +48,11 @@ public class MatricNumber extends Field {
 
     /**
      * Returns true if given {@code MatricNumber} is contained in this MatricNumber
-     * @param matric a valid matric number object
+     * @param matric a substring of a matric number
      * @return true if the given matric number is a substring of matric number
      */
-    public boolean contains(MatricNumber matric) {
-        return StringUtil.containsWordIgnoreCase(this.matricNumber, matric.matricNumber);
+    public boolean contains(String matric) {
+        return StringUtil.containsWordIgnoreCase(this.matricNumber, matric);
     }
 
     @Override

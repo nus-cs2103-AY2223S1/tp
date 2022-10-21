@@ -18,6 +18,7 @@ import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchAllKeywordsPredicate;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchAnyKeywordPredicate;
 
@@ -45,15 +46,15 @@ public class FilterCommand implements ModelCommand {
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
     /** description to filter the resident with */
-    private final ResidentDescriptor filterPersonDescriptor;
+    private final ResidentStringDescriptor filterPersonDescriptor;
     private final FilterSpecifier specifier;
 
     /**
      * @param filterPersonDescriptor description object to filter the resident with
      */
-    public FilterCommand(ResidentDescriptor filterPersonDescriptor, FilterSpecifier specifier) {
+    public FilterCommand(ResidentStringDescriptor filterPersonDescriptor, FilterSpecifier specifier) {
         assert filterPersonDescriptor != null : "Descriptor object is null";
-        this.filterPersonDescriptor = new ResidentDescriptor(filterPersonDescriptor);
+        this.filterPersonDescriptor = new ResidentStringDescriptor(filterPersonDescriptor);
         this.specifier = specifier;
     }
 

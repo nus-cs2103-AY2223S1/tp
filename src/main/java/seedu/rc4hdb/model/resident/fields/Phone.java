@@ -42,11 +42,11 @@ public class Phone extends Field {
 
     /**
      * Returns true if given {@code Phone} is contained in this phone
-     * @param phone a valid phone object
+     * @param phone a substring of a phone number
      * @return true if the given phone value is a substring of value
      */
-    public boolean contains(Phone phone) {
-        return StringUtil.containsWordIgnoreCase(this.value, phone.value);
+    public boolean contains(String phone) {
+        return StringUtil.containsWordIgnoreCase(this.value, phone);
     }
 
     @Override

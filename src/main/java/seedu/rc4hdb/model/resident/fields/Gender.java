@@ -55,11 +55,11 @@ public class Gender extends Field {
 
     /**
      * Returns true if given {@code Gender} is contained in this gender
-     * @param gender a valid gender object
+     * @param gender a substring of gender
      * @return true if the gender is a substring of gender
      */
-    public boolean contains(Gender gender) {
-        return StringUtil.containsWordIgnoreCase(this.gender, gender.gender);
+    public boolean contains(String gender) {
+        return StringUtil.containsWordIgnoreCase(this.gender, gender);
     }
 
     @Override

@@ -47,11 +47,11 @@ public class Room extends Field {
 
     /**
      * Returns true if given {@code Room} is contained in this room
-     * @param room a valid room object
+     * @param room a substring of a room number
      * @return true if the given room is a substring of room
      */
-    public boolean contains(Room room) {
-        return StringUtil.containsWordIgnoreCase(this.room, room.room);
+    public boolean contains(String room) {
+        return StringUtil.containsWordIgnoreCase(this.room, room);
     }
 
     @Override

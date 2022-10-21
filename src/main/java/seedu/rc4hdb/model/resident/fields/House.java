@@ -64,11 +64,11 @@ public class House extends Field {
 
     /**
      * Returns true if given {@code House} is contained in this House
-     * @param house a valid house object
+     * @param house a substring of house
      * @return true if the given house is a substring of house
      */
-    public boolean contains(House house) {
-        return StringUtil.containsWordIgnoreCase(this.house, house.house);
+    public boolean contains(String house) {
+        return StringUtil.containsWordIgnoreCase(this.house, house);
     }
 
     @Override

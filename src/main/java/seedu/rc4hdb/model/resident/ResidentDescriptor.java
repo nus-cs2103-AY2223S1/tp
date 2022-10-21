@@ -125,7 +125,7 @@ public class ResidentDescriptor {
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
     public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        return (tags != null) ? Optional.of(tags) : Optional.empty();
     }
 
     //=========== End of Getters and Setters =================================================================
