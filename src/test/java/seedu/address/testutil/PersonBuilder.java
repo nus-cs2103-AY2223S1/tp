@@ -9,6 +9,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,6 +18,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
+    public static final String DEFAULT_SOCIAL = "none";
     public static final String DEFAULT_OCCUPATION = "STUDENT";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Social social;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        social = new Social();
     }
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        social = personToCopy.getSocial();
     }
 
     /**
@@ -103,7 +108,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(occupation, name, phone, email, address, tags);
+        return new Person(occupation, name, phone, email, address, tags, social);
     }
 
 }

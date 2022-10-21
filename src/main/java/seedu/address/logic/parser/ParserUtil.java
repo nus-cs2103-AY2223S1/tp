@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,6 +37,20 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code social} into a String and returns it
+     * @param social
+     * @return String
+     * @throws ParseException
+     */
+    public static String parseSocial(String social) throws ParseException {
+        requireNonNull(social);
+        String trimmedsocial = social.trim();
+        if (!Social.isValidSocial(trimmedsocial)) {
+            throw new ParseException(Social.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedsocial;
+    }
 
     /**
      * Parses {@code occupation} into an {@code Occupation} and returns it

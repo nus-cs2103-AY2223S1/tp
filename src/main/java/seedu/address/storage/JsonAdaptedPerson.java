@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String social;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +41,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("occupation") String occupation,
                              @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("social") String social) {
         this.occupation = occupation;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.social = social;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +58,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        social = source.getSocial().toString();
         occupation = source.getOccupation().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -62,6 +67,38 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+    }
+
+    /**
+     * Gets the Social from String input
+     * @param input
+     * @return Social of the Person
+     */
+    public Social getModelSocial(String input) {
+        String[] socialArray = input.split(" ");
+        Social modelSocial = new Social();
+        String whatsapp = socialArray[0];
+        String telegram = socialArray[1];
+        String email = socialArray[2];
+        String instagram = socialArray[3];
+        String preferred = socialArray[4];
+        if (whatsapp != "null") {
+            modelSocial.addWhatsapp(whatsapp);
+        }
+        if (telegram != "null") {
+            modelSocial.addTelegram(telegram);
+        }
+        if (email != "null") {
+            modelSocial.addEmail(email);
+        }
+        if (instagram != "null") {
+            modelSocial.addInstagram(instagram);
+        }
+        if (preferred != "null") {
+            modelSocial.prefer(preferred);
+        }
+
+        return modelSocial;
     }
 
     /**
@@ -117,7 +154,9 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Social modelSocial = getModelSocial(social);
+        return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSocial);
     }
 
 }
