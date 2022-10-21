@@ -37,7 +37,8 @@ jobs:
 
       - name: Build and check with Gradle
         uses: GabrielBB/xvfb-action@v1
-        run: ./gradlew check coverage
+        with:
+          run: ./gradlew check coverage
 
       - uses: codecov/codecov-action@v2
         if: runner.os == 'Linux'

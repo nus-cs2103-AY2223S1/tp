@@ -66,7 +66,7 @@ public class PersonListPanelTest extends GuiUnitTest {
     @Test
     public void performanceTest() {
         ObservableList<Person> backingList = createBackingList(10000);
-
+        
         assertTimeoutPreemptively(ofMillis(CARD_CREATION_AND_DELETION_TIMEOUT), () -> {
             initUi(backingList);
             guiRobot.interact(backingList::clear);
