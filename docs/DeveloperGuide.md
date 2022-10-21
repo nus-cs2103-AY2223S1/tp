@@ -157,6 +157,8 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding tutors
 
+<img src="images/AddSequenceDiagram.png">
+
 Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
 
 The following methods in `Tutub` manage the addition of tutors:
