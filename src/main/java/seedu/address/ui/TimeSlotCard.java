@@ -8,13 +8,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeSlot;
 
 /**
- * A UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code TimeSlot}.
  */
-public class PersonCard extends UiPart<Region> {
+public class TimeSlotCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TimeSlotCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,11 +28,11 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
+    private HBox timeCardPane;
+    @FXML
+    private Label sessionTime;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -39,34 +40,19 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label homework;
     @FXML
-    private Label attendance;
-    @FXML
-    private Label session;
-    @FXML
-    private Label gradeProgress;
-    @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
+     * Creates a {@code TimeSlotCard} with the given {@code TimeSlot}.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public TimeSlotCard(TimeSlot timeSlot) {
         super(FXML);
-        this.person = person;
-        id.setText(displayedIndex + ". ");
+        sessionTime.setText(timeSlot.getTimeString());
+        this.person = timeSlot.getPerson();
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         lessonPlan.setText(person.getLessonPlan().value);
-        if (person.isFullView()) {
-            homework.setText(person.getHomeworkList().toString());
-            attendance.setText(person.getAttendanceList().toString());
-            session.setText(person.getSessionList().toString());
-        } else {
-            homework.setText(person.getHomeworkList().shortDescription());
-            attendance.setText(person.getAttendanceList().shortDescription());
-            session.setText(person.getSessionList().shortDescription());
-        }
-        gradeProgress.setText(person.getGradeProgressList().toString());
+        homework.setText(person.getHomeworkList().shortDescription());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -85,8 +71,8 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
+        TimeSlotCard card = (TimeSlotCard) other;
+        return sessionTime.getText().equals(card.sessionTime.getText())
                 && person.equals(card.person);
     }
 }

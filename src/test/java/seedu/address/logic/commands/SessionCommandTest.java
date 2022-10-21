@@ -27,6 +27,7 @@ import seedu.address.testutil.PersonBuilder;
 class SessionCommandTest {
 
     private static final String SESSION_STUB = "Mon 08:00";
+    private static final String SESSION_IGNORE_CASE = "mON 08:00";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -119,7 +120,7 @@ class SessionCommandTest {
         final SessionCommand standardCommand = new SessionCommand(INDEX_FIRST_PERSON,
                 new Session(SESSION_STUB));
         final SessionCommand ignoreCaseCommand = new SessionCommand(INDEX_FIRST_PERSON,
-                new Session("mON 08:00"));
+                new Session(SESSION_IGNORE_CASE));
         assertTrue(standardCommand.equals(ignoreCaseCommand));
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 

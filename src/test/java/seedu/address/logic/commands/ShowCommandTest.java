@@ -26,17 +26,17 @@ public class ShowCommandTest {
 
     @Test
     public void equals() {
-        DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
-        DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
+        String firstKeyword = "first";
+        String secondKeyword = "second";
 
-        ShowCommand showFirstCommand = new ShowCommand(firstPredicate);
-        ShowCommand showSecondCommand = new ShowCommand(secondPredicate);
+        ShowCommand showFirstCommand = new ShowCommand(firstKeyword);
+        ShowCommand showSecondCommand = new ShowCommand(secondKeyword);
 
         // same object -> returns true
         assertTrue(showFirstCommand.equals(showFirstCommand));
 
         // same values -> returns true
-        ShowCommand showFirstCommandCopy = new ShowCommand(firstPredicate);
+        ShowCommand showFirstCommandCopy = new ShowCommand(firstKeyword);
         assertTrue(showFirstCommand.equals(showFirstCommandCopy));
 
         // different types -> returns false
@@ -50,12 +50,13 @@ public class ShowCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0);
-        DayIsKeywordPredicate predicate = new DayIsKeywordPredicate(" ");
-        ShowCommand command = new ShowCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+    public void execute_zeroKeywords_noTimeSlotsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0, "Sat");
+        String keyword = "Sat";
+        ShowCommand command = new ShowCommand(keyword);
+        expectedModel.updateFilteredPersonList(new DayIsKeywordPredicate(keyword));
+        expectedModel.updateTimeSlots(keyword);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getTimeSlotList());
     }
 }

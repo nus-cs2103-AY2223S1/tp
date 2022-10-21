@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeSlot;
 
 /**
  * The API of the Model component.
@@ -90,6 +91,28 @@ public interface Model {
      * Returns true if the address book is currently in full view mode.
      */
     boolean isFullView();
+
+    /**
+     * Updates the time slots to a particular day.
+     *
+     * @param day to retrieve time slots for.
+     */
+    void updateTimeSlots(String day);
+
+    /**
+     * Returns an unmodifiable view of the time slots for a particular day.
+     */
+    ObservableList<TimeSlot> getTimeSlotList();
+
+    /**
+     * Sets a flag to signify day view.
+     */
+    void setDayView();
+
+    /**
+     * Returns true if the address book is currently in day view mode.
+     */
+    boolean isDayView();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

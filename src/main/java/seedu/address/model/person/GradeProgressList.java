@@ -6,7 +6,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 
 /**
- * Represents a Person's GradeProgress list in the address book.
+ * Represents a Person's Grade Progress list in the address book.
  * Guarantees: Mutable
  */
 

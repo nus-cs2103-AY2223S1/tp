@@ -82,7 +82,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.isFullView()) {
+        if (!model.isFullView() || model.isDayView()) {
             throw new CommandException(MESSAGE_NOT_VIEW_MODE);
         }
 

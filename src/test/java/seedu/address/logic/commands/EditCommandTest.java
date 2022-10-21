@@ -46,6 +46,14 @@ public class EditCommandTest {
         model.setFullView();
     }
 
+    public void setDayView() {
+        model.setDayView();
+    }
+
+    public void setListView() {
+        model.setListView();
+    }
+
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         setFullView();
@@ -175,7 +183,16 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_notInViewMode_failure() {
+    public void execute_inListView_failure() {
+        setListView();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NOT_VIEW_MODE);
+    }
+
+    @Test
+    public void execute_inDayView_failure() {
+        setDayView();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NOT_VIEW_MODE);

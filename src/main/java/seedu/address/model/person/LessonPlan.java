@@ -18,6 +18,7 @@ public class LessonPlan {
         requireNonNull(lessonPlan);
         value = lessonPlan;
     }
+
     @Override
     public String toString() {
         return value;
