@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -19,11 +20,11 @@ public class HideAppointmentsCommand extends Command {
     public static final String COMMAND_WORD = "hide";
     public static final String DESCRIPTOR_WORD = "appts";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all persons whose names or tags contain any of "
-            + "the specified keywords (case-insensitive) and displays them and their appointments as 2 lists with "
-            + "index numbers. Also able to filter by dates and \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all appointments which reason or tags"
+            + " contain any of the specified keywords (case-insensitive) and displays\n"
+            + "the appointments which are not hidden. Also able to hide by marked/unmarked appointments\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + DESCRIPTOR_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_TAG + "ear";
 
     private Predicate<Appointment> predicate;
 

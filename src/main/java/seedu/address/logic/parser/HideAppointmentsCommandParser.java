@@ -8,11 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.HiddenPredicateSingleton;
 import seedu.address.model.person.HideAppointmentPredicate;
 
-import java.util.function.Predicate;
 
 /**
  * Parses input arguments and creates a new FilterPatientCommand object

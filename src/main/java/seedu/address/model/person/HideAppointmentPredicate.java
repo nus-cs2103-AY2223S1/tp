@@ -27,21 +27,21 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
     @Override
     public boolean test(Appointment appt) {
         List<String> keywordsParts = Arrays.asList(keywords.split(" "));
-        boolean passed = true;
+        boolean passed = false;
 
         switch (condition) {
         case KEYWORD:
             passed = keywordsParts.stream()
                     .anyMatch(keyword -> appt.getReason().contains(keyword));
             break;
-//        case TAG:
-//            Set<Tag> tags = appt.getTags(); //appt does not have tag yet
-//            for (Tag t: tags) {
-//                if (keywordsParts.stream().anyMatch(t.tagName::equalsIgnoreCase)) {
-//                    passed = true;
-//                }
-//            }
-//            break;
+        case TAG:
+            Set<Tag> tags = appt.getTags();
+            for (Tag t: tags) {
+                if (keywordsParts.stream().anyMatch(t.getTagName()::equalsIgnoreCase)) {
+                    passed = true;
+                }
+            }
+            break;
         case IS_MARKED:
             String kw = keywordsParts.get(0);
             passed = kw.equals("marked") || kw.equals("m") ? appt.isMarked() : !appt.isMarked();
