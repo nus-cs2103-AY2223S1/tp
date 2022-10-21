@@ -23,13 +23,16 @@ public class AddIssueCommand extends IssueCommand {
     public static final String COMMAND_FLAG = "-a";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an issue to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+            + ": Adds an issue to the address book. "
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_PRIORITY + "PRIORITY(0, 1, 2) \n"
             + "Example: " + COMMAND_WORD + " "
+            + COMMAND_FLAG
             + PREFIX_PROJECT_ID + "1 "
             + PREFIX_DESCRIPTION + "to create a person class which stores all relevant person data "
             + PREFIX_DEADLINE + "2022-12-10 "
