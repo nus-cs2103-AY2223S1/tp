@@ -39,7 +39,7 @@ FindCommand -> Model : updateFilteredStudentList(predicate)
 activate Model
 
 create CommandResult
-FindCommand -> CommandResult : new CommandResult (feedBackToUser)
+FindCommand -> CommandResult : new CommandResult(feedBackToUser)
 activate CommandResult
 
 CommandResult --> FindCommand : commandResult
