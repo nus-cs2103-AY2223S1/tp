@@ -58,6 +58,13 @@ public class ActivityCard extends UiPart<Region> {
             Label tagLabel = (Label) child;
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
+
+        if (activity.getRating() != 0) {
+            Label ratingLabel = new Label(
+                    new String(new char[activity.getRating()]).replace("\0", "★"));
+            ratingLabel.setStyle("-fx-background-color: " + String.format("#%06X", (0x2e2e2e)));
+            tags.getChildren().add(ratingLabel);
+        }
     }
 
     private String intToHexColor(String tag) {
