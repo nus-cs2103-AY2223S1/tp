@@ -360,18 +360,23 @@ Use case ends.
 
 Use case ends.
 
-**Use case: UC03 - Delete a Buyer**
+**Use case: UC03 - Delete**
 
 **MSS**
-1. User specifies who the buyer s/he would like to delete
-2. PetCode searches for this buyer
-3. PetCode removes this buyer from the list
+1. User specifies the type of person/item and the index of the person/item they want to delete
+2. PetCode searches for this person/item
+3. PetCode removes this person/item from the list
+4. Petcode notifies user that person/item has been deleted from the list
 
 Use case ends.
 
 **Extensions**
 
-2a. This buyer does not exist.
+  2a. Petcode detects that the specified person/item does not exist <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  2a1. Petcode notifies the user that the person/item does not exist.
+  &nbsp;&nbsp;&nbsp;&nbsp;  2a2. User specifies new person/item
+  &nbsp;&nbsp;&nbsp;&nbsp;  Steps 2a1-2a2 are repeated until the person/item exists.
+  &nbsp;&nbsp;&nbsp;&nbsp;  Use case resumes from step 3.
 
 Use case ends.
 
@@ -391,7 +396,7 @@ Use case ends.
 1. User specifies whether he or she is searching for a Buyer, Supplier or Deliverer, or all.
 2. User specifies the target attribute.
 3. PetCode searches for all Buyers, Suppliers or Deliverers with that target attribute, depending on what the user has specified.
-5. PetCode outputs these Buyers, Suppliers, Deliverers or all threee.
+5. PetCode outputs these Buyers, Suppliers, Deliverers or all three.
 
 Use case ends.
 
@@ -412,13 +417,13 @@ Use case ends.
 
 **Extensions**
 
-1a. The PetCode detects that the specified list does not exist <br>
-&nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the list does not exist
+  1a. PetCode detects that the specified list does not exist <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the list does not exist
 
 Use case ends.
 
-1b. The PetCode detects that the specified attribute does not exist <br>
-&nbsp;&nbsp;&nbsp;&nbsp;  1b1. PetCode notifies user that the attribute does not exist and sort the list by its default attribute
+  1b. The PetCode detects that the specified attribute does not exist <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  1b1. PetCode notifies user that the attribute does not exist and sort the list by its default attribute
 
 Use case ends.
 
@@ -434,7 +439,10 @@ Use case ends.
 ### Glossary
 
 * **Buyer/Client**: A customer of the pet sale coordinator interested in purchasing a pet.
-* **Supplier**: A supplier that has pets on sale.
+* **Deliverer**: A person that is able to provide delivery services from the supplier to buyer/client.
+* **Supplier**: A person that has pets on sale.
+* **Item**: An order or a pet.
+* **Person**: A buyer/client, or a deliverer, or a supplier.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
