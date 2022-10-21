@@ -31,8 +31,8 @@ public class CommandSuggestor {
         commandList.add(ClearCommand.COMMAND_WORD);
         argPromptList.add(ClearCommand.ARGUMENT_PROMPTS);
 
-        commandList.add(DeleteCommand.COMMAND_WORD);
-        argPromptList.add(DeleteCommand.ARGUMENT_PROMPTS);
+        commandList.add(DeleteContactCommand.COMMAND_WORD);
+        argPromptList.add(DeleteContactCommand.ARGUMENT_PROMPTS);
 
         commandList.add(DeleteTaskCommand.COMMAND_WORD);
         argPromptList.add(DeleteTaskCommand.ARGUMENT_PROMPTS);
