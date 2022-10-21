@@ -18,4 +18,7 @@ public class CliSyntax {
     public static final String FLAG_TAG_STR_LONG = "tag";
     public static final String FLAG_FILTER_STR = "f";
     public static final String FLAG_FILTER_STR_LONG = "filter";
+    public static final String FLAG_URL_STR = "l";
+    public static final String FLAG_URL_STR_LONG = "link";
+
 }

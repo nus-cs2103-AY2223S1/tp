@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TruthTableParser" as TruthTableParser LOGIC_COLOR
+participant ":ListMembersCommand" as ListMembersCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":TeamPredicate" as TeamPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list members")
+activate LogicManager
+
+LogicManager -> TruthTableParser : parseCommand("list members")
+activate TruthTableParser
+
+create ListMembersCommand
+TruthTableParser -> ListMembersCommand
+activate ListMembersCommand
+
+ListMembersCommand --> TruthTableParser
+deactivate ListMembersCommand
+
+TruthTableParser --> LogicManager
+deactivate TruthTableParser
+
+LogicManager -> ListMembersCommand : execute()
+activate ListMembersCommand
+
+ListMembersCommand -> Model : getTeam()
+activate Model
+
+Model --> ListMembersCommand
+deactivate Model
+
+create TeamPredicate
+ListMembersCommand -> TeamPredicate
+activate TeamPredicate
+
+TeamPredicate --> ListMembersCommand : predicate
+deactivate TeamPredicate
+
+ListMembersCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
+
+Model --> ListMembersCommand
+deactivate Model
+
+create CommandResult
+ListMembersCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListMembersCommand
+deactivate CommandResult
+
+ListMembersCommand --> LogicManager : result
+deactivate ListMembersCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -3,9 +3,6 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +11,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.TeamPredicate;
-import seedu.address.model.team.Team;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListMembersCommand.
@@ -32,9 +28,7 @@ public class ListMembersCommandTest {
 
     @Test
     public void execute_listMembers_success() {
-        List<Team> teams = new ArrayList<>();
-        teams.add(expectedModel.getTeam());
-        expectedModel.updateFilteredPersonList(new TeamPredicate(teams));
+        expectedModel.updateFilteredPersonList(new TeamPredicate(expectedModel.getTeam()));
 
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
             model.getTeam().getTeamMembers().size());

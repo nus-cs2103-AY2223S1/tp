@@ -1,0 +1,15 @@
+@startuml
+start
+if () then ([else])
+    :Retrieve person at given index;
+    if () then ([else])
+        :Add person to current team;
+        :Displays success message to user;
+    else ([person already in current team])
+        :Throw CommandException;
+    endif
+else ([index is invalid])
+    :Throw ParseException;
+endif
+stop
+@enduml

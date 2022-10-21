@@ -3,11 +3,14 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicateTaskException;
 import seedu.address.model.person.exceptions.TaskNotFoundException;
@@ -79,6 +82,21 @@ public class TaskList implements Iterable<Task> {
         requireNonNull(replacement);
         internalList.setAll(replacement);
     }
+
+    /**
+     * Returns a map representing the number of tasks assigned to each person.
+     * @return Map of person to number of tasks assigned
+     */
+    public Map<Person, Integer> getTasksPerPerson() {
+        HashMap<Person, Integer> assignments = new HashMap<>();
+        for (Task t : internalList) {
+            for (Person p : t.getAssigneesList()) {
+                assignments.put(p, assignments.getOrDefault(p, 0) + 1);
+            }
+        }
+        return assignments;
+    }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

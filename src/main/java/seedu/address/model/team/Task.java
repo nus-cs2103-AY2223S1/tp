@@ -71,14 +71,14 @@ public class Task {
 
     @Override
     public String toString() {
-        return getCompletionStatus() + name + getAssigneesString() + getDeadline();
+        return getCompletionStatus() + name + getAssigneesAsString() + getDeadlineAsString();
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAssigneesString() {
+    public String getAssigneesAsString() {
         if (getAssigneesList().isEmpty()) {
             return " (Not assigned to any member yet)";
         } else {
@@ -96,7 +96,7 @@ public class Task {
         return this.assignees.asUnmodifiableObservableList();
     }
 
-    public String getDeadline() {
+    public String getDeadlineAsString() {
         if (deadline == null) {
             return "";
         } else {
@@ -124,7 +124,7 @@ public class Task {
             || (other instanceof Task // instanceof handles nulls
             && name.equals(((Task) other).name))
                 && assignees.equals(((Task) other).assignees)
-                && this.getDeadline().equals(((Task) other).getDeadline()); // state check
+                && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
     }
 
     @Override
