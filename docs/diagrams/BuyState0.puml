@@ -12,5 +12,5 @@
   }
   State1 -[hidden]right-> State2
   State2 -[hidden]right-> State3
-
   @end
+
