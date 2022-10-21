@@ -155,7 +155,7 @@ Classes used by multiple components are in the `tuthubbook.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### View Feature
-**Implementation**
+<ins>Implementation</ins>
 
 Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details 
 panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the 
@@ -189,6 +189,21 @@ Step 5: `MainWindow` recognises that the command is of view type, and `MainWindo
 which causes the details panel of the tutor specified in `Model` to be set as visible.
 
 The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![ViewSequenceDiagram](./images/ViewSequenceDiagram.png)
+
+<ins>Design Considerations</ins>
+
+**Aspect: Method to pass a `Tutor` to UI**
+- **Alternative 1:** Store the tutor to be viewed as a field in `Model` **(chosen)**.
+  - Pros: Better OOP practice since `Model` handles all the data related to tutors. 
+  - Cons: The `tutorToView` may be null if there are no tutors in the list to be displayed, so more checks may be needed.
+
+- **Alternative 2:** Store the tutor in `CommandResult`.
+  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to 
+  the `MainWindow` directly through `CommandResult`.
+  - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not 
+  require a `Tutor` object to be stored.
 
 --------------------------------------------------------------------------------------------------------------------
 
