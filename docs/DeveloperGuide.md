@@ -295,12 +295,42 @@ _{more aspects and alternatives to be added}_
 
 The deletion mechanism for `clients`, `transactions`, and `remarks` is facilitated by a `DeleteCommandParser` and `DeleteCommand`.
 
-The following class diagram shows the parent-child relation of `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` relative to the `DeleteCommand`. These concrete classes consists of the logic to delete an item stated by the name of their command.
+The following class diagram shows the parent-child relation of `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` relative to the `DeleteCommand`. The concrete classes consists of the logic to delete an item stated by the name of their command.
 
 ![DeleteCommandClassDiagram](images/DeleteCommandClassDiagram.png)
 
-The `DeleteCommandParser` will take in the user input, parse it, and return the correct concrete command type that is either `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand` which will be executed to achieve the deletion functionality. This process is depicted by the following sequence diagram (for user input `delete 1 m/client`):
-![DeleteCommandClassDiagram]()
+The `DeleteCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is either `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand` which will be executed to achieve the deletion functionality. 
+
+This process of deleting the first client in the list is depicted by the following sequence diagram (for user input `delete 1 m/client`):
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTransCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The process for deleting `transaction` and `remark` is almost the same as the process stated above, with just the following changes:
+- For delete transaction:
+    - `userInput` is changed to `delete 1 m/transaction`
+    - `parse("1 m/transaction")` returns `d`, which is a `DeleteTransactionCommand`
+    - `deleteClient(1)` is changed to `deleteTransaction(1)`
+- For delete remark:
+    - `userInput` is changed to `delete 1 m/remark`
+    - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
+    - `deleteClient(1)` is changed to `deleteRemark(1)`
+
+#### Design Considerations:
+
+**Aspect: How delete executes:**
+
+* **Alternative 1 (current choice):** Delete either Client/Transaction/Remark specified by `mode (m) flag` selected by `index`
+    * Pros: Easy to implement and lesser commands overall since flag is used to specify each command.
+    * Cons: May be more clunky to use as users have to type in a longer command.
+
+* **Alternative 2:** Create separate individual commands to Delete Client/Transaction/Remark, e.g. `deleteClient 1`, `deleteTransaction 1`, `deleteRemark 1`.
+    * Pros: More intuitive to use, shorter command to type.
+    * Cons: Adds more valid commands that the user can use, which may not be very user-friendly since they have to remember more commands. Also, there will be much more classes and code.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
