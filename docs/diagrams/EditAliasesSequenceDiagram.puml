@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":EditAlisesWindow" as EditAlisesWindow UI_COLOR
+end box
+
+box Commons
+participant "a:AliasSettings" as AliasSettings #darkgrey
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "<<Class>>\nAddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> EditAlisesWindow : handleSave()
+activate EditAlisesWindow
+
+opt isValidAliases
+    create AliasSettings
+    EditAlisesWindow -> AliasSettings : AliasSettings()
+    activate AliasSettings
+    return
+    EditAlisesWindow -> LogicManager : setAliasSettings(a)
+    activate LogicManager
+    LogicManager -> AddCommand : setCommandWord(word)
+    activate AddCommand
+    return
+    LogicManager -> Model : setAliasSettings(a)
+    activate Model
+    return
+    return
+end
+return
+@enduml
