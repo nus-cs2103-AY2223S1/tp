@@ -157,6 +157,9 @@ Classes used by multiple components are in the `bookface.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add book/user
+The add command works as a 
+
 ### List feature
 
 #### Implementation
