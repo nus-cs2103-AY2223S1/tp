@@ -154,6 +154,101 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Current Implementation
+
+The find mechanism is facilitated by `FindCommandParser` which implements `Parser`. It parses the user input and 
+returns a `FindCommand` object. The `FindCommand` object then calls the `Model#updateFilteredPersonList()` method to 
+update the list of persons shown to the user.
+
+The find mechanism has two modes: generic and prefix-based. 
+- The generic mode is used when the user does not specify any prefix.
+- The prefix-based mode is used when the user specifies at least one prefix.
+
+Both modes use the `DetailsContainKeywordsPredicate` class to filter the person list, which uses the 
+`containsKeywordsIgnoreCase` method to check if the person's details contain the keywords.
+
+Given below is an example usage scenario of the generic mode and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial 
+address book state, and the `filteredPersons` will be initialized to show all persons.
+
+Step 2. The user executes `find Betsy` command to find the person named `Betsy` in the address book. The `find` command 
+calls `FindCommandParser#parse()` which will parse the command.
+
+Step 3. Since this is a generic find command, `FindCommandParser` trims the user input and creates a 
+`DetailsContainsKeywordsPredicate` object with the trimmed user input. The `DetailsContainsKeywordsPredicate` object is
+then passed to a newly created `FindCommand` object.
+
+Step 4. The `FindCommand` object calls the `Model#updateFilteredPersonList()` method with the
+`DetailsContainsKeywordsPredicate` object as the argument. The `Model#updateFilteredPersonList()` method will then 
+update the `filteredPersons` list in `ModelManager` to show only persons that matches the predicate. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `DetailsContainsKeywordsPredicate` 
+object will check if the person's details contains the keywords using the `containsKeywordsIgnoreCase` method in its 
+`test` method.
+
+</div>
+
+Given below is an example usage scenario of the prefix-based mode and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial
+address book state, and the `filteredPersons` will be initialized to show all persons.
+
+Step 2. The user executes `find n/Betsy` command to find the person named `Betsy` in the address book. The `find` 
+command calls `FindCommandParser#parse()` which will parse the command.
+
+Step 3. Since this is a prefix-based find command, `FindCommandParser` uses `ArgumentTokenizer` to tokenize the user
+input. `ArgumentTokenizer` will then find the prefixes in the user input and put the keywords in the respective
+prefixes into a map. `FindCommandParser` will then create a `DetailsContainsKeywordsPredicate` object with the keywords
+in the map. The `DetailsContainsKeywordsPredicate` object is then passed to a newly created `FindCommand` object.
+
+Step 4. The `FindCommand` object calls the `Model#updateFilteredPersonList()` method with the
+`DetailsContainsKeywordsPredicate` object as the argument. The `Model#updateFilteredPersonList()` method will then
+update the `filteredPersons` list in `ModelManager` to show only persons that matches the predicate.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For prefix-based find command, the
+`DetailsContainsKeywordsPredicate` object will check if the person's specified details based on the prefixes contains
+the keywords using the `containsKeywordsIgnoreCase` method in its `test` method.
+
+</div>
+
+If the user input is invalid, `FindCommandParser#parse()` will throw a `ParseException` with the respective error. This
+will give the user the correct syntax to use the find command.
+
+The following sequence diagram shows how the find operation works:
+
+<img src="images/FindSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: How find executes:
+
+* **Alternative 1 (current choice):** One `FindCommand` class and `COMMAND_WORD` that handles both generic and 
+prefix-based find.
+    * Pros: Less code duplication.
+    * Pros: More user-friendly.
+    * Cons: More complicated logic in `FindCommandParser` class.
+    * Cons: Greater difficulty in implementing (more cases to consider).
+* **Alternative 2:** One `FindCommand` class and `COMMAND_WORD` that handles generic find and multiple find classes
+that handle prefix-based find e.g. `FindNameCommand`, `FindPhoneCommand`, `FindEmailCommand`.
+    * Pros: Easier to implement.
+    * Pros: Less complicated logic in `FindCommandParser` class.
+    * Cons: More code duplication (have to create new classes for each prefix that are almost identical).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+    * Cons: Less user-friendly.
+    * Cons: User must remember the different commands for each prefix.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
