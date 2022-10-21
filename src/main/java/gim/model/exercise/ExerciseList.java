@@ -111,20 +111,6 @@ public class ExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Returns true if {@code exercises} contains only unique exercises.
-     */
-    private boolean exercisesAreUnique(List<Exercise> exercises) {
-        for (int i = 0; i < exercises.size() - 1; i++) {
-            for (int j = i + 1; j < exercises.size(); j++) {
-                if (exercises.get(i).isSameExercise(exercises.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
      * Sorts the displayedList according to the chronological order of the date field of exercise.
      */
     public void sortDisplayedList() {
