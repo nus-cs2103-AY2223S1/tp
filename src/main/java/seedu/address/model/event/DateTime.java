@@ -38,6 +38,15 @@ public class DateTime {
             "(" + REGEX_HOURS + REGEX_MINUTES + "(" + REGEX_SECONDS + ")?)";
     public static final String REGEX_TIME = REGEX_TIME_COLON + "|" + REGEX_TIME_NO_SPACE;
 
+    public static final String REGEX_RELAXED_YEAR = "([0-9]{4})";
+    public static final String REGEX_RELAXED_MONTH = "([0-9]{1,2}|[a-zA-z]{3})";
+    public static final String REGEX_RELAXED_DAY = "([0-9]{1,2})";
+    public static final String REGEX_RELAXED_HOUR = "(\\d{1,2})";
+    public static final String REGEX_RELAXED_MINUTE = "(\\d{1,2})";
+    public static final String REGEX_RELAXED_SECOND = "(\\d{2})";
+    public static final String REGEX_RELAXED_TIME =
+            REGEX_RELAXED_HOUR + "(:?)" + REGEX_RELAXED_MINUTE + "(:?" + REGEX_RELAXED_SECOND + ")?";
+
     public static final HashSet<String> REGEX_DATES = new HashSet<>() {
         {
             add("((?<dateGroup>" + REGEX_DAY + "\\s" + REGEX_MONTH + "\\s" + REGEX_YEAR + "))"
@@ -57,9 +66,12 @@ public class DateTime {
 
     private static final HashSet<String> REGEX_FORMAT = new HashSet<>() {
         {
-            add("(\\S+/\\S+/\\S+)\\s((\\d+{1,2}:\\d+{1,2}(:\\d+)?)|(\\d+{4}))?"); // checks for DATE_SLASH and any time format
-            add("(\\S+\\s\\S+\\s\\S+)\\s((\\d+{1,2}:\\d+{2}(:\\d+{2})?)|(\\d+{4}))?"); // checks for DATE_SPACE and any time format
-            add("(\\S+-\\S+-\\S+)\\s((\\d+{1,2}:\\d+{2}(:\\d+{2})?)|(\\d+{4}))?"); // checks for DATE_DASH and any time format
+            add("(" + REGEX_RELAXED_DAY + "/" + REGEX_RELAXED_MONTH + "/" + REGEX_RELAXED_YEAR + ")"
+                    + "(\\s" + REGEX_RELAXED_TIME + ")");
+            add("(" + REGEX_RELAXED_DAY + "\\s" + REGEX_RELAXED_MONTH + "\\s" + REGEX_RELAXED_YEAR + ")"
+                    + "(\\s" + REGEX_RELAXED_TIME + ")");
+            add("(" + REGEX_RELAXED_DAY + "-" + REGEX_RELAXED_MONTH + "-" + REGEX_RELAXED_YEAR + ")"
+                    + "(\\s" + REGEX_RELAXED_TIME + ")");
         }
     };
 
@@ -92,12 +104,13 @@ public class DateTime {
         String hours = matcher.group("hoursGroup");
         String minutes = matcher.group("minutesGroup");
         String seconds = matcher.group("secondsGroup");
-        String formatterString = "HHmm";
+        String formatterString = "H:m";
         if (seconds != null) {
-            formatterString += "ss";
-            return LocalTime.parse(hours + minutes + seconds, DateTimeFormatter.ofPattern(formatterString));
+            formatterString += ":ss";
+            return LocalTime.parse(hours + ":" + minutes + ":" + seconds,
+                    DateTimeFormatter.ofPattern(formatterString));
         }
-        return LocalTime.parse(hours + minutes, DateTimeFormatter.ofPattern(formatterString));
+        return LocalTime.parse(hours + ":" + minutes, DateTimeFormatter.ofPattern(formatterString));
     }
 
     /**
