@@ -78,16 +78,10 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="129.0" spacing="5">
                <children>
-                  <Label fx:id="id1" prefHeight="17.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointment" textFill="WHITE">
+                  <Label fx:id="id1" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
                      <minWidth>
                         <Region fx:constant="USE_PREF_SIZE" />
                      </minWidth>
-                     <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/calendar.png" />
-                           </image></ImageView>
-                     </graphic>
                   </Label>
                </children>
                <VBox.margin>
@@ -97,7 +91,7 @@
                   <Insets bottom="10.0" />
                </padding>
             </HBox>
-           <ListView fx:id="appointments" prefHeight="143.0" prefWidth="39.0" />
+           <ListView fx:id="appointments" prefHeight="100.0" prefWidth="129.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
