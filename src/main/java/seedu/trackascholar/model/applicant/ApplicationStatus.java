@@ -52,8 +52,8 @@ public class ApplicationStatus {
      * Returns true only if a given string is a valid and completed application status.
      */
     public static boolean isCompletedApplicationStatus(String test) {
-        return (!test.equalsIgnoreCase(PENDING))
-                && (test.equalsIgnoreCase(ACCEPTED) || test.equalsIgnoreCase(REJECTED));
+        return test.equalsIgnoreCase(ACCEPTED)
+                || test.equalsIgnoreCase(REJECTED);
     }
 
     @Override
