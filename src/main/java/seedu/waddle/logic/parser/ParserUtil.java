@@ -91,7 +91,7 @@ public class ParserUtil {
         requireNonNull(duration);
         String trimmedDuration = duration.trim();
         if (!ItineraryDuration.isValidDuration(trimmedDuration)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ItineraryDuration.MESSAGE_CONSTRAINTS);
         }
         return new ItineraryDuration(trimmedDuration);
     }

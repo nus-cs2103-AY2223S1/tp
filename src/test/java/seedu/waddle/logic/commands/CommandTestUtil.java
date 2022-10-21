@@ -42,7 +42,7 @@ public class CommandTestUtil {
 
     public static final String VALID_BUDGET_SUMMER = "5000";
     public static final String VALID_BUDGET_WINTER = "200";
-    public static final String VALID_BUDGET_TEST = "970.90";
+    public static final String VALID_BUDGET_TEST = "970.00";
 
     public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_NAME_SUMMER;
     public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_NAME_WINTER;

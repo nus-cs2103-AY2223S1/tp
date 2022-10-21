@@ -9,11 +9,7 @@ import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.logic.commands.AddCommand;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.itinerary.Name;
-import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.itinerary.*;
 import seedu.waddle.testutil.ItineraryBuilder;
 
 public class AddCommandParserTest {
@@ -92,9 +88,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + INVALID_START_DATE_DESC
                 + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Date.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid duration
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, Date.MESSAGE_CONSTRAINTS);
+                + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, ItineraryDuration.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER

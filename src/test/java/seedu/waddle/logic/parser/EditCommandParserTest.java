@@ -1,7 +1,32 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.commands.CommandTestUtil.*;
+import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_BUDGET_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_BUDGET_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -88,10 +113,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITINERARY;
-        String userInput = targetIndex.getOneBased() + COUNTRY_DESC_WINTER + PEOPLE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + DURATION_DESC_WINTER + NAME_DESC_SUMMER + BUDGET_DESC_SUMMER;
+        String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + PEOPLE_DESC_SUMMER
+                + START_DATE_DESC_SUMMER + DURATION_DESC_SUMMER + NAME_DESC_SUMMER + BUDGET_DESC_SUMMER;
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_SUMMER)
-                .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_SUMMER)
+                .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
                 .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
                 .withBudget(VALID_BUDGET_SUMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

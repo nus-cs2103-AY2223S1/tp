@@ -11,10 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Name;
-import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.itinerary.*;
 
 public class JsonAdaptedItineraryTest {
     private static final String INVALID_NAME = "S@mmer Trip";
@@ -104,7 +101,7 @@ public class JsonAdaptedItineraryTest {
     public void toModelType_nullDuration_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, VALID_START_DATE,
                 null, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItineraryDuration.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
 

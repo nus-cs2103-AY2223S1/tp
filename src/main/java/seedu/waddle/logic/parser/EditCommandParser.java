@@ -2,11 +2,7 @@ package seedu.waddle.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.waddle.logic.parser.CliSyntax.*;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.EditCommand;
@@ -26,7 +22,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COUNTRY, PREFIX_START_DATE,
-                        PREFIX_ITINERARY_DURATION, PREFIX_PEOPLE);
+                        PREFIX_ITINERARY_DURATION, PREFIX_PEOPLE, PREFIX_BUDGET);
 
         Index index;
 
@@ -53,6 +49,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_PEOPLE).isPresent()) {
             editItineraryDescriptor.setPeople(ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get()));
         }
+        if (argMultimap.getValue(PREFIX_BUDGET).isPresent()) {
+            editItineraryDescriptor.setBudget(ParserUtil.parseBudget(argMultimap.getValue(PREFIX_BUDGET).get()));
+        }
+
 
         if (!editItineraryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
