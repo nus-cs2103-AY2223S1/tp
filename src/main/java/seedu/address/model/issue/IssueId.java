@@ -10,7 +10,8 @@ import static java.util.Objects.requireNonNull;
 public class IssueId {
 
     public static final String MESSAGE_CONSTRAINTS = "Issue ID must be a valid integer";
-    public static final String MESSAGE_INVALID = "No existing issue with this issue ID";
+    public static final String MESSAGE_INVALID = "Issue ID must be a valid integer. "
+            + "No existing issue with this issue ID";
     private int issueId;
 
     /**

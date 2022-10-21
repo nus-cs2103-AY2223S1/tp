@@ -154,7 +154,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some details on how certain features are implemented.
 
-### List feature
+### List Feature
 
 The list mechanism is facilitated by `MainWindow`. It contains a `CommandBox` which listens for user command input and a JavaFX `StackPane` which holds the current entity list to be displayed. Upon the execution of either a `ListProjectCommand`, `ListClientCommand` or `ListIssueCommand`, the following operations are carried out:
 * `MainWindow#swapProjectListDisplay()` — Changes the current display to a list of projects.
@@ -177,7 +177,7 @@ The following sequence diagram shows how the list operation works:
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The lifeline for `ListClientCommand` 
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 The following activity diagram summarizes what happens when a user executes a list command:
@@ -195,6 +195,55 @@ The following activity diagram summarizes what happens when a user executes a li
 * **Alternative 2:** The children nodes of the `StackPane` are never cleared and holds a single list of entities (`Project`, `Client`, `Issue`) and the list is filtered for the desired instance type for each list `Command`.
   * Pros: Less duplication of code.
   * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via polymorphism.
+  
+### Add Command Feature
+
+A key functionality of DevEnable is the ability to add projects, issues, and clients into the system. The command word for adding will be `project`, `issue`, or `client`, depending on which entity is being added.
+This is followed by the flag `-a`, representing an Add command. Next, it is followed by a series of prefixes-value pairs to initialise the entity, some of which are compulsory while others are optional.
+When a user enters a valid Add command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser, and calls the `ProjectCommandParser#parse`,
+`IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being added. Within this method, the flag `-a` will be detected, calling `ProjectCommandParser#parseAddProjectCommand`, 
+`IssueCommandParser#parseAddIssueCommand`, or `ClientCommandParser#parseAddClientCommand`, depending on which entity is added, which checks for input and prefix-value pair validity with methods in `ParserUtil`.
+Finally, the parsed arguments are passed into and returned in an instance of the Add Command entity and the `AddProjectCommand#execute`, `AddIssueCommand#execute`, or `AddClientCommand#execute` is called depending
+on which entity is added, which retrieves the respective entity list from the system, adds the entity into the list to update it, and have the UI display the updated filtered entity list.   
+
+#### Add Project Command
+Compulsory prefixes: n/<valid name>
+Optional prefixes: cid/<valid client id>, r/<valid repository>, d/<valid deadline>
+Example Use: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
+
+#### Add Issue Command
+Compulsory prefixes: pid/<valid project id>, desc/<valid description>
+Optional prefixes: d/<valid deadline> p/<valid priority>
+Example Use: `issue pid/1 desc/To create a person class which stores all relevant person data d/2022-12-10 p/0`
+
+#### Add Client Command
+Compulsory prefixes: n/<valid name>, pid/<valid project id>
+Optional prefixes: p/<valid phone>, e/<valid email>
+Example Use: `client -a n/John Doe p/98765432 e/johnd@example.com pid/1`
+
+#### The following sequence diagram shows how the add command operation works for adding a project entity:
+Example: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `AddProjectCommand` 
+should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations:
+
+**Aspect: Add command access to the model: **
+
+**Alternative 1: (current choice)** Only `AddProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
+* Pros: No coupling between Parser class and Model class.
+* Cons: Mappings could not be performed within the parser.
+* 
+**Alternative 2: ** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
+ * Pros: Mappings could be performed within the parser which fitted its responsibility.
+ * Cons: May result in extra coupling between Parser class and Model class.
+ 
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for add command access to the model.
 
 ### Edit Command Feature
 

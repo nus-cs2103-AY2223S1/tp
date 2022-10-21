@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Ui MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ProjectCommandParser" as ProjectCommandParser LOGIC_COLOR
+participant ":AddProjectCommand" as AddProjectCommand LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand\n(project -a n/Team Project)
+activate MainWindow
+
+MainWindow --> LogicManager : execute\n(project -a n/Team Project)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand\n(project -a n/Team Project)
+activate AddressBookParser
+
+create ProjectCommandParser
+AddressBookParser -> ProjectCommandParser
+activate ProjectCommandParser
+ProjectCommandParser --> AddressBookParser
+deactivate ProjectCommandParser
+AddressBookParser -> ProjectCommandParser : parse\n(-a, n/Team Project)
+activate ProjectCommandParser
+
+create AddProjectCommand
+ProjectCommandParser -> AddProjectCommand
+activate AddProjectCommand
+
+AddProjectCommand --> ProjectCommandParser
+deactivate AddProjectCommand
+
+ProjectCommandParser --> AddressBookParser
+deactivate ProjectCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> AddProjectCommand : execute\n(model, ui)
+activate AddProjectCommand
+
+AddProjectCommand --> LogicManager : result
+deactivate AddProjectCommand
+
+AddProjectCommand -[hidden]-> LogicManager : result
+destroy AddProjectCommand
+
+MainWindow <-- LogicManager : result
+deactivate LogicManager
+MainWindow --> MainWindow : swapProjectListDisplay()
+
+[<-- MainWindow : result
+deactivate MainWindow
+
+@enduml

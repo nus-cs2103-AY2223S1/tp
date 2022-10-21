@@ -16,6 +16,15 @@ import seedu.address.model.issue.Issue;
  */
 public class Project implements ComparableByName<Project>, HasIntegerIdentifier<Project> {
 
+    public static final String MESSAGE_INVALID_DEADLINE_SORT_KEY =
+            "Enter either a 0 to sort by chronological order or a 1 to sort by reverse chronological order";
+
+    public static final String MESSAGE_INVALID_ISSUE_COUNT_SORT_KEY =
+            "Enter either a 0 to sort by ascending order or a 1 to sort by descending order";
+
+    public static final String MESSAGE_INVALID_NAME_SORT_KEY =
+            "Enter either a 0 to sort by alphabetical order or a 1 to sort by reverse alphabetical order";
+
     // Components of a project
     private Name name;
     private Repository repository;
@@ -90,6 +99,10 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return projectId;
     }
 
+    public int getProjectIdInInt() {
+        return getProjectId().getIdInt();
+    }
+
     public Name getProjectName() {
         return name;
     }
@@ -124,6 +137,62 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
 
     public void removeClient() {
         this.client = Client.EmptyClient.EMPTY_CLIENT;
+    }
+
+    public void removeIssue(Issue i) {
+        getIssueList().remove(i);
+    }
+
+
+    /**
+     * Checks if input is a valid deadline sort key.
+     *
+     * 0 for chronological order and 1 for reverse chronological order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidDeadlineSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is a valid issue count sort key.
+     *
+     * 0 for ascending order and 1 for descending order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidIssueCountSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is a valid name sort key.
+     *
+     * 0 for alphabetical order and 1 for reverse alphabetical order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidNameSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**

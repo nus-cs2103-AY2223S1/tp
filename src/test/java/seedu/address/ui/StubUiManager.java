@@ -32,4 +32,5 @@ public class StubUiManager implements Ui {
     public void showClients() {
 
     }
+
 }

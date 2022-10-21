@@ -77,6 +77,10 @@ public class Deadline {
         return "Due by: " + this.getFormattedDeadline();
     }
 
+    public LocalDate getLocalDate() {
+        return this.deadline;
+    }
+
     @Override
     public String toString() {
         return deadline.toString();

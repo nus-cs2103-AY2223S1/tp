@@ -60,7 +60,7 @@ public class EditProjectCommand extends ProjectCommand {
     public EditProjectCommand(
             ProjectId projectToEditId, Name newName, ClientId newClientId,
             Repository newRepository, Deadline newDeadline) {
-        // Some of these may be NULL, and that is okay.
+        // NULL values passed into constructor here represent absent optional inputs
         this.projectToEditId = projectToEditId;
         this.newName = newName;
         this.newClientId = newClientId;

@@ -41,6 +41,7 @@ public interface Logic {
     ObservableList<Project> getFilteredProjectList();
 
     ObservableList<Issue> getFilteredIssueList();
+
     ObservableList<Client> getFilteredClientList();
 
     /**

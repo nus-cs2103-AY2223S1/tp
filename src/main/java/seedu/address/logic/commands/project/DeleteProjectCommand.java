@@ -43,31 +43,29 @@ public class DeleteProjectCommand extends ProjectCommand {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
-
-        Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
-        List<Issue> listOfIssuesToDelete = projectToDelete.getIssueList();
-        for (Issue i : listOfIssuesToDelete) {
-            model.deleteIssue(i);
-        }
-        model.deleteProject(projectToDelete);
-
-        Client projectClient = projectToDelete.getClient();
-
-        if (!projectClient.isEmpty()) {
-            projectClient.removeProject(projectToDelete);
-            if (projectClient.getProjectListSize() == 0) {
-                model.getAddressBook().getClientList().remove(projectClient);
+        for (Project p : lastShownList) {
+            if (p.getProjectIdInInt() == targetIndex.getOneBased()) {
+                List<Issue> listOfIssuesToDelete = p.getIssueList();
+                for (Issue i : listOfIssuesToDelete) {
+                    model.deleteIssue(i);
+                }
+                Client projectClient = p.getClient();
+                if (!projectClient.isEmpty()) {
+                    projectClient.removeProject(p);
+                    if (projectClient.getProjectListSize() == 0) {
+                        model.deleteClient(projectClient);
+                    }
+                }
+                model.deleteProject(p);
+                return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, p));
             }
         }
 
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
 
+        throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_ID);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
 
     @Override

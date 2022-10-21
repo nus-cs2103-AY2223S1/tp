@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -265,6 +266,101 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
+    /**
+     * Sort projects in chronological order or reverse chronological order based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for chronological order and one for reverse chronological order
+     */
+    public void sortProjectsByDeadline(int order) {
+        ObservableList<Project> sortedProjectsByDeadline;
+        if (order == 0) {
+            //sort according to chronological deadlines
+            sortedProjectsByDeadline =
+                    getModifiableProjectList().sorted(Comparator.comparing(p -> p.getDeadline().getLocalDate()));
+        } else {
+            //sort according to reverse chronological deadlines
+            sortedProjectsByDeadline = getModifiableProjectList().sorted((p1, p2) ->
+                p2.getDeadline().getLocalDate().compareTo(p1.getDeadline().getLocalDate()));
+        }
+        setProjects(sortedProjectsByDeadline);
+    }
+
+    /**
+     * Sort projects in ascending or descending order of issue counts based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for ascending order and one for descending order
+     */
+    public void sortProjectsByIssueCount(int order) {
+        ObservableList<Project> sortedProjectsByIssueCount;
+        if (order == 0) {
+            //sort according to ascending issue count
+            sortedProjectsByIssueCount =
+                    getModifiableProjectList().sorted(Comparator.comparingInt(p -> p.getIssueList().size()));
+        } else {
+            //sort according to descending issue count
+            sortedProjectsByIssueCount = getModifiableProjectList().sorted((p1, p2) ->
+                    p2.getIssueList().size() - p1.getIssueList().size());
+        }
+        setProjects(sortedProjectsByIssueCount);
+    }
+
+    /**
+     * Sort projects in alphabetical or reverse alphabetical order of names based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for alphabetical order and one for reverse alphabetical order
+     */
+    public void sortProjectsByName(int order) {
+        ObservableList<Project> sortedProjectsByName;
+        if (order == 0) {
+            //sort according to alphabetical order
+            sortedProjectsByName =
+                    getModifiableProjectList().sorted(Comparator.comparing(p -> p.getProjectName().toString()));
+        } else {
+            //sort according to reverse alphabetical order
+            sortedProjectsByName = getModifiableProjectList().sorted((p1, p2) ->
+                    p2.getProjectName().toString().compareTo(p1.getProjectName().toString()));
+        }
+        setProjects(sortedProjectsByName);
+    }
+
+    /**
+     * Sort issues in chronological order or reverse chronological order based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for chronological order and one for reverse chronological order
+     */
+    public void sortIssuesByDeadline(int order) {
+        ObservableList<Issue> sortedIssuesByDeadline;
+        if (order == 0) {
+            //sort according to chronological deadlines
+            sortedIssuesByDeadline =
+                    getModifiableIssueList().sorted(Comparator.comparing(i -> i.getDeadline().getLocalDate()));
+        } else {
+            //sort according to reverse chronological deadlines
+            sortedIssuesByDeadline = getModifiableIssueList().sorted((i1, i2) ->
+                    i2.getDeadline().getLocalDate().compareTo(i1.getDeadline().getLocalDate()));
+        }
+        setIssues(sortedIssuesByDeadline);
+    }
+
+    /**
+     * Sort issues in according to lowest or highest priority based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for lowest priority and one for highest priority
+     */
+    public void sortIssuesByPriority(int order) {
+        ObservableList<Issue> sortedIssuesByPriority;
+        if (order == 0) {
+            //sort according to the lowest priority
+            sortedIssuesByPriority =
+                    getModifiableIssueList().sorted(Comparator.comparing(Issue::getPriority));
+        } else {
+            //sort according to the highest priority
+            sortedIssuesByPriority = getModifiableIssueList().sorted((i1, i2) ->
+                    i2.getPriority().compareTo(i1.getPriority()));
+        }
+        setIssues(sortedIssuesByPriority);
+    }
+
     //// util methods
 
     @Override
@@ -286,8 +382,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Project> getModifiableProjectList() {
+        return projects.asModifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Issue> getIssueList() {
         return issues.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Issue> getModifiableIssueList() {
+        return issues.asModifiableObservableList();
     }
 
     @Override
@@ -338,6 +444,5 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: Check for appropriate hashcode
         return clients.hashCode();
     }
-
 
 }
