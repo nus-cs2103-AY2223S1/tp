@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 import nus.climods.commons.core.Messages;
 import nus.climods.model.Model;
 import nus.climods.model.module.predicate.ModuleContainsKeywordsPredicate;
-import nus.climods.storage.Storage;
-import nus.climods.storage.exceptions.StorageException;
 
 /**
  * Find a module using a search phrase
@@ -34,13 +32,13 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws StorageException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setFilteredModuleList(new ModuleContainsKeywordsPredicate(searchRegexes));
 
         return new CommandResult(
             String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()),
-                COMMAND_WORD, storage, model);
+                COMMAND_WORD, model);
     }
 
     @Override

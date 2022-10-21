@@ -1,7 +1,6 @@
 package nus.climods.logic.commands;
 
 import nus.climods.model.Model;
-import nus.climods.storage.Storage;
 
 /**
  * Terminates the program.
@@ -22,7 +21,7 @@ public class ExitCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model mode, Storage storage) {
+    public CommandResult execute(Model mode) {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
 

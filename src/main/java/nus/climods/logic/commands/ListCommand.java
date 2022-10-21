@@ -8,8 +8,6 @@ import java.util.Optional;
 import nus.climods.logic.parser.parameters.FacultyCodeParameter;
 import nus.climods.logic.parser.parameters.UserFlagParameter;
 import nus.climods.model.Model;
-import nus.climods.storage.Storage;
-import nus.climods.storage.exceptions.StorageException;
 
 /**
  * Lists all modules in NUS to the user.
@@ -37,11 +35,11 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws StorageException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredModuleList(facultyCode, hasUser);
         return new CommandResult(String.format(MESSAGE_MODULES_LISTED_OVERVIEW,
                 model.getFilteredModuleList().size()),
-                COMMAND_WORD, storage, model);
+                COMMAND_WORD, model);
     }
 }

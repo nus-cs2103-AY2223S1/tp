@@ -22,7 +22,7 @@ public class HelpCommandTest {
         String expectedMessage = Messages.MESSAGE_SHOW_HELP;
 
         HelpCommand helpCommand = new HelpCommand();
-        CommandResult commandResult = helpCommand.execute(model, null);
+        CommandResult commandResult = helpCommand.execute(model);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
     }

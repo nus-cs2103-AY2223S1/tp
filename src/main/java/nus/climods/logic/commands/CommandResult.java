@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import nus.climods.model.Model;
-import nus.climods.storage.Storage;
-import nus.climods.storage.exceptions.StorageException;
 
 /**
  * Represents the result of a command execution.
@@ -24,6 +22,9 @@ public class CommandResult {
      */
     private final boolean exit;
 
+    /* The application should save userModuleList */
+    private boolean isSave;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -31,6 +32,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        isSave = false;
     }
 
     /**
@@ -38,16 +40,17 @@ public class CommandResult {
      * default value.
      */
     public CommandResult(String feedbackToUser, String commandWord,
-                         Storage storage, Model model) throws StorageException {
+                         Model model) {
         this(feedbackToUser, false, false);
 
         switch (commandWord) {
         case (AddCommand.COMMAND_WORD):
 
         case (DeleteCommand.COMMAND_WORD):
-            storage.saveUserModuleList(model.getUserModuleList());
+            isSave = true;
             break;
         default:
+            isSave = false;
         }
     }
 
@@ -63,6 +66,8 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isSave() { return isSave; }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -76,8 +81,9 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-            && showHelp == otherCommandResult.showHelp
-            && exit == otherCommandResult.exit;
+            && showHelp == otherCommandResult.isShowHelp()
+            && exit == otherCommandResult.isExit()
+            && isSave == otherCommandResult.isSave();
     }
 
     @Override

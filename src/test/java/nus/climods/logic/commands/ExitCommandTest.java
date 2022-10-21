@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.ModelManager;
 import nus.climods.model.UserPrefs;
@@ -17,11 +18,11 @@ public class ExitCommandTest {
             new UserPrefs());
 
     @Test
-    public void execute_exit_success() {
+    public void execute_exit_success() throws CommandException {
         String expectedMessage = MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
         ExitCommand exitCommand = new ExitCommand();
-        CommandResult commandResult = exitCommand.execute(model, null);
+        CommandResult commandResult = exitCommand.execute(model);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
     }

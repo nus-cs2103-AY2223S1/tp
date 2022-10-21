@@ -36,14 +36,19 @@ public class LogicManager implements Logic {
         this.storage = storage;
     }
 
+    private void saveModuleList(boolean isSave) throws StorageException {
+        if (isSave) {
+            storage.saveUserModuleList(model.getUserModuleList());
+        }
+    }
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException, StorageException {
         logger.info("[User Command] " + commandText);
 
         CommandResult commandResult;
         Command command = CliModsParser.parseCommand(commandText);
-        commandResult = command.execute(model, storage);
-
+        commandResult = command.execute(model);
+        saveModuleList(commandResult.isSave());
         return commandResult;
     }
 
