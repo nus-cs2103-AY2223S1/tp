@@ -154,7 +154,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from data stored in TrackAScholar
+Clears all entries from data stored in TrackAScholar.
 
 Format: `clear`
 
@@ -163,6 +163,19 @@ Format: `clear`
 Exits TrackAScholar.
 
 Format: `exit`
+
+### Removing applicants by status : `remove`
+
+All applicants with the corresponding statuses stored in TrackAScholar is removed.
+
+Format: `remove [ACCEPTED/REJECTED]`
+
+* The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar. 
+
+Examples:
+*  `remove accepted` removes all entries with ACCEPTED as an application status from TrackAScholar.
+*  `remove rejected` removes all entries with REJECTED as an application status from TrackAScholar.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Further details
@@ -194,8 +207,11 @@ _Details coming soon ..._
 | **Clear**  | `clear`                                                         |
 | **Delete** | `delete INDEX`                                                  |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`      |
+| **Exit**   | `exit`                                                          |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                  |
 | **filter** | `filter KEYWORD`                                                |
-| **List**   | `list`                                                          |
 | **Help**   | `help`                                                          |
-| **Exit**   | `exit`                                                          |
+| **List**   | `list`                                                          |
+| **Remove** | `remove [ACCEPTED/REJECTED]`                                    |
+| **Sort**   | `sort [NAME/SCHOLARSHIP]`                                       |
+
