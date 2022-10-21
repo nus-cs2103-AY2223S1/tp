@@ -1,23 +1,27 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
 
 /**
- * Parses input arguments and creates a new {@code DeleteCommand} object
+ * Parses input arguments and creates a new {@code DeletePersonCommand} object
  */
-public class DeleteCommandParser implements Parser<DeleteCommand> {
+public class DeletePersonCommandParser implements Parser<DeletePersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * {@code DeleteCommand} and returns a {@code DeleteCommand} object for
+     * {@code DeletePersonCommand} and returns a {@code DeletePersonCommand} object for
      * execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteCommand parse(String args) throws ParseException {
+    public DeletePersonCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
