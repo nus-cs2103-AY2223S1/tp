@@ -21,7 +21,7 @@ public class AddMemberCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsAddMemberCommand() {
-        String name = "name";
+        String name = "Firstname Lastname";
         assertParseSuccess(parser, name, new AddMemberCommand(new Name(name)));
     }
 

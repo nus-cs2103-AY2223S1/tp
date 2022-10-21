@@ -25,7 +25,7 @@ public class AddMemberCommand extends Command {
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
-    public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to add does not exist!";
+    public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to add does not exist";
 
     private final Name targetPersonName;
 
