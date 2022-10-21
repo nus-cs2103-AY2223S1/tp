@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
@@ -65,6 +66,8 @@ public class PersonCard extends UiPart<Region> {
     private Label year;
     @FXML
     private Label specialisation;
+    @FXML
+    private Label officeHour;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -89,6 +92,7 @@ public class PersonCard extends UiPart<Region> {
             renderRating(prof.getRating());
             year.setManaged(false);
             setSpecialisation(prof);
+            setOfficeHour(prof);
         }
         if (person instanceof TeachingAssistant) {
             TeachingAssistant ta = (TeachingAssistant) person;
@@ -97,6 +101,7 @@ public class PersonCard extends UiPart<Region> {
             renderRating(ta.getRating());
             year.setManaged(false);
             specialisation.setManaged(false);
+            officeHour.setManaged(false);
         }
         if (person instanceof Student) {
             Student student = (Student) person;
@@ -105,6 +110,7 @@ public class PersonCard extends UiPart<Region> {
             title.setText("Student");
             setYear(student);
             specialisation.setManaged(false);
+            officeHour.setManaged(false);
         }
     }
 
@@ -131,10 +137,20 @@ public class PersonCard extends UiPart<Region> {
     private void setUsername() {
         String username = person.getUsername().value;
         if (!username.equals(GithubUsername.DEFAULT_USERNAME)) {
+            officeHour.setManaged(true);
             githubUsername.setText("@" + person.getUsername().value);
         } else {
-            githubUsername.setMaxHeight(0.0);
-            githubUsername.setMinHeight(0.0);
+            githubUsername.setManaged(false);
+        }
+    }
+
+    private void setOfficeHour(Professor professor) {
+        String profOfficeHour = professor.getOfficeHour().value;
+        if (!profOfficeHour.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
+            officeHour.setManaged(true);
+            officeHour.setText(profOfficeHour);
+        } else {
+            officeHour.setManaged(false);
         }
     }
 

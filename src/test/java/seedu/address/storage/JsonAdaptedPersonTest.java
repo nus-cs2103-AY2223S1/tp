@@ -45,6 +45,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_RATING = "4";
     private static final String VALID_YEAR = "3";
     private static final String VALID_SPECIALISATION = "Discrete Math";
+    private static final String VALID_OFFICE_HOUR = "MONDAY: 6:00 PM to 5:00 PM";
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -156,7 +157,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedProfessor(VALID_TYPE, VALID_NAME, VALID_MODULE_CODE, VALID_PHONE, VALID_EMAIL,
                         VALID_GENDER, VALID_TAGS, VALID_LOCATION, VALID_GITHUB_USERNAME,
-                        INVALID_RATING, VALID_SPECIALISATION);
+                        INVALID_RATING, VALID_SPECIALISATION, VALID_OFFICE_HOUR);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -173,7 +174,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedProfessor(VALID_TYPE, VALID_NAME, VALID_MODULE_CODE, VALID_PHONE, VALID_EMAIL,
                         VALID_GENDER, VALID_TAGS, VALID_LOCATION, VALID_GITHUB_USERNAME, VALID_RATING,
-                        INVALID_SPECIALISATION);
+                        INVALID_SPECIALISATION, VALID_OFFICE_HOUR);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 }

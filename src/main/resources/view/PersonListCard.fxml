@@ -52,6 +52,7 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="githubUsername" styleClass="cell_small_label" />
       <Label fx:id="locationAt" styleClass="cell_small_label" text="\$location" />
+        <Label fx:id="officeHour" styleClass="cell_small_label"/>
     </VBox>
       <rowConstraints>
          <RowConstraints />

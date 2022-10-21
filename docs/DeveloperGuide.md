@@ -154,6 +154,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete multiple contacts (enhancement to delete feature)
+
+`DeleteCommand` now accepts multiple inputs and allows multiple `Person` to be deleted from the `Model` in a single command.
+
+The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed.
+
+<img src="images/DeleteMultipleSequenceDiagram.png" >
+
+#### Differences from original `DeleteCommand` implementation:
+1. `DeleteCommandParser` now returns a `Set<Index>` instead of just a single `Index` to be used as arguments for the `DeleteCommand`constructor.
+2. If any of the inputs are invalid (out of bounds indexes or non-integer characters) a `ParseException` will be thrown, even if other inputs are valid.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running. >
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -234,10 +248,179 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+
+### Fast Template Feature
+
+#### Implementation
+
+The Fast Template Feature is facilitated by `TemplateCommand`. It extends 'Command' with a String`personChosen` class field that stores the chosen Person. The chosen Person refers to the Person that the User wants the template of, i.e. `prof / ta / student`. Additonally, it implements the following operations:
+- TemplateCommand#execute() - Executes the template command, whose command word is `tt`.
+- TemplateCommand#isValidPerson(String p) - Returns the boolean indicating whether the string p refers to a valid person. I.e. is a command word for a Person
+
+Given below is an example usage scenario and how the template operation mechanism behaves at each step.
+
+Step 1. The user types `tt prof` and presses enter.
+
+Step 2. The `tt prof ` will be parsed by `AddressBook#parseCommand()` which will return a `TemplateCommandParser`.
+
+Step 3. The `TemplateCommandParser` will parse `prof` using `parse()`. This will return a `TemplateCommand` since `prof` is a valid command word for a Person, in this case Professor.
+
+Step 4. The `TemplateCommand` will then be executed using `TemplateCommand#execute()`.
+
+Step 5. A `CommandResult` will be returned. It has the field `personTemplateString` that is set to `"prof"`.
+
+Step 6. The UI will call `hasPersonTemplate()` from the CommandResult.
+
+Step 7. If the previous step is true, the UI will update itself accordingly, i.e. paste the appropriate Person's template on the CLI, by calling `handleTemplate()`.
+
+The following sequence diagram shows how the github feature works.
+
+![ttCommandSequenceDiagram](images/ttCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How the template is provided to User:**
+
+* **Current Implementation:** Pastes the template directly into the CLI where the User types commands
+    * Pros: More intuitive
+    * Cons: More complicated to implement, need to click or press tab + left arrow to get to CLI.
+
+* **Alternative:** Copies the template into the User's clipboard
+    * Pros: Easier to implement, can access CLI directly after pasting
+    * Cons: Less intuitive, less technically competent users may not understand what a clipboard is.
+
+### Open Github Profile Page Feature
+
+#### Implementation
+
+The Open Github Profile Page Feature is facilitated by `GithubCommand`. It extends 'Command' with an `Index` class field that stores the target index. The target index refers to the index of the Address that users want to execute the Github command on. Additonally, it implements the following operations:
+- GithubCommand#execute() - Executes the github command.
+
+Given below is an example usage scenario and how the github operation mechanism behaves at each step.
+
+Step 1. The user types `github 1` and presses enter.
+
+Step 2. The `github 1 ` will be parsed by `AddressBook#parseCommand()` which will return a `GithubCommandParser`.
+
+Step 3. The `GithubCommandParser` will parse `1` using `parse()`. This will return a `GithubCommand`
+
+Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** executes() checks if the github username field of target person is empty. If it is empty an exception will be thrown.
+</div>
+
+Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** openGithub() checks if the url built is invalid. If url is invalid an exception would be thrown.
+</div>
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+The following sequence diagram shows how the github feature works.
+
+![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new Github command:
+
+![GithubSequenceDiagram](images/GithubCommandActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How open github profile page feature executes:**
+
+* **Alternative 1 (current choice):** Opens github profile page through user's default browser.
+    * Pros: Easy to implement.
+    * Cons: Users will be redirected to their default browser.
+
+* **Alternative 2:** Opens github profile page through in-built browser.
+    * Pros: Users will be able to see the github profile page from the app itself
+    * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
+
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find Contact
+
+#### Implementation
+
+The Find Contact Feature is facilitated by `FindCommand`. It extends `Command` with a `PersonMatchesPredicate` field (which extends the `Predicate` interface) that is used to filter persons to produce the desirable list of contacts.
+
+Given below is an example usage scenario and how the find command mechanism behaves at each step.
+
+Step 1. The user types `find n/bob` and presses enter.
+
+Step 2. The `find n/bob` will be parsed by `AddressBook#parseCommand()` which will return a `FindCommandParser` which also creates a `PersonMatchesPredicate`.
+
+Step 3. The `FindCommandParser` will parse `n/bob` using `parse()` and then set the `namesList` of the `PersonMatchesPredicate` to a list of strings containing `bob`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesList and tagsList works differently than the other fields.
+</div>
+
+Step 5. `FindCommandParser` then creates a `FindCommand` by passing the `PersonMatchesPredicate` to its constructor.
+
+Step 4. The `FindCommand` will then be executed using `FindCommand#execute()`.
+
+Step 5. The `Model#updateFilteredPersonList(predicate);` method will be called and the list of persons will be filtered according to the `PersonMatchesPredicate`.
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+Step 7. A list of contacts, if any, will be displayed to the user.
+
+The following sequence diagram shows how the find contact feature works.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How open github profile page feature executes:**
+
+* **Alternative 1 (current choice):** Use a class that implements the `Predicate` interface to filter contacts.
+    * Pros: Easily extendable for future enhancements of find command.
+    * Pros: Less of the codebase needs to be changed.
+
+* **Alternative 2:** Create a generic contact class through the fields provided and match with other contacts to filter.
+    * Cons: Difficult to implement / bad runtime and memory usage when multiple values are provided for a single field. e.g. `find n/bob anne` will mean 2 contacts are created with names `bob` and `anne` respectively. Current contacts will then need to be compared with both of these.
+
+### Sort List Feature
+
+#### Implementation
+
+The proposed sort mechanism is facilitated by `SortCommand`. It extends `Command` which alters the `UniquePersonList`
+stored within `AddressBook` to display the list on the UI in a sorted order according to the users specification. The
+`Order` class is used to specify the arrangement of the list in either `Order.ASCENDING` or `Order.DESCENDING`.
+
+Given below is an example usage scenario and how the sort command mechanism behaves at each step.
+
+Step 1. The user types `sort A-Z n/name` and presses enter.
+
+Step 2. The `sort A-Z n/name` will be parsed by `AddressBook#parseCommand()` which will return a `SortCommandParser` and a `SortPersonListDescriptor`
+
+Step 3. The `FindCommandParser` will parse `A-Z` and `n/name` using `parse()` and then create an `Order` based on `A-Z` and also set the `isSortByName` and
+`isSortByModuleCode` attributes of the `SortPersonListDescriptor`.
+
+Step 4. `SortCommandParser` then creates a `SortCommand` by passing the `Order` and `SortPersonListDescriptor` to its constructor.
+
+Step 5. The `SortCommand` will then be executed using `SortCommand#execute()`.
+
+Step 6. The `Model#sort(order, isSortByName, isSortByModuleCode);` method will be called and the list of persons will be sorted according to the `order`, `isSortByName` and `isSortByModuleCode`.
+
+Step 7. A `CommandResult` indicating successful completion of the command will be returned.
+
+Step 8. A list of contacts in a sorted order, if any, will be displayed to the user.
+
+The following sequence diagram shows how the sort feature works.
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new sort command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.person.ModuleCode;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Specialisation;
@@ -13,10 +14,11 @@ public class ProfessorBuilder extends PersonBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS1231S";
     public static final String DEFAULT_RATING = "5";
     public static final String DEFAULT_SPECIALISATION = "Computer Graphics";
-
+    public static final String DEFAULT_OFFICE_HOUR = "TUESDAY: 6:00 PM to 9:00 PM";
     private ModuleCode moduleCode;
     private Rating rating;
     private Specialisation field;
+    private OfficeHour officeHour;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -26,6 +28,7 @@ public class ProfessorBuilder extends PersonBuilder {
         this.moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         this.rating = new Rating(DEFAULT_RATING);
         this.field = new Specialisation(DEFAULT_SPECIALISATION, true);
+        this.officeHour = new OfficeHour(DEFAULT_OFFICE_HOUR, true);
     }
 
     /**
@@ -34,12 +37,13 @@ public class ProfessorBuilder extends PersonBuilder {
     public ProfessorBuilder(Professor personToCopy) {
         super(personToCopy);
         moduleCode = personToCopy.getModuleCode();
+        this.officeHour = personToCopy.getOfficeHour();
     }
 
     @Override
     public Professor build() {
         return new Professor(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(), getLocation(),
-                getGithubUsername(), rating, field);
+                getGithubUsername(), rating, field, officeHour);
     }
     /**
      * Sets the {@code ModuleCode} of the {@code Professor} that we are building.

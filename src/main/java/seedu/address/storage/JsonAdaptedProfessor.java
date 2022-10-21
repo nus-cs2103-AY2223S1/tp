@@ -15,6 +15,7 @@ import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
@@ -37,8 +38,10 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("location") String location,
                                 @JsonProperty("username") String username, @JsonProperty("rating") String rating,
-                                @JsonProperty("specialisation") String specialisation) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "", specialisation);
+                                @JsonProperty("specialisation") String specialisation,
+                                @JsonProperty("officeHour") String officeHour) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "",
+                specialisation, officeHour);
     }
 
     /**
@@ -120,11 +123,6 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         final GithubUsername modelUsername;
 
-        if (getUsername() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    GithubUsername.class.getSimpleName()));
-        }
-
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
             modelUsername = new GithubUsername(getUsername(), false);
         } else {
@@ -166,8 +164,23 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
             modelSpecialisation = new Specialisation(getSpecialisation(), true);
         }
 
+        final OfficeHour modelOfficeHour;
+
+        if (getOfficeHour() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+        }
+
+        if (getOfficeHour().equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
+            modelOfficeHour = new OfficeHour(getOfficeHour(), false);
+        } else {
+            //if (!OfficeHour.isValidOfficeHour(getOfficeHour())) {
+            //throw new IllegalValueException(OfficeHour.MESSAGE_CONSTRAINTS);
+            //}
+            modelOfficeHour = new OfficeHour(getOfficeHour(), true);
+        }
+
         return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
-            modelLocation, modelUsername, modelRating, modelSpecialisation);
+            modelLocation, modelUsername, modelRating, modelSpecialisation, modelOfficeHour);
     }
 
 }

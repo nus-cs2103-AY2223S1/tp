@@ -20,7 +20,7 @@ public class JsonAdaptedPersonDeserializer extends JsonDeserializer<JsonAdaptedP
         if (root.type.equals("p")) {
             return new JsonAdaptedProfessor(root.type, root.name, root.moduleCode, root.phone,
                     root.email, root.gender, root.tagged, root.location, root.username, root.rating,
-                    root.specialisation);
+                    root.specialisation, root.officeHour);
         } else if (root.type.equals("s")) {
             return new JsonAdaptedStudent(root.type, root.name, "", root.moduleCodes, root.phone,
                     root.email, root.gender, root.tagged, root.location, root.username, root.year);
@@ -48,5 +48,6 @@ public class JsonAdaptedPersonDeserializer extends JsonDeserializer<JsonAdaptedP
         private String rating;
         private String year;
         private String specialisation;
+        private String officeHour;
     }
 }

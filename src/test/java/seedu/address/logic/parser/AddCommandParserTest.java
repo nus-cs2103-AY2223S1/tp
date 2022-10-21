@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CABE
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CABE;
+import static seedu.address.logic.commands.CommandTestUtil.OFFICE_HOUR_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_CABE;
@@ -45,6 +46,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
+// import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeachingAssistant;
@@ -211,41 +213,42 @@ public class AddCommandParserTest {
         // invalid name
         assertParseFailure(profParser, INVALID_NAME_DESC + MODULE_CODE_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + GENDER_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY, Name.MESSAGE_CONSTRAINTS);
 
         // invalid Module Code
         assertParseFailure(profParser, NAME_DESC_BOB + INVALID_MODULE_CODE + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + GENDER_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleCode.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY, ModuleCode.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(profParser, NAME_DESC_BOB + MODULE_CODE_DESC_BOB + INVALID_PHONE_DESC
             + EMAIL_DESC_BOB + GENDER_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(profParser, NAME_DESC_BOB + MODULE_CODE_DESC_BOB + PHONE_DESC_BOB
             + INVALID_EMAIL_DESC + GENDER_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY, Email.MESSAGE_CONSTRAINTS);
 
         // invalid gender
         assertParseFailure(profParser, NAME_DESC_BOB + MODULE_CODE_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + INVALID_GENDER_DESC
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Gender.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY, Gender.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(profParser, NAME_DESC_BOB + MODULE_CODE_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + GENDER_DESC_BOB
-            + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+            + INVALID_TAG_DESC + VALID_TAG_FRIEND + OFFICE_HOUR_MONDAY, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(profParser, INVALID_NAME_DESC + MODULE_CODE_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + INVALID_GENDER_DESC,
+                + EMAIL_DESC_BOB + INVALID_GENDER_DESC + OFFICE_HOUR_MONDAY,
             Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(profParser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + MODULE_CODE_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + GENDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + GENDER_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND + OFFICE_HOUR_MONDAY,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProfCommand.MESSAGE_USAGE));
     }
 }

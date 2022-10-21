@@ -34,6 +34,7 @@ abstract class JsonAdaptedPerson {
     private final String rating;
     private final String year;
     private final String specialisation;
+    private final String officeHour;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +46,8 @@ abstract class JsonAdaptedPerson {
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("location") String location, @JsonProperty("username") String username,
                              @JsonProperty("rating") String rating, @JsonProperty("year") String year,
-                             @JsonProperty("specialisation") String specialisation) {
+                             @JsonProperty("specialisation") String specialisation,
+                             @JsonProperty("officeHour") String officeHour) {
         this.type = type;
         this.name = name;
         this.moduleCode = moduleCode;
@@ -60,6 +62,7 @@ abstract class JsonAdaptedPerson {
         this.rating = rating;
         this.year = year;
         this.specialisation = specialisation;
+        this.officeHour = officeHour;
     }
 
     /**
@@ -73,6 +76,7 @@ abstract class JsonAdaptedPerson {
             rating = "";
             year = student.getYear().value;
             specialisation = "";
+            officeHour = "";
         } else if (source instanceof Professor) {
             type = "p";
             Professor prof = (Professor) source;
@@ -80,6 +84,7 @@ abstract class JsonAdaptedPerson {
             rating = prof.getRating().value;
             year = "";
             specialisation = prof.getSpecialisation().value;
+            officeHour = prof.getOfficeHour().value;
         } else if (source instanceof TeachingAssistant) {
             type = "t";
             TeachingAssistant ta = (TeachingAssistant) source;
@@ -87,12 +92,14 @@ abstract class JsonAdaptedPerson {
             rating = ta.getRating().value;
             year = "";
             specialisation = "";
+            officeHour = "";
         } else {
             type = "invalid";
             moduleCode = "invalid";
             rating = "invalid";
             year = "invalid";
             specialisation = "invalid";
+            officeHour = "invalid";
         }
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -141,6 +148,9 @@ abstract class JsonAdaptedPerson {
     }
     public String getSpecialisation() {
         return specialisation;
+    }
+    public String getOfficeHour() {
+        return officeHour;
     }
 
     public abstract Person toModelType() throws IllegalValueException;

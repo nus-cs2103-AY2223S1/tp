@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -18,6 +22,7 @@ import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Specialisation;
@@ -31,6 +36,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String DEFAULT_LOC_STRING = "DEFAULT_LOC";
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -288,6 +294,41 @@ public class ParserUtil {
             throw new ParseException(Specialisation.MESSAGE_CONSTRAINTS);
         }
         return new Specialisation(trimmedField, true);
+    }
+
+    /**
+     * Parses a {@code String officeHour} into an {@code OfficeHour}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OfficeHour} is invalid.
+     */
+    public static OfficeHour parseOfficeHour(String officeHour, boolean isPresent) throws ParseException {
+        requireNonNull(officeHour);
+        String trimmedOfficeHour = officeHour.trim();
+        if (!isPresent) {
+            return new OfficeHour(trimmedOfficeHour, false);
+        }
+        if (!OfficeHour.isValidOfficeHour(trimmedOfficeHour)) {
+            throw new ParseException(OfficeHour.MESSAGE_CONSTRAINTS);
+        }
+        // trimmedField: DayOfWeek-HH:mm-Duration
+        // fieldArr: [DayOfWeek, HH:mm, Duration]
+        String[] fieldArr = officeHour.split("-");
+        DayOfWeek dayOfWeek = DayOfWeek.of(Integer.parseInt(fieldArr[0]));
+        LocalTime startTime;
+        LocalTime endTime;
+        try {
+            startTime = LocalTime.parse(fieldArr[1]);
+            endTime = startTime.plusHours(Integer.parseInt(fieldArr[2]));
+        } catch (DateTimeParseException e) {
+            throw new ParseException(e.getMessage());
+        }
+        String formattedOfficeHour = dayOfWeek.toString()
+                + ", "
+                + startTime.format(TIME_FORMATTER)
+                + " to "
+                + endTime.format(TIME_FORMATTER);
+        return new OfficeHour(formattedOfficeHour, true);
     }
 
 }

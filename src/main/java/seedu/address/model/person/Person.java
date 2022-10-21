@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -129,4 +130,9 @@ public abstract class Person {
      */
     public abstract boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules);
 
+    public abstract boolean doesRatingMatch(List<String> ratingList);
+
+    public abstract boolean doesYearMatch(List<String> yearList);
+
+    public abstract boolean doesSpecialisationMatch(List<String> specList);
 }

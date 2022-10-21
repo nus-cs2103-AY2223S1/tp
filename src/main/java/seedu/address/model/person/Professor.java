@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,15 +19,18 @@ public class Professor extends Person {
 
     private final Specialisation field;
 
+    private final OfficeHour officeHour;
     /**
      * Every field must be present and not null.
      */
     public Professor(Name name, ModuleCode moduleCode, Phone phone, Email email, Gender gender, Set<Tag> tags,
-                     Location location, GithubUsername username, Rating rating, Specialisation field) {
+                     Location location, GithubUsername username,
+                     Rating rating, Specialisation field, OfficeHour officeHour) {
         super(name, phone, email, gender, tags, location, username);
         this.moduleCode = moduleCode;
         this.rating = rating;
         this.field = field;
+        this.officeHour = officeHour;
     }
 
     public ModuleCode getModuleCode() {
@@ -41,6 +45,9 @@ public class Professor extends Person {
         return this.field;
     }
 
+    public OfficeHour getOfficeHour() {
+        return this.officeHour;
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -60,14 +67,15 @@ public class Professor extends Person {
                 && otherPerson.getLocation().equals(getLocation())
                 && otherPerson.getUsername().equals(getUsername())
                 && otherPerson.getModuleCode().equals(getModuleCode())
-                && otherPerson.getSpecialisation().equals(getSpecialisation());
+                && otherPerson.getSpecialisation().equals(getSpecialisation())
+                && otherPerson.getOfficeHour().equals(getOfficeHour());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
-                getUsername(), moduleCode, rating, field);
+                getUsername(), moduleCode, rating, field, officeHour);
     }
 
 
@@ -95,6 +103,11 @@ public class Professor extends Person {
         if (!getUsername().value.equals(GithubUsername.DEFAULT_USERNAME)) {
             builder.append("; Github Username: ")
                     .append(getUsername());
+        }
+
+        if (!getOfficeHour().value.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
+            builder.append("Office hour: ")
+                    .append(getOfficeHour());
         }
 
         builder.append("; Location: ")
@@ -139,5 +152,21 @@ public class Professor extends Person {
 
         return modulesSet.stream()
                 .anyMatch(module -> StringUtil.containsWordIgnoreCase(this.moduleCode.value, module));
+    }
+
+    @Override
+    public boolean doesRatingMatch(List<String> ratingList) {
+        return ratingList.stream().anyMatch(rating -> rating.equals(this.rating.value));
+    }
+
+    @Override
+    public boolean doesYearMatch(List<String> yearList) {
+        return false;
+    }
+
+    @Override
+    public boolean doesSpecialisationMatch(List<String> specList) {
+        return specList.stream().anyMatch(specialisation
+                -> specialisation.equals(this.getSpecialisation().value.toLowerCase()));
     }
 }
