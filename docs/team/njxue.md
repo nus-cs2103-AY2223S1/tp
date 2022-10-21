@@ -25,11 +25,11 @@ Given below are my contributions to the project.
     * Enabling assertions in `build.gradle`.
     * Trial jar file release.
 
-* **Enhancements to existing features**: To be added soon,
+* **Enhancements to existing features**: To be added soon.
 
 * **Documentation**:
-  * Modified the pre-existing UML and sequence diagrams from AB3 to Ta Assist.
-  * Added implementation details on focus mode.
+  * Modified the pre-existing UML and sequence diagrams from AB3 to TA Assist.
+  * Added implementation details for focus mode.
   * Extended the description for the Model component.
   * Added sequence diagrams for `assign` and `focus` command
 
