@@ -15,17 +15,32 @@ import javafx.stage.Stage;
  */
 public class HelpWindow extends UiPart<Stage> {
 
+    public static final String CLIPBOARD_CONTENT = "FoodWhere allows the user to copy the "
+            + "name, address or other content to the clipboard. "
+            + "To copy any of the content to the clipboard, "
+            + "right-click on either the stall or review card in the lists using the mouse cursor.";
+    public static final String CLIPBOARD_TITLE = "Copy Function of Text to Clipboard";
+
+    public static final String USERGUIDE_TITLE = "User Guide";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103-w14-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELPWINDOW_TITLE = "Help Window";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
     private Button copyButton;
-
     @FXML
     private Label helpMessage;
+    @FXML
+    private Label title;
+    @FXML
+    private Label copyTitle;
+    @FXML
+    private Label copyContent;
+    @FXML
+    private Label userGuideTitle;
 
     /**
      * Creates a new HelpWindow.
@@ -35,6 +50,10 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        title.setText(HELPWINDOW_TITLE);
+        copyTitle.setText(CLIPBOARD_TITLE);
+        copyContent.setText(CLIPBOARD_CONTENT);
+        userGuideTitle.setText(USERGUIDE_TITLE);
     }
 
     /**
