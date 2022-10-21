@@ -77,7 +77,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
 that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -186,7 +186,7 @@ The list mechanism is facilitated by `LogicManager`. During its process of parsi
 a new `ListCommandParser` will be created to internally parse the argument of the command
 through `ListSubcommand`.
 
-Currently, there are 2 possible `Command` classes that can be returned from `ListSubcommand`, and 
+Currently, there are 2 possible `Command` classes that can be returned from `ListSubcommand`, and
 they are created in respect to the subcommand that is parsed:
 * `ListBooksCommand` for `Book` upon the command `list books`
 * `ListUsersCommand` for `Person` upon the command `list users`
@@ -194,13 +194,13 @@ they are created in respect to the subcommand that is parsed:
 Given below is an example usage scenario and how the list mechanism behaves
 at each step.
 
-Step 1. The librarian has executed a `FindUserCommand`, which filtered certain user records to display in BookFace. The librarian 
+Step 1. The librarian has executed a `FindUserCommand`, which filtered certain user records to display in BookFace. The librarian
 then wants to return the display state to show all user records by entering the `list users` command, which attempts to list all users
 in BookFace.
 
 Step 2. `LogicManager` executes the command.
 
-Step 3. `PrimaryParser` then creates a new `ListCommandParser` object, which internally creates a `ListSubcommand` object 
+Step 3. `PrimaryParser` then creates a new `ListCommandParser` object, which internally creates a `ListSubcommand` object
 to parse the second part of the command (which is `users`).
 
 Step 4. `ListSubcommand` parses the subcommand as an argument and creates a new `ListUsersCommand`.
@@ -212,8 +212,8 @@ The following sequence diagram shows how the list operation works
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand` 
-and `ListUsersCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand`
+and `ListUsersCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
 the end of diagram.</div>
 
 The following activity diagram summarizes what happens when a user executes a list command:
@@ -233,7 +233,7 @@ Given below is an example usage scenario and how the loan mechanism behaves at e
 
 Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
 executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
-in the book list. 
+in the book list.
 
 Step 2. `LogicManager` executes the librarian's `loan 2 2` command.
 
@@ -252,7 +252,7 @@ The following sequence diagram shows how the loan operation works:
 
 ![LoanSequenceDiagram](images/LoanSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The following activity diagram summarizes what happens when the librarian executes a loan command:
@@ -261,8 +261,8 @@ The following activity diagram summarizes what happens when the librarian execut
 
 #### Design considerations:
 The loan command is designed such that the `BookList` and `UniquePersonList`
-are updated sequentially rather than concurrently, such that there are 
-separate loan commands in both `BookList` and `UniquePersonList` that are called 
+are updated sequentially rather than concurrently, such that there are
+separate loan commands in both `BookList` and `UniquePersonList` that are called
 by `BookFace` that updates the `BookList` and `UniquePersonList` respectively.
 
 It may be possible to make it such that only one loan command is ever called,
@@ -272,7 +272,7 @@ in the future.
 
 One issue is that the `UniquePersonList` and `BookList` do not refresh their UI
 automatically and we resorted to getting the index of each list to set their
-internal `ObservableLists` to 'refresh' their UI. 
+internal `ObservableLists` to 'refresh' their UI.
 
 ### Return feature
 
@@ -287,7 +287,7 @@ Given below is an example usage scenario and how the return mechanism behaves at
 
 Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
 executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
-in the book list. The librarian now wants to return the 2nd book that was previously loaned out. 
+in the book list. The librarian now wants to return the 2nd book that was previously loaned out.
 The librarian enters `return 2` command.
 
 Step 2. `LogicManager` executes the librarian's `return 2` command.
@@ -306,7 +306,7 @@ The following sequence diagram shows how the return operation works:
 
 ![ReturnSequenceDiagram](images/ReturnSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The following activity diagram summarizes what happens when a user executes a return command:
