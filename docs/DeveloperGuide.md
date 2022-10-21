@@ -376,6 +376,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
+
+**Use case: Add a bill to an appointment**
+
+**MSS**
+
+1. User requests to add a bill to an appointment.
+2. AddressBook requests for details of the bill to add to the appointment.
+3. User enters the requested details.
+4. AddressBook adds the bill to the appointment.
+
+    Use case ends.
+
+
+**Extensions**
+
+
+* 3a. The format for addBill command is not followed.
+
+    * 3a.1 AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Edit a bill of an appointment**
+
+**MSS**
+
+1. User requests to edit a bill of an appointment.
+2. AddressBook requests for details of the bill to be edited.
+3. User enters the requested details.
+4. AddressBook edits the bill.
+
+    Use case ends.
+
+
+**Extensions**
+
+* 3a. The format for editBill command is not followed.
+    
+    * 3a.1 AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
