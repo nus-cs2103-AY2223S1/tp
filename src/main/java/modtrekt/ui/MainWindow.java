@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane moduleListPanelPlaceholder;
 
     @FXML
     private StackPane taskListPanelPlaceholder;
@@ -119,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         // TODO: Replace the hardcoded modules with the module list from `logic`.
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
-        personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());

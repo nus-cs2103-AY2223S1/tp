@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_here_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,20 +69,91 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/ui/Ui.java)
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
+classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* Depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
+
+#### MainWindow
+
+The `MainWindow` class is the hub for all UI components which are listed below:
+* `CommandBox` - Command box to get user input.
+* `ResultDisplay` - Displays the message returned by the command entered. (Soon to contain avatar image)
+* `ModuleListPanel` - Panel displaying the modules input to the system.
+* `TaskListPanel` - Panel displaying the task input to the system (According to the respective module).
+* `ProfileSidePanel` - Panel displaying the user's profile and fundamental details.
+
+The `MainWindow` coordinates the backend of the system to the frontend of the system to make visible changes to the interface.
+
+This is done through the `executeCommand(String commandText)` method. Upon user input, the logic class executes the
+respective command and the model is updated to reflect the changes.
+Subsequently, after the model has been updated, the following UI classes `ResultDisplay` is refreshed as a result.
+
+#### CommandBox
+
+The `CommandBox` class contains an editable JavaFX Component `TextArea`, which allows user to input user commands.
+
+#### ResultDisplay
+
+The `ResultDisplay` class shows the message returned from the user's input.
+
+![Structure of the UI Component](images/ResultDisplayHandleCommand.png)
+
+1. Command is executed on `MainWindow`.
+2. `MainWindow` calls the method `executeCommand`, which refreshes the resultant message displayed in `ResultDisplay`.
+3. `ResultDisplay` updates its JavaFX `TextArea` according to the `CommandResult` of the command given.
+In this case, the `TextArea` will display the message returned as a result of the command.
+4. ResultDisplay displays visible change on the interface.
+5. `executeCommand` ends execution.
+
+#### ModuleListPanel
+
+The `ModuleListPanel` class contains `ListView<Module>` JavaFX component displaying a list view of the component inside.
+In this case, the list inside is a list of `ModuleCard` class.
+
+The contents of the list are dependent on the `modules` that the user's data. Each module input by the user will be displayed
+as a `ModuleCard` object, presented in the form of `ListView`.
+
+#### TaskListPanel
+
+The `TaskListPanel` class contains `ListView<Task>` JavaFX component displaying a list view of the component inside.
+In this case, the list inside is a list of `TaskCard` class.
+
+The contents of the list are dependent on the `tasks` that the user's data. Each module input by the user will be displayed
+as a `TaskCard` object, presented in the form of `ListView`.
+
+#### ProfileSidePanel
+
+The `ProfileSidePanel` class contains the user's profile and (proposed) CAP. The following information is displayed in on the object:
+* `Course` name
+* Inspiring quote
+* (Proposed) Modular Credit completed by user
+* (Proposed) Current Cumulative Average Point (CAP)
+
+#### Other Components
+In addition to the main UI components in the `MainWindow` class, these are other UI Components:
+* `ModuleCard` - Individual card containing the relevant information of the module.
+List of ModuleCard contained in the ModuleListPanel.
+* `TaskCard` - Individual card containing the relevant information of the task.
+List of TaskCards contained in the TaskListPanel.
+* `HelpWindow` - Pop-up window containing the link the User Guide, as well as a (proposed) list of all the commands in the application.
 
 ### Logic component
 
@@ -154,90 +225,244 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Module Features
 
-#### Proposed Implementation
+### Add module
 
-The proposed undo/redo mechanism is facilitated by `VersionedModuleList`. It extends `ModuleList` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+In this section, the functionality of `add` module feature, expected execution path, and the interactions between
+`AddCommand`, `AddCommandParser`, and other objects will be discussed.
 
-* `VersionedModuleList#commit()` — Saves the current address book state in its history.
-* `VersionedModuleList#undo()` — Restores the previous address book state from its history.
-* `VersionedModuleList#redo()` — Restores a previously undone address book state from its history.
+### What is the add module feature
 
-These operations are exposed in the `Model` interface as `Model#commitModuleList()`, `Model#undoModuleList()` and `Model#redoModuleList()` respectively.
+The `add` module features allows users to add a module that they have taken or are currently taking into the
+`ModuleList`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+In order to add tasks or deadlines related to the module, a module would have to be created.
 
-Step 1. The user launches the application for the first time. The `VersionedModuleList` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Information regarding module can be recognised in the CLI using tags
 
-![UndoRedoState0](images/UndoRedoState0.png)
+These tags are:
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitModuleList()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+- `-m <module_name>`
+- `-c <module_code>`
+- `-cr <module_credit>`
 
-![UndoRedoState1](images/UndoRedoState1.png)
+### Design considerations
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitModuleList()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Aspect 1: How many modules are added:**
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleList()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleList()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ModuleList state, then there are no previous ModuleList states to restore. The `undo` command uses `Model#canUndoModuleList()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoModuleList()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone ModuleList states to restore. The `redo` command uses `Model#canRedoModuleList()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitModuleList()`, `Model#undoModuleList()` or `Model#redoModuleList()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitModuleList()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Add 1 module added per AddCommand.
   * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+  * Cons: May have to type more to add multiple modules.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Add multiple modules per AddCommand.
+  * Pros: Convenient for user.
+  * Cons: More complicated, may require much more parsing.
 
-_{more aspects and alternatives to be added}_
+We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
+reduce the compulsory AddCommand parameters.
 
-### \[Proposed\] Data archiving
+**Aspect 2: What parameters do we need:**
 
-_{Explain here how the data archiving feature will be implemented}_
+* **Alternative 1:** Manually add all the required parameters.
+    * Pros: Able to add modules that are not on NUSMods.
+    * Cons: Troublesome to add multiple parameters.
 
+* **Alternative 2:** Only require module code and fetch the relevant information from NUSMods API.
+    * Pros: Convenient for user as the only module code is required for the parameter.
+    * Cons: If the NUSMods API server is down, users would not be able to add their modules.
+
+We decided to go implement both alternatives as we wanted to give users greater flexibility.
+
+### Current implementation
+
+The diagram below showcases the path execution for when adding a module
+
+<img src="images/ModulePUMLs/AddModule/ModuleAddPathExecution.png" width="800" />
+
+The diagram below shows how the add command work with input `add -m -c CS2103T`
+
+<img src="images/ModulePUMLs/AddModule/ModuleAddSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `AddCommandParser`. After
+obtaining the module code, the argument would be passed to static method `ModuleParser:fetchModule()`. This would fetch
+the module details from NUSMods and return a `Module`. The module would be used to instantiate an `AddCommand`. When the
+`AddCommand` is executed, the `Model` would add the module to the `ModuleList`.
+
+### Remove Module
+
+In this section, the functionality of `remove` module feature, expected execution path, and the interactions between the
+`RemoveCommand`, `RemoveCommandParser`, and other objects will be discussed.
+
+### What is the remove module feature
+
+The `remove` module features allows users to remove a module that they have taken or mistakenly inputted into
+`ModuleList`.
+
+Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
+
+### Design considerations
+
+**Aspect: How are modules removed:**
+
+* **Alternative 1 (current choice):** Using their index in the list.
+    * Pros: Easier for user to select.
+    * Cons: May be hard to find module especially if module list is long. More complicated as index may change
+    especially after modifying the module list
+
+* **Alternative 2:** Using the module code.
+    * Pros: User need not list the modules to find exact module to remove.
+    * Cons: User needs to type more.
+
+We decided to go with the alternative 1 as it would be faster for users to type inputs. Furthermore, at any point, it is
+unlikely that users will take so many modules such that the GUI is unable to display all the modules. We also have an
+archive feature that would remove previously taken modules so that it would not clutter up the GUI.
+
+### Current implementation
+
+The diagram below showcases the path execution for when removing a module
+
+<img src="images/ModulePUMLs/RemoveModule/ModuleRemovePathExecution.png" width="800" />
+
+The diagram below shows how the remove command work with input `remove -m 1`
+
+<img src="images/ModulePUMLs/RemoveModule/ModuleRemoveSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `RemoveCommandParser`. After
+obtaining the index, it would be used to instantiate a `RemoveCommand`. When the `RemoveCommand` is executed, it would
+first obtain the `Module` using the index. Then it would remove the `Module` from the `ModuleList`. Using the saved
+`Module` it would then remove all `Task` in the `TaskBook` with the `Module`.
+
+### Navigation
+
+#### Change Current Module
+
+The `cd` command allows users to set a module as the **current module**, which accomplishes two things:
+* Firstly, it filters the current task list in the UI to only show tasks from the corresponding module
+* Additionally, all further commands are parsed in the context of the corresponding module. For instance, commands that require a task index, such as `remove -t 1`, will now base the index on the *updated filtered* task list.
+
+The relevant commands are:
+* **`cd <module code>`** sets the current module to the module with the specified module code
+* **`cd ..`** sets the current module to `null`, if it is not already `null`
+
+#### Design Considerations
+
+The syntax and command word were aspects that we took into consideration in the design process.
+
+1. **Using the shorthand word `cd` and similar syntax e.g. `cd ..` (Current Implementation)**
+  * Pro: Users who are familiar with CLI applications will be able to use similar syntax for navigation inside the application
+  * Pro: Users will be able to navigate through the application faster, due to the shorter command word and syntax
+  * Con: Users who are not familiar with CLI applications would have to remember a specific command word that may not be very intuitive
+
+2. **Using a longer command word e.g. `enter` and `exit`**
+  * Pro: The command word is more universally intuitive, especially for users who are not familiar with CLI applications
+  * Con: Users who are already familiar with CLI applications will have to relearn navigation using a different command
+  * Con: Users will have to type out a longer command word and syntax, which will reduce the speed at which a user can navigate through the application
+
+Taking into account that our [target user profile](#product-scope) is one that is familiar with using CLI apps, we chose option 1 as it provided the most benefit for such a user. In particular, it contributes to the goal of allowing the user to accomplish tasks (in this case navigation) in a shorter time using the CLI.
+
+#### Current implementation
+
+The current module is a `ModCode` stored as a variable in [ModelManager](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/model/ModelManager.java). Its value is used as part of a custom predicate that is used to call `Model::updateFilteredTaskList`, in order to filter the tasks to only display those belonging to the corresponding module.
+
+The following activity diagram shows the execution and control flow for the `cd` command.
+
+<img src="images/CdActivityDiagram.png" width="1000" />
+
+As seen from the diagram, when the user enters the command `cd ..` to exit from the currently selected module, a check is performed to determine whether there *is* a current module.
+
+In the case where there is no current module, i.e. the user is already at the 'root' (and all modules/tasks are listed), an error message is shown to the user alerting them of this fact. This improves the user experience as it prevents the case of a user repeatedly entering the `cd ..` command and wondering why the display never changes.
+
+The sequence diagram below shows the flow of the interactions between the different components upon execution of the command `cd CS2106`.
+
+In the diagram, the predicates `modulePredicate` and `taskPredicate` are the custom predicates used to filter the module and task lists, respectively. They are within the `setCurrentModule` method in `Model`.
+
+<img src="images/CdSequenceDiagram.png" width="1000" />
+
+### Tasks
+
+#### Task archival
+
+Task archival allows users to selectively hide tasks that they have completed.
+
+Every task in the task book will be in either the archived or unarchived state.
+New tasks will be created in the unarchived state.
+
+In this section, we will discuss the management of archived/unarchived state, as well as the
+interactions between the commands, their parsers, and the UI.
+
+The relevant commands for this section are:
+* **`archive -t <task index>`**  archives the task visible in the UI with the specified index.
+* **`unarchive -t <task index>`** unarchives the task visible in the UI with the specified index.
+
+##### Design considerations
+
+There was an alternative we considered for users to select the task to archive:
+
+* **Alternative 1:** Using the task name:
+    * Pro: Users do not have to search for a task and its index.
+    * Pro: Users can archive tasks that aren't visible in the UI.
+    * Con: Users have to type a significant amount to disambiguate tasks by their name.
+    * Con: Users have to remember the task names which may be difficult if there are many tasks.
+
+* **Alternative 2:** Using the task index of the current module (current implementation):
+    * Pro: Users can archive tasks by their index easily without much typing.
+    * Con: Users now have to use `cd` to change the current module tied to the task they want to archive.
+    * Con: Users now have to use `ls` and `ls -A` to view the tasks to archive or unarchive respectively.
+
+Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
+even though the `cd` and `ls` commands add a bit of overhead.
+
+##### Current implementation
+
+Archival state is handled in the `Task` class via a boolean flag `isArchived`.
+Because `Task` is immutable, the methods `Task::archive` and `Task::unarchive` return a new `Task`
+with the archival state changed instead of mutating the `isArchived` variable directly.
+
+The following activity diagram shows the execution and control flow of the `archive` command.
+
+<img src="images/tasks/ArchivalActivityDiagram.png" width="1000" />
+
+Notice how we explicitly prevent an archived task from being archived again. Even though archiving an archived task
+is inconsequential from a data perspective (nothing in a `Task` changes other than the creation of a new instance),
+it is still a user error that should be handled:
+
+> Suppose that a user intended to _unarchive_ a task, but accidentally entered the `archive` command instead.
+By displaying an error instead of silently accepting the erroneous command, the user is notified and
+can enter the correct command next—this results in better UX!
+
+The classes directly involved in setting the archival state from user input are:
+* `ArchiveTaskCommand` and `UnarchiveTaskCommand` which are the commands that when executed, archive and unarchive tasks respectively.
+* `ArchiveTaskCommandParser` and `UnarchiveTaskCommandParser` which parse user input for their respective commands.
+* `ModtrektParser` which parses the command word and delegates the parsing to the correct parser.
+* `LogicManager` which executes the commands.
+
+For brevity, we omit the diagrams and explanations for task unarchival—it is the direct inverse of archival,
+such that the control flow is exactly the same: just replace "archive" and its derivatives
+with "unarchive", and vice versa.
+
+#### Task listing
+
+Task listing allows users to view the tasks they have created which belong to a module.
+
+The relevant commands for this section are:
+* **`cd`** sets the current module to view tasks for.
+* **`ls`** displays only the unarchived tasks for the current module in the UI.
+* **`ls -a`** displays all the tasks for the current module, including the ones archived, in the UI.
+
+##### Current implementation
+
+We check for the presence of the `-a` flag to decide whether to display archived tasks.
+
+The predicates defined by `Model.SHOW_ALL_TASKS` and `Model.HIDE_ARCHIVED_TASKS` are used to filter
+the tasks displayed in the UI via the `updateFilteredTaskList` method in the `Model` interface.
+
+The sequence diagram below details the interactions between the command, parser, and the model
+for the`ls` and `ls -a` commands:
+
+<img src="images/tasks/ListingSequenceDiagram.png" width="1000" />
 
 --------------------------------------------------------------------------------------------------------------------
 
