@@ -37,7 +37,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         int currentStock = parseInt(argMultimap.getValue(PREFIX_CURRENTSTOCK).get());
         int minimumstock = parseInt(argMultimap.getValue(PREFIX_MINIMUMSTOCK).get());
 
-        return new AddItemCommand(index,currentStock,minimumstock);
+        return new AddItemCommand(index, currentStock, minimumstock);
     }
 
     /**
