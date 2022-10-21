@@ -279,7 +279,6 @@ parses the index of the person in the user input, and generates a `AddMemberComm
 executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
 `CommandResult` is generated with a message indicating the person being added to the team.
 
-
 ### List Members Feature
 
 #### Implementation
@@ -298,6 +297,41 @@ members of the team is shown.
 The following sequence diagram illustrates what happens within the `Logic` component when the list members command is
 executed:
 ![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
+
+### Randomly Assign Task Feature
+#### Implementation
+
+The randomly assign task feature allows users to assign a `Task` (within a particular `Team`) to a random team member (represented as a `Person` object) within the team, who are not already assigned to that `Task`.
+
+This functionality is exposed to the user through the `assign_task_rand` command, and the logic is executed in `RandomlyAssignTaskCommand#execute()`.
+
+Given below is an example usage scenario and the state of the `Team` object at each step.
+
+Step 1. The user launches the application and adds multiple users into the current team, as well as at least one task. The `Team` will contain multiple `Person` objects (representing team members).
+
+![RandomlyAssignTaskState0](images/RandomlyAssignTaskState0.png)
+
+Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team member.
+As none of the team members have been added, all of them are candidates for random assignment.
+One of them will be randomly assigned the task.
+
+![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
+
+Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again.
+The team member who has previously been allocated will not be considered.
+Similar to above, one more team member will be randomly allocated the task.
+
+![RandomlyAssignTaskState2](images/RandomlyAssignTaskState2.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If there are no team members left to allocate (e.g. all team members have already been assigned to this task), an error will be thrown.
+</div>
+
+The following activity diagram summarizes the flow of `RandomlyAssignTaskCommand#execute()`.
+
+![RandomlyAssignTaskActivityDiagram](images/RandomlyAssignTaskActivityDiagram.png)
+
+_Activity diagram of randomly assigning_
 
 --------------------------------------------------------------------------------------------------------------------
 
