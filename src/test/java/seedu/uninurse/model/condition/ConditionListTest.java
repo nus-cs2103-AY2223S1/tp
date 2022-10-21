@@ -8,6 +8,9 @@ import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_OSTEOPOROSIS;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.model.condition.exceptions.ConditionNotFoundException;
@@ -15,7 +18,9 @@ import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 
 public class ConditionListTest {
     private final ConditionList emptyConditionList = new ConditionList();
-    private final ConditionList conditionListDiabetes = emptyConditionList.add(CONDITION_DIABETES);
+    private final ConditionList conditionListDiabetes = new ConditionList(List.of(CONDITION_DIABETES));
+    private final ConditionList conditionList = new ConditionList(
+            Arrays.asList(CONDITION_DIABETES, CONDITION_OSTEOPOROSIS));
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -79,7 +84,7 @@ public class ConditionListTest {
 
     @Test
     public void size_nonEmptyList_returnsNonZero() {
-        assertNotEquals(conditionListDiabetes.size(), 0);
+        assertNotEquals(conditionList.size(), 0);
     }
 
     @Test
@@ -89,13 +94,13 @@ public class ConditionListTest {
 
     @Test
     public void isEmpty_nonEmptyList_returnsFalse() {
-        assertFalse(conditionListDiabetes.isEmpty());
+        assertFalse(conditionList.isEmpty());
     }
 
     @Test
     public void getInternalList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> conditionListDiabetes.getInternalList().remove(0));
+                -> conditionList.getInternalList().remove(0));
     }
 
     @Test
@@ -105,9 +110,8 @@ public class ConditionListTest {
 
     @Test
     public void toString_nonEmptyList_returnsIndexedStrings() {
-        ConditionList updatedConditionList = conditionListDiabetes.add(CONDITION_OSTEOPOROSIS);
         String expectedString = "1. " + CONDITION_DIABETES + "\n2. " + CONDITION_OSTEOPOROSIS;
-        assertEquals(updatedConditionList.toString(), expectedString);
+        assertEquals(conditionList.toString(), expectedString);
     }
 
     @Test
@@ -116,7 +120,7 @@ public class ConditionListTest {
         assertEquals(conditionListDiabetes, conditionListDiabetes);
 
         // same internal list -> returns true
-        ConditionList conditionListDiabetesCopy = emptyConditionList.add(CONDITION_DIABETES);
+        ConditionList conditionListDiabetesCopy = new ConditionList(List.of(CONDITION_DIABETES));
         assertEquals(conditionListDiabetes, conditionListDiabetesCopy);
 
         // different types -> returns false
@@ -126,7 +130,6 @@ public class ConditionListTest {
         assertNotEquals(null, conditionListDiabetes);
 
         // different internal list -> returns false
-        ConditionList conditionListOsteoporosis = emptyConditionList.add(CONDITION_OSTEOPOROSIS);
-        assertNotEquals(conditionListDiabetes, conditionListOsteoporosis);
+        assertNotEquals(conditionListDiabetes, conditionList);
     }
 }
