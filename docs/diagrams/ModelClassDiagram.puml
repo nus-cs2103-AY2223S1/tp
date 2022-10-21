@@ -42,11 +42,11 @@ GuestBook *--> "1" UniqueGuestList
 UniqueGuestList --> "~* all" Guest
 Guest *--> Name
 Guest *--> Email
-Guest *--> Phone
-Guest *--> Room
-Guest *--> DateRange
-Guest *--> NumberOfGuests
-Guest *--> IsRoomClean
+Guest *---> Phone
+Guest *---> Room
+Guest *---> DateRange
+Guest *---> NumberOfGuests
+Guest *---> IsRoomClean
 Guest *--> Bill
 Guest *--> Request
 
