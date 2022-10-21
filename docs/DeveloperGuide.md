@@ -154,6 +154,22 @@ Classes used by multiple components are in the `gimbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### **Exercise Components**
+* Added Classes into the model Component to encapsulate an Exercise
+
+#### **Implementation**
+<img src="images/ModelClassDiagram.png" width="450" />
+
+An `Exercise`,
+- is stored in `ExerciseList` and `ExerciseHashmap` of the Model
+
+An `Exercise` contains the following attributes,
+1. a `Name`, which represents the name of the Exercise
+2. a `Weight`, which represents the total weight used for a certain Exercise
+3. a `Reps`, which represents the number of times a specific exercise was performed
+4. a `Sets`, which represents the number of cycles of reps that was completed
+5. a `Date`, which represent the date an exercise was performed as specified in `DD/MM/YYYY` format
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
