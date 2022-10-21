@@ -53,7 +53,7 @@
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                  <Label fx:id="dateDescriptionLabel" styleClass="label-bright-small"
+                  <Label fx:id="dateDescriptionLabel" styleClass="label-bright"
                          text="Note: Date refers to the date of application submission">
                       <font>
                           <Font name="Segoe UI Semibold" size="14.0" />
