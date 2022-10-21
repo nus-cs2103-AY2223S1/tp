@@ -57,8 +57,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
-
-        Person person = new Person(name, phone, email, address, tagMap, status, note, rating);
+        Person person;
+        if (rating.equals(new Rating("0"))) {
+            person = new Person(name, phone, email, address, tagMap, status, note);
+        } else {
+            person = new Person(name, phone, email, address, tagMap, status, note, rating);
+        }
 
         return new AddCommand(person);
     }
