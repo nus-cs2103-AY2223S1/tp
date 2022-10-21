@@ -1,5 +1,14 @@
-#copyButton, #helpMessage, #commandSummary, #welcomeMessage {
+#copyButton, #userGuideMessage, #commandSummary, #welcomeMessage, #commandSummaryIntro {
     -fx-text-fill: white;
+}
+
+#welcomeMessage {
+    -fx-font-size: 20;
+}
+
+#commandSummary {
+    -fx-font-family: monospace;
+    -fx-font-size: 12;
 }
 
 #copyButton {
