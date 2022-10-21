@@ -198,6 +198,10 @@ public class MainWindow extends UiPart<Stage> {
                 modListPanel.clearModPanel();
             }
 
+            if (!commandResult.isResetModPanel()) {
+                modListPanel.setPersonModList(modListPanel.getCurrentPerson());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
