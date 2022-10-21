@@ -181,7 +181,6 @@ public class ModelManager implements Model {
         filteredIncome.setPredicate(predicate);
     }
 
-
     /**
      * Gets pie chart data of income entries
      *

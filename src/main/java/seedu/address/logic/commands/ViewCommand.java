@@ -60,7 +60,8 @@ public class ViewCommand extends Command {
         case INCOME:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-                System.out.println("[ViewCommand] Show all expenditure by categories");
+
+                System.out.println("[ViewCommand] Show all income by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_CATEGORY), false, false,
                                          true);
             case MONTH:

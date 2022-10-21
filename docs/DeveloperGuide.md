@@ -83,9 +83,9 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UpdatedUIClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EntryListPanel`
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EntryPane`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
@@ -320,6 +320,44 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### [Proposed\] Pie Chart View feature
+
+#### Implementation
+The pie chart view feature displays a pie chart view by categories of spending/income entries, and can be accessed via the `view` command. Additionally, it implements the following operation
+* `getExpensePieChartData()`
+* `getIncomePieChartData()`
+
+These operations are exposed in the `Model` interface as `Model#getExpensePieChartData()`, `Model#getIncomePieChartData()` respectively. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
+view entryType graphType
+E.g. `view t/e g/c` indicates type expenses, graph category. This shows a pie chart view of the expenses entries grouped by categories.
+</div>
+
+Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
+![PieChartViewSequenceDiagram](images/PieChartViewSequenceDiagram.png)
+
+Step 1. The user types in `view t/e g/c` command in the main window. 
+
+Step 2. This command is handled by `MainWindow#executeCommand` method, which then calls the `LogicManager#execute` method
+
+Step 3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e g/c`.
+
+Step 4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method. In this method, it is ensured that the input is of the correct format, and the entryType and graphType is extracted.
+
+Step 5. `LogicManager`then calls the `ViewCommand#execute` method which returns a `CommandResult` that is returned to `LogicManager` and passed to `MainWindow`.
+
+Step 6. `MainWindow` then calls the `handleGraph` method which determines what data to update before calling `updateGraph`.
+
+Step 7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the pieChartData for the pieChart to be created and rendered on the UI.
+
+Design considerations:
+* **Alternative 1(current choice):** The pie chart updates only after `view` command.
+    * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
+    * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be automatically updated.
+* **Alternative 2:** Pie chart updates immediately after changing tabs from expenses and income.
+    * Pros: Intuitive, simple and quick for user.
+    * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -354,19 +392,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikely to have) - `LOW`
 
-| Priority | As a …​        | I want to …​                                                                             | So that I can…​                                                                                                    |
+| Priority | As a …​        | I want to …​                                                                             | So that I can…​                                                                                           |
 |----------|----------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| `HIGH`   | user           | input spending/income <br/> delete spending/income <br/> input spending/income with date | record my spending/income <br/> remove any wrong spending/income records <br/> keep track of when I spend my money |
-| `HIGH`   | user           | view all my spending/income                                                              | get an overview of all my spending/income                                                                          |
-| `HIGH`   | user           | summarize my spending/income                                                             | be aware of the amount of money I can spend                                                                        |
-| `MEDIUM` | user           | edit any mistaken in my spending/income entries                                          | correctly log my budgeting                                                                                         |
-| `MEDIUM` | organised user | tag my spending/income based on specific categories                                      | keep track of which components I am spending more on                                        |
-| `MEDIUM` | organised user | define my own tags for the spending                                                      | categorize my spending                                        |
-| `MEDIUM` | organised user | filter my spendings by tags                                                              | have an overview of the areas where I spent                                                                        |
-| `MEDIUM` | organised user | filter my spendings by date range                                                        |have an overview of the amount I spent in a given period                                                                                                                             |
-| `LOW`    | visual learner | have pie charts that reflects my spending                                                |better understand my spending patterns                                                                                                 |
-| `LOW`    | user           | view expenses/ incomes in a sorted manner                                                |see all expenses in ascending/descending order                                                                                                      |
-| `LOW`    | user           | view a list of commands and how to use them                                              |                                                                                                      refer to it when i forgot the commands           |
+| `HIGH`   | user           | input expenses/income <br/> delete expenses/income <br/> input expenses/income with date | record my expenses/income <br/> remove any wrong expenses/income records <br/> keep track of when I spend my money |
+| `HIGH`   | user           | view all my expenses/income                                                              | get an overview of all my expenses/income                                                                          |
+| `HIGH`   | user           | summarize my expenses/income                                                             | be aware of the amount of money I can spend                                                                        |
+| `MEDIUM` | user           | edit any mistakes in my expenses/income entries                                          | correctly log my budgeting                                                                                         |
+| `MEDIUM` | organised user | tag my expenses/income based on specific categories                                      | keep track of which components I am spending more on                                                               |
+| `MEDIUM` | organised user | filter my expenses by tags                                                               | have an overview of the areas where I spent                                                                        |
+| `MEDIUM` | organised user | filter my expenses by date range                                                         | have an overview of the amount I spent in a given period                                                           |
+| `LOW`    | visual learner | have graphs that reflects my expenses/income                                             | better understand my spending/income patterns                                                                      |
+| `LOW`    | user           | view a list of commands and how to use them                                              | refer to it when i forgot the commands                                                                             |
 
 *{More to be added}*
 
