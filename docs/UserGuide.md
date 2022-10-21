@@ -114,10 +114,10 @@ Finds scholarship applicants whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Applicant matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -129,11 +129,11 @@ Examples:
 
 Filters scholarship applications based on the given keywords.
 
-Format: `filter KEYWORD`
+Format: `filter [as/APPLICATIONSTATUS]`
 
-* The search is case-insensitive. e.g `pEnDiNg` will match `pending`
-* Only full words will be matched e.g. `pen` will not match `pending`
-* Only 3 keywords are accepted i.e. `pending`, `accepted`, `rejected`
+* The search is case-insensitive. e.g `pEnDiNg` will match `pending`.
+* Only full words will be matched e.g. `pen` will not match `pending`.
+* Only 3 keywords are accepted i.e. `pending`, `accepted`, `rejected`.
 
 Examples:
 * `filter pending` displays all applicants with the application status `pending`
@@ -141,7 +141,7 @@ Examples:
 
 ### Deleting a scholarship application : `delete`
 
-Deletes the specified scholarship application from TrackAScholar
+Deletes the specified scholarship application from TrackAScholar.
 
 Format: `delete INDEX`
 
@@ -166,7 +166,7 @@ Format: `exit`
 
 ### Removing applicants by status : `remove`
 
-All applicants with the corresponding statuses stored in TrackAScholar is removed.
+All applicants with the corresponding statuses stored in TrackAScholar are removed.
 
 Format: `remove [ACCEPTED/REJECTED]`
 
@@ -176,6 +176,17 @@ Examples:
 *  `remove accepted` removes all entries with ACCEPTED as an application status from TrackAScholar.
 *  `remove rejected` removes all entries with REJECTED as an application status from TrackAScholar.
 
+### Removing applicants by status : `sort`
+
+All applicants in TrackAScholar will be sorted in the specified manner .
+
+Format: `sort [NAME/SCHOLARSHIP]`
+
+* The user can choose to sort the list according the applicant's `NAME` or types of `SCHOLARSHIP` they are applying for.
+
+Examples:
+*  `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
+*  `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Further details
@@ -198,7 +209,6 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-
 ## Command summary
 
 | Action     | Format, Examples                                                |
@@ -209,7 +219,7 @@ _Details coming soon ..._
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`      |
 | **Exit**   | `exit`                                                          |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                  |
-| **filter** | `filter KEYWORD`                                                |
+| **filter** | `filter [as/APPLICATIONSTATUS]`                                 |
 | **Help**   | `help`                                                          |
 | **List**   | `list`                                                          |
 | **Remove** | `remove [ACCEPTED/REJECTED]`                                    |
