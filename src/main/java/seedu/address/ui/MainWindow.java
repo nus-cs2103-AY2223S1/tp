@@ -257,7 +257,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabScheduleGrid() {
         scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
         scheduleGridPanel.construct();
-        scheduleListPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+        scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
         tabPane.getSelectionModel().select(TIMETABLE);
         resultDisplay.setFeedbackToUser("Show the Timetable!");
     }
