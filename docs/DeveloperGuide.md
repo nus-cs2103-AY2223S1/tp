@@ -291,10 +291,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student                                       | rank all my internship applications                                                    | decide which applications that I have to focus on more.                                                       |
 | `*`      | easily confused student                       | prevent myself from adding the same internship application twice                       | I dont get distracted by duplicate internships                                                                |
 | `*`      | student                                       | move an existing application to the "Rejection" stage and provide a reason why I got rejected | keep track of common trends or reasons for my failed applications                                             |
-| `*`      | broke student                                 | sort the internships based on pay                                                      | determine which applications are more worth it in this current economic state.                                |
-| `*`      | less experienced student with CLI             | view the list of commands                                                              | familiarise myself with the commands.                                                                         |
-| `*`      | less experienced student                      | view some helpful resources                                                            | understand the hiring process and tech landscapes better.                                                     |
-| `*`      | anxious student                               | switch to a calender view                                                              | easily see all my upcoming interviews/OAs/expiring offers                                                     |
+| `*`      | broke student                                 | sort the internships based on pay                                                             | determine which applications are more worth it in this current economic state.                                |
+| `*`      | less experienced student with CLI             | view the list of commands                                                                     | familiarise myself with the commands.                                                                         |
+| `*`      | less experienced student                      | view some helpful resources                                                                   | understand the hiring process and tech landscapes better.                                                     |
+| `*`      | anxious student                               | switch to a calender view                                                                     | easily see all my upcoming interviews/OAs/expiring offers                                                     |
+| `* * *`  | student                                       | view stage specific prepatory tips                                                            | see how I can prepare before my stage specific deadline.
+| `*`      | student                                       | create a todo list for each internship entry                                                  | keep track of what I've done and what I've yet to do to prepare.
+| `* *`    | forgetful student                             | easily access tips specific to each internship based on the current stage                     | quickly see a list of things to prepare for an upcoming internship stage deadline.
 
 
 
@@ -467,6 +470,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to exit program.
 2. WorkBook exits and closes.
+
+   Use case ends.
+
+**Use case: UC09 - View prepatory tips based on internship stage**
+
+1. User requests to view prepatory tips.
+2. User chooses internship stage to view prepatory tips for.
+3. The prepatory tips for the internship stage is shown to the user.
 
    Use case ends.
 
