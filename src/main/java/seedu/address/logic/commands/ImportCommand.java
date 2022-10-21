@@ -33,7 +33,7 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON =
             "The specified file has persons duplicate to the address book";
     public static final String MESSAGE_CONSTRAINTS_UNSATISFIED =
-            "Data constraints and formats are violated in the specified file";
+            "The specified file contains incorrect format, invalid value and/or duplicate persons";
 
     private final Path filePath;
 
@@ -86,7 +86,6 @@ public class ImportCommand extends Command {
         try {
             importedJsonNewPersons = appendableJsonStorage.readAddressBook();
         } catch (DataConversionException ive) {
-            //createTemplate(String.format(NOT_JSON_FORMAT_WITH_EXAMPLE, filePath.getFileName()));
             throw new CommandException(MESSAGE_CONSTRAINTS_UNSATISFIED);
         }
 

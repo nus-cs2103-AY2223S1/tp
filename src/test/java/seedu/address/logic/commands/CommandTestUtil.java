@@ -106,7 +106,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "offered*"; // '*' not allowed in tags
     // CAP value should not exceed its maximum value
     public static final String INVALID_CAP_DESC = " " + PREFIX_CAP + "5.01/5";
-    public static final String INVALID_PATH_JERRY = "src/folder/||jerry.jpg";
+    public static final String INVALID_PATH_JERRY = "src/folder/*jerry.jpg";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

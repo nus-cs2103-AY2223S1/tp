@@ -87,7 +87,7 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Appens {@code addressBook} to the current address book.
+     * Appends {@code addressBook} to the current address book.
      * The person identity of everyone in {@code addressBook} must not be the same as another
      * existing person in the current address book.
      */
