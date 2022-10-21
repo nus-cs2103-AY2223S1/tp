@@ -42,8 +42,7 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             String trimmedDescription = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get())
                     .retrieveDescription().trim();
-            String[] descriptionKeywords = trimmedDescription.split("\\s+");
-            predicates.add(new DescriptionContainsKeywordsPredicate(List.of(descriptionKeywords)));
+            predicates.add(new DescriptionContainsKeywordsPredicate(trimmedDescription));
         }
 
         if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
