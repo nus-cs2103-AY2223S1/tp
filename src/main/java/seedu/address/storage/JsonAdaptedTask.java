@@ -70,8 +70,11 @@ class JsonAdaptedTask {
         if (!Task.isValidName(taskName)) {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime deadline = LocalDateTime.parse(this.deadline, formatter);
+        LocalDateTime deadline = null;
+        if (!this.deadline.equals("")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            deadline = LocalDateTime.parse(this.deadline, formatter);
+        }
         return new Task(taskName, assigneeList, isComplete, deadline);
     }
 
