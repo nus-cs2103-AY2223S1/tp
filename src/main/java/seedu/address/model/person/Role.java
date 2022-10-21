@@ -14,7 +14,7 @@ public class Role {
     /**
      * Constructs an {@code Role}.
      *
-     * @param address A valid role.
+     * @param role A valid role.
      */
     public Role(String role) {
         this.role = role;
