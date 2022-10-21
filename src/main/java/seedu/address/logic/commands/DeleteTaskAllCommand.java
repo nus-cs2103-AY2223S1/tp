@@ -114,7 +114,7 @@ public class DeleteTaskAllCommand extends Command {
         StringBuilder updatedPersonsStrBld = new StringBuilder();
         for (Person personToAssignTask : successfullyDeleted) {
             updatedPersonsStrBld.append(
-                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group, this.task) + "\n");
+                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group, this.task));
         }
         String updatedPersonsString = updatedPersonsStrBld.toString();
 

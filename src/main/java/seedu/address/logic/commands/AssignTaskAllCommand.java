@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -20,16 +22,24 @@ import seedu.address.model.person.Person;
 
 /**
  * Adds an assignment to all members in a group in the address book.
+ * An assignment must consist of a workload, with an optional deadline field.
  * Skips over members who already have the assignment.
  */
 public class AssignTaskAllCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntaskall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to all users in a group."
-            + "Members already with this task are skipped over."
-            + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
-            + "Example: " + COMMAND_WORD + " g/Group Alpha task/Coursework 0";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to all users in a group.\n"
+            + "Workload specified must be low, medium or high.\n"
+            + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format\n"
+            + "Members with a similarly named task are skipped over.\n"
+            + "Parameters: "
+            + PREFIX_GROUP + "GROUP "
+            + PREFIX_TASK + "TASK"
+            + PREFIX_WORKLOAD + "WORKLOAD "
+            + PREFIX_DEADLINE + "DEADLINE\n"
+            + "Example: " + COMMAND_WORD
+            + " g/Group Alpha task/Coursework 0 w/High d/2022-01-01 23:59";
 
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
     public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
@@ -43,6 +53,7 @@ public class AssignTaskAllCommand extends Command {
 
     /**
      * Assigns an assignment to all members in a group in the address book.
+     * An assignment must consist of a workload, with an optional deadline field.
      * Skips over members who already have the assignment.
      */
     public AssignTaskAllCommand(String group, Assignment task) {
@@ -110,7 +121,7 @@ public class AssignTaskAllCommand extends Command {
         StringBuilder updatedPersonsStrBld = new StringBuilder();
         for (Person personToAssignTask : successfullyAdded) {
             updatedPersonsStrBld.append(
-                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group, this.task) + "\n");
+                    String.format(MESSAGE_ARGUMENTS, personToAssignTask.getName(), this.group, this.task));
         }
         String updatedPersonsString = updatedPersonsStrBld.toString();
 
