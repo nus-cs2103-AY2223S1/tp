@@ -11,6 +11,9 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.CommandHistory;
 
+/**
+ * A class to access CommandHistory data stored as a json file on the hard disk.
+ */
 public class JsonCommandHistoryStorage {
 
     private Path filePath;

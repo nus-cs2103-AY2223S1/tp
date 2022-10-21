@@ -80,14 +80,14 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
-    private void saveCommandHistory(CommandHistory commandHistory, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        commandHistoryStorage.saveCommandHistory(commandHistory, filePath);
-    }
-
     @Override
     public void saveCommandHistory(CommandHistory commandHistory) throws IOException {
         saveCommandHistory(commandHistory, commandHistoryStorage.getCommandHistoryFilePath());
+    }
+
+    private void saveCommandHistory(CommandHistory commandHistory, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        commandHistoryStorage.saveCommandHistory(commandHistory, filePath);
     }
 
     @Override
