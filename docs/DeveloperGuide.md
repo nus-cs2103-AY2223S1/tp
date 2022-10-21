@@ -248,6 +248,39 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Easier to implement.
     * Cons: Users have to type unnecessary details in command.
 
+### Mark Task feature
+
+#### Implementation
+
+The proposed mark/unmark mechanism is facilitated by `MarkCommand`. It extends `Command` with a target index, stored internally as an `Index`. Additionally, it implements the following operations:
+
+* `MarkCommand#execute()` — Executes the mark command 
+
+This operation is exposed in the `Command` abstract class as `Command#execute()`.
+
+Given below is an example of how the mark mechanism works.
+
+1. The user executes the `mark 1` command. 
+2. The `MarkCommand` calls `Model#getFilteredTaskList()` which returns the filtered list of the tasks.
+3. The `MarkCommand` command calls `List<Task>#get()` which returns the task at index 1 in the filtered list. 
+4. Then, `MarkCommand` command calls `Task#mark()` to create a marked copy of the task.
+5. This marked task has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`. 
+6. Then, `MarkCommand` command calls `Model#replaceTask()` which sets the first task in `Model#tasks` to the marked task.
+ 
+The following sequence diagram shows how the mark operation works:
+
+![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command has an invalid format or the index is greater than the number of tasks shown, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+  
+The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+  
+The following activity diagram summarizes what happens when a user executes a new mark command:
+  
+![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
