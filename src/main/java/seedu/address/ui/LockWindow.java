@@ -3,7 +3,8 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -17,7 +18,10 @@ public class LockWindow extends UiPart<Stage> {
     private MainWindow mainWindow;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
+
+    @FXML
+    private Label error;
 
     /**
      * Creates a new LockWindow.
@@ -50,6 +54,7 @@ public class LockWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing FinBook lock dialog.");
+        password.clear();
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -80,8 +85,20 @@ public class LockWindow extends UiPart<Stage> {
      */
     @FXML
     private void unlock() {
-        logger.info("FinBook successfully unlocked.");
-        hide();
-        mainWindow.getPrimaryStage().show();
+        try {
+            if (mainWindow.getLogic().isPasswordCorrect(password.getText())) {
+                logger.info("FinBook successfully unlocked.");
+                error.setVisible(false);
+                this.hide();
+                mainWindow.getPrimaryStage().show();
+            } else {
+                error.setText("Incorrect password");
+                error.setVisible(true);
+                logger.info("Failed to unlock FinBook, incorrect password entered.");
+            }
+        } catch (Exception e) {
+            error.setText(e.getMessage());
+            error.setVisible(true);
+        }
     }
 }

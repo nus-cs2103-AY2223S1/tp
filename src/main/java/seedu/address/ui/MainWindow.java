@@ -79,6 +79,10 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
+    public Logic getLogic() {
+        return logic;
+    }
+
     public void getTotalClient() {
         totalClient.setText(String.valueOf(logic.getFilteredPersonList().size()));
     }
@@ -160,7 +164,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
-        primaryStage.show();
+        if (logic.isPasswordSet()) {
+            lockWindow.show();
+        } else {
+            primaryStage.show();
+        }
     }
 
     /**

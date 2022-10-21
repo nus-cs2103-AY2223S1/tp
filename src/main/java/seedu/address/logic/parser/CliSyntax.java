@@ -13,5 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_INCOME = new Prefix("i/");
     public static final Prefix PREFIX_MEETING_DATE = new Prefix("m/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-
+    public static final Prefix PREFIX_OLD_PASSWORD = new Prefix("old/");
+    public static final Prefix PREFIX_NEW_PASSWORD = new Prefix("new/");
 }
