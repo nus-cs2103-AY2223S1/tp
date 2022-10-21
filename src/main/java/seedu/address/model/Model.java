@@ -14,56 +14,36 @@ import seedu.address.model.team.Team;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Link> PREDICATE_SHOW_ALL_LINKS = unused -> true;
 
-    /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
+    /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
-    /**
-     * Returns the user prefs.
-     */
+    /** Returns the user prefs. */
     ReadOnlyUserPrefs getUserPrefs();
 
-    /**
-     * Returns the user prefs' GUI settings.
-     */
+    /** Returns the user prefs' GUI settings. */
     GuiSettings getGuiSettings();
 
-    /**
-     * Sets the user prefs' GUI settings.
-     */
+    /** Sets the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
+    /** Returns the user prefs' address book file path. */
     Path getAddressBookFilePath();
 
-    /**
-     * Sets the user prefs' address book file path.
-     */
+    /** Sets the user prefs' address book file path. */
     void setAddressBookFilePath(Path addressBookFilePath);
 
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
+    /** Replaces address book data with the data in {@code addressBook}. */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /**
-     * Returns the AddressBook
-     */
+    /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
+    /** Returns true if a person with the same identity as {@code person} exists in the address book. */
     boolean hasPerson(Person person);
 
     /**
@@ -85,42 +65,25 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /**
-     * Returns the current team
-     */
+    /** Returns the current team */
     Team getTeam();
 
-    /**
-     * Sets the current team to an existing team
-     */
+    /** Sets the current team to an existing team */
     void setTeam(Team teamToSet);
 
-    /**
-     * Adds a new team
-     */
+    /** Adds a new team */
     void addTeam(Team teamToAdd);
 
-    /**
-     * Deletes an existing team
-     */
+    /** Deletes an existing team */
     void deleteTeam(Team teamToDelete);
 
-    /**
-     * Returns the list of teams
-     */
+    /** Returns the list of teams */
     ObservableList<Team> getTeamList();
 
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
+    /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    /**
-     * Returns an unmodifiable view of the person list filtered based on the specified predicate.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    ObservableList<Person> getFilteredPersonList(Predicate<Person> predicate);
+    ObservableList<Person> getFilteredPersonList(Predicate<Person> pred);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
