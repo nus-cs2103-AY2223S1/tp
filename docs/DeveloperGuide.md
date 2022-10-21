@@ -277,8 +277,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS student | mark a task as complete                       | have a better idea of what I have completed.            |
 | `* *`    | NUS student | tag the priority of the tasks in the tasklist | prioritise the task that I would like to complete first |
 | `* * *`  | NUS student | delete the tasks in my tasklist               | remove them if added wrongly.                           |
-
-
+| `* * *`  | NUS student | delete the modules in my modulelist           | remove them if added wrongly.                           |
+| `* * *`  | NUS student | edit the modules in my modulelist             | remove them if added wrongly.                           |
 
 *{More to be added}*
 
@@ -352,6 +352,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The given index is invalid.
     * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+
+**Use case: Delete a module from the module list**
+
+**MSS**
+1. User requests to delete a specific module in the module list
+2. MODPRO deletes the module
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1b. The module at the given index is tied to multiple tasks thus cannot be deleted
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+
+**Use case: Edit a module in the module list**
+
+**MSS**
+1. User requests to edit a specific module in the module list
+2. MODPRO edits the module
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1b. The module at the given index is tied to multiple tasks thus cannot be edited
+    * 1b1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1c. The given module code is invalid 
+    * 1c1. MODPRO shows an error message. </br>
       Use case ends.
 
 *{More to be added}*
