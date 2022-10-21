@@ -243,7 +243,7 @@ The display mechanism has been implemented with the Observer pattern in mind.
 It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is 
 handled by `ExerciseKeys` and `ExerciseHashMap`.
 
-##### General class structure
+##### General class diagram
 The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The 
 `ExerciseHashMap` class maintains an internal arraylistof observers, which can be modified through the 
 addUI and deleteUI methods. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
@@ -275,19 +275,19 @@ the update function which first gives the `ExerciseKeys` object an ArrayList of 
 natural alphabetical order, as defined in Collections.Sort . 
 
 ```
-public String getDisplay() {
-        if (keyArrayList.size() == 0) {
-            return "You have no stored exercises in the system!";
-        }
-        StringBuilder sb = new StringBuilder("Stored exercises:\n");
-        for (int i = 1; i < keyArrayList.size() + 1; i++) {
-            sb.append(i);
-            sb.append(". ");
-            sb.append(keyArrayList.get(i - 1));
-            sb.append("\n");
-        }
-        return sb.toString();
-}
+    public String getDisplay() {
+            if (keyArrayList.size() == 0) {
+                return "You have no stored exercises in the system!";
+            }
+            StringBuilder sb = new StringBuilder("Stored exercises:\n");
+            for (int i = 1; i < keyArrayList.size() + 1; i++) {
+                sb.append(i);
+                sb.append(". ");
+                sb.append(keyArrayList.get(i - 1));
+                sb.append("\n");
+            }
+            return sb.toString();
+    }
 ```
 
 It then calls the getDisplay function in  `ExerciseKeys` takes the size of the ArrayList to decide the output to be generated. It returns the output as a string 
