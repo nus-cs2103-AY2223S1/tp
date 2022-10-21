@@ -1,24 +1,22 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Comparator} that compares two persons */
-    Comparator<Person> COMPARATOR_SORT_ALL_PERSONS = (p1, p2) -> p1.compareTo(p2);
-
-    /** {@code Comparator} that compares two appointments */
-    Comparator<Appointment> COMPARATOR_SORT_ALL_APPOINTMENTS = (a1, a2) -> a1.compareTo(a2);
+    ArrayList<Name> CURRENT_NAMES = new ArrayList<>();
+    Predicate<Person> CURRENT_PREDICATE = (person) -> CURRENT_NAMES.contains(person.getName());
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;

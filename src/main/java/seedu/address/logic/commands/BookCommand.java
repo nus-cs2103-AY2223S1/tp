@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -64,7 +63,6 @@ public class BookCommand extends Command {
         bookAppointment(appointments, appointment);
         appointment.setPatient(personToBookFor);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.addAppointment(appointment);
         return new CommandResult(String.format(MESSAGE_BOOK_APPOINTMENT_SUCCESS, personToBookFor));
     }

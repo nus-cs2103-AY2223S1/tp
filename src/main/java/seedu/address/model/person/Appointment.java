@@ -8,7 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.regex.Matcher;
@@ -19,6 +21,7 @@ import java.util.stream.Stream;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the patient's appointments' details.
@@ -27,6 +30,7 @@ public class Appointment {
     public static final String REASON_MESSAGE_CONSTRAINTS = "Reason should not be empty";
     public static final String DATE_MESSAGE_CONSTRAINTS = "Date should contain YYYY-MM-DD and HH:MM values";
     public static final String TIME_PERIOD_MESSAGE_CONSTRAINTS = "Time Period should contain valid Y M or D values";
+    public static final String TAG_QUANTITY_CONSTRAINTS = "Operation results in more than 1 tag in Appointment.";
     public static final DateTimeFormatter DATE_FORMATTER =
             new DateTimeFormatterBuilder().appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                     .appendOptional(DateTimeFormatter.ofPattern("HH:mm yyyy-MM-dd")).toFormatter();
@@ -36,14 +40,12 @@ public class Appointment {
             + "(?<month>\\s*([0-9]|1[0-2])M)?(?<day>\\s*([0-9]|[1-2][0-9]|3[0-1])D)?\\s*$");
     private final String reason;
     private final LocalDateTime dateTime;
-
     private final List<Integer> timePeriod;
+    private final Set<Tag> tags = new HashSet<>();
     private final SimpleBooleanProperty isMarked;
     private final SimpleObjectProperty<Person> patient = new SimpleObjectProperty<>();
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
-
-
 
     /**
      * Creates an appointment object with the given reason, dateTime, timePeriod string, and status.
@@ -62,6 +64,26 @@ public class Appointment {
         this.isMarked = new SimpleBooleanProperty(isMarked);
     }
 
+
+    /**
+     * Creates an appointment object with the given reason, dateTime, timePeriod string, and status.
+     *
+     * @param reason The given reason for appointment.
+     * @param dateTime The given time to book the appointment.
+     * @param timePeriod The given time period for the next appointment.
+     * @param tags The given tag for the appointment.
+     * @param isMarked Status of the appointment.
+     */
+    public Appointment(String reason, String dateTime, String timePeriod, Set<Tag> tags, boolean isMarked) {
+        checkValidity(reason, dateTime, timePeriod);
+        this.reason = reason;
+        String str = String.join(" ", dateTime.split("\\s+", 2));
+        this.dateTime = LocalDateTime.parse(str, DATE_FORMATTER);
+        this.timePeriod = parseTimePeriod(timePeriod);
+        this.isMarked = new SimpleBooleanProperty(isMarked);
+        this.tags.addAll(tags);
+    }
+
     /**
      * Creates an appointment object with the given reason, dateTime, timePeriod and status.
      *
@@ -78,6 +100,24 @@ public class Appointment {
     }
 
     /**
+     * Creates an appointment object with the given reason, dateTime, timePeriod and status.
+     *
+     * @param reason The given reason for appointment.
+     * @param dateTime The given time to book the appointment.
+     * @param timePeriod The given time period for the next appointment.
+     * @param tags The given tag for the appointment
+     * @param isMarked Status of the appointment.
+     */
+    public Appointment(String reason, LocalDateTime dateTime, List<Integer> timePeriod,
+                       Set<Tag> tags, boolean isMarked) {
+        this.reason = reason;
+        this.dateTime = dateTime;
+        this.timePeriod = timePeriod;
+        this.isMarked = new SimpleBooleanProperty(isMarked);
+        this.tags.addAll(tags);
+    }
+
+    /**
      * Creates an appointment object with a new dateTime using the given timePeriod of the recurring appointment.
      *
      * @param recurringAppointment The appointment given that will occur again.
@@ -86,6 +126,7 @@ public class Appointment {
         this.reason = recurringAppointment.getReason();
         this.dateTime = incrementDateTime(recurringAppointment.getDateTime(), recurringAppointment.getTimePeriod());
         this.timePeriod = recurringAppointment.getTimePeriod();
+        this.tags.addAll(recurringAppointment.tags);
         this.isMarked = new SimpleBooleanProperty(false);
         this.patient.set(recurringAppointment.getPatient());
     }
@@ -186,6 +227,10 @@ public class Appointment {
 
     public List<Integer> getTimePeriod() {
         return timePeriod;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
     }
 
     public String getFormattedDateTime() {
@@ -300,4 +345,6 @@ public class Appointment {
     public Observable[] getProperties() {
         return new Observable[] {isMarked, patient};
     }
+
+
 }
