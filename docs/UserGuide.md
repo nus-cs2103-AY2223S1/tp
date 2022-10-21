@@ -5,7 +5,7 @@ title: User Guide
 
 # User Guide
 
-Watson is a **desktop app for teachers that helps with a multitude of tasks, such as handling student particulars, sorting students with many different features, and more. It adopts a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interfac (GUI). If you can type fast, Watson can retrieve and handle the data of students faster than other GUI-based applications.
+Watson is a **desktop app for teachers that helps with a multitude of tasks, such as handling student particulars, sorting students with different filters, and more. It adopts a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Watson can retrieve and handle the data of students faster than other GUI-based applications.
 
 * Table of Contents
     * [Quick Start](#quick-start)
@@ -24,14 +24,14 @@ Watson is a **desktop app for teachers that helps with a multitude of tasks, suc
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `watson.jar` from here (Hyperlink will be added in the future).
+2. Download the latest `watson.jar` from here (Hyperlink will be added in the future).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Watson.
+3. Copy the file to the folder you want to use as the _home folder_ for Watson.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all persons in Watson.
@@ -40,7 +40,7 @@ Watson is a **desktop app for teachers that helps with a multitude of tasks, suc
 
     * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Watson.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 

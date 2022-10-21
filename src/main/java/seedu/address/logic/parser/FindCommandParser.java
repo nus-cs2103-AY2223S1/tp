@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FindCommandPredicate;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.StudentClass;
-import seedu.address.model.person.subject.Subject;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -22,7 +19,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     private static final Name DEFAULT_NAME = new Name("TESTNAME");
     private static final StudentClass DEFAULT_CLASS = new StudentClass("0A");
     private static final Subject DEFAULT_SUBJECT = new Subject("TESTSUBJECT");
-
+    
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -31,9 +28,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        Name foundName = DEFAULT_NAME;
-        StudentClass foundClass = DEFAULT_CLASS;
-        Subject foundSubjects = DEFAULT_SUBJECT;
+        String[] findCommandKeywords = new String[3];
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -44,15 +39,18 @@ public class FindCommandParser implements Parser<FindCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENTCLASS, PREFIX_SUBJECT);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            foundName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
+            findCommandKeywords[0] = foundName;
         }
 
         if (argMultimap.getValue(PREFIX_STUDENTCLASS).isPresent()) {
-            foundClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_STUDENTCLASS).get());
+            String foundClass = String.join(" ", argMultimap.getAllValues(PREFIX_STUDENTCLASS));
+            findCommandKeywords[1] = foundClass;
         }
 
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            foundSubjects = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
+            String foundSubjects = String.join(" ", argMultimap.getAllValues(PREFIX_SUBJECT));
+            findCommandKeywords[2] = foundSubjects;
         }
 
         ArrayList<String> foundArgs = new ArrayList<>();
