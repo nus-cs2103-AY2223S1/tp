@@ -70,4 +70,8 @@ shadowJar {
     mainClassName = 'seedu.address.Main'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
