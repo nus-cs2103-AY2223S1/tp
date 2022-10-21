@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if () then ([else])
+    :Create a new task;
+    if () then ([else])
+        :Add task to team's task list;
+        :Display success message to user;
+    else ([task already exists in task list])
+        :Throw CommandException;
+    endif
+else ([task name is invalid])
+    :Throw ParseException;
+endif
+
+stop
+
+
+@enduml

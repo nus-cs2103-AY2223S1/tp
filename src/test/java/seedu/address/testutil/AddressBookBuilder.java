@@ -13,7 +13,7 @@ public class AddressBookBuilder {
     private AddressBook addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = AddressBook.createNewAddressBook();
     }
 
     public AddressBookBuilder(AddressBook addressBook) {
