@@ -31,9 +31,31 @@ public class RatingTest {
         assertFalse(Rating.isValidRating("")); // invalid number
         assertFalse(Rating.isValidRating("abcd")); // invalid number
         assertFalse(Rating.isValidRating("   ")); // invalid number
+        assertFalse(Rating.isValidRating("3.")); // invalid number
+        assertFalse(Rating.isValidRating("5.")); // invalid number
+        assertFalse(Rating.isValidRating("3.0")); // invalid number
+        assertFalse(Rating.isValidRating("4.0")); // invalid number
+        assertFalse(Rating.isValidRating("4.2")); // invalid number
+        assertFalse(Rating.isValidRating("1.0")); // invalid number
+        assertFalse(Rating.isValidRating("4a")); // invalid number
+        assertFalse(Rating.isValidRating("a3")); // invalid number
+        assertFalse(Rating.isValidRating("-3")); // invalid number
+        assertFalse(Rating.isValidRating(String.format("%s", Integer.MAX_VALUE)));
+        assertFalse(Rating.isValidRating(String.format("%s", Integer.MAX_VALUE + 1)));
+        assertFalse(Rating.isValidRating(String.format("%s", Integer.MIN_VALUE)));
+        assertFalse(Rating.isValidRating(String.format("%s", Integer.MIN_VALUE - 1)));
+        assertFalse(Rating.isValidRating("-10000000000000000000"));
+        assertFalse(Rating.isValidRating("10000000000000000000"));
+        assertFalse(Rating.isValidRating("1180591620717411303427"));
+        assertFalse(Rating.isValidRating(String.valueOf(Double.MAX_VALUE)));
+        assertFalse(Rating.isValidRating(String.valueOf(Double.MIN_VALUE)));
 
         // valid contents
         assertTrue(Rating.isValidRating("0"));
         assertTrue(Rating.isValidRating("3")); // one character
+        assertTrue(Rating.isValidRating("03"));
+        assertTrue(Rating.isValidRating("04"));
+        assertTrue(Rating.isValidRating("004"));
+        assertTrue(Rating.isValidRating("00004"));
     }
 }

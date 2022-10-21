@@ -15,7 +15,7 @@ public class ReviewBuilder {
     public static final String DEFAULT_NAME = "Untitled Review";
     public static final String DEFAULT_DATE = "1/1/1970";
     public static final String DEFAULT_CONTENT = "No comment.";
-    public static final Integer DEFAULT_RATING = 3;
+    public static final String DEFAULT_RATING = "3";
 
     private Name name;
     private Date date;
@@ -30,7 +30,7 @@ public class ReviewBuilder {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
         content = new Content(DEFAULT_CONTENT);
-        rating = new Rating(String.valueOf(DEFAULT_RATING));
+        rating = new Rating(DEFAULT_RATING);
         tags = new HashSet<>();
     }
 
