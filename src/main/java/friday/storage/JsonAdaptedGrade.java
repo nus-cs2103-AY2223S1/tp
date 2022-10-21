@@ -29,7 +29,7 @@ public class JsonAdaptedGrade {
     }
 
     @JsonValue
-    public String getGradeNameScore() {
+    public String getGradeScore() {
         return score;
     }
 

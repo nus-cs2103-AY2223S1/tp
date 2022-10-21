@@ -42,7 +42,6 @@ public class GradeCommandParser {
             editGradeDescriptor.setRa1(ParserUtil.parseGrade("RA1", argMultimap.getValue(PREFIX_RA1).get()));
         }
         if (argMultimap.getValue(PREFIX_RA2).isPresent()) {
-            System.out.println();
             editGradeDescriptor.setRa2(ParserUtil.parseGrade("RA2", argMultimap.getValue(PREFIX_RA2).get()));
         }
         if (argMultimap.getValue(PREFIX_PRACTICAL).isPresent()) {
