@@ -39,6 +39,39 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code dateRange}.
+     *   Ignores hyphen and space, but a full dateRange match is required.
+     *   <br>examples:<pre>
+     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 15/09/22") == true
+     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 15/09/22") == true
+     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/2215/09/22") == true
+     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22")
+     *              == false //not a full dateRange match
+     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 19/09/22")
+     *              == false //not a full dateRange match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param dateRange cannot be null, cannot be empty, must be a single dateRange
+     */
+    public static boolean containsDateRangeIgnoreHyphenIgnoreSpace(String sentence, String dateRange) {
+        requireNonNull(sentence);
+        requireNonNull(dateRange);
+
+        String preppedDateRange = dateRange.trim().replace("-", "");
+        if (preppedDateRange.isEmpty()) {
+            return false;
+        }
+        checkArgument(!preppedDateRange.isEmpty(), "dateRange parameter cannot be empty");
+        checkArgument(preppedDateRange.split("\\s+").length == 1, "dateRange parameter should be a single dateRange");
+
+        String preppedSentence = sentence.replace("-", "");
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(preppedDateRange::equalsIgnoreCase);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

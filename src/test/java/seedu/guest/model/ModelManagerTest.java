@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.guest.commons.core.GuiSettings;
-import seedu.guest.model.guest.NameContainsKeywordsPredicate;
+import seedu.guest.model.guest.GuestContainsKeywordsPredicate;
 import seedu.guest.testutil.GuestBookBuilder;
 
 public class ModelManagerTest {
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredGuestList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredGuestList(new GuestContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(guestBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
