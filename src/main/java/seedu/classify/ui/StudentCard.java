@@ -38,14 +38,6 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label className;
     @FXML
-    private Label ca1;
-    @FXML
-    private Label sa1;
-    @FXML
-    private Label ca2;
-    @FXML
-    private Label sa2;
-    @FXML
     private VBox parentDetailsContainer;
     @FXML
     private Label parentName;
@@ -54,7 +46,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane exams;
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
@@ -62,18 +54,12 @@ public class StudentCard extends UiPart<Region> {
     public StudentCard(Student student, int displayedIndex, boolean conciseInfo) {
         super(FXML);
         this.student = student;
+
         // Set compulsory student details
         id.setText(displayedIndex + ". ");
         studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
         className.setText(student.getClassName().className);
-
-        // Set optional grades
-        // Currently dummy text
-        ca1.setText("40");
-        sa1.setText("-");
-        ca2.setText("70");
-        sa2.setText("-");
 
         // Set optional parent details
         if (student.getParentName().fullName == "") {
@@ -91,9 +77,12 @@ public class StudentCard extends UiPart<Region> {
         } else {
             email.setText(student.getEmail().value);
         }
+
+        // Set exam grade details
         student.getExams().stream()
                 .sorted(Comparator.comparing(exam -> exam.toString()))
-                .forEach(exam -> tags.getChildren().add(new Label(exam.toString())));
+                .forEach(exam -> exams.getChildren().add(new Label(exam.toString())));
+
         if (conciseInfo) {
             showConciseInfo();
         } else {
