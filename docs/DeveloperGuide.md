@@ -299,13 +299,21 @@ The `filter`command provides a way for users to search for clients in Rapportboo
 
 The following commands are provided:
 
+* `filter list` — Lists all applied filters
+
 * `filter [n=NAME,...] [t=TAG,...]`  — Filter for clients with the specified names and tags
 
 * `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
 
 Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
 
+![FilterClassDiagram](images/command-filter/FilterClassDiagram.svg)
+
 Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
+
+The following is a sequence diagram of a `filter` command. `filter clear` is similiar except that `Model#clearFiltersInFilteredPersonList` is called instead while `filter list` does not change the `FilteredList` of the model.
+
+![FilterSequenceDiagram](images/command-filter/FilterSequenceDiagram.svg)
 
 **Given below is an example usage scenario of filtering**
 
@@ -449,7 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to edit a specific contact in the list by specifying fields and their updated values.
-3. Rapportbook edits the contact based on what the user specified. 
+3. Rapportbook edits the contact based on what the user specified.
    Use case ends.
 
 **Extensions**

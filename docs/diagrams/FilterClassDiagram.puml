@@ -14,7 +14,12 @@ package {
     Class FilterCommandPredicate LOGIC_COLOR
 }
 package {
-    Class "<<interface>>\nModel" as Model
+    Class "<<interface>>\nModel" as Model {
+        addFilterToFilteredPersonList()
+        removeFilterFromFilteredPersonList()
+        getNameFilters()
+        getTagFilters()
+    }
     Class ModelManager
 }
 
@@ -29,5 +34,6 @@ FilterCommand .> Model
 FilterCommand *-down-> "1" FilterCommandPredicate
 
 
+show Model methods
 show FilterCommand methods
 @enduml
