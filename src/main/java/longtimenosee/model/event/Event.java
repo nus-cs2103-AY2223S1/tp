@@ -14,12 +14,12 @@ public class Event {
 
     public static final Comparator<Event> EVENT_COMPARATOR = new Comparator<Event>() {
         @Override
-        public int compare(Event e1, Event e2) {
-            int compare = e1.getDate().getDate().compareTo(e2.getDate().getDate());
+        public int compare(Event firstEvent, Event secondEvent) {
+            int compare = firstEvent.getDate().getDate().compareTo(secondEvent.getDate().getDate());
             if (compare != 0) {
                 return compare;
             } else {
-                return e1.getDuration().getStartTime().compareTo(e2.getDuration().getStartTime());
+                return firstEvent.getDuration().getStartTime().compareTo(secondEvent.getDuration().getStartTime());
             }
         }
     };
