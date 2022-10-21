@@ -198,9 +198,6 @@ class JsonAdaptedPerson {
 
         final Mark modelIsPresent;
         if (isPresent != null) {
-            if (!Mark.isValidAttendance(isPresent)) {
-                throw new IllegalValueException(Mark.MESSAGE_CONSTRAINTS);
-            }
             modelIsPresent = new Mark(isPresent);
         } else {
             modelIsPresent = new Mark(Boolean.FALSE);

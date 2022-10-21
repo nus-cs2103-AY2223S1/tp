@@ -174,6 +174,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code displayedClass} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDisplayDate(String displayClass) throws ParseException {
+        this.displayedClass = displayedClass;
+        return this;
+    }
+
+    /**
+     * Sets the {@code mark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMark(Boolean attended) {
+        this.mark = new Mark(attended);
+        return this;
+    }
+
+    /**
      * Returns Person object with the fields initialised.
      * @return Person object.
      */
