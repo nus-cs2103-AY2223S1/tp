@@ -234,19 +234,19 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Listing of stored exercises in a graphical UI
+### Listing of unique stored Exercises in a graphical UI
 
 #### Proposed implementation 
 
-The display mechanism has been implemented with the Observer pattern in mind.
+The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer pattern in mind.
 
 It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is 
 handled by `ExerciseKeys` and `ExerciseHashMap`.
 
 ##### General class diagram
 The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The 
-`ExerciseHashMap` class maintains an internal arraylistof observers, which can be modified through the 
-addUI and deleteUI methods. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
+`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the 
+addUI function. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
 UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions 
 which may occur when preloading data from a hashmap in storage.
 
@@ -259,9 +259,11 @@ well as the application, this can be generalised into two distinct scenarios.
 
 * **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
 * **Removing an exercise** - Whenever a new exercise has been removed, there is a possibility of a key being removed permanently.
- 
-Note that the current implementation subscribes to notification for any form of addition or deletion, regardless if \
-the exercise is unique or already exists in the list.
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The current implementation subscribes to notification for any form of addition or deletion, regardless if the exercise is unique or already exists in the list.
+
+</div>
 
 ##### Updating 
 Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers
