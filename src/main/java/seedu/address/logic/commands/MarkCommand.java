@@ -39,6 +39,10 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_MARKED_PREVIOUSLY = "Student has been marked previously";
 
+    public static final String MESSAGE_CLEAR_STUDENT_DEBT = "\nPlease clear the debt of the student first.";
+
+    public static final int DAYS_IN_A_WEEK = 7;
+
     private final Index targetIndex;
 
     public MarkCommand(Index targetIndex) {
@@ -75,7 +79,7 @@ public class MarkCommand extends Command {
     /**
      * Creates and returns a marked {@code Person} with the details of {@code personToMark}.
      */
-    private static Person createMarkedPerson(Person personToMark) {
+    private static Person createMarkedPerson(Person personToMark) throws CommandException {
         assert personToMark != null;
 
         if (personToMark.getMarkStatus().isMarked() == true) {
@@ -93,10 +97,16 @@ public class MarkCommand extends Command {
         Money currentRatesPerClass = personToMark.getRatesPerClass();
         AdditionalNotes currentNotes = personToMark.getAdditionalNotes();
         Set<Tag> currentTags = personToMark.getTags();
-        Money updatedMoneyOwed = currentRatesPerClass.addTo(currentMoneyOwed);
         Class displayedClass = currentClassDateTime;
-        Class updatedClassDateTime = currentClassDateTime.addDays(7);
+        Class updatedClassDateTime = currentClassDateTime.addDays(DAYS_IN_A_WEEK);
         Mark updatedMarkStatus = new Mark(Boolean.TRUE);
+        Money updatedMoneyOwed;
+
+        try {
+            updatedMoneyOwed = currentRatesPerClass.addTo(currentMoneyOwed);
+        } catch (CommandException e) {
+            throw new CommandException(e.getMessage() + MESSAGE_CLEAR_STUDENT_DEBT);
+        }
 
         return new Person(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
                 updatedClassDateTime, updatedMoneyOwed, currentMoneyPaid, currentRatesPerClass, currentNotes,

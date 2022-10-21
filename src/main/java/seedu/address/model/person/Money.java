@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents a Person's Money in the Address Book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMoney(Integer)}
@@ -10,6 +12,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Money {
     public static final String MESSAGE_CONSTRAINTS = "Money can take any positive integer values,"
             + " and its default value is 0";
+
+    public static final String MESSAGE_AMOUNT_TOO_LARGE = "Amount of money is too large to handle.";
 
     public final Integer value;
 
@@ -47,9 +51,13 @@ public class Money {
      * @param amountToAdd the money to be added.
      * @return Money that consists of the sum of the 2 amounts.
      */
-    public Money addTo(Money amountToAdd) {
-        Integer amountSum = this.value + amountToAdd.value;
-        return new Money(amountSum);
+    public Money addTo(Money amountToAdd) throws CommandException {
+        try {
+            Integer amountSum = Math.addExact(this.value, amountToAdd.value);
+            return new Money(amountSum);
+        } catch (ArithmeticException e) {
+            throw new CommandException(MESSAGE_AMOUNT_TOO_LARGE);
+        }
     }
 
     /**

@@ -100,16 +100,19 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (editedPerson.hasMultipleClasses()) {
-            throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
-        }
 
         if (!editPersonDescriptor.hasEmptyClass()) {
+            if (editedPerson.hasMultipleClasses()) {
+                throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
+            }
             ClassStorage.saveClass(editedPerson, index.getOneBased());
             ClassStorage.removeExistingClass(personToEdit);
         } else if (!personToEdit.hasEmptyClass()) {
             editedPerson.setClass(personToEdit.getAClass());
             editedPerson.setDisplayClass(personToEdit.getDisplayedClass());
+            if (editedPerson.hasMultipleClasses()) {
+                throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
