@@ -259,7 +259,7 @@ Given below is an example usage scenario and how the remove operation is handled
    with the new `ApplicationStatus` as an argument.
 
 4. `LogicManager#execute()` now calls `RemoveCommand#execute()`, which invokes `RemoveCommand#promptUserConfirmation()`. TrackAScholar now displays
-   a window asking for the user's confirmation to remove the applicants. After the use confirms, `RemoveCommand#confirmRemove()` is called which
+   a window asking for the user's confirmation to remove the applicants. After the user confirms, `RemoveCommand#confirmRemove()` is called which
    in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.
 
 5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
