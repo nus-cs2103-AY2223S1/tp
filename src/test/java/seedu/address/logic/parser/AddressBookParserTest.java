@@ -141,13 +141,13 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_assign() throws ParseException {
         assertTrue(parser.parseCommand(
-                AssignCommand.COMMAND_WORD + "1" + "n/p1math", listType) instanceof AssignCommand);
+                AssignCommand.COMMAND_WORD + " 1" + " n/p1math", listType) instanceof AssignCommand);
     }
 
     @Test
     public void parseCommand_unassign() throws ParseException {
         assertTrue(parser.parseCommand(
-                UnassignCommand.COMMAND_WORD + "1" + "n/p1math", listType) instanceof AssignCommand);
+                UnassignCommand.COMMAND_WORD + " 1" + " n/p1math", listType) instanceof UnassignCommand);
     }
 
     @Test
