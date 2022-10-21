@@ -449,19 +449,20 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a User Module
 
-1. Deleting a person while all persons are being shown
+1. Deleting a module while all User Modules are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   0. Prerequisites: Open CLImods and add CS2103 using `add cs2103`. 
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `rm cs2103`<br>
+   Expected: CS2103 is deleted and removed from `My Modules`.
+   A success message of "Deleted Module: CS2103" should be displayed.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `rm cs2103`<br>
+      Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is an invalid module code)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
