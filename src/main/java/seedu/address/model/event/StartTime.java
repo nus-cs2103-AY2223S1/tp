@@ -34,6 +34,7 @@ public class StartTime {
      */
     public StartTime(String startTime) {
         requireNonNull(startTime);
+        assert !startTime.isBlank();
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
         this.time = LocalTime.parse(startTime, checkFormatter);
     }
@@ -44,7 +45,6 @@ public class StartTime {
      */
     //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidStartTime(String test) {
-        assert !test.isBlank();
         try {
             LocalTime.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
