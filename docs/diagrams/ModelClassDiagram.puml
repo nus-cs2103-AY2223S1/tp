@@ -5,16 +5,16 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyNuScheduler" as ReadOnlyNuScheduler
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class NuScheduler
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
+Class UniqueProfileList
+Class Profile
+Class Telegram
 Class Email
 Class Name
 Class Phone
@@ -25,26 +25,26 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+NuScheduler .up.|> ReadOnlyNuScheduler
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyNuScheduler
+ModelManager -left-> "1" NuScheduler
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+NuScheduler *--> "1" UniqueProfileList
+UniqueProfileList --> "~* all" Profile
+Profile *--> Name
+Profile *--> Phone
+Profile *--> Email
+Profile *--> Telegram
+Profile *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Telegram
+Telegram -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Profile
 @enduml
