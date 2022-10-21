@@ -73,7 +73,7 @@ public class AddCommandParserTest {
         // multiple rooms - last room accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ROOM_DESC_AMY + ROOM_DESC_BOB + DATE_RANGE_DESC_BOB
-                        + NUMBER_OF_GUESTS_DESC_BOB ,
+                        + NUMBER_OF_GUESTS_DESC_BOB,
                 new AddCommand(expectedGuest));
 
         // multiple date ranges - last date range accepted

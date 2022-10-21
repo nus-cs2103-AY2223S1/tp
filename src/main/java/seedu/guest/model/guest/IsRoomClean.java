@@ -23,9 +23,8 @@ public class IsRoomClean {
      */
     public IsRoomClean(String isRoomClean) {
         requireNonNull(isRoomClean);
-        String isRoomCleanToLower = isRoomClean.toLowerCase();
-        checkArgument(isValidIsRoomClean(isRoomCleanToLower), MESSAGE_CONSTRAINTS);
-        value = standardiseIsRoomClean(isRoomCleanToLower);
+        checkArgument(isValidIsRoomClean(isRoomClean), MESSAGE_CONSTRAINTS);
+        value = standardiseIsRoomClean(isRoomClean);
     }
 
     /**
@@ -44,13 +43,13 @@ public class IsRoomClean {
     private String standardiseIsRoomClean(String status) {
         requireNonNull(status);
         assert isValidIsRoomClean(status);
+        String statusToLower = status.toLowerCase();
 
         String standardisedRoomUnclean = "no";
         String standardisedRoomClean = "yes";
         String abbreviatedRoomUnclean = "n";
-        String unabbreviatedRoomUnclean = "no";
 
-        if (status.equals(abbreviatedRoomUnclean) || status.equals(unabbreviatedRoomUnclean)) {
+        if (statusToLower.equals(abbreviatedRoomUnclean) || statusToLower.equals(standardisedRoomUnclean)) {
             return standardisedRoomUnclean;
         } else {
             return standardisedRoomClean;
