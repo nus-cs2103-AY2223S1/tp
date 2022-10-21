@@ -50,7 +50,7 @@ public class ImportCommand extends CsvFileCommand implements StorageCommand {
         try {
             ReadOnlyResidentBook residentBook = storage.readCsvFile(filePath).get();
             storage.createResidentBookFile(newJsonFilePath);
-            storage.saveResidentBook(residentBook, filePath);
+            storage.saveResidentBook(residentBook, newJsonFilePath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
         } catch (FileAlreadyExistsException e) {
             throw new CommandException(String.format(MESSAGE_FILE_EXISTS, newJsonFilePath.getFileName()), e);

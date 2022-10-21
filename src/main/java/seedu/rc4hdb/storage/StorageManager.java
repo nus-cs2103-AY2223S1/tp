@@ -31,6 +31,7 @@ public class StorageManager implements Storage {
     public StorageManager(ResidentBookStorage residentBookStorage, UserPrefsStorage userPrefsStorage) {
         this.residentBookStorage = residentBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        csvResidentBookStorage = new CsvResidentBookStorage();
     }
 
     // ================ UserPrefs methods ==============================

@@ -48,8 +48,8 @@ public class CsvReader {
             return Optional.empty();
         }
 
-        String csvAsString = FileUtil.readFromFile(filePath);
-        String[] lines = csvAsString.split("\n");
+        String csvAsString = FileUtil.readFromFile(filePath).substring(1);
+        String[] lines = csvAsString.split("\r\n");
         ResidentBook residentBook = new ResidentBook();
 
         for (String line : lines) {
