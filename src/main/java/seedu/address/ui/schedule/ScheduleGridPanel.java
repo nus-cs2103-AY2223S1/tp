@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.schedule;
 
 import java.util.logging.Logger;
 
@@ -12,13 +12,15 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.Weekdays;
+import seedu.address.ui.UiPart;
+
 
 /**
  * Creates a schedule grid panel
  */
 public class ScheduleGridPanel extends UiPart<Region> {
 
-    private static final String FXML = "ScheduleGridPanel.fxml";
+    private static final String FXML = "schedule/ScheduleGridPanel.fxml";
     private static final int SCALE_FACTOR = 2;
     private static final int ROW_SPAN = 1;
     private static final double COLUMNS_WIDTH = 95;

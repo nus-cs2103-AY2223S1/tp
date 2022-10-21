@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.schedule;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,7 +8,7 @@ import seedu.address.model.module.schedule.Schedule;
  * Creates a slot with blue color
  */
 public class ScheduleSlotBlue extends SlotContainer {
-    private static final String FXML = "ScheduleSlotBlue.fxml";
+    private static final String FXML = "schedule/ScheduleSlotBlue.fxml";
 
     protected String moduleCode;
     protected String duration;

@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.schedule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
  */
 public class WeekdayCard extends SlotContainer {
 
-    private static final String FXML = "WeekdayCard.fxml";
+    private static final String FXML = "schedule/WeekdayCard.fxml";
     private static final List<String> WEEKDAY_LIST = new ArrayList<>();
 
     private int index;

@@ -1,17 +1,19 @@
-package seedu.address.ui;
+package seedu.address.ui.schedule;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.ui.PersonCard;
+import seedu.address.ui.UiPart;
 
 /**
  * A UI component that displays information of a {@code Schedule}.
  */
 public class ScheduleCard extends UiPart<Region> {
 
-    private static final String FXML = "ScheduleListCard.fxml";
+    private static final String FXML = "schedule/ScheduleListCard.fxml";
 
     public final Schedule schedule;
 

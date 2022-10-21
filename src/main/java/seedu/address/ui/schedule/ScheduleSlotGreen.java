@@ -1,14 +1,14 @@
-package seedu.address.ui;
+package seedu.address.ui.schedule;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seedu.address.model.module.schedule.Schedule;
 
 /**
- * Creates a slot with red color
+ * Creates a slot with orange color
  */
-public class ScheduleSlotRed extends SlotContainer {
-    private static final String FXML = "ScheduleSlotRed.fxml";
+public class ScheduleSlotGreen extends SlotContainer {
+    private static final String FXML = "schedule/ScheduleSlotGreen.fxml";
 
     protected String moduleCode;
     protected String duration;
@@ -28,7 +28,7 @@ public class ScheduleSlotRed extends SlotContainer {
     /**
      * Creates a schedule slot to be added to the timetable with relevant information.
      */
-    public ScheduleSlotRed(Schedule schedule) {
+    public ScheduleSlotGreen(Schedule schedule) {
         super(FXML);
         this.moduleCode = schedule.getModule();
         this.duration = schedule.getPeriod();

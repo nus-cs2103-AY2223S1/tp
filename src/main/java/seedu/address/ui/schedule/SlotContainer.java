@@ -1,8 +1,9 @@
-package seedu.address.ui;
+package seedu.address.ui.schedule;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.ui.UiPart;
 
 /**
  * A UI Component that that constitutes a region of a calendar view.
