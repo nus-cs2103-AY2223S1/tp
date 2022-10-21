@@ -16,6 +16,9 @@ import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
 import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
+import taskbook.model.Model;
+import taskbook.model.ModelManager;
+import taskbook.model.UserPrefs;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
@@ -23,6 +26,7 @@ import taskbook.model.task.Event;
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.EventBuilder;
 import taskbook.testutil.PersonBuilder;
+import taskbook.testutil.TypicalTaskBook;
 
 public class TaskEventCommandTest {
 
@@ -81,6 +85,18 @@ public class TaskEventCommandTest {
 
         assertThrows(CommandException.class,
                 TaskAddCommand.MESSAGE_PERSON_NOT_FOUND, () -> taskEventCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateEvent_throwsCommandException() {
+        Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
+        Event task = TypicalTaskBook.PARTYING;
+
+        TaskEventCommand taskEventCommand =
+                new TaskEventCommand(task.getName(), task.getDescription(), task.getAssignment(), task.getDate());
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskEventCommand.execute(model));
     }
 
     @Test

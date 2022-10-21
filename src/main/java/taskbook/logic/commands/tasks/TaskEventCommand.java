@@ -16,6 +16,7 @@ import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
+import taskbook.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Adds an event to the task book.
@@ -31,6 +32,7 @@ public class TaskEventCommand extends TaskAddCommand {
                     + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_DATE + "DATE\n"
                     + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_DATE + "DATE";
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
+
 
     private final LocalDate date;
 
@@ -57,7 +59,13 @@ public class TaskEventCommand extends TaskAddCommand {
         checkPersonNameExist(model);
 
         Task newTask = createEvent(date);
-        model.addTask(newTask);
+
+        try {
+            model.addTask(newTask);
+        } catch (DuplicateTaskException dte) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK_FAILURE);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
 

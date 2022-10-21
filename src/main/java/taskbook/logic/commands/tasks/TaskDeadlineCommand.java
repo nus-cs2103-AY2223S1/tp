@@ -16,6 +16,7 @@ import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
+import taskbook.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Adds a deadline to the task book.
@@ -57,7 +58,13 @@ public class TaskDeadlineCommand extends TaskAddCommand {
         checkPersonNameExist(model);
 
         Task newTask = createDeadline(date);
-        model.addTask(newTask);
+
+        try {
+            model.addTask(newTask);
+        } catch (DuplicateTaskException dte) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK_FAILURE);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
 

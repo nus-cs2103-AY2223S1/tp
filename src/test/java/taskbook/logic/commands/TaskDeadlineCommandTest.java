@@ -16,6 +16,9 @@ import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
 import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskDeadlineCommand;
+import taskbook.model.Model;
+import taskbook.model.ModelManager;
+import taskbook.model.UserPrefs;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Deadline;
@@ -23,6 +26,7 @@ import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.DeadlineBuilder;
 import taskbook.testutil.PersonBuilder;
+import taskbook.testutil.TypicalTaskBook;
 
 public class TaskDeadlineCommandTest {
 
@@ -81,6 +85,18 @@ public class TaskDeadlineCommandTest {
 
         assertThrows(CommandException.class,
                 TaskAddCommand.MESSAGE_PERSON_NOT_FOUND, () -> taskDeadlineCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateDeadline_throwsCommandException() {
+        Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
+        Deadline task = TypicalTaskBook.EATING;
+
+        TaskDeadlineCommand taskDeadlineCommand =
+                new TaskDeadlineCommand(task.getName(), task.getDescription(), task.getAssignment(), task.getDate());
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskDeadlineCommand.execute(model));
     }
 
     @Test
