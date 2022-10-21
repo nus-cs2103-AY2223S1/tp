@@ -214,6 +214,41 @@ The implementation of unassigning students from module classes is similar to how
 
 Refer to [Assigning students to module classes](#assigning-students-to-module-classes) for more information.
 
+### Grading a student for a session
+<img src="images/GradeCommandSequenceDiagram.png" width="700" />
+
+Giving grades for a session is only possible when a `ModuleClass` is focused. It requires updating the student's list of
+`StudentModuleData`, where the matching `StudentModuleData` with the current focused `ModuleClass` is updated to reflect 
+the given grade.
+
+Given bellow are the steps taken when the user gives grade to a student for a session: 
+
+Step 1: The user input is parsed similar to other commands and a `GradeCommand` object is created using the given 
+student index, session name, and grade. 
+
+Step 2: The `GradeCommand` object is executed. The given index is used to retrieve the `Student` object from the current
+curated list of students in `Model`. Then a new `Student` object is created from the old `Student` object by updating the session
+grade with help of the `Student#getUpdatedStudent` method.  
+
+Step 3: The `Student#getUpdatedStudent` method creates a new `Student` object by copying all fields from the
+old `Student` object except the list of `StudentModuleData`. An updated list of `StudentModuleData` is created by calling the
+`StudentModuleData#getUpdatedModuleDataList` method. 
+
+Step 4: The `StudentModuleData#getUpdatedModuleDataList` method goes through all the `StudentModuleData` in the old list
+and looks for a match with the current focused `ModuleClass`. It is guaranteed to exist since the program is in
+focus mode. Then it creates a new list by updating the list of `SessionData` stored inside the `StudentModuleData`.
+It is achieved using the method `SessionData#getUpdatedSessionDataList`. 
+
+Step 5: The `SessionData#getUpdatedSessionDataList` goes through the list of `SessionData` and creates a new list 
+removing any occurrence of the matching session the user is trying to grade. After that it adds a new `SessionData` to 
+the list with the given `Session` and the grade. 
+
+Step 6: After finishing steps 4-7, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
+is used to replace the old `Student` object with the updated one in our model. 
+
+Step 7: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
+to the user. 
+
 ### Tracking the state of focus mode
 
 The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)).
