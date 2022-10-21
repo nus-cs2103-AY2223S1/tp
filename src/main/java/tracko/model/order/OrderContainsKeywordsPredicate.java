@@ -20,7 +20,7 @@ public class OrderContainsKeywordsPredicate implements Predicate<Order> {
         return keywords.stream()
                 .anyMatch(keyword -> {
                     for (ItemQuantityPair i : order.getItemList()) {
-                        if (StringUtil.containsWordIgnoreCase(i.getItem(), keyword)) {
+                        if (StringUtil.containsWordIgnoreCase(i.getItemName(), keyword)) {
                             return true;
                         }
                     }

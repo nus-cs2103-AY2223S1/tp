@@ -18,9 +18,9 @@ import tracko.logic.parser.Parser;
 import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
+import tracko.model.item.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
-import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Name;
 import tracko.model.order.Order;
 import tracko.model.order.Phone;
@@ -29,6 +29,8 @@ import tracko.model.order.Phone;
  * Parses input arguments and creates a new/update AddOrderCommand object
  */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
+
+    public static final String MESSAGE_MISSING_ITEM_NAME = "Missing item name input!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddOrderCommand
@@ -63,7 +65,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
      * @return The updated command.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddOrderCommand parseStageTwo(String args, AddOrderCommand command) throws ParseException {
+    public AddOrderCommand parseAndUpdate(String args, AddOrderCommand command) throws ParseException {
         if (args.equals("done")) {
             command.setAwaitingInput(false);
             return command;
@@ -81,9 +83,9 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE_2));
         }
 
-        String item = argMultimap.getValue(PREFIX_ITEM).get();
-        Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
-        command.addToItemList(new ItemQuantityPair(item, quantity));
+        String itemName = argMultimap.getValue(PREFIX_ITEM).get();
+        Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
+        command.stageForValidation(itemName, quantity);
 
         return command;
     }

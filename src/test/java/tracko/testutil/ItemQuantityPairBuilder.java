@@ -1,50 +1,52 @@
 package tracko.testutil;
 
+import tracko.model.item.Item;
+import tracko.model.item.Quantity;
 import tracko.model.order.ItemQuantityPair;
 
 /**
- * A utility class to help with building ItemQuantityPair objects.
+ * A utility class to help with building {@code ItemQuantityPair} objects.
  */
 public class ItemQuantityPairBuilder {
-    public static final String DEFAULT_ITEM_NAME = "Mechanical Pencil";
+    public static final Item DEFAULT_ITEM = new ItemBuilder().build();
     public static final Integer DEFAULT_QUANTITY = 3;
 
-    private String itemName;
-    private Integer quantity;
+    private Item item;
+    private Quantity quantity;
 
     /**
      * Creates a {@code ItemQuantityPairBuilder} with the default details.
      */
     public ItemQuantityPairBuilder() {
-        itemName = DEFAULT_ITEM_NAME;
-        quantity = DEFAULT_QUANTITY;
+        item = DEFAULT_ITEM;
+        quantity = new Quantity(DEFAULT_QUANTITY);
     }
 
     /**
-     * Initializes the OrderBuilder with the data of {@code pairToCopy}.
+     * Initializes the {@code ItemBuilder} with the data of {@code pairToCopy}.
      */
     public ItemQuantityPairBuilder(ItemQuantityPair pairToCopy) {
-        itemName = pairToCopy.getItem();
+        item = pairToCopy.getItem();
         quantity = pairToCopy.getQuantity();
     }
 
     /**
-     * Sets the {@code itemName} of the {@code ItemQuantityPair} that we are building.
+     * Sets the {@code Item} of the {@code ItemQuantityPair} that we are building.
      */
-    public ItemQuantityPairBuilder withItemName(String itemName) {
-        this.itemName = itemName;
+    public ItemQuantityPairBuilder withItem(Item item) {
+        this.item = item;
         return this;
     }
 
     /**
-     * Sets the {@code quantity} of the {@code ItemQuantityPair} that we are building.
+     * Sets the {@code Quantity} of the {@code ItemQuantityPair} that we are building.
      */
     public ItemQuantityPairBuilder withQuantity(Integer quantity) {
-        this.quantity = quantity;
+        this.quantity = new Quantity(quantity);
         return this;
     }
 
     public ItemQuantityPair build() {
-        return new ItemQuantityPair(itemName, quantity);
+        return new ItemQuantityPair(item, quantity);
     }
 }

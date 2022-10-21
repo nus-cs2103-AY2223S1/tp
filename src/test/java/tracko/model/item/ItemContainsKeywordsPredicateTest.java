@@ -1,4 +1,4 @@
-package tracko.model.items;
+package tracko.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

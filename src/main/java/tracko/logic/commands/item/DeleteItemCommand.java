@@ -9,7 +9,7 @@ import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 
 /**
  * Deletes an item identified using it's displayed index in TrackO.

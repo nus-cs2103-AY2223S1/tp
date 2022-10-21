@@ -6,7 +6,7 @@ import tracko.commons.core.Messages;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.model.Model;
-import tracko.model.items.ItemContainsKeywordsPredicate;
+import tracko.model.item.ItemContainsKeywordsPredicate;
 
 /**
  * Finds items in the inventory list that match a list of keywords.

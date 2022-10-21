@@ -1,4 +1,4 @@
-package tracko.model.items;
+package tracko.model.item;
 
 import java.util.List;
 import java.util.function.Predicate;

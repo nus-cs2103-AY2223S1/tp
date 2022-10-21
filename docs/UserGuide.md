@@ -92,6 +92,22 @@ Examples:
 * `findo keychain` returns `banana keychain` and `keychain`
 * `findo apple keychain` returns `apple painting`, `banana keychain`<br>
 
+### Sorting orders by time created: `sorto`
+
+Sorts the displayed list of orders by the time at which they were created.
+
+Format: `sorto new` or `sorto old`
+
+* The keyword `new` and `old` are case-insensitive.
+* `sorto new` sorts the order list such that newest orders are at the top
+* `sorto old` sorts the order list such that oldest orders are at the top
+
+Examples:
+* `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
+* `findo Chair` followed by `sorto new` sorts all orders found using `findo Chair` such that newest orders are at the 
+top
+
+
 ### Deleting an order: `deleteo`
 
 Deletes an order from the list of tracked orders.
@@ -105,20 +121,21 @@ Format: `deleteo INDEX`
 Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
 * `findo Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo` command.
+* `sorto new` followed by `deleteo 1` deletes the most recently created order
 
 ### Adding an inventory item: `addi`
 
 Adds an item to the list of tracked inventory.
 
-Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​`
+Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An inventory item can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle`
-* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture`
+* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
+* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
 
 ### List all inventory items: `listi`
 
@@ -161,7 +178,7 @@ Examples:
 
 Edits an existing item in the inventory list.
 
-Format: `edit INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​`
+Format: `edit INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
 
 * Edits the item at the specified `INDEX`.
 * The index refers to the index number shown in the displayed inventory list.
@@ -188,10 +205,11 @@ Format: `exit`
 | **Add An Order**             | `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT` <br> e.g., `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567` |
 | **List All Orders**          | `listo`                                                                                                                                                                                                                   |
 | **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
-| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
-| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture`                                                                                                        |
+| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                |                                                                                                       |
+| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |                                                          |
+| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79/99 cp/50.00`                                                          |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |                                                                                                                                                          |
 | **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
 | **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                            |
-| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |
-| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                              |
+| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                              |
 | **Exit**                     | `exit`                                                                                                                                                                                                                    |

@@ -1,7 +1,7 @@
 package tracko.model;
 
 import javafx.collections.ObservableList;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
 
 /**

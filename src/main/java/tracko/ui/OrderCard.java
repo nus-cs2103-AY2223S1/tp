@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import tracko.commons.util.DateTimeUtil;
 import tracko.model.order.Order;
 
 /**
@@ -32,6 +33,8 @@ public class OrderCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label timeCreated;
     @FXML
     private Label phone;
     @FXML
@@ -64,6 +67,10 @@ public class OrderCard extends UiPart<Region> {
         phone.setWrapText(true);
         phone.setPadding(new Insets(0, 10, 0, 0));
 
+        timeCreated.setText(order.getTimeCreated().format(DateTimeUtil.getFormat()));
+        timeCreated.setWrapText(true);
+        timeCreated.setPadding(new Insets(0, 10, 0, 0));
+
         address.setText(order.getAddress().value);
         address.setWrapText(true);
         address.setPadding(new Insets(0, 10, 0, 0));
@@ -92,8 +99,8 @@ public class OrderCard extends UiPart<Region> {
         items.setStyle("-fx-background-insets: 10, 10, 0, 0;");
         items.getStyleClass().add("ordered-items-container");
         order.getItemList().stream()
-                .forEach(item -> items.getChildren().add(
-                        constructItemLabel("\u2022 " + item.getQuantity() + " * " + item.getItem())));
+                .forEach(pair -> items.getChildren().add(
+                        constructItemLabel(pair.toString())));
     }
 
     /**

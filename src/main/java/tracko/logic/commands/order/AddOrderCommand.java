@@ -8,6 +8,9 @@ import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
+import tracko.model.item.Item;
+import tracko.model.item.Quantity;
+import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 
@@ -43,11 +46,26 @@ public class AddOrderCommand extends MultiLevelCommand {
             + CliSyntax.PREFIX_QUANTITY + "ITEM_QUANTITY"
             + "\nOtherwise, enter 'done' or 'cancel' to finish or abort the command accordingly.";
 
+    public static final String MESSAGE_INVALID_ITEM = "Item by the name '%1$s' not found in inventory."
+            + "\nTo add more items and their quantities, enter:"
+            + "\n" + CliSyntax.PREFIX_ITEM + "ITEM_NAME "
+            + CliSyntax.PREFIX_QUANTITY + "ITEM_QUANTITY"
+            + "\nOtherwise, enter 'done' or 'cancel' to finish or abort the command accordingly.";
+
+    public static final String MESSAGE_INVALID_QUANTITY = "Input quantity '%1$s' is invalid."
+            + "\nTo add more items and their quantities, enter:"
+            + "\n" + CliSyntax.PREFIX_ITEM + "ITEM_NAME "
+            + CliSyntax.PREFIX_QUANTITY + "ITEM_QUANTITY"
+            + "\nOtherwise, enter 'done' or 'cancel' to finish or abort the command accordingly.";
+
+    public static final String MESSAGE_EMPTY_ITEM_LIST = "Order's item list cannot be empty!";
+
+    public static final String MESSAGE_COMMAND_ABORTED = "Add order command aborted";
 
     public static final String MESSAGE_SUCCESS = "New order added:\n%1$s";
 
     private final Order toAdd;
-    private Pair<String, Integer> lastItemQuantityPair;
+    private Pair<String, Quantity> itemNameQuantityPairInput;
 
     /**
      * Creates an AddOrderCommand that is set to await further input from the user.
@@ -60,28 +78,49 @@ public class AddOrderCommand extends MultiLevelCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         if (this.isCancelled) {
-            return new CommandResult("Add Order Command Cancelled");
+            // User has cancelled the command
+            return new CommandResult(MESSAGE_COMMAND_ABORTED);
         }
 
-        if (this.isAwaitingInput() && lastItemQuantityPair != null) {
-            return new CommandResult(String.format(MESSAGE_ADDED_ITEM, lastItemQuantityPair));
-        } else if (this.isAwaitingInput()) {
+        if (!this.isAwaitingInput()) {
+            // User has finished inputting order details
+            if (toAdd.getItemList().isEmpty()) {
+                // User tried to add an order with empty item list
+                return new CommandResult(MESSAGE_EMPTY_ITEM_LIST);
+            }
+            model.addOrder(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
+
+        if (itemNameQuantityPairInput == null) {
+            // Command has just been initiated
             return new CommandResult(MESSAGE_USAGE_2);
         }
 
-        requireNonNull(model);
-        model.addOrder(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        String itemName = itemNameQuantityPairInput.getKey();
+        Quantity quantity = itemNameQuantityPairInput.getValue();
+
+        try {
+            Item orderItem = model.getItem(itemName);
+            ItemQuantityPair pair = new ItemQuantityPair(orderItem, quantity);
+            toAdd.addToItemList(pair);
+            return new CommandResult(String.format(MESSAGE_ADDED_ITEM, pair));
+        } catch (ItemNotFoundException e) {
+            return new CommandResult(String.format(MESSAGE_INVALID_ITEM, itemName));
+        }
+
     }
 
     /**
-     * Adds an item and quantity pair to the item list.
-     * @param itemQuantityPair The item and quantity pair
+     * Stages an item and quantity pair to be verified on intermediate command execution.
+     * @param itemName The name of the item to be added to the order
+     * @param quantity The quantity of the item to be added to the order
      */
-    public void addToItemList(ItemQuantityPair itemQuantityPair) {
-        this.toAdd.addToItemList(itemQuantityPair);
-        this.lastItemQuantityPair = itemQuantityPair;
+    public void stageForValidation(String itemName, Quantity quantity) {
+        this.itemNameQuantityPairInput = new Pair<>(itemName, quantity);
     }
 
     @Override

@@ -9,6 +9,7 @@ import static tracko.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,9 +22,8 @@ import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
 import tracko.model.TrackO;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
-// import tracko.model.person.Person;
 import tracko.testutil.OrderBuilder;
 
 
@@ -136,6 +136,11 @@ public class AddOrderCommandTest {
         }
 
         @Override
+        public Item getItem(String itemName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Item> getFilteredItemList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -187,6 +192,16 @@ public class AddOrderCommandTest {
 
         @Override
         public void updateFilteredOrderList(Predicate<Order> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Order> getSortedOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedOrderList(Comparator<Order> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

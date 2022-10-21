@@ -1,5 +1,6 @@
 package tracko.storage;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,10 +11,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tracko.commons.exceptions.IllegalValueException;
-import tracko.model.items.Description;
-import tracko.model.items.Item;
-import tracko.model.items.ItemName;
-import tracko.model.items.Quantity;
+import tracko.model.item.Description;
+import tracko.model.item.Item;
+import tracko.model.item.ItemName;
+import tracko.model.item.Price;
+import tracko.model.item.Quantity;
 import tracko.model.tag.Tag;
 
 /**
@@ -25,6 +27,8 @@ public class JsonAdaptedItem {
     private final String itemName;
     private final Integer quantity;
     private final String description;
+    private final BigDecimal sellPrice;
+    private final BigDecimal costPrice;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -32,11 +36,15 @@ public class JsonAdaptedItem {
      */
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("itemName") String itemName, @JsonProperty("quantity") Integer quantity,
-                            @JsonProperty("description") String description,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("description") String description,
+                           @JsonProperty("sellPrice") BigDecimal sellPrice,
+                           @JsonProperty("costPrice") BigDecimal costPrice,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.description = description;
+        this.sellPrice = sellPrice;
+        this.costPrice = costPrice;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -49,6 +57,8 @@ public class JsonAdaptedItem {
         itemName = source.getItemName().itemName;
         quantity = source.getQuantity().getQuantity();
         description = source.getDescription().value;
+        sellPrice = source.getSellPrice().price;
+        costPrice = source.getCostPrice().price;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -65,6 +75,7 @@ public class JsonAdaptedItem {
             itemTags.add(tag.toModelType());
         }
 
+        // item name checks
         if (itemName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemName.class.getSimpleName()));
@@ -74,6 +85,7 @@ public class JsonAdaptedItem {
         }
         final ItemName modelItemName = new ItemName(itemName);
 
+        // quantity checks
         if (quantity == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Quantity.class.getSimpleName()));
@@ -83,6 +95,7 @@ public class JsonAdaptedItem {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
+        // description checks
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
@@ -92,8 +105,29 @@ public class JsonAdaptedItem {
         }
         final Description modelDescription = new Description(description);
 
+        // sell price checks
+        if (sellPrice == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Price.class.getSimpleName()));
+        }
+        if (!Price.isValidPrice(sellPrice)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Price modelSellPrice = new Price(sellPrice);
+
+        // cost price checks
+        if (costPrice == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Price.class.getSimpleName()));
+        }
+        if (!Price.isValidPrice(costPrice)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Price modelCostPrice = new Price(costPrice);
+
         final Set<Tag> modelTags = new HashSet<>(itemTags);
 
-        return new Item(modelItemName, modelDescription, modelQuantity, modelTags);
+        return new Item(modelItemName, modelDescription, modelQuantity, modelTags,
+                modelSellPrice, modelCostPrice);
     }
 }

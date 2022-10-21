@@ -2,6 +2,7 @@ package tracko.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,9 +10,10 @@ import java.util.Set;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.StringUtil;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.items.Description;
-import tracko.model.items.ItemName;
-import tracko.model.items.Quantity;
+import tracko.model.item.Description;
+import tracko.model.item.ItemName;
+import tracko.model.item.Price;
+import tracko.model.item.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.Name;
@@ -166,5 +168,24 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        BigDecimal bigDecimalPrice = new BigDecimal(trimmedPrice);
+
+        if (!(StringUtil.isNonNegativeUnsignedFloat(trimmedPrice)
+                && Price.isValidPrice(bigDecimalPrice))) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Price(bigDecimalPrice);
     }
 }

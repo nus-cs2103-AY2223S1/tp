@@ -1,8 +1,13 @@
 package tracko.testutil;
 
+import static tracko.testutil.TypicalItems.ITEM_1;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import tracko.model.item.Item;
+import tracko.model.item.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.ItemQuantityPair;
@@ -19,7 +24,9 @@ public class OrderBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_ITEM = "Keychain";
+    public static final LocalDateTime DEFAULT_TIME_CREATED =
+            LocalDateTime.of(2022, 10, 18, 23, 54, 44);
+    public static final Item DEFAULT_ITEM = ITEM_1;
     public static final Integer DEFAULT_QUANTITY = 2;
     public static final boolean DEFAULT_PAID_STATUS = false;
     public static final boolean DEFAULT_DELIVERY_STATUS = false;
@@ -28,6 +35,7 @@ public class OrderBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private LocalDateTime timeCreated;
     private List<ItemQuantityPair> itemList;
     private boolean isPaid;
     private boolean isDelivered;
@@ -40,8 +48,9 @@ public class OrderBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        timeCreated = DEFAULT_TIME_CREATED;
         itemList = new ArrayList<>();
-        itemList.add(new ItemQuantityPair(DEFAULT_ITEM, DEFAULT_QUANTITY));
+        itemList.add(new ItemQuantityPair(DEFAULT_ITEM, new Quantity(DEFAULT_QUANTITY)));
         isPaid = DEFAULT_PAID_STATUS;
         isDelivered = DEFAULT_DELIVERY_STATUS;
     }
@@ -54,6 +63,7 @@ public class OrderBuilder {
         phone = orderToCopy.getPhone();
         email = orderToCopy.getEmail();
         address = orderToCopy.getAddress();
+        timeCreated = orderToCopy.getTimeCreated();
         itemList = orderToCopy.getItemList();
         isPaid = orderToCopy.getPaidStatus();
         isDelivered = orderToCopy.getDeliveryStatus();
@@ -92,6 +102,14 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the list of ordered items of the {@code Order} that we are building.
+     */
+    public OrderBuilder withItemList(List<ItemQuantityPair> itemList) {
+        this.itemList = itemList;
+        return this;
+    }
+
+    /**
      * Adds an item and associated quantity to the list of items ordered
      */
     public OrderBuilder withItemQuantityPair(ItemQuantityPair itemQuantityPair) {
@@ -108,7 +126,6 @@ public class OrderBuilder {
     }
 
     public Order build() {
-        return new Order(name, phone, email, address, itemList, isPaid, isDelivered);
+        return new Order(name, phone, email, address, timeCreated, itemList, isPaid, isDelivered);
     }
-
 }

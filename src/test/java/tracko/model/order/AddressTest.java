@@ -1,12 +1,10 @@
-package tracko.model.person;
+package tracko.model.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import tracko.model.order.Address;
 
 public class AddressTest {
 

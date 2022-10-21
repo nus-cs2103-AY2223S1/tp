@@ -7,7 +7,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 
 /**
  * Adds an item to TrackO. The AddItemCommand is a single-level command in which the user initiates the item to be
@@ -22,11 +22,16 @@ public class AddItemCommand extends Command {
             + CliSyntax.PREFIX_QUANTITY + "QUANTITY "
             + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + CliSyntax.PREFIX_TAG + "Tag]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + CliSyntax.PREFIX_SELL_PRICE + "SELL PRICE "
+            + CliSyntax.PREFIX_COST_PRICE + "COST PRICE"
+            + "\nExample: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_ITEM + "Paper "
             + CliSyntax.PREFIX_QUANTITY + "1000 "
+            + CliSyntax.PREFIX_DESCRIPTION + "White printing paper "
             + CliSyntax.PREFIX_TAG + "Limited "
-            + CliSyntax.PREFIX_TAG + "New";
+            + CliSyntax.PREFIX_TAG + "New "
+            + CliSyntax.PREFIX_SELL_PRICE + "2.00 "
+            + CliSyntax.PREFIX_COST_PRICE + "1.98";
 
     public static final String MESSAGE_SUCCESS = "New item and quantity added:\n%1$s";
 
