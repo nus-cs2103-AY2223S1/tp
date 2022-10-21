@@ -16,8 +16,11 @@ import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
+import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
+import taskbook.logic.commands.tasks.TaskMarkCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
+import taskbook.logic.commands.tasks.TaskUnmarkCommand;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
@@ -58,6 +61,24 @@ public class TaskBookParserTest {
     @Test
     public void parseCommand_task_delete() throws Exception {
         TaskDeleteCommand command = (TaskDeleteCommand) parseTaskCommand("delete i/1");
+        assertNotNull(command);
+    }
+
+    @Test
+    public void parseCommand_task_mark() throws Exception {
+        TaskMarkCommand command = (TaskMarkCommand) parseTaskCommand("mark i/2");
+        assertNotNull(command);
+    }
+
+    @Test
+    public void parseCommand_task_unmark() throws Exception {
+        TaskUnmarkCommand command = (TaskUnmarkCommand) parseTaskCommand("unmark i/3");
+        assertNotNull(command);
+    }
+
+    @Test
+    public void parseCommand_task_edit() throws Exception {
+        TaskEditCommand command = (TaskEditCommand) parseTaskCommand("edit i/2 m/John d/Finish user guide");
         assertNotNull(command);
     }
 
