@@ -10,6 +10,7 @@ import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.ui.history.CommandHistory;
+import seedu.rc4hdb.ui.history.CommandHistoryParser;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -20,7 +21,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private CommandHistory commandHistory;
+    private CommandHistoryParser commandHistoryParser;
 
     @FXML
     private TextField commandTextField;
@@ -31,7 +32,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        this.commandHistory = new CommandHistory();
+        this.commandHistoryParser = CommandHistoryParser.getInstance();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         setAccelerators();
     }
@@ -48,7 +49,7 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
-            commandHistory.add(commandText);
+            commandHistoryParser.parse(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
@@ -101,11 +102,12 @@ public class CommandBox extends UiPart<Region> {
          */
         commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
-                String commandText = commandHistory.handle(event.getCode());
+                CommandHistory commandHistory = this.commandHistoryParser.parse(event.getCode());
+                String commandText = commandHistory.execute();
                 commandTextField.setText(commandText);
             }
             commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-            }
+        }
         );
     }
 
