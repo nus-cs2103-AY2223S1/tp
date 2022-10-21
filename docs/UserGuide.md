@@ -176,6 +176,12 @@ Examples:
 
 * `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
 
+### Marking all rooms as unclean: `markRoomsUnclean`
+
+Marks all room clean statuses of all guests as "no".
+
+Format: `markRoomsUnclean`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the guest book.
@@ -214,12 +220,15 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action     | Format, Examples                                                                                                                                                                                       |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/IS_ROOM_CLEAN ​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3 rc/no` |
-| **Clear**  | `clear`                                                                                                                                                                                                |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                    |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS]​`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5`                                        |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                             |
-| **List**   | `list`                                                                                                                                                                                                 |
-| **Help**   | `help`                                                                                                                                                                                                 |
+
+| Action               | Format, Examples                                                                                                                                                                                        |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/IS_ROOM_CLEAN ​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/ 05-73 dr/19/05/20 - 24/05/22 ng/3 rc/no` |
+| **Clear**            | `clear`                                                                                                                                                                                                 |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                     |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN]​`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5`                      |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                              |
+| **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                                      |
+| **List**             | `list`                                                                                                                                                                                                  |
+| **Help**             | `help`                                                                                                                                                                                                  |
+

@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_ROOM + "05-73 "
             + PREFIX_DATE_RANGE + "13/09/22 - 15/09/22 "
             + PREFIX_NUMBER_OF_GUESTS + "1 "
-            + PREFIX_IS_ROOM_CLEAN + "yes"
+            + PREFIX_IS_ROOM_CLEAN + "yes "
             + PREFIX_REQUEST + "Apply for room service";
 
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
