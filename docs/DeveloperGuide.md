@@ -284,6 +284,70 @@ Currently, the commands for showing and hiding columns are extensions of the `li
 
 <br>
 
+### Filter feature to filter residents according to fields
+
+The previous AddressBook implementation only had a find command to search for specific residents according to the field.
+Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
+used to describe the resident.
+
+<br>
+
+#### Structure of the Command 
+A ```FilterCommand``` class and a ```FilterCommandParser``` class was implemented to follow the structure of the
+```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the 
+```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be 
+added without changing any of the Logic class components other than adding the cases to create a ```FilterCommand``` 
+object
+
+<br>
+
+#### Creating a new ```ResidentDescriptor``` class
+
+Previously, the edit feature utilized an ```EditDescriptor``` class to create an object that will store the parsed
+information of the command to edit the specific Resident. Since the handler for the information was similar for the 
+filter feature, a new general ```ResidentDescriptor``` class was created which is used for both the edit and filter
+features.
+
+This makes it easier to update the features if there is a change in the structure of the fields or if there
+is a new field added for the ```Resident```.
+
+<br>
+
+#### Creating a new ```FilterSpecifier``` class
+
+There is a specifier after the filter keyword in the command that is used to select whether all or any of
+the fields should match the residents' information in the database. A ```FilterSpecifier``` class is  used to
+represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less 
+prone to errors.
+
+<br>
+
+#### Creating new predicate classes for filter
+
+In order to check if the ```Resident``` objects passes matching the filter instructed by the user, a class
+implementing the ```Predicate``` class needs to be created to handle this. Thus, two new classes 
+```AttributesMatchAllKeywords``` and ```AttributesMatchAnyKeyword``` hae been implemented to handle the logic of the
+filtering for each type of specifier. Through this implementation, even more specifiers can be added during later cycles
+of this project if required without any major restructuring of the initial classes created in this cycle.
+
+<br>
+
+<img src="images/FilterCommandSequenceDiagram.png" width="600" />
+
+#### Considerations
+
+There was a choice to make the filter feature accept either only the exact string entered by the user or also
+accept a field that contains the filter attribute given by the user. It is clear that the filter command would be more 
+flexible id the contains option is implemented as the user can use a prefix or a suffix of the actual field to filter
+out residents. Thus, while keeping this advantage in mind, we have decided to make the filter feature accept fields
+that contain the attributes instead of having it exactly equal. 
+
+However, implementing contains for the tags feature may make the application a lot slower. It is not worth the cost
+considering that this additional benefit does not give our application a boost in usability. Thus, the substring 
+filtering has been omitted for the tags to accommodate for a faster filtering process. 
+
+<br>
+
 ### Multiple data files
 
 #### Background
@@ -335,7 +399,6 @@ Due to file creation and deletion not requiring an update to `Model`, but requir
 Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
-
 
 ### \[Proposed\] Undo/redo feature
 
