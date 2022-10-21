@@ -545,7 +545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `Salesy` and the **Actor** is the `canteen vendor`, unless specified otherwise)
+(For all use cases below, the **System** is `Salesy` and the **Actor** is the `NUS canteen vendor`, unless specified otherwise)
 
 **Use case: View the help page**
 
@@ -569,10 +569,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Salesy detects that the command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the add task command.
+* 1a. Salesy detects that the command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the add task command.
+    
+    Use case resumes at step 1.
+    
+* 1b. Salesy detects that the command entered has an invalid date.
+    * 1b1. Salesy shows an error message specific to invalid date.
+    
+    Use case resumes at step 1.
 
-      Use case resumes at step 1.
+* 1c. Salesy detects that the command entered has a date that is before today.
+    * 1c1. Salesy issues a warning.
+    Use case resumes at step 2.
+
+**Use case: Delete a task**
+
+**MSS**
+
+1. Vendor requests to delete a specific task in the list.
+2. Salesy deletes the task from the task list and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Salesy detects that the command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the specified delete task command.
+    
+    Use case resumes at step 1.
+
+* 1b. Salesy detects that the index does not exist on the task list.
+    * 1b1. Salesy shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Edit a task**
+
+**MSS**
+
+1. Vendor requests to edit a specific task in the list.
+2. Salesy updates the task from the task list and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Salesy detects that the command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the specified edit task command.
+
+    Use case resumes at step 1.
+
+* 1b. Salesy detects that the index does not exist on the task list.
+    * 1b1. Salesy shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Mark a task as done**
 
@@ -587,14 +638,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty
+* 1a. The list is empty
 
   Use case ends.
-* 2b. The given index is invalid.
+* 3b. The given index is invalid.
 
-    * 2b1. Salesy shows an error message.
+    * 3b1. Salesy shows an error message.
 
-  Use case resumes at step 2.
+  Use case resumes at step 3.
+
+**Use case: Un marks a task as done**
+
+**MSS**
+
+1. Vendor requests to <u>list pending tasks</u>.
+2. Salesy shows a list of tasks
+3. Vendor requests to un mark a specific task in the list as done.
+4. Salesy un marks the task as done.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+* 3b. The given index is invalid.
+
+    * 3b1. Salesy shows an error message.
+
+  Use case resumes at step 3.
+
+**Use case: View pending tasks**
+
+**MSS**
+
+1. Vendor requests to view pending tasks
+2. Salesy shows a list of tasks that are marked undone.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 **Use case: Decrement supplies**
 
@@ -613,49 +701,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 4a. The amount to be decremented results in negative quantity
+* 3a. The amount to be decremented results in negative quantity
 
-    * 4a1. Salesy displays an error message.
-
-      Use case resumes at step 3.
-
-**Use case: Delete a task**
-
-**MSS**
-
-1.  Vendor requests to list tasks
-2.  Salesy shows a list of tasks
-3.  Vendor requests to delete a specific task in the list
-4.  Salesy deletes the task
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Salesy shows an error message.
+    * 3a1. Salesy displays an error message.
 
       Use case resumes at step 2.
-
-**Use case: View pending tasks**
-
-**MSS**
-
-1. Vendor requests to view pending tasks
-2. Salesy shows a list of tasks that are marked undone.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
 
 **Use case: Add a supplier**
 
@@ -668,10 +718,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the add supplier command.
-* 2b. A supplier with the same name/phone already exists.
-    * 2b1. Salesy shows an error message that the supplier already exists.
+* 1a. The command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the add supplier command.
+* 1b. A supplier with the same name/phone already exists.
+    * 1b1. Salesy shows an error message that the supplier already exists.
 
     Use case resumes at step 1.
 
@@ -686,10 +736,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the delete supplier command.
-* 2b. The index number specified is invalid.
-    * 2b1. Salesy shows an error message that the index provided is invalid.
+* 1a. The command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the delete supplier command.
+* 1b. The index number specified is invalid.
+    * 1b1. Salesy shows an error message that the index provided is invalid.
 
     Use case resumes at step 1.
 
@@ -702,6 +752,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Extensions**
+
+* 1a. The list is empty.
+    Use case ends.
+
 **Use case: Find a supplier**
 
 **MSS**
@@ -713,10 +768,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
-  * 2a1. Salesy displays an empty list.
-* 2b. No existing suppliers match the vendor's query.
-  * 2b1. Salesy displays an empty list.
+* 1a. The list is empty.
+  * 1a1. Salesy displays an empty list.
+* 1b. No existing suppliers match the vendor's query.
+  * 1b1. Salesy displays an empty list.
   
   Use case ends.
 
@@ -731,12 +786,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the edit supplier command.
-* 2b. The index number to specify a supplier to edit is invalid.
-    * 2b1. Salesy shows an error message that the index provided is invalid.
-* 2c. The new name/phone for the edited supplier conflicts with an existing supplier's name/phone.
-    * 2c1. Salesy shows an error message that there is already an existing supplier with the provided details.
+* 1a. The command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the edit supplier command.
+* 1b. The index number to specify a supplier to edit is invalid.
+    * 1b1. Salesy shows an error message that the index provided is invalid.
+* 1c. The new name/phone for the edited supplier conflicts with an existing supplier's name/phone.
+    * 1c1. Salesy shows an error message that there is already an existing supplier with the provided details.
 
   Use case resumes at step 1.
 
