@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Keyboard shortcuts
+title: Quality-Of-Life
 ---
 
 ## Keyboard shortcuts
@@ -14,3 +14,9 @@ Key | Functionality
 `F1` | Opens the Help Window if it's not open
 `F2` | Highlights the first row of the displayed list
 `F3` | Quick-access to the command input box
+
+### Accessing command history
+
+Use the `Up` and `Down` arrow keys to navigate through the command history. This feature
+is useful if your next command is similar to a previous command, or if you wish to revisit
+your previous commands.

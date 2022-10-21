@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Viewing help
+title: Getting help
 ---
 
 ### Viewing help : `help`
