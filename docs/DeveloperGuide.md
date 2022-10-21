@@ -121,16 +121,27 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) as well as the `User` .
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. Similarly, there is a `CurrentModule`, `PlannedModule` and `PreviousModule` lists and each unique instance has its own object. <br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+#### Module Class
+`CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
+
+![Module Class Diagram](images/ModuleClassDiagram.png)
+
+All implementations of `Module`s have a name.
+
+`CurrentModule` has additional fields, which are implementations of `Lesson`s. These are `Tutorial`, `Recitation`, `Lab`, and `Lecture`.
+
+All implementations of `Lesson`s have a `StartTime` and `EndTime`. 
 
 
 ### Storage component
@@ -443,6 +454,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
   Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC9 - Show User's Timetable**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to show own Timetable.
+2. ConnectNUS the Timetable of CS Student's current modules.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 1b. No user, or no current modules for user, or no lessons for current modules.
+    * 1b1. ConnectNUS informs user of missing data.
+    * Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC10 - Show contact's Timetable**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to show contact's Timetable.
+2. ConnectNUS the Timetable of CS Student's contact's current modules.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format or index out of bounds.
+    * 1a1. ConnectNUS requests for the correct format or index.
+    * User enters a new command in the correct format or index.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 1b. No current modules for contact, or no lessons for current modules.
+    * 1b1. ConnectNUS informs user of missing data.
+    * Use case ends.
 
 *{More to be added}*
 
