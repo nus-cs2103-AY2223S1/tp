@@ -14,10 +14,21 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
+//import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.ClearCommand;
+//import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+//import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterLocCommand;
+import seedu.address.logic.commands.FilterOrderCommand;
+import seedu.address.logic.commands.FilterPetCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPetCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.SortCommand;
 //import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.AdditionalRequests;
 import seedu.address.model.order.OrderStatus;
 import seedu.address.model.order.Price;
 import seedu.address.model.order.predicates.AdditionalRequestPredicate;
@@ -27,8 +38,11 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
-import seedu.address.model.pet.Species;
-import seedu.address.model.pet.predicates.*;
+import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 import seedu.address.testutil.TypicalPersonCategories;
 
 public class AddressBookParserTest {
