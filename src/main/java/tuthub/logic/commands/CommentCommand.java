@@ -29,7 +29,6 @@ public class CommentCommand extends Command {
             + PREFIX_COMMENT + "Good class management";
 
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Tutor: %1$s";
-    // public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Removed comment from Tutor: %1$s";
     public static final String MESSAGE_ADD_COMMENT_FAILURE = "There is no comment!";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Comment: %2$s";

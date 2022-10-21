@@ -14,12 +14,9 @@ public class CommentList {
         return this;
     }
 
-    public Comment getComment(int index) {
-        return comments.get(index);
-    }
 
-    public void deleteComment(int index) {
-        comments.remove(index);
+    public Comment deleteComment(int index) {
+        return comments.remove(index);
     }
 
     public void clearComments() {
