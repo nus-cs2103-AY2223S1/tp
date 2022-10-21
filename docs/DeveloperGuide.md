@@ -251,7 +251,7 @@ The following activity diagram summarizes the flow of when a user enters an edit
 
 ### \[Insert Numbering\] Delete feature
 The Delete feature is facilitated by `LogicManager`. The `DeleteCommandParser` parses the command arguments, and returns
-an `DeleteCommand` that is executed by the `LogicManager` and returns a `CommandResult` as feedback to the user.
+a `DeleteCommand` that is executed by the `LogicManager` and returns a `CommandResult` as feedback to the user.
 
 This feature enables the user to remove a customer from bobaBot via either the `PHONE` or `EMAIL` identifier.
 
