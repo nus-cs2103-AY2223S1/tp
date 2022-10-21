@@ -79,6 +79,7 @@ The `UI` component,
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Task` object located in the `Model`.
 
 ### Logic component
 
@@ -262,6 +263,13 @@ The implementation of finding the contacts/tasks from our model is facilitated b
 `ContactNameContainsKeywordsPredicate` and `TaskNameContainsKeywordsPredicate` implement the interface `Predicate` and test if a contact/task's name contains the given keywords.
 
 The predicates are passed into `Model#updateFilteredContactList` and `Model#updateFilteredTaskList` respectively, which then uses the predicates to filter contacts/tasks containing the given keywords.
+
+### View tasks details
+The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
+
+`TaskCard` and `TaskListPanel` extends the superclass `UiPart<Region>` and fills the UI container with a panel that displays the list of tasks, along with their assigned contacts and deadlines.
+
+`TaskCard#TaskListViewCell` is responsible for displaying the graphics of a task using a `TaskCard`.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
