@@ -45,10 +45,6 @@ public class AddNotesCommand extends Command {
 
     /**
      * Creates a AddNotesCommand to add notes to a lesson or to a specified student in the lesson.
-     *
-     * @param lessonIndex
-     * @param studentIndex
-     * @param notes
      */
     public AddNotesCommand(Index lessonIndex, Index studentIndex, String notes) {
         this.lessonIndex = lessonIndex;

@@ -49,10 +49,6 @@ public class DeleteNotesCommand extends Command {
 
     /**
      * Creates a DeleteNotesCommand to delete notes from a lesson or from a specified student in the lesson.
-     *
-     * @param noteIndex
-     * @param lessonIndex
-     * @param studentIndex
      */
     public DeleteNotesCommand(Index noteIndex, Index lessonIndex, Index studentIndex) {
         this.noteIndex = noteIndex;

@@ -39,9 +39,6 @@ public class MarkStudentCommand extends Command {
     /**
      * Creates a MarkStudentCommand to mark the specified student at student index for a given lesson at lesson index as
      * present.
-     *
-     * @param lessonIndex
-     * @param studentIndex
      */
     public MarkStudentCommand(Index lessonIndex, Index studentIndex) {
         this.lessonIndex = lessonIndex;

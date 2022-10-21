@@ -39,9 +39,6 @@ public class UnmarkStudentCommand extends Command {
     /**
      * Creates a UnmarkStudentCommand to mark the specified student at student index for a given lesson at lesson index
      * as absent.
-     *
-     * @param lessonIndex
-     * @param studentIndex
      */
     public UnmarkStudentCommand(Index lessonIndex, Index studentIndex) {
         this.lessonIndex = lessonIndex;
