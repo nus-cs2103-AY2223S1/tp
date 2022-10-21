@@ -70,7 +70,7 @@ public class FilterBuyerByCharacteristicsPredicateTest {
     }
 
     @Test
-    public void test_buyerContainsCharacteristics_returnFalse() {
+    public void test_buyerDoesNotContainCharacteristics_returnFalse() {
         //No matching characteristics
         FilterBuyerByCharacteristicsPredicate predicate =
                 new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB"));

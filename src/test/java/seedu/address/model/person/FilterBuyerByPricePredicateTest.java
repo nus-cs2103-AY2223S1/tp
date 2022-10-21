@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Price;
 import seedu.address.testutil.PersonBuilder;
 
@@ -57,7 +56,7 @@ public class FilterBuyerByPricePredicateTest {
     }
 
     @Test
-    public void test_buyerContainsCharacteristics_returnFalse() {
+    public void test_priceNotInPriceRange_returnFalse() {
         //No matching characteristics
         FilterBuyerByPricePredicate predicate =
                 new FilterBuyerByPricePredicate(new Price("0"));
