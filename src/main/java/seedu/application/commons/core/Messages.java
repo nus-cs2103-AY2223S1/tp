@@ -9,6 +9,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX = "The application index provided"
             + " is invalid";
+    public static final String MESSAGE_INVALID_ARCHIVE_APPLICATION_DISPLAYED_INDEX = "The application index provided"
+            + " in archive list is invalid";
     public static final String MESSAGE_INVALID_INTERVIEW_DISPLAYED_INDEX = "The interview index provided"
             + " is invalid";
     public static final String MESSAGE_APPLICATION_LISTED_OVERVIEW = "%1$d applications listed!";

@@ -12,11 +12,8 @@ import seedu.application.model.application.interview.Interview;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Application> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
-
-    Predicate<Application> PREDICATE_SHOW_APPLICATION_WITH_INTERVIEW = i -> i.getInterview().isPresent();
-
+    Predicate<Application> HIDE_ARCHIVE_IN_LIST = app -> !app.isArchived();
+    Predicate<Application> SHOW_ARCHIVE_ONLY = app -> app.isArchived();
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -91,6 +88,18 @@ public interface Model {
     void addApplication(Application application);
 
     /**
+     * Archives the given application.
+     * {@code application} must not be archived.
+     */
+    void archiveApplication(Application target);
+
+    /**
+     * Retrieves the given application from the archives.
+     * {@code application} must be archived.
+     */
+    void retrieveApplication(Application target);
+
+    /**
      * Replaces the given application {@code target} with {@code editedApplication}.
      * {@code target} must exist in the application book.
      * The application identity of {@code editedApplication} must not be the same as
@@ -109,6 +118,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
+
+    /**
+     * Updates the application list with interview when a new interview is added.
+     */
+    void updateApplicationListWithInterview();
 
     /**
      * Saves the current {@code ApplicationBook} state in the history.
@@ -134,12 +148,6 @@ public interface Model {
      * Restores the model's previously undone {@code ApplicationBook} state from the history.
      */
     void redoApplicationBook();
-
-    /**
-     * Updates the application list with interview when a new interview is added.
-     */
-    void updateApplicationListWithInterview();
-
 
     /**
      * Sorts the application list by company.

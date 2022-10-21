@@ -24,6 +24,7 @@ public class ApplicationBuilder {
     public static final String DEFAULT_DATE = "2022-01-01";
     public static final String DEFAULT_EMAIL = "google@gmail.com";
     public static final String DEFAULT_POSITION = "Software Engineer";
+    public static final boolean DEFAULT_ARCHIVE_STATUS = false;
 
     private Company company;
     private Contact contact;
@@ -31,6 +32,7 @@ public class ApplicationBuilder {
     private Email email;
     private Position position;
     private Set<Tag> tags;
+    private boolean isArchived;
     private Optional<Interview> interview;
 
     /**
@@ -43,6 +45,7 @@ public class ApplicationBuilder {
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
         tags = new HashSet<>();
+        isArchived = DEFAULT_ARCHIVE_STATUS;
         interview = Optional.empty();
     }
 
@@ -56,6 +59,7 @@ public class ApplicationBuilder {
         email = applicationToCopy.getEmail();
         position = applicationToCopy.getPosition();
         tags = new HashSet<>(applicationToCopy.getTags());
+        isArchived = applicationToCopy.isArchived();
         if (applicationToCopy.getInterview().isPresent()) {
             interview = applicationToCopy.getInterview();
         } else {
@@ -112,6 +116,14 @@ public class ApplicationBuilder {
     }
 
     /**
+     * Sets the {@code isArchived} boolean of the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withArchiveStatus(boolean isArchived) {
+        this.isArchived = isArchived;
+        return this;
+    }
+
+    /**
      * Sets the {@code Interview} of the {@code Application} that we are building.
      */
     public ApplicationBuilder withInterview(Interview interview) {
@@ -120,14 +132,22 @@ public class ApplicationBuilder {
     }
 
     /**
-     * Create Application with its fields.
+     * Creates an Application object according to the parameters.
      * @return created Application.
      */
     public Application build() {
-        if (this.interview.isPresent()) {
-            return new Application(new Application(company, contact, email, position, date, tags), interview.get());
+        if (isArchived) {
+            if (this.interview.isPresent()) {
+                return new Application(new Application(company, contact, email, position, date, tags),
+                        interview.get()).setToArchive();
+            }
+            return new Application(company, contact, email, position, date, tags).setToArchive();
         } else {
-            return new Application(company, contact, email, position, date, tags);
+            if (this.interview.isPresent()) {
+                return new Application(new Application(company, contact, email, position, date, tags), interview.get());
+            } else {
+                return new Application(company, contact, email, position, date, tags);
+            }
         }
     }
 

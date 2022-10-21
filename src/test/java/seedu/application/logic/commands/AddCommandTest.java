@@ -152,6 +152,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void archiveApplication(Application target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void retrieveApplication(Application target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setApplication(Application target, Application editedApplication) {
             throw new AssertionError("This method should not be called.");
         }

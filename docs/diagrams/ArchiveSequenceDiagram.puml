@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ApplicationBook" as ApplicationBook MODEL_COLOR
+end box
+
+
+
+-> Model : archiveApplication(1)
+activate Model
+
+Model -> ApplicationBook: setArchive(1)
+activate ApplicationBook
+ApplicationBook --> Model
+deactivate ApplicationBook
+
+Model -> Model: commitApplication()
+activate Model
+deactivate Model
+
+[<--Model
+deactivate Model
+
+-> Model: updateApplicationListWithInterview( )
+activate Model
+[<-- Model
+deactivate Model
+@enduml

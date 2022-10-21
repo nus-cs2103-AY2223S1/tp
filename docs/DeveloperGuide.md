@@ -231,9 +231,50 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the application being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
+### Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+
+The purpose of this enhancement is to allow user to archive applications that are not applicable in the current time (applications that are rejected/offered/no-response )
+* Data archiving of `Application` is done with adding a boolean attribute to the Application class as the record of its archive status.
+* Two predicates in Model to adjust its FilterList shown to the user.
+* By applying predicates to the `FilterList` in `ModelManager`, the archived `Application` can be hidden from the user.
+* The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively.
+
+The features of the new and modified commands are summarized as follows:
+* `ArchiveCommand`: Set specified application archive status to `true` by utilising `ModelManager#archiveApplication`.
+* `RetriveCommand`: Set specified application archive status to `false` by utilising `ModelManager#retrieveApplication`.
+* `ListArchiveCommand`: Show user the archived applications in CinternS.
+* `ListCommand`: Show user the unarchived applications in CinternS.
+
+The following sequence diagram shows how the ModelManager works when archive command is executed to update the list shown in UI:
+![ModelManagerUsingArchiveSequenceDiagram](images/ModelManagerUsingArchiveSequenceDiagram.png)
+
+After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archive application to the FilterList in Model and the archived application will be hidden from the updated list shown in UI.
+
+#### Constraints of Data archiving:
+Archived applications cannot be archived again. Doing so will cause `CommandException` to be thrown. The same reasoning applies to retrieve command.
+
+#### Design considerations:
+
+Aspect: How should data archiving be implemented?
+
+- Alternative 1 (current choice): Add a boolean attribute to Application class.
+    - Pros: Concise implementation as only predicates and a few new commands are added to make it work.
+    - Cons: Current tests need to be modified.
+- Alternative 2: Adding archived application to a list similar to UniqueApplicationList as record.
+    - Pros: Less effort to maintain the previous test case as this implementation makes only minor modification on previous classes.
+    - Cons: Too much duplication and maintenance of actual code (Another copy of UniqueList need to be created and maintained).
+
+Aspect: Should user allowed to edit archived application directly?
+
+- Alternative 1 (current choice): User are allowed to edit archived application
+    - Pros: A more convenient usage for user.
+    - Cons: Less "hidden" nature of archiving data.
+- Alternative 2: User are not allow to edit archived application
+    - Pros: Usage of archive is more intuitive as archive applications are only used for future references.
+    - Cons: Inconvenient usage as user need to retrieve archived application before editing it.
+- Alternative 1 is chosen in this case by referencing Whatsapp archived chat where user can still send message (make modification) in the archived chat.
 
 ### Interview Feature
 
@@ -291,6 +332,55 @@ Aspect: What fields should the `find` command search through?
 - Alternative 2: `find` command finds only all applications whose company name contain any of the specified keywords.
   - Pros: Easy to implement, with minimal modification to existing tests.
   - Cons: Limited breadth of search, does not align with definition of unique application. 
+
+### Sort Feature
+
+#### Implementation
+
+The sort feature allows the user to sort the application list using company names, positions, application dates or interview dates. Each of these orders can also be reversed.
+
+The class diagram below shows the classes in the Logic component relevant for sorting:
+
+![Sort Class Diagram](images/SortClassDiagram.png)
+
+There is an abstract `SortCommand` class that inherits from the abstract `Command` class. Then, there is a concrete `SortCommand` subclass for each possible order of sort. Meanwhile, there is a single `SortCommandParser` class. When it parses the arguments supplied to a `sort` command, it decides which of the `SortCommand` subclasses to instantiate.
+
+The following sequence diagram shows the operation of a sort featuring just two of the possible orders - by company and by date:
+![Sort Sequence Diagram](images/SortSequenceDiagram.png)
+
+When calling the `parse` method of the `SortCommandParser`, the argument provided for the `o/` prefix determines which subclass of `SortCommand` will get created. In the event that the prefix is not provided, a `SortByDateCommand` is returned by default.
+
+Later, when `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+
+#### Constraints of Sort Feature
+
+The user can only sort based on one field at a time. The sort also only persists for the current session, meaning the order of applications will be reset if the app is closed and reopened.
+
+#### Design Considerations
+
+Aspect: What method(s) to add to the `Model` interface:
+
+* Alternative 1: Add a single `sortApplicationList` method that takes in a boolean `shouldReverse` and an enum value `order` that specifies what order to use for sorting.
+    * Pros: Only one method is required. Potentially prevents duplication of similar code.
+    * Cons: Implementation of the method can become long and complex if many more possible sort orders are added in the future, especially if each sort order's implementation turn out not to be similar.
+
+* Alternative 2 (current choice): Add separate methods for every sort order, each only taking a boolean `shouldReverse` as argument
+    * Pros: Avoids the need for switch statements to control the behaviour. Implementation of forward and reversed orders likely similar, so code can be shared.
+    * Cons: `Model` interface may have many sort methods if many possible orders are added later.
+
+* Alternative 3: Have 2 methods for each order, one for forward order and one for reverse order.
+    * Pros: Removes the need for any flag argument.
+    * Cons: Leads to a lot of code duplication since implementing a reversed sort is likely very similar to implementing the original sort in most if not all cases. Also creates a lot more methods.
+
+Aspect: How to allow the `SortCommand` to sort using different possible orders when executed:
+
+* Alternative 1 (current choice): Create separate subclasses of `SortCommand` each for sorting based on a different order.
+    * Pros: Better follows the Open-Closed Principle since none of the current `SortCommand` subclasses need to be edited when a new sort order is implemented.
+    * Cons: Multiple classes associated with a single command word.
+
+* Alternative 2: Store an enum value inside each `SortCommand` instance indicating what order to use for sorting. Then, in the `execute` method, use a switch statement to make the appropriate function calls on the `Model`.
+    * Pros: Will avoid the need for creating multiple classes.
+    * Cons: Seems redundant to use another switch statement for controlling the `SortCommand` behaviour after already using one in `SortCommandParser` for determining the order to use.
 
 --------------------------------------------------------------------------------------------------------------------
 

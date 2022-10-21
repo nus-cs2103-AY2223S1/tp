@@ -121,12 +121,14 @@ public class UniqueApplicationList implements Iterable<Application> {
         if (index == -1) {
             throw new ApplicationNotFoundException();
         }
-
+        //boolean to bypass duplicate interview checking
+        boolean hasSameArchiveStatus = (target.isArchived() && editedApplication.isArchived())
+                || (!target.isArchived() && !editedApplication.isArchived());
         if (!target.isSameApplication(editedApplication) && contains(editedApplication)) {
             // check if applications other than target are equivalent to editedApplication
             throw new DuplicateApplicationException();
         } else if (!target.getInterview().flatMap(x -> editedApplication.getInterview().map(y -> x.isOnSameTime(y)))
-                .orElse(false) && hasSameInterviewTimeAs(editedApplication)) {
+                .orElse(false) && hasSameInterviewTimeAs(editedApplication) && hasSameArchiveStatus) {
             // check if applications other than target happen at the same time as editedApplication
             throw new DuplicateInterviewException();
         }

@@ -5,7 +5,6 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_INTERVIEW_TIME;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_ROUND;
-import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 
@@ -86,7 +85,6 @@ public class AddInterviewCommand extends Command {
 
         model.setApplication(applicationToEdit, editedApplication);
         model.updateApplicationListWithInterview();
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplication));
     }
 

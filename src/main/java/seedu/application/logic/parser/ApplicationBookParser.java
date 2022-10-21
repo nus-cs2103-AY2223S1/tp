@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.application.logic.commands.AddCommand;
 import seedu.application.logic.commands.AddInterviewCommand;
+import seedu.application.logic.commands.ArchiveCommand;
 import seedu.application.logic.commands.ClearCommand;
 import seedu.application.logic.commands.Command;
 import seedu.application.logic.commands.DeleteCommand;
@@ -16,9 +17,14 @@ import seedu.application.logic.commands.EditCommand;
 import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
 import seedu.application.logic.commands.HelpCommand;
+import seedu.application.logic.commands.ListArchiveCommand;
 import seedu.application.logic.commands.ListCommand;
 import seedu.application.logic.commands.RedoCommand;
+<<<<<<< HEAD
 import seedu.application.logic.commands.RemindCommand;
+=======
+import seedu.application.logic.commands.RetrieveCommand;
+>>>>>>> master
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.commands.UndoCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
@@ -90,6 +96,15 @@ public class ApplicationBookParser {
 
         case RemindCommand.COMMAND_WORD:
             return new RemindCommand();
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case ListArchiveCommand.COMMAND_WORD:
+            return new ListArchiveCommand();
+
+        case RetrieveCommand.COMMAND_WORD:
+            return new RetrieveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
