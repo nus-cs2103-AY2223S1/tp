@@ -23,7 +23,7 @@ import seedu.address.model.person.Session;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    public static final String MESSAGE_NO_NEXT_SESSION_FOUND = "Don't worry, no next session for you!";
+    public static final String MESSAGE_NO_NEXT_SESSION_FOUND = "Don't worry, no next session for you this week!";
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
