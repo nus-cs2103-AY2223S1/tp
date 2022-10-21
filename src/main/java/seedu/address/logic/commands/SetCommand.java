@@ -142,6 +142,21 @@ public class SetCommand extends Command {
          */
         public SetPersonDescriptor() {}
 
+        /**
+         * Instantiates a copy of a given SetPersonDescriptor.
+         * Defensive copies of tags and contacts are used.
+         */
+        public SetPersonDescriptor(SetPersonDescriptor toCopy) {
+            this.setName(toCopy.name);
+            this.setAddress(toCopy.address);
+            this.setTags(toCopy.tags);
+            this.setRole(toCopy.role);
+            this.setTimezone(toCopy.timezone);
+            for (ContactType key : toCopy.contacts.keySet()) {
+                this.setContacts(key, toCopy.contacts.get(key));
+            }
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
