@@ -243,7 +243,8 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Insurance feature
 
 #### Implementation
-The Insurance mechanism is facilitated by `InsuranceCommand` and `InsuranceCommandParser`. It allows users to store whether a contact in their contact list has the four main types of insurance. The four main types of insurances are modelled by the classes `LifeInsurance`, `DisabilityInsurance`, CriticalIllnessInsurance and `HealthInsurance` which inherit from the abstract `Insurance` class. 
+The Insurance mechanism is facilitated by `InsuranceCommand` and `InsuranceCommandParser`. It allows users to store whether a contact in their contact list has the four main types of insurance.
+The four main types of insurances are modelled by the classes `LifeInsurance`, `DisabilityInsurance`, CriticalIllnessInsurance and `HealthInsurance` which inherit from the abstract `Insurance` class.
 
 The types of insurances are specified by prefixes inputted by the user:
 * li/ - Life Insurance
