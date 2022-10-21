@@ -103,13 +103,8 @@ public class ScheduleGridPanel extends UiPart<Region> {
      */
     public SlotContainer createSlot(Schedule schedule) {
         double duration = schedule.getDuration();
-        if (duration == 0.5) {
-            return new ScheduleSlotBlue(schedule);
-        } else if (duration == 1.0) {
-            return new ScheduleSlotGreen(schedule);
-        } else {
-            return new ScheduleSlotRed(schedule);
-        }
+        double slotWidth = duration * SCALE_FACTOR * COLUMNS_WIDTH;
+        return new ScheduleSlot(schedule);
     }
 
     /**
