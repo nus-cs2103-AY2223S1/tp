@@ -13,12 +13,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.ID;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Telegram;
+import seedu.address.model.student.StudentId;
+import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -109,12 +109,13 @@ class JsonAdaptedStudent {
         final Name modelName = new Name(name);
 
         if (id == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ID.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
-        if (!ID.isValidId(id)) {
-            throw new IllegalValueException(ID.MESSAGE_CONSTRAINTS);
+        if (!StudentId.isValidId(id)) {
+            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        final ID modelId = new ID(id);
+        final StudentId modelId = new StudentId(id);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -135,12 +136,12 @@ class JsonAdaptedStudent {
 
         if (telegram == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Telegram.class.getSimpleName()));
+                    TelegramHandle.class.getSimpleName()));
         }
-        if (!Telegram.isValidTelegram(telegram)) {
-            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        if (!TelegramHandle.isValidTelegram(telegram)) {
+            throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
-        final Telegram modelTelegram = new Telegram(telegram);
+        final TelegramHandle modelTelegramHandle = new TelegramHandle(telegram);
 
         if (tutorialModule == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -188,7 +189,7 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Student(modelName, modelId, modelPhone, modelEmail,
-                modelTelegram, modelTutorialModule, modelTutorialName,
+                modelTelegramHandle, modelTutorialModule, modelTutorialName,
                 modelAttendance, modelParticipation, modelGrade, modelTags);
     }
 

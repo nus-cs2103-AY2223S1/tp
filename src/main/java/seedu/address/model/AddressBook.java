@@ -230,6 +230,36 @@ public class AddressBook implements ReadOnlyAddressBook {
         consultations.remove(key);
     }
 
+    /**
+     * Returns an array containing number of specific grade.
+     */
+    public int[] getGradeData() {
+        int[] gradeArr = new int[5];
+        for (Student student : persons) {
+            String grade = student.getGrade().value;
+            switch (grade) {
+            case "A":
+                gradeArr[0]++;
+                break;
+            case "B":
+                gradeArr[1]++;
+                break;
+            case "C":
+                gradeArr[2]++;
+                break;
+            case "D":
+                gradeArr[3]++;
+                break;
+            case "F":
+                gradeArr[4]++;
+                break;
+            default:
+                break;
+            }
+        }
+        return gradeArr;
+    }
+
     //// util methods
 
     @Override

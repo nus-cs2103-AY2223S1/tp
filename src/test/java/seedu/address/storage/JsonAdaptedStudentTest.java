@@ -15,11 +15,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.ID;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Telegram;
+import seedu.address.model.student.StudentId;
+import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
@@ -119,7 +119,7 @@ public class JsonAdaptedStudentTest {
                 new JsonAdaptedStudent(VALID_NAME, INVALID_ID, VALID_PHONE, VALID_EMAIL,
                         VALID_TELEGRAM, VALID_MODULE, VALID_TUTORIAL, VALID_ATTENDANCE,
                         VALID_PARTICIPATION, VALID_GRADE, VALID_TAGS);
-        String expectedMessage = ID.MESSAGE_CONSTRAINTS;
+        String expectedMessage = StudentId.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -128,7 +128,7 @@ public class JsonAdaptedStudentTest {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, null, VALID_PHONE, VALID_EMAIL,
                 VALID_TELEGRAM, VALID_MODULE, VALID_TUTORIAL, VALID_ATTENDANCE,
                 VALID_PARTICIPATION, VALID_GRADE, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ID.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -138,7 +138,7 @@ public class JsonAdaptedStudentTest {
                 new JsonAdaptedStudent(VALID_NAME, VALID_ID, VALID_PHONE, VALID_EMAIL,
                         INVALID_TELEGRAM, VALID_MODULE, VALID_TUTORIAL, VALID_ATTENDANCE,
                         VALID_PARTICIPATION, VALID_GRADE, VALID_TAGS);
-        String expectedMessage = Telegram.MESSAGE_CONSTRAINTS;
+        String expectedMessage = TelegramHandle.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -147,7 +147,7 @@ public class JsonAdaptedStudentTest {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_ID, VALID_PHONE, VALID_EMAIL,
                 null, VALID_MODULE, VALID_TUTORIAL, VALID_ATTENDANCE,
                 VALID_PARTICIPATION, VALID_GRADE, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TelegramHandle.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

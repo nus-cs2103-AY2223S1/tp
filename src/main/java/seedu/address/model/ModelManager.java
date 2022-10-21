@@ -7,8 +7,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
@@ -129,6 +131,18 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Student> getFilteredPersonList() {
         return filteredStudents;
+    }
+
+    @Override
+    public ObservableList<PieChart.Data> getStudentGradeChartData() {
+        int[] gradeArr = addressBook.getGradeData();
+        ObservableList<PieChart.Data> gradeChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Grade A: " + gradeArr[0], gradeArr[0]),
+                new PieChart.Data("Grade B: " + gradeArr[1], gradeArr[1]),
+                new PieChart.Data("Grade C: " + gradeArr[2], gradeArr[2]),
+                new PieChart.Data("Grade D: " + gradeArr[3], gradeArr[3]),
+                new PieChart.Data("Grade F: " + gradeArr[4], gradeArr[4]));
+        return gradeChartData;
     }
 
     @Override

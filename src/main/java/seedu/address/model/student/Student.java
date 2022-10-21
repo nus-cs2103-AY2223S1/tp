@@ -19,10 +19,10 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final ID id;
+    private final StudentId id;
     private final Phone phone;
     private final Email email;
-    private final Telegram telegram;
+    private final TelegramHandle telegramHandle;
 
     // Data fields
     private final TutorialModule tutorialModule;
@@ -35,16 +35,16 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, ID id, Phone phone, Email email,
-                   Telegram telegram, TutorialModule tutorialModule,
+    public Student(Name name, StudentId id, Phone phone, Email email,
+                   TelegramHandle telegramHandle, TutorialModule tutorialModule,
                    TutorialName tutorialName, Attendance attendance,
                    Participation participation, Grade grade, Set<Tag> tags) {
-        requireAllNonNull(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tags);
+        requireAllNonNull(name, id, phone, email, telegramHandle, tutorialModule, tutorialName, grade, tags);
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
-        this.telegram = telegram;
+        this.telegramHandle = telegramHandle;
         this.tutorialModule = tutorialModule;
         this.tutorialName = tutorialName;
         this.attendance = attendance;
@@ -57,7 +57,7 @@ public class Student {
         return name;
     }
 
-    public ID getId() {
+    public StudentId getId() {
         return id;
     }
 
@@ -69,8 +69,8 @@ public class Student {
         return email;
     }
 
-    public Telegram getTelegram() {
-        return telegram;
+    public TelegramHandle getTelegram() {
+        return telegramHandle;
     }
 
     public TutorialModule getTutorialModule() {
@@ -142,7 +142,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tags);
+        return Objects.hash(name, id, phone, email, telegramHandle, tutorialModule, tutorialName, grade, tags);
     }
 
     @Override
