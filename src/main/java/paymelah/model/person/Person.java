@@ -4,11 +4,9 @@ import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.debt.Money;
 import paymelah.model.tag.Tag;
@@ -74,6 +72,14 @@ public class Person {
         return new Money(debts.getTotalDebt().toString());
     }
 
+    public int compareNameWith(Person o) {
+        return name.compareTo(o.name);
+    }
+
+    public int compareAmountOwedWith(Person o) {
+        return getDebtsAmountAsMoney().compareTo(o.getDebtsAmountAsMoney());
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -133,11 +139,8 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        List<Debt> debts = getDebts().asList();
-        if (!debts.isEmpty()) {
-            builder.append("; Debts: ");
-            debts.forEach(builder::append);
-        }
+        builder.append("\nDebts:");
+        builder.append(debts);
 
         return builder.toString();
     }

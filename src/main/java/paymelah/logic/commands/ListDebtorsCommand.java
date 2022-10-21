@@ -18,7 +18,7 @@ public class ListDebtorsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons who owe more than a certain amount. "
             + "If no amount is provided, lists all persons who owe any debt. "
-            + "Parameters:"
+            + "Parameters: "
             + "[" + PREFIX_MONEY + "<money>]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MONEY + "20.00";

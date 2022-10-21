@@ -97,6 +97,20 @@ Format: `adddebt <person index> d/<description> m/<money>`
 Example:
 * `adddebt 3 d/McDonalds m/8.9`
 
+### Splitting a debt: `splitdebt`
+
+Splits a debt among several people in PayMeLah such that each person owes the same amount (rounded up to the closest cent).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can split a debt among as many people as you want. You can even include yourself with index '0'
+</div>
+
+Format: `splitdebt <person index...> d/<description> m/<money>`
+
+Examples:
+* `splitdebt 1 2 d/Pizza m/33.99`
+* `splitdebt 0 2 5 d/KFC Fish m/13`
+
 ### Clearing debts: `cleardebts`
 
 Clears all of a debtor's debts from PayMeLah according to his index number when listed.
@@ -105,6 +119,15 @@ Format: `cleardebts <person index>`
 
 Example:
 * `cleardebts 3`
+
+### Deleting debts: `deletedebts`
+
+Deletes the debts specified by their index numbers from a person listed in PayMeLah.
+
+Format: `deletedebts <person index> debt/<debt index...>`
+
+Example:
+* `deletedebts 2 debt/2 3`
 
 ### Getting the statement
 
