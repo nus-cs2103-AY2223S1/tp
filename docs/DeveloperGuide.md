@@ -314,7 +314,7 @@ Priorities:
 - Low (unlikely to have) - `*`
 
 | Priority | As a …​        | I want to …​             | So that I can…​                                                            |
-| -------- | -------------- |--------------------------| -------------------------------------------------------------------------- |
+| -------- | -------------- |--------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user       | see usage instructions   | refer to instructions when I forget how to use the app                     |
 | `* * *`  | user           | add a new contact        | add a new contact to keep track of                                         |
 | `* * *`  | user           | view all contacts        | get an overview of all contacts in my app                                  |
@@ -325,7 +325,7 @@ Priorities:
 | `* * *`  | user           | view tasks by contact    | view tasks belonging to a contact                                          |
 | `* *`    | user           | update a task            | update the particulars of a task                                           |
 | `* * *`  | user           | delete a task            | remove tasks that I no longer need                                         |
-| `* *`    | user           | list all tasks           | to locate details of all the tasks immediately                 |
+| `* *`    | user           | list all tasks           | to locate details of all the tasks immediately                             |
 | `* *`    | user           | find tasks by name       | locate details of tasks without having to go through the entire list       |
 | `* *`    | forgetful user | autocomplete my commands | conveniently type commands without referring to the user guide excessively |
 
