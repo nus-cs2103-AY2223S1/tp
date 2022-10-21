@@ -300,12 +300,13 @@ the focused class doesn't contain a session named `Lab1` as of current.
 
 The main screen consists of components:
 * `ResultDisplay`, showing the classes the user has added; 
-* `ResultDisplay` consists of `ClassListPanel`, each row representing a class;
+* `ResultDisplay` consists of `ClassListPanel`, each row representing a class, and `StudentListPanel`, each row representing a student;
 * `CommandBox`, the Command Line Interface (CLI) for user to key in command and
 * `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
 
 It was designed with the following considerations:
 * Users have class-oriented focus while using this application. Their actions such as grading/assigning students to a class or initiating sessions revolve around a particular class, therefore we find it suitable to put the classes users have added within the `MainWindow`.
+* Operations on students can be performed conveniently by showing the list of all students on the main window, such as deleting, adding and finding students whenever required.
 * As we are targeting users with higher preference on CLI than GUI, putting the command input box at the bottom of the window may be more instinctive for their usage, due to the high similarity with the implementation of command terminals from various operating systems.
 
 **Focus Mode**
