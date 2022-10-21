@@ -69,7 +69,8 @@ public class CommandSuggestorTest {
     public void autocomplete_validCommandWithNoPrefix_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " ";
         try {
-            assertEquals(expectedSuggestion, commandSuggestor.autocompleteCommand("add_t", commandSuggestor.suggestCommand("add_t")));
+            assertEquals(expectedSuggestion, commandSuggestor.autocompleteCommand("add_t",
+                commandSuggestor.suggestCommand("add_t")));
         } catch (CommandException e) {
             throw new AssertionError("Autocomplete should not fail.", e);
         }
