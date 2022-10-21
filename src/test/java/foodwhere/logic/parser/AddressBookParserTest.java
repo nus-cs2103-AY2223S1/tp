@@ -24,12 +24,14 @@ import foodwhere.logic.commands.SEditCommand;
 import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.NameContainsStallPredicate;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
-import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
+import foodwhere.model.stall.StallContainsKeywordsPredicate;
 import foodwhere.testutil.EditStallDescriptorBuilder;
 import foodwhere.testutil.StallUtil;
 import foodwhere.testutil.TypicalIndexes;
@@ -96,10 +98,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_sfind() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<Name> nameKeywords = Arrays.asList(new Name("foo"));
+        List<Tag> tagKeywords = Arrays.asList(new Tag("bar"));
         SFindCommand command = (SFindCommand) parser.parseCommand(
-                SFindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new SFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                SFindCommand.COMMAND_WORD + " " + "n/foo t/bar");
+        assertEquals(new SFindCommand(new StallContainsKeywordsPredicate(nameKeywords, tagKeywords)), command);
     }
 
     @Test

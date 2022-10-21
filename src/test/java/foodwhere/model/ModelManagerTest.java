@@ -11,11 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.GuiSettings;
-import foodwhere.model.stall.NameContainsKeywordsPredicate;
+import foodwhere.model.commons.Name;
+import foodwhere.model.stall.StallContainsKeywordsPredicate;
 import foodwhere.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -117,8 +119,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredStallList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String name = ALICE.getName().toString().split(" ")[0];
+        modelManager.updateFilteredStallList(new StallContainsKeywordsPredicate(Arrays.asList(new Name(name)),
+                Collections.emptyList()));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

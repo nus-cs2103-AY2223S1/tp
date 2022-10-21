@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import foodwhere.commons.core.index.Index;
@@ -13,10 +14,11 @@ import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
+import foodwhere.model.commons.Name;
 import foodwhere.model.review.NameContainsStallPredicate;
 import foodwhere.model.review.Review;
-import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.StallContainsKeywordsPredicate;
 import foodwhere.testutil.EditStallDescriptorBuilder;
 
 /**
@@ -126,8 +128,10 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStallList().size());
 
         Stall stall = model.getFilteredStallList().get(targetIndex.getZeroBased());
-        final String[] splitName = stall.getName().fullName.split("\\s+");
-        model.updateFilteredStallList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        String name = stall.getName().toString().split(" ")[0];
+
+        model.updateFilteredStallList(new StallContainsKeywordsPredicate(Collections.singletonList(new Name(name)),
+                Collections.emptyList()));
 
         assertEquals(1, model.getFilteredStallList().size());
     }
