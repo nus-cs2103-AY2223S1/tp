@@ -98,7 +98,8 @@ public class LinkCommand extends Command {
                 personToLink.getEmail(),
                 personToLink.getPhone(),
                 internshipToLink.getInternshipId(),
-                personToLink.getTags()
+                personToLink.getTags(),
+                personToLink.getCompany()
         );
 
         Internship linkedInternship = new Internship(
