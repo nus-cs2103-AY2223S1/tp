@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
+import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
@@ -83,6 +84,12 @@ public interface Model {
      * {@code studentId} is unique so it should output 1 student only
      */
     Student getStudentByStudentId(StudentId studentId);
+
+    /**
+     * Gets the index position in UniqueStudentList with the specified StudentId
+     * {@code studentId} is unique so it should output 1 student only
+     */
+    Index getIndexByStudentId(StudentId studentId);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

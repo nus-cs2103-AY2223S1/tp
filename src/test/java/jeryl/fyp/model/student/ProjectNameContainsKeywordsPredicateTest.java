@@ -74,7 +74,7 @@ public class ProjectNameContainsKeywordsPredicateTest {
 
         // Keywords match name, studentId, and email, but does not match name
         predicate = new ProjectNameContainsKeywordsPredicate(Arrays.asList("Alice", "A1234567X", "alice@email.com"));
-        assertFalse(predicate.test(new StudentBuilder().withName("Alice").withStudentId("A1234567X")
+        assertFalse(predicate.test(new StudentBuilder().withStudentName("Alice").withStudentId("A1234567X")
                 .withEmail("alice@email.com").withProjectName("neural net").build()));
     }
 }

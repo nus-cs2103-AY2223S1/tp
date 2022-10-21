@@ -1,9 +1,9 @@
 package jeryl.fyp.model.student;
 
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalStudents.ALICE;
@@ -26,28 +26,28 @@ public class StudentTest {
     @Test
     public void isSameStudent() {
         // same object -> returns true
-        assertTrue(ALICE.isSameStudent(ALICE));
+        assertTrue(ALICE.isSameStudentName(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameStudent(null));
+        assertFalse(ALICE.isSameStudentName(null));
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withProjectName(VALID_PROJECT_NAME_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertTrue(ALICE.isSameStudentName(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameStudent(editedAlice));
+        editedAlice = new StudentBuilder(ALICE).withStudentName(VALID_STUDENT_NAME_BOB).build();
+        assertFalse(ALICE.isSameStudentName(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        Student editedBob = new StudentBuilder(BOB).withStudentName(VALID_STUDENT_NAME_BOB.toLowerCase()).build();
+        assertFalse(BOB.isSameStudentName(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        String nameWithTrailingSpaces = VALID_STUDENT_NAME_BOB + " ";
+        editedBob = new StudentBuilder(BOB).withStudentName(nameWithTrailingSpaces).build();
+        assertFalse(BOB.isSameStudentName(editedBob));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Student editedAlice = new StudentBuilder(ALICE).withStudentName(VALID_STUDENT_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different studentId -> returns false

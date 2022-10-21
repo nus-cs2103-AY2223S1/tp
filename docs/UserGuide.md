@@ -26,11 +26,11 @@ title: User Guide
 
    * **`list`** - lists all FYP projects the professor is supervising
 
-   * **`add id/A0123456G n/John Doe proj/Automation of Selenium`** - adds the FYP project of the student named John Doe with ID A0123456G titled _Automation of Selenium_
+   * **`add id/A0123456G n/John Doe proj/Automation of Selenium e/johndoe@gmail.com`** - adds the FYP project of the student named John Doe with ID A0123456G, email `johndoe@gmail.com`, and project titled _Automation of Selenium_
 
-   * **`delete A0123456G`** - deletes the FYP project of the student with ID A0123456G
+   * **`delete id/A0123456G`** - deletes the FYP project of the student with ID A0123456G
 
-   * **`mark A0123456G IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
+   * **`mark id/A0123456G s/IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
 
    * **`find machine`** - searches any FYP project names that has “machine” in its name, for example it will output the FYP project with “Machine Learning” in its name
 
@@ -88,17 +88,17 @@ Removes a FYP from the FYP manager. A FYP could be deleted for the following rea
 * Student dropped the FYP
 * Student finished the FYP
 
-Format: `delete STUDENT_ID`
+Format: `delete id/STUDENT_ID`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 
 Example:
-* `delete A0123456G`
+* `delete id/A0123456G`
 
 ### Marking project status: `mark`
 
 Marks a FYP as "Done"/"In Progress"/"Yet to Start", etc.
 
-Format: `mark STUDENT_ID STATUS`
+Format: `mark id/STUDENT_ID s/STATUS`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 * Current supported statuses are as follows:
   * **"DONE"** - Done
@@ -106,8 +106,8 @@ Format: `mark STUDENT_ID STATUS`
   * **"YTS"** - Yet To Start
 
 Examples:
-* `mark A0123456G DONE`
-* `mark A0234567H YTS`
+* `mark id/A0123456G s/DONE`
+* `mark id/A0234567H s/YTS`
 
 ### Searching keyword: `find` [pending implementation]
 
@@ -161,8 +161,8 @@ Format: `exit`
 | Action     | Format, Examples                                                                                                                                    |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe proj/Data Caching e/e09876567@u.nus.edu` |
-| **Delete** | `delete STUDENT_ID`<br> e.g., `delete A0123456G`                                                                                                    |
-| **Mark**   | `mark STUDENT_ID STATUS`<br> e.g.,`mark A0123456G IP`                                                                                               |
+| **Delete** | `delete id` <br> e.g., `delete id/A0987654X`                                                                                                        |
+| **Mark**   | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                     |
 | **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                                           |
 | **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                                                       |
 | **List**   | `list`                                                                                                                                              |

@@ -16,7 +16,7 @@ import jeryl.fyp.model.tag.Tag;
 public class Student {
 
     // Identity fields
-    private final Name name;
+    private final StudentName studentName;
     private final StudentId studentId;
     private final Email email;
     private final ProjectName projectName;
@@ -28,10 +28,10 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, StudentId studentId, Email email, ProjectName projectName,
+    public Student(StudentName studentName, StudentId studentId, Email email, ProjectName projectName,
                    ProjectStatus projectStatus, Set<Tag> tags) {
-        requireAllNonNull(name, studentId, email, projectName, projectStatus, tags);
-        this.name = name;
+        requireAllNonNull(studentName, studentId, email, projectName, projectStatus, tags);
+        this.studentName = studentName;
         this.studentId = studentId;
         this.email = email;
         this.projectName = projectName;
@@ -39,8 +39,8 @@ public class Student {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public StudentName getStudentName() {
+        return studentName;
     }
 
     public StudentId getStudentId() {
@@ -71,13 +71,13 @@ public class Student {
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */
-    public boolean isSameStudent(Student otherStudent) {
+    public boolean isSameStudentName(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getStudentName().equals(getStudentName());
     }
 
     /**
@@ -95,7 +95,7 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName())
+        return otherStudent.getStudentName().equals(getStudentName())
                 && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getProjectName().equals(getProjectName())
@@ -105,13 +105,13 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, studentId, email, projectName, tags);
+        return Objects.hash(studentName, studentId, email, projectName, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getStudentName())
                 .append("; Student ID: ")
                 .append(getStudentId())
                 .append("; Email: ")

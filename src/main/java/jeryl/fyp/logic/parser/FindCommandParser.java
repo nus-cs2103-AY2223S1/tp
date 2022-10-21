@@ -27,6 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = Arrays.stream(trimmedArgs.split("/"))
                 .map(keyword -> keyword.trim())
+                .filter(keyword -> !keyword.equals(""))
                 .toArray(size -> new String[size]); // split by "/" then trim each
 
         return new FindCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));

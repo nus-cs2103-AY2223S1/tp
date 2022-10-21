@@ -1,14 +1,15 @@
 package jeryl.fyp.testutil;
 
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.DeleteCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
@@ -26,11 +27,18 @@ public class StudentUtil {
     }
 
     /**
+     * Returns a delete command string for deleting the {@code student}.
+     */
+    public static String getDeleteCommand(Student student) {
+        return DeleteCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + student.getStudentId();
+    }
+
+    /**
      * Returns the part of command string for the given {@code student}'s details.
      */
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + student.getName().fullName + " ");
+        sb.append(PREFIX_STUDENT_NAME + student.getStudentName().fullStudentName + " ");
         sb.append(PREFIX_STUDENT_ID + student.getStudentId().id + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_PROJECT_NAME + student.getProjectName().fullProjectName + " ");
@@ -45,7 +53,7 @@ public class StudentUtil {
      */
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_STUDENT_NAME).append(name.fullStudentName).append(" "));
         descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENT_ID).append(studentId.id).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getProjectName().ifPresent(projectName -> sb.append(PREFIX_PROJECT_NAME)

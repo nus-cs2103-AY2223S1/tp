@@ -2,9 +2,9 @@ package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
 import jeryl.fyp.logic.commands.exceptions.CommandException;
@@ -20,14 +20,14 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the FYP manager. "
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENT_ID "
-            + PREFIX_NAME + "STUDENT_NAME "
+            + PREFIX_STUDENT_ID + "STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G) "
+            + PREFIX_STUDENT_NAME + "STUDENT_NAME "
             + PREFIX_PROJECT_NAME + "FYP_NAME "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_STUDENT_NAME + "John Doe "
             + PREFIX_PROJECT_NAME + "Neural Network "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "smart "

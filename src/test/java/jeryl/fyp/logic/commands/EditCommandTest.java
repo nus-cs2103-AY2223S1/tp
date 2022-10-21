@@ -2,8 +2,8 @@ package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -54,10 +54,10 @@ public class EditCommandTest {
         Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
-        Student editedStudent = studentInList.withName(VALID_NAME_BOB).withStudentId(VALID_STUDENT_ID_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Student editedStudent = studentInList.withStudentName(VALID_STUDENT_NAME_BOB)
+                .withStudentId(VALID_STUDENT_ID_BOB).withTags(VALID_TAG_HUSBAND).build();
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_BOB)
                 .withStudentId(VALID_STUDENT_ID_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
@@ -86,9 +86,10 @@ public class EditCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
+        Student editedStudent = new StudentBuilder(studentInFilteredList)
+                .withStudentName(VALID_STUDENT_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT,
-                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
@@ -122,7 +123,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidStudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -140,7 +141,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFypManager().getStudentList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }

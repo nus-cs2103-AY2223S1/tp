@@ -2,9 +2,9 @@ package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
@@ -20,11 +20,11 @@ import jeryl.fyp.commons.util.CollectionUtil;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -38,7 +38,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_STUDENT_NAME + "NAME] "
             + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PROJECT_NAME + "PROJECT_NAME] "
@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        if (!studentToEdit.isSameStudentName(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
@@ -94,7 +94,7 @@ public class EditCommand extends Command {
     private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        StudentName updatedStudentName = editStudentDescriptor.getName().orElse(studentToEdit.getStudentName());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
@@ -102,7 +102,7 @@ public class EditCommand extends Command {
                 studentToEdit.getProjectStatus(); //edit does not allow editing of project status
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedStudentId, updatedEmail,
+        return new Student(updatedStudentName, updatedStudentId, updatedEmail,
                 updatedProjectName, updatedProjectStatus, updatedTags);
     }
 
@@ -129,10 +129,11 @@ public class EditCommand extends Command {
      * corresponding field value of the student.
      */
     public static class EditStudentDescriptor {
-        private Name name;
+        private StudentName studentName;
         private StudentId id;
         private Email email;
         private ProjectName projectName;
+        private ProjectStatus projectStatus;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -142,10 +143,11 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
-            setName(toCopy.name);
+            setStudentName(toCopy.studentName);
             setStudentId(toCopy.id);
             setEmail(toCopy.email);
             setProjectName(toCopy.projectName);
+            setProjectStatus(toCopy.projectStatus);
             setTags(toCopy.tags);
         }
 
@@ -153,15 +155,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, id, email, projectName, tags);
+            return CollectionUtil.isAnyNonNull(studentName, id, email, projectName, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setStudentName(StudentName studentName) {
+            this.studentName = studentName;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<StudentName> getName() {
+            return Optional.ofNullable(studentName);
         }
 
         public void setStudentId(StudentId id) {
@@ -186,6 +188,14 @@ public class EditCommand extends Command {
 
         public Optional<ProjectName> getProjectName() {
             return Optional.ofNullable(projectName);
+        }
+
+        public void setProjectStatus(ProjectStatus projectStatus) {
+            this.projectStatus = projectStatus;
+        }
+
+        public Optional<ProjectStatus> getProjectStatus() {
+            return Optional.ofNullable(projectStatus);
         }
 
         /**
