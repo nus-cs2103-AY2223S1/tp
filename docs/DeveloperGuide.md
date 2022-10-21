@@ -281,9 +281,7 @@ Step 10: The `InsuranceCommand` calls the `updateFilteredPersonList` method of t
 
 Step 11: The `InsuranceCommand` then returns a new `CommandResult` object with the result of the execution.
 
-Step 12: The `LogicManager` then calls the `saveAddressBook` of the `Storage` object to save the contents of the `AddressBook` object.
-
-Step 13: The `LogicManager` then returns the `CommandResult` object.
+Step 12: The `LogicManager` then returns the `CommandResult` object.
 ### Delete feature
 
 #### Implementation
