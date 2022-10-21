@@ -14,7 +14,7 @@ Package Model <<Rectangle>>{
     Class "{{abstract}}\nAbstractContainerItem" as AbstractContainerItem
     Class "{{abstract}}\nAbstractDisplayItem" as AbstractDisplayItem
     Class "{{abstract}}\nAbstractAttribute" as AbstractAttribute
-    
+
 
     Class AddressBook
     Class ModelManager
