@@ -1,6 +1,9 @@
 package longtimenosee.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_COVERAGES;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,7 +21,10 @@ public class FindPolicyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all policies that match the given metrics and "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: [ti/title] [cmp/COMPANY] [cov/COVERAGE]…\n"
+            + "Parameters: "
+            + "[" + PREFIX_TITLE + "title] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_COVERAGES + "COVERAGE]…\n"
             + "Example: " + COMMAND_WORD + " cov/TRAVEL cmp/AIA";
 
     private final List<Predicate<Policy>> predicates;
