@@ -55,7 +55,4 @@ deactivate EasyGeneratorDeadlift
 EasyGeneratorDeadlift -[hidden]> GenerateCommand
 destroy EasyGeneratorDeadlift
 
-
-
-
 @enduml
