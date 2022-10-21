@@ -79,9 +79,6 @@ public class JsonAdaptedAppointment {
         }
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
 
-        if (modelTags.size() > 1) {
-            throw new IllegalValueException(Appointment.TAG_QUANTITY_CONSTRAINTS);
-        }
         return new Appointment(reason, dateTime, period, modelTags, isMarked);
     }
 }

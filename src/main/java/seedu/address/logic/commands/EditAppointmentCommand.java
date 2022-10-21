@@ -13,7 +13,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -70,12 +69,8 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         List<Appointment> currentAppts = person.getAppointments();
         int index = currentAppts.indexOf(targetAppointment);
 
-        Appointment editedAppointment;
-        try {
-            editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
-        } catch (IllegalValueException e) {
-            throw new CommandException(Appointment.TAG_QUANTITY_CONSTRAINTS);
-        }
+        Appointment editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
+
         if (hasSameTime(currentAppts, targetAppointment, editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
@@ -87,16 +82,13 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
     }
 
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
-            EditAppointmentDescriptor editAppointmentDescriptor) throws IllegalValueException {
+            EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
         String reason = editAppointmentDescriptor.getReason().orElse(appointmentToEdit.getReason());
         LocalDateTime dateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
         List<Integer> period = editAppointmentDescriptor.getTimePeriod().orElse(appointmentToEdit.getTimePeriod());
         Set<Tag> tags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
-        if (tags.size() > 1) {
-            throw new IllegalValueException(Appointment.TAG_QUANTITY_CONSTRAINTS);
-        }
         Appointment editedAppointment = new Appointment(reason, dateTime, period, tags,
                 appointmentToEdit.isMarked());
         editedAppointment.setPatient(appointmentToEdit.getPatient());

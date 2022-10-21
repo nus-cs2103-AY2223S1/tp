@@ -168,10 +168,6 @@ public class ParserUtil {
             throw new ParseException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
         }
 
-        if (tags.size() > 1) {
-            throw new ParseException(Appointment.TAG_QUANTITY_CONSTRAINTS);
-        }
-
         return new Appointment(trimmedReason, trimmedDateTime, trimmedPeriod, tags, false);
     }
 
